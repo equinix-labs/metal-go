@@ -45,4 +45,3 @@ There's HTTPCleint in the params and the client can maybe used for HTTP traffic 
 - authentication struct must be passed to every function. All the generated functions have authWriter as an argument. I'm not sure if it's possible to set the auth header globally so that all the func use it. And I'm not sure if it's possible to remove the authWrite from the generated code.
 - there seems to be no simple way to print HTTP requests and responses in the generated client:
   https://github.com/swagger-api/swagger-codegen/issues/5703
-- each generated api
