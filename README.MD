@@ -15,8 +15,34 @@ main.main()
 
 (customdata is in most of the resrouce types).
 
+## Generated code
+
+The generated functions look like (project listing):
+
+```go
+FindProjects(params *FindProjectsParams, authInfo runtime.ClientAuthInfoWriter) (*FindProjectsOK, error)
+```
+
+.. where authInfo is used for HTTP auth (auth token to header in case of Equinix Metal) and params are sth like
+
+```go
+type FindProjectsParams struct {
+    Include *string
+    Page *int64
+    PerPage *int64
+    timeout    time.Duration
+    Context    context.Context
+    HTTPClient *http.Client
+}
+```
+
+There's HTTPCleint in the params and the client can maybe used for HTTP traffic logging, but it wouldn't be trivial.
+
+
 
 ## Notes
 
 - authentication struct must be passed to every function. All the generated functions have authWriter as an argument. I'm not sure if it's possible to set the auth header globally so that all the func use it. And I'm not sure if it's possible to remove the authWrite from the generated code.
-
+- there seems to be no simple way to print HTTP requests and responses in the generated client:
+  https://github.com/swagger-api/swagger-codegen/issues/5703
+- each generated api
