@@ -45,7 +45,7 @@ type ClientService interface {
 
 	FindBatchesByProject(params *FindBatchesByProjectParams, authInfo runtime.ClientAuthInfoWriter) (*FindBatchesByProjectOK, error)
 
-	FindBgpConfigByProject(params *FindBgpConfigByProjectParams, authInfo runtime.ClientAuthInfoWriter) (*FindBgpConfigByProjectOK, error)
+	FindBGPConfigByProject(params *FindBGPConfigByProjectParams, authInfo runtime.ClientAuthInfoWriter) (*FindBGPConfigByProjectOK, error)
 
 	FindDeviceSSHKeys(params *FindDeviceSSHKeysParams, authInfo runtime.ClientAuthInfoWriter) (*FindDeviceSSHKeysOK, error)
 
@@ -53,7 +53,7 @@ type ClientService interface {
 
 	FindIPReservations(params *FindIPReservationsParams, authInfo runtime.ClientAuthInfoWriter) (*FindIPReservationsOK, error)
 
-	FindProjectBgpSessions(params *FindProjectBgpSessionsParams, authInfo runtime.ClientAuthInfoWriter) (*FindProjectBgpSessionsOK, error)
+	FindProjectBGPSessions(params *FindProjectBGPSessionsParams, authInfo runtime.ClientAuthInfoWriter) (*FindProjectBGPSessionsOK, error)
 
 	FindProjectByID(params *FindProjectByIDParams, authInfo runtime.ClientAuthInfoWriter) (*FindProjectByIDOK, error)
 
@@ -75,7 +75,7 @@ type ClientService interface {
 
 	ListSpotMarketRequests(params *ListSpotMarketRequestsParams, authInfo runtime.ClientAuthInfoWriter) (*ListSpotMarketRequestsOK, error)
 
-	RequestBgpConfig(params *RequestBgpConfigParams, authInfo runtime.ClientAuthInfoWriter) (*RequestBgpConfigNoContent, error)
+	RequestBGPConfig(params *RequestBGPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*RequestBGPConfigNoContent, error)
 
 	RequestIPReservation(params *RequestIPReservationParams, authInfo runtime.ClientAuthInfoWriter) (*RequestIPReservationCreated, error)
 
@@ -457,14 +457,14 @@ func (a *Client) FindBatchesByProject(params *FindBatchesByProjectParams, authIn
 }
 
 /*
-  FindBgpConfigByProject retrieves a bgp config
+  FindBGPConfigByProject retrieves a bgp config
 
   Returns a bgp config
 */
-func (a *Client) FindBgpConfigByProject(params *FindBgpConfigByProjectParams, authInfo runtime.ClientAuthInfoWriter) (*FindBgpConfigByProjectOK, error) {
+func (a *Client) FindBGPConfigByProject(params *FindBGPConfigByProjectParams, authInfo runtime.ClientAuthInfoWriter) (*FindBGPConfigByProjectOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewFindBgpConfigByProjectParams()
+		params = NewFindBGPConfigByProjectParams()
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -475,7 +475,7 @@ func (a *Client) FindBgpConfigByProject(params *FindBgpConfigByProjectParams, au
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http"},
 		Params:             params,
-		Reader:             &FindBgpConfigByProjectReader{formats: a.formats},
+		Reader:             &FindBGPConfigByProjectReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -483,7 +483,7 @@ func (a *Client) FindBgpConfigByProject(params *FindBgpConfigByProjectParams, au
 	if err != nil {
 		return nil, err
 	}
-	success, ok := result.(*FindBgpConfigByProjectOK)
+	success, ok := result.(*FindBGPConfigByProjectOK)
 	if ok {
 		return success, nil
 	}
@@ -605,14 +605,14 @@ func (a *Client) FindIPReservations(params *FindIPReservationsParams, authInfo r
 }
 
 /*
-  FindProjectBgpSessions retrieves all b g p sessions for project
+  FindProjectBGPSessions retrieves all BGP sessions for project
 
   Provides a listing of available BGP sessions for the project.
 */
-func (a *Client) FindProjectBgpSessions(params *FindProjectBgpSessionsParams, authInfo runtime.ClientAuthInfoWriter) (*FindProjectBgpSessionsOK, error) {
+func (a *Client) FindProjectBGPSessions(params *FindProjectBGPSessionsParams, authInfo runtime.ClientAuthInfoWriter) (*FindProjectBGPSessionsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewFindProjectBgpSessionsParams()
+		params = NewFindProjectBGPSessionsParams()
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -623,7 +623,7 @@ func (a *Client) FindProjectBgpSessions(params *FindProjectBgpSessionsParams, au
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http"},
 		Params:             params,
-		Reader:             &FindProjectBgpSessionsReader{formats: a.formats},
+		Reader:             &FindProjectBGPSessionsReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -631,7 +631,7 @@ func (a *Client) FindProjectBgpSessions(params *FindProjectBgpSessionsParams, au
 	if err != nil {
 		return nil, err
 	}
-	success, ok := result.(*FindProjectBgpSessionsOK)
+	success, ok := result.(*FindProjectBGPSessionsOK)
 	if ok {
 		return success, nil
 	}
@@ -1012,14 +1012,14 @@ func (a *Client) ListSpotMarketRequests(params *ListSpotMarketRequestsParams, au
 }
 
 /*
-  RequestBgpConfig requestings bgp config
+  RequestBGPConfig requestings bgp config
 
   Requests to enable bgp configuration for a project.
 */
-func (a *Client) RequestBgpConfig(params *RequestBgpConfigParams, authInfo runtime.ClientAuthInfoWriter) (*RequestBgpConfigNoContent, error) {
+func (a *Client) RequestBGPConfig(params *RequestBGPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*RequestBGPConfigNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewRequestBgpConfigParams()
+		params = NewRequestBGPConfigParams()
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1030,7 +1030,7 @@ func (a *Client) RequestBgpConfig(params *RequestBgpConfigParams, authInfo runti
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http"},
 		Params:             params,
-		Reader:             &RequestBgpConfigReader{formats: a.formats},
+		Reader:             &RequestBGPConfigReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -1038,7 +1038,7 @@ func (a *Client) RequestBgpConfig(params *RequestBgpConfigParams, authInfo runti
 	if err != nil {
 		return nil, err
 	}
-	success, ok := result.(*RequestBgpConfigNoContent)
+	success, ok := result.(*RequestBGPConfigNoContent)
 	if ok {
 		return success, nil
 	}

@@ -15,67 +15,84 @@ import (
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
-// NewCreateIPAssignmentParams creates a new CreateIPAssignmentParams object
-// with the default values initialized.
+// NewCreateIPAssignmentParams creates a new CreateIPAssignmentParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewCreateIPAssignmentParams() *CreateIPAssignmentParams {
-	var ()
 	return &CreateIPAssignmentParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewCreateIPAssignmentParamsWithTimeout creates a new CreateIPAssignmentParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewCreateIPAssignmentParamsWithTimeout(timeout time.Duration) *CreateIPAssignmentParams {
-	var ()
 	return &CreateIPAssignmentParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewCreateIPAssignmentParamsWithContext creates a new CreateIPAssignmentParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewCreateIPAssignmentParamsWithContext(ctx context.Context) *CreateIPAssignmentParams {
-	var ()
 	return &CreateIPAssignmentParams{
-
 		Context: ctx,
 	}
 }
 
 // NewCreateIPAssignmentParamsWithHTTPClient creates a new CreateIPAssignmentParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewCreateIPAssignmentParamsWithHTTPClient(client *http.Client) *CreateIPAssignmentParams {
-	var ()
 	return &CreateIPAssignmentParams{
 		HTTPClient: client,
 	}
 }
 
-/*CreateIPAssignmentParams contains all the parameters to send to the API endpoint
-for the create IP assignment operation typically these are written to a http.Request
+/* CreateIPAssignmentParams contains all the parameters to send to the API endpoint
+   for the create IP assignment operation.
+
+   Typically these are written to a http.Request.
 */
 type CreateIPAssignmentParams struct {
 
-	/*ID
-	  Device UUID
+	/* ID.
 
+	   Device UUID
+
+	   Format: uuid
 	*/
 	ID strfmt.UUID
-	/*IPAssignment
-	  IPAssignment to create
 
+	/* IPAssignment.
+
+	   IPAssignment to create
 	*/
-	IPAssignment *models.IPAssignmentInput
+	IPAssignment *types.IPAssignmentInput
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the create IP assignment params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *CreateIPAssignmentParams) WithDefaults() *CreateIPAssignmentParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the create IP assignment params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *CreateIPAssignmentParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the create IP assignment params
@@ -123,13 +140,13 @@ func (o *CreateIPAssignmentParams) SetID(id strfmt.UUID) {
 }
 
 // WithIPAssignment adds the iPAssignment to the create IP assignment params
-func (o *CreateIPAssignmentParams) WithIPAssignment(iPAssignment *models.IPAssignmentInput) *CreateIPAssignmentParams {
+func (o *CreateIPAssignmentParams) WithIPAssignment(iPAssignment *types.IPAssignmentInput) *CreateIPAssignmentParams {
 	o.SetIPAssignment(iPAssignment)
 	return o
 }
 
 // SetIPAssignment adds the ipAssignment to the create IP assignment params
-func (o *CreateIPAssignmentParams) SetIPAssignment(iPAssignment *models.IPAssignmentInput) {
+func (o *CreateIPAssignmentParams) SetIPAssignment(iPAssignment *types.IPAssignmentInput) {
 	o.IPAssignment = iPAssignment
 }
 
@@ -145,7 +162,6 @@ func (o *CreateIPAssignmentParams) WriteToRequest(r runtime.ClientRequest, reg s
 	if err := r.SetPathParam("id", o.ID.String()); err != nil {
 		return err
 	}
-
 	if o.IPAssignment != nil {
 		if err := r.SetBodyParam(o.IPAssignment); err != nil {
 			return err

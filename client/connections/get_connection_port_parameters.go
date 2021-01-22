@@ -16,64 +16,83 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewGetConnectionPortParams creates a new GetConnectionPortParams object
-// with the default values initialized.
+// NewGetConnectionPortParams creates a new GetConnectionPortParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewGetConnectionPortParams() *GetConnectionPortParams {
-	var ()
 	return &GetConnectionPortParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewGetConnectionPortParamsWithTimeout creates a new GetConnectionPortParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewGetConnectionPortParamsWithTimeout(timeout time.Duration) *GetConnectionPortParams {
-	var ()
 	return &GetConnectionPortParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewGetConnectionPortParamsWithContext creates a new GetConnectionPortParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewGetConnectionPortParamsWithContext(ctx context.Context) *GetConnectionPortParams {
-	var ()
 	return &GetConnectionPortParams{
-
 		Context: ctx,
 	}
 }
 
 // NewGetConnectionPortParamsWithHTTPClient creates a new GetConnectionPortParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewGetConnectionPortParamsWithHTTPClient(client *http.Client) *GetConnectionPortParams {
-	var ()
 	return &GetConnectionPortParams{
 		HTTPClient: client,
 	}
 }
 
-/*GetConnectionPortParams contains all the parameters to send to the API endpoint
-for the get connection port operation typically these are written to a http.Request
+/* GetConnectionPortParams contains all the parameters to send to the API endpoint
+   for the get connection port operation.
+
+   Typically these are written to a http.Request.
 */
 type GetConnectionPortParams struct {
 
-	/*ConnectionID
-	  UUID of the connection
+	/* ConnectionID.
 
+	   UUID of the connection
+
+	   Format: uuid
 	*/
 	ConnectionID strfmt.UUID
-	/*ID
-	  Port UUID
 
+	/* ID.
+
+	   Port UUID
+
+	   Format: uuid
 	*/
 	ID strfmt.UUID
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the get connection port params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetConnectionPortParams) WithDefaults() *GetConnectionPortParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the get connection port params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetConnectionPortParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the get connection port params

@@ -16,53 +16,54 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewFindBgpSessionsParams creates a new FindBgpSessionsParams object
-// with the default values initialized.
-func NewFindBgpSessionsParams() *FindBgpSessionsParams {
-	var ()
-	return &FindBgpSessionsParams{
-
+// NewFindBGPSessionsParams creates a new FindBGPSessionsParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
+func NewFindBGPSessionsParams() *FindBGPSessionsParams {
+	return &FindBGPSessionsParams{
 		timeout: cr.DefaultTimeout,
 	}
 }
 
-// NewFindBgpSessionsParamsWithTimeout creates a new FindBgpSessionsParams object
-// with the default values initialized, and the ability to set a timeout on a request
-func NewFindBgpSessionsParamsWithTimeout(timeout time.Duration) *FindBgpSessionsParams {
-	var ()
-	return &FindBgpSessionsParams{
-
+// NewFindBGPSessionsParamsWithTimeout creates a new FindBGPSessionsParams object
+// with the ability to set a timeout on a request.
+func NewFindBGPSessionsParamsWithTimeout(timeout time.Duration) *FindBGPSessionsParams {
+	return &FindBGPSessionsParams{
 		timeout: timeout,
 	}
 }
 
-// NewFindBgpSessionsParamsWithContext creates a new FindBgpSessionsParams object
-// with the default values initialized, and the ability to set a context for a request
-func NewFindBgpSessionsParamsWithContext(ctx context.Context) *FindBgpSessionsParams {
-	var ()
-	return &FindBgpSessionsParams{
-
+// NewFindBGPSessionsParamsWithContext creates a new FindBGPSessionsParams object
+// with the ability to set a context for a request.
+func NewFindBGPSessionsParamsWithContext(ctx context.Context) *FindBGPSessionsParams {
+	return &FindBGPSessionsParams{
 		Context: ctx,
 	}
 }
 
-// NewFindBgpSessionsParamsWithHTTPClient creates a new FindBgpSessionsParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
-func NewFindBgpSessionsParamsWithHTTPClient(client *http.Client) *FindBgpSessionsParams {
-	var ()
-	return &FindBgpSessionsParams{
+// NewFindBGPSessionsParamsWithHTTPClient creates a new FindBGPSessionsParams object
+// with the ability to set a custom HTTPClient for a request.
+func NewFindBGPSessionsParamsWithHTTPClient(client *http.Client) *FindBGPSessionsParams {
+	return &FindBGPSessionsParams{
 		HTTPClient: client,
 	}
 }
 
-/*FindBgpSessionsParams contains all the parameters to send to the API endpoint
-for the find bgp sessions operation typically these are written to a http.Request
+/* FindBGPSessionsParams contains all the parameters to send to the API endpoint
+   for the find Bgp sessions operation.
+
+   Typically these are written to a http.Request.
 */
-type FindBgpSessionsParams struct {
+type FindBGPSessionsParams struct {
 
-	/*ID
-	  Device UUID
+	/* ID.
 
+	   Device UUID
+
+	   Format: uuid
 	*/
 	ID strfmt.UUID
 
@@ -71,52 +72,67 @@ type FindBgpSessionsParams struct {
 	HTTPClient *http.Client
 }
 
-// WithTimeout adds the timeout to the find bgp sessions params
-func (o *FindBgpSessionsParams) WithTimeout(timeout time.Duration) *FindBgpSessionsParams {
+// WithDefaults hydrates default values in the find Bgp sessions params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *FindBGPSessionsParams) WithDefaults() *FindBGPSessionsParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the find Bgp sessions params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *FindBGPSessionsParams) SetDefaults() {
+	// no default values defined for this parameter
+}
+
+// WithTimeout adds the timeout to the find Bgp sessions params
+func (o *FindBGPSessionsParams) WithTimeout(timeout time.Duration) *FindBGPSessionsParams {
 	o.SetTimeout(timeout)
 	return o
 }
 
-// SetTimeout adds the timeout to the find bgp sessions params
-func (o *FindBgpSessionsParams) SetTimeout(timeout time.Duration) {
+// SetTimeout adds the timeout to the find Bgp sessions params
+func (o *FindBGPSessionsParams) SetTimeout(timeout time.Duration) {
 	o.timeout = timeout
 }
 
-// WithContext adds the context to the find bgp sessions params
-func (o *FindBgpSessionsParams) WithContext(ctx context.Context) *FindBgpSessionsParams {
+// WithContext adds the context to the find Bgp sessions params
+func (o *FindBGPSessionsParams) WithContext(ctx context.Context) *FindBGPSessionsParams {
 	o.SetContext(ctx)
 	return o
 }
 
-// SetContext adds the context to the find bgp sessions params
-func (o *FindBgpSessionsParams) SetContext(ctx context.Context) {
+// SetContext adds the context to the find Bgp sessions params
+func (o *FindBGPSessionsParams) SetContext(ctx context.Context) {
 	o.Context = ctx
 }
 
-// WithHTTPClient adds the HTTPClient to the find bgp sessions params
-func (o *FindBgpSessionsParams) WithHTTPClient(client *http.Client) *FindBgpSessionsParams {
+// WithHTTPClient adds the HTTPClient to the find Bgp sessions params
+func (o *FindBGPSessionsParams) WithHTTPClient(client *http.Client) *FindBGPSessionsParams {
 	o.SetHTTPClient(client)
 	return o
 }
 
-// SetHTTPClient adds the HTTPClient to the find bgp sessions params
-func (o *FindBgpSessionsParams) SetHTTPClient(client *http.Client) {
+// SetHTTPClient adds the HTTPClient to the find Bgp sessions params
+func (o *FindBGPSessionsParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithID adds the id to the find bgp sessions params
-func (o *FindBgpSessionsParams) WithID(id strfmt.UUID) *FindBgpSessionsParams {
+// WithID adds the id to the find Bgp sessions params
+func (o *FindBGPSessionsParams) WithID(id strfmt.UUID) *FindBGPSessionsParams {
 	o.SetID(id)
 	return o
 }
 
-// SetID adds the id to the find bgp sessions params
-func (o *FindBgpSessionsParams) SetID(id strfmt.UUID) {
+// SetID adds the id to the find Bgp sessions params
+func (o *FindBGPSessionsParams) SetID(id strfmt.UUID) {
 	o.ID = id
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *FindBgpSessionsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
+func (o *FindBGPSessionsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	if err := r.SetTimeout(o.timeout); err != nil {
 		return err

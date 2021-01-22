@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // FindUserByIDReader is a Reader for the FindUserByID structure.
@@ -47,7 +47,6 @@ func (o *FindUserByIDReader) ReadResponse(response runtime.ClientResponse, consu
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -58,25 +57,24 @@ func NewFindUserByIDOK() *FindUserByIDOK {
 	return &FindUserByIDOK{}
 }
 
-/*FindUserByIDOK handles this case with default header values.
+/* FindUserByIDOK describes a response with status code 200, with default header values.
 
 ok
 */
 type FindUserByIDOK struct {
-	Payload *models.User
+	Payload *types.User
 }
 
 func (o *FindUserByIDOK) Error() string {
 	return fmt.Sprintf("[GET /users/{id}][%d] findUserByIdOK  %+v", 200, o.Payload)
 }
-
-func (o *FindUserByIDOK) GetPayload() *models.User {
+func (o *FindUserByIDOK) GetPayload() *types.User {
 	return o.Payload
 }
 
 func (o *FindUserByIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.User)
+	o.Payload = new(types.User)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -91,7 +89,7 @@ func NewFindUserByIDUnauthorized() *FindUserByIDUnauthorized {
 	return &FindUserByIDUnauthorized{}
 }
 
-/*FindUserByIDUnauthorized handles this case with default header values.
+/* FindUserByIDUnauthorized describes a response with status code 401, with default header values.
 
 unauthorized
 */
@@ -112,7 +110,7 @@ func NewFindUserByIDForbidden() *FindUserByIDForbidden {
 	return &FindUserByIDForbidden{}
 }
 
-/*FindUserByIDForbidden handles this case with default header values.
+/* FindUserByIDForbidden describes a response with status code 403, with default header values.
 
 forbidden
 */
@@ -133,7 +131,7 @@ func NewFindUserByIDNotFound() *FindUserByIDNotFound {
 	return &FindUserByIDNotFound{}
 }
 
-/*FindUserByIDNotFound handles this case with default header values.
+/* FindUserByIDNotFound describes a response with status code 404, with default header values.
 
 not found
 */

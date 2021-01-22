@@ -12,65 +12,63 @@ import (
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
-// FindProjectBgpSessionsReader is a Reader for the FindProjectBgpSessions structure.
-type FindProjectBgpSessionsReader struct {
+// FindProjectBGPSessionsReader is a Reader for the FindProjectBGPSessions structure.
+type FindProjectBGPSessionsReader struct {
 	formats strfmt.Registry
 }
 
 // ReadResponse reads a server response into the received o.
-func (o *FindProjectBgpSessionsReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
+func (o *FindProjectBGPSessionsReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
 	case 200:
-		result := NewFindProjectBgpSessionsOK()
+		result := NewFindProjectBGPSessionsOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
 	case 401:
-		result := NewFindProjectBgpSessionsUnauthorized()
+		result := NewFindProjectBGPSessionsUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
 	case 404:
-		result := NewFindProjectBgpSessionsNotFound()
+		result := NewFindProjectBGPSessionsNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
 }
 
-// NewFindProjectBgpSessionsOK creates a FindProjectBgpSessionsOK with default headers values
-func NewFindProjectBgpSessionsOK() *FindProjectBgpSessionsOK {
-	return &FindProjectBgpSessionsOK{}
+// NewFindProjectBGPSessionsOK creates a FindProjectBGPSessionsOK with default headers values
+func NewFindProjectBGPSessionsOK() *FindProjectBGPSessionsOK {
+	return &FindProjectBGPSessionsOK{}
 }
 
-/*FindProjectBgpSessionsOK handles this case with default header values.
+/* FindProjectBGPSessionsOK describes a response with status code 200, with default header values.
 
 ok
 */
-type FindProjectBgpSessionsOK struct {
-	Payload *models.BgpSessionList
+type FindProjectBGPSessionsOK struct {
+	Payload *types.BGPSessionList
 }
 
-func (o *FindProjectBgpSessionsOK) Error() string {
+func (o *FindProjectBGPSessionsOK) Error() string {
 	return fmt.Sprintf("[GET /projects/{id}/bgp/sessions][%d] findProjectBgpSessionsOK  %+v", 200, o.Payload)
 }
-
-func (o *FindProjectBgpSessionsOK) GetPayload() *models.BgpSessionList {
+func (o *FindProjectBGPSessionsOK) GetPayload() *types.BGPSessionList {
 	return o.Payload
 }
 
-func (o *FindProjectBgpSessionsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *FindProjectBGPSessionsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.BgpSessionList)
+	o.Payload = new(types.BGPSessionList)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -80,44 +78,44 @@ func (o *FindProjectBgpSessionsOK) readResponse(response runtime.ClientResponse,
 	return nil
 }
 
-// NewFindProjectBgpSessionsUnauthorized creates a FindProjectBgpSessionsUnauthorized with default headers values
-func NewFindProjectBgpSessionsUnauthorized() *FindProjectBgpSessionsUnauthorized {
-	return &FindProjectBgpSessionsUnauthorized{}
+// NewFindProjectBGPSessionsUnauthorized creates a FindProjectBGPSessionsUnauthorized with default headers values
+func NewFindProjectBGPSessionsUnauthorized() *FindProjectBGPSessionsUnauthorized {
+	return &FindProjectBGPSessionsUnauthorized{}
 }
 
-/*FindProjectBgpSessionsUnauthorized handles this case with default header values.
+/* FindProjectBGPSessionsUnauthorized describes a response with status code 401, with default header values.
 
 unauthorized
 */
-type FindProjectBgpSessionsUnauthorized struct {
+type FindProjectBGPSessionsUnauthorized struct {
 }
 
-func (o *FindProjectBgpSessionsUnauthorized) Error() string {
+func (o *FindProjectBGPSessionsUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /projects/{id}/bgp/sessions][%d] findProjectBgpSessionsUnauthorized ", 401)
 }
 
-func (o *FindProjectBgpSessionsUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *FindProjectBGPSessionsUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }
 
-// NewFindProjectBgpSessionsNotFound creates a FindProjectBgpSessionsNotFound with default headers values
-func NewFindProjectBgpSessionsNotFound() *FindProjectBgpSessionsNotFound {
-	return &FindProjectBgpSessionsNotFound{}
+// NewFindProjectBGPSessionsNotFound creates a FindProjectBGPSessionsNotFound with default headers values
+func NewFindProjectBGPSessionsNotFound() *FindProjectBGPSessionsNotFound {
+	return &FindProjectBGPSessionsNotFound{}
 }
 
-/*FindProjectBgpSessionsNotFound handles this case with default header values.
+/* FindProjectBGPSessionsNotFound describes a response with status code 404, with default header values.
 
 not found
 */
-type FindProjectBgpSessionsNotFound struct {
+type FindProjectBGPSessionsNotFound struct {
 }
 
-func (o *FindProjectBgpSessionsNotFound) Error() string {
+func (o *FindProjectBGPSessionsNotFound) Error() string {
 	return fmt.Sprintf("[GET /projects/{id}/bgp/sessions][%d] findProjectBgpSessionsNotFound ", 404)
 }
 
-func (o *FindProjectBgpSessionsNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *FindProjectBGPSessionsNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }

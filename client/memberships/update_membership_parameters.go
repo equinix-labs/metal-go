@@ -15,67 +15,84 @@ import (
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
-// NewUpdateMembershipParams creates a new UpdateMembershipParams object
-// with the default values initialized.
+// NewUpdateMembershipParams creates a new UpdateMembershipParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewUpdateMembershipParams() *UpdateMembershipParams {
-	var ()
 	return &UpdateMembershipParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewUpdateMembershipParamsWithTimeout creates a new UpdateMembershipParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewUpdateMembershipParamsWithTimeout(timeout time.Duration) *UpdateMembershipParams {
-	var ()
 	return &UpdateMembershipParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewUpdateMembershipParamsWithContext creates a new UpdateMembershipParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewUpdateMembershipParamsWithContext(ctx context.Context) *UpdateMembershipParams {
-	var ()
 	return &UpdateMembershipParams{
-
 		Context: ctx,
 	}
 }
 
 // NewUpdateMembershipParamsWithHTTPClient creates a new UpdateMembershipParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewUpdateMembershipParamsWithHTTPClient(client *http.Client) *UpdateMembershipParams {
-	var ()
 	return &UpdateMembershipParams{
 		HTTPClient: client,
 	}
 }
 
-/*UpdateMembershipParams contains all the parameters to send to the API endpoint
-for the update membership operation typically these are written to a http.Request
+/* UpdateMembershipParams contains all the parameters to send to the API endpoint
+   for the update membership operation.
+
+   Typically these are written to a http.Request.
 */
 type UpdateMembershipParams struct {
 
-	/*ID
-	  Membership UUID
+	/* ID.
 
+	   Membership UUID
+
+	   Format: uuid
 	*/
 	ID strfmt.UUID
-	/*Membership
-	  Membership to update
 
+	/* Membership.
+
+	   Membership to update
 	*/
-	Membership *models.MembershipInput
+	Membership *types.MembershipInput
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the update membership params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *UpdateMembershipParams) WithDefaults() *UpdateMembershipParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the update membership params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *UpdateMembershipParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the update membership params
@@ -123,13 +140,13 @@ func (o *UpdateMembershipParams) SetID(id strfmt.UUID) {
 }
 
 // WithMembership adds the membership to the update membership params
-func (o *UpdateMembershipParams) WithMembership(membership *models.MembershipInput) *UpdateMembershipParams {
+func (o *UpdateMembershipParams) WithMembership(membership *types.MembershipInput) *UpdateMembershipParams {
 	o.SetMembership(membership)
 	return o
 }
 
 // SetMembership adds the membership to the update membership params
-func (o *UpdateMembershipParams) SetMembership(membership *models.MembershipInput) {
+func (o *UpdateMembershipParams) SetMembership(membership *types.MembershipInput) {
 	o.Membership = membership
 }
 
@@ -145,7 +162,6 @@ func (o *UpdateMembershipParams) WriteToRequest(r runtime.ClientRequest, reg str
 	if err := r.SetPathParam("id", o.ID.String()); err != nil {
 		return err
 	}
-
 	if o.Membership != nil {
 		if err := r.SetBodyParam(o.Membership); err != nil {
 			return err

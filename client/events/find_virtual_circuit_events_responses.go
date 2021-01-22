@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // FindVirtualCircuitEventsReader is a Reader for the FindVirtualCircuitEvents structure.
@@ -47,7 +47,6 @@ func (o *FindVirtualCircuitEventsReader) ReadResponse(response runtime.ClientRes
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -58,25 +57,24 @@ func NewFindVirtualCircuitEventsOK() *FindVirtualCircuitEventsOK {
 	return &FindVirtualCircuitEventsOK{}
 }
 
-/*FindVirtualCircuitEventsOK handles this case with default header values.
+/* FindVirtualCircuitEventsOK describes a response with status code 200, with default header values.
 
 ok
 */
 type FindVirtualCircuitEventsOK struct {
-	Payload *models.Event
+	Payload *types.Event
 }
 
 func (o *FindVirtualCircuitEventsOK) Error() string {
 	return fmt.Sprintf("[GET /virtual-circuit/{id}/events][%d] findVirtualCircuitEventsOK  %+v", 200, o.Payload)
 }
-
-func (o *FindVirtualCircuitEventsOK) GetPayload() *models.Event {
+func (o *FindVirtualCircuitEventsOK) GetPayload() *types.Event {
 	return o.Payload
 }
 
 func (o *FindVirtualCircuitEventsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.Event)
+	o.Payload = new(types.Event)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -91,7 +89,7 @@ func NewFindVirtualCircuitEventsUnauthorized() *FindVirtualCircuitEventsUnauthor
 	return &FindVirtualCircuitEventsUnauthorized{}
 }
 
-/*FindVirtualCircuitEventsUnauthorized handles this case with default header values.
+/* FindVirtualCircuitEventsUnauthorized describes a response with status code 401, with default header values.
 
 unauthorized
 */
@@ -112,7 +110,7 @@ func NewFindVirtualCircuitEventsForbidden() *FindVirtualCircuitEventsForbidden {
 	return &FindVirtualCircuitEventsForbidden{}
 }
 
-/*FindVirtualCircuitEventsForbidden handles this case with default header values.
+/* FindVirtualCircuitEventsForbidden describes a response with status code 403, with default header values.
 
 forbidden
 */
@@ -133,7 +131,7 @@ func NewFindVirtualCircuitEventsNotFound() *FindVirtualCircuitEventsNotFound {
 	return &FindVirtualCircuitEventsNotFound{}
 }
 
-/*FindVirtualCircuitEventsNotFound handles this case with default header values.
+/* FindVirtualCircuitEventsNotFound describes a response with status code 404, with default header values.
 
 not found
 */

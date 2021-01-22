@@ -17,74 +17,93 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// NewFindOrganizationPaymentMethodsParams creates a new FindOrganizationPaymentMethodsParams object
-// with the default values initialized.
+// NewFindOrganizationPaymentMethodsParams creates a new FindOrganizationPaymentMethodsParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewFindOrganizationPaymentMethodsParams() *FindOrganizationPaymentMethodsParams {
-	var ()
 	return &FindOrganizationPaymentMethodsParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewFindOrganizationPaymentMethodsParamsWithTimeout creates a new FindOrganizationPaymentMethodsParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewFindOrganizationPaymentMethodsParamsWithTimeout(timeout time.Duration) *FindOrganizationPaymentMethodsParams {
-	var ()
 	return &FindOrganizationPaymentMethodsParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewFindOrganizationPaymentMethodsParamsWithContext creates a new FindOrganizationPaymentMethodsParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewFindOrganizationPaymentMethodsParamsWithContext(ctx context.Context) *FindOrganizationPaymentMethodsParams {
-	var ()
 	return &FindOrganizationPaymentMethodsParams{
-
 		Context: ctx,
 	}
 }
 
 // NewFindOrganizationPaymentMethodsParamsWithHTTPClient creates a new FindOrganizationPaymentMethodsParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewFindOrganizationPaymentMethodsParamsWithHTTPClient(client *http.Client) *FindOrganizationPaymentMethodsParams {
-	var ()
 	return &FindOrganizationPaymentMethodsParams{
 		HTTPClient: client,
 	}
 }
 
-/*FindOrganizationPaymentMethodsParams contains all the parameters to send to the API endpoint
-for the find organization payment methods operation typically these are written to a http.Request
+/* FindOrganizationPaymentMethodsParams contains all the parameters to send to the API endpoint
+   for the find organization payment methods operation.
+
+   Typically these are written to a http.Request.
 */
 type FindOrganizationPaymentMethodsParams struct {
 
-	/*ID
-	  Organization UUID
+	/* ID.
 
+	   Organization UUID
+
+	   Format: uuid
 	*/
 	ID strfmt.UUID
-	/*Include
-	  related attributes to include
 
+	/* Include.
+
+	   related attributes to include
 	*/
 	Include *string
-	/*Page
-	  page to display, default to 1, max 100_000
 
+	/* Page.
+
+	   page to display, default to 1, max 100_000
 	*/
 	Page *int64
-	/*PerPage
-	  items per page, default to 10, max 1_000
 
+	/* PerPage.
+
+	   items per page, default to 10, max 1_000
 	*/
 	PerPage *int64
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the find organization payment methods params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *FindOrganizationPaymentMethodsParams) WithDefaults() *FindOrganizationPaymentMethodsParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the find organization payment methods params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *FindOrganizationPaymentMethodsParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the find organization payment methods params
@@ -181,48 +200,51 @@ func (o *FindOrganizationPaymentMethodsParams) WriteToRequest(r runtime.ClientRe
 
 		// query param include
 		var qrInclude string
+
 		if o.Include != nil {
 			qrInclude = *o.Include
 		}
 		qInclude := qrInclude
 		if qInclude != "" {
+
 			if err := r.SetQueryParam("include", qInclude); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	if o.Page != nil {
 
 		// query param page
 		var qrPage int64
+
 		if o.Page != nil {
 			qrPage = *o.Page
 		}
 		qPage := swag.FormatInt64(qrPage)
 		if qPage != "" {
+
 			if err := r.SetQueryParam("page", qPage); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	if o.PerPage != nil {
 
 		// query param per_page
 		var qrPerPage int64
+
 		if o.PerPage != nil {
 			qrPerPage = *o.PerPage
 		}
 		qPerPage := swag.FormatInt64(qrPerPage)
 		if qPerPage != "" {
+
 			if err := r.SetQueryParam("per_page", qPerPage); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	if len(res) > 0 {

@@ -16,59 +16,75 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewDeleteVirtualNetworkParams creates a new DeleteVirtualNetworkParams object
-// with the default values initialized.
+// NewDeleteVirtualNetworkParams creates a new DeleteVirtualNetworkParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewDeleteVirtualNetworkParams() *DeleteVirtualNetworkParams {
-	var ()
 	return &DeleteVirtualNetworkParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewDeleteVirtualNetworkParamsWithTimeout creates a new DeleteVirtualNetworkParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewDeleteVirtualNetworkParamsWithTimeout(timeout time.Duration) *DeleteVirtualNetworkParams {
-	var ()
 	return &DeleteVirtualNetworkParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewDeleteVirtualNetworkParamsWithContext creates a new DeleteVirtualNetworkParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewDeleteVirtualNetworkParamsWithContext(ctx context.Context) *DeleteVirtualNetworkParams {
-	var ()
 	return &DeleteVirtualNetworkParams{
-
 		Context: ctx,
 	}
 }
 
 // NewDeleteVirtualNetworkParamsWithHTTPClient creates a new DeleteVirtualNetworkParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewDeleteVirtualNetworkParamsWithHTTPClient(client *http.Client) *DeleteVirtualNetworkParams {
-	var ()
 	return &DeleteVirtualNetworkParams{
 		HTTPClient: client,
 	}
 }
 
-/*DeleteVirtualNetworkParams contains all the parameters to send to the API endpoint
-for the delete virtual network operation typically these are written to a http.Request
+/* DeleteVirtualNetworkParams contains all the parameters to send to the API endpoint
+   for the delete virtual network operation.
+
+   Typically these are written to a http.Request.
 */
 type DeleteVirtualNetworkParams struct {
 
-	/*ID
-	  Virtual Network UUID
+	/* ID.
 
+	   Virtual Network UUID
+
+	   Format: uuid
 	*/
 	ID strfmt.UUID
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the delete virtual network params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *DeleteVirtualNetworkParams) WithDefaults() *DeleteVirtualNetworkParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the delete virtual network params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *DeleteVirtualNetworkParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the delete virtual network params

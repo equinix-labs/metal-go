@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // ListConnectionPortsReader is a Reader for the ListConnectionPorts structure.
@@ -41,7 +41,6 @@ func (o *ListConnectionPortsReader) ReadResponse(response runtime.ClientResponse
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -52,25 +51,24 @@ func NewListConnectionPortsOK() *ListConnectionPortsOK {
 	return &ListConnectionPortsOK{}
 }
 
-/*ListConnectionPortsOK handles this case with default header values.
+/* ListConnectionPortsOK describes a response with status code 200, with default header values.
 
 ok
 */
 type ListConnectionPortsOK struct {
-	Payload *models.InterconnectionPortList
+	Payload *types.InterconnectionPortList
 }
 
 func (o *ListConnectionPortsOK) Error() string {
 	return fmt.Sprintf("[GET /connections/{connection_id}/ports][%d] listConnectionPortsOK  %+v", 200, o.Payload)
 }
-
-func (o *ListConnectionPortsOK) GetPayload() *models.InterconnectionPortList {
+func (o *ListConnectionPortsOK) GetPayload() *types.InterconnectionPortList {
 	return o.Payload
 }
 
 func (o *ListConnectionPortsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.InterconnectionPortList)
+	o.Payload = new(types.InterconnectionPortList)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -85,7 +83,7 @@ func NewListConnectionPortsForbidden() *ListConnectionPortsForbidden {
 	return &ListConnectionPortsForbidden{}
 }
 
-/*ListConnectionPortsForbidden handles this case with default header values.
+/* ListConnectionPortsForbidden describes a response with status code 403, with default header values.
 
 forbidden
 */
@@ -106,7 +104,7 @@ func NewListConnectionPortsNotFound() *ListConnectionPortsNotFound {
 	return &ListConnectionPortsNotFound{}
 }
 
-/*ListConnectionPortsNotFound handles this case with default header values.
+/* ListConnectionPortsNotFound describes a response with status code 404, with default header values.
 
 not found
 */

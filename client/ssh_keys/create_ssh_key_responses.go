@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // CreateSSHKeyReader is a Reader for the CreateSSHKey structure.
@@ -41,7 +41,6 @@ func (o *CreateSSHKeyReader) ReadResponse(response runtime.ClientResponse, consu
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -52,25 +51,24 @@ func NewCreateSSHKeyCreated() *CreateSSHKeyCreated {
 	return &CreateSSHKeyCreated{}
 }
 
-/*CreateSSHKeyCreated handles this case with default header values.
+/* CreateSSHKeyCreated describes a response with status code 201, with default header values.
 
 created
 */
 type CreateSSHKeyCreated struct {
-	Payload *models.SSHKey
+	Payload *types.SSHKey
 }
 
 func (o *CreateSSHKeyCreated) Error() string {
 	return fmt.Sprintf("[POST /ssh-keys][%d] createSshKeyCreated  %+v", 201, o.Payload)
 }
-
-func (o *CreateSSHKeyCreated) GetPayload() *models.SSHKey {
+func (o *CreateSSHKeyCreated) GetPayload() *types.SSHKey {
 	return o.Payload
 }
 
 func (o *CreateSSHKeyCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.SSHKey)
+	o.Payload = new(types.SSHKey)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -85,7 +83,7 @@ func NewCreateSSHKeyUnauthorized() *CreateSSHKeyUnauthorized {
 	return &CreateSSHKeyUnauthorized{}
 }
 
-/*CreateSSHKeyUnauthorized handles this case with default header values.
+/* CreateSSHKeyUnauthorized describes a response with status code 401, with default header values.
 
 unauthorized
 */
@@ -106,7 +104,7 @@ func NewCreateSSHKeyUnprocessableEntity() *CreateSSHKeyUnprocessableEntity {
 	return &CreateSSHKeyUnprocessableEntity{}
 }
 
-/*CreateSSHKeyUnprocessableEntity handles this case with default header values.
+/* CreateSSHKeyUnprocessableEntity describes a response with status code 422, with default header values.
 
 unprocessable entity
 */

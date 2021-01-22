@@ -15,62 +15,76 @@ import (
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
-// NewCreateSSHKeyParams creates a new CreateSSHKeyParams object
-// with the default values initialized.
+// NewCreateSSHKeyParams creates a new CreateSSHKeyParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewCreateSSHKeyParams() *CreateSSHKeyParams {
-	var ()
 	return &CreateSSHKeyParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewCreateSSHKeyParamsWithTimeout creates a new CreateSSHKeyParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewCreateSSHKeyParamsWithTimeout(timeout time.Duration) *CreateSSHKeyParams {
-	var ()
 	return &CreateSSHKeyParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewCreateSSHKeyParamsWithContext creates a new CreateSSHKeyParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewCreateSSHKeyParamsWithContext(ctx context.Context) *CreateSSHKeyParams {
-	var ()
 	return &CreateSSHKeyParams{
-
 		Context: ctx,
 	}
 }
 
 // NewCreateSSHKeyParamsWithHTTPClient creates a new CreateSSHKeyParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewCreateSSHKeyParamsWithHTTPClient(client *http.Client) *CreateSSHKeyParams {
-	var ()
 	return &CreateSSHKeyParams{
 		HTTPClient: client,
 	}
 }
 
-/*CreateSSHKeyParams contains all the parameters to send to the API endpoint
-for the create SSH key operation typically these are written to a http.Request
+/* CreateSSHKeyParams contains all the parameters to send to the API endpoint
+   for the create SSH key operation.
+
+   Typically these are written to a http.Request.
 */
 type CreateSSHKeyParams struct {
 
-	/*SSHKey
-	  ssh key to create
+	/* SSHKey.
 
+	   ssh key to create
 	*/
-	SSHKey *models.SSHKeyInput
+	SSHKey *types.SSHKeyInput
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the create SSH key params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *CreateSSHKeyParams) WithDefaults() *CreateSSHKeyParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the create SSH key params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *CreateSSHKeyParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the create SSH key params
@@ -107,13 +121,13 @@ func (o *CreateSSHKeyParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithSSHKey adds the sSHKey to the create SSH key params
-func (o *CreateSSHKeyParams) WithSSHKey(sSHKey *models.SSHKeyInput) *CreateSSHKeyParams {
+func (o *CreateSSHKeyParams) WithSSHKey(sSHKey *types.SSHKeyInput) *CreateSSHKeyParams {
 	o.SetSSHKey(sSHKey)
 	return o
 }
 
 // SetSSHKey adds the sshKey to the create SSH key params
-func (o *CreateSSHKeyParams) SetSSHKey(sSHKey *models.SSHKeyInput) {
+func (o *CreateSSHKeyParams) SetSSHKey(sSHKey *types.SSHKeyInput) {
 	o.SSHKey = sSHKey
 }
 
@@ -124,7 +138,6 @@ func (o *CreateSSHKeyParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 		return err
 	}
 	var res []error
-
 	if o.SSHKey != nil {
 		if err := r.SetBodyParam(o.SSHKey); err != nil {
 			return err

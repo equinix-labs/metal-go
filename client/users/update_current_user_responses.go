@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // UpdateCurrentUserReader is a Reader for the UpdateCurrentUser structure.
@@ -41,7 +41,6 @@ func (o *UpdateCurrentUserReader) ReadResponse(response runtime.ClientResponse, 
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -52,25 +51,24 @@ func NewUpdateCurrentUserOK() *UpdateCurrentUserOK {
 	return &UpdateCurrentUserOK{}
 }
 
-/*UpdateCurrentUserOK handles this case with default header values.
+/* UpdateCurrentUserOK describes a response with status code 200, with default header values.
 
 ok
 */
 type UpdateCurrentUserOK struct {
-	Payload *models.User
+	Payload *types.User
 }
 
 func (o *UpdateCurrentUserOK) Error() string {
 	return fmt.Sprintf("[PUT /user][%d] updateCurrentUserOK  %+v", 200, o.Payload)
 }
-
-func (o *UpdateCurrentUserOK) GetPayload() *models.User {
+func (o *UpdateCurrentUserOK) GetPayload() *types.User {
 	return o.Payload
 }
 
 func (o *UpdateCurrentUserOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.User)
+	o.Payload = new(types.User)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -85,7 +83,7 @@ func NewUpdateCurrentUserUnauthorized() *UpdateCurrentUserUnauthorized {
 	return &UpdateCurrentUserUnauthorized{}
 }
 
-/*UpdateCurrentUserUnauthorized handles this case with default header values.
+/* UpdateCurrentUserUnauthorized describes a response with status code 401, with default header values.
 
 unauthorized
 */
@@ -106,7 +104,7 @@ func NewUpdateCurrentUserUnprocessableEntity() *UpdateCurrentUserUnprocessableEn
 	return &UpdateCurrentUserUnprocessableEntity{}
 }
 
-/*UpdateCurrentUserUnprocessableEntity handles this case with default header values.
+/* UpdateCurrentUserUnprocessableEntity describes a response with status code 422, with default header values.
 
 unprocessable entity
 */

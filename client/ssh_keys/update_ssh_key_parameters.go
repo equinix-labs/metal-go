@@ -15,67 +15,84 @@ import (
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
-// NewUpdateSSHKeyParams creates a new UpdateSSHKeyParams object
-// with the default values initialized.
+// NewUpdateSSHKeyParams creates a new UpdateSSHKeyParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewUpdateSSHKeyParams() *UpdateSSHKeyParams {
-	var ()
 	return &UpdateSSHKeyParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewUpdateSSHKeyParamsWithTimeout creates a new UpdateSSHKeyParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewUpdateSSHKeyParamsWithTimeout(timeout time.Duration) *UpdateSSHKeyParams {
-	var ()
 	return &UpdateSSHKeyParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewUpdateSSHKeyParamsWithContext creates a new UpdateSSHKeyParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewUpdateSSHKeyParamsWithContext(ctx context.Context) *UpdateSSHKeyParams {
-	var ()
 	return &UpdateSSHKeyParams{
-
 		Context: ctx,
 	}
 }
 
 // NewUpdateSSHKeyParamsWithHTTPClient creates a new UpdateSSHKeyParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewUpdateSSHKeyParamsWithHTTPClient(client *http.Client) *UpdateSSHKeyParams {
-	var ()
 	return &UpdateSSHKeyParams{
 		HTTPClient: client,
 	}
 }
 
-/*UpdateSSHKeyParams contains all the parameters to send to the API endpoint
-for the update SSH key operation typically these are written to a http.Request
+/* UpdateSSHKeyParams contains all the parameters to send to the API endpoint
+   for the update SSH key operation.
+
+   Typically these are written to a http.Request.
 */
 type UpdateSSHKeyParams struct {
 
-	/*ID
-	  SSH Key UUID
+	/* ID.
 
+	   SSH Key UUID
+
+	   Format: uuid
 	*/
 	ID strfmt.UUID
-	/*SSHKey
-	  ssh key to update
 
+	/* SSHKey.
+
+	   ssh key to update
 	*/
-	SSHKey *models.SSHKeyInput
+	SSHKey *types.SSHKeyInput
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the update SSH key params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *UpdateSSHKeyParams) WithDefaults() *UpdateSSHKeyParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the update SSH key params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *UpdateSSHKeyParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the update SSH key params
@@ -123,13 +140,13 @@ func (o *UpdateSSHKeyParams) SetID(id strfmt.UUID) {
 }
 
 // WithSSHKey adds the sSHKey to the update SSH key params
-func (o *UpdateSSHKeyParams) WithSSHKey(sSHKey *models.SSHKeyInput) *UpdateSSHKeyParams {
+func (o *UpdateSSHKeyParams) WithSSHKey(sSHKey *types.SSHKeyInput) *UpdateSSHKeyParams {
 	o.SetSSHKey(sSHKey)
 	return o
 }
 
 // SetSSHKey adds the sshKey to the update SSH key params
-func (o *UpdateSSHKeyParams) SetSSHKey(sSHKey *models.SSHKeyInput) {
+func (o *UpdateSSHKeyParams) SetSSHKey(sSHKey *types.SSHKeyInput) {
 	o.SSHKey = sSHKey
 }
 
@@ -145,7 +162,6 @@ func (o *UpdateSSHKeyParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 	if err := r.SetPathParam("id", o.ID.String()); err != nil {
 		return err
 	}
-
 	if o.SSHKey != nil {
 		if err := r.SetBodyParam(o.SSHKey); err != nil {
 			return err

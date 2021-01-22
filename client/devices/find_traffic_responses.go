@@ -44,7 +44,6 @@ func (o *FindTrafficReader) ReadResponse(response runtime.ClientResponse, consum
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -55,7 +54,7 @@ func NewFindTrafficOK() *FindTrafficOK {
 	return &FindTrafficOK{}
 }
 
-/*FindTrafficOK handles this case with default header values.
+/* FindTrafficOK describes a response with status code 200, with default header values.
 
 ok
 */
@@ -76,7 +75,7 @@ func NewFindTrafficUnauthorized() *FindTrafficUnauthorized {
 	return &FindTrafficUnauthorized{}
 }
 
-/*FindTrafficUnauthorized handles this case with default header values.
+/* FindTrafficUnauthorized describes a response with status code 401, with default header values.
 
 unauthorized
 */
@@ -97,7 +96,7 @@ func NewFindTrafficForbidden() *FindTrafficForbidden {
 	return &FindTrafficForbidden{}
 }
 
-/*FindTrafficForbidden handles this case with default header values.
+/* FindTrafficForbidden describes a response with status code 403, with default header values.
 
 forbidden
 */
@@ -118,7 +117,7 @@ func NewFindTrafficNotFound() *FindTrafficNotFound {
 	return &FindTrafficNotFound{}
 }
 
-/*FindTrafficNotFound handles this case with default header values.
+/* FindTrafficNotFound describes a response with status code 404, with default header values.
 
 not found
 */

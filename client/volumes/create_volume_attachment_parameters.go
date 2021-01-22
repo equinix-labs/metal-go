@@ -15,67 +15,84 @@ import (
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
-// NewCreateVolumeAttachmentParams creates a new CreateVolumeAttachmentParams object
-// with the default values initialized.
+// NewCreateVolumeAttachmentParams creates a new CreateVolumeAttachmentParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewCreateVolumeAttachmentParams() *CreateVolumeAttachmentParams {
-	var ()
 	return &CreateVolumeAttachmentParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewCreateVolumeAttachmentParamsWithTimeout creates a new CreateVolumeAttachmentParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewCreateVolumeAttachmentParamsWithTimeout(timeout time.Duration) *CreateVolumeAttachmentParams {
-	var ()
 	return &CreateVolumeAttachmentParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewCreateVolumeAttachmentParamsWithContext creates a new CreateVolumeAttachmentParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewCreateVolumeAttachmentParamsWithContext(ctx context.Context) *CreateVolumeAttachmentParams {
-	var ()
 	return &CreateVolumeAttachmentParams{
-
 		Context: ctx,
 	}
 }
 
 // NewCreateVolumeAttachmentParamsWithHTTPClient creates a new CreateVolumeAttachmentParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewCreateVolumeAttachmentParamsWithHTTPClient(client *http.Client) *CreateVolumeAttachmentParams {
-	var ()
 	return &CreateVolumeAttachmentParams{
 		HTTPClient: client,
 	}
 }
 
-/*CreateVolumeAttachmentParams contains all the parameters to send to the API endpoint
-for the create volume attachment operation typically these are written to a http.Request
+/* CreateVolumeAttachmentParams contains all the parameters to send to the API endpoint
+   for the create volume attachment operation.
+
+   Typically these are written to a http.Request.
 */
 type CreateVolumeAttachmentParams struct {
 
-	/*Attachment
-	  Device to attach
+	/* Attachment.
 
+	   Device to attach
 	*/
-	Attachment *models.VolumeAttachmentInput
-	/*ID
-	  Volume UUID
+	Attachment *types.VolumeAttachmentInput
 
+	/* ID.
+
+	   Volume UUID
+
+	   Format: uuid
 	*/
 	ID strfmt.UUID
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the create volume attachment params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *CreateVolumeAttachmentParams) WithDefaults() *CreateVolumeAttachmentParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the create volume attachment params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *CreateVolumeAttachmentParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the create volume attachment params
@@ -112,13 +129,13 @@ func (o *CreateVolumeAttachmentParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithAttachment adds the attachment to the create volume attachment params
-func (o *CreateVolumeAttachmentParams) WithAttachment(attachment *models.VolumeAttachmentInput) *CreateVolumeAttachmentParams {
+func (o *CreateVolumeAttachmentParams) WithAttachment(attachment *types.VolumeAttachmentInput) *CreateVolumeAttachmentParams {
 	o.SetAttachment(attachment)
 	return o
 }
 
 // SetAttachment adds the attachment to the create volume attachment params
-func (o *CreateVolumeAttachmentParams) SetAttachment(attachment *models.VolumeAttachmentInput) {
+func (o *CreateVolumeAttachmentParams) SetAttachment(attachment *types.VolumeAttachmentInput) {
 	o.Attachment = attachment
 }
 
@@ -140,7 +157,6 @@ func (o *CreateVolumeAttachmentParams) WriteToRequest(r runtime.ClientRequest, r
 		return err
 	}
 	var res []error
-
 	if o.Attachment != nil {
 		if err := r.SetBodyParam(o.Attachment); err != nil {
 			return err

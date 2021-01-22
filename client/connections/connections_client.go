@@ -183,7 +183,7 @@ func (a *Client) DeleteInterconnection(params *DeleteInterconnectionParams, auth
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteInterconnection",
 		Method:             "DELETE",
-		PathPattern:        "/connections/{id}",
+		PathPattern:        "/connections/{connection_id}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http"},
@@ -294,7 +294,7 @@ func (a *Client) GetInterconnection(params *GetInterconnectionParams, authInfo r
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getInterconnection",
 		Method:             "GET",
-		PathPattern:        "/connections/{id}",
+		PathPattern:        "/connections/{connection_id}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http"},
@@ -516,7 +516,7 @@ func (a *Client) UpdateInterconnection(params *UpdateInterconnectionParams, auth
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateInterconnection",
 		Method:             "PUT",
-		PathPattern:        "/connections/{id}",
+		PathPattern:        "/connections/{connection_id}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http"},

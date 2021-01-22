@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // FindOperatingSystemsReader is a Reader for the FindOperatingSystems structure.
@@ -35,7 +35,6 @@ func (o *FindOperatingSystemsReader) ReadResponse(response runtime.ClientRespons
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -46,19 +45,18 @@ func NewFindOperatingSystemsOK() *FindOperatingSystemsOK {
 	return &FindOperatingSystemsOK{}
 }
 
-/*FindOperatingSystemsOK handles this case with default header values.
+/* FindOperatingSystemsOK describes a response with status code 200, with default header values.
 
 ok
 */
 type FindOperatingSystemsOK struct {
-	Payload models.OperatingSystemList
+	Payload types.OperatingSystemList
 }
 
 func (o *FindOperatingSystemsOK) Error() string {
 	return fmt.Sprintf("[GET /operating-systems][%d] findOperatingSystemsOK  %+v", 200, o.Payload)
 }
-
-func (o *FindOperatingSystemsOK) GetPayload() models.OperatingSystemList {
+func (o *FindOperatingSystemsOK) GetPayload() types.OperatingSystemList {
 	return o.Payload
 }
 
@@ -77,7 +75,7 @@ func NewFindOperatingSystemsUnauthorized() *FindOperatingSystemsUnauthorized {
 	return &FindOperatingSystemsUnauthorized{}
 }
 
-/*FindOperatingSystemsUnauthorized handles this case with default header values.
+/* FindOperatingSystemsUnauthorized describes a response with status code 401, with default header values.
 
 unauthorized
 */

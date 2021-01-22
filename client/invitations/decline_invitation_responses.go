@@ -44,7 +44,6 @@ func (o *DeclineInvitationReader) ReadResponse(response runtime.ClientResponse, 
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -55,7 +54,7 @@ func NewDeclineInvitationNoContent() *DeclineInvitationNoContent {
 	return &DeclineInvitationNoContent{}
 }
 
-/*DeclineInvitationNoContent handles this case with default header values.
+/* DeclineInvitationNoContent describes a response with status code 204, with default header values.
 
 no content
 */
@@ -76,7 +75,7 @@ func NewDeclineInvitationUnauthorized() *DeclineInvitationUnauthorized {
 	return &DeclineInvitationUnauthorized{}
 }
 
-/*DeclineInvitationUnauthorized handles this case with default header values.
+/* DeclineInvitationUnauthorized describes a response with status code 401, with default header values.
 
 unauthorized
 */
@@ -97,7 +96,7 @@ func NewDeclineInvitationForbidden() *DeclineInvitationForbidden {
 	return &DeclineInvitationForbidden{}
 }
 
-/*DeclineInvitationForbidden handles this case with default header values.
+/* DeclineInvitationForbidden describes a response with status code 403, with default header values.
 
 forbidden
 */
@@ -118,7 +117,7 @@ func NewDeclineInvitationNotFound() *DeclineInvitationNotFound {
 	return &DeclineInvitationNotFound{}
 }
 
-/*DeclineInvitationNotFound handles this case with default header values.
+/* DeclineInvitationNotFound describes a response with status code 404, with default header values.
 
 not found
 */

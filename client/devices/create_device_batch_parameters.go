@@ -15,67 +15,84 @@ import (
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
-// NewCreateDeviceBatchParams creates a new CreateDeviceBatchParams object
-// with the default values initialized.
+// NewCreateDeviceBatchParams creates a new CreateDeviceBatchParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewCreateDeviceBatchParams() *CreateDeviceBatchParams {
-	var ()
 	return &CreateDeviceBatchParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewCreateDeviceBatchParamsWithTimeout creates a new CreateDeviceBatchParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewCreateDeviceBatchParamsWithTimeout(timeout time.Duration) *CreateDeviceBatchParams {
-	var ()
 	return &CreateDeviceBatchParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewCreateDeviceBatchParamsWithContext creates a new CreateDeviceBatchParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewCreateDeviceBatchParamsWithContext(ctx context.Context) *CreateDeviceBatchParams {
-	var ()
 	return &CreateDeviceBatchParams{
-
 		Context: ctx,
 	}
 }
 
 // NewCreateDeviceBatchParamsWithHTTPClient creates a new CreateDeviceBatchParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewCreateDeviceBatchParamsWithHTTPClient(client *http.Client) *CreateDeviceBatchParams {
-	var ()
 	return &CreateDeviceBatchParams{
 		HTTPClient: client,
 	}
 }
 
-/*CreateDeviceBatchParams contains all the parameters to send to the API endpoint
-for the create device batch operation typically these are written to a http.Request
+/* CreateDeviceBatchParams contains all the parameters to send to the API endpoint
+   for the create device batch operation.
+
+   Typically these are written to a http.Request.
 */
 type CreateDeviceBatchParams struct {
 
-	/*Batch
-	  Batches to create
+	/* Batch.
 
+	   Batches to create
 	*/
-	Batch *models.InstancesBatchCreateInput
-	/*ID
-	  Project UUID
+	Batch *types.InstancesBatchCreateInput
 
+	/* ID.
+
+	   Project UUID
+
+	   Format: uuid
 	*/
 	ID strfmt.UUID
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the create device batch params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *CreateDeviceBatchParams) WithDefaults() *CreateDeviceBatchParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the create device batch params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *CreateDeviceBatchParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the create device batch params
@@ -112,13 +129,13 @@ func (o *CreateDeviceBatchParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithBatch adds the batch to the create device batch params
-func (o *CreateDeviceBatchParams) WithBatch(batch *models.InstancesBatchCreateInput) *CreateDeviceBatchParams {
+func (o *CreateDeviceBatchParams) WithBatch(batch *types.InstancesBatchCreateInput) *CreateDeviceBatchParams {
 	o.SetBatch(batch)
 	return o
 }
 
 // SetBatch adds the batch to the create device batch params
-func (o *CreateDeviceBatchParams) SetBatch(batch *models.InstancesBatchCreateInput) {
+func (o *CreateDeviceBatchParams) SetBatch(batch *types.InstancesBatchCreateInput) {
 	o.Batch = batch
 }
 
@@ -140,7 +157,6 @@ func (o *CreateDeviceBatchParams) WriteToRequest(r runtime.ClientRequest, reg st
 		return err
 	}
 	var res []error
-
 	if o.Batch != nil {
 		if err := r.SetBodyParam(o.Batch); err != nil {
 			return err

@@ -44,7 +44,6 @@ func (o *DeleteMembershipReader) ReadResponse(response runtime.ClientResponse, c
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -55,7 +54,7 @@ func NewDeleteMembershipNoContent() *DeleteMembershipNoContent {
 	return &DeleteMembershipNoContent{}
 }
 
-/*DeleteMembershipNoContent handles this case with default header values.
+/* DeleteMembershipNoContent describes a response with status code 204, with default header values.
 
 no content
 */
@@ -76,7 +75,7 @@ func NewDeleteMembershipUnauthorized() *DeleteMembershipUnauthorized {
 	return &DeleteMembershipUnauthorized{}
 }
 
-/*DeleteMembershipUnauthorized handles this case with default header values.
+/* DeleteMembershipUnauthorized describes a response with status code 401, with default header values.
 
 unauthorized
 */
@@ -97,7 +96,7 @@ func NewDeleteMembershipForbidden() *DeleteMembershipForbidden {
 	return &DeleteMembershipForbidden{}
 }
 
-/*DeleteMembershipForbidden handles this case with default header values.
+/* DeleteMembershipForbidden describes a response with status code 403, with default header values.
 
 forbidden
 */
@@ -118,7 +117,7 @@ func NewDeleteMembershipNotFound() *DeleteMembershipNotFound {
 	return &DeleteMembershipNotFound{}
 }
 
-/*DeleteMembershipNotFound handles this case with default header values.
+/* DeleteMembershipNotFound describes a response with status code 404, with default header values.
 
 not found
 */

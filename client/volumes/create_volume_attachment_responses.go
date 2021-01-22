@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // CreateVolumeAttachmentReader is a Reader for the CreateVolumeAttachment structure.
@@ -53,7 +53,6 @@ func (o *CreateVolumeAttachmentReader) ReadResponse(response runtime.ClientRespo
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -64,25 +63,24 @@ func NewCreateVolumeAttachmentCreated() *CreateVolumeAttachmentCreated {
 	return &CreateVolumeAttachmentCreated{}
 }
 
-/*CreateVolumeAttachmentCreated handles this case with default header values.
+/* CreateVolumeAttachmentCreated describes a response with status code 201, with default header values.
 
 created
 */
 type CreateVolumeAttachmentCreated struct {
-	Payload *models.VolumeAttachment
+	Payload *types.VolumeAttachment
 }
 
 func (o *CreateVolumeAttachmentCreated) Error() string {
 	return fmt.Sprintf("[POST /storage/{id}/attachments][%d] createVolumeAttachmentCreated  %+v", 201, o.Payload)
 }
-
-func (o *CreateVolumeAttachmentCreated) GetPayload() *models.VolumeAttachment {
+func (o *CreateVolumeAttachmentCreated) GetPayload() *types.VolumeAttachment {
 	return o.Payload
 }
 
 func (o *CreateVolumeAttachmentCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.VolumeAttachment)
+	o.Payload = new(types.VolumeAttachment)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -97,7 +95,7 @@ func NewCreateVolumeAttachmentUnauthorized() *CreateVolumeAttachmentUnauthorized
 	return &CreateVolumeAttachmentUnauthorized{}
 }
 
-/*CreateVolumeAttachmentUnauthorized handles this case with default header values.
+/* CreateVolumeAttachmentUnauthorized describes a response with status code 401, with default header values.
 
 unauthorized
 */
@@ -118,7 +116,7 @@ func NewCreateVolumeAttachmentForbidden() *CreateVolumeAttachmentForbidden {
 	return &CreateVolumeAttachmentForbidden{}
 }
 
-/*CreateVolumeAttachmentForbidden handles this case with default header values.
+/* CreateVolumeAttachmentForbidden describes a response with status code 403, with default header values.
 
 forbidden
 */
@@ -139,7 +137,7 @@ func NewCreateVolumeAttachmentNotFound() *CreateVolumeAttachmentNotFound {
 	return &CreateVolumeAttachmentNotFound{}
 }
 
-/*CreateVolumeAttachmentNotFound handles this case with default header values.
+/* CreateVolumeAttachmentNotFound describes a response with status code 404, with default header values.
 
 not found
 */
@@ -160,7 +158,7 @@ func NewCreateVolumeAttachmentUnprocessableEntity() *CreateVolumeAttachmentUnpro
 	return &CreateVolumeAttachmentUnprocessableEntity{}
 }
 
-/*CreateVolumeAttachmentUnprocessableEntity handles this case with default header values.
+/* CreateVolumeAttachmentUnprocessableEntity describes a response with status code 422, with default header values.
 
 unprocessable entity
 */

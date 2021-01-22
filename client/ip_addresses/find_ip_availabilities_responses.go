@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // FindIPAvailabilitiesReader is a Reader for the FindIPAvailabilities structure.
@@ -47,7 +47,6 @@ func (o *FindIPAvailabilitiesReader) ReadResponse(response runtime.ClientRespons
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -58,25 +57,24 @@ func NewFindIPAvailabilitiesOK() *FindIPAvailabilitiesOK {
 	return &FindIPAvailabilitiesOK{}
 }
 
-/*FindIPAvailabilitiesOK handles this case with default header values.
+/* FindIPAvailabilitiesOK describes a response with status code 200, with default header values.
 
 ok
 */
 type FindIPAvailabilitiesOK struct {
-	Payload *models.IPAvailabilitiesList
+	Payload *types.IPAvailabilitiesList
 }
 
 func (o *FindIPAvailabilitiesOK) Error() string {
 	return fmt.Sprintf("[GET /ips/{id}/available][%d] findIpAvailabilitiesOK  %+v", 200, o.Payload)
 }
-
-func (o *FindIPAvailabilitiesOK) GetPayload() *models.IPAvailabilitiesList {
+func (o *FindIPAvailabilitiesOK) GetPayload() *types.IPAvailabilitiesList {
 	return o.Payload
 }
 
 func (o *FindIPAvailabilitiesOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.IPAvailabilitiesList)
+	o.Payload = new(types.IPAvailabilitiesList)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -91,7 +89,7 @@ func NewFindIPAvailabilitiesUnauthorized() *FindIPAvailabilitiesUnauthorized {
 	return &FindIPAvailabilitiesUnauthorized{}
 }
 
-/*FindIPAvailabilitiesUnauthorized handles this case with default header values.
+/* FindIPAvailabilitiesUnauthorized describes a response with status code 401, with default header values.
 
 unauthorized
 */
@@ -112,7 +110,7 @@ func NewFindIPAvailabilitiesForbidden() *FindIPAvailabilitiesForbidden {
 	return &FindIPAvailabilitiesForbidden{}
 }
 
-/*FindIPAvailabilitiesForbidden handles this case with default header values.
+/* FindIPAvailabilitiesForbidden describes a response with status code 403, with default header values.
 
 forbidden
 */
@@ -133,7 +131,7 @@ func NewFindIPAvailabilitiesNotFound() *FindIPAvailabilitiesNotFound {
 	return &FindIPAvailabilitiesNotFound{}
 }
 
-/*FindIPAvailabilitiesNotFound handles this case with default header values.
+/* FindIPAvailabilitiesNotFound describes a response with status code 404, with default header values.
 
 not found
 */

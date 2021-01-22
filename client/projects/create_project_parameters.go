@@ -15,62 +15,76 @@ import (
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
-// NewCreateProjectParams creates a new CreateProjectParams object
-// with the default values initialized.
+// NewCreateProjectParams creates a new CreateProjectParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewCreateProjectParams() *CreateProjectParams {
-	var ()
 	return &CreateProjectParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewCreateProjectParamsWithTimeout creates a new CreateProjectParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewCreateProjectParamsWithTimeout(timeout time.Duration) *CreateProjectParams {
-	var ()
 	return &CreateProjectParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewCreateProjectParamsWithContext creates a new CreateProjectParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewCreateProjectParamsWithContext(ctx context.Context) *CreateProjectParams {
-	var ()
 	return &CreateProjectParams{
-
 		Context: ctx,
 	}
 }
 
 // NewCreateProjectParamsWithHTTPClient creates a new CreateProjectParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewCreateProjectParamsWithHTTPClient(client *http.Client) *CreateProjectParams {
-	var ()
 	return &CreateProjectParams{
 		HTTPClient: client,
 	}
 }
 
-/*CreateProjectParams contains all the parameters to send to the API endpoint
-for the create project operation typically these are written to a http.Request
+/* CreateProjectParams contains all the parameters to send to the API endpoint
+   for the create project operation.
+
+   Typically these are written to a http.Request.
 */
 type CreateProjectParams struct {
 
-	/*Project
-	  Project to create
+	/* Project.
 
+	   Project to create
 	*/
-	Project *models.ProjectCreateFromRootInput
+	Project *types.ProjectCreateFromRootInput
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the create project params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *CreateProjectParams) WithDefaults() *CreateProjectParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the create project params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *CreateProjectParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the create project params
@@ -107,13 +121,13 @@ func (o *CreateProjectParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithProject adds the project to the create project params
-func (o *CreateProjectParams) WithProject(project *models.ProjectCreateFromRootInput) *CreateProjectParams {
+func (o *CreateProjectParams) WithProject(project *types.ProjectCreateFromRootInput) *CreateProjectParams {
 	o.SetProject(project)
 	return o
 }
 
 // SetProject adds the project to the create project params
-func (o *CreateProjectParams) SetProject(project *models.ProjectCreateFromRootInput) {
+func (o *CreateProjectParams) SetProject(project *types.ProjectCreateFromRootInput) {
 	o.Project = project
 }
 
@@ -124,7 +138,6 @@ func (o *CreateProjectParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 		return err
 	}
 	var res []error
-
 	if o.Project != nil {
 		if err := r.SetBodyParam(o.Project); err != nil {
 			return err

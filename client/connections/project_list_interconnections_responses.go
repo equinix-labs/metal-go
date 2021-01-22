@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // ProjectListInterconnectionsReader is a Reader for the ProjectListInterconnections structure.
@@ -41,7 +41,6 @@ func (o *ProjectListInterconnectionsReader) ReadResponse(response runtime.Client
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -52,25 +51,24 @@ func NewProjectListInterconnectionsOK() *ProjectListInterconnectionsOK {
 	return &ProjectListInterconnectionsOK{}
 }
 
-/*ProjectListInterconnectionsOK handles this case with default header values.
+/* ProjectListInterconnectionsOK describes a response with status code 200, with default header values.
 
 ok
 */
 type ProjectListInterconnectionsOK struct {
-	Payload *models.InterconnectionList
+	Payload *types.InterconnectionList
 }
 
 func (o *ProjectListInterconnectionsOK) Error() string {
 	return fmt.Sprintf("[GET /projects/{project_id}/connections][%d] projectListInterconnectionsOK  %+v", 200, o.Payload)
 }
-
-func (o *ProjectListInterconnectionsOK) GetPayload() *models.InterconnectionList {
+func (o *ProjectListInterconnectionsOK) GetPayload() *types.InterconnectionList {
 	return o.Payload
 }
 
 func (o *ProjectListInterconnectionsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.InterconnectionList)
+	o.Payload = new(types.InterconnectionList)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -85,7 +83,7 @@ func NewProjectListInterconnectionsForbidden() *ProjectListInterconnectionsForbi
 	return &ProjectListInterconnectionsForbidden{}
 }
 
-/*ProjectListInterconnectionsForbidden handles this case with default header values.
+/* ProjectListInterconnectionsForbidden describes a response with status code 403, with default header values.
 
 forbidden
 */
@@ -106,7 +104,7 @@ func NewProjectListInterconnectionsNotFound() *ProjectListInterconnectionsNotFou
 	return &ProjectListInterconnectionsNotFound{}
 }
 
-/*ProjectListInterconnectionsNotFound handles this case with default header values.
+/* ProjectListInterconnectionsNotFound describes a response with status code 404, with default header values.
 
 not found
 */

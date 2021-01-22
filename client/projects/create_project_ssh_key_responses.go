@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // CreateProjectSSHKeyReader is a Reader for the CreateProjectSSHKey structure.
@@ -41,7 +41,6 @@ func (o *CreateProjectSSHKeyReader) ReadResponse(response runtime.ClientResponse
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -52,25 +51,24 @@ func NewCreateProjectSSHKeyCreated() *CreateProjectSSHKeyCreated {
 	return &CreateProjectSSHKeyCreated{}
 }
 
-/*CreateProjectSSHKeyCreated handles this case with default header values.
+/* CreateProjectSSHKeyCreated describes a response with status code 201, with default header values.
 
 created
 */
 type CreateProjectSSHKeyCreated struct {
-	Payload *models.SSHKey
+	Payload *types.SSHKey
 }
 
 func (o *CreateProjectSSHKeyCreated) Error() string {
 	return fmt.Sprintf("[POST /projects/{id}/ssh-keys][%d] createProjectSshKeyCreated  %+v", 201, o.Payload)
 }
-
-func (o *CreateProjectSSHKeyCreated) GetPayload() *models.SSHKey {
+func (o *CreateProjectSSHKeyCreated) GetPayload() *types.SSHKey {
 	return o.Payload
 }
 
 func (o *CreateProjectSSHKeyCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.SSHKey)
+	o.Payload = new(types.SSHKey)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -85,7 +83,7 @@ func NewCreateProjectSSHKeyUnauthorized() *CreateProjectSSHKeyUnauthorized {
 	return &CreateProjectSSHKeyUnauthorized{}
 }
 
-/*CreateProjectSSHKeyUnauthorized handles this case with default header values.
+/* CreateProjectSSHKeyUnauthorized describes a response with status code 401, with default header values.
 
 unauthorized
 */
@@ -106,7 +104,7 @@ func NewCreateProjectSSHKeyUnprocessableEntity() *CreateProjectSSHKeyUnprocessab
 	return &CreateProjectSSHKeyUnprocessableEntity{}
 }
 
-/*CreateProjectSSHKeyUnprocessableEntity handles this case with default header values.
+/* CreateProjectSSHKeyUnprocessableEntity describes a response with status code 422, with default header values.
 
 unprocessable entity
 */

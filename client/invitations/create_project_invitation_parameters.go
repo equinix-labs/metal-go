@@ -15,67 +15,84 @@ import (
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
-// NewCreateProjectInvitationParams creates a new CreateProjectInvitationParams object
-// with the default values initialized.
+// NewCreateProjectInvitationParams creates a new CreateProjectInvitationParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewCreateProjectInvitationParams() *CreateProjectInvitationParams {
-	var ()
 	return &CreateProjectInvitationParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewCreateProjectInvitationParamsWithTimeout creates a new CreateProjectInvitationParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewCreateProjectInvitationParamsWithTimeout(timeout time.Duration) *CreateProjectInvitationParams {
-	var ()
 	return &CreateProjectInvitationParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewCreateProjectInvitationParamsWithContext creates a new CreateProjectInvitationParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewCreateProjectInvitationParamsWithContext(ctx context.Context) *CreateProjectInvitationParams {
-	var ()
 	return &CreateProjectInvitationParams{
-
 		Context: ctx,
 	}
 }
 
 // NewCreateProjectInvitationParamsWithHTTPClient creates a new CreateProjectInvitationParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewCreateProjectInvitationParamsWithHTTPClient(client *http.Client) *CreateProjectInvitationParams {
-	var ()
 	return &CreateProjectInvitationParams{
 		HTTPClient: client,
 	}
 }
 
-/*CreateProjectInvitationParams contains all the parameters to send to the API endpoint
-for the create project invitation operation typically these are written to a http.Request
+/* CreateProjectInvitationParams contains all the parameters to send to the API endpoint
+   for the create project invitation operation.
+
+   Typically these are written to a http.Request.
 */
 type CreateProjectInvitationParams struct {
 
-	/*Invitation
-	  Invitation to create
+	/* Invitation.
 
+	   Invitation to create
 	*/
-	Invitation *models.InvitationInput
-	/*ProjectID
-	  Project UUID
+	Invitation *types.InvitationInput
 
+	/* ProjectID.
+
+	   Project UUID
+
+	   Format: uuid
 	*/
 	ProjectID strfmt.UUID
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the create project invitation params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *CreateProjectInvitationParams) WithDefaults() *CreateProjectInvitationParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the create project invitation params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *CreateProjectInvitationParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the create project invitation params
@@ -112,13 +129,13 @@ func (o *CreateProjectInvitationParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithInvitation adds the invitation to the create project invitation params
-func (o *CreateProjectInvitationParams) WithInvitation(invitation *models.InvitationInput) *CreateProjectInvitationParams {
+func (o *CreateProjectInvitationParams) WithInvitation(invitation *types.InvitationInput) *CreateProjectInvitationParams {
 	o.SetInvitation(invitation)
 	return o
 }
 
 // SetInvitation adds the invitation to the create project invitation params
-func (o *CreateProjectInvitationParams) SetInvitation(invitation *models.InvitationInput) {
+func (o *CreateProjectInvitationParams) SetInvitation(invitation *types.InvitationInput) {
 	o.Invitation = invitation
 }
 
@@ -140,7 +157,6 @@ func (o *CreateProjectInvitationParams) WriteToRequest(r runtime.ClientRequest, 
 		return err
 	}
 	var res []error
-
 	if o.Invitation != nil {
 		if err := r.SetBodyParam(o.Invitation); err != nil {
 			return err

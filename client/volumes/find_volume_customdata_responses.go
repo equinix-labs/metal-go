@@ -44,7 +44,6 @@ func (o *FindVolumeCustomdataReader) ReadResponse(response runtime.ClientRespons
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -55,7 +54,7 @@ func NewFindVolumeCustomdataOK() *FindVolumeCustomdataOK {
 	return &FindVolumeCustomdataOK{}
 }
 
-/*FindVolumeCustomdataOK handles this case with default header values.
+/* FindVolumeCustomdataOK describes a response with status code 200, with default header values.
 
 ok
 */
@@ -76,7 +75,7 @@ func NewFindVolumeCustomdataUnauthorized() *FindVolumeCustomdataUnauthorized {
 	return &FindVolumeCustomdataUnauthorized{}
 }
 
-/*FindVolumeCustomdataUnauthorized handles this case with default header values.
+/* FindVolumeCustomdataUnauthorized describes a response with status code 401, with default header values.
 
 unauthorized
 */
@@ -97,7 +96,7 @@ func NewFindVolumeCustomdataForbidden() *FindVolumeCustomdataForbidden {
 	return &FindVolumeCustomdataForbidden{}
 }
 
-/*FindVolumeCustomdataForbidden handles this case with default header values.
+/* FindVolumeCustomdataForbidden describes a response with status code 403, with default header values.
 
 forbidden
 */
@@ -118,7 +117,7 @@ func NewFindVolumeCustomdataNotFound() *FindVolumeCustomdataNotFound {
 	return &FindVolumeCustomdataNotFound{}
 }
 
-/*FindVolumeCustomdataNotFound handles this case with default header values.
+/* FindVolumeCustomdataNotFound describes a response with status code 404, with default header values.
 
 not found
 */

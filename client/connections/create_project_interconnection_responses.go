@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // CreateProjectInterconnectionReader is a Reader for the CreateProjectInterconnection structure.
@@ -35,7 +35,6 @@ func (o *CreateProjectInterconnectionReader) ReadResponse(response runtime.Clien
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -46,25 +45,24 @@ func NewCreateProjectInterconnectionCreated() *CreateProjectInterconnectionCreat
 	return &CreateProjectInterconnectionCreated{}
 }
 
-/*CreateProjectInterconnectionCreated handles this case with default header values.
+/* CreateProjectInterconnectionCreated describes a response with status code 201, with default header values.
 
 created
 */
 type CreateProjectInterconnectionCreated struct {
-	Payload *models.Interconnection
+	Payload *types.Interconnection
 }
 
 func (o *CreateProjectInterconnectionCreated) Error() string {
 	return fmt.Sprintf("[POST /projects/{project_id}/connections][%d] createProjectInterconnectionCreated  %+v", 201, o.Payload)
 }
-
-func (o *CreateProjectInterconnectionCreated) GetPayload() *models.Interconnection {
+func (o *CreateProjectInterconnectionCreated) GetPayload() *types.Interconnection {
 	return o.Payload
 }
 
 func (o *CreateProjectInterconnectionCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.Interconnection)
+	o.Payload = new(types.Interconnection)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -79,7 +77,7 @@ func NewCreateProjectInterconnectionForbidden() *CreateProjectInterconnectionFor
 	return &CreateProjectInterconnectionForbidden{}
 }
 
-/*CreateProjectInterconnectionForbidden handles this case with default header values.
+/* CreateProjectInterconnectionForbidden describes a response with status code 403, with default header values.
 
 forbidden
 */

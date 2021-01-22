@@ -12,65 +12,63 @@ import (
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
-// FindBgpSessionsReader is a Reader for the FindBgpSessions structure.
-type FindBgpSessionsReader struct {
+// FindBGPSessionsReader is a Reader for the FindBGPSessions structure.
+type FindBGPSessionsReader struct {
 	formats strfmt.Registry
 }
 
 // ReadResponse reads a server response into the received o.
-func (o *FindBgpSessionsReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
+func (o *FindBGPSessionsReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
 	case 200:
-		result := NewFindBgpSessionsOK()
+		result := NewFindBGPSessionsOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
 	case 401:
-		result := NewFindBgpSessionsUnauthorized()
+		result := NewFindBGPSessionsUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
 	case 403:
-		result := NewFindBgpSessionsForbidden()
+		result := NewFindBGPSessionsForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
 }
 
-// NewFindBgpSessionsOK creates a FindBgpSessionsOK with default headers values
-func NewFindBgpSessionsOK() *FindBgpSessionsOK {
-	return &FindBgpSessionsOK{}
+// NewFindBGPSessionsOK creates a FindBGPSessionsOK with default headers values
+func NewFindBGPSessionsOK() *FindBGPSessionsOK {
+	return &FindBGPSessionsOK{}
 }
 
-/*FindBgpSessionsOK handles this case with default header values.
+/* FindBGPSessionsOK describes a response with status code 200, with default header values.
 
 ok
 */
-type FindBgpSessionsOK struct {
-	Payload *models.BgpSessionList
+type FindBGPSessionsOK struct {
+	Payload *types.BGPSessionList
 }
 
-func (o *FindBgpSessionsOK) Error() string {
+func (o *FindBGPSessionsOK) Error() string {
 	return fmt.Sprintf("[GET /devices/{id}/bgp/sessions][%d] findBgpSessionsOK  %+v", 200, o.Payload)
 }
-
-func (o *FindBgpSessionsOK) GetPayload() *models.BgpSessionList {
+func (o *FindBGPSessionsOK) GetPayload() *types.BGPSessionList {
 	return o.Payload
 }
 
-func (o *FindBgpSessionsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *FindBGPSessionsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.BgpSessionList)
+	o.Payload = new(types.BGPSessionList)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -80,44 +78,44 @@ func (o *FindBgpSessionsOK) readResponse(response runtime.ClientResponse, consum
 	return nil
 }
 
-// NewFindBgpSessionsUnauthorized creates a FindBgpSessionsUnauthorized with default headers values
-func NewFindBgpSessionsUnauthorized() *FindBgpSessionsUnauthorized {
-	return &FindBgpSessionsUnauthorized{}
+// NewFindBGPSessionsUnauthorized creates a FindBGPSessionsUnauthorized with default headers values
+func NewFindBGPSessionsUnauthorized() *FindBGPSessionsUnauthorized {
+	return &FindBGPSessionsUnauthorized{}
 }
 
-/*FindBgpSessionsUnauthorized handles this case with default header values.
+/* FindBGPSessionsUnauthorized describes a response with status code 401, with default header values.
 
 unauthorized
 */
-type FindBgpSessionsUnauthorized struct {
+type FindBGPSessionsUnauthorized struct {
 }
 
-func (o *FindBgpSessionsUnauthorized) Error() string {
+func (o *FindBGPSessionsUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /devices/{id}/bgp/sessions][%d] findBgpSessionsUnauthorized ", 401)
 }
 
-func (o *FindBgpSessionsUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *FindBGPSessionsUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }
 
-// NewFindBgpSessionsForbidden creates a FindBgpSessionsForbidden with default headers values
-func NewFindBgpSessionsForbidden() *FindBgpSessionsForbidden {
-	return &FindBgpSessionsForbidden{}
+// NewFindBGPSessionsForbidden creates a FindBGPSessionsForbidden with default headers values
+func NewFindBGPSessionsForbidden() *FindBGPSessionsForbidden {
+	return &FindBGPSessionsForbidden{}
 }
 
-/*FindBgpSessionsForbidden handles this case with default header values.
+/* FindBGPSessionsForbidden describes a response with status code 403, with default header values.
 
 forbidden
 */
-type FindBgpSessionsForbidden struct {
+type FindBGPSessionsForbidden struct {
 }
 
-func (o *FindBgpSessionsForbidden) Error() string {
+func (o *FindBGPSessionsForbidden) Error() string {
 	return fmt.Sprintf("[GET /devices/{id}/bgp/sessions][%d] findBgpSessionsForbidden ", 403)
 }
 
-func (o *FindBgpSessionsForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *FindBGPSessionsForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }

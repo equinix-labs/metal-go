@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // CreateDeviceReader is a Reader for the CreateDevice structure.
@@ -53,7 +53,6 @@ func (o *CreateDeviceReader) ReadResponse(response runtime.ClientResponse, consu
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -64,25 +63,24 @@ func NewCreateDeviceCreated() *CreateDeviceCreated {
 	return &CreateDeviceCreated{}
 }
 
-/*CreateDeviceCreated handles this case with default header values.
+/* CreateDeviceCreated describes a response with status code 201, with default header values.
 
 created
 */
 type CreateDeviceCreated struct {
-	Payload *models.Device
+	Payload *types.Device
 }
 
 func (o *CreateDeviceCreated) Error() string {
 	return fmt.Sprintf("[POST /projects/{id}/devices][%d] createDeviceCreated  %+v", 201, o.Payload)
 }
-
-func (o *CreateDeviceCreated) GetPayload() *models.Device {
+func (o *CreateDeviceCreated) GetPayload() *types.Device {
 	return o.Payload
 }
 
 func (o *CreateDeviceCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.Device)
+	o.Payload = new(types.Device)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -97,7 +95,7 @@ func NewCreateDeviceUnauthorized() *CreateDeviceUnauthorized {
 	return &CreateDeviceUnauthorized{}
 }
 
-/*CreateDeviceUnauthorized handles this case with default header values.
+/* CreateDeviceUnauthorized describes a response with status code 401, with default header values.
 
 unauthorized
 */
@@ -118,7 +116,7 @@ func NewCreateDeviceForbidden() *CreateDeviceForbidden {
 	return &CreateDeviceForbidden{}
 }
 
-/*CreateDeviceForbidden handles this case with default header values.
+/* CreateDeviceForbidden describes a response with status code 403, with default header values.
 
 forbidden
 */
@@ -139,7 +137,7 @@ func NewCreateDeviceNotFound() *CreateDeviceNotFound {
 	return &CreateDeviceNotFound{}
 }
 
-/*CreateDeviceNotFound handles this case with default header values.
+/* CreateDeviceNotFound describes a response with status code 404, with default header values.
 
 not found
 */
@@ -160,7 +158,7 @@ func NewCreateDeviceUnprocessableEntity() *CreateDeviceUnprocessableEntity {
 	return &CreateDeviceUnprocessableEntity{}
 }
 
-/*CreateDeviceUnprocessableEntity handles this case with default header values.
+/* CreateDeviceUnprocessableEntity describes a response with status code 422, with default header values.
 
 unprocessable entity
 */

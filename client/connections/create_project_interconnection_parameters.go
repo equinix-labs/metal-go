@@ -15,67 +15,84 @@ import (
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
-// NewCreateProjectInterconnectionParams creates a new CreateProjectInterconnectionParams object
-// with the default values initialized.
+// NewCreateProjectInterconnectionParams creates a new CreateProjectInterconnectionParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewCreateProjectInterconnectionParams() *CreateProjectInterconnectionParams {
-	var ()
 	return &CreateProjectInterconnectionParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewCreateProjectInterconnectionParamsWithTimeout creates a new CreateProjectInterconnectionParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewCreateProjectInterconnectionParamsWithTimeout(timeout time.Duration) *CreateProjectInterconnectionParams {
-	var ()
 	return &CreateProjectInterconnectionParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewCreateProjectInterconnectionParamsWithContext creates a new CreateProjectInterconnectionParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewCreateProjectInterconnectionParamsWithContext(ctx context.Context) *CreateProjectInterconnectionParams {
-	var ()
 	return &CreateProjectInterconnectionParams{
-
 		Context: ctx,
 	}
 }
 
 // NewCreateProjectInterconnectionParamsWithHTTPClient creates a new CreateProjectInterconnectionParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewCreateProjectInterconnectionParamsWithHTTPClient(client *http.Client) *CreateProjectInterconnectionParams {
-	var ()
 	return &CreateProjectInterconnectionParams{
 		HTTPClient: client,
 	}
 }
 
-/*CreateProjectInterconnectionParams contains all the parameters to send to the API endpoint
-for the create project interconnection operation typically these are written to a http.Request
+/* CreateProjectInterconnectionParams contains all the parameters to send to the API endpoint
+   for the create project interconnection operation.
+
+   Typically these are written to a http.Request.
 */
 type CreateProjectInterconnectionParams struct {
 
-	/*Connection
-	  Connection details
+	/* Connection.
 
+	   Connection details
 	*/
-	Connection *models.InterconnectionCreateInput
-	/*ProjectID
-	  UUID of the project
+	Connection *types.InterconnectionCreateInput
 
+	/* ProjectID.
+
+	   UUID of the project
+
+	   Format: uuid
 	*/
 	ProjectID strfmt.UUID
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the create project interconnection params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *CreateProjectInterconnectionParams) WithDefaults() *CreateProjectInterconnectionParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the create project interconnection params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *CreateProjectInterconnectionParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the create project interconnection params
@@ -112,13 +129,13 @@ func (o *CreateProjectInterconnectionParams) SetHTTPClient(client *http.Client) 
 }
 
 // WithConnection adds the connection to the create project interconnection params
-func (o *CreateProjectInterconnectionParams) WithConnection(connection *models.InterconnectionCreateInput) *CreateProjectInterconnectionParams {
+func (o *CreateProjectInterconnectionParams) WithConnection(connection *types.InterconnectionCreateInput) *CreateProjectInterconnectionParams {
 	o.SetConnection(connection)
 	return o
 }
 
 // SetConnection adds the connection to the create project interconnection params
-func (o *CreateProjectInterconnectionParams) SetConnection(connection *models.InterconnectionCreateInput) {
+func (o *CreateProjectInterconnectionParams) SetConnection(connection *types.InterconnectionCreateInput) {
 	o.Connection = connection
 }
 
@@ -140,7 +157,6 @@ func (o *CreateProjectInterconnectionParams) WriteToRequest(r runtime.ClientRequ
 		return err
 	}
 	var res []error
-
 	if o.Connection != nil {
 		if err := r.SetBodyParam(o.Connection); err != nil {
 			return err

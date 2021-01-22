@@ -16,59 +16,75 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewProjectListInterconnectionsParams creates a new ProjectListInterconnectionsParams object
-// with the default values initialized.
+// NewProjectListInterconnectionsParams creates a new ProjectListInterconnectionsParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewProjectListInterconnectionsParams() *ProjectListInterconnectionsParams {
-	var ()
 	return &ProjectListInterconnectionsParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewProjectListInterconnectionsParamsWithTimeout creates a new ProjectListInterconnectionsParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewProjectListInterconnectionsParamsWithTimeout(timeout time.Duration) *ProjectListInterconnectionsParams {
-	var ()
 	return &ProjectListInterconnectionsParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewProjectListInterconnectionsParamsWithContext creates a new ProjectListInterconnectionsParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewProjectListInterconnectionsParamsWithContext(ctx context.Context) *ProjectListInterconnectionsParams {
-	var ()
 	return &ProjectListInterconnectionsParams{
-
 		Context: ctx,
 	}
 }
 
 // NewProjectListInterconnectionsParamsWithHTTPClient creates a new ProjectListInterconnectionsParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewProjectListInterconnectionsParamsWithHTTPClient(client *http.Client) *ProjectListInterconnectionsParams {
-	var ()
 	return &ProjectListInterconnectionsParams{
 		HTTPClient: client,
 	}
 }
 
-/*ProjectListInterconnectionsParams contains all the parameters to send to the API endpoint
-for the project list interconnections operation typically these are written to a http.Request
+/* ProjectListInterconnectionsParams contains all the parameters to send to the API endpoint
+   for the project list interconnections operation.
+
+   Typically these are written to a http.Request.
 */
 type ProjectListInterconnectionsParams struct {
 
-	/*ProjectID
-	  UUID of the project
+	/* ProjectID.
 
+	   UUID of the project
+
+	   Format: uuid
 	*/
 	ProjectID strfmt.UUID
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the project list interconnections params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *ProjectListInterconnectionsParams) WithDefaults() *ProjectListInterconnectionsParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the project list interconnections params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *ProjectListInterconnectionsParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the project list interconnections params

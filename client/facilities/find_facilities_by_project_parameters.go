@@ -16,64 +16,81 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewFindFacilitiesByProjectParams creates a new FindFacilitiesByProjectParams object
-// with the default values initialized.
+// NewFindFacilitiesByProjectParams creates a new FindFacilitiesByProjectParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewFindFacilitiesByProjectParams() *FindFacilitiesByProjectParams {
-	var ()
 	return &FindFacilitiesByProjectParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewFindFacilitiesByProjectParamsWithTimeout creates a new FindFacilitiesByProjectParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewFindFacilitiesByProjectParamsWithTimeout(timeout time.Duration) *FindFacilitiesByProjectParams {
-	var ()
 	return &FindFacilitiesByProjectParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewFindFacilitiesByProjectParamsWithContext creates a new FindFacilitiesByProjectParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewFindFacilitiesByProjectParamsWithContext(ctx context.Context) *FindFacilitiesByProjectParams {
-	var ()
 	return &FindFacilitiesByProjectParams{
-
 		Context: ctx,
 	}
 }
 
 // NewFindFacilitiesByProjectParamsWithHTTPClient creates a new FindFacilitiesByProjectParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewFindFacilitiesByProjectParamsWithHTTPClient(client *http.Client) *FindFacilitiesByProjectParams {
-	var ()
 	return &FindFacilitiesByProjectParams{
 		HTTPClient: client,
 	}
 }
 
-/*FindFacilitiesByProjectParams contains all the parameters to send to the API endpoint
-for the find facilities by project operation typically these are written to a http.Request
+/* FindFacilitiesByProjectParams contains all the parameters to send to the API endpoint
+   for the find facilities by project operation.
+
+   Typically these are written to a http.Request.
 */
 type FindFacilitiesByProjectParams struct {
 
-	/*ID
-	  Project UUID
+	/* ID.
 
+	   Project UUID
+
+	   Format: uuid
 	*/
 	ID strfmt.UUID
-	/*Include
-	  related attributes to include
 
+	/* Include.
+
+	   related attributes to include
 	*/
 	Include *string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the find facilities by project params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *FindFacilitiesByProjectParams) WithDefaults() *FindFacilitiesByProjectParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the find facilities by project params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *FindFacilitiesByProjectParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the find facilities by project params
@@ -148,16 +165,17 @@ func (o *FindFacilitiesByProjectParams) WriteToRequest(r runtime.ClientRequest, 
 
 		// query param include
 		var qrInclude string
+
 		if o.Include != nil {
 			qrInclude = *o.Include
 		}
 		qInclude := qrInclude
 		if qInclude != "" {
+
 			if err := r.SetQueryParam("include", qInclude); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	if len(res) > 0 {

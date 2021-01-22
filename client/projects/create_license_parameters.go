@@ -15,67 +15,84 @@ import (
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
-// NewCreateLicenseParams creates a new CreateLicenseParams object
-// with the default values initialized.
+// NewCreateLicenseParams creates a new CreateLicenseParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewCreateLicenseParams() *CreateLicenseParams {
-	var ()
 	return &CreateLicenseParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewCreateLicenseParamsWithTimeout creates a new CreateLicenseParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewCreateLicenseParamsWithTimeout(timeout time.Duration) *CreateLicenseParams {
-	var ()
 	return &CreateLicenseParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewCreateLicenseParamsWithContext creates a new CreateLicenseParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewCreateLicenseParamsWithContext(ctx context.Context) *CreateLicenseParams {
-	var ()
 	return &CreateLicenseParams{
-
 		Context: ctx,
 	}
 }
 
 // NewCreateLicenseParamsWithHTTPClient creates a new CreateLicenseParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewCreateLicenseParamsWithHTTPClient(client *http.Client) *CreateLicenseParams {
-	var ()
 	return &CreateLicenseParams{
 		HTTPClient: client,
 	}
 }
 
-/*CreateLicenseParams contains all the parameters to send to the API endpoint
-for the create license operation typically these are written to a http.Request
+/* CreateLicenseParams contains all the parameters to send to the API endpoint
+   for the create license operation.
+
+   Typically these are written to a http.Request.
 */
 type CreateLicenseParams struct {
 
-	/*ID
-	  Project UUID
+	/* ID.
 
+	   Project UUID
+
+	   Format: uuid
 	*/
 	ID strfmt.UUID
-	/*License
-	  License to create
 
+	/* License.
+
+	   License to create
 	*/
-	License *models.LicenseCreateInput
+	License *types.LicenseCreateInput
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the create license params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *CreateLicenseParams) WithDefaults() *CreateLicenseParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the create license params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *CreateLicenseParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the create license params
@@ -123,13 +140,13 @@ func (o *CreateLicenseParams) SetID(id strfmt.UUID) {
 }
 
 // WithLicense adds the license to the create license params
-func (o *CreateLicenseParams) WithLicense(license *models.LicenseCreateInput) *CreateLicenseParams {
+func (o *CreateLicenseParams) WithLicense(license *types.LicenseCreateInput) *CreateLicenseParams {
 	o.SetLicense(license)
 	return o
 }
 
 // SetLicense adds the license to the create license params
-func (o *CreateLicenseParams) SetLicense(license *models.LicenseCreateInput) {
+func (o *CreateLicenseParams) SetLicense(license *types.LicenseCreateInput) {
 	o.License = license
 }
 
@@ -145,7 +162,6 @@ func (o *CreateLicenseParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 	if err := r.SetPathParam("id", o.ID.String()); err != nil {
 		return err
 	}
-
 	if o.License != nil {
 		if err := r.SetBodyParam(o.License); err != nil {
 			return err

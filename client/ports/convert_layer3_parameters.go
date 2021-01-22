@@ -15,67 +15,84 @@ import (
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
-// NewConvertLayer3Params creates a new ConvertLayer3Params object
-// with the default values initialized.
+// NewConvertLayer3Params creates a new ConvertLayer3Params object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewConvertLayer3Params() *ConvertLayer3Params {
-	var ()
 	return &ConvertLayer3Params{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewConvertLayer3ParamsWithTimeout creates a new ConvertLayer3Params object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewConvertLayer3ParamsWithTimeout(timeout time.Duration) *ConvertLayer3Params {
-	var ()
 	return &ConvertLayer3Params{
-
 		timeout: timeout,
 	}
 }
 
 // NewConvertLayer3ParamsWithContext creates a new ConvertLayer3Params object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewConvertLayer3ParamsWithContext(ctx context.Context) *ConvertLayer3Params {
-	var ()
 	return &ConvertLayer3Params{
-
 		Context: ctx,
 	}
 }
 
 // NewConvertLayer3ParamsWithHTTPClient creates a new ConvertLayer3Params object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewConvertLayer3ParamsWithHTTPClient(client *http.Client) *ConvertLayer3Params {
-	var ()
 	return &ConvertLayer3Params{
 		HTTPClient: client,
 	}
 }
 
-/*ConvertLayer3Params contains all the parameters to send to the API endpoint
-for the convert layer3 operation typically these are written to a http.Request
+/* ConvertLayer3Params contains all the parameters to send to the API endpoint
+   for the convert layer3 operation.
+
+   Typically these are written to a http.Request.
 */
 type ConvertLayer3Params struct {
 
-	/*ID
-	  Port UUID
+	/* ID.
 
+	   Port UUID
+
+	   Format: uuid
 	*/
 	ID strfmt.UUID
-	/*RequestIps
-	  IPs to request
 
+	/* RequestIps.
+
+	   IPs to request
 	*/
-	RequestIps *models.PortConvertLayer3Input
+	RequestIps *types.PortConvertLayer3Input
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the convert layer3 params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *ConvertLayer3Params) WithDefaults() *ConvertLayer3Params {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the convert layer3 params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *ConvertLayer3Params) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the convert layer3 params
@@ -123,13 +140,13 @@ func (o *ConvertLayer3Params) SetID(id strfmt.UUID) {
 }
 
 // WithRequestIps adds the requestIps to the convert layer3 params
-func (o *ConvertLayer3Params) WithRequestIps(requestIps *models.PortConvertLayer3Input) *ConvertLayer3Params {
+func (o *ConvertLayer3Params) WithRequestIps(requestIps *types.PortConvertLayer3Input) *ConvertLayer3Params {
 	o.SetRequestIps(requestIps)
 	return o
 }
 
 // SetRequestIps adds the requestIps to the convert layer3 params
-func (o *ConvertLayer3Params) SetRequestIps(requestIps *models.PortConvertLayer3Input) {
+func (o *ConvertLayer3Params) SetRequestIps(requestIps *types.PortConvertLayer3Input) {
 	o.RequestIps = requestIps
 }
 
@@ -145,7 +162,6 @@ func (o *ConvertLayer3Params) WriteToRequest(r runtime.ClientRequest, reg strfmt
 	if err := r.SetPathParam("id", o.ID.String()); err != nil {
 		return err
 	}
-
 	if o.RequestIps != nil {
 		if err := r.SetBodyParam(o.RequestIps); err != nil {
 			return err

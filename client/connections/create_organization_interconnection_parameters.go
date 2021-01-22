@@ -15,67 +15,84 @@ import (
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
-// NewCreateOrganizationInterconnectionParams creates a new CreateOrganizationInterconnectionParams object
-// with the default values initialized.
+// NewCreateOrganizationInterconnectionParams creates a new CreateOrganizationInterconnectionParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewCreateOrganizationInterconnectionParams() *CreateOrganizationInterconnectionParams {
-	var ()
 	return &CreateOrganizationInterconnectionParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewCreateOrganizationInterconnectionParamsWithTimeout creates a new CreateOrganizationInterconnectionParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewCreateOrganizationInterconnectionParamsWithTimeout(timeout time.Duration) *CreateOrganizationInterconnectionParams {
-	var ()
 	return &CreateOrganizationInterconnectionParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewCreateOrganizationInterconnectionParamsWithContext creates a new CreateOrganizationInterconnectionParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewCreateOrganizationInterconnectionParamsWithContext(ctx context.Context) *CreateOrganizationInterconnectionParams {
-	var ()
 	return &CreateOrganizationInterconnectionParams{
-
 		Context: ctx,
 	}
 }
 
 // NewCreateOrganizationInterconnectionParamsWithHTTPClient creates a new CreateOrganizationInterconnectionParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewCreateOrganizationInterconnectionParamsWithHTTPClient(client *http.Client) *CreateOrganizationInterconnectionParams {
-	var ()
 	return &CreateOrganizationInterconnectionParams{
 		HTTPClient: client,
 	}
 }
 
-/*CreateOrganizationInterconnectionParams contains all the parameters to send to the API endpoint
-for the create organization interconnection operation typically these are written to a http.Request
+/* CreateOrganizationInterconnectionParams contains all the parameters to send to the API endpoint
+   for the create organization interconnection operation.
+
+   Typically these are written to a http.Request.
 */
 type CreateOrganizationInterconnectionParams struct {
 
-	/*Connection
-	  Connection details
+	/* Connection.
 
+	   Connection details
 	*/
-	Connection *models.InterconnectionCreateInput
-	/*OrganizationID
-	  UUID of the organization
+	Connection *types.InterconnectionCreateInput
 
+	/* OrganizationID.
+
+	   UUID of the organization
+
+	   Format: uuid
 	*/
 	OrganizationID strfmt.UUID
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the create organization interconnection params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *CreateOrganizationInterconnectionParams) WithDefaults() *CreateOrganizationInterconnectionParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the create organization interconnection params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *CreateOrganizationInterconnectionParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the create organization interconnection params
@@ -112,13 +129,13 @@ func (o *CreateOrganizationInterconnectionParams) SetHTTPClient(client *http.Cli
 }
 
 // WithConnection adds the connection to the create organization interconnection params
-func (o *CreateOrganizationInterconnectionParams) WithConnection(connection *models.InterconnectionCreateInput) *CreateOrganizationInterconnectionParams {
+func (o *CreateOrganizationInterconnectionParams) WithConnection(connection *types.InterconnectionCreateInput) *CreateOrganizationInterconnectionParams {
 	o.SetConnection(connection)
 	return o
 }
 
 // SetConnection adds the connection to the create organization interconnection params
-func (o *CreateOrganizationInterconnectionParams) SetConnection(connection *models.InterconnectionCreateInput) {
+func (o *CreateOrganizationInterconnectionParams) SetConnection(connection *types.InterconnectionCreateInput) {
 	o.Connection = connection
 }
 
@@ -140,7 +157,6 @@ func (o *CreateOrganizationInterconnectionParams) WriteToRequest(r runtime.Clien
 		return err
 	}
 	var res []error
-
 	if o.Connection != nil {
 		if err := r.SetBodyParam(o.Connection); err != nil {
 			return err

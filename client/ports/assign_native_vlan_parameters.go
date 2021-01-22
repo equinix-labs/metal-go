@@ -16,58 +16,60 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewAssignNativeVlanParams creates a new AssignNativeVlanParams object
-// with the default values initialized.
-func NewAssignNativeVlanParams() *AssignNativeVlanParams {
-	var ()
-	return &AssignNativeVlanParams{
-
+// NewAssignNativeVLANParams creates a new AssignNativeVLANParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
+func NewAssignNativeVLANParams() *AssignNativeVLANParams {
+	return &AssignNativeVLANParams{
 		timeout: cr.DefaultTimeout,
 	}
 }
 
-// NewAssignNativeVlanParamsWithTimeout creates a new AssignNativeVlanParams object
-// with the default values initialized, and the ability to set a timeout on a request
-func NewAssignNativeVlanParamsWithTimeout(timeout time.Duration) *AssignNativeVlanParams {
-	var ()
-	return &AssignNativeVlanParams{
-
+// NewAssignNativeVLANParamsWithTimeout creates a new AssignNativeVLANParams object
+// with the ability to set a timeout on a request.
+func NewAssignNativeVLANParamsWithTimeout(timeout time.Duration) *AssignNativeVLANParams {
+	return &AssignNativeVLANParams{
 		timeout: timeout,
 	}
 }
 
-// NewAssignNativeVlanParamsWithContext creates a new AssignNativeVlanParams object
-// with the default values initialized, and the ability to set a context for a request
-func NewAssignNativeVlanParamsWithContext(ctx context.Context) *AssignNativeVlanParams {
-	var ()
-	return &AssignNativeVlanParams{
-
+// NewAssignNativeVLANParamsWithContext creates a new AssignNativeVLANParams object
+// with the ability to set a context for a request.
+func NewAssignNativeVLANParamsWithContext(ctx context.Context) *AssignNativeVLANParams {
+	return &AssignNativeVLANParams{
 		Context: ctx,
 	}
 }
 
-// NewAssignNativeVlanParamsWithHTTPClient creates a new AssignNativeVlanParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
-func NewAssignNativeVlanParamsWithHTTPClient(client *http.Client) *AssignNativeVlanParams {
-	var ()
-	return &AssignNativeVlanParams{
+// NewAssignNativeVLANParamsWithHTTPClient creates a new AssignNativeVLANParams object
+// with the ability to set a custom HTTPClient for a request.
+func NewAssignNativeVLANParamsWithHTTPClient(client *http.Client) *AssignNativeVLANParams {
+	return &AssignNativeVLANParams{
 		HTTPClient: client,
 	}
 }
 
-/*AssignNativeVlanParams contains all the parameters to send to the API endpoint
-for the assign native vlan operation typically these are written to a http.Request
+/* AssignNativeVLANParams contains all the parameters to send to the API endpoint
+   for the assign native Vlan operation.
+
+   Typically these are written to a http.Request.
 */
-type AssignNativeVlanParams struct {
+type AssignNativeVLANParams struct {
 
-	/*ID
-	  Port UUID
+	/* ID.
 
+	   Port UUID
+
+	   Format: uuid
 	*/
 	ID strfmt.UUID
-	/*Vnid
-	  UUID or VNID of the virtual network to assign
 
+	/* Vnid.
+
+	   UUID or VNID of the virtual network to assign
 	*/
 	Vnid string
 
@@ -76,63 +78,78 @@ type AssignNativeVlanParams struct {
 	HTTPClient *http.Client
 }
 
-// WithTimeout adds the timeout to the assign native vlan params
-func (o *AssignNativeVlanParams) WithTimeout(timeout time.Duration) *AssignNativeVlanParams {
+// WithDefaults hydrates default values in the assign native Vlan params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *AssignNativeVLANParams) WithDefaults() *AssignNativeVLANParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the assign native Vlan params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *AssignNativeVLANParams) SetDefaults() {
+	// no default values defined for this parameter
+}
+
+// WithTimeout adds the timeout to the assign native Vlan params
+func (o *AssignNativeVLANParams) WithTimeout(timeout time.Duration) *AssignNativeVLANParams {
 	o.SetTimeout(timeout)
 	return o
 }
 
-// SetTimeout adds the timeout to the assign native vlan params
-func (o *AssignNativeVlanParams) SetTimeout(timeout time.Duration) {
+// SetTimeout adds the timeout to the assign native Vlan params
+func (o *AssignNativeVLANParams) SetTimeout(timeout time.Duration) {
 	o.timeout = timeout
 }
 
-// WithContext adds the context to the assign native vlan params
-func (o *AssignNativeVlanParams) WithContext(ctx context.Context) *AssignNativeVlanParams {
+// WithContext adds the context to the assign native Vlan params
+func (o *AssignNativeVLANParams) WithContext(ctx context.Context) *AssignNativeVLANParams {
 	o.SetContext(ctx)
 	return o
 }
 
-// SetContext adds the context to the assign native vlan params
-func (o *AssignNativeVlanParams) SetContext(ctx context.Context) {
+// SetContext adds the context to the assign native Vlan params
+func (o *AssignNativeVLANParams) SetContext(ctx context.Context) {
 	o.Context = ctx
 }
 
-// WithHTTPClient adds the HTTPClient to the assign native vlan params
-func (o *AssignNativeVlanParams) WithHTTPClient(client *http.Client) *AssignNativeVlanParams {
+// WithHTTPClient adds the HTTPClient to the assign native Vlan params
+func (o *AssignNativeVLANParams) WithHTTPClient(client *http.Client) *AssignNativeVLANParams {
 	o.SetHTTPClient(client)
 	return o
 }
 
-// SetHTTPClient adds the HTTPClient to the assign native vlan params
-func (o *AssignNativeVlanParams) SetHTTPClient(client *http.Client) {
+// SetHTTPClient adds the HTTPClient to the assign native Vlan params
+func (o *AssignNativeVLANParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithID adds the id to the assign native vlan params
-func (o *AssignNativeVlanParams) WithID(id strfmt.UUID) *AssignNativeVlanParams {
+// WithID adds the id to the assign native Vlan params
+func (o *AssignNativeVLANParams) WithID(id strfmt.UUID) *AssignNativeVLANParams {
 	o.SetID(id)
 	return o
 }
 
-// SetID adds the id to the assign native vlan params
-func (o *AssignNativeVlanParams) SetID(id strfmt.UUID) {
+// SetID adds the id to the assign native Vlan params
+func (o *AssignNativeVLANParams) SetID(id strfmt.UUID) {
 	o.ID = id
 }
 
-// WithVnid adds the vnid to the assign native vlan params
-func (o *AssignNativeVlanParams) WithVnid(vnid string) *AssignNativeVlanParams {
+// WithVnid adds the vnid to the assign native Vlan params
+func (o *AssignNativeVLANParams) WithVnid(vnid string) *AssignNativeVLANParams {
 	o.SetVnid(vnid)
 	return o
 }
 
-// SetVnid adds the vnid to the assign native vlan params
-func (o *AssignNativeVlanParams) SetVnid(vnid string) {
+// SetVnid adds the vnid to the assign native Vlan params
+func (o *AssignNativeVLANParams) SetVnid(vnid string) {
 	o.Vnid = vnid
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *AssignNativeVlanParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
+func (o *AssignNativeVLANParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	if err := r.SetTimeout(o.timeout); err != nil {
 		return err
@@ -148,6 +165,7 @@ func (o *AssignNativeVlanParams) WriteToRequest(r runtime.ClientRequest, reg str
 	qrVnid := o.Vnid
 	qVnid := qrVnid
 	if qVnid != "" {
+
 		if err := r.SetQueryParam("vnid", qVnid); err != nil {
 			return err
 		}

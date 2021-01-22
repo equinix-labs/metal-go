@@ -16,64 +16,81 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewFindOperatingSystemsByOrganizationParams creates a new FindOperatingSystemsByOrganizationParams object
-// with the default values initialized.
+// NewFindOperatingSystemsByOrganizationParams creates a new FindOperatingSystemsByOrganizationParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewFindOperatingSystemsByOrganizationParams() *FindOperatingSystemsByOrganizationParams {
-	var ()
 	return &FindOperatingSystemsByOrganizationParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewFindOperatingSystemsByOrganizationParamsWithTimeout creates a new FindOperatingSystemsByOrganizationParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewFindOperatingSystemsByOrganizationParamsWithTimeout(timeout time.Duration) *FindOperatingSystemsByOrganizationParams {
-	var ()
 	return &FindOperatingSystemsByOrganizationParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewFindOperatingSystemsByOrganizationParamsWithContext creates a new FindOperatingSystemsByOrganizationParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewFindOperatingSystemsByOrganizationParamsWithContext(ctx context.Context) *FindOperatingSystemsByOrganizationParams {
-	var ()
 	return &FindOperatingSystemsByOrganizationParams{
-
 		Context: ctx,
 	}
 }
 
 // NewFindOperatingSystemsByOrganizationParamsWithHTTPClient creates a new FindOperatingSystemsByOrganizationParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewFindOperatingSystemsByOrganizationParamsWithHTTPClient(client *http.Client) *FindOperatingSystemsByOrganizationParams {
-	var ()
 	return &FindOperatingSystemsByOrganizationParams{
 		HTTPClient: client,
 	}
 }
 
-/*FindOperatingSystemsByOrganizationParams contains all the parameters to send to the API endpoint
-for the find operating systems by organization operation typically these are written to a http.Request
+/* FindOperatingSystemsByOrganizationParams contains all the parameters to send to the API endpoint
+   for the find operating systems by organization operation.
+
+   Typically these are written to a http.Request.
 */
 type FindOperatingSystemsByOrganizationParams struct {
 
-	/*ID
-	  Organization UUID
+	/* ID.
 
+	   Organization UUID
+
+	   Format: uuid
 	*/
 	ID strfmt.UUID
-	/*Include
-	  related attributes to include
 
+	/* Include.
+
+	   related attributes to include
 	*/
 	Include *string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the find operating systems by organization params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *FindOperatingSystemsByOrganizationParams) WithDefaults() *FindOperatingSystemsByOrganizationParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the find operating systems by organization params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *FindOperatingSystemsByOrganizationParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the find operating systems by organization params
@@ -148,16 +165,17 @@ func (o *FindOperatingSystemsByOrganizationParams) WriteToRequest(r runtime.Clie
 
 		// query param include
 		var qrInclude string
+
 		if o.Include != nil {
 			qrInclude = *o.Include
 		}
 		qInclude := qrInclude
 		if qInclude != "" {
+
 			if err := r.SetQueryParam("include", qInclude); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	if len(res) > 0 {

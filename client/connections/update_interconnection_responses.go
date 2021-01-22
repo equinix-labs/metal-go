@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // UpdateInterconnectionReader is a Reader for the UpdateInterconnection structure.
@@ -41,7 +41,6 @@ func (o *UpdateInterconnectionReader) ReadResponse(response runtime.ClientRespon
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -52,25 +51,24 @@ func NewUpdateInterconnectionOK() *UpdateInterconnectionOK {
 	return &UpdateInterconnectionOK{}
 }
 
-/*UpdateInterconnectionOK handles this case with default header values.
+/* UpdateInterconnectionOK describes a response with status code 200, with default header values.
 
 ok
 */
 type UpdateInterconnectionOK struct {
-	Payload *models.Interconnection
+	Payload *types.Interconnection
 }
 
 func (o *UpdateInterconnectionOK) Error() string {
-	return fmt.Sprintf("[PUT /connections/{id}][%d] updateInterconnectionOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /connections/{connection_id}][%d] updateInterconnectionOK  %+v", 200, o.Payload)
 }
-
-func (o *UpdateInterconnectionOK) GetPayload() *models.Interconnection {
+func (o *UpdateInterconnectionOK) GetPayload() *types.Interconnection {
 	return o.Payload
 }
 
 func (o *UpdateInterconnectionOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.Interconnection)
+	o.Payload = new(types.Interconnection)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -85,7 +83,7 @@ func NewUpdateInterconnectionForbidden() *UpdateInterconnectionForbidden {
 	return &UpdateInterconnectionForbidden{}
 }
 
-/*UpdateInterconnectionForbidden handles this case with default header values.
+/* UpdateInterconnectionForbidden describes a response with status code 403, with default header values.
 
 forbidden
 */
@@ -93,7 +91,7 @@ type UpdateInterconnectionForbidden struct {
 }
 
 func (o *UpdateInterconnectionForbidden) Error() string {
-	return fmt.Sprintf("[PUT /connections/{id}][%d] updateInterconnectionForbidden ", 403)
+	return fmt.Sprintf("[PUT /connections/{connection_id}][%d] updateInterconnectionForbidden ", 403)
 }
 
 func (o *UpdateInterconnectionForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -106,7 +104,7 @@ func NewUpdateInterconnectionNotFound() *UpdateInterconnectionNotFound {
 	return &UpdateInterconnectionNotFound{}
 }
 
-/*UpdateInterconnectionNotFound handles this case with default header values.
+/* UpdateInterconnectionNotFound describes a response with status code 404, with default header values.
 
 not found
 */
@@ -114,7 +112,7 @@ type UpdateInterconnectionNotFound struct {
 }
 
 func (o *UpdateInterconnectionNotFound) Error() string {
-	return fmt.Sprintf("[PUT /connections/{id}][%d] updateInterconnectionNotFound ", 404)
+	return fmt.Sprintf("[PUT /connections/{connection_id}][%d] updateInterconnectionNotFound ", 404)
 }
 
 func (o *UpdateInterconnectionNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

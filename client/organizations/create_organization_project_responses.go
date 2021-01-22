@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // CreateOrganizationProjectReader is a Reader for the CreateOrganizationProject structure.
@@ -41,7 +41,6 @@ func (o *CreateOrganizationProjectReader) ReadResponse(response runtime.ClientRe
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -52,25 +51,24 @@ func NewCreateOrganizationProjectCreated() *CreateOrganizationProjectCreated {
 	return &CreateOrganizationProjectCreated{}
 }
 
-/*CreateOrganizationProjectCreated handles this case with default header values.
+/* CreateOrganizationProjectCreated describes a response with status code 201, with default header values.
 
 created
 */
 type CreateOrganizationProjectCreated struct {
-	Payload *models.Project
+	Payload *types.Project
 }
 
 func (o *CreateOrganizationProjectCreated) Error() string {
 	return fmt.Sprintf("[POST /organizations/{id}/projects][%d] createOrganizationProjectCreated  %+v", 201, o.Payload)
 }
-
-func (o *CreateOrganizationProjectCreated) GetPayload() *models.Project {
+func (o *CreateOrganizationProjectCreated) GetPayload() *types.Project {
 	return o.Payload
 }
 
 func (o *CreateOrganizationProjectCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.Project)
+	o.Payload = new(types.Project)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -85,7 +83,7 @@ func NewCreateOrganizationProjectUnauthorized() *CreateOrganizationProjectUnauth
 	return &CreateOrganizationProjectUnauthorized{}
 }
 
-/*CreateOrganizationProjectUnauthorized handles this case with default header values.
+/* CreateOrganizationProjectUnauthorized describes a response with status code 401, with default header values.
 
 unauthorized
 */
@@ -106,7 +104,7 @@ func NewCreateOrganizationProjectUnprocessableEntity() *CreateOrganizationProjec
 	return &CreateOrganizationProjectUnprocessableEntity{}
 }
 
-/*CreateOrganizationProjectUnprocessableEntity handles this case with default header values.
+/* CreateOrganizationProjectUnprocessableEntity describes a response with status code 422, with default header values.
 
 unprocessable entity
 */

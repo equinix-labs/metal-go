@@ -15,67 +15,84 @@ import (
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
-// NewCreateTransferRequestParams creates a new CreateTransferRequestParams object
-// with the default values initialized.
+// NewCreateTransferRequestParams creates a new CreateTransferRequestParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewCreateTransferRequestParams() *CreateTransferRequestParams {
-	var ()
 	return &CreateTransferRequestParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewCreateTransferRequestParamsWithTimeout creates a new CreateTransferRequestParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewCreateTransferRequestParamsWithTimeout(timeout time.Duration) *CreateTransferRequestParams {
-	var ()
 	return &CreateTransferRequestParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewCreateTransferRequestParamsWithContext creates a new CreateTransferRequestParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewCreateTransferRequestParamsWithContext(ctx context.Context) *CreateTransferRequestParams {
-	var ()
 	return &CreateTransferRequestParams{
-
 		Context: ctx,
 	}
 }
 
 // NewCreateTransferRequestParamsWithHTTPClient creates a new CreateTransferRequestParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewCreateTransferRequestParamsWithHTTPClient(client *http.Client) *CreateTransferRequestParams {
-	var ()
 	return &CreateTransferRequestParams{
 		HTTPClient: client,
 	}
 }
 
-/*CreateTransferRequestParams contains all the parameters to send to the API endpoint
-for the create transfer request operation typically these are written to a http.Request
+/* CreateTransferRequestParams contains all the parameters to send to the API endpoint
+   for the create transfer request operation.
+
+   Typically these are written to a http.Request.
 */
 type CreateTransferRequestParams struct {
 
-	/*ID
-	  UUID of the project to be transferred
+	/* ID.
 
+	   UUID of the project to be transferred
+
+	   Format: uuid
 	*/
 	ID strfmt.UUID
-	/*TransferRequest
-	  Transfer Request to create
 
+	/* TransferRequest.
+
+	   Transfer Request to create
 	*/
-	TransferRequest *models.TransferRequestInput
+	TransferRequest *types.TransferRequestInput
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the create transfer request params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *CreateTransferRequestParams) WithDefaults() *CreateTransferRequestParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the create transfer request params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *CreateTransferRequestParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the create transfer request params
@@ -123,13 +140,13 @@ func (o *CreateTransferRequestParams) SetID(id strfmt.UUID) {
 }
 
 // WithTransferRequest adds the transferRequest to the create transfer request params
-func (o *CreateTransferRequestParams) WithTransferRequest(transferRequest *models.TransferRequestInput) *CreateTransferRequestParams {
+func (o *CreateTransferRequestParams) WithTransferRequest(transferRequest *types.TransferRequestInput) *CreateTransferRequestParams {
 	o.SetTransferRequest(transferRequest)
 	return o
 }
 
 // SetTransferRequest adds the transferRequest to the create transfer request params
-func (o *CreateTransferRequestParams) SetTransferRequest(transferRequest *models.TransferRequestInput) {
+func (o *CreateTransferRequestParams) SetTransferRequest(transferRequest *types.TransferRequestInput) {
 	o.TransferRequest = transferRequest
 }
 
@@ -145,7 +162,6 @@ func (o *CreateTransferRequestParams) WriteToRequest(r runtime.ClientRequest, re
 	if err := r.SetPathParam("id", o.ID.String()); err != nil {
 		return err
 	}
-
 	if o.TransferRequest != nil {
 		if err := r.SetBodyParam(o.TransferRequest); err != nil {
 			return err

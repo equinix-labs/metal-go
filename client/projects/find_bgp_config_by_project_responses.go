@@ -12,75 +12,73 @@ import (
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
-// FindBgpConfigByProjectReader is a Reader for the FindBgpConfigByProject structure.
-type FindBgpConfigByProjectReader struct {
+// FindBGPConfigByProjectReader is a Reader for the FindBGPConfigByProject structure.
+type FindBGPConfigByProjectReader struct {
 	formats strfmt.Registry
 }
 
 // ReadResponse reads a server response into the received o.
-func (o *FindBgpConfigByProjectReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
+func (o *FindBGPConfigByProjectReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
 	case 200:
-		result := NewFindBgpConfigByProjectOK()
+		result := NewFindBGPConfigByProjectOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
 	case 401:
-		result := NewFindBgpConfigByProjectUnauthorized()
+		result := NewFindBGPConfigByProjectUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
 	case 403:
-		result := NewFindBgpConfigByProjectForbidden()
+		result := NewFindBGPConfigByProjectForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
 	case 404:
-		result := NewFindBgpConfigByProjectNotFound()
+		result := NewFindBGPConfigByProjectNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
 }
 
-// NewFindBgpConfigByProjectOK creates a FindBgpConfigByProjectOK with default headers values
-func NewFindBgpConfigByProjectOK() *FindBgpConfigByProjectOK {
-	return &FindBgpConfigByProjectOK{}
+// NewFindBGPConfigByProjectOK creates a FindBGPConfigByProjectOK with default headers values
+func NewFindBGPConfigByProjectOK() *FindBGPConfigByProjectOK {
+	return &FindBGPConfigByProjectOK{}
 }
 
-/*FindBgpConfigByProjectOK handles this case with default header values.
+/* FindBGPConfigByProjectOK describes a response with status code 200, with default header values.
 
-ok
+ ok
 
 When BGP configuration is not enabled empty structure is returned.
 When BGP configuration is disabled after being enabled BGP configuration data is returned with status disabled.
 
 */
-type FindBgpConfigByProjectOK struct {
-	Payload *models.BgpConfig
+type FindBGPConfigByProjectOK struct {
+	Payload *types.BGPConfig
 }
 
-func (o *FindBgpConfigByProjectOK) Error() string {
+func (o *FindBGPConfigByProjectOK) Error() string {
 	return fmt.Sprintf("[GET /projects/{id}/bgp-config][%d] findBgpConfigByProjectOK  %+v", 200, o.Payload)
 }
-
-func (o *FindBgpConfigByProjectOK) GetPayload() *models.BgpConfig {
+func (o *FindBGPConfigByProjectOK) GetPayload() *types.BGPConfig {
 	return o.Payload
 }
 
-func (o *FindBgpConfigByProjectOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *FindBGPConfigByProjectOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.BgpConfig)
+	o.Payload = new(types.BGPConfig)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -90,68 +88,68 @@ func (o *FindBgpConfigByProjectOK) readResponse(response runtime.ClientResponse,
 	return nil
 }
 
-// NewFindBgpConfigByProjectUnauthorized creates a FindBgpConfigByProjectUnauthorized with default headers values
-func NewFindBgpConfigByProjectUnauthorized() *FindBgpConfigByProjectUnauthorized {
-	return &FindBgpConfigByProjectUnauthorized{}
+// NewFindBGPConfigByProjectUnauthorized creates a FindBGPConfigByProjectUnauthorized with default headers values
+func NewFindBGPConfigByProjectUnauthorized() *FindBGPConfigByProjectUnauthorized {
+	return &FindBGPConfigByProjectUnauthorized{}
 }
 
-/*FindBgpConfigByProjectUnauthorized handles this case with default header values.
+/* FindBGPConfigByProjectUnauthorized describes a response with status code 401, with default header values.
 
 unauthorized
 */
-type FindBgpConfigByProjectUnauthorized struct {
+type FindBGPConfigByProjectUnauthorized struct {
 }
 
-func (o *FindBgpConfigByProjectUnauthorized) Error() string {
+func (o *FindBGPConfigByProjectUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /projects/{id}/bgp-config][%d] findBgpConfigByProjectUnauthorized ", 401)
 }
 
-func (o *FindBgpConfigByProjectUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *FindBGPConfigByProjectUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }
 
-// NewFindBgpConfigByProjectForbidden creates a FindBgpConfigByProjectForbidden with default headers values
-func NewFindBgpConfigByProjectForbidden() *FindBgpConfigByProjectForbidden {
-	return &FindBgpConfigByProjectForbidden{}
+// NewFindBGPConfigByProjectForbidden creates a FindBGPConfigByProjectForbidden with default headers values
+func NewFindBGPConfigByProjectForbidden() *FindBGPConfigByProjectForbidden {
+	return &FindBGPConfigByProjectForbidden{}
 }
 
-/*FindBgpConfigByProjectForbidden handles this case with default header values.
+/* FindBGPConfigByProjectForbidden describes a response with status code 403, with default header values.
 
 forbidden
 */
-type FindBgpConfigByProjectForbidden struct {
+type FindBGPConfigByProjectForbidden struct {
 }
 
-func (o *FindBgpConfigByProjectForbidden) Error() string {
+func (o *FindBGPConfigByProjectForbidden) Error() string {
 	return fmt.Sprintf("[GET /projects/{id}/bgp-config][%d] findBgpConfigByProjectForbidden ", 403)
 }
 
-func (o *FindBgpConfigByProjectForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *FindBGPConfigByProjectForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }
 
-// NewFindBgpConfigByProjectNotFound creates a FindBgpConfigByProjectNotFound with default headers values
-func NewFindBgpConfigByProjectNotFound() *FindBgpConfigByProjectNotFound {
-	return &FindBgpConfigByProjectNotFound{}
+// NewFindBGPConfigByProjectNotFound creates a FindBGPConfigByProjectNotFound with default headers values
+func NewFindBGPConfigByProjectNotFound() *FindBGPConfigByProjectNotFound {
+	return &FindBGPConfigByProjectNotFound{}
 }
 
-/*FindBgpConfigByProjectNotFound handles this case with default header values.
+/* FindBGPConfigByProjectNotFound describes a response with status code 404, with default header values.
 
-not found
+ not found
 
 The project was not found.
 
 */
-type FindBgpConfigByProjectNotFound struct {
+type FindBGPConfigByProjectNotFound struct {
 }
 
-func (o *FindBgpConfigByProjectNotFound) Error() string {
+func (o *FindBGPConfigByProjectNotFound) Error() string {
 	return fmt.Sprintf("[GET /projects/{id}/bgp-config][%d] findBgpConfigByProjectNotFound ", 404)
 }
 
-func (o *FindBgpConfigByProjectNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *FindBGPConfigByProjectNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }

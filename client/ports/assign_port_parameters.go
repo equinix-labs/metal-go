@@ -15,67 +15,84 @@ import (
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
-// NewAssignPortParams creates a new AssignPortParams object
-// with the default values initialized.
+// NewAssignPortParams creates a new AssignPortParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewAssignPortParams() *AssignPortParams {
-	var ()
 	return &AssignPortParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewAssignPortParamsWithTimeout creates a new AssignPortParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewAssignPortParamsWithTimeout(timeout time.Duration) *AssignPortParams {
-	var ()
 	return &AssignPortParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewAssignPortParamsWithContext creates a new AssignPortParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewAssignPortParamsWithContext(ctx context.Context) *AssignPortParams {
-	var ()
 	return &AssignPortParams{
-
 		Context: ctx,
 	}
 }
 
 // NewAssignPortParamsWithHTTPClient creates a new AssignPortParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewAssignPortParamsWithHTTPClient(client *http.Client) *AssignPortParams {
-	var ()
 	return &AssignPortParams{
 		HTTPClient: client,
 	}
 }
 
-/*AssignPortParams contains all the parameters to send to the API endpoint
-for the assign port operation typically these are written to a http.Request
+/* AssignPortParams contains all the parameters to send to the API endpoint
+   for the assign port operation.
+
+   Typically these are written to a http.Request.
 */
 type AssignPortParams struct {
 
-	/*ID
-	  Port UUID
+	/* ID.
 
+	   Port UUID
+
+	   Format: uuid
 	*/
 	ID strfmt.UUID
-	/*Vnid
-	  Virtual Network ID
 
+	/* Vnid.
+
+	   Virtual Network ID
 	*/
-	Vnid *models.PortAssignInput
+	Vnid *types.PortAssignInput
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the assign port params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *AssignPortParams) WithDefaults() *AssignPortParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the assign port params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *AssignPortParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the assign port params
@@ -123,13 +140,13 @@ func (o *AssignPortParams) SetID(id strfmt.UUID) {
 }
 
 // WithVnid adds the vnid to the assign port params
-func (o *AssignPortParams) WithVnid(vnid *models.PortAssignInput) *AssignPortParams {
+func (o *AssignPortParams) WithVnid(vnid *types.PortAssignInput) *AssignPortParams {
 	o.SetVnid(vnid)
 	return o
 }
 
 // SetVnid adds the vnid to the assign port params
-func (o *AssignPortParams) SetVnid(vnid *models.PortAssignInput) {
+func (o *AssignPortParams) SetVnid(vnid *types.PortAssignInput) {
 	o.Vnid = vnid
 }
 
@@ -145,7 +162,6 @@ func (o *AssignPortParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Re
 	if err := r.SetPathParam("id", o.ID.String()); err != nil {
 		return err
 	}
-
 	if o.Vnid != nil {
 		if err := r.SetBodyParam(o.Vnid); err != nil {
 			return err

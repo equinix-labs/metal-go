@@ -16,59 +16,75 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewFindProjectCustomdataParams creates a new FindProjectCustomdataParams object
-// with the default values initialized.
+// NewFindProjectCustomdataParams creates a new FindProjectCustomdataParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewFindProjectCustomdataParams() *FindProjectCustomdataParams {
-	var ()
 	return &FindProjectCustomdataParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewFindProjectCustomdataParamsWithTimeout creates a new FindProjectCustomdataParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewFindProjectCustomdataParamsWithTimeout(timeout time.Duration) *FindProjectCustomdataParams {
-	var ()
 	return &FindProjectCustomdataParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewFindProjectCustomdataParamsWithContext creates a new FindProjectCustomdataParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewFindProjectCustomdataParamsWithContext(ctx context.Context) *FindProjectCustomdataParams {
-	var ()
 	return &FindProjectCustomdataParams{
-
 		Context: ctx,
 	}
 }
 
 // NewFindProjectCustomdataParamsWithHTTPClient creates a new FindProjectCustomdataParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewFindProjectCustomdataParamsWithHTTPClient(client *http.Client) *FindProjectCustomdataParams {
-	var ()
 	return &FindProjectCustomdataParams{
 		HTTPClient: client,
 	}
 }
 
-/*FindProjectCustomdataParams contains all the parameters to send to the API endpoint
-for the find project customdata operation typically these are written to a http.Request
+/* FindProjectCustomdataParams contains all the parameters to send to the API endpoint
+   for the find project customdata operation.
+
+   Typically these are written to a http.Request.
 */
 type FindProjectCustomdataParams struct {
 
-	/*ID
-	  Project UUID
+	/* ID.
 
+	   Project UUID
+
+	   Format: uuid
 	*/
 	ID strfmt.UUID
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the find project customdata params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *FindProjectCustomdataParams) WithDefaults() *FindProjectCustomdataParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the find project customdata params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *FindProjectCustomdataParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the find project customdata params

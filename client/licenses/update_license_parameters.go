@@ -15,67 +15,84 @@ import (
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
-// NewUpdateLicenseParams creates a new UpdateLicenseParams object
-// with the default values initialized.
+// NewUpdateLicenseParams creates a new UpdateLicenseParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewUpdateLicenseParams() *UpdateLicenseParams {
-	var ()
 	return &UpdateLicenseParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewUpdateLicenseParamsWithTimeout creates a new UpdateLicenseParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewUpdateLicenseParamsWithTimeout(timeout time.Duration) *UpdateLicenseParams {
-	var ()
 	return &UpdateLicenseParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewUpdateLicenseParamsWithContext creates a new UpdateLicenseParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewUpdateLicenseParamsWithContext(ctx context.Context) *UpdateLicenseParams {
-	var ()
 	return &UpdateLicenseParams{
-
 		Context: ctx,
 	}
 }
 
 // NewUpdateLicenseParamsWithHTTPClient creates a new UpdateLicenseParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewUpdateLicenseParamsWithHTTPClient(client *http.Client) *UpdateLicenseParams {
-	var ()
 	return &UpdateLicenseParams{
 		HTTPClient: client,
 	}
 }
 
-/*UpdateLicenseParams contains all the parameters to send to the API endpoint
-for the update license operation typically these are written to a http.Request
+/* UpdateLicenseParams contains all the parameters to send to the API endpoint
+   for the update license operation.
+
+   Typically these are written to a http.Request.
 */
 type UpdateLicenseParams struct {
 
-	/*ID
-	  License UUID
+	/* ID.
 
+	   License UUID
+
+	   Format: uuid
 	*/
 	ID strfmt.UUID
-	/*License
-	  License to update
 
+	/* License.
+
+	   License to update
 	*/
-	License *models.LicenseUpdateInput
+	License *types.LicenseUpdateInput
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the update license params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *UpdateLicenseParams) WithDefaults() *UpdateLicenseParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the update license params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *UpdateLicenseParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the update license params
@@ -123,13 +140,13 @@ func (o *UpdateLicenseParams) SetID(id strfmt.UUID) {
 }
 
 // WithLicense adds the license to the update license params
-func (o *UpdateLicenseParams) WithLicense(license *models.LicenseUpdateInput) *UpdateLicenseParams {
+func (o *UpdateLicenseParams) WithLicense(license *types.LicenseUpdateInput) *UpdateLicenseParams {
 	o.SetLicense(license)
 	return o
 }
 
 // SetLicense adds the license to the update license params
-func (o *UpdateLicenseParams) SetLicense(license *models.LicenseUpdateInput) {
+func (o *UpdateLicenseParams) SetLicense(license *types.LicenseUpdateInput) {
 	o.License = license
 }
 
@@ -145,7 +162,6 @@ func (o *UpdateLicenseParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 	if err := r.SetPathParam("id", o.ID.String()); err != nil {
 		return err
 	}
-
 	if o.License != nil {
 		if err := r.SetBodyParam(o.License); err != nil {
 			return err

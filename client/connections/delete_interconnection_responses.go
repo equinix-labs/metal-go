@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // DeleteInterconnectionReader is a Reader for the DeleteInterconnection structure.
@@ -41,7 +41,6 @@ func (o *DeleteInterconnectionReader) ReadResponse(response runtime.ClientRespon
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -52,25 +51,24 @@ func NewDeleteInterconnectionAccepted() *DeleteInterconnectionAccepted {
 	return &DeleteInterconnectionAccepted{}
 }
 
-/*DeleteInterconnectionAccepted handles this case with default header values.
+/* DeleteInterconnectionAccepted describes a response with status code 202, with default header values.
 
 accepted
 */
 type DeleteInterconnectionAccepted struct {
-	Payload *models.Interconnection
+	Payload *types.Interconnection
 }
 
 func (o *DeleteInterconnectionAccepted) Error() string {
-	return fmt.Sprintf("[DELETE /connections/{id}][%d] deleteInterconnectionAccepted  %+v", 202, o.Payload)
+	return fmt.Sprintf("[DELETE /connections/{connection_id}][%d] deleteInterconnectionAccepted  %+v", 202, o.Payload)
 }
-
-func (o *DeleteInterconnectionAccepted) GetPayload() *models.Interconnection {
+func (o *DeleteInterconnectionAccepted) GetPayload() *types.Interconnection {
 	return o.Payload
 }
 
 func (o *DeleteInterconnectionAccepted) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.Interconnection)
+	o.Payload = new(types.Interconnection)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -85,7 +83,7 @@ func NewDeleteInterconnectionForbidden() *DeleteInterconnectionForbidden {
 	return &DeleteInterconnectionForbidden{}
 }
 
-/*DeleteInterconnectionForbidden handles this case with default header values.
+/* DeleteInterconnectionForbidden describes a response with status code 403, with default header values.
 
 forbidden
 */
@@ -93,7 +91,7 @@ type DeleteInterconnectionForbidden struct {
 }
 
 func (o *DeleteInterconnectionForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /connections/{id}][%d] deleteInterconnectionForbidden ", 403)
+	return fmt.Sprintf("[DELETE /connections/{connection_id}][%d] deleteInterconnectionForbidden ", 403)
 }
 
 func (o *DeleteInterconnectionForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -106,7 +104,7 @@ func NewDeleteInterconnectionNotFound() *DeleteInterconnectionNotFound {
 	return &DeleteInterconnectionNotFound{}
 }
 
-/*DeleteInterconnectionNotFound handles this case with default header values.
+/* DeleteInterconnectionNotFound describes a response with status code 404, with default header values.
 
 not found
 */
@@ -114,7 +112,7 @@ type DeleteInterconnectionNotFound struct {
 }
 
 func (o *DeleteInterconnectionNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /connections/{id}][%d] deleteInterconnectionNotFound ", 404)
+	return fmt.Sprintf("[DELETE /connections/{connection_id}][%d] deleteInterconnectionNotFound ", 404)
 }
 
 func (o *DeleteInterconnectionNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

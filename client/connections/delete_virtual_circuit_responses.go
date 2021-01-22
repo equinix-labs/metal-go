@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // DeleteVirtualCircuitReader is a Reader for the DeleteVirtualCircuit structure.
@@ -41,7 +41,6 @@ func (o *DeleteVirtualCircuitReader) ReadResponse(response runtime.ClientRespons
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -52,25 +51,24 @@ func NewDeleteVirtualCircuitAccepted() *DeleteVirtualCircuitAccepted {
 	return &DeleteVirtualCircuitAccepted{}
 }
 
-/*DeleteVirtualCircuitAccepted handles this case with default header values.
+/* DeleteVirtualCircuitAccepted describes a response with status code 202, with default header values.
 
 accepted
 */
 type DeleteVirtualCircuitAccepted struct {
-	Payload *models.VirtualCircuit
+	Payload *types.VirtualCircuit
 }
 
 func (o *DeleteVirtualCircuitAccepted) Error() string {
 	return fmt.Sprintf("[DELETE /virtual-circuits/{id}][%d] deleteVirtualCircuitAccepted  %+v", 202, o.Payload)
 }
-
-func (o *DeleteVirtualCircuitAccepted) GetPayload() *models.VirtualCircuit {
+func (o *DeleteVirtualCircuitAccepted) GetPayload() *types.VirtualCircuit {
 	return o.Payload
 }
 
 func (o *DeleteVirtualCircuitAccepted) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.VirtualCircuit)
+	o.Payload = new(types.VirtualCircuit)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -85,7 +83,7 @@ func NewDeleteVirtualCircuitForbidden() *DeleteVirtualCircuitForbidden {
 	return &DeleteVirtualCircuitForbidden{}
 }
 
-/*DeleteVirtualCircuitForbidden handles this case with default header values.
+/* DeleteVirtualCircuitForbidden describes a response with status code 403, with default header values.
 
 forbidden
 */
@@ -106,7 +104,7 @@ func NewDeleteVirtualCircuitNotFound() *DeleteVirtualCircuitNotFound {
 	return &DeleteVirtualCircuitNotFound{}
 }
 
-/*DeleteVirtualCircuitNotFound handles this case with default header values.
+/* DeleteVirtualCircuitNotFound describes a response with status code 404, with default header values.
 
 not found
 */

@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // FindConnectionPortEventsReader is a Reader for the FindConnectionPortEvents structure.
@@ -47,7 +47,6 @@ func (o *FindConnectionPortEventsReader) ReadResponse(response runtime.ClientRes
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -58,25 +57,24 @@ func NewFindConnectionPortEventsOK() *FindConnectionPortEventsOK {
 	return &FindConnectionPortEventsOK{}
 }
 
-/*FindConnectionPortEventsOK handles this case with default header values.
+/* FindConnectionPortEventsOK describes a response with status code 200, with default header values.
 
 ok
 */
 type FindConnectionPortEventsOK struct {
-	Payload *models.Event
+	Payload *types.Event
 }
 
 func (o *FindConnectionPortEventsOK) Error() string {
 	return fmt.Sprintf("[GET /connections/{connection_id}/ports/{id}/events][%d] findConnectionPortEventsOK  %+v", 200, o.Payload)
 }
-
-func (o *FindConnectionPortEventsOK) GetPayload() *models.Event {
+func (o *FindConnectionPortEventsOK) GetPayload() *types.Event {
 	return o.Payload
 }
 
 func (o *FindConnectionPortEventsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.Event)
+	o.Payload = new(types.Event)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -91,7 +89,7 @@ func NewFindConnectionPortEventsUnauthorized() *FindConnectionPortEventsUnauthor
 	return &FindConnectionPortEventsUnauthorized{}
 }
 
-/*FindConnectionPortEventsUnauthorized handles this case with default header values.
+/* FindConnectionPortEventsUnauthorized describes a response with status code 401, with default header values.
 
 unauthorized
 */
@@ -112,7 +110,7 @@ func NewFindConnectionPortEventsForbidden() *FindConnectionPortEventsForbidden {
 	return &FindConnectionPortEventsForbidden{}
 }
 
-/*FindConnectionPortEventsForbidden handles this case with default header values.
+/* FindConnectionPortEventsForbidden describes a response with status code 403, with default header values.
 
 forbidden
 */
@@ -133,7 +131,7 @@ func NewFindConnectionPortEventsNotFound() *FindConnectionPortEventsNotFound {
 	return &FindConnectionPortEventsNotFound{}
 }
 
-/*FindConnectionPortEventsNotFound handles this case with default header values.
+/* FindConnectionPortEventsNotFound describes a response with status code 404, with default header values.
 
 not found
 */

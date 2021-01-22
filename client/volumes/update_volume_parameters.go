@@ -15,67 +15,84 @@ import (
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
-// NewUpdateVolumeParams creates a new UpdateVolumeParams object
-// with the default values initialized.
+// NewUpdateVolumeParams creates a new UpdateVolumeParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewUpdateVolumeParams() *UpdateVolumeParams {
-	var ()
 	return &UpdateVolumeParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewUpdateVolumeParamsWithTimeout creates a new UpdateVolumeParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewUpdateVolumeParamsWithTimeout(timeout time.Duration) *UpdateVolumeParams {
-	var ()
 	return &UpdateVolumeParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewUpdateVolumeParamsWithContext creates a new UpdateVolumeParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewUpdateVolumeParamsWithContext(ctx context.Context) *UpdateVolumeParams {
-	var ()
 	return &UpdateVolumeParams{
-
 		Context: ctx,
 	}
 }
 
 // NewUpdateVolumeParamsWithHTTPClient creates a new UpdateVolumeParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewUpdateVolumeParamsWithHTTPClient(client *http.Client) *UpdateVolumeParams {
-	var ()
 	return &UpdateVolumeParams{
 		HTTPClient: client,
 	}
 }
 
-/*UpdateVolumeParams contains all the parameters to send to the API endpoint
-for the update volume operation typically these are written to a http.Request
+/* UpdateVolumeParams contains all the parameters to send to the API endpoint
+   for the update volume operation.
+
+   Typically these are written to a http.Request.
 */
 type UpdateVolumeParams struct {
 
-	/*ID
-	  Volume UUID
+	/* ID.
 
+	   Volume UUID
+
+	   Format: uuid
 	*/
 	ID strfmt.UUID
-	/*Volume
-	  Volume to update
 
+	/* Volume.
+
+	   Volume to update
 	*/
-	Volume *models.VolumeUpdateInput
+	Volume *types.VolumeUpdateInput
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the update volume params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *UpdateVolumeParams) WithDefaults() *UpdateVolumeParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the update volume params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *UpdateVolumeParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the update volume params
@@ -123,13 +140,13 @@ func (o *UpdateVolumeParams) SetID(id strfmt.UUID) {
 }
 
 // WithVolume adds the volume to the update volume params
-func (o *UpdateVolumeParams) WithVolume(volume *models.VolumeUpdateInput) *UpdateVolumeParams {
+func (o *UpdateVolumeParams) WithVolume(volume *types.VolumeUpdateInput) *UpdateVolumeParams {
 	o.SetVolume(volume)
 	return o
 }
 
 // SetVolume adds the volume to the update volume params
-func (o *UpdateVolumeParams) SetVolume(volume *models.VolumeUpdateInput) {
+func (o *UpdateVolumeParams) SetVolume(volume *types.VolumeUpdateInput) {
 	o.Volume = volume
 }
 
@@ -145,7 +162,6 @@ func (o *UpdateVolumeParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 	if err := r.SetPathParam("id", o.ID.String()); err != nil {
 		return err
 	}
-
 	if o.Volume != nil {
 		if err := r.SetBodyParam(o.Volume); err != nil {
 			return err

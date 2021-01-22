@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // FindOrganizationByIDReader is a Reader for the FindOrganizationByID structure.
@@ -47,7 +47,6 @@ func (o *FindOrganizationByIDReader) ReadResponse(response runtime.ClientRespons
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -58,25 +57,24 @@ func NewFindOrganizationByIDOK() *FindOrganizationByIDOK {
 	return &FindOrganizationByIDOK{}
 }
 
-/*FindOrganizationByIDOK handles this case with default header values.
+/* FindOrganizationByIDOK describes a response with status code 200, with default header values.
 
 ok
 */
 type FindOrganizationByIDOK struct {
-	Payload *models.Organization
+	Payload *types.Organization
 }
 
 func (o *FindOrganizationByIDOK) Error() string {
 	return fmt.Sprintf("[GET /organizations/{id}][%d] findOrganizationByIdOK  %+v", 200, o.Payload)
 }
-
-func (o *FindOrganizationByIDOK) GetPayload() *models.Organization {
+func (o *FindOrganizationByIDOK) GetPayload() *types.Organization {
 	return o.Payload
 }
 
 func (o *FindOrganizationByIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.Organization)
+	o.Payload = new(types.Organization)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -91,7 +89,7 @@ func NewFindOrganizationByIDUnauthorized() *FindOrganizationByIDUnauthorized {
 	return &FindOrganizationByIDUnauthorized{}
 }
 
-/*FindOrganizationByIDUnauthorized handles this case with default header values.
+/* FindOrganizationByIDUnauthorized describes a response with status code 401, with default header values.
 
 unauthorized
 */
@@ -112,7 +110,7 @@ func NewFindOrganizationByIDForbidden() *FindOrganizationByIDForbidden {
 	return &FindOrganizationByIDForbidden{}
 }
 
-/*FindOrganizationByIDForbidden handles this case with default header values.
+/* FindOrganizationByIDForbidden describes a response with status code 403, with default header values.
 
 forbidden
 */
@@ -133,7 +131,7 @@ func NewFindOrganizationByIDNotFound() *FindOrganizationByIDNotFound {
 	return &FindOrganizationByIDNotFound{}
 }
 
-/*FindOrganizationByIDNotFound handles this case with default header values.
+/* FindOrganizationByIDNotFound describes a response with status code 404, with default header values.
 
 not found
 */

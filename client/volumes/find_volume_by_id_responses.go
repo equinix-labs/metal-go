@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // FindVolumeByIDReader is a Reader for the FindVolumeByID structure.
@@ -47,7 +47,6 @@ func (o *FindVolumeByIDReader) ReadResponse(response runtime.ClientResponse, con
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -58,25 +57,24 @@ func NewFindVolumeByIDOK() *FindVolumeByIDOK {
 	return &FindVolumeByIDOK{}
 }
 
-/*FindVolumeByIDOK handles this case with default header values.
+/* FindVolumeByIDOK describes a response with status code 200, with default header values.
 
 ok
 */
 type FindVolumeByIDOK struct {
-	Payload *models.Volume
+	Payload *types.Volume
 }
 
 func (o *FindVolumeByIDOK) Error() string {
 	return fmt.Sprintf("[GET /storage/{id}][%d] findVolumeByIdOK  %+v", 200, o.Payload)
 }
-
-func (o *FindVolumeByIDOK) GetPayload() *models.Volume {
+func (o *FindVolumeByIDOK) GetPayload() *types.Volume {
 	return o.Payload
 }
 
 func (o *FindVolumeByIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.Volume)
+	o.Payload = new(types.Volume)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -91,7 +89,7 @@ func NewFindVolumeByIDUnauthorized() *FindVolumeByIDUnauthorized {
 	return &FindVolumeByIDUnauthorized{}
 }
 
-/*FindVolumeByIDUnauthorized handles this case with default header values.
+/* FindVolumeByIDUnauthorized describes a response with status code 401, with default header values.
 
 unauthorized
 */
@@ -112,7 +110,7 @@ func NewFindVolumeByIDForbidden() *FindVolumeByIDForbidden {
 	return &FindVolumeByIDForbidden{}
 }
 
-/*FindVolumeByIDForbidden handles this case with default header values.
+/* FindVolumeByIDForbidden describes a response with status code 403, with default header values.
 
 forbidden
 */
@@ -133,7 +131,7 @@ func NewFindVolumeByIDNotFound() *FindVolumeByIDNotFound {
 	return &FindVolumeByIDNotFound{}
 }
 
-/*FindVolumeByIDNotFound handles this case with default header values.
+/* FindVolumeByIDNotFound describes a response with status code 404, with default header values.
 
 not found
 */

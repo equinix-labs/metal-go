@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // FindBatchesByProjectReader is a Reader for the FindBatchesByProject structure.
@@ -47,7 +47,6 @@ func (o *FindBatchesByProjectReader) ReadResponse(response runtime.ClientRespons
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -58,25 +57,24 @@ func NewFindBatchesByProjectOK() *FindBatchesByProjectOK {
 	return &FindBatchesByProjectOK{}
 }
 
-/*FindBatchesByProjectOK handles this case with default header values.
+/* FindBatchesByProjectOK describes a response with status code 200, with default header values.
 
 ok
 */
 type FindBatchesByProjectOK struct {
-	Payload *models.BatchesList
+	Payload *types.BatchesList
 }
 
 func (o *FindBatchesByProjectOK) Error() string {
 	return fmt.Sprintf("[GET /projects/{id}/batches][%d] findBatchesByProjectOK  %+v", 200, o.Payload)
 }
-
-func (o *FindBatchesByProjectOK) GetPayload() *models.BatchesList {
+func (o *FindBatchesByProjectOK) GetPayload() *types.BatchesList {
 	return o.Payload
 }
 
 func (o *FindBatchesByProjectOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.BatchesList)
+	o.Payload = new(types.BatchesList)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -91,7 +89,7 @@ func NewFindBatchesByProjectUnauthorized() *FindBatchesByProjectUnauthorized {
 	return &FindBatchesByProjectUnauthorized{}
 }
 
-/*FindBatchesByProjectUnauthorized handles this case with default header values.
+/* FindBatchesByProjectUnauthorized describes a response with status code 401, with default header values.
 
 unauthorized
 */
@@ -112,7 +110,7 @@ func NewFindBatchesByProjectForbidden() *FindBatchesByProjectForbidden {
 	return &FindBatchesByProjectForbidden{}
 }
 
-/*FindBatchesByProjectForbidden handles this case with default header values.
+/* FindBatchesByProjectForbidden describes a response with status code 403, with default header values.
 
 forbidden
 */
@@ -133,7 +131,7 @@ func NewFindBatchesByProjectNotFound() *FindBatchesByProjectNotFound {
 	return &FindBatchesByProjectNotFound{}
 }
 
-/*FindBatchesByProjectNotFound handles this case with default header values.
+/* FindBatchesByProjectNotFound describes a response with status code 404, with default header values.
 
 not found
 */

@@ -1,11 +1,22 @@
 # Golang client for Equinix Metal generated with go-swagger
 
-This repo contains Golang code generated from customized [api-docs.json](api-docs.json) from the Equinix Metal API from https://api.equinix.com/metal/v1/api-docs.
+This is experimental. Don't use it.
 
-I tried to put it together and in [client.go](client.go) there's code that should list projects. However, there probably some inconsitencies in the API definition, for instance the `customdata` parameter doesn't work out-of-the-box:
+This repo contains Golang code generated from customized [equinix-metal.swagger.json](equinix-metal.swagger.json) from the Equinix Metal API from <https://api.equinix.com/metal/v1/api-docs>.
+
+Contents:
+- `gen.sh a script to fetch the API spec, apply patches, and generate a client
+- `equinix-metal.swagger.json` the latest fetched swagger spec
+- `\*.patch` patch files to apply against the Equinix Metal API spec
+- `clients/` generated clients
+- `types/` generated types
+- `examples/` hand crafted examples to demonstrate usage
+
+
+I tried to put it together and in [examples/projects/projects.go](examples/projects/projects.go) there's code that should list projects. However, there probably some inconsitencies in the API definition, for instance the `customdata` parameter doesn't work out-of-the-box:
 
 ```
-tomk@xps ~/gometal » ./gometal 
+tomk@xps ~/gometal » PACKET_AUTH_TOKEN=... go run examples/projects/projects.go
 panic: json: cannot unmarshal object into Go struct field Project.projects.customdata of type string
 
 goroutine 1 [running]:
@@ -14,6 +25,8 @@ main.main()
 ```
 
 (customdata is in most of the resrouce types).
+
+Another example in [examples/plans/plans.go](examples/plans/plans.go) runs without error.
 
 ## Generated code
 

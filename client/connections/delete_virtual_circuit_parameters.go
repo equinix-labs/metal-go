@@ -16,59 +16,75 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewDeleteVirtualCircuitParams creates a new DeleteVirtualCircuitParams object
-// with the default values initialized.
+// NewDeleteVirtualCircuitParams creates a new DeleteVirtualCircuitParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewDeleteVirtualCircuitParams() *DeleteVirtualCircuitParams {
-	var ()
 	return &DeleteVirtualCircuitParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewDeleteVirtualCircuitParamsWithTimeout creates a new DeleteVirtualCircuitParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewDeleteVirtualCircuitParamsWithTimeout(timeout time.Duration) *DeleteVirtualCircuitParams {
-	var ()
 	return &DeleteVirtualCircuitParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewDeleteVirtualCircuitParamsWithContext creates a new DeleteVirtualCircuitParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewDeleteVirtualCircuitParamsWithContext(ctx context.Context) *DeleteVirtualCircuitParams {
-	var ()
 	return &DeleteVirtualCircuitParams{
-
 		Context: ctx,
 	}
 }
 
 // NewDeleteVirtualCircuitParamsWithHTTPClient creates a new DeleteVirtualCircuitParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewDeleteVirtualCircuitParamsWithHTTPClient(client *http.Client) *DeleteVirtualCircuitParams {
-	var ()
 	return &DeleteVirtualCircuitParams{
 		HTTPClient: client,
 	}
 }
 
-/*DeleteVirtualCircuitParams contains all the parameters to send to the API endpoint
-for the delete virtual circuit operation typically these are written to a http.Request
+/* DeleteVirtualCircuitParams contains all the parameters to send to the API endpoint
+   for the delete virtual circuit operation.
+
+   Typically these are written to a http.Request.
 */
 type DeleteVirtualCircuitParams struct {
 
-	/*ID
-	  Virtual Circuit UUID
+	/* ID.
 
+	   Virtual Circuit UUID
+
+	   Format: uuid
 	*/
 	ID strfmt.UUID
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the delete virtual circuit params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *DeleteVirtualCircuitParams) WithDefaults() *DeleteVirtualCircuitParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the delete virtual circuit params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *DeleteVirtualCircuitParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the delete virtual circuit params

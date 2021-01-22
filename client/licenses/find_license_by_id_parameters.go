@@ -16,64 +16,81 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewFindLicenseByIDParams creates a new FindLicenseByIDParams object
-// with the default values initialized.
+// NewFindLicenseByIDParams creates a new FindLicenseByIDParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewFindLicenseByIDParams() *FindLicenseByIDParams {
-	var ()
 	return &FindLicenseByIDParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewFindLicenseByIDParamsWithTimeout creates a new FindLicenseByIDParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewFindLicenseByIDParamsWithTimeout(timeout time.Duration) *FindLicenseByIDParams {
-	var ()
 	return &FindLicenseByIDParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewFindLicenseByIDParamsWithContext creates a new FindLicenseByIDParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewFindLicenseByIDParamsWithContext(ctx context.Context) *FindLicenseByIDParams {
-	var ()
 	return &FindLicenseByIDParams{
-
 		Context: ctx,
 	}
 }
 
 // NewFindLicenseByIDParamsWithHTTPClient creates a new FindLicenseByIDParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewFindLicenseByIDParamsWithHTTPClient(client *http.Client) *FindLicenseByIDParams {
-	var ()
 	return &FindLicenseByIDParams{
 		HTTPClient: client,
 	}
 }
 
-/*FindLicenseByIDParams contains all the parameters to send to the API endpoint
-for the find license by Id operation typically these are written to a http.Request
+/* FindLicenseByIDParams contains all the parameters to send to the API endpoint
+   for the find license by Id operation.
+
+   Typically these are written to a http.Request.
 */
 type FindLicenseByIDParams struct {
 
-	/*ID
-	  License UUID
+	/* ID.
 
+	   License UUID
+
+	   Format: uuid
 	*/
 	ID strfmt.UUID
-	/*Include
-	  related attributes to include
 
+	/* Include.
+
+	   related attributes to include
 	*/
 	Include *string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the find license by Id params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *FindLicenseByIDParams) WithDefaults() *FindLicenseByIDParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the find license by Id params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *FindLicenseByIDParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the find license by Id params
@@ -148,16 +165,17 @@ func (o *FindLicenseByIDParams) WriteToRequest(r runtime.ClientRequest, reg strf
 
 		// query param include
 		var qrInclude string
+
 		if o.Include != nil {
 			qrInclude = *o.Include
 		}
 		qInclude := qrInclude
 		if qInclude != "" {
+
 			if err := r.SetQueryParam("include", qInclude); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	if len(res) > 0 {

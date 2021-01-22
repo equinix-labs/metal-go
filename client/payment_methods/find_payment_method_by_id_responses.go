@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // FindPaymentMethodByIDReader is a Reader for the FindPaymentMethodByID structure.
@@ -41,7 +41,6 @@ func (o *FindPaymentMethodByIDReader) ReadResponse(response runtime.ClientRespon
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -52,25 +51,24 @@ func NewFindPaymentMethodByIDOK() *FindPaymentMethodByIDOK {
 	return &FindPaymentMethodByIDOK{}
 }
 
-/*FindPaymentMethodByIDOK handles this case with default header values.
+/* FindPaymentMethodByIDOK describes a response with status code 200, with default header values.
 
 ok
 */
 type FindPaymentMethodByIDOK struct {
-	Payload *models.PaymentMethod
+	Payload *types.PaymentMethod
 }
 
 func (o *FindPaymentMethodByIDOK) Error() string {
 	return fmt.Sprintf("[GET /payment-methods/{id}][%d] findPaymentMethodByIdOK  %+v", 200, o.Payload)
 }
-
-func (o *FindPaymentMethodByIDOK) GetPayload() *models.PaymentMethod {
+func (o *FindPaymentMethodByIDOK) GetPayload() *types.PaymentMethod {
 	return o.Payload
 }
 
 func (o *FindPaymentMethodByIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.PaymentMethod)
+	o.Payload = new(types.PaymentMethod)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -85,7 +83,7 @@ func NewFindPaymentMethodByIDUnauthorized() *FindPaymentMethodByIDUnauthorized {
 	return &FindPaymentMethodByIDUnauthorized{}
 }
 
-/*FindPaymentMethodByIDUnauthorized handles this case with default header values.
+/* FindPaymentMethodByIDUnauthorized describes a response with status code 401, with default header values.
 
 unauthorized
 */
@@ -106,7 +104,7 @@ func NewFindPaymentMethodByIDNotFound() *FindPaymentMethodByIDNotFound {
 	return &FindPaymentMethodByIDNotFound{}
 }
 
-/*FindPaymentMethodByIDNotFound handles this case with default header values.
+/* FindPaymentMethodByIDNotFound describes a response with status code 404, with default header values.
 
 not found
 */

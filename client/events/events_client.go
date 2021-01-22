@@ -62,7 +62,7 @@ func (a *Client) FindConnectionEvents(params *FindConnectionEventsParams, authIn
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "findConnectionEvents",
 		Method:             "GET",
-		PathPattern:        "/connections/{id}/events",
+		PathPattern:        "/connections/{connection_id}/events",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http"},

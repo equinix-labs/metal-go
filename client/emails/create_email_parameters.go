@@ -15,62 +15,76 @@ import (
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
-// NewCreateEmailParams creates a new CreateEmailParams object
-// with the default values initialized.
+// NewCreateEmailParams creates a new CreateEmailParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewCreateEmailParams() *CreateEmailParams {
-	var ()
 	return &CreateEmailParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewCreateEmailParamsWithTimeout creates a new CreateEmailParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewCreateEmailParamsWithTimeout(timeout time.Duration) *CreateEmailParams {
-	var ()
 	return &CreateEmailParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewCreateEmailParamsWithContext creates a new CreateEmailParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewCreateEmailParamsWithContext(ctx context.Context) *CreateEmailParams {
-	var ()
 	return &CreateEmailParams{
-
 		Context: ctx,
 	}
 }
 
 // NewCreateEmailParamsWithHTTPClient creates a new CreateEmailParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewCreateEmailParamsWithHTTPClient(client *http.Client) *CreateEmailParams {
-	var ()
 	return &CreateEmailParams{
 		HTTPClient: client,
 	}
 }
 
-/*CreateEmailParams contains all the parameters to send to the API endpoint
-for the create email operation typically these are written to a http.Request
+/* CreateEmailParams contains all the parameters to send to the API endpoint
+   for the create email operation.
+
+   Typically these are written to a http.Request.
 */
 type CreateEmailParams struct {
 
-	/*Email
-	  Email to create
+	/* Email.
 
+	   Email to create
 	*/
-	Email *models.CreateEmailInput
+	Email *types.CreateEmailInput
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the create email params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *CreateEmailParams) WithDefaults() *CreateEmailParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the create email params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *CreateEmailParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the create email params
@@ -107,13 +121,13 @@ func (o *CreateEmailParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithEmail adds the email to the create email params
-func (o *CreateEmailParams) WithEmail(email *models.CreateEmailInput) *CreateEmailParams {
+func (o *CreateEmailParams) WithEmail(email *types.CreateEmailInput) *CreateEmailParams {
 	o.SetEmail(email)
 	return o
 }
 
 // SetEmail adds the email to the create email params
-func (o *CreateEmailParams) SetEmail(email *models.CreateEmailInput) {
+func (o *CreateEmailParams) SetEmail(email *types.CreateEmailInput) {
 	o.Email = email
 }
 
@@ -124,7 +138,6 @@ func (o *CreateEmailParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.R
 		return err
 	}
 	var res []error
-
 	if o.Email != nil {
 		if err := r.SetBodyParam(o.Email); err != nil {
 			return err

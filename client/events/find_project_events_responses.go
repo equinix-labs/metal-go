@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // FindProjectEventsReader is a Reader for the FindProjectEvents structure.
@@ -47,7 +47,6 @@ func (o *FindProjectEventsReader) ReadResponse(response runtime.ClientResponse, 
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -58,25 +57,24 @@ func NewFindProjectEventsOK() *FindProjectEventsOK {
 	return &FindProjectEventsOK{}
 }
 
-/*FindProjectEventsOK handles this case with default header values.
+/* FindProjectEventsOK describes a response with status code 200, with default header values.
 
 ok
 */
 type FindProjectEventsOK struct {
-	Payload *models.EventList
+	Payload *types.EventList
 }
 
 func (o *FindProjectEventsOK) Error() string {
 	return fmt.Sprintf("[GET /projects/{id}/events][%d] findProjectEventsOK  %+v", 200, o.Payload)
 }
-
-func (o *FindProjectEventsOK) GetPayload() *models.EventList {
+func (o *FindProjectEventsOK) GetPayload() *types.EventList {
 	return o.Payload
 }
 
 func (o *FindProjectEventsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.EventList)
+	o.Payload = new(types.EventList)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -91,7 +89,7 @@ func NewFindProjectEventsUnauthorized() *FindProjectEventsUnauthorized {
 	return &FindProjectEventsUnauthorized{}
 }
 
-/*FindProjectEventsUnauthorized handles this case with default header values.
+/* FindProjectEventsUnauthorized describes a response with status code 401, with default header values.
 
 unauthorized
 */
@@ -112,7 +110,7 @@ func NewFindProjectEventsForbidden() *FindProjectEventsForbidden {
 	return &FindProjectEventsForbidden{}
 }
 
-/*FindProjectEventsForbidden handles this case with default header values.
+/* FindProjectEventsForbidden describes a response with status code 403, with default header values.
 
 forbidden
 */
@@ -133,7 +131,7 @@ func NewFindProjectEventsNotFound() *FindProjectEventsNotFound {
 	return &FindProjectEventsNotFound{}
 }
 
-/*FindProjectEventsNotFound handles this case with default header values.
+/* FindProjectEventsNotFound describes a response with status code 404, with default header values.
 
 not found
 */

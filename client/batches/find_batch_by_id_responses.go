@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // FindBatchByIDReader is a Reader for the FindBatchByID structure.
@@ -41,7 +41,6 @@ func (o *FindBatchByIDReader) ReadResponse(response runtime.ClientResponse, cons
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -52,25 +51,24 @@ func NewFindBatchByIDOK() *FindBatchByIDOK {
 	return &FindBatchByIDOK{}
 }
 
-/*FindBatchByIDOK handles this case with default header values.
+/* FindBatchByIDOK describes a response with status code 200, with default header values.
 
 ok
 */
 type FindBatchByIDOK struct {
-	Payload *models.Batch
+	Payload *types.Batch
 }
 
 func (o *FindBatchByIDOK) Error() string {
 	return fmt.Sprintf("[GET /batches/{id}][%d] findBatchByIdOK  %+v", 200, o.Payload)
 }
-
-func (o *FindBatchByIDOK) GetPayload() *models.Batch {
+func (o *FindBatchByIDOK) GetPayload() *types.Batch {
 	return o.Payload
 }
 
 func (o *FindBatchByIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.Batch)
+	o.Payload = new(types.Batch)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -85,7 +83,7 @@ func NewFindBatchByIDUnauthorized() *FindBatchByIDUnauthorized {
 	return &FindBatchByIDUnauthorized{}
 }
 
-/*FindBatchByIDUnauthorized handles this case with default header values.
+/* FindBatchByIDUnauthorized describes a response with status code 401, with default header values.
 
 unauthorized
 */
@@ -106,7 +104,7 @@ func NewFindBatchByIDNotFound() *FindBatchByIDNotFound {
 	return &FindBatchByIDNotFound{}
 }
 
-/*FindBatchByIDNotFound handles this case with default header values.
+/* FindBatchByIDNotFound describes a response with status code 404, with default header values.
 
 not found
 */

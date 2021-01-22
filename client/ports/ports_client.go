@@ -27,7 +27,7 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	AssignNativeVlan(params *AssignNativeVlanParams, authInfo runtime.ClientAuthInfoWriter) (*AssignNativeVlanOK, error)
+	AssignNativeVLAN(params *AssignNativeVLANParams, authInfo runtime.ClientAuthInfoWriter) (*AssignNativeVLANOK, error)
 
 	AssignPort(params *AssignPortParams, authInfo runtime.ClientAuthInfoWriter) (*AssignPortOK, error)
 
@@ -37,7 +37,7 @@ type ClientService interface {
 
 	ConvertLayer3(params *ConvertLayer3Params, authInfo runtime.ClientAuthInfoWriter) (*ConvertLayer3OK, error)
 
-	DeleteNativeVlan(params *DeleteNativeVlanParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteNativeVlanOK, error)
+	DeleteNativeVLAN(params *DeleteNativeVLANParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteNativeVLANOK, error)
 
 	DisbondPort(params *DisbondPortParams, authInfo runtime.ClientAuthInfoWriter) (*DisbondPortOK, error)
 
@@ -47,14 +47,14 @@ type ClientService interface {
 }
 
 /*
-  AssignNativeVlan assigns a native v l a n
+  AssignNativeVLAN assigns a native VLAN
 
   Assigns a virtual network to this port as a "native VLAN"
 */
-func (a *Client) AssignNativeVlan(params *AssignNativeVlanParams, authInfo runtime.ClientAuthInfoWriter) (*AssignNativeVlanOK, error) {
+func (a *Client) AssignNativeVLAN(params *AssignNativeVLANParams, authInfo runtime.ClientAuthInfoWriter) (*AssignNativeVLANOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewAssignNativeVlanParams()
+		params = NewAssignNativeVLANParams()
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -65,7 +65,7 @@ func (a *Client) AssignNativeVlan(params *AssignNativeVlanParams, authInfo runti
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http"},
 		Params:             params,
-		Reader:             &AssignNativeVlanReader{formats: a.formats},
+		Reader:             &AssignNativeVLANReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -73,7 +73,7 @@ func (a *Client) AssignNativeVlan(params *AssignNativeVlanParams, authInfo runti
 	if err != nil {
 		return nil, err
 	}
-	success, ok := result.(*AssignNativeVlanOK)
+	success, ok := result.(*AssignNativeVLANOK)
 	if ok {
 		return success, nil
 	}
@@ -232,14 +232,14 @@ func (a *Client) ConvertLayer3(params *ConvertLayer3Params, authInfo runtime.Cli
 }
 
 /*
-  DeleteNativeVlan removes native v l a n
+  DeleteNativeVLAN removes native VLAN
 
   Removes the native VLAN from this port
 */
-func (a *Client) DeleteNativeVlan(params *DeleteNativeVlanParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteNativeVlanOK, error) {
+func (a *Client) DeleteNativeVLAN(params *DeleteNativeVLANParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteNativeVLANOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewDeleteNativeVlanParams()
+		params = NewDeleteNativeVLANParams()
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -250,7 +250,7 @@ func (a *Client) DeleteNativeVlan(params *DeleteNativeVlanParams, authInfo runti
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http"},
 		Params:             params,
-		Reader:             &DeleteNativeVlanReader{formats: a.formats},
+		Reader:             &DeleteNativeVLANReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -258,7 +258,7 @@ func (a *Client) DeleteNativeVlan(params *DeleteNativeVlanParams, authInfo runti
 	if err != nil {
 		return nil, err
 	}
-	success, ok := result.(*DeleteNativeVlanOK)
+	success, ok := result.(*DeleteNativeVLANOK)
 	if ok {
 		return success, nil
 	}

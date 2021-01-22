@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // FindUsersReader is a Reader for the FindUsers structure.
@@ -35,7 +35,6 @@ func (o *FindUsersReader) ReadResponse(response runtime.ClientResponse, consumer
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -46,25 +45,24 @@ func NewFindUsersOK() *FindUsersOK {
 	return &FindUsersOK{}
 }
 
-/*FindUsersOK handles this case with default header values.
+/* FindUsersOK describes a response with status code 200, with default header values.
 
 ok
 */
 type FindUsersOK struct {
-	Payload *models.UserList
+	Payload *types.UserList
 }
 
 func (o *FindUsersOK) Error() string {
 	return fmt.Sprintf("[GET /users][%d] findUsersOK  %+v", 200, o.Payload)
 }
-
-func (o *FindUsersOK) GetPayload() *models.UserList {
+func (o *FindUsersOK) GetPayload() *types.UserList {
 	return o.Payload
 }
 
 func (o *FindUsersOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.UserList)
+	o.Payload = new(types.UserList)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -79,7 +77,7 @@ func NewFindUsersUnauthorized() *FindUsersUnauthorized {
 	return &FindUsersUnauthorized{}
 }
 
-/*FindUsersUnauthorized handles this case with default header values.
+/* FindUsersUnauthorized describes a response with status code 401, with default header values.
 
 unauthorized
 */

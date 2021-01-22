@@ -16,64 +16,81 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewFindIPAddressByIDParams creates a new FindIPAddressByIDParams object
-// with the default values initialized.
+// NewFindIPAddressByIDParams creates a new FindIPAddressByIDParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewFindIPAddressByIDParams() *FindIPAddressByIDParams {
-	var ()
 	return &FindIPAddressByIDParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewFindIPAddressByIDParamsWithTimeout creates a new FindIPAddressByIDParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewFindIPAddressByIDParamsWithTimeout(timeout time.Duration) *FindIPAddressByIDParams {
-	var ()
 	return &FindIPAddressByIDParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewFindIPAddressByIDParamsWithContext creates a new FindIPAddressByIDParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewFindIPAddressByIDParamsWithContext(ctx context.Context) *FindIPAddressByIDParams {
-	var ()
 	return &FindIPAddressByIDParams{
-
 		Context: ctx,
 	}
 }
 
 // NewFindIPAddressByIDParamsWithHTTPClient creates a new FindIPAddressByIDParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewFindIPAddressByIDParamsWithHTTPClient(client *http.Client) *FindIPAddressByIDParams {
-	var ()
 	return &FindIPAddressByIDParams{
 		HTTPClient: client,
 	}
 }
 
-/*FindIPAddressByIDParams contains all the parameters to send to the API endpoint
-for the find IP address by Id operation typically these are written to a http.Request
+/* FindIPAddressByIDParams contains all the parameters to send to the API endpoint
+   for the find IP address by Id operation.
+
+   Typically these are written to a http.Request.
 */
 type FindIPAddressByIDParams struct {
 
-	/*ID
-	  IP Address UUID
+	/* ID.
 
+	   IP Address UUID
+
+	   Format: uuid
 	*/
 	ID strfmt.UUID
-	/*Include
-	  related attributes to include
 
+	/* Include.
+
+	   related attributes to include
 	*/
 	Include *string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the find IP address by Id params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *FindIPAddressByIDParams) WithDefaults() *FindIPAddressByIDParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the find IP address by Id params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *FindIPAddressByIDParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the find IP address by Id params
@@ -148,16 +165,17 @@ func (o *FindIPAddressByIDParams) WriteToRequest(r runtime.ClientRequest, reg st
 
 		// query param include
 		var qrInclude string
+
 		if o.Include != nil {
 			qrInclude = *o.Include
 		}
 		qInclude := qrInclude
 		if qInclude != "" {
+
 			if err := r.SetQueryParam("include", qInclude); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	if len(res) > 0 {

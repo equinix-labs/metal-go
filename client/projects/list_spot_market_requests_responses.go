@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // ListSpotMarketRequestsReader is a Reader for the ListSpotMarketRequests structure.
@@ -41,7 +41,6 @@ func (o *ListSpotMarketRequestsReader) ReadResponse(response runtime.ClientRespo
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -52,25 +51,24 @@ func NewListSpotMarketRequestsOK() *ListSpotMarketRequestsOK {
 	return &ListSpotMarketRequestsOK{}
 }
 
-/*ListSpotMarketRequestsOK handles this case with default header values.
+/* ListSpotMarketRequestsOK describes a response with status code 200, with default header values.
 
 ok
 */
 type ListSpotMarketRequestsOK struct {
-	Payload *models.SpotMarketRequestList
+	Payload *types.SpotMarketRequestList
 }
 
 func (o *ListSpotMarketRequestsOK) Error() string {
 	return fmt.Sprintf("[GET /projects/{id}/spot-market-requests][%d] listSpotMarketRequestsOK  %+v", 200, o.Payload)
 }
-
-func (o *ListSpotMarketRequestsOK) GetPayload() *models.SpotMarketRequestList {
+func (o *ListSpotMarketRequestsOK) GetPayload() *types.SpotMarketRequestList {
 	return o.Payload
 }
 
 func (o *ListSpotMarketRequestsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.SpotMarketRequestList)
+	o.Payload = new(types.SpotMarketRequestList)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -85,7 +83,7 @@ func NewListSpotMarketRequestsUnauthorized() *ListSpotMarketRequestsUnauthorized
 	return &ListSpotMarketRequestsUnauthorized{}
 }
 
-/*ListSpotMarketRequestsUnauthorized handles this case with default header values.
+/* ListSpotMarketRequestsUnauthorized describes a response with status code 401, with default header values.
 
 unauthorized
 */
@@ -106,7 +104,7 @@ func NewListSpotMarketRequestsNotFound() *ListSpotMarketRequestsNotFound {
 	return &ListSpotMarketRequestsNotFound{}
 }
 
-/*ListSpotMarketRequestsNotFound handles this case with default header values.
+/* ListSpotMarketRequestsNotFound describes a response with status code 404, with default header values.
 
 not found
 */
