@@ -6,8 +6,6 @@ package types
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"context"
-
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
@@ -23,11 +21,6 @@ type PortAssignInput struct {
 
 // Validate validates this port assign input
 func (m *PortAssignInput) Validate(formats strfmt.Registry) error {
-	return nil
-}
-
-// ContextValidate validates this port assign input based on context it is used
-func (m *PortAssignInput) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

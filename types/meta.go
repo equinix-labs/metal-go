@@ -6,8 +6,6 @@ package types
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"context"
-
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -68,6 +66,7 @@ func (m *Meta) Validate(formats strfmt.Registry) error {
 }
 
 func (m *Meta) validateFirst(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.First) { // not required
 		return nil
 	}
@@ -85,6 +84,7 @@ func (m *Meta) validateFirst(formats strfmt.Registry) error {
 }
 
 func (m *Meta) validateLast(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.Last) { // not required
 		return nil
 	}
@@ -102,6 +102,7 @@ func (m *Meta) validateLast(formats strfmt.Registry) error {
 }
 
 func (m *Meta) validateNext(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.Next) { // not required
 		return nil
 	}
@@ -119,6 +120,7 @@ func (m *Meta) validateNext(formats strfmt.Registry) error {
 }
 
 func (m *Meta) validatePrevious(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.Previous) { // not required
 		return nil
 	}
@@ -136,112 +138,13 @@ func (m *Meta) validatePrevious(formats strfmt.Registry) error {
 }
 
 func (m *Meta) validateSelf(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.Self) { // not required
 		return nil
 	}
 
 	if m.Self != nil {
 		if err := m.Self.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("self")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-// ContextValidate validate this meta based on the context it is used
-func (m *Meta) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.contextValidateFirst(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateLast(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateNext(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidatePrevious(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateSelf(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *Meta) contextValidateFirst(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.First != nil {
-		if err := m.First.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("first")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *Meta) contextValidateLast(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.Last != nil {
-		if err := m.Last.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("last")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *Meta) contextValidateNext(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.Next != nil {
-		if err := m.Next.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("next")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *Meta) contextValidatePrevious(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.Previous != nil {
-		if err := m.Previous.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("previous")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *Meta) contextValidateSelf(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.Self != nil {
-		if err := m.Self.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("self")
 			}

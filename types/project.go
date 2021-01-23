@@ -6,7 +6,6 @@ package types
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"context"
 	"strconv"
 
 	"github.com/go-openapi/errors"
@@ -28,7 +27,7 @@ type Project struct {
 	CreatedAt strfmt.DateTime `json:"created_at,omitempty"`
 
 	// customdata
-	Customdata string `json:"customdata,omitempty"`
+	Customdata interface{} `json:"customdata,omitempty"`
 
 	// devices
 	Devices []*Href `json:"devices"`
@@ -124,6 +123,7 @@ func (m *Project) Validate(formats strfmt.Registry) error {
 }
 
 func (m *Project) validateBGPConfig(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.BGPConfig) { // not required
 		return nil
 	}
@@ -141,6 +141,7 @@ func (m *Project) validateBGPConfig(formats strfmt.Registry) error {
 }
 
 func (m *Project) validateCreatedAt(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.CreatedAt) { // not required
 		return nil
 	}
@@ -153,6 +154,7 @@ func (m *Project) validateCreatedAt(formats strfmt.Registry) error {
 }
 
 func (m *Project) validateDevices(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.Devices) { // not required
 		return nil
 	}
@@ -177,6 +179,7 @@ func (m *Project) validateDevices(formats strfmt.Registry) error {
 }
 
 func (m *Project) validateID(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.ID) { // not required
 		return nil
 	}
@@ -189,6 +192,7 @@ func (m *Project) validateID(formats strfmt.Registry) error {
 }
 
 func (m *Project) validateInvitations(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.Invitations) { // not required
 		return nil
 	}
@@ -213,6 +217,7 @@ func (m *Project) validateInvitations(formats strfmt.Registry) error {
 }
 
 func (m *Project) validateMembers(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.Members) { // not required
 		return nil
 	}
@@ -237,6 +242,7 @@ func (m *Project) validateMembers(formats strfmt.Registry) error {
 }
 
 func (m *Project) validateMemberships(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.Memberships) { // not required
 		return nil
 	}
@@ -261,6 +267,7 @@ func (m *Project) validateMemberships(formats strfmt.Registry) error {
 }
 
 func (m *Project) validatePaymentMethod(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.PaymentMethod) { // not required
 		return nil
 	}
@@ -278,6 +285,7 @@ func (m *Project) validatePaymentMethod(formats strfmt.Registry) error {
 }
 
 func (m *Project) validateSSHKeys(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.SSHKeys) { // not required
 		return nil
 	}
@@ -302,6 +310,7 @@ func (m *Project) validateSSHKeys(formats strfmt.Registry) error {
 }
 
 func (m *Project) validateUpdatedAt(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.UpdatedAt) { // not required
 		return nil
 	}
@@ -314,6 +323,7 @@ func (m *Project) validateUpdatedAt(formats strfmt.Registry) error {
 }
 
 func (m *Project) validateVolumes(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.Volumes) { // not required
 		return nil
 	}
@@ -325,184 +335,6 @@ func (m *Project) validateVolumes(formats strfmt.Registry) error {
 
 		if m.Volumes[i] != nil {
 			if err := m.Volumes[i].Validate(formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("volumes" + "." + strconv.Itoa(i))
-				}
-				return err
-			}
-		}
-
-	}
-
-	return nil
-}
-
-// ContextValidate validate this project based on the context it is used
-func (m *Project) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.contextValidateBGPConfig(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateDevices(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateInvitations(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateMembers(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateMemberships(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidatePaymentMethod(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateSSHKeys(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateVolumes(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *Project) contextValidateBGPConfig(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.BGPConfig != nil {
-		if err := m.BGPConfig.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("bgp_config")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *Project) contextValidateDevices(ctx context.Context, formats strfmt.Registry) error {
-
-	for i := 0; i < len(m.Devices); i++ {
-
-		if m.Devices[i] != nil {
-			if err := m.Devices[i].ContextValidate(ctx, formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("devices" + "." + strconv.Itoa(i))
-				}
-				return err
-			}
-		}
-
-	}
-
-	return nil
-}
-
-func (m *Project) contextValidateInvitations(ctx context.Context, formats strfmt.Registry) error {
-
-	for i := 0; i < len(m.Invitations); i++ {
-
-		if m.Invitations[i] != nil {
-			if err := m.Invitations[i].ContextValidate(ctx, formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("invitations" + "." + strconv.Itoa(i))
-				}
-				return err
-			}
-		}
-
-	}
-
-	return nil
-}
-
-func (m *Project) contextValidateMembers(ctx context.Context, formats strfmt.Registry) error {
-
-	for i := 0; i < len(m.Members); i++ {
-
-		if m.Members[i] != nil {
-			if err := m.Members[i].ContextValidate(ctx, formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("members" + "." + strconv.Itoa(i))
-				}
-				return err
-			}
-		}
-
-	}
-
-	return nil
-}
-
-func (m *Project) contextValidateMemberships(ctx context.Context, formats strfmt.Registry) error {
-
-	for i := 0; i < len(m.Memberships); i++ {
-
-		if m.Memberships[i] != nil {
-			if err := m.Memberships[i].ContextValidate(ctx, formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("memberships" + "." + strconv.Itoa(i))
-				}
-				return err
-			}
-		}
-
-	}
-
-	return nil
-}
-
-func (m *Project) contextValidatePaymentMethod(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.PaymentMethod != nil {
-		if err := m.PaymentMethod.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("payment_method")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *Project) contextValidateSSHKeys(ctx context.Context, formats strfmt.Registry) error {
-
-	for i := 0; i < len(m.SSHKeys); i++ {
-
-		if m.SSHKeys[i] != nil {
-			if err := m.SSHKeys[i].ContextValidate(ctx, formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("ssh_keys" + "." + strconv.Itoa(i))
-				}
-				return err
-			}
-		}
-
-	}
-
-	return nil
-}
-
-func (m *Project) contextValidateVolumes(ctx context.Context, formats strfmt.Registry) error {
-
-	for i := 0; i < len(m.Volumes); i++ {
-
-		if m.Volumes[i] != nil {
-			if err := m.Volumes[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("volumes" + "." + strconv.Itoa(i))
 				}

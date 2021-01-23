@@ -16,91 +16,69 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewFindProjectUsageParams creates a new FindProjectUsageParams object,
-// with the default timeout for this client.
-//
-// Default values are not hydrated, since defaults are normally applied by the API server side.
-//
-// To enforce default values in parameter, use SetDefaults or WithDefaults.
+// NewFindProjectUsageParams creates a new FindProjectUsageParams object
+// with the default values initialized.
 func NewFindProjectUsageParams() *FindProjectUsageParams {
+	var ()
 	return &FindProjectUsageParams{
+
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewFindProjectUsageParamsWithTimeout creates a new FindProjectUsageParams object
-// with the ability to set a timeout on a request.
+// with the default values initialized, and the ability to set a timeout on a request
 func NewFindProjectUsageParamsWithTimeout(timeout time.Duration) *FindProjectUsageParams {
+	var ()
 	return &FindProjectUsageParams{
+
 		timeout: timeout,
 	}
 }
 
 // NewFindProjectUsageParamsWithContext creates a new FindProjectUsageParams object
-// with the ability to set a context for a request.
+// with the default values initialized, and the ability to set a context for a request
 func NewFindProjectUsageParamsWithContext(ctx context.Context) *FindProjectUsageParams {
+	var ()
 	return &FindProjectUsageParams{
+
 		Context: ctx,
 	}
 }
 
 // NewFindProjectUsageParamsWithHTTPClient creates a new FindProjectUsageParams object
-// with the ability to set a custom HTTPClient for a request.
+// with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewFindProjectUsageParamsWithHTTPClient(client *http.Client) *FindProjectUsageParams {
+	var ()
 	return &FindProjectUsageParams{
 		HTTPClient: client,
 	}
 }
 
-/* FindProjectUsageParams contains all the parameters to send to the API endpoint
-   for the find project usage operation.
-
-   Typically these are written to a http.Request.
+/*FindProjectUsageParams contains all the parameters to send to the API endpoint
+for the find project usage operation typically these are written to a http.Request
 */
 type FindProjectUsageParams struct {
 
-	/* CreatedAfter.
+	/*CreatedAfter
+	  Filter usages created after this date
 
-	   Filter usages created after this date
-
-	   Format: datetime
 	*/
 	CreatedAfter *strfmt.DateTime
+	/*CreatedBefore
+	  Filter usages created before this date
 
-	/* CreatedBefore.
-
-	   Filter usages created before this date
-
-	   Format: datetime
 	*/
 	CreatedBefore *strfmt.DateTime
+	/*ID
+	  Project UUID
 
-	/* ID.
-
-	   Project UUID
-
-	   Format: uuid
 	*/
 	ID strfmt.UUID
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
-}
-
-// WithDefaults hydrates default values in the find project usage params (not the query body).
-//
-// All values with no default are reset to their zero value.
-func (o *FindProjectUsageParams) WithDefaults() *FindProjectUsageParams {
-	o.SetDefaults()
-	return o
-}
-
-// SetDefaults hydrates default values in the find project usage params (not the query body).
-//
-// All values with no default are reset to their zero value.
-func (o *FindProjectUsageParams) SetDefaults() {
-	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the find project usage params
@@ -181,34 +159,32 @@ func (o *FindProjectUsageParams) WriteToRequest(r runtime.ClientRequest, reg str
 
 		// query param created[after]
 		var qrCreatedAfter strfmt.DateTime
-
 		if o.CreatedAfter != nil {
 			qrCreatedAfter = *o.CreatedAfter
 		}
 		qCreatedAfter := qrCreatedAfter.String()
 		if qCreatedAfter != "" {
-
 			if err := r.SetQueryParam("created[after]", qCreatedAfter); err != nil {
 				return err
 			}
 		}
+
 	}
 
 	if o.CreatedBefore != nil {
 
 		// query param created[before]
 		var qrCreatedBefore strfmt.DateTime
-
 		if o.CreatedBefore != nil {
 			qrCreatedBefore = *o.CreatedBefore
 		}
 		qCreatedBefore := qrCreatedBefore.String()
 		if qCreatedBefore != "" {
-
 			if err := r.SetQueryParam("created[before]", qCreatedBefore); err != nil {
 				return err
 			}
 		}
+
 	}
 
 	// path param id

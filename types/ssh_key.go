@@ -6,8 +6,6 @@ package types
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"context"
-
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -74,6 +72,7 @@ func (m *SSHKey) Validate(formats strfmt.Registry) error {
 }
 
 func (m *SSHKey) validateCreatedAt(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.CreatedAt) { // not required
 		return nil
 	}
@@ -86,6 +85,7 @@ func (m *SSHKey) validateCreatedAt(formats strfmt.Registry) error {
 }
 
 func (m *SSHKey) validateEntity(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.Entity) { // not required
 		return nil
 	}
@@ -103,6 +103,7 @@ func (m *SSHKey) validateEntity(formats strfmt.Registry) error {
 }
 
 func (m *SSHKey) validateID(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.ID) { // not required
 		return nil
 	}
@@ -115,40 +116,13 @@ func (m *SSHKey) validateID(formats strfmt.Registry) error {
 }
 
 func (m *SSHKey) validateUpdatedAt(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.UpdatedAt) { // not required
 		return nil
 	}
 
 	if err := validate.FormatOf("updated_at", "body", "date-time", m.UpdatedAt.String(), formats); err != nil {
 		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validate this SSH key based on the context it is used
-func (m *SSHKey) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.contextValidateEntity(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *SSHKey) contextValidateEntity(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.Entity != nil {
-		if err := m.Entity.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("entity")
-			}
-			return err
-		}
 	}
 
 	return nil

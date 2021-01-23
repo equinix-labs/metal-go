@@ -18,81 +18,64 @@ import (
 	"github.com/t0mk/gometal/types"
 )
 
-// NewUpdateInterconnectionParams creates a new UpdateInterconnectionParams object,
-// with the default timeout for this client.
-//
-// Default values are not hydrated, since defaults are normally applied by the API server side.
-//
-// To enforce default values in parameter, use SetDefaults or WithDefaults.
+// NewUpdateInterconnectionParams creates a new UpdateInterconnectionParams object
+// with the default values initialized.
 func NewUpdateInterconnectionParams() *UpdateInterconnectionParams {
+	var ()
 	return &UpdateInterconnectionParams{
+
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewUpdateInterconnectionParamsWithTimeout creates a new UpdateInterconnectionParams object
-// with the ability to set a timeout on a request.
+// with the default values initialized, and the ability to set a timeout on a request
 func NewUpdateInterconnectionParamsWithTimeout(timeout time.Duration) *UpdateInterconnectionParams {
+	var ()
 	return &UpdateInterconnectionParams{
+
 		timeout: timeout,
 	}
 }
 
 // NewUpdateInterconnectionParamsWithContext creates a new UpdateInterconnectionParams object
-// with the ability to set a context for a request.
+// with the default values initialized, and the ability to set a context for a request
 func NewUpdateInterconnectionParamsWithContext(ctx context.Context) *UpdateInterconnectionParams {
+	var ()
 	return &UpdateInterconnectionParams{
+
 		Context: ctx,
 	}
 }
 
 // NewUpdateInterconnectionParamsWithHTTPClient creates a new UpdateInterconnectionParams object
-// with the ability to set a custom HTTPClient for a request.
+// with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewUpdateInterconnectionParamsWithHTTPClient(client *http.Client) *UpdateInterconnectionParams {
+	var ()
 	return &UpdateInterconnectionParams{
 		HTTPClient: client,
 	}
 }
 
-/* UpdateInterconnectionParams contains all the parameters to send to the API endpoint
-   for the update interconnection operation.
-
-   Typically these are written to a http.Request.
+/*UpdateInterconnectionParams contains all the parameters to send to the API endpoint
+for the update interconnection operation typically these are written to a http.Request
 */
 type UpdateInterconnectionParams struct {
 
-	/* Connection.
+	/*Connection
+	  Updated connection details
 
-	   Updated connection details
 	*/
 	Connection *types.InterconnectionUpdateInput
+	/*ConnectionID
+	  Connection UUID
 
-	/* ConnectionID.
-
-	   Connection UUID
-
-	   Format: uuid
 	*/
 	ConnectionID strfmt.UUID
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
-}
-
-// WithDefaults hydrates default values in the update interconnection params (not the query body).
-//
-// All values with no default are reset to their zero value.
-func (o *UpdateInterconnectionParams) WithDefaults() *UpdateInterconnectionParams {
-	o.SetDefaults()
-	return o
-}
-
-// SetDefaults hydrates default values in the update interconnection params (not the query body).
-//
-// All values with no default are reset to their zero value.
-func (o *UpdateInterconnectionParams) SetDefaults() {
-	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the update interconnection params
@@ -157,6 +140,7 @@ func (o *UpdateInterconnectionParams) WriteToRequest(r runtime.ClientRequest, re
 		return err
 	}
 	var res []error
+
 	if o.Connection != nil {
 		if err := r.SetBodyParam(o.Connection); err != nil {
 			return err

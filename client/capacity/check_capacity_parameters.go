@@ -18,73 +18,59 @@ import (
 	"github.com/t0mk/gometal/types"
 )
 
-// NewCheckCapacityParams creates a new CheckCapacityParams object,
-// with the default timeout for this client.
-//
-// Default values are not hydrated, since defaults are normally applied by the API server side.
-//
-// To enforce default values in parameter, use SetDefaults or WithDefaults.
+// NewCheckCapacityParams creates a new CheckCapacityParams object
+// with the default values initialized.
 func NewCheckCapacityParams() *CheckCapacityParams {
+	var ()
 	return &CheckCapacityParams{
+
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewCheckCapacityParamsWithTimeout creates a new CheckCapacityParams object
-// with the ability to set a timeout on a request.
+// with the default values initialized, and the ability to set a timeout on a request
 func NewCheckCapacityParamsWithTimeout(timeout time.Duration) *CheckCapacityParams {
+	var ()
 	return &CheckCapacityParams{
+
 		timeout: timeout,
 	}
 }
 
 // NewCheckCapacityParamsWithContext creates a new CheckCapacityParams object
-// with the ability to set a context for a request.
+// with the default values initialized, and the ability to set a context for a request
 func NewCheckCapacityParamsWithContext(ctx context.Context) *CheckCapacityParams {
+	var ()
 	return &CheckCapacityParams{
+
 		Context: ctx,
 	}
 }
 
 // NewCheckCapacityParamsWithHTTPClient creates a new CheckCapacityParams object
-// with the ability to set a custom HTTPClient for a request.
+// with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewCheckCapacityParamsWithHTTPClient(client *http.Client) *CheckCapacityParams {
+	var ()
 	return &CheckCapacityParams{
 		HTTPClient: client,
 	}
 }
 
-/* CheckCapacityParams contains all the parameters to send to the API endpoint
-   for the check capacity operation.
-
-   Typically these are written to a http.Request.
+/*CheckCapacityParams contains all the parameters to send to the API endpoint
+for the check capacity operation typically these are written to a http.Request
 */
 type CheckCapacityParams struct {
 
-	/* Facility.
+	/*Facility
+	  Facility to create
 
-	   Facility to create
 	*/
 	Facility *types.CapacityInput
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
-}
-
-// WithDefaults hydrates default values in the check capacity params (not the query body).
-//
-// All values with no default are reset to their zero value.
-func (o *CheckCapacityParams) WithDefaults() *CheckCapacityParams {
-	o.SetDefaults()
-	return o
-}
-
-// SetDefaults hydrates default values in the check capacity params (not the query body).
-//
-// All values with no default are reset to their zero value.
-func (o *CheckCapacityParams) SetDefaults() {
-	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the check capacity params
@@ -138,6 +124,7 @@ func (o *CheckCapacityParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 		return err
 	}
 	var res []error
+
 	if o.Facility != nil {
 		if err := r.SetBodyParam(o.Facility); err != nil {
 			return err

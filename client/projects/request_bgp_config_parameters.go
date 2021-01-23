@@ -18,81 +18,64 @@ import (
 	"github.com/t0mk/gometal/types"
 )
 
-// NewRequestBGPConfigParams creates a new RequestBGPConfigParams object,
-// with the default timeout for this client.
-//
-// Default values are not hydrated, since defaults are normally applied by the API server side.
-//
-// To enforce default values in parameter, use SetDefaults or WithDefaults.
+// NewRequestBGPConfigParams creates a new RequestBGPConfigParams object
+// with the default values initialized.
 func NewRequestBGPConfigParams() *RequestBGPConfigParams {
+	var ()
 	return &RequestBGPConfigParams{
+
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewRequestBGPConfigParamsWithTimeout creates a new RequestBGPConfigParams object
-// with the ability to set a timeout on a request.
+// with the default values initialized, and the ability to set a timeout on a request
 func NewRequestBGPConfigParamsWithTimeout(timeout time.Duration) *RequestBGPConfigParams {
+	var ()
 	return &RequestBGPConfigParams{
+
 		timeout: timeout,
 	}
 }
 
 // NewRequestBGPConfigParamsWithContext creates a new RequestBGPConfigParams object
-// with the ability to set a context for a request.
+// with the default values initialized, and the ability to set a context for a request
 func NewRequestBGPConfigParamsWithContext(ctx context.Context) *RequestBGPConfigParams {
+	var ()
 	return &RequestBGPConfigParams{
+
 		Context: ctx,
 	}
 }
 
 // NewRequestBGPConfigParamsWithHTTPClient creates a new RequestBGPConfigParams object
-// with the ability to set a custom HTTPClient for a request.
+// with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewRequestBGPConfigParamsWithHTTPClient(client *http.Client) *RequestBGPConfigParams {
+	var ()
 	return &RequestBGPConfigParams{
 		HTTPClient: client,
 	}
 }
 
-/* RequestBGPConfigParams contains all the parameters to send to the API endpoint
-   for the request Bgp config operation.
-
-   Typically these are written to a http.Request.
+/*RequestBGPConfigParams contains all the parameters to send to the API endpoint
+for the request Bgp config operation typically these are written to a http.Request
 */
 type RequestBGPConfigParams struct {
 
-	/* BGPConfigRequest.
+	/*BGPConfigRequest
+	  BGP config Request to create
 
-	   BGP config Request to create
 	*/
 	BGPConfigRequest *types.BGPConfigRequestInput
+	/*ID
+	  Project UUID
 
-	/* ID.
-
-	   Project UUID
-
-	   Format: uuid
 	*/
 	ID strfmt.UUID
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
-}
-
-// WithDefaults hydrates default values in the request Bgp config params (not the query body).
-//
-// All values with no default are reset to their zero value.
-func (o *RequestBGPConfigParams) WithDefaults() *RequestBGPConfigParams {
-	o.SetDefaults()
-	return o
-}
-
-// SetDefaults hydrates default values in the request Bgp config params (not the query body).
-//
-// All values with no default are reset to their zero value.
-func (o *RequestBGPConfigParams) SetDefaults() {
-	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the request Bgp config params
@@ -157,6 +140,7 @@ func (o *RequestBGPConfigParams) WriteToRequest(r runtime.ClientRequest, reg str
 		return err
 	}
 	var res []error
+
 	if o.BGPConfigRequest != nil {
 		if err := r.SetBodyParam(o.BGPConfigRequest); err != nil {
 			return err

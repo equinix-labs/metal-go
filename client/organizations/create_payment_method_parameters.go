@@ -18,81 +18,64 @@ import (
 	"github.com/t0mk/gometal/types"
 )
 
-// NewCreatePaymentMethodParams creates a new CreatePaymentMethodParams object,
-// with the default timeout for this client.
-//
-// Default values are not hydrated, since defaults are normally applied by the API server side.
-//
-// To enforce default values in parameter, use SetDefaults or WithDefaults.
+// NewCreatePaymentMethodParams creates a new CreatePaymentMethodParams object
+// with the default values initialized.
 func NewCreatePaymentMethodParams() *CreatePaymentMethodParams {
+	var ()
 	return &CreatePaymentMethodParams{
+
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewCreatePaymentMethodParamsWithTimeout creates a new CreatePaymentMethodParams object
-// with the ability to set a timeout on a request.
+// with the default values initialized, and the ability to set a timeout on a request
 func NewCreatePaymentMethodParamsWithTimeout(timeout time.Duration) *CreatePaymentMethodParams {
+	var ()
 	return &CreatePaymentMethodParams{
+
 		timeout: timeout,
 	}
 }
 
 // NewCreatePaymentMethodParamsWithContext creates a new CreatePaymentMethodParams object
-// with the ability to set a context for a request.
+// with the default values initialized, and the ability to set a context for a request
 func NewCreatePaymentMethodParamsWithContext(ctx context.Context) *CreatePaymentMethodParams {
+	var ()
 	return &CreatePaymentMethodParams{
+
 		Context: ctx,
 	}
 }
 
 // NewCreatePaymentMethodParamsWithHTTPClient creates a new CreatePaymentMethodParams object
-// with the ability to set a custom HTTPClient for a request.
+// with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewCreatePaymentMethodParamsWithHTTPClient(client *http.Client) *CreatePaymentMethodParams {
+	var ()
 	return &CreatePaymentMethodParams{
 		HTTPClient: client,
 	}
 }
 
-/* CreatePaymentMethodParams contains all the parameters to send to the API endpoint
-   for the create payment method operation.
-
-   Typically these are written to a http.Request.
+/*CreatePaymentMethodParams contains all the parameters to send to the API endpoint
+for the create payment method operation typically these are written to a http.Request
 */
 type CreatePaymentMethodParams struct {
 
-	/* ID.
+	/*ID
+	  Organization UUID
 
-	   Organization UUID
-
-	   Format: uuid
 	*/
 	ID strfmt.UUID
+	/*PaymentMethod
+	  Payment Method to create
 
-	/* PaymentMethod.
-
-	   Payment Method to create
 	*/
 	PaymentMethod *types.PaymentMethodCreateInput
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
-}
-
-// WithDefaults hydrates default values in the create payment method params (not the query body).
-//
-// All values with no default are reset to their zero value.
-func (o *CreatePaymentMethodParams) WithDefaults() *CreatePaymentMethodParams {
-	o.SetDefaults()
-	return o
-}
-
-// SetDefaults hydrates default values in the create payment method params (not the query body).
-//
-// All values with no default are reset to their zero value.
-func (o *CreatePaymentMethodParams) SetDefaults() {
-	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the create payment method params
@@ -162,6 +145,7 @@ func (o *CreatePaymentMethodParams) WriteToRequest(r runtime.ClientRequest, reg 
 	if err := r.SetPathParam("id", o.ID.String()); err != nil {
 		return err
 	}
+
 	if o.PaymentMethod != nil {
 		if err := r.SetBodyParam(o.PaymentMethod); err != nil {
 			return err

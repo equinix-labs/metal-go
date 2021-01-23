@@ -53,6 +53,7 @@ func (o *UpdateDeviceReader) ReadResponse(response runtime.ClientResponse, consu
 			return nil, err
 		}
 		return nil, result
+
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -63,7 +64,7 @@ func NewUpdateDeviceOK() *UpdateDeviceOK {
 	return &UpdateDeviceOK{}
 }
 
-/* UpdateDeviceOK describes a response with status code 200, with default header values.
+/*UpdateDeviceOK handles this case with default header values.
 
 ok
 */
@@ -74,6 +75,7 @@ type UpdateDeviceOK struct {
 func (o *UpdateDeviceOK) Error() string {
 	return fmt.Sprintf("[PUT /devices/{id}][%d] updateDeviceOK  %+v", 200, o.Payload)
 }
+
 func (o *UpdateDeviceOK) GetPayload() *types.Device {
 	return o.Payload
 }
@@ -95,7 +97,7 @@ func NewUpdateDeviceUnauthorized() *UpdateDeviceUnauthorized {
 	return &UpdateDeviceUnauthorized{}
 }
 
-/* UpdateDeviceUnauthorized describes a response with status code 401, with default header values.
+/*UpdateDeviceUnauthorized handles this case with default header values.
 
 unauthorized
 */
@@ -116,7 +118,7 @@ func NewUpdateDeviceForbidden() *UpdateDeviceForbidden {
 	return &UpdateDeviceForbidden{}
 }
 
-/* UpdateDeviceForbidden describes a response with status code 403, with default header values.
+/*UpdateDeviceForbidden handles this case with default header values.
 
 forbidden
 */
@@ -137,7 +139,7 @@ func NewUpdateDeviceNotFound() *UpdateDeviceNotFound {
 	return &UpdateDeviceNotFound{}
 }
 
-/* UpdateDeviceNotFound describes a response with status code 404, with default header values.
+/*UpdateDeviceNotFound handles this case with default header values.
 
 not found
 */
@@ -158,7 +160,7 @@ func NewUpdateDeviceUnprocessableEntity() *UpdateDeviceUnprocessableEntity {
 	return &UpdateDeviceUnprocessableEntity{}
 }
 
-/* UpdateDeviceUnprocessableEntity describes a response with status code 422, with default header values.
+/*UpdateDeviceUnprocessableEntity handles this case with default header values.
 
 unprocessable entity
 */

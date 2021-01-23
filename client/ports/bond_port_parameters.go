@@ -17,81 +17,64 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// NewBondPortParams creates a new BondPortParams object,
-// with the default timeout for this client.
-//
-// Default values are not hydrated, since defaults are normally applied by the API server side.
-//
-// To enforce default values in parameter, use SetDefaults or WithDefaults.
+// NewBondPortParams creates a new BondPortParams object
+// with the default values initialized.
 func NewBondPortParams() *BondPortParams {
+	var ()
 	return &BondPortParams{
+
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewBondPortParamsWithTimeout creates a new BondPortParams object
-// with the ability to set a timeout on a request.
+// with the default values initialized, and the ability to set a timeout on a request
 func NewBondPortParamsWithTimeout(timeout time.Duration) *BondPortParams {
+	var ()
 	return &BondPortParams{
+
 		timeout: timeout,
 	}
 }
 
 // NewBondPortParamsWithContext creates a new BondPortParams object
-// with the ability to set a context for a request.
+// with the default values initialized, and the ability to set a context for a request
 func NewBondPortParamsWithContext(ctx context.Context) *BondPortParams {
+	var ()
 	return &BondPortParams{
+
 		Context: ctx,
 	}
 }
 
 // NewBondPortParamsWithHTTPClient creates a new BondPortParams object
-// with the ability to set a custom HTTPClient for a request.
+// with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewBondPortParamsWithHTTPClient(client *http.Client) *BondPortParams {
+	var ()
 	return &BondPortParams{
 		HTTPClient: client,
 	}
 }
 
-/* BondPortParams contains all the parameters to send to the API endpoint
-   for the bond port operation.
-
-   Typically these are written to a http.Request.
+/*BondPortParams contains all the parameters to send to the API endpoint
+for the bond port operation typically these are written to a http.Request
 */
 type BondPortParams struct {
 
-	/* BulkEnable.
+	/*BulkEnable
+	  enable both ports
 
-	   enable both ports
 	*/
 	BulkEnable *bool
+	/*ID
+	  Port UUID
 
-	/* ID.
-
-	   Port UUID
-
-	   Format: uuid
 	*/
 	ID strfmt.UUID
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
-}
-
-// WithDefaults hydrates default values in the bond port params (not the query body).
-//
-// All values with no default are reset to their zero value.
-func (o *BondPortParams) WithDefaults() *BondPortParams {
-	o.SetDefaults()
-	return o
-}
-
-// SetDefaults hydrates default values in the bond port params (not the query body).
-//
-// All values with no default are reset to their zero value.
-func (o *BondPortParams) SetDefaults() {
-	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the bond port params
@@ -161,17 +144,16 @@ func (o *BondPortParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Regi
 
 		// query param bulk_enable
 		var qrBulkEnable bool
-
 		if o.BulkEnable != nil {
 			qrBulkEnable = *o.BulkEnable
 		}
 		qBulkEnable := swag.FormatBool(qrBulkEnable)
 		if qBulkEnable != "" {
-
 			if err := r.SetQueryParam("bulk_enable", qBulkEnable); err != nil {
 				return err
 			}
 		}
+
 	}
 
 	// path param id

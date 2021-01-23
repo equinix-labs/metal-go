@@ -41,6 +41,7 @@ func (o *ResetPasswordReader) ReadResponse(response runtime.ClientResponse, cons
 			return nil, err
 		}
 		return nil, result
+
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -51,7 +52,7 @@ func NewResetPasswordCreated() *ResetPasswordCreated {
 	return &ResetPasswordCreated{}
 }
 
-/* ResetPasswordCreated describes a response with status code 201, with default header values.
+/*ResetPasswordCreated handles this case with default header values.
 
 ok
 */
@@ -62,6 +63,7 @@ type ResetPasswordCreated struct {
 func (o *ResetPasswordCreated) Error() string {
 	return fmt.Sprintf("[DELETE /reset-password][%d] resetPasswordCreated  %+v", 201, o.Payload)
 }
+
 func (o *ResetPasswordCreated) GetPayload() *types.NewPassword {
 	return o.Payload
 }
@@ -83,7 +85,7 @@ func NewResetPasswordUnauthorized() *ResetPasswordUnauthorized {
 	return &ResetPasswordUnauthorized{}
 }
 
-/* ResetPasswordUnauthorized describes a response with status code 401, with default header values.
+/*ResetPasswordUnauthorized handles this case with default header values.
 
 unauthorized
 */
@@ -104,7 +106,7 @@ func NewResetPasswordUnprocessableEntity() *ResetPasswordUnprocessableEntity {
 	return &ResetPasswordUnprocessableEntity{}
 }
 
-/* ResetPasswordUnprocessableEntity describes a response with status code 422, with default header values.
+/*ResetPasswordUnprocessableEntity handles this case with default header values.
 
 unprocessable entity
 */

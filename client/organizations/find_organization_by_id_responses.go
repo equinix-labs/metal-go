@@ -47,6 +47,7 @@ func (o *FindOrganizationByIDReader) ReadResponse(response runtime.ClientRespons
 			return nil, err
 		}
 		return nil, result
+
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -57,7 +58,7 @@ func NewFindOrganizationByIDOK() *FindOrganizationByIDOK {
 	return &FindOrganizationByIDOK{}
 }
 
-/* FindOrganizationByIDOK describes a response with status code 200, with default header values.
+/*FindOrganizationByIDOK handles this case with default header values.
 
 ok
 */
@@ -68,6 +69,7 @@ type FindOrganizationByIDOK struct {
 func (o *FindOrganizationByIDOK) Error() string {
 	return fmt.Sprintf("[GET /organizations/{id}][%d] findOrganizationByIdOK  %+v", 200, o.Payload)
 }
+
 func (o *FindOrganizationByIDOK) GetPayload() *types.Organization {
 	return o.Payload
 }
@@ -89,7 +91,7 @@ func NewFindOrganizationByIDUnauthorized() *FindOrganizationByIDUnauthorized {
 	return &FindOrganizationByIDUnauthorized{}
 }
 
-/* FindOrganizationByIDUnauthorized describes a response with status code 401, with default header values.
+/*FindOrganizationByIDUnauthorized handles this case with default header values.
 
 unauthorized
 */
@@ -110,7 +112,7 @@ func NewFindOrganizationByIDForbidden() *FindOrganizationByIDForbidden {
 	return &FindOrganizationByIDForbidden{}
 }
 
-/* FindOrganizationByIDForbidden describes a response with status code 403, with default header values.
+/*FindOrganizationByIDForbidden handles this case with default header values.
 
 forbidden
 */
@@ -131,7 +133,7 @@ func NewFindOrganizationByIDNotFound() *FindOrganizationByIDNotFound {
 	return &FindOrganizationByIDNotFound{}
 }
 
-/* FindOrganizationByIDNotFound describes a response with status code 404, with default header values.
+/*FindOrganizationByIDNotFound handles this case with default header values.
 
 not found
 */

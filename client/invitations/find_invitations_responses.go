@@ -47,6 +47,7 @@ func (o *FindInvitationsReader) ReadResponse(response runtime.ClientResponse, co
 			return nil, err
 		}
 		return nil, result
+
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -57,7 +58,7 @@ func NewFindInvitationsOK() *FindInvitationsOK {
 	return &FindInvitationsOK{}
 }
 
-/* FindInvitationsOK describes a response with status code 200, with default header values.
+/*FindInvitationsOK handles this case with default header values.
 
 ok
 */
@@ -68,6 +69,7 @@ type FindInvitationsOK struct {
 func (o *FindInvitationsOK) Error() string {
 	return fmt.Sprintf("[GET /invitations][%d] findInvitationsOK  %+v", 200, o.Payload)
 }
+
 func (o *FindInvitationsOK) GetPayload() *types.InvitationList {
 	return o.Payload
 }
@@ -89,7 +91,7 @@ func NewFindInvitationsUnauthorized() *FindInvitationsUnauthorized {
 	return &FindInvitationsUnauthorized{}
 }
 
-/* FindInvitationsUnauthorized describes a response with status code 401, with default header values.
+/*FindInvitationsUnauthorized handles this case with default header values.
 
 unauthorized
 */
@@ -110,7 +112,7 @@ func NewFindInvitationsForbidden() *FindInvitationsForbidden {
 	return &FindInvitationsForbidden{}
 }
 
-/* FindInvitationsForbidden describes a response with status code 403, with default header values.
+/*FindInvitationsForbidden handles this case with default header values.
 
 forbidden
 */
@@ -131,7 +133,7 @@ func NewFindInvitationsNotFound() *FindInvitationsNotFound {
 	return &FindInvitationsNotFound{}
 }
 
-/* FindInvitationsNotFound describes a response with status code 404, with default header values.
+/*FindInvitationsNotFound handles this case with default header values.
 
 not found
 */

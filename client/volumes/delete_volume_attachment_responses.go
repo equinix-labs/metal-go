@@ -44,6 +44,7 @@ func (o *DeleteVolumeAttachmentReader) ReadResponse(response runtime.ClientRespo
 			return nil, err
 		}
 		return nil, result
+
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -54,7 +55,7 @@ func NewDeleteVolumeAttachmentNoContent() *DeleteVolumeAttachmentNoContent {
 	return &DeleteVolumeAttachmentNoContent{}
 }
 
-/* DeleteVolumeAttachmentNoContent describes a response with status code 204, with default header values.
+/*DeleteVolumeAttachmentNoContent handles this case with default header values.
 
 no content
 */
@@ -75,7 +76,7 @@ func NewDeleteVolumeAttachmentUnauthorized() *DeleteVolumeAttachmentUnauthorized
 	return &DeleteVolumeAttachmentUnauthorized{}
 }
 
-/* DeleteVolumeAttachmentUnauthorized describes a response with status code 401, with default header values.
+/*DeleteVolumeAttachmentUnauthorized handles this case with default header values.
 
 unauthorized
 */
@@ -96,7 +97,7 @@ func NewDeleteVolumeAttachmentForbidden() *DeleteVolumeAttachmentForbidden {
 	return &DeleteVolumeAttachmentForbidden{}
 }
 
-/* DeleteVolumeAttachmentForbidden describes a response with status code 403, with default header values.
+/*DeleteVolumeAttachmentForbidden handles this case with default header values.
 
 forbidden
 */
@@ -117,7 +118,7 @@ func NewDeleteVolumeAttachmentNotFound() *DeleteVolumeAttachmentNotFound {
 	return &DeleteVolumeAttachmentNotFound{}
 }
 
-/* DeleteVolumeAttachmentNotFound describes a response with status code 404, with default header values.
+/*DeleteVolumeAttachmentNotFound handles this case with default header values.
 
 not found
 */

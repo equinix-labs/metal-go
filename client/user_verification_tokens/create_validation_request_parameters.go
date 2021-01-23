@@ -16,73 +16,59 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewCreateValidationRequestParams creates a new CreateValidationRequestParams object,
-// with the default timeout for this client.
-//
-// Default values are not hydrated, since defaults are normally applied by the API server side.
-//
-// To enforce default values in parameter, use SetDefaults or WithDefaults.
+// NewCreateValidationRequestParams creates a new CreateValidationRequestParams object
+// with the default values initialized.
 func NewCreateValidationRequestParams() *CreateValidationRequestParams {
+	var ()
 	return &CreateValidationRequestParams{
+
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewCreateValidationRequestParamsWithTimeout creates a new CreateValidationRequestParams object
-// with the ability to set a timeout on a request.
+// with the default values initialized, and the ability to set a timeout on a request
 func NewCreateValidationRequestParamsWithTimeout(timeout time.Duration) *CreateValidationRequestParams {
+	var ()
 	return &CreateValidationRequestParams{
+
 		timeout: timeout,
 	}
 }
 
 // NewCreateValidationRequestParamsWithContext creates a new CreateValidationRequestParams object
-// with the ability to set a context for a request.
+// with the default values initialized, and the ability to set a context for a request
 func NewCreateValidationRequestParamsWithContext(ctx context.Context) *CreateValidationRequestParams {
+	var ()
 	return &CreateValidationRequestParams{
+
 		Context: ctx,
 	}
 }
 
 // NewCreateValidationRequestParamsWithHTTPClient creates a new CreateValidationRequestParams object
-// with the ability to set a custom HTTPClient for a request.
+// with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewCreateValidationRequestParamsWithHTTPClient(client *http.Client) *CreateValidationRequestParams {
+	var ()
 	return &CreateValidationRequestParams{
 		HTTPClient: client,
 	}
 }
 
-/* CreateValidationRequestParams contains all the parameters to send to the API endpoint
-   for the create validation request operation.
-
-   Typically these are written to a http.Request.
+/*CreateValidationRequestParams contains all the parameters to send to the API endpoint
+for the create validation request operation typically these are written to a http.Request
 */
 type CreateValidationRequestParams struct {
 
-	/* Login.
+	/*Login
+	  Email for verification request
 
-	   Email for verification request
 	*/
 	Login string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
-}
-
-// WithDefaults hydrates default values in the create validation request params (not the query body).
-//
-// All values with no default are reset to their zero value.
-func (o *CreateValidationRequestParams) WithDefaults() *CreateValidationRequestParams {
-	o.SetDefaults()
-	return o
-}
-
-// SetDefaults hydrates default values in the create validation request params (not the query body).
-//
-// All values with no default are reset to their zero value.
-func (o *CreateValidationRequestParams) SetDefaults() {
-	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the create validation request params
@@ -141,7 +127,6 @@ func (o *CreateValidationRequestParams) WriteToRequest(r runtime.ClientRequest, 
 	qrLogin := o.Login
 	qLogin := qrLogin
 	if qLogin != "" {
-
 		if err := r.SetQueryParam("login", qLogin); err != nil {
 			return err
 		}

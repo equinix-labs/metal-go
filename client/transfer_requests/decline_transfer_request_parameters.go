@@ -16,75 +16,59 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewDeclineTransferRequestParams creates a new DeclineTransferRequestParams object,
-// with the default timeout for this client.
-//
-// Default values are not hydrated, since defaults are normally applied by the API server side.
-//
-// To enforce default values in parameter, use SetDefaults or WithDefaults.
+// NewDeclineTransferRequestParams creates a new DeclineTransferRequestParams object
+// with the default values initialized.
 func NewDeclineTransferRequestParams() *DeclineTransferRequestParams {
+	var ()
 	return &DeclineTransferRequestParams{
+
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewDeclineTransferRequestParamsWithTimeout creates a new DeclineTransferRequestParams object
-// with the ability to set a timeout on a request.
+// with the default values initialized, and the ability to set a timeout on a request
 func NewDeclineTransferRequestParamsWithTimeout(timeout time.Duration) *DeclineTransferRequestParams {
+	var ()
 	return &DeclineTransferRequestParams{
+
 		timeout: timeout,
 	}
 }
 
 // NewDeclineTransferRequestParamsWithContext creates a new DeclineTransferRequestParams object
-// with the ability to set a context for a request.
+// with the default values initialized, and the ability to set a context for a request
 func NewDeclineTransferRequestParamsWithContext(ctx context.Context) *DeclineTransferRequestParams {
+	var ()
 	return &DeclineTransferRequestParams{
+
 		Context: ctx,
 	}
 }
 
 // NewDeclineTransferRequestParamsWithHTTPClient creates a new DeclineTransferRequestParams object
-// with the ability to set a custom HTTPClient for a request.
+// with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewDeclineTransferRequestParamsWithHTTPClient(client *http.Client) *DeclineTransferRequestParams {
+	var ()
 	return &DeclineTransferRequestParams{
 		HTTPClient: client,
 	}
 }
 
-/* DeclineTransferRequestParams contains all the parameters to send to the API endpoint
-   for the decline transfer request operation.
-
-   Typically these are written to a http.Request.
+/*DeclineTransferRequestParams contains all the parameters to send to the API endpoint
+for the decline transfer request operation typically these are written to a http.Request
 */
 type DeclineTransferRequestParams struct {
 
-	/* ID.
+	/*ID
+	  Transfer request UUID
 
-	   Transfer request UUID
-
-	   Format: uuid
 	*/
 	ID strfmt.UUID
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
-}
-
-// WithDefaults hydrates default values in the decline transfer request params (not the query body).
-//
-// All values with no default are reset to their zero value.
-func (o *DeclineTransferRequestParams) WithDefaults() *DeclineTransferRequestParams {
-	o.SetDefaults()
-	return o
-}
-
-// SetDefaults hydrates default values in the decline transfer request params (not the query body).
-//
-// All values with no default are reset to their zero value.
-func (o *DeclineTransferRequestParams) SetDefaults() {
-	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the decline transfer request params

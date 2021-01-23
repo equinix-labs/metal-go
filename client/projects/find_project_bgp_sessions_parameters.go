@@ -16,75 +16,59 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewFindProjectBGPSessionsParams creates a new FindProjectBGPSessionsParams object,
-// with the default timeout for this client.
-//
-// Default values are not hydrated, since defaults are normally applied by the API server side.
-//
-// To enforce default values in parameter, use SetDefaults or WithDefaults.
+// NewFindProjectBGPSessionsParams creates a new FindProjectBGPSessionsParams object
+// with the default values initialized.
 func NewFindProjectBGPSessionsParams() *FindProjectBGPSessionsParams {
+	var ()
 	return &FindProjectBGPSessionsParams{
+
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewFindProjectBGPSessionsParamsWithTimeout creates a new FindProjectBGPSessionsParams object
-// with the ability to set a timeout on a request.
+// with the default values initialized, and the ability to set a timeout on a request
 func NewFindProjectBGPSessionsParamsWithTimeout(timeout time.Duration) *FindProjectBGPSessionsParams {
+	var ()
 	return &FindProjectBGPSessionsParams{
+
 		timeout: timeout,
 	}
 }
 
 // NewFindProjectBGPSessionsParamsWithContext creates a new FindProjectBGPSessionsParams object
-// with the ability to set a context for a request.
+// with the default values initialized, and the ability to set a context for a request
 func NewFindProjectBGPSessionsParamsWithContext(ctx context.Context) *FindProjectBGPSessionsParams {
+	var ()
 	return &FindProjectBGPSessionsParams{
+
 		Context: ctx,
 	}
 }
 
 // NewFindProjectBGPSessionsParamsWithHTTPClient creates a new FindProjectBGPSessionsParams object
-// with the ability to set a custom HTTPClient for a request.
+// with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewFindProjectBGPSessionsParamsWithHTTPClient(client *http.Client) *FindProjectBGPSessionsParams {
+	var ()
 	return &FindProjectBGPSessionsParams{
 		HTTPClient: client,
 	}
 }
 
-/* FindProjectBGPSessionsParams contains all the parameters to send to the API endpoint
-   for the find project Bgp sessions operation.
-
-   Typically these are written to a http.Request.
+/*FindProjectBGPSessionsParams contains all the parameters to send to the API endpoint
+for the find project Bgp sessions operation typically these are written to a http.Request
 */
 type FindProjectBGPSessionsParams struct {
 
-	/* ID.
+	/*ID
+	  Project UUID
 
-	   Project UUID
-
-	   Format: uuid
 	*/
 	ID strfmt.UUID
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
-}
-
-// WithDefaults hydrates default values in the find project Bgp sessions params (not the query body).
-//
-// All values with no default are reset to their zero value.
-func (o *FindProjectBGPSessionsParams) WithDefaults() *FindProjectBGPSessionsParams {
-	o.SetDefaults()
-	return o
-}
-
-// SetDefaults hydrates default values in the find project Bgp sessions params (not the query body).
-//
-// All values with no default are reset to their zero value.
-func (o *FindProjectBGPSessionsParams) SetDefaults() {
-	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the find project Bgp sessions params

@@ -16,81 +16,64 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewFindOrganizationTransfersParams creates a new FindOrganizationTransfersParams object,
-// with the default timeout for this client.
-//
-// Default values are not hydrated, since defaults are normally applied by the API server side.
-//
-// To enforce default values in parameter, use SetDefaults or WithDefaults.
+// NewFindOrganizationTransfersParams creates a new FindOrganizationTransfersParams object
+// with the default values initialized.
 func NewFindOrganizationTransfersParams() *FindOrganizationTransfersParams {
+	var ()
 	return &FindOrganizationTransfersParams{
+
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewFindOrganizationTransfersParamsWithTimeout creates a new FindOrganizationTransfersParams object
-// with the ability to set a timeout on a request.
+// with the default values initialized, and the ability to set a timeout on a request
 func NewFindOrganizationTransfersParamsWithTimeout(timeout time.Duration) *FindOrganizationTransfersParams {
+	var ()
 	return &FindOrganizationTransfersParams{
+
 		timeout: timeout,
 	}
 }
 
 // NewFindOrganizationTransfersParamsWithContext creates a new FindOrganizationTransfersParams object
-// with the ability to set a context for a request.
+// with the default values initialized, and the ability to set a context for a request
 func NewFindOrganizationTransfersParamsWithContext(ctx context.Context) *FindOrganizationTransfersParams {
+	var ()
 	return &FindOrganizationTransfersParams{
+
 		Context: ctx,
 	}
 }
 
 // NewFindOrganizationTransfersParamsWithHTTPClient creates a new FindOrganizationTransfersParams object
-// with the ability to set a custom HTTPClient for a request.
+// with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewFindOrganizationTransfersParamsWithHTTPClient(client *http.Client) *FindOrganizationTransfersParams {
+	var ()
 	return &FindOrganizationTransfersParams{
 		HTTPClient: client,
 	}
 }
 
-/* FindOrganizationTransfersParams contains all the parameters to send to the API endpoint
-   for the find organization transfers operation.
-
-   Typically these are written to a http.Request.
+/*FindOrganizationTransfersParams contains all the parameters to send to the API endpoint
+for the find organization transfers operation typically these are written to a http.Request
 */
 type FindOrganizationTransfersParams struct {
 
-	/* ID.
+	/*ID
+	  Organization UUID
 
-	   Organization UUID
-
-	   Format: uuid
 	*/
 	ID strfmt.UUID
+	/*Include
+	  related attributes to include
 
-	/* Include.
-
-	   related attributes to include
 	*/
 	Include *string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
-}
-
-// WithDefaults hydrates default values in the find organization transfers params (not the query body).
-//
-// All values with no default are reset to their zero value.
-func (o *FindOrganizationTransfersParams) WithDefaults() *FindOrganizationTransfersParams {
-	o.SetDefaults()
-	return o
-}
-
-// SetDefaults hydrates default values in the find organization transfers params (not the query body).
-//
-// All values with no default are reset to their zero value.
-func (o *FindOrganizationTransfersParams) SetDefaults() {
-	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the find organization transfers params
@@ -165,17 +148,16 @@ func (o *FindOrganizationTransfersParams) WriteToRequest(r runtime.ClientRequest
 
 		// query param include
 		var qrInclude string
-
 		if o.Include != nil {
 			qrInclude = *o.Include
 		}
 		qInclude := qrInclude
 		if qInclude != "" {
-
 			if err := r.SetQueryParam("include", qInclude); err != nil {
 				return err
 			}
 		}
+
 	}
 
 	if len(res) > 0 {

@@ -6,7 +6,6 @@ package types
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"context"
 	"strconv"
 
 	"github.com/go-openapi/errors"
@@ -38,6 +37,7 @@ func (m *InterconnectionPortList) Validate(formats strfmt.Registry) error {
 }
 
 func (m *InterconnectionPortList) validatePorts(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.Ports) { // not required
 		return nil
 	}
@@ -49,38 +49,6 @@ func (m *InterconnectionPortList) validatePorts(formats strfmt.Registry) error {
 
 		if m.Ports[i] != nil {
 			if err := m.Ports[i].Validate(formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("ports" + "." + strconv.Itoa(i))
-				}
-				return err
-			}
-		}
-
-	}
-
-	return nil
-}
-
-// ContextValidate validate this interconnection port list based on the context it is used
-func (m *InterconnectionPortList) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.contextValidatePorts(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *InterconnectionPortList) contextValidatePorts(ctx context.Context, formats strfmt.Registry) error {
-
-	for i := 0; i < len(m.Ports); i++ {
-
-		if m.Ports[i] != nil {
-			if err := m.Ports[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("ports" + "." + strconv.Itoa(i))
 				}

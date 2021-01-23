@@ -16,66 +16,52 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewFindFacilitiesParams creates a new FindFacilitiesParams object,
-// with the default timeout for this client.
-//
-// Default values are not hydrated, since defaults are normally applied by the API server side.
-//
-// To enforce default values in parameter, use SetDefaults or WithDefaults.
+// NewFindFacilitiesParams creates a new FindFacilitiesParams object
+// with the default values initialized.
 func NewFindFacilitiesParams() *FindFacilitiesParams {
+
 	return &FindFacilitiesParams{
+
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewFindFacilitiesParamsWithTimeout creates a new FindFacilitiesParams object
-// with the ability to set a timeout on a request.
+// with the default values initialized, and the ability to set a timeout on a request
 func NewFindFacilitiesParamsWithTimeout(timeout time.Duration) *FindFacilitiesParams {
+
 	return &FindFacilitiesParams{
+
 		timeout: timeout,
 	}
 }
 
 // NewFindFacilitiesParamsWithContext creates a new FindFacilitiesParams object
-// with the ability to set a context for a request.
+// with the default values initialized, and the ability to set a context for a request
 func NewFindFacilitiesParamsWithContext(ctx context.Context) *FindFacilitiesParams {
+
 	return &FindFacilitiesParams{
+
 		Context: ctx,
 	}
 }
 
 // NewFindFacilitiesParamsWithHTTPClient creates a new FindFacilitiesParams object
-// with the ability to set a custom HTTPClient for a request.
+// with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewFindFacilitiesParamsWithHTTPClient(client *http.Client) *FindFacilitiesParams {
+
 	return &FindFacilitiesParams{
 		HTTPClient: client,
 	}
 }
 
-/* FindFacilitiesParams contains all the parameters to send to the API endpoint
-   for the find facilities operation.
-
-   Typically these are written to a http.Request.
+/*FindFacilitiesParams contains all the parameters to send to the API endpoint
+for the find facilities operation typically these are written to a http.Request
 */
 type FindFacilitiesParams struct {
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
-}
-
-// WithDefaults hydrates default values in the find facilities params (not the query body).
-//
-// All values with no default are reset to their zero value.
-func (o *FindFacilitiesParams) WithDefaults() *FindFacilitiesParams {
-	o.SetDefaults()
-	return o
-}
-
-// SetDefaults hydrates default values in the find facilities params (not the query body).
-//
-// All values with no default are reset to their zero value.
-func (o *FindFacilitiesParams) SetDefaults() {
-	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the find facilities params

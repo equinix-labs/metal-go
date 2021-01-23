@@ -41,6 +41,7 @@ func (o *ProjectListInterconnectionsReader) ReadResponse(response runtime.Client
 			return nil, err
 		}
 		return nil, result
+
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -51,7 +52,7 @@ func NewProjectListInterconnectionsOK() *ProjectListInterconnectionsOK {
 	return &ProjectListInterconnectionsOK{}
 }
 
-/* ProjectListInterconnectionsOK describes a response with status code 200, with default header values.
+/*ProjectListInterconnectionsOK handles this case with default header values.
 
 ok
 */
@@ -62,6 +63,7 @@ type ProjectListInterconnectionsOK struct {
 func (o *ProjectListInterconnectionsOK) Error() string {
 	return fmt.Sprintf("[GET /projects/{project_id}/connections][%d] projectListInterconnectionsOK  %+v", 200, o.Payload)
 }
+
 func (o *ProjectListInterconnectionsOK) GetPayload() *types.InterconnectionList {
 	return o.Payload
 }
@@ -83,7 +85,7 @@ func NewProjectListInterconnectionsForbidden() *ProjectListInterconnectionsForbi
 	return &ProjectListInterconnectionsForbidden{}
 }
 
-/* ProjectListInterconnectionsForbidden describes a response with status code 403, with default header values.
+/*ProjectListInterconnectionsForbidden handles this case with default header values.
 
 forbidden
 */
@@ -104,7 +106,7 @@ func NewProjectListInterconnectionsNotFound() *ProjectListInterconnectionsNotFou
 	return &ProjectListInterconnectionsNotFound{}
 }
 
-/* ProjectListInterconnectionsNotFound describes a response with status code 404, with default header values.
+/*ProjectListInterconnectionsNotFound handles this case with default header values.
 
 not found
 */

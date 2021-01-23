@@ -41,6 +41,7 @@ func (o *GetInterconnectionReader) ReadResponse(response runtime.ClientResponse,
 			return nil, err
 		}
 		return nil, result
+
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -51,7 +52,7 @@ func NewGetInterconnectionOK() *GetInterconnectionOK {
 	return &GetInterconnectionOK{}
 }
 
-/* GetInterconnectionOK describes a response with status code 200, with default header values.
+/*GetInterconnectionOK handles this case with default header values.
 
 ok
 */
@@ -62,6 +63,7 @@ type GetInterconnectionOK struct {
 func (o *GetInterconnectionOK) Error() string {
 	return fmt.Sprintf("[GET /connections/{connection_id}][%d] getInterconnectionOK  %+v", 200, o.Payload)
 }
+
 func (o *GetInterconnectionOK) GetPayload() *types.Interconnection {
 	return o.Payload
 }
@@ -83,7 +85,7 @@ func NewGetInterconnectionForbidden() *GetInterconnectionForbidden {
 	return &GetInterconnectionForbidden{}
 }
 
-/* GetInterconnectionForbidden describes a response with status code 403, with default header values.
+/*GetInterconnectionForbidden handles this case with default header values.
 
 forbidden
 */
@@ -104,7 +106,7 @@ func NewGetInterconnectionNotFound() *GetInterconnectionNotFound {
 	return &GetInterconnectionNotFound{}
 }
 
-/* GetInterconnectionNotFound describes a response with status code 404, with default header values.
+/*GetInterconnectionNotFound handles this case with default header values.
 
 not found
 */

@@ -16,81 +16,64 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewFindPaymentMethodByIDParams creates a new FindPaymentMethodByIDParams object,
-// with the default timeout for this client.
-//
-// Default values are not hydrated, since defaults are normally applied by the API server side.
-//
-// To enforce default values in parameter, use SetDefaults or WithDefaults.
+// NewFindPaymentMethodByIDParams creates a new FindPaymentMethodByIDParams object
+// with the default values initialized.
 func NewFindPaymentMethodByIDParams() *FindPaymentMethodByIDParams {
+	var ()
 	return &FindPaymentMethodByIDParams{
+
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewFindPaymentMethodByIDParamsWithTimeout creates a new FindPaymentMethodByIDParams object
-// with the ability to set a timeout on a request.
+// with the default values initialized, and the ability to set a timeout on a request
 func NewFindPaymentMethodByIDParamsWithTimeout(timeout time.Duration) *FindPaymentMethodByIDParams {
+	var ()
 	return &FindPaymentMethodByIDParams{
+
 		timeout: timeout,
 	}
 }
 
 // NewFindPaymentMethodByIDParamsWithContext creates a new FindPaymentMethodByIDParams object
-// with the ability to set a context for a request.
+// with the default values initialized, and the ability to set a context for a request
 func NewFindPaymentMethodByIDParamsWithContext(ctx context.Context) *FindPaymentMethodByIDParams {
+	var ()
 	return &FindPaymentMethodByIDParams{
+
 		Context: ctx,
 	}
 }
 
 // NewFindPaymentMethodByIDParamsWithHTTPClient creates a new FindPaymentMethodByIDParams object
-// with the ability to set a custom HTTPClient for a request.
+// with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewFindPaymentMethodByIDParamsWithHTTPClient(client *http.Client) *FindPaymentMethodByIDParams {
+	var ()
 	return &FindPaymentMethodByIDParams{
 		HTTPClient: client,
 	}
 }
 
-/* FindPaymentMethodByIDParams contains all the parameters to send to the API endpoint
-   for the find payment method by Id operation.
-
-   Typically these are written to a http.Request.
+/*FindPaymentMethodByIDParams contains all the parameters to send to the API endpoint
+for the find payment method by Id operation typically these are written to a http.Request
 */
 type FindPaymentMethodByIDParams struct {
 
-	/* ID.
+	/*ID
+	  Payment Method UUID
 
-	   Payment Method UUID
-
-	   Format: uuid
 	*/
 	ID strfmt.UUID
+	/*Include
+	  related attributes to include
 
-	/* Include.
-
-	   related attributes to include
 	*/
 	Include *string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
-}
-
-// WithDefaults hydrates default values in the find payment method by Id params (not the query body).
-//
-// All values with no default are reset to their zero value.
-func (o *FindPaymentMethodByIDParams) WithDefaults() *FindPaymentMethodByIDParams {
-	o.SetDefaults()
-	return o
-}
-
-// SetDefaults hydrates default values in the find payment method by Id params (not the query body).
-//
-// All values with no default are reset to their zero value.
-func (o *FindPaymentMethodByIDParams) SetDefaults() {
-	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the find payment method by Id params
@@ -165,17 +148,16 @@ func (o *FindPaymentMethodByIDParams) WriteToRequest(r runtime.ClientRequest, re
 
 		// query param include
 		var qrInclude string
-
 		if o.Include != nil {
 			qrInclude = *o.Include
 		}
 		qInclude := qrInclude
 		if qInclude != "" {
-
 			if err := r.SetQueryParam("include", qInclude); err != nil {
 				return err
 			}
 		}
+
 	}
 
 	if len(res) > 0 {

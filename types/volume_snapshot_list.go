@@ -6,7 +6,6 @@ package types
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"context"
 	"strconv"
 
 	"github.com/go-openapi/errors"
@@ -38,6 +37,7 @@ func (m *VolumeSnapshotList) Validate(formats strfmt.Registry) error {
 }
 
 func (m *VolumeSnapshotList) validateSnapshots(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.Snapshots) { // not required
 		return nil
 	}
@@ -49,38 +49,6 @@ func (m *VolumeSnapshotList) validateSnapshots(formats strfmt.Registry) error {
 
 		if m.Snapshots[i] != nil {
 			if err := m.Snapshots[i].Validate(formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("snapshots" + "." + strconv.Itoa(i))
-				}
-				return err
-			}
-		}
-
-	}
-
-	return nil
-}
-
-// ContextValidate validate this volume snapshot list based on the context it is used
-func (m *VolumeSnapshotList) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.contextValidateSnapshots(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *VolumeSnapshotList) contextValidateSnapshots(ctx context.Context, formats strfmt.Registry) error {
-
-	for i := 0; i < len(m.Snapshots); i++ {
-
-		if m.Snapshots[i] != nil {
-			if err := m.Snapshots[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("snapshots" + "." + strconv.Itoa(i))
 				}

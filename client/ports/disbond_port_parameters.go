@@ -17,81 +17,64 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// NewDisbondPortParams creates a new DisbondPortParams object,
-// with the default timeout for this client.
-//
-// Default values are not hydrated, since defaults are normally applied by the API server side.
-//
-// To enforce default values in parameter, use SetDefaults or WithDefaults.
+// NewDisbondPortParams creates a new DisbondPortParams object
+// with the default values initialized.
 func NewDisbondPortParams() *DisbondPortParams {
+	var ()
 	return &DisbondPortParams{
+
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewDisbondPortParamsWithTimeout creates a new DisbondPortParams object
-// with the ability to set a timeout on a request.
+// with the default values initialized, and the ability to set a timeout on a request
 func NewDisbondPortParamsWithTimeout(timeout time.Duration) *DisbondPortParams {
+	var ()
 	return &DisbondPortParams{
+
 		timeout: timeout,
 	}
 }
 
 // NewDisbondPortParamsWithContext creates a new DisbondPortParams object
-// with the ability to set a context for a request.
+// with the default values initialized, and the ability to set a context for a request
 func NewDisbondPortParamsWithContext(ctx context.Context) *DisbondPortParams {
+	var ()
 	return &DisbondPortParams{
+
 		Context: ctx,
 	}
 }
 
 // NewDisbondPortParamsWithHTTPClient creates a new DisbondPortParams object
-// with the ability to set a custom HTTPClient for a request.
+// with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewDisbondPortParamsWithHTTPClient(client *http.Client) *DisbondPortParams {
+	var ()
 	return &DisbondPortParams{
 		HTTPClient: client,
 	}
 }
 
-/* DisbondPortParams contains all the parameters to send to the API endpoint
-   for the disbond port operation.
-
-   Typically these are written to a http.Request.
+/*DisbondPortParams contains all the parameters to send to the API endpoint
+for the disbond port operation typically these are written to a http.Request
 */
 type DisbondPortParams struct {
 
-	/* BulkDisable.
+	/*BulkDisable
+	  disable both ports
 
-	   disable both ports
 	*/
 	BulkDisable *bool
+	/*ID
+	  Port UUID
 
-	/* ID.
-
-	   Port UUID
-
-	   Format: uuid
 	*/
 	ID strfmt.UUID
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
-}
-
-// WithDefaults hydrates default values in the disbond port params (not the query body).
-//
-// All values with no default are reset to their zero value.
-func (o *DisbondPortParams) WithDefaults() *DisbondPortParams {
-	o.SetDefaults()
-	return o
-}
-
-// SetDefaults hydrates default values in the disbond port params (not the query body).
-//
-// All values with no default are reset to their zero value.
-func (o *DisbondPortParams) SetDefaults() {
-	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the disbond port params
@@ -161,17 +144,16 @@ func (o *DisbondPortParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.R
 
 		// query param bulk_disable
 		var qrBulkDisable bool
-
 		if o.BulkDisable != nil {
 			qrBulkDisable = *o.BulkDisable
 		}
 		qBulkDisable := swag.FormatBool(qrBulkDisable)
 		if qBulkDisable != "" {
-
 			if err := r.SetQueryParam("bulk_disable", qBulkDisable); err != nil {
 				return err
 			}
 		}
+
 	}
 
 	// path param id

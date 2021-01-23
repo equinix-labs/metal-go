@@ -6,7 +6,6 @@ package types
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"context"
 	"strconv"
 
 	"github.com/go-openapi/errors"
@@ -38,6 +37,7 @@ func (m *BGPSessionNeighbors) Validate(formats strfmt.Registry) error {
 }
 
 func (m *BGPSessionNeighbors) validateBGPNeighbors(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.BGPNeighbors) { // not required
 		return nil
 	}
@@ -49,38 +49,6 @@ func (m *BGPSessionNeighbors) validateBGPNeighbors(formats strfmt.Registry) erro
 
 		if m.BGPNeighbors[i] != nil {
 			if err := m.BGPNeighbors[i].Validate(formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("bgp_neighbors" + "." + strconv.Itoa(i))
-				}
-				return err
-			}
-		}
-
-	}
-
-	return nil
-}
-
-// ContextValidate validate this Bgp session neighbors based on the context it is used
-func (m *BGPSessionNeighbors) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.contextValidateBGPNeighbors(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *BGPSessionNeighbors) contextValidateBGPNeighbors(ctx context.Context, formats strfmt.Registry) error {
-
-	for i := 0; i < len(m.BGPNeighbors); i++ {
-
-		if m.BGPNeighbors[i] != nil {
-			if err := m.BGPNeighbors[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("bgp_neighbors" + "." + strconv.Itoa(i))
 				}

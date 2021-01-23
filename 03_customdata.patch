@@ -1,0 +1,191 @@
+--- a/equinix-metal.swagger.json
++++ equinix-metal.swagger.json
+@@ -8095,7 +8093,7 @@
+                 }
+               },
+               "customdata": {
+-                "type": "string"
++                "type": "object"
+               },
+               "ip_addresses": {
+                 "type": "array",
+@@ -8517,7 +8515,7 @@
+           "format": "date-time"
+         },
+         "customdata": {
+-          "type": "string"
++          "type": "object"
+         },
+         "provisioning_percentage": {
+           "type": "number",
+@@ -8625,7 +8623,7 @@
+           "type": "boolean"
+         },
+         "customdata": {
+-          "type": "string"
++          "type": "object"
+         },
+         "hardware_reservation_id": {
+           "type": "string",
+@@ -8754,7 +8752,7 @@
+           "type": "boolean"
+         },
+         "customdata": {
+-          "type": "string"
++          "type": "object"
+         }
+       }
+     },
+@@ -9363,7 +9361,9 @@
+           "type": "array",
+           "description": "A list of one or more IP addresses to use for the Peer IP section of your BGP configuration. For non-multihop sessions, this will typically be a single gateway address for the device. For multihop sessions, it will be a list of IPs.",
+           "example": "[\"10.32.16.0\"] or [\"169.254.255.1\", \"169.254.255.2\"]",
+-          "items": { "type": "string" }
++          "items": {
++            "type": "string"
++          }
+         },
+         "routes_in": {
+           "type": "array",
+@@ -9643,7 +9643,7 @@
+           "type": "boolean"
+         },
+         "customdata": {
+-          "type": "string"
++          "type": "object"
+         }
+       }
+     },
+@@ -9696,7 +9696,7 @@
+           "type": "string"
+         },
+         "customdata": {
+-          "type": "string"
++          "type": "object"
+         },
+         "tags": {
+           "type": "array",
+@@ -9869,7 +9869,7 @@
+           "format": "float"
+         },
+         "customdata": {
+-          "type": "string"
++          "type": "object"
+         },
+         "enforce_2fa_at": {
+           "type": "string",
+@@ -9903,7 +9903,7 @@
+           "$ref": "#/definitions/Address"
+         },
+         "customdata": {
+-          "type": "string"
++          "type": "object"
+         },
+         "enforce_2fa_at": {
+           "type": "string",
+@@ -10232,7 +10232,7 @@
+           "$ref": "#/definitions/Href"
+         },
+         "customdata": {
+-          "type": "string"
++          "type": "object"
+         }
+       }
+     },
+@@ -10249,7 +10249,7 @@
+           "format": "uuid"
+         },
+         "customdata": {
+-          "type": "string"
++          "type": "object"
+         }
+       }
+     },
+@@ -10270,7 +10270,7 @@
+           "format": "uuid"
+         },
+         "customdata": {
+-          "type": "string"
++          "type": "object"
+         }
+       }
+     },
+@@ -10287,7 +10287,7 @@
+           "type": "boolean"
+         },
+         "customdata": {
+-          "type": "string"
++          "type": "object"
+         }
+       }
+     },
+@@ -10442,7 +10442,7 @@
+               }
+             },
+             "customdata": {
+-              "type": "string"
++              "type": "object"
+             },
+             "public_ipv4_subnet_size": {
+               "type": "integer"
+@@ -10708,7 +10708,7 @@
+           "type": "string"
+         },
+         "customdata": {
+-          "type": "string"
++          "type": "object"
+         }
+       }
+     },
+@@ -10744,7 +10744,7 @@
+           "$ref": "#/definitions/SnapshotPolicyInput"
+         },
+         "customdata": {
+-          "type": "string"
++          "type": "object"
+         }
+       }
+     },
+@@ -10764,7 +10764,7 @@
+           "description": "hourly"
+         },
+         "customdata": {
+-          "type": "string"
++          "type": "object"
+         }
+       }
+     },
+@@ -11373,7 +11373,7 @@
+           "type": "string"
+         },
+         "customdata": {
+-          "type": "string"
++          "type": "object"
+         }
+       }
+     },
+@@ -11399,7 +11399,7 @@
+           "format": "binary"
+         },
+         "customdata": {
+-          "type": "string"
++          "type": "object"
+         }
+       }
+     },
+@@ -11461,7 +11461,7 @@
+           "type": "boolean"
+         },
+         "customdata": {
+-          "type": "string"
++          "type": "object"
+         }
+       }
+     },
+@@ -11479,4 +11479,4 @@
+       }
+     }
+   }
+-}
+\ No newline at end of file
++}

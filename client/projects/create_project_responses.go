@@ -41,6 +41,7 @@ func (o *CreateProjectReader) ReadResponse(response runtime.ClientResponse, cons
 			return nil, err
 		}
 		return nil, result
+
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -51,7 +52,7 @@ func NewCreateProjectCreated() *CreateProjectCreated {
 	return &CreateProjectCreated{}
 }
 
-/* CreateProjectCreated describes a response with status code 201, with default header values.
+/*CreateProjectCreated handles this case with default header values.
 
 created
 */
@@ -62,6 +63,7 @@ type CreateProjectCreated struct {
 func (o *CreateProjectCreated) Error() string {
 	return fmt.Sprintf("[POST /projects][%d] createProjectCreated  %+v", 201, o.Payload)
 }
+
 func (o *CreateProjectCreated) GetPayload() *types.Project {
 	return o.Payload
 }
@@ -83,7 +85,7 @@ func NewCreateProjectUnauthorized() *CreateProjectUnauthorized {
 	return &CreateProjectUnauthorized{}
 }
 
-/* CreateProjectUnauthorized describes a response with status code 401, with default header values.
+/*CreateProjectUnauthorized handles this case with default header values.
 
 unauthorized
 */
@@ -104,7 +106,7 @@ func NewCreateProjectUnprocessableEntity() *CreateProjectUnprocessableEntity {
 	return &CreateProjectUnprocessableEntity{}
 }
 
-/* CreateProjectUnprocessableEntity describes a response with status code 422, with default header values.
+/*CreateProjectUnprocessableEntity handles this case with default header values.
 
 unprocessable entity
 */

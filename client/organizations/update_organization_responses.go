@@ -53,6 +53,7 @@ func (o *UpdateOrganizationReader) ReadResponse(response runtime.ClientResponse,
 			return nil, err
 		}
 		return nil, result
+
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -63,7 +64,7 @@ func NewUpdateOrganizationOK() *UpdateOrganizationOK {
 	return &UpdateOrganizationOK{}
 }
 
-/* UpdateOrganizationOK describes a response with status code 200, with default header values.
+/*UpdateOrganizationOK handles this case with default header values.
 
 ok
 */
@@ -74,6 +75,7 @@ type UpdateOrganizationOK struct {
 func (o *UpdateOrganizationOK) Error() string {
 	return fmt.Sprintf("[PUT /organizations/{id}][%d] updateOrganizationOK  %+v", 200, o.Payload)
 }
+
 func (o *UpdateOrganizationOK) GetPayload() *types.Organization {
 	return o.Payload
 }
@@ -95,7 +97,7 @@ func NewUpdateOrganizationUnauthorized() *UpdateOrganizationUnauthorized {
 	return &UpdateOrganizationUnauthorized{}
 }
 
-/* UpdateOrganizationUnauthorized describes a response with status code 401, with default header values.
+/*UpdateOrganizationUnauthorized handles this case with default header values.
 
 unauthorized
 */
@@ -116,7 +118,7 @@ func NewUpdateOrganizationForbidden() *UpdateOrganizationForbidden {
 	return &UpdateOrganizationForbidden{}
 }
 
-/* UpdateOrganizationForbidden describes a response with status code 403, with default header values.
+/*UpdateOrganizationForbidden handles this case with default header values.
 
 forbidden
 */
@@ -137,7 +139,7 @@ func NewUpdateOrganizationNotFound() *UpdateOrganizationNotFound {
 	return &UpdateOrganizationNotFound{}
 }
 
-/* UpdateOrganizationNotFound describes a response with status code 404, with default header values.
+/*UpdateOrganizationNotFound handles this case with default header values.
 
 not found
 */
@@ -158,7 +160,7 @@ func NewUpdateOrganizationUnprocessableEntity() *UpdateOrganizationUnprocessable
 	return &UpdateOrganizationUnprocessableEntity{}
 }
 
-/* UpdateOrganizationUnprocessableEntity describes a response with status code 422, with default header values.
+/*UpdateOrganizationUnprocessableEntity handles this case with default header values.
 
 unprocessable entity
 */

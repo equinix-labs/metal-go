@@ -6,8 +6,6 @@ package types
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"context"
-
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -62,6 +60,7 @@ func (m *License) Validate(formats strfmt.Registry) error {
 }
 
 func (m *License) validateID(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.ID) { // not required
 		return nil
 	}
@@ -74,6 +73,7 @@ func (m *License) validateID(formats strfmt.Registry) error {
 }
 
 func (m *License) validateLicenseeProduct(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.LicenseeProduct) { // not required
 		return nil
 	}
@@ -91,58 +91,13 @@ func (m *License) validateLicenseeProduct(formats strfmt.Registry) error {
 }
 
 func (m *License) validateProject(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.Project) { // not required
 		return nil
 	}
 
 	if m.Project != nil {
 		if err := m.Project.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("project")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-// ContextValidate validate this license based on the context it is used
-func (m *License) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.contextValidateLicenseeProduct(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateProject(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *License) contextValidateLicenseeProduct(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.LicenseeProduct != nil {
-		if err := m.LicenseeProduct.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("licensee_product")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *License) contextValidateProject(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.Project != nil {
-		if err := m.Project.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("project")
 			}

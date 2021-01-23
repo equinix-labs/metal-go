@@ -6,7 +6,6 @@ package types
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"context"
 	"strconv"
 
 	"github.com/go-openapi/errors"
@@ -38,6 +37,7 @@ func (m *VolumeAttachmentList) Validate(formats strfmt.Registry) error {
 }
 
 func (m *VolumeAttachmentList) validateAttachments(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.Attachments) { // not required
 		return nil
 	}
@@ -49,38 +49,6 @@ func (m *VolumeAttachmentList) validateAttachments(formats strfmt.Registry) erro
 
 		if m.Attachments[i] != nil {
 			if err := m.Attachments[i].Validate(formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("attachments" + "." + strconv.Itoa(i))
-				}
-				return err
-			}
-		}
-
-	}
-
-	return nil
-}
-
-// ContextValidate validate this volume attachment list based on the context it is used
-func (m *VolumeAttachmentList) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.contextValidateAttachments(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *VolumeAttachmentList) contextValidateAttachments(ctx context.Context, formats strfmt.Registry) error {
-
-	for i := 0; i < len(m.Attachments); i++ {
-
-		if m.Attachments[i] != nil {
-			if err := m.Attachments[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("attachments" + "." + strconv.Itoa(i))
 				}

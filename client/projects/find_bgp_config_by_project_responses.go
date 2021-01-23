@@ -47,6 +47,7 @@ func (o *FindBGPConfigByProjectReader) ReadResponse(response runtime.ClientRespo
 			return nil, err
 		}
 		return nil, result
+
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -57,9 +58,9 @@ func NewFindBGPConfigByProjectOK() *FindBGPConfigByProjectOK {
 	return &FindBGPConfigByProjectOK{}
 }
 
-/* FindBGPConfigByProjectOK describes a response with status code 200, with default header values.
+/*FindBGPConfigByProjectOK handles this case with default header values.
 
- ok
+ok
 
 When BGP configuration is not enabled empty structure is returned.
 When BGP configuration is disabled after being enabled BGP configuration data is returned with status disabled.
@@ -72,6 +73,7 @@ type FindBGPConfigByProjectOK struct {
 func (o *FindBGPConfigByProjectOK) Error() string {
 	return fmt.Sprintf("[GET /projects/{id}/bgp-config][%d] findBgpConfigByProjectOK  %+v", 200, o.Payload)
 }
+
 func (o *FindBGPConfigByProjectOK) GetPayload() *types.BGPConfig {
 	return o.Payload
 }
@@ -93,7 +95,7 @@ func NewFindBGPConfigByProjectUnauthorized() *FindBGPConfigByProjectUnauthorized
 	return &FindBGPConfigByProjectUnauthorized{}
 }
 
-/* FindBGPConfigByProjectUnauthorized describes a response with status code 401, with default header values.
+/*FindBGPConfigByProjectUnauthorized handles this case with default header values.
 
 unauthorized
 */
@@ -114,7 +116,7 @@ func NewFindBGPConfigByProjectForbidden() *FindBGPConfigByProjectForbidden {
 	return &FindBGPConfigByProjectForbidden{}
 }
 
-/* FindBGPConfigByProjectForbidden describes a response with status code 403, with default header values.
+/*FindBGPConfigByProjectForbidden handles this case with default header values.
 
 forbidden
 */
@@ -135,9 +137,9 @@ func NewFindBGPConfigByProjectNotFound() *FindBGPConfigByProjectNotFound {
 	return &FindBGPConfigByProjectNotFound{}
 }
 
-/* FindBGPConfigByProjectNotFound describes a response with status code 404, with default header values.
+/*FindBGPConfigByProjectNotFound handles this case with default header values.
 
- not found
+not found
 
 The project was not found.
 

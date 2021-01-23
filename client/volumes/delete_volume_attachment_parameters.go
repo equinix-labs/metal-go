@@ -16,75 +16,59 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewDeleteVolumeAttachmentParams creates a new DeleteVolumeAttachmentParams object,
-// with the default timeout for this client.
-//
-// Default values are not hydrated, since defaults are normally applied by the API server side.
-//
-// To enforce default values in parameter, use SetDefaults or WithDefaults.
+// NewDeleteVolumeAttachmentParams creates a new DeleteVolumeAttachmentParams object
+// with the default values initialized.
 func NewDeleteVolumeAttachmentParams() *DeleteVolumeAttachmentParams {
+	var ()
 	return &DeleteVolumeAttachmentParams{
+
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewDeleteVolumeAttachmentParamsWithTimeout creates a new DeleteVolumeAttachmentParams object
-// with the ability to set a timeout on a request.
+// with the default values initialized, and the ability to set a timeout on a request
 func NewDeleteVolumeAttachmentParamsWithTimeout(timeout time.Duration) *DeleteVolumeAttachmentParams {
+	var ()
 	return &DeleteVolumeAttachmentParams{
+
 		timeout: timeout,
 	}
 }
 
 // NewDeleteVolumeAttachmentParamsWithContext creates a new DeleteVolumeAttachmentParams object
-// with the ability to set a context for a request.
+// with the default values initialized, and the ability to set a context for a request
 func NewDeleteVolumeAttachmentParamsWithContext(ctx context.Context) *DeleteVolumeAttachmentParams {
+	var ()
 	return &DeleteVolumeAttachmentParams{
+
 		Context: ctx,
 	}
 }
 
 // NewDeleteVolumeAttachmentParamsWithHTTPClient creates a new DeleteVolumeAttachmentParams object
-// with the ability to set a custom HTTPClient for a request.
+// with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewDeleteVolumeAttachmentParamsWithHTTPClient(client *http.Client) *DeleteVolumeAttachmentParams {
+	var ()
 	return &DeleteVolumeAttachmentParams{
 		HTTPClient: client,
 	}
 }
 
-/* DeleteVolumeAttachmentParams contains all the parameters to send to the API endpoint
-   for the delete volume attachment operation.
-
-   Typically these are written to a http.Request.
+/*DeleteVolumeAttachmentParams contains all the parameters to send to the API endpoint
+for the delete volume attachment operation typically these are written to a http.Request
 */
 type DeleteVolumeAttachmentParams struct {
 
-	/* ID.
+	/*ID
+	  Attachment UUID
 
-	   Attachment UUID
-
-	   Format: uuid
 	*/
 	ID strfmt.UUID
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
-}
-
-// WithDefaults hydrates default values in the delete volume attachment params (not the query body).
-//
-// All values with no default are reset to their zero value.
-func (o *DeleteVolumeAttachmentParams) WithDefaults() *DeleteVolumeAttachmentParams {
-	o.SetDefaults()
-	return o
-}
-
-// SetDefaults hydrates default values in the delete volume attachment params (not the query body).
-//
-// All values with no default are reset to their zero value.
-func (o *DeleteVolumeAttachmentParams) SetDefaults() {
-	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the delete volume attachment params

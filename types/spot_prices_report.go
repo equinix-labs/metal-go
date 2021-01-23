@@ -6,8 +6,6 @@ package types
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"context"
-
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -128,6 +126,7 @@ func (m *SpotPricesReport) Validate(formats strfmt.Registry) error {
 }
 
 func (m *SpotPricesReport) validateAms1(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.Ams1) { // not required
 		return nil
 	}
@@ -145,6 +144,7 @@ func (m *SpotPricesReport) validateAms1(formats strfmt.Registry) error {
 }
 
 func (m *SpotPricesReport) validateAtl1(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.Atl1) { // not required
 		return nil
 	}
@@ -162,6 +162,7 @@ func (m *SpotPricesReport) validateAtl1(formats strfmt.Registry) error {
 }
 
 func (m *SpotPricesReport) validateDfw1(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.Dfw1) { // not required
 		return nil
 	}
@@ -179,6 +180,7 @@ func (m *SpotPricesReport) validateDfw1(formats strfmt.Registry) error {
 }
 
 func (m *SpotPricesReport) validateEwr1(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.Ewr1) { // not required
 		return nil
 	}
@@ -196,6 +198,7 @@ func (m *SpotPricesReport) validateEwr1(formats strfmt.Registry) error {
 }
 
 func (m *SpotPricesReport) validateFra1(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.Fra1) { // not required
 		return nil
 	}
@@ -213,6 +216,7 @@ func (m *SpotPricesReport) validateFra1(formats strfmt.Registry) error {
 }
 
 func (m *SpotPricesReport) validateIad1(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.Iad1) { // not required
 		return nil
 	}
@@ -230,6 +234,7 @@ func (m *SpotPricesReport) validateIad1(formats strfmt.Registry) error {
 }
 
 func (m *SpotPricesReport) validateLax1(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.Lax1) { // not required
 		return nil
 	}
@@ -247,6 +252,7 @@ func (m *SpotPricesReport) validateLax1(formats strfmt.Registry) error {
 }
 
 func (m *SpotPricesReport) validateNrt1(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.Nrt1) { // not required
 		return nil
 	}
@@ -264,6 +270,7 @@ func (m *SpotPricesReport) validateNrt1(formats strfmt.Registry) error {
 }
 
 func (m *SpotPricesReport) validateOrd1(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.Ord1) { // not required
 		return nil
 	}
@@ -281,6 +288,7 @@ func (m *SpotPricesReport) validateOrd1(formats strfmt.Registry) error {
 }
 
 func (m *SpotPricesReport) validateSea1(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.Sea1) { // not required
 		return nil
 	}
@@ -298,6 +306,7 @@ func (m *SpotPricesReport) validateSea1(formats strfmt.Registry) error {
 }
 
 func (m *SpotPricesReport) validateSin1(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.Sin1) { // not required
 		return nil
 	}
@@ -315,6 +324,7 @@ func (m *SpotPricesReport) validateSin1(formats strfmt.Registry) error {
 }
 
 func (m *SpotPricesReport) validateSjc1(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.Sjc1) { // not required
 		return nil
 	}
@@ -332,6 +342,7 @@ func (m *SpotPricesReport) validateSjc1(formats strfmt.Registry) error {
 }
 
 func (m *SpotPricesReport) validateSyd1(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.Syd1) { // not required
 		return nil
 	}
@@ -349,274 +360,13 @@ func (m *SpotPricesReport) validateSyd1(formats strfmt.Registry) error {
 }
 
 func (m *SpotPricesReport) validateYyz1(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.Yyz1) { // not required
 		return nil
 	}
 
 	if m.Yyz1 != nil {
 		if err := m.Yyz1.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("yyz1")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-// ContextValidate validate this spot prices report based on the context it is used
-func (m *SpotPricesReport) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.contextValidateAms1(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateAtl1(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateDfw1(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateEwr1(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateFra1(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateIad1(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateLax1(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateNrt1(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateOrd1(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateSea1(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateSin1(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateSjc1(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateSyd1(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateYyz1(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *SpotPricesReport) contextValidateAms1(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.Ams1 != nil {
-		if err := m.Ams1.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("ams1")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *SpotPricesReport) contextValidateAtl1(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.Atl1 != nil {
-		if err := m.Atl1.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("atl1")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *SpotPricesReport) contextValidateDfw1(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.Dfw1 != nil {
-		if err := m.Dfw1.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("dfw1")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *SpotPricesReport) contextValidateEwr1(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.Ewr1 != nil {
-		if err := m.Ewr1.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("ewr1")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *SpotPricesReport) contextValidateFra1(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.Fra1 != nil {
-		if err := m.Fra1.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("fra1")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *SpotPricesReport) contextValidateIad1(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.Iad1 != nil {
-		if err := m.Iad1.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("iad1")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *SpotPricesReport) contextValidateLax1(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.Lax1 != nil {
-		if err := m.Lax1.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("lax1")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *SpotPricesReport) contextValidateNrt1(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.Nrt1 != nil {
-		if err := m.Nrt1.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("nrt1")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *SpotPricesReport) contextValidateOrd1(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.Ord1 != nil {
-		if err := m.Ord1.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("ord1")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *SpotPricesReport) contextValidateSea1(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.Sea1 != nil {
-		if err := m.Sea1.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("sea1")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *SpotPricesReport) contextValidateSin1(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.Sin1 != nil {
-		if err := m.Sin1.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("sin1")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *SpotPricesReport) contextValidateSjc1(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.Sjc1 != nil {
-		if err := m.Sjc1.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("sjc1")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *SpotPricesReport) contextValidateSyd1(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.Syd1 != nil {
-		if err := m.Syd1.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("syd1")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *SpotPricesReport) contextValidateYyz1(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.Yyz1 != nil {
-		if err := m.Yyz1.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("yyz1")
 			}

@@ -47,6 +47,7 @@ func (o *DeleteNativeVLANReader) ReadResponse(response runtime.ClientResponse, c
 			return nil, err
 		}
 		return nil, result
+
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -57,7 +58,7 @@ func NewDeleteNativeVLANOK() *DeleteNativeVLANOK {
 	return &DeleteNativeVLANOK{}
 }
 
-/* DeleteNativeVLANOK describes a response with status code 200, with default header values.
+/*DeleteNativeVLANOK handles this case with default header values.
 
 ok
 */
@@ -68,6 +69,7 @@ type DeleteNativeVLANOK struct {
 func (o *DeleteNativeVLANOK) Error() string {
 	return fmt.Sprintf("[DELETE /ports/{id}/native-vlan][%d] deleteNativeVlanOK  %+v", 200, o.Payload)
 }
+
 func (o *DeleteNativeVLANOK) GetPayload() *types.Port {
 	return o.Payload
 }
@@ -89,7 +91,7 @@ func NewDeleteNativeVLANUnauthorized() *DeleteNativeVLANUnauthorized {
 	return &DeleteNativeVLANUnauthorized{}
 }
 
-/* DeleteNativeVLANUnauthorized describes a response with status code 401, with default header values.
+/*DeleteNativeVLANUnauthorized handles this case with default header values.
 
 unauthorized
 */
@@ -110,7 +112,7 @@ func NewDeleteNativeVLANNotFound() *DeleteNativeVLANNotFound {
 	return &DeleteNativeVLANNotFound{}
 }
 
-/* DeleteNativeVLANNotFound describes a response with status code 404, with default header values.
+/*DeleteNativeVLANNotFound handles this case with default header values.
 
 not found
 */
@@ -131,7 +133,7 @@ func NewDeleteNativeVLANUnprocessableEntity() *DeleteNativeVLANUnprocessableEnti
 	return &DeleteNativeVLANUnprocessableEntity{}
 }
 
-/* DeleteNativeVLANUnprocessableEntity describes a response with status code 422, with default header values.
+/*DeleteNativeVLANUnprocessableEntity handles this case with default header values.
 
 unprocessable entity
 */

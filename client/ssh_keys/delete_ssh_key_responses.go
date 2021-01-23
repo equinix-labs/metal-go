@@ -44,6 +44,7 @@ func (o *DeleteSSHKeyReader) ReadResponse(response runtime.ClientResponse, consu
 			return nil, err
 		}
 		return nil, result
+
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -54,7 +55,7 @@ func NewDeleteSSHKeyNoContent() *DeleteSSHKeyNoContent {
 	return &DeleteSSHKeyNoContent{}
 }
 
-/* DeleteSSHKeyNoContent describes a response with status code 204, with default header values.
+/*DeleteSSHKeyNoContent handles this case with default header values.
 
 no content
 */
@@ -75,7 +76,7 @@ func NewDeleteSSHKeyUnauthorized() *DeleteSSHKeyUnauthorized {
 	return &DeleteSSHKeyUnauthorized{}
 }
 
-/* DeleteSSHKeyUnauthorized describes a response with status code 401, with default header values.
+/*DeleteSSHKeyUnauthorized handles this case with default header values.
 
 unauthorized
 */
@@ -96,7 +97,7 @@ func NewDeleteSSHKeyForbidden() *DeleteSSHKeyForbidden {
 	return &DeleteSSHKeyForbidden{}
 }
 
-/* DeleteSSHKeyForbidden describes a response with status code 403, with default header values.
+/*DeleteSSHKeyForbidden handles this case with default header values.
 
 forbidden
 */
@@ -117,7 +118,7 @@ func NewDeleteSSHKeyNotFound() *DeleteSSHKeyNotFound {
 	return &DeleteSSHKeyNotFound{}
 }
 
-/* DeleteSSHKeyNotFound describes a response with status code 404, with default header values.
+/*DeleteSSHKeyNotFound handles this case with default header values.
 
 not found
 */

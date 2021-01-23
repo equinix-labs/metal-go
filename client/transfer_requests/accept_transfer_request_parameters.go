@@ -16,75 +16,59 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewAcceptTransferRequestParams creates a new AcceptTransferRequestParams object,
-// with the default timeout for this client.
-//
-// Default values are not hydrated, since defaults are normally applied by the API server side.
-//
-// To enforce default values in parameter, use SetDefaults or WithDefaults.
+// NewAcceptTransferRequestParams creates a new AcceptTransferRequestParams object
+// with the default values initialized.
 func NewAcceptTransferRequestParams() *AcceptTransferRequestParams {
+	var ()
 	return &AcceptTransferRequestParams{
+
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewAcceptTransferRequestParamsWithTimeout creates a new AcceptTransferRequestParams object
-// with the ability to set a timeout on a request.
+// with the default values initialized, and the ability to set a timeout on a request
 func NewAcceptTransferRequestParamsWithTimeout(timeout time.Duration) *AcceptTransferRequestParams {
+	var ()
 	return &AcceptTransferRequestParams{
+
 		timeout: timeout,
 	}
 }
 
 // NewAcceptTransferRequestParamsWithContext creates a new AcceptTransferRequestParams object
-// with the ability to set a context for a request.
+// with the default values initialized, and the ability to set a context for a request
 func NewAcceptTransferRequestParamsWithContext(ctx context.Context) *AcceptTransferRequestParams {
+	var ()
 	return &AcceptTransferRequestParams{
+
 		Context: ctx,
 	}
 }
 
 // NewAcceptTransferRequestParamsWithHTTPClient creates a new AcceptTransferRequestParams object
-// with the ability to set a custom HTTPClient for a request.
+// with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewAcceptTransferRequestParamsWithHTTPClient(client *http.Client) *AcceptTransferRequestParams {
+	var ()
 	return &AcceptTransferRequestParams{
 		HTTPClient: client,
 	}
 }
 
-/* AcceptTransferRequestParams contains all the parameters to send to the API endpoint
-   for the accept transfer request operation.
-
-   Typically these are written to a http.Request.
+/*AcceptTransferRequestParams contains all the parameters to send to the API endpoint
+for the accept transfer request operation typically these are written to a http.Request
 */
 type AcceptTransferRequestParams struct {
 
-	/* ID.
+	/*ID
+	  Transfer request UUID
 
-	   Transfer request UUID
-
-	   Format: uuid
 	*/
 	ID strfmt.UUID
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
-}
-
-// WithDefaults hydrates default values in the accept transfer request params (not the query body).
-//
-// All values with no default are reset to their zero value.
-func (o *AcceptTransferRequestParams) WithDefaults() *AcceptTransferRequestParams {
-	o.SetDefaults()
-	return o
-}
-
-// SetDefaults hydrates default values in the accept transfer request params (not the query body).
-//
-// All values with no default are reset to their zero value.
-func (o *AcceptTransferRequestParams) SetDefaults() {
-	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the accept transfer request params

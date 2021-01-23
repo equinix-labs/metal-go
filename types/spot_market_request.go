@@ -6,8 +6,6 @@ package types
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"context"
-
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -88,6 +86,7 @@ func (m *SpotMarketRequest) Validate(formats strfmt.Registry) error {
 }
 
 func (m *SpotMarketRequest) validateCreatedAt(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.CreatedAt) { // not required
 		return nil
 	}
@@ -100,6 +99,7 @@ func (m *SpotMarketRequest) validateCreatedAt(formats strfmt.Registry) error {
 }
 
 func (m *SpotMarketRequest) validateEndAt(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.EndAt) { // not required
 		return nil
 	}
@@ -112,6 +112,7 @@ func (m *SpotMarketRequest) validateEndAt(formats strfmt.Registry) error {
 }
 
 func (m *SpotMarketRequest) validateFacilities(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.Facilities) { // not required
 		return nil
 	}
@@ -129,6 +130,7 @@ func (m *SpotMarketRequest) validateFacilities(formats strfmt.Registry) error {
 }
 
 func (m *SpotMarketRequest) validateID(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.ID) { // not required
 		return nil
 	}
@@ -141,6 +143,7 @@ func (m *SpotMarketRequest) validateID(formats strfmt.Registry) error {
 }
 
 func (m *SpotMarketRequest) validateInstances(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.Instances) { // not required
 		return nil
 	}
@@ -158,76 +161,13 @@ func (m *SpotMarketRequest) validateInstances(formats strfmt.Registry) error {
 }
 
 func (m *SpotMarketRequest) validateProject(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.Project) { // not required
 		return nil
 	}
 
 	if m.Project != nil {
 		if err := m.Project.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("project")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-// ContextValidate validate this spot market request based on the context it is used
-func (m *SpotMarketRequest) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.contextValidateFacilities(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateInstances(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateProject(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *SpotMarketRequest) contextValidateFacilities(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.Facilities != nil {
-		if err := m.Facilities.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("facilities")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *SpotMarketRequest) contextValidateInstances(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.Instances != nil {
-		if err := m.Instances.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("instances")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *SpotMarketRequest) contextValidateProject(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.Project != nil {
-		if err := m.Project.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("project")
 			}

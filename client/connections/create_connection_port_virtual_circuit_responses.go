@@ -41,6 +41,7 @@ func (o *CreateConnectionPortVirtualCircuitReader) ReadResponse(response runtime
 			return nil, err
 		}
 		return nil, result
+
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -51,7 +52,7 @@ func NewCreateConnectionPortVirtualCircuitOK() *CreateConnectionPortVirtualCircu
 	return &CreateConnectionPortVirtualCircuitOK{}
 }
 
-/* CreateConnectionPortVirtualCircuitOK describes a response with status code 200, with default header values.
+/*CreateConnectionPortVirtualCircuitOK handles this case with default header values.
 
 ok
 */
@@ -62,6 +63,7 @@ type CreateConnectionPortVirtualCircuitOK struct {
 func (o *CreateConnectionPortVirtualCircuitOK) Error() string {
 	return fmt.Sprintf("[POST /connections/{connection_id}/ports/{port_id}/virtual-circuits][%d] createConnectionPortVirtualCircuitOK  %+v", 200, o.Payload)
 }
+
 func (o *CreateConnectionPortVirtualCircuitOK) GetPayload() *types.VirtualCircuitList {
 	return o.Payload
 }
@@ -83,7 +85,7 @@ func NewCreateConnectionPortVirtualCircuitForbidden() *CreateConnectionPortVirtu
 	return &CreateConnectionPortVirtualCircuitForbidden{}
 }
 
-/* CreateConnectionPortVirtualCircuitForbidden describes a response with status code 403, with default header values.
+/*CreateConnectionPortVirtualCircuitForbidden handles this case with default header values.
 
 forbidden
 */
@@ -104,7 +106,7 @@ func NewCreateConnectionPortVirtualCircuitNotFound() *CreateConnectionPortVirtua
 	return &CreateConnectionPortVirtualCircuitNotFound{}
 }
 
-/* CreateConnectionPortVirtualCircuitNotFound describes a response with status code 404, with default header values.
+/*CreateConnectionPortVirtualCircuitNotFound handles this case with default header values.
 
 not found
 */

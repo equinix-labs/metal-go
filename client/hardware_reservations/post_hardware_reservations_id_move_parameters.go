@@ -16,83 +16,64 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewPostHardwareReservationsIDMoveParams creates a new PostHardwareReservationsIDMoveParams object,
-// with the default timeout for this client.
-//
-// Default values are not hydrated, since defaults are normally applied by the API server side.
-//
-// To enforce default values in parameter, use SetDefaults or WithDefaults.
+// NewPostHardwareReservationsIDMoveParams creates a new PostHardwareReservationsIDMoveParams object
+// with the default values initialized.
 func NewPostHardwareReservationsIDMoveParams() *PostHardwareReservationsIDMoveParams {
+	var ()
 	return &PostHardwareReservationsIDMoveParams{
+
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewPostHardwareReservationsIDMoveParamsWithTimeout creates a new PostHardwareReservationsIDMoveParams object
-// with the ability to set a timeout on a request.
+// with the default values initialized, and the ability to set a timeout on a request
 func NewPostHardwareReservationsIDMoveParamsWithTimeout(timeout time.Duration) *PostHardwareReservationsIDMoveParams {
+	var ()
 	return &PostHardwareReservationsIDMoveParams{
+
 		timeout: timeout,
 	}
 }
 
 // NewPostHardwareReservationsIDMoveParamsWithContext creates a new PostHardwareReservationsIDMoveParams object
-// with the ability to set a context for a request.
+// with the default values initialized, and the ability to set a context for a request
 func NewPostHardwareReservationsIDMoveParamsWithContext(ctx context.Context) *PostHardwareReservationsIDMoveParams {
+	var ()
 	return &PostHardwareReservationsIDMoveParams{
+
 		Context: ctx,
 	}
 }
 
 // NewPostHardwareReservationsIDMoveParamsWithHTTPClient creates a new PostHardwareReservationsIDMoveParams object
-// with the ability to set a custom HTTPClient for a request.
+// with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewPostHardwareReservationsIDMoveParamsWithHTTPClient(client *http.Client) *PostHardwareReservationsIDMoveParams {
+	var ()
 	return &PostHardwareReservationsIDMoveParams{
 		HTTPClient: client,
 	}
 }
 
-/* PostHardwareReservationsIDMoveParams contains all the parameters to send to the API endpoint
-   for the post hardware reservations ID move operation.
-
-   Typically these are written to a http.Request.
+/*PostHardwareReservationsIDMoveParams contains all the parameters to send to the API endpoint
+for the post hardware reservations ID move operation typically these are written to a http.Request
 */
 type PostHardwareReservationsIDMoveParams struct {
 
-	/* ID.
+	/*ID
+	  Hardware Reservation UUID
 
-	   Hardware Reservation UUID
-
-	   Format: uuid
 	*/
 	ID strfmt.UUID
+	/*ProjectID
+	  Project UUID
 
-	/* ProjectID.
-
-	   Project UUID
-
-	   Format: uuid
 	*/
 	ProjectID strfmt.UUID
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
-}
-
-// WithDefaults hydrates default values in the post hardware reservations ID move params (not the query body).
-//
-// All values with no default are reset to their zero value.
-func (o *PostHardwareReservationsIDMoveParams) WithDefaults() *PostHardwareReservationsIDMoveParams {
-	o.SetDefaults()
-	return o
-}
-
-// SetDefaults hydrates default values in the post hardware reservations ID move params (not the query body).
-//
-// All values with no default are reset to their zero value.
-func (o *PostHardwareReservationsIDMoveParams) SetDefaults() {
-	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the post hardware reservations ID move params
@@ -162,6 +143,7 @@ func (o *PostHardwareReservationsIDMoveParams) WriteToRequest(r runtime.ClientRe
 	if err := r.SetPathParam("id", o.ID.String()); err != nil {
 		return err
 	}
+
 	if err := r.SetBodyParam(o.ProjectID); err != nil {
 		return err
 	}

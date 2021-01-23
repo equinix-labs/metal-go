@@ -6,8 +6,6 @@ package types
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"context"
-
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -62,6 +60,7 @@ func (m *InterconnectionPort) Validate(formats strfmt.Registry) error {
 }
 
 func (m *InterconnectionPort) validateID(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.ID) { // not required
 		return nil
 	}
@@ -74,6 +73,7 @@ func (m *InterconnectionPort) validateID(formats strfmt.Registry) error {
 }
 
 func (m *InterconnectionPort) validateOrganization(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.Organization) { // not required
 		return nil
 	}
@@ -91,58 +91,13 @@ func (m *InterconnectionPort) validateOrganization(formats strfmt.Registry) erro
 }
 
 func (m *InterconnectionPort) validateVirtualCircuits(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.VirtualCircuits) { // not required
 		return nil
 	}
 
 	if m.VirtualCircuits != nil {
 		if err := m.VirtualCircuits.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("virtual_circuits")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-// ContextValidate validate this interconnection port based on the context it is used
-func (m *InterconnectionPort) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.contextValidateOrganization(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateVirtualCircuits(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *InterconnectionPort) contextValidateOrganization(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.Organization != nil {
-		if err := m.Organization.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("organization")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *InterconnectionPort) contextValidateVirtualCircuits(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.VirtualCircuits != nil {
-		if err := m.VirtualCircuits.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("virtual_circuits")
 			}

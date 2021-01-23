@@ -16,73 +16,59 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewValidateUserdataParams creates a new ValidateUserdataParams object,
-// with the default timeout for this client.
-//
-// Default values are not hydrated, since defaults are normally applied by the API server side.
-//
-// To enforce default values in parameter, use SetDefaults or WithDefaults.
+// NewValidateUserdataParams creates a new ValidateUserdataParams object
+// with the default values initialized.
 func NewValidateUserdataParams() *ValidateUserdataParams {
+	var ()
 	return &ValidateUserdataParams{
+
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewValidateUserdataParamsWithTimeout creates a new ValidateUserdataParams object
-// with the ability to set a timeout on a request.
+// with the default values initialized, and the ability to set a timeout on a request
 func NewValidateUserdataParamsWithTimeout(timeout time.Duration) *ValidateUserdataParams {
+	var ()
 	return &ValidateUserdataParams{
+
 		timeout: timeout,
 	}
 }
 
 // NewValidateUserdataParamsWithContext creates a new ValidateUserdataParams object
-// with the ability to set a context for a request.
+// with the default values initialized, and the ability to set a context for a request
 func NewValidateUserdataParamsWithContext(ctx context.Context) *ValidateUserdataParams {
+	var ()
 	return &ValidateUserdataParams{
+
 		Context: ctx,
 	}
 }
 
 // NewValidateUserdataParamsWithHTTPClient creates a new ValidateUserdataParams object
-// with the ability to set a custom HTTPClient for a request.
+// with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewValidateUserdataParamsWithHTTPClient(client *http.Client) *ValidateUserdataParams {
+	var ()
 	return &ValidateUserdataParams{
 		HTTPClient: client,
 	}
 }
 
-/* ValidateUserdataParams contains all the parameters to send to the API endpoint
-   for the validate userdata operation.
-
-   Typically these are written to a http.Request.
+/*ValidateUserdataParams contains all the parameters to send to the API endpoint
+for the validate userdata operation typically these are written to a http.Request
 */
 type ValidateUserdataParams struct {
 
-	/* Userdata.
+	/*Userdata
+	  Userdata to validate
 
-	   Userdata to validate
 	*/
 	Userdata *string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
-}
-
-// WithDefaults hydrates default values in the validate userdata params (not the query body).
-//
-// All values with no default are reset to their zero value.
-func (o *ValidateUserdataParams) WithDefaults() *ValidateUserdataParams {
-	o.SetDefaults()
-	return o
-}
-
-// SetDefaults hydrates default values in the validate userdata params (not the query body).
-//
-// All values with no default are reset to their zero value.
-func (o *ValidateUserdataParams) SetDefaults() {
-	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the validate userdata params
@@ -141,17 +127,16 @@ func (o *ValidateUserdataParams) WriteToRequest(r runtime.ClientRequest, reg str
 
 		// query param userdata
 		var qrUserdata string
-
 		if o.Userdata != nil {
 			qrUserdata = *o.Userdata
 		}
 		qUserdata := qrUserdata
 		if qUserdata != "" {
-
 			if err := r.SetQueryParam("userdata", qUserdata); err != nil {
 				return err
 			}
 		}
+
 	}
 
 	if len(res) > 0 {

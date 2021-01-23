@@ -53,6 +53,7 @@ func (o *CreateDeviceBatchReader) ReadResponse(response runtime.ClientResponse, 
 			return nil, err
 		}
 		return nil, result
+
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -63,7 +64,7 @@ func NewCreateDeviceBatchCreated() *CreateDeviceBatchCreated {
 	return &CreateDeviceBatchCreated{}
 }
 
-/* CreateDeviceBatchCreated describes a response with status code 201, with default header values.
+/*CreateDeviceBatchCreated handles this case with default header values.
 
 created
 */
@@ -74,6 +75,7 @@ type CreateDeviceBatchCreated struct {
 func (o *CreateDeviceBatchCreated) Error() string {
 	return fmt.Sprintf("[POST /projects/{id}/devices/batch][%d] createDeviceBatchCreated  %+v", 201, o.Payload)
 }
+
 func (o *CreateDeviceBatchCreated) GetPayload() *types.BatchesList {
 	return o.Payload
 }
@@ -95,7 +97,7 @@ func NewCreateDeviceBatchUnauthorized() *CreateDeviceBatchUnauthorized {
 	return &CreateDeviceBatchUnauthorized{}
 }
 
-/* CreateDeviceBatchUnauthorized describes a response with status code 401, with default header values.
+/*CreateDeviceBatchUnauthorized handles this case with default header values.
 
 unauthorized
 */
@@ -116,7 +118,7 @@ func NewCreateDeviceBatchForbidden() *CreateDeviceBatchForbidden {
 	return &CreateDeviceBatchForbidden{}
 }
 
-/* CreateDeviceBatchForbidden describes a response with status code 403, with default header values.
+/*CreateDeviceBatchForbidden handles this case with default header values.
 
 forbidden
 */
@@ -137,7 +139,7 @@ func NewCreateDeviceBatchNotFound() *CreateDeviceBatchNotFound {
 	return &CreateDeviceBatchNotFound{}
 }
 
-/* CreateDeviceBatchNotFound describes a response with status code 404, with default header values.
+/*CreateDeviceBatchNotFound handles this case with default header values.
 
 not found
 */
@@ -158,7 +160,7 @@ func NewCreateDeviceBatchUnprocessableEntity() *CreateDeviceBatchUnprocessableEn
 	return &CreateDeviceBatchUnprocessableEntity{}
 }
 
-/* CreateDeviceBatchUnprocessableEntity describes a response with status code 422, with default header values.
+/*CreateDeviceBatchUnprocessableEntity handles this case with default header values.
 
 unprocessable entity
 */

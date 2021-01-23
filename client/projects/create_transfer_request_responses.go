@@ -53,6 +53,7 @@ func (o *CreateTransferRequestReader) ReadResponse(response runtime.ClientRespon
 			return nil, err
 		}
 		return nil, result
+
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -63,7 +64,7 @@ func NewCreateTransferRequestCreated() *CreateTransferRequestCreated {
 	return &CreateTransferRequestCreated{}
 }
 
-/* CreateTransferRequestCreated describes a response with status code 201, with default header values.
+/*CreateTransferRequestCreated handles this case with default header values.
 
 created
 */
@@ -74,6 +75,7 @@ type CreateTransferRequestCreated struct {
 func (o *CreateTransferRequestCreated) Error() string {
 	return fmt.Sprintf("[POST /projects/{id}/transfers][%d] createTransferRequestCreated  %+v", 201, o.Payload)
 }
+
 func (o *CreateTransferRequestCreated) GetPayload() *types.TransferRequest {
 	return o.Payload
 }
@@ -95,7 +97,7 @@ func NewCreateTransferRequestUnauthorized() *CreateTransferRequestUnauthorized {
 	return &CreateTransferRequestUnauthorized{}
 }
 
-/* CreateTransferRequestUnauthorized describes a response with status code 401, with default header values.
+/*CreateTransferRequestUnauthorized handles this case with default header values.
 
 unauthorized
 */
@@ -116,7 +118,7 @@ func NewCreateTransferRequestForbidden() *CreateTransferRequestForbidden {
 	return &CreateTransferRequestForbidden{}
 }
 
-/* CreateTransferRequestForbidden describes a response with status code 403, with default header values.
+/*CreateTransferRequestForbidden handles this case with default header values.
 
 forbidden
 */
@@ -137,7 +139,7 @@ func NewCreateTransferRequestNotFound() *CreateTransferRequestNotFound {
 	return &CreateTransferRequestNotFound{}
 }
 
-/* CreateTransferRequestNotFound describes a response with status code 404, with default header values.
+/*CreateTransferRequestNotFound handles this case with default header values.
 
 not found
 */
@@ -158,7 +160,7 @@ func NewCreateTransferRequestUnprocessableEntity() *CreateTransferRequestUnproce
 	return &CreateTransferRequestUnprocessableEntity{}
 }
 
-/* CreateTransferRequestUnprocessableEntity describes a response with status code 422, with default header values.
+/*CreateTransferRequestUnprocessableEntity handles this case with default header values.
 
 unprocessable entity
 */

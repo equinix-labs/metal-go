@@ -16,81 +16,64 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewFindEmailByIDParams creates a new FindEmailByIDParams object,
-// with the default timeout for this client.
-//
-// Default values are not hydrated, since defaults are normally applied by the API server side.
-//
-// To enforce default values in parameter, use SetDefaults or WithDefaults.
+// NewFindEmailByIDParams creates a new FindEmailByIDParams object
+// with the default values initialized.
 func NewFindEmailByIDParams() *FindEmailByIDParams {
+	var ()
 	return &FindEmailByIDParams{
+
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewFindEmailByIDParamsWithTimeout creates a new FindEmailByIDParams object
-// with the ability to set a timeout on a request.
+// with the default values initialized, and the ability to set a timeout on a request
 func NewFindEmailByIDParamsWithTimeout(timeout time.Duration) *FindEmailByIDParams {
+	var ()
 	return &FindEmailByIDParams{
+
 		timeout: timeout,
 	}
 }
 
 // NewFindEmailByIDParamsWithContext creates a new FindEmailByIDParams object
-// with the ability to set a context for a request.
+// with the default values initialized, and the ability to set a context for a request
 func NewFindEmailByIDParamsWithContext(ctx context.Context) *FindEmailByIDParams {
+	var ()
 	return &FindEmailByIDParams{
+
 		Context: ctx,
 	}
 }
 
 // NewFindEmailByIDParamsWithHTTPClient creates a new FindEmailByIDParams object
-// with the ability to set a custom HTTPClient for a request.
+// with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewFindEmailByIDParamsWithHTTPClient(client *http.Client) *FindEmailByIDParams {
+	var ()
 	return &FindEmailByIDParams{
 		HTTPClient: client,
 	}
 }
 
-/* FindEmailByIDParams contains all the parameters to send to the API endpoint
-   for the find email by Id operation.
-
-   Typically these are written to a http.Request.
+/*FindEmailByIDParams contains all the parameters to send to the API endpoint
+for the find email by Id operation typically these are written to a http.Request
 */
 type FindEmailByIDParams struct {
 
-	/* ID.
+	/*ID
+	  Email UUID
 
-	   Email UUID
-
-	   Format: uuid
 	*/
 	ID strfmt.UUID
+	/*Include
+	  related attributes to include
 
-	/* Include.
-
-	   related attributes to include
 	*/
 	Include *string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
-}
-
-// WithDefaults hydrates default values in the find email by Id params (not the query body).
-//
-// All values with no default are reset to their zero value.
-func (o *FindEmailByIDParams) WithDefaults() *FindEmailByIDParams {
-	o.SetDefaults()
-	return o
-}
-
-// SetDefaults hydrates default values in the find email by Id params (not the query body).
-//
-// All values with no default are reset to their zero value.
-func (o *FindEmailByIDParams) SetDefaults() {
-	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the find email by Id params
@@ -165,17 +148,16 @@ func (o *FindEmailByIDParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 
 		// query param include
 		var qrInclude string
-
 		if o.Include != nil {
 			qrInclude = *o.Include
 		}
 		qInclude := qrInclude
 		if qInclude != "" {
-
 			if err := r.SetQueryParam("include", qInclude); err != nil {
 				return err
 			}
 		}
+
 	}
 
 	if len(res) > 0 {

@@ -47,6 +47,7 @@ func (o *CreateIPAssignmentReader) ReadResponse(response runtime.ClientResponse,
 			return nil, err
 		}
 		return nil, result
+
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -57,7 +58,7 @@ func NewCreateIPAssignmentCreated() *CreateIPAssignmentCreated {
 	return &CreateIPAssignmentCreated{}
 }
 
-/* CreateIPAssignmentCreated describes a response with status code 201, with default header values.
+/*CreateIPAssignmentCreated handles this case with default header values.
 
 created
 */
@@ -68,6 +69,7 @@ type CreateIPAssignmentCreated struct {
 func (o *CreateIPAssignmentCreated) Error() string {
 	return fmt.Sprintf("[POST /devices/{id}/ips][%d] createIpAssignmentCreated  %+v", 201, o.Payload)
 }
+
 func (o *CreateIPAssignmentCreated) GetPayload() *types.IPAssignment {
 	return o.Payload
 }
@@ -89,7 +91,7 @@ func NewCreateIPAssignmentUnauthorized() *CreateIPAssignmentUnauthorized {
 	return &CreateIPAssignmentUnauthorized{}
 }
 
-/* CreateIPAssignmentUnauthorized describes a response with status code 401, with default header values.
+/*CreateIPAssignmentUnauthorized handles this case with default header values.
 
 unauthorized
 */
@@ -110,7 +112,7 @@ func NewCreateIPAssignmentNotFound() *CreateIPAssignmentNotFound {
 	return &CreateIPAssignmentNotFound{}
 }
 
-/* CreateIPAssignmentNotFound describes a response with status code 404, with default header values.
+/*CreateIPAssignmentNotFound handles this case with default header values.
 
 not found
 */
@@ -131,7 +133,7 @@ func NewCreateIPAssignmentUnprocessableEntity() *CreateIPAssignmentUnprocessable
 	return &CreateIPAssignmentUnprocessableEntity{}
 }
 
-/* CreateIPAssignmentUnprocessableEntity describes a response with status code 422, with default header values.
+/*CreateIPAssignmentUnprocessableEntity handles this case with default header values.
 
 unprocessable entity
 */

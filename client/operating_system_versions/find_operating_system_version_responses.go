@@ -35,6 +35,7 @@ func (o *FindOperatingSystemVersionReader) ReadResponse(response runtime.ClientR
 			return nil, err
 		}
 		return nil, result
+
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -45,7 +46,7 @@ func NewFindOperatingSystemVersionOK() *FindOperatingSystemVersionOK {
 	return &FindOperatingSystemVersionOK{}
 }
 
-/* FindOperatingSystemVersionOK describes a response with status code 200, with default header values.
+/*FindOperatingSystemVersionOK handles this case with default header values.
 
 ok
 */
@@ -56,6 +57,7 @@ type FindOperatingSystemVersionOK struct {
 func (o *FindOperatingSystemVersionOK) Error() string {
 	return fmt.Sprintf("[GET /operating-system-versions][%d] findOperatingSystemVersionOK  %+v", 200, o.Payload)
 }
+
 func (o *FindOperatingSystemVersionOK) GetPayload() types.OperatingSystemList {
 	return o.Payload
 }
@@ -75,7 +77,7 @@ func NewFindOperatingSystemVersionUnauthorized() *FindOperatingSystemVersionUnau
 	return &FindOperatingSystemVersionUnauthorized{}
 }
 
-/* FindOperatingSystemVersionUnauthorized describes a response with status code 401, with default header values.
+/*FindOperatingSystemVersionUnauthorized handles this case with default header values.
 
 unauthorized
 */

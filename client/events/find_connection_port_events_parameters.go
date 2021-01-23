@@ -17,101 +17,79 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// NewFindConnectionPortEventsParams creates a new FindConnectionPortEventsParams object,
-// with the default timeout for this client.
-//
-// Default values are not hydrated, since defaults are normally applied by the API server side.
-//
-// To enforce default values in parameter, use SetDefaults or WithDefaults.
+// NewFindConnectionPortEventsParams creates a new FindConnectionPortEventsParams object
+// with the default values initialized.
 func NewFindConnectionPortEventsParams() *FindConnectionPortEventsParams {
+	var ()
 	return &FindConnectionPortEventsParams{
+
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewFindConnectionPortEventsParamsWithTimeout creates a new FindConnectionPortEventsParams object
-// with the ability to set a timeout on a request.
+// with the default values initialized, and the ability to set a timeout on a request
 func NewFindConnectionPortEventsParamsWithTimeout(timeout time.Duration) *FindConnectionPortEventsParams {
+	var ()
 	return &FindConnectionPortEventsParams{
+
 		timeout: timeout,
 	}
 }
 
 // NewFindConnectionPortEventsParamsWithContext creates a new FindConnectionPortEventsParams object
-// with the ability to set a context for a request.
+// with the default values initialized, and the ability to set a context for a request
 func NewFindConnectionPortEventsParamsWithContext(ctx context.Context) *FindConnectionPortEventsParams {
+	var ()
 	return &FindConnectionPortEventsParams{
+
 		Context: ctx,
 	}
 }
 
 // NewFindConnectionPortEventsParamsWithHTTPClient creates a new FindConnectionPortEventsParams object
-// with the ability to set a custom HTTPClient for a request.
+// with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewFindConnectionPortEventsParamsWithHTTPClient(client *http.Client) *FindConnectionPortEventsParams {
+	var ()
 	return &FindConnectionPortEventsParams{
 		HTTPClient: client,
 	}
 }
 
-/* FindConnectionPortEventsParams contains all the parameters to send to the API endpoint
-   for the find connection port events operation.
-
-   Typically these are written to a http.Request.
+/*FindConnectionPortEventsParams contains all the parameters to send to the API endpoint
+for the find connection port events operation typically these are written to a http.Request
 */
 type FindConnectionPortEventsParams struct {
 
-	/* ConnectionID.
+	/*ConnectionID
+	  Connection UUID
 
-	   Connection UUID
-
-	   Format: uuid
 	*/
 	ConnectionID strfmt.UUID
+	/*ID
+	  Connection Port UUID
 
-	/* ID.
-
-	   Connection Port UUID
-
-	   Format: uuid
 	*/
 	ID strfmt.UUID
+	/*Include
+	  related attributes to include
 
-	/* Include.
-
-	   related attributes to include
 	*/
 	Include *string
+	/*Page
+	  page to display, default to 1, max 100_000
 
-	/* Page.
-
-	   page to display, default to 1, max 100_000
 	*/
 	Page *int64
+	/*PerPage
+	  items per page, default to 10, max 1_000
 
-	/* PerPage.
-
-	   items per page, default to 10, max 1_000
 	*/
 	PerPage *int64
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
-}
-
-// WithDefaults hydrates default values in the find connection port events params (not the query body).
-//
-// All values with no default are reset to their zero value.
-func (o *FindConnectionPortEventsParams) WithDefaults() *FindConnectionPortEventsParams {
-	o.SetDefaults()
-	return o
-}
-
-// SetDefaults hydrates default values in the find connection port events params (not the query body).
-//
-// All values with no default are reset to their zero value.
-func (o *FindConnectionPortEventsParams) SetDefaults() {
-	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the find connection port events params
@@ -224,51 +202,48 @@ func (o *FindConnectionPortEventsParams) WriteToRequest(r runtime.ClientRequest,
 
 		// query param include
 		var qrInclude string
-
 		if o.Include != nil {
 			qrInclude = *o.Include
 		}
 		qInclude := qrInclude
 		if qInclude != "" {
-
 			if err := r.SetQueryParam("include", qInclude); err != nil {
 				return err
 			}
 		}
+
 	}
 
 	if o.Page != nil {
 
 		// query param page
 		var qrPage int64
-
 		if o.Page != nil {
 			qrPage = *o.Page
 		}
 		qPage := swag.FormatInt64(qrPage)
 		if qPage != "" {
-
 			if err := r.SetQueryParam("page", qPage); err != nil {
 				return err
 			}
 		}
+
 	}
 
 	if o.PerPage != nil {
 
 		// query param per_page
 		var qrPerPage int64
-
 		if o.PerPage != nil {
 			qrPerPage = *o.PerPage
 		}
 		qPerPage := swag.FormatInt64(qrPerPage)
 		if qPerPage != "" {
-
 			if err := r.SetQueryParam("per_page", qPerPage); err != nil {
 				return err
 			}
 		}
+
 	}
 
 	if len(res) > 0 {

@@ -16,75 +16,59 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewGetInterconnectionParams creates a new GetInterconnectionParams object,
-// with the default timeout for this client.
-//
-// Default values are not hydrated, since defaults are normally applied by the API server side.
-//
-// To enforce default values in parameter, use SetDefaults or WithDefaults.
+// NewGetInterconnectionParams creates a new GetInterconnectionParams object
+// with the default values initialized.
 func NewGetInterconnectionParams() *GetInterconnectionParams {
+	var ()
 	return &GetInterconnectionParams{
+
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewGetInterconnectionParamsWithTimeout creates a new GetInterconnectionParams object
-// with the ability to set a timeout on a request.
+// with the default values initialized, and the ability to set a timeout on a request
 func NewGetInterconnectionParamsWithTimeout(timeout time.Duration) *GetInterconnectionParams {
+	var ()
 	return &GetInterconnectionParams{
+
 		timeout: timeout,
 	}
 }
 
 // NewGetInterconnectionParamsWithContext creates a new GetInterconnectionParams object
-// with the ability to set a context for a request.
+// with the default values initialized, and the ability to set a context for a request
 func NewGetInterconnectionParamsWithContext(ctx context.Context) *GetInterconnectionParams {
+	var ()
 	return &GetInterconnectionParams{
+
 		Context: ctx,
 	}
 }
 
 // NewGetInterconnectionParamsWithHTTPClient creates a new GetInterconnectionParams object
-// with the ability to set a custom HTTPClient for a request.
+// with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewGetInterconnectionParamsWithHTTPClient(client *http.Client) *GetInterconnectionParams {
+	var ()
 	return &GetInterconnectionParams{
 		HTTPClient: client,
 	}
 }
 
-/* GetInterconnectionParams contains all the parameters to send to the API endpoint
-   for the get interconnection operation.
-
-   Typically these are written to a http.Request.
+/*GetInterconnectionParams contains all the parameters to send to the API endpoint
+for the get interconnection operation typically these are written to a http.Request
 */
 type GetInterconnectionParams struct {
 
-	/* ConnectionID.
+	/*ConnectionID
+	  Connection UUID
 
-	   Connection UUID
-
-	   Format: uuid
 	*/
 	ConnectionID strfmt.UUID
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
-}
-
-// WithDefaults hydrates default values in the get interconnection params (not the query body).
-//
-// All values with no default are reset to their zero value.
-func (o *GetInterconnectionParams) WithDefaults() *GetInterconnectionParams {
-	o.SetDefaults()
-	return o
-}
-
-// SetDefaults hydrates default values in the get interconnection params (not the query body).
-//
-// All values with no default are reset to their zero value.
-func (o *GetInterconnectionParams) SetDefaults() {
-	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the get interconnection params

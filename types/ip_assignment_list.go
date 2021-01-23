@@ -6,7 +6,6 @@ package types
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"context"
 	"strconv"
 
 	"github.com/go-openapi/errors"
@@ -38,6 +37,7 @@ func (m *IPAssignmentList) Validate(formats strfmt.Registry) error {
 }
 
 func (m *IPAssignmentList) validateIPAddresses(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.IPAddresses) { // not required
 		return nil
 	}
@@ -49,38 +49,6 @@ func (m *IPAssignmentList) validateIPAddresses(formats strfmt.Registry) error {
 
 		if m.IPAddresses[i] != nil {
 			if err := m.IPAddresses[i].Validate(formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("ip_addresses" + "." + strconv.Itoa(i))
-				}
-				return err
-			}
-		}
-
-	}
-
-	return nil
-}
-
-// ContextValidate validate this IP assignment list based on the context it is used
-func (m *IPAssignmentList) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.contextValidateIPAddresses(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *IPAssignmentList) contextValidateIPAddresses(ctx context.Context, formats strfmt.Registry) error {
-
-	for i := 0; i < len(m.IPAddresses); i++ {
-
-		if m.IPAddresses[i] != nil {
-			if err := m.IPAddresses[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("ip_addresses" + "." + strconv.Itoa(i))
 				}

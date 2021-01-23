@@ -53,6 +53,7 @@ func (o *UpdateMembershipReader) ReadResponse(response runtime.ClientResponse, c
 			return nil, err
 		}
 		return nil, result
+
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -63,7 +64,7 @@ func NewUpdateMembershipOK() *UpdateMembershipOK {
 	return &UpdateMembershipOK{}
 }
 
-/* UpdateMembershipOK describes a response with status code 200, with default header values.
+/*UpdateMembershipOK handles this case with default header values.
 
 ok
 */
@@ -74,6 +75,7 @@ type UpdateMembershipOK struct {
 func (o *UpdateMembershipOK) Error() string {
 	return fmt.Sprintf("[PUT /memberships/{id}][%d] updateMembershipOK  %+v", 200, o.Payload)
 }
+
 func (o *UpdateMembershipOK) GetPayload() *types.Membership {
 	return o.Payload
 }
@@ -95,7 +97,7 @@ func NewUpdateMembershipUnauthorized() *UpdateMembershipUnauthorized {
 	return &UpdateMembershipUnauthorized{}
 }
 
-/* UpdateMembershipUnauthorized describes a response with status code 401, with default header values.
+/*UpdateMembershipUnauthorized handles this case with default header values.
 
 unauthorized
 */
@@ -116,7 +118,7 @@ func NewUpdateMembershipForbidden() *UpdateMembershipForbidden {
 	return &UpdateMembershipForbidden{}
 }
 
-/* UpdateMembershipForbidden describes a response with status code 403, with default header values.
+/*UpdateMembershipForbidden handles this case with default header values.
 
 forbidden
 */
@@ -137,7 +139,7 @@ func NewUpdateMembershipNotFound() *UpdateMembershipNotFound {
 	return &UpdateMembershipNotFound{}
 }
 
-/* UpdateMembershipNotFound describes a response with status code 404, with default header values.
+/*UpdateMembershipNotFound handles this case with default header values.
 
 not found
 */
@@ -158,7 +160,7 @@ func NewUpdateMembershipUnprocessableEntity() *UpdateMembershipUnprocessableEnti
 	return &UpdateMembershipUnprocessableEntity{}
 }
 
-/* UpdateMembershipUnprocessableEntity describes a response with status code 422, with default header values.
+/*UpdateMembershipUnprocessableEntity handles this case with default header values.
 
 unprocessable entity
 */

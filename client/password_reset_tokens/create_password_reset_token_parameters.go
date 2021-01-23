@@ -16,73 +16,59 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewCreatePasswordResetTokenParams creates a new CreatePasswordResetTokenParams object,
-// with the default timeout for this client.
-//
-// Default values are not hydrated, since defaults are normally applied by the API server side.
-//
-// To enforce default values in parameter, use SetDefaults or WithDefaults.
+// NewCreatePasswordResetTokenParams creates a new CreatePasswordResetTokenParams object
+// with the default values initialized.
 func NewCreatePasswordResetTokenParams() *CreatePasswordResetTokenParams {
+	var ()
 	return &CreatePasswordResetTokenParams{
+
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewCreatePasswordResetTokenParamsWithTimeout creates a new CreatePasswordResetTokenParams object
-// with the ability to set a timeout on a request.
+// with the default values initialized, and the ability to set a timeout on a request
 func NewCreatePasswordResetTokenParamsWithTimeout(timeout time.Duration) *CreatePasswordResetTokenParams {
+	var ()
 	return &CreatePasswordResetTokenParams{
+
 		timeout: timeout,
 	}
 }
 
 // NewCreatePasswordResetTokenParamsWithContext creates a new CreatePasswordResetTokenParams object
-// with the ability to set a context for a request.
+// with the default values initialized, and the ability to set a context for a request
 func NewCreatePasswordResetTokenParamsWithContext(ctx context.Context) *CreatePasswordResetTokenParams {
+	var ()
 	return &CreatePasswordResetTokenParams{
+
 		Context: ctx,
 	}
 }
 
 // NewCreatePasswordResetTokenParamsWithHTTPClient creates a new CreatePasswordResetTokenParams object
-// with the ability to set a custom HTTPClient for a request.
+// with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewCreatePasswordResetTokenParamsWithHTTPClient(client *http.Client) *CreatePasswordResetTokenParams {
+	var ()
 	return &CreatePasswordResetTokenParams{
 		HTTPClient: client,
 	}
 }
 
-/* CreatePasswordResetTokenParams contains all the parameters to send to the API endpoint
-   for the create password reset token operation.
-
-   Typically these are written to a http.Request.
+/*CreatePasswordResetTokenParams contains all the parameters to send to the API endpoint
+for the create password reset token operation typically these are written to a http.Request
 */
 type CreatePasswordResetTokenParams struct {
 
-	/* Email.
+	/*Email
+	  Email of user to create password reset token
 
-	   Email of user to create password reset token
 	*/
 	Email string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
-}
-
-// WithDefaults hydrates default values in the create password reset token params (not the query body).
-//
-// All values with no default are reset to their zero value.
-func (o *CreatePasswordResetTokenParams) WithDefaults() *CreatePasswordResetTokenParams {
-	o.SetDefaults()
-	return o
-}
-
-// SetDefaults hydrates default values in the create password reset token params (not the query body).
-//
-// All values with no default are reset to their zero value.
-func (o *CreatePasswordResetTokenParams) SetDefaults() {
-	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the create password reset token params
@@ -141,7 +127,6 @@ func (o *CreatePasswordResetTokenParams) WriteToRequest(r runtime.ClientRequest,
 	qrEmail := o.Email
 	qEmail := qrEmail
 	if qEmail != "" {
-
 		if err := r.SetQueryParam("email", qEmail); err != nil {
 			return err
 		}

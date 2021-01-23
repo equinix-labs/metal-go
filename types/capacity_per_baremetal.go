@@ -6,8 +6,6 @@ package types
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"context"
-
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
@@ -35,11 +33,6 @@ type CapacityPerBaremetal struct {
 
 // Validate validates this capacity per baremetal
 func (m *CapacityPerBaremetal) Validate(formats strfmt.Registry) error {
-	return nil
-}
-
-// ContextValidate validates this capacity per baremetal based on context it is used
-func (m *CapacityPerBaremetal) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

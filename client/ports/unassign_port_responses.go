@@ -53,6 +53,7 @@ func (o *UnassignPortReader) ReadResponse(response runtime.ClientResponse, consu
 			return nil, err
 		}
 		return nil, result
+
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -63,7 +64,7 @@ func NewUnassignPortOK() *UnassignPortOK {
 	return &UnassignPortOK{}
 }
 
-/* UnassignPortOK describes a response with status code 200, with default header values.
+/*UnassignPortOK handles this case with default header values.
 
 ok
 */
@@ -74,6 +75,7 @@ type UnassignPortOK struct {
 func (o *UnassignPortOK) Error() string {
 	return fmt.Sprintf("[POST /ports/{id}/unassign][%d] unassignPortOK  %+v", 200, o.Payload)
 }
+
 func (o *UnassignPortOK) GetPayload() *types.Port {
 	return o.Payload
 }
@@ -95,7 +97,7 @@ func NewUnassignPortUnauthorized() *UnassignPortUnauthorized {
 	return &UnassignPortUnauthorized{}
 }
 
-/* UnassignPortUnauthorized describes a response with status code 401, with default header values.
+/*UnassignPortUnauthorized handles this case with default header values.
 
 unauthorized
 */
@@ -116,7 +118,7 @@ func NewUnassignPortForbidden() *UnassignPortForbidden {
 	return &UnassignPortForbidden{}
 }
 
-/* UnassignPortForbidden describes a response with status code 403, with default header values.
+/*UnassignPortForbidden handles this case with default header values.
 
 forbidden
 */
@@ -137,7 +139,7 @@ func NewUnassignPortNotFound() *UnassignPortNotFound {
 	return &UnassignPortNotFound{}
 }
 
-/* UnassignPortNotFound describes a response with status code 404, with default header values.
+/*UnassignPortNotFound handles this case with default header values.
 
 not found
 */
@@ -158,7 +160,7 @@ func NewUnassignPortUnprocessableEntity() *UnassignPortUnprocessableEntity {
 	return &UnassignPortUnprocessableEntity{}
 }
 
-/* UnassignPortUnprocessableEntity describes a response with status code 422, with default header values.
+/*UnassignPortUnprocessableEntity handles this case with default header values.
 
 unprocessable entity
 */

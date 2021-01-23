@@ -6,8 +6,6 @@ package types
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"context"
-
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -65,6 +63,7 @@ func (m *VolumeSnapshot) Validate(formats strfmt.Registry) error {
 }
 
 func (m *VolumeSnapshot) validateCreatedAt(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.CreatedAt) { // not required
 		return nil
 	}
@@ -77,6 +76,7 @@ func (m *VolumeSnapshot) validateCreatedAt(formats strfmt.Registry) error {
 }
 
 func (m *VolumeSnapshot) validateID(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.ID) { // not required
 		return nil
 	}
@@ -89,6 +89,7 @@ func (m *VolumeSnapshot) validateID(formats strfmt.Registry) error {
 }
 
 func (m *VolumeSnapshot) validateTimestamp(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.Timestamp) { // not required
 		return nil
 	}
@@ -101,40 +102,13 @@ func (m *VolumeSnapshot) validateTimestamp(formats strfmt.Registry) error {
 }
 
 func (m *VolumeSnapshot) validateVolume(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.Volume) { // not required
 		return nil
 	}
 
 	if m.Volume != nil {
 		if err := m.Volume.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("volume")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-// ContextValidate validate this volume snapshot based on the context it is used
-func (m *VolumeSnapshot) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.contextValidateVolume(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *VolumeSnapshot) contextValidateVolume(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.Volume != nil {
-		if err := m.Volume.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("volume")
 			}

@@ -53,6 +53,7 @@ func (o *ConvertLayer3Reader) ReadResponse(response runtime.ClientResponse, cons
 			return nil, err
 		}
 		return nil, result
+
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -63,7 +64,7 @@ func NewConvertLayer3OK() *ConvertLayer3OK {
 	return &ConvertLayer3OK{}
 }
 
-/* ConvertLayer3OK describes a response with status code 200, with default header values.
+/*ConvertLayer3OK handles this case with default header values.
 
 ok
 */
@@ -74,6 +75,7 @@ type ConvertLayer3OK struct {
 func (o *ConvertLayer3OK) Error() string {
 	return fmt.Sprintf("[POST /ports/{id}/convert/layer-3][%d] convertLayer3OK  %+v", 200, o.Payload)
 }
+
 func (o *ConvertLayer3OK) GetPayload() *types.Port {
 	return o.Payload
 }
@@ -95,7 +97,7 @@ func NewConvertLayer3Unauthorized() *ConvertLayer3Unauthorized {
 	return &ConvertLayer3Unauthorized{}
 }
 
-/* ConvertLayer3Unauthorized describes a response with status code 401, with default header values.
+/*ConvertLayer3Unauthorized handles this case with default header values.
 
 unauthorized
 */
@@ -116,7 +118,7 @@ func NewConvertLayer3Forbidden() *ConvertLayer3Forbidden {
 	return &ConvertLayer3Forbidden{}
 }
 
-/* ConvertLayer3Forbidden describes a response with status code 403, with default header values.
+/*ConvertLayer3Forbidden handles this case with default header values.
 
 forbidden
 */
@@ -137,7 +139,7 @@ func NewConvertLayer3NotFound() *ConvertLayer3NotFound {
 	return &ConvertLayer3NotFound{}
 }
 
-/* ConvertLayer3NotFound describes a response with status code 404, with default header values.
+/*ConvertLayer3NotFound handles this case with default header values.
 
 not found
 */
@@ -158,7 +160,7 @@ func NewConvertLayer3UnprocessableEntity() *ConvertLayer3UnprocessableEntity {
 	return &ConvertLayer3UnprocessableEntity{}
 }
 
-/* ConvertLayer3UnprocessableEntity describes a response with status code 422, with default header values.
+/*ConvertLayer3UnprocessableEntity handles this case with default header values.
 
 unprocessable entity
 */

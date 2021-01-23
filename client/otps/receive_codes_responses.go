@@ -50,6 +50,7 @@ func (o *ReceiveCodesReader) ReadResponse(response runtime.ClientResponse, consu
 			return nil, err
 		}
 		return nil, result
+
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -60,7 +61,7 @@ func NewReceiveCodesNoContent() *ReceiveCodesNoContent {
 	return &ReceiveCodesNoContent{}
 }
 
-/* ReceiveCodesNoContent describes a response with status code 204, with default header values.
+/*ReceiveCodesNoContent handles this case with default header values.
 
 no content
 */
@@ -81,7 +82,7 @@ func NewReceiveCodesBadRequest() *ReceiveCodesBadRequest {
 	return &ReceiveCodesBadRequest{}
 }
 
-/* ReceiveCodesBadRequest describes a response with status code 400, with default header values.
+/*ReceiveCodesBadRequest handles this case with default header values.
 
 bad request
 */
@@ -102,7 +103,7 @@ func NewReceiveCodesUnauthorized() *ReceiveCodesUnauthorized {
 	return &ReceiveCodesUnauthorized{}
 }
 
-/* ReceiveCodesUnauthorized describes a response with status code 401, with default header values.
+/*ReceiveCodesUnauthorized handles this case with default header values.
 
 unauthorized
 */
@@ -123,7 +124,7 @@ func NewReceiveCodesUnprocessableEntity() *ReceiveCodesUnprocessableEntity {
 	return &ReceiveCodesUnprocessableEntity{}
 }
 
-/* ReceiveCodesUnprocessableEntity describes a response with status code 422, with default header values.
+/*ReceiveCodesUnprocessableEntity handles this case with default header values.
 
 unprocessable entity
 */
@@ -144,7 +145,7 @@ func NewReceiveCodesInternalServerError() *ReceiveCodesInternalServerError {
 	return &ReceiveCodesInternalServerError{}
 }
 
-/* ReceiveCodesInternalServerError describes a response with status code 500, with default header values.
+/*ReceiveCodesInternalServerError handles this case with default header values.
 
 internal server error
 */

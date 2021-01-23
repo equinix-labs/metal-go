@@ -47,6 +47,7 @@ func (o *FindBatchesByProjectReader) ReadResponse(response runtime.ClientRespons
 			return nil, err
 		}
 		return nil, result
+
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -57,7 +58,7 @@ func NewFindBatchesByProjectOK() *FindBatchesByProjectOK {
 	return &FindBatchesByProjectOK{}
 }
 
-/* FindBatchesByProjectOK describes a response with status code 200, with default header values.
+/*FindBatchesByProjectOK handles this case with default header values.
 
 ok
 */
@@ -68,6 +69,7 @@ type FindBatchesByProjectOK struct {
 func (o *FindBatchesByProjectOK) Error() string {
 	return fmt.Sprintf("[GET /projects/{id}/batches][%d] findBatchesByProjectOK  %+v", 200, o.Payload)
 }
+
 func (o *FindBatchesByProjectOK) GetPayload() *types.BatchesList {
 	return o.Payload
 }
@@ -89,7 +91,7 @@ func NewFindBatchesByProjectUnauthorized() *FindBatchesByProjectUnauthorized {
 	return &FindBatchesByProjectUnauthorized{}
 }
 
-/* FindBatchesByProjectUnauthorized describes a response with status code 401, with default header values.
+/*FindBatchesByProjectUnauthorized handles this case with default header values.
 
 unauthorized
 */
@@ -110,7 +112,7 @@ func NewFindBatchesByProjectForbidden() *FindBatchesByProjectForbidden {
 	return &FindBatchesByProjectForbidden{}
 }
 
-/* FindBatchesByProjectForbidden describes a response with status code 403, with default header values.
+/*FindBatchesByProjectForbidden handles this case with default header values.
 
 forbidden
 */
@@ -131,7 +133,7 @@ func NewFindBatchesByProjectNotFound() *FindBatchesByProjectNotFound {
 	return &FindBatchesByProjectNotFound{}
 }
 
-/* FindBatchesByProjectNotFound describes a response with status code 404, with default header values.
+/*FindBatchesByProjectNotFound handles this case with default header values.
 
 not found
 */

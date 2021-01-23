@@ -41,6 +41,7 @@ func (o *CreateProjectSSHKeyReader) ReadResponse(response runtime.ClientResponse
 			return nil, err
 		}
 		return nil, result
+
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -51,7 +52,7 @@ func NewCreateProjectSSHKeyCreated() *CreateProjectSSHKeyCreated {
 	return &CreateProjectSSHKeyCreated{}
 }
 
-/* CreateProjectSSHKeyCreated describes a response with status code 201, with default header values.
+/*CreateProjectSSHKeyCreated handles this case with default header values.
 
 created
 */
@@ -62,6 +63,7 @@ type CreateProjectSSHKeyCreated struct {
 func (o *CreateProjectSSHKeyCreated) Error() string {
 	return fmt.Sprintf("[POST /projects/{id}/ssh-keys][%d] createProjectSshKeyCreated  %+v", 201, o.Payload)
 }
+
 func (o *CreateProjectSSHKeyCreated) GetPayload() *types.SSHKey {
 	return o.Payload
 }
@@ -83,7 +85,7 @@ func NewCreateProjectSSHKeyUnauthorized() *CreateProjectSSHKeyUnauthorized {
 	return &CreateProjectSSHKeyUnauthorized{}
 }
 
-/* CreateProjectSSHKeyUnauthorized describes a response with status code 401, with default header values.
+/*CreateProjectSSHKeyUnauthorized handles this case with default header values.
 
 unauthorized
 */
@@ -104,7 +106,7 @@ func NewCreateProjectSSHKeyUnprocessableEntity() *CreateProjectSSHKeyUnprocessab
 	return &CreateProjectSSHKeyUnprocessableEntity{}
 }
 
-/* CreateProjectSSHKeyUnprocessableEntity describes a response with status code 422, with default header values.
+/*CreateProjectSSHKeyUnprocessableEntity handles this case with default header values.
 
 unprocessable entity
 */

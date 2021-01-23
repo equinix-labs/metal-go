@@ -41,6 +41,7 @@ func (o *FindPaymentMethodByIDReader) ReadResponse(response runtime.ClientRespon
 			return nil, err
 		}
 		return nil, result
+
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -51,7 +52,7 @@ func NewFindPaymentMethodByIDOK() *FindPaymentMethodByIDOK {
 	return &FindPaymentMethodByIDOK{}
 }
 
-/* FindPaymentMethodByIDOK describes a response with status code 200, with default header values.
+/*FindPaymentMethodByIDOK handles this case with default header values.
 
 ok
 */
@@ -62,6 +63,7 @@ type FindPaymentMethodByIDOK struct {
 func (o *FindPaymentMethodByIDOK) Error() string {
 	return fmt.Sprintf("[GET /payment-methods/{id}][%d] findPaymentMethodByIdOK  %+v", 200, o.Payload)
 }
+
 func (o *FindPaymentMethodByIDOK) GetPayload() *types.PaymentMethod {
 	return o.Payload
 }
@@ -83,7 +85,7 @@ func NewFindPaymentMethodByIDUnauthorized() *FindPaymentMethodByIDUnauthorized {
 	return &FindPaymentMethodByIDUnauthorized{}
 }
 
-/* FindPaymentMethodByIDUnauthorized describes a response with status code 401, with default header values.
+/*FindPaymentMethodByIDUnauthorized handles this case with default header values.
 
 unauthorized
 */
@@ -104,7 +106,7 @@ func NewFindPaymentMethodByIDNotFound() *FindPaymentMethodByIDNotFound {
 	return &FindPaymentMethodByIDNotFound{}
 }
 
-/* FindPaymentMethodByIDNotFound describes a response with status code 404, with default header values.
+/*FindPaymentMethodByIDNotFound handles this case with default header values.
 
 not found
 */

@@ -6,8 +6,6 @@ package types
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"context"
-
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
@@ -21,7 +19,7 @@ type VolumeUpdateInput struct {
 	BillingCycle string `json:"billing_cycle,omitempty"`
 
 	// customdata
-	Customdata string `json:"customdata,omitempty"`
+	Customdata interface{} `json:"customdata,omitempty"`
 
 	// description
 	Description string `json:"description,omitempty"`
@@ -35,11 +33,6 @@ type VolumeUpdateInput struct {
 
 // Validate validates this volume update input
 func (m *VolumeUpdateInput) Validate(formats strfmt.Registry) error {
-	return nil
-}
-
-// ContextValidate validates this volume update input based on context it is used
-func (m *VolumeUpdateInput) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

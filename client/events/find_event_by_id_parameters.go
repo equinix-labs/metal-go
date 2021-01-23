@@ -16,81 +16,64 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewFindEventByIDParams creates a new FindEventByIDParams object,
-// with the default timeout for this client.
-//
-// Default values are not hydrated, since defaults are normally applied by the API server side.
-//
-// To enforce default values in parameter, use SetDefaults or WithDefaults.
+// NewFindEventByIDParams creates a new FindEventByIDParams object
+// with the default values initialized.
 func NewFindEventByIDParams() *FindEventByIDParams {
+	var ()
 	return &FindEventByIDParams{
+
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewFindEventByIDParamsWithTimeout creates a new FindEventByIDParams object
-// with the ability to set a timeout on a request.
+// with the default values initialized, and the ability to set a timeout on a request
 func NewFindEventByIDParamsWithTimeout(timeout time.Duration) *FindEventByIDParams {
+	var ()
 	return &FindEventByIDParams{
+
 		timeout: timeout,
 	}
 }
 
 // NewFindEventByIDParamsWithContext creates a new FindEventByIDParams object
-// with the ability to set a context for a request.
+// with the default values initialized, and the ability to set a context for a request
 func NewFindEventByIDParamsWithContext(ctx context.Context) *FindEventByIDParams {
+	var ()
 	return &FindEventByIDParams{
+
 		Context: ctx,
 	}
 }
 
 // NewFindEventByIDParamsWithHTTPClient creates a new FindEventByIDParams object
-// with the ability to set a custom HTTPClient for a request.
+// with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewFindEventByIDParamsWithHTTPClient(client *http.Client) *FindEventByIDParams {
+	var ()
 	return &FindEventByIDParams{
 		HTTPClient: client,
 	}
 }
 
-/* FindEventByIDParams contains all the parameters to send to the API endpoint
-   for the find event by Id operation.
-
-   Typically these are written to a http.Request.
+/*FindEventByIDParams contains all the parameters to send to the API endpoint
+for the find event by Id operation typically these are written to a http.Request
 */
 type FindEventByIDParams struct {
 
-	/* ID.
+	/*ID
+	  Event UUID
 
-	   Event UUID
-
-	   Format: uuid
 	*/
 	ID strfmt.UUID
+	/*Include
+	  related attributes to include
 
-	/* Include.
-
-	   related attributes to include
 	*/
 	Include *string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
-}
-
-// WithDefaults hydrates default values in the find event by Id params (not the query body).
-//
-// All values with no default are reset to their zero value.
-func (o *FindEventByIDParams) WithDefaults() *FindEventByIDParams {
-	o.SetDefaults()
-	return o
-}
-
-// SetDefaults hydrates default values in the find event by Id params (not the query body).
-//
-// All values with no default are reset to their zero value.
-func (o *FindEventByIDParams) SetDefaults() {
-	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the find event by Id params
@@ -165,17 +148,16 @@ func (o *FindEventByIDParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 
 		// query param include
 		var qrInclude string
-
 		if o.Include != nil {
 			qrInclude = *o.Include
 		}
 		qInclude := qrInclude
 		if qInclude != "" {
-
 			if err := r.SetQueryParam("include", qInclude); err != nil {
 				return err
 			}
 		}
+
 	}
 
 	if len(res) > 0 {

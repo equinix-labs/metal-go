@@ -41,6 +41,7 @@ func (o *ListConnectionPortsReader) ReadResponse(response runtime.ClientResponse
 			return nil, err
 		}
 		return nil, result
+
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -51,7 +52,7 @@ func NewListConnectionPortsOK() *ListConnectionPortsOK {
 	return &ListConnectionPortsOK{}
 }
 
-/* ListConnectionPortsOK describes a response with status code 200, with default header values.
+/*ListConnectionPortsOK handles this case with default header values.
 
 ok
 */
@@ -62,6 +63,7 @@ type ListConnectionPortsOK struct {
 func (o *ListConnectionPortsOK) Error() string {
 	return fmt.Sprintf("[GET /connections/{connection_id}/ports][%d] listConnectionPortsOK  %+v", 200, o.Payload)
 }
+
 func (o *ListConnectionPortsOK) GetPayload() *types.InterconnectionPortList {
 	return o.Payload
 }
@@ -83,7 +85,7 @@ func NewListConnectionPortsForbidden() *ListConnectionPortsForbidden {
 	return &ListConnectionPortsForbidden{}
 }
 
-/* ListConnectionPortsForbidden describes a response with status code 403, with default header values.
+/*ListConnectionPortsForbidden handles this case with default header values.
 
 forbidden
 */
@@ -104,7 +106,7 @@ func NewListConnectionPortsNotFound() *ListConnectionPortsNotFound {
 	return &ListConnectionPortsNotFound{}
 }
 
-/* ListConnectionPortsNotFound describes a response with status code 404, with default header values.
+/*ListConnectionPortsNotFound handles this case with default header values.
 
 not found
 */

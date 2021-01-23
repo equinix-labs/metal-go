@@ -6,7 +6,6 @@ package types
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"context"
 	"strconv"
 
 	"github.com/go-openapi/errors"
@@ -71,6 +70,7 @@ func (m *Plan) Validate(formats strfmt.Registry) error {
 }
 
 func (m *Plan) validateAvailableIn(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.AvailableIn) { // not required
 		return nil
 	}
@@ -95,44 +95,13 @@ func (m *Plan) validateAvailableIn(formats strfmt.Registry) error {
 }
 
 func (m *Plan) validateID(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.ID) { // not required
 		return nil
 	}
 
 	if err := validate.FormatOf("id", "body", "uuid", m.ID.String(), formats); err != nil {
 		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validate this plan based on the context it is used
-func (m *Plan) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.contextValidateAvailableIn(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *Plan) contextValidateAvailableIn(ctx context.Context, formats strfmt.Registry) error {
-
-	for i := 0; i < len(m.AvailableIn); i++ {
-
-		if m.AvailableIn[i] != nil {
-			if err := m.AvailableIn[i].ContextValidate(ctx, formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("available_in" + "." + strconv.Itoa(i))
-				}
-				return err
-			}
-		}
-
 	}
 
 	return nil

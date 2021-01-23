@@ -6,7 +6,6 @@ package types
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"context"
 	"strconv"
 
 	"github.com/go-openapi/errors"
@@ -20,15 +19,12 @@ import (
 type BGPNeighborData struct {
 
 	// Address Family for IP Address
-	// Example: 4 or 6
 	AddressFamily int64 `json:"address_family,omitempty"`
 
 	// The customer's ASN. In a local BGP deployment, this will be an internal ASN used to route within the data center. For a global BGP deployment, this will be the your own ASN, configured when you set up BGP for your project.
-	// Example: 65000
 	CustomerAs int64 `json:"customer_as,omitempty"`
 
 	// The device's IP address. For an IPv4 BGP session, this is typically the private bond0 address for the device.
-	// Example: 10.32.16.1 (IPv4) or 2604:1380:4111:2700::1 (IPv6)
 	CustomerIP string `json:"customer_ip,omitempty"`
 
 	// True if an MD5 password is configured for the project.
@@ -41,11 +37,9 @@ type BGPNeighborData struct {
 	Multihop bool `json:"multihop,omitempty"`
 
 	// The Peer ASN to use when configuring BGP on your device.
-	// Example: 65530
 	PeerAs int64 `json:"peer_as,omitempty"`
 
 	// A list of one or more IP addresses to use for the Peer IP section of your BGP configuration. For non-multihop sessions, this will typically be a single gateway address for the device. For multihop sessions, it will be a list of IPs.
-	// Example: [\"10.32.16.0\"] or [\"169.254.255.1\", \"169.254.255.2\"]
 	PeerIps []string `json:"peer_ips"`
 
 	// A list of project subnets
@@ -74,6 +68,7 @@ func (m *BGPNeighborData) Validate(formats strfmt.Registry) error {
 }
 
 func (m *BGPNeighborData) validateRoutesIn(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.RoutesIn) { // not required
 		return nil
 	}
@@ -98,6 +93,7 @@ func (m *BGPNeighborData) validateRoutesIn(formats strfmt.Registry) error {
 }
 
 func (m *BGPNeighborData) validateRoutesOut(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.RoutesOut) { // not required
 		return nil
 	}
@@ -109,60 +105,6 @@ func (m *BGPNeighborData) validateRoutesOut(formats strfmt.Registry) error {
 
 		if m.RoutesOut[i] != nil {
 			if err := m.RoutesOut[i].Validate(formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("routes_out" + "." + strconv.Itoa(i))
-				}
-				return err
-			}
-		}
-
-	}
-
-	return nil
-}
-
-// ContextValidate validate this Bgp neighbor data based on the context it is used
-func (m *BGPNeighborData) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.contextValidateRoutesIn(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateRoutesOut(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *BGPNeighborData) contextValidateRoutesIn(ctx context.Context, formats strfmt.Registry) error {
-
-	for i := 0; i < len(m.RoutesIn); i++ {
-
-		if m.RoutesIn[i] != nil {
-			if err := m.RoutesIn[i].ContextValidate(ctx, formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("routes_in" + "." + strconv.Itoa(i))
-				}
-				return err
-			}
-		}
-
-	}
-
-	return nil
-}
-
-func (m *BGPNeighborData) contextValidateRoutesOut(ctx context.Context, formats strfmt.Registry) error {
-
-	for i := 0; i < len(m.RoutesOut); i++ {
-
-		if m.RoutesOut[i] != nil {
-			if err := m.RoutesOut[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("routes_out" + "." + strconv.Itoa(i))
 				}
@@ -202,17 +144,11 @@ type BGPNeighborDataRoutesInItems0 struct {
 	Exact bool `json:"exact,omitempty"`
 
 	// A project network
-	// Example: 10.32.16.0/31
 	Route string `json:"route,omitempty"`
 }
 
 // Validate validates this BGP neighbor data routes in items0
 func (m *BGPNeighborDataRoutesInItems0) Validate(formats strfmt.Registry) error {
-	return nil
-}
-
-// ContextValidate validates this BGP neighbor data routes in items0 based on context it is used
-func (m *BGPNeighborDataRoutesInItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 
@@ -243,17 +179,11 @@ type BGPNeighborDataRoutesOutItems0 struct {
 	Exact bool `json:"exact,omitempty"`
 
 	// route
-	// Example: 0.0.0.0/0
 	Route string `json:"route,omitempty"`
 }
 
 // Validate validates this BGP neighbor data routes out items0
 func (m *BGPNeighborDataRoutesOutItems0) Validate(formats strfmt.Registry) error {
-	return nil
-}
-
-// ContextValidate validates this BGP neighbor data routes out items0 based on context it is used
-func (m *BGPNeighborDataRoutesOutItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

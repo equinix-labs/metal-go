@@ -44,6 +44,7 @@ func (o *DeleteLicenseReader) ReadResponse(response runtime.ClientResponse, cons
 			return nil, err
 		}
 		return nil, result
+
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -54,7 +55,7 @@ func NewDeleteLicenseNoContent() *DeleteLicenseNoContent {
 	return &DeleteLicenseNoContent{}
 }
 
-/* DeleteLicenseNoContent describes a response with status code 204, with default header values.
+/*DeleteLicenseNoContent handles this case with default header values.
 
 no content
 */
@@ -75,7 +76,7 @@ func NewDeleteLicenseUnauthorized() *DeleteLicenseUnauthorized {
 	return &DeleteLicenseUnauthorized{}
 }
 
-/* DeleteLicenseUnauthorized describes a response with status code 401, with default header values.
+/*DeleteLicenseUnauthorized handles this case with default header values.
 
 unauthorized
 */
@@ -96,7 +97,7 @@ func NewDeleteLicenseForbidden() *DeleteLicenseForbidden {
 	return &DeleteLicenseForbidden{}
 }
 
-/* DeleteLicenseForbidden describes a response with status code 403, with default header values.
+/*DeleteLicenseForbidden handles this case with default header values.
 
 forbidden
 */
@@ -117,7 +118,7 @@ func NewDeleteLicenseNotFound() *DeleteLicenseNotFound {
 	return &DeleteLicenseNotFound{}
 }
 
-/* DeleteLicenseNotFound describes a response with status code 404, with default header values.
+/*DeleteLicenseNotFound handles this case with default header values.
 
 not found
 */

@@ -17,85 +17,69 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// NewFindEventsParams creates a new FindEventsParams object,
-// with the default timeout for this client.
-//
-// Default values are not hydrated, since defaults are normally applied by the API server side.
-//
-// To enforce default values in parameter, use SetDefaults or WithDefaults.
+// NewFindEventsParams creates a new FindEventsParams object
+// with the default values initialized.
 func NewFindEventsParams() *FindEventsParams {
+	var ()
 	return &FindEventsParams{
+
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewFindEventsParamsWithTimeout creates a new FindEventsParams object
-// with the ability to set a timeout on a request.
+// with the default values initialized, and the ability to set a timeout on a request
 func NewFindEventsParamsWithTimeout(timeout time.Duration) *FindEventsParams {
+	var ()
 	return &FindEventsParams{
+
 		timeout: timeout,
 	}
 }
 
 // NewFindEventsParamsWithContext creates a new FindEventsParams object
-// with the ability to set a context for a request.
+// with the default values initialized, and the ability to set a context for a request
 func NewFindEventsParamsWithContext(ctx context.Context) *FindEventsParams {
+	var ()
 	return &FindEventsParams{
+
 		Context: ctx,
 	}
 }
 
 // NewFindEventsParamsWithHTTPClient creates a new FindEventsParams object
-// with the ability to set a custom HTTPClient for a request.
+// with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewFindEventsParamsWithHTTPClient(client *http.Client) *FindEventsParams {
+	var ()
 	return &FindEventsParams{
 		HTTPClient: client,
 	}
 }
 
-/* FindEventsParams contains all the parameters to send to the API endpoint
-   for the find events operation.
-
-   Typically these are written to a http.Request.
+/*FindEventsParams contains all the parameters to send to the API endpoint
+for the find events operation typically these are written to a http.Request
 */
 type FindEventsParams struct {
 
-	/* Include.
+	/*Include
+	  related attributes to include
 
-	   related attributes to include
 	*/
 	Include *string
+	/*Page
+	  page to display, default to 1, max 100_000
 
-	/* Page.
-
-	   page to display, default to 1, max 100_000
 	*/
 	Page *int64
+	/*PerPage
+	  items per page, default to 10, max 1_000
 
-	/* PerPage.
-
-	   items per page, default to 10, max 1_000
 	*/
 	PerPage *int64
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
-}
-
-// WithDefaults hydrates default values in the find events params (not the query body).
-//
-// All values with no default are reset to their zero value.
-func (o *FindEventsParams) WithDefaults() *FindEventsParams {
-	o.SetDefaults()
-	return o
-}
-
-// SetDefaults hydrates default values in the find events params (not the query body).
-//
-// All values with no default are reset to their zero value.
-func (o *FindEventsParams) SetDefaults() {
-	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the find events params
@@ -176,51 +160,48 @@ func (o *FindEventsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Re
 
 		// query param include
 		var qrInclude string
-
 		if o.Include != nil {
 			qrInclude = *o.Include
 		}
 		qInclude := qrInclude
 		if qInclude != "" {
-
 			if err := r.SetQueryParam("include", qInclude); err != nil {
 				return err
 			}
 		}
+
 	}
 
 	if o.Page != nil {
 
 		// query param page
 		var qrPage int64
-
 		if o.Page != nil {
 			qrPage = *o.Page
 		}
 		qPage := swag.FormatInt64(qrPage)
 		if qPage != "" {
-
 			if err := r.SetQueryParam("page", qPage); err != nil {
 				return err
 			}
 		}
+
 	}
 
 	if o.PerPage != nil {
 
 		// query param per_page
 		var qrPerPage int64
-
 		if o.PerPage != nil {
 			qrPerPage = *o.PerPage
 		}
 		qPerPage := swag.FormatInt64(qrPerPage)
 		if qPerPage != "" {
-
 			if err := r.SetQueryParam("per_page", qPerPage); err != nil {
 				return err
 			}
 		}
+
 	}
 
 	if len(res) > 0 {

@@ -32,6 +32,7 @@ func (o *EnableTfaAppReader) ReadResponse(response runtime.ClientResponse, consu
 			return nil, err
 		}
 		return nil, result
+
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -42,7 +43,7 @@ func NewEnableTfaAppOK() *EnableTfaAppOK {
 	return &EnableTfaAppOK{}
 }
 
-/* EnableTfaAppOK describes a response with status code 200, with default header values.
+/*EnableTfaAppOK handles this case with default header values.
 
 ok
 */
@@ -63,7 +64,7 @@ func NewEnableTfaAppUnauthorized() *EnableTfaAppUnauthorized {
 	return &EnableTfaAppUnauthorized{}
 }
 
-/* EnableTfaAppUnauthorized describes a response with status code 401, with default header values.
+/*EnableTfaAppUnauthorized handles this case with default header values.
 
 unauthorized
 */

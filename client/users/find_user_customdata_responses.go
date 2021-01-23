@@ -44,6 +44,7 @@ func (o *FindUserCustomdataReader) ReadResponse(response runtime.ClientResponse,
 			return nil, err
 		}
 		return nil, result
+
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -54,7 +55,7 @@ func NewFindUserCustomdataOK() *FindUserCustomdataOK {
 	return &FindUserCustomdataOK{}
 }
 
-/* FindUserCustomdataOK describes a response with status code 200, with default header values.
+/*FindUserCustomdataOK handles this case with default header values.
 
 ok
 */
@@ -75,7 +76,7 @@ func NewFindUserCustomdataUnauthorized() *FindUserCustomdataUnauthorized {
 	return &FindUserCustomdataUnauthorized{}
 }
 
-/* FindUserCustomdataUnauthorized describes a response with status code 401, with default header values.
+/*FindUserCustomdataUnauthorized handles this case with default header values.
 
 unauthorized
 */
@@ -96,7 +97,7 @@ func NewFindUserCustomdataForbidden() *FindUserCustomdataForbidden {
 	return &FindUserCustomdataForbidden{}
 }
 
-/* FindUserCustomdataForbidden describes a response with status code 403, with default header values.
+/*FindUserCustomdataForbidden handles this case with default header values.
 
 forbidden
 */
@@ -117,7 +118,7 @@ func NewFindUserCustomdataNotFound() *FindUserCustomdataNotFound {
 	return &FindUserCustomdataNotFound{}
 }
 
-/* FindUserCustomdataNotFound describes a response with status code 404, with default header values.
+/*FindUserCustomdataNotFound handles this case with default header values.
 
 not found
 */

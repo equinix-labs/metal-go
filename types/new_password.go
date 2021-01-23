@@ -6,8 +6,6 @@ package types
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"context"
-
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
@@ -23,11 +21,6 @@ type NewPassword struct {
 
 // Validate validates this new password
 func (m *NewPassword) Validate(formats strfmt.Registry) error {
-	return nil
-}
-
-// ContextValidate validates this new password based on context it is used
-func (m *NewPassword) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

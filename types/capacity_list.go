@@ -6,8 +6,6 @@ package types
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"context"
-
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -37,40 +35,13 @@ func (m *CapacityList) Validate(formats strfmt.Registry) error {
 }
 
 func (m *CapacityList) validateCapacity(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.Capacity) { // not required
 		return nil
 	}
 
 	if m.Capacity != nil {
 		if err := m.Capacity.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("capacity")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-// ContextValidate validate this capacity list based on the context it is used
-func (m *CapacityList) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.contextValidateCapacity(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *CapacityList) contextValidateCapacity(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.Capacity != nil {
-		if err := m.Capacity.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("capacity")
 			}

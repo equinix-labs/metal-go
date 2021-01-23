@@ -47,6 +47,7 @@ func (o *FindRecoveryCodesReader) ReadResponse(response runtime.ClientResponse, 
 			return nil, err
 		}
 		return nil, result
+
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -57,7 +58,7 @@ func NewFindRecoveryCodesOK() *FindRecoveryCodesOK {
 	return &FindRecoveryCodesOK{}
 }
 
-/* FindRecoveryCodesOK describes a response with status code 200, with default header values.
+/*FindRecoveryCodesOK handles this case with default header values.
 
 ok
 */
@@ -68,6 +69,7 @@ type FindRecoveryCodesOK struct {
 func (o *FindRecoveryCodesOK) Error() string {
 	return fmt.Sprintf("[GET /user/otp/recovery-codes][%d] findRecoveryCodesOK  %+v", 200, o.Payload)
 }
+
 func (o *FindRecoveryCodesOK) GetPayload() *types.RecoveryCodeList {
 	return o.Payload
 }
@@ -89,7 +91,7 @@ func NewFindRecoveryCodesUnauthorized() *FindRecoveryCodesUnauthorized {
 	return &FindRecoveryCodesUnauthorized{}
 }
 
-/* FindRecoveryCodesUnauthorized describes a response with status code 401, with default header values.
+/*FindRecoveryCodesUnauthorized handles this case with default header values.
 
 unauthorized
 */
@@ -110,7 +112,7 @@ func NewFindRecoveryCodesNotFound() *FindRecoveryCodesNotFound {
 	return &FindRecoveryCodesNotFound{}
 }
 
-/* FindRecoveryCodesNotFound describes a response with status code 404, with default header values.
+/*FindRecoveryCodesNotFound handles this case with default header values.
 
 not found
 */
@@ -131,7 +133,7 @@ func NewFindRecoveryCodesUnprocessableEntity() *FindRecoveryCodesUnprocessableEn
 	return &FindRecoveryCodesUnprocessableEntity{}
 }
 
-/* FindRecoveryCodesUnprocessableEntity describes a response with status code 422, with default header values.
+/*FindRecoveryCodesUnprocessableEntity handles this case with default header values.
 
 unprocessable entity
 */

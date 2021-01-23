@@ -53,6 +53,7 @@ func (o *CreateVolumeSnapshotPolicyReader) ReadResponse(response runtime.ClientR
 			return nil, err
 		}
 		return nil, result
+
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -63,7 +64,7 @@ func NewCreateVolumeSnapshotPolicyCreated() *CreateVolumeSnapshotPolicyCreated {
 	return &CreateVolumeSnapshotPolicyCreated{}
 }
 
-/* CreateVolumeSnapshotPolicyCreated describes a response with status code 201, with default header values.
+/*CreateVolumeSnapshotPolicyCreated handles this case with default header values.
 
 created
 */
@@ -74,6 +75,7 @@ type CreateVolumeSnapshotPolicyCreated struct {
 func (o *CreateVolumeSnapshotPolicyCreated) Error() string {
 	return fmt.Sprintf("[POST /storage/{id}/snapshot-policies][%d] createVolumeSnapshotPolicyCreated  %+v", 201, o.Payload)
 }
+
 func (o *CreateVolumeSnapshotPolicyCreated) GetPayload() *types.SnapshotPolicy {
 	return o.Payload
 }
@@ -95,7 +97,7 @@ func NewCreateVolumeSnapshotPolicyUnauthorized() *CreateVolumeSnapshotPolicyUnau
 	return &CreateVolumeSnapshotPolicyUnauthorized{}
 }
 
-/* CreateVolumeSnapshotPolicyUnauthorized describes a response with status code 401, with default header values.
+/*CreateVolumeSnapshotPolicyUnauthorized handles this case with default header values.
 
 unauthorized
 */
@@ -116,7 +118,7 @@ func NewCreateVolumeSnapshotPolicyForbidden() *CreateVolumeSnapshotPolicyForbidd
 	return &CreateVolumeSnapshotPolicyForbidden{}
 }
 
-/* CreateVolumeSnapshotPolicyForbidden describes a response with status code 403, with default header values.
+/*CreateVolumeSnapshotPolicyForbidden handles this case with default header values.
 
 forbidden
 */
@@ -137,7 +139,7 @@ func NewCreateVolumeSnapshotPolicyNotFound() *CreateVolumeSnapshotPolicyNotFound
 	return &CreateVolumeSnapshotPolicyNotFound{}
 }
 
-/* CreateVolumeSnapshotPolicyNotFound describes a response with status code 404, with default header values.
+/*CreateVolumeSnapshotPolicyNotFound handles this case with default header values.
 
 not found
 */
@@ -158,7 +160,7 @@ func NewCreateVolumeSnapshotPolicyUnprocessableEntity() *CreateVolumeSnapshotPol
 	return &CreateVolumeSnapshotPolicyUnprocessableEntity{}
 }
 
-/* CreateVolumeSnapshotPolicyUnprocessableEntity describes a response with status code 422, with default header values.
+/*CreateVolumeSnapshotPolicyUnprocessableEntity handles this case with default header values.
 
 unprocessable entity
 */

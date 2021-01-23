@@ -47,6 +47,7 @@ func (o *FindDeviceEventsReader) ReadResponse(response runtime.ClientResponse, c
 			return nil, err
 		}
 		return nil, result
+
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -57,7 +58,7 @@ func NewFindDeviceEventsOK() *FindDeviceEventsOK {
 	return &FindDeviceEventsOK{}
 }
 
-/* FindDeviceEventsOK describes a response with status code 200, with default header values.
+/*FindDeviceEventsOK handles this case with default header values.
 
 ok
 */
@@ -68,6 +69,7 @@ type FindDeviceEventsOK struct {
 func (o *FindDeviceEventsOK) Error() string {
 	return fmt.Sprintf("[GET /devices/{id}/events][%d] findDeviceEventsOK  %+v", 200, o.Payload)
 }
+
 func (o *FindDeviceEventsOK) GetPayload() *types.EventList {
 	return o.Payload
 }
@@ -89,7 +91,7 @@ func NewFindDeviceEventsUnauthorized() *FindDeviceEventsUnauthorized {
 	return &FindDeviceEventsUnauthorized{}
 }
 
-/* FindDeviceEventsUnauthorized describes a response with status code 401, with default header values.
+/*FindDeviceEventsUnauthorized handles this case with default header values.
 
 unauthorized
 */
@@ -110,7 +112,7 @@ func NewFindDeviceEventsForbidden() *FindDeviceEventsForbidden {
 	return &FindDeviceEventsForbidden{}
 }
 
-/* FindDeviceEventsForbidden describes a response with status code 403, with default header values.
+/*FindDeviceEventsForbidden handles this case with default header values.
 
 forbidden
 */
@@ -131,7 +133,7 @@ func NewFindDeviceEventsNotFound() *FindDeviceEventsNotFound {
 	return &FindDeviceEventsNotFound{}
 }
 
-/* FindDeviceEventsNotFound describes a response with status code 404, with default header values.
+/*FindDeviceEventsNotFound handles this case with default header values.
 
 not found
 */

@@ -6,8 +6,6 @@ package types
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"context"
-
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -23,7 +21,7 @@ type IPReservationRequestInput struct {
 	Comments string `json:"comments,omitempty"`
 
 	// customdata
-	Customdata string `json:"customdata,omitempty"`
+	Customdata interface{} `json:"customdata,omitempty"`
 
 	// details
 	Details string `json:"details,omitempty"`
@@ -79,11 +77,6 @@ func (m *IPReservationRequestInput) validateType(formats strfmt.Registry) error 
 		return err
 	}
 
-	return nil
-}
-
-// ContextValidate validates this IP reservation request input based on context it is used
-func (m *IPReservationRequestInput) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

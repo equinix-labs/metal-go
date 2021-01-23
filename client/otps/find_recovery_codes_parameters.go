@@ -16,66 +16,52 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewFindRecoveryCodesParams creates a new FindRecoveryCodesParams object,
-// with the default timeout for this client.
-//
-// Default values are not hydrated, since defaults are normally applied by the API server side.
-//
-// To enforce default values in parameter, use SetDefaults or WithDefaults.
+// NewFindRecoveryCodesParams creates a new FindRecoveryCodesParams object
+// with the default values initialized.
 func NewFindRecoveryCodesParams() *FindRecoveryCodesParams {
+
 	return &FindRecoveryCodesParams{
+
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewFindRecoveryCodesParamsWithTimeout creates a new FindRecoveryCodesParams object
-// with the ability to set a timeout on a request.
+// with the default values initialized, and the ability to set a timeout on a request
 func NewFindRecoveryCodesParamsWithTimeout(timeout time.Duration) *FindRecoveryCodesParams {
+
 	return &FindRecoveryCodesParams{
+
 		timeout: timeout,
 	}
 }
 
 // NewFindRecoveryCodesParamsWithContext creates a new FindRecoveryCodesParams object
-// with the ability to set a context for a request.
+// with the default values initialized, and the ability to set a context for a request
 func NewFindRecoveryCodesParamsWithContext(ctx context.Context) *FindRecoveryCodesParams {
+
 	return &FindRecoveryCodesParams{
+
 		Context: ctx,
 	}
 }
 
 // NewFindRecoveryCodesParamsWithHTTPClient creates a new FindRecoveryCodesParams object
-// with the ability to set a custom HTTPClient for a request.
+// with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewFindRecoveryCodesParamsWithHTTPClient(client *http.Client) *FindRecoveryCodesParams {
+
 	return &FindRecoveryCodesParams{
 		HTTPClient: client,
 	}
 }
 
-/* FindRecoveryCodesParams contains all the parameters to send to the API endpoint
-   for the find recovery codes operation.
-
-   Typically these are written to a http.Request.
+/*FindRecoveryCodesParams contains all the parameters to send to the API endpoint
+for the find recovery codes operation typically these are written to a http.Request
 */
 type FindRecoveryCodesParams struct {
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
-}
-
-// WithDefaults hydrates default values in the find recovery codes params (not the query body).
-//
-// All values with no default are reset to their zero value.
-func (o *FindRecoveryCodesParams) WithDefaults() *FindRecoveryCodesParams {
-	o.SetDefaults()
-	return o
-}
-
-// SetDefaults hydrates default values in the find recovery codes params (not the query body).
-//
-// All values with no default are reset to their zero value.
-func (o *FindRecoveryCodesParams) SetDefaults() {
-	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the find recovery codes params

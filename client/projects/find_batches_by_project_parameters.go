@@ -16,81 +16,64 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewFindBatchesByProjectParams creates a new FindBatchesByProjectParams object,
-// with the default timeout for this client.
-//
-// Default values are not hydrated, since defaults are normally applied by the API server side.
-//
-// To enforce default values in parameter, use SetDefaults or WithDefaults.
+// NewFindBatchesByProjectParams creates a new FindBatchesByProjectParams object
+// with the default values initialized.
 func NewFindBatchesByProjectParams() *FindBatchesByProjectParams {
+	var ()
 	return &FindBatchesByProjectParams{
+
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewFindBatchesByProjectParamsWithTimeout creates a new FindBatchesByProjectParams object
-// with the ability to set a timeout on a request.
+// with the default values initialized, and the ability to set a timeout on a request
 func NewFindBatchesByProjectParamsWithTimeout(timeout time.Duration) *FindBatchesByProjectParams {
+	var ()
 	return &FindBatchesByProjectParams{
+
 		timeout: timeout,
 	}
 }
 
 // NewFindBatchesByProjectParamsWithContext creates a new FindBatchesByProjectParams object
-// with the ability to set a context for a request.
+// with the default values initialized, and the ability to set a context for a request
 func NewFindBatchesByProjectParamsWithContext(ctx context.Context) *FindBatchesByProjectParams {
+	var ()
 	return &FindBatchesByProjectParams{
+
 		Context: ctx,
 	}
 }
 
 // NewFindBatchesByProjectParamsWithHTTPClient creates a new FindBatchesByProjectParams object
-// with the ability to set a custom HTTPClient for a request.
+// with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewFindBatchesByProjectParamsWithHTTPClient(client *http.Client) *FindBatchesByProjectParams {
+	var ()
 	return &FindBatchesByProjectParams{
 		HTTPClient: client,
 	}
 }
 
-/* FindBatchesByProjectParams contains all the parameters to send to the API endpoint
-   for the find batches by project operation.
-
-   Typically these are written to a http.Request.
+/*FindBatchesByProjectParams contains all the parameters to send to the API endpoint
+for the find batches by project operation typically these are written to a http.Request
 */
 type FindBatchesByProjectParams struct {
 
-	/* ID.
+	/*ID
+	  Project UUID
 
-	   Project UUID
-
-	   Format: uuid
 	*/
 	ID strfmt.UUID
+	/*Include
+	  related attributes to include
 
-	/* Include.
-
-	   related attributes to include
 	*/
 	Include *string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
-}
-
-// WithDefaults hydrates default values in the find batches by project params (not the query body).
-//
-// All values with no default are reset to their zero value.
-func (o *FindBatchesByProjectParams) WithDefaults() *FindBatchesByProjectParams {
-	o.SetDefaults()
-	return o
-}
-
-// SetDefaults hydrates default values in the find batches by project params (not the query body).
-//
-// All values with no default are reset to their zero value.
-func (o *FindBatchesByProjectParams) SetDefaults() {
-	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the find batches by project params
@@ -165,17 +148,16 @@ func (o *FindBatchesByProjectParams) WriteToRequest(r runtime.ClientRequest, reg
 
 		// query param include
 		var qrInclude string
-
 		if o.Include != nil {
 			qrInclude = *o.Include
 		}
 		qInclude := qrInclude
 		if qInclude != "" {
-
 			if err := r.SetQueryParam("include", qInclude); err != nil {
 				return err
 			}
 		}
+
 	}
 
 	if len(res) > 0 {

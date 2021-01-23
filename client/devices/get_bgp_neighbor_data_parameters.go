@@ -16,75 +16,59 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewGetBGPNeighborDataParams creates a new GetBGPNeighborDataParams object,
-// with the default timeout for this client.
-//
-// Default values are not hydrated, since defaults are normally applied by the API server side.
-//
-// To enforce default values in parameter, use SetDefaults or WithDefaults.
+// NewGetBGPNeighborDataParams creates a new GetBGPNeighborDataParams object
+// with the default values initialized.
 func NewGetBGPNeighborDataParams() *GetBGPNeighborDataParams {
+	var ()
 	return &GetBGPNeighborDataParams{
+
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewGetBGPNeighborDataParamsWithTimeout creates a new GetBGPNeighborDataParams object
-// with the ability to set a timeout on a request.
+// with the default values initialized, and the ability to set a timeout on a request
 func NewGetBGPNeighborDataParamsWithTimeout(timeout time.Duration) *GetBGPNeighborDataParams {
+	var ()
 	return &GetBGPNeighborDataParams{
+
 		timeout: timeout,
 	}
 }
 
 // NewGetBGPNeighborDataParamsWithContext creates a new GetBGPNeighborDataParams object
-// with the ability to set a context for a request.
+// with the default values initialized, and the ability to set a context for a request
 func NewGetBGPNeighborDataParamsWithContext(ctx context.Context) *GetBGPNeighborDataParams {
+	var ()
 	return &GetBGPNeighborDataParams{
+
 		Context: ctx,
 	}
 }
 
 // NewGetBGPNeighborDataParamsWithHTTPClient creates a new GetBGPNeighborDataParams object
-// with the ability to set a custom HTTPClient for a request.
+// with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewGetBGPNeighborDataParamsWithHTTPClient(client *http.Client) *GetBGPNeighborDataParams {
+	var ()
 	return &GetBGPNeighborDataParams{
 		HTTPClient: client,
 	}
 }
 
-/* GetBGPNeighborDataParams contains all the parameters to send to the API endpoint
-   for the get Bgp neighbor data operation.
-
-   Typically these are written to a http.Request.
+/*GetBGPNeighborDataParams contains all the parameters to send to the API endpoint
+for the get Bgp neighbor data operation typically these are written to a http.Request
 */
 type GetBGPNeighborDataParams struct {
 
-	/* ID.
+	/*ID
+	  Device UUID
 
-	   Device UUID
-
-	   Format: uuid
 	*/
 	ID strfmt.UUID
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
-}
-
-// WithDefaults hydrates default values in the get Bgp neighbor data params (not the query body).
-//
-// All values with no default are reset to their zero value.
-func (o *GetBGPNeighborDataParams) WithDefaults() *GetBGPNeighborDataParams {
-	o.SetDefaults()
-	return o
-}
-
-// SetDefaults hydrates default values in the get Bgp neighbor data params (not the query body).
-//
-// All values with no default are reset to their zero value.
-func (o *GetBGPNeighborDataParams) SetDefaults() {
-	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the get Bgp neighbor data params

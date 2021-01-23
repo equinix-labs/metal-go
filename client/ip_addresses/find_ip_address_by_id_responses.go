@@ -47,6 +47,7 @@ func (o *FindIPAddressByIDReader) ReadResponse(response runtime.ClientResponse, 
 			return nil, err
 		}
 		return nil, result
+
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -57,7 +58,7 @@ func NewFindIPAddressByIDOK() *FindIPAddressByIDOK {
 	return &FindIPAddressByIDOK{}
 }
 
-/* FindIPAddressByIDOK describes a response with status code 200, with default header values.
+/*FindIPAddressByIDOK handles this case with default header values.
 
 ok
 */
@@ -68,6 +69,7 @@ type FindIPAddressByIDOK struct {
 func (o *FindIPAddressByIDOK) Error() string {
 	return fmt.Sprintf("[GET /ips/{id}][%d] findIpAddressByIdOK  %+v", 200, o.Payload)
 }
+
 func (o *FindIPAddressByIDOK) GetPayload() *types.IPAssignment {
 	return o.Payload
 }
@@ -89,7 +91,7 @@ func NewFindIPAddressByIDUnauthorized() *FindIPAddressByIDUnauthorized {
 	return &FindIPAddressByIDUnauthorized{}
 }
 
-/* FindIPAddressByIDUnauthorized describes a response with status code 401, with default header values.
+/*FindIPAddressByIDUnauthorized handles this case with default header values.
 
 unauthorized
 */
@@ -110,7 +112,7 @@ func NewFindIPAddressByIDForbidden() *FindIPAddressByIDForbidden {
 	return &FindIPAddressByIDForbidden{}
 }
 
-/* FindIPAddressByIDForbidden describes a response with status code 403, with default header values.
+/*FindIPAddressByIDForbidden handles this case with default header values.
 
 forbidden
 */
@@ -131,7 +133,7 @@ func NewFindIPAddressByIDNotFound() *FindIPAddressByIDNotFound {
 	return &FindIPAddressByIDNotFound{}
 }
 
-/* FindIPAddressByIDNotFound describes a response with status code 404, with default header values.
+/*FindIPAddressByIDNotFound handles this case with default header values.
 
 not found
 */

@@ -41,6 +41,7 @@ func (o *DeleteInterconnectionReader) ReadResponse(response runtime.ClientRespon
 			return nil, err
 		}
 		return nil, result
+
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -51,7 +52,7 @@ func NewDeleteInterconnectionAccepted() *DeleteInterconnectionAccepted {
 	return &DeleteInterconnectionAccepted{}
 }
 
-/* DeleteInterconnectionAccepted describes a response with status code 202, with default header values.
+/*DeleteInterconnectionAccepted handles this case with default header values.
 
 accepted
 */
@@ -62,6 +63,7 @@ type DeleteInterconnectionAccepted struct {
 func (o *DeleteInterconnectionAccepted) Error() string {
 	return fmt.Sprintf("[DELETE /connections/{connection_id}][%d] deleteInterconnectionAccepted  %+v", 202, o.Payload)
 }
+
 func (o *DeleteInterconnectionAccepted) GetPayload() *types.Interconnection {
 	return o.Payload
 }
@@ -83,7 +85,7 @@ func NewDeleteInterconnectionForbidden() *DeleteInterconnectionForbidden {
 	return &DeleteInterconnectionForbidden{}
 }
 
-/* DeleteInterconnectionForbidden describes a response with status code 403, with default header values.
+/*DeleteInterconnectionForbidden handles this case with default header values.
 
 forbidden
 */
@@ -104,7 +106,7 @@ func NewDeleteInterconnectionNotFound() *DeleteInterconnectionNotFound {
 	return &DeleteInterconnectionNotFound{}
 }
 
-/* DeleteInterconnectionNotFound describes a response with status code 404, with default header values.
+/*DeleteInterconnectionNotFound handles this case with default header values.
 
 not found
 */

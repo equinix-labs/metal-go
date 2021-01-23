@@ -16,79 +16,64 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewFindSSHKeysParams creates a new FindSSHKeysParams object,
-// with the default timeout for this client.
-//
-// Default values are not hydrated, since defaults are normally applied by the API server side.
-//
-// To enforce default values in parameter, use SetDefaults or WithDefaults.
+// NewFindSSHKeysParams creates a new FindSSHKeysParams object
+// with the default values initialized.
 func NewFindSSHKeysParams() *FindSSHKeysParams {
+	var ()
 	return &FindSSHKeysParams{
+
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewFindSSHKeysParamsWithTimeout creates a new FindSSHKeysParams object
-// with the ability to set a timeout on a request.
+// with the default values initialized, and the ability to set a timeout on a request
 func NewFindSSHKeysParamsWithTimeout(timeout time.Duration) *FindSSHKeysParams {
+	var ()
 	return &FindSSHKeysParams{
+
 		timeout: timeout,
 	}
 }
 
 // NewFindSSHKeysParamsWithContext creates a new FindSSHKeysParams object
-// with the ability to set a context for a request.
+// with the default values initialized, and the ability to set a context for a request
 func NewFindSSHKeysParamsWithContext(ctx context.Context) *FindSSHKeysParams {
+	var ()
 	return &FindSSHKeysParams{
+
 		Context: ctx,
 	}
 }
 
 // NewFindSSHKeysParamsWithHTTPClient creates a new FindSSHKeysParams object
-// with the ability to set a custom HTTPClient for a request.
+// with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewFindSSHKeysParamsWithHTTPClient(client *http.Client) *FindSSHKeysParams {
+	var ()
 	return &FindSSHKeysParams{
 		HTTPClient: client,
 	}
 }
 
-/* FindSSHKeysParams contains all the parameters to send to the API endpoint
-   for the find SSH keys operation.
-
-   Typically these are written to a http.Request.
+/*FindSSHKeysParams contains all the parameters to send to the API endpoint
+for the find SSH keys operation typically these are written to a http.Request
 */
 type FindSSHKeysParams struct {
 
-	/* SearchString.
+	/*SearchString
+	  Search by key, label, or fingerprint
 
-	   Search by key, label, or fingerprint
 	*/
 	SearchString *string
+	/*Include
+	  related attributes to include
 
-	/* Include.
-
-	   related attributes to include
 	*/
 	Include *string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
-}
-
-// WithDefaults hydrates default values in the find SSH keys params (not the query body).
-//
-// All values with no default are reset to their zero value.
-func (o *FindSSHKeysParams) WithDefaults() *FindSSHKeysParams {
-	o.SetDefaults()
-	return o
-}
-
-// SetDefaults hydrates default values in the find SSH keys params (not the query body).
-//
-// All values with no default are reset to their zero value.
-func (o *FindSSHKeysParams) SetDefaults() {
-	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the find SSH keys params
@@ -158,34 +143,32 @@ func (o *FindSSHKeysParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.R
 
 		// query param Search string
 		var qrSearchString string
-
 		if o.SearchString != nil {
 			qrSearchString = *o.SearchString
 		}
 		qSearchString := qrSearchString
 		if qSearchString != "" {
-
 			if err := r.SetQueryParam("Search string", qSearchString); err != nil {
 				return err
 			}
 		}
+
 	}
 
 	if o.Include != nil {
 
 		// query param include
 		var qrInclude string
-
 		if o.Include != nil {
 			qrInclude = *o.Include
 		}
 		qInclude := qrInclude
 		if qInclude != "" {
-
 			if err := r.SetQueryParam("include", qInclude); err != nil {
 				return err
 			}
 		}
+
 	}
 
 	if len(res) > 0 {

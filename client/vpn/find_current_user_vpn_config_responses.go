@@ -41,6 +41,7 @@ func (o *FindCurrentUserVPNConfigReader) ReadResponse(response runtime.ClientRes
 			return nil, err
 		}
 		return nil, result
+
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -51,7 +52,7 @@ func NewFindCurrentUserVPNConfigOK() *FindCurrentUserVPNConfigOK {
 	return &FindCurrentUserVPNConfigOK{}
 }
 
-/* FindCurrentUserVPNConfigOK describes a response with status code 200, with default header values.
+/*FindCurrentUserVPNConfigOK handles this case with default header values.
 
 ok
 */
@@ -62,6 +63,7 @@ type FindCurrentUserVPNConfigOK struct {
 func (o *FindCurrentUserVPNConfigOK) Error() string {
 	return fmt.Sprintf("[GET /user/vpn][%d] findCurrentUserVpnConfigOK  %+v", 200, o.Payload)
 }
+
 func (o *FindCurrentUserVPNConfigOK) GetPayload() *types.VPNConfig {
 	return o.Payload
 }
@@ -83,7 +85,7 @@ func NewFindCurrentUserVPNConfigUnauthorized() *FindCurrentUserVPNConfigUnauthor
 	return &FindCurrentUserVPNConfigUnauthorized{}
 }
 
-/* FindCurrentUserVPNConfigUnauthorized describes a response with status code 401, with default header values.
+/*FindCurrentUserVPNConfigUnauthorized handles this case with default header values.
 
 unauthorized
 */
@@ -104,7 +106,7 @@ func NewFindCurrentUserVPNConfigUnprocessableEntity() *FindCurrentUserVPNConfigU
 	return &FindCurrentUserVPNConfigUnprocessableEntity{}
 }
 
-/* FindCurrentUserVPNConfigUnprocessableEntity describes a response with status code 422, with default header values.
+/*FindCurrentUserVPNConfigUnprocessableEntity handles this case with default header values.
 
 unprocessable entity
 */

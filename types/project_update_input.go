@@ -6,8 +6,6 @@ package types
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"context"
-
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -23,7 +21,7 @@ type ProjectUpdateInput struct {
 	BackendTransferEnabled bool `json:"backend_transfer_enabled,omitempty"`
 
 	// customdata
-	Customdata string `json:"customdata,omitempty"`
+	Customdata interface{} `json:"customdata,omitempty"`
 
 	// name
 	Name string `json:"name,omitempty"`
@@ -48,6 +46,7 @@ func (m *ProjectUpdateInput) Validate(formats strfmt.Registry) error {
 }
 
 func (m *ProjectUpdateInput) validatePaymentMethodID(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.PaymentMethodID) { // not required
 		return nil
 	}
@@ -56,11 +55,6 @@ func (m *ProjectUpdateInput) validatePaymentMethodID(formats strfmt.Registry) er
 		return err
 	}
 
-	return nil
-}
-
-// ContextValidate validates this project update input based on context it is used
-func (m *ProjectUpdateInput) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

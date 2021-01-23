@@ -6,8 +6,6 @@ package types
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"context"
-
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -74,6 +72,7 @@ func (m *VirtualCircuit) Validate(formats strfmt.Registry) error {
 }
 
 func (m *VirtualCircuit) validateID(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.ID) { // not required
 		return nil
 	}
@@ -86,6 +85,7 @@ func (m *VirtualCircuit) validateID(formats strfmt.Registry) error {
 }
 
 func (m *VirtualCircuit) validateProject(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.Project) { // not required
 		return nil
 	}
@@ -103,58 +103,13 @@ func (m *VirtualCircuit) validateProject(formats strfmt.Registry) error {
 }
 
 func (m *VirtualCircuit) validateVirtualNetwork(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.VirtualNetwork) { // not required
 		return nil
 	}
 
 	if m.VirtualNetwork != nil {
 		if err := m.VirtualNetwork.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("virtual_network")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-// ContextValidate validate this virtual circuit based on the context it is used
-func (m *VirtualCircuit) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.contextValidateProject(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateVirtualNetwork(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *VirtualCircuit) contextValidateProject(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.Project != nil {
-		if err := m.Project.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("project")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *VirtualCircuit) contextValidateVirtualNetwork(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.VirtualNetwork != nil {
-		if err := m.VirtualNetwork.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("virtual_network")
 			}

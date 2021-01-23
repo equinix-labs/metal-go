@@ -16,81 +16,64 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewFindBGPSessionByIDParams creates a new FindBGPSessionByIDParams object,
-// with the default timeout for this client.
-//
-// Default values are not hydrated, since defaults are normally applied by the API server side.
-//
-// To enforce default values in parameter, use SetDefaults or WithDefaults.
+// NewFindBGPSessionByIDParams creates a new FindBGPSessionByIDParams object
+// with the default values initialized.
 func NewFindBGPSessionByIDParams() *FindBGPSessionByIDParams {
+	var ()
 	return &FindBGPSessionByIDParams{
+
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewFindBGPSessionByIDParamsWithTimeout creates a new FindBGPSessionByIDParams object
-// with the ability to set a timeout on a request.
+// with the default values initialized, and the ability to set a timeout on a request
 func NewFindBGPSessionByIDParamsWithTimeout(timeout time.Duration) *FindBGPSessionByIDParams {
+	var ()
 	return &FindBGPSessionByIDParams{
+
 		timeout: timeout,
 	}
 }
 
 // NewFindBGPSessionByIDParamsWithContext creates a new FindBGPSessionByIDParams object
-// with the ability to set a context for a request.
+// with the default values initialized, and the ability to set a context for a request
 func NewFindBGPSessionByIDParamsWithContext(ctx context.Context) *FindBGPSessionByIDParams {
+	var ()
 	return &FindBGPSessionByIDParams{
+
 		Context: ctx,
 	}
 }
 
 // NewFindBGPSessionByIDParamsWithHTTPClient creates a new FindBGPSessionByIDParams object
-// with the ability to set a custom HTTPClient for a request.
+// with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewFindBGPSessionByIDParamsWithHTTPClient(client *http.Client) *FindBGPSessionByIDParams {
+	var ()
 	return &FindBGPSessionByIDParams{
 		HTTPClient: client,
 	}
 }
 
-/* FindBGPSessionByIDParams contains all the parameters to send to the API endpoint
-   for the find Bgp session by Id operation.
-
-   Typically these are written to a http.Request.
+/*FindBGPSessionByIDParams contains all the parameters to send to the API endpoint
+for the find Bgp session by Id operation typically these are written to a http.Request
 */
 type FindBGPSessionByIDParams struct {
 
-	/* ID.
+	/*ID
+	  BGP session UUID
 
-	   BGP session UUID
-
-	   Format: uuid
 	*/
 	ID strfmt.UUID
+	/*Include
+	  related attributes to include
 
-	/* Include.
-
-	   related attributes to include
 	*/
 	Include *string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
-}
-
-// WithDefaults hydrates default values in the find Bgp session by Id params (not the query body).
-//
-// All values with no default are reset to their zero value.
-func (o *FindBGPSessionByIDParams) WithDefaults() *FindBGPSessionByIDParams {
-	o.SetDefaults()
-	return o
-}
-
-// SetDefaults hydrates default values in the find Bgp session by Id params (not the query body).
-//
-// All values with no default are reset to their zero value.
-func (o *FindBGPSessionByIDParams) SetDefaults() {
-	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the find Bgp session by Id params
@@ -165,17 +148,16 @@ func (o *FindBGPSessionByIDParams) WriteToRequest(r runtime.ClientRequest, reg s
 
 		// query param include
 		var qrInclude string
-
 		if o.Include != nil {
 			qrInclude = *o.Include
 		}
 		qInclude := qrInclude
 		if qInclude != "" {
-
 			if err := r.SetQueryParam("include", qInclude); err != nil {
 				return err
 			}
 		}
+
 	}
 
 	if len(res) > 0 {

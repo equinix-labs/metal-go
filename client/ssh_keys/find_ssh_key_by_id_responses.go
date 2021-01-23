@@ -47,6 +47,7 @@ func (o *FindSSHKeyByIDReader) ReadResponse(response runtime.ClientResponse, con
 			return nil, err
 		}
 		return nil, result
+
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -57,7 +58,7 @@ func NewFindSSHKeyByIDOK() *FindSSHKeyByIDOK {
 	return &FindSSHKeyByIDOK{}
 }
 
-/* FindSSHKeyByIDOK describes a response with status code 200, with default header values.
+/*FindSSHKeyByIDOK handles this case with default header values.
 
 ok
 */
@@ -68,6 +69,7 @@ type FindSSHKeyByIDOK struct {
 func (o *FindSSHKeyByIDOK) Error() string {
 	return fmt.Sprintf("[GET /ssh-keys/{id}][%d] findSshKeyByIdOK  %+v", 200, o.Payload)
 }
+
 func (o *FindSSHKeyByIDOK) GetPayload() *types.SSHKey {
 	return o.Payload
 }
@@ -89,7 +91,7 @@ func NewFindSSHKeyByIDUnauthorized() *FindSSHKeyByIDUnauthorized {
 	return &FindSSHKeyByIDUnauthorized{}
 }
 
-/* FindSSHKeyByIDUnauthorized describes a response with status code 401, with default header values.
+/*FindSSHKeyByIDUnauthorized handles this case with default header values.
 
 unauthorized
 */
@@ -110,7 +112,7 @@ func NewFindSSHKeyByIDForbidden() *FindSSHKeyByIDForbidden {
 	return &FindSSHKeyByIDForbidden{}
 }
 
-/* FindSSHKeyByIDForbidden describes a response with status code 403, with default header values.
+/*FindSSHKeyByIDForbidden handles this case with default header values.
 
 forbidden
 */
@@ -131,7 +133,7 @@ func NewFindSSHKeyByIDNotFound() *FindSSHKeyByIDNotFound {
 	return &FindSSHKeyByIDNotFound{}
 }
 
-/* FindSSHKeyByIDNotFound describes a response with status code 404, with default header values.
+/*FindSSHKeyByIDNotFound handles this case with default header values.
 
 not found
 */

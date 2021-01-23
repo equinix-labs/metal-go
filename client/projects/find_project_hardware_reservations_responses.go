@@ -47,6 +47,7 @@ func (o *FindProjectHardwareReservationsReader) ReadResponse(response runtime.Cl
 			return nil, err
 		}
 		return nil, result
+
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -57,7 +58,7 @@ func NewFindProjectHardwareReservationsOK() *FindProjectHardwareReservationsOK {
 	return &FindProjectHardwareReservationsOK{}
 }
 
-/* FindProjectHardwareReservationsOK describes a response with status code 200, with default header values.
+/*FindProjectHardwareReservationsOK handles this case with default header values.
 
 ok
 */
@@ -68,6 +69,7 @@ type FindProjectHardwareReservationsOK struct {
 func (o *FindProjectHardwareReservationsOK) Error() string {
 	return fmt.Sprintf("[GET /projects/{id}/hardware-reservations][%d] findProjectHardwareReservationsOK  %+v", 200, o.Payload)
 }
+
 func (o *FindProjectHardwareReservationsOK) GetPayload() *types.HardwareReservationList {
 	return o.Payload
 }
@@ -89,7 +91,7 @@ func NewFindProjectHardwareReservationsUnauthorized() *FindProjectHardwareReserv
 	return &FindProjectHardwareReservationsUnauthorized{}
 }
 
-/* FindProjectHardwareReservationsUnauthorized describes a response with status code 401, with default header values.
+/*FindProjectHardwareReservationsUnauthorized handles this case with default header values.
 
 unauthorized
 */
@@ -110,7 +112,7 @@ func NewFindProjectHardwareReservationsForbidden() *FindProjectHardwareReservati
 	return &FindProjectHardwareReservationsForbidden{}
 }
 
-/* FindProjectHardwareReservationsForbidden describes a response with status code 403, with default header values.
+/*FindProjectHardwareReservationsForbidden handles this case with default header values.
 
 forbidden
 */
@@ -131,7 +133,7 @@ func NewFindProjectHardwareReservationsNotFound() *FindProjectHardwareReservatio
 	return &FindProjectHardwareReservationsNotFound{}
 }
 
-/* FindProjectHardwareReservationsNotFound describes a response with status code 404, with default header values.
+/*FindProjectHardwareReservationsNotFound handles this case with default header values.
 
 not found
 */

@@ -6,8 +6,6 @@ package types
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"context"
-
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -39,6 +37,7 @@ func (m *TransferRequestInput) Validate(formats strfmt.Registry) error {
 }
 
 func (m *TransferRequestInput) validateTargetOrganizationID(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.TargetOrganizationID) { // not required
 		return nil
 	}
@@ -47,11 +46,6 @@ func (m *TransferRequestInput) validateTargetOrganizationID(formats strfmt.Regis
 		return err
 	}
 
-	return nil
-}
-
-// ContextValidate validates this transfer request input based on context it is used
-func (m *TransferRequestInput) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

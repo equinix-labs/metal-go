@@ -16,66 +16,52 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewFindOperatingSystemsParams creates a new FindOperatingSystemsParams object,
-// with the default timeout for this client.
-//
-// Default values are not hydrated, since defaults are normally applied by the API server side.
-//
-// To enforce default values in parameter, use SetDefaults or WithDefaults.
+// NewFindOperatingSystemsParams creates a new FindOperatingSystemsParams object
+// with the default values initialized.
 func NewFindOperatingSystemsParams() *FindOperatingSystemsParams {
+
 	return &FindOperatingSystemsParams{
+
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewFindOperatingSystemsParamsWithTimeout creates a new FindOperatingSystemsParams object
-// with the ability to set a timeout on a request.
+// with the default values initialized, and the ability to set a timeout on a request
 func NewFindOperatingSystemsParamsWithTimeout(timeout time.Duration) *FindOperatingSystemsParams {
+
 	return &FindOperatingSystemsParams{
+
 		timeout: timeout,
 	}
 }
 
 // NewFindOperatingSystemsParamsWithContext creates a new FindOperatingSystemsParams object
-// with the ability to set a context for a request.
+// with the default values initialized, and the ability to set a context for a request
 func NewFindOperatingSystemsParamsWithContext(ctx context.Context) *FindOperatingSystemsParams {
+
 	return &FindOperatingSystemsParams{
+
 		Context: ctx,
 	}
 }
 
 // NewFindOperatingSystemsParamsWithHTTPClient creates a new FindOperatingSystemsParams object
-// with the ability to set a custom HTTPClient for a request.
+// with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewFindOperatingSystemsParamsWithHTTPClient(client *http.Client) *FindOperatingSystemsParams {
+
 	return &FindOperatingSystemsParams{
 		HTTPClient: client,
 	}
 }
 
-/* FindOperatingSystemsParams contains all the parameters to send to the API endpoint
-   for the find operating systems operation.
-
-   Typically these are written to a http.Request.
+/*FindOperatingSystemsParams contains all the parameters to send to the API endpoint
+for the find operating systems operation typically these are written to a http.Request
 */
 type FindOperatingSystemsParams struct {
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
-}
-
-// WithDefaults hydrates default values in the find operating systems params (not the query body).
-//
-// All values with no default are reset to their zero value.
-func (o *FindOperatingSystemsParams) WithDefaults() *FindOperatingSystemsParams {
-	o.SetDefaults()
-	return o
-}
-
-// SetDefaults hydrates default values in the find operating systems params (not the query body).
-//
-// All values with no default are reset to their zero value.
-func (o *FindOperatingSystemsParams) SetDefaults() {
-	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the find operating systems params

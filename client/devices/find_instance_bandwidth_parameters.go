@@ -16,87 +16,69 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewFindInstanceBandwidthParams creates a new FindInstanceBandwidthParams object,
-// with the default timeout for this client.
-//
-// Default values are not hydrated, since defaults are normally applied by the API server side.
-//
-// To enforce default values in parameter, use SetDefaults or WithDefaults.
+// NewFindInstanceBandwidthParams creates a new FindInstanceBandwidthParams object
+// with the default values initialized.
 func NewFindInstanceBandwidthParams() *FindInstanceBandwidthParams {
+	var ()
 	return &FindInstanceBandwidthParams{
+
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewFindInstanceBandwidthParamsWithTimeout creates a new FindInstanceBandwidthParams object
-// with the ability to set a timeout on a request.
+// with the default values initialized, and the ability to set a timeout on a request
 func NewFindInstanceBandwidthParamsWithTimeout(timeout time.Duration) *FindInstanceBandwidthParams {
+	var ()
 	return &FindInstanceBandwidthParams{
+
 		timeout: timeout,
 	}
 }
 
 // NewFindInstanceBandwidthParamsWithContext creates a new FindInstanceBandwidthParams object
-// with the ability to set a context for a request.
+// with the default values initialized, and the ability to set a context for a request
 func NewFindInstanceBandwidthParamsWithContext(ctx context.Context) *FindInstanceBandwidthParams {
+	var ()
 	return &FindInstanceBandwidthParams{
+
 		Context: ctx,
 	}
 }
 
 // NewFindInstanceBandwidthParamsWithHTTPClient creates a new FindInstanceBandwidthParams object
-// with the ability to set a custom HTTPClient for a request.
+// with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewFindInstanceBandwidthParamsWithHTTPClient(client *http.Client) *FindInstanceBandwidthParams {
+	var ()
 	return &FindInstanceBandwidthParams{
 		HTTPClient: client,
 	}
 }
 
-/* FindInstanceBandwidthParams contains all the parameters to send to the API endpoint
-   for the find instance bandwidth operation.
-
-   Typically these are written to a http.Request.
+/*FindInstanceBandwidthParams contains all the parameters to send to the API endpoint
+for the find instance bandwidth operation typically these are written to a http.Request
 */
 type FindInstanceBandwidthParams struct {
 
-	/* From.
+	/*From
+	  Timestamp from range
 
-	   Timestamp from range
 	*/
 	From string
+	/*ID
+	  Device UUID
 
-	/* ID.
-
-	   Device UUID
-
-	   Format: uuid
 	*/
 	ID strfmt.UUID
+	/*Until
+	  Timestamp to range
 
-	/* Until.
-
-	   Timestamp to range
 	*/
 	Until string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
-}
-
-// WithDefaults hydrates default values in the find instance bandwidth params (not the query body).
-//
-// All values with no default are reset to their zero value.
-func (o *FindInstanceBandwidthParams) WithDefaults() *FindInstanceBandwidthParams {
-	o.SetDefaults()
-	return o
-}
-
-// SetDefaults hydrates default values in the find instance bandwidth params (not the query body).
-//
-// All values with no default are reset to their zero value.
-func (o *FindInstanceBandwidthParams) SetDefaults() {
-	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the find instance bandwidth params
@@ -177,7 +159,6 @@ func (o *FindInstanceBandwidthParams) WriteToRequest(r runtime.ClientRequest, re
 	qrFrom := o.From
 	qFrom := qrFrom
 	if qFrom != "" {
-
 		if err := r.SetQueryParam("from", qFrom); err != nil {
 			return err
 		}
@@ -192,7 +173,6 @@ func (o *FindInstanceBandwidthParams) WriteToRequest(r runtime.ClientRequest, re
 	qrUntil := o.Until
 	qUntil := qrUntil
 	if qUntil != "" {
-
 		if err := r.SetQueryParam("until", qUntil); err != nil {
 			return err
 		}

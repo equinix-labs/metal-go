@@ -16,81 +16,64 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewFindSSHKeyByIDParams creates a new FindSSHKeyByIDParams object,
-// with the default timeout for this client.
-//
-// Default values are not hydrated, since defaults are normally applied by the API server side.
-//
-// To enforce default values in parameter, use SetDefaults or WithDefaults.
+// NewFindSSHKeyByIDParams creates a new FindSSHKeyByIDParams object
+// with the default values initialized.
 func NewFindSSHKeyByIDParams() *FindSSHKeyByIDParams {
+	var ()
 	return &FindSSHKeyByIDParams{
+
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewFindSSHKeyByIDParamsWithTimeout creates a new FindSSHKeyByIDParams object
-// with the ability to set a timeout on a request.
+// with the default values initialized, and the ability to set a timeout on a request
 func NewFindSSHKeyByIDParamsWithTimeout(timeout time.Duration) *FindSSHKeyByIDParams {
+	var ()
 	return &FindSSHKeyByIDParams{
+
 		timeout: timeout,
 	}
 }
 
 // NewFindSSHKeyByIDParamsWithContext creates a new FindSSHKeyByIDParams object
-// with the ability to set a context for a request.
+// with the default values initialized, and the ability to set a context for a request
 func NewFindSSHKeyByIDParamsWithContext(ctx context.Context) *FindSSHKeyByIDParams {
+	var ()
 	return &FindSSHKeyByIDParams{
+
 		Context: ctx,
 	}
 }
 
 // NewFindSSHKeyByIDParamsWithHTTPClient creates a new FindSSHKeyByIDParams object
-// with the ability to set a custom HTTPClient for a request.
+// with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewFindSSHKeyByIDParamsWithHTTPClient(client *http.Client) *FindSSHKeyByIDParams {
+	var ()
 	return &FindSSHKeyByIDParams{
 		HTTPClient: client,
 	}
 }
 
-/* FindSSHKeyByIDParams contains all the parameters to send to the API endpoint
-   for the find SSH key by Id operation.
-
-   Typically these are written to a http.Request.
+/*FindSSHKeyByIDParams contains all the parameters to send to the API endpoint
+for the find SSH key by Id operation typically these are written to a http.Request
 */
 type FindSSHKeyByIDParams struct {
 
-	/* ID.
+	/*ID
+	  SSH Key UUID
 
-	   SSH Key UUID
-
-	   Format: uuid
 	*/
 	ID strfmt.UUID
+	/*Include
+	  related attributes to include
 
-	/* Include.
-
-	   related attributes to include
 	*/
 	Include *string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
-}
-
-// WithDefaults hydrates default values in the find SSH key by Id params (not the query body).
-//
-// All values with no default are reset to their zero value.
-func (o *FindSSHKeyByIDParams) WithDefaults() *FindSSHKeyByIDParams {
-	o.SetDefaults()
-	return o
-}
-
-// SetDefaults hydrates default values in the find SSH key by Id params (not the query body).
-//
-// All values with no default are reset to their zero value.
-func (o *FindSSHKeyByIDParams) SetDefaults() {
-	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the find SSH key by Id params
@@ -165,17 +148,16 @@ func (o *FindSSHKeyByIDParams) WriteToRequest(r runtime.ClientRequest, reg strfm
 
 		// query param include
 		var qrInclude string
-
 		if o.Include != nil {
 			qrInclude = *o.Include
 		}
 		qInclude := qrInclude
 		if qInclude != "" {
-
 			if err := r.SetQueryParam("include", qInclude); err != nil {
 				return err
 			}
 		}
+
 	}
 
 	if len(res) > 0 {

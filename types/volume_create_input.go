@@ -6,8 +6,6 @@ package types
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"context"
-
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -23,7 +21,7 @@ type VolumeCreateInput struct {
 	BillingCycle string `json:"billing_cycle,omitempty"`
 
 	// customdata
-	Customdata string `json:"customdata,omitempty"`
+	Customdata interface{} `json:"customdata,omitempty"`
 
 	// description
 	Description string `json:"description,omitempty"`
@@ -101,40 +99,13 @@ func (m *VolumeCreateInput) validateSize(formats strfmt.Registry) error {
 }
 
 func (m *VolumeCreateInput) validateSnapshotPolicies(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.SnapshotPolicies) { // not required
 		return nil
 	}
 
 	if m.SnapshotPolicies != nil {
 		if err := m.SnapshotPolicies.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("snapshot_policies")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-// ContextValidate validate this volume create input based on the context it is used
-func (m *VolumeCreateInput) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.contextValidateSnapshotPolicies(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *VolumeCreateInput) contextValidateSnapshotPolicies(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.SnapshotPolicies != nil {
-		if err := m.SnapshotPolicies.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("snapshot_policies")
 			}

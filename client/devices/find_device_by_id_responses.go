@@ -47,6 +47,7 @@ func (o *FindDeviceByIDReader) ReadResponse(response runtime.ClientResponse, con
 			return nil, err
 		}
 		return nil, result
+
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -57,7 +58,7 @@ func NewFindDeviceByIDOK() *FindDeviceByIDOK {
 	return &FindDeviceByIDOK{}
 }
 
-/* FindDeviceByIDOK describes a response with status code 200, with default header values.
+/*FindDeviceByIDOK handles this case with default header values.
 
 ok
 */
@@ -68,6 +69,7 @@ type FindDeviceByIDOK struct {
 func (o *FindDeviceByIDOK) Error() string {
 	return fmt.Sprintf("[GET /devices/{id}][%d] findDeviceByIdOK  %+v", 200, o.Payload)
 }
+
 func (o *FindDeviceByIDOK) GetPayload() *types.Device {
 	return o.Payload
 }
@@ -89,7 +91,7 @@ func NewFindDeviceByIDUnauthorized() *FindDeviceByIDUnauthorized {
 	return &FindDeviceByIDUnauthorized{}
 }
 
-/* FindDeviceByIDUnauthorized describes a response with status code 401, with default header values.
+/*FindDeviceByIDUnauthorized handles this case with default header values.
 
 unauthorized
 */
@@ -110,7 +112,7 @@ func NewFindDeviceByIDForbidden() *FindDeviceByIDForbidden {
 	return &FindDeviceByIDForbidden{}
 }
 
-/* FindDeviceByIDForbidden describes a response with status code 403, with default header values.
+/*FindDeviceByIDForbidden handles this case with default header values.
 
 forbidden
 */
@@ -131,7 +133,7 @@ func NewFindDeviceByIDNotFound() *FindDeviceByIDNotFound {
 	return &FindDeviceByIDNotFound{}
 }
 
-/* FindDeviceByIDNotFound describes a response with status code 404, with default header values.
+/*FindDeviceByIDNotFound handles this case with default header values.
 
 not found
 */

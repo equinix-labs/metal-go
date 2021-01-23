@@ -38,6 +38,7 @@ func (o *CreatePasswordResetTokenReader) ReadResponse(response runtime.ClientRes
 			return nil, err
 		}
 		return nil, result
+
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -48,7 +49,7 @@ func NewCreatePasswordResetTokenCreated() *CreatePasswordResetTokenCreated {
 	return &CreatePasswordResetTokenCreated{}
 }
 
-/* CreatePasswordResetTokenCreated describes a response with status code 201, with default header values.
+/*CreatePasswordResetTokenCreated handles this case with default header values.
 
 created
 */
@@ -69,7 +70,7 @@ func NewCreatePasswordResetTokenUnauthorized() *CreatePasswordResetTokenUnauthor
 	return &CreatePasswordResetTokenUnauthorized{}
 }
 
-/* CreatePasswordResetTokenUnauthorized describes a response with status code 401, with default header values.
+/*CreatePasswordResetTokenUnauthorized handles this case with default header values.
 
 unauthorized
 */
@@ -90,7 +91,7 @@ func NewCreatePasswordResetTokenUnprocessableEntity() *CreatePasswordResetTokenU
 	return &CreatePasswordResetTokenUnprocessableEntity{}
 }
 
-/* CreatePasswordResetTokenUnprocessableEntity describes a response with status code 422, with default header values.
+/*CreatePasswordResetTokenUnprocessableEntity handles this case with default header values.
 
 unprocessable entity
 */

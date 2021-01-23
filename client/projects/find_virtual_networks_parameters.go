@@ -16,81 +16,64 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewFindVirtualNetworksParams creates a new FindVirtualNetworksParams object,
-// with the default timeout for this client.
-//
-// Default values are not hydrated, since defaults are normally applied by the API server side.
-//
-// To enforce default values in parameter, use SetDefaults or WithDefaults.
+// NewFindVirtualNetworksParams creates a new FindVirtualNetworksParams object
+// with the default values initialized.
 func NewFindVirtualNetworksParams() *FindVirtualNetworksParams {
+	var ()
 	return &FindVirtualNetworksParams{
+
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewFindVirtualNetworksParamsWithTimeout creates a new FindVirtualNetworksParams object
-// with the ability to set a timeout on a request.
+// with the default values initialized, and the ability to set a timeout on a request
 func NewFindVirtualNetworksParamsWithTimeout(timeout time.Duration) *FindVirtualNetworksParams {
+	var ()
 	return &FindVirtualNetworksParams{
+
 		timeout: timeout,
 	}
 }
 
 // NewFindVirtualNetworksParamsWithContext creates a new FindVirtualNetworksParams object
-// with the ability to set a context for a request.
+// with the default values initialized, and the ability to set a context for a request
 func NewFindVirtualNetworksParamsWithContext(ctx context.Context) *FindVirtualNetworksParams {
+	var ()
 	return &FindVirtualNetworksParams{
+
 		Context: ctx,
 	}
 }
 
 // NewFindVirtualNetworksParamsWithHTTPClient creates a new FindVirtualNetworksParams object
-// with the ability to set a custom HTTPClient for a request.
+// with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewFindVirtualNetworksParamsWithHTTPClient(client *http.Client) *FindVirtualNetworksParams {
+	var ()
 	return &FindVirtualNetworksParams{
 		HTTPClient: client,
 	}
 }
 
-/* FindVirtualNetworksParams contains all the parameters to send to the API endpoint
-   for the find virtual networks operation.
-
-   Typically these are written to a http.Request.
+/*FindVirtualNetworksParams contains all the parameters to send to the API endpoint
+for the find virtual networks operation typically these are written to a http.Request
 */
 type FindVirtualNetworksParams struct {
 
-	/* ID.
+	/*ID
+	  Project UUID
 
-	   Project UUID
-
-	   Format: uuid
 	*/
 	ID strfmt.UUID
+	/*Include
+	  related attributes to include
 
-	/* Include.
-
-	   related attributes to include
 	*/
 	Include *string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
-}
-
-// WithDefaults hydrates default values in the find virtual networks params (not the query body).
-//
-// All values with no default are reset to their zero value.
-func (o *FindVirtualNetworksParams) WithDefaults() *FindVirtualNetworksParams {
-	o.SetDefaults()
-	return o
-}
-
-// SetDefaults hydrates default values in the find virtual networks params (not the query body).
-//
-// All values with no default are reset to their zero value.
-func (o *FindVirtualNetworksParams) SetDefaults() {
-	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the find virtual networks params
@@ -165,17 +148,16 @@ func (o *FindVirtualNetworksParams) WriteToRequest(r runtime.ClientRequest, reg 
 
 		// query param include
 		var qrInclude string
-
 		if o.Include != nil {
 			qrInclude = *o.Include
 		}
 		qInclude := qrInclude
 		if qInclude != "" {
-
 			if err := r.SetQueryParam("include", qInclude); err != nil {
 				return err
 			}
 		}
+
 	}
 
 	if len(res) > 0 {

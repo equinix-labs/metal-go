@@ -47,6 +47,7 @@ func (o *FindConnectionPortEventsReader) ReadResponse(response runtime.ClientRes
 			return nil, err
 		}
 		return nil, result
+
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -57,7 +58,7 @@ func NewFindConnectionPortEventsOK() *FindConnectionPortEventsOK {
 	return &FindConnectionPortEventsOK{}
 }
 
-/* FindConnectionPortEventsOK describes a response with status code 200, with default header values.
+/*FindConnectionPortEventsOK handles this case with default header values.
 
 ok
 */
@@ -68,6 +69,7 @@ type FindConnectionPortEventsOK struct {
 func (o *FindConnectionPortEventsOK) Error() string {
 	return fmt.Sprintf("[GET /connections/{connection_id}/ports/{id}/events][%d] findConnectionPortEventsOK  %+v", 200, o.Payload)
 }
+
 func (o *FindConnectionPortEventsOK) GetPayload() *types.Event {
 	return o.Payload
 }
@@ -89,7 +91,7 @@ func NewFindConnectionPortEventsUnauthorized() *FindConnectionPortEventsUnauthor
 	return &FindConnectionPortEventsUnauthorized{}
 }
 
-/* FindConnectionPortEventsUnauthorized describes a response with status code 401, with default header values.
+/*FindConnectionPortEventsUnauthorized handles this case with default header values.
 
 unauthorized
 */
@@ -110,7 +112,7 @@ func NewFindConnectionPortEventsForbidden() *FindConnectionPortEventsForbidden {
 	return &FindConnectionPortEventsForbidden{}
 }
 
-/* FindConnectionPortEventsForbidden describes a response with status code 403, with default header values.
+/*FindConnectionPortEventsForbidden handles this case with default header values.
 
 forbidden
 */
@@ -131,7 +133,7 @@ func NewFindConnectionPortEventsNotFound() *FindConnectionPortEventsNotFound {
 	return &FindConnectionPortEventsNotFound{}
 }
 
-/* FindConnectionPortEventsNotFound describes a response with status code 404, with default header values.
+/*FindConnectionPortEventsNotFound handles this case with default header values.
 
 not found
 */

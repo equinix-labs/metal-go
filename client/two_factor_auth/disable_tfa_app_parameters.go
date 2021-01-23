@@ -16,66 +16,52 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewDisableTfaAppParams creates a new DisableTfaAppParams object,
-// with the default timeout for this client.
-//
-// Default values are not hydrated, since defaults are normally applied by the API server side.
-//
-// To enforce default values in parameter, use SetDefaults or WithDefaults.
+// NewDisableTfaAppParams creates a new DisableTfaAppParams object
+// with the default values initialized.
 func NewDisableTfaAppParams() *DisableTfaAppParams {
+
 	return &DisableTfaAppParams{
+
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewDisableTfaAppParamsWithTimeout creates a new DisableTfaAppParams object
-// with the ability to set a timeout on a request.
+// with the default values initialized, and the ability to set a timeout on a request
 func NewDisableTfaAppParamsWithTimeout(timeout time.Duration) *DisableTfaAppParams {
+
 	return &DisableTfaAppParams{
+
 		timeout: timeout,
 	}
 }
 
 // NewDisableTfaAppParamsWithContext creates a new DisableTfaAppParams object
-// with the ability to set a context for a request.
+// with the default values initialized, and the ability to set a context for a request
 func NewDisableTfaAppParamsWithContext(ctx context.Context) *DisableTfaAppParams {
+
 	return &DisableTfaAppParams{
+
 		Context: ctx,
 	}
 }
 
 // NewDisableTfaAppParamsWithHTTPClient creates a new DisableTfaAppParams object
-// with the ability to set a custom HTTPClient for a request.
+// with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewDisableTfaAppParamsWithHTTPClient(client *http.Client) *DisableTfaAppParams {
+
 	return &DisableTfaAppParams{
 		HTTPClient: client,
 	}
 }
 
-/* DisableTfaAppParams contains all the parameters to send to the API endpoint
-   for the disable tfa app operation.
-
-   Typically these are written to a http.Request.
+/*DisableTfaAppParams contains all the parameters to send to the API endpoint
+for the disable tfa app operation typically these are written to a http.Request
 */
 type DisableTfaAppParams struct {
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
-}
-
-// WithDefaults hydrates default values in the disable tfa app params (not the query body).
-//
-// All values with no default are reset to their zero value.
-func (o *DisableTfaAppParams) WithDefaults() *DisableTfaAppParams {
-	o.SetDefaults()
-	return o
-}
-
-// SetDefaults hydrates default values in the disable tfa app params (not the query body).
-//
-// All values with no default are reset to their zero value.
-func (o *DisableTfaAppParams) SetDefaults() {
-	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the disable tfa app params

@@ -16,81 +16,64 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewFindPlansByOrganizationParams creates a new FindPlansByOrganizationParams object,
-// with the default timeout for this client.
-//
-// Default values are not hydrated, since defaults are normally applied by the API server side.
-//
-// To enforce default values in parameter, use SetDefaults or WithDefaults.
+// NewFindPlansByOrganizationParams creates a new FindPlansByOrganizationParams object
+// with the default values initialized.
 func NewFindPlansByOrganizationParams() *FindPlansByOrganizationParams {
+	var ()
 	return &FindPlansByOrganizationParams{
+
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewFindPlansByOrganizationParamsWithTimeout creates a new FindPlansByOrganizationParams object
-// with the ability to set a timeout on a request.
+// with the default values initialized, and the ability to set a timeout on a request
 func NewFindPlansByOrganizationParamsWithTimeout(timeout time.Duration) *FindPlansByOrganizationParams {
+	var ()
 	return &FindPlansByOrganizationParams{
+
 		timeout: timeout,
 	}
 }
 
 // NewFindPlansByOrganizationParamsWithContext creates a new FindPlansByOrganizationParams object
-// with the ability to set a context for a request.
+// with the default values initialized, and the ability to set a context for a request
 func NewFindPlansByOrganizationParamsWithContext(ctx context.Context) *FindPlansByOrganizationParams {
+	var ()
 	return &FindPlansByOrganizationParams{
+
 		Context: ctx,
 	}
 }
 
 // NewFindPlansByOrganizationParamsWithHTTPClient creates a new FindPlansByOrganizationParams object
-// with the ability to set a custom HTTPClient for a request.
+// with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewFindPlansByOrganizationParamsWithHTTPClient(client *http.Client) *FindPlansByOrganizationParams {
+	var ()
 	return &FindPlansByOrganizationParams{
 		HTTPClient: client,
 	}
 }
 
-/* FindPlansByOrganizationParams contains all the parameters to send to the API endpoint
-   for the find plans by organization operation.
-
-   Typically these are written to a http.Request.
+/*FindPlansByOrganizationParams contains all the parameters to send to the API endpoint
+for the find plans by organization operation typically these are written to a http.Request
 */
 type FindPlansByOrganizationParams struct {
 
-	/* ID.
+	/*ID
+	  Organization UUID
 
-	   Organization UUID
-
-	   Format: uuid
 	*/
 	ID strfmt.UUID
+	/*Include
+	  related attributes to include
 
-	/* Include.
-
-	   related attributes to include
 	*/
 	Include *string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
-}
-
-// WithDefaults hydrates default values in the find plans by organization params (not the query body).
-//
-// All values with no default are reset to their zero value.
-func (o *FindPlansByOrganizationParams) WithDefaults() *FindPlansByOrganizationParams {
-	o.SetDefaults()
-	return o
-}
-
-// SetDefaults hydrates default values in the find plans by organization params (not the query body).
-//
-// All values with no default are reset to their zero value.
-func (o *FindPlansByOrganizationParams) SetDefaults() {
-	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the find plans by organization params
@@ -165,17 +148,16 @@ func (o *FindPlansByOrganizationParams) WriteToRequest(r runtime.ClientRequest, 
 
 		// query param include
 		var qrInclude string
-
 		if o.Include != nil {
 			qrInclude = *o.Include
 		}
 		qInclude := qrInclude
 		if qInclude != "" {
-
 			if err := r.SetQueryParam("include", qInclude); err != nil {
 				return err
 			}
 		}
+
 	}
 
 	if len(res) > 0 {

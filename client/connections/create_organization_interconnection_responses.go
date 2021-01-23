@@ -41,6 +41,7 @@ func (o *CreateOrganizationInterconnectionReader) ReadResponse(response runtime.
 			return nil, err
 		}
 		return nil, result
+
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -51,7 +52,7 @@ func NewCreateOrganizationInterconnectionCreated() *CreateOrganizationInterconne
 	return &CreateOrganizationInterconnectionCreated{}
 }
 
-/* CreateOrganizationInterconnectionCreated describes a response with status code 201, with default header values.
+/*CreateOrganizationInterconnectionCreated handles this case with default header values.
 
 created
 */
@@ -62,6 +63,7 @@ type CreateOrganizationInterconnectionCreated struct {
 func (o *CreateOrganizationInterconnectionCreated) Error() string {
 	return fmt.Sprintf("[POST /organizations/{organization_id}/connections][%d] createOrganizationInterconnectionCreated  %+v", 201, o.Payload)
 }
+
 func (o *CreateOrganizationInterconnectionCreated) GetPayload() *types.Interconnection {
 	return o.Payload
 }
@@ -83,7 +85,7 @@ func NewCreateOrganizationInterconnectionForbidden() *CreateOrganizationIntercon
 	return &CreateOrganizationInterconnectionForbidden{}
 }
 
-/* CreateOrganizationInterconnectionForbidden describes a response with status code 403, with default header values.
+/*CreateOrganizationInterconnectionForbidden handles this case with default header values.
 
 forbidden
 */
@@ -104,7 +106,7 @@ func NewCreateOrganizationInterconnectionNotFound() *CreateOrganizationInterconn
 	return &CreateOrganizationInterconnectionNotFound{}
 }
 
-/* CreateOrganizationInterconnectionNotFound describes a response with status code 404, with default header values.
+/*CreateOrganizationInterconnectionNotFound handles this case with default header values.
 
 not found
 */

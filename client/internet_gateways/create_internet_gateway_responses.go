@@ -47,6 +47,7 @@ func (o *CreateInternetGatewayReader) ReadResponse(response runtime.ClientRespon
 			return nil, err
 		}
 		return nil, result
+
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -57,7 +58,7 @@ func NewCreateInternetGatewayCreated() *CreateInternetGatewayCreated {
 	return &CreateInternetGatewayCreated{}
 }
 
-/* CreateInternetGatewayCreated describes a response with status code 201, with default header values.
+/*CreateInternetGatewayCreated handles this case with default header values.
 
 created
 */
@@ -68,6 +69,7 @@ type CreateInternetGatewayCreated struct {
 func (o *CreateInternetGatewayCreated) Error() string {
 	return fmt.Sprintf("[POST /virtual-networks/{id}/internet-gateways][%d] createInternetGatewayCreated  %+v", 201, o.Payload)
 }
+
 func (o *CreateInternetGatewayCreated) GetPayload() *types.InternetGateway {
 	return o.Payload
 }
@@ -89,7 +91,7 @@ func NewCreateInternetGatewayUnauthorized() *CreateInternetGatewayUnauthorized {
 	return &CreateInternetGatewayUnauthorized{}
 }
 
-/* CreateInternetGatewayUnauthorized describes a response with status code 401, with default header values.
+/*CreateInternetGatewayUnauthorized handles this case with default header values.
 
 unauthorized
 */
@@ -110,7 +112,7 @@ func NewCreateInternetGatewayNotFound() *CreateInternetGatewayNotFound {
 	return &CreateInternetGatewayNotFound{}
 }
 
-/* CreateInternetGatewayNotFound describes a response with status code 404, with default header values.
+/*CreateInternetGatewayNotFound handles this case with default header values.
 
 not found
 */
@@ -131,7 +133,7 @@ func NewCreateInternetGatewayUnprocessableEntity() *CreateInternetGatewayUnproce
 	return &CreateInternetGatewayUnprocessableEntity{}
 }
 
-/* CreateInternetGatewayUnprocessableEntity describes a response with status code 422, with default header values.
+/*CreateInternetGatewayUnprocessableEntity handles this case with default header values.
 
 unprocessable entity
 */

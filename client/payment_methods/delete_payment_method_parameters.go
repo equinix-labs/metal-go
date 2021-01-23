@@ -16,75 +16,59 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewDeletePaymentMethodParams creates a new DeletePaymentMethodParams object,
-// with the default timeout for this client.
-//
-// Default values are not hydrated, since defaults are normally applied by the API server side.
-//
-// To enforce default values in parameter, use SetDefaults or WithDefaults.
+// NewDeletePaymentMethodParams creates a new DeletePaymentMethodParams object
+// with the default values initialized.
 func NewDeletePaymentMethodParams() *DeletePaymentMethodParams {
+	var ()
 	return &DeletePaymentMethodParams{
+
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewDeletePaymentMethodParamsWithTimeout creates a new DeletePaymentMethodParams object
-// with the ability to set a timeout on a request.
+// with the default values initialized, and the ability to set a timeout on a request
 func NewDeletePaymentMethodParamsWithTimeout(timeout time.Duration) *DeletePaymentMethodParams {
+	var ()
 	return &DeletePaymentMethodParams{
+
 		timeout: timeout,
 	}
 }
 
 // NewDeletePaymentMethodParamsWithContext creates a new DeletePaymentMethodParams object
-// with the ability to set a context for a request.
+// with the default values initialized, and the ability to set a context for a request
 func NewDeletePaymentMethodParamsWithContext(ctx context.Context) *DeletePaymentMethodParams {
+	var ()
 	return &DeletePaymentMethodParams{
+
 		Context: ctx,
 	}
 }
 
 // NewDeletePaymentMethodParamsWithHTTPClient creates a new DeletePaymentMethodParams object
-// with the ability to set a custom HTTPClient for a request.
+// with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewDeletePaymentMethodParamsWithHTTPClient(client *http.Client) *DeletePaymentMethodParams {
+	var ()
 	return &DeletePaymentMethodParams{
 		HTTPClient: client,
 	}
 }
 
-/* DeletePaymentMethodParams contains all the parameters to send to the API endpoint
-   for the delete payment method operation.
-
-   Typically these are written to a http.Request.
+/*DeletePaymentMethodParams contains all the parameters to send to the API endpoint
+for the delete payment method operation typically these are written to a http.Request
 */
 type DeletePaymentMethodParams struct {
 
-	/* ID.
+	/*ID
+	  Payment Method UUID
 
-	   Payment Method UUID
-
-	   Format: uuid
 	*/
 	ID strfmt.UUID
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
-}
-
-// WithDefaults hydrates default values in the delete payment method params (not the query body).
-//
-// All values with no default are reset to their zero value.
-func (o *DeletePaymentMethodParams) WithDefaults() *DeletePaymentMethodParams {
-	o.SetDefaults()
-	return o
-}
-
-// SetDefaults hydrates default values in the delete payment method params (not the query body).
-//
-// All values with no default are reset to their zero value.
-func (o *DeletePaymentMethodParams) SetDefaults() {
-	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the delete payment method params

@@ -6,7 +6,6 @@ package types
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"context"
 	"strconv"
 
 	"github.com/go-openapi/errors"
@@ -27,7 +26,7 @@ type DeviceCreateInput struct {
 	BillingCycle string `json:"billing_cycle,omitempty"`
 
 	// customdata
-	Customdata string `json:"customdata,omitempty"`
+	Customdata interface{} `json:"customdata,omitempty"`
 
 	// description
 	Description string `json:"description,omitempty"`
@@ -40,7 +39,6 @@ type DeviceCreateInput struct {
 	Features []string `json:"features"`
 
 	// hardware reservation id
-	// Example: uuid or 'next-available'
 	// Format: uuid
 	HardwareReservationID strfmt.UUID `json:"hardware_reservation_id,omitempty"`
 
@@ -145,6 +143,7 @@ func (m *DeviceCreateInput) validateFacility(formats strfmt.Registry) error {
 }
 
 func (m *DeviceCreateInput) validateHardwareReservationID(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.HardwareReservationID) { // not required
 		return nil
 	}
@@ -157,6 +156,7 @@ func (m *DeviceCreateInput) validateHardwareReservationID(formats strfmt.Registr
 }
 
 func (m *DeviceCreateInput) validateIPAddresses(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.IPAddresses) { // not required
 		return nil
 	}
@@ -199,6 +199,7 @@ func (m *DeviceCreateInput) validatePlan(formats strfmt.Registry) error {
 }
 
 func (m *DeviceCreateInput) validateProjectSSHKeys(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.ProjectSSHKeys) { // not required
 		return nil
 	}
@@ -215,6 +216,7 @@ func (m *DeviceCreateInput) validateProjectSSHKeys(formats strfmt.Registry) erro
 }
 
 func (m *DeviceCreateInput) validateTerminationTime(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.TerminationTime) { // not required
 		return nil
 	}
@@ -227,6 +229,7 @@ func (m *DeviceCreateInput) validateTerminationTime(formats strfmt.Registry) err
 }
 
 func (m *DeviceCreateInput) validateUserSSHKeys(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.UserSSHKeys) { // not required
 		return nil
 	}
@@ -235,38 +238,6 @@ func (m *DeviceCreateInput) validateUserSSHKeys(formats strfmt.Registry) error {
 
 		if err := validate.FormatOf("user_ssh_keys"+"."+strconv.Itoa(i), "body", "uuid", m.UserSSHKeys[i].String(), formats); err != nil {
 			return err
-		}
-
-	}
-
-	return nil
-}
-
-// ContextValidate validate this device create input based on the context it is used
-func (m *DeviceCreateInput) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.contextValidateIPAddresses(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *DeviceCreateInput) contextValidateIPAddresses(ctx context.Context, formats strfmt.Registry) error {
-
-	for i := 0; i < len(m.IPAddresses); i++ {
-
-		if m.IPAddresses[i] != nil {
-			if err := m.IPAddresses[i].ContextValidate(ctx, formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("ip_addresses" + "." + strconv.Itoa(i))
-				}
-				return err
-			}
 		}
 
 	}
@@ -298,28 +269,20 @@ func (m *DeviceCreateInput) UnmarshalBinary(b []byte) error {
 type DeviceCreateInputIPAddressesItems0 struct {
 
 	// Address Family for IP Address
-	// Example: 4 or 6
 	AddressFamily int64 `json:"address_family,omitempty"`
 
 	// Cidr Size for the IP Block created. Valid values depends on the operating system been provisioned.
-	// Example: 28..32 for IPv4 addresses
 	Cidr int64 `json:"cidr,omitempty"`
 
 	// UUIDs of any IP reservations to use when assigning IPs
 	IPReservations []string `json:"ip_reservations"`
 
 	// Address Type for IP Address
-	// Example: true or false
 	Public bool `json:"public,omitempty"`
 }
 
 // Validate validates this device create input IP addresses items0
 func (m *DeviceCreateInputIPAddressesItems0) Validate(formats strfmt.Registry) error {
-	return nil
-}
-
-// ContextValidate validates this device create input IP addresses items0 based on context it is used
-func (m *DeviceCreateInputIPAddressesItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

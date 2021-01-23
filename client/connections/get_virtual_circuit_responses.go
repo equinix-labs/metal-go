@@ -41,6 +41,7 @@ func (o *GetVirtualCircuitReader) ReadResponse(response runtime.ClientResponse, 
 			return nil, err
 		}
 		return nil, result
+
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -51,7 +52,7 @@ func NewGetVirtualCircuitOK() *GetVirtualCircuitOK {
 	return &GetVirtualCircuitOK{}
 }
 
-/* GetVirtualCircuitOK describes a response with status code 200, with default header values.
+/*GetVirtualCircuitOK handles this case with default header values.
 
 ok
 */
@@ -62,6 +63,7 @@ type GetVirtualCircuitOK struct {
 func (o *GetVirtualCircuitOK) Error() string {
 	return fmt.Sprintf("[GET /virtual-circuits/{id}][%d] getVirtualCircuitOK  %+v", 200, o.Payload)
 }
+
 func (o *GetVirtualCircuitOK) GetPayload() *types.VirtualCircuit {
 	return o.Payload
 }
@@ -83,7 +85,7 @@ func NewGetVirtualCircuitForbidden() *GetVirtualCircuitForbidden {
 	return &GetVirtualCircuitForbidden{}
 }
 
-/* GetVirtualCircuitForbidden describes a response with status code 403, with default header values.
+/*GetVirtualCircuitForbidden handles this case with default header values.
 
 forbidden
 */
@@ -104,7 +106,7 @@ func NewGetVirtualCircuitNotFound() *GetVirtualCircuitNotFound {
 	return &GetVirtualCircuitNotFound{}
 }
 
-/* GetVirtualCircuitNotFound describes a response with status code 404, with default header values.
+/*GetVirtualCircuitNotFound handles this case with default header values.
 
 not found
 */

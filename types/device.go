@@ -6,7 +6,6 @@ package types
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"context"
 	"strconv"
 
 	"github.com/go-openapi/errors"
@@ -34,7 +33,7 @@ type Device struct {
 	CreatedAt strfmt.DateTime `json:"created_at,omitempty"`
 
 	// customdata
-	Customdata string `json:"customdata,omitempty"`
+	Customdata interface{} `json:"customdata,omitempty"`
 
 	// description
 	Description string `json:"description,omitempty"`
@@ -201,6 +200,7 @@ func (m *Device) Validate(formats strfmt.Registry) error {
 }
 
 func (m *Device) validateCreatedAt(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.CreatedAt) { // not required
 		return nil
 	}
@@ -213,6 +213,7 @@ func (m *Device) validateCreatedAt(formats strfmt.Registry) error {
 }
 
 func (m *Device) validateFacility(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.Facility) { // not required
 		return nil
 	}
@@ -230,6 +231,7 @@ func (m *Device) validateFacility(formats strfmt.Registry) error {
 }
 
 func (m *Device) validateHardwareReservation(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.HardwareReservation) { // not required
 		return nil
 	}
@@ -247,6 +249,7 @@ func (m *Device) validateHardwareReservation(formats strfmt.Registry) error {
 }
 
 func (m *Device) validateID(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.ID) { // not required
 		return nil
 	}
@@ -259,6 +262,7 @@ func (m *Device) validateID(formats strfmt.Registry) error {
 }
 
 func (m *Device) validateIPAddresses(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.IPAddresses) { // not required
 		return nil
 	}
@@ -283,6 +287,7 @@ func (m *Device) validateIPAddresses(formats strfmt.Registry) error {
 }
 
 func (m *Device) validateLocation(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.Location) { // not required
 		return nil
 	}
@@ -300,6 +305,7 @@ func (m *Device) validateLocation(formats strfmt.Registry) error {
 }
 
 func (m *Device) validateOperatingSystem(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.OperatingSystem) { // not required
 		return nil
 	}
@@ -317,6 +323,7 @@ func (m *Device) validateOperatingSystem(formats strfmt.Registry) error {
 }
 
 func (m *Device) validatePlan(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.Plan) { // not required
 		return nil
 	}
@@ -334,6 +341,7 @@ func (m *Device) validatePlan(formats strfmt.Registry) error {
 }
 
 func (m *Device) validateProject(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.Project) { // not required
 		return nil
 	}
@@ -351,6 +359,7 @@ func (m *Device) validateProject(formats strfmt.Registry) error {
 }
 
 func (m *Device) validateProjectLite(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.ProjectLite) { // not required
 		return nil
 	}
@@ -368,6 +377,7 @@ func (m *Device) validateProjectLite(formats strfmt.Registry) error {
 }
 
 func (m *Device) validateProvisioningEvents(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.ProvisioningEvents) { // not required
 		return nil
 	}
@@ -392,6 +402,7 @@ func (m *Device) validateProvisioningEvents(formats strfmt.Registry) error {
 }
 
 func (m *Device) validateSSHKeys(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.SSHKeys) { // not required
 		return nil
 	}
@@ -416,6 +427,7 @@ func (m *Device) validateSSHKeys(formats strfmt.Registry) error {
 }
 
 func (m *Device) validateTerminationTime(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.TerminationTime) { // not required
 		return nil
 	}
@@ -428,6 +440,7 @@ func (m *Device) validateTerminationTime(formats strfmt.Registry) error {
 }
 
 func (m *Device) validateUpdatedAt(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.UpdatedAt) { // not required
 		return nil
 	}
@@ -440,6 +453,7 @@ func (m *Device) validateUpdatedAt(formats strfmt.Registry) error {
 }
 
 func (m *Device) validateVolumes(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.Volumes) { // not required
 		return nil
 	}
@@ -451,230 +465,6 @@ func (m *Device) validateVolumes(formats strfmt.Registry) error {
 
 		if m.Volumes[i] != nil {
 			if err := m.Volumes[i].Validate(formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("volumes" + "." + strconv.Itoa(i))
-				}
-				return err
-			}
-		}
-
-	}
-
-	return nil
-}
-
-// ContextValidate validate this device based on the context it is used
-func (m *Device) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.contextValidateFacility(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateHardwareReservation(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateIPAddresses(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateLocation(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateOperatingSystem(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidatePlan(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateProject(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateProjectLite(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateProvisioningEvents(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateSSHKeys(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateVolumes(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *Device) contextValidateFacility(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.Facility != nil {
-		if err := m.Facility.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("facility")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *Device) contextValidateHardwareReservation(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.HardwareReservation != nil {
-		if err := m.HardwareReservation.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("hardware_reservation")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *Device) contextValidateIPAddresses(ctx context.Context, formats strfmt.Registry) error {
-
-	for i := 0; i < len(m.IPAddresses); i++ {
-
-		if m.IPAddresses[i] != nil {
-			if err := m.IPAddresses[i].ContextValidate(ctx, formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("ip_addresses" + "." + strconv.Itoa(i))
-				}
-				return err
-			}
-		}
-
-	}
-
-	return nil
-}
-
-func (m *Device) contextValidateLocation(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.Location != nil {
-		if err := m.Location.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("location")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *Device) contextValidateOperatingSystem(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.OperatingSystem != nil {
-		if err := m.OperatingSystem.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("operating_system")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *Device) contextValidatePlan(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.Plan != nil {
-		if err := m.Plan.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("plan")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *Device) contextValidateProject(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.Project != nil {
-		if err := m.Project.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("project")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *Device) contextValidateProjectLite(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.ProjectLite != nil {
-		if err := m.ProjectLite.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("project_lite")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *Device) contextValidateProvisioningEvents(ctx context.Context, formats strfmt.Registry) error {
-
-	for i := 0; i < len(m.ProvisioningEvents); i++ {
-
-		if m.ProvisioningEvents[i] != nil {
-			if err := m.ProvisioningEvents[i].ContextValidate(ctx, formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("provisioning_events" + "." + strconv.Itoa(i))
-				}
-				return err
-			}
-		}
-
-	}
-
-	return nil
-}
-
-func (m *Device) contextValidateSSHKeys(ctx context.Context, formats strfmt.Registry) error {
-
-	for i := 0; i < len(m.SSHKeys); i++ {
-
-		if m.SSHKeys[i] != nil {
-			if err := m.SSHKeys[i].ContextValidate(ctx, formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("ssh_keys" + "." + strconv.Itoa(i))
-				}
-				return err
-			}
-		}
-
-	}
-
-	return nil
-}
-
-func (m *Device) contextValidateVolumes(ctx context.Context, formats strfmt.Registry) error {
-
-	for i := 0; i < len(m.Volumes); i++ {
-
-		if m.Volumes[i] != nil {
-			if err := m.Volumes[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("volumes" + "." + strconv.Itoa(i))
 				}

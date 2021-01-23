@@ -47,6 +47,7 @@ func (o *FindIPReservationsReader) ReadResponse(response runtime.ClientResponse,
 			return nil, err
 		}
 		return nil, result
+
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -57,7 +58,7 @@ func NewFindIPReservationsOK() *FindIPReservationsOK {
 	return &FindIPReservationsOK{}
 }
 
-/* FindIPReservationsOK describes a response with status code 200, with default header values.
+/*FindIPReservationsOK handles this case with default header values.
 
 ok
 */
@@ -68,6 +69,7 @@ type FindIPReservationsOK struct {
 func (o *FindIPReservationsOK) Error() string {
 	return fmt.Sprintf("[GET /projects/{id}/ips][%d] findIpReservationsOK  %+v", 200, o.Payload)
 }
+
 func (o *FindIPReservationsOK) GetPayload() *types.IPReservationList {
 	return o.Payload
 }
@@ -89,7 +91,7 @@ func NewFindIPReservationsUnauthorized() *FindIPReservationsUnauthorized {
 	return &FindIPReservationsUnauthorized{}
 }
 
-/* FindIPReservationsUnauthorized describes a response with status code 401, with default header values.
+/*FindIPReservationsUnauthorized handles this case with default header values.
 
 unauthorized
 */
@@ -110,7 +112,7 @@ func NewFindIPReservationsForbidden() *FindIPReservationsForbidden {
 	return &FindIPReservationsForbidden{}
 }
 
-/* FindIPReservationsForbidden describes a response with status code 403, with default header values.
+/*FindIPReservationsForbidden handles this case with default header values.
 
 forbidden
 */
@@ -131,7 +133,7 @@ func NewFindIPReservationsNotFound() *FindIPReservationsNotFound {
 	return &FindIPReservationsNotFound{}
 }
 
-/* FindIPReservationsNotFound describes a response with status code 404, with default header values.
+/*FindIPReservationsNotFound handles this case with default header values.
 
 not found
 */

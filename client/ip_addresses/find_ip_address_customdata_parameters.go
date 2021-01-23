@@ -16,75 +16,59 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewFindIPAddressCustomdataParams creates a new FindIPAddressCustomdataParams object,
-// with the default timeout for this client.
-//
-// Default values are not hydrated, since defaults are normally applied by the API server side.
-//
-// To enforce default values in parameter, use SetDefaults or WithDefaults.
+// NewFindIPAddressCustomdataParams creates a new FindIPAddressCustomdataParams object
+// with the default values initialized.
 func NewFindIPAddressCustomdataParams() *FindIPAddressCustomdataParams {
+	var ()
 	return &FindIPAddressCustomdataParams{
+
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewFindIPAddressCustomdataParamsWithTimeout creates a new FindIPAddressCustomdataParams object
-// with the ability to set a timeout on a request.
+// with the default values initialized, and the ability to set a timeout on a request
 func NewFindIPAddressCustomdataParamsWithTimeout(timeout time.Duration) *FindIPAddressCustomdataParams {
+	var ()
 	return &FindIPAddressCustomdataParams{
+
 		timeout: timeout,
 	}
 }
 
 // NewFindIPAddressCustomdataParamsWithContext creates a new FindIPAddressCustomdataParams object
-// with the ability to set a context for a request.
+// with the default values initialized, and the ability to set a context for a request
 func NewFindIPAddressCustomdataParamsWithContext(ctx context.Context) *FindIPAddressCustomdataParams {
+	var ()
 	return &FindIPAddressCustomdataParams{
+
 		Context: ctx,
 	}
 }
 
 // NewFindIPAddressCustomdataParamsWithHTTPClient creates a new FindIPAddressCustomdataParams object
-// with the ability to set a custom HTTPClient for a request.
+// with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewFindIPAddressCustomdataParamsWithHTTPClient(client *http.Client) *FindIPAddressCustomdataParams {
+	var ()
 	return &FindIPAddressCustomdataParams{
 		HTTPClient: client,
 	}
 }
 
-/* FindIPAddressCustomdataParams contains all the parameters to send to the API endpoint
-   for the find IP address customdata operation.
-
-   Typically these are written to a http.Request.
+/*FindIPAddressCustomdataParams contains all the parameters to send to the API endpoint
+for the find IP address customdata operation typically these are written to a http.Request
 */
 type FindIPAddressCustomdataParams struct {
 
-	/* ID.
+	/*ID
+	  Ip Reservation UUID
 
-	   Ip Reservation UUID
-
-	   Format: uuid
 	*/
 	ID strfmt.UUID
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
-}
-
-// WithDefaults hydrates default values in the find IP address customdata params (not the query body).
-//
-// All values with no default are reset to their zero value.
-func (o *FindIPAddressCustomdataParams) WithDefaults() *FindIPAddressCustomdataParams {
-	o.SetDefaults()
-	return o
-}
-
-// SetDefaults hydrates default values in the find IP address customdata params (not the query body).
-//
-// All values with no default are reset to their zero value.
-func (o *FindIPAddressCustomdataParams) SetDefaults() {
-	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the find IP address customdata params

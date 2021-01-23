@@ -47,6 +47,7 @@ func (o *FindHardwareReservationByIDReader) ReadResponse(response runtime.Client
 			return nil, err
 		}
 		return nil, result
+
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -57,7 +58,7 @@ func NewFindHardwareReservationByIDOK() *FindHardwareReservationByIDOK {
 	return &FindHardwareReservationByIDOK{}
 }
 
-/* FindHardwareReservationByIDOK describes a response with status code 200, with default header values.
+/*FindHardwareReservationByIDOK handles this case with default header values.
 
 ok
 */
@@ -68,6 +69,7 @@ type FindHardwareReservationByIDOK struct {
 func (o *FindHardwareReservationByIDOK) Error() string {
 	return fmt.Sprintf("[GET /hardware-reservations/{id}][%d] findHardwareReservationByIdOK  %+v", 200, o.Payload)
 }
+
 func (o *FindHardwareReservationByIDOK) GetPayload() *types.Device {
 	return o.Payload
 }
@@ -89,7 +91,7 @@ func NewFindHardwareReservationByIDUnauthorized() *FindHardwareReservationByIDUn
 	return &FindHardwareReservationByIDUnauthorized{}
 }
 
-/* FindHardwareReservationByIDUnauthorized describes a response with status code 401, with default header values.
+/*FindHardwareReservationByIDUnauthorized handles this case with default header values.
 
 unauthorized
 */
@@ -110,7 +112,7 @@ func NewFindHardwareReservationByIDForbidden() *FindHardwareReservationByIDForbi
 	return &FindHardwareReservationByIDForbidden{}
 }
 
-/* FindHardwareReservationByIDForbidden describes a response with status code 403, with default header values.
+/*FindHardwareReservationByIDForbidden handles this case with default header values.
 
 forbidden
 */
@@ -131,7 +133,7 @@ func NewFindHardwareReservationByIDNotFound() *FindHardwareReservationByIDNotFou
 	return &FindHardwareReservationByIDNotFound{}
 }
 
-/* FindHardwareReservationByIDNotFound describes a response with status code 404, with default header values.
+/*FindHardwareReservationByIDNotFound handles this case with default header values.
 
 not found
 */

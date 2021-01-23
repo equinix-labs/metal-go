@@ -53,6 +53,7 @@ func (o *CreateLicenseReader) ReadResponse(response runtime.ClientResponse, cons
 			return nil, err
 		}
 		return nil, result
+
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -63,7 +64,7 @@ func NewCreateLicenseCreated() *CreateLicenseCreated {
 	return &CreateLicenseCreated{}
 }
 
-/* CreateLicenseCreated describes a response with status code 201, with default header values.
+/*CreateLicenseCreated handles this case with default header values.
 
 created
 */
@@ -74,6 +75,7 @@ type CreateLicenseCreated struct {
 func (o *CreateLicenseCreated) Error() string {
 	return fmt.Sprintf("[POST /projects/{id}/licenses][%d] createLicenseCreated  %+v", 201, o.Payload)
 }
+
 func (o *CreateLicenseCreated) GetPayload() *types.License {
 	return o.Payload
 }
@@ -95,7 +97,7 @@ func NewCreateLicenseUnauthorized() *CreateLicenseUnauthorized {
 	return &CreateLicenseUnauthorized{}
 }
 
-/* CreateLicenseUnauthorized describes a response with status code 401, with default header values.
+/*CreateLicenseUnauthorized handles this case with default header values.
 
 unauthorized
 */
@@ -116,7 +118,7 @@ func NewCreateLicenseForbidden() *CreateLicenseForbidden {
 	return &CreateLicenseForbidden{}
 }
 
-/* CreateLicenseForbidden describes a response with status code 403, with default header values.
+/*CreateLicenseForbidden handles this case with default header values.
 
 forbidden
 */
@@ -137,7 +139,7 @@ func NewCreateLicenseNotFound() *CreateLicenseNotFound {
 	return &CreateLicenseNotFound{}
 }
 
-/* CreateLicenseNotFound describes a response with status code 404, with default header values.
+/*CreateLicenseNotFound handles this case with default header values.
 
 not found
 */
@@ -158,7 +160,7 @@ func NewCreateLicenseUnprocessableEntity() *CreateLicenseUnprocessableEntity {
 	return &CreateLicenseUnprocessableEntity{}
 }
 
-/* CreateLicenseUnprocessableEntity describes a response with status code 422, with default header values.
+/*CreateLicenseUnprocessableEntity handles this case with default header values.
 
 unprocessable entity
 */

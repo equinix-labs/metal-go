@@ -47,6 +47,7 @@ func (o *FindProjectByIDReader) ReadResponse(response runtime.ClientResponse, co
 			return nil, err
 		}
 		return nil, result
+
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -57,7 +58,7 @@ func NewFindProjectByIDOK() *FindProjectByIDOK {
 	return &FindProjectByIDOK{}
 }
 
-/* FindProjectByIDOK describes a response with status code 200, with default header values.
+/*FindProjectByIDOK handles this case with default header values.
 
 ok
 */
@@ -68,6 +69,7 @@ type FindProjectByIDOK struct {
 func (o *FindProjectByIDOK) Error() string {
 	return fmt.Sprintf("[GET /projects/{id}][%d] findProjectByIdOK  %+v", 200, o.Payload)
 }
+
 func (o *FindProjectByIDOK) GetPayload() *types.Project {
 	return o.Payload
 }
@@ -89,7 +91,7 @@ func NewFindProjectByIDUnauthorized() *FindProjectByIDUnauthorized {
 	return &FindProjectByIDUnauthorized{}
 }
 
-/* FindProjectByIDUnauthorized describes a response with status code 401, with default header values.
+/*FindProjectByIDUnauthorized handles this case with default header values.
 
 unauthorized
 */
@@ -110,7 +112,7 @@ func NewFindProjectByIDForbidden() *FindProjectByIDForbidden {
 	return &FindProjectByIDForbidden{}
 }
 
-/* FindProjectByIDForbidden describes a response with status code 403, with default header values.
+/*FindProjectByIDForbidden handles this case with default header values.
 
 forbidden
 */
@@ -131,7 +133,7 @@ func NewFindProjectByIDNotFound() *FindProjectByIDNotFound {
 	return &FindProjectByIDNotFound{}
 }
 
-/* FindProjectByIDNotFound describes a response with status code 404, with default header values.
+/*FindProjectByIDNotFound handles this case with default header values.
 
 not found
 */

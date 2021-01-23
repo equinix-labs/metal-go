@@ -18,81 +18,64 @@ import (
 	"github.com/t0mk/gometal/types"
 )
 
-// NewUnassignPortParams creates a new UnassignPortParams object,
-// with the default timeout for this client.
-//
-// Default values are not hydrated, since defaults are normally applied by the API server side.
-//
-// To enforce default values in parameter, use SetDefaults or WithDefaults.
+// NewUnassignPortParams creates a new UnassignPortParams object
+// with the default values initialized.
 func NewUnassignPortParams() *UnassignPortParams {
+	var ()
 	return &UnassignPortParams{
+
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewUnassignPortParamsWithTimeout creates a new UnassignPortParams object
-// with the ability to set a timeout on a request.
+// with the default values initialized, and the ability to set a timeout on a request
 func NewUnassignPortParamsWithTimeout(timeout time.Duration) *UnassignPortParams {
+	var ()
 	return &UnassignPortParams{
+
 		timeout: timeout,
 	}
 }
 
 // NewUnassignPortParamsWithContext creates a new UnassignPortParams object
-// with the ability to set a context for a request.
+// with the default values initialized, and the ability to set a context for a request
 func NewUnassignPortParamsWithContext(ctx context.Context) *UnassignPortParams {
+	var ()
 	return &UnassignPortParams{
+
 		Context: ctx,
 	}
 }
 
 // NewUnassignPortParamsWithHTTPClient creates a new UnassignPortParams object
-// with the ability to set a custom HTTPClient for a request.
+// with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewUnassignPortParamsWithHTTPClient(client *http.Client) *UnassignPortParams {
+	var ()
 	return &UnassignPortParams{
 		HTTPClient: client,
 	}
 }
 
-/* UnassignPortParams contains all the parameters to send to the API endpoint
-   for the unassign port operation.
-
-   Typically these are written to a http.Request.
+/*UnassignPortParams contains all the parameters to send to the API endpoint
+for the unassign port operation typically these are written to a http.Request
 */
 type UnassignPortParams struct {
 
-	/* ID.
+	/*ID
+	  Port UUID
 
-	   Port UUID
-
-	   Format: uuid
 	*/
 	ID strfmt.UUID
+	/*Vnid
+	  Virtual Network ID
 
-	/* Vnid.
-
-	   Virtual Network ID
 	*/
 	Vnid *types.PortAssignInput
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
-}
-
-// WithDefaults hydrates default values in the unassign port params (not the query body).
-//
-// All values with no default are reset to their zero value.
-func (o *UnassignPortParams) WithDefaults() *UnassignPortParams {
-	o.SetDefaults()
-	return o
-}
-
-// SetDefaults hydrates default values in the unassign port params (not the query body).
-//
-// All values with no default are reset to their zero value.
-func (o *UnassignPortParams) SetDefaults() {
-	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the unassign port params
@@ -162,6 +145,7 @@ func (o *UnassignPortParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 	if err := r.SetPathParam("id", o.ID.String()); err != nil {
 		return err
 	}
+
 	if o.Vnid != nil {
 		if err := r.SetBodyParam(o.Vnid); err != nil {
 			return err

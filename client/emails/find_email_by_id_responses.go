@@ -47,6 +47,7 @@ func (o *FindEmailByIDReader) ReadResponse(response runtime.ClientResponse, cons
 			return nil, err
 		}
 		return nil, result
+
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -57,7 +58,7 @@ func NewFindEmailByIDOK() *FindEmailByIDOK {
 	return &FindEmailByIDOK{}
 }
 
-/* FindEmailByIDOK describes a response with status code 200, with default header values.
+/*FindEmailByIDOK handles this case with default header values.
 
 ok
 */
@@ -68,6 +69,7 @@ type FindEmailByIDOK struct {
 func (o *FindEmailByIDOK) Error() string {
 	return fmt.Sprintf("[GET /emails/{id}][%d] findEmailByIdOK  %+v", 200, o.Payload)
 }
+
 func (o *FindEmailByIDOK) GetPayload() *types.Email {
 	return o.Payload
 }
@@ -89,7 +91,7 @@ func NewFindEmailByIDUnauthorized() *FindEmailByIDUnauthorized {
 	return &FindEmailByIDUnauthorized{}
 }
 
-/* FindEmailByIDUnauthorized describes a response with status code 401, with default header values.
+/*FindEmailByIDUnauthorized handles this case with default header values.
 
 unauthorized
 */
@@ -110,7 +112,7 @@ func NewFindEmailByIDForbidden() *FindEmailByIDForbidden {
 	return &FindEmailByIDForbidden{}
 }
 
-/* FindEmailByIDForbidden describes a response with status code 403, with default header values.
+/*FindEmailByIDForbidden handles this case with default header values.
 
 forbidden
 */
@@ -131,7 +133,7 @@ func NewFindEmailByIDNotFound() *FindEmailByIDNotFound {
 	return &FindEmailByIDNotFound{}
 }
 
-/* FindEmailByIDNotFound describes a response with status code 404, with default header values.
+/*FindEmailByIDNotFound handles this case with default header values.
 
 not found
 */

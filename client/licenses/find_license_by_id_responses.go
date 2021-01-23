@@ -47,6 +47,7 @@ func (o *FindLicenseByIDReader) ReadResponse(response runtime.ClientResponse, co
 			return nil, err
 		}
 		return nil, result
+
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -57,7 +58,7 @@ func NewFindLicenseByIDOK() *FindLicenseByIDOK {
 	return &FindLicenseByIDOK{}
 }
 
-/* FindLicenseByIDOK describes a response with status code 200, with default header values.
+/*FindLicenseByIDOK handles this case with default header values.
 
 ok
 */
@@ -68,6 +69,7 @@ type FindLicenseByIDOK struct {
 func (o *FindLicenseByIDOK) Error() string {
 	return fmt.Sprintf("[GET /licenses/{id}][%d] findLicenseByIdOK  %+v", 200, o.Payload)
 }
+
 func (o *FindLicenseByIDOK) GetPayload() *types.License {
 	return o.Payload
 }
@@ -89,7 +91,7 @@ func NewFindLicenseByIDUnauthorized() *FindLicenseByIDUnauthorized {
 	return &FindLicenseByIDUnauthorized{}
 }
 
-/* FindLicenseByIDUnauthorized describes a response with status code 401, with default header values.
+/*FindLicenseByIDUnauthorized handles this case with default header values.
 
 unauthorized
 */
@@ -110,7 +112,7 @@ func NewFindLicenseByIDForbidden() *FindLicenseByIDForbidden {
 	return &FindLicenseByIDForbidden{}
 }
 
-/* FindLicenseByIDForbidden describes a response with status code 403, with default header values.
+/*FindLicenseByIDForbidden handles this case with default header values.
 
 forbidden
 */
@@ -131,7 +133,7 @@ func NewFindLicenseByIDNotFound() *FindLicenseByIDNotFound {
 	return &FindLicenseByIDNotFound{}
 }
 
-/* FindLicenseByIDNotFound describes a response with status code 404, with default header values.
+/*FindLicenseByIDNotFound handles this case with default header values.
 
 not found
 */

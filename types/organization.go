@@ -6,7 +6,6 @@ package types
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"context"
 	"io"
 	"strconv"
 
@@ -35,7 +34,7 @@ type Organization struct {
 	CreditAmount float32 `json:"credit_amount,omitempty"`
 
 	// customdata
-	Customdata string `json:"customdata,omitempty"`
+	Customdata interface{} `json:"customdata,omitempty"`
 
 	// description
 	Description string `json:"description,omitempty"`
@@ -132,6 +131,7 @@ func (m *Organization) Validate(formats strfmt.Registry) error {
 }
 
 func (m *Organization) validateAddress(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.Address) { // not required
 		return nil
 	}
@@ -149,6 +149,7 @@ func (m *Organization) validateAddress(formats strfmt.Registry) error {
 }
 
 func (m *Organization) validateBillingAddress(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.BillingAddress) { // not required
 		return nil
 	}
@@ -166,6 +167,7 @@ func (m *Organization) validateBillingAddress(formats strfmt.Registry) error {
 }
 
 func (m *Organization) validateCreatedAt(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.CreatedAt) { // not required
 		return nil
 	}
@@ -178,6 +180,7 @@ func (m *Organization) validateCreatedAt(formats strfmt.Registry) error {
 }
 
 func (m *Organization) validateEnforce2faAt(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.Enforce2faAt) { // not required
 		return nil
 	}
@@ -190,6 +193,7 @@ func (m *Organization) validateEnforce2faAt(formats strfmt.Registry) error {
 }
 
 func (m *Organization) validateEntitlement(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.Entitlement) { // not required
 		return nil
 	}
@@ -207,6 +211,7 @@ func (m *Organization) validateEntitlement(formats strfmt.Registry) error {
 }
 
 func (m *Organization) validateID(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.ID) { // not required
 		return nil
 	}
@@ -219,6 +224,7 @@ func (m *Organization) validateID(formats strfmt.Registry) error {
 }
 
 func (m *Organization) validateMembers(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.Members) { // not required
 		return nil
 	}
@@ -243,6 +249,7 @@ func (m *Organization) validateMembers(formats strfmt.Registry) error {
 }
 
 func (m *Organization) validateMemberships(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.Memberships) { // not required
 		return nil
 	}
@@ -267,6 +274,7 @@ func (m *Organization) validateMemberships(formats strfmt.Registry) error {
 }
 
 func (m *Organization) validateProjects(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.Projects) { // not required
 		return nil
 	}
@@ -291,142 +299,13 @@ func (m *Organization) validateProjects(formats strfmt.Registry) error {
 }
 
 func (m *Organization) validateUpdatedAt(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.UpdatedAt) { // not required
 		return nil
 	}
 
 	if err := validate.FormatOf("updated_at", "body", "date-time", m.UpdatedAt.String(), formats); err != nil {
 		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validate this organization based on the context it is used
-func (m *Organization) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.contextValidateAddress(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateBillingAddress(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateEntitlement(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateMembers(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateMemberships(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateProjects(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *Organization) contextValidateAddress(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.Address != nil {
-		if err := m.Address.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("address")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *Organization) contextValidateBillingAddress(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.BillingAddress != nil {
-		if err := m.BillingAddress.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("billing_address")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *Organization) contextValidateEntitlement(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.Entitlement != nil {
-		if err := m.Entitlement.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("entitlement")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *Organization) contextValidateMembers(ctx context.Context, formats strfmt.Registry) error {
-
-	for i := 0; i < len(m.Members); i++ {
-
-		if m.Members[i] != nil {
-			if err := m.Members[i].ContextValidate(ctx, formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("members" + "." + strconv.Itoa(i))
-				}
-				return err
-			}
-		}
-
-	}
-
-	return nil
-}
-
-func (m *Organization) contextValidateMemberships(ctx context.Context, formats strfmt.Registry) error {
-
-	for i := 0; i < len(m.Memberships); i++ {
-
-		if m.Memberships[i] != nil {
-			if err := m.Memberships[i].ContextValidate(ctx, formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("memberships" + "." + strconv.Itoa(i))
-				}
-				return err
-			}
-		}
-
-	}
-
-	return nil
-}
-
-func (m *Organization) contextValidateProjects(ctx context.Context, formats strfmt.Registry) error {
-
-	for i := 0; i < len(m.Projects); i++ {
-
-		if m.Projects[i] != nil {
-			if err := m.Projects[i].ContextValidate(ctx, formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("projects" + "." + strconv.Itoa(i))
-				}
-				return err
-			}
-		}
-
 	}
 
 	return nil

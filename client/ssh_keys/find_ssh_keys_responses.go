@@ -35,6 +35,7 @@ func (o *FindSSHKeysReader) ReadResponse(response runtime.ClientResponse, consum
 			return nil, err
 		}
 		return nil, result
+
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -45,7 +46,7 @@ func NewFindSSHKeysOK() *FindSSHKeysOK {
 	return &FindSSHKeysOK{}
 }
 
-/* FindSSHKeysOK describes a response with status code 200, with default header values.
+/*FindSSHKeysOK handles this case with default header values.
 
 ok
 */
@@ -56,6 +57,7 @@ type FindSSHKeysOK struct {
 func (o *FindSSHKeysOK) Error() string {
 	return fmt.Sprintf("[GET /ssh-keys][%d] findSshKeysOK  %+v", 200, o.Payload)
 }
+
 func (o *FindSSHKeysOK) GetPayload() *types.SSHKeyList {
 	return o.Payload
 }
@@ -77,7 +79,7 @@ func NewFindSSHKeysUnauthorized() *FindSSHKeysUnauthorized {
 	return &FindSSHKeysUnauthorized{}
 }
 
-/* FindSSHKeysUnauthorized describes a response with status code 401, with default header values.
+/*FindSSHKeysUnauthorized handles this case with default header values.
 
 unauthorized
 */

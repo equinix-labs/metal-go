@@ -38,6 +38,7 @@ func (o *CreateValidationRequestReader) ReadResponse(response runtime.ClientResp
 			return nil, err
 		}
 		return nil, result
+
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -48,7 +49,7 @@ func NewCreateValidationRequestCreated() *CreateValidationRequestCreated {
 	return &CreateValidationRequestCreated{}
 }
 
-/* CreateValidationRequestCreated describes a response with status code 201, with default header values.
+/*CreateValidationRequestCreated handles this case with default header values.
 
 created
 */
@@ -69,7 +70,7 @@ func NewCreateValidationRequestUnauthorized() *CreateValidationRequestUnauthoriz
 	return &CreateValidationRequestUnauthorized{}
 }
 
-/* CreateValidationRequestUnauthorized describes a response with status code 401, with default header values.
+/*CreateValidationRequestUnauthorized handles this case with default header values.
 
 unauthorized
 */
@@ -90,7 +91,7 @@ func NewCreateValidationRequestUnprocessableEntity() *CreateValidationRequestUnp
 	return &CreateValidationRequestUnprocessableEntity{}
 }
 
-/* CreateValidationRequestUnprocessableEntity describes a response with status code 422, with default header values.
+/*CreateValidationRequestUnprocessableEntity handles this case with default header values.
 
 unprocessable entity
 */

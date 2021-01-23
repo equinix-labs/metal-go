@@ -38,6 +38,7 @@ func (o *CheckCapacityReader) ReadResponse(response runtime.ClientResponse, cons
 			return nil, err
 		}
 		return nil, result
+
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -48,7 +49,7 @@ func NewCheckCapacityOK() *CheckCapacityOK {
 	return &CheckCapacityOK{}
 }
 
-/* CheckCapacityOK describes a response with status code 200, with default header values.
+/*CheckCapacityOK handles this case with default header values.
 
 ok
 */
@@ -69,7 +70,7 @@ func NewCheckCapacityUnauthorized() *CheckCapacityUnauthorized {
 	return &CheckCapacityUnauthorized{}
 }
 
-/* CheckCapacityUnauthorized describes a response with status code 401, with default header values.
+/*CheckCapacityUnauthorized handles this case with default header values.
 
 unauthorized
 */
@@ -90,7 +91,7 @@ func NewCheckCapacityUnprocessableEntity() *CheckCapacityUnprocessableEntity {
 	return &CheckCapacityUnprocessableEntity{}
 }
 
-/* CheckCapacityUnprocessableEntity describes a response with status code 422, with default header values.
+/*CheckCapacityUnprocessableEntity handles this case with default header values.
 
 unprocessable entity
 */

@@ -53,6 +53,7 @@ func (o *CreateVirtualNetworkReader) ReadResponse(response runtime.ClientRespons
 			return nil, err
 		}
 		return nil, result
+
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -63,7 +64,7 @@ func NewCreateVirtualNetworkCreated() *CreateVirtualNetworkCreated {
 	return &CreateVirtualNetworkCreated{}
 }
 
-/* CreateVirtualNetworkCreated describes a response with status code 201, with default header values.
+/*CreateVirtualNetworkCreated handles this case with default header values.
 
 created
 */
@@ -74,6 +75,7 @@ type CreateVirtualNetworkCreated struct {
 func (o *CreateVirtualNetworkCreated) Error() string {
 	return fmt.Sprintf("[POST /projects/{id}/virtual-networks][%d] createVirtualNetworkCreated  %+v", 201, o.Payload)
 }
+
 func (o *CreateVirtualNetworkCreated) GetPayload() *types.VirtualNetwork {
 	return o.Payload
 }
@@ -95,7 +97,7 @@ func NewCreateVirtualNetworkUnauthorized() *CreateVirtualNetworkUnauthorized {
 	return &CreateVirtualNetworkUnauthorized{}
 }
 
-/* CreateVirtualNetworkUnauthorized describes a response with status code 401, with default header values.
+/*CreateVirtualNetworkUnauthorized handles this case with default header values.
 
 unauthorized
 */
@@ -116,7 +118,7 @@ func NewCreateVirtualNetworkForbidden() *CreateVirtualNetworkForbidden {
 	return &CreateVirtualNetworkForbidden{}
 }
 
-/* CreateVirtualNetworkForbidden describes a response with status code 403, with default header values.
+/*CreateVirtualNetworkForbidden handles this case with default header values.
 
 forbidden
 */
@@ -137,7 +139,7 @@ func NewCreateVirtualNetworkNotFound() *CreateVirtualNetworkNotFound {
 	return &CreateVirtualNetworkNotFound{}
 }
 
-/* CreateVirtualNetworkNotFound describes a response with status code 404, with default header values.
+/*CreateVirtualNetworkNotFound handles this case with default header values.
 
 not found
 */
@@ -158,7 +160,7 @@ func NewCreateVirtualNetworkUnprocessableEntity() *CreateVirtualNetworkUnprocess
 	return &CreateVirtualNetworkUnprocessableEntity{}
 }
 
-/* CreateVirtualNetworkUnprocessableEntity describes a response with status code 422, with default header values.
+/*CreateVirtualNetworkUnprocessableEntity handles this case with default header values.
 
 unprocessable entity
 */

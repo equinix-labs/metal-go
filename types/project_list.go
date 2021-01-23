@@ -6,7 +6,6 @@ package types
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"context"
 	"strconv"
 
 	"github.com/go-openapi/errors"
@@ -45,6 +44,7 @@ func (m *ProjectList) Validate(formats strfmt.Registry) error {
 }
 
 func (m *ProjectList) validateMeta(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.Meta) { // not required
 		return nil
 	}
@@ -62,6 +62,7 @@ func (m *ProjectList) validateMeta(formats strfmt.Registry) error {
 }
 
 func (m *ProjectList) validateProjects(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.Projects) { // not required
 		return nil
 	}
@@ -73,56 +74,6 @@ func (m *ProjectList) validateProjects(formats strfmt.Registry) error {
 
 		if m.Projects[i] != nil {
 			if err := m.Projects[i].Validate(formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("projects" + "." + strconv.Itoa(i))
-				}
-				return err
-			}
-		}
-
-	}
-
-	return nil
-}
-
-// ContextValidate validate this project list based on the context it is used
-func (m *ProjectList) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.contextValidateMeta(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateProjects(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *ProjectList) contextValidateMeta(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.Meta != nil {
-		if err := m.Meta.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("meta")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *ProjectList) contextValidateProjects(ctx context.Context, formats strfmt.Registry) error {
-
-	for i := 0; i < len(m.Projects); i++ {
-
-		if m.Projects[i] != nil {
-			if err := m.Projects[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("projects" + "." + strconv.Itoa(i))
 				}

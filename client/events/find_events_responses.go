@@ -35,6 +35,7 @@ func (o *FindEventsReader) ReadResponse(response runtime.ClientResponse, consume
 			return nil, err
 		}
 		return nil, result
+
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -45,7 +46,7 @@ func NewFindEventsOK() *FindEventsOK {
 	return &FindEventsOK{}
 }
 
-/* FindEventsOK describes a response with status code 200, with default header values.
+/*FindEventsOK handles this case with default header values.
 
 ok
 */
@@ -56,6 +57,7 @@ type FindEventsOK struct {
 func (o *FindEventsOK) Error() string {
 	return fmt.Sprintf("[GET /events][%d] findEventsOK  %+v", 200, o.Payload)
 }
+
 func (o *FindEventsOK) GetPayload() *types.EventList {
 	return o.Payload
 }
@@ -77,7 +79,7 @@ func NewFindEventsUnauthorized() *FindEventsUnauthorized {
 	return &FindEventsUnauthorized{}
 }
 
-/* FindEventsUnauthorized describes a response with status code 401, with default header values.
+/*FindEventsUnauthorized handles this case with default header values.
 
 unauthorized
 */

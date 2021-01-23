@@ -35,6 +35,7 @@ func (o *FindUsersReader) ReadResponse(response runtime.ClientResponse, consumer
 			return nil, err
 		}
 		return nil, result
+
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -45,7 +46,7 @@ func NewFindUsersOK() *FindUsersOK {
 	return &FindUsersOK{}
 }
 
-/* FindUsersOK describes a response with status code 200, with default header values.
+/*FindUsersOK handles this case with default header values.
 
 ok
 */
@@ -56,6 +57,7 @@ type FindUsersOK struct {
 func (o *FindUsersOK) Error() string {
 	return fmt.Sprintf("[GET /users][%d] findUsersOK  %+v", 200, o.Payload)
 }
+
 func (o *FindUsersOK) GetPayload() *types.UserList {
 	return o.Payload
 }
@@ -77,7 +79,7 @@ func NewFindUsersUnauthorized() *FindUsersUnauthorized {
 	return &FindUsersUnauthorized{}
 }
 
-/* FindUsersUnauthorized describes a response with status code 401, with default header values.
+/*FindUsersUnauthorized handles this case with default header values.
 
 unauthorized
 */

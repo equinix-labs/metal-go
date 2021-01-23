@@ -17,85 +17,69 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// NewFindProjectsParams creates a new FindProjectsParams object,
-// with the default timeout for this client.
-//
-// Default values are not hydrated, since defaults are normally applied by the API server side.
-//
-// To enforce default values in parameter, use SetDefaults or WithDefaults.
+// NewFindProjectsParams creates a new FindProjectsParams object
+// with the default values initialized.
 func NewFindProjectsParams() *FindProjectsParams {
+	var ()
 	return &FindProjectsParams{
+
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewFindProjectsParamsWithTimeout creates a new FindProjectsParams object
-// with the ability to set a timeout on a request.
+// with the default values initialized, and the ability to set a timeout on a request
 func NewFindProjectsParamsWithTimeout(timeout time.Duration) *FindProjectsParams {
+	var ()
 	return &FindProjectsParams{
+
 		timeout: timeout,
 	}
 }
 
 // NewFindProjectsParamsWithContext creates a new FindProjectsParams object
-// with the ability to set a context for a request.
+// with the default values initialized, and the ability to set a context for a request
 func NewFindProjectsParamsWithContext(ctx context.Context) *FindProjectsParams {
+	var ()
 	return &FindProjectsParams{
+
 		Context: ctx,
 	}
 }
 
 // NewFindProjectsParamsWithHTTPClient creates a new FindProjectsParams object
-// with the ability to set a custom HTTPClient for a request.
+// with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewFindProjectsParamsWithHTTPClient(client *http.Client) *FindProjectsParams {
+	var ()
 	return &FindProjectsParams{
 		HTTPClient: client,
 	}
 }
 
-/* FindProjectsParams contains all the parameters to send to the API endpoint
-   for the find projects operation.
-
-   Typically these are written to a http.Request.
+/*FindProjectsParams contains all the parameters to send to the API endpoint
+for the find projects operation typically these are written to a http.Request
 */
 type FindProjectsParams struct {
 
-	/* Include.
+	/*Include
+	  related attributes to include
 
-	   related attributes to include
 	*/
 	Include *string
+	/*Page
+	  page to display, default to 1, max 100_000
 
-	/* Page.
-
-	   page to display, default to 1, max 100_000
 	*/
 	Page *int64
+	/*PerPage
+	  items per page, default to 10, max 1_000
 
-	/* PerPage.
-
-	   items per page, default to 10, max 1_000
 	*/
 	PerPage *int64
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
-}
-
-// WithDefaults hydrates default values in the find projects params (not the query body).
-//
-// All values with no default are reset to their zero value.
-func (o *FindProjectsParams) WithDefaults() *FindProjectsParams {
-	o.SetDefaults()
-	return o
-}
-
-// SetDefaults hydrates default values in the find projects params (not the query body).
-//
-// All values with no default are reset to their zero value.
-func (o *FindProjectsParams) SetDefaults() {
-	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the find projects params
@@ -176,51 +160,48 @@ func (o *FindProjectsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 
 		// query param include
 		var qrInclude string
-
 		if o.Include != nil {
 			qrInclude = *o.Include
 		}
 		qInclude := qrInclude
 		if qInclude != "" {
-
 			if err := r.SetQueryParam("include", qInclude); err != nil {
 				return err
 			}
 		}
+
 	}
 
 	if o.Page != nil {
 
 		// query param page
 		var qrPage int64
-
 		if o.Page != nil {
 			qrPage = *o.Page
 		}
 		qPage := swag.FormatInt64(qrPage)
 		if qPage != "" {
-
 			if err := r.SetQueryParam("page", qPage); err != nil {
 				return err
 			}
 		}
+
 	}
 
 	if o.PerPage != nil {
 
 		// query param per_page
 		var qrPerPage int64
-
 		if o.PerPage != nil {
 			qrPerPage = *o.PerPage
 		}
 		qPerPage := swag.FormatInt64(qrPerPage)
 		if qPerPage != "" {
-
 			if err := r.SetQueryParam("per_page", qPerPage); err != nil {
 				return err
 			}
 		}
+
 	}
 
 	if len(res) > 0 {

@@ -47,6 +47,7 @@ func (o *PostHardwareReservationsIDMoveReader) ReadResponse(response runtime.Cli
 			return nil, err
 		}
 		return nil, result
+
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -57,7 +58,7 @@ func NewPostHardwareReservationsIDMoveCreated() *PostHardwareReservationsIDMoveC
 	return &PostHardwareReservationsIDMoveCreated{}
 }
 
-/* PostHardwareReservationsIDMoveCreated describes a response with status code 201, with default header values.
+/*PostHardwareReservationsIDMoveCreated handles this case with default header values.
 
 ok
 */
@@ -68,6 +69,7 @@ type PostHardwareReservationsIDMoveCreated struct {
 func (o *PostHardwareReservationsIDMoveCreated) Error() string {
 	return fmt.Sprintf("[POST /hardware-reservations/{id}/move][%d] postHardwareReservationsIdMoveCreated  %+v", 201, o.Payload)
 }
+
 func (o *PostHardwareReservationsIDMoveCreated) GetPayload() *types.HardwareReservation {
 	return o.Payload
 }
@@ -89,7 +91,7 @@ func NewPostHardwareReservationsIDMoveUnauthorized() *PostHardwareReservationsID
 	return &PostHardwareReservationsIDMoveUnauthorized{}
 }
 
-/* PostHardwareReservationsIDMoveUnauthorized describes a response with status code 401, with default header values.
+/*PostHardwareReservationsIDMoveUnauthorized handles this case with default header values.
 
 unauthorized
 */
@@ -110,7 +112,7 @@ func NewPostHardwareReservationsIDMoveForbidden() *PostHardwareReservationsIDMov
 	return &PostHardwareReservationsIDMoveForbidden{}
 }
 
-/* PostHardwareReservationsIDMoveForbidden describes a response with status code 403, with default header values.
+/*PostHardwareReservationsIDMoveForbidden handles this case with default header values.
 
 forbidden
 */
@@ -131,7 +133,7 @@ func NewPostHardwareReservationsIDMoveNotFound() *PostHardwareReservationsIDMove
 	return &PostHardwareReservationsIDMoveNotFound{}
 }
 
-/* PostHardwareReservationsIDMoveNotFound describes a response with status code 404, with default header values.
+/*PostHardwareReservationsIDMoveNotFound handles this case with default header values.
 
 not found
 */

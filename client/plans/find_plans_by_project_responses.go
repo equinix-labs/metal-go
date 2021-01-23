@@ -47,6 +47,7 @@ func (o *FindPlansByProjectReader) ReadResponse(response runtime.ClientResponse,
 			return nil, err
 		}
 		return nil, result
+
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -57,7 +58,7 @@ func NewFindPlansByProjectOK() *FindPlansByProjectOK {
 	return &FindPlansByProjectOK{}
 }
 
-/* FindPlansByProjectOK describes a response with status code 200, with default header values.
+/*FindPlansByProjectOK handles this case with default header values.
 
 ok
 */
@@ -68,6 +69,7 @@ type FindPlansByProjectOK struct {
 func (o *FindPlansByProjectOK) Error() string {
 	return fmt.Sprintf("[GET /projects/{id}/plans][%d] findPlansByProjectOK  %+v", 200, o.Payload)
 }
+
 func (o *FindPlansByProjectOK) GetPayload() *types.PlanList {
 	return o.Payload
 }
@@ -89,7 +91,7 @@ func NewFindPlansByProjectUnauthorized() *FindPlansByProjectUnauthorized {
 	return &FindPlansByProjectUnauthorized{}
 }
 
-/* FindPlansByProjectUnauthorized describes a response with status code 401, with default header values.
+/*FindPlansByProjectUnauthorized handles this case with default header values.
 
 unauthorized
 */
@@ -110,7 +112,7 @@ func NewFindPlansByProjectForbidden() *FindPlansByProjectForbidden {
 	return &FindPlansByProjectForbidden{}
 }
 
-/* FindPlansByProjectForbidden describes a response with status code 403, with default header values.
+/*FindPlansByProjectForbidden handles this case with default header values.
 
 forbidden
 */
@@ -131,7 +133,7 @@ func NewFindPlansByProjectNotFound() *FindPlansByProjectNotFound {
 	return &FindPlansByProjectNotFound{}
 }
 
-/* FindPlansByProjectNotFound describes a response with status code 404, with default header values.
+/*FindPlansByProjectNotFound handles this case with default header values.
 
 not found
 */

@@ -6,8 +6,6 @@ package types
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"context"
-
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
@@ -18,17 +16,11 @@ import (
 type IPAddressInput struct {
 
 	// Address Family for IP Address
-	// Example: 4 or 6
 	AddressFamily int64 `json:"address_family,omitempty"`
 }
 
 // Validate validates this Ip address input
 func (m *IPAddressInput) Validate(formats strfmt.Registry) error {
-	return nil
-}
-
-// ContextValidate validates this Ip address input based on context it is used
-func (m *IPAddressInput) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

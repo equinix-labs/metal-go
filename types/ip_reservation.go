@@ -6,7 +6,6 @@ package types
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"context"
 	"strconv"
 
 	"github.com/go-openapi/errors"
@@ -101,6 +100,7 @@ func (m *IPReservation) Validate(formats strfmt.Registry) error {
 }
 
 func (m *IPReservation) validateAssignments(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.Assignments) { // not required
 		return nil
 	}
@@ -125,6 +125,7 @@ func (m *IPReservation) validateAssignments(formats strfmt.Registry) error {
 }
 
 func (m *IPReservation) validateCreatedAt(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.CreatedAt) { // not required
 		return nil
 	}
@@ -137,6 +138,7 @@ func (m *IPReservation) validateCreatedAt(formats strfmt.Registry) error {
 }
 
 func (m *IPReservation) validateFacility(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.Facility) { // not required
 		return nil
 	}
@@ -154,62 +156,13 @@ func (m *IPReservation) validateFacility(formats strfmt.Registry) error {
 }
 
 func (m *IPReservation) validateID(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.ID) { // not required
 		return nil
 	}
 
 	if err := validate.FormatOf("id", "body", "uuid", m.ID.String(), formats); err != nil {
 		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validate this IP reservation based on the context it is used
-func (m *IPReservation) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.contextValidateAssignments(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateFacility(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *IPReservation) contextValidateAssignments(ctx context.Context, formats strfmt.Registry) error {
-
-	for i := 0; i < len(m.Assignments); i++ {
-
-		if m.Assignments[i] != nil {
-			if err := m.Assignments[i].ContextValidate(ctx, formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("assignments" + "." + strconv.Itoa(i))
-				}
-				return err
-			}
-		}
-
-	}
-
-	return nil
-}
-
-func (m *IPReservation) contextValidateFacility(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.Facility != nil {
-		if err := m.Facility.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("facility")
-			}
-			return err
-		}
 	}
 
 	return nil

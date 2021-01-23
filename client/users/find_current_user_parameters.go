@@ -16,73 +16,59 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewFindCurrentUserParams creates a new FindCurrentUserParams object,
-// with the default timeout for this client.
-//
-// Default values are not hydrated, since defaults are normally applied by the API server side.
-//
-// To enforce default values in parameter, use SetDefaults or WithDefaults.
+// NewFindCurrentUserParams creates a new FindCurrentUserParams object
+// with the default values initialized.
 func NewFindCurrentUserParams() *FindCurrentUserParams {
+	var ()
 	return &FindCurrentUserParams{
+
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewFindCurrentUserParamsWithTimeout creates a new FindCurrentUserParams object
-// with the ability to set a timeout on a request.
+// with the default values initialized, and the ability to set a timeout on a request
 func NewFindCurrentUserParamsWithTimeout(timeout time.Duration) *FindCurrentUserParams {
+	var ()
 	return &FindCurrentUserParams{
+
 		timeout: timeout,
 	}
 }
 
 // NewFindCurrentUserParamsWithContext creates a new FindCurrentUserParams object
-// with the ability to set a context for a request.
+// with the default values initialized, and the ability to set a context for a request
 func NewFindCurrentUserParamsWithContext(ctx context.Context) *FindCurrentUserParams {
+	var ()
 	return &FindCurrentUserParams{
+
 		Context: ctx,
 	}
 }
 
 // NewFindCurrentUserParamsWithHTTPClient creates a new FindCurrentUserParams object
-// with the ability to set a custom HTTPClient for a request.
+// with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewFindCurrentUserParamsWithHTTPClient(client *http.Client) *FindCurrentUserParams {
+	var ()
 	return &FindCurrentUserParams{
 		HTTPClient: client,
 	}
 }
 
-/* FindCurrentUserParams contains all the parameters to send to the API endpoint
-   for the find current user operation.
-
-   Typically these are written to a http.Request.
+/*FindCurrentUserParams contains all the parameters to send to the API endpoint
+for the find current user operation typically these are written to a http.Request
 */
 type FindCurrentUserParams struct {
 
-	/* Include.
+	/*Include
+	  related attributes to include
 
-	   related attributes to include
 	*/
 	Include *string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
-}
-
-// WithDefaults hydrates default values in the find current user params (not the query body).
-//
-// All values with no default are reset to their zero value.
-func (o *FindCurrentUserParams) WithDefaults() *FindCurrentUserParams {
-	o.SetDefaults()
-	return o
-}
-
-// SetDefaults hydrates default values in the find current user params (not the query body).
-//
-// All values with no default are reset to their zero value.
-func (o *FindCurrentUserParams) SetDefaults() {
-	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the find current user params
@@ -141,17 +127,16 @@ func (o *FindCurrentUserParams) WriteToRequest(r runtime.ClientRequest, reg strf
 
 		// query param include
 		var qrInclude string
-
 		if o.Include != nil {
 			qrInclude = *o.Include
 		}
 		qInclude := qrInclude
 		if qInclude != "" {
-
 			if err := r.SetQueryParam("include", qInclude); err != nil {
 				return err
 			}
 		}
+
 	}
 
 	if len(res) > 0 {

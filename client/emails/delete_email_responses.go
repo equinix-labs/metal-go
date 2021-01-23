@@ -44,6 +44,7 @@ func (o *DeleteEmailReader) ReadResponse(response runtime.ClientResponse, consum
 			return nil, err
 		}
 		return nil, result
+
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -54,7 +55,7 @@ func NewDeleteEmailNoContent() *DeleteEmailNoContent {
 	return &DeleteEmailNoContent{}
 }
 
-/* DeleteEmailNoContent describes a response with status code 204, with default header values.
+/*DeleteEmailNoContent handles this case with default header values.
 
 no content
 */
@@ -75,7 +76,7 @@ func NewDeleteEmailUnauthorized() *DeleteEmailUnauthorized {
 	return &DeleteEmailUnauthorized{}
 }
 
-/* DeleteEmailUnauthorized describes a response with status code 401, with default header values.
+/*DeleteEmailUnauthorized handles this case with default header values.
 
 unauthorized
 */
@@ -96,7 +97,7 @@ func NewDeleteEmailForbidden() *DeleteEmailForbidden {
 	return &DeleteEmailForbidden{}
 }
 
-/* DeleteEmailForbidden describes a response with status code 403, with default header values.
+/*DeleteEmailForbidden handles this case with default header values.
 
 forbidden
 */
@@ -117,7 +118,7 @@ func NewDeleteEmailNotFound() *DeleteEmailNotFound {
 	return &DeleteEmailNotFound{}
 }
 
-/* DeleteEmailNotFound describes a response with status code 404, with default header values.
+/*DeleteEmailNotFound handles this case with default header values.
 
 not found
 */

@@ -6,7 +6,6 @@ package types
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"context"
 	"strconv"
 
 	"github.com/go-openapi/errors"
@@ -38,6 +37,7 @@ func (m *SpotPricesDatapoints) Validate(formats strfmt.Registry) error {
 }
 
 func (m *SpotPricesDatapoints) validateDatapoints(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.Datapoints) { // not required
 		return nil
 	}
@@ -45,36 +45,6 @@ func (m *SpotPricesDatapoints) validateDatapoints(formats strfmt.Registry) error
 	for i := 0; i < len(m.Datapoints); i++ {
 
 		if err := m.Datapoints[i].Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("datapoints" + "." + strconv.Itoa(i))
-			}
-			return err
-		}
-
-	}
-
-	return nil
-}
-
-// ContextValidate validate this spot prices datapoints based on the context it is used
-func (m *SpotPricesDatapoints) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.contextValidateDatapoints(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *SpotPricesDatapoints) contextValidateDatapoints(ctx context.Context, formats strfmt.Registry) error {
-
-	for i := 0; i < len(m.Datapoints); i++ {
-
-		if err := m.Datapoints[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("datapoints" + "." + strconv.Itoa(i))
 			}

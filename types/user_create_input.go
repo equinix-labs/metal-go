@@ -6,7 +6,6 @@ package types
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"context"
 	"io"
 	"strconv"
 
@@ -32,7 +31,7 @@ type UserCreateInput struct {
 	CompanyURL string `json:"company_url,omitempty"`
 
 	// customdata
-	Customdata string `json:"customdata,omitempty"`
+	Customdata interface{} `json:"customdata,omitempty"`
 
 	// emails
 	// Required: true
@@ -145,44 +144,13 @@ func (m *UserCreateInput) validateLastName(formats strfmt.Registry) error {
 }
 
 func (m *UserCreateInput) validateVerifiedAt(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.VerifiedAt) { // not required
 		return nil
 	}
 
 	if err := validate.FormatOf("verified_at", "body", "date-time", m.VerifiedAt.String(), formats); err != nil {
 		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validate this user create input based on the context it is used
-func (m *UserCreateInput) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.contextValidateEmails(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *UserCreateInput) contextValidateEmails(ctx context.Context, formats strfmt.Registry) error {
-
-	for i := 0; i < len(m.Emails); i++ {
-
-		if m.Emails[i] != nil {
-			if err := m.Emails[i].ContextValidate(ctx, formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("emails" + "." + strconv.Itoa(i))
-				}
-				return err
-			}
-		}
-
 	}
 
 	return nil

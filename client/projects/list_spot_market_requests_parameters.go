@@ -16,75 +16,59 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewListSpotMarketRequestsParams creates a new ListSpotMarketRequestsParams object,
-// with the default timeout for this client.
-//
-// Default values are not hydrated, since defaults are normally applied by the API server side.
-//
-// To enforce default values in parameter, use SetDefaults or WithDefaults.
+// NewListSpotMarketRequestsParams creates a new ListSpotMarketRequestsParams object
+// with the default values initialized.
 func NewListSpotMarketRequestsParams() *ListSpotMarketRequestsParams {
+	var ()
 	return &ListSpotMarketRequestsParams{
+
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewListSpotMarketRequestsParamsWithTimeout creates a new ListSpotMarketRequestsParams object
-// with the ability to set a timeout on a request.
+// with the default values initialized, and the ability to set a timeout on a request
 func NewListSpotMarketRequestsParamsWithTimeout(timeout time.Duration) *ListSpotMarketRequestsParams {
+	var ()
 	return &ListSpotMarketRequestsParams{
+
 		timeout: timeout,
 	}
 }
 
 // NewListSpotMarketRequestsParamsWithContext creates a new ListSpotMarketRequestsParams object
-// with the ability to set a context for a request.
+// with the default values initialized, and the ability to set a context for a request
 func NewListSpotMarketRequestsParamsWithContext(ctx context.Context) *ListSpotMarketRequestsParams {
+	var ()
 	return &ListSpotMarketRequestsParams{
+
 		Context: ctx,
 	}
 }
 
 // NewListSpotMarketRequestsParamsWithHTTPClient creates a new ListSpotMarketRequestsParams object
-// with the ability to set a custom HTTPClient for a request.
+// with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewListSpotMarketRequestsParamsWithHTTPClient(client *http.Client) *ListSpotMarketRequestsParams {
+	var ()
 	return &ListSpotMarketRequestsParams{
 		HTTPClient: client,
 	}
 }
 
-/* ListSpotMarketRequestsParams contains all the parameters to send to the API endpoint
-   for the list spot market requests operation.
-
-   Typically these are written to a http.Request.
+/*ListSpotMarketRequestsParams contains all the parameters to send to the API endpoint
+for the list spot market requests operation typically these are written to a http.Request
 */
 type ListSpotMarketRequestsParams struct {
 
-	/* ID.
+	/*ID
+	  Project UUID
 
-	   Project UUID
-
-	   Format: uuid
 	*/
 	ID strfmt.UUID
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
-}
-
-// WithDefaults hydrates default values in the list spot market requests params (not the query body).
-//
-// All values with no default are reset to their zero value.
-func (o *ListSpotMarketRequestsParams) WithDefaults() *ListSpotMarketRequestsParams {
-	o.SetDefaults()
-	return o
-}
-
-// SetDefaults hydrates default values in the list spot market requests params (not the query body).
-//
-// All values with no default are reset to their zero value.
-func (o *ListSpotMarketRequestsParams) SetDefaults() {
-	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the list spot market requests params
