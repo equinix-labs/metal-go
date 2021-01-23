@@ -12,21 +12,15 @@ Contents:
 - `types/` generated types
 - `examples/` hand crafted examples to demonstrate usage
 
+## Examples
 
-I tried to put it together and in [examples/projects/projects.go](examples/projects/projects.go) there's code that should list projects. However, there probably some inconsitencies in the API definition, for instance the `customdata` parameter doesn't work out-of-the-box:
+You can see usage of the generated code in the `examples` directory. In order to try, export PACKET_AUTH token and execute the code, e.g.
 
 ```
-tomk@xps ~/gometal » PACKET_AUTH_TOKEN=... go run examples/projects/projects.go
-panic: json: cannot unmarshal object into Go struct field Project.projects.customdata of type string
-
-goroutine 1 [running]:
-main.main()
-/home/tomk/gometal/client.go:17 +0x145
+$ PACKET_AUTH_TOKEN=... go run examples/projects/projects.go
+[...]
+$ PACKET_AUTH_TOKEN=... go run examples/plans/plans.go
 ```
-
-(customdata is in most of the resrouce types).
-
-Another example in [examples/plans/plans.go](examples/plans/plans.go) runs without error.
 
 ## Generated code
 
