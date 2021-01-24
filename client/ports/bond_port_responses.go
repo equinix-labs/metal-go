@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // BondPortReader is a Reader for the BondPort structure.
@@ -69,20 +69,20 @@ func NewBondPortOK() *BondPortOK {
 ok
 */
 type BondPortOK struct {
-	Payload *models.Port
+	Payload *types.Port
 }
 
 func (o *BondPortOK) Error() string {
 	return fmt.Sprintf("[POST /ports/{id}/bond][%d] bondPortOK  %+v", 200, o.Payload)
 }
 
-func (o *BondPortOK) GetPayload() *models.Port {
+func (o *BondPortOK) GetPayload() *types.Port {
 	return o.Payload
 }
 
 func (o *BondPortOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.Port)
+	o.Payload = new(types.Port)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

@@ -15,7 +15,7 @@ import (
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // NewConvertLayer3Params creates a new ConvertLayer3Params object
@@ -71,7 +71,7 @@ type ConvertLayer3Params struct {
 	  IPs to request
 
 	*/
-	RequestIps *models.PortConvertLayer3Input
+	RequestIps *types.PortConvertLayer3Input
 
 	timeout    time.Duration
 	Context    context.Context
@@ -123,13 +123,13 @@ func (o *ConvertLayer3Params) SetID(id strfmt.UUID) {
 }
 
 // WithRequestIps adds the requestIps to the convert layer3 params
-func (o *ConvertLayer3Params) WithRequestIps(requestIps *models.PortConvertLayer3Input) *ConvertLayer3Params {
+func (o *ConvertLayer3Params) WithRequestIps(requestIps *types.PortConvertLayer3Input) *ConvertLayer3Params {
 	o.SetRequestIps(requestIps)
 	return o
 }
 
 // SetRequestIps adds the requestIps to the convert layer3 params
-func (o *ConvertLayer3Params) SetRequestIps(requestIps *models.PortConvertLayer3Input) {
+func (o *ConvertLayer3Params) SetRequestIps(requestIps *types.PortConvertLayer3Input) {
 	o.RequestIps = requestIps
 }
 

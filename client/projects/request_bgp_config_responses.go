@@ -12,40 +12,40 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// RequestBgpConfigReader is a Reader for the RequestBgpConfig structure.
-type RequestBgpConfigReader struct {
+// RequestBGPConfigReader is a Reader for the RequestBGPConfig structure.
+type RequestBGPConfigReader struct {
 	formats strfmt.Registry
 }
 
 // ReadResponse reads a server response into the received o.
-func (o *RequestBgpConfigReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
+func (o *RequestBGPConfigReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
 	case 204:
-		result := NewRequestBgpConfigNoContent()
+		result := NewRequestBGPConfigNoContent()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
 	case 401:
-		result := NewRequestBgpConfigUnauthorized()
+		result := NewRequestBGPConfigUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
 	case 403:
-		result := NewRequestBgpConfigForbidden()
+		result := NewRequestBGPConfigForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
 	case 404:
-		result := NewRequestBgpConfigNotFound()
+		result := NewRequestBGPConfigNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
 	case 422:
-		result := NewRequestBgpConfigUnprocessableEntity()
+		result := NewRequestBGPConfigUnprocessableEntity()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -56,107 +56,107 @@ func (o *RequestBgpConfigReader) ReadResponse(response runtime.ClientResponse, c
 	}
 }
 
-// NewRequestBgpConfigNoContent creates a RequestBgpConfigNoContent with default headers values
-func NewRequestBgpConfigNoContent() *RequestBgpConfigNoContent {
-	return &RequestBgpConfigNoContent{}
+// NewRequestBGPConfigNoContent creates a RequestBGPConfigNoContent with default headers values
+func NewRequestBGPConfigNoContent() *RequestBGPConfigNoContent {
+	return &RequestBGPConfigNoContent{}
 }
 
-/*RequestBgpConfigNoContent handles this case with default header values.
+/*RequestBGPConfigNoContent handles this case with default header values.
 
 no content
 */
-type RequestBgpConfigNoContent struct {
+type RequestBGPConfigNoContent struct {
 }
 
-func (o *RequestBgpConfigNoContent) Error() string {
+func (o *RequestBGPConfigNoContent) Error() string {
 	return fmt.Sprintf("[POST /projects/{id}/bgp-configs][%d] requestBgpConfigNoContent ", 204)
 }
 
-func (o *RequestBgpConfigNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *RequestBGPConfigNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }
 
-// NewRequestBgpConfigUnauthorized creates a RequestBgpConfigUnauthorized with default headers values
-func NewRequestBgpConfigUnauthorized() *RequestBgpConfigUnauthorized {
-	return &RequestBgpConfigUnauthorized{}
+// NewRequestBGPConfigUnauthorized creates a RequestBGPConfigUnauthorized with default headers values
+func NewRequestBGPConfigUnauthorized() *RequestBGPConfigUnauthorized {
+	return &RequestBGPConfigUnauthorized{}
 }
 
-/*RequestBgpConfigUnauthorized handles this case with default header values.
+/*RequestBGPConfigUnauthorized handles this case with default header values.
 
 unauthorized
 */
-type RequestBgpConfigUnauthorized struct {
+type RequestBGPConfigUnauthorized struct {
 }
 
-func (o *RequestBgpConfigUnauthorized) Error() string {
+func (o *RequestBGPConfigUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /projects/{id}/bgp-configs][%d] requestBgpConfigUnauthorized ", 401)
 }
 
-func (o *RequestBgpConfigUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *RequestBGPConfigUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }
 
-// NewRequestBgpConfigForbidden creates a RequestBgpConfigForbidden with default headers values
-func NewRequestBgpConfigForbidden() *RequestBgpConfigForbidden {
-	return &RequestBgpConfigForbidden{}
+// NewRequestBGPConfigForbidden creates a RequestBGPConfigForbidden with default headers values
+func NewRequestBGPConfigForbidden() *RequestBGPConfigForbidden {
+	return &RequestBGPConfigForbidden{}
 }
 
-/*RequestBgpConfigForbidden handles this case with default header values.
+/*RequestBGPConfigForbidden handles this case with default header values.
 
 forbidden
 */
-type RequestBgpConfigForbidden struct {
+type RequestBGPConfigForbidden struct {
 }
 
-func (o *RequestBgpConfigForbidden) Error() string {
+func (o *RequestBGPConfigForbidden) Error() string {
 	return fmt.Sprintf("[POST /projects/{id}/bgp-configs][%d] requestBgpConfigForbidden ", 403)
 }
 
-func (o *RequestBgpConfigForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *RequestBGPConfigForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }
 
-// NewRequestBgpConfigNotFound creates a RequestBgpConfigNotFound with default headers values
-func NewRequestBgpConfigNotFound() *RequestBgpConfigNotFound {
-	return &RequestBgpConfigNotFound{}
+// NewRequestBGPConfigNotFound creates a RequestBGPConfigNotFound with default headers values
+func NewRequestBGPConfigNotFound() *RequestBGPConfigNotFound {
+	return &RequestBGPConfigNotFound{}
 }
 
-/*RequestBgpConfigNotFound handles this case with default header values.
+/*RequestBGPConfigNotFound handles this case with default header values.
 
 not found
 */
-type RequestBgpConfigNotFound struct {
+type RequestBGPConfigNotFound struct {
 }
 
-func (o *RequestBgpConfigNotFound) Error() string {
+func (o *RequestBGPConfigNotFound) Error() string {
 	return fmt.Sprintf("[POST /projects/{id}/bgp-configs][%d] requestBgpConfigNotFound ", 404)
 }
 
-func (o *RequestBgpConfigNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *RequestBGPConfigNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }
 
-// NewRequestBgpConfigUnprocessableEntity creates a RequestBgpConfigUnprocessableEntity with default headers values
-func NewRequestBgpConfigUnprocessableEntity() *RequestBgpConfigUnprocessableEntity {
-	return &RequestBgpConfigUnprocessableEntity{}
+// NewRequestBGPConfigUnprocessableEntity creates a RequestBGPConfigUnprocessableEntity with default headers values
+func NewRequestBGPConfigUnprocessableEntity() *RequestBGPConfigUnprocessableEntity {
+	return &RequestBGPConfigUnprocessableEntity{}
 }
 
-/*RequestBgpConfigUnprocessableEntity handles this case with default header values.
+/*RequestBGPConfigUnprocessableEntity handles this case with default header values.
 
 unprocessable entity
 */
-type RequestBgpConfigUnprocessableEntity struct {
+type RequestBGPConfigUnprocessableEntity struct {
 }
 
-func (o *RequestBgpConfigUnprocessableEntity) Error() string {
+func (o *RequestBGPConfigUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[POST /projects/{id}/bgp-configs][%d] requestBgpConfigUnprocessableEntity ", 422)
 }
 
-func (o *RequestBgpConfigUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *RequestBGPConfigUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }

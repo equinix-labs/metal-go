@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // FindProjectsReader is a Reader for the FindProjects structure.
@@ -51,20 +51,20 @@ func NewFindProjectsOK() *FindProjectsOK {
 ok
 */
 type FindProjectsOK struct {
-	Payload *models.ProjectList
+	Payload *types.ProjectList
 }
 
 func (o *FindProjectsOK) Error() string {
 	return fmt.Sprintf("[GET /projects][%d] findProjectsOK  %+v", 200, o.Payload)
 }
 
-func (o *FindProjectsOK) GetPayload() *models.ProjectList {
+func (o *FindProjectsOK) GetPayload() *types.ProjectList {
 	return o.Payload
 }
 
 func (o *FindProjectsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.ProjectList)
+	o.Payload = new(types.ProjectList)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

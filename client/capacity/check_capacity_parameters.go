@@ -15,7 +15,7 @@ import (
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // NewCheckCapacityParams creates a new CheckCapacityParams object
@@ -66,7 +66,7 @@ type CheckCapacityParams struct {
 	  Facility to create
 
 	*/
-	Facility *models.CapacityInput
+	Facility *types.CapacityInput
 
 	timeout    time.Duration
 	Context    context.Context
@@ -107,13 +107,13 @@ func (o *CheckCapacityParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithFacility adds the facility to the check capacity params
-func (o *CheckCapacityParams) WithFacility(facility *models.CapacityInput) *CheckCapacityParams {
+func (o *CheckCapacityParams) WithFacility(facility *types.CapacityInput) *CheckCapacityParams {
 	o.SetFacility(facility)
 	return o
 }
 
 // SetFacility adds the facility to the check capacity params
-func (o *CheckCapacityParams) SetFacility(facility *models.CapacityInput) {
+func (o *CheckCapacityParams) SetFacility(facility *types.CapacityInput) {
 	o.Facility = facility
 }
 

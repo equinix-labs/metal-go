@@ -16,49 +16,49 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewGetBgpNeighborDataParams creates a new GetBgpNeighborDataParams object
+// NewGetBGPNeighborDataParams creates a new GetBGPNeighborDataParams object
 // with the default values initialized.
-func NewGetBgpNeighborDataParams() *GetBgpNeighborDataParams {
+func NewGetBGPNeighborDataParams() *GetBGPNeighborDataParams {
 	var ()
-	return &GetBgpNeighborDataParams{
+	return &GetBGPNeighborDataParams{
 
 		timeout: cr.DefaultTimeout,
 	}
 }
 
-// NewGetBgpNeighborDataParamsWithTimeout creates a new GetBgpNeighborDataParams object
+// NewGetBGPNeighborDataParamsWithTimeout creates a new GetBGPNeighborDataParams object
 // with the default values initialized, and the ability to set a timeout on a request
-func NewGetBgpNeighborDataParamsWithTimeout(timeout time.Duration) *GetBgpNeighborDataParams {
+func NewGetBGPNeighborDataParamsWithTimeout(timeout time.Duration) *GetBGPNeighborDataParams {
 	var ()
-	return &GetBgpNeighborDataParams{
+	return &GetBGPNeighborDataParams{
 
 		timeout: timeout,
 	}
 }
 
-// NewGetBgpNeighborDataParamsWithContext creates a new GetBgpNeighborDataParams object
+// NewGetBGPNeighborDataParamsWithContext creates a new GetBGPNeighborDataParams object
 // with the default values initialized, and the ability to set a context for a request
-func NewGetBgpNeighborDataParamsWithContext(ctx context.Context) *GetBgpNeighborDataParams {
+func NewGetBGPNeighborDataParamsWithContext(ctx context.Context) *GetBGPNeighborDataParams {
 	var ()
-	return &GetBgpNeighborDataParams{
+	return &GetBGPNeighborDataParams{
 
 		Context: ctx,
 	}
 }
 
-// NewGetBgpNeighborDataParamsWithHTTPClient creates a new GetBgpNeighborDataParams object
+// NewGetBGPNeighborDataParamsWithHTTPClient creates a new GetBGPNeighborDataParams object
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
-func NewGetBgpNeighborDataParamsWithHTTPClient(client *http.Client) *GetBgpNeighborDataParams {
+func NewGetBGPNeighborDataParamsWithHTTPClient(client *http.Client) *GetBGPNeighborDataParams {
 	var ()
-	return &GetBgpNeighborDataParams{
+	return &GetBGPNeighborDataParams{
 		HTTPClient: client,
 	}
 }
 
-/*GetBgpNeighborDataParams contains all the parameters to send to the API endpoint
-for the get bgp neighbor data operation typically these are written to a http.Request
+/*GetBGPNeighborDataParams contains all the parameters to send to the API endpoint
+for the get Bgp neighbor data operation typically these are written to a http.Request
 */
-type GetBgpNeighborDataParams struct {
+type GetBGPNeighborDataParams struct {
 
 	/*ID
 	  Device UUID
@@ -71,52 +71,52 @@ type GetBgpNeighborDataParams struct {
 	HTTPClient *http.Client
 }
 
-// WithTimeout adds the timeout to the get bgp neighbor data params
-func (o *GetBgpNeighborDataParams) WithTimeout(timeout time.Duration) *GetBgpNeighborDataParams {
+// WithTimeout adds the timeout to the get Bgp neighbor data params
+func (o *GetBGPNeighborDataParams) WithTimeout(timeout time.Duration) *GetBGPNeighborDataParams {
 	o.SetTimeout(timeout)
 	return o
 }
 
-// SetTimeout adds the timeout to the get bgp neighbor data params
-func (o *GetBgpNeighborDataParams) SetTimeout(timeout time.Duration) {
+// SetTimeout adds the timeout to the get Bgp neighbor data params
+func (o *GetBGPNeighborDataParams) SetTimeout(timeout time.Duration) {
 	o.timeout = timeout
 }
 
-// WithContext adds the context to the get bgp neighbor data params
-func (o *GetBgpNeighborDataParams) WithContext(ctx context.Context) *GetBgpNeighborDataParams {
+// WithContext adds the context to the get Bgp neighbor data params
+func (o *GetBGPNeighborDataParams) WithContext(ctx context.Context) *GetBGPNeighborDataParams {
 	o.SetContext(ctx)
 	return o
 }
 
-// SetContext adds the context to the get bgp neighbor data params
-func (o *GetBgpNeighborDataParams) SetContext(ctx context.Context) {
+// SetContext adds the context to the get Bgp neighbor data params
+func (o *GetBGPNeighborDataParams) SetContext(ctx context.Context) {
 	o.Context = ctx
 }
 
-// WithHTTPClient adds the HTTPClient to the get bgp neighbor data params
-func (o *GetBgpNeighborDataParams) WithHTTPClient(client *http.Client) *GetBgpNeighborDataParams {
+// WithHTTPClient adds the HTTPClient to the get Bgp neighbor data params
+func (o *GetBGPNeighborDataParams) WithHTTPClient(client *http.Client) *GetBGPNeighborDataParams {
 	o.SetHTTPClient(client)
 	return o
 }
 
-// SetHTTPClient adds the HTTPClient to the get bgp neighbor data params
-func (o *GetBgpNeighborDataParams) SetHTTPClient(client *http.Client) {
+// SetHTTPClient adds the HTTPClient to the get Bgp neighbor data params
+func (o *GetBGPNeighborDataParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithID adds the id to the get bgp neighbor data params
-func (o *GetBgpNeighborDataParams) WithID(id strfmt.UUID) *GetBgpNeighborDataParams {
+// WithID adds the id to the get Bgp neighbor data params
+func (o *GetBGPNeighborDataParams) WithID(id strfmt.UUID) *GetBGPNeighborDataParams {
 	o.SetID(id)
 	return o
 }
 
-// SetID adds the id to the get bgp neighbor data params
-func (o *GetBgpNeighborDataParams) SetID(id strfmt.UUID) {
+// SetID adds the id to the get Bgp neighbor data params
+func (o *GetBGPNeighborDataParams) SetID(id strfmt.UUID) {
 	o.ID = id
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *GetBgpNeighborDataParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
+func (o *GetBGPNeighborDataParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	if err := r.SetTimeout(o.timeout); err != nil {
 		return err

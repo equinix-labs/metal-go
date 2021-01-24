@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // FindVolumeAttachmentsReader is a Reader for the FindVolumeAttachments structure.
@@ -63,20 +63,20 @@ func NewFindVolumeAttachmentsOK() *FindVolumeAttachmentsOK {
 ok
 */
 type FindVolumeAttachmentsOK struct {
-	Payload *models.VolumeAttachmentList
+	Payload *types.VolumeAttachmentList
 }
 
 func (o *FindVolumeAttachmentsOK) Error() string {
 	return fmt.Sprintf("[GET /storage/{id}/attachments][%d] findVolumeAttachmentsOK  %+v", 200, o.Payload)
 }
 
-func (o *FindVolumeAttachmentsOK) GetPayload() *models.VolumeAttachmentList {
+func (o *FindVolumeAttachmentsOK) GetPayload() *types.VolumeAttachmentList {
 	return o.Payload
 }
 
 func (o *FindVolumeAttachmentsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.VolumeAttachmentList)
+	o.Payload = new(types.VolumeAttachmentList)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

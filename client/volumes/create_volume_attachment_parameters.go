@@ -15,7 +15,7 @@ import (
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // NewCreateVolumeAttachmentParams creates a new CreateVolumeAttachmentParams object
@@ -66,7 +66,7 @@ type CreateVolumeAttachmentParams struct {
 	  Device to attach
 
 	*/
-	Attachment *models.VolumeAttachmentInput
+	Attachment *types.VolumeAttachmentInput
 	/*ID
 	  Volume UUID
 
@@ -112,13 +112,13 @@ func (o *CreateVolumeAttachmentParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithAttachment adds the attachment to the create volume attachment params
-func (o *CreateVolumeAttachmentParams) WithAttachment(attachment *models.VolumeAttachmentInput) *CreateVolumeAttachmentParams {
+func (o *CreateVolumeAttachmentParams) WithAttachment(attachment *types.VolumeAttachmentInput) *CreateVolumeAttachmentParams {
 	o.SetAttachment(attachment)
 	return o
 }
 
 // SetAttachment adds the attachment to the create volume attachment params
-func (o *CreateVolumeAttachmentParams) SetAttachment(attachment *models.VolumeAttachmentInput) {
+func (o *CreateVolumeAttachmentParams) SetAttachment(attachment *types.VolumeAttachmentInput) {
 	o.Attachment = attachment
 }
 

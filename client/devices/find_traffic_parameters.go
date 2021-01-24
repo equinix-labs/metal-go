@@ -15,7 +15,7 @@ import (
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // NewFindTrafficParams creates a new FindTrafficParams object
@@ -86,7 +86,7 @@ type FindTrafficParams struct {
 	  Traffic timeframe
 
 	*/
-	Timeframe *models.Timeframe
+	Timeframe *types.Timeframe
 
 	timeout    time.Duration
 	Context    context.Context
@@ -171,13 +171,13 @@ func (o *FindTrafficParams) SetInterval(interval *string) {
 }
 
 // WithTimeframe adds the timeframe to the find traffic params
-func (o *FindTrafficParams) WithTimeframe(timeframe *models.Timeframe) *FindTrafficParams {
+func (o *FindTrafficParams) WithTimeframe(timeframe *types.Timeframe) *FindTrafficParams {
 	o.SetTimeframe(timeframe)
 	return o
 }
 
 // SetTimeframe adds the timeframe to the find traffic params
-func (o *FindTrafficParams) SetTimeframe(timeframe *models.Timeframe) {
+func (o *FindTrafficParams) SetTimeframe(timeframe *types.Timeframe) {
 	o.Timeframe = timeframe
 }
 

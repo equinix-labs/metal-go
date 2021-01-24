@@ -15,7 +15,7 @@ import (
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // NewUpdatePaymentMethodParams creates a new UpdatePaymentMethodParams object
@@ -71,7 +71,7 @@ type UpdatePaymentMethodParams struct {
 	  Payment Method to update
 
 	*/
-	PaymentMethod *models.PaymentMethodUpdateInput
+	PaymentMethod *types.PaymentMethodUpdateInput
 
 	timeout    time.Duration
 	Context    context.Context
@@ -123,13 +123,13 @@ func (o *UpdatePaymentMethodParams) SetID(id strfmt.UUID) {
 }
 
 // WithPaymentMethod adds the paymentMethod to the update payment method params
-func (o *UpdatePaymentMethodParams) WithPaymentMethod(paymentMethod *models.PaymentMethodUpdateInput) *UpdatePaymentMethodParams {
+func (o *UpdatePaymentMethodParams) WithPaymentMethod(paymentMethod *types.PaymentMethodUpdateInput) *UpdatePaymentMethodParams {
 	o.SetPaymentMethod(paymentMethod)
 	return o
 }
 
 // SetPaymentMethod adds the paymentMethod to the update payment method params
-func (o *UpdatePaymentMethodParams) SetPaymentMethod(paymentMethod *models.PaymentMethodUpdateInput) {
+func (o *UpdatePaymentMethodParams) SetPaymentMethod(paymentMethod *types.PaymentMethodUpdateInput) {
 	o.PaymentMethod = paymentMethod
 }
 

@@ -15,7 +15,7 @@ import (
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // NewCreateDeviceParams creates a new CreateDeviceParams object
@@ -66,7 +66,7 @@ type CreateDeviceParams struct {
 	  Device to create
 
 	*/
-	Device *models.DeviceCreateInput
+	Device *types.DeviceCreateInput
 	/*ID
 	  Project UUID
 
@@ -112,13 +112,13 @@ func (o *CreateDeviceParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithDevice adds the device to the create device params
-func (o *CreateDeviceParams) WithDevice(device *models.DeviceCreateInput) *CreateDeviceParams {
+func (o *CreateDeviceParams) WithDevice(device *types.DeviceCreateInput) *CreateDeviceParams {
 	o.SetDevice(device)
 	return o
 }
 
 // SetDevice adds the device to the create device params
-func (o *CreateDeviceParams) SetDevice(device *models.DeviceCreateInput) {
+func (o *CreateDeviceParams) SetDevice(device *types.DeviceCreateInput) {
 	o.Device = device
 }
 

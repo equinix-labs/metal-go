@@ -12,37 +12,37 @@ import (
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
-// DeleteNativeVlanReader is a Reader for the DeleteNativeVlan structure.
-type DeleteNativeVlanReader struct {
+// DeleteNativeVLANReader is a Reader for the DeleteNativeVLAN structure.
+type DeleteNativeVLANReader struct {
 	formats strfmt.Registry
 }
 
 // ReadResponse reads a server response into the received o.
-func (o *DeleteNativeVlanReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
+func (o *DeleteNativeVLANReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
 	case 200:
-		result := NewDeleteNativeVlanOK()
+		result := NewDeleteNativeVLANOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
 	case 401:
-		result := NewDeleteNativeVlanUnauthorized()
+		result := NewDeleteNativeVLANUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
 	case 404:
-		result := NewDeleteNativeVlanNotFound()
+		result := NewDeleteNativeVLANNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
 	case 422:
-		result := NewDeleteNativeVlanUnprocessableEntity()
+		result := NewDeleteNativeVLANUnprocessableEntity()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -53,30 +53,30 @@ func (o *DeleteNativeVlanReader) ReadResponse(response runtime.ClientResponse, c
 	}
 }
 
-// NewDeleteNativeVlanOK creates a DeleteNativeVlanOK with default headers values
-func NewDeleteNativeVlanOK() *DeleteNativeVlanOK {
-	return &DeleteNativeVlanOK{}
+// NewDeleteNativeVLANOK creates a DeleteNativeVLANOK with default headers values
+func NewDeleteNativeVLANOK() *DeleteNativeVLANOK {
+	return &DeleteNativeVLANOK{}
 }
 
-/*DeleteNativeVlanOK handles this case with default header values.
+/*DeleteNativeVLANOK handles this case with default header values.
 
 ok
 */
-type DeleteNativeVlanOK struct {
-	Payload *models.Port
+type DeleteNativeVLANOK struct {
+	Payload *types.Port
 }
 
-func (o *DeleteNativeVlanOK) Error() string {
+func (o *DeleteNativeVLANOK) Error() string {
 	return fmt.Sprintf("[DELETE /ports/{id}/native-vlan][%d] deleteNativeVlanOK  %+v", 200, o.Payload)
 }
 
-func (o *DeleteNativeVlanOK) GetPayload() *models.Port {
+func (o *DeleteNativeVLANOK) GetPayload() *types.Port {
 	return o.Payload
 }
 
-func (o *DeleteNativeVlanOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *DeleteNativeVLANOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.Port)
+	o.Payload = new(types.Port)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -86,65 +86,65 @@ func (o *DeleteNativeVlanOK) readResponse(response runtime.ClientResponse, consu
 	return nil
 }
 
-// NewDeleteNativeVlanUnauthorized creates a DeleteNativeVlanUnauthorized with default headers values
-func NewDeleteNativeVlanUnauthorized() *DeleteNativeVlanUnauthorized {
-	return &DeleteNativeVlanUnauthorized{}
+// NewDeleteNativeVLANUnauthorized creates a DeleteNativeVLANUnauthorized with default headers values
+func NewDeleteNativeVLANUnauthorized() *DeleteNativeVLANUnauthorized {
+	return &DeleteNativeVLANUnauthorized{}
 }
 
-/*DeleteNativeVlanUnauthorized handles this case with default header values.
+/*DeleteNativeVLANUnauthorized handles this case with default header values.
 
 unauthorized
 */
-type DeleteNativeVlanUnauthorized struct {
+type DeleteNativeVLANUnauthorized struct {
 }
 
-func (o *DeleteNativeVlanUnauthorized) Error() string {
+func (o *DeleteNativeVLANUnauthorized) Error() string {
 	return fmt.Sprintf("[DELETE /ports/{id}/native-vlan][%d] deleteNativeVlanUnauthorized ", 401)
 }
 
-func (o *DeleteNativeVlanUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *DeleteNativeVLANUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }
 
-// NewDeleteNativeVlanNotFound creates a DeleteNativeVlanNotFound with default headers values
-func NewDeleteNativeVlanNotFound() *DeleteNativeVlanNotFound {
-	return &DeleteNativeVlanNotFound{}
+// NewDeleteNativeVLANNotFound creates a DeleteNativeVLANNotFound with default headers values
+func NewDeleteNativeVLANNotFound() *DeleteNativeVLANNotFound {
+	return &DeleteNativeVLANNotFound{}
 }
 
-/*DeleteNativeVlanNotFound handles this case with default header values.
+/*DeleteNativeVLANNotFound handles this case with default header values.
 
 not found
 */
-type DeleteNativeVlanNotFound struct {
+type DeleteNativeVLANNotFound struct {
 }
 
-func (o *DeleteNativeVlanNotFound) Error() string {
+func (o *DeleteNativeVLANNotFound) Error() string {
 	return fmt.Sprintf("[DELETE /ports/{id}/native-vlan][%d] deleteNativeVlanNotFound ", 404)
 }
 
-func (o *DeleteNativeVlanNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *DeleteNativeVLANNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }
 
-// NewDeleteNativeVlanUnprocessableEntity creates a DeleteNativeVlanUnprocessableEntity with default headers values
-func NewDeleteNativeVlanUnprocessableEntity() *DeleteNativeVlanUnprocessableEntity {
-	return &DeleteNativeVlanUnprocessableEntity{}
+// NewDeleteNativeVLANUnprocessableEntity creates a DeleteNativeVLANUnprocessableEntity with default headers values
+func NewDeleteNativeVLANUnprocessableEntity() *DeleteNativeVLANUnprocessableEntity {
+	return &DeleteNativeVLANUnprocessableEntity{}
 }
 
-/*DeleteNativeVlanUnprocessableEntity handles this case with default header values.
+/*DeleteNativeVLANUnprocessableEntity handles this case with default header values.
 
 unprocessable entity
 */
-type DeleteNativeVlanUnprocessableEntity struct {
+type DeleteNativeVLANUnprocessableEntity struct {
 }
 
-func (o *DeleteNativeVlanUnprocessableEntity) Error() string {
+func (o *DeleteNativeVLANUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[DELETE /ports/{id}/native-vlan][%d] deleteNativeVlanUnprocessableEntity ", 422)
 }
 
-func (o *DeleteNativeVlanUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *DeleteNativeVLANUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }

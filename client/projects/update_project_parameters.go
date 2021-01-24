@@ -15,7 +15,7 @@ import (
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // NewUpdateProjectParams creates a new UpdateProjectParams object
@@ -71,7 +71,7 @@ type UpdateProjectParams struct {
 	  Project to update
 
 	*/
-	Project *models.ProjectUpdateInput
+	Project *types.ProjectUpdateInput
 
 	timeout    time.Duration
 	Context    context.Context
@@ -123,13 +123,13 @@ func (o *UpdateProjectParams) SetID(id strfmt.UUID) {
 }
 
 // WithProject adds the project to the update project params
-func (o *UpdateProjectParams) WithProject(project *models.ProjectUpdateInput) *UpdateProjectParams {
+func (o *UpdateProjectParams) WithProject(project *types.ProjectUpdateInput) *UpdateProjectParams {
 	o.SetProject(project)
 	return o
 }
 
 // SetProject adds the project to the update project params
-func (o *UpdateProjectParams) SetProject(project *models.ProjectUpdateInput) {
+func (o *UpdateProjectParams) SetProject(project *types.ProjectUpdateInput) {
 	o.Project = project
 }
 

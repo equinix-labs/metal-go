@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // FindSpotMarketPricesHistoryReader is a Reader for the FindSpotMarketPricesHistory structure.
@@ -45,20 +45,20 @@ func NewFindSpotMarketPricesHistoryOK() *FindSpotMarketPricesHistoryOK {
 ok
 */
 type FindSpotMarketPricesHistoryOK struct {
-	Payload *models.SpotPricesHistoryReport
+	Payload *types.SpotPricesHistoryReport
 }
 
 func (o *FindSpotMarketPricesHistoryOK) Error() string {
 	return fmt.Sprintf("[GET /market/spot/prices/history][%d] findSpotMarketPricesHistoryOK  %+v", 200, o.Payload)
 }
 
-func (o *FindSpotMarketPricesHistoryOK) GetPayload() *models.SpotPricesHistoryReport {
+func (o *FindSpotMarketPricesHistoryOK) GetPayload() *types.SpotPricesHistoryReport {
 	return o.Payload
 }
 
 func (o *FindSpotMarketPricesHistoryOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.SpotPricesHistoryReport)
+	o.Payload = new(types.SpotPricesHistoryReport)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

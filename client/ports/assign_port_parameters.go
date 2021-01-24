@@ -15,7 +15,7 @@ import (
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // NewAssignPortParams creates a new AssignPortParams object
@@ -71,7 +71,7 @@ type AssignPortParams struct {
 	  Virtual Network ID
 
 	*/
-	Vnid *models.PortAssignInput
+	Vnid *types.PortAssignInput
 
 	timeout    time.Duration
 	Context    context.Context
@@ -123,13 +123,13 @@ func (o *AssignPortParams) SetID(id strfmt.UUID) {
 }
 
 // WithVnid adds the vnid to the assign port params
-func (o *AssignPortParams) WithVnid(vnid *models.PortAssignInput) *AssignPortParams {
+func (o *AssignPortParams) WithVnid(vnid *types.PortAssignInput) *AssignPortParams {
 	o.SetVnid(vnid)
 	return o
 }
 
 // SetVnid adds the vnid to the assign port params
-func (o *AssignPortParams) SetVnid(vnid *models.PortAssignInput) {
+func (o *AssignPortParams) SetVnid(vnid *types.PortAssignInput) {
 	o.Vnid = vnid
 }
 

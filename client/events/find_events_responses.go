@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // FindEventsReader is a Reader for the FindEvents structure.
@@ -51,20 +51,20 @@ func NewFindEventsOK() *FindEventsOK {
 ok
 */
 type FindEventsOK struct {
-	Payload *models.EventList
+	Payload *types.EventList
 }
 
 func (o *FindEventsOK) Error() string {
 	return fmt.Sprintf("[GET /events][%d] findEventsOK  %+v", 200, o.Payload)
 }
 
-func (o *FindEventsOK) GetPayload() *models.EventList {
+func (o *FindEventsOK) GetPayload() *types.EventList {
 	return o.Payload
 }
 
 func (o *FindEventsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.EventList)
+	o.Payload = new(types.EventList)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

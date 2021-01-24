@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // UpdateOrganizationReader is a Reader for the UpdateOrganization structure.
@@ -69,20 +69,20 @@ func NewUpdateOrganizationOK() *UpdateOrganizationOK {
 ok
 */
 type UpdateOrganizationOK struct {
-	Payload *models.Organization
+	Payload *types.Organization
 }
 
 func (o *UpdateOrganizationOK) Error() string {
 	return fmt.Sprintf("[PUT /organizations/{id}][%d] updateOrganizationOK  %+v", 200, o.Payload)
 }
 
-func (o *UpdateOrganizationOK) GetPayload() *models.Organization {
+func (o *UpdateOrganizationOK) GetPayload() *types.Organization {
 	return o.Payload
 }
 
 func (o *UpdateOrganizationOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.Organization)
+	o.Payload = new(types.Organization)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

@@ -15,7 +15,7 @@ import (
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // NewUpdateVirtualCircuitParams creates a new UpdateVirtualCircuitParams object
@@ -71,7 +71,7 @@ type UpdateVirtualCircuitParams struct {
 	  Updated Virtual Circuit details
 
 	*/
-	VirtualCircuit *models.VirtualCircuitUpdateInput
+	VirtualCircuit *types.VirtualCircuitUpdateInput
 
 	timeout    time.Duration
 	Context    context.Context
@@ -123,13 +123,13 @@ func (o *UpdateVirtualCircuitParams) SetID(id strfmt.UUID) {
 }
 
 // WithVirtualCircuit adds the virtualCircuit to the update virtual circuit params
-func (o *UpdateVirtualCircuitParams) WithVirtualCircuit(virtualCircuit *models.VirtualCircuitUpdateInput) *UpdateVirtualCircuitParams {
+func (o *UpdateVirtualCircuitParams) WithVirtualCircuit(virtualCircuit *types.VirtualCircuitUpdateInput) *UpdateVirtualCircuitParams {
 	o.SetVirtualCircuit(virtualCircuit)
 	return o
 }
 
 // SetVirtualCircuit adds the virtualCircuit to the update virtual circuit params
-func (o *UpdateVirtualCircuitParams) SetVirtualCircuit(virtualCircuit *models.VirtualCircuitUpdateInput) {
+func (o *UpdateVirtualCircuitParams) SetVirtualCircuit(virtualCircuit *types.VirtualCircuitUpdateInput) {
 	o.VirtualCircuit = virtualCircuit
 }
 

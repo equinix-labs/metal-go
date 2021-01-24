@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // CreateSSHKeyReader is a Reader for the CreateSSHKey structure.
@@ -57,20 +57,20 @@ func NewCreateSSHKeyCreated() *CreateSSHKeyCreated {
 created
 */
 type CreateSSHKeyCreated struct {
-	Payload *models.SSHKey
+	Payload *types.SSHKey
 }
 
 func (o *CreateSSHKeyCreated) Error() string {
 	return fmt.Sprintf("[POST /ssh-keys][%d] createSshKeyCreated  %+v", 201, o.Payload)
 }
 
-func (o *CreateSSHKeyCreated) GetPayload() *models.SSHKey {
+func (o *CreateSSHKeyCreated) GetPayload() *types.SSHKey {
 	return o.Payload
 }
 
 func (o *CreateSSHKeyCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.SSHKey)
+	o.Payload = new(types.SSHKey)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

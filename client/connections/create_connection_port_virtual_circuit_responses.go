@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // CreateConnectionPortVirtualCircuitReader is a Reader for the CreateConnectionPortVirtualCircuit structure.
@@ -57,20 +57,20 @@ func NewCreateConnectionPortVirtualCircuitOK() *CreateConnectionPortVirtualCircu
 ok
 */
 type CreateConnectionPortVirtualCircuitOK struct {
-	Payload *models.VirtualCircuitList
+	Payload *types.VirtualCircuitList
 }
 
 func (o *CreateConnectionPortVirtualCircuitOK) Error() string {
 	return fmt.Sprintf("[POST /connections/{connection_id}/ports/{port_id}/virtual-circuits][%d] createConnectionPortVirtualCircuitOK  %+v", 200, o.Payload)
 }
 
-func (o *CreateConnectionPortVirtualCircuitOK) GetPayload() *models.VirtualCircuitList {
+func (o *CreateConnectionPortVirtualCircuitOK) GetPayload() *types.VirtualCircuitList {
 	return o.Payload
 }
 
 func (o *CreateConnectionPortVirtualCircuitOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.VirtualCircuitList)
+	o.Payload = new(types.VirtualCircuitList)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

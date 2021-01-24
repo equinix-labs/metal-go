@@ -16,49 +16,49 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewDeleteNativeVlanParams creates a new DeleteNativeVlanParams object
+// NewDeleteNativeVLANParams creates a new DeleteNativeVLANParams object
 // with the default values initialized.
-func NewDeleteNativeVlanParams() *DeleteNativeVlanParams {
+func NewDeleteNativeVLANParams() *DeleteNativeVLANParams {
 	var ()
-	return &DeleteNativeVlanParams{
+	return &DeleteNativeVLANParams{
 
 		timeout: cr.DefaultTimeout,
 	}
 }
 
-// NewDeleteNativeVlanParamsWithTimeout creates a new DeleteNativeVlanParams object
+// NewDeleteNativeVLANParamsWithTimeout creates a new DeleteNativeVLANParams object
 // with the default values initialized, and the ability to set a timeout on a request
-func NewDeleteNativeVlanParamsWithTimeout(timeout time.Duration) *DeleteNativeVlanParams {
+func NewDeleteNativeVLANParamsWithTimeout(timeout time.Duration) *DeleteNativeVLANParams {
 	var ()
-	return &DeleteNativeVlanParams{
+	return &DeleteNativeVLANParams{
 
 		timeout: timeout,
 	}
 }
 
-// NewDeleteNativeVlanParamsWithContext creates a new DeleteNativeVlanParams object
+// NewDeleteNativeVLANParamsWithContext creates a new DeleteNativeVLANParams object
 // with the default values initialized, and the ability to set a context for a request
-func NewDeleteNativeVlanParamsWithContext(ctx context.Context) *DeleteNativeVlanParams {
+func NewDeleteNativeVLANParamsWithContext(ctx context.Context) *DeleteNativeVLANParams {
 	var ()
-	return &DeleteNativeVlanParams{
+	return &DeleteNativeVLANParams{
 
 		Context: ctx,
 	}
 }
 
-// NewDeleteNativeVlanParamsWithHTTPClient creates a new DeleteNativeVlanParams object
+// NewDeleteNativeVLANParamsWithHTTPClient creates a new DeleteNativeVLANParams object
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
-func NewDeleteNativeVlanParamsWithHTTPClient(client *http.Client) *DeleteNativeVlanParams {
+func NewDeleteNativeVLANParamsWithHTTPClient(client *http.Client) *DeleteNativeVLANParams {
 	var ()
-	return &DeleteNativeVlanParams{
+	return &DeleteNativeVLANParams{
 		HTTPClient: client,
 	}
 }
 
-/*DeleteNativeVlanParams contains all the parameters to send to the API endpoint
-for the delete native vlan operation typically these are written to a http.Request
+/*DeleteNativeVLANParams contains all the parameters to send to the API endpoint
+for the delete native Vlan operation typically these are written to a http.Request
 */
-type DeleteNativeVlanParams struct {
+type DeleteNativeVLANParams struct {
 
 	/*ID
 	  Port UUID
@@ -71,52 +71,52 @@ type DeleteNativeVlanParams struct {
 	HTTPClient *http.Client
 }
 
-// WithTimeout adds the timeout to the delete native vlan params
-func (o *DeleteNativeVlanParams) WithTimeout(timeout time.Duration) *DeleteNativeVlanParams {
+// WithTimeout adds the timeout to the delete native Vlan params
+func (o *DeleteNativeVLANParams) WithTimeout(timeout time.Duration) *DeleteNativeVLANParams {
 	o.SetTimeout(timeout)
 	return o
 }
 
-// SetTimeout adds the timeout to the delete native vlan params
-func (o *DeleteNativeVlanParams) SetTimeout(timeout time.Duration) {
+// SetTimeout adds the timeout to the delete native Vlan params
+func (o *DeleteNativeVLANParams) SetTimeout(timeout time.Duration) {
 	o.timeout = timeout
 }
 
-// WithContext adds the context to the delete native vlan params
-func (o *DeleteNativeVlanParams) WithContext(ctx context.Context) *DeleteNativeVlanParams {
+// WithContext adds the context to the delete native Vlan params
+func (o *DeleteNativeVLANParams) WithContext(ctx context.Context) *DeleteNativeVLANParams {
 	o.SetContext(ctx)
 	return o
 }
 
-// SetContext adds the context to the delete native vlan params
-func (o *DeleteNativeVlanParams) SetContext(ctx context.Context) {
+// SetContext adds the context to the delete native Vlan params
+func (o *DeleteNativeVLANParams) SetContext(ctx context.Context) {
 	o.Context = ctx
 }
 
-// WithHTTPClient adds the HTTPClient to the delete native vlan params
-func (o *DeleteNativeVlanParams) WithHTTPClient(client *http.Client) *DeleteNativeVlanParams {
+// WithHTTPClient adds the HTTPClient to the delete native Vlan params
+func (o *DeleteNativeVLANParams) WithHTTPClient(client *http.Client) *DeleteNativeVLANParams {
 	o.SetHTTPClient(client)
 	return o
 }
 
-// SetHTTPClient adds the HTTPClient to the delete native vlan params
-func (o *DeleteNativeVlanParams) SetHTTPClient(client *http.Client) {
+// SetHTTPClient adds the HTTPClient to the delete native Vlan params
+func (o *DeleteNativeVLANParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithID adds the id to the delete native vlan params
-func (o *DeleteNativeVlanParams) WithID(id strfmt.UUID) *DeleteNativeVlanParams {
+// WithID adds the id to the delete native Vlan params
+func (o *DeleteNativeVLANParams) WithID(id strfmt.UUID) *DeleteNativeVLANParams {
 	o.SetID(id)
 	return o
 }
 
-// SetID adds the id to the delete native vlan params
-func (o *DeleteNativeVlanParams) SetID(id strfmt.UUID) {
+// SetID adds the id to the delete native Vlan params
+func (o *DeleteNativeVLANParams) SetID(id strfmt.UUID) {
 	o.ID = id
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *DeleteNativeVlanParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
+func (o *DeleteNativeVLANParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	if err := r.SetTimeout(o.timeout); err != nil {
 		return err

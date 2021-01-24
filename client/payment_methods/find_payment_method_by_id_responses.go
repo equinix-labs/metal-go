@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // FindPaymentMethodByIDReader is a Reader for the FindPaymentMethodByID structure.
@@ -57,20 +57,20 @@ func NewFindPaymentMethodByIDOK() *FindPaymentMethodByIDOK {
 ok
 */
 type FindPaymentMethodByIDOK struct {
-	Payload *models.PaymentMethod
+	Payload *types.PaymentMethod
 }
 
 func (o *FindPaymentMethodByIDOK) Error() string {
 	return fmt.Sprintf("[GET /payment-methods/{id}][%d] findPaymentMethodByIdOK  %+v", 200, o.Payload)
 }
 
-func (o *FindPaymentMethodByIDOK) GetPayload() *models.PaymentMethod {
+func (o *FindPaymentMethodByIDOK) GetPayload() *types.PaymentMethod {
 	return o.Payload
 }
 
 func (o *FindPaymentMethodByIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.PaymentMethod)
+	o.Payload = new(types.PaymentMethod)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // FindSSHKeyByIDReader is a Reader for the FindSSHKeyByID structure.
@@ -63,20 +63,20 @@ func NewFindSSHKeyByIDOK() *FindSSHKeyByIDOK {
 ok
 */
 type FindSSHKeyByIDOK struct {
-	Payload *models.SSHKey
+	Payload *types.SSHKey
 }
 
 func (o *FindSSHKeyByIDOK) Error() string {
 	return fmt.Sprintf("[GET /ssh-keys/{id}][%d] findSshKeyByIdOK  %+v", 200, o.Payload)
 }
 
-func (o *FindSSHKeyByIDOK) GetPayload() *models.SSHKey {
+func (o *FindSSHKeyByIDOK) GetPayload() *types.SSHKey {
 	return o.Payload
 }
 
 func (o *FindSSHKeyByIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.SSHKey)
+	o.Payload = new(types.SSHKey)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

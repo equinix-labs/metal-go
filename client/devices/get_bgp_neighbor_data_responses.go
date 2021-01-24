@@ -12,37 +12,37 @@ import (
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
-// GetBgpNeighborDataReader is a Reader for the GetBgpNeighborData structure.
-type GetBgpNeighborDataReader struct {
+// GetBGPNeighborDataReader is a Reader for the GetBGPNeighborData structure.
+type GetBGPNeighborDataReader struct {
 	formats strfmt.Registry
 }
 
 // ReadResponse reads a server response into the received o.
-func (o *GetBgpNeighborDataReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
+func (o *GetBGPNeighborDataReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
 	case 200:
-		result := NewGetBgpNeighborDataOK()
+		result := NewGetBGPNeighborDataOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
 	case 401:
-		result := NewGetBgpNeighborDataUnauthorized()
+		result := NewGetBGPNeighborDataUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
 	case 403:
-		result := NewGetBgpNeighborDataForbidden()
+		result := NewGetBGPNeighborDataForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
 	case 404:
-		result := NewGetBgpNeighborDataNotFound()
+		result := NewGetBGPNeighborDataNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -53,30 +53,30 @@ func (o *GetBgpNeighborDataReader) ReadResponse(response runtime.ClientResponse,
 	}
 }
 
-// NewGetBgpNeighborDataOK creates a GetBgpNeighborDataOK with default headers values
-func NewGetBgpNeighborDataOK() *GetBgpNeighborDataOK {
-	return &GetBgpNeighborDataOK{}
+// NewGetBGPNeighborDataOK creates a GetBGPNeighborDataOK with default headers values
+func NewGetBGPNeighborDataOK() *GetBGPNeighborDataOK {
+	return &GetBGPNeighborDataOK{}
 }
 
-/*GetBgpNeighborDataOK handles this case with default header values.
+/*GetBGPNeighborDataOK handles this case with default header values.
 
 ok
 */
-type GetBgpNeighborDataOK struct {
-	Payload *models.BgpSessionNeighbors
+type GetBGPNeighborDataOK struct {
+	Payload *types.BGPSessionNeighbors
 }
 
-func (o *GetBgpNeighborDataOK) Error() string {
+func (o *GetBGPNeighborDataOK) Error() string {
 	return fmt.Sprintf("[GET /devices/{id}/bgp/neighbors][%d] getBgpNeighborDataOK  %+v", 200, o.Payload)
 }
 
-func (o *GetBgpNeighborDataOK) GetPayload() *models.BgpSessionNeighbors {
+func (o *GetBGPNeighborDataOK) GetPayload() *types.BGPSessionNeighbors {
 	return o.Payload
 }
 
-func (o *GetBgpNeighborDataOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *GetBGPNeighborDataOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.BgpSessionNeighbors)
+	o.Payload = new(types.BGPSessionNeighbors)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -86,65 +86,65 @@ func (o *GetBgpNeighborDataOK) readResponse(response runtime.ClientResponse, con
 	return nil
 }
 
-// NewGetBgpNeighborDataUnauthorized creates a GetBgpNeighborDataUnauthorized with default headers values
-func NewGetBgpNeighborDataUnauthorized() *GetBgpNeighborDataUnauthorized {
-	return &GetBgpNeighborDataUnauthorized{}
+// NewGetBGPNeighborDataUnauthorized creates a GetBGPNeighborDataUnauthorized with default headers values
+func NewGetBGPNeighborDataUnauthorized() *GetBGPNeighborDataUnauthorized {
+	return &GetBGPNeighborDataUnauthorized{}
 }
 
-/*GetBgpNeighborDataUnauthorized handles this case with default header values.
+/*GetBGPNeighborDataUnauthorized handles this case with default header values.
 
 unauthorized
 */
-type GetBgpNeighborDataUnauthorized struct {
+type GetBGPNeighborDataUnauthorized struct {
 }
 
-func (o *GetBgpNeighborDataUnauthorized) Error() string {
+func (o *GetBGPNeighborDataUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /devices/{id}/bgp/neighbors][%d] getBgpNeighborDataUnauthorized ", 401)
 }
 
-func (o *GetBgpNeighborDataUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *GetBGPNeighborDataUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }
 
-// NewGetBgpNeighborDataForbidden creates a GetBgpNeighborDataForbidden with default headers values
-func NewGetBgpNeighborDataForbidden() *GetBgpNeighborDataForbidden {
-	return &GetBgpNeighborDataForbidden{}
+// NewGetBGPNeighborDataForbidden creates a GetBGPNeighborDataForbidden with default headers values
+func NewGetBGPNeighborDataForbidden() *GetBGPNeighborDataForbidden {
+	return &GetBGPNeighborDataForbidden{}
 }
 
-/*GetBgpNeighborDataForbidden handles this case with default header values.
+/*GetBGPNeighborDataForbidden handles this case with default header values.
 
 forbidden
 */
-type GetBgpNeighborDataForbidden struct {
+type GetBGPNeighborDataForbidden struct {
 }
 
-func (o *GetBgpNeighborDataForbidden) Error() string {
+func (o *GetBGPNeighborDataForbidden) Error() string {
 	return fmt.Sprintf("[GET /devices/{id}/bgp/neighbors][%d] getBgpNeighborDataForbidden ", 403)
 }
 
-func (o *GetBgpNeighborDataForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *GetBGPNeighborDataForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }
 
-// NewGetBgpNeighborDataNotFound creates a GetBgpNeighborDataNotFound with default headers values
-func NewGetBgpNeighborDataNotFound() *GetBgpNeighborDataNotFound {
-	return &GetBgpNeighborDataNotFound{}
+// NewGetBGPNeighborDataNotFound creates a GetBGPNeighborDataNotFound with default headers values
+func NewGetBGPNeighborDataNotFound() *GetBGPNeighborDataNotFound {
+	return &GetBGPNeighborDataNotFound{}
 }
 
-/*GetBgpNeighborDataNotFound handles this case with default header values.
+/*GetBGPNeighborDataNotFound handles this case with default header values.
 
 not found
 */
-type GetBgpNeighborDataNotFound struct {
+type GetBGPNeighborDataNotFound struct {
 }
 
-func (o *GetBgpNeighborDataNotFound) Error() string {
+func (o *GetBGPNeighborDataNotFound) Error() string {
 	return fmt.Sprintf("[GET /devices/{id}/bgp/neighbors][%d] getBgpNeighborDataNotFound ", 404)
 }
 
-func (o *GetBgpNeighborDataNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *GetBGPNeighborDataNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }

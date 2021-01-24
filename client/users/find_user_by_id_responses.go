@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // FindUserByIDReader is a Reader for the FindUserByID structure.
@@ -63,20 +63,20 @@ func NewFindUserByIDOK() *FindUserByIDOK {
 ok
 */
 type FindUserByIDOK struct {
-	Payload *models.User
+	Payload *types.User
 }
 
 func (o *FindUserByIDOK) Error() string {
 	return fmt.Sprintf("[GET /users/{id}][%d] findUserByIdOK  %+v", 200, o.Payload)
 }
 
-func (o *FindUserByIDOK) GetPayload() *models.User {
+func (o *FindUserByIDOK) GetPayload() *types.User {
 	return o.Payload
 }
 
 func (o *FindUserByIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.User)
+	o.Payload = new(types.User)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

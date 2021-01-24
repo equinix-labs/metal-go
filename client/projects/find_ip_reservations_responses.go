@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // FindIPReservationsReader is a Reader for the FindIPReservations structure.
@@ -63,20 +63,20 @@ func NewFindIPReservationsOK() *FindIPReservationsOK {
 ok
 */
 type FindIPReservationsOK struct {
-	Payload *models.IPReservationList
+	Payload *types.IPReservationList
 }
 
 func (o *FindIPReservationsOK) Error() string {
 	return fmt.Sprintf("[GET /projects/{id}/ips][%d] findIpReservationsOK  %+v", 200, o.Payload)
 }
 
-func (o *FindIPReservationsOK) GetPayload() *models.IPReservationList {
+func (o *FindIPReservationsOK) GetPayload() *types.IPReservationList {
 	return o.Payload
 }
 
 func (o *FindIPReservationsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.IPReservationList)
+	o.Payload = new(types.IPReservationList)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

@@ -12,37 +12,37 @@ import (
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
-// AssignNativeVlanReader is a Reader for the AssignNativeVlan structure.
-type AssignNativeVlanReader struct {
+// AssignNativeVLANReader is a Reader for the AssignNativeVLAN structure.
+type AssignNativeVLANReader struct {
 	formats strfmt.Registry
 }
 
 // ReadResponse reads a server response into the received o.
-func (o *AssignNativeVlanReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
+func (o *AssignNativeVLANReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
 	case 200:
-		result := NewAssignNativeVlanOK()
+		result := NewAssignNativeVLANOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
 	case 401:
-		result := NewAssignNativeVlanUnauthorized()
+		result := NewAssignNativeVLANUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
 	case 404:
-		result := NewAssignNativeVlanNotFound()
+		result := NewAssignNativeVLANNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
 	case 422:
-		result := NewAssignNativeVlanUnprocessableEntity()
+		result := NewAssignNativeVLANUnprocessableEntity()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -53,30 +53,30 @@ func (o *AssignNativeVlanReader) ReadResponse(response runtime.ClientResponse, c
 	}
 }
 
-// NewAssignNativeVlanOK creates a AssignNativeVlanOK with default headers values
-func NewAssignNativeVlanOK() *AssignNativeVlanOK {
-	return &AssignNativeVlanOK{}
+// NewAssignNativeVLANOK creates a AssignNativeVLANOK with default headers values
+func NewAssignNativeVLANOK() *AssignNativeVLANOK {
+	return &AssignNativeVLANOK{}
 }
 
-/*AssignNativeVlanOK handles this case with default header values.
+/*AssignNativeVLANOK handles this case with default header values.
 
 ok
 */
-type AssignNativeVlanOK struct {
-	Payload *models.Port
+type AssignNativeVLANOK struct {
+	Payload *types.Port
 }
 
-func (o *AssignNativeVlanOK) Error() string {
+func (o *AssignNativeVLANOK) Error() string {
 	return fmt.Sprintf("[POST /ports/{id}/native-vlan][%d] assignNativeVlanOK  %+v", 200, o.Payload)
 }
 
-func (o *AssignNativeVlanOK) GetPayload() *models.Port {
+func (o *AssignNativeVLANOK) GetPayload() *types.Port {
 	return o.Payload
 }
 
-func (o *AssignNativeVlanOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *AssignNativeVLANOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.Port)
+	o.Payload = new(types.Port)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -86,65 +86,65 @@ func (o *AssignNativeVlanOK) readResponse(response runtime.ClientResponse, consu
 	return nil
 }
 
-// NewAssignNativeVlanUnauthorized creates a AssignNativeVlanUnauthorized with default headers values
-func NewAssignNativeVlanUnauthorized() *AssignNativeVlanUnauthorized {
-	return &AssignNativeVlanUnauthorized{}
+// NewAssignNativeVLANUnauthorized creates a AssignNativeVLANUnauthorized with default headers values
+func NewAssignNativeVLANUnauthorized() *AssignNativeVLANUnauthorized {
+	return &AssignNativeVLANUnauthorized{}
 }
 
-/*AssignNativeVlanUnauthorized handles this case with default header values.
+/*AssignNativeVLANUnauthorized handles this case with default header values.
 
 unauthorized
 */
-type AssignNativeVlanUnauthorized struct {
+type AssignNativeVLANUnauthorized struct {
 }
 
-func (o *AssignNativeVlanUnauthorized) Error() string {
+func (o *AssignNativeVLANUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /ports/{id}/native-vlan][%d] assignNativeVlanUnauthorized ", 401)
 }
 
-func (o *AssignNativeVlanUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *AssignNativeVLANUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }
 
-// NewAssignNativeVlanNotFound creates a AssignNativeVlanNotFound with default headers values
-func NewAssignNativeVlanNotFound() *AssignNativeVlanNotFound {
-	return &AssignNativeVlanNotFound{}
+// NewAssignNativeVLANNotFound creates a AssignNativeVLANNotFound with default headers values
+func NewAssignNativeVLANNotFound() *AssignNativeVLANNotFound {
+	return &AssignNativeVLANNotFound{}
 }
 
-/*AssignNativeVlanNotFound handles this case with default header values.
+/*AssignNativeVLANNotFound handles this case with default header values.
 
 not found
 */
-type AssignNativeVlanNotFound struct {
+type AssignNativeVLANNotFound struct {
 }
 
-func (o *AssignNativeVlanNotFound) Error() string {
+func (o *AssignNativeVLANNotFound) Error() string {
 	return fmt.Sprintf("[POST /ports/{id}/native-vlan][%d] assignNativeVlanNotFound ", 404)
 }
 
-func (o *AssignNativeVlanNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *AssignNativeVLANNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }
 
-// NewAssignNativeVlanUnprocessableEntity creates a AssignNativeVlanUnprocessableEntity with default headers values
-func NewAssignNativeVlanUnprocessableEntity() *AssignNativeVlanUnprocessableEntity {
-	return &AssignNativeVlanUnprocessableEntity{}
+// NewAssignNativeVLANUnprocessableEntity creates a AssignNativeVLANUnprocessableEntity with default headers values
+func NewAssignNativeVLANUnprocessableEntity() *AssignNativeVLANUnprocessableEntity {
+	return &AssignNativeVLANUnprocessableEntity{}
 }
 
-/*AssignNativeVlanUnprocessableEntity handles this case with default header values.
+/*AssignNativeVLANUnprocessableEntity handles this case with default header values.
 
 unprocessable entity
 */
-type AssignNativeVlanUnprocessableEntity struct {
+type AssignNativeVLANUnprocessableEntity struct {
 }
 
-func (o *AssignNativeVlanUnprocessableEntity) Error() string {
+func (o *AssignNativeVLANUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[POST /ports/{id}/native-vlan][%d] assignNativeVlanUnprocessableEntity ", 422)
 }
 
-func (o *AssignNativeVlanUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *AssignNativeVLANUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }

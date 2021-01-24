@@ -15,7 +15,7 @@ import (
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // NewCreateOrganizationParams creates a new CreateOrganizationParams object
@@ -66,7 +66,7 @@ type CreateOrganizationParams struct {
 	  Organization to create
 
 	*/
-	Organization *models.OrganizationInput
+	Organization *types.OrganizationInput
 
 	timeout    time.Duration
 	Context    context.Context
@@ -107,13 +107,13 @@ func (o *CreateOrganizationParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithOrganization adds the organization to the create organization params
-func (o *CreateOrganizationParams) WithOrganization(organization *models.OrganizationInput) *CreateOrganizationParams {
+func (o *CreateOrganizationParams) WithOrganization(organization *types.OrganizationInput) *CreateOrganizationParams {
 	o.SetOrganization(organization)
 	return o
 }
 
 // SetOrganization adds the organization to the create organization params
-func (o *CreateOrganizationParams) SetOrganization(organization *models.OrganizationInput) {
+func (o *CreateOrganizationParams) SetOrganization(organization *types.OrganizationInput) {
 	o.Organization = organization
 }
 

@@ -61,11 +61,11 @@ for the find connection events operation typically these are written to a http.R
 */
 type FindConnectionEventsParams struct {
 
-	/*ID
+	/*ConnectionID
 	  Connection UUID
 
 	*/
-	ID strfmt.UUID
+	ConnectionID strfmt.UUID
 	/*Include
 	  related attributes to include
 
@@ -120,15 +120,15 @@ func (o *FindConnectionEventsParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithID adds the id to the find connection events params
-func (o *FindConnectionEventsParams) WithID(id strfmt.UUID) *FindConnectionEventsParams {
-	o.SetID(id)
+// WithConnectionID adds the connectionID to the find connection events params
+func (o *FindConnectionEventsParams) WithConnectionID(connectionID strfmt.UUID) *FindConnectionEventsParams {
+	o.SetConnectionID(connectionID)
 	return o
 }
 
-// SetID adds the id to the find connection events params
-func (o *FindConnectionEventsParams) SetID(id strfmt.UUID) {
-	o.ID = id
+// SetConnectionID adds the connectionId to the find connection events params
+func (o *FindConnectionEventsParams) SetConnectionID(connectionID strfmt.UUID) {
+	o.ConnectionID = connectionID
 }
 
 // WithInclude adds the include to the find connection events params
@@ -172,8 +172,8 @@ func (o *FindConnectionEventsParams) WriteToRequest(r runtime.ClientRequest, reg
 	}
 	var res []error
 
-	// path param id
-	if err := r.SetPathParam("id", o.ID.String()); err != nil {
+	// path param connection_id
+	if err := r.SetPathParam("connection_id", o.ConnectionID.String()); err != nil {
 		return err
 	}
 

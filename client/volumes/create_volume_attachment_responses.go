@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // CreateVolumeAttachmentReader is a Reader for the CreateVolumeAttachment structure.
@@ -69,20 +69,20 @@ func NewCreateVolumeAttachmentCreated() *CreateVolumeAttachmentCreated {
 created
 */
 type CreateVolumeAttachmentCreated struct {
-	Payload *models.VolumeAttachment
+	Payload *types.VolumeAttachment
 }
 
 func (o *CreateVolumeAttachmentCreated) Error() string {
 	return fmt.Sprintf("[POST /storage/{id}/attachments][%d] createVolumeAttachmentCreated  %+v", 201, o.Payload)
 }
 
-func (o *CreateVolumeAttachmentCreated) GetPayload() *models.VolumeAttachment {
+func (o *CreateVolumeAttachmentCreated) GetPayload() *types.VolumeAttachment {
 	return o.Payload
 }
 
 func (o *CreateVolumeAttachmentCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.VolumeAttachment)
+	o.Payload = new(types.VolumeAttachment)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

@@ -15,7 +15,7 @@ import (
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // NewUpdateLicenseParams creates a new UpdateLicenseParams object
@@ -71,7 +71,7 @@ type UpdateLicenseParams struct {
 	  License to update
 
 	*/
-	License *models.LicenseUpdateInput
+	License *types.LicenseUpdateInput
 
 	timeout    time.Duration
 	Context    context.Context
@@ -123,13 +123,13 @@ func (o *UpdateLicenseParams) SetID(id strfmt.UUID) {
 }
 
 // WithLicense adds the license to the update license params
-func (o *UpdateLicenseParams) WithLicense(license *models.LicenseUpdateInput) *UpdateLicenseParams {
+func (o *UpdateLicenseParams) WithLicense(license *types.LicenseUpdateInput) *UpdateLicenseParams {
 	o.SetLicense(license)
 	return o
 }
 
 // SetLicense adds the license to the update license params
-func (o *UpdateLicenseParams) SetLicense(license *models.LicenseUpdateInput) {
+func (o *UpdateLicenseParams) SetLicense(license *types.LicenseUpdateInput) {
 	o.License = license
 }
 

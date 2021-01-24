@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // FindBatchByIDReader is a Reader for the FindBatchByID structure.
@@ -57,20 +57,20 @@ func NewFindBatchByIDOK() *FindBatchByIDOK {
 ok
 */
 type FindBatchByIDOK struct {
-	Payload *models.Batch
+	Payload *types.Batch
 }
 
 func (o *FindBatchByIDOK) Error() string {
 	return fmt.Sprintf("[GET /batches/{id}][%d] findBatchByIdOK  %+v", 200, o.Payload)
 }
 
-func (o *FindBatchByIDOK) GetPayload() *models.Batch {
+func (o *FindBatchByIDOK) GetPayload() *types.Batch {
 	return o.Payload
 }
 
 func (o *FindBatchByIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.Batch)
+	o.Payload = new(types.Batch)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

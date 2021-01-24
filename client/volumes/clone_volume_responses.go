@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // CloneVolumeReader is a Reader for the CloneVolume structure.
@@ -69,20 +69,20 @@ func NewCloneVolumeCreated() *CloneVolumeCreated {
 created
 */
 type CloneVolumeCreated struct {
-	Payload *models.Volume
+	Payload *types.Volume
 }
 
 func (o *CloneVolumeCreated) Error() string {
 	return fmt.Sprintf("[POST /storage/{id}/clone][%d] cloneVolumeCreated  %+v", 201, o.Payload)
 }
 
-func (o *CloneVolumeCreated) GetPayload() *models.Volume {
+func (o *CloneVolumeCreated) GetPayload() *types.Volume {
 	return o.Payload
 }
 
 func (o *CloneVolumeCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.Volume)
+	o.Payload = new(types.Volume)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

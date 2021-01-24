@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // AcceptInvitationReader is a Reader for the AcceptInvitation structure.
@@ -63,20 +63,20 @@ func NewAcceptInvitationOK() *AcceptInvitationOK {
 ok
 */
 type AcceptInvitationOK struct {
-	Payload *models.Membership
+	Payload *types.Membership
 }
 
 func (o *AcceptInvitationOK) Error() string {
 	return fmt.Sprintf("[PUT /invitations/{id}][%d] acceptInvitationOK  %+v", 200, o.Payload)
 }
 
-func (o *AcceptInvitationOK) GetPayload() *models.Membership {
+func (o *AcceptInvitationOK) GetPayload() *types.Membership {
 	return o.Payload
 }
 
 func (o *AcceptInvitationOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.Membership)
+	o.Payload = new(types.Membership)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

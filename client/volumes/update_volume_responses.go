@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // UpdateVolumeReader is a Reader for the UpdateVolume structure.
@@ -69,20 +69,20 @@ func NewUpdateVolumeOK() *UpdateVolumeOK {
 ok
 */
 type UpdateVolumeOK struct {
-	Payload *models.Volume
+	Payload *types.Volume
 }
 
 func (o *UpdateVolumeOK) Error() string {
 	return fmt.Sprintf("[PUT /storage/{id}][%d] updateVolumeOK  %+v", 200, o.Payload)
 }
 
-func (o *UpdateVolumeOK) GetPayload() *models.Volume {
+func (o *UpdateVolumeOK) GetPayload() *types.Volume {
 	return o.Payload
 }
 
 func (o *UpdateVolumeOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.Volume)
+	o.Payload = new(types.Volume)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

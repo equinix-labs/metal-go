@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // CreateInternetGatewayReader is a Reader for the CreateInternetGateway structure.
@@ -63,20 +63,20 @@ func NewCreateInternetGatewayCreated() *CreateInternetGatewayCreated {
 created
 */
 type CreateInternetGatewayCreated struct {
-	Payload *models.InternetGateway
+	Payload *types.InternetGateway
 }
 
 func (o *CreateInternetGatewayCreated) Error() string {
 	return fmt.Sprintf("[POST /virtual-networks/{id}/internet-gateways][%d] createInternetGatewayCreated  %+v", 201, o.Payload)
 }
 
-func (o *CreateInternetGatewayCreated) GetPayload() *models.InternetGateway {
+func (o *CreateInternetGatewayCreated) GetPayload() *types.InternetGateway {
 	return o.Payload
 }
 
 func (o *CreateInternetGatewayCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.InternetGateway)
+	o.Payload = new(types.InternetGateway)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

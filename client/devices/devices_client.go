@@ -27,7 +27,7 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	CreateBgpSession(params *CreateBgpSessionParams, authInfo runtime.ClientAuthInfoWriter) (*CreateBgpSessionOK, *CreateBgpSessionCreated, error)
+	CreateBGPSession(params *CreateBGPSessionParams, authInfo runtime.ClientAuthInfoWriter) (*CreateBGPSessionOK, *CreateBGPSessionCreated, error)
 
 	CreateDeviceBatch(params *CreateDeviceBatchParams, authInfo runtime.ClientAuthInfoWriter) (*CreateDeviceBatchCreated, error)
 
@@ -35,7 +35,7 @@ type ClientService interface {
 
 	DeleteDevice(params *DeleteDeviceParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteDeviceNoContent, error)
 
-	FindBgpSessions(params *FindBgpSessionsParams, authInfo runtime.ClientAuthInfoWriter) (*FindBgpSessionsOK, error)
+	FindBGPSessions(params *FindBGPSessionsParams, authInfo runtime.ClientAuthInfoWriter) (*FindBGPSessionsOK, error)
 
 	FindDeviceByID(params *FindDeviceByIDParams, authInfo runtime.ClientAuthInfoWriter) (*FindDeviceByIDOK, error)
 
@@ -53,7 +53,7 @@ type ClientService interface {
 
 	FindTraffic(params *FindTrafficParams, authInfo runtime.ClientAuthInfoWriter) (*FindTrafficOK, error)
 
-	GetBgpNeighborData(params *GetBgpNeighborDataParams, authInfo runtime.ClientAuthInfoWriter) (*GetBgpNeighborDataOK, error)
+	GetBGPNeighborData(params *GetBGPNeighborDataParams, authInfo runtime.ClientAuthInfoWriter) (*GetBGPNeighborDataOK, error)
 
 	PerformAction(params *PerformActionParams, authInfo runtime.ClientAuthInfoWriter) (*PerformActionAccepted, error)
 
@@ -63,14 +63,14 @@ type ClientService interface {
 }
 
 /*
-  CreateBgpSession creates a b g p session
+  CreateBGPSession creates a BGP session
 
   Creates a BGP session.
 */
-func (a *Client) CreateBgpSession(params *CreateBgpSessionParams, authInfo runtime.ClientAuthInfoWriter) (*CreateBgpSessionOK, *CreateBgpSessionCreated, error) {
+func (a *Client) CreateBGPSession(params *CreateBGPSessionParams, authInfo runtime.ClientAuthInfoWriter) (*CreateBGPSessionOK, *CreateBGPSessionCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewCreateBgpSessionParams()
+		params = NewCreateBGPSessionParams()
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -81,7 +81,7 @@ func (a *Client) CreateBgpSession(params *CreateBgpSessionParams, authInfo runti
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http"},
 		Params:             params,
-		Reader:             &CreateBgpSessionReader{formats: a.formats},
+		Reader:             &CreateBGPSessionReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -90,9 +90,9 @@ func (a *Client) CreateBgpSession(params *CreateBgpSessionParams, authInfo runti
 		return nil, nil, err
 	}
 	switch value := result.(type) {
-	case *CreateBgpSessionOK:
+	case *CreateBGPSessionOK:
 		return value, nil, nil
-	case *CreateBgpSessionCreated:
+	case *CreateBGPSessionCreated:
 		return nil, value, nil
 	}
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
@@ -248,14 +248,14 @@ func (a *Client) DeleteDevice(params *DeleteDeviceParams, authInfo runtime.Clien
 }
 
 /*
-  FindBgpSessions retrieves all b g p sessions
+  FindBGPSessions retrieves all BGP sessions
 
   Provides a listing of available BGP sessions for the device.
 */
-func (a *Client) FindBgpSessions(params *FindBgpSessionsParams, authInfo runtime.ClientAuthInfoWriter) (*FindBgpSessionsOK, error) {
+func (a *Client) FindBGPSessions(params *FindBGPSessionsParams, authInfo runtime.ClientAuthInfoWriter) (*FindBGPSessionsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewFindBgpSessionsParams()
+		params = NewFindBGPSessionsParams()
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -266,7 +266,7 @@ func (a *Client) FindBgpSessions(params *FindBgpSessionsParams, authInfo runtime
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http"},
 		Params:             params,
-		Reader:             &FindBgpSessionsReader{formats: a.formats},
+		Reader:             &FindBGPSessionsReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -274,7 +274,7 @@ func (a *Client) FindBgpSessions(params *FindBgpSessionsParams, authInfo runtime
 	if err != nil {
 		return nil, err
 	}
-	success, ok := result.(*FindBgpSessionsOK)
+	success, ok := result.(*FindBGPSessionsOK)
 	if ok {
 		return success, nil
 	}
@@ -582,14 +582,14 @@ func (a *Client) FindTraffic(params *FindTrafficParams, authInfo runtime.ClientA
 }
 
 /*
-  GetBgpNeighborData retrieves b g p neighbor data for this device
+  GetBGPNeighborData retrieves BGP neighbor data for this device
 
   Provides a summary of the BGP neighbor data associated to the BGP sessions for this device.
 */
-func (a *Client) GetBgpNeighborData(params *GetBgpNeighborDataParams, authInfo runtime.ClientAuthInfoWriter) (*GetBgpNeighborDataOK, error) {
+func (a *Client) GetBGPNeighborData(params *GetBGPNeighborDataParams, authInfo runtime.ClientAuthInfoWriter) (*GetBGPNeighborDataOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewGetBgpNeighborDataParams()
+		params = NewGetBGPNeighborDataParams()
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -600,7 +600,7 @@ func (a *Client) GetBgpNeighborData(params *GetBgpNeighborDataParams, authInfo r
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http"},
 		Params:             params,
-		Reader:             &GetBgpNeighborDataReader{formats: a.formats},
+		Reader:             &GetBGPNeighborDataReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -608,7 +608,7 @@ func (a *Client) GetBgpNeighborData(params *GetBgpNeighborDataParams, authInfo r
 	if err != nil {
 		return nil, err
 	}
-	success, ok := result.(*GetBgpNeighborDataOK)
+	success, ok := result.(*GetBGPNeighborDataOK)
 	if ok {
 		return success, nil
 	}

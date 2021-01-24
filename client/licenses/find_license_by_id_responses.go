@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // FindLicenseByIDReader is a Reader for the FindLicenseByID structure.
@@ -63,20 +63,20 @@ func NewFindLicenseByIDOK() *FindLicenseByIDOK {
 ok
 */
 type FindLicenseByIDOK struct {
-	Payload *models.License
+	Payload *types.License
 }
 
 func (o *FindLicenseByIDOK) Error() string {
 	return fmt.Sprintf("[GET /licenses/{id}][%d] findLicenseByIdOK  %+v", 200, o.Payload)
 }
 
-func (o *FindLicenseByIDOK) GetPayload() *models.License {
+func (o *FindLicenseByIDOK) GetPayload() *types.License {
 	return o.Payload
 }
 
 func (o *FindLicenseByIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.License)
+	o.Payload = new(types.License)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

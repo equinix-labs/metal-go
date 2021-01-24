@@ -15,7 +15,7 @@ import (
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // NewCreateOrganizationInterconnectionParams creates a new CreateOrganizationInterconnectionParams object
@@ -66,7 +66,7 @@ type CreateOrganizationInterconnectionParams struct {
 	  Connection details
 
 	*/
-	Connection *models.InterconnectionCreateInput
+	Connection *types.InterconnectionCreateInput
 	/*OrganizationID
 	  UUID of the organization
 
@@ -112,13 +112,13 @@ func (o *CreateOrganizationInterconnectionParams) SetHTTPClient(client *http.Cli
 }
 
 // WithConnection adds the connection to the create organization interconnection params
-func (o *CreateOrganizationInterconnectionParams) WithConnection(connection *models.InterconnectionCreateInput) *CreateOrganizationInterconnectionParams {
+func (o *CreateOrganizationInterconnectionParams) WithConnection(connection *types.InterconnectionCreateInput) *CreateOrganizationInterconnectionParams {
 	o.SetConnection(connection)
 	return o
 }
 
 // SetConnection adds the connection to the create organization interconnection params
-func (o *CreateOrganizationInterconnectionParams) SetConnection(connection *models.InterconnectionCreateInput) {
+func (o *CreateOrganizationInterconnectionParams) SetConnection(connection *types.InterconnectionCreateInput) {
 	o.Connection = connection
 }
 

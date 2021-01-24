@@ -15,7 +15,7 @@ import (
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // NewCreateConnectionPortVirtualCircuitParams creates a new CreateConnectionPortVirtualCircuitParams object
@@ -76,7 +76,7 @@ type CreateConnectionPortVirtualCircuitParams struct {
 	  Virtual Circuit details
 
 	*/
-	VirtualCircuit *models.VirtualCircuitCreateInput
+	VirtualCircuit *types.VirtualCircuitCreateInput
 
 	timeout    time.Duration
 	Context    context.Context
@@ -139,13 +139,13 @@ func (o *CreateConnectionPortVirtualCircuitParams) SetPortID(portID strfmt.UUID)
 }
 
 // WithVirtualCircuit adds the virtualCircuit to the create connection port virtual circuit params
-func (o *CreateConnectionPortVirtualCircuitParams) WithVirtualCircuit(virtualCircuit *models.VirtualCircuitCreateInput) *CreateConnectionPortVirtualCircuitParams {
+func (o *CreateConnectionPortVirtualCircuitParams) WithVirtualCircuit(virtualCircuit *types.VirtualCircuitCreateInput) *CreateConnectionPortVirtualCircuitParams {
 	o.SetVirtualCircuit(virtualCircuit)
 	return o
 }
 
 // SetVirtualCircuit adds the virtualCircuit to the create connection port virtual circuit params
-func (o *CreateConnectionPortVirtualCircuitParams) SetVirtualCircuit(virtualCircuit *models.VirtualCircuitCreateInput) {
+func (o *CreateConnectionPortVirtualCircuitParams) SetVirtualCircuit(virtualCircuit *types.VirtualCircuitCreateInput) {
 	o.VirtualCircuit = virtualCircuit
 }
 

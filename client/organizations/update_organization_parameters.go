@@ -15,7 +15,7 @@ import (
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // NewUpdateOrganizationParams creates a new UpdateOrganizationParams object
@@ -71,7 +71,7 @@ type UpdateOrganizationParams struct {
 	  Organization to update
 
 	*/
-	Organization *models.OrganizationInput
+	Organization *types.OrganizationInput
 
 	timeout    time.Duration
 	Context    context.Context
@@ -123,13 +123,13 @@ func (o *UpdateOrganizationParams) SetID(id strfmt.UUID) {
 }
 
 // WithOrganization adds the organization to the update organization params
-func (o *UpdateOrganizationParams) WithOrganization(organization *models.OrganizationInput) *UpdateOrganizationParams {
+func (o *UpdateOrganizationParams) WithOrganization(organization *types.OrganizationInput) *UpdateOrganizationParams {
 	o.SetOrganization(organization)
 	return o
 }
 
 // SetOrganization adds the organization to the update organization params
-func (o *UpdateOrganizationParams) SetOrganization(organization *models.OrganizationInput) {
+func (o *UpdateOrganizationParams) SetOrganization(organization *types.OrganizationInput) {
 	o.Organization = organization
 }
 

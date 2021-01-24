@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // GetInterconnectionReader is a Reader for the GetInterconnection structure.
@@ -57,20 +57,20 @@ func NewGetInterconnectionOK() *GetInterconnectionOK {
 ok
 */
 type GetInterconnectionOK struct {
-	Payload *models.Interconnection
+	Payload *types.Interconnection
 }
 
 func (o *GetInterconnectionOK) Error() string {
-	return fmt.Sprintf("[GET /connections/{id}][%d] getInterconnectionOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /connections/{connection_id}][%d] getInterconnectionOK  %+v", 200, o.Payload)
 }
 
-func (o *GetInterconnectionOK) GetPayload() *models.Interconnection {
+func (o *GetInterconnectionOK) GetPayload() *types.Interconnection {
 	return o.Payload
 }
 
 func (o *GetInterconnectionOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.Interconnection)
+	o.Payload = new(types.Interconnection)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -93,7 +93,7 @@ type GetInterconnectionForbidden struct {
 }
 
 func (o *GetInterconnectionForbidden) Error() string {
-	return fmt.Sprintf("[GET /connections/{id}][%d] getInterconnectionForbidden ", 403)
+	return fmt.Sprintf("[GET /connections/{connection_id}][%d] getInterconnectionForbidden ", 403)
 }
 
 func (o *GetInterconnectionForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -114,7 +114,7 @@ type GetInterconnectionNotFound struct {
 }
 
 func (o *GetInterconnectionNotFound) Error() string {
-	return fmt.Sprintf("[GET /connections/{id}][%d] getInterconnectionNotFound ", 404)
+	return fmt.Sprintf("[GET /connections/{connection_id}][%d] getInterconnectionNotFound ", 404)
 }
 
 func (o *GetInterconnectionNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

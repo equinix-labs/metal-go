@@ -15,7 +15,7 @@ import (
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // NewUpdateVolumeParams creates a new UpdateVolumeParams object
@@ -71,7 +71,7 @@ type UpdateVolumeParams struct {
 	  Volume to update
 
 	*/
-	Volume *models.VolumeUpdateInput
+	Volume *types.VolumeUpdateInput
 
 	timeout    time.Duration
 	Context    context.Context
@@ -123,13 +123,13 @@ func (o *UpdateVolumeParams) SetID(id strfmt.UUID) {
 }
 
 // WithVolume adds the volume to the update volume params
-func (o *UpdateVolumeParams) WithVolume(volume *models.VolumeUpdateInput) *UpdateVolumeParams {
+func (o *UpdateVolumeParams) WithVolume(volume *types.VolumeUpdateInput) *UpdateVolumeParams {
 	o.SetVolume(volume)
 	return o
 }
 
 // SetVolume adds the volume to the update volume params
-func (o *UpdateVolumeParams) SetVolume(volume *models.VolumeUpdateInput) {
+func (o *UpdateVolumeParams) SetVolume(volume *types.VolumeUpdateInput) {
 	o.Volume = volume
 }
 

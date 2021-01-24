@@ -15,7 +15,7 @@ import (
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // NewCreateLicenseParams creates a new CreateLicenseParams object
@@ -71,7 +71,7 @@ type CreateLicenseParams struct {
 	  License to create
 
 	*/
-	License *models.LicenseCreateInput
+	License *types.LicenseCreateInput
 
 	timeout    time.Duration
 	Context    context.Context
@@ -123,13 +123,13 @@ func (o *CreateLicenseParams) SetID(id strfmt.UUID) {
 }
 
 // WithLicense adds the license to the create license params
-func (o *CreateLicenseParams) WithLicense(license *models.LicenseCreateInput) *CreateLicenseParams {
+func (o *CreateLicenseParams) WithLicense(license *types.LicenseCreateInput) *CreateLicenseParams {
 	o.SetLicense(license)
 	return o
 }
 
 // SetLicense adds the license to the create license params
-func (o *CreateLicenseParams) SetLicense(license *models.LicenseCreateInput) {
+func (o *CreateLicenseParams) SetLicense(license *types.LicenseCreateInput) {
 	o.License = license
 }
 

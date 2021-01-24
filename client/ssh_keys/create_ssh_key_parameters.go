@@ -15,7 +15,7 @@ import (
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // NewCreateSSHKeyParams creates a new CreateSSHKeyParams object
@@ -66,7 +66,7 @@ type CreateSSHKeyParams struct {
 	  ssh key to create
 
 	*/
-	SSHKey *models.SSHKeyInput
+	SSHKey *types.SSHKeyInput
 
 	timeout    time.Duration
 	Context    context.Context
@@ -107,13 +107,13 @@ func (o *CreateSSHKeyParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithSSHKey adds the sSHKey to the create SSH key params
-func (o *CreateSSHKeyParams) WithSSHKey(sSHKey *models.SSHKeyInput) *CreateSSHKeyParams {
+func (o *CreateSSHKeyParams) WithSSHKey(sSHKey *types.SSHKeyInput) *CreateSSHKeyParams {
 	o.SetSSHKey(sSHKey)
 	return o
 }
 
 // SetSSHKey adds the sshKey to the create SSH key params
-func (o *CreateSSHKeyParams) SetSSHKey(sSHKey *models.SSHKeyInput) {
+func (o *CreateSSHKeyParams) SetSSHKey(sSHKey *types.SSHKeyInput) {
 	o.SSHKey = sSHKey
 }
 

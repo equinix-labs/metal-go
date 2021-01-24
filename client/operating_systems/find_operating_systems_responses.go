@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // FindOperatingSystemsReader is a Reader for the FindOperatingSystems structure.
@@ -51,14 +51,14 @@ func NewFindOperatingSystemsOK() *FindOperatingSystemsOK {
 ok
 */
 type FindOperatingSystemsOK struct {
-	Payload models.OperatingSystemList
+	Payload types.OperatingSystemList
 }
 
 func (o *FindOperatingSystemsOK) Error() string {
 	return fmt.Sprintf("[GET /operating-systems][%d] findOperatingSystemsOK  %+v", 200, o.Payload)
 }
 
-func (o *FindOperatingSystemsOK) GetPayload() models.OperatingSystemList {
+func (o *FindOperatingSystemsOK) GetPayload() types.OperatingSystemList {
 	return o.Payload
 }
 

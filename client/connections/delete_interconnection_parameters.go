@@ -60,11 +60,11 @@ for the delete interconnection operation typically these are written to a http.R
 */
 type DeleteInterconnectionParams struct {
 
-	/*ID
+	/*ConnectionID
 	  Connection UUID
 
 	*/
-	ID strfmt.UUID
+	ConnectionID strfmt.UUID
 
 	timeout    time.Duration
 	Context    context.Context
@@ -104,15 +104,15 @@ func (o *DeleteInterconnectionParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithID adds the id to the delete interconnection params
-func (o *DeleteInterconnectionParams) WithID(id strfmt.UUID) *DeleteInterconnectionParams {
-	o.SetID(id)
+// WithConnectionID adds the connectionID to the delete interconnection params
+func (o *DeleteInterconnectionParams) WithConnectionID(connectionID strfmt.UUID) *DeleteInterconnectionParams {
+	o.SetConnectionID(connectionID)
 	return o
 }
 
-// SetID adds the id to the delete interconnection params
-func (o *DeleteInterconnectionParams) SetID(id strfmt.UUID) {
-	o.ID = id
+// SetConnectionID adds the connectionId to the delete interconnection params
+func (o *DeleteInterconnectionParams) SetConnectionID(connectionID strfmt.UUID) {
+	o.ConnectionID = connectionID
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -123,8 +123,8 @@ func (o *DeleteInterconnectionParams) WriteToRequest(r runtime.ClientRequest, re
 	}
 	var res []error
 
-	// path param id
-	if err := r.SetPathParam("id", o.ID.String()); err != nil {
+	// path param connection_id
+	if err := r.SetPathParam("connection_id", o.ConnectionID.String()); err != nil {
 		return err
 	}
 

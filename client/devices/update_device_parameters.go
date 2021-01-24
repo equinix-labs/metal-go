@@ -15,7 +15,7 @@ import (
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // NewUpdateDeviceParams creates a new UpdateDeviceParams object
@@ -66,7 +66,7 @@ type UpdateDeviceParams struct {
 	  Facility to update
 
 	*/
-	Device *models.DeviceUpdateInput
+	Device *types.DeviceUpdateInput
 	/*ID
 	  Device UUID
 
@@ -112,13 +112,13 @@ func (o *UpdateDeviceParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithDevice adds the device to the update device params
-func (o *UpdateDeviceParams) WithDevice(device *models.DeviceUpdateInput) *UpdateDeviceParams {
+func (o *UpdateDeviceParams) WithDevice(device *types.DeviceUpdateInput) *UpdateDeviceParams {
 	o.SetDevice(device)
 	return o
 }
 
 // SetDevice adds the device to the update device params
-func (o *UpdateDeviceParams) SetDevice(device *models.DeviceUpdateInput) {
+func (o *UpdateDeviceParams) SetDevice(device *types.DeviceUpdateInput) {
 	o.Device = device
 }
 

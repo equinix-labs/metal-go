@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // CreateDeviceReader is a Reader for the CreateDevice structure.
@@ -69,20 +69,20 @@ func NewCreateDeviceCreated() *CreateDeviceCreated {
 created
 */
 type CreateDeviceCreated struct {
-	Payload *models.Device
+	Payload *types.Device
 }
 
 func (o *CreateDeviceCreated) Error() string {
 	return fmt.Sprintf("[POST /projects/{id}/devices][%d] createDeviceCreated  %+v", 201, o.Payload)
 }
 
-func (o *CreateDeviceCreated) GetPayload() *models.Device {
+func (o *CreateDeviceCreated) GetPayload() *types.Device {
 	return o.Payload
 }
 
 func (o *CreateDeviceCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.Device)
+	o.Payload = new(types.Device)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

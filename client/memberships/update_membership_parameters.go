@@ -15,7 +15,7 @@ import (
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // NewUpdateMembershipParams creates a new UpdateMembershipParams object
@@ -71,7 +71,7 @@ type UpdateMembershipParams struct {
 	  Membership to update
 
 	*/
-	Membership *models.MembershipInput
+	Membership *types.MembershipInput
 
 	timeout    time.Duration
 	Context    context.Context
@@ -123,13 +123,13 @@ func (o *UpdateMembershipParams) SetID(id strfmt.UUID) {
 }
 
 // WithMembership adds the membership to the update membership params
-func (o *UpdateMembershipParams) WithMembership(membership *models.MembershipInput) *UpdateMembershipParams {
+func (o *UpdateMembershipParams) WithMembership(membership *types.MembershipInput) *UpdateMembershipParams {
 	o.SetMembership(membership)
 	return o
 }
 
 // SetMembership adds the membership to the update membership params
-func (o *UpdateMembershipParams) SetMembership(membership *models.MembershipInput) {
+func (o *UpdateMembershipParams) SetMembership(membership *types.MembershipInput) {
 	o.Membership = membership
 }
 

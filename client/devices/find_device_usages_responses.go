@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // FindDeviceUsagesReader is a Reader for the FindDeviceUsages structure.
@@ -57,20 +57,20 @@ func NewFindDeviceUsagesOK() *FindDeviceUsagesOK {
 ok
 */
 type FindDeviceUsagesOK struct {
-	Payload *models.DeviceUsageList
+	Payload *types.DeviceUsageList
 }
 
 func (o *FindDeviceUsagesOK) Error() string {
 	return fmt.Sprintf("[GET /devices/{id}/usages][%d] findDeviceUsagesOK  %+v", 200, o.Payload)
 }
 
-func (o *FindDeviceUsagesOK) GetPayload() *models.DeviceUsageList {
+func (o *FindDeviceUsagesOK) GetPayload() *types.DeviceUsageList {
 	return o.Payload
 }
 
 func (o *FindDeviceUsagesOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.DeviceUsageList)
+	o.Payload = new(types.DeviceUsageList)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

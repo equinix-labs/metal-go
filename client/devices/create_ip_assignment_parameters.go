@@ -15,7 +15,7 @@ import (
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // NewCreateIPAssignmentParams creates a new CreateIPAssignmentParams object
@@ -71,7 +71,7 @@ type CreateIPAssignmentParams struct {
 	  IPAssignment to create
 
 	*/
-	IPAssignment *models.IPAssignmentInput
+	IPAssignment *types.IPAssignmentInput
 
 	timeout    time.Duration
 	Context    context.Context
@@ -123,13 +123,13 @@ func (o *CreateIPAssignmentParams) SetID(id strfmt.UUID) {
 }
 
 // WithIPAssignment adds the iPAssignment to the create IP assignment params
-func (o *CreateIPAssignmentParams) WithIPAssignment(iPAssignment *models.IPAssignmentInput) *CreateIPAssignmentParams {
+func (o *CreateIPAssignmentParams) WithIPAssignment(iPAssignment *types.IPAssignmentInput) *CreateIPAssignmentParams {
 	o.SetIPAssignment(iPAssignment)
 	return o
 }
 
 // SetIPAssignment adds the ipAssignment to the create IP assignment params
-func (o *CreateIPAssignmentParams) SetIPAssignment(iPAssignment *models.IPAssignmentInput) {
+func (o *CreateIPAssignmentParams) SetIPAssignment(iPAssignment *types.IPAssignmentInput) {
 	o.IPAssignment = iPAssignment
 }
 

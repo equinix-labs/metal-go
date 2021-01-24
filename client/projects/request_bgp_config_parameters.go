@@ -15,58 +15,58 @@ import (
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
-// NewRequestBgpConfigParams creates a new RequestBgpConfigParams object
+// NewRequestBGPConfigParams creates a new RequestBGPConfigParams object
 // with the default values initialized.
-func NewRequestBgpConfigParams() *RequestBgpConfigParams {
+func NewRequestBGPConfigParams() *RequestBGPConfigParams {
 	var ()
-	return &RequestBgpConfigParams{
+	return &RequestBGPConfigParams{
 
 		timeout: cr.DefaultTimeout,
 	}
 }
 
-// NewRequestBgpConfigParamsWithTimeout creates a new RequestBgpConfigParams object
+// NewRequestBGPConfigParamsWithTimeout creates a new RequestBGPConfigParams object
 // with the default values initialized, and the ability to set a timeout on a request
-func NewRequestBgpConfigParamsWithTimeout(timeout time.Duration) *RequestBgpConfigParams {
+func NewRequestBGPConfigParamsWithTimeout(timeout time.Duration) *RequestBGPConfigParams {
 	var ()
-	return &RequestBgpConfigParams{
+	return &RequestBGPConfigParams{
 
 		timeout: timeout,
 	}
 }
 
-// NewRequestBgpConfigParamsWithContext creates a new RequestBgpConfigParams object
+// NewRequestBGPConfigParamsWithContext creates a new RequestBGPConfigParams object
 // with the default values initialized, and the ability to set a context for a request
-func NewRequestBgpConfigParamsWithContext(ctx context.Context) *RequestBgpConfigParams {
+func NewRequestBGPConfigParamsWithContext(ctx context.Context) *RequestBGPConfigParams {
 	var ()
-	return &RequestBgpConfigParams{
+	return &RequestBGPConfigParams{
 
 		Context: ctx,
 	}
 }
 
-// NewRequestBgpConfigParamsWithHTTPClient creates a new RequestBgpConfigParams object
+// NewRequestBGPConfigParamsWithHTTPClient creates a new RequestBGPConfigParams object
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
-func NewRequestBgpConfigParamsWithHTTPClient(client *http.Client) *RequestBgpConfigParams {
+func NewRequestBGPConfigParamsWithHTTPClient(client *http.Client) *RequestBGPConfigParams {
 	var ()
-	return &RequestBgpConfigParams{
+	return &RequestBGPConfigParams{
 		HTTPClient: client,
 	}
 }
 
-/*RequestBgpConfigParams contains all the parameters to send to the API endpoint
-for the request bgp config operation typically these are written to a http.Request
+/*RequestBGPConfigParams contains all the parameters to send to the API endpoint
+for the request Bgp config operation typically these are written to a http.Request
 */
-type RequestBgpConfigParams struct {
+type RequestBGPConfigParams struct {
 
-	/*BgpConfigRequest
+	/*BGPConfigRequest
 	  BGP config Request to create
 
 	*/
-	BgpConfigRequest *models.BgpConfigRequestInput
+	BGPConfigRequest *types.BGPConfigRequestInput
 	/*ID
 	  Project UUID
 
@@ -78,71 +78,71 @@ type RequestBgpConfigParams struct {
 	HTTPClient *http.Client
 }
 
-// WithTimeout adds the timeout to the request bgp config params
-func (o *RequestBgpConfigParams) WithTimeout(timeout time.Duration) *RequestBgpConfigParams {
+// WithTimeout adds the timeout to the request Bgp config params
+func (o *RequestBGPConfigParams) WithTimeout(timeout time.Duration) *RequestBGPConfigParams {
 	o.SetTimeout(timeout)
 	return o
 }
 
-// SetTimeout adds the timeout to the request bgp config params
-func (o *RequestBgpConfigParams) SetTimeout(timeout time.Duration) {
+// SetTimeout adds the timeout to the request Bgp config params
+func (o *RequestBGPConfigParams) SetTimeout(timeout time.Duration) {
 	o.timeout = timeout
 }
 
-// WithContext adds the context to the request bgp config params
-func (o *RequestBgpConfigParams) WithContext(ctx context.Context) *RequestBgpConfigParams {
+// WithContext adds the context to the request Bgp config params
+func (o *RequestBGPConfigParams) WithContext(ctx context.Context) *RequestBGPConfigParams {
 	o.SetContext(ctx)
 	return o
 }
 
-// SetContext adds the context to the request bgp config params
-func (o *RequestBgpConfigParams) SetContext(ctx context.Context) {
+// SetContext adds the context to the request Bgp config params
+func (o *RequestBGPConfigParams) SetContext(ctx context.Context) {
 	o.Context = ctx
 }
 
-// WithHTTPClient adds the HTTPClient to the request bgp config params
-func (o *RequestBgpConfigParams) WithHTTPClient(client *http.Client) *RequestBgpConfigParams {
+// WithHTTPClient adds the HTTPClient to the request Bgp config params
+func (o *RequestBGPConfigParams) WithHTTPClient(client *http.Client) *RequestBGPConfigParams {
 	o.SetHTTPClient(client)
 	return o
 }
 
-// SetHTTPClient adds the HTTPClient to the request bgp config params
-func (o *RequestBgpConfigParams) SetHTTPClient(client *http.Client) {
+// SetHTTPClient adds the HTTPClient to the request Bgp config params
+func (o *RequestBGPConfigParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithBgpConfigRequest adds the bgpConfigRequest to the request bgp config params
-func (o *RequestBgpConfigParams) WithBgpConfigRequest(bgpConfigRequest *models.BgpConfigRequestInput) *RequestBgpConfigParams {
-	o.SetBgpConfigRequest(bgpConfigRequest)
+// WithBGPConfigRequest adds the bGPConfigRequest to the request Bgp config params
+func (o *RequestBGPConfigParams) WithBGPConfigRequest(bGPConfigRequest *types.BGPConfigRequestInput) *RequestBGPConfigParams {
+	o.SetBGPConfigRequest(bGPConfigRequest)
 	return o
 }
 
-// SetBgpConfigRequest adds the bgpConfigRequest to the request bgp config params
-func (o *RequestBgpConfigParams) SetBgpConfigRequest(bgpConfigRequest *models.BgpConfigRequestInput) {
-	o.BgpConfigRequest = bgpConfigRequest
+// SetBGPConfigRequest adds the bgpConfigRequest to the request Bgp config params
+func (o *RequestBGPConfigParams) SetBGPConfigRequest(bGPConfigRequest *types.BGPConfigRequestInput) {
+	o.BGPConfigRequest = bGPConfigRequest
 }
 
-// WithID adds the id to the request bgp config params
-func (o *RequestBgpConfigParams) WithID(id strfmt.UUID) *RequestBgpConfigParams {
+// WithID adds the id to the request Bgp config params
+func (o *RequestBGPConfigParams) WithID(id strfmt.UUID) *RequestBGPConfigParams {
 	o.SetID(id)
 	return o
 }
 
-// SetID adds the id to the request bgp config params
-func (o *RequestBgpConfigParams) SetID(id strfmt.UUID) {
+// SetID adds the id to the request Bgp config params
+func (o *RequestBGPConfigParams) SetID(id strfmt.UUID) {
 	o.ID = id
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *RequestBgpConfigParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
+func (o *RequestBGPConfigParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	if err := r.SetTimeout(o.timeout); err != nil {
 		return err
 	}
 	var res []error
 
-	if o.BgpConfigRequest != nil {
-		if err := r.SetBodyParam(o.BgpConfigRequest); err != nil {
+	if o.BGPConfigRequest != nil {
+		if err := r.SetBodyParam(o.BGPConfigRequest); err != nil {
 			return err
 		}
 	}

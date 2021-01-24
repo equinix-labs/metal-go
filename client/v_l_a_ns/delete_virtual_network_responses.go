@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // DeleteVirtualNetworkReader is a Reader for the DeleteVirtualNetwork structure.
@@ -69,20 +69,20 @@ func NewDeleteVirtualNetworkOK() *DeleteVirtualNetworkOK {
 ok
 */
 type DeleteVirtualNetworkOK struct {
-	Payload *models.VirtualNetwork
+	Payload *types.VirtualNetwork
 }
 
 func (o *DeleteVirtualNetworkOK) Error() string {
 	return fmt.Sprintf("[DELETE /virtual-networks/{id}][%d] deleteVirtualNetworkOK  %+v", 200, o.Payload)
 }
 
-func (o *DeleteVirtualNetworkOK) GetPayload() *models.VirtualNetwork {
+func (o *DeleteVirtualNetworkOK) GetPayload() *types.VirtualNetwork {
 	return o.Payload
 }
 
 func (o *DeleteVirtualNetworkOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.VirtualNetwork)
+	o.Payload = new(types.VirtualNetwork)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // UpdatePaymentMethodReader is a Reader for the UpdatePaymentMethod structure.
@@ -63,20 +63,20 @@ func NewUpdatePaymentMethodOK() *UpdatePaymentMethodOK {
 ok
 */
 type UpdatePaymentMethodOK struct {
-	Payload *models.PaymentMethod
+	Payload *types.PaymentMethod
 }
 
 func (o *UpdatePaymentMethodOK) Error() string {
 	return fmt.Sprintf("[PUT /payment-methods/{id}][%d] updatePaymentMethodOK  %+v", 200, o.Payload)
 }
 
-func (o *UpdatePaymentMethodOK) GetPayload() *models.PaymentMethod {
+func (o *UpdatePaymentMethodOK) GetPayload() *types.PaymentMethod {
 	return o.Payload
 }
 
 func (o *UpdatePaymentMethodOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.PaymentMethod)
+	o.Payload = new(types.PaymentMethod)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

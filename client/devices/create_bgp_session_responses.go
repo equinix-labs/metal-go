@@ -12,43 +12,43 @@ import (
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
-// CreateBgpSessionReader is a Reader for the CreateBgpSession structure.
-type CreateBgpSessionReader struct {
+// CreateBGPSessionReader is a Reader for the CreateBGPSession structure.
+type CreateBGPSessionReader struct {
 	formats strfmt.Registry
 }
 
 // ReadResponse reads a server response into the received o.
-func (o *CreateBgpSessionReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
+func (o *CreateBGPSessionReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
 	case 200:
-		result := NewCreateBgpSessionOK()
+		result := NewCreateBGPSessionOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
 	case 201:
-		result := NewCreateBgpSessionCreated()
+		result := NewCreateBGPSessionCreated()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
 	case 401:
-		result := NewCreateBgpSessionUnauthorized()
+		result := NewCreateBGPSessionUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
 	case 403:
-		result := NewCreateBgpSessionForbidden()
+		result := NewCreateBGPSessionForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
 	case 422:
-		result := NewCreateBgpSessionUnprocessableEntity()
+		result := NewCreateBGPSessionUnprocessableEntity()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -59,30 +59,30 @@ func (o *CreateBgpSessionReader) ReadResponse(response runtime.ClientResponse, c
 	}
 }
 
-// NewCreateBgpSessionOK creates a CreateBgpSessionOK with default headers values
-func NewCreateBgpSessionOK() *CreateBgpSessionOK {
-	return &CreateBgpSessionOK{}
+// NewCreateBGPSessionOK creates a CreateBGPSessionOK with default headers values
+func NewCreateBGPSessionOK() *CreateBGPSessionOK {
+	return &CreateBGPSessionOK{}
 }
 
-/*CreateBgpSessionOK handles this case with default header values.
+/*CreateBGPSessionOK handles this case with default header values.
 
 ok
 */
-type CreateBgpSessionOK struct {
-	Payload *models.BgpSession
+type CreateBGPSessionOK struct {
+	Payload *types.BGPSession
 }
 
-func (o *CreateBgpSessionOK) Error() string {
+func (o *CreateBGPSessionOK) Error() string {
 	return fmt.Sprintf("[POST /devices/{id}/bgp/sessions][%d] createBgpSessionOK  %+v", 200, o.Payload)
 }
 
-func (o *CreateBgpSessionOK) GetPayload() *models.BgpSession {
+func (o *CreateBGPSessionOK) GetPayload() *types.BGPSession {
 	return o.Payload
 }
 
-func (o *CreateBgpSessionOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *CreateBGPSessionOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.BgpSession)
+	o.Payload = new(types.BGPSession)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -92,30 +92,30 @@ func (o *CreateBgpSessionOK) readResponse(response runtime.ClientResponse, consu
 	return nil
 }
 
-// NewCreateBgpSessionCreated creates a CreateBgpSessionCreated with default headers values
-func NewCreateBgpSessionCreated() *CreateBgpSessionCreated {
-	return &CreateBgpSessionCreated{}
+// NewCreateBGPSessionCreated creates a CreateBGPSessionCreated with default headers values
+func NewCreateBGPSessionCreated() *CreateBGPSessionCreated {
+	return &CreateBGPSessionCreated{}
 }
 
-/*CreateBgpSessionCreated handles this case with default header values.
+/*CreateBGPSessionCreated handles this case with default header values.
 
 created
 */
-type CreateBgpSessionCreated struct {
-	Payload *models.BgpSession
+type CreateBGPSessionCreated struct {
+	Payload *types.BGPSession
 }
 
-func (o *CreateBgpSessionCreated) Error() string {
+func (o *CreateBGPSessionCreated) Error() string {
 	return fmt.Sprintf("[POST /devices/{id}/bgp/sessions][%d] createBgpSessionCreated  %+v", 201, o.Payload)
 }
 
-func (o *CreateBgpSessionCreated) GetPayload() *models.BgpSession {
+func (o *CreateBGPSessionCreated) GetPayload() *types.BGPSession {
 	return o.Payload
 }
 
-func (o *CreateBgpSessionCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *CreateBGPSessionCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.BgpSession)
+	o.Payload = new(types.BGPSession)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -125,65 +125,65 @@ func (o *CreateBgpSessionCreated) readResponse(response runtime.ClientResponse, 
 	return nil
 }
 
-// NewCreateBgpSessionUnauthorized creates a CreateBgpSessionUnauthorized with default headers values
-func NewCreateBgpSessionUnauthorized() *CreateBgpSessionUnauthorized {
-	return &CreateBgpSessionUnauthorized{}
+// NewCreateBGPSessionUnauthorized creates a CreateBGPSessionUnauthorized with default headers values
+func NewCreateBGPSessionUnauthorized() *CreateBGPSessionUnauthorized {
+	return &CreateBGPSessionUnauthorized{}
 }
 
-/*CreateBgpSessionUnauthorized handles this case with default header values.
+/*CreateBGPSessionUnauthorized handles this case with default header values.
 
 unauthorized
 */
-type CreateBgpSessionUnauthorized struct {
+type CreateBGPSessionUnauthorized struct {
 }
 
-func (o *CreateBgpSessionUnauthorized) Error() string {
+func (o *CreateBGPSessionUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /devices/{id}/bgp/sessions][%d] createBgpSessionUnauthorized ", 401)
 }
 
-func (o *CreateBgpSessionUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *CreateBGPSessionUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }
 
-// NewCreateBgpSessionForbidden creates a CreateBgpSessionForbidden with default headers values
-func NewCreateBgpSessionForbidden() *CreateBgpSessionForbidden {
-	return &CreateBgpSessionForbidden{}
+// NewCreateBGPSessionForbidden creates a CreateBGPSessionForbidden with default headers values
+func NewCreateBGPSessionForbidden() *CreateBGPSessionForbidden {
+	return &CreateBGPSessionForbidden{}
 }
 
-/*CreateBgpSessionForbidden handles this case with default header values.
+/*CreateBGPSessionForbidden handles this case with default header values.
 
 forbidden
 */
-type CreateBgpSessionForbidden struct {
+type CreateBGPSessionForbidden struct {
 }
 
-func (o *CreateBgpSessionForbidden) Error() string {
+func (o *CreateBGPSessionForbidden) Error() string {
 	return fmt.Sprintf("[POST /devices/{id}/bgp/sessions][%d] createBgpSessionForbidden ", 403)
 }
 
-func (o *CreateBgpSessionForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *CreateBGPSessionForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }
 
-// NewCreateBgpSessionUnprocessableEntity creates a CreateBgpSessionUnprocessableEntity with default headers values
-func NewCreateBgpSessionUnprocessableEntity() *CreateBgpSessionUnprocessableEntity {
-	return &CreateBgpSessionUnprocessableEntity{}
+// NewCreateBGPSessionUnprocessableEntity creates a CreateBGPSessionUnprocessableEntity with default headers values
+func NewCreateBGPSessionUnprocessableEntity() *CreateBGPSessionUnprocessableEntity {
+	return &CreateBGPSessionUnprocessableEntity{}
 }
 
-/*CreateBgpSessionUnprocessableEntity handles this case with default header values.
+/*CreateBGPSessionUnprocessableEntity handles this case with default header values.
 
 unprocessable entity
 */
-type CreateBgpSessionUnprocessableEntity struct {
+type CreateBGPSessionUnprocessableEntity struct {
 }
 
-func (o *CreateBgpSessionUnprocessableEntity) Error() string {
+func (o *CreateBGPSessionUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[POST /devices/{id}/bgp/sessions][%d] createBgpSessionUnprocessableEntity ", 422)
 }
 
-func (o *CreateBgpSessionUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *CreateBGPSessionUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }

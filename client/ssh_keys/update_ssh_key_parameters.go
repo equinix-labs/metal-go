@@ -15,7 +15,7 @@ import (
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // NewUpdateSSHKeyParams creates a new UpdateSSHKeyParams object
@@ -71,7 +71,7 @@ type UpdateSSHKeyParams struct {
 	  ssh key to update
 
 	*/
-	SSHKey *models.SSHKeyInput
+	SSHKey *types.SSHKeyInput
 
 	timeout    time.Duration
 	Context    context.Context
@@ -123,13 +123,13 @@ func (o *UpdateSSHKeyParams) SetID(id strfmt.UUID) {
 }
 
 // WithSSHKey adds the sSHKey to the update SSH key params
-func (o *UpdateSSHKeyParams) WithSSHKey(sSHKey *models.SSHKeyInput) *UpdateSSHKeyParams {
+func (o *UpdateSSHKeyParams) WithSSHKey(sSHKey *types.SSHKeyInput) *UpdateSSHKeyParams {
 	o.SetSSHKey(sSHKey)
 	return o
 }
 
 // SetSSHKey adds the sshKey to the update SSH key params
-func (o *UpdateSSHKeyParams) SetSSHKey(sSHKey *models.SSHKeyInput) {
+func (o *UpdateSSHKeyParams) SetSSHKey(sSHKey *types.SSHKeyInput) {
 	o.SSHKey = sSHKey
 }
 

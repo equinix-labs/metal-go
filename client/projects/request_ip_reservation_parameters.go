@@ -15,7 +15,7 @@ import (
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // NewRequestIPReservationParams creates a new RequestIPReservationParams object
@@ -71,7 +71,7 @@ type RequestIPReservationParams struct {
 	  IP Reservation Request to create
 
 	*/
-	IPReservationRequest *models.IPReservationRequestInput
+	IPReservationRequest *types.IPReservationRequestInput
 
 	timeout    time.Duration
 	Context    context.Context
@@ -123,13 +123,13 @@ func (o *RequestIPReservationParams) SetID(id strfmt.UUID) {
 }
 
 // WithIPReservationRequest adds the iPReservationRequest to the request IP reservation params
-func (o *RequestIPReservationParams) WithIPReservationRequest(iPReservationRequest *models.IPReservationRequestInput) *RequestIPReservationParams {
+func (o *RequestIPReservationParams) WithIPReservationRequest(iPReservationRequest *types.IPReservationRequestInput) *RequestIPReservationParams {
 	o.SetIPReservationRequest(iPReservationRequest)
 	return o
 }
 
 // SetIPReservationRequest adds the ipReservationRequest to the request IP reservation params
-func (o *RequestIPReservationParams) SetIPReservationRequest(iPReservationRequest *models.IPReservationRequestInput) {
+func (o *RequestIPReservationParams) SetIPReservationRequest(iPReservationRequest *types.IPReservationRequestInput) {
 	o.IPReservationRequest = iPReservationRequest
 }
 

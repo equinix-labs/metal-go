@@ -15,7 +15,7 @@ import (
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // NewCreateVolumeParams creates a new CreateVolumeParams object
@@ -71,7 +71,7 @@ type CreateVolumeParams struct {
 	  Volume to create
 
 	*/
-	Volume *models.VolumeCreateInput
+	Volume *types.VolumeCreateInput
 
 	timeout    time.Duration
 	Context    context.Context
@@ -123,13 +123,13 @@ func (o *CreateVolumeParams) SetID(id strfmt.UUID) {
 }
 
 // WithVolume adds the volume to the create volume params
-func (o *CreateVolumeParams) WithVolume(volume *models.VolumeCreateInput) *CreateVolumeParams {
+func (o *CreateVolumeParams) WithVolume(volume *types.VolumeCreateInput) *CreateVolumeParams {
 	o.SetVolume(volume)
 	return o
 }
 
 // SetVolume adds the volume to the create volume params
-func (o *CreateVolumeParams) SetVolume(volume *models.VolumeCreateInput) {
+func (o *CreateVolumeParams) SetVolume(volume *types.VolumeCreateInput) {
 	o.Volume = volume
 }
 

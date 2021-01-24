@@ -15,7 +15,7 @@ import (
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // NewCreateProjectInvitationParams creates a new CreateProjectInvitationParams object
@@ -66,7 +66,7 @@ type CreateProjectInvitationParams struct {
 	  Invitation to create
 
 	*/
-	Invitation *models.InvitationInput
+	Invitation *types.InvitationInput
 	/*ProjectID
 	  Project UUID
 
@@ -112,13 +112,13 @@ func (o *CreateProjectInvitationParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithInvitation adds the invitation to the create project invitation params
-func (o *CreateProjectInvitationParams) WithInvitation(invitation *models.InvitationInput) *CreateProjectInvitationParams {
+func (o *CreateProjectInvitationParams) WithInvitation(invitation *types.InvitationInput) *CreateProjectInvitationParams {
 	o.SetInvitation(invitation)
 	return o
 }
 
 // SetInvitation adds the invitation to the create project invitation params
-func (o *CreateProjectInvitationParams) SetInvitation(invitation *models.InvitationInput) {
+func (o *CreateProjectInvitationParams) SetInvitation(invitation *types.InvitationInput) {
 	o.Invitation = invitation
 }
 

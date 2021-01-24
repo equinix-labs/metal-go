@@ -15,7 +15,7 @@ import (
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // NewCreateProjectParams creates a new CreateProjectParams object
@@ -66,7 +66,7 @@ type CreateProjectParams struct {
 	  Project to create
 
 	*/
-	Project *models.ProjectCreateFromRootInput
+	Project *types.ProjectCreateFromRootInput
 
 	timeout    time.Duration
 	Context    context.Context
@@ -107,13 +107,13 @@ func (o *CreateProjectParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithProject adds the project to the create project params
-func (o *CreateProjectParams) WithProject(project *models.ProjectCreateFromRootInput) *CreateProjectParams {
+func (o *CreateProjectParams) WithProject(project *types.ProjectCreateFromRootInput) *CreateProjectParams {
 	o.SetProject(project)
 	return o
 }
 
 // SetProject adds the project to the create project params
-func (o *CreateProjectParams) SetProject(project *models.ProjectCreateFromRootInput) {
+func (o *CreateProjectParams) SetProject(project *types.ProjectCreateFromRootInput) {
 	o.Project = project
 }
 

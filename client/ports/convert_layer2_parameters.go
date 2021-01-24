@@ -15,7 +15,7 @@ import (
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // NewConvertLayer2Params creates a new ConvertLayer2Params object
@@ -71,7 +71,7 @@ type ConvertLayer2Params struct {
 	  Virtual Network ID
 
 	*/
-	Vnid *models.PortAssignInput
+	Vnid *types.PortAssignInput
 
 	timeout    time.Duration
 	Context    context.Context
@@ -123,13 +123,13 @@ func (o *ConvertLayer2Params) SetID(id strfmt.UUID) {
 }
 
 // WithVnid adds the vnid to the convert layer2 params
-func (o *ConvertLayer2Params) WithVnid(vnid *models.PortAssignInput) *ConvertLayer2Params {
+func (o *ConvertLayer2Params) WithVnid(vnid *types.PortAssignInput) *ConvertLayer2Params {
 	o.SetVnid(vnid)
 	return o
 }
 
 // SetVnid adds the vnid to the convert layer2 params
-func (o *ConvertLayer2Params) SetVnid(vnid *models.PortAssignInput) {
+func (o *ConvertLayer2Params) SetVnid(vnid *types.PortAssignInput) {
 	o.Vnid = vnid
 }
 

@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // ConvertLayer2Reader is a Reader for the ConvertLayer2 structure.
@@ -69,20 +69,20 @@ func NewConvertLayer2OK() *ConvertLayer2OK {
 ok
 */
 type ConvertLayer2OK struct {
-	Payload *models.Port
+	Payload *types.Port
 }
 
 func (o *ConvertLayer2OK) Error() string {
 	return fmt.Sprintf("[POST /ports/{id}/convert/layer-2][%d] convertLayer2OK  %+v", 200, o.Payload)
 }
 
-func (o *ConvertLayer2OK) GetPayload() *models.Port {
+func (o *ConvertLayer2OK) GetPayload() *types.Port {
 	return o.Payload
 }
 
 func (o *ConvertLayer2OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.Port)
+	o.Payload = new(types.Port)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

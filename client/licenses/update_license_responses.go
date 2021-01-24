@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // UpdateLicenseReader is a Reader for the UpdateLicense structure.
@@ -69,20 +69,20 @@ func NewUpdateLicenseOK() *UpdateLicenseOK {
 ok
 */
 type UpdateLicenseOK struct {
-	Payload *models.License
+	Payload *types.License
 }
 
 func (o *UpdateLicenseOK) Error() string {
 	return fmt.Sprintf("[PUT /licenses/{id}][%d] updateLicenseOK  %+v", 200, o.Payload)
 }
 
-func (o *UpdateLicenseOK) GetPayload() *models.License {
+func (o *UpdateLicenseOK) GetPayload() *types.License {
 	return o.Payload
 }
 
 func (o *UpdateLicenseOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.License)
+	o.Payload = new(types.License)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

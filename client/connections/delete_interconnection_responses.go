@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // DeleteInterconnectionReader is a Reader for the DeleteInterconnection structure.
@@ -57,20 +57,20 @@ func NewDeleteInterconnectionAccepted() *DeleteInterconnectionAccepted {
 accepted
 */
 type DeleteInterconnectionAccepted struct {
-	Payload *models.Interconnection
+	Payload *types.Interconnection
 }
 
 func (o *DeleteInterconnectionAccepted) Error() string {
-	return fmt.Sprintf("[DELETE /connections/{id}][%d] deleteInterconnectionAccepted  %+v", 202, o.Payload)
+	return fmt.Sprintf("[DELETE /connections/{connection_id}][%d] deleteInterconnectionAccepted  %+v", 202, o.Payload)
 }
 
-func (o *DeleteInterconnectionAccepted) GetPayload() *models.Interconnection {
+func (o *DeleteInterconnectionAccepted) GetPayload() *types.Interconnection {
 	return o.Payload
 }
 
 func (o *DeleteInterconnectionAccepted) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.Interconnection)
+	o.Payload = new(types.Interconnection)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -93,7 +93,7 @@ type DeleteInterconnectionForbidden struct {
 }
 
 func (o *DeleteInterconnectionForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /connections/{id}][%d] deleteInterconnectionForbidden ", 403)
+	return fmt.Sprintf("[DELETE /connections/{connection_id}][%d] deleteInterconnectionForbidden ", 403)
 }
 
 func (o *DeleteInterconnectionForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -114,7 +114,7 @@ type DeleteInterconnectionNotFound struct {
 }
 
 func (o *DeleteInterconnectionNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /connections/{id}][%d] deleteInterconnectionNotFound ", 404)
+	return fmt.Sprintf("[DELETE /connections/{connection_id}][%d] deleteInterconnectionNotFound ", 404)
 }
 
 func (o *DeleteInterconnectionNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

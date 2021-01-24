@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // FindOrganizationInvitationsReader is a Reader for the FindOrganizationInvitations structure.
@@ -63,20 +63,20 @@ func NewFindOrganizationInvitationsOK() *FindOrganizationInvitationsOK {
 ok
 */
 type FindOrganizationInvitationsOK struct {
-	Payload *models.InvitationList
+	Payload *types.InvitationList
 }
 
 func (o *FindOrganizationInvitationsOK) Error() string {
 	return fmt.Sprintf("[GET /organizations/{id}/invitations][%d] findOrganizationInvitationsOK  %+v", 200, o.Payload)
 }
 
-func (o *FindOrganizationInvitationsOK) GetPayload() *models.InvitationList {
+func (o *FindOrganizationInvitationsOK) GetPayload() *types.InvitationList {
 	return o.Payload
 }
 
 func (o *FindOrganizationInvitationsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.InvitationList)
+	o.Payload = new(types.InvitationList)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

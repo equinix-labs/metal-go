@@ -16,49 +16,49 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewFindProjectBgpSessionsParams creates a new FindProjectBgpSessionsParams object
+// NewFindProjectBGPSessionsParams creates a new FindProjectBGPSessionsParams object
 // with the default values initialized.
-func NewFindProjectBgpSessionsParams() *FindProjectBgpSessionsParams {
+func NewFindProjectBGPSessionsParams() *FindProjectBGPSessionsParams {
 	var ()
-	return &FindProjectBgpSessionsParams{
+	return &FindProjectBGPSessionsParams{
 
 		timeout: cr.DefaultTimeout,
 	}
 }
 
-// NewFindProjectBgpSessionsParamsWithTimeout creates a new FindProjectBgpSessionsParams object
+// NewFindProjectBGPSessionsParamsWithTimeout creates a new FindProjectBGPSessionsParams object
 // with the default values initialized, and the ability to set a timeout on a request
-func NewFindProjectBgpSessionsParamsWithTimeout(timeout time.Duration) *FindProjectBgpSessionsParams {
+func NewFindProjectBGPSessionsParamsWithTimeout(timeout time.Duration) *FindProjectBGPSessionsParams {
 	var ()
-	return &FindProjectBgpSessionsParams{
+	return &FindProjectBGPSessionsParams{
 
 		timeout: timeout,
 	}
 }
 
-// NewFindProjectBgpSessionsParamsWithContext creates a new FindProjectBgpSessionsParams object
+// NewFindProjectBGPSessionsParamsWithContext creates a new FindProjectBGPSessionsParams object
 // with the default values initialized, and the ability to set a context for a request
-func NewFindProjectBgpSessionsParamsWithContext(ctx context.Context) *FindProjectBgpSessionsParams {
+func NewFindProjectBGPSessionsParamsWithContext(ctx context.Context) *FindProjectBGPSessionsParams {
 	var ()
-	return &FindProjectBgpSessionsParams{
+	return &FindProjectBGPSessionsParams{
 
 		Context: ctx,
 	}
 }
 
-// NewFindProjectBgpSessionsParamsWithHTTPClient creates a new FindProjectBgpSessionsParams object
+// NewFindProjectBGPSessionsParamsWithHTTPClient creates a new FindProjectBGPSessionsParams object
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
-func NewFindProjectBgpSessionsParamsWithHTTPClient(client *http.Client) *FindProjectBgpSessionsParams {
+func NewFindProjectBGPSessionsParamsWithHTTPClient(client *http.Client) *FindProjectBGPSessionsParams {
 	var ()
-	return &FindProjectBgpSessionsParams{
+	return &FindProjectBGPSessionsParams{
 		HTTPClient: client,
 	}
 }
 
-/*FindProjectBgpSessionsParams contains all the parameters to send to the API endpoint
-for the find project bgp sessions operation typically these are written to a http.Request
+/*FindProjectBGPSessionsParams contains all the parameters to send to the API endpoint
+for the find project Bgp sessions operation typically these are written to a http.Request
 */
-type FindProjectBgpSessionsParams struct {
+type FindProjectBGPSessionsParams struct {
 
 	/*ID
 	  Project UUID
@@ -71,52 +71,52 @@ type FindProjectBgpSessionsParams struct {
 	HTTPClient *http.Client
 }
 
-// WithTimeout adds the timeout to the find project bgp sessions params
-func (o *FindProjectBgpSessionsParams) WithTimeout(timeout time.Duration) *FindProjectBgpSessionsParams {
+// WithTimeout adds the timeout to the find project Bgp sessions params
+func (o *FindProjectBGPSessionsParams) WithTimeout(timeout time.Duration) *FindProjectBGPSessionsParams {
 	o.SetTimeout(timeout)
 	return o
 }
 
-// SetTimeout adds the timeout to the find project bgp sessions params
-func (o *FindProjectBgpSessionsParams) SetTimeout(timeout time.Duration) {
+// SetTimeout adds the timeout to the find project Bgp sessions params
+func (o *FindProjectBGPSessionsParams) SetTimeout(timeout time.Duration) {
 	o.timeout = timeout
 }
 
-// WithContext adds the context to the find project bgp sessions params
-func (o *FindProjectBgpSessionsParams) WithContext(ctx context.Context) *FindProjectBgpSessionsParams {
+// WithContext adds the context to the find project Bgp sessions params
+func (o *FindProjectBGPSessionsParams) WithContext(ctx context.Context) *FindProjectBGPSessionsParams {
 	o.SetContext(ctx)
 	return o
 }
 
-// SetContext adds the context to the find project bgp sessions params
-func (o *FindProjectBgpSessionsParams) SetContext(ctx context.Context) {
+// SetContext adds the context to the find project Bgp sessions params
+func (o *FindProjectBGPSessionsParams) SetContext(ctx context.Context) {
 	o.Context = ctx
 }
 
-// WithHTTPClient adds the HTTPClient to the find project bgp sessions params
-func (o *FindProjectBgpSessionsParams) WithHTTPClient(client *http.Client) *FindProjectBgpSessionsParams {
+// WithHTTPClient adds the HTTPClient to the find project Bgp sessions params
+func (o *FindProjectBGPSessionsParams) WithHTTPClient(client *http.Client) *FindProjectBGPSessionsParams {
 	o.SetHTTPClient(client)
 	return o
 }
 
-// SetHTTPClient adds the HTTPClient to the find project bgp sessions params
-func (o *FindProjectBgpSessionsParams) SetHTTPClient(client *http.Client) {
+// SetHTTPClient adds the HTTPClient to the find project Bgp sessions params
+func (o *FindProjectBGPSessionsParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithID adds the id to the find project bgp sessions params
-func (o *FindProjectBgpSessionsParams) WithID(id strfmt.UUID) *FindProjectBgpSessionsParams {
+// WithID adds the id to the find project Bgp sessions params
+func (o *FindProjectBGPSessionsParams) WithID(id strfmt.UUID) *FindProjectBGPSessionsParams {
 	o.SetID(id)
 	return o
 }
 
-// SetID adds the id to the find project bgp sessions params
-func (o *FindProjectBgpSessionsParams) SetID(id strfmt.UUID) {
+// SetID adds the id to the find project Bgp sessions params
+func (o *FindProjectBGPSessionsParams) SetID(id strfmt.UUID) {
 	o.ID = id
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *FindProjectBgpSessionsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
+func (o *FindProjectBGPSessionsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	if err := r.SetTimeout(o.timeout); err != nil {
 		return err

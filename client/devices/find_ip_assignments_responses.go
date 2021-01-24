@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // FindIPAssignmentsReader is a Reader for the FindIPAssignments structure.
@@ -57,20 +57,20 @@ func NewFindIPAssignmentsOK() *FindIPAssignmentsOK {
 ok
 */
 type FindIPAssignmentsOK struct {
-	Payload *models.IPAssignmentList
+	Payload *types.IPAssignmentList
 }
 
 func (o *FindIPAssignmentsOK) Error() string {
 	return fmt.Sprintf("[GET /devices/{id}/ips][%d] findIpAssignmentsOK  %+v", 200, o.Payload)
 }
 
-func (o *FindIPAssignmentsOK) GetPayload() *models.IPAssignmentList {
+func (o *FindIPAssignmentsOK) GetPayload() *types.IPAssignmentList {
 	return o.Payload
 }
 
 func (o *FindIPAssignmentsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.IPAssignmentList)
+	o.Payload = new(types.IPAssignmentList)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

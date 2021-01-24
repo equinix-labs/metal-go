@@ -15,7 +15,7 @@ import (
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // NewCreateEmailParams creates a new CreateEmailParams object
@@ -66,7 +66,7 @@ type CreateEmailParams struct {
 	  Email to create
 
 	*/
-	Email *models.CreateEmailInput
+	Email *types.CreateEmailInput
 
 	timeout    time.Duration
 	Context    context.Context
@@ -107,13 +107,13 @@ func (o *CreateEmailParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithEmail adds the email to the create email params
-func (o *CreateEmailParams) WithEmail(email *models.CreateEmailInput) *CreateEmailParams {
+func (o *CreateEmailParams) WithEmail(email *types.CreateEmailInput) *CreateEmailParams {
 	o.SetEmail(email)
 	return o
 }
 
 // SetEmail adds the email to the create email params
-func (o *CreateEmailParams) SetEmail(email *models.CreateEmailInput) {
+func (o *CreateEmailParams) SetEmail(email *types.CreateEmailInput) {
 	o.Email = email
 }
 

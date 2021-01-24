@@ -15,58 +15,58 @@ import (
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
-// NewCreateBgpSessionParams creates a new CreateBgpSessionParams object
+// NewCreateBGPSessionParams creates a new CreateBGPSessionParams object
 // with the default values initialized.
-func NewCreateBgpSessionParams() *CreateBgpSessionParams {
+func NewCreateBGPSessionParams() *CreateBGPSessionParams {
 	var ()
-	return &CreateBgpSessionParams{
+	return &CreateBGPSessionParams{
 
 		timeout: cr.DefaultTimeout,
 	}
 }
 
-// NewCreateBgpSessionParamsWithTimeout creates a new CreateBgpSessionParams object
+// NewCreateBGPSessionParamsWithTimeout creates a new CreateBGPSessionParams object
 // with the default values initialized, and the ability to set a timeout on a request
-func NewCreateBgpSessionParamsWithTimeout(timeout time.Duration) *CreateBgpSessionParams {
+func NewCreateBGPSessionParamsWithTimeout(timeout time.Duration) *CreateBGPSessionParams {
 	var ()
-	return &CreateBgpSessionParams{
+	return &CreateBGPSessionParams{
 
 		timeout: timeout,
 	}
 }
 
-// NewCreateBgpSessionParamsWithContext creates a new CreateBgpSessionParams object
+// NewCreateBGPSessionParamsWithContext creates a new CreateBGPSessionParams object
 // with the default values initialized, and the ability to set a context for a request
-func NewCreateBgpSessionParamsWithContext(ctx context.Context) *CreateBgpSessionParams {
+func NewCreateBGPSessionParamsWithContext(ctx context.Context) *CreateBGPSessionParams {
 	var ()
-	return &CreateBgpSessionParams{
+	return &CreateBGPSessionParams{
 
 		Context: ctx,
 	}
 }
 
-// NewCreateBgpSessionParamsWithHTTPClient creates a new CreateBgpSessionParams object
+// NewCreateBGPSessionParamsWithHTTPClient creates a new CreateBGPSessionParams object
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
-func NewCreateBgpSessionParamsWithHTTPClient(client *http.Client) *CreateBgpSessionParams {
+func NewCreateBGPSessionParamsWithHTTPClient(client *http.Client) *CreateBGPSessionParams {
 	var ()
-	return &CreateBgpSessionParams{
+	return &CreateBGPSessionParams{
 		HTTPClient: client,
 	}
 }
 
-/*CreateBgpSessionParams contains all the parameters to send to the API endpoint
-for the create bgp session operation typically these are written to a http.Request
+/*CreateBGPSessionParams contains all the parameters to send to the API endpoint
+for the create Bgp session operation typically these are written to a http.Request
 */
-type CreateBgpSessionParams struct {
+type CreateBGPSessionParams struct {
 
-	/*BgpSession
+	/*BGPSession
 	  BGP session to create
 
 	*/
-	BgpSession *models.BGPSessionInput
+	BGPSession *types.BGPSessionInput
 	/*ID
 	  Device UUID
 
@@ -78,71 +78,71 @@ type CreateBgpSessionParams struct {
 	HTTPClient *http.Client
 }
 
-// WithTimeout adds the timeout to the create bgp session params
-func (o *CreateBgpSessionParams) WithTimeout(timeout time.Duration) *CreateBgpSessionParams {
+// WithTimeout adds the timeout to the create Bgp session params
+func (o *CreateBGPSessionParams) WithTimeout(timeout time.Duration) *CreateBGPSessionParams {
 	o.SetTimeout(timeout)
 	return o
 }
 
-// SetTimeout adds the timeout to the create bgp session params
-func (o *CreateBgpSessionParams) SetTimeout(timeout time.Duration) {
+// SetTimeout adds the timeout to the create Bgp session params
+func (o *CreateBGPSessionParams) SetTimeout(timeout time.Duration) {
 	o.timeout = timeout
 }
 
-// WithContext adds the context to the create bgp session params
-func (o *CreateBgpSessionParams) WithContext(ctx context.Context) *CreateBgpSessionParams {
+// WithContext adds the context to the create Bgp session params
+func (o *CreateBGPSessionParams) WithContext(ctx context.Context) *CreateBGPSessionParams {
 	o.SetContext(ctx)
 	return o
 }
 
-// SetContext adds the context to the create bgp session params
-func (o *CreateBgpSessionParams) SetContext(ctx context.Context) {
+// SetContext adds the context to the create Bgp session params
+func (o *CreateBGPSessionParams) SetContext(ctx context.Context) {
 	o.Context = ctx
 }
 
-// WithHTTPClient adds the HTTPClient to the create bgp session params
-func (o *CreateBgpSessionParams) WithHTTPClient(client *http.Client) *CreateBgpSessionParams {
+// WithHTTPClient adds the HTTPClient to the create Bgp session params
+func (o *CreateBGPSessionParams) WithHTTPClient(client *http.Client) *CreateBGPSessionParams {
 	o.SetHTTPClient(client)
 	return o
 }
 
-// SetHTTPClient adds the HTTPClient to the create bgp session params
-func (o *CreateBgpSessionParams) SetHTTPClient(client *http.Client) {
+// SetHTTPClient adds the HTTPClient to the create Bgp session params
+func (o *CreateBGPSessionParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithBgpSession adds the bgpSession to the create bgp session params
-func (o *CreateBgpSessionParams) WithBgpSession(bgpSession *models.BGPSessionInput) *CreateBgpSessionParams {
-	o.SetBgpSession(bgpSession)
+// WithBGPSession adds the bGPSession to the create Bgp session params
+func (o *CreateBGPSessionParams) WithBGPSession(bGPSession *types.BGPSessionInput) *CreateBGPSessionParams {
+	o.SetBGPSession(bGPSession)
 	return o
 }
 
-// SetBgpSession adds the bgpSession to the create bgp session params
-func (o *CreateBgpSessionParams) SetBgpSession(bgpSession *models.BGPSessionInput) {
-	o.BgpSession = bgpSession
+// SetBGPSession adds the bgpSession to the create Bgp session params
+func (o *CreateBGPSessionParams) SetBGPSession(bGPSession *types.BGPSessionInput) {
+	o.BGPSession = bGPSession
 }
 
-// WithID adds the id to the create bgp session params
-func (o *CreateBgpSessionParams) WithID(id strfmt.UUID) *CreateBgpSessionParams {
+// WithID adds the id to the create Bgp session params
+func (o *CreateBGPSessionParams) WithID(id strfmt.UUID) *CreateBGPSessionParams {
 	o.SetID(id)
 	return o
 }
 
-// SetID adds the id to the create bgp session params
-func (o *CreateBgpSessionParams) SetID(id strfmt.UUID) {
+// SetID adds the id to the create Bgp session params
+func (o *CreateBGPSessionParams) SetID(id strfmt.UUID) {
 	o.ID = id
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *CreateBgpSessionParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
+func (o *CreateBGPSessionParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	if err := r.SetTimeout(o.timeout); err != nil {
 		return err
 	}
 	var res []error
 
-	if o.BgpSession != nil {
-		if err := r.SetBodyParam(o.BgpSession); err != nil {
+	if o.BGPSession != nil {
+		if err := r.SetBodyParam(o.BGPSession); err != nil {
 			return err
 		}
 	}

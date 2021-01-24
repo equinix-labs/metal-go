@@ -15,7 +15,7 @@ import (
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // NewCreateDeviceBatchParams creates a new CreateDeviceBatchParams object
@@ -66,7 +66,7 @@ type CreateDeviceBatchParams struct {
 	  Batches to create
 
 	*/
-	Batch *models.InstancesBatchCreateInput
+	Batch *types.InstancesBatchCreateInput
 	/*ID
 	  Project UUID
 
@@ -112,13 +112,13 @@ func (o *CreateDeviceBatchParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithBatch adds the batch to the create device batch params
-func (o *CreateDeviceBatchParams) WithBatch(batch *models.InstancesBatchCreateInput) *CreateDeviceBatchParams {
+func (o *CreateDeviceBatchParams) WithBatch(batch *types.InstancesBatchCreateInput) *CreateDeviceBatchParams {
 	o.SetBatch(batch)
 	return o
 }
 
 // SetBatch adds the batch to the create device batch params
-func (o *CreateDeviceBatchParams) SetBatch(batch *models.InstancesBatchCreateInput) {
+func (o *CreateDeviceBatchParams) SetBatch(batch *types.InstancesBatchCreateInput) {
 	o.Batch = batch
 }
 

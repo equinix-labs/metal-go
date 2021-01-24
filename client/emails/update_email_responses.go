@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // UpdateEmailReader is a Reader for the UpdateEmail structure.
@@ -69,20 +69,20 @@ func NewUpdateEmailOK() *UpdateEmailOK {
 ok
 */
 type UpdateEmailOK struct {
-	Payload *models.Email
+	Payload *types.Email
 }
 
 func (o *UpdateEmailOK) Error() string {
 	return fmt.Sprintf("[PUT /emails/{id}][%d] updateEmailOK  %+v", 200, o.Payload)
 }
 
-func (o *UpdateEmailOK) GetPayload() *models.Email {
+func (o *UpdateEmailOK) GetPayload() *types.Email {
 	return o.Payload
 }
 
 func (o *UpdateEmailOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.Email)
+	o.Payload = new(types.Email)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

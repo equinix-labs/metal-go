@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // UpdateVirtualCircuitReader is a Reader for the UpdateVirtualCircuit structure.
@@ -63,20 +63,20 @@ func NewUpdateVirtualCircuitOK() *UpdateVirtualCircuitOK {
 ok
 */
 type UpdateVirtualCircuitOK struct {
-	Payload *models.VirtualCircuit
+	Payload *types.VirtualCircuit
 }
 
 func (o *UpdateVirtualCircuitOK) Error() string {
 	return fmt.Sprintf("[PUT /virtual-circuits/{id}][%d] updateVirtualCircuitOK  %+v", 200, o.Payload)
 }
 
-func (o *UpdateVirtualCircuitOK) GetPayload() *models.VirtualCircuit {
+func (o *UpdateVirtualCircuitOK) GetPayload() *types.VirtualCircuit {
 	return o.Payload
 }
 
 func (o *UpdateVirtualCircuitOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.VirtualCircuit)
+	o.Payload = new(types.VirtualCircuit)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -96,20 +96,20 @@ func NewUpdateVirtualCircuitAccepted() *UpdateVirtualCircuitAccepted {
 accepted
 */
 type UpdateVirtualCircuitAccepted struct {
-	Payload *models.VirtualCircuit
+	Payload *types.VirtualCircuit
 }
 
 func (o *UpdateVirtualCircuitAccepted) Error() string {
 	return fmt.Sprintf("[PUT /virtual-circuits/{id}][%d] updateVirtualCircuitAccepted  %+v", 202, o.Payload)
 }
 
-func (o *UpdateVirtualCircuitAccepted) GetPayload() *models.VirtualCircuit {
+func (o *UpdateVirtualCircuitAccepted) GetPayload() *types.VirtualCircuit {
 	return o.Payload
 }
 
 func (o *UpdateVirtualCircuitAccepted) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.VirtualCircuit)
+	o.Payload = new(types.VirtualCircuit)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

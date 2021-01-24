@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // RestoreVolumeReader is a Reader for the RestoreVolume structure.
@@ -69,20 +69,20 @@ func NewRestoreVolumeOK() *RestoreVolumeOK {
 ok
 */
 type RestoreVolumeOK struct {
-	Payload *models.Volume
+	Payload *types.Volume
 }
 
 func (o *RestoreVolumeOK) Error() string {
 	return fmt.Sprintf("[POST /storage/{id}/restore][%d] restoreVolumeOK  %+v", 200, o.Payload)
 }
 
-func (o *RestoreVolumeOK) GetPayload() *models.Volume {
+func (o *RestoreVolumeOK) GetPayload() *types.Volume {
 	return o.Payload
 }
 
 func (o *RestoreVolumeOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.Volume)
+	o.Payload = new(types.Volume)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // FindOperatingSystemVersionReader is a Reader for the FindOperatingSystemVersion structure.
@@ -51,14 +51,14 @@ func NewFindOperatingSystemVersionOK() *FindOperatingSystemVersionOK {
 ok
 */
 type FindOperatingSystemVersionOK struct {
-	Payload models.OperatingSystemList
+	Payload types.OperatingSystemList
 }
 
 func (o *FindOperatingSystemVersionOK) Error() string {
 	return fmt.Sprintf("[GET /operating-system-versions][%d] findOperatingSystemVersionOK  %+v", 200, o.Payload)
 }
 
-func (o *FindOperatingSystemVersionOK) GetPayload() models.OperatingSystemList {
+func (o *FindOperatingSystemVersionOK) GetPayload() types.OperatingSystemList {
 	return o.Payload
 }
 

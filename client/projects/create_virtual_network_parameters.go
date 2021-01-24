@@ -15,7 +15,7 @@ import (
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // NewCreateVirtualNetworkParams creates a new CreateVirtualNetworkParams object
@@ -71,7 +71,7 @@ type CreateVirtualNetworkParams struct {
 	  Virtual Network to create
 
 	*/
-	VirtualNetwork *models.VirtualNetworkCreateInput
+	VirtualNetwork *types.VirtualNetworkCreateInput
 
 	timeout    time.Duration
 	Context    context.Context
@@ -123,13 +123,13 @@ func (o *CreateVirtualNetworkParams) SetID(id strfmt.UUID) {
 }
 
 // WithVirtualNetwork adds the virtualNetwork to the create virtual network params
-func (o *CreateVirtualNetworkParams) WithVirtualNetwork(virtualNetwork *models.VirtualNetworkCreateInput) *CreateVirtualNetworkParams {
+func (o *CreateVirtualNetworkParams) WithVirtualNetwork(virtualNetwork *types.VirtualNetworkCreateInput) *CreateVirtualNetworkParams {
 	o.SetVirtualNetwork(virtualNetwork)
 	return o
 }
 
 // SetVirtualNetwork adds the virtualNetwork to the create virtual network params
-func (o *CreateVirtualNetworkParams) SetVirtualNetwork(virtualNetwork *models.VirtualNetworkCreateInput) {
+func (o *CreateVirtualNetworkParams) SetVirtualNetwork(virtualNetwork *types.VirtualNetworkCreateInput) {
 	o.VirtualNetwork = virtualNetwork
 }
 

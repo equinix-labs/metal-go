@@ -15,7 +15,7 @@ import (
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // NewCreateOrganizationProjectParams creates a new CreateOrganizationProjectParams object
@@ -71,7 +71,7 @@ type CreateOrganizationProjectParams struct {
 	  Project to create
 
 	*/
-	Project *models.ProjectCreateInput
+	Project *types.ProjectCreateInput
 
 	timeout    time.Duration
 	Context    context.Context
@@ -123,13 +123,13 @@ func (o *CreateOrganizationProjectParams) SetID(id strfmt.UUID) {
 }
 
 // WithProject adds the project to the create organization project params
-func (o *CreateOrganizationProjectParams) WithProject(project *models.ProjectCreateInput) *CreateOrganizationProjectParams {
+func (o *CreateOrganizationProjectParams) WithProject(project *types.ProjectCreateInput) *CreateOrganizationProjectParams {
 	o.SetProject(project)
 	return o
 }
 
 // SetProject adds the project to the create organization project params
-func (o *CreateOrganizationProjectParams) SetProject(project *models.ProjectCreateInput) {
+func (o *CreateOrganizationProjectParams) SetProject(project *types.ProjectCreateInput) {
 	o.Project = project
 }
 

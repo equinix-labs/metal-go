@@ -15,7 +15,7 @@ import (
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // NewCreateProjectInterconnectionParams creates a new CreateProjectInterconnectionParams object
@@ -66,7 +66,7 @@ type CreateProjectInterconnectionParams struct {
 	  Connection details
 
 	*/
-	Connection *models.InterconnectionCreateInput
+	Connection *types.InterconnectionCreateInput
 	/*ProjectID
 	  UUID of the project
 
@@ -112,13 +112,13 @@ func (o *CreateProjectInterconnectionParams) SetHTTPClient(client *http.Client) 
 }
 
 // WithConnection adds the connection to the create project interconnection params
-func (o *CreateProjectInterconnectionParams) WithConnection(connection *models.InterconnectionCreateInput) *CreateProjectInterconnectionParams {
+func (o *CreateProjectInterconnectionParams) WithConnection(connection *types.InterconnectionCreateInput) *CreateProjectInterconnectionParams {
 	o.SetConnection(connection)
 	return o
 }
 
 // SetConnection adds the connection to the create project interconnection params
-func (o *CreateProjectInterconnectionParams) SetConnection(connection *models.InterconnectionCreateInput) {
+func (o *CreateProjectInterconnectionParams) SetConnection(connection *types.InterconnectionCreateInput) {
 	o.Connection = connection
 }
 

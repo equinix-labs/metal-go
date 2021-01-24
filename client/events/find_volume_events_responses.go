@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // FindVolumeEventsReader is a Reader for the FindVolumeEvents structure.
@@ -63,20 +63,20 @@ func NewFindVolumeEventsOK() *FindVolumeEventsOK {
 ok
 */
 type FindVolumeEventsOK struct {
-	Payload *models.EventList
+	Payload *types.EventList
 }
 
 func (o *FindVolumeEventsOK) Error() string {
 	return fmt.Sprintf("[GET /volumes/{id}/events][%d] findVolumeEventsOK  %+v", 200, o.Payload)
 }
 
-func (o *FindVolumeEventsOK) GetPayload() *models.EventList {
+func (o *FindVolumeEventsOK) GetPayload() *types.EventList {
 	return o.Payload
 }
 
 func (o *FindVolumeEventsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.EventList)
+	o.Payload = new(types.EventList)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

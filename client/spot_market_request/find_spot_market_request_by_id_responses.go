@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // FindSpotMarketRequestByIDReader is a Reader for the FindSpotMarketRequestByID structure.
@@ -63,20 +63,20 @@ func NewFindSpotMarketRequestByIDOK() *FindSpotMarketRequestByIDOK {
 ok
 */
 type FindSpotMarketRequestByIDOK struct {
-	Payload *models.SpotMarketRequest
+	Payload *types.SpotMarketRequest
 }
 
 func (o *FindSpotMarketRequestByIDOK) Error() string {
 	return fmt.Sprintf("[GET /spot-market-requests/{id}][%d] findSpotMarketRequestByIdOK  %+v", 200, o.Payload)
 }
 
-func (o *FindSpotMarketRequestByIDOK) GetPayload() *models.SpotMarketRequest {
+func (o *FindSpotMarketRequestByIDOK) GetPayload() *types.SpotMarketRequest {
 	return o.Payload
 }
 
 func (o *FindSpotMarketRequestByIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.SpotMarketRequest)
+	o.Payload = new(types.SpotMarketRequest)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

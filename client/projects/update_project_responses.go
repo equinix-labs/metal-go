@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // UpdateProjectReader is a Reader for the UpdateProject structure.
@@ -69,20 +69,20 @@ func NewUpdateProjectOK() *UpdateProjectOK {
 ok
 */
 type UpdateProjectOK struct {
-	Payload *models.Project
+	Payload *types.Project
 }
 
 func (o *UpdateProjectOK) Error() string {
 	return fmt.Sprintf("[PUT /projects/{id}][%d] updateProjectOK  %+v", 200, o.Payload)
 }
 
-func (o *UpdateProjectOK) GetPayload() *models.Project {
+func (o *UpdateProjectOK) GetPayload() *types.Project {
 	return o.Payload
 }
 
 func (o *UpdateProjectOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.Project)
+	o.Payload = new(types.Project)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

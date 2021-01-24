@@ -15,7 +15,7 @@ import (
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // NewUpdateEmailParams creates a new UpdateEmailParams object
@@ -66,7 +66,7 @@ type UpdateEmailParams struct {
 	  email to update
 
 	*/
-	Email *models.UpdateEmailInput
+	Email *types.UpdateEmailInput
 	/*ID
 	  Email UUID
 
@@ -112,13 +112,13 @@ func (o *UpdateEmailParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithEmail adds the email to the update email params
-func (o *UpdateEmailParams) WithEmail(email *models.UpdateEmailInput) *UpdateEmailParams {
+func (o *UpdateEmailParams) WithEmail(email *types.UpdateEmailInput) *UpdateEmailParams {
 	o.SetEmail(email)
 	return o
 }
 
 // SetEmail adds the email to the update email params
-func (o *UpdateEmailParams) SetEmail(email *models.UpdateEmailInput) {
+func (o *UpdateEmailParams) SetEmail(email *types.UpdateEmailInput) {
 	o.Email = email
 }
 

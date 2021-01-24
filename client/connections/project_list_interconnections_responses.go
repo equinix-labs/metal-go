@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // ProjectListInterconnectionsReader is a Reader for the ProjectListInterconnections structure.
@@ -57,20 +57,20 @@ func NewProjectListInterconnectionsOK() *ProjectListInterconnectionsOK {
 ok
 */
 type ProjectListInterconnectionsOK struct {
-	Payload *models.InterconnectionList
+	Payload *types.InterconnectionList
 }
 
 func (o *ProjectListInterconnectionsOK) Error() string {
 	return fmt.Sprintf("[GET /projects/{project_id}/connections][%d] projectListInterconnectionsOK  %+v", 200, o.Payload)
 }
 
-func (o *ProjectListInterconnectionsOK) GetPayload() *models.InterconnectionList {
+func (o *ProjectListInterconnectionsOK) GetPayload() *types.InterconnectionList {
 	return o.Payload
 }
 
 func (o *ProjectListInterconnectionsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.InterconnectionList)
+	o.Payload = new(types.InterconnectionList)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

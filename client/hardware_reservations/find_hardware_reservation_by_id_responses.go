@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // FindHardwareReservationByIDReader is a Reader for the FindHardwareReservationByID structure.
@@ -63,20 +63,20 @@ func NewFindHardwareReservationByIDOK() *FindHardwareReservationByIDOK {
 ok
 */
 type FindHardwareReservationByIDOK struct {
-	Payload *models.Device
+	Payload *types.Device
 }
 
 func (o *FindHardwareReservationByIDOK) Error() string {
 	return fmt.Sprintf("[GET /hardware-reservations/{id}][%d] findHardwareReservationByIdOK  %+v", 200, o.Payload)
 }
 
-func (o *FindHardwareReservationByIDOK) GetPayload() *models.Device {
+func (o *FindHardwareReservationByIDOK) GetPayload() *types.Device {
 	return o.Payload
 }
 
 func (o *FindHardwareReservationByIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.Device)
+	o.Payload = new(types.Device)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

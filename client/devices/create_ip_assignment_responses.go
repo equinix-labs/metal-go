@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // CreateIPAssignmentReader is a Reader for the CreateIPAssignment structure.
@@ -63,20 +63,20 @@ func NewCreateIPAssignmentCreated() *CreateIPAssignmentCreated {
 created
 */
 type CreateIPAssignmentCreated struct {
-	Payload *models.IPAssignment
+	Payload *types.IPAssignment
 }
 
 func (o *CreateIPAssignmentCreated) Error() string {
 	return fmt.Sprintf("[POST /devices/{id}/ips][%d] createIpAssignmentCreated  %+v", 201, o.Payload)
 }
 
-func (o *CreateIPAssignmentCreated) GetPayload() *models.IPAssignment {
+func (o *CreateIPAssignmentCreated) GetPayload() *types.IPAssignment {
 	return o.Payload
 }
 
 func (o *CreateIPAssignmentCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.IPAssignment)
+	o.Payload = new(types.IPAssignment)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

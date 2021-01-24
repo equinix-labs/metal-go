@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // UpdateInterconnectionReader is a Reader for the UpdateInterconnection structure.
@@ -57,20 +57,20 @@ func NewUpdateInterconnectionOK() *UpdateInterconnectionOK {
 ok
 */
 type UpdateInterconnectionOK struct {
-	Payload *models.Interconnection
+	Payload *types.Interconnection
 }
 
 func (o *UpdateInterconnectionOK) Error() string {
-	return fmt.Sprintf("[PUT /connections/{id}][%d] updateInterconnectionOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /connections/{connection_id}][%d] updateInterconnectionOK  %+v", 200, o.Payload)
 }
 
-func (o *UpdateInterconnectionOK) GetPayload() *models.Interconnection {
+func (o *UpdateInterconnectionOK) GetPayload() *types.Interconnection {
 	return o.Payload
 }
 
 func (o *UpdateInterconnectionOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.Interconnection)
+	o.Payload = new(types.Interconnection)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -93,7 +93,7 @@ type UpdateInterconnectionForbidden struct {
 }
 
 func (o *UpdateInterconnectionForbidden) Error() string {
-	return fmt.Sprintf("[PUT /connections/{id}][%d] updateInterconnectionForbidden ", 403)
+	return fmt.Sprintf("[PUT /connections/{connection_id}][%d] updateInterconnectionForbidden ", 403)
 }
 
 func (o *UpdateInterconnectionForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -114,7 +114,7 @@ type UpdateInterconnectionNotFound struct {
 }
 
 func (o *UpdateInterconnectionNotFound) Error() string {
-	return fmt.Sprintf("[PUT /connections/{id}][%d] updateInterconnectionNotFound ", 404)
+	return fmt.Sprintf("[PUT /connections/{connection_id}][%d] updateInterconnectionNotFound ", 404)
 }
 
 func (o *UpdateInterconnectionNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

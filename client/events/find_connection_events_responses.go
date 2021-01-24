@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // FindConnectionEventsReader is a Reader for the FindConnectionEvents structure.
@@ -63,20 +63,20 @@ func NewFindConnectionEventsOK() *FindConnectionEventsOK {
 ok
 */
 type FindConnectionEventsOK struct {
-	Payload *models.Event
+	Payload *types.Event
 }
 
 func (o *FindConnectionEventsOK) Error() string {
-	return fmt.Sprintf("[GET /connections/{id}/events][%d] findConnectionEventsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /connections/{connection_id}/events][%d] findConnectionEventsOK  %+v", 200, o.Payload)
 }
 
-func (o *FindConnectionEventsOK) GetPayload() *models.Event {
+func (o *FindConnectionEventsOK) GetPayload() *types.Event {
 	return o.Payload
 }
 
 func (o *FindConnectionEventsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.Event)
+	o.Payload = new(types.Event)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -99,7 +99,7 @@ type FindConnectionEventsUnauthorized struct {
 }
 
 func (o *FindConnectionEventsUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /connections/{id}/events][%d] findConnectionEventsUnauthorized ", 401)
+	return fmt.Sprintf("[GET /connections/{connection_id}/events][%d] findConnectionEventsUnauthorized ", 401)
 }
 
 func (o *FindConnectionEventsUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -120,7 +120,7 @@ type FindConnectionEventsForbidden struct {
 }
 
 func (o *FindConnectionEventsForbidden) Error() string {
-	return fmt.Sprintf("[GET /connections/{id}/events][%d] findConnectionEventsForbidden ", 403)
+	return fmt.Sprintf("[GET /connections/{connection_id}/events][%d] findConnectionEventsForbidden ", 403)
 }
 
 func (o *FindConnectionEventsForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -141,7 +141,7 @@ type FindConnectionEventsNotFound struct {
 }
 
 func (o *FindConnectionEventsNotFound) Error() string {
-	return fmt.Sprintf("[GET /connections/{id}/events][%d] findConnectionEventsNotFound ", 404)
+	return fmt.Sprintf("[GET /connections/{connection_id}/events][%d] findConnectionEventsNotFound ", 404)
 }
 
 func (o *FindConnectionEventsNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

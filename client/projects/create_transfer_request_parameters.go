@@ -15,7 +15,7 @@ import (
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // NewCreateTransferRequestParams creates a new CreateTransferRequestParams object
@@ -71,7 +71,7 @@ type CreateTransferRequestParams struct {
 	  Transfer Request to create
 
 	*/
-	TransferRequest *models.TransferRequestInput
+	TransferRequest *types.TransferRequestInput
 
 	timeout    time.Duration
 	Context    context.Context
@@ -123,13 +123,13 @@ func (o *CreateTransferRequestParams) SetID(id strfmt.UUID) {
 }
 
 // WithTransferRequest adds the transferRequest to the create transfer request params
-func (o *CreateTransferRequestParams) WithTransferRequest(transferRequest *models.TransferRequestInput) *CreateTransferRequestParams {
+func (o *CreateTransferRequestParams) WithTransferRequest(transferRequest *types.TransferRequestInput) *CreateTransferRequestParams {
 	o.SetTransferRequest(transferRequest)
 	return o
 }
 
 // SetTransferRequest adds the transferRequest to the create transfer request params
-func (o *CreateTransferRequestParams) SetTransferRequest(transferRequest *models.TransferRequestInput) {
+func (o *CreateTransferRequestParams) SetTransferRequest(transferRequest *types.TransferRequestInput) {
 	o.TransferRequest = transferRequest
 }
 

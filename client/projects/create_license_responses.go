@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // CreateLicenseReader is a Reader for the CreateLicense structure.
@@ -69,20 +69,20 @@ func NewCreateLicenseCreated() *CreateLicenseCreated {
 created
 */
 type CreateLicenseCreated struct {
-	Payload *models.License
+	Payload *types.License
 }
 
 func (o *CreateLicenseCreated) Error() string {
 	return fmt.Sprintf("[POST /projects/{id}/licenses][%d] createLicenseCreated  %+v", 201, o.Payload)
 }
 
-func (o *CreateLicenseCreated) GetPayload() *models.License {
+func (o *CreateLicenseCreated) GetPayload() *types.License {
 	return o.Payload
 }
 
 func (o *CreateLicenseCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.License)
+	o.Payload = new(types.License)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

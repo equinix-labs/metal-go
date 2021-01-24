@@ -16,49 +16,49 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewFindBgpConfigByProjectParams creates a new FindBgpConfigByProjectParams object
+// NewFindBGPConfigByProjectParams creates a new FindBGPConfigByProjectParams object
 // with the default values initialized.
-func NewFindBgpConfigByProjectParams() *FindBgpConfigByProjectParams {
+func NewFindBGPConfigByProjectParams() *FindBGPConfigByProjectParams {
 	var ()
-	return &FindBgpConfigByProjectParams{
+	return &FindBGPConfigByProjectParams{
 
 		timeout: cr.DefaultTimeout,
 	}
 }
 
-// NewFindBgpConfigByProjectParamsWithTimeout creates a new FindBgpConfigByProjectParams object
+// NewFindBGPConfigByProjectParamsWithTimeout creates a new FindBGPConfigByProjectParams object
 // with the default values initialized, and the ability to set a timeout on a request
-func NewFindBgpConfigByProjectParamsWithTimeout(timeout time.Duration) *FindBgpConfigByProjectParams {
+func NewFindBGPConfigByProjectParamsWithTimeout(timeout time.Duration) *FindBGPConfigByProjectParams {
 	var ()
-	return &FindBgpConfigByProjectParams{
+	return &FindBGPConfigByProjectParams{
 
 		timeout: timeout,
 	}
 }
 
-// NewFindBgpConfigByProjectParamsWithContext creates a new FindBgpConfigByProjectParams object
+// NewFindBGPConfigByProjectParamsWithContext creates a new FindBGPConfigByProjectParams object
 // with the default values initialized, and the ability to set a context for a request
-func NewFindBgpConfigByProjectParamsWithContext(ctx context.Context) *FindBgpConfigByProjectParams {
+func NewFindBGPConfigByProjectParamsWithContext(ctx context.Context) *FindBGPConfigByProjectParams {
 	var ()
-	return &FindBgpConfigByProjectParams{
+	return &FindBGPConfigByProjectParams{
 
 		Context: ctx,
 	}
 }
 
-// NewFindBgpConfigByProjectParamsWithHTTPClient creates a new FindBgpConfigByProjectParams object
+// NewFindBGPConfigByProjectParamsWithHTTPClient creates a new FindBGPConfigByProjectParams object
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
-func NewFindBgpConfigByProjectParamsWithHTTPClient(client *http.Client) *FindBgpConfigByProjectParams {
+func NewFindBGPConfigByProjectParamsWithHTTPClient(client *http.Client) *FindBGPConfigByProjectParams {
 	var ()
-	return &FindBgpConfigByProjectParams{
+	return &FindBGPConfigByProjectParams{
 		HTTPClient: client,
 	}
 }
 
-/*FindBgpConfigByProjectParams contains all the parameters to send to the API endpoint
-for the find bgp config by project operation typically these are written to a http.Request
+/*FindBGPConfigByProjectParams contains all the parameters to send to the API endpoint
+for the find Bgp config by project operation typically these are written to a http.Request
 */
-type FindBgpConfigByProjectParams struct {
+type FindBGPConfigByProjectParams struct {
 
 	/*ID
 	  Project UUID
@@ -76,63 +76,63 @@ type FindBgpConfigByProjectParams struct {
 	HTTPClient *http.Client
 }
 
-// WithTimeout adds the timeout to the find bgp config by project params
-func (o *FindBgpConfigByProjectParams) WithTimeout(timeout time.Duration) *FindBgpConfigByProjectParams {
+// WithTimeout adds the timeout to the find Bgp config by project params
+func (o *FindBGPConfigByProjectParams) WithTimeout(timeout time.Duration) *FindBGPConfigByProjectParams {
 	o.SetTimeout(timeout)
 	return o
 }
 
-// SetTimeout adds the timeout to the find bgp config by project params
-func (o *FindBgpConfigByProjectParams) SetTimeout(timeout time.Duration) {
+// SetTimeout adds the timeout to the find Bgp config by project params
+func (o *FindBGPConfigByProjectParams) SetTimeout(timeout time.Duration) {
 	o.timeout = timeout
 }
 
-// WithContext adds the context to the find bgp config by project params
-func (o *FindBgpConfigByProjectParams) WithContext(ctx context.Context) *FindBgpConfigByProjectParams {
+// WithContext adds the context to the find Bgp config by project params
+func (o *FindBGPConfigByProjectParams) WithContext(ctx context.Context) *FindBGPConfigByProjectParams {
 	o.SetContext(ctx)
 	return o
 }
 
-// SetContext adds the context to the find bgp config by project params
-func (o *FindBgpConfigByProjectParams) SetContext(ctx context.Context) {
+// SetContext adds the context to the find Bgp config by project params
+func (o *FindBGPConfigByProjectParams) SetContext(ctx context.Context) {
 	o.Context = ctx
 }
 
-// WithHTTPClient adds the HTTPClient to the find bgp config by project params
-func (o *FindBgpConfigByProjectParams) WithHTTPClient(client *http.Client) *FindBgpConfigByProjectParams {
+// WithHTTPClient adds the HTTPClient to the find Bgp config by project params
+func (o *FindBGPConfigByProjectParams) WithHTTPClient(client *http.Client) *FindBGPConfigByProjectParams {
 	o.SetHTTPClient(client)
 	return o
 }
 
-// SetHTTPClient adds the HTTPClient to the find bgp config by project params
-func (o *FindBgpConfigByProjectParams) SetHTTPClient(client *http.Client) {
+// SetHTTPClient adds the HTTPClient to the find Bgp config by project params
+func (o *FindBGPConfigByProjectParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithID adds the id to the find bgp config by project params
-func (o *FindBgpConfigByProjectParams) WithID(id strfmt.UUID) *FindBgpConfigByProjectParams {
+// WithID adds the id to the find Bgp config by project params
+func (o *FindBGPConfigByProjectParams) WithID(id strfmt.UUID) *FindBGPConfigByProjectParams {
 	o.SetID(id)
 	return o
 }
 
-// SetID adds the id to the find bgp config by project params
-func (o *FindBgpConfigByProjectParams) SetID(id strfmt.UUID) {
+// SetID adds the id to the find Bgp config by project params
+func (o *FindBGPConfigByProjectParams) SetID(id strfmt.UUID) {
 	o.ID = id
 }
 
-// WithInclude adds the include to the find bgp config by project params
-func (o *FindBgpConfigByProjectParams) WithInclude(include *string) *FindBgpConfigByProjectParams {
+// WithInclude adds the include to the find Bgp config by project params
+func (o *FindBGPConfigByProjectParams) WithInclude(include *string) *FindBGPConfigByProjectParams {
 	o.SetInclude(include)
 	return o
 }
 
-// SetInclude adds the include to the find bgp config by project params
-func (o *FindBgpConfigByProjectParams) SetInclude(include *string) {
+// SetInclude adds the include to the find Bgp config by project params
+func (o *FindBGPConfigByProjectParams) SetInclude(include *string) {
 	o.Include = include
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *FindBgpConfigByProjectParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
+func (o *FindBGPConfigByProjectParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	if err := r.SetTimeout(o.timeout); err != nil {
 		return err

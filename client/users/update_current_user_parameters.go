@@ -15,7 +15,7 @@ import (
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // NewUpdateCurrentUserParams creates a new UpdateCurrentUserParams object
@@ -66,7 +66,7 @@ type UpdateCurrentUserParams struct {
 	  User to update
 
 	*/
-	User *models.UserUpdateInput
+	User *types.UserUpdateInput
 
 	timeout    time.Duration
 	Context    context.Context
@@ -107,13 +107,13 @@ func (o *UpdateCurrentUserParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithUser adds the user to the update current user params
-func (o *UpdateCurrentUserParams) WithUser(user *models.UserUpdateInput) *UpdateCurrentUserParams {
+func (o *UpdateCurrentUserParams) WithUser(user *types.UserUpdateInput) *UpdateCurrentUserParams {
 	o.SetUser(user)
 	return o
 }
 
 // SetUser adds the user to the update current user params
-func (o *UpdateCurrentUserParams) SetUser(user *models.UserUpdateInput) {
+func (o *UpdateCurrentUserParams) SetUser(user *types.UserUpdateInput) {
 	o.User = user
 }
 

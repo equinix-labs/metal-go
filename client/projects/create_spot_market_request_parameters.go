@@ -15,7 +15,7 @@ import (
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // NewCreateSpotMarketRequestParams creates a new CreateSpotMarketRequestParams object
@@ -71,7 +71,7 @@ type CreateSpotMarketRequestParams struct {
 	  Spot Market Request to create
 
 	*/
-	SpotMarketRequest *models.SpotMarketRequestCreateInput
+	SpotMarketRequest *types.SpotMarketRequestCreateInput
 
 	timeout    time.Duration
 	Context    context.Context
@@ -123,13 +123,13 @@ func (o *CreateSpotMarketRequestParams) SetID(id strfmt.UUID) {
 }
 
 // WithSpotMarketRequest adds the spotMarketRequest to the create spot market request params
-func (o *CreateSpotMarketRequestParams) WithSpotMarketRequest(spotMarketRequest *models.SpotMarketRequestCreateInput) *CreateSpotMarketRequestParams {
+func (o *CreateSpotMarketRequestParams) WithSpotMarketRequest(spotMarketRequest *types.SpotMarketRequestCreateInput) *CreateSpotMarketRequestParams {
 	o.SetSpotMarketRequest(spotMarketRequest)
 	return o
 }
 
 // SetSpotMarketRequest adds the spotMarketRequest to the create spot market request params
-func (o *CreateSpotMarketRequestParams) SetSpotMarketRequest(spotMarketRequest *models.SpotMarketRequestCreateInput) {
+func (o *CreateSpotMarketRequestParams) SetSpotMarketRequest(spotMarketRequest *types.SpotMarketRequestCreateInput) {
 	o.SpotMarketRequest = spotMarketRequest
 }
 

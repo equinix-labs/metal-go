@@ -60,11 +60,11 @@ for the get interconnection operation typically these are written to a http.Requ
 */
 type GetInterconnectionParams struct {
 
-	/*ID
+	/*ConnectionID
 	  Connection UUID
 
 	*/
-	ID strfmt.UUID
+	ConnectionID strfmt.UUID
 
 	timeout    time.Duration
 	Context    context.Context
@@ -104,15 +104,15 @@ func (o *GetInterconnectionParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithID adds the id to the get interconnection params
-func (o *GetInterconnectionParams) WithID(id strfmt.UUID) *GetInterconnectionParams {
-	o.SetID(id)
+// WithConnectionID adds the connectionID to the get interconnection params
+func (o *GetInterconnectionParams) WithConnectionID(connectionID strfmt.UUID) *GetInterconnectionParams {
+	o.SetConnectionID(connectionID)
 	return o
 }
 
-// SetID adds the id to the get interconnection params
-func (o *GetInterconnectionParams) SetID(id strfmt.UUID) {
-	o.ID = id
+// SetConnectionID adds the connectionId to the get interconnection params
+func (o *GetInterconnectionParams) SetConnectionID(connectionID strfmt.UUID) {
+	o.ConnectionID = connectionID
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -123,8 +123,8 @@ func (o *GetInterconnectionParams) WriteToRequest(r runtime.ClientRequest, reg s
 	}
 	var res []error
 
-	// path param id
-	if err := r.SetPathParam("id", o.ID.String()); err != nil {
+	// path param connection_id
+	if err := r.SetPathParam("connection_id", o.ConnectionID.String()); err != nil {
 		return err
 	}
 

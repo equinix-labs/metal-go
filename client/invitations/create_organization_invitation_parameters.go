@@ -15,7 +15,7 @@ import (
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // NewCreateOrganizationInvitationParams creates a new CreateOrganizationInvitationParams object
@@ -71,7 +71,7 @@ type CreateOrganizationInvitationParams struct {
 	  Invitation to create
 
 	*/
-	Invitation *models.InvitationInput
+	Invitation *types.InvitationInput
 
 	timeout    time.Duration
 	Context    context.Context
@@ -123,13 +123,13 @@ func (o *CreateOrganizationInvitationParams) SetID(id strfmt.UUID) {
 }
 
 // WithInvitation adds the invitation to the create organization invitation params
-func (o *CreateOrganizationInvitationParams) WithInvitation(invitation *models.InvitationInput) *CreateOrganizationInvitationParams {
+func (o *CreateOrganizationInvitationParams) WithInvitation(invitation *types.InvitationInput) *CreateOrganizationInvitationParams {
 	o.SetInvitation(invitation)
 	return o
 }
 
 // SetInvitation adds the invitation to the create organization invitation params
-func (o *CreateOrganizationInvitationParams) SetInvitation(invitation *models.InvitationInput) {
+func (o *CreateOrganizationInvitationParams) SetInvitation(invitation *types.InvitationInput) {
 	o.Invitation = invitation
 }
 

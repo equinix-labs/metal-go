@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // CreateDeviceBatchReader is a Reader for the CreateDeviceBatch structure.
@@ -69,20 +69,20 @@ func NewCreateDeviceBatchCreated() *CreateDeviceBatchCreated {
 created
 */
 type CreateDeviceBatchCreated struct {
-	Payload *models.BatchesList
+	Payload *types.BatchesList
 }
 
 func (o *CreateDeviceBatchCreated) Error() string {
 	return fmt.Sprintf("[POST /projects/{id}/devices/batch][%d] createDeviceBatchCreated  %+v", 201, o.Payload)
 }
 
-func (o *CreateDeviceBatchCreated) GetPayload() *models.BatchesList {
+func (o *CreateDeviceBatchCreated) GetPayload() *types.BatchesList {
 	return o.Payload
 }
 
 func (o *CreateDeviceBatchCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.BatchesList)
+	o.Payload = new(types.BatchesList)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

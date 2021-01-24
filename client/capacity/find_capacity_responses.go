@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/t0mk/gometal/models"
+	"github.com/t0mk/gometal/types"
 )
 
 // FindCapacityReader is a Reader for the FindCapacity structure.
@@ -51,20 +51,20 @@ func NewFindCapacityOK() *FindCapacityOK {
 ok
 */
 type FindCapacityOK struct {
-	Payload *models.CapacityList
+	Payload *types.CapacityList
 }
 
 func (o *FindCapacityOK) Error() string {
 	return fmt.Sprintf("[GET /capacity][%d] findCapacityOK  %+v", 200, o.Payload)
 }
 
-func (o *FindCapacityOK) GetPayload() *models.CapacityList {
+func (o *FindCapacityOK) GetPayload() *types.CapacityList {
 	return o.Payload
 }
 
 func (o *FindCapacityOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.CapacityList)
+	o.Payload = new(types.CapacityList)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
