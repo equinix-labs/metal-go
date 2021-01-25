@@ -19,7 +19,7 @@ You can see usage of the generated code in the `examples` directory. In order to
 ```
 $ PACKET_AUTH_TOKEN=... go run examples/projects/projects.go
 [...]
-$ PACKET_AUTH_TOKEN=... go run examples/plans/plans.go
+$ cd examples/plans; PACKET_AUTH_TOKEN=... go run .
 ```
 
 ## Generated code
