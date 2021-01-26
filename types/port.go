@@ -26,6 +26,9 @@ type Port struct {
 	// data
 	Data interface{} `json:"data,omitempty"`
 
+	// Indicates whether or not the bond can be broken on the port (when applicable).
+	DisbondOperationSupported bool `json:"disbond_operation_supported,omitempty"`
+
 	// hardware
 	Hardware *Href `json:"hardware,omitempty"`
 
