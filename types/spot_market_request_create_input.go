@@ -6,6 +6,7 @@ package types
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"strconv"
 
 	"github.com/go-openapi/errors"
@@ -62,7 +63,6 @@ func (m *SpotMarketRequestCreateInput) Validate(formats strfmt.Registry) error {
 }
 
 func (m *SpotMarketRequestCreateInput) validateEndAt(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.EndAt) { // not required
 		return nil
 	}
@@ -75,7 +75,6 @@ func (m *SpotMarketRequestCreateInput) validateEndAt(formats strfmt.Registry) er
 }
 
 func (m *SpotMarketRequestCreateInput) validateFacilities(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Facilities) { // not required
 		return nil
 	}
@@ -92,13 +91,40 @@ func (m *SpotMarketRequestCreateInput) validateFacilities(formats strfmt.Registr
 }
 
 func (m *SpotMarketRequestCreateInput) validateInstanceAttributes(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.InstanceAttributes) { // not required
 		return nil
 	}
 
 	if m.InstanceAttributes != nil {
 		if err := m.InstanceAttributes.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("instance_attributes")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// ContextValidate validate this spot market request create input based on the context it is used
+func (m *SpotMarketRequestCreateInput) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateInstanceAttributes(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *SpotMarketRequestCreateInput) contextValidateInstanceAttributes(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.InstanceAttributes != nil {
+		if err := m.InstanceAttributes.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("instance_attributes")
 			}
@@ -208,7 +234,6 @@ func (m *SpotMarketRequestCreateInputInstanceAttributes) Validate(formats strfmt
 }
 
 func (m *SpotMarketRequestCreateInputInstanceAttributes) validateProjectSSHKeys(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.ProjectSSHKeys) { // not required
 		return nil
 	}
@@ -225,7 +250,6 @@ func (m *SpotMarketRequestCreateInputInstanceAttributes) validateProjectSSHKeys(
 }
 
 func (m *SpotMarketRequestCreateInputInstanceAttributes) validateTerminationTime(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.TerminationTime) { // not required
 		return nil
 	}
@@ -238,7 +262,6 @@ func (m *SpotMarketRequestCreateInputInstanceAttributes) validateTerminationTime
 }
 
 func (m *SpotMarketRequestCreateInputInstanceAttributes) validateUserSSHKeys(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.UserSSHKeys) { // not required
 		return nil
 	}
@@ -251,6 +274,11 @@ func (m *SpotMarketRequestCreateInputInstanceAttributes) validateUserSSHKeys(for
 
 	}
 
+	return nil
+}
+
+// ContextValidate validates this spot market request create input instance attributes based on context it is used
+func (m *SpotMarketRequestCreateInputInstanceAttributes) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

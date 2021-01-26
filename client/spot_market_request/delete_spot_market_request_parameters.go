@@ -17,64 +17,81 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// NewDeleteSpotMarketRequestParams creates a new DeleteSpotMarketRequestParams object
-// with the default values initialized.
+// NewDeleteSpotMarketRequestParams creates a new DeleteSpotMarketRequestParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewDeleteSpotMarketRequestParams() *DeleteSpotMarketRequestParams {
-	var ()
 	return &DeleteSpotMarketRequestParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewDeleteSpotMarketRequestParamsWithTimeout creates a new DeleteSpotMarketRequestParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewDeleteSpotMarketRequestParamsWithTimeout(timeout time.Duration) *DeleteSpotMarketRequestParams {
-	var ()
 	return &DeleteSpotMarketRequestParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewDeleteSpotMarketRequestParamsWithContext creates a new DeleteSpotMarketRequestParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewDeleteSpotMarketRequestParamsWithContext(ctx context.Context) *DeleteSpotMarketRequestParams {
-	var ()
 	return &DeleteSpotMarketRequestParams{
-
 		Context: ctx,
 	}
 }
 
 // NewDeleteSpotMarketRequestParamsWithHTTPClient creates a new DeleteSpotMarketRequestParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewDeleteSpotMarketRequestParamsWithHTTPClient(client *http.Client) *DeleteSpotMarketRequestParams {
-	var ()
 	return &DeleteSpotMarketRequestParams{
 		HTTPClient: client,
 	}
 }
 
-/*DeleteSpotMarketRequestParams contains all the parameters to send to the API endpoint
-for the delete spot market request operation typically these are written to a http.Request
+/* DeleteSpotMarketRequestParams contains all the parameters to send to the API endpoint
+   for the delete spot market request operation.
+
+   Typically these are written to a http.Request.
 */
 type DeleteSpotMarketRequestParams struct {
 
-	/*ForceTermination
-	  Terminate associated spot instances
+	/* ForceTermination.
 
+	   Terminate associated spot instances
 	*/
 	ForceTermination *bool
-	/*ID
-	  SpotMarketRequest UUID
 
+	/* ID.
+
+	   SpotMarketRequest UUID
+
+	   Format: uuid
 	*/
 	ID strfmt.UUID
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the delete spot market request params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *DeleteSpotMarketRequestParams) WithDefaults() *DeleteSpotMarketRequestParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the delete spot market request params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *DeleteSpotMarketRequestParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the delete spot market request params
@@ -144,16 +161,17 @@ func (o *DeleteSpotMarketRequestParams) WriteToRequest(r runtime.ClientRequest, 
 
 		// query param force_termination
 		var qrForceTermination bool
+
 		if o.ForceTermination != nil {
 			qrForceTermination = *o.ForceTermination
 		}
 		qForceTermination := swag.FormatBool(qrForceTermination)
 		if qForceTermination != "" {
+
 			if err := r.SetQueryParam("force_termination", qForceTermination); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	// path param id

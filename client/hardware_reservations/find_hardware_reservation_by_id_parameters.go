@@ -16,64 +16,81 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewFindHardwareReservationByIDParams creates a new FindHardwareReservationByIDParams object
-// with the default values initialized.
+// NewFindHardwareReservationByIDParams creates a new FindHardwareReservationByIDParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewFindHardwareReservationByIDParams() *FindHardwareReservationByIDParams {
-	var ()
 	return &FindHardwareReservationByIDParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewFindHardwareReservationByIDParamsWithTimeout creates a new FindHardwareReservationByIDParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewFindHardwareReservationByIDParamsWithTimeout(timeout time.Duration) *FindHardwareReservationByIDParams {
-	var ()
 	return &FindHardwareReservationByIDParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewFindHardwareReservationByIDParamsWithContext creates a new FindHardwareReservationByIDParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewFindHardwareReservationByIDParamsWithContext(ctx context.Context) *FindHardwareReservationByIDParams {
-	var ()
 	return &FindHardwareReservationByIDParams{
-
 		Context: ctx,
 	}
 }
 
 // NewFindHardwareReservationByIDParamsWithHTTPClient creates a new FindHardwareReservationByIDParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewFindHardwareReservationByIDParamsWithHTTPClient(client *http.Client) *FindHardwareReservationByIDParams {
-	var ()
 	return &FindHardwareReservationByIDParams{
 		HTTPClient: client,
 	}
 }
 
-/*FindHardwareReservationByIDParams contains all the parameters to send to the API endpoint
-for the find hardware reservation by Id operation typically these are written to a http.Request
+/* FindHardwareReservationByIDParams contains all the parameters to send to the API endpoint
+   for the find hardware reservation by Id operation.
+
+   Typically these are written to a http.Request.
 */
 type FindHardwareReservationByIDParams struct {
 
-	/*ID
-	  HardwareReservation UUID
+	/* ID.
 
+	   HardwareReservation UUID
+
+	   Format: uuid
 	*/
 	ID strfmt.UUID
-	/*Include
-	  related attributes to include
 
+	/* Include.
+
+	   related attributes to include
 	*/
 	Include *string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the find hardware reservation by Id params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *FindHardwareReservationByIDParams) WithDefaults() *FindHardwareReservationByIDParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the find hardware reservation by Id params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *FindHardwareReservationByIDParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the find hardware reservation by Id params
@@ -148,16 +165,17 @@ func (o *FindHardwareReservationByIDParams) WriteToRequest(r runtime.ClientReque
 
 		// query param include
 		var qrInclude string
+
 		if o.Include != nil {
 			qrInclude = *o.Include
 		}
 		qInclude := qrInclude
 		if qInclude != "" {
+
 			if err := r.SetQueryParam("include", qInclude); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	if len(res) > 0 {

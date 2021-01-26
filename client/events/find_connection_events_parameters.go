@@ -17,74 +17,93 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// NewFindConnectionEventsParams creates a new FindConnectionEventsParams object
-// with the default values initialized.
+// NewFindConnectionEventsParams creates a new FindConnectionEventsParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewFindConnectionEventsParams() *FindConnectionEventsParams {
-	var ()
 	return &FindConnectionEventsParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewFindConnectionEventsParamsWithTimeout creates a new FindConnectionEventsParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewFindConnectionEventsParamsWithTimeout(timeout time.Duration) *FindConnectionEventsParams {
-	var ()
 	return &FindConnectionEventsParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewFindConnectionEventsParamsWithContext creates a new FindConnectionEventsParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewFindConnectionEventsParamsWithContext(ctx context.Context) *FindConnectionEventsParams {
-	var ()
 	return &FindConnectionEventsParams{
-
 		Context: ctx,
 	}
 }
 
 // NewFindConnectionEventsParamsWithHTTPClient creates a new FindConnectionEventsParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewFindConnectionEventsParamsWithHTTPClient(client *http.Client) *FindConnectionEventsParams {
-	var ()
 	return &FindConnectionEventsParams{
 		HTTPClient: client,
 	}
 }
 
-/*FindConnectionEventsParams contains all the parameters to send to the API endpoint
-for the find connection events operation typically these are written to a http.Request
+/* FindConnectionEventsParams contains all the parameters to send to the API endpoint
+   for the find connection events operation.
+
+   Typically these are written to a http.Request.
 */
 type FindConnectionEventsParams struct {
 
-	/*ConnectionID
-	  Connection UUID
+	/* ConnectionID.
 
+	   Connection UUID
+
+	   Format: uuid
 	*/
 	ConnectionID strfmt.UUID
-	/*Include
-	  related attributes to include
 
+	/* Include.
+
+	   related attributes to include
 	*/
 	Include *string
-	/*Page
-	  page to display, default to 1, max 100_000
 
+	/* Page.
+
+	   page to display, default to 1, max 100_000
 	*/
 	Page *int64
-	/*PerPage
-	  items per page, default to 10, max 1_000
 
+	/* PerPage.
+
+	   items per page, default to 10, max 1_000
 	*/
 	PerPage *int64
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the find connection events params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *FindConnectionEventsParams) WithDefaults() *FindConnectionEventsParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the find connection events params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *FindConnectionEventsParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the find connection events params
@@ -181,48 +200,51 @@ func (o *FindConnectionEventsParams) WriteToRequest(r runtime.ClientRequest, reg
 
 		// query param include
 		var qrInclude string
+
 		if o.Include != nil {
 			qrInclude = *o.Include
 		}
 		qInclude := qrInclude
 		if qInclude != "" {
+
 			if err := r.SetQueryParam("include", qInclude); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	if o.Page != nil {
 
 		// query param page
 		var qrPage int64
+
 		if o.Page != nil {
 			qrPage = *o.Page
 		}
 		qPage := swag.FormatInt64(qrPage)
 		if qPage != "" {
+
 			if err := r.SetQueryParam("page", qPage); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	if o.PerPage != nil {
 
 		// query param per_page
 		var qrPerPage int64
+
 		if o.PerPage != nil {
 			qrPerPage = *o.PerPage
 		}
 		qPerPage := swag.FormatInt64(qrPerPage)
 		if qPerPage != "" {
+
 			if err := r.SetQueryParam("per_page", qPerPage); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	if len(res) > 0 {

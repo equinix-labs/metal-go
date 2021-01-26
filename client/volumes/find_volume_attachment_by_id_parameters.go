@@ -16,64 +16,81 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewFindVolumeAttachmentByIDParams creates a new FindVolumeAttachmentByIDParams object
-// with the default values initialized.
+// NewFindVolumeAttachmentByIDParams creates a new FindVolumeAttachmentByIDParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewFindVolumeAttachmentByIDParams() *FindVolumeAttachmentByIDParams {
-	var ()
 	return &FindVolumeAttachmentByIDParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewFindVolumeAttachmentByIDParamsWithTimeout creates a new FindVolumeAttachmentByIDParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewFindVolumeAttachmentByIDParamsWithTimeout(timeout time.Duration) *FindVolumeAttachmentByIDParams {
-	var ()
 	return &FindVolumeAttachmentByIDParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewFindVolumeAttachmentByIDParamsWithContext creates a new FindVolumeAttachmentByIDParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewFindVolumeAttachmentByIDParamsWithContext(ctx context.Context) *FindVolumeAttachmentByIDParams {
-	var ()
 	return &FindVolumeAttachmentByIDParams{
-
 		Context: ctx,
 	}
 }
 
 // NewFindVolumeAttachmentByIDParamsWithHTTPClient creates a new FindVolumeAttachmentByIDParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewFindVolumeAttachmentByIDParamsWithHTTPClient(client *http.Client) *FindVolumeAttachmentByIDParams {
-	var ()
 	return &FindVolumeAttachmentByIDParams{
 		HTTPClient: client,
 	}
 }
 
-/*FindVolumeAttachmentByIDParams contains all the parameters to send to the API endpoint
-for the find volume attachment by Id operation typically these are written to a http.Request
+/* FindVolumeAttachmentByIDParams contains all the parameters to send to the API endpoint
+   for the find volume attachment by Id operation.
+
+   Typically these are written to a http.Request.
 */
 type FindVolumeAttachmentByIDParams struct {
 
-	/*ID
-	  Attachment UUID
+	/* ID.
 
+	   Attachment UUID
+
+	   Format: uuid
 	*/
 	ID strfmt.UUID
-	/*Include
-	  related attributes to include
 
+	/* Include.
+
+	   related attributes to include
 	*/
 	Include *string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the find volume attachment by Id params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *FindVolumeAttachmentByIDParams) WithDefaults() *FindVolumeAttachmentByIDParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the find volume attachment by Id params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *FindVolumeAttachmentByIDParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the find volume attachment by Id params
@@ -148,16 +165,17 @@ func (o *FindVolumeAttachmentByIDParams) WriteToRequest(r runtime.ClientRequest,
 
 		// query param include
 		var qrInclude string
+
 		if o.Include != nil {
 			qrInclude = *o.Include
 		}
 		qInclude := qrInclude
 		if qInclude != "" {
+
 			if err := r.SetQueryParam("include", qInclude); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	if len(res) > 0 {

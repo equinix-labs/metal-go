@@ -53,7 +53,6 @@ func (o *RequestIPReservationReader) ReadResponse(response runtime.ClientRespons
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -64,7 +63,7 @@ func NewRequestIPReservationCreated() *RequestIPReservationCreated {
 	return &RequestIPReservationCreated{}
 }
 
-/*RequestIPReservationCreated handles this case with default header values.
+/* RequestIPReservationCreated describes a response with status code 201, with default header values.
 
 created
 */
@@ -75,7 +74,6 @@ type RequestIPReservationCreated struct {
 func (o *RequestIPReservationCreated) Error() string {
 	return fmt.Sprintf("[POST /projects/{id}/ips][%d] requestIpReservationCreated  %+v", 201, o.Payload)
 }
-
 func (o *RequestIPReservationCreated) GetPayload() *types.IPReservation {
 	return o.Payload
 }
@@ -97,7 +95,7 @@ func NewRequestIPReservationUnauthorized() *RequestIPReservationUnauthorized {
 	return &RequestIPReservationUnauthorized{}
 }
 
-/*RequestIPReservationUnauthorized handles this case with default header values.
+/* RequestIPReservationUnauthorized describes a response with status code 401, with default header values.
 
 unauthorized
 */
@@ -118,7 +116,7 @@ func NewRequestIPReservationForbidden() *RequestIPReservationForbidden {
 	return &RequestIPReservationForbidden{}
 }
 
-/*RequestIPReservationForbidden handles this case with default header values.
+/* RequestIPReservationForbidden describes a response with status code 403, with default header values.
 
 forbidden
 */
@@ -139,7 +137,7 @@ func NewRequestIPReservationNotFound() *RequestIPReservationNotFound {
 	return &RequestIPReservationNotFound{}
 }
 
-/*RequestIPReservationNotFound handles this case with default header values.
+/* RequestIPReservationNotFound describes a response with status code 404, with default header values.
 
 not found
 */
@@ -160,7 +158,7 @@ func NewRequestIPReservationUnprocessableEntity() *RequestIPReservationUnprocess
 	return &RequestIPReservationUnprocessableEntity{}
 }
 
-/*RequestIPReservationUnprocessableEntity handles this case with default header values.
+/* RequestIPReservationUnprocessableEntity describes a response with status code 422, with default header values.
 
 unprocessable entity
 */

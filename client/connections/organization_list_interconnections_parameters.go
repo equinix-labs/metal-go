@@ -16,59 +16,75 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewOrganizationListInterconnectionsParams creates a new OrganizationListInterconnectionsParams object
-// with the default values initialized.
+// NewOrganizationListInterconnectionsParams creates a new OrganizationListInterconnectionsParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewOrganizationListInterconnectionsParams() *OrganizationListInterconnectionsParams {
-	var ()
 	return &OrganizationListInterconnectionsParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewOrganizationListInterconnectionsParamsWithTimeout creates a new OrganizationListInterconnectionsParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewOrganizationListInterconnectionsParamsWithTimeout(timeout time.Duration) *OrganizationListInterconnectionsParams {
-	var ()
 	return &OrganizationListInterconnectionsParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewOrganizationListInterconnectionsParamsWithContext creates a new OrganizationListInterconnectionsParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewOrganizationListInterconnectionsParamsWithContext(ctx context.Context) *OrganizationListInterconnectionsParams {
-	var ()
 	return &OrganizationListInterconnectionsParams{
-
 		Context: ctx,
 	}
 }
 
 // NewOrganizationListInterconnectionsParamsWithHTTPClient creates a new OrganizationListInterconnectionsParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewOrganizationListInterconnectionsParamsWithHTTPClient(client *http.Client) *OrganizationListInterconnectionsParams {
-	var ()
 	return &OrganizationListInterconnectionsParams{
 		HTTPClient: client,
 	}
 }
 
-/*OrganizationListInterconnectionsParams contains all the parameters to send to the API endpoint
-for the organization list interconnections operation typically these are written to a http.Request
+/* OrganizationListInterconnectionsParams contains all the parameters to send to the API endpoint
+   for the organization list interconnections operation.
+
+   Typically these are written to a http.Request.
 */
 type OrganizationListInterconnectionsParams struct {
 
-	/*OrganizationID
-	  UUID of the organization
+	/* OrganizationID.
 
+	   UUID of the organization
+
+	   Format: uuid
 	*/
 	OrganizationID strfmt.UUID
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the organization list interconnections params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *OrganizationListInterconnectionsParams) WithDefaults() *OrganizationListInterconnectionsParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the organization list interconnections params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *OrganizationListInterconnectionsParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the organization list interconnections params

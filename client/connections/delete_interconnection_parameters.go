@@ -16,59 +16,75 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewDeleteInterconnectionParams creates a new DeleteInterconnectionParams object
-// with the default values initialized.
+// NewDeleteInterconnectionParams creates a new DeleteInterconnectionParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewDeleteInterconnectionParams() *DeleteInterconnectionParams {
-	var ()
 	return &DeleteInterconnectionParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewDeleteInterconnectionParamsWithTimeout creates a new DeleteInterconnectionParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewDeleteInterconnectionParamsWithTimeout(timeout time.Duration) *DeleteInterconnectionParams {
-	var ()
 	return &DeleteInterconnectionParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewDeleteInterconnectionParamsWithContext creates a new DeleteInterconnectionParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewDeleteInterconnectionParamsWithContext(ctx context.Context) *DeleteInterconnectionParams {
-	var ()
 	return &DeleteInterconnectionParams{
-
 		Context: ctx,
 	}
 }
 
 // NewDeleteInterconnectionParamsWithHTTPClient creates a new DeleteInterconnectionParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewDeleteInterconnectionParamsWithHTTPClient(client *http.Client) *DeleteInterconnectionParams {
-	var ()
 	return &DeleteInterconnectionParams{
 		HTTPClient: client,
 	}
 }
 
-/*DeleteInterconnectionParams contains all the parameters to send to the API endpoint
-for the delete interconnection operation typically these are written to a http.Request
+/* DeleteInterconnectionParams contains all the parameters to send to the API endpoint
+   for the delete interconnection operation.
+
+   Typically these are written to a http.Request.
 */
 type DeleteInterconnectionParams struct {
 
-	/*ConnectionID
-	  Connection UUID
+	/* ConnectionID.
 
+	   Connection UUID
+
+	   Format: uuid
 	*/
 	ConnectionID strfmt.UUID
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the delete interconnection params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *DeleteInterconnectionParams) WithDefaults() *DeleteInterconnectionParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the delete interconnection params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *DeleteInterconnectionParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the delete interconnection params

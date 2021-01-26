@@ -16,64 +16,81 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewFindSpotMarketRequestByIDParams creates a new FindSpotMarketRequestByIDParams object
-// with the default values initialized.
+// NewFindSpotMarketRequestByIDParams creates a new FindSpotMarketRequestByIDParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewFindSpotMarketRequestByIDParams() *FindSpotMarketRequestByIDParams {
-	var ()
 	return &FindSpotMarketRequestByIDParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewFindSpotMarketRequestByIDParamsWithTimeout creates a new FindSpotMarketRequestByIDParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewFindSpotMarketRequestByIDParamsWithTimeout(timeout time.Duration) *FindSpotMarketRequestByIDParams {
-	var ()
 	return &FindSpotMarketRequestByIDParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewFindSpotMarketRequestByIDParamsWithContext creates a new FindSpotMarketRequestByIDParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewFindSpotMarketRequestByIDParamsWithContext(ctx context.Context) *FindSpotMarketRequestByIDParams {
-	var ()
 	return &FindSpotMarketRequestByIDParams{
-
 		Context: ctx,
 	}
 }
 
 // NewFindSpotMarketRequestByIDParamsWithHTTPClient creates a new FindSpotMarketRequestByIDParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewFindSpotMarketRequestByIDParamsWithHTTPClient(client *http.Client) *FindSpotMarketRequestByIDParams {
-	var ()
 	return &FindSpotMarketRequestByIDParams{
 		HTTPClient: client,
 	}
 }
 
-/*FindSpotMarketRequestByIDParams contains all the parameters to send to the API endpoint
-for the find spot market request by Id operation typically these are written to a http.Request
+/* FindSpotMarketRequestByIDParams contains all the parameters to send to the API endpoint
+   for the find spot market request by Id operation.
+
+   Typically these are written to a http.Request.
 */
 type FindSpotMarketRequestByIDParams struct {
 
-	/*ID
-	  SpotMarketRequest UUID
+	/* ID.
 
+	   SpotMarketRequest UUID
+
+	   Format: uuid
 	*/
 	ID strfmt.UUID
-	/*Include
-	  related attributes to include
 
+	/* Include.
+
+	   related attributes to include
 	*/
 	Include *string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the find spot market request by Id params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *FindSpotMarketRequestByIDParams) WithDefaults() *FindSpotMarketRequestByIDParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the find spot market request by Id params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *FindSpotMarketRequestByIDParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the find spot market request by Id params
@@ -148,16 +165,17 @@ func (o *FindSpotMarketRequestByIDParams) WriteToRequest(r runtime.ClientRequest
 
 		// query param include
 		var qrInclude string
+
 		if o.Include != nil {
 			qrInclude = *o.Include
 		}
 		qInclude := qrInclude
 		if qInclude != "" {
+
 			if err := r.SetQueryParam("include", qInclude); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	if len(res) > 0 {

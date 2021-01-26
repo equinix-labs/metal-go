@@ -35,7 +35,6 @@ func (o *FindOrganizationProjectsReader) ReadResponse(response runtime.ClientRes
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -46,7 +45,7 @@ func NewFindOrganizationProjectsOK() *FindOrganizationProjectsOK {
 	return &FindOrganizationProjectsOK{}
 }
 
-/*FindOrganizationProjectsOK handles this case with default header values.
+/* FindOrganizationProjectsOK describes a response with status code 200, with default header values.
 
 ok
 */
@@ -57,7 +56,6 @@ type FindOrganizationProjectsOK struct {
 func (o *FindOrganizationProjectsOK) Error() string {
 	return fmt.Sprintf("[GET /organizations/{id}/projects][%d] findOrganizationProjectsOK  %+v", 200, o.Payload)
 }
-
 func (o *FindOrganizationProjectsOK) GetPayload() *types.ProjectList {
 	return o.Payload
 }
@@ -79,7 +77,7 @@ func NewFindOrganizationProjectsUnauthorized() *FindOrganizationProjectsUnauthor
 	return &FindOrganizationProjectsUnauthorized{}
 }
 
-/*FindOrganizationProjectsUnauthorized handles this case with default header values.
+/* FindOrganizationProjectsUnauthorized describes a response with status code 401, with default header values.
 
 unauthorized
 */

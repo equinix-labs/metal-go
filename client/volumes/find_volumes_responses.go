@@ -47,7 +47,6 @@ func (o *FindVolumesReader) ReadResponse(response runtime.ClientResponse, consum
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -58,7 +57,7 @@ func NewFindVolumesOK() *FindVolumesOK {
 	return &FindVolumesOK{}
 }
 
-/*FindVolumesOK handles this case with default header values.
+/* FindVolumesOK describes a response with status code 200, with default header values.
 
 ok
 */
@@ -69,7 +68,6 @@ type FindVolumesOK struct {
 func (o *FindVolumesOK) Error() string {
 	return fmt.Sprintf("[GET /projects/{id}/storage][%d] findVolumesOK  %+v", 200, o.Payload)
 }
-
 func (o *FindVolumesOK) GetPayload() *types.VolumeList {
 	return o.Payload
 }
@@ -91,7 +89,7 @@ func NewFindVolumesUnauthorized() *FindVolumesUnauthorized {
 	return &FindVolumesUnauthorized{}
 }
 
-/*FindVolumesUnauthorized handles this case with default header values.
+/* FindVolumesUnauthorized describes a response with status code 401, with default header values.
 
 unauthorized
 */
@@ -112,7 +110,7 @@ func NewFindVolumesForbidden() *FindVolumesForbidden {
 	return &FindVolumesForbidden{}
 }
 
-/*FindVolumesForbidden handles this case with default header values.
+/* FindVolumesForbidden describes a response with status code 403, with default header values.
 
 forbidden
 */
@@ -133,7 +131,7 @@ func NewFindVolumesNotFound() *FindVolumesNotFound {
 	return &FindVolumesNotFound{}
 }
 
-/*FindVolumesNotFound handles this case with default header values.
+/* FindVolumesNotFound describes a response with status code 404, with default header values.
 
 not found
 */

@@ -41,7 +41,6 @@ func (o *FindOrganizationPaymentMethodsReader) ReadResponse(response runtime.Cli
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -52,7 +51,7 @@ func NewFindOrganizationPaymentMethodsOK() *FindOrganizationPaymentMethodsOK {
 	return &FindOrganizationPaymentMethodsOK{}
 }
 
-/*FindOrganizationPaymentMethodsOK handles this case with default header values.
+/* FindOrganizationPaymentMethodsOK describes a response with status code 200, with default header values.
 
 ok
 */
@@ -63,7 +62,6 @@ type FindOrganizationPaymentMethodsOK struct {
 func (o *FindOrganizationPaymentMethodsOK) Error() string {
 	return fmt.Sprintf("[GET /organizations/{id}/payment-methods][%d] findOrganizationPaymentMethodsOK  %+v", 200, o.Payload)
 }
-
 func (o *FindOrganizationPaymentMethodsOK) GetPayload() *types.PaymentMethodList {
 	return o.Payload
 }
@@ -85,7 +83,7 @@ func NewFindOrganizationPaymentMethodsUnauthorized() *FindOrganizationPaymentMet
 	return &FindOrganizationPaymentMethodsUnauthorized{}
 }
 
-/*FindOrganizationPaymentMethodsUnauthorized handles this case with default header values.
+/* FindOrganizationPaymentMethodsUnauthorized describes a response with status code 401, with default header values.
 
 unauthorized
 */
@@ -106,7 +104,7 @@ func NewFindOrganizationPaymentMethodsNotFound() *FindOrganizationPaymentMethods
 	return &FindOrganizationPaymentMethodsNotFound{}
 }
 
-/*FindOrganizationPaymentMethodsNotFound handles this case with default header values.
+/* FindOrganizationPaymentMethodsNotFound describes a response with status code 404, with default header values.
 
 not found
 */

@@ -6,6 +6,7 @@ package types
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"strconv"
 
 	"github.com/go-openapi/errors"
@@ -107,7 +108,6 @@ func (m *PaymentMethod) Validate(formats strfmt.Registry) error {
 }
 
 func (m *PaymentMethod) validateBillingAddress(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.BillingAddress) { // not required
 		return nil
 	}
@@ -125,7 +125,6 @@ func (m *PaymentMethod) validateBillingAddress(formats strfmt.Registry) error {
 }
 
 func (m *PaymentMethod) validateCreatedAt(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.CreatedAt) { // not required
 		return nil
 	}
@@ -138,7 +137,6 @@ func (m *PaymentMethod) validateCreatedAt(formats strfmt.Registry) error {
 }
 
 func (m *PaymentMethod) validateCreatedByUser(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.CreatedByUser) { // not required
 		return nil
 	}
@@ -156,7 +154,6 @@ func (m *PaymentMethod) validateCreatedByUser(formats strfmt.Registry) error {
 }
 
 func (m *PaymentMethod) validateID(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.ID) { // not required
 		return nil
 	}
@@ -169,7 +166,6 @@ func (m *PaymentMethod) validateID(formats strfmt.Registry) error {
 }
 
 func (m *PaymentMethod) validateOrganization(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Organization) { // not required
 		return nil
 	}
@@ -187,7 +183,6 @@ func (m *PaymentMethod) validateOrganization(formats strfmt.Registry) error {
 }
 
 func (m *PaymentMethod) validateProjects(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Projects) { // not required
 		return nil
 	}
@@ -212,13 +207,98 @@ func (m *PaymentMethod) validateProjects(formats strfmt.Registry) error {
 }
 
 func (m *PaymentMethod) validateUpdatedAt(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.UpdatedAt) { // not required
 		return nil
 	}
 
 	if err := validate.FormatOf("updated_at", "body", "date-time", m.UpdatedAt.String(), formats); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+// ContextValidate validate this payment method based on the context it is used
+func (m *PaymentMethod) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateBillingAddress(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateCreatedByUser(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateOrganization(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateProjects(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *PaymentMethod) contextValidateBillingAddress(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.BillingAddress != nil {
+		if err := m.BillingAddress.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("billing_address")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *PaymentMethod) contextValidateCreatedByUser(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.CreatedByUser != nil {
+		if err := m.CreatedByUser.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("created_by_user")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *PaymentMethod) contextValidateOrganization(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Organization != nil {
+		if err := m.Organization.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("organization")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *PaymentMethod) contextValidateProjects(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Projects); i++ {
+
+		if m.Projects[i] != nil {
+			if err := m.Projects[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("projects" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
 	}
 
 	return nil

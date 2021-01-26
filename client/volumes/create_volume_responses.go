@@ -53,7 +53,6 @@ func (o *CreateVolumeReader) ReadResponse(response runtime.ClientResponse, consu
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -64,7 +63,7 @@ func NewCreateVolumeCreated() *CreateVolumeCreated {
 	return &CreateVolumeCreated{}
 }
 
-/*CreateVolumeCreated handles this case with default header values.
+/* CreateVolumeCreated describes a response with status code 201, with default header values.
 
 created
 */
@@ -75,7 +74,6 @@ type CreateVolumeCreated struct {
 func (o *CreateVolumeCreated) Error() string {
 	return fmt.Sprintf("[POST /projects/{id}/storage][%d] createVolumeCreated  %+v", 201, o.Payload)
 }
-
 func (o *CreateVolumeCreated) GetPayload() *types.Volume {
 	return o.Payload
 }
@@ -97,7 +95,7 @@ func NewCreateVolumeUnauthorized() *CreateVolumeUnauthorized {
 	return &CreateVolumeUnauthorized{}
 }
 
-/*CreateVolumeUnauthorized handles this case with default header values.
+/* CreateVolumeUnauthorized describes a response with status code 401, with default header values.
 
 unauthorized
 */
@@ -118,7 +116,7 @@ func NewCreateVolumeForbidden() *CreateVolumeForbidden {
 	return &CreateVolumeForbidden{}
 }
 
-/*CreateVolumeForbidden handles this case with default header values.
+/* CreateVolumeForbidden describes a response with status code 403, with default header values.
 
 forbidden
 */
@@ -139,7 +137,7 @@ func NewCreateVolumeNotFound() *CreateVolumeNotFound {
 	return &CreateVolumeNotFound{}
 }
 
-/*CreateVolumeNotFound handles this case with default header values.
+/* CreateVolumeNotFound describes a response with status code 404, with default header values.
 
 not found
 */
@@ -160,7 +158,7 @@ func NewCreateVolumeUnprocessableEntity() *CreateVolumeUnprocessableEntity {
 	return &CreateVolumeUnprocessableEntity{}
 }
 
-/*CreateVolumeUnprocessableEntity handles this case with default header values.
+/* CreateVolumeUnprocessableEntity describes a response with status code 422, with default header values.
 
 unprocessable entity
 */

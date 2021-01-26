@@ -53,7 +53,6 @@ func (o *UpdateVolumeReader) ReadResponse(response runtime.ClientResponse, consu
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -64,7 +63,7 @@ func NewUpdateVolumeOK() *UpdateVolumeOK {
 	return &UpdateVolumeOK{}
 }
 
-/*UpdateVolumeOK handles this case with default header values.
+/* UpdateVolumeOK describes a response with status code 200, with default header values.
 
 ok
 */
@@ -75,7 +74,6 @@ type UpdateVolumeOK struct {
 func (o *UpdateVolumeOK) Error() string {
 	return fmt.Sprintf("[PUT /storage/{id}][%d] updateVolumeOK  %+v", 200, o.Payload)
 }
-
 func (o *UpdateVolumeOK) GetPayload() *types.Volume {
 	return o.Payload
 }
@@ -97,7 +95,7 @@ func NewUpdateVolumeUnauthorized() *UpdateVolumeUnauthorized {
 	return &UpdateVolumeUnauthorized{}
 }
 
-/*UpdateVolumeUnauthorized handles this case with default header values.
+/* UpdateVolumeUnauthorized describes a response with status code 401, with default header values.
 
 unauthorized
 */
@@ -118,7 +116,7 @@ func NewUpdateVolumeForbidden() *UpdateVolumeForbidden {
 	return &UpdateVolumeForbidden{}
 }
 
-/*UpdateVolumeForbidden handles this case with default header values.
+/* UpdateVolumeForbidden describes a response with status code 403, with default header values.
 
 forbidden
 */
@@ -139,7 +137,7 @@ func NewUpdateVolumeNotFound() *UpdateVolumeNotFound {
 	return &UpdateVolumeNotFound{}
 }
 
-/*UpdateVolumeNotFound handles this case with default header values.
+/* UpdateVolumeNotFound describes a response with status code 404, with default header values.
 
 not found
 */
@@ -160,7 +158,7 @@ func NewUpdateVolumeUnprocessableEntity() *UpdateVolumeUnprocessableEntity {
 	return &UpdateVolumeUnprocessableEntity{}
 }
 
-/*UpdateVolumeUnprocessableEntity handles this case with default header values.
+/* UpdateVolumeUnprocessableEntity describes a response with status code 422, with default header values.
 
 unprocessable entity
 */

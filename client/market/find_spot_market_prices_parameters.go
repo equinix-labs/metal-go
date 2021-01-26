@@ -16,64 +16,79 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewFindSpotMarketPricesParams creates a new FindSpotMarketPricesParams object
-// with the default values initialized.
+// NewFindSpotMarketPricesParams creates a new FindSpotMarketPricesParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewFindSpotMarketPricesParams() *FindSpotMarketPricesParams {
-	var ()
 	return &FindSpotMarketPricesParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewFindSpotMarketPricesParamsWithTimeout creates a new FindSpotMarketPricesParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewFindSpotMarketPricesParamsWithTimeout(timeout time.Duration) *FindSpotMarketPricesParams {
-	var ()
 	return &FindSpotMarketPricesParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewFindSpotMarketPricesParamsWithContext creates a new FindSpotMarketPricesParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewFindSpotMarketPricesParamsWithContext(ctx context.Context) *FindSpotMarketPricesParams {
-	var ()
 	return &FindSpotMarketPricesParams{
-
 		Context: ctx,
 	}
 }
 
 // NewFindSpotMarketPricesParamsWithHTTPClient creates a new FindSpotMarketPricesParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewFindSpotMarketPricesParamsWithHTTPClient(client *http.Client) *FindSpotMarketPricesParams {
-	var ()
 	return &FindSpotMarketPricesParams{
 		HTTPClient: client,
 	}
 }
 
-/*FindSpotMarketPricesParams contains all the parameters to send to the API endpoint
-for the find spot market prices operation typically these are written to a http.Request
+/* FindSpotMarketPricesParams contains all the parameters to send to the API endpoint
+   for the find spot market prices operation.
+
+   Typically these are written to a http.Request.
 */
 type FindSpotMarketPricesParams struct {
 
-	/*Facility
-	  Facility to check spot market prices
+	/* Facility.
 
+	   Facility to check spot market prices
 	*/
 	Facility *string
-	/*Plan
-	  Plan to check spot market prices
 
+	/* Plan.
+
+	   Plan to check spot market prices
 	*/
 	Plan *string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the find spot market prices params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *FindSpotMarketPricesParams) WithDefaults() *FindSpotMarketPricesParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the find spot market prices params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *FindSpotMarketPricesParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the find spot market prices params
@@ -143,32 +158,34 @@ func (o *FindSpotMarketPricesParams) WriteToRequest(r runtime.ClientRequest, reg
 
 		// query param facility
 		var qrFacility string
+
 		if o.Facility != nil {
 			qrFacility = *o.Facility
 		}
 		qFacility := qrFacility
 		if qFacility != "" {
+
 			if err := r.SetQueryParam("facility", qFacility); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	if o.Plan != nil {
 
 		// query param plan
 		var qrPlan string
+
 		if o.Plan != nil {
 			qrPlan = *o.Plan
 		}
 		qPlan := qrPlan
 		if qPlan != "" {
+
 			if err := r.SetQueryParam("plan", qPlan); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	if len(res) > 0 {

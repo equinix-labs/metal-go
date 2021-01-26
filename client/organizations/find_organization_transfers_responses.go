@@ -41,7 +41,6 @@ func (o *FindOrganizationTransfersReader) ReadResponse(response runtime.ClientRe
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -52,7 +51,7 @@ func NewFindOrganizationTransfersOK() *FindOrganizationTransfersOK {
 	return &FindOrganizationTransfersOK{}
 }
 
-/*FindOrganizationTransfersOK handles this case with default header values.
+/* FindOrganizationTransfersOK describes a response with status code 200, with default header values.
 
 ok
 */
@@ -63,7 +62,6 @@ type FindOrganizationTransfersOK struct {
 func (o *FindOrganizationTransfersOK) Error() string {
 	return fmt.Sprintf("[GET /organizations/{id}/transfers][%d] findOrganizationTransfersOK  %+v", 200, o.Payload)
 }
-
 func (o *FindOrganizationTransfersOK) GetPayload() *types.TransferRequestList {
 	return o.Payload
 }
@@ -85,7 +83,7 @@ func NewFindOrganizationTransfersUnauthorized() *FindOrganizationTransfersUnauth
 	return &FindOrganizationTransfersUnauthorized{}
 }
 
-/*FindOrganizationTransfersUnauthorized handles this case with default header values.
+/* FindOrganizationTransfersUnauthorized describes a response with status code 401, with default header values.
 
 unauthorized
 */
@@ -106,7 +104,7 @@ func NewFindOrganizationTransfersForbidden() *FindOrganizationTransfersForbidden
 	return &FindOrganizationTransfersForbidden{}
 }
 
-/*FindOrganizationTransfersForbidden handles this case with default header values.
+/* FindOrganizationTransfersForbidden describes a response with status code 403, with default header values.
 
 forbidden
 */

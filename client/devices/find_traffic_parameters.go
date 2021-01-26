@@ -18,79 +18,99 @@ import (
 	"github.com/t0mk/gometal/types"
 )
 
-// NewFindTrafficParams creates a new FindTrafficParams object
-// with the default values initialized.
+// NewFindTrafficParams creates a new FindTrafficParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewFindTrafficParams() *FindTrafficParams {
-	var ()
 	return &FindTrafficParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewFindTrafficParamsWithTimeout creates a new FindTrafficParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewFindTrafficParamsWithTimeout(timeout time.Duration) *FindTrafficParams {
-	var ()
 	return &FindTrafficParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewFindTrafficParamsWithContext creates a new FindTrafficParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewFindTrafficParamsWithContext(ctx context.Context) *FindTrafficParams {
-	var ()
 	return &FindTrafficParams{
-
 		Context: ctx,
 	}
 }
 
 // NewFindTrafficParamsWithHTTPClient creates a new FindTrafficParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewFindTrafficParamsWithHTTPClient(client *http.Client) *FindTrafficParams {
-	var ()
 	return &FindTrafficParams{
 		HTTPClient: client,
 	}
 }
 
-/*FindTrafficParams contains all the parameters to send to the API endpoint
-for the find traffic operation typically these are written to a http.Request
+/* FindTrafficParams contains all the parameters to send to the API endpoint
+   for the find traffic operation.
+
+   Typically these are written to a http.Request.
 */
 type FindTrafficParams struct {
 
-	/*Bucket
-	  Traffic bucket
+	/* Bucket.
 
+	   Traffic bucket
 	*/
 	Bucket *string
-	/*Direction
-	  Traffic direction
 
+	/* Direction.
+
+	   Traffic direction
 	*/
 	Direction string
-	/*ID
-	  Device UUID
 
+	/* ID.
+
+	   Device UUID
+
+	   Format: uuid
 	*/
 	ID strfmt.UUID
-	/*Interval
-	  Traffic interval
 
+	/* Interval.
+
+	   Traffic interval
 	*/
 	Interval *string
-	/*Timeframe
-	  Traffic timeframe
 
+	/* Timeframe.
+
+	   Traffic timeframe
 	*/
 	Timeframe *types.Timeframe
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the find traffic params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *FindTrafficParams) WithDefaults() *FindTrafficParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the find traffic params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *FindTrafficParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the find traffic params
@@ -193,22 +213,24 @@ func (o *FindTrafficParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.R
 
 		// query param bucket
 		var qrBucket string
+
 		if o.Bucket != nil {
 			qrBucket = *o.Bucket
 		}
 		qBucket := qrBucket
 		if qBucket != "" {
+
 			if err := r.SetQueryParam("bucket", qBucket); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	// query param direction
 	qrDirection := o.Direction
 	qDirection := qrDirection
 	if qDirection != "" {
+
 		if err := r.SetQueryParam("direction", qDirection); err != nil {
 			return err
 		}
@@ -223,18 +245,18 @@ func (o *FindTrafficParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.R
 
 		// query param interval
 		var qrInterval string
+
 		if o.Interval != nil {
 			qrInterval = *o.Interval
 		}
 		qInterval := qrInterval
 		if qInterval != "" {
+
 			if err := r.SetQueryParam("interval", qInterval); err != nil {
 				return err
 			}
 		}
-
 	}
-
 	if o.Timeframe != nil {
 		if err := r.SetBodyParam(o.Timeframe); err != nil {
 			return err

@@ -53,7 +53,6 @@ func (o *UpdateSSHKeyReader) ReadResponse(response runtime.ClientResponse, consu
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -64,7 +63,7 @@ func NewUpdateSSHKeyOK() *UpdateSSHKeyOK {
 	return &UpdateSSHKeyOK{}
 }
 
-/*UpdateSSHKeyOK handles this case with default header values.
+/* UpdateSSHKeyOK describes a response with status code 200, with default header values.
 
 ok
 */
@@ -75,7 +74,6 @@ type UpdateSSHKeyOK struct {
 func (o *UpdateSSHKeyOK) Error() string {
 	return fmt.Sprintf("[PUT /ssh-keys/{id}][%d] updateSshKeyOK  %+v", 200, o.Payload)
 }
-
 func (o *UpdateSSHKeyOK) GetPayload() *types.SSHKey {
 	return o.Payload
 }
@@ -97,7 +95,7 @@ func NewUpdateSSHKeyUnauthorized() *UpdateSSHKeyUnauthorized {
 	return &UpdateSSHKeyUnauthorized{}
 }
 
-/*UpdateSSHKeyUnauthorized handles this case with default header values.
+/* UpdateSSHKeyUnauthorized describes a response with status code 401, with default header values.
 
 unauthorized
 */
@@ -118,7 +116,7 @@ func NewUpdateSSHKeyForbidden() *UpdateSSHKeyForbidden {
 	return &UpdateSSHKeyForbidden{}
 }
 
-/*UpdateSSHKeyForbidden handles this case with default header values.
+/* UpdateSSHKeyForbidden describes a response with status code 403, with default header values.
 
 forbidden
 */
@@ -139,7 +137,7 @@ func NewUpdateSSHKeyNotFound() *UpdateSSHKeyNotFound {
 	return &UpdateSSHKeyNotFound{}
 }
 
-/*UpdateSSHKeyNotFound handles this case with default header values.
+/* UpdateSSHKeyNotFound describes a response with status code 404, with default header values.
 
 not found
 */
@@ -160,7 +158,7 @@ func NewUpdateSSHKeyUnprocessableEntity() *UpdateSSHKeyUnprocessableEntity {
 	return &UpdateSSHKeyUnprocessableEntity{}
 }
 
-/*UpdateSSHKeyUnprocessableEntity handles this case with default header values.
+/* UpdateSSHKeyUnprocessableEntity describes a response with status code 422, with default header values.
 
 unprocessable entity
 */

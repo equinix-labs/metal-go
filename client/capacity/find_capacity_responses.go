@@ -35,7 +35,6 @@ func (o *FindCapacityReader) ReadResponse(response runtime.ClientResponse, consu
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -46,7 +45,7 @@ func NewFindCapacityOK() *FindCapacityOK {
 	return &FindCapacityOK{}
 }
 
-/*FindCapacityOK handles this case with default header values.
+/* FindCapacityOK describes a response with status code 200, with default header values.
 
 ok
 */
@@ -57,7 +56,6 @@ type FindCapacityOK struct {
 func (o *FindCapacityOK) Error() string {
 	return fmt.Sprintf("[GET /capacity][%d] findCapacityOK  %+v", 200, o.Payload)
 }
-
 func (o *FindCapacityOK) GetPayload() *types.CapacityList {
 	return o.Payload
 }
@@ -79,7 +77,7 @@ func NewFindCapacityUnauthorized() *FindCapacityUnauthorized {
 	return &FindCapacityUnauthorized{}
 }
 
-/*FindCapacityUnauthorized handles this case with default header values.
+/* FindCapacityUnauthorized describes a response with status code 401, with default header values.
 
 unauthorized
 */

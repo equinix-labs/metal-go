@@ -53,7 +53,6 @@ func (o *CloneVolumeReader) ReadResponse(response runtime.ClientResponse, consum
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -64,7 +63,7 @@ func NewCloneVolumeCreated() *CloneVolumeCreated {
 	return &CloneVolumeCreated{}
 }
 
-/*CloneVolumeCreated handles this case with default header values.
+/* CloneVolumeCreated describes a response with status code 201, with default header values.
 
 created
 */
@@ -75,7 +74,6 @@ type CloneVolumeCreated struct {
 func (o *CloneVolumeCreated) Error() string {
 	return fmt.Sprintf("[POST /storage/{id}/clone][%d] cloneVolumeCreated  %+v", 201, o.Payload)
 }
-
 func (o *CloneVolumeCreated) GetPayload() *types.Volume {
 	return o.Payload
 }
@@ -97,7 +95,7 @@ func NewCloneVolumeUnauthorized() *CloneVolumeUnauthorized {
 	return &CloneVolumeUnauthorized{}
 }
 
-/*CloneVolumeUnauthorized handles this case with default header values.
+/* CloneVolumeUnauthorized describes a response with status code 401, with default header values.
 
 unauthorized
 */
@@ -118,7 +116,7 @@ func NewCloneVolumeForbidden() *CloneVolumeForbidden {
 	return &CloneVolumeForbidden{}
 }
 
-/*CloneVolumeForbidden handles this case with default header values.
+/* CloneVolumeForbidden describes a response with status code 403, with default header values.
 
 forbidden
 */
@@ -139,7 +137,7 @@ func NewCloneVolumeNotFound() *CloneVolumeNotFound {
 	return &CloneVolumeNotFound{}
 }
 
-/*CloneVolumeNotFound handles this case with default header values.
+/* CloneVolumeNotFound describes a response with status code 404, with default header values.
 
 not found
 */
@@ -160,7 +158,7 @@ func NewCloneVolumeUnprocessableEntity() *CloneVolumeUnprocessableEntity {
 	return &CloneVolumeUnprocessableEntity{}
 }
 
-/*CloneVolumeUnprocessableEntity handles this case with default header values.
+/* CloneVolumeUnprocessableEntity describes a response with status code 422, with default header values.
 
 unprocessable entity
 */

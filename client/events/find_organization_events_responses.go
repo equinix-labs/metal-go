@@ -47,7 +47,6 @@ func (o *FindOrganizationEventsReader) ReadResponse(response runtime.ClientRespo
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -58,7 +57,7 @@ func NewFindOrganizationEventsOK() *FindOrganizationEventsOK {
 	return &FindOrganizationEventsOK{}
 }
 
-/*FindOrganizationEventsOK handles this case with default header values.
+/* FindOrganizationEventsOK describes a response with status code 200, with default header values.
 
 ok
 */
@@ -69,7 +68,6 @@ type FindOrganizationEventsOK struct {
 func (o *FindOrganizationEventsOK) Error() string {
 	return fmt.Sprintf("[GET /organizations/{id}/events][%d] findOrganizationEventsOK  %+v", 200, o.Payload)
 }
-
 func (o *FindOrganizationEventsOK) GetPayload() *types.EventList {
 	return o.Payload
 }
@@ -91,7 +89,7 @@ func NewFindOrganizationEventsUnauthorized() *FindOrganizationEventsUnauthorized
 	return &FindOrganizationEventsUnauthorized{}
 }
 
-/*FindOrganizationEventsUnauthorized handles this case with default header values.
+/* FindOrganizationEventsUnauthorized describes a response with status code 401, with default header values.
 
 unauthorized
 */
@@ -112,7 +110,7 @@ func NewFindOrganizationEventsForbidden() *FindOrganizationEventsForbidden {
 	return &FindOrganizationEventsForbidden{}
 }
 
-/*FindOrganizationEventsForbidden handles this case with default header values.
+/* FindOrganizationEventsForbidden describes a response with status code 403, with default header values.
 
 forbidden
 */
@@ -133,7 +131,7 @@ func NewFindOrganizationEventsNotFound() *FindOrganizationEventsNotFound {
 	return &FindOrganizationEventsNotFound{}
 }
 
-/*FindOrganizationEventsNotFound handles this case with default header values.
+/* FindOrganizationEventsNotFound describes a response with status code 404, with default header values.
 
 not found
 */

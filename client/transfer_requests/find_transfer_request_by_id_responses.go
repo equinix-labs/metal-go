@@ -47,7 +47,6 @@ func (o *FindTransferRequestByIDReader) ReadResponse(response runtime.ClientResp
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -58,7 +57,7 @@ func NewFindTransferRequestByIDOK() *FindTransferRequestByIDOK {
 	return &FindTransferRequestByIDOK{}
 }
 
-/*FindTransferRequestByIDOK handles this case with default header values.
+/* FindTransferRequestByIDOK describes a response with status code 200, with default header values.
 
 ok
 */
@@ -69,7 +68,6 @@ type FindTransferRequestByIDOK struct {
 func (o *FindTransferRequestByIDOK) Error() string {
 	return fmt.Sprintf("[GET /transfers/{id}][%d] findTransferRequestByIdOK  %+v", 200, o.Payload)
 }
-
 func (o *FindTransferRequestByIDOK) GetPayload() *types.TransferRequest {
 	return o.Payload
 }
@@ -91,7 +89,7 @@ func NewFindTransferRequestByIDUnauthorized() *FindTransferRequestByIDUnauthoriz
 	return &FindTransferRequestByIDUnauthorized{}
 }
 
-/*FindTransferRequestByIDUnauthorized handles this case with default header values.
+/* FindTransferRequestByIDUnauthorized describes a response with status code 401, with default header values.
 
 unauthorized
 */
@@ -112,7 +110,7 @@ func NewFindTransferRequestByIDForbidden() *FindTransferRequestByIDForbidden {
 	return &FindTransferRequestByIDForbidden{}
 }
 
-/*FindTransferRequestByIDForbidden handles this case with default header values.
+/* FindTransferRequestByIDForbidden describes a response with status code 403, with default header values.
 
 forbidden
 */
@@ -133,7 +131,7 @@ func NewFindTransferRequestByIDNotFound() *FindTransferRequestByIDNotFound {
 	return &FindTransferRequestByIDNotFound{}
 }
 
-/*FindTransferRequestByIDNotFound handles this case with default header values.
+/* FindTransferRequestByIDNotFound describes a response with status code 404, with default header values.
 
 not found
 */

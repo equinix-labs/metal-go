@@ -53,7 +53,6 @@ func (o *DeleteVirtualNetworkReader) ReadResponse(response runtime.ClientRespons
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -64,7 +63,7 @@ func NewDeleteVirtualNetworkOK() *DeleteVirtualNetworkOK {
 	return &DeleteVirtualNetworkOK{}
 }
 
-/*DeleteVirtualNetworkOK handles this case with default header values.
+/* DeleteVirtualNetworkOK describes a response with status code 200, with default header values.
 
 ok
 */
@@ -75,7 +74,6 @@ type DeleteVirtualNetworkOK struct {
 func (o *DeleteVirtualNetworkOK) Error() string {
 	return fmt.Sprintf("[DELETE /virtual-networks/{id}][%d] deleteVirtualNetworkOK  %+v", 200, o.Payload)
 }
-
 func (o *DeleteVirtualNetworkOK) GetPayload() *types.VirtualNetwork {
 	return o.Payload
 }
@@ -97,7 +95,7 @@ func NewDeleteVirtualNetworkUnauthorized() *DeleteVirtualNetworkUnauthorized {
 	return &DeleteVirtualNetworkUnauthorized{}
 }
 
-/*DeleteVirtualNetworkUnauthorized handles this case with default header values.
+/* DeleteVirtualNetworkUnauthorized describes a response with status code 401, with default header values.
 
 unauthorized
 */
@@ -118,7 +116,7 @@ func NewDeleteVirtualNetworkForbidden() *DeleteVirtualNetworkForbidden {
 	return &DeleteVirtualNetworkForbidden{}
 }
 
-/*DeleteVirtualNetworkForbidden handles this case with default header values.
+/* DeleteVirtualNetworkForbidden describes a response with status code 403, with default header values.
 
 forbidden
 */
@@ -139,7 +137,7 @@ func NewDeleteVirtualNetworkNotFound() *DeleteVirtualNetworkNotFound {
 	return &DeleteVirtualNetworkNotFound{}
 }
 
-/*DeleteVirtualNetworkNotFound handles this case with default header values.
+/* DeleteVirtualNetworkNotFound describes a response with status code 404, with default header values.
 
 not found
 */
@@ -160,7 +158,7 @@ func NewDeleteVirtualNetworkUnprocessableEntity() *DeleteVirtualNetworkUnprocess
 	return &DeleteVirtualNetworkUnprocessableEntity{}
 }
 
-/*DeleteVirtualNetworkUnprocessableEntity handles this case with default header values.
+/* DeleteVirtualNetworkUnprocessableEntity describes a response with status code 422, with default header values.
 
 unprocessable entity
 */

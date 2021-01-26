@@ -53,7 +53,6 @@ func (o *CreateVolumeAttachmentReader) ReadResponse(response runtime.ClientRespo
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -64,7 +63,7 @@ func NewCreateVolumeAttachmentCreated() *CreateVolumeAttachmentCreated {
 	return &CreateVolumeAttachmentCreated{}
 }
 
-/*CreateVolumeAttachmentCreated handles this case with default header values.
+/* CreateVolumeAttachmentCreated describes a response with status code 201, with default header values.
 
 created
 */
@@ -75,7 +74,6 @@ type CreateVolumeAttachmentCreated struct {
 func (o *CreateVolumeAttachmentCreated) Error() string {
 	return fmt.Sprintf("[POST /storage/{id}/attachments][%d] createVolumeAttachmentCreated  %+v", 201, o.Payload)
 }
-
 func (o *CreateVolumeAttachmentCreated) GetPayload() *types.VolumeAttachment {
 	return o.Payload
 }
@@ -97,7 +95,7 @@ func NewCreateVolumeAttachmentUnauthorized() *CreateVolumeAttachmentUnauthorized
 	return &CreateVolumeAttachmentUnauthorized{}
 }
 
-/*CreateVolumeAttachmentUnauthorized handles this case with default header values.
+/* CreateVolumeAttachmentUnauthorized describes a response with status code 401, with default header values.
 
 unauthorized
 */
@@ -118,7 +116,7 @@ func NewCreateVolumeAttachmentForbidden() *CreateVolumeAttachmentForbidden {
 	return &CreateVolumeAttachmentForbidden{}
 }
 
-/*CreateVolumeAttachmentForbidden handles this case with default header values.
+/* CreateVolumeAttachmentForbidden describes a response with status code 403, with default header values.
 
 forbidden
 */
@@ -139,7 +137,7 @@ func NewCreateVolumeAttachmentNotFound() *CreateVolumeAttachmentNotFound {
 	return &CreateVolumeAttachmentNotFound{}
 }
 
-/*CreateVolumeAttachmentNotFound handles this case with default header values.
+/* CreateVolumeAttachmentNotFound describes a response with status code 404, with default header values.
 
 not found
 */
@@ -160,7 +158,7 @@ func NewCreateVolumeAttachmentUnprocessableEntity() *CreateVolumeAttachmentUnpro
 	return &CreateVolumeAttachmentUnprocessableEntity{}
 }
 
-/*CreateVolumeAttachmentUnprocessableEntity handles this case with default header values.
+/* CreateVolumeAttachmentUnprocessableEntity describes a response with status code 422, with default header values.
 
 unprocessable entity
 */

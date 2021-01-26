@@ -6,6 +6,8 @@ package types
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -126,7 +128,6 @@ func (m *CapacityReport) Validate(formats strfmt.Registry) error {
 }
 
 func (m *CapacityReport) validateAms1(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Ams1) { // not required
 		return nil
 	}
@@ -144,7 +145,6 @@ func (m *CapacityReport) validateAms1(formats strfmt.Registry) error {
 }
 
 func (m *CapacityReport) validateAtl1(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Atl1) { // not required
 		return nil
 	}
@@ -162,7 +162,6 @@ func (m *CapacityReport) validateAtl1(formats strfmt.Registry) error {
 }
 
 func (m *CapacityReport) validateDfw1(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Dfw1) { // not required
 		return nil
 	}
@@ -180,7 +179,6 @@ func (m *CapacityReport) validateDfw1(formats strfmt.Registry) error {
 }
 
 func (m *CapacityReport) validateEwr1(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Ewr1) { // not required
 		return nil
 	}
@@ -198,7 +196,6 @@ func (m *CapacityReport) validateEwr1(formats strfmt.Registry) error {
 }
 
 func (m *CapacityReport) validateFra1(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Fra1) { // not required
 		return nil
 	}
@@ -216,7 +213,6 @@ func (m *CapacityReport) validateFra1(formats strfmt.Registry) error {
 }
 
 func (m *CapacityReport) validateIad1(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Iad1) { // not required
 		return nil
 	}
@@ -234,7 +230,6 @@ func (m *CapacityReport) validateIad1(formats strfmt.Registry) error {
 }
 
 func (m *CapacityReport) validateLax1(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Lax1) { // not required
 		return nil
 	}
@@ -252,7 +247,6 @@ func (m *CapacityReport) validateLax1(formats strfmt.Registry) error {
 }
 
 func (m *CapacityReport) validateNrt1(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Nrt1) { // not required
 		return nil
 	}
@@ -270,7 +264,6 @@ func (m *CapacityReport) validateNrt1(formats strfmt.Registry) error {
 }
 
 func (m *CapacityReport) validateOrd1(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Ord1) { // not required
 		return nil
 	}
@@ -288,7 +281,6 @@ func (m *CapacityReport) validateOrd1(formats strfmt.Registry) error {
 }
 
 func (m *CapacityReport) validateSea1(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Sea1) { // not required
 		return nil
 	}
@@ -306,7 +298,6 @@ func (m *CapacityReport) validateSea1(formats strfmt.Registry) error {
 }
 
 func (m *CapacityReport) validateSin1(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Sin1) { // not required
 		return nil
 	}
@@ -324,7 +315,6 @@ func (m *CapacityReport) validateSin1(formats strfmt.Registry) error {
 }
 
 func (m *CapacityReport) validateSjc1(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Sjc1) { // not required
 		return nil
 	}
@@ -342,7 +332,6 @@ func (m *CapacityReport) validateSjc1(formats strfmt.Registry) error {
 }
 
 func (m *CapacityReport) validateSyd1(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Syd1) { // not required
 		return nil
 	}
@@ -360,13 +349,274 @@ func (m *CapacityReport) validateSyd1(formats strfmt.Registry) error {
 }
 
 func (m *CapacityReport) validateYyz1(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Yyz1) { // not required
 		return nil
 	}
 
 	if m.Yyz1 != nil {
 		if err := m.Yyz1.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("yyz1")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// ContextValidate validate this capacity report based on the context it is used
+func (m *CapacityReport) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateAms1(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateAtl1(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateDfw1(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateEwr1(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateFra1(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateIad1(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateLax1(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateNrt1(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateOrd1(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateSea1(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateSin1(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateSjc1(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateSyd1(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateYyz1(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *CapacityReport) contextValidateAms1(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Ams1 != nil {
+		if err := m.Ams1.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("ams1")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *CapacityReport) contextValidateAtl1(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Atl1 != nil {
+		if err := m.Atl1.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("atl1")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *CapacityReport) contextValidateDfw1(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Dfw1 != nil {
+		if err := m.Dfw1.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("dfw1")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *CapacityReport) contextValidateEwr1(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Ewr1 != nil {
+		if err := m.Ewr1.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("ewr1")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *CapacityReport) contextValidateFra1(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Fra1 != nil {
+		if err := m.Fra1.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("fra1")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *CapacityReport) contextValidateIad1(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Iad1 != nil {
+		if err := m.Iad1.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("iad1")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *CapacityReport) contextValidateLax1(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Lax1 != nil {
+		if err := m.Lax1.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("lax1")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *CapacityReport) contextValidateNrt1(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Nrt1 != nil {
+		if err := m.Nrt1.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("nrt1")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *CapacityReport) contextValidateOrd1(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Ord1 != nil {
+		if err := m.Ord1.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("ord1")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *CapacityReport) contextValidateSea1(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Sea1 != nil {
+		if err := m.Sea1.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("sea1")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *CapacityReport) contextValidateSin1(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Sin1 != nil {
+		if err := m.Sin1.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("sin1")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *CapacityReport) contextValidateSjc1(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Sjc1 != nil {
+		if err := m.Sjc1.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("sjc1")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *CapacityReport) contextValidateSyd1(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Syd1 != nil {
+		if err := m.Syd1.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("syd1")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *CapacityReport) contextValidateYyz1(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Yyz1 != nil {
+		if err := m.Yyz1.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("yyz1")
 			}

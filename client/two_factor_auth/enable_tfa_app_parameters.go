@@ -16,52 +16,66 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewEnableTfaAppParams creates a new EnableTfaAppParams object
-// with the default values initialized.
+// NewEnableTfaAppParams creates a new EnableTfaAppParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewEnableTfaAppParams() *EnableTfaAppParams {
-
 	return &EnableTfaAppParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewEnableTfaAppParamsWithTimeout creates a new EnableTfaAppParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewEnableTfaAppParamsWithTimeout(timeout time.Duration) *EnableTfaAppParams {
-
 	return &EnableTfaAppParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewEnableTfaAppParamsWithContext creates a new EnableTfaAppParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewEnableTfaAppParamsWithContext(ctx context.Context) *EnableTfaAppParams {
-
 	return &EnableTfaAppParams{
-
 		Context: ctx,
 	}
 }
 
 // NewEnableTfaAppParamsWithHTTPClient creates a new EnableTfaAppParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewEnableTfaAppParamsWithHTTPClient(client *http.Client) *EnableTfaAppParams {
-
 	return &EnableTfaAppParams{
 		HTTPClient: client,
 	}
 }
 
-/*EnableTfaAppParams contains all the parameters to send to the API endpoint
-for the enable tfa app operation typically these are written to a http.Request
+/* EnableTfaAppParams contains all the parameters to send to the API endpoint
+   for the enable tfa app operation.
+
+   Typically these are written to a http.Request.
 */
 type EnableTfaAppParams struct {
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the enable tfa app params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *EnableTfaAppParams) WithDefaults() *EnableTfaAppParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the enable tfa app params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *EnableTfaAppParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the enable tfa app params

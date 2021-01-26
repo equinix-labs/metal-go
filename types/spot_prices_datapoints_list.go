@@ -6,6 +6,8 @@ package types
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/strfmt"
 )
 
@@ -16,5 +18,10 @@ type SpotPricesDatapointsList []float64
 
 // Validate validates this spot prices datapoints list
 func (m SpotPricesDatapointsList) Validate(formats strfmt.Registry) error {
+	return nil
+}
+
+// ContextValidate validates this spot prices datapoints list based on context it is used
+func (m SpotPricesDatapointsList) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }

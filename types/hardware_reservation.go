@@ -6,6 +6,8 @@ package types
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -87,7 +89,6 @@ func (m *HardwareReservation) Validate(formats strfmt.Registry) error {
 }
 
 func (m *HardwareReservation) validateCreatedAt(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.CreatedAt) { // not required
 		return nil
 	}
@@ -100,7 +101,6 @@ func (m *HardwareReservation) validateCreatedAt(formats strfmt.Registry) error {
 }
 
 func (m *HardwareReservation) validateDevice(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Device) { // not required
 		return nil
 	}
@@ -118,7 +118,6 @@ func (m *HardwareReservation) validateDevice(formats strfmt.Registry) error {
 }
 
 func (m *HardwareReservation) validateFacility(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Facility) { // not required
 		return nil
 	}
@@ -136,7 +135,6 @@ func (m *HardwareReservation) validateFacility(formats strfmt.Registry) error {
 }
 
 func (m *HardwareReservation) validateID(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.ID) { // not required
 		return nil
 	}
@@ -149,7 +147,6 @@ func (m *HardwareReservation) validateID(formats strfmt.Registry) error {
 }
 
 func (m *HardwareReservation) validatePlan(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Plan) { // not required
 		return nil
 	}
@@ -167,7 +164,6 @@ func (m *HardwareReservation) validatePlan(formats strfmt.Registry) error {
 }
 
 func (m *HardwareReservation) validateProject(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Project) { // not required
 		return nil
 	}
@@ -185,13 +181,94 @@ func (m *HardwareReservation) validateProject(formats strfmt.Registry) error {
 }
 
 func (m *HardwareReservation) validateRemoveAt(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.RemoveAt) { // not required
 		return nil
 	}
 
 	if err := validate.FormatOf("remove_at", "body", "date-time", m.RemoveAt.String(), formats); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+// ContextValidate validate this hardware reservation based on the context it is used
+func (m *HardwareReservation) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateDevice(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateFacility(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidatePlan(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateProject(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *HardwareReservation) contextValidateDevice(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Device != nil {
+		if err := m.Device.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("device")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *HardwareReservation) contextValidateFacility(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Facility != nil {
+		if err := m.Facility.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("facility")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *HardwareReservation) contextValidatePlan(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Plan != nil {
+		if err := m.Plan.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("plan")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *HardwareReservation) contextValidateProject(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Project != nil {
+		if err := m.Project.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("project")
+			}
+			return err
+		}
 	}
 
 	return nil

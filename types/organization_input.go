@@ -6,6 +6,7 @@ package types
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"io"
 
 	"github.com/go-openapi/errors"
@@ -72,7 +73,6 @@ func (m *OrganizationInput) Validate(formats strfmt.Registry) error {
 }
 
 func (m *OrganizationInput) validateAddress(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Address) { // not required
 		return nil
 	}
@@ -90,7 +90,6 @@ func (m *OrganizationInput) validateAddress(formats strfmt.Registry) error {
 }
 
 func (m *OrganizationInput) validateBillingAddress(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.BillingAddress) { // not required
 		return nil
 	}
@@ -108,13 +107,58 @@ func (m *OrganizationInput) validateBillingAddress(formats strfmt.Registry) erro
 }
 
 func (m *OrganizationInput) validateEnforce2faAt(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Enforce2faAt) { // not required
 		return nil
 	}
 
 	if err := validate.FormatOf("enforce_2fa_at", "body", "date-time", m.Enforce2faAt.String(), formats); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+// ContextValidate validate this organization input based on the context it is used
+func (m *OrganizationInput) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateAddress(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateBillingAddress(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *OrganizationInput) contextValidateAddress(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Address != nil {
+		if err := m.Address.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("address")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *OrganizationInput) contextValidateBillingAddress(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.BillingAddress != nil {
+		if err := m.BillingAddress.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("billing_address")
+			}
+			return err
+		}
 	}
 
 	return nil

@@ -6,6 +6,7 @@ package types
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"strconv"
 
 	"github.com/go-openapi/errors"
@@ -74,7 +75,6 @@ func (m *VirtualNetwork) Validate(formats strfmt.Registry) error {
 }
 
 func (m *VirtualNetwork) validateAssignedTo(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.AssignedTo) { // not required
 		return nil
 	}
@@ -92,7 +92,6 @@ func (m *VirtualNetwork) validateAssignedTo(formats strfmt.Registry) error {
 }
 
 func (m *VirtualNetwork) validateDescription(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Description) { // not required
 		return nil
 	}
@@ -105,7 +104,6 @@ func (m *VirtualNetwork) validateDescription(formats strfmt.Registry) error {
 }
 
 func (m *VirtualNetwork) validateFacility(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Facility) { // not required
 		return nil
 	}
@@ -123,7 +121,6 @@ func (m *VirtualNetwork) validateFacility(formats strfmt.Registry) error {
 }
 
 func (m *VirtualNetwork) validateID(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.ID) { // not required
 		return nil
 	}
@@ -136,7 +133,6 @@ func (m *VirtualNetwork) validateID(formats strfmt.Registry) error {
 }
 
 func (m *VirtualNetwork) validateInstances(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Instances) { // not required
 		return nil
 	}
@@ -148,6 +144,74 @@ func (m *VirtualNetwork) validateInstances(formats strfmt.Registry) error {
 
 		if m.Instances[i] != nil {
 			if err := m.Instances[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("instances" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+// ContextValidate validate this virtual network based on the context it is used
+func (m *VirtualNetwork) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateAssignedTo(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateFacility(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateInstances(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *VirtualNetwork) contextValidateAssignedTo(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.AssignedTo != nil {
+		if err := m.AssignedTo.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("assigned_to")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *VirtualNetwork) contextValidateFacility(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Facility != nil {
+		if err := m.Facility.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("facility")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *VirtualNetwork) contextValidateInstances(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Instances); i++ {
+
+		if m.Instances[i] != nil {
+			if err := m.Instances[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("instances" + "." + strconv.Itoa(i))
 				}

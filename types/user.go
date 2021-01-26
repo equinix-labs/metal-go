@@ -6,6 +6,7 @@ package types
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"strconv"
 
 	"github.com/go-openapi/errors"
@@ -115,7 +116,6 @@ func (m *User) Validate(formats strfmt.Registry) error {
 }
 
 func (m *User) validateCreatedAt(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.CreatedAt) { // not required
 		return nil
 	}
@@ -128,7 +128,6 @@ func (m *User) validateCreatedAt(formats strfmt.Registry) error {
 }
 
 func (m *User) validateEmails(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Emails) { // not required
 		return nil
 	}
@@ -153,7 +152,6 @@ func (m *User) validateEmails(formats strfmt.Registry) error {
 }
 
 func (m *User) validateID(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.ID) { // not required
 		return nil
 	}
@@ -166,7 +164,6 @@ func (m *User) validateID(formats strfmt.Registry) error {
 }
 
 func (m *User) validateLastLoginAt(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.LastLoginAt) { // not required
 		return nil
 	}
@@ -179,13 +176,44 @@ func (m *User) validateLastLoginAt(formats strfmt.Registry) error {
 }
 
 func (m *User) validateUpdatedAt(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.UpdatedAt) { // not required
 		return nil
 	}
 
 	if err := validate.FormatOf("updated_at", "body", "date-time", m.UpdatedAt.String(), formats); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+// ContextValidate validate this user based on the context it is used
+func (m *User) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateEmails(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *User) contextValidateEmails(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Emails); i++ {
+
+		if m.Emails[i] != nil {
+			if err := m.Emails[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("emails" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
 	}
 
 	return nil

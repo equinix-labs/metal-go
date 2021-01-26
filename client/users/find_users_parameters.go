@@ -17,69 +17,85 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// NewFindUsersParams creates a new FindUsersParams object
-// with the default values initialized.
+// NewFindUsersParams creates a new FindUsersParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewFindUsersParams() *FindUsersParams {
-	var ()
 	return &FindUsersParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewFindUsersParamsWithTimeout creates a new FindUsersParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewFindUsersParamsWithTimeout(timeout time.Duration) *FindUsersParams {
-	var ()
 	return &FindUsersParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewFindUsersParamsWithContext creates a new FindUsersParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewFindUsersParamsWithContext(ctx context.Context) *FindUsersParams {
-	var ()
 	return &FindUsersParams{
-
 		Context: ctx,
 	}
 }
 
 // NewFindUsersParamsWithHTTPClient creates a new FindUsersParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewFindUsersParamsWithHTTPClient(client *http.Client) *FindUsersParams {
-	var ()
 	return &FindUsersParams{
 		HTTPClient: client,
 	}
 }
 
-/*FindUsersParams contains all the parameters to send to the API endpoint
-for the find users operation typically these are written to a http.Request
+/* FindUsersParams contains all the parameters to send to the API endpoint
+   for the find users operation.
+
+   Typically these are written to a http.Request.
 */
 type FindUsersParams struct {
 
-	/*Include
-	  related attributes to include
+	/* Include.
 
+	   related attributes to include
 	*/
 	Include *string
-	/*Page
-	  page to display, default to 1, max 100_000
 
+	/* Page.
+
+	   page to display, default to 1, max 100_000
 	*/
 	Page *int64
-	/*PerPage
-	  items per page, default to 10, max 1_000
 
+	/* PerPage.
+
+	   items per page, default to 10, max 1_000
 	*/
 	PerPage *int64
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the find users params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *FindUsersParams) WithDefaults() *FindUsersParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the find users params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *FindUsersParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the find users params
@@ -160,48 +176,51 @@ func (o *FindUsersParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Reg
 
 		// query param include
 		var qrInclude string
+
 		if o.Include != nil {
 			qrInclude = *o.Include
 		}
 		qInclude := qrInclude
 		if qInclude != "" {
+
 			if err := r.SetQueryParam("include", qInclude); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	if o.Page != nil {
 
 		// query param page
 		var qrPage int64
+
 		if o.Page != nil {
 			qrPage = *o.Page
 		}
 		qPage := swag.FormatInt64(qrPage)
 		if qPage != "" {
+
 			if err := r.SetQueryParam("page", qPage); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	if o.PerPage != nil {
 
 		// query param per_page
 		var qrPerPage int64
+
 		if o.PerPage != nil {
 			qrPerPage = *o.PerPage
 		}
 		qPerPage := swag.FormatInt64(qrPerPage)
 		if qPerPage != "" {
+
 			if err := r.SetQueryParam("per_page", qPerPage); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	if len(res) > 0 {

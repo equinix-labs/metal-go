@@ -16,74 +16,91 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewFindSpotMarketPricesHistoryParams creates a new FindSpotMarketPricesHistoryParams object
-// with the default values initialized.
+// NewFindSpotMarketPricesHistoryParams creates a new FindSpotMarketPricesHistoryParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewFindSpotMarketPricesHistoryParams() *FindSpotMarketPricesHistoryParams {
-	var ()
 	return &FindSpotMarketPricesHistoryParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewFindSpotMarketPricesHistoryParamsWithTimeout creates a new FindSpotMarketPricesHistoryParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewFindSpotMarketPricesHistoryParamsWithTimeout(timeout time.Duration) *FindSpotMarketPricesHistoryParams {
-	var ()
 	return &FindSpotMarketPricesHistoryParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewFindSpotMarketPricesHistoryParamsWithContext creates a new FindSpotMarketPricesHistoryParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewFindSpotMarketPricesHistoryParamsWithContext(ctx context.Context) *FindSpotMarketPricesHistoryParams {
-	var ()
 	return &FindSpotMarketPricesHistoryParams{
-
 		Context: ctx,
 	}
 }
 
 // NewFindSpotMarketPricesHistoryParamsWithHTTPClient creates a new FindSpotMarketPricesHistoryParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewFindSpotMarketPricesHistoryParamsWithHTTPClient(client *http.Client) *FindSpotMarketPricesHistoryParams {
-	var ()
 	return &FindSpotMarketPricesHistoryParams{
 		HTTPClient: client,
 	}
 }
 
-/*FindSpotMarketPricesHistoryParams contains all the parameters to send to the API endpoint
-for the find spot market prices history operation typically these are written to a http.Request
+/* FindSpotMarketPricesHistoryParams contains all the parameters to send to the API endpoint
+   for the find spot market prices history operation.
+
+   Typically these are written to a http.Request.
 */
 type FindSpotMarketPricesHistoryParams struct {
 
-	/*Facility
-	  Facility to check spot market prices
+	/* Facility.
 
+	   Facility to check spot market prices
 	*/
 	Facility string
-	/*From
-	  Timestamp from range
 
+	/* From.
+
+	   Timestamp from range
 	*/
 	From string
-	/*Plan
-	  Plan to check spot market prices
 
+	/* Plan.
+
+	   Plan to check spot market prices
 	*/
 	Plan string
-	/*Until
-	  Timestamp to range
 
+	/* Until.
+
+	   Timestamp to range
 	*/
 	Until string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the find spot market prices history params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *FindSpotMarketPricesHistoryParams) WithDefaults() *FindSpotMarketPricesHistoryParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the find spot market prices history params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *FindSpotMarketPricesHistoryParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the find spot market prices history params
@@ -175,6 +192,7 @@ func (o *FindSpotMarketPricesHistoryParams) WriteToRequest(r runtime.ClientReque
 	qrFacility := o.Facility
 	qFacility := qrFacility
 	if qFacility != "" {
+
 		if err := r.SetQueryParam("facility", qFacility); err != nil {
 			return err
 		}
@@ -184,6 +202,7 @@ func (o *FindSpotMarketPricesHistoryParams) WriteToRequest(r runtime.ClientReque
 	qrFrom := o.From
 	qFrom := qrFrom
 	if qFrom != "" {
+
 		if err := r.SetQueryParam("from", qFrom); err != nil {
 			return err
 		}
@@ -193,6 +212,7 @@ func (o *FindSpotMarketPricesHistoryParams) WriteToRequest(r runtime.ClientReque
 	qrPlan := o.Plan
 	qPlan := qrPlan
 	if qPlan != "" {
+
 		if err := r.SetQueryParam("plan", qPlan); err != nil {
 			return err
 		}
@@ -202,6 +222,7 @@ func (o *FindSpotMarketPricesHistoryParams) WriteToRequest(r runtime.ClientReque
 	qrUntil := o.Until
 	qUntil := qrUntil
 	if qUntil != "" {
+
 		if err := r.SetQueryParam("until", qUntil); err != nil {
 			return err
 		}

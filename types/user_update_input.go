@@ -6,6 +6,7 @@ package types
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"io"
 
 	"github.com/go-openapi/strfmt"
@@ -42,6 +43,11 @@ type UserUpdateInput struct {
 
 // Validate validates this user update input
 func (m *UserUpdateInput) Validate(formats strfmt.Registry) error {
+	return nil
+}
+
+// ContextValidate validates this user update input based on context it is used
+func (m *UserUpdateInput) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

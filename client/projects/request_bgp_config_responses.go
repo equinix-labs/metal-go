@@ -50,7 +50,6 @@ func (o *RequestBGPConfigReader) ReadResponse(response runtime.ClientResponse, c
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -61,7 +60,7 @@ func NewRequestBGPConfigNoContent() *RequestBGPConfigNoContent {
 	return &RequestBGPConfigNoContent{}
 }
 
-/*RequestBGPConfigNoContent handles this case with default header values.
+/* RequestBGPConfigNoContent describes a response with status code 204, with default header values.
 
 no content
 */
@@ -82,7 +81,7 @@ func NewRequestBGPConfigUnauthorized() *RequestBGPConfigUnauthorized {
 	return &RequestBGPConfigUnauthorized{}
 }
 
-/*RequestBGPConfigUnauthorized handles this case with default header values.
+/* RequestBGPConfigUnauthorized describes a response with status code 401, with default header values.
 
 unauthorized
 */
@@ -103,7 +102,7 @@ func NewRequestBGPConfigForbidden() *RequestBGPConfigForbidden {
 	return &RequestBGPConfigForbidden{}
 }
 
-/*RequestBGPConfigForbidden handles this case with default header values.
+/* RequestBGPConfigForbidden describes a response with status code 403, with default header values.
 
 forbidden
 */
@@ -124,7 +123,7 @@ func NewRequestBGPConfigNotFound() *RequestBGPConfigNotFound {
 	return &RequestBGPConfigNotFound{}
 }
 
-/*RequestBGPConfigNotFound handles this case with default header values.
+/* RequestBGPConfigNotFound describes a response with status code 404, with default header values.
 
 not found
 */
@@ -145,7 +144,7 @@ func NewRequestBGPConfigUnprocessableEntity() *RequestBGPConfigUnprocessableEnti
 	return &RequestBGPConfigUnprocessableEntity{}
 }
 
-/*RequestBGPConfigUnprocessableEntity handles this case with default header values.
+/* RequestBGPConfigUnprocessableEntity describes a response with status code 422, with default header values.
 
 unprocessable entity
 */

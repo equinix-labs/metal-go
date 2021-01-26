@@ -18,64 +18,81 @@ import (
 	"github.com/t0mk/gometal/types"
 )
 
-// NewCreateOrganizationInvitationParams creates a new CreateOrganizationInvitationParams object
-// with the default values initialized.
+// NewCreateOrganizationInvitationParams creates a new CreateOrganizationInvitationParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewCreateOrganizationInvitationParams() *CreateOrganizationInvitationParams {
-	var ()
 	return &CreateOrganizationInvitationParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewCreateOrganizationInvitationParamsWithTimeout creates a new CreateOrganizationInvitationParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewCreateOrganizationInvitationParamsWithTimeout(timeout time.Duration) *CreateOrganizationInvitationParams {
-	var ()
 	return &CreateOrganizationInvitationParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewCreateOrganizationInvitationParamsWithContext creates a new CreateOrganizationInvitationParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewCreateOrganizationInvitationParamsWithContext(ctx context.Context) *CreateOrganizationInvitationParams {
-	var ()
 	return &CreateOrganizationInvitationParams{
-
 		Context: ctx,
 	}
 }
 
 // NewCreateOrganizationInvitationParamsWithHTTPClient creates a new CreateOrganizationInvitationParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewCreateOrganizationInvitationParamsWithHTTPClient(client *http.Client) *CreateOrganizationInvitationParams {
-	var ()
 	return &CreateOrganizationInvitationParams{
 		HTTPClient: client,
 	}
 }
 
-/*CreateOrganizationInvitationParams contains all the parameters to send to the API endpoint
-for the create organization invitation operation typically these are written to a http.Request
+/* CreateOrganizationInvitationParams contains all the parameters to send to the API endpoint
+   for the create organization invitation operation.
+
+   Typically these are written to a http.Request.
 */
 type CreateOrganizationInvitationParams struct {
 
-	/*ID
-	  Organization UUID
+	/* ID.
 
+	   Organization UUID
+
+	   Format: uuid
 	*/
 	ID strfmt.UUID
-	/*Invitation
-	  Invitation to create
 
+	/* Invitation.
+
+	   Invitation to create
 	*/
 	Invitation *types.InvitationInput
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the create organization invitation params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *CreateOrganizationInvitationParams) WithDefaults() *CreateOrganizationInvitationParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the create organization invitation params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *CreateOrganizationInvitationParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the create organization invitation params
@@ -145,7 +162,6 @@ func (o *CreateOrganizationInvitationParams) WriteToRequest(r runtime.ClientRequ
 	if err := r.SetPathParam("id", o.ID.String()); err != nil {
 		return err
 	}
-
 	if o.Invitation != nil {
 		if err := r.SetBodyParam(o.Invitation); err != nil {
 			return err

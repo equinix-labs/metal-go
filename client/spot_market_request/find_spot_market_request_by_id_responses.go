@@ -47,7 +47,6 @@ func (o *FindSpotMarketRequestByIDReader) ReadResponse(response runtime.ClientRe
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -58,7 +57,7 @@ func NewFindSpotMarketRequestByIDOK() *FindSpotMarketRequestByIDOK {
 	return &FindSpotMarketRequestByIDOK{}
 }
 
-/*FindSpotMarketRequestByIDOK handles this case with default header values.
+/* FindSpotMarketRequestByIDOK describes a response with status code 200, with default header values.
 
 ok
 */
@@ -69,7 +68,6 @@ type FindSpotMarketRequestByIDOK struct {
 func (o *FindSpotMarketRequestByIDOK) Error() string {
 	return fmt.Sprintf("[GET /spot-market-requests/{id}][%d] findSpotMarketRequestByIdOK  %+v", 200, o.Payload)
 }
-
 func (o *FindSpotMarketRequestByIDOK) GetPayload() *types.SpotMarketRequest {
 	return o.Payload
 }
@@ -91,7 +89,7 @@ func NewFindSpotMarketRequestByIDUnauthorized() *FindSpotMarketRequestByIDUnauth
 	return &FindSpotMarketRequestByIDUnauthorized{}
 }
 
-/*FindSpotMarketRequestByIDUnauthorized handles this case with default header values.
+/* FindSpotMarketRequestByIDUnauthorized describes a response with status code 401, with default header values.
 
 unauthorized
 */
@@ -112,7 +110,7 @@ func NewFindSpotMarketRequestByIDForbidden() *FindSpotMarketRequestByIDForbidden
 	return &FindSpotMarketRequestByIDForbidden{}
 }
 
-/*FindSpotMarketRequestByIDForbidden handles this case with default header values.
+/* FindSpotMarketRequestByIDForbidden describes a response with status code 403, with default header values.
 
 forbidden
 */
@@ -133,7 +131,7 @@ func NewFindSpotMarketRequestByIDNotFound() *FindSpotMarketRequestByIDNotFound {
 	return &FindSpotMarketRequestByIDNotFound{}
 }
 
-/*FindSpotMarketRequestByIDNotFound handles this case with default header values.
+/* FindSpotMarketRequestByIDNotFound describes a response with status code 404, with default header values.
 
 not found
 */

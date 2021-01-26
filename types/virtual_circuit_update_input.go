@@ -6,6 +6,8 @@ package types
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
@@ -33,6 +35,11 @@ type VirtualCircuitUpdateInput struct {
 
 // Validate validates this virtual circuit update input
 func (m *VirtualCircuitUpdateInput) Validate(formats strfmt.Registry) error {
+	return nil
+}
+
+// ContextValidate validates this virtual circuit update input based on context it is used
+func (m *VirtualCircuitUpdateInput) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

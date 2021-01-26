@@ -16,64 +16,83 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewFindIPReservationCustomdataParams creates a new FindIPReservationCustomdataParams object
-// with the default values initialized.
+// NewFindIPReservationCustomdataParams creates a new FindIPReservationCustomdataParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewFindIPReservationCustomdataParams() *FindIPReservationCustomdataParams {
-	var ()
 	return &FindIPReservationCustomdataParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewFindIPReservationCustomdataParamsWithTimeout creates a new FindIPReservationCustomdataParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewFindIPReservationCustomdataParamsWithTimeout(timeout time.Duration) *FindIPReservationCustomdataParams {
-	var ()
 	return &FindIPReservationCustomdataParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewFindIPReservationCustomdataParamsWithContext creates a new FindIPReservationCustomdataParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewFindIPReservationCustomdataParamsWithContext(ctx context.Context) *FindIPReservationCustomdataParams {
-	var ()
 	return &FindIPReservationCustomdataParams{
-
 		Context: ctx,
 	}
 }
 
 // NewFindIPReservationCustomdataParamsWithHTTPClient creates a new FindIPReservationCustomdataParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewFindIPReservationCustomdataParamsWithHTTPClient(client *http.Client) *FindIPReservationCustomdataParams {
-	var ()
 	return &FindIPReservationCustomdataParams{
 		HTTPClient: client,
 	}
 }
 
-/*FindIPReservationCustomdataParams contains all the parameters to send to the API endpoint
-for the find IP reservation customdata operation typically these are written to a http.Request
+/* FindIPReservationCustomdataParams contains all the parameters to send to the API endpoint
+   for the find IP reservation customdata operation.
+
+   Typically these are written to a http.Request.
 */
 type FindIPReservationCustomdataParams struct {
 
-	/*ID
-	  Ip Reservation UUID
+	/* ID.
 
+	   Ip Reservation UUID
+
+	   Format: uuid
 	*/
 	ID strfmt.UUID
-	/*ProjectID
-	  Project UUID
 
+	/* ProjectID.
+
+	   Project UUID
+
+	   Format: uuid
 	*/
 	ProjectID strfmt.UUID
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the find IP reservation customdata params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *FindIPReservationCustomdataParams) WithDefaults() *FindIPReservationCustomdataParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the find IP reservation customdata params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *FindIPReservationCustomdataParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the find IP reservation customdata params

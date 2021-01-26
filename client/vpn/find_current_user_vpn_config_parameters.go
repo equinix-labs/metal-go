@@ -16,59 +16,73 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewFindCurrentUserVPNConfigParams creates a new FindCurrentUserVPNConfigParams object
-// with the default values initialized.
+// NewFindCurrentUserVPNConfigParams creates a new FindCurrentUserVPNConfigParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewFindCurrentUserVPNConfigParams() *FindCurrentUserVPNConfigParams {
-	var ()
 	return &FindCurrentUserVPNConfigParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewFindCurrentUserVPNConfigParamsWithTimeout creates a new FindCurrentUserVPNConfigParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewFindCurrentUserVPNConfigParamsWithTimeout(timeout time.Duration) *FindCurrentUserVPNConfigParams {
-	var ()
 	return &FindCurrentUserVPNConfigParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewFindCurrentUserVPNConfigParamsWithContext creates a new FindCurrentUserVPNConfigParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewFindCurrentUserVPNConfigParamsWithContext(ctx context.Context) *FindCurrentUserVPNConfigParams {
-	var ()
 	return &FindCurrentUserVPNConfigParams{
-
 		Context: ctx,
 	}
 }
 
 // NewFindCurrentUserVPNConfigParamsWithHTTPClient creates a new FindCurrentUserVPNConfigParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewFindCurrentUserVPNConfigParamsWithHTTPClient(client *http.Client) *FindCurrentUserVPNConfigParams {
-	var ()
 	return &FindCurrentUserVPNConfigParams{
 		HTTPClient: client,
 	}
 }
 
-/*FindCurrentUserVPNConfigParams contains all the parameters to send to the API endpoint
-for the find current user Vpn config operation typically these are written to a http.Request
+/* FindCurrentUserVPNConfigParams contains all the parameters to send to the API endpoint
+   for the find current user Vpn config operation.
+
+   Typically these are written to a http.Request.
 */
 type FindCurrentUserVPNConfigParams struct {
 
-	/*Code
-	  Facility code
+	/* Code.
 
+	   Facility code
 	*/
 	Code string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the find current user Vpn config params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *FindCurrentUserVPNConfigParams) WithDefaults() *FindCurrentUserVPNConfigParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the find current user Vpn config params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *FindCurrentUserVPNConfigParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the find current user Vpn config params
@@ -127,6 +141,7 @@ func (o *FindCurrentUserVPNConfigParams) WriteToRequest(r runtime.ClientRequest,
 	qrCode := o.Code
 	qCode := qrCode
 	if qCode != "" {
+
 		if err := r.SetQueryParam("code", qCode); err != nil {
 			return err
 		}

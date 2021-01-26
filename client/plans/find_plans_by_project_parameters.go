@@ -16,64 +16,81 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewFindPlansByProjectParams creates a new FindPlansByProjectParams object
-// with the default values initialized.
+// NewFindPlansByProjectParams creates a new FindPlansByProjectParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewFindPlansByProjectParams() *FindPlansByProjectParams {
-	var ()
 	return &FindPlansByProjectParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewFindPlansByProjectParamsWithTimeout creates a new FindPlansByProjectParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewFindPlansByProjectParamsWithTimeout(timeout time.Duration) *FindPlansByProjectParams {
-	var ()
 	return &FindPlansByProjectParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewFindPlansByProjectParamsWithContext creates a new FindPlansByProjectParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewFindPlansByProjectParamsWithContext(ctx context.Context) *FindPlansByProjectParams {
-	var ()
 	return &FindPlansByProjectParams{
-
 		Context: ctx,
 	}
 }
 
 // NewFindPlansByProjectParamsWithHTTPClient creates a new FindPlansByProjectParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewFindPlansByProjectParamsWithHTTPClient(client *http.Client) *FindPlansByProjectParams {
-	var ()
 	return &FindPlansByProjectParams{
 		HTTPClient: client,
 	}
 }
 
-/*FindPlansByProjectParams contains all the parameters to send to the API endpoint
-for the find plans by project operation typically these are written to a http.Request
+/* FindPlansByProjectParams contains all the parameters to send to the API endpoint
+   for the find plans by project operation.
+
+   Typically these are written to a http.Request.
 */
 type FindPlansByProjectParams struct {
 
-	/*ID
-	  Project UUID
+	/* ID.
 
+	   Project UUID
+
+	   Format: uuid
 	*/
 	ID strfmt.UUID
-	/*Include
-	  related attributes to include
 
+	/* Include.
+
+	   related attributes to include
 	*/
 	Include *string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the find plans by project params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *FindPlansByProjectParams) WithDefaults() *FindPlansByProjectParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the find plans by project params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *FindPlansByProjectParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the find plans by project params
@@ -148,16 +165,17 @@ func (o *FindPlansByProjectParams) WriteToRequest(r runtime.ClientRequest, reg s
 
 		// query param include
 		var qrInclude string
+
 		if o.Include != nil {
 			qrInclude = *o.Include
 		}
 		qInclude := qrInclude
 		if qInclude != "" {
+
 			if err := r.SetQueryParam("include", qInclude); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	if len(res) > 0 {

@@ -29,7 +29,6 @@ func (o *FindSpotMarketPricesReader) ReadResponse(response runtime.ClientRespons
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -40,7 +39,7 @@ func NewFindSpotMarketPricesOK() *FindSpotMarketPricesOK {
 	return &FindSpotMarketPricesOK{}
 }
 
-/*FindSpotMarketPricesOK handles this case with default header values.
+/* FindSpotMarketPricesOK describes a response with status code 200, with default header values.
 
 ok
 */
@@ -51,7 +50,6 @@ type FindSpotMarketPricesOK struct {
 func (o *FindSpotMarketPricesOK) Error() string {
 	return fmt.Sprintf("[GET /market/spot/prices][%d] findSpotMarketPricesOK  %+v", 200, o.Payload)
 }
-
 func (o *FindSpotMarketPricesOK) GetPayload() *types.SpotMarketPricesList {
 	return o.Payload
 }

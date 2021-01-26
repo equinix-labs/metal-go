@@ -50,7 +50,6 @@ func (o *UpdateBGPSessionReader) ReadResponse(response runtime.ClientResponse, c
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -61,7 +60,7 @@ func NewUpdateBGPSessionOK() *UpdateBGPSessionOK {
 	return &UpdateBGPSessionOK{}
 }
 
-/*UpdateBGPSessionOK handles this case with default header values.
+/* UpdateBGPSessionOK describes a response with status code 200, with default header values.
 
 ok
 */
@@ -82,7 +81,7 @@ func NewUpdateBGPSessionUnauthorized() *UpdateBGPSessionUnauthorized {
 	return &UpdateBGPSessionUnauthorized{}
 }
 
-/*UpdateBGPSessionUnauthorized handles this case with default header values.
+/* UpdateBGPSessionUnauthorized describes a response with status code 401, with default header values.
 
 unauthorized
 */
@@ -103,7 +102,7 @@ func NewUpdateBGPSessionForbidden() *UpdateBGPSessionForbidden {
 	return &UpdateBGPSessionForbidden{}
 }
 
-/*UpdateBGPSessionForbidden handles this case with default header values.
+/* UpdateBGPSessionForbidden describes a response with status code 403, with default header values.
 
 forbidden
 */
@@ -124,7 +123,7 @@ func NewUpdateBGPSessionNotFound() *UpdateBGPSessionNotFound {
 	return &UpdateBGPSessionNotFound{}
 }
 
-/*UpdateBGPSessionNotFound handles this case with default header values.
+/* UpdateBGPSessionNotFound describes a response with status code 404, with default header values.
 
 not found
 */
@@ -145,7 +144,7 @@ func NewUpdateBGPSessionUnprocessableEntity() *UpdateBGPSessionUnprocessableEnti
 	return &UpdateBGPSessionUnprocessableEntity{}
 }
 
-/*UpdateBGPSessionUnprocessableEntity handles this case with default header values.
+/* UpdateBGPSessionUnprocessableEntity describes a response with status code 422, with default header values.
 
 unprocessable entity
 */

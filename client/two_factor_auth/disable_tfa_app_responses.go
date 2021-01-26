@@ -38,7 +38,6 @@ func (o *DisableTfaAppReader) ReadResponse(response runtime.ClientResponse, cons
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -49,7 +48,7 @@ func NewDisableTfaAppNoContent() *DisableTfaAppNoContent {
 	return &DisableTfaAppNoContent{}
 }
 
-/*DisableTfaAppNoContent handles this case with default header values.
+/* DisableTfaAppNoContent describes a response with status code 204, with default header values.
 
 no content
 */
@@ -70,7 +69,7 @@ func NewDisableTfaAppUnauthorized() *DisableTfaAppUnauthorized {
 	return &DisableTfaAppUnauthorized{}
 }
 
-/*DisableTfaAppUnauthorized handles this case with default header values.
+/* DisableTfaAppUnauthorized describes a response with status code 401, with default header values.
 
 unauthorized
 */
@@ -91,7 +90,7 @@ func NewDisableTfaAppNotFound() *DisableTfaAppNotFound {
 	return &DisableTfaAppNotFound{}
 }
 
-/*DisableTfaAppNotFound handles this case with default header values.
+/* DisableTfaAppNotFound describes a response with status code 404, with default header values.
 
 not found
 */

@@ -16,64 +16,81 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewFindOrganizationByIDParams creates a new FindOrganizationByIDParams object
-// with the default values initialized.
+// NewFindOrganizationByIDParams creates a new FindOrganizationByIDParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewFindOrganizationByIDParams() *FindOrganizationByIDParams {
-	var ()
 	return &FindOrganizationByIDParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewFindOrganizationByIDParamsWithTimeout creates a new FindOrganizationByIDParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewFindOrganizationByIDParamsWithTimeout(timeout time.Duration) *FindOrganizationByIDParams {
-	var ()
 	return &FindOrganizationByIDParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewFindOrganizationByIDParamsWithContext creates a new FindOrganizationByIDParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewFindOrganizationByIDParamsWithContext(ctx context.Context) *FindOrganizationByIDParams {
-	var ()
 	return &FindOrganizationByIDParams{
-
 		Context: ctx,
 	}
 }
 
 // NewFindOrganizationByIDParamsWithHTTPClient creates a new FindOrganizationByIDParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewFindOrganizationByIDParamsWithHTTPClient(client *http.Client) *FindOrganizationByIDParams {
-	var ()
 	return &FindOrganizationByIDParams{
 		HTTPClient: client,
 	}
 }
 
-/*FindOrganizationByIDParams contains all the parameters to send to the API endpoint
-for the find organization by Id operation typically these are written to a http.Request
+/* FindOrganizationByIDParams contains all the parameters to send to the API endpoint
+   for the find organization by Id operation.
+
+   Typically these are written to a http.Request.
 */
 type FindOrganizationByIDParams struct {
 
-	/*ID
-	  Organization UUID
+	/* ID.
 
+	   Organization UUID
+
+	   Format: uuid
 	*/
 	ID strfmt.UUID
-	/*Include
-	  related attributes to include
 
+	/* Include.
+
+	   related attributes to include
 	*/
 	Include *string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the find organization by Id params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *FindOrganizationByIDParams) WithDefaults() *FindOrganizationByIDParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the find organization by Id params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *FindOrganizationByIDParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the find organization by Id params
@@ -148,16 +165,17 @@ func (o *FindOrganizationByIDParams) WriteToRequest(r runtime.ClientRequest, reg
 
 		// query param include
 		var qrInclude string
+
 		if o.Include != nil {
 			qrInclude = *o.Include
 		}
 		qInclude := qrInclude
 		if qInclude != "" {
+
 			if err := r.SetQueryParam("include", qInclude); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	if len(res) > 0 {

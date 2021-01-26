@@ -6,6 +6,7 @@ package types
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"strconv"
 
 	"github.com/go-openapi/errors"
@@ -37,7 +38,6 @@ func (m *VirtualCircuitList) Validate(formats strfmt.Registry) error {
 }
 
 func (m *VirtualCircuitList) validateVirtualCircuits(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.VirtualCircuits) { // not required
 		return nil
 	}
@@ -49,6 +49,38 @@ func (m *VirtualCircuitList) validateVirtualCircuits(formats strfmt.Registry) er
 
 		if m.VirtualCircuits[i] != nil {
 			if err := m.VirtualCircuits[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("virtual_circuits" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+// ContextValidate validate this virtual circuit list based on the context it is used
+func (m *VirtualCircuitList) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateVirtualCircuits(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *VirtualCircuitList) contextValidateVirtualCircuits(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.VirtualCircuits); i++ {
+
+		if m.VirtualCircuits[i] != nil {
+			if err := m.VirtualCircuits[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("virtual_circuits" + "." + strconv.Itoa(i))
 				}

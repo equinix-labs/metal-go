@@ -6,6 +6,7 @@ package types
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"strconv"
 
 	"github.com/go-openapi/errors"
@@ -37,7 +38,6 @@ func (m *BGPSessionList) Validate(formats strfmt.Registry) error {
 }
 
 func (m *BGPSessionList) validateBGPSessions(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.BGPSessions) { // not required
 		return nil
 	}
@@ -49,6 +49,38 @@ func (m *BGPSessionList) validateBGPSessions(formats strfmt.Registry) error {
 
 		if m.BGPSessions[i] != nil {
 			if err := m.BGPSessions[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("bgp_sessions" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+// ContextValidate validate this Bgp session list based on the context it is used
+func (m *BGPSessionList) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateBGPSessions(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *BGPSessionList) contextValidateBGPSessions(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.BGPSessions); i++ {
+
+		if m.BGPSessions[i] != nil {
+			if err := m.BGPSessions[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("bgp_sessions" + "." + strconv.Itoa(i))
 				}

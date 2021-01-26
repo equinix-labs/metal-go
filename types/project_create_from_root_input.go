@@ -6,6 +6,8 @@ package types
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -65,7 +67,6 @@ func (m *ProjectCreateFromRootInput) validateName(formats strfmt.Registry) error
 }
 
 func (m *ProjectCreateFromRootInput) validateOrganizationID(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.OrganizationID) { // not required
 		return nil
 	}
@@ -78,7 +79,6 @@ func (m *ProjectCreateFromRootInput) validateOrganizationID(formats strfmt.Regis
 }
 
 func (m *ProjectCreateFromRootInput) validatePaymentMethodID(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.PaymentMethodID) { // not required
 		return nil
 	}
@@ -87,6 +87,11 @@ func (m *ProjectCreateFromRootInput) validatePaymentMethodID(formats strfmt.Regi
 		return err
 	}
 
+	return nil
+}
+
+// ContextValidate validates this project create from root input based on context it is used
+func (m *ProjectCreateFromRootInput) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

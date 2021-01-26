@@ -16,59 +16,75 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewDeleteBGPSessionParams creates a new DeleteBGPSessionParams object
-// with the default values initialized.
+// NewDeleteBGPSessionParams creates a new DeleteBGPSessionParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewDeleteBGPSessionParams() *DeleteBGPSessionParams {
-	var ()
 	return &DeleteBGPSessionParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewDeleteBGPSessionParamsWithTimeout creates a new DeleteBGPSessionParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewDeleteBGPSessionParamsWithTimeout(timeout time.Duration) *DeleteBGPSessionParams {
-	var ()
 	return &DeleteBGPSessionParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewDeleteBGPSessionParamsWithContext creates a new DeleteBGPSessionParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewDeleteBGPSessionParamsWithContext(ctx context.Context) *DeleteBGPSessionParams {
-	var ()
 	return &DeleteBGPSessionParams{
-
 		Context: ctx,
 	}
 }
 
 // NewDeleteBGPSessionParamsWithHTTPClient creates a new DeleteBGPSessionParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewDeleteBGPSessionParamsWithHTTPClient(client *http.Client) *DeleteBGPSessionParams {
-	var ()
 	return &DeleteBGPSessionParams{
 		HTTPClient: client,
 	}
 }
 
-/*DeleteBGPSessionParams contains all the parameters to send to the API endpoint
-for the delete Bgp session operation typically these are written to a http.Request
+/* DeleteBGPSessionParams contains all the parameters to send to the API endpoint
+   for the delete Bgp session operation.
+
+   Typically these are written to a http.Request.
 */
 type DeleteBGPSessionParams struct {
 
-	/*ID
-	  BGP session UUID
+	/* ID.
 
+	   BGP session UUID
+
+	   Format: uuid
 	*/
 	ID strfmt.UUID
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the delete Bgp session params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *DeleteBGPSessionParams) WithDefaults() *DeleteBGPSessionParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the delete Bgp session params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *DeleteBGPSessionParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the delete Bgp session params

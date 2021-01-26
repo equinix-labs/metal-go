@@ -6,6 +6,7 @@ package types
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"strconv"
 
 	"github.com/go-openapi/errors"
@@ -37,7 +38,6 @@ func (m *SSHKeyList) Validate(formats strfmt.Registry) error {
 }
 
 func (m *SSHKeyList) validateSSHKeys(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.SSHKeys) { // not required
 		return nil
 	}
@@ -49,6 +49,38 @@ func (m *SSHKeyList) validateSSHKeys(formats strfmt.Registry) error {
 
 		if m.SSHKeys[i] != nil {
 			if err := m.SSHKeys[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("ssh_keys" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+// ContextValidate validate this SSH key list based on the context it is used
+func (m *SSHKeyList) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateSSHKeys(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *SSHKeyList) contextValidateSSHKeys(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.SSHKeys); i++ {
+
+		if m.SSHKeys[i] != nil {
+			if err := m.SSHKeys[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("ssh_keys" + "." + strconv.Itoa(i))
 				}

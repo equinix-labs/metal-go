@@ -6,6 +6,7 @@ package types
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"strconv"
 
 	"github.com/go-openapi/errors"
@@ -72,7 +73,6 @@ func (m *Port) Validate(formats strfmt.Registry) error {
 }
 
 func (m *Port) validateConnectedPort(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.ConnectedPort) { // not required
 		return nil
 	}
@@ -90,7 +90,6 @@ func (m *Port) validateConnectedPort(formats strfmt.Registry) error {
 }
 
 func (m *Port) validateHardware(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Hardware) { // not required
 		return nil
 	}
@@ -108,7 +107,6 @@ func (m *Port) validateHardware(formats strfmt.Registry) error {
 }
 
 func (m *Port) validateID(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.ID) { // not required
 		return nil
 	}
@@ -121,7 +119,6 @@ func (m *Port) validateID(formats strfmt.Registry) error {
 }
 
 func (m *Port) validateVirtualNetworks(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.VirtualNetworks) { // not required
 		return nil
 	}
@@ -133,6 +130,74 @@ func (m *Port) validateVirtualNetworks(formats strfmt.Registry) error {
 
 		if m.VirtualNetworks[i] != nil {
 			if err := m.VirtualNetworks[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("virtual_networks" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+// ContextValidate validate this port based on the context it is used
+func (m *Port) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateConnectedPort(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateHardware(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVirtualNetworks(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *Port) contextValidateConnectedPort(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.ConnectedPort != nil {
+		if err := m.ConnectedPort.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("connected_port")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *Port) contextValidateHardware(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Hardware != nil {
+		if err := m.Hardware.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("hardware")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *Port) contextValidateVirtualNetworks(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.VirtualNetworks); i++ {
+
+		if m.VirtualNetworks[i] != nil {
+			if err := m.VirtualNetworks[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("virtual_networks" + "." + strconv.Itoa(i))
 				}

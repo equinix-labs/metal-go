@@ -6,6 +6,7 @@ package types
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"strconv"
 
 	"github.com/go-openapi/errors"
@@ -114,7 +115,6 @@ func (m *Volume) Validate(formats strfmt.Registry) error {
 }
 
 func (m *Volume) validateAttachments(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Attachments) { // not required
 		return nil
 	}
@@ -139,7 +139,6 @@ func (m *Volume) validateAttachments(formats strfmt.Registry) error {
 }
 
 func (m *Volume) validateCreatedAt(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.CreatedAt) { // not required
 		return nil
 	}
@@ -152,7 +151,6 @@ func (m *Volume) validateCreatedAt(formats strfmt.Registry) error {
 }
 
 func (m *Volume) validateFacility(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Facility) { // not required
 		return nil
 	}
@@ -170,7 +168,6 @@ func (m *Volume) validateFacility(formats strfmt.Registry) error {
 }
 
 func (m *Volume) validateID(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.ID) { // not required
 		return nil
 	}
@@ -183,7 +180,6 @@ func (m *Volume) validateID(formats strfmt.Registry) error {
 }
 
 func (m *Volume) validatePlan(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Plan) { // not required
 		return nil
 	}
@@ -201,7 +197,6 @@ func (m *Volume) validatePlan(formats strfmt.Registry) error {
 }
 
 func (m *Volume) validateProject(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Project) { // not required
 		return nil
 	}
@@ -219,7 +214,6 @@ func (m *Volume) validateProject(formats strfmt.Registry) error {
 }
 
 func (m *Volume) validateSnapshotPolicies(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.SnapshotPolicies) { // not required
 		return nil
 	}
@@ -244,13 +238,120 @@ func (m *Volume) validateSnapshotPolicies(formats strfmt.Registry) error {
 }
 
 func (m *Volume) validateUpdatedAt(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.UpdatedAt) { // not required
 		return nil
 	}
 
 	if err := validate.FormatOf("updated_at", "body", "date-time", m.UpdatedAt.String(), formats); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+// ContextValidate validate this volume based on the context it is used
+func (m *Volume) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateAttachments(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateFacility(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidatePlan(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateProject(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateSnapshotPolicies(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *Volume) contextValidateAttachments(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Attachments); i++ {
+
+		if m.Attachments[i] != nil {
+			if err := m.Attachments[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("attachments" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *Volume) contextValidateFacility(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Facility != nil {
+		if err := m.Facility.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("facility")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *Volume) contextValidatePlan(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Plan != nil {
+		if err := m.Plan.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("plan")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *Volume) contextValidateProject(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Project != nil {
+		if err := m.Project.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("project")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *Volume) contextValidateSnapshotPolicies(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.SnapshotPolicies); i++ {
+
+		if m.SnapshotPolicies[i] != nil {
+			if err := m.SnapshotPolicies[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("snapshot_policies" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
 	}
 
 	return nil

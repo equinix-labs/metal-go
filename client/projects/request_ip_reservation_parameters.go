@@ -18,64 +18,81 @@ import (
 	"github.com/t0mk/gometal/types"
 )
 
-// NewRequestIPReservationParams creates a new RequestIPReservationParams object
-// with the default values initialized.
+// NewRequestIPReservationParams creates a new RequestIPReservationParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewRequestIPReservationParams() *RequestIPReservationParams {
-	var ()
 	return &RequestIPReservationParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewRequestIPReservationParamsWithTimeout creates a new RequestIPReservationParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewRequestIPReservationParamsWithTimeout(timeout time.Duration) *RequestIPReservationParams {
-	var ()
 	return &RequestIPReservationParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewRequestIPReservationParamsWithContext creates a new RequestIPReservationParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewRequestIPReservationParamsWithContext(ctx context.Context) *RequestIPReservationParams {
-	var ()
 	return &RequestIPReservationParams{
-
 		Context: ctx,
 	}
 }
 
 // NewRequestIPReservationParamsWithHTTPClient creates a new RequestIPReservationParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewRequestIPReservationParamsWithHTTPClient(client *http.Client) *RequestIPReservationParams {
-	var ()
 	return &RequestIPReservationParams{
 		HTTPClient: client,
 	}
 }
 
-/*RequestIPReservationParams contains all the parameters to send to the API endpoint
-for the request IP reservation operation typically these are written to a http.Request
+/* RequestIPReservationParams contains all the parameters to send to the API endpoint
+   for the request IP reservation operation.
+
+   Typically these are written to a http.Request.
 */
 type RequestIPReservationParams struct {
 
-	/*ID
-	  Project UUID
+	/* ID.
 
+	   Project UUID
+
+	   Format: uuid
 	*/
 	ID strfmt.UUID
-	/*IPReservationRequest
-	  IP Reservation Request to create
 
+	/* IPReservationRequest.
+
+	   IP Reservation Request to create
 	*/
 	IPReservationRequest *types.IPReservationRequestInput
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the request IP reservation params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *RequestIPReservationParams) WithDefaults() *RequestIPReservationParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the request IP reservation params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *RequestIPReservationParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the request IP reservation params
@@ -145,7 +162,6 @@ func (o *RequestIPReservationParams) WriteToRequest(r runtime.ClientRequest, reg
 	if err := r.SetPathParam("id", o.ID.String()); err != nil {
 		return err
 	}
-
 	if o.IPReservationRequest != nil {
 		if err := r.SetBodyParam(o.IPReservationRequest); err != nil {
 			return err

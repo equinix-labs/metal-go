@@ -53,7 +53,6 @@ func (o *CreateOrganizationInvitationReader) ReadResponse(response runtime.Clien
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -64,7 +63,7 @@ func NewCreateOrganizationInvitationCreated() *CreateOrganizationInvitationCreat
 	return &CreateOrganizationInvitationCreated{}
 }
 
-/*CreateOrganizationInvitationCreated handles this case with default header values.
+/* CreateOrganizationInvitationCreated describes a response with status code 201, with default header values.
 
 created
 */
@@ -75,7 +74,6 @@ type CreateOrganizationInvitationCreated struct {
 func (o *CreateOrganizationInvitationCreated) Error() string {
 	return fmt.Sprintf("[POST /organizations/{id}/invitations][%d] createOrganizationInvitationCreated  %+v", 201, o.Payload)
 }
-
 func (o *CreateOrganizationInvitationCreated) GetPayload() *types.Invitation {
 	return o.Payload
 }
@@ -97,7 +95,7 @@ func NewCreateOrganizationInvitationUnauthorized() *CreateOrganizationInvitation
 	return &CreateOrganizationInvitationUnauthorized{}
 }
 
-/*CreateOrganizationInvitationUnauthorized handles this case with default header values.
+/* CreateOrganizationInvitationUnauthorized describes a response with status code 401, with default header values.
 
 unauthorized
 */
@@ -118,7 +116,7 @@ func NewCreateOrganizationInvitationForbidden() *CreateOrganizationInvitationFor
 	return &CreateOrganizationInvitationForbidden{}
 }
 
-/*CreateOrganizationInvitationForbidden handles this case with default header values.
+/* CreateOrganizationInvitationForbidden describes a response with status code 403, with default header values.
 
 forbidden
 */
@@ -139,7 +137,7 @@ func NewCreateOrganizationInvitationNotFound() *CreateOrganizationInvitationNotF
 	return &CreateOrganizationInvitationNotFound{}
 }
 
-/*CreateOrganizationInvitationNotFound handles this case with default header values.
+/* CreateOrganizationInvitationNotFound describes a response with status code 404, with default header values.
 
 not found
 */
@@ -160,7 +158,7 @@ func NewCreateOrganizationInvitationUnprocessableEntity() *CreateOrganizationInv
 	return &CreateOrganizationInvitationUnprocessableEntity{}
 }
 
-/*CreateOrganizationInvitationUnprocessableEntity handles this case with default header values.
+/* CreateOrganizationInvitationUnprocessableEntity describes a response with status code 422, with default header values.
 
 unprocessable entity
 */

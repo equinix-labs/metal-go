@@ -6,6 +6,8 @@ package types
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -35,13 +37,40 @@ func (m *SpotMarketPricesList) Validate(formats strfmt.Registry) error {
 }
 
 func (m *SpotMarketPricesList) validateSpotMarketPrices(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.SpotMarketPrices) { // not required
 		return nil
 	}
 
 	if m.SpotMarketPrices != nil {
 		if err := m.SpotMarketPrices.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("spot_market_prices")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// ContextValidate validate this spot market prices list based on the context it is used
+func (m *SpotMarketPricesList) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateSpotMarketPrices(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *SpotMarketPricesList) contextValidateSpotMarketPrices(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.SpotMarketPrices != nil {
+		if err := m.SpotMarketPrices.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("spot_market_prices")
 			}

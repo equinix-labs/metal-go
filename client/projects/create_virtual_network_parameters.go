@@ -18,64 +18,81 @@ import (
 	"github.com/t0mk/gometal/types"
 )
 
-// NewCreateVirtualNetworkParams creates a new CreateVirtualNetworkParams object
-// with the default values initialized.
+// NewCreateVirtualNetworkParams creates a new CreateVirtualNetworkParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewCreateVirtualNetworkParams() *CreateVirtualNetworkParams {
-	var ()
 	return &CreateVirtualNetworkParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewCreateVirtualNetworkParamsWithTimeout creates a new CreateVirtualNetworkParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewCreateVirtualNetworkParamsWithTimeout(timeout time.Duration) *CreateVirtualNetworkParams {
-	var ()
 	return &CreateVirtualNetworkParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewCreateVirtualNetworkParamsWithContext creates a new CreateVirtualNetworkParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewCreateVirtualNetworkParamsWithContext(ctx context.Context) *CreateVirtualNetworkParams {
-	var ()
 	return &CreateVirtualNetworkParams{
-
 		Context: ctx,
 	}
 }
 
 // NewCreateVirtualNetworkParamsWithHTTPClient creates a new CreateVirtualNetworkParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewCreateVirtualNetworkParamsWithHTTPClient(client *http.Client) *CreateVirtualNetworkParams {
-	var ()
 	return &CreateVirtualNetworkParams{
 		HTTPClient: client,
 	}
 }
 
-/*CreateVirtualNetworkParams contains all the parameters to send to the API endpoint
-for the create virtual network operation typically these are written to a http.Request
+/* CreateVirtualNetworkParams contains all the parameters to send to the API endpoint
+   for the create virtual network operation.
+
+   Typically these are written to a http.Request.
 */
 type CreateVirtualNetworkParams struct {
 
-	/*ID
-	  Project UUID
+	/* ID.
 
+	   Project UUID
+
+	   Format: uuid
 	*/
 	ID strfmt.UUID
-	/*VirtualNetwork
-	  Virtual Network to create
 
+	/* VirtualNetwork.
+
+	   Virtual Network to create
 	*/
 	VirtualNetwork *types.VirtualNetworkCreateInput
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the create virtual network params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *CreateVirtualNetworkParams) WithDefaults() *CreateVirtualNetworkParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the create virtual network params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *CreateVirtualNetworkParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the create virtual network params
@@ -145,7 +162,6 @@ func (o *CreateVirtualNetworkParams) WriteToRequest(r runtime.ClientRequest, reg
 	if err := r.SetPathParam("id", o.ID.String()); err != nil {
 		return err
 	}
-
 	if o.VirtualNetwork != nil {
 		if err := r.SetBodyParam(o.VirtualNetwork); err != nil {
 			return err

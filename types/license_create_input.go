@@ -6,6 +6,8 @@ package types
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
@@ -27,6 +29,11 @@ type LicenseCreateInput struct {
 
 // Validate validates this license create input
 func (m *LicenseCreateInput) Validate(formats strfmt.Registry) error {
+	return nil
+}
+
+// ContextValidate validates this license create input based on context it is used
+func (m *LicenseCreateInput) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

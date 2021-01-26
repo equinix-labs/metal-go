@@ -44,7 +44,6 @@ func (o *DeclineTransferRequestReader) ReadResponse(response runtime.ClientRespo
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -55,7 +54,7 @@ func NewDeclineTransferRequestNoContent() *DeclineTransferRequestNoContent {
 	return &DeclineTransferRequestNoContent{}
 }
 
-/*DeclineTransferRequestNoContent handles this case with default header values.
+/* DeclineTransferRequestNoContent describes a response with status code 204, with default header values.
 
 no content
 */
@@ -76,7 +75,7 @@ func NewDeclineTransferRequestUnauthorized() *DeclineTransferRequestUnauthorized
 	return &DeclineTransferRequestUnauthorized{}
 }
 
-/*DeclineTransferRequestUnauthorized handles this case with default header values.
+/* DeclineTransferRequestUnauthorized describes a response with status code 401, with default header values.
 
 unauthorized
 */
@@ -97,7 +96,7 @@ func NewDeclineTransferRequestForbidden() *DeclineTransferRequestForbidden {
 	return &DeclineTransferRequestForbidden{}
 }
 
-/*DeclineTransferRequestForbidden handles this case with default header values.
+/* DeclineTransferRequestForbidden describes a response with status code 403, with default header values.
 
 forbidden
 */
@@ -118,7 +117,7 @@ func NewDeclineTransferRequestNotFound() *DeclineTransferRequestNotFound {
 	return &DeclineTransferRequestNotFound{}
 }
 
-/*DeclineTransferRequestNotFound handles this case with default header values.
+/* DeclineTransferRequestNotFound describes a response with status code 404, with default header values.
 
 not found
 */

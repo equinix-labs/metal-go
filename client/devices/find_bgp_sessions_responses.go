@@ -41,7 +41,6 @@ func (o *FindBGPSessionsReader) ReadResponse(response runtime.ClientResponse, co
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -52,7 +51,7 @@ func NewFindBGPSessionsOK() *FindBGPSessionsOK {
 	return &FindBGPSessionsOK{}
 }
 
-/*FindBGPSessionsOK handles this case with default header values.
+/* FindBGPSessionsOK describes a response with status code 200, with default header values.
 
 ok
 */
@@ -63,7 +62,6 @@ type FindBGPSessionsOK struct {
 func (o *FindBGPSessionsOK) Error() string {
 	return fmt.Sprintf("[GET /devices/{id}/bgp/sessions][%d] findBgpSessionsOK  %+v", 200, o.Payload)
 }
-
 func (o *FindBGPSessionsOK) GetPayload() *types.BGPSessionList {
 	return o.Payload
 }
@@ -85,7 +83,7 @@ func NewFindBGPSessionsUnauthorized() *FindBGPSessionsUnauthorized {
 	return &FindBGPSessionsUnauthorized{}
 }
 
-/*FindBGPSessionsUnauthorized handles this case with default header values.
+/* FindBGPSessionsUnauthorized describes a response with status code 401, with default header values.
 
 unauthorized
 */
@@ -106,7 +104,7 @@ func NewFindBGPSessionsForbidden() *FindBGPSessionsForbidden {
 	return &FindBGPSessionsForbidden{}
 }
 
-/*FindBGPSessionsForbidden handles this case with default header values.
+/* FindBGPSessionsForbidden describes a response with status code 403, with default header values.
 
 forbidden
 */

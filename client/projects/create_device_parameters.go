@@ -18,64 +18,81 @@ import (
 	"github.com/t0mk/gometal/types"
 )
 
-// NewCreateDeviceParams creates a new CreateDeviceParams object
-// with the default values initialized.
+// NewCreateDeviceParams creates a new CreateDeviceParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewCreateDeviceParams() *CreateDeviceParams {
-	var ()
 	return &CreateDeviceParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewCreateDeviceParamsWithTimeout creates a new CreateDeviceParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewCreateDeviceParamsWithTimeout(timeout time.Duration) *CreateDeviceParams {
-	var ()
 	return &CreateDeviceParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewCreateDeviceParamsWithContext creates a new CreateDeviceParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewCreateDeviceParamsWithContext(ctx context.Context) *CreateDeviceParams {
-	var ()
 	return &CreateDeviceParams{
-
 		Context: ctx,
 	}
 }
 
 // NewCreateDeviceParamsWithHTTPClient creates a new CreateDeviceParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewCreateDeviceParamsWithHTTPClient(client *http.Client) *CreateDeviceParams {
-	var ()
 	return &CreateDeviceParams{
 		HTTPClient: client,
 	}
 }
 
-/*CreateDeviceParams contains all the parameters to send to the API endpoint
-for the create device operation typically these are written to a http.Request
+/* CreateDeviceParams contains all the parameters to send to the API endpoint
+   for the create device operation.
+
+   Typically these are written to a http.Request.
 */
 type CreateDeviceParams struct {
 
-	/*Device
-	  Device to create
+	/* Device.
 
+	   Device to create
 	*/
 	Device *types.DeviceCreateInput
-	/*ID
-	  Project UUID
 
+	/* ID.
+
+	   Project UUID
+
+	   Format: uuid
 	*/
 	ID strfmt.UUID
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the create device params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *CreateDeviceParams) WithDefaults() *CreateDeviceParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the create device params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *CreateDeviceParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the create device params
@@ -140,7 +157,6 @@ func (o *CreateDeviceParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 		return err
 	}
 	var res []error
-
 	if o.Device != nil {
 		if err := r.SetBodyParam(o.Device); err != nil {
 			return err

@@ -16,64 +16,81 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewFindProjectByIDParams creates a new FindProjectByIDParams object
-// with the default values initialized.
+// NewFindProjectByIDParams creates a new FindProjectByIDParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewFindProjectByIDParams() *FindProjectByIDParams {
-	var ()
 	return &FindProjectByIDParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewFindProjectByIDParamsWithTimeout creates a new FindProjectByIDParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewFindProjectByIDParamsWithTimeout(timeout time.Duration) *FindProjectByIDParams {
-	var ()
 	return &FindProjectByIDParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewFindProjectByIDParamsWithContext creates a new FindProjectByIDParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewFindProjectByIDParamsWithContext(ctx context.Context) *FindProjectByIDParams {
-	var ()
 	return &FindProjectByIDParams{
-
 		Context: ctx,
 	}
 }
 
 // NewFindProjectByIDParamsWithHTTPClient creates a new FindProjectByIDParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewFindProjectByIDParamsWithHTTPClient(client *http.Client) *FindProjectByIDParams {
-	var ()
 	return &FindProjectByIDParams{
 		HTTPClient: client,
 	}
 }
 
-/*FindProjectByIDParams contains all the parameters to send to the API endpoint
-for the find project by Id operation typically these are written to a http.Request
+/* FindProjectByIDParams contains all the parameters to send to the API endpoint
+   for the find project by Id operation.
+
+   Typically these are written to a http.Request.
 */
 type FindProjectByIDParams struct {
 
-	/*ID
-	  Project UUID
+	/* ID.
 
+	   Project UUID
+
+	   Format: uuid
 	*/
 	ID strfmt.UUID
-	/*Include
-	  related attributes to include
 
+	/* Include.
+
+	   related attributes to include
 	*/
 	Include *string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the find project by Id params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *FindProjectByIDParams) WithDefaults() *FindProjectByIDParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the find project by Id params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *FindProjectByIDParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the find project by Id params
@@ -148,16 +165,17 @@ func (o *FindProjectByIDParams) WriteToRequest(r runtime.ClientRequest, reg strf
 
 		// query param include
 		var qrInclude string
+
 		if o.Include != nil {
 			qrInclude = *o.Include
 		}
 		qInclude := qrInclude
 		if qInclude != "" {
+
 			if err := r.SetQueryParam("include", qInclude); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	if len(res) > 0 {
