@@ -1,5 +1,8 @@
 .PHONY: all gen patch fetch
 
+# https://github.com/go-swagger/go-swagger/releases/latest
+SWAGGER=docker run --rm -it --env GOPATH=/go -v $(CURDIR):/go/src -w /go/src quay.io/goswagger/swagger
+
 all: fetch patch gen
 
 fetch:
@@ -9,8 +12,7 @@ patch:
 	for a in *patch; do patch -p0 < "$$a"; done
 
 gen:
-	# https://github.com/go-swagger/go-swagger/releases/latest
-	swagger generate client \
+	${SWAGGER} generate client \
 		--model-package types \
 		--additional-initialism bgp \
 		--additional-initialism vpn \
