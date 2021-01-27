@@ -4982,6 +4982,47 @@
         }
       }
     },
+    "/ports/{id}": {
+      "get": {
+        "summary": "Retrieve a port",
+        "description": "Returns a port",
+        "operationId": "findPortById",
+        "tags": [
+          "Ports"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Port UUID",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "name": "include",
+            "in": "query",
+            "description": "related attributes to include",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "$ref": "#/definitions/Port"
+            }
+          },
+          "401": {
+            "description": "unauthorized"
+          },
+          "404": {
+            "description": "not found"
+          }
+        }
+      }
+    },
     "/ports/{id}/assign": {
       "post": {
         "summary": "Assign a port to virtual network",
@@ -10127,6 +10168,10 @@
         "data": {
           "type": "object"
         },
+        "disbond_operation_supported": {
+          "type": "boolean",
+          "description": "Indicates whether or not the bond can be broken on the port (when applicable)."
+        },
         "hardware": {
           "$ref": "#/definitions/Href"
         },
@@ -10164,6 +10209,16 @@
                 "type": "boolean"
               }
             }
+          }
+        }
+      }
+    },
+    "PortList": {
+      "properties": {
+        "ports": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Port"
           }
         }
       }

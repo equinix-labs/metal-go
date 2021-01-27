@@ -41,6 +41,8 @@ type ClientService interface {
 
 	DisbondPort(params *DisbondPortParams, authInfo runtime.ClientAuthInfoWriter) (*DisbondPortOK, error)
 
+	FindPortByID(params *FindPortByIDParams, authInfo runtime.ClientAuthInfoWriter) (*FindPortByIDOK, error)
+
 	UnassignPort(params *UnassignPortParams, authInfo runtime.ClientAuthInfoWriter) (*UnassignPortOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
@@ -302,6 +304,43 @@ func (a *Client) DisbondPort(params *DisbondPortParams, authInfo runtime.ClientA
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for disbondPort: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  FindPortByID retrieves a port
+
+  Returns a port
+*/
+func (a *Client) FindPortByID(params *FindPortByIDParams, authInfo runtime.ClientAuthInfoWriter) (*FindPortByIDOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewFindPortByIDParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "findPortById",
+		Method:             "GET",
+		PathPattern:        "/ports/{id}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &FindPortByIDReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*FindPortByIDOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for findPortById: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
