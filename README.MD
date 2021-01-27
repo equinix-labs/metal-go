@@ -5,12 +5,17 @@ This is experimental. Don't use it.
 This repo contains Golang code generated from customized [equinix-metal.swagger.json](equinix-metal.swagger.json) from the Equinix Metal API from <https://api.equinix.com/metal/v1/api-docs>.
 
 Contents:
-- `gen.sh a script to fetch the API spec, apply patches, and generate a client
+- `Makefile` includes tasks to fetch the API spec, apply patches, and generate a client
 - `equinix-metal.swagger.json` the latest fetched swagger spec
 - `\*.patch` patch files to apply against the Equinix Metal API spec
 - `clients/` generated clients
 - `types/` generated types
 - `examples/` hand crafted examples to demonstrate usage
+
+
+## Build
+
+To build the client, run `make`.
 
 ## Examples
 
