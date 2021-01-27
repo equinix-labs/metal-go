@@ -16,64 +16,83 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewFindIPAssignmentCustomdataParams creates a new FindIPAssignmentCustomdataParams object
-// with the default values initialized.
+// NewFindIPAssignmentCustomdataParams creates a new FindIPAssignmentCustomdataParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewFindIPAssignmentCustomdataParams() *FindIPAssignmentCustomdataParams {
-	var ()
 	return &FindIPAssignmentCustomdataParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewFindIPAssignmentCustomdataParamsWithTimeout creates a new FindIPAssignmentCustomdataParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewFindIPAssignmentCustomdataParamsWithTimeout(timeout time.Duration) *FindIPAssignmentCustomdataParams {
-	var ()
 	return &FindIPAssignmentCustomdataParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewFindIPAssignmentCustomdataParamsWithContext creates a new FindIPAssignmentCustomdataParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewFindIPAssignmentCustomdataParamsWithContext(ctx context.Context) *FindIPAssignmentCustomdataParams {
-	var ()
 	return &FindIPAssignmentCustomdataParams{
-
 		Context: ctx,
 	}
 }
 
 // NewFindIPAssignmentCustomdataParamsWithHTTPClient creates a new FindIPAssignmentCustomdataParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewFindIPAssignmentCustomdataParamsWithHTTPClient(client *http.Client) *FindIPAssignmentCustomdataParams {
-	var ()
 	return &FindIPAssignmentCustomdataParams{
 		HTTPClient: client,
 	}
 }
 
-/*FindIPAssignmentCustomdataParams contains all the parameters to send to the API endpoint
-for the find IP assignment customdata operation typically these are written to a http.Request
+/* FindIPAssignmentCustomdataParams contains all the parameters to send to the API endpoint
+   for the find IP assignment customdata operation.
+
+   Typically these are written to a http.Request.
 */
 type FindIPAssignmentCustomdataParams struct {
 
-	/*ID
-	  Ip Assignment UUID
+	/* ID.
 
+	   Ip Assignment UUID
+
+	   Format: uuid
 	*/
 	ID strfmt.UUID
-	/*InstanceID
-	  Instance UUID
 
+	/* InstanceID.
+
+	   Instance UUID
+
+	   Format: uuid
 	*/
 	InstanceID strfmt.UUID
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the find IP assignment customdata params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *FindIPAssignmentCustomdataParams) WithDefaults() *FindIPAssignmentCustomdataParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the find IP assignment customdata params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *FindIPAssignmentCustomdataParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the find IP assignment customdata params

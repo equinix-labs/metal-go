@@ -16,59 +16,73 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewFindPlansParams creates a new FindPlansParams object
-// with the default values initialized.
+// NewFindPlansParams creates a new FindPlansParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewFindPlansParams() *FindPlansParams {
-	var ()
 	return &FindPlansParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewFindPlansParamsWithTimeout creates a new FindPlansParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewFindPlansParamsWithTimeout(timeout time.Duration) *FindPlansParams {
-	var ()
 	return &FindPlansParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewFindPlansParamsWithContext creates a new FindPlansParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewFindPlansParamsWithContext(ctx context.Context) *FindPlansParams {
-	var ()
 	return &FindPlansParams{
-
 		Context: ctx,
 	}
 }
 
 // NewFindPlansParamsWithHTTPClient creates a new FindPlansParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewFindPlansParamsWithHTTPClient(client *http.Client) *FindPlansParams {
-	var ()
 	return &FindPlansParams{
 		HTTPClient: client,
 	}
 }
 
-/*FindPlansParams contains all the parameters to send to the API endpoint
-for the find plans operation typically these are written to a http.Request
+/* FindPlansParams contains all the parameters to send to the API endpoint
+   for the find plans operation.
+
+   Typically these are written to a http.Request.
 */
 type FindPlansParams struct {
 
-	/*Include
-	  related attributes to include
+	/* Include.
 
+	   related attributes to include
 	*/
 	Include *string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the find plans params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *FindPlansParams) WithDefaults() *FindPlansParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the find plans params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *FindPlansParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the find plans params
@@ -127,16 +141,17 @@ func (o *FindPlansParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Reg
 
 		// query param include
 		var qrInclude string
+
 		if o.Include != nil {
 			qrInclude = *o.Include
 		}
 		qInclude := qrInclude
 		if qInclude != "" {
+
 			if err := r.SetQueryParam("include", qInclude); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	if len(res) > 0 {

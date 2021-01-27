@@ -53,7 +53,6 @@ func (o *ConvertLayer2Reader) ReadResponse(response runtime.ClientResponse, cons
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -64,7 +63,7 @@ func NewConvertLayer2OK() *ConvertLayer2OK {
 	return &ConvertLayer2OK{}
 }
 
-/*ConvertLayer2OK handles this case with default header values.
+/* ConvertLayer2OK describes a response with status code 200, with default header values.
 
 ok
 */
@@ -75,7 +74,6 @@ type ConvertLayer2OK struct {
 func (o *ConvertLayer2OK) Error() string {
 	return fmt.Sprintf("[POST /ports/{id}/convert/layer-2][%d] convertLayer2OK  %+v", 200, o.Payload)
 }
-
 func (o *ConvertLayer2OK) GetPayload() *types.Port {
 	return o.Payload
 }
@@ -97,7 +95,7 @@ func NewConvertLayer2Unauthorized() *ConvertLayer2Unauthorized {
 	return &ConvertLayer2Unauthorized{}
 }
 
-/*ConvertLayer2Unauthorized handles this case with default header values.
+/* ConvertLayer2Unauthorized describes a response with status code 401, with default header values.
 
 unauthorized
 */
@@ -118,7 +116,7 @@ func NewConvertLayer2Forbidden() *ConvertLayer2Forbidden {
 	return &ConvertLayer2Forbidden{}
 }
 
-/*ConvertLayer2Forbidden handles this case with default header values.
+/* ConvertLayer2Forbidden describes a response with status code 403, with default header values.
 
 forbidden
 */
@@ -139,7 +137,7 @@ func NewConvertLayer2NotFound() *ConvertLayer2NotFound {
 	return &ConvertLayer2NotFound{}
 }
 
-/*ConvertLayer2NotFound handles this case with default header values.
+/* ConvertLayer2NotFound describes a response with status code 404, with default header values.
 
 not found
 */
@@ -160,7 +158,7 @@ func NewConvertLayer2UnprocessableEntity() *ConvertLayer2UnprocessableEntity {
 	return &ConvertLayer2UnprocessableEntity{}
 }
 
-/*ConvertLayer2UnprocessableEntity handles this case with default header values.
+/* ConvertLayer2UnprocessableEntity describes a response with status code 422, with default header values.
 
 unprocessable entity
 */

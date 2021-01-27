@@ -6,6 +6,8 @@ package types
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -62,7 +64,6 @@ func (m *VolumeAttachment) Validate(formats strfmt.Registry) error {
 }
 
 func (m *VolumeAttachment) validateCreatedAt(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.CreatedAt) { // not required
 		return nil
 	}
@@ -75,7 +76,6 @@ func (m *VolumeAttachment) validateCreatedAt(formats strfmt.Registry) error {
 }
 
 func (m *VolumeAttachment) validateDevice(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Device) { // not required
 		return nil
 	}
@@ -93,7 +93,6 @@ func (m *VolumeAttachment) validateDevice(formats strfmt.Registry) error {
 }
 
 func (m *VolumeAttachment) validateID(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.ID) { // not required
 		return nil
 	}
@@ -106,13 +105,58 @@ func (m *VolumeAttachment) validateID(formats strfmt.Registry) error {
 }
 
 func (m *VolumeAttachment) validateVolume(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Volume) { // not required
 		return nil
 	}
 
 	if m.Volume != nil {
 		if err := m.Volume.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("volume")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// ContextValidate validate this volume attachment based on the context it is used
+func (m *VolumeAttachment) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateDevice(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVolume(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *VolumeAttachment) contextValidateDevice(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Device != nil {
+		if err := m.Device.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("device")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *VolumeAttachment) contextValidateVolume(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Volume != nil {
+		if err := m.Volume.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("volume")
 			}

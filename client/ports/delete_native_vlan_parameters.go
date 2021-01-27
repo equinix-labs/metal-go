@@ -16,59 +16,75 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewDeleteNativeVLANParams creates a new DeleteNativeVLANParams object
-// with the default values initialized.
+// NewDeleteNativeVLANParams creates a new DeleteNativeVLANParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewDeleteNativeVLANParams() *DeleteNativeVLANParams {
-	var ()
 	return &DeleteNativeVLANParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewDeleteNativeVLANParamsWithTimeout creates a new DeleteNativeVLANParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewDeleteNativeVLANParamsWithTimeout(timeout time.Duration) *DeleteNativeVLANParams {
-	var ()
 	return &DeleteNativeVLANParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewDeleteNativeVLANParamsWithContext creates a new DeleteNativeVLANParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewDeleteNativeVLANParamsWithContext(ctx context.Context) *DeleteNativeVLANParams {
-	var ()
 	return &DeleteNativeVLANParams{
-
 		Context: ctx,
 	}
 }
 
 // NewDeleteNativeVLANParamsWithHTTPClient creates a new DeleteNativeVLANParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewDeleteNativeVLANParamsWithHTTPClient(client *http.Client) *DeleteNativeVLANParams {
-	var ()
 	return &DeleteNativeVLANParams{
 		HTTPClient: client,
 	}
 }
 
-/*DeleteNativeVLANParams contains all the parameters to send to the API endpoint
-for the delete native Vlan operation typically these are written to a http.Request
+/* DeleteNativeVLANParams contains all the parameters to send to the API endpoint
+   for the delete native Vlan operation.
+
+   Typically these are written to a http.Request.
 */
 type DeleteNativeVLANParams struct {
 
-	/*ID
-	  Port UUID
+	/* ID.
 
+	   Port UUID
+
+	   Format: uuid
 	*/
 	ID strfmt.UUID
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the delete native Vlan params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *DeleteNativeVLANParams) WithDefaults() *DeleteNativeVLANParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the delete native Vlan params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *DeleteNativeVLANParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the delete native Vlan params

@@ -17,64 +17,81 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// NewDeleteDeviceParams creates a new DeleteDeviceParams object
-// with the default values initialized.
+// NewDeleteDeviceParams creates a new DeleteDeviceParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewDeleteDeviceParams() *DeleteDeviceParams {
-	var ()
 	return &DeleteDeviceParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewDeleteDeviceParamsWithTimeout creates a new DeleteDeviceParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewDeleteDeviceParamsWithTimeout(timeout time.Duration) *DeleteDeviceParams {
-	var ()
 	return &DeleteDeviceParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewDeleteDeviceParamsWithContext creates a new DeleteDeviceParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewDeleteDeviceParamsWithContext(ctx context.Context) *DeleteDeviceParams {
-	var ()
 	return &DeleteDeviceParams{
-
 		Context: ctx,
 	}
 }
 
 // NewDeleteDeviceParamsWithHTTPClient creates a new DeleteDeviceParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewDeleteDeviceParamsWithHTTPClient(client *http.Client) *DeleteDeviceParams {
-	var ()
 	return &DeleteDeviceParams{
 		HTTPClient: client,
 	}
 }
 
-/*DeleteDeviceParams contains all the parameters to send to the API endpoint
-for the delete device operation typically these are written to a http.Request
+/* DeleteDeviceParams contains all the parameters to send to the API endpoint
+   for the delete device operation.
+
+   Typically these are written to a http.Request.
 */
 type DeleteDeviceParams struct {
 
-	/*ForceDelete
-	  Force the deletion of the device, by detaching any storage volume still active.
+	/* ForceDelete.
 
+	   Force the deletion of the device, by detaching any storage volume still active.
 	*/
 	ForceDelete *bool
-	/*ID
-	  Device UUID
 
+	/* ID.
+
+	   Device UUID
+
+	   Format: uuid
 	*/
 	ID strfmt.UUID
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the delete device params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *DeleteDeviceParams) WithDefaults() *DeleteDeviceParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the delete device params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *DeleteDeviceParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the delete device params
@@ -144,16 +161,17 @@ func (o *DeleteDeviceParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 
 		// query param force_delete
 		var qrForceDelete bool
+
 		if o.ForceDelete != nil {
 			qrForceDelete = *o.ForceDelete
 		}
 		qForceDelete := swag.FormatBool(qrForceDelete)
 		if qForceDelete != "" {
+
 			if err := r.SetQueryParam("force_delete", qForceDelete); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	// path param id

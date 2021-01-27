@@ -6,6 +6,7 @@ package types
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"strconv"
 
 	"github.com/go-openapi/errors"
@@ -67,7 +68,6 @@ func (m *InternetGateway) Validate(formats strfmt.Registry) error {
 }
 
 func (m *InternetGateway) validateCreatedAt(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.CreatedAt) { // not required
 		return nil
 	}
@@ -80,7 +80,6 @@ func (m *InternetGateway) validateCreatedAt(formats strfmt.Registry) error {
 }
 
 func (m *InternetGateway) validateID(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.ID) { // not required
 		return nil
 	}
@@ -93,7 +92,6 @@ func (m *InternetGateway) validateID(formats strfmt.Registry) error {
 }
 
 func (m *InternetGateway) validateIPReservations(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.IPReservations) { // not required
 		return nil
 	}
@@ -118,13 +116,62 @@ func (m *InternetGateway) validateIPReservations(formats strfmt.Registry) error 
 }
 
 func (m *InternetGateway) validateVirtualNetwork(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.VirtualNetwork) { // not required
 		return nil
 	}
 
 	if m.VirtualNetwork != nil {
 		if err := m.VirtualNetwork.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("virtual_network")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// ContextValidate validate this internet gateway based on the context it is used
+func (m *InternetGateway) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateIPReservations(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVirtualNetwork(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *InternetGateway) contextValidateIPReservations(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.IPReservations); i++ {
+
+		if m.IPReservations[i] != nil {
+			if err := m.IPReservations[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("ip_reservations" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *InternetGateway) contextValidateVirtualNetwork(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.VirtualNetwork != nil {
+		if err := m.VirtualNetwork.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("virtual_network")
 			}

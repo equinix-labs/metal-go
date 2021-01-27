@@ -16,64 +16,81 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewCreateInternetGatewayParams creates a new CreateInternetGatewayParams object
-// with the default values initialized.
+// NewCreateInternetGatewayParams creates a new CreateInternetGatewayParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewCreateInternetGatewayParams() *CreateInternetGatewayParams {
-	var ()
 	return &CreateInternetGatewayParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewCreateInternetGatewayParamsWithTimeout creates a new CreateInternetGatewayParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewCreateInternetGatewayParamsWithTimeout(timeout time.Duration) *CreateInternetGatewayParams {
-	var ()
 	return &CreateInternetGatewayParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewCreateInternetGatewayParamsWithContext creates a new CreateInternetGatewayParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewCreateInternetGatewayParamsWithContext(ctx context.Context) *CreateInternetGatewayParams {
-	var ()
 	return &CreateInternetGatewayParams{
-
 		Context: ctx,
 	}
 }
 
 // NewCreateInternetGatewayParamsWithHTTPClient creates a new CreateInternetGatewayParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewCreateInternetGatewayParamsWithHTTPClient(client *http.Client) *CreateInternetGatewayParams {
-	var ()
 	return &CreateInternetGatewayParams{
 		HTTPClient: client,
 	}
 }
 
-/*CreateInternetGatewayParams contains all the parameters to send to the API endpoint
-for the create internet gateway operation typically these are written to a http.Request
+/* CreateInternetGatewayParams contains all the parameters to send to the API endpoint
+   for the create internet gateway operation.
+
+   Typically these are written to a http.Request.
 */
 type CreateInternetGatewayParams struct {
 
-	/*ID
-	  Virtual Network UUID
+	/* ID.
 
+	   Virtual Network UUID
+
+	   Format: uuid
 	*/
 	ID strfmt.UUID
-	/*Length
-	  IP Reservation length
 
+	/* Length.
+
+	   IP Reservation length
 	*/
 	Length string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the create internet gateway params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *CreateInternetGatewayParams) WithDefaults() *CreateInternetGatewayParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the create internet gateway params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *CreateInternetGatewayParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the create internet gateway params
@@ -148,6 +165,7 @@ func (o *CreateInternetGatewayParams) WriteToRequest(r runtime.ClientRequest, re
 	qrLength := o.Length
 	qLength := qrLength
 	if qLength != "" {
+
 		if err := r.SetQueryParam("length", qLength); err != nil {
 			return err
 		}

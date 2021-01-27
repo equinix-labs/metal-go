@@ -6,6 +6,8 @@ package types
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -74,7 +76,6 @@ func (m *SnapshotPolicy) Validate(formats strfmt.Registry) error {
 }
 
 func (m *SnapshotPolicy) validateCreatedAt(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.CreatedAt) { // not required
 		return nil
 	}
@@ -87,7 +88,6 @@ func (m *SnapshotPolicy) validateCreatedAt(formats strfmt.Registry) error {
 }
 
 func (m *SnapshotPolicy) validateID(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.ID) { // not required
 		return nil
 	}
@@ -100,12 +100,11 @@ func (m *SnapshotPolicy) validateID(formats strfmt.Registry) error {
 }
 
 func (m *SnapshotPolicy) validateSnapshotCount(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.SnapshotCount) { // not required
 		return nil
 	}
 
-	if err := validate.MaximumInt("snapshot_count", "body", int64(m.SnapshotCount), 256, false); err != nil {
+	if err := validate.MaximumInt("snapshot_count", "body", m.SnapshotCount, 256, false); err != nil {
 		return err
 	}
 
@@ -113,7 +112,6 @@ func (m *SnapshotPolicy) validateSnapshotCount(formats strfmt.Registry) error {
 }
 
 func (m *SnapshotPolicy) validateUpdatedAt(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.UpdatedAt) { // not required
 		return nil
 	}
@@ -126,13 +124,40 @@ func (m *SnapshotPolicy) validateUpdatedAt(formats strfmt.Registry) error {
 }
 
 func (m *SnapshotPolicy) validateVolume(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Volume) { // not required
 		return nil
 	}
 
 	if m.Volume != nil {
 		if err := m.Volume.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("volume")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// ContextValidate validate this snapshot policy based on the context it is used
+func (m *SnapshotPolicy) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateVolume(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *SnapshotPolicy) contextValidateVolume(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Volume != nil {
+		if err := m.Volume.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("volume")
 			}

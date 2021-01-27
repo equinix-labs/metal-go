@@ -44,7 +44,6 @@ func (o *DeleteSpotMarketRequestReader) ReadResponse(response runtime.ClientResp
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -55,7 +54,7 @@ func NewDeleteSpotMarketRequestNoContent() *DeleteSpotMarketRequestNoContent {
 	return &DeleteSpotMarketRequestNoContent{}
 }
 
-/*DeleteSpotMarketRequestNoContent handles this case with default header values.
+/* DeleteSpotMarketRequestNoContent describes a response with status code 204, with default header values.
 
 no content
 */
@@ -76,7 +75,7 @@ func NewDeleteSpotMarketRequestUnauthorized() *DeleteSpotMarketRequestUnauthoriz
 	return &DeleteSpotMarketRequestUnauthorized{}
 }
 
-/*DeleteSpotMarketRequestUnauthorized handles this case with default header values.
+/* DeleteSpotMarketRequestUnauthorized describes a response with status code 401, with default header values.
 
 unauthorized
 */
@@ -97,7 +96,7 @@ func NewDeleteSpotMarketRequestForbidden() *DeleteSpotMarketRequestForbidden {
 	return &DeleteSpotMarketRequestForbidden{}
 }
 
-/*DeleteSpotMarketRequestForbidden handles this case with default header values.
+/* DeleteSpotMarketRequestForbidden describes a response with status code 403, with default header values.
 
 forbidden
 */
@@ -118,7 +117,7 @@ func NewDeleteSpotMarketRequestNotFound() *DeleteSpotMarketRequestNotFound {
 	return &DeleteSpotMarketRequestNotFound{}
 }
 
-/*DeleteSpotMarketRequestNotFound handles this case with default header values.
+/* DeleteSpotMarketRequestNotFound describes a response with status code 404, with default header values.
 
 not found
 */

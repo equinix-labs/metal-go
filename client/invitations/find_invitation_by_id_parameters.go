@@ -16,64 +16,81 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewFindInvitationByIDParams creates a new FindInvitationByIDParams object
-// with the default values initialized.
+// NewFindInvitationByIDParams creates a new FindInvitationByIDParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewFindInvitationByIDParams() *FindInvitationByIDParams {
-	var ()
 	return &FindInvitationByIDParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewFindInvitationByIDParamsWithTimeout creates a new FindInvitationByIDParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewFindInvitationByIDParamsWithTimeout(timeout time.Duration) *FindInvitationByIDParams {
-	var ()
 	return &FindInvitationByIDParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewFindInvitationByIDParamsWithContext creates a new FindInvitationByIDParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewFindInvitationByIDParamsWithContext(ctx context.Context) *FindInvitationByIDParams {
-	var ()
 	return &FindInvitationByIDParams{
-
 		Context: ctx,
 	}
 }
 
 // NewFindInvitationByIDParamsWithHTTPClient creates a new FindInvitationByIDParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewFindInvitationByIDParamsWithHTTPClient(client *http.Client) *FindInvitationByIDParams {
-	var ()
 	return &FindInvitationByIDParams{
 		HTTPClient: client,
 	}
 }
 
-/*FindInvitationByIDParams contains all the parameters to send to the API endpoint
-for the find invitation by Id operation typically these are written to a http.Request
+/* FindInvitationByIDParams contains all the parameters to send to the API endpoint
+   for the find invitation by Id operation.
+
+   Typically these are written to a http.Request.
 */
 type FindInvitationByIDParams struct {
 
-	/*ID
-	  Invitation UUID
+	/* ID.
 
+	   Invitation UUID
+
+	   Format: uuid
 	*/
 	ID strfmt.UUID
-	/*Include
-	  related attributes to include
 
+	/* Include.
+
+	   related attributes to include
 	*/
 	Include *string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the find invitation by Id params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *FindInvitationByIDParams) WithDefaults() *FindInvitationByIDParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the find invitation by Id params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *FindInvitationByIDParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the find invitation by Id params
@@ -148,16 +165,17 @@ func (o *FindInvitationByIDParams) WriteToRequest(r runtime.ClientRequest, reg s
 
 		// query param include
 		var qrInclude string
+
 		if o.Include != nil {
 			qrInclude = *o.Include
 		}
 		qInclude := qrInclude
 		if qInclude != "" {
+
 			if err := r.SetQueryParam("include", qInclude); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	if len(res) > 0 {

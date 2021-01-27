@@ -6,6 +6,7 @@ package types
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"encoding/json"
 	"strconv"
 
@@ -109,7 +110,6 @@ func (m *BGPConfig) Validate(formats strfmt.Registry) error {
 }
 
 func (m *BGPConfig) validateCreatedAt(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.CreatedAt) { // not required
 		return nil
 	}
@@ -151,7 +151,6 @@ func (m *BGPConfig) validateDeploymentTypeEnum(path, location string, value stri
 }
 
 func (m *BGPConfig) validateDeploymentType(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.DeploymentType) { // not required
 		return nil
 	}
@@ -165,7 +164,6 @@ func (m *BGPConfig) validateDeploymentType(formats strfmt.Registry) error {
 }
 
 func (m *BGPConfig) validateID(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.ID) { // not required
 		return nil
 	}
@@ -178,7 +176,6 @@ func (m *BGPConfig) validateID(formats strfmt.Registry) error {
 }
 
 func (m *BGPConfig) validateProject(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Project) { // not required
 		return nil
 	}
@@ -196,7 +193,6 @@ func (m *BGPConfig) validateProject(formats strfmt.Registry) error {
 }
 
 func (m *BGPConfig) validateRanges(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Ranges) { // not required
 		return nil
 	}
@@ -221,7 +217,6 @@ func (m *BGPConfig) validateRanges(formats strfmt.Registry) error {
 }
 
 func (m *BGPConfig) validateRequestedAt(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.RequestedAt) { // not required
 		return nil
 	}
@@ -234,7 +229,6 @@ func (m *BGPConfig) validateRequestedAt(formats strfmt.Registry) error {
 }
 
 func (m *BGPConfig) validateSessions(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Sessions) { // not required
 		return nil
 	}
@@ -291,7 +285,6 @@ func (m *BGPConfig) validateStatusEnum(path, location string, value string) erro
 }
 
 func (m *BGPConfig) validateStatus(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Status) { // not required
 		return nil
 	}
@@ -299,6 +292,78 @@ func (m *BGPConfig) validateStatus(formats strfmt.Registry) error {
 	// value enum
 	if err := m.validateStatusEnum("status", "body", m.Status); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+// ContextValidate validate this Bgp config based on the context it is used
+func (m *BGPConfig) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateProject(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateRanges(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateSessions(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *BGPConfig) contextValidateProject(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Project != nil {
+		if err := m.Project.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("project")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *BGPConfig) contextValidateRanges(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Ranges); i++ {
+
+		if m.Ranges[i] != nil {
+			if err := m.Ranges[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("ranges" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *BGPConfig) contextValidateSessions(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Sessions); i++ {
+
+		if m.Sessions[i] != nil {
+			if err := m.Sessions[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("sessions" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
 	}
 
 	return nil

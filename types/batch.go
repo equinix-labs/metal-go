@@ -6,6 +6,7 @@ package types
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"strconv"
 
 	"github.com/go-openapi/errors"
@@ -78,7 +79,6 @@ func (m *Batch) Validate(formats strfmt.Registry) error {
 }
 
 func (m *Batch) validateCreatedAt(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.CreatedAt) { // not required
 		return nil
 	}
@@ -91,7 +91,6 @@ func (m *Batch) validateCreatedAt(formats strfmt.Registry) error {
 }
 
 func (m *Batch) validateDevices(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Devices) { // not required
 		return nil
 	}
@@ -116,7 +115,6 @@ func (m *Batch) validateDevices(formats strfmt.Registry) error {
 }
 
 func (m *Batch) validateID(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.ID) { // not required
 		return nil
 	}
@@ -129,7 +127,6 @@ func (m *Batch) validateID(formats strfmt.Registry) error {
 }
 
 func (m *Batch) validateProject(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Project) { // not required
 		return nil
 	}
@@ -147,13 +144,62 @@ func (m *Batch) validateProject(formats strfmt.Registry) error {
 }
 
 func (m *Batch) validateUpdatedAt(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.UpdatedAt) { // not required
 		return nil
 	}
 
 	if err := validate.FormatOf("updated_at", "body", "date-time", m.UpdatedAt.String(), formats); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+// ContextValidate validate this batch based on the context it is used
+func (m *Batch) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateDevices(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateProject(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *Batch) contextValidateDevices(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Devices); i++ {
+
+		if m.Devices[i] != nil {
+			if err := m.Devices[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("devices" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *Batch) contextValidateProject(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Project != nil {
+		if err := m.Project.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("project")
+			}
+			return err
+		}
 	}
 
 	return nil

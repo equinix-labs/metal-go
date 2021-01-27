@@ -18,64 +18,81 @@ import (
 	"github.com/t0mk/gometal/types"
 )
 
-// NewCreateProjectSSHKeyParams creates a new CreateProjectSSHKeyParams object
-// with the default values initialized.
+// NewCreateProjectSSHKeyParams creates a new CreateProjectSSHKeyParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewCreateProjectSSHKeyParams() *CreateProjectSSHKeyParams {
-	var ()
 	return &CreateProjectSSHKeyParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewCreateProjectSSHKeyParamsWithTimeout creates a new CreateProjectSSHKeyParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewCreateProjectSSHKeyParamsWithTimeout(timeout time.Duration) *CreateProjectSSHKeyParams {
-	var ()
 	return &CreateProjectSSHKeyParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewCreateProjectSSHKeyParamsWithContext creates a new CreateProjectSSHKeyParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewCreateProjectSSHKeyParamsWithContext(ctx context.Context) *CreateProjectSSHKeyParams {
-	var ()
 	return &CreateProjectSSHKeyParams{
-
 		Context: ctx,
 	}
 }
 
 // NewCreateProjectSSHKeyParamsWithHTTPClient creates a new CreateProjectSSHKeyParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewCreateProjectSSHKeyParamsWithHTTPClient(client *http.Client) *CreateProjectSSHKeyParams {
-	var ()
 	return &CreateProjectSSHKeyParams{
 		HTTPClient: client,
 	}
 }
 
-/*CreateProjectSSHKeyParams contains all the parameters to send to the API endpoint
-for the create project SSH key operation typically these are written to a http.Request
+/* CreateProjectSSHKeyParams contains all the parameters to send to the API endpoint
+   for the create project SSH key operation.
+
+   Typically these are written to a http.Request.
 */
 type CreateProjectSSHKeyParams struct {
 
-	/*ID
-	  Project UUID
+	/* ID.
 
+	   Project UUID
+
+	   Format: uuid
 	*/
 	ID strfmt.UUID
-	/*SSHKey
-	  ssh key to create
 
+	/* SSHKey.
+
+	   ssh key to create
 	*/
 	SSHKey *types.SSHKeyInput
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the create project SSH key params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *CreateProjectSSHKeyParams) WithDefaults() *CreateProjectSSHKeyParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the create project SSH key params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *CreateProjectSSHKeyParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the create project SSH key params
@@ -145,7 +162,6 @@ func (o *CreateProjectSSHKeyParams) WriteToRequest(r runtime.ClientRequest, reg 
 	if err := r.SetPathParam("id", o.ID.String()); err != nil {
 		return err
 	}
-
 	if o.SSHKey != nil {
 		if err := r.SetBodyParam(o.SSHKey); err != nil {
 			return err

@@ -17,74 +17,93 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// NewFindOrganizationInvitationsParams creates a new FindOrganizationInvitationsParams object
-// with the default values initialized.
+// NewFindOrganizationInvitationsParams creates a new FindOrganizationInvitationsParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewFindOrganizationInvitationsParams() *FindOrganizationInvitationsParams {
-	var ()
 	return &FindOrganizationInvitationsParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewFindOrganizationInvitationsParamsWithTimeout creates a new FindOrganizationInvitationsParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewFindOrganizationInvitationsParamsWithTimeout(timeout time.Duration) *FindOrganizationInvitationsParams {
-	var ()
 	return &FindOrganizationInvitationsParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewFindOrganizationInvitationsParamsWithContext creates a new FindOrganizationInvitationsParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewFindOrganizationInvitationsParamsWithContext(ctx context.Context) *FindOrganizationInvitationsParams {
-	var ()
 	return &FindOrganizationInvitationsParams{
-
 		Context: ctx,
 	}
 }
 
 // NewFindOrganizationInvitationsParamsWithHTTPClient creates a new FindOrganizationInvitationsParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewFindOrganizationInvitationsParamsWithHTTPClient(client *http.Client) *FindOrganizationInvitationsParams {
-	var ()
 	return &FindOrganizationInvitationsParams{
 		HTTPClient: client,
 	}
 }
 
-/*FindOrganizationInvitationsParams contains all the parameters to send to the API endpoint
-for the find organization invitations operation typically these are written to a http.Request
+/* FindOrganizationInvitationsParams contains all the parameters to send to the API endpoint
+   for the find organization invitations operation.
+
+   Typically these are written to a http.Request.
 */
 type FindOrganizationInvitationsParams struct {
 
-	/*ID
-	  Organization UUID
+	/* ID.
 
+	   Organization UUID
+
+	   Format: uuid
 	*/
 	ID strfmt.UUID
-	/*Include
-	  related attributes to include
 
+	/* Include.
+
+	   related attributes to include
 	*/
 	Include *string
-	/*Page
-	  page to display, default to 1, max 100_000
 
+	/* Page.
+
+	   page to display, default to 1, max 100_000
 	*/
 	Page *int64
-	/*PerPage
-	  items per page, default to 10, max 1_000
 
+	/* PerPage.
+
+	   items per page, default to 10, max 1_000
 	*/
 	PerPage *int64
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the find organization invitations params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *FindOrganizationInvitationsParams) WithDefaults() *FindOrganizationInvitationsParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the find organization invitations params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *FindOrganizationInvitationsParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the find organization invitations params
@@ -181,48 +200,51 @@ func (o *FindOrganizationInvitationsParams) WriteToRequest(r runtime.ClientReque
 
 		// query param include
 		var qrInclude string
+
 		if o.Include != nil {
 			qrInclude = *o.Include
 		}
 		qInclude := qrInclude
 		if qInclude != "" {
+
 			if err := r.SetQueryParam("include", qInclude); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	if o.Page != nil {
 
 		// query param page
 		var qrPage int64
+
 		if o.Page != nil {
 			qrPage = *o.Page
 		}
 		qPage := swag.FormatInt64(qrPage)
 		if qPage != "" {
+
 			if err := r.SetQueryParam("page", qPage); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	if o.PerPage != nil {
 
 		// query param per_page
 		var qrPerPage int64
+
 		if o.PerPage != nil {
 			qrPerPage = *o.PerPage
 		}
 		qPerPage := swag.FormatInt64(qrPerPage)
 		if qPerPage != "" {
+
 			if err := r.SetQueryParam("per_page", qPerPage); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	if len(res) > 0 {

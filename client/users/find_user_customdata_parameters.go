@@ -16,59 +16,75 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewFindUserCustomdataParams creates a new FindUserCustomdataParams object
-// with the default values initialized.
+// NewFindUserCustomdataParams creates a new FindUserCustomdataParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewFindUserCustomdataParams() *FindUserCustomdataParams {
-	var ()
 	return &FindUserCustomdataParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewFindUserCustomdataParamsWithTimeout creates a new FindUserCustomdataParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewFindUserCustomdataParamsWithTimeout(timeout time.Duration) *FindUserCustomdataParams {
-	var ()
 	return &FindUserCustomdataParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewFindUserCustomdataParamsWithContext creates a new FindUserCustomdataParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewFindUserCustomdataParamsWithContext(ctx context.Context) *FindUserCustomdataParams {
-	var ()
 	return &FindUserCustomdataParams{
-
 		Context: ctx,
 	}
 }
 
 // NewFindUserCustomdataParamsWithHTTPClient creates a new FindUserCustomdataParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewFindUserCustomdataParamsWithHTTPClient(client *http.Client) *FindUserCustomdataParams {
-	var ()
 	return &FindUserCustomdataParams{
 		HTTPClient: client,
 	}
 }
 
-/*FindUserCustomdataParams contains all the parameters to send to the API endpoint
-for the find user customdata operation typically these are written to a http.Request
+/* FindUserCustomdataParams contains all the parameters to send to the API endpoint
+   for the find user customdata operation.
+
+   Typically these are written to a http.Request.
 */
 type FindUserCustomdataParams struct {
 
-	/*ID
-	  User UUID
+	/* ID.
 
+	   User UUID
+
+	   Format: uuid
 	*/
 	ID strfmt.UUID
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the find user customdata params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *FindUserCustomdataParams) WithDefaults() *FindUserCustomdataParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the find user customdata params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *FindUserCustomdataParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the find user customdata params

@@ -16,59 +16,75 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewGetVirtualCircuitParams creates a new GetVirtualCircuitParams object
-// with the default values initialized.
+// NewGetVirtualCircuitParams creates a new GetVirtualCircuitParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewGetVirtualCircuitParams() *GetVirtualCircuitParams {
-	var ()
 	return &GetVirtualCircuitParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewGetVirtualCircuitParamsWithTimeout creates a new GetVirtualCircuitParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewGetVirtualCircuitParamsWithTimeout(timeout time.Duration) *GetVirtualCircuitParams {
-	var ()
 	return &GetVirtualCircuitParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewGetVirtualCircuitParamsWithContext creates a new GetVirtualCircuitParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewGetVirtualCircuitParamsWithContext(ctx context.Context) *GetVirtualCircuitParams {
-	var ()
 	return &GetVirtualCircuitParams{
-
 		Context: ctx,
 	}
 }
 
 // NewGetVirtualCircuitParamsWithHTTPClient creates a new GetVirtualCircuitParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewGetVirtualCircuitParamsWithHTTPClient(client *http.Client) *GetVirtualCircuitParams {
-	var ()
 	return &GetVirtualCircuitParams{
 		HTTPClient: client,
 	}
 }
 
-/*GetVirtualCircuitParams contains all the parameters to send to the API endpoint
-for the get virtual circuit operation typically these are written to a http.Request
+/* GetVirtualCircuitParams contains all the parameters to send to the API endpoint
+   for the get virtual circuit operation.
+
+   Typically these are written to a http.Request.
 */
 type GetVirtualCircuitParams struct {
 
-	/*ID
-	  Virtual Circuit UUID
+	/* ID.
 
+	   Virtual Circuit UUID
+
+	   Format: uuid
 	*/
 	ID strfmt.UUID
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the get virtual circuit params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetVirtualCircuitParams) WithDefaults() *GetVirtualCircuitParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the get virtual circuit params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetVirtualCircuitParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the get virtual circuit params

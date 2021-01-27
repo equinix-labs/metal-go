@@ -53,7 +53,6 @@ func (o *CreateBGPSessionReader) ReadResponse(response runtime.ClientResponse, c
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -64,7 +63,7 @@ func NewCreateBGPSessionOK() *CreateBGPSessionOK {
 	return &CreateBGPSessionOK{}
 }
 
-/*CreateBGPSessionOK handles this case with default header values.
+/* CreateBGPSessionOK describes a response with status code 200, with default header values.
 
 ok
 */
@@ -75,7 +74,6 @@ type CreateBGPSessionOK struct {
 func (o *CreateBGPSessionOK) Error() string {
 	return fmt.Sprintf("[POST /devices/{id}/bgp/sessions][%d] createBgpSessionOK  %+v", 200, o.Payload)
 }
-
 func (o *CreateBGPSessionOK) GetPayload() *types.BGPSession {
 	return o.Payload
 }
@@ -97,7 +95,7 @@ func NewCreateBGPSessionCreated() *CreateBGPSessionCreated {
 	return &CreateBGPSessionCreated{}
 }
 
-/*CreateBGPSessionCreated handles this case with default header values.
+/* CreateBGPSessionCreated describes a response with status code 201, with default header values.
 
 created
 */
@@ -108,7 +106,6 @@ type CreateBGPSessionCreated struct {
 func (o *CreateBGPSessionCreated) Error() string {
 	return fmt.Sprintf("[POST /devices/{id}/bgp/sessions][%d] createBgpSessionCreated  %+v", 201, o.Payload)
 }
-
 func (o *CreateBGPSessionCreated) GetPayload() *types.BGPSession {
 	return o.Payload
 }
@@ -130,7 +127,7 @@ func NewCreateBGPSessionUnauthorized() *CreateBGPSessionUnauthorized {
 	return &CreateBGPSessionUnauthorized{}
 }
 
-/*CreateBGPSessionUnauthorized handles this case with default header values.
+/* CreateBGPSessionUnauthorized describes a response with status code 401, with default header values.
 
 unauthorized
 */
@@ -151,7 +148,7 @@ func NewCreateBGPSessionForbidden() *CreateBGPSessionForbidden {
 	return &CreateBGPSessionForbidden{}
 }
 
-/*CreateBGPSessionForbidden handles this case with default header values.
+/* CreateBGPSessionForbidden describes a response with status code 403, with default header values.
 
 forbidden
 */
@@ -172,7 +169,7 @@ func NewCreateBGPSessionUnprocessableEntity() *CreateBGPSessionUnprocessableEnti
 	return &CreateBGPSessionUnprocessableEntity{}
 }
 
-/*CreateBGPSessionUnprocessableEntity handles this case with default header values.
+/* CreateBGPSessionUnprocessableEntity describes a response with status code 422, with default header values.
 
 unprocessable entity
 */

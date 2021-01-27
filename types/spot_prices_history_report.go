@@ -6,6 +6,8 @@ package types
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -35,13 +37,40 @@ func (m *SpotPricesHistoryReport) Validate(formats strfmt.Registry) error {
 }
 
 func (m *SpotPricesHistoryReport) validatePricesHistory(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.PricesHistory) { // not required
 		return nil
 	}
 
 	if m.PricesHistory != nil {
 		if err := m.PricesHistory.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("prices_history")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// ContextValidate validate this spot prices history report based on the context it is used
+func (m *SpotPricesHistoryReport) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidatePricesHistory(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *SpotPricesHistoryReport) contextValidatePricesHistory(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.PricesHistory != nil {
+		if err := m.PricesHistory.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("prices_history")
 			}

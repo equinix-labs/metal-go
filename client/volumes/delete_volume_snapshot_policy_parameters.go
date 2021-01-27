@@ -16,59 +16,75 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewDeleteVolumeSnapshotPolicyParams creates a new DeleteVolumeSnapshotPolicyParams object
-// with the default values initialized.
+// NewDeleteVolumeSnapshotPolicyParams creates a new DeleteVolumeSnapshotPolicyParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewDeleteVolumeSnapshotPolicyParams() *DeleteVolumeSnapshotPolicyParams {
-	var ()
 	return &DeleteVolumeSnapshotPolicyParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewDeleteVolumeSnapshotPolicyParamsWithTimeout creates a new DeleteVolumeSnapshotPolicyParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewDeleteVolumeSnapshotPolicyParamsWithTimeout(timeout time.Duration) *DeleteVolumeSnapshotPolicyParams {
-	var ()
 	return &DeleteVolumeSnapshotPolicyParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewDeleteVolumeSnapshotPolicyParamsWithContext creates a new DeleteVolumeSnapshotPolicyParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewDeleteVolumeSnapshotPolicyParamsWithContext(ctx context.Context) *DeleteVolumeSnapshotPolicyParams {
-	var ()
 	return &DeleteVolumeSnapshotPolicyParams{
-
 		Context: ctx,
 	}
 }
 
 // NewDeleteVolumeSnapshotPolicyParamsWithHTTPClient creates a new DeleteVolumeSnapshotPolicyParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewDeleteVolumeSnapshotPolicyParamsWithHTTPClient(client *http.Client) *DeleteVolumeSnapshotPolicyParams {
-	var ()
 	return &DeleteVolumeSnapshotPolicyParams{
 		HTTPClient: client,
 	}
 }
 
-/*DeleteVolumeSnapshotPolicyParams contains all the parameters to send to the API endpoint
-for the delete volume snapshot policy operation typically these are written to a http.Request
+/* DeleteVolumeSnapshotPolicyParams contains all the parameters to send to the API endpoint
+   for the delete volume snapshot policy operation.
+
+   Typically these are written to a http.Request.
 */
 type DeleteVolumeSnapshotPolicyParams struct {
 
-	/*ID
-	  Snapshot Policy UUID
+	/* ID.
 
+	   Snapshot Policy UUID
+
+	   Format: uuid
 	*/
 	ID strfmt.UUID
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the delete volume snapshot policy params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *DeleteVolumeSnapshotPolicyParams) WithDefaults() *DeleteVolumeSnapshotPolicyParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the delete volume snapshot policy params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *DeleteVolumeSnapshotPolicyParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the delete volume snapshot policy params

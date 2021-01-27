@@ -16,52 +16,66 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewEnableTfaSmsParams creates a new EnableTfaSmsParams object
-// with the default values initialized.
+// NewEnableTfaSmsParams creates a new EnableTfaSmsParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewEnableTfaSmsParams() *EnableTfaSmsParams {
-
 	return &EnableTfaSmsParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewEnableTfaSmsParamsWithTimeout creates a new EnableTfaSmsParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewEnableTfaSmsParamsWithTimeout(timeout time.Duration) *EnableTfaSmsParams {
-
 	return &EnableTfaSmsParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewEnableTfaSmsParamsWithContext creates a new EnableTfaSmsParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewEnableTfaSmsParamsWithContext(ctx context.Context) *EnableTfaSmsParams {
-
 	return &EnableTfaSmsParams{
-
 		Context: ctx,
 	}
 }
 
 // NewEnableTfaSmsParamsWithHTTPClient creates a new EnableTfaSmsParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewEnableTfaSmsParamsWithHTTPClient(client *http.Client) *EnableTfaSmsParams {
-
 	return &EnableTfaSmsParams{
 		HTTPClient: client,
 	}
 }
 
-/*EnableTfaSmsParams contains all the parameters to send to the API endpoint
-for the enable tfa sms operation typically these are written to a http.Request
+/* EnableTfaSmsParams contains all the parameters to send to the API endpoint
+   for the enable tfa sms operation.
+
+   Typically these are written to a http.Request.
 */
 type EnableTfaSmsParams struct {
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the enable tfa sms params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *EnableTfaSmsParams) WithDefaults() *EnableTfaSmsParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the enable tfa sms params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *EnableTfaSmsParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the enable tfa sms params

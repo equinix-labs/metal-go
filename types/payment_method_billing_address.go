@@ -6,6 +6,8 @@ package types
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
@@ -27,6 +29,11 @@ type PaymentMethodBillingAddress struct {
 
 // Validate validates this payment method billing address
 func (m *PaymentMethodBillingAddress) Validate(formats strfmt.Registry) error {
+	return nil
+}
+
+// ContextValidate validates this payment method billing address based on context it is used
+func (m *PaymentMethodBillingAddress) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

@@ -53,7 +53,6 @@ func (o *UpdateLicenseReader) ReadResponse(response runtime.ClientResponse, cons
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -64,7 +63,7 @@ func NewUpdateLicenseOK() *UpdateLicenseOK {
 	return &UpdateLicenseOK{}
 }
 
-/*UpdateLicenseOK handles this case with default header values.
+/* UpdateLicenseOK describes a response with status code 200, with default header values.
 
 ok
 */
@@ -75,7 +74,6 @@ type UpdateLicenseOK struct {
 func (o *UpdateLicenseOK) Error() string {
 	return fmt.Sprintf("[PUT /licenses/{id}][%d] updateLicenseOK  %+v", 200, o.Payload)
 }
-
 func (o *UpdateLicenseOK) GetPayload() *types.License {
 	return o.Payload
 }
@@ -97,7 +95,7 @@ func NewUpdateLicenseUnauthorized() *UpdateLicenseUnauthorized {
 	return &UpdateLicenseUnauthorized{}
 }
 
-/*UpdateLicenseUnauthorized handles this case with default header values.
+/* UpdateLicenseUnauthorized describes a response with status code 401, with default header values.
 
 unauthorized
 */
@@ -118,7 +116,7 @@ func NewUpdateLicenseForbidden() *UpdateLicenseForbidden {
 	return &UpdateLicenseForbidden{}
 }
 
-/*UpdateLicenseForbidden handles this case with default header values.
+/* UpdateLicenseForbidden describes a response with status code 403, with default header values.
 
 forbidden
 */
@@ -139,7 +137,7 @@ func NewUpdateLicenseNotFound() *UpdateLicenseNotFound {
 	return &UpdateLicenseNotFound{}
 }
 
-/*UpdateLicenseNotFound handles this case with default header values.
+/* UpdateLicenseNotFound describes a response with status code 404, with default header values.
 
 not found
 */
@@ -160,7 +158,7 @@ func NewUpdateLicenseUnprocessableEntity() *UpdateLicenseUnprocessableEntity {
 	return &UpdateLicenseUnprocessableEntity{}
 }
 
-/*UpdateLicenseUnprocessableEntity handles this case with default header values.
+/* UpdateLicenseUnprocessableEntity describes a response with status code 422, with default header values.
 
 unprocessable entity
 */

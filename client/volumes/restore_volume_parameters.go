@@ -16,64 +16,81 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewRestoreVolumeParams creates a new RestoreVolumeParams object
-// with the default values initialized.
+// NewRestoreVolumeParams creates a new RestoreVolumeParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewRestoreVolumeParams() *RestoreVolumeParams {
-	var ()
 	return &RestoreVolumeParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewRestoreVolumeParamsWithTimeout creates a new RestoreVolumeParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewRestoreVolumeParamsWithTimeout(timeout time.Duration) *RestoreVolumeParams {
-	var ()
 	return &RestoreVolumeParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewRestoreVolumeParamsWithContext creates a new RestoreVolumeParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewRestoreVolumeParamsWithContext(ctx context.Context) *RestoreVolumeParams {
-	var ()
 	return &RestoreVolumeParams{
-
 		Context: ctx,
 	}
 }
 
 // NewRestoreVolumeParamsWithHTTPClient creates a new RestoreVolumeParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewRestoreVolumeParamsWithHTTPClient(client *http.Client) *RestoreVolumeParams {
-	var ()
 	return &RestoreVolumeParams{
 		HTTPClient: client,
 	}
 }
 
-/*RestoreVolumeParams contains all the parameters to send to the API endpoint
-for the restore volume operation typically these are written to a http.Request
+/* RestoreVolumeParams contains all the parameters to send to the API endpoint
+   for the restore volume operation.
+
+   Typically these are written to a http.Request.
 */
 type RestoreVolumeParams struct {
 
-	/*ID
-	  Volume UUID
+	/* ID.
 
+	   Volume UUID
+
+	   Format: uuid
 	*/
 	ID strfmt.UUID
-	/*RestorePoint
-	  restore point
 
+	/* RestorePoint.
+
+	   restore point
 	*/
 	RestorePoint string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the restore volume params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *RestoreVolumeParams) WithDefaults() *RestoreVolumeParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the restore volume params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *RestoreVolumeParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the restore volume params
@@ -148,6 +165,7 @@ func (o *RestoreVolumeParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 	qrRestorePoint := o.RestorePoint
 	qRestorePoint := qrRestorePoint
 	if qRestorePoint != "" {
+
 		if err := r.SetQueryParam("restore_point", qRestorePoint); err != nil {
 			return err
 		}

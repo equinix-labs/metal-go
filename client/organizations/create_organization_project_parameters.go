@@ -18,64 +18,81 @@ import (
 	"github.com/t0mk/gometal/types"
 )
 
-// NewCreateOrganizationProjectParams creates a new CreateOrganizationProjectParams object
-// with the default values initialized.
+// NewCreateOrganizationProjectParams creates a new CreateOrganizationProjectParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewCreateOrganizationProjectParams() *CreateOrganizationProjectParams {
-	var ()
 	return &CreateOrganizationProjectParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewCreateOrganizationProjectParamsWithTimeout creates a new CreateOrganizationProjectParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewCreateOrganizationProjectParamsWithTimeout(timeout time.Duration) *CreateOrganizationProjectParams {
-	var ()
 	return &CreateOrganizationProjectParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewCreateOrganizationProjectParamsWithContext creates a new CreateOrganizationProjectParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewCreateOrganizationProjectParamsWithContext(ctx context.Context) *CreateOrganizationProjectParams {
-	var ()
 	return &CreateOrganizationProjectParams{
-
 		Context: ctx,
 	}
 }
 
 // NewCreateOrganizationProjectParamsWithHTTPClient creates a new CreateOrganizationProjectParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewCreateOrganizationProjectParamsWithHTTPClient(client *http.Client) *CreateOrganizationProjectParams {
-	var ()
 	return &CreateOrganizationProjectParams{
 		HTTPClient: client,
 	}
 }
 
-/*CreateOrganizationProjectParams contains all the parameters to send to the API endpoint
-for the create organization project operation typically these are written to a http.Request
+/* CreateOrganizationProjectParams contains all the parameters to send to the API endpoint
+   for the create organization project operation.
+
+   Typically these are written to a http.Request.
 */
 type CreateOrganizationProjectParams struct {
 
-	/*ID
-	  Organization UUID
+	/* ID.
 
+	   Organization UUID
+
+	   Format: uuid
 	*/
 	ID strfmt.UUID
-	/*Project
-	  Project to create
 
+	/* Project.
+
+	   Project to create
 	*/
 	Project *types.ProjectCreateInput
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the create organization project params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *CreateOrganizationProjectParams) WithDefaults() *CreateOrganizationProjectParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the create organization project params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *CreateOrganizationProjectParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the create organization project params
@@ -145,7 +162,6 @@ func (o *CreateOrganizationProjectParams) WriteToRequest(r runtime.ClientRequest
 	if err := r.SetPathParam("id", o.ID.String()); err != nil {
 		return err
 	}
-
 	if o.Project != nil {
 		if err := r.SetBodyParam(o.Project); err != nil {
 			return err

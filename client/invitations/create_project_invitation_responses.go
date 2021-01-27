@@ -53,7 +53,6 @@ func (o *CreateProjectInvitationReader) ReadResponse(response runtime.ClientResp
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -64,7 +63,7 @@ func NewCreateProjectInvitationCreated() *CreateProjectInvitationCreated {
 	return &CreateProjectInvitationCreated{}
 }
 
-/*CreateProjectInvitationCreated handles this case with default header values.
+/* CreateProjectInvitationCreated describes a response with status code 201, with default header values.
 
 created
 */
@@ -75,7 +74,6 @@ type CreateProjectInvitationCreated struct {
 func (o *CreateProjectInvitationCreated) Error() string {
 	return fmt.Sprintf("[POST /projects/{project_id}/invitations][%d] createProjectInvitationCreated  %+v", 201, o.Payload)
 }
-
 func (o *CreateProjectInvitationCreated) GetPayload() *types.Invitation {
 	return o.Payload
 }
@@ -97,7 +95,7 @@ func NewCreateProjectInvitationUnauthorized() *CreateProjectInvitationUnauthoriz
 	return &CreateProjectInvitationUnauthorized{}
 }
 
-/*CreateProjectInvitationUnauthorized handles this case with default header values.
+/* CreateProjectInvitationUnauthorized describes a response with status code 401, with default header values.
 
 unauthorized
 */
@@ -118,7 +116,7 @@ func NewCreateProjectInvitationForbidden() *CreateProjectInvitationForbidden {
 	return &CreateProjectInvitationForbidden{}
 }
 
-/*CreateProjectInvitationForbidden handles this case with default header values.
+/* CreateProjectInvitationForbidden describes a response with status code 403, with default header values.
 
 forbidden
 */
@@ -139,7 +137,7 @@ func NewCreateProjectInvitationNotFound() *CreateProjectInvitationNotFound {
 	return &CreateProjectInvitationNotFound{}
 }
 
-/*CreateProjectInvitationNotFound handles this case with default header values.
+/* CreateProjectInvitationNotFound describes a response with status code 404, with default header values.
 
 not found
 */
@@ -160,7 +158,7 @@ func NewCreateProjectInvitationUnprocessableEntity() *CreateProjectInvitationUnp
 	return &CreateProjectInvitationUnprocessableEntity{}
 }
 
-/*CreateProjectInvitationUnprocessableEntity handles this case with default header values.
+/* CreateProjectInvitationUnprocessableEntity describes a response with status code 422, with default header values.
 
 unprocessable entity
 */

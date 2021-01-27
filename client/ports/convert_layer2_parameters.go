@@ -18,64 +18,81 @@ import (
 	"github.com/t0mk/gometal/types"
 )
 
-// NewConvertLayer2Params creates a new ConvertLayer2Params object
-// with the default values initialized.
+// NewConvertLayer2Params creates a new ConvertLayer2Params object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewConvertLayer2Params() *ConvertLayer2Params {
-	var ()
 	return &ConvertLayer2Params{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewConvertLayer2ParamsWithTimeout creates a new ConvertLayer2Params object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewConvertLayer2ParamsWithTimeout(timeout time.Duration) *ConvertLayer2Params {
-	var ()
 	return &ConvertLayer2Params{
-
 		timeout: timeout,
 	}
 }
 
 // NewConvertLayer2ParamsWithContext creates a new ConvertLayer2Params object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewConvertLayer2ParamsWithContext(ctx context.Context) *ConvertLayer2Params {
-	var ()
 	return &ConvertLayer2Params{
-
 		Context: ctx,
 	}
 }
 
 // NewConvertLayer2ParamsWithHTTPClient creates a new ConvertLayer2Params object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewConvertLayer2ParamsWithHTTPClient(client *http.Client) *ConvertLayer2Params {
-	var ()
 	return &ConvertLayer2Params{
 		HTTPClient: client,
 	}
 }
 
-/*ConvertLayer2Params contains all the parameters to send to the API endpoint
-for the convert layer2 operation typically these are written to a http.Request
+/* ConvertLayer2Params contains all the parameters to send to the API endpoint
+   for the convert layer2 operation.
+
+   Typically these are written to a http.Request.
 */
 type ConvertLayer2Params struct {
 
-	/*ID
-	  Port UUID
+	/* ID.
 
+	   Port UUID
+
+	   Format: uuid
 	*/
 	ID strfmt.UUID
-	/*Vnid
-	  Virtual Network ID
 
+	/* Vnid.
+
+	   Virtual Network ID
 	*/
 	Vnid *types.PortAssignInput
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the convert layer2 params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *ConvertLayer2Params) WithDefaults() *ConvertLayer2Params {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the convert layer2 params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *ConvertLayer2Params) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the convert layer2 params
@@ -145,7 +162,6 @@ func (o *ConvertLayer2Params) WriteToRequest(r runtime.ClientRequest, reg strfmt
 	if err := r.SetPathParam("id", o.ID.String()); err != nil {
 		return err
 	}
-
 	if o.Vnid != nil {
 		if err := r.SetBodyParam(o.Vnid); err != nil {
 			return err

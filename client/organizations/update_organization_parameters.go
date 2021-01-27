@@ -18,64 +18,81 @@ import (
 	"github.com/t0mk/gometal/types"
 )
 
-// NewUpdateOrganizationParams creates a new UpdateOrganizationParams object
-// with the default values initialized.
+// NewUpdateOrganizationParams creates a new UpdateOrganizationParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewUpdateOrganizationParams() *UpdateOrganizationParams {
-	var ()
 	return &UpdateOrganizationParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewUpdateOrganizationParamsWithTimeout creates a new UpdateOrganizationParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewUpdateOrganizationParamsWithTimeout(timeout time.Duration) *UpdateOrganizationParams {
-	var ()
 	return &UpdateOrganizationParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewUpdateOrganizationParamsWithContext creates a new UpdateOrganizationParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewUpdateOrganizationParamsWithContext(ctx context.Context) *UpdateOrganizationParams {
-	var ()
 	return &UpdateOrganizationParams{
-
 		Context: ctx,
 	}
 }
 
 // NewUpdateOrganizationParamsWithHTTPClient creates a new UpdateOrganizationParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewUpdateOrganizationParamsWithHTTPClient(client *http.Client) *UpdateOrganizationParams {
-	var ()
 	return &UpdateOrganizationParams{
 		HTTPClient: client,
 	}
 }
 
-/*UpdateOrganizationParams contains all the parameters to send to the API endpoint
-for the update organization operation typically these are written to a http.Request
+/* UpdateOrganizationParams contains all the parameters to send to the API endpoint
+   for the update organization operation.
+
+   Typically these are written to a http.Request.
 */
 type UpdateOrganizationParams struct {
 
-	/*ID
-	  Organization UUID
+	/* ID.
 
+	   Organization UUID
+
+	   Format: uuid
 	*/
 	ID strfmt.UUID
-	/*Organization
-	  Organization to update
 
+	/* Organization.
+
+	   Organization to update
 	*/
 	Organization *types.OrganizationInput
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the update organization params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *UpdateOrganizationParams) WithDefaults() *UpdateOrganizationParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the update organization params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *UpdateOrganizationParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the update organization params
@@ -145,7 +162,6 @@ func (o *UpdateOrganizationParams) WriteToRequest(r runtime.ClientRequest, reg s
 	if err := r.SetPathParam("id", o.ID.String()); err != nil {
 		return err
 	}
-
 	if o.Organization != nil {
 		if err := r.SetBodyParam(o.Organization); err != nil {
 			return err

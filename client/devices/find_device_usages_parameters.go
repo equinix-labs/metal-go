@@ -16,69 +16,91 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewFindDeviceUsagesParams creates a new FindDeviceUsagesParams object
-// with the default values initialized.
+// NewFindDeviceUsagesParams creates a new FindDeviceUsagesParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewFindDeviceUsagesParams() *FindDeviceUsagesParams {
-	var ()
 	return &FindDeviceUsagesParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewFindDeviceUsagesParamsWithTimeout creates a new FindDeviceUsagesParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewFindDeviceUsagesParamsWithTimeout(timeout time.Duration) *FindDeviceUsagesParams {
-	var ()
 	return &FindDeviceUsagesParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewFindDeviceUsagesParamsWithContext creates a new FindDeviceUsagesParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewFindDeviceUsagesParamsWithContext(ctx context.Context) *FindDeviceUsagesParams {
-	var ()
 	return &FindDeviceUsagesParams{
-
 		Context: ctx,
 	}
 }
 
 // NewFindDeviceUsagesParamsWithHTTPClient creates a new FindDeviceUsagesParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewFindDeviceUsagesParamsWithHTTPClient(client *http.Client) *FindDeviceUsagesParams {
-	var ()
 	return &FindDeviceUsagesParams{
 		HTTPClient: client,
 	}
 }
 
-/*FindDeviceUsagesParams contains all the parameters to send to the API endpoint
-for the find device usages operation typically these are written to a http.Request
+/* FindDeviceUsagesParams contains all the parameters to send to the API endpoint
+   for the find device usages operation.
+
+   Typically these are written to a http.Request.
 */
 type FindDeviceUsagesParams struct {
 
-	/*CreatedAfter
-	  Filter usages created after this date
+	/* CreatedAfter.
 
+	   Filter usages created after this date
+
+	   Format: datetime
 	*/
 	CreatedAfter *strfmt.DateTime
-	/*CreatedBefore
-	  Filter usages created before this date
 
+	/* CreatedBefore.
+
+	   Filter usages created before this date
+
+	   Format: datetime
 	*/
 	CreatedBefore *strfmt.DateTime
-	/*ID
-	  Device UUID
 
+	/* ID.
+
+	   Device UUID
+
+	   Format: uuid
 	*/
 	ID strfmt.UUID
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the find device usages params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *FindDeviceUsagesParams) WithDefaults() *FindDeviceUsagesParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the find device usages params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *FindDeviceUsagesParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the find device usages params
@@ -159,32 +181,34 @@ func (o *FindDeviceUsagesParams) WriteToRequest(r runtime.ClientRequest, reg str
 
 		// query param created[after]
 		var qrCreatedAfter strfmt.DateTime
+
 		if o.CreatedAfter != nil {
 			qrCreatedAfter = *o.CreatedAfter
 		}
 		qCreatedAfter := qrCreatedAfter.String()
 		if qCreatedAfter != "" {
+
 			if err := r.SetQueryParam("created[after]", qCreatedAfter); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	if o.CreatedBefore != nil {
 
 		// query param created[before]
 		var qrCreatedBefore strfmt.DateTime
+
 		if o.CreatedBefore != nil {
 			qrCreatedBefore = *o.CreatedBefore
 		}
 		qCreatedBefore := qrCreatedBefore.String()
 		if qCreatedBefore != "" {
+
 			if err := r.SetQueryParam("created[before]", qCreatedBefore); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	// path param id

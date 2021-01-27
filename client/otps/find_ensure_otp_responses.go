@@ -38,7 +38,6 @@ func (o *FindEnsureOtpReader) ReadResponse(response runtime.ClientResponse, cons
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -49,7 +48,7 @@ func NewFindEnsureOtpNoContent() *FindEnsureOtpNoContent {
 	return &FindEnsureOtpNoContent{}
 }
 
-/*FindEnsureOtpNoContent handles this case with default header values.
+/* FindEnsureOtpNoContent describes a response with status code 204, with default header values.
 
 no content
 */
@@ -70,7 +69,7 @@ func NewFindEnsureOtpBadRequest() *FindEnsureOtpBadRequest {
 	return &FindEnsureOtpBadRequest{}
 }
 
-/*FindEnsureOtpBadRequest handles this case with default header values.
+/* FindEnsureOtpBadRequest describes a response with status code 400, with default header values.
 
 bad request
 */
@@ -91,7 +90,7 @@ func NewFindEnsureOtpUnauthorized() *FindEnsureOtpUnauthorized {
 	return &FindEnsureOtpUnauthorized{}
 }
 
-/*FindEnsureOtpUnauthorized handles this case with default header values.
+/* FindEnsureOtpUnauthorized describes a response with status code 401, with default header values.
 
 unauthorized
 */

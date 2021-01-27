@@ -6,6 +6,8 @@ package types
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -86,7 +88,6 @@ func (m *Invitation) Validate(formats strfmt.Registry) error {
 }
 
 func (m *Invitation) validateCreatedAt(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.CreatedAt) { // not required
 		return nil
 	}
@@ -99,7 +100,6 @@ func (m *Invitation) validateCreatedAt(formats strfmt.Registry) error {
 }
 
 func (m *Invitation) validateID(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.ID) { // not required
 		return nil
 	}
@@ -112,7 +112,6 @@ func (m *Invitation) validateID(formats strfmt.Registry) error {
 }
 
 func (m *Invitation) validateInvitation(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Invitation) { // not required
 		return nil
 	}
@@ -130,7 +129,6 @@ func (m *Invitation) validateInvitation(formats strfmt.Registry) error {
 }
 
 func (m *Invitation) validateInvitedBy(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.InvitedBy) { // not required
 		return nil
 	}
@@ -148,7 +146,6 @@ func (m *Invitation) validateInvitedBy(formats strfmt.Registry) error {
 }
 
 func (m *Invitation) validateOrganization(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Organization) { // not required
 		return nil
 	}
@@ -166,13 +163,76 @@ func (m *Invitation) validateOrganization(formats strfmt.Registry) error {
 }
 
 func (m *Invitation) validateUpdatedAt(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.UpdatedAt) { // not required
 		return nil
 	}
 
 	if err := validate.FormatOf("updated_at", "body", "date-time", m.UpdatedAt.String(), formats); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+// ContextValidate validate this invitation based on the context it is used
+func (m *Invitation) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateInvitation(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateInvitedBy(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateOrganization(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *Invitation) contextValidateInvitation(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Invitation != nil {
+		if err := m.Invitation.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("invitation")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *Invitation) contextValidateInvitedBy(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.InvitedBy != nil {
+		if err := m.InvitedBy.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("invited_by")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *Invitation) contextValidateOrganization(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Organization != nil {
+		if err := m.Organization.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("organization")
+			}
+			return err
+		}
 	}
 
 	return nil

@@ -16,69 +16,87 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewFindDeviceSSHKeysParams creates a new FindDeviceSSHKeysParams object
-// with the default values initialized.
+// NewFindDeviceSSHKeysParams creates a new FindDeviceSSHKeysParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewFindDeviceSSHKeysParams() *FindDeviceSSHKeysParams {
-	var ()
 	return &FindDeviceSSHKeysParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewFindDeviceSSHKeysParamsWithTimeout creates a new FindDeviceSSHKeysParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewFindDeviceSSHKeysParamsWithTimeout(timeout time.Duration) *FindDeviceSSHKeysParams {
-	var ()
 	return &FindDeviceSSHKeysParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewFindDeviceSSHKeysParamsWithContext creates a new FindDeviceSSHKeysParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewFindDeviceSSHKeysParamsWithContext(ctx context.Context) *FindDeviceSSHKeysParams {
-	var ()
 	return &FindDeviceSSHKeysParams{
-
 		Context: ctx,
 	}
 }
 
 // NewFindDeviceSSHKeysParamsWithHTTPClient creates a new FindDeviceSSHKeysParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewFindDeviceSSHKeysParamsWithHTTPClient(client *http.Client) *FindDeviceSSHKeysParams {
-	var ()
 	return &FindDeviceSSHKeysParams{
 		HTTPClient: client,
 	}
 }
 
-/*FindDeviceSSHKeysParams contains all the parameters to send to the API endpoint
-for the find device SSH keys operation typically these are written to a http.Request
+/* FindDeviceSSHKeysParams contains all the parameters to send to the API endpoint
+   for the find device SSH keys operation.
+
+   Typically these are written to a http.Request.
 */
 type FindDeviceSSHKeysParams struct {
 
-	/*SearchString
-	  Search by key, label, or fingerprint
+	/* SearchString.
 
+	   Search by key, label, or fingerprint
 	*/
 	SearchString *string
-	/*ID
-	  Project UUID
 
+	/* ID.
+
+	   Project UUID
+
+	   Format: uuid
 	*/
 	ID strfmt.UUID
-	/*Include
-	  related attributes to include
 
+	/* Include.
+
+	   related attributes to include
 	*/
 	Include *string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the find device SSH keys params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *FindDeviceSSHKeysParams) WithDefaults() *FindDeviceSSHKeysParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the find device SSH keys params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *FindDeviceSSHKeysParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the find device SSH keys params
@@ -159,16 +177,17 @@ func (o *FindDeviceSSHKeysParams) WriteToRequest(r runtime.ClientRequest, reg st
 
 		// query param Search string
 		var qrSearchString string
+
 		if o.SearchString != nil {
 			qrSearchString = *o.SearchString
 		}
 		qSearchString := qrSearchString
 		if qSearchString != "" {
+
 			if err := r.SetQueryParam("Search string", qSearchString); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	// path param id
@@ -180,16 +199,17 @@ func (o *FindDeviceSSHKeysParams) WriteToRequest(r runtime.ClientRequest, reg st
 
 		// query param include
 		var qrInclude string
+
 		if o.Include != nil {
 			qrInclude = *o.Include
 		}
 		qInclude := qrInclude
 		if qInclude != "" {
+
 			if err := r.SetQueryParam("include", qInclude); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	if len(res) > 0 {

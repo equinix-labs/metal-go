@@ -47,7 +47,6 @@ func (o *AssignNativeVLANReader) ReadResponse(response runtime.ClientResponse, c
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -58,7 +57,7 @@ func NewAssignNativeVLANOK() *AssignNativeVLANOK {
 	return &AssignNativeVLANOK{}
 }
 
-/*AssignNativeVLANOK handles this case with default header values.
+/* AssignNativeVLANOK describes a response with status code 200, with default header values.
 
 ok
 */
@@ -69,7 +68,6 @@ type AssignNativeVLANOK struct {
 func (o *AssignNativeVLANOK) Error() string {
 	return fmt.Sprintf("[POST /ports/{id}/native-vlan][%d] assignNativeVlanOK  %+v", 200, o.Payload)
 }
-
 func (o *AssignNativeVLANOK) GetPayload() *types.Port {
 	return o.Payload
 }
@@ -91,7 +89,7 @@ func NewAssignNativeVLANUnauthorized() *AssignNativeVLANUnauthorized {
 	return &AssignNativeVLANUnauthorized{}
 }
 
-/*AssignNativeVLANUnauthorized handles this case with default header values.
+/* AssignNativeVLANUnauthorized describes a response with status code 401, with default header values.
 
 unauthorized
 */
@@ -112,7 +110,7 @@ func NewAssignNativeVLANNotFound() *AssignNativeVLANNotFound {
 	return &AssignNativeVLANNotFound{}
 }
 
-/*AssignNativeVLANNotFound handles this case with default header values.
+/* AssignNativeVLANNotFound describes a response with status code 404, with default header values.
 
 not found
 */
@@ -133,7 +131,7 @@ func NewAssignNativeVLANUnprocessableEntity() *AssignNativeVLANUnprocessableEnti
 	return &AssignNativeVLANUnprocessableEntity{}
 }
 
-/*AssignNativeVLANUnprocessableEntity handles this case with default header values.
+/* AssignNativeVLANUnprocessableEntity describes a response with status code 422, with default header values.
 
 unprocessable entity
 */

@@ -18,64 +18,81 @@ import (
 	"github.com/t0mk/gometal/types"
 )
 
-// NewUpdateDeviceParams creates a new UpdateDeviceParams object
-// with the default values initialized.
+// NewUpdateDeviceParams creates a new UpdateDeviceParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewUpdateDeviceParams() *UpdateDeviceParams {
-	var ()
 	return &UpdateDeviceParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewUpdateDeviceParamsWithTimeout creates a new UpdateDeviceParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewUpdateDeviceParamsWithTimeout(timeout time.Duration) *UpdateDeviceParams {
-	var ()
 	return &UpdateDeviceParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewUpdateDeviceParamsWithContext creates a new UpdateDeviceParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewUpdateDeviceParamsWithContext(ctx context.Context) *UpdateDeviceParams {
-	var ()
 	return &UpdateDeviceParams{
-
 		Context: ctx,
 	}
 }
 
 // NewUpdateDeviceParamsWithHTTPClient creates a new UpdateDeviceParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewUpdateDeviceParamsWithHTTPClient(client *http.Client) *UpdateDeviceParams {
-	var ()
 	return &UpdateDeviceParams{
 		HTTPClient: client,
 	}
 }
 
-/*UpdateDeviceParams contains all the parameters to send to the API endpoint
-for the update device operation typically these are written to a http.Request
+/* UpdateDeviceParams contains all the parameters to send to the API endpoint
+   for the update device operation.
+
+   Typically these are written to a http.Request.
 */
 type UpdateDeviceParams struct {
 
-	/*Device
-	  Facility to update
+	/* Device.
 
+	   Facility to update
 	*/
 	Device *types.DeviceUpdateInput
-	/*ID
-	  Device UUID
 
+	/* ID.
+
+	   Device UUID
+
+	   Format: uuid
 	*/
 	ID strfmt.UUID
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the update device params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *UpdateDeviceParams) WithDefaults() *UpdateDeviceParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the update device params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *UpdateDeviceParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the update device params
@@ -140,7 +157,6 @@ func (o *UpdateDeviceParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 		return err
 	}
 	var res []error
-
 	if o.Device != nil {
 		if err := r.SetBodyParam(o.Device); err != nil {
 			return err

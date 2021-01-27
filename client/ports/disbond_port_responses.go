@@ -53,7 +53,6 @@ func (o *DisbondPortReader) ReadResponse(response runtime.ClientResponse, consum
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -64,7 +63,7 @@ func NewDisbondPortOK() *DisbondPortOK {
 	return &DisbondPortOK{}
 }
 
-/*DisbondPortOK handles this case with default header values.
+/* DisbondPortOK describes a response with status code 200, with default header values.
 
 ok
 */
@@ -75,7 +74,6 @@ type DisbondPortOK struct {
 func (o *DisbondPortOK) Error() string {
 	return fmt.Sprintf("[POST /ports/{id}/disbond][%d] disbondPortOK  %+v", 200, o.Payload)
 }
-
 func (o *DisbondPortOK) GetPayload() *types.Port {
 	return o.Payload
 }
@@ -97,7 +95,7 @@ func NewDisbondPortUnauthorized() *DisbondPortUnauthorized {
 	return &DisbondPortUnauthorized{}
 }
 
-/*DisbondPortUnauthorized handles this case with default header values.
+/* DisbondPortUnauthorized describes a response with status code 401, with default header values.
 
 unauthorized
 */
@@ -118,7 +116,7 @@ func NewDisbondPortForbidden() *DisbondPortForbidden {
 	return &DisbondPortForbidden{}
 }
 
-/*DisbondPortForbidden handles this case with default header values.
+/* DisbondPortForbidden describes a response with status code 403, with default header values.
 
 forbidden
 */
@@ -139,7 +137,7 @@ func NewDisbondPortNotFound() *DisbondPortNotFound {
 	return &DisbondPortNotFound{}
 }
 
-/*DisbondPortNotFound handles this case with default header values.
+/* DisbondPortNotFound describes a response with status code 404, with default header values.
 
 not found
 */
@@ -160,7 +158,7 @@ func NewDisbondPortUnprocessableEntity() *DisbondPortUnprocessableEntity {
 	return &DisbondPortUnprocessableEntity{}
 }
 
-/*DisbondPortUnprocessableEntity handles this case with default header values.
+/* DisbondPortUnprocessableEntity describes a response with status code 422, with default header values.
 
 unprocessable entity
 */

@@ -16,64 +16,81 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewFindIPAssignmentsParams creates a new FindIPAssignmentsParams object
-// with the default values initialized.
+// NewFindIPAssignmentsParams creates a new FindIPAssignmentsParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewFindIPAssignmentsParams() *FindIPAssignmentsParams {
-	var ()
 	return &FindIPAssignmentsParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewFindIPAssignmentsParamsWithTimeout creates a new FindIPAssignmentsParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewFindIPAssignmentsParamsWithTimeout(timeout time.Duration) *FindIPAssignmentsParams {
-	var ()
 	return &FindIPAssignmentsParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewFindIPAssignmentsParamsWithContext creates a new FindIPAssignmentsParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewFindIPAssignmentsParamsWithContext(ctx context.Context) *FindIPAssignmentsParams {
-	var ()
 	return &FindIPAssignmentsParams{
-
 		Context: ctx,
 	}
 }
 
 // NewFindIPAssignmentsParamsWithHTTPClient creates a new FindIPAssignmentsParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewFindIPAssignmentsParamsWithHTTPClient(client *http.Client) *FindIPAssignmentsParams {
-	var ()
 	return &FindIPAssignmentsParams{
 		HTTPClient: client,
 	}
 }
 
-/*FindIPAssignmentsParams contains all the parameters to send to the API endpoint
-for the find IP assignments operation typically these are written to a http.Request
+/* FindIPAssignmentsParams contains all the parameters to send to the API endpoint
+   for the find IP assignments operation.
+
+   Typically these are written to a http.Request.
 */
 type FindIPAssignmentsParams struct {
 
-	/*ID
-	  Device UUID
+	/* ID.
 
+	   Device UUID
+
+	   Format: uuid
 	*/
 	ID strfmt.UUID
-	/*Include
-	  related attributes to include
 
+	/* Include.
+
+	   related attributes to include
 	*/
 	Include *string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the find IP assignments params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *FindIPAssignmentsParams) WithDefaults() *FindIPAssignmentsParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the find IP assignments params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *FindIPAssignmentsParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the find IP assignments params
@@ -148,16 +165,17 @@ func (o *FindIPAssignmentsParams) WriteToRequest(r runtime.ClientRequest, reg st
 
 		// query param include
 		var qrInclude string
+
 		if o.Include != nil {
 			qrInclude = *o.Include
 		}
 		qInclude := qrInclude
 		if qInclude != "" {
+
 			if err := r.SetQueryParam("include", qInclude); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	if len(res) > 0 {

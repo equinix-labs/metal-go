@@ -16,59 +16,73 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewFindEnsureOtpParams creates a new FindEnsureOtpParams object
-// with the default values initialized.
+// NewFindEnsureOtpParams creates a new FindEnsureOtpParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewFindEnsureOtpParams() *FindEnsureOtpParams {
-	var ()
 	return &FindEnsureOtpParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewFindEnsureOtpParamsWithTimeout creates a new FindEnsureOtpParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewFindEnsureOtpParamsWithTimeout(timeout time.Duration) *FindEnsureOtpParams {
-	var ()
 	return &FindEnsureOtpParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewFindEnsureOtpParamsWithContext creates a new FindEnsureOtpParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewFindEnsureOtpParamsWithContext(ctx context.Context) *FindEnsureOtpParams {
-	var ()
 	return &FindEnsureOtpParams{
-
 		Context: ctx,
 	}
 }
 
 // NewFindEnsureOtpParamsWithHTTPClient creates a new FindEnsureOtpParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewFindEnsureOtpParamsWithHTTPClient(client *http.Client) *FindEnsureOtpParams {
-	var ()
 	return &FindEnsureOtpParams{
 		HTTPClient: client,
 	}
 }
 
-/*FindEnsureOtpParams contains all the parameters to send to the API endpoint
-for the find ensure otp operation typically these are written to a http.Request
+/* FindEnsureOtpParams contains all the parameters to send to the API endpoint
+   for the find ensure otp operation.
+
+   Typically these are written to a http.Request.
 */
 type FindEnsureOtpParams struct {
 
-	/*Otp
-	  OTP
+	/* Otp.
 
+	   OTP
 	*/
 	Otp string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the find ensure otp params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *FindEnsureOtpParams) WithDefaults() *FindEnsureOtpParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the find ensure otp params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *FindEnsureOtpParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the find ensure otp params

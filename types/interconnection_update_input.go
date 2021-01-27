@@ -6,6 +6,8 @@ package types
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
@@ -33,6 +35,11 @@ type InterconnectionUpdateInput struct {
 
 // Validate validates this interconnection update input
 func (m *InterconnectionUpdateInput) Validate(formats strfmt.Registry) error {
+	return nil
+}
+
+// ContextValidate validates this interconnection update input based on context it is used
+func (m *InterconnectionUpdateInput) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

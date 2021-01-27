@@ -35,7 +35,6 @@ func (o *FindRegionsReader) ReadResponse(response runtime.ClientResponse, consum
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -46,7 +45,7 @@ func NewFindRegionsOK() *FindRegionsOK {
 	return &FindRegionsOK{}
 }
 
-/*FindRegionsOK handles this case with default header values.
+/* FindRegionsOK describes a response with status code 200, with default header values.
 
 ok
 */
@@ -57,7 +56,6 @@ type FindRegionsOK struct {
 func (o *FindRegionsOK) Error() string {
 	return fmt.Sprintf("[GET /regions][%d] findRegionsOK  %+v", 200, o.Payload)
 }
-
 func (o *FindRegionsOK) GetPayload() *types.RegionsList {
 	return o.Payload
 }
@@ -79,7 +77,7 @@ func NewFindRegionsUnauthorized() *FindRegionsUnauthorized {
 	return &FindRegionsUnauthorized{}
 }
 
-/*FindRegionsUnauthorized handles this case with default header values.
+/* FindRegionsUnauthorized describes a response with status code 401, with default header values.
 
 unauthorized
 */

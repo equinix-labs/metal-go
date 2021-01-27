@@ -53,7 +53,6 @@ func (o *AssignPortReader) ReadResponse(response runtime.ClientResponse, consume
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -64,7 +63,7 @@ func NewAssignPortOK() *AssignPortOK {
 	return &AssignPortOK{}
 }
 
-/*AssignPortOK handles this case with default header values.
+/* AssignPortOK describes a response with status code 200, with default header values.
 
 ok
 */
@@ -75,7 +74,6 @@ type AssignPortOK struct {
 func (o *AssignPortOK) Error() string {
 	return fmt.Sprintf("[POST /ports/{id}/assign][%d] assignPortOK  %+v", 200, o.Payload)
 }
-
 func (o *AssignPortOK) GetPayload() *types.Port {
 	return o.Payload
 }
@@ -97,7 +95,7 @@ func NewAssignPortUnauthorized() *AssignPortUnauthorized {
 	return &AssignPortUnauthorized{}
 }
 
-/*AssignPortUnauthorized handles this case with default header values.
+/* AssignPortUnauthorized describes a response with status code 401, with default header values.
 
 unauthorized
 */
@@ -118,7 +116,7 @@ func NewAssignPortForbidden() *AssignPortForbidden {
 	return &AssignPortForbidden{}
 }
 
-/*AssignPortForbidden handles this case with default header values.
+/* AssignPortForbidden describes a response with status code 403, with default header values.
 
 forbidden
 */
@@ -139,7 +137,7 @@ func NewAssignPortNotFound() *AssignPortNotFound {
 	return &AssignPortNotFound{}
 }
 
-/*AssignPortNotFound handles this case with default header values.
+/* AssignPortNotFound describes a response with status code 404, with default header values.
 
 not found
 */
@@ -160,7 +158,7 @@ func NewAssignPortUnprocessableEntity() *AssignPortUnprocessableEntity {
 	return &AssignPortUnprocessableEntity{}
 }
 
-/*AssignPortUnprocessableEntity handles this case with default header values.
+/* AssignPortUnprocessableEntity describes a response with status code 422, with default header values.
 
 unprocessable entity
 */

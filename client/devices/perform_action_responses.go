@@ -44,7 +44,6 @@ func (o *PerformActionReader) ReadResponse(response runtime.ClientResponse, cons
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -55,7 +54,7 @@ func NewPerformActionAccepted() *PerformActionAccepted {
 	return &PerformActionAccepted{}
 }
 
-/*PerformActionAccepted handles this case with default header values.
+/* PerformActionAccepted describes a response with status code 202, with default header values.
 
 accepted
 */
@@ -76,7 +75,7 @@ func NewPerformActionUnauthorized() *PerformActionUnauthorized {
 	return &PerformActionUnauthorized{}
 }
 
-/*PerformActionUnauthorized handles this case with default header values.
+/* PerformActionUnauthorized describes a response with status code 401, with default header values.
 
 unauthorized
 */
@@ -97,7 +96,7 @@ func NewPerformActionNotFound() *PerformActionNotFound {
 	return &PerformActionNotFound{}
 }
 
-/*PerformActionNotFound handles this case with default header values.
+/* PerformActionNotFound describes a response with status code 404, with default header values.
 
 not found
 */
@@ -118,7 +117,7 @@ func NewPerformActionUnprocessableEntity() *PerformActionUnprocessableEntity {
 	return &PerformActionUnprocessableEntity{}
 }
 
-/*PerformActionUnprocessableEntity handles this case with default header values.
+/* PerformActionUnprocessableEntity describes a response with status code 422, with default header values.
 
 unprocessable entity
 */

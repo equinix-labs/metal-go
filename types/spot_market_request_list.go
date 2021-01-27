@@ -6,6 +6,7 @@ package types
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"strconv"
 
 	"github.com/go-openapi/errors"
@@ -37,7 +38,6 @@ func (m *SpotMarketRequestList) Validate(formats strfmt.Registry) error {
 }
 
 func (m *SpotMarketRequestList) validateSpotMarketRequests(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.SpotMarketRequests) { // not required
 		return nil
 	}
@@ -49,6 +49,38 @@ func (m *SpotMarketRequestList) validateSpotMarketRequests(formats strfmt.Regist
 
 		if m.SpotMarketRequests[i] != nil {
 			if err := m.SpotMarketRequests[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("spot_market_requests" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+// ContextValidate validate this spot market request list based on the context it is used
+func (m *SpotMarketRequestList) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateSpotMarketRequests(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *SpotMarketRequestList) contextValidateSpotMarketRequests(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.SpotMarketRequests); i++ {
+
+		if m.SpotMarketRequests[i] != nil {
+			if err := m.SpotMarketRequests[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("spot_market_requests" + "." + strconv.Itoa(i))
 				}

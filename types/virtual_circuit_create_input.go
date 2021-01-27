@@ -6,6 +6,8 @@ package types
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -66,16 +68,15 @@ func (m *VirtualCircuitCreateInput) Validate(formats strfmt.Registry) error {
 }
 
 func (m *VirtualCircuitCreateInput) validateNniVLAN(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.NniVLAN) { // not required
 		return nil
 	}
 
-	if err := validate.MinimumInt("nni_vlan", "body", int64(m.NniVLAN), 2, false); err != nil {
+	if err := validate.MinimumInt("nni_vlan", "body", m.NniVLAN, 2, false); err != nil {
 		return err
 	}
 
-	if err := validate.MaximumInt("nni_vlan", "body", int64(m.NniVLAN), 4094, false); err != nil {
+	if err := validate.MaximumInt("nni_vlan", "body", m.NniVLAN, 4094, false); err != nil {
 		return err
 	}
 
@@ -83,7 +84,6 @@ func (m *VirtualCircuitCreateInput) validateNniVLAN(formats strfmt.Registry) err
 }
 
 func (m *VirtualCircuitCreateInput) validateProject(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Project) { // not required
 		return nil
 	}
@@ -96,7 +96,6 @@ func (m *VirtualCircuitCreateInput) validateProject(formats strfmt.Registry) err
 }
 
 func (m *VirtualCircuitCreateInput) validateVnid(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Vnid) { // not required
 		return nil
 	}
@@ -105,6 +104,11 @@ func (m *VirtualCircuitCreateInput) validateVnid(formats strfmt.Registry) error 
 		return err
 	}
 
+	return nil
+}
+
+// ContextValidate validates this virtual circuit create input based on context it is used
+func (m *VirtualCircuitCreateInput) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 
