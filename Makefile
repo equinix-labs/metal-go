@@ -9,7 +9,7 @@ fetch:
 	curl -o equinix-metal.swagger.json https://api.equinix.com/metal/v1/api-docs
 
 patch:
-	for a in *patch; do patch -p0 < "$$a"; done
+	for a in patches/*patch; do patch -p0 < "$$a"; done
 
 gen:
 	${SWAGGER} generate client \
