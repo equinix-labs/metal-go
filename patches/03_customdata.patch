@@ -36,17 +36,6 @@
          }
        }
      },
-@@ -9363,7 +9361,9 @@
-           "type": "array",
-           "description": "A list of one or more IP addresses to use for the Peer IP section of your BGP configuration. For non-multihop sessions, this will typically be a single gateway address for the device. For multihop sessions, it will be a list of IPs.",
-           "example": "[\"10.32.16.0\"] or [\"169.254.255.1\", \"169.254.255.2\"]",
--          "items": { "type": "string" }
-+          "items": {
-+            "type": "string"
-+          }
-         },
-         "routes_in": {
-           "type": "array",
 @@ -9643,7 +9643,7 @@
            "type": "boolean"
          },
