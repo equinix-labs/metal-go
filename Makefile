@@ -4,10 +4,14 @@
 SPEC_URL:=https://api.equinix.com/metal/v1/api-docs
 SPEC_FETCHED_FILE:=equinix-metal.fetched.json
 SPEC_PATCHED_FILE:=equinix-metal.patched.json
+IMAGE=quay.io/goswagger/swagger
 
-SWAGGER=docker run --rm --env GOPATH=/go -v $(CURDIR):/go/src -w /go/src quay.io/goswagger/swagger
+SWAGGER=docker run --rm --env GOPATH=/go -v $(CURDIR):/go/src -w /go/src ${IMAGE}
 
-all: fetch patch gen
+all: pull fetch patch gen
+
+pull:
+	docker pull ${IMAGE}
 
 fetch:
 	curl -o ${SPEC_FETCHED_FILE} ${SPEC_URL}
