@@ -163,6 +163,9 @@
     }
   ],
   "host": "api.equinix.com",
+  "schemes": [
+    "https"
+  ],
   "basePath": "/metal/v1",
   "consumes": [
     "application/json"
