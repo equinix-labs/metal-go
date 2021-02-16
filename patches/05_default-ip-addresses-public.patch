@@ -1,0 +1,14 @@
+diff --git a/equinix-metal.patched.json b/equinix-metal.patched.json
+index 8808e45..1b9c5af 100644
+--- a/equinix-metal.patched.json
++++ b/equinix-metal.patched.json
+@@ -8732,7 +8732,8 @@
+               "public": {
+                 "type": "boolean",
+                 "description": "Address Type for IP Address",
+-                "example": "true or false"
++                "example": false,
++                "default": true
+               },
+               "cidr": {
+                 "type": "number",

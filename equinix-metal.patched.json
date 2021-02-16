@@ -8732,7 +8732,8 @@
               "public": {
                 "type": "boolean",
                 "description": "Address Type for IP Address",
-                "example": "true or false"
+                "example": false,
+                "default": true
               },
               "cidr": {
                 "type": "number",
