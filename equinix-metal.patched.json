@@ -8123,6 +8123,7 @@
                 }
               },
               "user_ssh_keys": {
+                "description": "The UUIDs of users whose SSH keys should be included on the provisioned device.",
                 "type": "array",
                 "items": {
                   "type": "string",
@@ -8698,6 +8699,7 @@
           }
         },
         "user_ssh_keys": {
+          "description": "The UUIDs of users whose SSH keys should be included on the provisioned device.",
           "type": "array",
           "items": {
             "type": "string",
@@ -10486,6 +10488,7 @@
               }
             },
             "user_ssh_keys": {
+              "description": "The UUIDs of users whose SSH keys should be included on the provisioned device.",
               "type": "array",
               "items": {
                 "type": "string",
