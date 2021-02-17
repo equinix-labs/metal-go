@@ -25,17 +25,20 @@ type Client struct {
 	formats   strfmt.Registry
 }
 
+// ClientOption is the option for Client methods
+type ClientOption func(*runtime.ClientOperation)
+
 // ClientService is the interface for Client methods
 type ClientService interface {
-	CreateSSHKey(params *CreateSSHKeyParams, authInfo runtime.ClientAuthInfoWriter) (*CreateSSHKeyCreated, error)
+	CreateSSHKey(params *CreateSSHKeyParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateSSHKeyCreated, error)
 
-	DeleteSSHKey(params *DeleteSSHKeyParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteSSHKeyNoContent, error)
+	DeleteSSHKey(params *DeleteSSHKeyParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteSSHKeyNoContent, error)
 
-	FindSSHKeyByID(params *FindSSHKeyByIDParams, authInfo runtime.ClientAuthInfoWriter) (*FindSSHKeyByIDOK, error)
+	FindSSHKeyByID(params *FindSSHKeyByIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindSSHKeyByIDOK, error)
 
-	FindSSHKeys(params *FindSSHKeysParams, authInfo runtime.ClientAuthInfoWriter) (*FindSSHKeysOK, error)
+	FindSSHKeys(params *FindSSHKeysParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindSSHKeysOK, error)
 
-	UpdateSSHKey(params *UpdateSSHKeyParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateSSHKeyOK, error)
+	UpdateSSHKey(params *UpdateSSHKeyParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateSSHKeyOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -45,25 +48,29 @@ type ClientService interface {
 
   Creates a ssh key.
 */
-func (a *Client) CreateSSHKey(params *CreateSSHKeyParams, authInfo runtime.ClientAuthInfoWriter) (*CreateSSHKeyCreated, error) {
+func (a *Client) CreateSSHKey(params *CreateSSHKeyParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateSSHKeyCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCreateSSHKeyParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "createSSHKey",
 		Method:             "POST",
 		PathPattern:        "/ssh-keys",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &CreateSSHKeyReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -82,25 +89,29 @@ func (a *Client) CreateSSHKey(params *CreateSSHKeyParams, authInfo runtime.Clien
 
   Deletes the ssh key.
 */
-func (a *Client) DeleteSSHKey(params *DeleteSSHKeyParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteSSHKeyNoContent, error) {
+func (a *Client) DeleteSSHKey(params *DeleteSSHKeyParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteSSHKeyNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteSSHKeyParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "deleteSSHKey",
 		Method:             "DELETE",
 		PathPattern:        "/ssh-keys/{id}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteSSHKeyReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -119,25 +130,29 @@ func (a *Client) DeleteSSHKey(params *DeleteSSHKeyParams, authInfo runtime.Clien
 
   Returns a single ssh key if the user has access
 */
-func (a *Client) FindSSHKeyByID(params *FindSSHKeyByIDParams, authInfo runtime.ClientAuthInfoWriter) (*FindSSHKeyByIDOK, error) {
+func (a *Client) FindSSHKeyByID(params *FindSSHKeyByIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindSSHKeyByIDOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewFindSSHKeyByIDParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "findSSHKeyById",
 		Method:             "GET",
 		PathPattern:        "/ssh-keys/{id}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &FindSSHKeyByIDReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -156,25 +171,29 @@ func (a *Client) FindSSHKeyByID(params *FindSSHKeyByIDParams, authInfo runtime.C
 
   Returns a collection of the user’s ssh keys.
 */
-func (a *Client) FindSSHKeys(params *FindSSHKeysParams, authInfo runtime.ClientAuthInfoWriter) (*FindSSHKeysOK, error) {
+func (a *Client) FindSSHKeys(params *FindSSHKeysParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindSSHKeysOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewFindSSHKeysParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "findSSHKeys",
 		Method:             "GET",
 		PathPattern:        "/ssh-keys",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &FindSSHKeysReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -193,25 +212,29 @@ func (a *Client) FindSSHKeys(params *FindSSHKeysParams, authInfo runtime.ClientA
 
   Updates the ssh key.
 */
-func (a *Client) UpdateSSHKey(params *UpdateSSHKeyParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateSSHKeyOK, error) {
+func (a *Client) UpdateSSHKey(params *UpdateSSHKeyParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateSSHKeyOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewUpdateSSHKeyParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "updateSSHKey",
 		Method:             "PUT",
 		PathPattern:        "/ssh-keys/{id}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &UpdateSSHKeyReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}

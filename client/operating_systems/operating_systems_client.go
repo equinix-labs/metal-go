@@ -25,11 +25,14 @@ type Client struct {
 	formats   strfmt.Registry
 }
 
+// ClientOption is the option for Client methods
+type ClientOption func(*runtime.ClientOperation)
+
 // ClientService is the interface for Client methods
 type ClientService interface {
-	FindOperatingSystems(params *FindOperatingSystemsParams, authInfo runtime.ClientAuthInfoWriter) (*FindOperatingSystemsOK, error)
+	FindOperatingSystems(params *FindOperatingSystemsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindOperatingSystemsOK, error)
 
-	FindOperatingSystemsByOrganization(params *FindOperatingSystemsByOrganizationParams, authInfo runtime.ClientAuthInfoWriter) (*FindOperatingSystemsByOrganizationOK, error)
+	FindOperatingSystemsByOrganization(params *FindOperatingSystemsByOrganizationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindOperatingSystemsByOrganizationOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -39,25 +42,29 @@ type ClientService interface {
 
   Provides a listing of available operating systems to provision your new device with.
 */
-func (a *Client) FindOperatingSystems(params *FindOperatingSystemsParams, authInfo runtime.ClientAuthInfoWriter) (*FindOperatingSystemsOK, error) {
+func (a *Client) FindOperatingSystems(params *FindOperatingSystemsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindOperatingSystemsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewFindOperatingSystemsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "findOperatingSystems",
 		Method:             "GET",
 		PathPattern:        "/operating-systems",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &FindOperatingSystemsReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -76,25 +83,29 @@ func (a *Client) FindOperatingSystems(params *FindOperatingSystemsParams, authIn
 
   Returns a listing of available operating systems for the given organization
 */
-func (a *Client) FindOperatingSystemsByOrganization(params *FindOperatingSystemsByOrganizationParams, authInfo runtime.ClientAuthInfoWriter) (*FindOperatingSystemsByOrganizationOK, error) {
+func (a *Client) FindOperatingSystemsByOrganization(params *FindOperatingSystemsByOrganizationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindOperatingSystemsByOrganizationOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewFindOperatingSystemsByOrganizationParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "findOperatingSystemsByOrganization",
 		Method:             "GET",
 		PathPattern:        "/organizations/{id}/operating-systems",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &FindOperatingSystemsByOrganizationReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}

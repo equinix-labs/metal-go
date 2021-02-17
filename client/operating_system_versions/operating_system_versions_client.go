@@ -25,9 +25,12 @@ type Client struct {
 	formats   strfmt.Registry
 }
 
+// ClientOption is the option for Client methods
+type ClientOption func(*runtime.ClientOperation)
+
 // ClientService is the interface for Client methods
 type ClientService interface {
-	FindOperatingSystemVersion(params *FindOperatingSystemVersionParams, authInfo runtime.ClientAuthInfoWriter) (*FindOperatingSystemVersionOK, error)
+	FindOperatingSystemVersion(params *FindOperatingSystemVersionParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindOperatingSystemVersionOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -37,25 +40,29 @@ type ClientService interface {
 
   Provides a listing of available operating system versions.
 */
-func (a *Client) FindOperatingSystemVersion(params *FindOperatingSystemVersionParams, authInfo runtime.ClientAuthInfoWriter) (*FindOperatingSystemVersionOK, error) {
+func (a *Client) FindOperatingSystemVersion(params *FindOperatingSystemVersionParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindOperatingSystemVersionOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewFindOperatingSystemVersionParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "findOperatingSystemVersion",
 		Method:             "GET",
 		PathPattern:        "/operating-system-versions",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &FindOperatingSystemVersionReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}

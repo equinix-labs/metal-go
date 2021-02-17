@@ -25,11 +25,14 @@ type Client struct {
 	formats   strfmt.Registry
 }
 
+// ClientOption is the option for Client methods
+type ClientOption func(*runtime.ClientOperation)
+
 // ClientService is the interface for Client methods
 type ClientService interface {
-	CheckCapacity(params *CheckCapacityParams, authInfo runtime.ClientAuthInfoWriter) (*CheckCapacityOK, error)
+	CheckCapacity(params *CheckCapacityParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CheckCapacityOK, error)
 
-	FindCapacity(params *FindCapacityParams, authInfo runtime.ClientAuthInfoWriter) (*FindCapacityOK, error)
+	FindCapacity(params *FindCapacityParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindCapacityOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -47,25 +50,29 @@ Response:
 ]
 ```
 */
-func (a *Client) CheckCapacity(params *CheckCapacityParams, authInfo runtime.ClientAuthInfoWriter) (*CheckCapacityOK, error) {
+func (a *Client) CheckCapacity(params *CheckCapacityParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CheckCapacityOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCheckCapacityParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "checkCapacity",
 		Method:             "POST",
 		PathPattern:        "/capacity",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &CheckCapacityReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -84,25 +91,29 @@ func (a *Client) CheckCapacity(params *CheckCapacityParams, authInfo runtime.Cli
 
   Returns a list of facilities and plans with their current capacity.
 */
-func (a *Client) FindCapacity(params *FindCapacityParams, authInfo runtime.ClientAuthInfoWriter) (*FindCapacityOK, error) {
+func (a *Client) FindCapacity(params *FindCapacityParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindCapacityOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewFindCapacityParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "findCapacity",
 		Method:             "GET",
 		PathPattern:        "/capacity",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &FindCapacityReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}

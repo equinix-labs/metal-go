@@ -25,11 +25,14 @@ type Client struct {
 	formats   strfmt.Registry
 }
 
+// ClientOption is the option for Client methods
+type ClientOption func(*runtime.ClientOperation)
+
 // ClientService is the interface for Client methods
 type ClientService interface {
-	ConsumeVerificationRequest(params *ConsumeVerificationRequestParams, authInfo runtime.ClientAuthInfoWriter) (*ConsumeVerificationRequestOK, error)
+	ConsumeVerificationRequest(params *ConsumeVerificationRequestParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ConsumeVerificationRequestOK, error)
 
-	CreateValidationRequest(params *CreateValidationRequestParams, authInfo runtime.ClientAuthInfoWriter) (*CreateValidationRequestCreated, error)
+	CreateValidationRequest(params *CreateValidationRequestParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateValidationRequestCreated, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -39,25 +42,29 @@ type ClientService interface {
 
   Consumes an email verification token and verifies the user associated with it.
 */
-func (a *Client) ConsumeVerificationRequest(params *ConsumeVerificationRequestParams, authInfo runtime.ClientAuthInfoWriter) (*ConsumeVerificationRequestOK, error) {
+func (a *Client) ConsumeVerificationRequest(params *ConsumeVerificationRequestParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ConsumeVerificationRequestOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewConsumeVerificationRequestParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "consumeVerificationRequest",
 		Method:             "PUT",
 		PathPattern:        "/verify-email",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &ConsumeVerificationRequestReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -76,25 +83,29 @@ func (a *Client) ConsumeVerificationRequest(params *ConsumeVerificationRequestPa
 
   Creates an email verification request
 */
-func (a *Client) CreateValidationRequest(params *CreateValidationRequestParams, authInfo runtime.ClientAuthInfoWriter) (*CreateValidationRequestCreated, error) {
+func (a *Client) CreateValidationRequest(params *CreateValidationRequestParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateValidationRequestCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCreateValidationRequestParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "createValidationRequest",
 		Method:             "POST",
 		PathPattern:        "/verify-email",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &CreateValidationRequestReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}

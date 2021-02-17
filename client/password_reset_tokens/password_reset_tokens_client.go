@@ -25,11 +25,14 @@ type Client struct {
 	formats   strfmt.Registry
 }
 
+// ClientOption is the option for Client methods
+type ClientOption func(*runtime.ClientOperation)
+
 // ClientService is the interface for Client methods
 type ClientService interface {
-	CreatePasswordResetToken(params *CreatePasswordResetTokenParams, authInfo runtime.ClientAuthInfoWriter) (*CreatePasswordResetTokenCreated, error)
+	CreatePasswordResetToken(params *CreatePasswordResetTokenParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreatePasswordResetTokenCreated, error)
 
-	ResetPassword(params *ResetPasswordParams, authInfo runtime.ClientAuthInfoWriter) (*ResetPasswordCreated, error)
+	ResetPassword(params *ResetPasswordParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ResetPasswordCreated, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -39,25 +42,29 @@ type ClientService interface {
 
   Creates a password reset token
 */
-func (a *Client) CreatePasswordResetToken(params *CreatePasswordResetTokenParams, authInfo runtime.ClientAuthInfoWriter) (*CreatePasswordResetTokenCreated, error) {
+func (a *Client) CreatePasswordResetToken(params *CreatePasswordResetTokenParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreatePasswordResetTokenCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCreatePasswordResetTokenParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "createPasswordResetToken",
 		Method:             "POST",
 		PathPattern:        "/reset-password",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &CreatePasswordResetTokenReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -76,25 +83,29 @@ func (a *Client) CreatePasswordResetToken(params *CreatePasswordResetTokenParams
 
   Resets current user password.
 */
-func (a *Client) ResetPassword(params *ResetPasswordParams, authInfo runtime.ClientAuthInfoWriter) (*ResetPasswordCreated, error) {
+func (a *Client) ResetPassword(params *ResetPasswordParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ResetPasswordCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewResetPasswordParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "resetPassword",
 		Method:             "DELETE",
 		PathPattern:        "/reset-password",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &ResetPasswordReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}

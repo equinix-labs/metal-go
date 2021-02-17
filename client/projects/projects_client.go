@@ -25,61 +25,64 @@ type Client struct {
 	formats   strfmt.Registry
 }
 
+// ClientOption is the option for Client methods
+type ClientOption func(*runtime.ClientOperation)
+
 // ClientService is the interface for Client methods
 type ClientService interface {
-	CreateDevice(params *CreateDeviceParams, authInfo runtime.ClientAuthInfoWriter) (*CreateDeviceCreated, error)
+	CreateDevice(params *CreateDeviceParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateDeviceCreated, error)
 
-	CreateLicense(params *CreateLicenseParams, authInfo runtime.ClientAuthInfoWriter) (*CreateLicenseCreated, error)
+	CreateLicense(params *CreateLicenseParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateLicenseCreated, error)
 
-	CreateProject(params *CreateProjectParams, authInfo runtime.ClientAuthInfoWriter) (*CreateProjectCreated, error)
+	CreateProject(params *CreateProjectParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateProjectCreated, error)
 
-	CreateProjectSSHKey(params *CreateProjectSSHKeyParams, authInfo runtime.ClientAuthInfoWriter) (*CreateProjectSSHKeyCreated, error)
+	CreateProjectSSHKey(params *CreateProjectSSHKeyParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateProjectSSHKeyCreated, error)
 
-	CreateSpotMarketRequest(params *CreateSpotMarketRequestParams, authInfo runtime.ClientAuthInfoWriter) (*CreateSpotMarketRequestCreated, error)
+	CreateSpotMarketRequest(params *CreateSpotMarketRequestParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateSpotMarketRequestCreated, error)
 
-	CreateTransferRequest(params *CreateTransferRequestParams, authInfo runtime.ClientAuthInfoWriter) (*CreateTransferRequestCreated, error)
+	CreateTransferRequest(params *CreateTransferRequestParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateTransferRequestCreated, error)
 
-	CreateVirtualNetwork(params *CreateVirtualNetworkParams, authInfo runtime.ClientAuthInfoWriter) (*CreateVirtualNetworkCreated, error)
+	CreateVirtualNetwork(params *CreateVirtualNetworkParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateVirtualNetworkCreated, error)
 
-	DeleteProject(params *DeleteProjectParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteProjectNoContent, error)
+	DeleteProject(params *DeleteProjectParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteProjectNoContent, error)
 
-	FindBatchesByProject(params *FindBatchesByProjectParams, authInfo runtime.ClientAuthInfoWriter) (*FindBatchesByProjectOK, error)
+	FindBatchesByProject(params *FindBatchesByProjectParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindBatchesByProjectOK, error)
 
-	FindBGPConfigByProject(params *FindBGPConfigByProjectParams, authInfo runtime.ClientAuthInfoWriter) (*FindBGPConfigByProjectOK, error)
+	FindBGPConfigByProject(params *FindBGPConfigByProjectParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindBGPConfigByProjectOK, error)
 
-	FindDeviceSSHKeys(params *FindDeviceSSHKeysParams, authInfo runtime.ClientAuthInfoWriter) (*FindDeviceSSHKeysOK, error)
+	FindDeviceSSHKeys(params *FindDeviceSSHKeysParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindDeviceSSHKeysOK, error)
 
-	FindIPReservationCustomdata(params *FindIPReservationCustomdataParams, authInfo runtime.ClientAuthInfoWriter) (*FindIPReservationCustomdataOK, error)
+	FindIPReservationCustomdata(params *FindIPReservationCustomdataParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindIPReservationCustomdataOK, error)
 
-	FindIPReservations(params *FindIPReservationsParams, authInfo runtime.ClientAuthInfoWriter) (*FindIPReservationsOK, error)
+	FindIPReservations(params *FindIPReservationsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindIPReservationsOK, error)
 
-	FindProjectBGPSessions(params *FindProjectBGPSessionsParams, authInfo runtime.ClientAuthInfoWriter) (*FindProjectBGPSessionsOK, error)
+	FindProjectBGPSessions(params *FindProjectBGPSessionsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindProjectBGPSessionsOK, error)
 
-	FindProjectByID(params *FindProjectByIDParams, authInfo runtime.ClientAuthInfoWriter) (*FindProjectByIDOK, error)
+	FindProjectByID(params *FindProjectByIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindProjectByIDOK, error)
 
-	FindProjectCustomdata(params *FindProjectCustomdataParams, authInfo runtime.ClientAuthInfoWriter) (*FindProjectCustomdataOK, error)
+	FindProjectCustomdata(params *FindProjectCustomdataParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindProjectCustomdataOK, error)
 
-	FindProjectDevices(params *FindProjectDevicesParams, authInfo runtime.ClientAuthInfoWriter) (*FindProjectDevicesOK, error)
+	FindProjectDevices(params *FindProjectDevicesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindProjectDevicesOK, error)
 
-	FindProjectHardwareReservations(params *FindProjectHardwareReservationsParams, authInfo runtime.ClientAuthInfoWriter) (*FindProjectHardwareReservationsOK, error)
+	FindProjectHardwareReservations(params *FindProjectHardwareReservationsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindProjectHardwareReservationsOK, error)
 
-	FindProjectLicenses(params *FindProjectLicensesParams, authInfo runtime.ClientAuthInfoWriter) (*FindProjectLicensesOK, error)
+	FindProjectLicenses(params *FindProjectLicensesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindProjectLicensesOK, error)
 
-	FindProjectMemberships(params *FindProjectMembershipsParams, authInfo runtime.ClientAuthInfoWriter) (*FindProjectMembershipsOK, error)
+	FindProjectMemberships(params *FindProjectMembershipsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindProjectMembershipsOK, error)
 
-	FindProjectSSHKeys(params *FindProjectSSHKeysParams, authInfo runtime.ClientAuthInfoWriter) (*FindProjectSSHKeysOK, error)
+	FindProjectSSHKeys(params *FindProjectSSHKeysParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindProjectSSHKeysOK, error)
 
-	FindProjects(params *FindProjectsParams, authInfo runtime.ClientAuthInfoWriter) (*FindProjectsOK, error)
+	FindProjects(params *FindProjectsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindProjectsOK, error)
 
-	FindVirtualNetworks(params *FindVirtualNetworksParams, authInfo runtime.ClientAuthInfoWriter) (*FindVirtualNetworksOK, error)
+	FindVirtualNetworks(params *FindVirtualNetworksParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindVirtualNetworksOK, error)
 
-	ListSpotMarketRequests(params *ListSpotMarketRequestsParams, authInfo runtime.ClientAuthInfoWriter) (*ListSpotMarketRequestsOK, error)
+	ListSpotMarketRequests(params *ListSpotMarketRequestsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListSpotMarketRequestsOK, error)
 
-	RequestBGPConfig(params *RequestBGPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*RequestBGPConfigNoContent, error)
+	RequestBGPConfig(params *RequestBGPConfigParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RequestBGPConfigNoContent, error)
 
-	RequestIPReservation(params *RequestIPReservationParams, authInfo runtime.ClientAuthInfoWriter) (*RequestIPReservationCreated, error)
+	RequestIPReservation(params *RequestIPReservationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RequestIPReservationCreated, error)
 
-	UpdateProject(params *UpdateProjectParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateProjectOK, error)
+	UpdateProject(params *UpdateProjectParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateProjectOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -120,25 +123,29 @@ For example, `{ "ip_addresses": [..., {"address_family": 4, "public": true, "ip_
 To access a server without public IPs, you can use our Out-of-Band console access (SOS) or use another server with public IPs as a proxy.
 
 */
-func (a *Client) CreateDevice(params *CreateDeviceParams, authInfo runtime.ClientAuthInfoWriter) (*CreateDeviceCreated, error) {
+func (a *Client) CreateDevice(params *CreateDeviceParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateDeviceCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCreateDeviceParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "createDevice",
 		Method:             "POST",
 		PathPattern:        "/projects/{id}/devices",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &CreateDeviceReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -157,25 +164,29 @@ func (a *Client) CreateDevice(params *CreateDeviceParams, authInfo runtime.Clien
 
   Creates a new license for the given project
 */
-func (a *Client) CreateLicense(params *CreateLicenseParams, authInfo runtime.ClientAuthInfoWriter) (*CreateLicenseCreated, error) {
+func (a *Client) CreateLicense(params *CreateLicenseParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateLicenseCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCreateLicenseParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "createLicense",
 		Method:             "POST",
 		PathPattern:        "/projects/{id}/licenses",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &CreateLicenseReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -194,25 +205,29 @@ func (a *Client) CreateLicense(params *CreateLicenseParams, authInfo runtime.Cli
 
   Creates a new project for the user default organization. If the user don't have an organization, a new one will be created.
 */
-func (a *Client) CreateProject(params *CreateProjectParams, authInfo runtime.ClientAuthInfoWriter) (*CreateProjectCreated, error) {
+func (a *Client) CreateProject(params *CreateProjectParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateProjectCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCreateProjectParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "createProject",
 		Method:             "POST",
 		PathPattern:        "/projects",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &CreateProjectReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -231,25 +246,29 @@ func (a *Client) CreateProject(params *CreateProjectParams, authInfo runtime.Cli
 
   Creates a ssh key.
 */
-func (a *Client) CreateProjectSSHKey(params *CreateProjectSSHKeyParams, authInfo runtime.ClientAuthInfoWriter) (*CreateProjectSSHKeyCreated, error) {
+func (a *Client) CreateProjectSSHKey(params *CreateProjectSSHKeyParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateProjectSSHKeyCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCreateProjectSSHKeyParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "createProjectSSHKey",
 		Method:             "POST",
 		PathPattern:        "/projects/{id}/ssh-keys",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &CreateProjectSSHKeyReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -276,25 +295,29 @@ The request will fail if there are no available servers matching your criteria. 
 
 The request will not fail if we have no servers with that feature in our inventory.
 */
-func (a *Client) CreateSpotMarketRequest(params *CreateSpotMarketRequestParams, authInfo runtime.ClientAuthInfoWriter) (*CreateSpotMarketRequestCreated, error) {
+func (a *Client) CreateSpotMarketRequest(params *CreateSpotMarketRequestParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateSpotMarketRequestCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCreateSpotMarketRequestParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "createSpotMarketRequest",
 		Method:             "POST",
 		PathPattern:        "/projects/{id}/spot-market-requests",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &CreateSpotMarketRequestReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -313,25 +336,29 @@ func (a *Client) CreateSpotMarketRequest(params *CreateSpotMarketRequestParams, 
 
   Organization owners can transfer their projects to other organizations.
 */
-func (a *Client) CreateTransferRequest(params *CreateTransferRequestParams, authInfo runtime.ClientAuthInfoWriter) (*CreateTransferRequestCreated, error) {
+func (a *Client) CreateTransferRequest(params *CreateTransferRequestParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateTransferRequestCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCreateTransferRequestParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "createTransferRequest",
 		Method:             "POST",
 		PathPattern:        "/projects/{id}/transfers",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &CreateTransferRequestReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -350,25 +377,29 @@ func (a *Client) CreateTransferRequest(params *CreateTransferRequestParams, auth
 
   Creates an virtual network.
 */
-func (a *Client) CreateVirtualNetwork(params *CreateVirtualNetworkParams, authInfo runtime.ClientAuthInfoWriter) (*CreateVirtualNetworkCreated, error) {
+func (a *Client) CreateVirtualNetwork(params *CreateVirtualNetworkParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateVirtualNetworkCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCreateVirtualNetworkParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "createVirtualNetwork",
 		Method:             "POST",
 		PathPattern:        "/projects/{id}/virtual-networks",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &CreateVirtualNetworkReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -387,25 +418,29 @@ func (a *Client) CreateVirtualNetwork(params *CreateVirtualNetworkParams, authIn
 
   Deletes the project.
 */
-func (a *Client) DeleteProject(params *DeleteProjectParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteProjectNoContent, error) {
+func (a *Client) DeleteProject(params *DeleteProjectParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteProjectNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteProjectParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "deleteProject",
 		Method:             "DELETE",
 		PathPattern:        "/projects/{id}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteProjectReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -424,25 +459,29 @@ func (a *Client) DeleteProject(params *DeleteProjectParams, authInfo runtime.Cli
 
   Returns all batches for the given project
 */
-func (a *Client) FindBatchesByProject(params *FindBatchesByProjectParams, authInfo runtime.ClientAuthInfoWriter) (*FindBatchesByProjectOK, error) {
+func (a *Client) FindBatchesByProject(params *FindBatchesByProjectParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindBatchesByProjectOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewFindBatchesByProjectParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "findBatchesByProject",
 		Method:             "GET",
 		PathPattern:        "/projects/{id}/batches",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &FindBatchesByProjectReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -461,25 +500,29 @@ func (a *Client) FindBatchesByProject(params *FindBatchesByProjectParams, authIn
 
   Returns a bgp config
 */
-func (a *Client) FindBGPConfigByProject(params *FindBGPConfigByProjectParams, authInfo runtime.ClientAuthInfoWriter) (*FindBGPConfigByProjectOK, error) {
+func (a *Client) FindBGPConfigByProject(params *FindBGPConfigByProjectParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindBGPConfigByProjectOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewFindBGPConfigByProjectParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "findBgpConfigByProject",
 		Method:             "GET",
 		PathPattern:        "/projects/{id}/bgp-config",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &FindBGPConfigByProjectReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -498,25 +541,29 @@ func (a *Client) FindBGPConfigByProject(params *FindBGPConfigByProjectParams, au
 
   Returns a collection of the device's ssh keys.
 */
-func (a *Client) FindDeviceSSHKeys(params *FindDeviceSSHKeysParams, authInfo runtime.ClientAuthInfoWriter) (*FindDeviceSSHKeysOK, error) {
+func (a *Client) FindDeviceSSHKeys(params *FindDeviceSSHKeysParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindDeviceSSHKeysOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewFindDeviceSSHKeysParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "findDeviceSSHKeys",
 		Method:             "GET",
 		PathPattern:        "/devices/{id}/ssh-keys",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &FindDeviceSSHKeysReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -535,25 +582,29 @@ func (a *Client) FindDeviceSSHKeys(params *FindDeviceSSHKeysParams, authInfo run
 
   Provides the custom metadata stored for this IP Reservation in json format
 */
-func (a *Client) FindIPReservationCustomdata(params *FindIPReservationCustomdataParams, authInfo runtime.ClientAuthInfoWriter) (*FindIPReservationCustomdataOK, error) {
+func (a *Client) FindIPReservationCustomdata(params *FindIPReservationCustomdataParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindIPReservationCustomdataOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewFindIPReservationCustomdataParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "findIPReservationCustomdata",
 		Method:             "GET",
 		PathPattern:        "/projects/{project_id}/ips/{id}/customdata",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &FindIPReservationCustomdataReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -572,25 +623,29 @@ func (a *Client) FindIPReservationCustomdata(params *FindIPReservationCustomdata
 
   Provides a list of IP resevations for a single project.
 */
-func (a *Client) FindIPReservations(params *FindIPReservationsParams, authInfo runtime.ClientAuthInfoWriter) (*FindIPReservationsOK, error) {
+func (a *Client) FindIPReservations(params *FindIPReservationsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindIPReservationsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewFindIPReservationsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "findIPReservations",
 		Method:             "GET",
 		PathPattern:        "/projects/{id}/ips",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &FindIPReservationsReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -609,25 +664,29 @@ func (a *Client) FindIPReservations(params *FindIPReservationsParams, authInfo r
 
   Provides a listing of available BGP sessions for the project.
 */
-func (a *Client) FindProjectBGPSessions(params *FindProjectBGPSessionsParams, authInfo runtime.ClientAuthInfoWriter) (*FindProjectBGPSessionsOK, error) {
+func (a *Client) FindProjectBGPSessions(params *FindProjectBGPSessionsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindProjectBGPSessionsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewFindProjectBGPSessionsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "findProjectBgpSessions",
 		Method:             "GET",
 		PathPattern:        "/projects/{id}/bgp/sessions",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &FindProjectBGPSessionsReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -646,25 +705,29 @@ func (a *Client) FindProjectBGPSessions(params *FindProjectBGPSessionsParams, au
 
   Returns a single project if the user has access
 */
-func (a *Client) FindProjectByID(params *FindProjectByIDParams, authInfo runtime.ClientAuthInfoWriter) (*FindProjectByIDOK, error) {
+func (a *Client) FindProjectByID(params *FindProjectByIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindProjectByIDOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewFindProjectByIDParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "findProjectById",
 		Method:             "GET",
 		PathPattern:        "/projects/{id}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &FindProjectByIDReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -683,25 +746,29 @@ func (a *Client) FindProjectByID(params *FindProjectByIDParams, authInfo runtime
 
   Provides the custom metadata stored for this project in json format
 */
-func (a *Client) FindProjectCustomdata(params *FindProjectCustomdataParams, authInfo runtime.ClientAuthInfoWriter) (*FindProjectCustomdataOK, error) {
+func (a *Client) FindProjectCustomdata(params *FindProjectCustomdataParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindProjectCustomdataOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewFindProjectCustomdataParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "findProjectCustomdata",
 		Method:             "GET",
 		PathPattern:        "/projects/{id}/customdata",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &FindProjectCustomdataReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -720,25 +787,29 @@ func (a *Client) FindProjectCustomdata(params *FindProjectCustomdataParams, auth
 
   Provides a collection of devices for a given project.
 */
-func (a *Client) FindProjectDevices(params *FindProjectDevicesParams, authInfo runtime.ClientAuthInfoWriter) (*FindProjectDevicesOK, error) {
+func (a *Client) FindProjectDevices(params *FindProjectDevicesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindProjectDevicesOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewFindProjectDevicesParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "findProjectDevices",
 		Method:             "GET",
 		PathPattern:        "/projects/{id}/devices",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &FindProjectDevicesReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -757,25 +828,29 @@ func (a *Client) FindProjectDevices(params *FindProjectDevicesParams, authInfo r
 
   Provides a collection of hardware reservations for a given project.
 */
-func (a *Client) FindProjectHardwareReservations(params *FindProjectHardwareReservationsParams, authInfo runtime.ClientAuthInfoWriter) (*FindProjectHardwareReservationsOK, error) {
+func (a *Client) FindProjectHardwareReservations(params *FindProjectHardwareReservationsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindProjectHardwareReservationsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewFindProjectHardwareReservationsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "findProjectHardwareReservations",
 		Method:             "GET",
 		PathPattern:        "/projects/{id}/hardware-reservations",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &FindProjectHardwareReservationsReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -794,25 +869,29 @@ func (a *Client) FindProjectHardwareReservations(params *FindProjectHardwareRese
 
   Provides a collection of licenses for a given project.
 */
-func (a *Client) FindProjectLicenses(params *FindProjectLicensesParams, authInfo runtime.ClientAuthInfoWriter) (*FindProjectLicensesOK, error) {
+func (a *Client) FindProjectLicenses(params *FindProjectLicensesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindProjectLicensesOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewFindProjectLicensesParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "findProjectLicenses",
 		Method:             "GET",
 		PathPattern:        "/projects/{id}/licenses",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &FindProjectLicensesReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -831,25 +910,29 @@ func (a *Client) FindProjectLicenses(params *FindProjectLicensesParams, authInfo
 
   Returns all memberships in a project.
 */
-func (a *Client) FindProjectMemberships(params *FindProjectMembershipsParams, authInfo runtime.ClientAuthInfoWriter) (*FindProjectMembershipsOK, error) {
+func (a *Client) FindProjectMemberships(params *FindProjectMembershipsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindProjectMembershipsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewFindProjectMembershipsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "findProjectMemberships",
 		Method:             "GET",
 		PathPattern:        "/projects/{project_id}/memberships",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &FindProjectMembershipsReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -868,25 +951,29 @@ func (a *Client) FindProjectMemberships(params *FindProjectMembershipsParams, au
 
   Returns a collection of the project's ssh keys.
 */
-func (a *Client) FindProjectSSHKeys(params *FindProjectSSHKeysParams, authInfo runtime.ClientAuthInfoWriter) (*FindProjectSSHKeysOK, error) {
+func (a *Client) FindProjectSSHKeys(params *FindProjectSSHKeysParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindProjectSSHKeysOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewFindProjectSSHKeysParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "findProjectSSHKeys",
 		Method:             "GET",
 		PathPattern:        "/projects/{id}/ssh-keys",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &FindProjectSSHKeysReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -905,25 +992,29 @@ func (a *Client) FindProjectSSHKeys(params *FindProjectSSHKeysParams, authInfo r
 
   Returns a collection of projects that the current user is a member of.
 */
-func (a *Client) FindProjects(params *FindProjectsParams, authInfo runtime.ClientAuthInfoWriter) (*FindProjectsOK, error) {
+func (a *Client) FindProjects(params *FindProjectsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindProjectsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewFindProjectsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "findProjects",
 		Method:             "GET",
 		PathPattern:        "/projects",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &FindProjectsReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -942,25 +1033,29 @@ func (a *Client) FindProjects(params *FindProjectsParams, authInfo runtime.Clien
 
   Provides a list of virtual networks for a single project.
 */
-func (a *Client) FindVirtualNetworks(params *FindVirtualNetworksParams, authInfo runtime.ClientAuthInfoWriter) (*FindVirtualNetworksOK, error) {
+func (a *Client) FindVirtualNetworks(params *FindVirtualNetworksParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindVirtualNetworksOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewFindVirtualNetworksParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "findVirtualNetworks",
 		Method:             "GET",
 		PathPattern:        "/projects/{id}/virtual-networks",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &FindVirtualNetworksReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -979,25 +1074,29 @@ func (a *Client) FindVirtualNetworks(params *FindVirtualNetworksParams, authInfo
 
   View all spot market requests for a given project.
 */
-func (a *Client) ListSpotMarketRequests(params *ListSpotMarketRequestsParams, authInfo runtime.ClientAuthInfoWriter) (*ListSpotMarketRequestsOK, error) {
+func (a *Client) ListSpotMarketRequests(params *ListSpotMarketRequestsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListSpotMarketRequestsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewListSpotMarketRequestsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "listSpotMarketRequests",
 		Method:             "GET",
 		PathPattern:        "/projects/{id}/spot-market-requests",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &ListSpotMarketRequestsReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -1016,25 +1115,29 @@ func (a *Client) ListSpotMarketRequests(params *ListSpotMarketRequestsParams, au
 
   Requests to enable bgp configuration for a project.
 */
-func (a *Client) RequestBGPConfig(params *RequestBGPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*RequestBGPConfigNoContent, error) {
+func (a *Client) RequestBGPConfig(params *RequestBGPConfigParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RequestBGPConfigNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewRequestBGPConfigParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "requestBgpConfig",
 		Method:             "POST",
 		PathPattern:        "/projects/{id}/bgp-configs",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &RequestBGPConfigReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -1053,25 +1156,29 @@ func (a *Client) RequestBGPConfig(params *RequestBGPConfigParams, authInfo runti
 
   Request more IP space for a project in order to have additional IP addresses to assign to devices.  If the request is within the max quota, an IP reservation will be created. If the project will exceed its IP quota, a request will be submitted for review, and will return an IP Reservation with a `state` of `pending`. You can automatically have the request fail with HTTP status 422 instead of triggering the review process by providing the `fail_on_approval_required` parameter set to `true` in the request.
 */
-func (a *Client) RequestIPReservation(params *RequestIPReservationParams, authInfo runtime.ClientAuthInfoWriter) (*RequestIPReservationCreated, error) {
+func (a *Client) RequestIPReservation(params *RequestIPReservationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RequestIPReservationCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewRequestIPReservationParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "requestIPReservation",
 		Method:             "POST",
 		PathPattern:        "/projects/{id}/ips",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &RequestIPReservationReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -1090,25 +1197,29 @@ func (a *Client) RequestIPReservation(params *RequestIPReservationParams, authIn
 
   Updates the project.
 */
-func (a *Client) UpdateProject(params *UpdateProjectParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateProjectOK, error) {
+func (a *Client) UpdateProject(params *UpdateProjectParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateProjectOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewUpdateProjectParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "updateProject",
 		Method:             "PUT",
 		PathPattern:        "/projects/{id}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &UpdateProjectReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}

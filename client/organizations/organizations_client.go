@@ -25,31 +25,34 @@ type Client struct {
 	formats   strfmt.Registry
 }
 
+// ClientOption is the option for Client methods
+type ClientOption func(*runtime.ClientOperation)
+
 // ClientService is the interface for Client methods
 type ClientService interface {
-	CreateOrganization(params *CreateOrganizationParams, authInfo runtime.ClientAuthInfoWriter) (*CreateOrganizationCreated, error)
+	CreateOrganization(params *CreateOrganizationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateOrganizationCreated, error)
 
-	CreateOrganizationProject(params *CreateOrganizationProjectParams, authInfo runtime.ClientAuthInfoWriter) (*CreateOrganizationProjectCreated, error)
+	CreateOrganizationProject(params *CreateOrganizationProjectParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateOrganizationProjectCreated, error)
 
-	CreatePaymentMethod(params *CreatePaymentMethodParams, authInfo runtime.ClientAuthInfoWriter) (*CreatePaymentMethodCreated, error)
+	CreatePaymentMethod(params *CreatePaymentMethodParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreatePaymentMethodCreated, error)
 
-	DeleteOrganization(params *DeleteOrganizationParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteOrganizationNoContent, error)
+	DeleteOrganization(params *DeleteOrganizationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteOrganizationNoContent, error)
 
-	FindOrganizationByID(params *FindOrganizationByIDParams, authInfo runtime.ClientAuthInfoWriter) (*FindOrganizationByIDOK, error)
+	FindOrganizationByID(params *FindOrganizationByIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindOrganizationByIDOK, error)
 
-	FindOrganizationCustomdata(params *FindOrganizationCustomdataParams, authInfo runtime.ClientAuthInfoWriter) (*FindOrganizationCustomdataOK, error)
+	FindOrganizationCustomdata(params *FindOrganizationCustomdataParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindOrganizationCustomdataOK, error)
 
-	FindOrganizationDevices(params *FindOrganizationDevicesParams, authInfo runtime.ClientAuthInfoWriter) (*FindOrganizationDevicesOK, error)
+	FindOrganizationDevices(params *FindOrganizationDevicesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindOrganizationDevicesOK, error)
 
-	FindOrganizationPaymentMethods(params *FindOrganizationPaymentMethodsParams, authInfo runtime.ClientAuthInfoWriter) (*FindOrganizationPaymentMethodsOK, error)
+	FindOrganizationPaymentMethods(params *FindOrganizationPaymentMethodsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindOrganizationPaymentMethodsOK, error)
 
-	FindOrganizationProjects(params *FindOrganizationProjectsParams, authInfo runtime.ClientAuthInfoWriter) (*FindOrganizationProjectsOK, error)
+	FindOrganizationProjects(params *FindOrganizationProjectsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindOrganizationProjectsOK, error)
 
-	FindOrganizationTransfers(params *FindOrganizationTransfersParams, authInfo runtime.ClientAuthInfoWriter) (*FindOrganizationTransfersOK, error)
+	FindOrganizationTransfers(params *FindOrganizationTransfersParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindOrganizationTransfersOK, error)
 
-	FindOrganizations(params *FindOrganizationsParams, authInfo runtime.ClientAuthInfoWriter) (*FindOrganizationsOK, error)
+	FindOrganizations(params *FindOrganizationsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindOrganizationsOK, error)
 
-	UpdateOrganization(params *UpdateOrganizationParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateOrganizationOK, error)
+	UpdateOrganization(params *UpdateOrganizationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateOrganizationOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -59,25 +62,29 @@ type ClientService interface {
 
   Creates an organization.
 */
-func (a *Client) CreateOrganization(params *CreateOrganizationParams, authInfo runtime.ClientAuthInfoWriter) (*CreateOrganizationCreated, error) {
+func (a *Client) CreateOrganization(params *CreateOrganizationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateOrganizationCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCreateOrganizationParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "createOrganization",
 		Method:             "POST",
 		PathPattern:        "/organizations",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &CreateOrganizationReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -96,25 +103,29 @@ func (a *Client) CreateOrganization(params *CreateOrganizationParams, authInfo r
 
   Creates a new project for the organization
 */
-func (a *Client) CreateOrganizationProject(params *CreateOrganizationProjectParams, authInfo runtime.ClientAuthInfoWriter) (*CreateOrganizationProjectCreated, error) {
+func (a *Client) CreateOrganizationProject(params *CreateOrganizationProjectParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateOrganizationProjectCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCreateOrganizationProjectParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "createOrganizationProject",
 		Method:             "POST",
 		PathPattern:        "/organizations/{id}/projects",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &CreateOrganizationProjectReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -133,25 +144,29 @@ func (a *Client) CreateOrganizationProject(params *CreateOrganizationProjectPara
 
   Creates a payment method.
 */
-func (a *Client) CreatePaymentMethod(params *CreatePaymentMethodParams, authInfo runtime.ClientAuthInfoWriter) (*CreatePaymentMethodCreated, error) {
+func (a *Client) CreatePaymentMethod(params *CreatePaymentMethodParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreatePaymentMethodCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCreatePaymentMethodParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "createPaymentMethod",
 		Method:             "POST",
 		PathPattern:        "/organizations/{id}/payment-methods",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &CreatePaymentMethodReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -170,25 +185,29 @@ func (a *Client) CreatePaymentMethod(params *CreatePaymentMethodParams, authInfo
 
   Deletes the organization.
 */
-func (a *Client) DeleteOrganization(params *DeleteOrganizationParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteOrganizationNoContent, error) {
+func (a *Client) DeleteOrganization(params *DeleteOrganizationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteOrganizationNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteOrganizationParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "deleteOrganization",
 		Method:             "DELETE",
 		PathPattern:        "/organizations/{id}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteOrganizationReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -207,25 +226,29 @@ func (a *Client) DeleteOrganization(params *DeleteOrganizationParams, authInfo r
 
   Returns a single organization's details, if the user is authorized to view it.
 */
-func (a *Client) FindOrganizationByID(params *FindOrganizationByIDParams, authInfo runtime.ClientAuthInfoWriter) (*FindOrganizationByIDOK, error) {
+func (a *Client) FindOrganizationByID(params *FindOrganizationByIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindOrganizationByIDOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewFindOrganizationByIDParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "findOrganizationById",
 		Method:             "GET",
 		PathPattern:        "/organizations/{id}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &FindOrganizationByIDReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -244,25 +267,29 @@ func (a *Client) FindOrganizationByID(params *FindOrganizationByIDParams, authIn
 
   Provides the custom metadata stored for this organization in json format
 */
-func (a *Client) FindOrganizationCustomdata(params *FindOrganizationCustomdataParams, authInfo runtime.ClientAuthInfoWriter) (*FindOrganizationCustomdataOK, error) {
+func (a *Client) FindOrganizationCustomdata(params *FindOrganizationCustomdataParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindOrganizationCustomdataOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewFindOrganizationCustomdataParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "findOrganizationCustomdata",
 		Method:             "GET",
 		PathPattern:        "/organizations/{id}/customdata",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &FindOrganizationCustomdataReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -281,25 +308,29 @@ func (a *Client) FindOrganizationCustomdata(params *FindOrganizationCustomdataPa
 
   Provides a collection of devices for a given organization.
 */
-func (a *Client) FindOrganizationDevices(params *FindOrganizationDevicesParams, authInfo runtime.ClientAuthInfoWriter) (*FindOrganizationDevicesOK, error) {
+func (a *Client) FindOrganizationDevices(params *FindOrganizationDevicesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindOrganizationDevicesOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewFindOrganizationDevicesParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "findOrganizationDevices",
 		Method:             "GET",
 		PathPattern:        "/organizations/{id}/devices",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &FindOrganizationDevicesReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -318,25 +349,29 @@ func (a *Client) FindOrganizationDevices(params *FindOrganizationDevicesParams, 
 
   Returns all payment methods of an organization.
 */
-func (a *Client) FindOrganizationPaymentMethods(params *FindOrganizationPaymentMethodsParams, authInfo runtime.ClientAuthInfoWriter) (*FindOrganizationPaymentMethodsOK, error) {
+func (a *Client) FindOrganizationPaymentMethods(params *FindOrganizationPaymentMethodsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindOrganizationPaymentMethodsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewFindOrganizationPaymentMethodsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "findOrganizationPaymentMethods",
 		Method:             "GET",
 		PathPattern:        "/organizations/{id}/payment-methods",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &FindOrganizationPaymentMethodsReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -355,25 +390,29 @@ func (a *Client) FindOrganizationPaymentMethods(params *FindOrganizationPaymentM
 
   Returns a collection of projects that belong to the organization.
 */
-func (a *Client) FindOrganizationProjects(params *FindOrganizationProjectsParams, authInfo runtime.ClientAuthInfoWriter) (*FindOrganizationProjectsOK, error) {
+func (a *Client) FindOrganizationProjects(params *FindOrganizationProjectsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindOrganizationProjectsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewFindOrganizationProjectsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "findOrganizationProjects",
 		Method:             "GET",
 		PathPattern:        "/organizations/{id}/projects",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &FindOrganizationProjectsReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -392,25 +431,29 @@ func (a *Client) FindOrganizationProjects(params *FindOrganizationProjectsParams
 
   Provides a collection of project transfer requests from or to the organization.
 */
-func (a *Client) FindOrganizationTransfers(params *FindOrganizationTransfersParams, authInfo runtime.ClientAuthInfoWriter) (*FindOrganizationTransfersOK, error) {
+func (a *Client) FindOrganizationTransfers(params *FindOrganizationTransfersParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindOrganizationTransfersOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewFindOrganizationTransfersParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "findOrganizationTransfers",
 		Method:             "GET",
 		PathPattern:        "/organizations/{id}/transfers",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &FindOrganizationTransfersReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -429,25 +472,29 @@ func (a *Client) FindOrganizationTransfers(params *FindOrganizationTransfersPara
 
   Returns a list of organizations that are accessible to the current user.
 */
-func (a *Client) FindOrganizations(params *FindOrganizationsParams, authInfo runtime.ClientAuthInfoWriter) (*FindOrganizationsOK, error) {
+func (a *Client) FindOrganizations(params *FindOrganizationsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindOrganizationsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewFindOrganizationsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "findOrganizations",
 		Method:             "GET",
 		PathPattern:        "/organizations",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &FindOrganizationsReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -466,25 +513,29 @@ func (a *Client) FindOrganizations(params *FindOrganizationsParams, authInfo run
 
   Updates the organization.
 */
-func (a *Client) UpdateOrganization(params *UpdateOrganizationParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateOrganizationOK, error) {
+func (a *Client) UpdateOrganization(params *UpdateOrganizationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateOrganizationOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewUpdateOrganizationParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "updateOrganization",
 		Method:             "PUT",
 		PathPattern:        "/organizations/{id}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &UpdateOrganizationReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}

@@ -25,25 +25,28 @@ type Client struct {
 	formats   strfmt.Registry
 }
 
+// ClientOption is the option for Client methods
+type ClientOption func(*runtime.ClientOperation)
+
 // ClientService is the interface for Client methods
 type ClientService interface {
-	AssignNativeVLAN(params *AssignNativeVLANParams, authInfo runtime.ClientAuthInfoWriter) (*AssignNativeVLANOK, error)
+	AssignNativeVLAN(params *AssignNativeVLANParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AssignNativeVLANOK, error)
 
-	AssignPort(params *AssignPortParams, authInfo runtime.ClientAuthInfoWriter) (*AssignPortOK, error)
+	AssignPort(params *AssignPortParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AssignPortOK, error)
 
-	BondPort(params *BondPortParams, authInfo runtime.ClientAuthInfoWriter) (*BondPortOK, error)
+	BondPort(params *BondPortParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*BondPortOK, error)
 
-	ConvertLayer2(params *ConvertLayer2Params, authInfo runtime.ClientAuthInfoWriter) (*ConvertLayer2OK, error)
+	ConvertLayer2(params *ConvertLayer2Params, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ConvertLayer2OK, error)
 
-	ConvertLayer3(params *ConvertLayer3Params, authInfo runtime.ClientAuthInfoWriter) (*ConvertLayer3OK, error)
+	ConvertLayer3(params *ConvertLayer3Params, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ConvertLayer3OK, error)
 
-	DeleteNativeVLAN(params *DeleteNativeVLANParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteNativeVLANOK, error)
+	DeleteNativeVLAN(params *DeleteNativeVLANParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteNativeVLANOK, error)
 
-	DisbondPort(params *DisbondPortParams, authInfo runtime.ClientAuthInfoWriter) (*DisbondPortOK, error)
+	DisbondPort(params *DisbondPortParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DisbondPortOK, error)
 
-	FindPortByID(params *FindPortByIDParams, authInfo runtime.ClientAuthInfoWriter) (*FindPortByIDOK, error)
+	FindPortByID(params *FindPortByIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindPortByIDOK, error)
 
-	UnassignPort(params *UnassignPortParams, authInfo runtime.ClientAuthInfoWriter) (*UnassignPortOK, error)
+	UnassignPort(params *UnassignPortParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UnassignPortOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -53,25 +56,29 @@ type ClientService interface {
 
   Assigns a virtual network to this port as a "native VLAN"
 */
-func (a *Client) AssignNativeVLAN(params *AssignNativeVLANParams, authInfo runtime.ClientAuthInfoWriter) (*AssignNativeVLANOK, error) {
+func (a *Client) AssignNativeVLAN(params *AssignNativeVLANParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AssignNativeVLANOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAssignNativeVLANParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "assignNativeVlan",
 		Method:             "POST",
 		PathPattern:        "/ports/{id}/native-vlan",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AssignNativeVLANReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -90,25 +97,29 @@ func (a *Client) AssignNativeVLAN(params *AssignNativeVLANParams, authInfo runti
 
   Assign a port for a hardware to virtual network.
 */
-func (a *Client) AssignPort(params *AssignPortParams, authInfo runtime.ClientAuthInfoWriter) (*AssignPortOK, error) {
+func (a *Client) AssignPort(params *AssignPortParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AssignPortOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAssignPortParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "assignPort",
 		Method:             "POST",
 		PathPattern:        "/ports/{id}/assign",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AssignPortReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -127,25 +138,29 @@ func (a *Client) AssignPort(params *AssignPortParams, authInfo runtime.ClientAut
 
   Enabling bonding for one or all ports
 */
-func (a *Client) BondPort(params *BondPortParams, authInfo runtime.ClientAuthInfoWriter) (*BondPortOK, error) {
+func (a *Client) BondPort(params *BondPortParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*BondPortOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewBondPortParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "bondPort",
 		Method:             "POST",
 		PathPattern:        "/ports/{id}/bond",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &BondPortReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -164,25 +179,29 @@ func (a *Client) BondPort(params *BondPortParams, authInfo runtime.ClientAuthInf
 
   Converts a bond port to Layer 2. IP assignments of the port will be removed.
 */
-func (a *Client) ConvertLayer2(params *ConvertLayer2Params, authInfo runtime.ClientAuthInfoWriter) (*ConvertLayer2OK, error) {
+func (a *Client) ConvertLayer2(params *ConvertLayer2Params, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ConvertLayer2OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewConvertLayer2Params()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "convertLayer2",
 		Method:             "POST",
 		PathPattern:        "/ports/{id}/convert/layer-2",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &ConvertLayer2Reader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -201,25 +220,29 @@ func (a *Client) ConvertLayer2(params *ConvertLayer2Params, authInfo runtime.Cli
 
   Converts a bond port to Layer 3. VLANs must first be unassigned.
 */
-func (a *Client) ConvertLayer3(params *ConvertLayer3Params, authInfo runtime.ClientAuthInfoWriter) (*ConvertLayer3OK, error) {
+func (a *Client) ConvertLayer3(params *ConvertLayer3Params, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ConvertLayer3OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewConvertLayer3Params()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "convertLayer3",
 		Method:             "POST",
 		PathPattern:        "/ports/{id}/convert/layer-3",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &ConvertLayer3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -238,25 +261,29 @@ func (a *Client) ConvertLayer3(params *ConvertLayer3Params, authInfo runtime.Cli
 
   Removes the native VLAN from this port
 */
-func (a *Client) DeleteNativeVLAN(params *DeleteNativeVLANParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteNativeVLANOK, error) {
+func (a *Client) DeleteNativeVLAN(params *DeleteNativeVLANParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteNativeVLANOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteNativeVLANParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "deleteNativeVlan",
 		Method:             "DELETE",
 		PathPattern:        "/ports/{id}/native-vlan",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteNativeVLANReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -275,25 +302,29 @@ func (a *Client) DeleteNativeVLAN(params *DeleteNativeVLANParams, authInfo runti
 
   Disabling bonding for one or all ports
 */
-func (a *Client) DisbondPort(params *DisbondPortParams, authInfo runtime.ClientAuthInfoWriter) (*DisbondPortOK, error) {
+func (a *Client) DisbondPort(params *DisbondPortParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DisbondPortOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDisbondPortParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "disbondPort",
 		Method:             "POST",
 		PathPattern:        "/ports/{id}/disbond",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DisbondPortReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -312,25 +343,29 @@ func (a *Client) DisbondPort(params *DisbondPortParams, authInfo runtime.ClientA
 
   Returns a port
 */
-func (a *Client) FindPortByID(params *FindPortByIDParams, authInfo runtime.ClientAuthInfoWriter) (*FindPortByIDOK, error) {
+func (a *Client) FindPortByID(params *FindPortByIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindPortByIDOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewFindPortByIDParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "findPortById",
 		Method:             "GET",
 		PathPattern:        "/ports/{id}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &FindPortByIDReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -349,25 +384,29 @@ func (a *Client) FindPortByID(params *FindPortByIDParams, authInfo runtime.Clien
 
   Unassign a port for a hardware.
 */
-func (a *Client) UnassignPort(params *UnassignPortParams, authInfo runtime.ClientAuthInfoWriter) (*UnassignPortOK, error) {
+func (a *Client) UnassignPort(params *UnassignPortParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UnassignPortOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewUnassignPortParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "unassignPort",
 		Method:             "POST",
 		PathPattern:        "/ports/{id}/unassign",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &UnassignPortReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}

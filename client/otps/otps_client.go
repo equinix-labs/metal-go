@@ -25,15 +25,18 @@ type Client struct {
 	formats   strfmt.Registry
 }
 
+// ClientOption is the option for Client methods
+type ClientOption func(*runtime.ClientOperation)
+
 // ClientService is the interface for Client methods
 type ClientService interface {
-	FindEnsureOtp(params *FindEnsureOtpParams, authInfo runtime.ClientAuthInfoWriter) (*FindEnsureOtpNoContent, error)
+	FindEnsureOtp(params *FindEnsureOtpParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindEnsureOtpNoContent, error)
 
-	FindRecoveryCodes(params *FindRecoveryCodesParams, authInfo runtime.ClientAuthInfoWriter) (*FindRecoveryCodesOK, error)
+	FindRecoveryCodes(params *FindRecoveryCodesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindRecoveryCodesOK, error)
 
-	ReceiveCodes(params *ReceiveCodesParams, authInfo runtime.ClientAuthInfoWriter) (*ReceiveCodesNoContent, error)
+	ReceiveCodes(params *ReceiveCodesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ReceiveCodesNoContent, error)
 
-	RegenerateCodes(params *RegenerateCodesParams, authInfo runtime.ClientAuthInfoWriter) (*RegenerateCodesOK, error)
+	RegenerateCodes(params *RegenerateCodesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RegenerateCodesOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -43,25 +46,29 @@ type ClientService interface {
 
   It verifies the user once a valid OTP is provided. It gives back a session token, essentially logging in the user.
 */
-func (a *Client) FindEnsureOtp(params *FindEnsureOtpParams, authInfo runtime.ClientAuthInfoWriter) (*FindEnsureOtpNoContent, error) {
+func (a *Client) FindEnsureOtp(params *FindEnsureOtpParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindEnsureOtpNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewFindEnsureOtpParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "findEnsureOtp",
 		Method:             "POST",
 		PathPattern:        "/user/otp/verify/{otp}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &FindEnsureOtpReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -80,25 +87,29 @@ func (a *Client) FindEnsureOtp(params *FindEnsureOtpParams, authInfo runtime.Cli
 
   Returns my recovery codes.
 */
-func (a *Client) FindRecoveryCodes(params *FindRecoveryCodesParams, authInfo runtime.ClientAuthInfoWriter) (*FindRecoveryCodesOK, error) {
+func (a *Client) FindRecoveryCodes(params *FindRecoveryCodesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindRecoveryCodesOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewFindRecoveryCodesParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "findRecoveryCodes",
 		Method:             "GET",
 		PathPattern:        "/user/otp/recovery-codes",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &FindRecoveryCodesReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -117,25 +128,29 @@ func (a *Client) FindRecoveryCodes(params *FindRecoveryCodesParams, authInfo run
 
   Sends an OTP to the user's mobile phone.
 */
-func (a *Client) ReceiveCodes(params *ReceiveCodesParams, authInfo runtime.ClientAuthInfoWriter) (*ReceiveCodesNoContent, error) {
+func (a *Client) ReceiveCodes(params *ReceiveCodesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ReceiveCodesNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewReceiveCodesParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "receiveCodes",
 		Method:             "POST",
 		PathPattern:        "/user/otp/sms/receive",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &ReceiveCodesReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -154,25 +169,29 @@ func (a *Client) ReceiveCodes(params *ReceiveCodesParams, authInfo runtime.Clien
 
   Generate a new set of recovery codes.
 */
-func (a *Client) RegenerateCodes(params *RegenerateCodesParams, authInfo runtime.ClientAuthInfoWriter) (*RegenerateCodesOK, error) {
+func (a *Client) RegenerateCodes(params *RegenerateCodesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RegenerateCodesOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewRegenerateCodesParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "regenerateCodes",
 		Method:             "POST",
 		PathPattern:        "/user/otp/recovery-codes",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &RegenerateCodesReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}

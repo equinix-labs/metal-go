@@ -25,13 +25,16 @@ type Client struct {
 	formats   strfmt.Registry
 }
 
+// ClientOption is the option for Client methods
+type ClientOption func(*runtime.ClientOperation)
+
 // ClientService is the interface for Client methods
 type ClientService interface {
-	DeleteBGPSession(params *DeleteBGPSessionParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteBGPSessionNoContent, error)
+	DeleteBGPSession(params *DeleteBGPSessionParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteBGPSessionNoContent, error)
 
-	FindBGPSessionByID(params *FindBGPSessionByIDParams, authInfo runtime.ClientAuthInfoWriter) (*FindBGPSessionByIDOK, error)
+	FindBGPSessionByID(params *FindBGPSessionByIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindBGPSessionByIDOK, error)
 
-	UpdateBGPSession(params *UpdateBGPSessionParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateBGPSessionOK, error)
+	UpdateBGPSession(params *UpdateBGPSessionParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateBGPSessionOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -41,25 +44,29 @@ type ClientService interface {
 
   Deletes the BGP session.
 */
-func (a *Client) DeleteBGPSession(params *DeleteBGPSessionParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteBGPSessionNoContent, error) {
+func (a *Client) DeleteBGPSession(params *DeleteBGPSessionParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteBGPSessionNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteBGPSessionParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "deleteBgpSession",
 		Method:             "DELETE",
 		PathPattern:        "/bgp/sessions/{id}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteBGPSessionReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -78,25 +85,29 @@ func (a *Client) DeleteBGPSession(params *DeleteBGPSessionParams, authInfo runti
 
   Returns a BGP session
 */
-func (a *Client) FindBGPSessionByID(params *FindBGPSessionByIDParams, authInfo runtime.ClientAuthInfoWriter) (*FindBGPSessionByIDOK, error) {
+func (a *Client) FindBGPSessionByID(params *FindBGPSessionByIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindBGPSessionByIDOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewFindBGPSessionByIDParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "findBgpSessionById",
 		Method:             "GET",
 		PathPattern:        "/bgp/sessions/{id}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &FindBGPSessionByIDReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -115,25 +126,29 @@ func (a *Client) FindBGPSessionByID(params *FindBGPSessionByIDParams, authInfo r
 
   Updates the BGP session by either enabling or disabling the default route functionality.
 */
-func (a *Client) UpdateBGPSession(params *UpdateBGPSessionParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateBGPSessionOK, error) {
+func (a *Client) UpdateBGPSession(params *UpdateBGPSessionParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateBGPSessionOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewUpdateBGPSessionParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "updateBgpSession",
 		Method:             "PUT",
 		PathPattern:        "/bgp/sessions/{id}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &UpdateBGPSessionReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}

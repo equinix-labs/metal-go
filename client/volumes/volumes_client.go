@@ -25,41 +25,44 @@ type Client struct {
 	formats   strfmt.Registry
 }
 
+// ClientOption is the option for Client methods
+type ClientOption func(*runtime.ClientOperation)
+
 // ClientService is the interface for Client methods
 type ClientService interface {
-	CloneVolume(params *CloneVolumeParams, authInfo runtime.ClientAuthInfoWriter) (*CloneVolumeCreated, error)
+	CloneVolume(params *CloneVolumeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CloneVolumeCreated, error)
 
-	CreateVolume(params *CreateVolumeParams, authInfo runtime.ClientAuthInfoWriter) (*CreateVolumeCreated, error)
+	CreateVolume(params *CreateVolumeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateVolumeCreated, error)
 
-	CreateVolumeAttachment(params *CreateVolumeAttachmentParams, authInfo runtime.ClientAuthInfoWriter) (*CreateVolumeAttachmentCreated, error)
+	CreateVolumeAttachment(params *CreateVolumeAttachmentParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateVolumeAttachmentCreated, error)
 
-	CreateVolumeSnapshotPolicy(params *CreateVolumeSnapshotPolicyParams, authInfo runtime.ClientAuthInfoWriter) (*CreateVolumeSnapshotPolicyCreated, error)
+	CreateVolumeSnapshotPolicy(params *CreateVolumeSnapshotPolicyParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateVolumeSnapshotPolicyCreated, error)
 
-	DeleteVolume(params *DeleteVolumeParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteVolumeNoContent, error)
+	DeleteVolume(params *DeleteVolumeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteVolumeNoContent, error)
 
-	DeleteVolumeAttachment(params *DeleteVolumeAttachmentParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteVolumeAttachmentNoContent, error)
+	DeleteVolumeAttachment(params *DeleteVolumeAttachmentParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteVolumeAttachmentNoContent, error)
 
-	DeleteVolumeSnapshot(params *DeleteVolumeSnapshotParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteVolumeSnapshotNoContent, error)
+	DeleteVolumeSnapshot(params *DeleteVolumeSnapshotParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteVolumeSnapshotNoContent, error)
 
-	DeleteVolumeSnapshotPolicy(params *DeleteVolumeSnapshotPolicyParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteVolumeSnapshotPolicyNoContent, error)
+	DeleteVolumeSnapshotPolicy(params *DeleteVolumeSnapshotPolicyParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteVolumeSnapshotPolicyNoContent, error)
 
-	FindVolumeAttachmentByID(params *FindVolumeAttachmentByIDParams, authInfo runtime.ClientAuthInfoWriter) (*FindVolumeAttachmentByIDOK, error)
+	FindVolumeAttachmentByID(params *FindVolumeAttachmentByIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindVolumeAttachmentByIDOK, error)
 
-	FindVolumeAttachments(params *FindVolumeAttachmentsParams, authInfo runtime.ClientAuthInfoWriter) (*FindVolumeAttachmentsOK, error)
+	FindVolumeAttachments(params *FindVolumeAttachmentsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindVolumeAttachmentsOK, error)
 
-	FindVolumeByID(params *FindVolumeByIDParams, authInfo runtime.ClientAuthInfoWriter) (*FindVolumeByIDOK, error)
+	FindVolumeByID(params *FindVolumeByIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindVolumeByIDOK, error)
 
-	FindVolumeCustomdata(params *FindVolumeCustomdataParams, authInfo runtime.ClientAuthInfoWriter) (*FindVolumeCustomdataOK, error)
+	FindVolumeCustomdata(params *FindVolumeCustomdataParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindVolumeCustomdataOK, error)
 
-	FindVolumeSnapshots(params *FindVolumeSnapshotsParams, authInfo runtime.ClientAuthInfoWriter) (*FindVolumeSnapshotsOK, error)
+	FindVolumeSnapshots(params *FindVolumeSnapshotsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindVolumeSnapshotsOK, error)
 
-	FindVolumes(params *FindVolumesParams, authInfo runtime.ClientAuthInfoWriter) (*FindVolumesOK, error)
+	FindVolumes(params *FindVolumesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindVolumesOK, error)
 
-	RestoreVolume(params *RestoreVolumeParams, authInfo runtime.ClientAuthInfoWriter) (*RestoreVolumeOK, error)
+	RestoreVolume(params *RestoreVolumeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RestoreVolumeOK, error)
 
-	UpdateVolume(params *UpdateVolumeParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateVolumeOK, error)
+	UpdateVolume(params *UpdateVolumeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateVolumeOK, error)
 
-	UpdateVolumeSnapshotPolicy(params *UpdateVolumeSnapshotPolicyParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateVolumeSnapshotPolicyOK, error)
+	UpdateVolumeSnapshotPolicy(params *UpdateVolumeSnapshotPolicyParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateVolumeSnapshotPolicyOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -69,25 +72,29 @@ type ClientService interface {
 
   Clone your volume or snapshot into a new volume. To clone the volume, send an empty body. To promote a volume snapshot into a new volume, include the snapshot_timestamp attribute in the request body.
 */
-func (a *Client) CloneVolume(params *CloneVolumeParams, authInfo runtime.ClientAuthInfoWriter) (*CloneVolumeCreated, error) {
+func (a *Client) CloneVolume(params *CloneVolumeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CloneVolumeCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCloneVolumeParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "cloneVolume",
 		Method:             "POST",
 		PathPattern:        "/storage/{id}/clone",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &CloneVolumeReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -109,25 +116,29 @@ func (a *Client) CloneVolume(params *CloneVolumeParams, authInfo runtime.ClientA
          "facility": "ams1", "ewr1", "nrt1", "sjc1"
          "plan": "storage_1" (Standard), "storage_2" (Performance)
 */
-func (a *Client) CreateVolume(params *CreateVolumeParams, authInfo runtime.ClientAuthInfoWriter) (*CreateVolumeCreated, error) {
+func (a *Client) CreateVolume(params *CreateVolumeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateVolumeCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCreateVolumeParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "createVolume",
 		Method:             "POST",
 		PathPattern:        "/projects/{id}/storage",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &CreateVolumeReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -146,25 +157,29 @@ func (a *Client) CreateVolume(params *CreateVolumeParams, authInfo runtime.Clien
 
   Attach your volume to a device.
 */
-func (a *Client) CreateVolumeAttachment(params *CreateVolumeAttachmentParams, authInfo runtime.ClientAuthInfoWriter) (*CreateVolumeAttachmentCreated, error) {
+func (a *Client) CreateVolumeAttachment(params *CreateVolumeAttachmentParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateVolumeAttachmentCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCreateVolumeAttachmentParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "createVolumeAttachment",
 		Method:             "POST",
 		PathPattern:        "/storage/{id}/attachments",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &CreateVolumeAttachmentReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -183,25 +198,29 @@ func (a *Client) CreateVolumeAttachment(params *CreateVolumeAttachmentParams, au
 
   Creates a new snapshot policy of your volume.
 */
-func (a *Client) CreateVolumeSnapshotPolicy(params *CreateVolumeSnapshotPolicyParams, authInfo runtime.ClientAuthInfoWriter) (*CreateVolumeSnapshotPolicyCreated, error) {
+func (a *Client) CreateVolumeSnapshotPolicy(params *CreateVolumeSnapshotPolicyParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateVolumeSnapshotPolicyCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCreateVolumeSnapshotPolicyParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "createVolumeSnapshotPolicy",
 		Method:             "POST",
 		PathPattern:        "/storage/{id}/snapshot-policies",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &CreateVolumeSnapshotPolicyReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -220,25 +239,29 @@ func (a *Client) CreateVolumeSnapshotPolicy(params *CreateVolumeSnapshotPolicyPa
 
   Deletes the volume.
 */
-func (a *Client) DeleteVolume(params *DeleteVolumeParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteVolumeNoContent, error) {
+func (a *Client) DeleteVolume(params *DeleteVolumeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteVolumeNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteVolumeParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "deleteVolume",
 		Method:             "DELETE",
 		PathPattern:        "/storage/{id}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteVolumeReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -257,25 +280,29 @@ func (a *Client) DeleteVolume(params *DeleteVolumeParams, authInfo runtime.Clien
 
   Detach volume.
 */
-func (a *Client) DeleteVolumeAttachment(params *DeleteVolumeAttachmentParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteVolumeAttachmentNoContent, error) {
+func (a *Client) DeleteVolumeAttachment(params *DeleteVolumeAttachmentParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteVolumeAttachmentNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteVolumeAttachmentParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "deleteVolumeAttachment",
 		Method:             "DELETE",
 		PathPattern:        "/storage/attachments/{id}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteVolumeAttachmentReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -294,25 +321,29 @@ func (a *Client) DeleteVolumeAttachment(params *DeleteVolumeAttachmentParams, au
 
   Delete volume snapshot.
 */
-func (a *Client) DeleteVolumeSnapshot(params *DeleteVolumeSnapshotParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteVolumeSnapshotNoContent, error) {
+func (a *Client) DeleteVolumeSnapshot(params *DeleteVolumeSnapshotParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteVolumeSnapshotNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteVolumeSnapshotParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "deleteVolumeSnapshot",
 		Method:             "DELETE",
 		PathPattern:        "/storage/{volume_id}/snapshots/{id}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteVolumeSnapshotReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -331,25 +362,29 @@ func (a *Client) DeleteVolumeSnapshot(params *DeleteVolumeSnapshotParams, authIn
 
   Deletes the volume snapshot policy.
 */
-func (a *Client) DeleteVolumeSnapshotPolicy(params *DeleteVolumeSnapshotPolicyParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteVolumeSnapshotPolicyNoContent, error) {
+func (a *Client) DeleteVolumeSnapshotPolicy(params *DeleteVolumeSnapshotPolicyParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteVolumeSnapshotPolicyNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteVolumeSnapshotPolicyParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "deleteVolumeSnapshotPolicy",
 		Method:             "DELETE",
 		PathPattern:        "/storage/snapshot-policies/{id}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteVolumeSnapshotPolicyReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -368,25 +403,29 @@ func (a *Client) DeleteVolumeSnapshotPolicy(params *DeleteVolumeSnapshotPolicyPa
 
   Returns a single attachment if the user has access
 */
-func (a *Client) FindVolumeAttachmentByID(params *FindVolumeAttachmentByIDParams, authInfo runtime.ClientAuthInfoWriter) (*FindVolumeAttachmentByIDOK, error) {
+func (a *Client) FindVolumeAttachmentByID(params *FindVolumeAttachmentByIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindVolumeAttachmentByIDOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewFindVolumeAttachmentByIDParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "findVolumeAttachmentById",
 		Method:             "GET",
 		PathPattern:        "/storage/attachments/{id}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &FindVolumeAttachmentByIDReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -405,25 +444,29 @@ func (a *Client) FindVolumeAttachmentByID(params *FindVolumeAttachmentByIDParams
 
   Returns a list of the current volume’s attachments.
 */
-func (a *Client) FindVolumeAttachments(params *FindVolumeAttachmentsParams, authInfo runtime.ClientAuthInfoWriter) (*FindVolumeAttachmentsOK, error) {
+func (a *Client) FindVolumeAttachments(params *FindVolumeAttachmentsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindVolumeAttachmentsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewFindVolumeAttachmentsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "findVolumeAttachments",
 		Method:             "GET",
 		PathPattern:        "/storage/{id}/attachments",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &FindVolumeAttachmentsReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -442,25 +485,29 @@ func (a *Client) FindVolumeAttachments(params *FindVolumeAttachmentsParams, auth
 
   Returns a single volume if the user has access
 */
-func (a *Client) FindVolumeByID(params *FindVolumeByIDParams, authInfo runtime.ClientAuthInfoWriter) (*FindVolumeByIDOK, error) {
+func (a *Client) FindVolumeByID(params *FindVolumeByIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindVolumeByIDOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewFindVolumeByIDParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "findVolumeById",
 		Method:             "GET",
 		PathPattern:        "/storage/{id}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &FindVolumeByIDReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -479,25 +526,29 @@ func (a *Client) FindVolumeByID(params *FindVolumeByIDParams, authInfo runtime.C
 
   Provides the custom metadata stored for this storage volume in json format
 */
-func (a *Client) FindVolumeCustomdata(params *FindVolumeCustomdataParams, authInfo runtime.ClientAuthInfoWriter) (*FindVolumeCustomdataOK, error) {
+func (a *Client) FindVolumeCustomdata(params *FindVolumeCustomdataParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindVolumeCustomdataOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewFindVolumeCustomdataParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "findVolumeCustomdata",
 		Method:             "GET",
 		PathPattern:        "/storage/{id}/customdata",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &FindVolumeCustomdataReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -516,25 +567,29 @@ func (a *Client) FindVolumeCustomdata(params *FindVolumeCustomdataParams, authIn
 
   Returns a list of the current volume’s snapshots. To create Volume Snapshots, please check the Volume Snapshot Policies feature.
 */
-func (a *Client) FindVolumeSnapshots(params *FindVolumeSnapshotsParams, authInfo runtime.ClientAuthInfoWriter) (*FindVolumeSnapshotsOK, error) {
+func (a *Client) FindVolumeSnapshots(params *FindVolumeSnapshotsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindVolumeSnapshotsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewFindVolumeSnapshotsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "findVolumeSnapshots",
 		Method:             "GET",
 		PathPattern:        "/storage/{id}/snapshots",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &FindVolumeSnapshotsReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -553,25 +608,29 @@ func (a *Client) FindVolumeSnapshots(params *FindVolumeSnapshotsParams, authInfo
 
   Returns a list of the current projects’s volumes.
 */
-func (a *Client) FindVolumes(params *FindVolumesParams, authInfo runtime.ClientAuthInfoWriter) (*FindVolumesOK, error) {
+func (a *Client) FindVolumes(params *FindVolumesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindVolumesOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewFindVolumesParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "findVolumes",
 		Method:             "GET",
 		PathPattern:        "/projects/{id}/storage",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &FindVolumesReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -590,25 +649,29 @@ func (a *Client) FindVolumes(params *FindVolumesParams, authInfo runtime.ClientA
 
   Restore the volume to the given snapshot.
 */
-func (a *Client) RestoreVolume(params *RestoreVolumeParams, authInfo runtime.ClientAuthInfoWriter) (*RestoreVolumeOK, error) {
+func (a *Client) RestoreVolume(params *RestoreVolumeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RestoreVolumeOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewRestoreVolumeParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "restoreVolume",
 		Method:             "POST",
 		PathPattern:        "/storage/{id}/restore",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &RestoreVolumeReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -627,25 +690,29 @@ func (a *Client) RestoreVolume(params *RestoreVolumeParams, authInfo runtime.Cli
 
   Updates the volume.
 */
-func (a *Client) UpdateVolume(params *UpdateVolumeParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateVolumeOK, error) {
+func (a *Client) UpdateVolume(params *UpdateVolumeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateVolumeOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewUpdateVolumeParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "updateVolume",
 		Method:             "PUT",
 		PathPattern:        "/storage/{id}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &UpdateVolumeReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -664,25 +731,29 @@ func (a *Client) UpdateVolume(params *UpdateVolumeParams, authInfo runtime.Clien
 
   Updates the volume snapshot policy.
 */
-func (a *Client) UpdateVolumeSnapshotPolicy(params *UpdateVolumeSnapshotPolicyParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateVolumeSnapshotPolicyOK, error) {
+func (a *Client) UpdateVolumeSnapshotPolicy(params *UpdateVolumeSnapshotPolicyParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateVolumeSnapshotPolicyOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewUpdateVolumeSnapshotPolicyParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "updateVolumeSnapshotPolicy",
 		Method:             "PUT",
 		PathPattern:        "/storage/snapshot-policies/{id}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &UpdateVolumeSnapshotPolicyReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
