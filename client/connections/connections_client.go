@@ -25,35 +25,38 @@ type Client struct {
 	formats   strfmt.Registry
 }
 
+// ClientOption is the option for Client methods
+type ClientOption func(*runtime.ClientOperation)
+
 // ClientService is the interface for Client methods
 type ClientService interface {
-	CreateConnectionPortVirtualCircuit(params *CreateConnectionPortVirtualCircuitParams, authInfo runtime.ClientAuthInfoWriter) (*CreateConnectionPortVirtualCircuitOK, error)
+	CreateConnectionPortVirtualCircuit(params *CreateConnectionPortVirtualCircuitParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateConnectionPortVirtualCircuitOK, error)
 
-	CreateOrganizationInterconnection(params *CreateOrganizationInterconnectionParams, authInfo runtime.ClientAuthInfoWriter) (*CreateOrganizationInterconnectionCreated, error)
+	CreateOrganizationInterconnection(params *CreateOrganizationInterconnectionParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateOrganizationInterconnectionCreated, error)
 
-	CreateProjectInterconnection(params *CreateProjectInterconnectionParams, authInfo runtime.ClientAuthInfoWriter) (*CreateProjectInterconnectionCreated, error)
+	CreateProjectInterconnection(params *CreateProjectInterconnectionParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateProjectInterconnectionCreated, error)
 
-	DeleteInterconnection(params *DeleteInterconnectionParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteInterconnectionAccepted, error)
+	DeleteInterconnection(params *DeleteInterconnectionParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteInterconnectionAccepted, error)
 
-	DeleteVirtualCircuit(params *DeleteVirtualCircuitParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteVirtualCircuitAccepted, error)
+	DeleteVirtualCircuit(params *DeleteVirtualCircuitParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteVirtualCircuitAccepted, error)
 
-	GetConnectionPort(params *GetConnectionPortParams, authInfo runtime.ClientAuthInfoWriter) (*GetConnectionPortOK, error)
+	GetConnectionPort(params *GetConnectionPortParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetConnectionPortOK, error)
 
-	GetInterconnection(params *GetInterconnectionParams, authInfo runtime.ClientAuthInfoWriter) (*GetInterconnectionOK, error)
+	GetInterconnection(params *GetInterconnectionParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInterconnectionOK, error)
 
-	GetVirtualCircuit(params *GetVirtualCircuitParams, authInfo runtime.ClientAuthInfoWriter) (*GetVirtualCircuitOK, error)
+	GetVirtualCircuit(params *GetVirtualCircuitParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetVirtualCircuitOK, error)
 
-	ListConnectionPortVirtualCircuits(params *ListConnectionPortVirtualCircuitsParams, authInfo runtime.ClientAuthInfoWriter) (*ListConnectionPortVirtualCircuitsOK, error)
+	ListConnectionPortVirtualCircuits(params *ListConnectionPortVirtualCircuitsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListConnectionPortVirtualCircuitsOK, error)
 
-	ListConnectionPorts(params *ListConnectionPortsParams, authInfo runtime.ClientAuthInfoWriter) (*ListConnectionPortsOK, error)
+	ListConnectionPorts(params *ListConnectionPortsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListConnectionPortsOK, error)
 
-	OrganizationListInterconnections(params *OrganizationListInterconnectionsParams, authInfo runtime.ClientAuthInfoWriter) (*OrganizationListInterconnectionsOK, error)
+	OrganizationListInterconnections(params *OrganizationListInterconnectionsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*OrganizationListInterconnectionsOK, error)
 
-	ProjectListInterconnections(params *ProjectListInterconnectionsParams, authInfo runtime.ClientAuthInfoWriter) (*ProjectListInterconnectionsOK, error)
+	ProjectListInterconnections(params *ProjectListInterconnectionsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ProjectListInterconnectionsOK, error)
 
-	UpdateInterconnection(params *UpdateInterconnectionParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateInterconnectionOK, error)
+	UpdateInterconnection(params *UpdateInterconnectionParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateInterconnectionOK, error)
 
-	UpdateVirtualCircuit(params *UpdateVirtualCircuitParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateVirtualCircuitOK, *UpdateVirtualCircuitAccepted, error)
+	UpdateVirtualCircuit(params *UpdateVirtualCircuitParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateVirtualCircuitOK, *UpdateVirtualCircuitAccepted, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -63,13 +66,12 @@ type ClientService interface {
 
   Create a new Virtual Circuit on a dedicated connection using a Virtual Network record and an NNI VLAN value.
 */
-func (a *Client) CreateConnectionPortVirtualCircuit(params *CreateConnectionPortVirtualCircuitParams, authInfo runtime.ClientAuthInfoWriter) (*CreateConnectionPortVirtualCircuitOK, error) {
+func (a *Client) CreateConnectionPortVirtualCircuit(params *CreateConnectionPortVirtualCircuitParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateConnectionPortVirtualCircuitOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCreateConnectionPortVirtualCircuitParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "createConnectionPortVirtualCircuit",
 		Method:             "POST",
 		PathPattern:        "/connections/{connection_id}/ports/{port_id}/virtual-circuits",
@@ -81,7 +83,12 @@ func (a *Client) CreateConnectionPortVirtualCircuit(params *CreateConnectionPort
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -100,13 +107,12 @@ func (a *Client) CreateConnectionPortVirtualCircuit(params *CreateConnectionPort
 
   Creates a new connection request. A Project ID must be specified in the request body for connections on shared ports.
 */
-func (a *Client) CreateOrganizationInterconnection(params *CreateOrganizationInterconnectionParams, authInfo runtime.ClientAuthInfoWriter) (*CreateOrganizationInterconnectionCreated, error) {
+func (a *Client) CreateOrganizationInterconnection(params *CreateOrganizationInterconnectionParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateOrganizationInterconnectionCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCreateOrganizationInterconnectionParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "createOrganizationInterconnection",
 		Method:             "POST",
 		PathPattern:        "/organizations/{organization_id}/connections",
@@ -118,7 +124,12 @@ func (a *Client) CreateOrganizationInterconnection(params *CreateOrganizationInt
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -137,13 +148,12 @@ func (a *Client) CreateOrganizationInterconnection(params *CreateOrganizationInt
 
   Creates a new connection request
 */
-func (a *Client) CreateProjectInterconnection(params *CreateProjectInterconnectionParams, authInfo runtime.ClientAuthInfoWriter) (*CreateProjectInterconnectionCreated, error) {
+func (a *Client) CreateProjectInterconnection(params *CreateProjectInterconnectionParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateProjectInterconnectionCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCreateProjectInterconnectionParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "createProjectInterconnection",
 		Method:             "POST",
 		PathPattern:        "/projects/{project_id}/connections",
@@ -155,7 +165,12 @@ func (a *Client) CreateProjectInterconnection(params *CreateProjectInterconnecti
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -174,13 +189,12 @@ func (a *Client) CreateProjectInterconnection(params *CreateProjectInterconnecti
 
   Delete a connection, its associated ports and virtual circuits.
 */
-func (a *Client) DeleteInterconnection(params *DeleteInterconnectionParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteInterconnectionAccepted, error) {
+func (a *Client) DeleteInterconnection(params *DeleteInterconnectionParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteInterconnectionAccepted, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteInterconnectionParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "deleteInterconnection",
 		Method:             "DELETE",
 		PathPattern:        "/connections/{connection_id}",
@@ -192,7 +206,12 @@ func (a *Client) DeleteInterconnection(params *DeleteInterconnectionParams, auth
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -211,13 +230,12 @@ func (a *Client) DeleteInterconnection(params *DeleteInterconnectionParams, auth
 
   Delete a virtual circuit from a dedicated port.
 */
-func (a *Client) DeleteVirtualCircuit(params *DeleteVirtualCircuitParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteVirtualCircuitAccepted, error) {
+func (a *Client) DeleteVirtualCircuit(params *DeleteVirtualCircuitParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteVirtualCircuitAccepted, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteVirtualCircuitParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "deleteVirtualCircuit",
 		Method:             "DELETE",
 		PathPattern:        "/virtual-circuits/{id}",
@@ -229,7 +247,12 @@ func (a *Client) DeleteVirtualCircuit(params *DeleteVirtualCircuitParams, authIn
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -248,13 +271,12 @@ func (a *Client) DeleteVirtualCircuit(params *DeleteVirtualCircuitParams, authIn
 
   Get the details of an connection port.
 */
-func (a *Client) GetConnectionPort(params *GetConnectionPortParams, authInfo runtime.ClientAuthInfoWriter) (*GetConnectionPortOK, error) {
+func (a *Client) GetConnectionPort(params *GetConnectionPortParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetConnectionPortOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetConnectionPortParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "getConnectionPort",
 		Method:             "GET",
 		PathPattern:        "/connections/{connection_id}/ports/{id}",
@@ -266,7 +288,12 @@ func (a *Client) GetConnectionPort(params *GetConnectionPortParams, authInfo run
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -285,13 +312,12 @@ func (a *Client) GetConnectionPort(params *GetConnectionPortParams, authInfo run
 
   Get the details of a connection
 */
-func (a *Client) GetInterconnection(params *GetInterconnectionParams, authInfo runtime.ClientAuthInfoWriter) (*GetInterconnectionOK, error) {
+func (a *Client) GetInterconnection(params *GetInterconnectionParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInterconnectionOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetInterconnectionParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "getInterconnection",
 		Method:             "GET",
 		PathPattern:        "/connections/{connection_id}",
@@ -303,7 +329,12 @@ func (a *Client) GetInterconnection(params *GetInterconnectionParams, authInfo r
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -322,13 +353,12 @@ func (a *Client) GetInterconnection(params *GetInterconnectionParams, authInfo r
 
   Get the details of a virtual circuit
 */
-func (a *Client) GetVirtualCircuit(params *GetVirtualCircuitParams, authInfo runtime.ClientAuthInfoWriter) (*GetVirtualCircuitOK, error) {
+func (a *Client) GetVirtualCircuit(params *GetVirtualCircuitParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetVirtualCircuitOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetVirtualCircuitParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "getVirtualCircuit",
 		Method:             "GET",
 		PathPattern:        "/virtual-circuits/{id}",
@@ -340,7 +370,12 @@ func (a *Client) GetVirtualCircuit(params *GetVirtualCircuitParams, authInfo run
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -359,13 +394,12 @@ func (a *Client) GetVirtualCircuit(params *GetVirtualCircuitParams, authInfo run
 
   List the virtual circuit record(s) associatiated with a particular connection port.
 */
-func (a *Client) ListConnectionPortVirtualCircuits(params *ListConnectionPortVirtualCircuitsParams, authInfo runtime.ClientAuthInfoWriter) (*ListConnectionPortVirtualCircuitsOK, error) {
+func (a *Client) ListConnectionPortVirtualCircuits(params *ListConnectionPortVirtualCircuitsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListConnectionPortVirtualCircuitsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewListConnectionPortVirtualCircuitsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "listConnectionPortVirtualCircuits",
 		Method:             "GET",
 		PathPattern:        "/connections/{connection_id}/ports/{port_id}/virtual-circuits",
@@ -377,7 +411,12 @@ func (a *Client) ListConnectionPortVirtualCircuits(params *ListConnectionPortVir
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -396,13 +435,12 @@ func (a *Client) ListConnectionPortVirtualCircuits(params *ListConnectionPortVir
 
   List the ports associated to an connection.
 */
-func (a *Client) ListConnectionPorts(params *ListConnectionPortsParams, authInfo runtime.ClientAuthInfoWriter) (*ListConnectionPortsOK, error) {
+func (a *Client) ListConnectionPorts(params *ListConnectionPortsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListConnectionPortsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewListConnectionPortsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "listConnectionPorts",
 		Method:             "GET",
 		PathPattern:        "/connections/{connection_id}/ports",
@@ -414,7 +452,12 @@ func (a *Client) ListConnectionPorts(params *ListConnectionPortsParams, authInfo
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -433,13 +476,12 @@ func (a *Client) ListConnectionPorts(params *ListConnectionPortsParams, authInfo
 
   List the connections belonging to the organization
 */
-func (a *Client) OrganizationListInterconnections(params *OrganizationListInterconnectionsParams, authInfo runtime.ClientAuthInfoWriter) (*OrganizationListInterconnectionsOK, error) {
+func (a *Client) OrganizationListInterconnections(params *OrganizationListInterconnectionsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*OrganizationListInterconnectionsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewOrganizationListInterconnectionsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "organizationListInterconnections",
 		Method:             "GET",
 		PathPattern:        "/organizations/{organization_id}/connections",
@@ -451,7 +493,12 @@ func (a *Client) OrganizationListInterconnections(params *OrganizationListInterc
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -470,13 +517,12 @@ func (a *Client) OrganizationListInterconnections(params *OrganizationListInterc
 
   List the connections belonging to the project
 */
-func (a *Client) ProjectListInterconnections(params *ProjectListInterconnectionsParams, authInfo runtime.ClientAuthInfoWriter) (*ProjectListInterconnectionsOK, error) {
+func (a *Client) ProjectListInterconnections(params *ProjectListInterconnectionsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ProjectListInterconnectionsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewProjectListInterconnectionsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "projectListInterconnections",
 		Method:             "GET",
 		PathPattern:        "/projects/{project_id}/connections",
@@ -488,7 +534,12 @@ func (a *Client) ProjectListInterconnections(params *ProjectListInterconnections
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -507,13 +558,12 @@ func (a *Client) ProjectListInterconnections(params *ProjectListInterconnections
 
   Update the details of a connection
 */
-func (a *Client) UpdateInterconnection(params *UpdateInterconnectionParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateInterconnectionOK, error) {
+func (a *Client) UpdateInterconnection(params *UpdateInterconnectionParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateInterconnectionOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewUpdateInterconnectionParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "updateInterconnection",
 		Method:             "PUT",
 		PathPattern:        "/connections/{connection_id}",
@@ -525,7 +575,12 @@ func (a *Client) UpdateInterconnection(params *UpdateInterconnectionParams, auth
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -544,13 +599,12 @@ func (a *Client) UpdateInterconnection(params *UpdateInterconnectionParams, auth
 
   Update the details of a virtual circuit.
 */
-func (a *Client) UpdateVirtualCircuit(params *UpdateVirtualCircuitParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateVirtualCircuitOK, *UpdateVirtualCircuitAccepted, error) {
+func (a *Client) UpdateVirtualCircuit(params *UpdateVirtualCircuitParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateVirtualCircuitOK, *UpdateVirtualCircuitAccepted, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewUpdateVirtualCircuitParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "updateVirtualCircuit",
 		Method:             "PUT",
 		PathPattern:        "/virtual-circuits/{id}",
@@ -562,7 +616,12 @@ func (a *Client) UpdateVirtualCircuit(params *UpdateVirtualCircuitParams, authIn
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, nil, err
 	}

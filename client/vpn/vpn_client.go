@@ -25,13 +25,16 @@ type Client struct {
 	formats   strfmt.Registry
 }
 
+// ClientOption is the option for Client methods
+type ClientOption func(*runtime.ClientOperation)
+
 // ClientService is the interface for Client methods
 type ClientService interface {
-	FindCurrentUserVPNConfig(params *FindCurrentUserVPNConfigParams, authInfo runtime.ClientAuthInfoWriter) (*FindCurrentUserVPNConfigOK, error)
+	FindCurrentUserVPNConfig(params *FindCurrentUserVPNConfigParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindCurrentUserVPNConfigOK, error)
 
-	TurnOffCurrentUserVPN(params *TurnOffCurrentUserVPNParams, authInfo runtime.ClientAuthInfoWriter) (*TurnOffCurrentUserVPNNoContent, error)
+	TurnOffCurrentUserVPN(params *TurnOffCurrentUserVPNParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*TurnOffCurrentUserVPNNoContent, error)
 
-	TurnOnCurrentUserVPN(params *TurnOnCurrentUserVPNParams, authInfo runtime.ClientAuthInfoWriter) (*TurnOnCurrentUserVPNCreated, error)
+	TurnOnCurrentUserVPN(params *TurnOnCurrentUserVPNParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*TurnOnCurrentUserVPNCreated, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -41,13 +44,12 @@ type ClientService interface {
 
   Returns the client vpn config for the currently logged-in user.
 */
-func (a *Client) FindCurrentUserVPNConfig(params *FindCurrentUserVPNConfigParams, authInfo runtime.ClientAuthInfoWriter) (*FindCurrentUserVPNConfigOK, error) {
+func (a *Client) FindCurrentUserVPNConfig(params *FindCurrentUserVPNConfigParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindCurrentUserVPNConfigOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewFindCurrentUserVPNConfigParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "findCurrentUserVpnConfig",
 		Method:             "GET",
 		PathPattern:        "/user/vpn",
@@ -59,7 +61,12 @@ func (a *Client) FindCurrentUserVPNConfig(params *FindCurrentUserVPNConfigParams
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -78,13 +85,12 @@ func (a *Client) FindCurrentUserVPNConfig(params *FindCurrentUserVPNConfigParams
 
   Turns off vpn for the currently logged-in user.
 */
-func (a *Client) TurnOffCurrentUserVPN(params *TurnOffCurrentUserVPNParams, authInfo runtime.ClientAuthInfoWriter) (*TurnOffCurrentUserVPNNoContent, error) {
+func (a *Client) TurnOffCurrentUserVPN(params *TurnOffCurrentUserVPNParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*TurnOffCurrentUserVPNNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewTurnOffCurrentUserVPNParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "turnOffCurrentUserVpn",
 		Method:             "DELETE",
 		PathPattern:        "/user/vpn",
@@ -96,7 +102,12 @@ func (a *Client) TurnOffCurrentUserVPN(params *TurnOffCurrentUserVPNParams, auth
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -115,13 +126,12 @@ func (a *Client) TurnOffCurrentUserVPN(params *TurnOffCurrentUserVPNParams, auth
 
   Turns on vpn for the currently logged-in user.
 */
-func (a *Client) TurnOnCurrentUserVPN(params *TurnOnCurrentUserVPNParams, authInfo runtime.ClientAuthInfoWriter) (*TurnOnCurrentUserVPNCreated, error) {
+func (a *Client) TurnOnCurrentUserVPN(params *TurnOnCurrentUserVPNParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*TurnOnCurrentUserVPNCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewTurnOnCurrentUserVPNParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "turnOnCurrentUserVpn",
 		Method:             "POST",
 		PathPattern:        "/user/vpn",
@@ -133,7 +143,12 @@ func (a *Client) TurnOnCurrentUserVPN(params *TurnOnCurrentUserVPNParams, authIn
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}

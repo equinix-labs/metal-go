@@ -86,7 +86,7 @@ type DeviceCreateInput struct {
 	// Format: date-time
 	TerminationTime strfmt.DateTime `json:"termination_time,omitempty"`
 
-	// user ssh keys
+	// The UUIDs of users whose SSH keys should be included on the provisioned device.
 	UserSSHKeys []strfmt.UUID `json:"user_ssh_keys"`
 
 	// userdata
