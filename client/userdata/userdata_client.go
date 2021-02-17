@@ -25,9 +25,12 @@ type Client struct {
 	formats   strfmt.Registry
 }
 
+// ClientOption is the option for Client methods
+type ClientOption func(*runtime.ClientOperation)
+
 // ClientService is the interface for Client methods
 type ClientService interface {
-	ValidateUserdata(params *ValidateUserdataParams, authInfo runtime.ClientAuthInfoWriter) (*ValidateUserdataNoContent, error)
+	ValidateUserdata(params *ValidateUserdataParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ValidateUserdataNoContent, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -37,13 +40,12 @@ type ClientService interface {
 
   Validates user data (Userdata)
 */
-func (a *Client) ValidateUserdata(params *ValidateUserdataParams, authInfo runtime.ClientAuthInfoWriter) (*ValidateUserdataNoContent, error) {
+func (a *Client) ValidateUserdata(params *ValidateUserdataParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ValidateUserdataNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewValidateUserdataParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "validateUserdata",
 		Method:             "POST",
 		PathPattern:        "/userdata/validate",
@@ -55,7 +57,12 @@ func (a *Client) ValidateUserdata(params *ValidateUserdataParams, authInfo runti
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}

@@ -25,13 +25,16 @@ type Client struct {
 	formats   strfmt.Registry
 }
 
+// ClientOption is the option for Client methods
+type ClientOption func(*runtime.ClientOperation)
+
 // ClientService is the interface for Client methods
 type ClientService interface {
-	FindPlans(params *FindPlansParams, authInfo runtime.ClientAuthInfoWriter) (*FindPlansOK, error)
+	FindPlans(params *FindPlansParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindPlansOK, error)
 
-	FindPlansByOrganization(params *FindPlansByOrganizationParams, authInfo runtime.ClientAuthInfoWriter) (*FindPlansByOrganizationOK, error)
+	FindPlansByOrganization(params *FindPlansByOrganizationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindPlansByOrganizationOK, error)
 
-	FindPlansByProject(params *FindPlansByProjectParams, authInfo runtime.ClientAuthInfoWriter) (*FindPlansByProjectOK, error)
+	FindPlansByProject(params *FindPlansByProjectParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindPlansByProjectOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -41,13 +44,12 @@ type ClientService interface {
 
   Provides a listing of available plans to provision your device on.
 */
-func (a *Client) FindPlans(params *FindPlansParams, authInfo runtime.ClientAuthInfoWriter) (*FindPlansOK, error) {
+func (a *Client) FindPlans(params *FindPlansParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindPlansOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewFindPlansParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "findPlans",
 		Method:             "GET",
 		PathPattern:        "/plans",
@@ -59,7 +61,12 @@ func (a *Client) FindPlans(params *FindPlansParams, authInfo runtime.ClientAuthI
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -78,13 +85,12 @@ func (a *Client) FindPlans(params *FindPlansParams, authInfo runtime.ClientAuthI
 
   Returns a listing of available plans for the given organization
 */
-func (a *Client) FindPlansByOrganization(params *FindPlansByOrganizationParams, authInfo runtime.ClientAuthInfoWriter) (*FindPlansByOrganizationOK, error) {
+func (a *Client) FindPlansByOrganization(params *FindPlansByOrganizationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindPlansByOrganizationOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewFindPlansByOrganizationParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "findPlansByOrganization",
 		Method:             "GET",
 		PathPattern:        "/organizations/{id}/plans",
@@ -96,7 +102,12 @@ func (a *Client) FindPlansByOrganization(params *FindPlansByOrganizationParams, 
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -115,13 +126,12 @@ func (a *Client) FindPlansByOrganization(params *FindPlansByOrganizationParams, 
 
   Returns a listing of available plans for the given project
 */
-func (a *Client) FindPlansByProject(params *FindPlansByProjectParams, authInfo runtime.ClientAuthInfoWriter) (*FindPlansByProjectOK, error) {
+func (a *Client) FindPlansByProject(params *FindPlansByProjectParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindPlansByProjectOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewFindPlansByProjectParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "findPlansByProject",
 		Method:             "GET",
 		PathPattern:        "/projects/{id}/plans",
@@ -133,7 +143,12 @@ func (a *Client) FindPlansByProject(params *FindPlansByProjectParams, authInfo r
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
