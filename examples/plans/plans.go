@@ -24,7 +24,7 @@ func NewDebugClient(formats strfmt.Registry, cfg *client.TransportConfig) *clien
 
 func main() {
 	c := NewDebugClient(nil, nil)
-	auth := httptransport.APIKeyAuth("X-Auth-Token", "header", os.Getenv("PACKET_AUTH_TOKEN"))
+	auth := httptransport.APIKeyAuth("X-Auth-Token", "header", os.Getenv("METAL_AUTH_TOKEN"))
 
 	r, err := c.Plans.FindPlans(nil, auth)
 
