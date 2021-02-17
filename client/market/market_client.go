@@ -25,11 +25,14 @@ type Client struct {
 	formats   strfmt.Registry
 }
 
+// ClientOption is the option for Client methods
+type ClientOption func(*runtime.ClientOperation)
+
 // ClientService is the interface for Client methods
 type ClientService interface {
-	FindSpotMarketPrices(params *FindSpotMarketPricesParams, authInfo runtime.ClientAuthInfoWriter) (*FindSpotMarketPricesOK, error)
+	FindSpotMarketPrices(params *FindSpotMarketPricesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindSpotMarketPricesOK, error)
 
-	FindSpotMarketPricesHistory(params *FindSpotMarketPricesHistoryParams, authInfo runtime.ClientAuthInfoWriter) (*FindSpotMarketPricesHistoryOK, error)
+	FindSpotMarketPricesHistory(params *FindSpotMarketPricesHistoryParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindSpotMarketPricesHistoryOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -39,13 +42,12 @@ type ClientService interface {
 
   Get Equinix Metal current spot market prices.
 */
-func (a *Client) FindSpotMarketPrices(params *FindSpotMarketPricesParams, authInfo runtime.ClientAuthInfoWriter) (*FindSpotMarketPricesOK, error) {
+func (a *Client) FindSpotMarketPrices(params *FindSpotMarketPricesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindSpotMarketPricesOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewFindSpotMarketPricesParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "findSpotMarketPrices",
 		Method:             "GET",
 		PathPattern:        "/market/spot/prices",
@@ -57,7 +59,12 @@ func (a *Client) FindSpotMarketPrices(params *FindSpotMarketPricesParams, authIn
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -78,13 +85,12 @@ func (a *Client) FindSpotMarketPrices(params *FindSpotMarketPricesParams, authIn
 
 *Note: In the `200` response, the property `datapoints` contains arrays of `[float, integer]`.*
 */
-func (a *Client) FindSpotMarketPricesHistory(params *FindSpotMarketPricesHistoryParams, authInfo runtime.ClientAuthInfoWriter) (*FindSpotMarketPricesHistoryOK, error) {
+func (a *Client) FindSpotMarketPricesHistory(params *FindSpotMarketPricesHistoryParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindSpotMarketPricesHistoryOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewFindSpotMarketPricesHistoryParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "findSpotMarketPricesHistory",
 		Method:             "GET",
 		PathPattern:        "/market/spot/prices/history",
@@ -96,7 +102,12 @@ func (a *Client) FindSpotMarketPricesHistory(params *FindSpotMarketPricesHistory
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
