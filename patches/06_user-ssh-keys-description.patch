@@ -1,0 +1,28 @@
+diff --git a/equinix-metal.patched.json b/equinix-metal.patched.json
+index 7718fbb..e784feb 100644
+--- a/equinix-metal.patched.json
++++ b/equinix-metal.patched.json
+@@ -8123,6 +8123,7 @@
+                 }
+               },
+               "user_ssh_keys": {
++                "description": "The UUIDs of users whose SSH keys should be included on the provisioned device.",
+                 "type": "array",
+                 "items": {
+                   "type": "string",
+@@ -8698,6 +8699,7 @@
+           }
+         },
+         "user_ssh_keys": {
++          "description": "The UUIDs of users whose SSH keys should be included on the provisioned device.",
+           "type": "array",
+           "items": {
+             "type": "string",
+@@ -10493,6 +10495,7 @@
+               }
+             },
+             "user_ssh_keys": {
++              "description": "The UUIDs of users whose SSH keys should be included on the provisioned device.",
+               "type": "array",
+               "items": {
+                 "type": "string",
