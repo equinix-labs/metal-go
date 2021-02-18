@@ -25,13 +25,16 @@ type Client struct {
 	formats   strfmt.Registry
 }
 
+// ClientOption is the option for Client methods
+type ClientOption func(*runtime.ClientOperation)
+
 // ClientService is the interface for Client methods
 type ClientService interface {
-	FindFacilities(params *FindFacilitiesParams, authInfo runtime.ClientAuthInfoWriter) (*FindFacilitiesOK, error)
+	FindFacilities(params *FindFacilitiesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindFacilitiesOK, error)
 
-	FindFacilitiesByOrganization(params *FindFacilitiesByOrganizationParams, authInfo runtime.ClientAuthInfoWriter) (*FindFacilitiesByOrganizationOK, error)
+	FindFacilitiesByOrganization(params *FindFacilitiesByOrganizationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindFacilitiesByOrganizationOK, error)
 
-	FindFacilitiesByProject(params *FindFacilitiesByProjectParams, authInfo runtime.ClientAuthInfoWriter) (*FindFacilitiesByProjectOK, error)
+	FindFacilitiesByProject(params *FindFacilitiesByProjectParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindFacilitiesByProjectOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -41,13 +44,12 @@ type ClientService interface {
 
   Provides a listing of available datacenters where you can provision Packet devices.
 */
-func (a *Client) FindFacilities(params *FindFacilitiesParams, authInfo runtime.ClientAuthInfoWriter) (*FindFacilitiesOK, error) {
+func (a *Client) FindFacilities(params *FindFacilitiesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindFacilitiesOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewFindFacilitiesParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "findFacilities",
 		Method:             "GET",
 		PathPattern:        "/facilities",
@@ -59,7 +61,12 @@ func (a *Client) FindFacilities(params *FindFacilitiesParams, authInfo runtime.C
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -78,13 +85,12 @@ func (a *Client) FindFacilities(params *FindFacilitiesParams, authInfo runtime.C
 
   Returns a listing of available datacenters for the given organization
 */
-func (a *Client) FindFacilitiesByOrganization(params *FindFacilitiesByOrganizationParams, authInfo runtime.ClientAuthInfoWriter) (*FindFacilitiesByOrganizationOK, error) {
+func (a *Client) FindFacilitiesByOrganization(params *FindFacilitiesByOrganizationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindFacilitiesByOrganizationOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewFindFacilitiesByOrganizationParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "findFacilitiesByOrganization",
 		Method:             "GET",
 		PathPattern:        "/organizations/{id}/facilities",
@@ -96,7 +102,12 @@ func (a *Client) FindFacilitiesByOrganization(params *FindFacilitiesByOrganizati
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -115,13 +126,12 @@ func (a *Client) FindFacilitiesByOrganization(params *FindFacilitiesByOrganizati
 
   Returns a listing of available datacenters for the given project
 */
-func (a *Client) FindFacilitiesByProject(params *FindFacilitiesByProjectParams, authInfo runtime.ClientAuthInfoWriter) (*FindFacilitiesByProjectOK, error) {
+func (a *Client) FindFacilitiesByProject(params *FindFacilitiesByProjectParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindFacilitiesByProjectOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewFindFacilitiesByProjectParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "findFacilitiesByProject",
 		Method:             "GET",
 		PathPattern:        "/projects/{id}/facilities",
@@ -133,7 +143,12 @@ func (a *Client) FindFacilitiesByProject(params *FindFacilitiesByProjectParams, 
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}

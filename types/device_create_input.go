@@ -309,8 +309,8 @@ type DeviceCreateInputIPAddressesItems0 struct {
 	IPReservations []string `json:"ip_reservations"`
 
 	// Address Type for IP Address
-	// Example: true or false
-	Public bool `json:"public,omitempty"`
+	// Example: false
+	Public *bool `json:"public,omitempty"`
 }
 
 // Validate validates this device create input IP addresses items0

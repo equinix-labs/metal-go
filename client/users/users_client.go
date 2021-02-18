@@ -25,17 +25,20 @@ type Client struct {
 	formats   strfmt.Registry
 }
 
+// ClientOption is the option for Client methods
+type ClientOption func(*runtime.ClientOperation)
+
 // ClientService is the interface for Client methods
 type ClientService interface {
-	FindCurrentUser(params *FindCurrentUserParams, authInfo runtime.ClientAuthInfoWriter) (*FindCurrentUserOK, error)
+	FindCurrentUser(params *FindCurrentUserParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindCurrentUserOK, error)
 
-	FindUserByID(params *FindUserByIDParams, authInfo runtime.ClientAuthInfoWriter) (*FindUserByIDOK, error)
+	FindUserByID(params *FindUserByIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindUserByIDOK, error)
 
-	FindUserCustomdata(params *FindUserCustomdataParams, authInfo runtime.ClientAuthInfoWriter) (*FindUserCustomdataOK, error)
+	FindUserCustomdata(params *FindUserCustomdataParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindUserCustomdataOK, error)
 
-	FindUsers(params *FindUsersParams, authInfo runtime.ClientAuthInfoWriter) (*FindUsersOK, error)
+	FindUsers(params *FindUsersParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindUsersOK, error)
 
-	UpdateCurrentUser(params *UpdateCurrentUserParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateCurrentUserOK, error)
+	UpdateCurrentUser(params *UpdateCurrentUserParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateCurrentUserOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -45,13 +48,12 @@ type ClientService interface {
 
   Returns the user object for the currently logged-in user.
 */
-func (a *Client) FindCurrentUser(params *FindCurrentUserParams, authInfo runtime.ClientAuthInfoWriter) (*FindCurrentUserOK, error) {
+func (a *Client) FindCurrentUser(params *FindCurrentUserParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindCurrentUserOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewFindCurrentUserParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "findCurrentUser",
 		Method:             "GET",
 		PathPattern:        "/user",
@@ -63,7 +65,12 @@ func (a *Client) FindCurrentUser(params *FindCurrentUserParams, authInfo runtime
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -82,13 +89,12 @@ func (a *Client) FindCurrentUser(params *FindCurrentUserParams, authInfo runtime
 
   Returns a single user if the user has access
 */
-func (a *Client) FindUserByID(params *FindUserByIDParams, authInfo runtime.ClientAuthInfoWriter) (*FindUserByIDOK, error) {
+func (a *Client) FindUserByID(params *FindUserByIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindUserByIDOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewFindUserByIDParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "findUserById",
 		Method:             "GET",
 		PathPattern:        "/users/{id}",
@@ -100,7 +106,12 @@ func (a *Client) FindUserByID(params *FindUserByIDParams, authInfo runtime.Clien
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -119,13 +130,12 @@ func (a *Client) FindUserByID(params *FindUserByIDParams, authInfo runtime.Clien
 
   Provides the custom metadata stored for this user in json format
 */
-func (a *Client) FindUserCustomdata(params *FindUserCustomdataParams, authInfo runtime.ClientAuthInfoWriter) (*FindUserCustomdataOK, error) {
+func (a *Client) FindUserCustomdata(params *FindUserCustomdataParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindUserCustomdataOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewFindUserCustomdataParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "findUserCustomdata",
 		Method:             "GET",
 		PathPattern:        "/users/{id}/customdata",
@@ -137,7 +147,12 @@ func (a *Client) FindUserCustomdata(params *FindUserCustomdataParams, authInfo r
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -156,13 +171,12 @@ func (a *Client) FindUserCustomdata(params *FindUserCustomdataParams, authInfo r
 
   Returns a list of users that the are accessible to the current user (all users in the current user’s projects, essentially).
 */
-func (a *Client) FindUsers(params *FindUsersParams, authInfo runtime.ClientAuthInfoWriter) (*FindUsersOK, error) {
+func (a *Client) FindUsers(params *FindUsersParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindUsersOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewFindUsersParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "findUsers",
 		Method:             "GET",
 		PathPattern:        "/users",
@@ -174,7 +188,12 @@ func (a *Client) FindUsers(params *FindUsersParams, authInfo runtime.ClientAuthI
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -193,13 +212,12 @@ func (a *Client) FindUsers(params *FindUsersParams, authInfo runtime.ClientAuthI
 
   Updates the currently logged-in user.
 */
-func (a *Client) UpdateCurrentUser(params *UpdateCurrentUserParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateCurrentUserOK, error) {
+func (a *Client) UpdateCurrentUser(params *UpdateCurrentUserParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateCurrentUserOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewUpdateCurrentUserParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "updateCurrentUser",
 		Method:             "PUT",
 		PathPattern:        "/user",
@@ -211,7 +229,12 @@ func (a *Client) UpdateCurrentUser(params *UpdateCurrentUserParams, authInfo run
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
