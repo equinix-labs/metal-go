@@ -51,7 +51,7 @@ func (a *Client) GetIncidents(params *GetIncidentsParams, authInfo runtime.Clien
 		PathPattern:        "/incidents",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetIncidentsReader{formats: a.formats},
 		AuthInfo:           authInfo,

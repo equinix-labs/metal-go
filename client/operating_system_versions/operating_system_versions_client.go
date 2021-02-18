@@ -51,7 +51,7 @@ func (a *Client) FindOperatingSystemVersion(params *FindOperatingSystemVersionPa
 		PathPattern:        "/operating-system-versions",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &FindOperatingSystemVersionReader{formats: a.formats},
 		AuthInfo:           authInfo,

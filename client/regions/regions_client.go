@@ -51,7 +51,7 @@ func (a *Client) FindRegions(params *FindRegionsParams, authInfo runtime.ClientA
 		PathPattern:        "/regions",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &FindRegionsReader{formats: a.formats},
 		AuthInfo:           authInfo,

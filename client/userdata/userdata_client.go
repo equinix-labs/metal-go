@@ -51,7 +51,7 @@ func (a *Client) ValidateUserdata(params *ValidateUserdataParams, authInfo runti
 		PathPattern:        "/userdata/validate",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &ValidateUserdataReader{formats: a.formats},
 		AuthInfo:           authInfo,

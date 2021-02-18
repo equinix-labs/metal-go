@@ -51,7 +51,7 @@ func (a *Client) CreateInternetGateway(params *CreateInternetGatewayParams, auth
 		PathPattern:        "/virtual-networks/{id}/internet-gateways",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &CreateInternetGatewayReader{formats: a.formats},
 		AuthInfo:           authInfo,

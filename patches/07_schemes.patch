@@ -1,0 +1,14 @@
+diff --git a/equinix-metal.patched.json b/equinix-metal.patched.json
+index e784feb..d86cf64 100644
+--- a/equinix-metal.patched.json
++++ b/equinix-metal.patched.json
+@@ -163,6 +163,9 @@
+     }
+   ],
+   "host": "api.equinix.com",
++  "schemes": [
++    "https"
++  ],
+   "basePath": "/metal/v1",
+   "consumes": [
+     "application/json"
