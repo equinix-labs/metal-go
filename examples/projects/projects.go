@@ -10,7 +10,7 @@ import (
 
 func main() {
 	c := client.NewHTTPClient(nil)
-	auth := httptransport.APIKeyAuth("X-Auth-Token", "header", os.Getenv("PACKET_AUTH_TOKEN"))
+	auth := httptransport.APIKeyAuth("X-Auth-Token", "header", os.Getenv("METAL_AUTH_TOKEN"))
 	r, err := c.Projects.FindProjects(nil, auth)
 
 	if err != nil {

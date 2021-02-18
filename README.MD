@@ -22,9 +22,9 @@ To build the client, run `make`.
 You can see usage of the generated code in the `examples` directory. In order to try, export PACKET_AUTH token and execute the code, e.g.
 
 ```
-$ PACKET_AUTH_TOKEN=... go run examples/projects/projects.go
+$ METAL_AUTH_TOKEN=... go run examples/projects/projects.go
 [...]
-$ cd examples/plans; PACKET_AUTH_TOKEN=... go run .
+$ cd examples/plans; METAL_AUTH_TOKEN=... go run .
 ```
 
 ## Generated code
