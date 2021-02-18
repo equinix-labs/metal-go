@@ -64,13 +64,15 @@ type DeviceCreateInput struct {
 	// Required: true
 	Plan *string `json:"plan"`
 
-	// private ipv4 subnet size
+	// Deprecated. Use ip_addresses. Subnet range for addresses allocated to this device. By default 1 address is allocated (subnet size 31).
+	// Example: 28
 	PrivateIPV4SubnetSize int64 `json:"private_ipv4_subnet_size,omitempty"`
 
 	// project ssh keys
 	ProjectSSHKeys []strfmt.UUID `json:"project_ssh_keys"`
 
-	// public ipv4 subnet size
+	// Deprecated. Use ip_addresses. Subnet range for addresses allocated to this device. By default 1 address is allocated (subnet size 31). Your project must have addresses available for a non-default request.
+	// Example: 31
 	PublicIPV4SubnetSize int64 `json:"public_ipv4_subnet_size,omitempty"`
 
 	// spot instance
@@ -301,8 +303,8 @@ type DeviceCreateInputIPAddressesItems0 struct {
 	// Example: 4 or 6
 	AddressFamily int64 `json:"address_family,omitempty"`
 
-	// Cidr Size for the IP Block created. Valid values depends on the operating system been provisioned.
-	// Example: 28..32 for IPv4 addresses
+	// Cidr Size for the IP Block created. Valid values depends on the operating system being provisioned.
+	// Example: 28..31 for IPv4 addresses, 124..127 for IPv6 addresses.
 	Cidr int64 `json:"cidr,omitempty"`
 
 	// UUIDs of any IP reservations to use when assigning IPs

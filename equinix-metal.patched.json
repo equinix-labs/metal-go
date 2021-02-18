@@ -8711,12 +8711,18 @@
           }
         },
         "public_ipv4_subnet_size": {
+          "description": "Deprecated. Use ip_addresses. Subnet range for addresses allocated to this device. By default 1 address is allocated (subnet size 31). Your project must have addresses available for a non-default request.",
+          "example": 31,
           "type": "number",
-          "format": "integer"
+          "format": "integer",
+          "x-deprecated": true
         },
         "private_ipv4_subnet_size": {
+          "description": "Deprecated. Use ip_addresses. Subnet range for addresses allocated to this device. By default 1 address is allocated (subnet size 31).",
+          "example": 28,
           "type": "number",
-          "format": "integer"
+          "format": "integer",
+          "x-deprecated": true
         },
         "ip_addresses": {
           "type": "array",
@@ -8738,8 +8744,8 @@
               "cidr": {
                 "type": "number",
                 "format": "integer",
-                "description": "Cidr Size for the IP Block created. Valid values depends on the operating system been provisioned.",
-                "example": "28..32 for IPv4 addresses"
+                "description": "Cidr Size for the IP Block created. Valid values depends on the operating system being provisioned.",
+                "example": "28..31 for IPv4 addresses, 124..127 for IPv6 addresses."
               },
               "ip_reservations": {
                 "type": "array",
