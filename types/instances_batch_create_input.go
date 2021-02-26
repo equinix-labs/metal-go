@@ -7,6 +7,7 @@ package types
 
 import (
 	"context"
+	"encoding/json"
 	"strconv"
 
 	"github.com/go-openapi/errors"
@@ -317,23 +318,66 @@ func (m *InstancesBatchCreateInputBatchesItems0) UnmarshalBinary(b []byte) error
 type InstancesBatchCreateInputBatchesItems0IPAddressesItems0 struct {
 
 	// Address Family for IP Address
-	// Example: 4 or 6
+	// Example: 4
+	// Enum: [4 6]
 	AddressFamily int64 `json:"address_family,omitempty"`
 
-	// Cidr Size for the IP Block created. Valid values depends on the operating system been provisioned.
-	// Example: 28..32 for IPv4 addresses
+	// Cidr Size for the IP Block created. Valid values depends on the operating system been provisioned (28..32 for IPv4 addresses, 124..127 for IPv6 addresses).
+	// Example: 28
 	Cidr int64 `json:"cidr,omitempty"`
 
 	// UUIDs of any IP reservations to use when assigning IPs
 	IPReservations []string `json:"ip_reservations"`
 
 	// Address Type for IP Address
-	// Example: true or false
-	Public bool `json:"public,omitempty"`
+	// Example: false
+	Public *bool `json:"public,omitempty"`
 }
 
 // Validate validates this instances batch create input batches items0 IP addresses items0
 func (m *InstancesBatchCreateInputBatchesItems0IPAddressesItems0) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateAddressFamily(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+var instancesBatchCreateInputBatchesItems0IpAddressesItems0TypeAddressFamilyPropEnum []interface{}
+
+func init() {
+	var res []int64
+	if err := json.Unmarshal([]byte(`[4,6]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		instancesBatchCreateInputBatchesItems0IpAddressesItems0TypeAddressFamilyPropEnum = append(instancesBatchCreateInputBatchesItems0IpAddressesItems0TypeAddressFamilyPropEnum, v)
+	}
+}
+
+// prop value enum
+func (m *InstancesBatchCreateInputBatchesItems0IPAddressesItems0) validateAddressFamilyEnum(path, location string, value int64) error {
+	if err := validate.EnumCase(path, location, value, instancesBatchCreateInputBatchesItems0IpAddressesItems0TypeAddressFamilyPropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *InstancesBatchCreateInputBatchesItems0IPAddressesItems0) validateAddressFamily(formats strfmt.Registry) error {
+	if swag.IsZero(m.AddressFamily) { // not required
+		return nil
+	}
+
+	// value enum
+	if err := m.validateAddressFamilyEnum("address_family", "body", m.AddressFamily); err != nil {
+		return err
+	}
+
 	return nil
 }
 

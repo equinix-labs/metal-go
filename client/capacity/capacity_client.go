@@ -30,40 +30,32 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	CheckCapacity(params *CheckCapacityParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CheckCapacityOK, error)
+	CheckCapacityForFacility(params *CheckCapacityForFacilityParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CheckCapacityForFacilityOK, error)
 
-	FindCapacity(params *FindCapacityParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindCapacityOK, error)
+	FindCapacityForFacility(params *FindCapacityForFacilityParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindCapacityForFacilityOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
 
 /*
-  CheckCapacity checks capacity
+  CheckCapacityForFacility checks capacity
 
   Validates if a deploy can be fulfilled.
-
-Response:
-```
-"servers": [
-    { "available": true, ... },
-    { "available": false, ... }
-]
-```
 */
-func (a *Client) CheckCapacity(params *CheckCapacityParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CheckCapacityOK, error) {
+func (a *Client) CheckCapacityForFacility(params *CheckCapacityForFacilityParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CheckCapacityForFacilityOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewCheckCapacityParams()
+		params = NewCheckCapacityForFacilityParams()
 	}
 	op := &runtime.ClientOperation{
-		ID:                 "checkCapacity",
+		ID:                 "checkCapacityForFacility",
 		Method:             "POST",
 		PathPattern:        "/capacity",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &CheckCapacityReader{formats: a.formats},
+		Reader:             &CheckCapacityForFacilityReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -76,35 +68,35 @@ func (a *Client) CheckCapacity(params *CheckCapacityParams, authInfo runtime.Cli
 	if err != nil {
 		return nil, err
 	}
-	success, ok := result.(*CheckCapacityOK)
+	success, ok := result.(*CheckCapacityForFacilityOK)
 	if ok {
 		return success, nil
 	}
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for checkCapacity: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	msg := fmt.Sprintf("unexpected success response for checkCapacityForFacility: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
 /*
-  FindCapacity views capacity
+  FindCapacityForFacility views capacity
 
   Returns a list of facilities and plans with their current capacity.
 */
-func (a *Client) FindCapacity(params *FindCapacityParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindCapacityOK, error) {
+func (a *Client) FindCapacityForFacility(params *FindCapacityForFacilityParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FindCapacityForFacilityOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewFindCapacityParams()
+		params = NewFindCapacityForFacilityParams()
 	}
 	op := &runtime.ClientOperation{
-		ID:                 "findCapacity",
+		ID:                 "findCapacityForFacility",
 		Method:             "GET",
 		PathPattern:        "/capacity",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &FindCapacityReader{formats: a.formats},
+		Reader:             &FindCapacityForFacilityReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -117,13 +109,13 @@ func (a *Client) FindCapacity(params *FindCapacityParams, authInfo runtime.Clien
 	if err != nil {
 		return nil, err
 	}
-	success, ok := result.(*FindCapacityOK)
+	success, ok := result.(*FindCapacityForFacilityOK)
 	if ok {
 		return success, nil
 	}
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for findCapacity: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	msg := fmt.Sprintf("unexpected success response for findCapacityForFacility: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
