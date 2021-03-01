@@ -18,7 +18,7 @@ import (
 type IPAddressInput struct {
 
 	// Address Family for IP Address
-	// Example: 4 or 6
+	// Example: 4
 	AddressFamily int64 `json:"address_family,omitempty"`
 }
 

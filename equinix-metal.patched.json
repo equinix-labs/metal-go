@@ -162,10 +162,10 @@
       ]
     }
   ],
-  "host": "api.equinix.com",
   "schemes": [
     "https"
   ],
+  "host": "api.equinix.com",
   "basePath": "/metal/v1",
   "consumes": [
     "application/json"
@@ -673,7 +673,7 @@
       "get": {
         "summary": "View capacity",
         "description": "Returns a list of facilities and plans with their current capacity.",
-        "operationId": "findCapacity",
+        "operationId": "findCapacityForFacility",
         "tags": [
           "Capacity"
         ],
@@ -691,8 +691,8 @@
       },
       "post": {
         "summary": "Check capacity",
-        "description": "Validates if a deploy can be fulfilled.\n\nResponse:\n```\n\"servers\": [\n    { \"available\": true, ... },\n    { \"available\": false, ... }\n]\n```",
-        "operationId": "checkCapacity",
+        "description": "Validates if a deploy can be fulfilled.",
+        "operationId": "checkCapacityForFacility",
         "tags": [
           "Capacity"
         ],
@@ -700,7 +700,7 @@
           {
             "name": "facility",
             "in": "body",
-            "description": "Facility to create",
+            "description": "Facility to check capacity in",
             "required": true,
             "schema": {
               "$ref": "#/definitions/CapacityInput"
@@ -709,7 +709,10 @@
         ],
         "responses": {
           "200": {
-            "description": "ok"
+            "description": "ok",
+            "schema": {
+              "$ref": "#/definitions/CapacityCheckPerFacilityList"
+            }
           },
           "401": {
             "description": "unauthorized"
@@ -8126,8 +8129,8 @@
                 }
               },
               "user_ssh_keys": {
-                "description": "The UUIDs of users whose SSH keys should be included on the provisioned device.",
                 "type": "array",
+                "description": "The UUIDs of users whose SSH keys should be included on the provisioned device.",
                 "items": {
                   "type": "string",
                   "format": "uuid"
@@ -8151,18 +8154,23 @@
                       "type": "number",
                       "format": "integer",
                       "description": "Address Family for IP Address",
-                      "example": "4 or 6"
+                      "enum": [
+                        4,
+                        6
+                      ],
+                      "example": 4
                     },
                     "public": {
                       "type": "boolean",
                       "description": "Address Type for IP Address",
-                      "example": "true or false"
+                      "example": false,
+                      "default": true
                     },
                     "cidr": {
                       "type": "number",
                       "format": "integer",
-                      "description": "Cidr Size for the IP Block created. Valid values depends on the operating system been provisioned.",
-                      "example": "28..32 for IPv4 addresses"
+                      "description": "Cidr Size for the IP Block created. Valid values depends on the operating system been provisioned (28..32 for IPv4 addresses, 124..127 for IPv6 addresses).",
+                      "example": 28
                     },
                     "ip_reservations": {
                       "type": "array",
@@ -8702,8 +8710,8 @@
           }
         },
         "user_ssh_keys": {
-          "description": "The UUIDs of users whose SSH keys should be included on the provisioned device.",
           "type": "array",
+          "description": "The UUIDs of users whose SSH keys should be included on the provisioned device.",
           "items": {
             "type": "string",
             "format": "uuid"
@@ -8716,17 +8724,17 @@
           }
         },
         "public_ipv4_subnet_size": {
-          "description": "Deprecated. Use ip_addresses. Subnet range for addresses allocated to this device. By default 1 address is allocated (subnet size 31). Your project must have addresses available for a non-default request.",
-          "example": 31,
           "type": "number",
           "format": "integer",
+          "description": "Deprecated. Use ip_addresses. Subnet range for addresses allocated to this device. Your project must have addresses available for a non-default request.",
+          "default": 31,
           "x-deprecated": true
         },
         "private_ipv4_subnet_size": {
-          "description": "Deprecated. Use ip_addresses. Subnet range for addresses allocated to this device. By default 1 address is allocated (subnet size 31).",
-          "example": 28,
           "type": "number",
           "format": "integer",
+          "description": "Deprecated. Use ip_addresses. Subnet range for addresses allocated to this device.",
+          "default": 28,
           "x-deprecated": true
         },
         "ip_addresses": {
@@ -8738,7 +8746,11 @@
                 "type": "number",
                 "format": "integer",
                 "description": "Address Family for IP Address",
-                "example": "4 or 6"
+                "example": 4,
+                "enum": [
+                  4,
+                  6
+                ]
               },
               "public": {
                 "type": "boolean",
@@ -8749,8 +8761,8 @@
               "cidr": {
                 "type": "number",
                 "format": "integer",
-                "description": "Cidr Size for the IP Block created. Valid values depends on the operating system being provisioned.",
-                "example": "28..31 for IPv4 addresses, 124..127 for IPv6 addresses."
+                "description": "Cidr Size for the IP Block created. Valid values depends on the operating system being provisioned. (28..32 for IPv4 addresses, 124..127 for IPv6 addresses)",
+                "example": 28
               },
               "ip_reservations": {
                 "type": "array",
@@ -8770,7 +8782,7 @@
           "type": "number",
           "format": "integer",
           "description": "Address Family for IP Address",
-          "example": "4 or 6"
+          "example": 4
         }
       }
     },
@@ -10498,8 +10510,8 @@
               }
             },
             "user_ssh_keys": {
-              "description": "The UUIDs of users whose SSH keys should be included on the provisioned device.",
               "type": "array",
+              "description": "The UUIDs of users whose SSH keys should be included on the provisioned device.",
               "items": {
                 "type": "string",
                 "format": "uuid"
@@ -11090,17 +11102,17 @@
         }
       }
     },
-    "CapacityServerUnavailable": {
+    "CapacityCheckPerFacilityList": {
       "properties": {
         "servers": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/ServerUnavailableInfo"
+            "$ref": "#/definitions/CapacityCheckPerFacilityInfo"
           }
         }
       }
     },
-    "ServerUnavailableInfo": {
+    "CapacityCheckPerFacilityInfo": {
       "properties": {
         "facility": {
           "type": "string"

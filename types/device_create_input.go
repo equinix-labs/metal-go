@@ -7,6 +7,7 @@ package types
 
 import (
 	"context"
+	"encoding/json"
 	"strconv"
 
 	"github.com/go-openapi/errors"
@@ -64,16 +65,14 @@ type DeviceCreateInput struct {
 	// Required: true
 	Plan *string `json:"plan"`
 
-	// Deprecated. Use ip_addresses. Subnet range for addresses allocated to this device. By default 1 address is allocated (subnet size 31).
-	// Example: 28
-	PrivateIPV4SubnetSize int64 `json:"private_ipv4_subnet_size,omitempty"`
+	// Deprecated. Use ip_addresses. Subnet range for addresses allocated to this device.
+	PrivateIPV4SubnetSize *int64 `json:"private_ipv4_subnet_size,omitempty"`
 
 	// project ssh keys
 	ProjectSSHKeys []strfmt.UUID `json:"project_ssh_keys"`
 
-	// Deprecated. Use ip_addresses. Subnet range for addresses allocated to this device. By default 1 address is allocated (subnet size 31). Your project must have addresses available for a non-default request.
-	// Example: 31
-	PublicIPV4SubnetSize int64 `json:"public_ipv4_subnet_size,omitempty"`
+	// Deprecated. Use ip_addresses. Subnet range for addresses allocated to this device. Your project must have addresses available for a non-default request.
+	PublicIPV4SubnetSize *int64 `json:"public_ipv4_subnet_size,omitempty"`
 
 	// spot instance
 	SpotInstance bool `json:"spot_instance,omitempty"`
@@ -300,11 +299,12 @@ func (m *DeviceCreateInput) UnmarshalBinary(b []byte) error {
 type DeviceCreateInputIPAddressesItems0 struct {
 
 	// Address Family for IP Address
-	// Example: 4 or 6
+	// Example: 4
+	// Enum: [4 6]
 	AddressFamily int64 `json:"address_family,omitempty"`
 
-	// Cidr Size for the IP Block created. Valid values depends on the operating system being provisioned.
-	// Example: 28..31 for IPv4 addresses, 124..127 for IPv6 addresses.
+	// Cidr Size for the IP Block created. Valid values depends on the operating system being provisioned. (28..32 for IPv4 addresses, 124..127 for IPv6 addresses)
+	// Example: 28
 	Cidr int64 `json:"cidr,omitempty"`
 
 	// UUIDs of any IP reservations to use when assigning IPs
@@ -317,6 +317,48 @@ type DeviceCreateInputIPAddressesItems0 struct {
 
 // Validate validates this device create input IP addresses items0
 func (m *DeviceCreateInputIPAddressesItems0) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateAddressFamily(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+var deviceCreateInputIpAddressesItems0TypeAddressFamilyPropEnum []interface{}
+
+func init() {
+	var res []int64
+	if err := json.Unmarshal([]byte(`[4,6]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		deviceCreateInputIpAddressesItems0TypeAddressFamilyPropEnum = append(deviceCreateInputIpAddressesItems0TypeAddressFamilyPropEnum, v)
+	}
+}
+
+// prop value enum
+func (m *DeviceCreateInputIPAddressesItems0) validateAddressFamilyEnum(path, location string, value int64) error {
+	if err := validate.EnumCase(path, location, value, deviceCreateInputIpAddressesItems0TypeAddressFamilyPropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *DeviceCreateInputIPAddressesItems0) validateAddressFamily(formats strfmt.Registry) error {
+	if swag.IsZero(m.AddressFamily) { // not required
+		return nil
+	}
+
+	// value enum
+	if err := m.validateAddressFamilyEnum("address_family", "body", m.AddressFamily); err != nil {
+		return err
+	}
+
 	return nil
 }
 

@@ -20,10 +20,11 @@ patch:
 	# patch is idempotent, always starting with the fetched
 	# fetched file to create the patched file.
 	ARGS="-o ${SPEC_PATCHED_FILE} ${SPEC_FETCHED_FILE}"; \
-	for diff in $(shell find patches/*.patch | sort -n); do \
+	for diff in $(shell find patches -name \*.patch | sort -n); do \
 		patch --no-backup-if-mismatch -N -t $$ARGS $$diff; \
 		ARGS=${SPEC_PATCHED_FILE}; \
 	done
+	find ${SPEC_PATCHED_FILE} -empty -exec cp ${SPEC_FETCHED_FILE} ${SPEC_PATCHED_FILE} \;
 
 gen:
 	${SWAGGER} generate client \
