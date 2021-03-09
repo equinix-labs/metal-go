@@ -14,6 +14,7 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+	"github.com/go-openapi/swag"
 )
 
 // NewFindTransferRequestByIDParams creates a new FindTransferRequestByIDParams object,
@@ -59,6 +60,12 @@ func NewFindTransferRequestByIDParamsWithHTTPClient(client *http.Client) *FindTr
 */
 type FindTransferRequestByIDParams struct {
 
+	/* Exclude.
+
+	   Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
+	*/
+	Exclude []string
+
 	/* ID.
 
 	   Transfer request UUID
@@ -69,9 +76,9 @@ type FindTransferRequestByIDParams struct {
 
 	/* Include.
 
-	   related attributes to include
+	   Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
 	*/
-	Include *string
+	Include []string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -126,6 +133,17 @@ func (o *FindTransferRequestByIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithExclude adds the exclude to the find transfer request by Id params
+func (o *FindTransferRequestByIDParams) WithExclude(exclude []string) *FindTransferRequestByIDParams {
+	o.SetExclude(exclude)
+	return o
+}
+
+// SetExclude adds the exclude to the find transfer request by Id params
+func (o *FindTransferRequestByIDParams) SetExclude(exclude []string) {
+	o.Exclude = exclude
+}
+
 // WithID adds the id to the find transfer request by Id params
 func (o *FindTransferRequestByIDParams) WithID(id strfmt.UUID) *FindTransferRequestByIDParams {
 	o.SetID(id)
@@ -138,13 +156,13 @@ func (o *FindTransferRequestByIDParams) SetID(id strfmt.UUID) {
 }
 
 // WithInclude adds the include to the find transfer request by Id params
-func (o *FindTransferRequestByIDParams) WithInclude(include *string) *FindTransferRequestByIDParams {
+func (o *FindTransferRequestByIDParams) WithInclude(include []string) *FindTransferRequestByIDParams {
 	o.SetInclude(include)
 	return o
 }
 
 // SetInclude adds the include to the find transfer request by Id params
-func (o *FindTransferRequestByIDParams) SetInclude(include *string) {
+func (o *FindTransferRequestByIDParams) SetInclude(include []string) {
 	o.Include = include
 }
 
@@ -156,6 +174,17 @@ func (o *FindTransferRequestByIDParams) WriteToRequest(r runtime.ClientRequest, 
 	}
 	var res []error
 
+	if o.Exclude != nil {
+
+		// binding items for exclude
+		joinedExclude := o.bindParamExclude(reg)
+
+		// query array param exclude
+		if err := r.SetQueryParam("exclude", joinedExclude...); err != nil {
+			return err
+		}
+	}
+
 	// path param id
 	if err := r.SetPathParam("id", o.ID.String()); err != nil {
 		return err
@@ -163,18 +192,12 @@ func (o *FindTransferRequestByIDParams) WriteToRequest(r runtime.ClientRequest, 
 
 	if o.Include != nil {
 
-		// query param include
-		var qrInclude string
+		// binding items for include
+		joinedInclude := o.bindParamInclude(reg)
 
-		if o.Include != nil {
-			qrInclude = *o.Include
-		}
-		qInclude := qrInclude
-		if qInclude != "" {
-
-			if err := r.SetQueryParam("include", qInclude); err != nil {
-				return err
-			}
+		// query array param include
+		if err := r.SetQueryParam("include", joinedInclude...); err != nil {
+			return err
 		}
 	}
 
@@ -182,4 +205,38 @@ func (o *FindTransferRequestByIDParams) WriteToRequest(r runtime.ClientRequest, 
 		return errors.CompositeValidationError(res...)
 	}
 	return nil
+}
+
+// bindParamFindTransferRequestByID binds the parameter exclude
+func (o *FindTransferRequestByIDParams) bindParamExclude(formats strfmt.Registry) []string {
+	excludeIR := o.Exclude
+
+	var excludeIC []string
+	for _, excludeIIR := range excludeIR { // explode []string
+
+		excludeIIV := excludeIIR // string as string
+		excludeIC = append(excludeIC, excludeIIV)
+	}
+
+	// items.CollectionFormat: "csv"
+	excludeIS := swag.JoinByFormat(excludeIC, "csv")
+
+	return excludeIS
+}
+
+// bindParamFindTransferRequestByID binds the parameter include
+func (o *FindTransferRequestByIDParams) bindParamInclude(formats strfmt.Registry) []string {
+	includeIR := o.Include
+
+	var includeIC []string
+	for _, includeIIR := range includeIR { // explode []string
+
+		includeIIV := includeIIR // string as string
+		includeIC = append(includeIC, includeIIV)
+	}
+
+	// items.CollectionFormat: "csv"
+	includeIS := swag.JoinByFormat(includeIC, "csv")
+
+	return includeIS
 }

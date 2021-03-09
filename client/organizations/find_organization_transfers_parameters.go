@@ -14,6 +14,7 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+	"github.com/go-openapi/swag"
 )
 
 // NewFindOrganizationTransfersParams creates a new FindOrganizationTransfersParams object,
@@ -59,6 +60,12 @@ func NewFindOrganizationTransfersParamsWithHTTPClient(client *http.Client) *Find
 */
 type FindOrganizationTransfersParams struct {
 
+	/* Exclude.
+
+	   Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
+	*/
+	Exclude []string
+
 	/* ID.
 
 	   Organization UUID
@@ -69,9 +76,9 @@ type FindOrganizationTransfersParams struct {
 
 	/* Include.
 
-	   related attributes to include
+	   Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
 	*/
-	Include *string
+	Include []string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -126,6 +133,17 @@ func (o *FindOrganizationTransfersParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithExclude adds the exclude to the find organization transfers params
+func (o *FindOrganizationTransfersParams) WithExclude(exclude []string) *FindOrganizationTransfersParams {
+	o.SetExclude(exclude)
+	return o
+}
+
+// SetExclude adds the exclude to the find organization transfers params
+func (o *FindOrganizationTransfersParams) SetExclude(exclude []string) {
+	o.Exclude = exclude
+}
+
 // WithID adds the id to the find organization transfers params
 func (o *FindOrganizationTransfersParams) WithID(id strfmt.UUID) *FindOrganizationTransfersParams {
 	o.SetID(id)
@@ -138,13 +156,13 @@ func (o *FindOrganizationTransfersParams) SetID(id strfmt.UUID) {
 }
 
 // WithInclude adds the include to the find organization transfers params
-func (o *FindOrganizationTransfersParams) WithInclude(include *string) *FindOrganizationTransfersParams {
+func (o *FindOrganizationTransfersParams) WithInclude(include []string) *FindOrganizationTransfersParams {
 	o.SetInclude(include)
 	return o
 }
 
 // SetInclude adds the include to the find organization transfers params
-func (o *FindOrganizationTransfersParams) SetInclude(include *string) {
+func (o *FindOrganizationTransfersParams) SetInclude(include []string) {
 	o.Include = include
 }
 
@@ -156,6 +174,17 @@ func (o *FindOrganizationTransfersParams) WriteToRequest(r runtime.ClientRequest
 	}
 	var res []error
 
+	if o.Exclude != nil {
+
+		// binding items for exclude
+		joinedExclude := o.bindParamExclude(reg)
+
+		// query array param exclude
+		if err := r.SetQueryParam("exclude", joinedExclude...); err != nil {
+			return err
+		}
+	}
+
 	// path param id
 	if err := r.SetPathParam("id", o.ID.String()); err != nil {
 		return err
@@ -163,18 +192,12 @@ func (o *FindOrganizationTransfersParams) WriteToRequest(r runtime.ClientRequest
 
 	if o.Include != nil {
 
-		// query param include
-		var qrInclude string
+		// binding items for include
+		joinedInclude := o.bindParamInclude(reg)
 
-		if o.Include != nil {
-			qrInclude = *o.Include
-		}
-		qInclude := qrInclude
-		if qInclude != "" {
-
-			if err := r.SetQueryParam("include", qInclude); err != nil {
-				return err
-			}
+		// query array param include
+		if err := r.SetQueryParam("include", joinedInclude...); err != nil {
+			return err
 		}
 	}
 
@@ -182,4 +205,38 @@ func (o *FindOrganizationTransfersParams) WriteToRequest(r runtime.ClientRequest
 		return errors.CompositeValidationError(res...)
 	}
 	return nil
+}
+
+// bindParamFindOrganizationTransfers binds the parameter exclude
+func (o *FindOrganizationTransfersParams) bindParamExclude(formats strfmt.Registry) []string {
+	excludeIR := o.Exclude
+
+	var excludeIC []string
+	for _, excludeIIR := range excludeIR { // explode []string
+
+		excludeIIV := excludeIIR // string as string
+		excludeIC = append(excludeIC, excludeIIV)
+	}
+
+	// items.CollectionFormat: "csv"
+	excludeIS := swag.JoinByFormat(excludeIC, "csv")
+
+	return excludeIS
+}
+
+// bindParamFindOrganizationTransfers binds the parameter include
+func (o *FindOrganizationTransfersParams) bindParamInclude(formats strfmt.Registry) []string {
+	includeIR := o.Include
+
+	var includeIC []string
+	for _, includeIIR := range includeIR { // explode []string
+
+		includeIIV := includeIIR // string as string
+		includeIC = append(includeIC, includeIIV)
+	}
+
+	// items.CollectionFormat: "csv"
+	includeIS := swag.JoinByFormat(includeIC, "csv")
+
+	return includeIS
 }

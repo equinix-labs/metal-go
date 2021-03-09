@@ -14,6 +14,7 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+	"github.com/go-openapi/swag"
 )
 
 // NewFindHardwareReservationByIDParams creates a new FindHardwareReservationByIDParams object,
@@ -59,6 +60,12 @@ func NewFindHardwareReservationByIDParamsWithHTTPClient(client *http.Client) *Fi
 */
 type FindHardwareReservationByIDParams struct {
 
+	/* Exclude.
+
+	   Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
+	*/
+	Exclude []string
+
 	/* ID.
 
 	   HardwareReservation UUID
@@ -69,9 +76,9 @@ type FindHardwareReservationByIDParams struct {
 
 	/* Include.
 
-	   related attributes to include
+	   Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
 	*/
-	Include *string
+	Include []string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -126,6 +133,17 @@ func (o *FindHardwareReservationByIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithExclude adds the exclude to the find hardware reservation by Id params
+func (o *FindHardwareReservationByIDParams) WithExclude(exclude []string) *FindHardwareReservationByIDParams {
+	o.SetExclude(exclude)
+	return o
+}
+
+// SetExclude adds the exclude to the find hardware reservation by Id params
+func (o *FindHardwareReservationByIDParams) SetExclude(exclude []string) {
+	o.Exclude = exclude
+}
+
 // WithID adds the id to the find hardware reservation by Id params
 func (o *FindHardwareReservationByIDParams) WithID(id strfmt.UUID) *FindHardwareReservationByIDParams {
 	o.SetID(id)
@@ -138,13 +156,13 @@ func (o *FindHardwareReservationByIDParams) SetID(id strfmt.UUID) {
 }
 
 // WithInclude adds the include to the find hardware reservation by Id params
-func (o *FindHardwareReservationByIDParams) WithInclude(include *string) *FindHardwareReservationByIDParams {
+func (o *FindHardwareReservationByIDParams) WithInclude(include []string) *FindHardwareReservationByIDParams {
 	o.SetInclude(include)
 	return o
 }
 
 // SetInclude adds the include to the find hardware reservation by Id params
-func (o *FindHardwareReservationByIDParams) SetInclude(include *string) {
+func (o *FindHardwareReservationByIDParams) SetInclude(include []string) {
 	o.Include = include
 }
 
@@ -156,6 +174,17 @@ func (o *FindHardwareReservationByIDParams) WriteToRequest(r runtime.ClientReque
 	}
 	var res []error
 
+	if o.Exclude != nil {
+
+		// binding items for exclude
+		joinedExclude := o.bindParamExclude(reg)
+
+		// query array param exclude
+		if err := r.SetQueryParam("exclude", joinedExclude...); err != nil {
+			return err
+		}
+	}
+
 	// path param id
 	if err := r.SetPathParam("id", o.ID.String()); err != nil {
 		return err
@@ -163,18 +192,12 @@ func (o *FindHardwareReservationByIDParams) WriteToRequest(r runtime.ClientReque
 
 	if o.Include != nil {
 
-		// query param include
-		var qrInclude string
+		// binding items for include
+		joinedInclude := o.bindParamInclude(reg)
 
-		if o.Include != nil {
-			qrInclude = *o.Include
-		}
-		qInclude := qrInclude
-		if qInclude != "" {
-
-			if err := r.SetQueryParam("include", qInclude); err != nil {
-				return err
-			}
+		// query array param include
+		if err := r.SetQueryParam("include", joinedInclude...); err != nil {
+			return err
 		}
 	}
 
@@ -182,4 +205,38 @@ func (o *FindHardwareReservationByIDParams) WriteToRequest(r runtime.ClientReque
 		return errors.CompositeValidationError(res...)
 	}
 	return nil
+}
+
+// bindParamFindHardwareReservationByID binds the parameter exclude
+func (o *FindHardwareReservationByIDParams) bindParamExclude(formats strfmt.Registry) []string {
+	excludeIR := o.Exclude
+
+	var excludeIC []string
+	for _, excludeIIR := range excludeIR { // explode []string
+
+		excludeIIV := excludeIIR // string as string
+		excludeIC = append(excludeIC, excludeIIV)
+	}
+
+	// items.CollectionFormat: "csv"
+	excludeIS := swag.JoinByFormat(excludeIC, "csv")
+
+	return excludeIS
+}
+
+// bindParamFindHardwareReservationByID binds the parameter include
+func (o *FindHardwareReservationByIDParams) bindParamInclude(formats strfmt.Registry) []string {
+	includeIR := o.Include
+
+	var includeIC []string
+	for _, includeIIR := range includeIR { // explode []string
+
+		includeIIV := includeIIR // string as string
+		includeIC = append(includeIC, includeIIV)
+	}
+
+	// items.CollectionFormat: "csv"
+	includeIS := swag.JoinByFormat(includeIC, "csv")
+
+	return includeIS
 }
