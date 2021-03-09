@@ -28,10 +28,11 @@ func main() {
 	c := NewDebugClient(nil, nil)
 	auth := httptransport.APIKeyAuth("X-Auth-Token", "header", os.Getenv("METAL_AUTH_TOKEN"))
 
-	page := int64(1)
+	page := int32(1)
 	params := projects.NewFindProjectsParams()
 	params.SetDefaults()
 	params.SetPage(&page)
+	params.SetExclude([]string{"members", "devices", "ssh_keys", "payment_method"})
 
 	projs := []*types.Project{}
 
