@@ -14,6 +14,31 @@
       "url": "https://metal.equinix.com/legal/"
     }
   },
+  "schemes": [
+    "https"
+  ],
+  "host": "api.equinix.com",
+  "basePath": "/metal/v1",
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "securityDefinitions": {
+    "x_auth_token": {
+      "type": "apiKey",
+      "name": "X-Auth-Token",
+      "in": "header"
+    }
+  },
+  "security": [
+    {
+      "x_auth_token": [
+
+      ]
+    }
+  ],
   "tags": [
     {
       "name": "Batches",
@@ -147,31 +172,6 @@
       "name": "VPN",
       "description": "VPN Management. Check out the product docs to learn more about [Doorman VPN](https://metal.equinix.com/developers/docs/networking/features/)."
     }
-  ],
-  "securityDefinitions": {
-    "x_auth_token": {
-      "type": "apiKey",
-      "name": "X-Auth-Token",
-      "in": "header"
-    }
-  },
-  "security": [
-    {
-      "x_auth_token": [
-
-      ]
-    }
-  ],
-  "schemes": [
-    "https"
-  ],
-  "host": "api.equinix.com",
-  "basePath": "/metal/v1",
-  "consumes": [
-    "application/json"
-  ],
-  "produces": [
-    "application/json"
   ],
   "paths": {
     "/projects/{id}/batches": {
@@ -779,179 +779,6 @@
           },
           "422": {
             "description": "unprocessable entity"
-          }
-        }
-      }
-    },
-    "/emails": {
-      "post": {
-        "summary": "Create an email",
-        "description": "Add a new email address to the current user.",
-        "operationId": "createEmail",
-        "tags": [
-          "Emails"
-        ],
-        "parameters": [
-          {
-            "name": "email",
-            "in": "body",
-            "description": "Email to create",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/CreateEmailInput"
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "created",
-            "schema": {
-              "$ref": "#/definitions/Email"
-            }
-          },
-          "401": {
-            "description": "unauthorized"
-          },
-          "422": {
-            "description": "unprocessable entity"
-          }
-        }
-      }
-    },
-    "/emails/{id}": {
-      "get": {
-        "summary": "Retrieve an email",
-        "description": "Provides one of the user’s emails.",
-        "operationId": "findEmailById",
-        "tags": [
-          "Emails"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "Email UUID",
-            "required": true,
-            "type": "string",
-            "format": "uuid"
-          },
-          {
-            "name": "include",
-            "in": "query",
-            "description": "Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.",
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "collectionFormat": "csv",
-            "required": false
-          },
-          {
-            "name": "exclude",
-            "in": "query",
-            "description": "Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.",
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "collectionFormat": "csv",
-            "required": false
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "ok",
-            "schema": {
-              "$ref": "#/definitions/Email"
-            }
-          },
-          "401": {
-            "description": "unauthorized"
-          },
-          "403": {
-            "description": "forbidden"
-          },
-          "404": {
-            "description": "not found"
-          }
-        }
-      },
-      "put": {
-        "summary": "Update the email",
-        "description": "Updates the email.",
-        "operationId": "updateEmail",
-        "tags": [
-          "Emails"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "Email UUID",
-            "required": true,
-            "type": "string",
-            "format": "uuid"
-          },
-          {
-            "name": "email",
-            "in": "body",
-            "description": "email to update",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/UpdateEmailInput"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "ok",
-            "schema": {
-              "$ref": "#/definitions/Email"
-            }
-          },
-          "401": {
-            "description": "unauthorized"
-          },
-          "403": {
-            "description": "forbidden"
-          },
-          "404": {
-            "description": "not found"
-          },
-          "422": {
-            "description": "unprocessable entity"
-          }
-        }
-      },
-      "delete": {
-        "summary": "Delete the email",
-        "description": "Deletes the email.",
-        "operationId": "deleteEmail",
-        "tags": [
-          "Emails"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "Email UUID",
-            "required": true,
-            "type": "string",
-            "format": "uuid"
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "no content"
-          },
-          "401": {
-            "description": "unauthorized"
-          },
-          "403": {
-            "description": "forbidden"
-          },
-          "404": {
-            "description": "not found"
           }
         }
       }
@@ -9133,6 +8960,179 @@
           }
         }
       }
+    },
+    "/emails": {
+      "post": {
+        "summary": "Create an email",
+        "description": "Add a new email address to the current user.",
+        "operationId": "createEmail",
+        "tags": [
+          "Emails"
+        ],
+        "parameters": [
+          {
+            "name": "email",
+            "in": "body",
+            "description": "Email to create",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CreateEmailInput"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "created",
+            "schema": {
+              "$ref": "#/definitions/Email"
+            }
+          },
+          "401": {
+            "description": "unauthorized"
+          },
+          "422": {
+            "description": "unprocessable entity"
+          }
+        }
+      }
+    },
+    "/emails/{id}": {
+      "get": {
+        "summary": "Retrieve an email",
+        "description": "Provides one of the user’s emails.",
+        "operationId": "findEmailById",
+        "tags": [
+          "Emails"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Email UUID",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "name": "include",
+            "in": "query",
+            "description": "Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "required": false
+          },
+          {
+            "name": "exclude",
+            "in": "query",
+            "description": "Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "$ref": "#/definitions/Email"
+            }
+          },
+          "401": {
+            "description": "unauthorized"
+          },
+          "403": {
+            "description": "forbidden"
+          },
+          "404": {
+            "description": "not found"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update the email",
+        "description": "Updates the email.",
+        "operationId": "updateEmail",
+        "tags": [
+          "Emails"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Email UUID",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "name": "email",
+            "in": "body",
+            "description": "email to update",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateEmailInput"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "$ref": "#/definitions/Email"
+            }
+          },
+          "401": {
+            "description": "unauthorized"
+          },
+          "403": {
+            "description": "forbidden"
+          },
+          "404": {
+            "description": "not found"
+          },
+          "422": {
+            "description": "unprocessable entity"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete the email",
+        "description": "Deletes the email.",
+        "operationId": "deleteEmail",
+        "tags": [
+          "Emails"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Email UUID",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "no content"
+          },
+          "401": {
+            "description": "unauthorized"
+          },
+          "403": {
+            "description": "forbidden"
+          },
+          "404": {
+            "description": "not found"
+          }
+        }
+      }
     }
   },
   "definitions": {
@@ -9333,43 +9333,6 @@
               }
             }
           }
-        }
-      }
-    },
-    "Email": {
-      "properties": {
-        "id": {
-          "type": "string",
-          "format": "uuid"
-        },
-        "address": {
-          "type": "string"
-        },
-        "default": {
-          "type": "boolean"
-        },
-        "verified": {
-          "type": "boolean"
-        },
-        "href": {
-          "type": "string"
-        }
-      }
-    },
-    "CreateEmailInput": {
-      "required": [
-        "address"
-      ],
-      "properties": {
-        "address": {
-          "type": "string"
-        }
-      }
-    },
-    "UpdateEmailInput": {
-      "properties": {
-        "default": {
-          "type": "boolean"
         }
       }
     },
@@ -11290,6 +11253,7 @@
         },
         "available_in": {
           "type": "array",
+          "description": "Shows which facilities the plan is available in, and the facility-based price if it is different from the default price.",
           "items": {
             "$ref": "#/definitions/Href"
           }
@@ -12706,6 +12670,43 @@
         },
         "meta": {
           "$ref": "#/definitions/Meta"
+        }
+      }
+    },
+    "CreateEmailInput": {
+      "required": [
+        "address"
+      ],
+      "properties": {
+        "address": {
+          "type": "string"
+        }
+      }
+    },
+    "UpdateEmailInput": {
+      "properties": {
+        "default": {
+          "type": "boolean"
+        }
+      }
+    },
+    "Email": {
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "address": {
+          "type": "string"
+        },
+        "default": {
+          "type": "boolean"
+        },
+        "verified": {
+          "type": "boolean"
+        },
+        "href": {
+          "type": "string"
         }
       }
     }
