@@ -71,8 +71,6 @@ type APIClient struct {
 
 	IncidentsApi *IncidentsApiService
 
-	InternetGatewaysApi *InternetGatewaysApiService
-
 	InvitationsApi *InvitationsApiService
 
 	LicensesApi *LicensesApiService
@@ -151,7 +149,6 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.HardwareReservationsApi = (*HardwareReservationsApiService)(&c.common)
 	c.IPAddressesApi = (*IPAddressesApiService)(&c.common)
 	c.IncidentsApi = (*IncidentsApiService)(&c.common)
-	c.InternetGatewaysApi = (*InternetGatewaysApiService)(&c.common)
 	c.InvitationsApi = (*InvitationsApiService)(&c.common)
 	c.LicensesApi = (*LicensesApiService)(&c.common)
 	c.MarketApi = (*MarketApiService)(&c.common)

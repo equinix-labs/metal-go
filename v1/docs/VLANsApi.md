@@ -6,7 +6,6 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**AssignNativeVlan**](VLANsApi.md#AssignNativeVlan) | **Post** /ports/{id}/native-vlan | Assign a native VLAN
 [**AssignPort**](VLANsApi.md#AssignPort) | **Post** /ports/{id}/assign | Assign a port to virtual network
-[**CreateInternetGateway**](VLANsApi.md#CreateInternetGateway) | **Post** /virtual-networks/{id}/internet-gateways | Create an internet gateway
 [**CreateVirtualNetwork**](VLANsApi.md#CreateVirtualNetwork) | **Post** /projects/{id}/virtual-networks | Create a virtual network
 [**DeleteNativeVlan**](VLANsApi.md#DeleteNativeVlan) | **Delete** /ports/{id}/native-vlan | Remove native VLAN
 [**DeleteVirtualNetwork**](VLANsApi.md#DeleteVirtualNetwork) | **Delete** /virtual-networks/{id} | Delete a virtual network
@@ -153,78 +152,6 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## CreateInternetGateway
-
-> InternetGateway CreateInternetGateway(ctx, id).Length(length).Execute()
-
-Create an internet gateway
-
-
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
-)
-
-func main() {
-    id := TODO // string | Virtual Network UUID
-    length := "length_example" // string | IP Reservation length
-
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.VLANsApi.CreateInternetGateway(context.Background(), id).Length(length).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `VLANsApi.CreateInternetGateway``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `CreateInternetGateway`: InternetGateway
-    fmt.Fprintf(os.Stdout, "Response from `VLANsApi.CreateInternetGateway`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | [**string**](.md) | Virtual Network UUID | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCreateInternetGatewayRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **length** | **string** | IP Reservation length | 
-
-### Return type
-
-[**InternetGateway**](InternetGateway.md)
-
-### Authorization
-
-[x_auth_token](../README.md#x_auth_token)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

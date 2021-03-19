@@ -12,7 +12,6 @@ api_events.go
 api_facilities.go
 api_hardware_reservations.go
 api_incidents.go
-api_internet_gateways.go
 api_invitations.go
 api_ip_addresses.go
 api_licenses.go
@@ -116,8 +115,6 @@ docs/InterconnectionList.md
 docs/InterconnectionPort.md
 docs/InterconnectionPortList.md
 docs/InterconnectionUpdateInput.md
-docs/InternetGateway.md
-docs/InternetGatewaysApi.md
 docs/Invitation.md
 docs/InvitationInput.md
 docs/InvitationList.md
@@ -292,7 +289,6 @@ model_interconnection_list.go
 model_interconnection_port.go
 model_interconnection_port_list.go
 model_interconnection_update_input.go
-model_internet_gateway.go
 model_invitation.go
 model_invitation_input.go
 model_invitation_list.go

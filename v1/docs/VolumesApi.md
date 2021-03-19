@@ -16,7 +16,6 @@ Method | HTTP request | Description
 [**FindVolumeAttachments**](VolumesApi.md#FindVolumeAttachments) | **Get** /storage/{id}/attachments | Retrieve all volume attachment
 [**FindVolumeById**](VolumesApi.md#FindVolumeById) | **Get** /storage/{id} | Retrieve a volume
 [**FindVolumeCustomdata**](VolumesApi.md#FindVolumeCustomdata) | **Get** /storage/{id}/customdata | Retrieve the custom metadata of a storage volume
-[**FindVolumeEvents**](VolumesApi.md#FindVolumeEvents) | **Get** /volumes/{id}/events | Retrieve volume&#39;s events
 [**FindVolumeSnapshots**](VolumesApi.md#FindVolumeSnapshots) | **Get** /storage/{id}/snapshots | Retrieve all volume snapshot
 [**FindVolumes**](VolumesApi.md#FindVolumes) | **Get** /projects/{id}/storage | Retrieve all volumes
 [**RestoreVolume**](VolumesApi.md#RestoreVolume) | **Post** /storage/{id}/restore | Restore volume
@@ -874,84 +873,6 @@ Name | Type | Description  | Notes
 
 - **Content-Type**: Not defined
 - **Accept**: Not defined
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## FindVolumeEvents
-
-> EventList FindVolumeEvents(ctx, id).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
-
-Retrieve volume's events
-
-
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
-)
-
-func main() {
-    id := TODO // string | Volume UUID
-    include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
-    exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
-    page := int32(56) // int32 | Page to return (optional) (default to 1)
-    perPage := int32(56) // int32 | Items returned per page (optional) (default to 10)
-
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.VolumesApi.FindVolumeEvents(context.Background(), id).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `VolumesApi.FindVolumeEvents``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `FindVolumeEvents`: EventList
-    fmt.Fprintf(os.Stdout, "Response from `VolumesApi.FindVolumeEvents`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | [**string**](.md) | Volume UUID | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiFindVolumeEventsRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
- **exclude** | **[]string** | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | 
- **page** | **int32** | Page to return | [default to 1]
- **perPage** | **int32** | Items returned per page | [default to 10]
-
-### Return type
-
-[**EventList**](EventList.md)
-
-### Authorization
-
-[x_auth_token](../README.md#x_auth_token)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

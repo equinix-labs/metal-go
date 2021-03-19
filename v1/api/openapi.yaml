@@ -159,7 +159,6 @@ paths:
           description: not found
       summary: Retrieve all batches by project
       tags:
-      - Projects
       - Batches
   /batches/{id}:
     delete:
@@ -280,7 +279,6 @@ paths:
           description: unprocessable entity
       summary: Requesting bgp config
       tags:
-      - Projects
       - BGP
       x-codegen-request-body-name: bgp_config_request
   /projects/{id}/bgp-config:
@@ -342,7 +340,6 @@ paths:
             The project was not found.
       summary: Retrieve a bgp config
       tags:
-      - Projects
       - BGP
   /devices/{id}/bgp/neighbors:
     get:
@@ -375,7 +372,6 @@ paths:
           description: not found
       summary: Retrieve BGP neighbor data for this device
       tags:
-      - Devices
       - BGP
   /projects/{id}/bgp/sessions:
     get:
@@ -404,7 +400,6 @@ paths:
           description: not found
       summary: Retrieve all BGP sessions for project
       tags:
-      - Projects
       - BGP
   /devices/{id}/bgp/sessions:
     get:
@@ -433,7 +428,6 @@ paths:
           description: forbidden
       summary: Retrieve all BGP sessions
       tags:
-      - Devices
       - BGP
     post:
       description: Creates a BGP session.
@@ -477,7 +471,6 @@ paths:
           description: unprocessable entity
       summary: Create a BGP session
       tags:
-      - Devices
       - BGP
       x-codegen-request-body-name: bgp_session
   /bgp/sessions/{id}:
@@ -714,7 +707,6 @@ paths:
       summary: Retrieve device's events
       tags:
       - Events
-      - Devices
   /organizations/{id}/events:
     get:
       description: Returns a list of events for a single organization
@@ -786,7 +778,6 @@ paths:
       summary: Retrieve organization's events
       tags:
       - Events
-      - Organizations
   /projects/{id}/events:
     get:
       description: Returns a list of events for a single project
@@ -858,7 +849,6 @@ paths:
       summary: Retrieve project's events
       tags:
       - Events
-      - Projects
   /volumes/{id}/events:
     get:
       description: Returns a list of the current volume’s events
@@ -930,7 +920,6 @@ paths:
       summary: Retrieve volume's events
       tags:
       - Events
-      - Volumes
   /events:
     get:
       description: Returns a list of the current user’s events
@@ -1113,7 +1102,6 @@ paths:
       summary: Retrieve connection events
       tags:
       - Events
-      - Connections
   /connections/{connection_id}/ports/{id}/events:
     get:
       description: Returns a list of the connection port events
@@ -1192,7 +1180,6 @@ paths:
       summary: Retrieve connection port events
       tags:
       - Events
-      - Connections
   /virtual-circuit/{id}/events:
     get:
       description: Returns a list of the virtual circuit events
@@ -1264,7 +1251,6 @@ paths:
       summary: Retrieve connection events
       tags:
       - Events
-      - Connections
   /facilities:
     get:
       description: Provides a listing of available datacenters where you can provision
@@ -1366,7 +1352,6 @@ paths:
       summary: Retrieve all facilities visible by the project
       tags:
       - Facilities
-      - Projects
   /organizations/{id}/facilities:
     get:
       description: Returns a listing of available datacenters for the given organization
@@ -1420,7 +1405,6 @@ paths:
       summary: Retrieve all facilities visible by the organization
       tags:
       - Facilities
-      - Organizations
   /projects/{id}/hardware-reservations:
     get:
       description: Provides a collection of hardware reservations for a given project.
@@ -1491,7 +1475,6 @@ paths:
           description: not found
       summary: Retrieve all hardware reservations for a given project
       tags:
-      - Projects
       - HardwareReservations
   /hardware-reservations/{id}:
     get:
@@ -1694,7 +1677,6 @@ paths:
           description: not found
       summary: Retrieve all devices of an organization
       tags:
-      - Organizations
       - Devices
   /projects/{id}/devices:
     get:
@@ -1766,7 +1748,6 @@ paths:
           description: not found
       summary: Retrieve all devices of a project
       tags:
-      - Projects
       - Devices
     post:
       description: |
@@ -1838,7 +1819,6 @@ paths:
           description: unprocessable entity
       summary: Create a device
       tags:
-      - Projects
       - Devices
       x-codegen-request-body-name: device
   /devices/{id}:
@@ -2050,7 +2030,6 @@ paths:
           description: unprocessable entity
       summary: Create a devices batch
       tags:
-      - Devices
       - Batches
       x-codegen-request-body-name: batch
   /devices/{id}/bandwidth:
@@ -2542,44 +2521,6 @@ paths:
       tags:
       - Connections
       x-codegen-request-body-name: virtual_circuit
-  /virtual-networks/{id}/internet-gateways:
-    post:
-      description: Creates an internet gateway.
-      operationId: createInternetGateway
-      parameters:
-      - description: Virtual Network UUID
-        in: path
-        name: id
-        required: true
-        schema:
-          format: uuid
-          type: string
-      - description: IP Reservation length
-        in: query
-        name: length
-        required: true
-        schema:
-          type: string
-      responses:
-        "201":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/InternetGateway'
-          description: created
-        "401":
-          content: {}
-          description: unauthorized
-        "404":
-          content: {}
-          description: not found
-        "422":
-          content: {}
-          description: unprocessable entity
-      summary: Create an internet gateway
-      tags:
-      - InternetGateways
-      - VLANs
   /invitations/{id}:
     delete:
       description: Decline an invitation.
@@ -2762,7 +2703,6 @@ paths:
       summary: Retrieve project invitations
       tags:
       - Invitations
-      - Projects
     post:
       description: In order to add a user to a project, they must first be invited.
       operationId: createProjectInvitation
@@ -2803,7 +2743,6 @@ paths:
       summary: Create an invitation for a project
       tags:
       - Invitations
-      - Projects
       x-codegen-request-body-name: invitation
   /organizations/{id}/invitations:
     get:
@@ -2876,7 +2815,6 @@ paths:
       summary: Retrieve organization invitations
       tags:
       - Invitations
-      - Organizations
     post:
       description: |-
         In order to add a user to an organization, they must first be invited.
@@ -2919,7 +2857,6 @@ paths:
       summary: Create an invitation for an organization
       tags:
       - Invitations
-      - Organizations
       x-codegen-request-body-name: invitation
   /invitations:
     get:
@@ -2985,7 +2922,6 @@ paths:
       summary: Retrieve current user invitations
       tags:
       - Invitations
-      - Users
   /ips/{id}:
     delete:
       description: Note! This call can be used to un-assign an IP assignment or delete
@@ -3121,7 +3057,6 @@ paths:
           description: not found
       summary: Retrieve all ip assignments
       tags:
-      - Devices
       - IPAddresses
     post:
       description: Creates an ip assignment for a device.
@@ -3159,7 +3094,6 @@ paths:
           description: unprocessable entity
       summary: Create a ip assignment
       tags:
-      - Devices
       - IPAddresses
       x-codegen-request-body-name: ip_assignment
   /ips/{id}/available:
@@ -3361,7 +3295,6 @@ paths:
           description: not found
       summary: Retrieve all ip reservations
       tags:
-      - Projects
       - IPAddresses
     post:
       description: Request more IP space for a project in order to have additional
@@ -3408,7 +3341,6 @@ paths:
           description: unprocessable entity
       summary: Requesting IP reservations
       tags:
-      - Projects
       - IPAddresses
       x-codegen-request-body-name: ip_reservation_request
   /projects/{id}/licenses:
@@ -3481,7 +3413,6 @@ paths:
           description: not found
       summary: Retrieve all licenses
       tags:
-      - Projects
       - Licenses
     post:
       description: Creates a new license for the given project
@@ -3522,7 +3453,6 @@ paths:
           description: unprocessable entity
       summary: Create a License
       tags:
-      - Projects
       - Licenses
       x-codegen-request-body-name: license
   /licenses/{id}:
@@ -3716,7 +3646,6 @@ paths:
           description: not found
       summary: Retrieve project memberships
       tags:
-      - Projects
       - Memberships
   /memberships/{id}:
     delete:
@@ -4175,7 +4104,6 @@ paths:
       summary: Retrieve all operating systems visible by the organization
       tags:
       - OperatingSystems
-      - Organizations
   /operating-systems:
     get:
       description: Provides a listing of available operating systems to provision
@@ -4640,7 +4568,6 @@ paths:
           description: not found
       summary: Retrieve all payment methods of an organization
       tags:
-      - Organizations
       - PaymentMethods
     post:
       description: Creates a payment method.
@@ -4678,7 +4605,6 @@ paths:
           description: unprocessable entity
       summary: Create a payment method for the given organization
       tags:
-      - Organizations
       - PaymentMethods
       x-codegen-request-body-name: payment_method
   /payment-methods/{id}:
@@ -4887,7 +4813,6 @@ paths:
       summary: Retrieve all plans visible by the project
       tags:
       - Plans
-      - Projects
   /organizations/{id}/plans:
     get:
       description: Returns a listing of available plans for the given organization
@@ -4941,7 +4866,6 @@ paths:
       summary: Retrieve all plans visible by the organization
       tags:
       - Plans
-      - Organizations
   /ports/{id}:
     get:
       description: Returns a port
@@ -5033,7 +4957,6 @@ paths:
           description: unprocessable entity
       summary: Assign a port to virtual network
       tags:
-      - Ports
       - VLANs
       x-codegen-request-body-name: vnid
   /ports/{id}/unassign:
@@ -5077,7 +5000,6 @@ paths:
           description: unprocessable entity
       summary: Unassign a port
       tags:
-      - Ports
       - VLANs
       x-codegen-request-body-name: vnid
   /ports/{id}/disbond:
@@ -5273,7 +5195,6 @@ paths:
           description: unprocessable entity
       summary: Remove native VLAN
       tags:
-      - Ports
       - VLANs
     post:
       description: Sets a virtual network on this port as a "native VLAN". The VLAN
@@ -5313,7 +5234,6 @@ paths:
           description: unprocessable entity
       summary: Assign a native VLAN
       tags:
-      - Ports
       - VLANs
   /organizations/{id}/projects:
     get:
@@ -5379,7 +5299,6 @@ paths:
           description: unauthorized
       summary: Retrieve all projects of an organization
       tags:
-      - Organizations
       - Projects
     post:
       description: Creates a new project for the organization
@@ -5414,7 +5333,6 @@ paths:
           description: unprocessable entity
       summary: Create a project for the organization
       tags:
-      - Organizations
       - Projects
       x-codegen-request-body-name: project
   /projects:
@@ -5777,7 +5695,6 @@ paths:
           description: not found
       summary: List spot market requests
       tags:
-      - Projects
       - SpotMarketRequest
     post:
       description: |-
@@ -5824,7 +5741,6 @@ paths:
           description: unprocessable entity
       summary: Create a spot market request
       tags:
-      - Projects
       - SpotMarketRequest
       x-codegen-request-body-name: spot_market_request
   /spot-market-requests/{id}:
@@ -6035,7 +5951,6 @@ paths:
           description: unauthorized
       summary: Retrieve a project's ssh keys
       tags:
-      - Projects
       - SSHKeys
     post:
       description: Creates a ssh key.
@@ -6070,7 +5985,6 @@ paths:
           description: unprocessable entity
       summary: Create a ssh key for the given project
       tags:
-      - Projects
       - SSHKeys
       x-codegen-request-body-name: ssh key
   /devices/{id}/ssh-keys:
@@ -6124,7 +6038,6 @@ paths:
           description: unauthorized
       summary: Retrieve a device's ssh keys
       tags:
-      - Projects
       - SSHKeys
   /ssh-keys/{id}:
     delete:
@@ -7140,7 +7053,6 @@ paths:
           description: forbidden
       summary: Retrieve all project transfer requests from or to an organization
       tags:
-      - Organizations
       - TransferRequests
   /projects/{id}/transfers:
     post:
@@ -7182,7 +7094,6 @@ paths:
           description: unprocessable entity
       summary: Create a transfer request
       tags:
-      - Projects
       - TransferRequests
       x-codegen-request-body-name: transfer_request
   /transfers/{id}:
@@ -7331,7 +7242,6 @@ paths:
           description: not found
       summary: Retrieve all usages for device
       tags:
-      - Devices
       - Usages
   /projects/{id}/usages:
     get:
@@ -7372,7 +7282,6 @@ paths:
           description: not found
       summary: Retrieve all usages for project
       tags:
-      - Devices
       - Usages
   /userdata/validate:
     post:
@@ -7670,7 +7579,6 @@ paths:
           description: not found
       summary: Retrieve all virtual networks
       tags:
-      - Projects
       - VLANs
     post:
       description: Creates an virtual network.
@@ -7711,7 +7619,6 @@ paths:
           description: unprocessable entity
       summary: Create a virtual network
       tags:
-      - Projects
       - VLANs
       x-codegen-request-body-name: virtual_network
   /virtual-networks/{id}:
@@ -11119,35 +11026,6 @@ components:
             $ref: '#/components/schemas/GlobalBgpRange'
           type: array
       type: object
-    InternetGateway:
-      example:
-        virtual_network:
-          href: href
-        ip_reservations:
-        - href: href
-        - href: href
-        created_at: 2000-01-23T04:56:07.000+00:00
-        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        href: href
-        created_by: created_by
-      properties:
-        id:
-          format: uuid
-          type: string
-        created_at:
-          format: date-time
-          type: string
-        virtual_network:
-          $ref: '#/components/schemas/Href'
-        created_by:
-          type: string
-        ip_reservations:
-          items:
-            $ref: '#/components/schemas/Href'
-          type: array
-        href:
-          type: string
-      type: object
     IPAssignment:
       example:
         address: address
@@ -14404,6 +14282,22 @@ components:
         meta:
           $ref: '#/components/schemas/Meta'
       type: object
+    CreateEmailInput:
+      example:
+        address: address
+      properties:
+        address:
+          type: string
+      required:
+      - address
+      type: object
+    UpdateEmailInput:
+      example:
+        default: true
+      properties:
+        default:
+          type: boolean
+      type: object
     Email:
       example:
         default: true
@@ -14423,22 +14317,6 @@ components:
           type: boolean
         href:
           type: string
-      type: object
-    CreateEmailInput:
-      example:
-        address: address
-      properties:
-        address:
-          type: string
-      required:
-      - address
-      type: object
-    UpdateEmailInput:
-      example:
-        default: true
-      properties:
-        default:
-          type: boolean
       type: object
     InstancesBatchCreateInput_ip_addresses:
       example:
