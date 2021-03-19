@@ -1,0 +1,264 @@
+# HardwareReservation
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**Id** | Pointer to **string** |  | [optional] 
+**ShortId** | Pointer to **string** |  | [optional] 
+**Facility** | Pointer to [**Facility**](Facility.md) |  | [optional] 
+**Plan** | Pointer to [**Plan**](Plan.md) |  | [optional] 
+**Href** | Pointer to **string** |  | [optional] 
+**Project** | Pointer to [**Project**](Project.md) |  | [optional] 
+**Device** | Pointer to [**Device**](Device.md) |  | [optional] 
+**CreatedAt** | Pointer to **time.Time** |  | [optional] 
+**RemoveAt** | Pointer to **time.Time** |  | [optional] 
+
+## Methods
+
+### NewHardwareReservation
+
+`func NewHardwareReservation() *HardwareReservation`
+
+NewHardwareReservation instantiates a new HardwareReservation object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewHardwareReservationWithDefaults
+
+`func NewHardwareReservationWithDefaults() *HardwareReservation`
+
+NewHardwareReservationWithDefaults instantiates a new HardwareReservation object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
+### GetId
+
+`func (o *HardwareReservation) GetId() string`
+
+GetId returns the Id field if non-nil, zero value otherwise.
+
+### GetIdOk
+
+`func (o *HardwareReservation) GetIdOk() (*string, bool)`
+
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetId
+
+`func (o *HardwareReservation) SetId(v string)`
+
+SetId sets Id field to given value.
+
+### HasId
+
+`func (o *HardwareReservation) HasId() bool`
+
+HasId returns a boolean if a field has been set.
+
+### GetShortId
+
+`func (o *HardwareReservation) GetShortId() string`
+
+GetShortId returns the ShortId field if non-nil, zero value otherwise.
+
+### GetShortIdOk
+
+`func (o *HardwareReservation) GetShortIdOk() (*string, bool)`
+
+GetShortIdOk returns a tuple with the ShortId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetShortId
+
+`func (o *HardwareReservation) SetShortId(v string)`
+
+SetShortId sets ShortId field to given value.
+
+### HasShortId
+
+`func (o *HardwareReservation) HasShortId() bool`
+
+HasShortId returns a boolean if a field has been set.
+
+### GetFacility
+
+`func (o *HardwareReservation) GetFacility() Facility`
+
+GetFacility returns the Facility field if non-nil, zero value otherwise.
+
+### GetFacilityOk
+
+`func (o *HardwareReservation) GetFacilityOk() (*Facility, bool)`
+
+GetFacilityOk returns a tuple with the Facility field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFacility
+
+`func (o *HardwareReservation) SetFacility(v Facility)`
+
+SetFacility sets Facility field to given value.
+
+### HasFacility
+
+`func (o *HardwareReservation) HasFacility() bool`
+
+HasFacility returns a boolean if a field has been set.
+
+### GetPlan
+
+`func (o *HardwareReservation) GetPlan() Plan`
+
+GetPlan returns the Plan field if non-nil, zero value otherwise.
+
+### GetPlanOk
+
+`func (o *HardwareReservation) GetPlanOk() (*Plan, bool)`
+
+GetPlanOk returns a tuple with the Plan field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPlan
+
+`func (o *HardwareReservation) SetPlan(v Plan)`
+
+SetPlan sets Plan field to given value.
+
+### HasPlan
+
+`func (o *HardwareReservation) HasPlan() bool`
+
+HasPlan returns a boolean if a field has been set.
+
+### GetHref
+
+`func (o *HardwareReservation) GetHref() string`
+
+GetHref returns the Href field if non-nil, zero value otherwise.
+
+### GetHrefOk
+
+`func (o *HardwareReservation) GetHrefOk() (*string, bool)`
+
+GetHrefOk returns a tuple with the Href field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHref
+
+`func (o *HardwareReservation) SetHref(v string)`
+
+SetHref sets Href field to given value.
+
+### HasHref
+
+`func (o *HardwareReservation) HasHref() bool`
+
+HasHref returns a boolean if a field has been set.
+
+### GetProject
+
+`func (o *HardwareReservation) GetProject() Project`
+
+GetProject returns the Project field if non-nil, zero value otherwise.
+
+### GetProjectOk
+
+`func (o *HardwareReservation) GetProjectOk() (*Project, bool)`
+
+GetProjectOk returns a tuple with the Project field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProject
+
+`func (o *HardwareReservation) SetProject(v Project)`
+
+SetProject sets Project field to given value.
+
+### HasProject
+
+`func (o *HardwareReservation) HasProject() bool`
+
+HasProject returns a boolean if a field has been set.
+
+### GetDevice
+
+`func (o *HardwareReservation) GetDevice() Device`
+
+GetDevice returns the Device field if non-nil, zero value otherwise.
+
+### GetDeviceOk
+
+`func (o *HardwareReservation) GetDeviceOk() (*Device, bool)`
+
+GetDeviceOk returns a tuple with the Device field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDevice
+
+`func (o *HardwareReservation) SetDevice(v Device)`
+
+SetDevice sets Device field to given value.
+
+### HasDevice
+
+`func (o *HardwareReservation) HasDevice() bool`
+
+HasDevice returns a boolean if a field has been set.
+
+### GetCreatedAt
+
+`func (o *HardwareReservation) GetCreatedAt() time.Time`
+
+GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
+
+### GetCreatedAtOk
+
+`func (o *HardwareReservation) GetCreatedAtOk() (*time.Time, bool)`
+
+GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCreatedAt
+
+`func (o *HardwareReservation) SetCreatedAt(v time.Time)`
+
+SetCreatedAt sets CreatedAt field to given value.
+
+### HasCreatedAt
+
+`func (o *HardwareReservation) HasCreatedAt() bool`
+
+HasCreatedAt returns a boolean if a field has been set.
+
+### GetRemoveAt
+
+`func (o *HardwareReservation) GetRemoveAt() time.Time`
+
+GetRemoveAt returns the RemoveAt field if non-nil, zero value otherwise.
+
+### GetRemoveAtOk
+
+`func (o *HardwareReservation) GetRemoveAtOk() (*time.Time, bool)`
+
+GetRemoveAtOk returns a tuple with the RemoveAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRemoveAt
+
+`func (o *HardwareReservation) SetRemoveAt(v time.Time)`
+
+SetRemoveAt sets RemoveAt field to given value.
+
+### HasRemoveAt
+
+`func (o *HardwareReservation) HasRemoveAt() bool`
+
+HasRemoveAt returns a boolean if a field has been set.
+
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+
