@@ -1,12 +1,15 @@
 .PHONY: all gen patch fetch
 
-# https://github.com/go-swagger/go-swagger/releases/latest
+# https://github.com/OpenAPITools/openapi-generator-cli
 SPEC_URL:=https://api.equinix.com/metal/v1/api-docs
 SPEC_FETCHED_FILE:=equinix-metal.fetched.json
 SPEC_PATCHED_FILE:=equinix-metal.patched.json
-IMAGE=quay.io/goswagger/swagger
+IMAGE=openapitools/openapi-generator-cli
+GIT_ORG=t0mk
+GIT_REPO=gometal
+PACKAGE_MAJOR=v1
 
-SWAGGER=docker run --rm --env GOPATH=/go -v $(CURDIR):/go/src -w /go/src ${IMAGE}
+SWAGGER=docker run --rm -v $(CURDIR):/local ${IMAGE}
 
 all: pull fetch patch gen
 
@@ -27,10 +30,11 @@ patch:
 	find ${SPEC_PATCHED_FILE} -empty -exec cp ${SPEC_FETCHED_FILE} ${SPEC_PATCHED_FILE} \;
 
 gen:
-	${SWAGGER} generate client \
+	${SWAGGER} generate -g go \
+		--package-name ${PACKAGE_MAJOR} \
 		--model-package types \
-		--additional-initialism bgp \
-		--additional-initialism vpn \
-		--additional-initialism vlan \
-		--additional-initialism vlans \
-		-f ${SPEC_PATCHED_FILE}
+		--api-package models \
+		--git-user-id ${GIT_ORG} \
+		--git-repo-id ${GIT_REPO} \
+		-o /local/${PACKAGE_MAJOR} \
+		-i /local/${SPEC_PATCHED_FILE}
