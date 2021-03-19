@@ -18,13 +18,24 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
     - name: Sync
-      run: make
+      run: |
+        make pull fetch patch
+        git commit -m 'sync: fetch ${{ steps.date.outputs.date }} spec and apply patches' *.json
+        make gen
+        git commit -m 'sync: generate client and types with ${{ steps.date.outputs.date }} spec' client types
     - name: Create Pull Request
       uses: peter-evans/create-pull-request@v3
       with:
         branch: sync/gh
         branch-suffix: timestamp
         title: API Sync by GitHub Action (${{ steps.date.outputs.date }})
+        body: |
+          This API Sync PR was automated through [GitHub Actions workflow_displatch](https://github.com/t0mk/gometal/actions?query=event%3Aworkflow_dispatch)
+          on ${{ steps.date.outputs.date }}.
+
+          * latest Swagger is fetched
+          * patches have been applied
+          * generated client has been updated
         delete-branch: true
     - name: Check outputs
       run: |
