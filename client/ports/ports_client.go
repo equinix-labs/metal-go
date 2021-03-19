@@ -54,7 +54,7 @@ type ClientService interface {
 /*
   AssignNativeVLAN assigns a native VLAN
 
-  Assigns a virtual network to this port as a "native VLAN"
+  Sets a virtual network on this port as a "native VLAN". The VLAN must have already been assigned using the using the "Assign a port to a virtual network" operation.
 */
 func (a *Client) AssignNativeVLAN(params *AssignNativeVLANParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AssignNativeVLANOK, error) {
 	// TODO: Validate the params before sending

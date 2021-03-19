@@ -22,18 +22,12 @@ type VirtualNetworkCreateInput struct {
 	// description
 	Description string `json:"description,omitempty"`
 
-	// facility
+	// The UUID (or facility code) for the Facility in which to create this Virtual network.
 	Facility string `json:"facility,omitempty"`
 
 	// project id
 	// Format: uuid
 	ProjectID strfmt.UUID `json:"project_id,omitempty"`
-
-	// vlan
-	VLAN int64 `json:"vlan,omitempty"`
-
-	// vxlan
-	Vxlan int64 `json:"vxlan,omitempty"`
 }
 
 // Validate validates this virtual network create input

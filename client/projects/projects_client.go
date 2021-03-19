@@ -373,7 +373,7 @@ func (a *Client) CreateTransferRequest(params *CreateTransferRequestParams, auth
 }
 
 /*
-  CreateVirtualNetwork creates an virtual network
+  CreateVirtualNetwork creates a virtual network
 
   Creates an virtual network.
 */

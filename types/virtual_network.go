@@ -37,7 +37,7 @@ type VirtualNetwork struct {
 	// Format: uuid
 	ID strfmt.UUID `json:"id,omitempty"`
 
-	// instances
+	// A list of instances with ports currently associated to this Virtual Network.
 	Instances []*Href `json:"instances"`
 
 	// vxlan

@@ -17,7 +17,7 @@ import (
 // swagger:model PortAssignInput
 type PortAssignInput struct {
 
-	// vnid
+	// The UUID of the Virtual Network record, or the VLAN value itself (ex: '1001').
 	Vnid string `json:"vnid,omitempty"`
 }
 
