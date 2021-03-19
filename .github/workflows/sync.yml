@@ -17,6 +17,11 @@ jobs:
         go-version: ${{ matrix.go-version }}
     - name: Checkout code
       uses: actions/checkout@v2
+    - name: GitHub user
+      run: |
+        # https://api.github.com/users/github-actions[bot]
+        git config user.name 'github-actions[bot]'
+        git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
     - name: Sync
       run: |
         make pull fetch patch
