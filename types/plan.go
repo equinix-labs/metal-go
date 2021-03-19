@@ -20,7 +20,7 @@ import (
 // swagger:model Plan
 type Plan struct {
 
-	// available in
+	// Shows which facilities the plan is available in, and the facility-based price if it is different from the default price.
 	AvailableIn []*Href `json:"available_in"`
 
 	// class

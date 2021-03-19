@@ -71,7 +71,7 @@ type AssignPortParams struct {
 
 	/* Vnid.
 
-	   Virtual Network ID
+	   Virtual Network ID. May be the UUID of the Virtual Network record, or the VLAN value itself (ex: '1001').
 	*/
 	Vnid *types.PortAssignInput
 

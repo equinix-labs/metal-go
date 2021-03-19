@@ -69,7 +69,7 @@ type AssignNativeVLANParams struct {
 
 	/* Vnid.
 
-	   UUID or VNID of the virtual network to assign
+	   Virtual Network ID. May be the UUID of the Virtual Network record, or the VLAN value itself (ex: '1001').
 	*/
 	Vnid string
 
