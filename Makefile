@@ -1,12 +1,16 @@
 .PHONY: all gen patch fetch
 
-# https://github.com/go-swagger/go-swagger/releases/latest
+# https://github.com/OpenAPITools/openapi-generator-cli
 SPEC_URL:=https://api.equinix.com/metal/v1/api-docs
 SPEC_FETCHED_FILE:=equinix-metal.fetched.json
 SPEC_PATCHED_FILE:=equinix-metal.patched.json
-IMAGE=quay.io/goswagger/swagger
+IMAGE=openapitools/openapi-generator-cli
+GIT_ORG=t0mk
+GIT_REPO=gometal
+PACKAGE_MAJOR=v1
 
-SWAGGER=docker run --rm --env GOPATH=/go -v $(CURDIR):/go/src -w /go/src ${IMAGE}
+SWAGGER=docker run --rm -v $(CURDIR):/local ${IMAGE}
+GOLANGCI_LINT=golangci-lint
 
 all: pull fetch patch gen
 
@@ -27,10 +31,30 @@ patch:
 	find ${SPEC_PATCHED_FILE} -empty -exec cp ${SPEC_FETCHED_FILE} ${SPEC_PATCHED_FILE} \;
 
 gen:
-	${SWAGGER} generate client \
+	${SWAGGER} generate -g go \
+		--package-name ${PACKAGE_MAJOR} \
 		--model-package types \
-		--additional-initialism bgp \
-		--additional-initialism vpn \
-		--additional-initialism vlan \
-		--additional-initialism vlans \
-		-f ${SPEC_PATCHED_FILE}
+		--api-package models \
+		--git-user-id ${GIT_ORG} \
+		--git-repo-id ${GIT_REPO} \
+		-o /local/${PACKAGE_MAJOR} \
+		-i /local/${SPEC_PATCHED_FILE}
+
+# https://github.com/OpenAPITools/openapi-generator/issues/741#issuecomment-569791780
+remove-dupe-requests: ## Removes duplicate Request structs from the generated code
+	@for struct in $$(grep -h 'type .\{1,\} struct' $(PACKAGE_MAJOR)/*.go | grep Request  | sort | uniq -c | grep -v '^      1' | awk '{print $$3}'); do \
+	  for f in $$(/bin/ls $(PACKAGE_MAJOR)/*.go); do \
+	    if grep -qF "type $${struct} struct" "$${f}"; then \
+	      if eval "test -z \$${$${struct}}"; then \
+	        echo "skipping first appearance of $${struct} in file $${f}"; \
+	        eval "export $${struct}=1"; \
+	      else \
+	        echo "removing dupe $${struct} from file $${f}"; \
+	        tr '\n' '\r' <"$${f}" | sed 's~// '"$${struct}"'.\{1,\}type '"$${struct}"' struct {[^}]\{1,\}}~~' | tr '\r' '\n' >"$${f}.tmp"; \
+	        mv -f "$${f}.tmp" "$${f}"; \
+	      fi; \
+	    fi \
+	  done \
+	done
+lint:
+	@$(GOLANGCI_LINT) run -v --no-config --fast=false --fix --disable-all --enable goimports $(PACKAGE_MAJOR)

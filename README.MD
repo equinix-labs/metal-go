@@ -9,9 +9,8 @@ Contents:
 - `equinix-metal.fetched.json` the latest fetched swagger spec
 - `equinix-metal.patched.json` the latest patched swagger spec
 - `patches/*.patch` patch files to apply against the Equinix Metal API spec
-- `clients/` generated clients
-- `types/` generated types
 - `examples/` hand crafted examples to demonstrate usage
+- `v1/` generated client
 
 
 ## Build
@@ -21,12 +20,6 @@ To build the client, run `make`.
 ## Examples
 
 You can see usage of the generated code in the `examples` directory. In order to try, export `METAL_AUTH_TOKEN` token and execute the code, e.g.
-
-```
-$ METAL_AUTH_TOKEN=... go run examples/projects/projects.go
-[...]
-$ cd examples/plans; METAL_AUTH_TOKEN=... go run .
-```
 
 ## Patches
 
@@ -42,31 +35,8 @@ The `json` code is very similar in areas. It may be necessary to include more co
 
 `git diff -U7`, or greater `-U` values can be used to ensure that the adjacent endpoint or model is referenced in the patch file. This will ensure that the patch has not drifted to another resource due to other changes.
 
-## Generated code
 
-The generated functions look like (project listing):
+## Generated Client
 
-```go
-FindProjects(params *FindProjectsParams, authInfo runtime.ClientAuthInfoWriter) (*FindProjectsOK, error)
-```
+See [v1/README.md](v1/README.md)
 
-.. where authInfo is used for HTTP auth (auth token to header in case of Equinix Metal) and params are sth like
-
-```go
-type FindProjectsParams struct {
-    Include *string
-    Page *int64
-    PerPage *int64
-    timeout    time.Duration
-    Context    context.Context
-    HTTPClient *http.Client
-}
-```
-
-There's an `HTTPClient` in the params and the client can maybe used for isolated HTTP traffic logging.
-
-
-
-## Notes
-
-- authentication struct must be passed to every function. All the generated functions have authWriter as an argument. I'm not sure if it's possible to set the auth header globally so that all the func use it. And I'm not sure if it's possible to remove the authWrite from the generated code.
