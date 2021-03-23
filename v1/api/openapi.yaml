@@ -7561,6 +7561,11 @@ paths:
             type: string
           type: array
         style: form
+      - description: Filter by Facility ID (uuid) or Facility Code
+        in: query
+        name: facility
+        schema:
+          type: string
       responses:
         "200":
           content:
@@ -8060,6 +8065,9 @@ components:
           customdata: '{}'
           locked: true
           plan: plan
+          facility:
+          - facility
+          - facility
         - user_ssh_keys:
           - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -8098,6 +8106,9 @@ components:
           customdata: '{}'
           locked: true
           plan: plan
+          facility:
+          - facility
+          - facility
       properties:
         batches:
           items:
@@ -14282,22 +14293,6 @@ components:
         meta:
           $ref: '#/components/schemas/Meta'
       type: object
-    CreateEmailInput:
-      example:
-        address: address
-      properties:
-        address:
-          type: string
-      required:
-      - address
-      type: object
-    UpdateEmailInput:
-      example:
-        default: true
-      properties:
-        default:
-          type: boolean
-      type: object
     Email:
       example:
         default: true
@@ -14317,6 +14312,22 @@ components:
           type: boolean
         href:
           type: string
+      type: object
+    CreateEmailInput:
+      example:
+        address: address
+      properties:
+        address:
+          type: string
+      required:
+      - address
+      type: object
+    UpdateEmailInput:
+      example:
+        default: true
+      properties:
+        default:
+          type: boolean
       type: object
     InstancesBatchCreateInput_ip_addresses:
       example:
@@ -14390,12 +14401,22 @@ components:
         customdata: '{}'
         locked: true
         plan: plan
+        facility:
+        - facility
+        - facility
       properties:
         plan:
           type: string
         hostname:
           type: string
         hostnames:
+          items:
+            type: string
+          type: array
+        facility:
+          description: Array of facility codes the batch can use for provisioning.
+            This param also takes a string if you want the batch to be fulfilled in
+            only one facility.
           items:
             type: string
           type: array

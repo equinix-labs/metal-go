@@ -21,6 +21,8 @@ type InstancesBatchCreateInputBatches struct {
 	Plan *string `json:"plan,omitempty"`
 	Hostname *string `json:"hostname,omitempty"`
 	Hostnames *[]string `json:"hostnames,omitempty"`
+	// Array of facility codes the batch can use for provisioning. This param also takes a string if you want the batch to be fulfilled in only one facility.
+	Facility *[]string `json:"facility,omitempty"`
 	Description *string `json:"description,omitempty"`
 	BillingCycle *string `json:"billing_cycle,omitempty"`
 	OperatingSystem *string `json:"operating_system,omitempty"`
@@ -148,6 +150,38 @@ func (o *InstancesBatchCreateInputBatches) HasHostnames() bool {
 // SetHostnames gets a reference to the given []string and assigns it to the Hostnames field.
 func (o *InstancesBatchCreateInputBatches) SetHostnames(v []string) {
 	o.Hostnames = &v
+}
+
+// GetFacility returns the Facility field value if set, zero value otherwise.
+func (o *InstancesBatchCreateInputBatches) GetFacility() []string {
+	if o == nil || o.Facility == nil {
+		var ret []string
+		return ret
+	}
+	return *o.Facility
+}
+
+// GetFacilityOk returns a tuple with the Facility field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *InstancesBatchCreateInputBatches) GetFacilityOk() (*[]string, bool) {
+	if o == nil || o.Facility == nil {
+		return nil, false
+	}
+	return o.Facility, true
+}
+
+// HasFacility returns a boolean if a field has been set.
+func (o *InstancesBatchCreateInputBatches) HasFacility() bool {
+	if o != nil && o.Facility != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetFacility gets a reference to the given []string and assigns it to the Facility field.
+func (o *InstancesBatchCreateInputBatches) SetFacility(v []string) {
+	o.Facility = &v
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise.
@@ -576,6 +610,9 @@ func (o InstancesBatchCreateInputBatches) MarshalJSON() ([]byte, error) {
 	}
 	if o.Hostnames != nil {
 		toSerialize["hostnames"] = o.Hostnames
+	}
+	if o.Facility != nil {
+		toSerialize["facility"] = o.Facility
 	}
 	if o.Description != nil {
 		toSerialize["description"] = o.Description

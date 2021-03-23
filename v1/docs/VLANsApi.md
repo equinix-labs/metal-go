@@ -373,7 +373,7 @@ Name | Type | Description  | Notes
 
 ## FindVirtualNetworks
 
-> VirtualNetworkList FindVirtualNetworks(ctx, id).Include(include).Exclude(exclude).Execute()
+> VirtualNetworkList FindVirtualNetworks(ctx, id).Include(include).Exclude(exclude).Facility(facility).Execute()
 
 Retrieve all virtual networks
 
@@ -395,10 +395,11 @@ func main() {
     id := TODO // string | Project UUID
     include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
     exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
+    facility := "facility_example" // string | Filter by Facility ID (uuid) or Facility Code (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.VLANsApi.FindVirtualNetworks(context.Background(), id).Include(include).Exclude(exclude).Execute()
+    resp, r, err := api_client.VLANsApi.FindVirtualNetworks(context.Background(), id).Include(include).Exclude(exclude).Facility(facility).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `VLANsApi.FindVirtualNetworks``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -426,6 +427,7 @@ Name | Type | Description  | Notes
 
  **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
  **exclude** | **[]string** | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | 
+ **facility** | **string** | Filter by Facility ID (uuid) or Facility Code | 
 
 ### Return type
 
