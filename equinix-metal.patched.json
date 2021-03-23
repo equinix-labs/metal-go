@@ -567,12 +567,6 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "ok",
-            "schema": {
-              "$ref": "#/definitions/BgpSession"
-            }
-          },
           "201": {
             "description": "created",
             "schema": {
@@ -10477,7 +10471,7 @@
         },
         "status": {
           "type": "string",
-          "description": "status requested is valid only for global deployment",
+          "description": "Status of the BGP Config. Status \"requested\" is valid only with the \"global\" deployment_type.",
           "enum": [
             "requested",
             "enabled",
@@ -10494,7 +10488,7 @@
         },
         "asn": {
           "type": "integer",
-          "description": "Autonomous System Number"
+          "description": "Autonomous System Number. ASN is required with \"global\" deployment_type. With the \"local\" deployment_type the private ASN 65000 is assigned by default."
         },
         "route_object": {
           "type": "string",
@@ -10502,11 +10496,13 @@
         },
         "md5": {
           "type": "string",
-          "description": "(Optional) Password for BGP session in plaintext (not a checksum)"
+          "description": "(Optional) Password for BGP session in plaintext (not a checksum)",
+          "x-nullable": true
         },
         "max_prefix": {
           "type": "integer",
-          "description": "The maximum number of route filters allowed per server"
+          "description": "The maximum number of route filters allowed per server",
+          "default": 10
         },
         "project": {
           "$ref": "#/definitions/Href"
@@ -10634,16 +10630,28 @@
           "format": "uuid"
         },
         "status": {
-          "type": "string"
+          "description": "The status of the BGP Session will start \"unknown\" and progress to \"up\" or \"down\" depending on the devices.",
+          "type": "string",
+          "enum": [
+            "unknown",
+            "up",
+            "down"
+          ]
         },
         "learned_routes": {
           "type": "array",
           "items": {
-            "type": "string"
+            "description": "IPv4 or IPv6 range",
+            "type": "string",
+            "example": "10.32.16.0/31"
           }
         },
         "address_family": {
-          "type": "string"
+          "type": "string",
+          "enum": [
+            "ipv4",
+            "ipv6"
+          ]
         },
         "device": {
           "$ref": "#/definitions/Href"
@@ -10653,16 +10661,33 @@
         },
         "default_route": {
           "type": "boolean"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
         }
       }
     },
     "BGPSessionInput": {
       "properties": {
         "address_family": {
-          "type": "string"
+          "description": "Address family for BGP session.",
+          "type": "string",
+          "enum": [
+            "ipv4",
+            "ipv6"
+          ],
+          "required": true,
+          "example": "ipv4"
         },
         "default_route": {
-          "type": "boolean"
+          "description": "Set the default route policy.",
+          "type": "boolean",
+          "default": false
         }
       }
     },
