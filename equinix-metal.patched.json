@@ -9546,21 +9546,7 @@
           "$ref": "#/definitions/Address"
         },
         "metro": {
-          "type": "object",
-          "items": {
-            "properties": {
-              "id": {
-                "type": "string",
-                "format": "uuid"
-              },
-              "name": {
-                "type": "string"
-              },
-              "code": {
-                "type": "string"
-              }
-            }
-          }
+          "$ref": "#/definitions/Metro"
         }
       }
     },
@@ -10432,6 +10418,20 @@
           "items": {
             "type": "string"
           }
+        }
+      }
+    },
+    "Metro": {
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "name": {
+          "type": "string"
+        },
+        "code": {
+          "type": "string"
         }
       }
     },

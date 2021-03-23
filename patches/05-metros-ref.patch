@@ -1,0 +1,48 @@
+diff --git a/equinix-metal.patched.json b/equinix-metal.patched.json
+index 135c830..4636bac 100644
+--- a/equinix-metal.patched.json
++++ b/equinix-metal.patched.json
+@@ -9546,21 +9546,7 @@
+           "$ref": "#/definitions/Address"
+         },
+         "metro": {
+-          "type": "object",
+-          "items": {
+-            "properties": {
+-              "id": {
+-                "type": "string",
+-                "format": "uuid"
+-              },
+-              "name": {
+-                "type": "string"
+-              },
+-              "code": {
+-                "type": "string"
+-              }
+-            }
+-          }
++          "$ref": "#/definitions/Metro"
+         }
+       }
+     },
+@@ -10435,6 +10421,20 @@
+         }
+       }
+     },
++    "Metro": {
++      "properties": {
++        "id": {
++          "type": "string",
++          "format": "uuid"
++        },
++        "name": {
++          "type": "string"
++        },
++        "code": {
++          "type": "string"
++        }
++      }
++    },
+     "BgpConfigRequestInput": {
+       "required": [
+         "deployment_type",
