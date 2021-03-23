@@ -12,7 +12,7 @@ PACKAGE_MAJOR=v1
 SWAGGER=docker run --rm -v $(CURDIR):/local ${IMAGE}
 GOLANGCI_LINT=golangci-lint
 
-all: pull fetch patch gen
+all: pull fetch patch gen mod
 
 pull:
 	docker pull ${IMAGE}
@@ -39,6 +39,12 @@ gen:
 		--git-repo-id ${GIT_REPO} \
 		-o /local/${PACKAGE_MAJOR} \
 		-i /local/${SPEC_PATCHED_FILE}
+
+mod:
+	cd v1 && go mod tidy
+
+test:
+	cd v1 && go test -v ./...
 
 # https://github.com/OpenAPITools/openapi-generator/issues/741#issuecomment-569791780
 remove-dupe-requests: ## Removes duplicate Request structs from the generated code
