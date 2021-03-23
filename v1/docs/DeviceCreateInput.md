@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **Userdata** | Pointer to **string** |  | [optional] 
 **Locked** | Pointer to **bool** |  | [optional] 
 **Customdata** | Pointer to **map[string]interface{}** |  | [optional] 
+**Metro** | Pointer to **string** | Metro code or ID of where the instance should be provisioned in. | [optional] 
 **HardwareReservationId** | Pointer to **string** |  | [optional] 
 **SpotInstance** | Pointer to **bool** |  | [optional] 
 **SpotPriceMax** | Pointer to **float32** |  | [optional] 
@@ -305,6 +306,31 @@ SetCustomdata sets Customdata field to given value.
 `func (o *DeviceCreateInput) HasCustomdata() bool`
 
 HasCustomdata returns a boolean if a field has been set.
+
+### GetMetro
+
+`func (o *DeviceCreateInput) GetMetro() string`
+
+GetMetro returns the Metro field if non-nil, zero value otherwise.
+
+### GetMetroOk
+
+`func (o *DeviceCreateInput) GetMetroOk() (*string, bool)`
+
+GetMetroOk returns a tuple with the Metro field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMetro
+
+`func (o *DeviceCreateInput) SetMetro(v string)`
+
+SetMetro sets Metro field to given value.
+
+### HasMetro
+
+`func (o *DeviceCreateInput) HasMetro() bool`
+
+HasMetro returns a boolean if a field has been set.
 
 ### GetHardwareReservationId
 

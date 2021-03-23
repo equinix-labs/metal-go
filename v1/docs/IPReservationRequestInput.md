@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **Quantity** | **int32** |  | 
 **Comments** | Pointer to **string** |  | [optional] 
 **Facility** | Pointer to **string** |  | [optional] 
+**Metro** | Pointer to **string** | The code of the metro you are creating the IP reservation request in. | [optional] 
 **Customdata** | Pointer to **map[string]interface{}** |  | [optional] 
 **Tags** | Pointer to **[]string** |  | [optional] 
 **Details** | Pointer to **string** |  | [optional] 
@@ -121,6 +122,31 @@ SetFacility sets Facility field to given value.
 `func (o *IPReservationRequestInput) HasFacility() bool`
 
 HasFacility returns a boolean if a field has been set.
+
+### GetMetro
+
+`func (o *IPReservationRequestInput) GetMetro() string`
+
+GetMetro returns the Metro field if non-nil, zero value otherwise.
+
+### GetMetroOk
+
+`func (o *IPReservationRequestInput) GetMetroOk() (*string, bool)`
+
+GetMetroOk returns a tuple with the Metro field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMetro
+
+`func (o *IPReservationRequestInput) SetMetro(v string)`
+
+SetMetro sets Metro field to given value.
+
+### HasMetro
+
+`func (o *IPReservationRequestInput) HasMetro() bool`
+
+HasMetro returns a boolean if a field has been set.
 
 ### GetCustomdata
 

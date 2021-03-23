@@ -52,6 +52,8 @@ tags:
 - description: Manage licenses. See project endpoints to list and create licenses
     for a particular project.
   name: Licenses
+- description: Metro Management
+  name: Metros
 - description: Membership Management (Project). Check out the product docs to learn
     more about [Membership](https://metal.equinix.com/developers/docs/accounts/).
   name: Memberships
@@ -636,6 +638,50 @@ paths:
       tags:
       - Capacity
       x-codegen-request-body-name: facility
+  /capacity/metros:
+    get:
+      description: Returns a list of metros and plans with their current capacity.
+      operationId: findCapacityForMetro
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetroCapacityList'
+          description: ok
+        "401":
+          content: {}
+          description: unauthorized
+      summary: View capacity for metros
+      tags:
+      - Capacity
+    post:
+      description: Validates if a deploy can be fulfilled in a metro.
+      operationId: checkCapacityForMetro
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CapacityPerMetroInput'
+        description: Metro to check capacity in
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CapacityCheckPerMetroList'
+          description: ok
+        "401":
+          content: {}
+          description: unauthorized
+        "422":
+          content: {}
+          description: unprocessable entity
+      summary: Check capacity for a metro
+      tags:
+      - Capacity
+      x-codegen-request-body-name: servers
   /devices/{id}/events:
     get:
       description: Returns a list of events pertaining to a specific device
@@ -5646,6 +5692,11 @@ paths:
         required: true
         schema:
           type: string
+      - description: Metro to check spot market price history
+        in: query
+        name: metro
+        schema:
+          type: string
       - description: Timestamp from range
         in: query
         name: from
@@ -5666,6 +5717,31 @@ paths:
                 $ref: '#/components/schemas/SpotPricesHistoryReport'
           description: ok
       summary: Get spot market prices for a given period of time
+      tags:
+      - Market
+  /market/spot/prices/metros:
+    get:
+      description: Get Equinix Metal current spot market prices for all metros.
+      operationId: findMetroSpotMarketPrices
+      parameters:
+      - description: Metro to filter spot market prices
+        in: query
+        name: metro
+        schema:
+          type: string
+      - description: Plan to filter spot market prices
+        in: query
+        name: plan
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SpotMarketPricesPerMetroList'
+          description: ok
+      summary: Get current spot market prices for metros
       tags:
       - Market
   /projects/{id}/spot-market-requests:
@@ -8312,6 +8388,7 @@ components:
             longitude: longitude
           state: state
           zip_code: zip_code
+        metro: '{}'
         name: name
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
       properties:
@@ -8328,6 +8405,9 @@ components:
           type: array
         address:
           $ref: '#/components/schemas/Address'
+        metro:
+          properties: {}
+          type: object
       type: object
     FacilityList:
       example:
@@ -8346,6 +8426,7 @@ components:
               longitude: longitude
             state: state
             zip_code: zip_code
+          metro: '{}'
           name: name
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         - features:
@@ -8362,6 +8443,7 @@ components:
               longitude: longitude
             state: state
             zip_code: zip_code
+          metro: '{}'
           name: name
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
       properties:
@@ -8441,6 +8523,7 @@ components:
               longitude: longitude
             state: state
             zip_code: zip_code
+          metro: '{}'
           name: name
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         plan:
@@ -8449,6 +8532,9 @@ components:
           line: line
           name: name
           description: description
+          available_in_metros:
+          - href: href
+          - href: href
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           available_in:
           - href: href
@@ -8472,6 +8558,7 @@ components:
             public: true
             netmask: netmask
             management: true
+            metro: '{}'
             cidr: 5
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             href: href
@@ -8492,6 +8579,7 @@ components:
             public: true
             netmask: netmask
             management: true
+            metro: '{}'
             cidr: 5
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             href: href
@@ -8550,6 +8638,9 @@ components:
             line: line
             name: name
             description: description
+            available_in_metros:
+            - href: href
+            - href: href
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             available_in:
             - href: href
@@ -8576,6 +8667,7 @@ components:
           ssh_keys:
           - href: href
           - href: href
+          metro: '{}'
           location:
             cage: cage
             rack: rack
@@ -8600,6 +8692,7 @@ components:
                 longitude: longitude
               state: state
               zip_code: zip_code
+            metro: '{}'
             name: name
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
       properties:
@@ -8691,6 +8784,7 @@ components:
                 longitude: longitude
               state: state
               zip_code: zip_code
+            metro: '{}'
             name: name
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           plan:
@@ -8699,6 +8793,9 @@ components:
             line: line
             name: name
             description: description
+            available_in_metros:
+            - href: href
+            - href: href
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             available_in:
             - href: href
@@ -8722,6 +8819,7 @@ components:
               public: true
               netmask: netmask
               management: true
+              metro: '{}'
               cidr: 5
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
               href: href
@@ -8742,6 +8840,7 @@ components:
               public: true
               netmask: netmask
               management: true
+              metro: '{}'
               cidr: 5
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
               href: href
@@ -8800,6 +8899,9 @@ components:
               line: line
               name: name
               description: description
+              available_in_metros:
+              - href: href
+              - href: href
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
               available_in:
               - href: href
@@ -8826,6 +8928,7 @@ components:
             ssh_keys:
             - href: href
             - href: href
+            metro: '{}'
             location:
               cage: cage
               rack: rack
@@ -8850,6 +8953,7 @@ components:
                   longitude: longitude
                 state: state
                 zip_code: zip_code
+              metro: '{}'
               name: name
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         - remove_at: 2000-01-23T04:56:07.000+00:00
@@ -8902,6 +9006,7 @@ components:
                 longitude: longitude
               state: state
               zip_code: zip_code
+            metro: '{}'
             name: name
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           plan:
@@ -8910,6 +9015,9 @@ components:
             line: line
             name: name
             description: description
+            available_in_metros:
+            - href: href
+            - href: href
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             available_in:
             - href: href
@@ -8933,6 +9041,7 @@ components:
               public: true
               netmask: netmask
               management: true
+              metro: '{}'
               cidr: 5
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
               href: href
@@ -8953,6 +9062,7 @@ components:
               public: true
               netmask: netmask
               management: true
+              metro: '{}'
               cidr: 5
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
               href: href
@@ -9011,6 +9121,9 @@ components:
               line: line
               name: name
               description: description
+              available_in_metros:
+              - href: href
+              - href: href
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
               available_in:
               - href: href
@@ -9037,6 +9150,7 @@ components:
             ssh_keys:
             - href: href
             - href: href
+            metro: '{}'
             location:
               cage: cage
               rack: rack
@@ -9061,6 +9175,7 @@ components:
                   longitude: longitude
                 state: state
                 zip_code: zip_code
+              metro: '{}'
               name: name
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
       properties:
@@ -9088,6 +9203,7 @@ components:
           public: true
           netmask: netmask
           management: true
+          metro: '{}'
           cidr: 5
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           href: href
@@ -9108,6 +9224,7 @@ components:
           public: true
           netmask: netmask
           management: true
+          metro: '{}'
           cidr: 5
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           href: href
@@ -9166,6 +9283,9 @@ components:
           line: line
           name: name
           description: description
+          available_in_metros:
+          - href: href
+          - href: href
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           available_in:
           - href: href
@@ -9192,6 +9312,7 @@ components:
         ssh_keys:
         - href: href
         - href: href
+        metro: '{}'
         location:
           cage: cage
           rack: rack
@@ -9216,6 +9337,7 @@ components:
               longitude: longitude
             state: state
             zip_code: zip_code
+          metro: '{}'
           name: name
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
       properties:
@@ -9306,6 +9428,8 @@ components:
           items:
             $ref: '#/components/schemas/Event'
           type: array
+        metro:
+          $ref: '#/components/schemas/Metro'
       type: object
     DeviceCreateInput:
       example:
@@ -9341,6 +9465,7 @@ components:
         hostname: hostname
         spot_instance: true
         public_ipv4_subnet_size: 6.027456183070403
+        metro: metro
         hardware_reservation_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         operating_system: operating_system
         billing_cycle: billing_cycle
@@ -9375,6 +9500,10 @@ components:
         customdata:
           properties: {}
           type: object
+        metro:
+          description: Metro code or ID of where the instance should be provisioned
+            in.
+          type: string
         hardware_reservation_id:
           format: uuid
           type: string
@@ -9493,6 +9622,7 @@ components:
             public: true
             netmask: netmask
             management: true
+            metro: '{}'
             cidr: 5
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             href: href
@@ -9513,6 +9643,7 @@ components:
             public: true
             netmask: netmask
             management: true
+            metro: '{}'
             cidr: 5
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             href: href
@@ -9571,6 +9702,9 @@ components:
             line: line
             name: name
             description: description
+            available_in_metros:
+            - href: href
+            - href: href
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             available_in:
             - href: href
@@ -9597,6 +9731,7 @@ components:
           ssh_keys:
           - href: href
           - href: href
+          metro: '{}'
           location:
             cage: cage
             rack: rack
@@ -9621,6 +9756,7 @@ components:
                 longitude: longitude
               state: state
               zip_code: zip_code
+            metro: '{}'
             name: name
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         - ip_addresses:
@@ -9638,6 +9774,7 @@ components:
             public: true
             netmask: netmask
             management: true
+            metro: '{}'
             cidr: 5
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             href: href
@@ -9658,6 +9795,7 @@ components:
             public: true
             netmask: netmask
             management: true
+            metro: '{}'
             cidr: 5
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             href: href
@@ -9716,6 +9854,9 @@ components:
             line: line
             name: name
             description: description
+            available_in_metros:
+            - href: href
+            - href: href
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             available_in:
             - href: href
@@ -9742,6 +9883,7 @@ components:
           ssh_keys:
           - href: href
           - href: href
+          metro: '{}'
           location:
             cage: cage
             rack: rack
@@ -9766,6 +9908,7 @@ components:
                 longitude: longitude
               state: state
               zip_code: zip_code
+            metro: '{}'
             name: name
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         meta:
@@ -9790,12 +9933,7 @@ components:
       type: object
     Interconnection:
       example:
-        organization:
-          href: href
-        name: name
         description: description
-        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        redundancy: redundancy
         type: type
         ports:
         - role: role
@@ -9870,14 +10008,21 @@ components:
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           switch_id: switch_id
           status: status
-        facility:
-          href: href
         speed: 0
         contact_email: contact_email
-        status: status
         tags:
         - tags
         - tags
+        metro:
+          href: href
+        organization:
+          href: href
+        name: name
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        redundancy: redundancy
+        facility:
+          href: href
+        status: status
       properties:
         id:
           format: uuid
@@ -9909,16 +10054,13 @@ components:
           $ref: '#/components/schemas/Href'
         organization:
           $ref: '#/components/schemas/Href'
+        metro:
+          $ref: '#/components/schemas/Href'
       type: object
     InterconnectionList:
       example:
         interconnections:
-        - organization:
-            href: href
-          name: name
-          description: description
-          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          redundancy: redundancy
+        - description: description
           type: type
           ports:
           - role: role
@@ -9993,20 +10135,22 @@ components:
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             switch_id: switch_id
             status: status
-          facility:
-            href: href
           speed: 0
           contact_email: contact_email
-          status: status
           tags:
           - tags
           - tags
-        - organization:
+          metro:
+            href: href
+          organization:
             href: href
           name: name
-          description: description
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           redundancy: redundancy
+          facility:
+            href: href
+          status: status
+        - description: description
           type: type
           ports:
           - role: role
@@ -10081,14 +10225,21 @@ components:
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             switch_id: switch_id
             status: status
-          facility:
-            href: href
           speed: 0
           contact_email: contact_email
-          status: status
           tags:
           - tags
           - tags
+          metro:
+            href: href
+          organization:
+            href: href
+          name: name
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          redundancy: redundancy
+          facility:
+            href: href
+          status: status
       properties:
         interconnections:
           items:
@@ -10097,6 +10248,7 @@ components:
       type: object
     InterconnectionCreateInput:
       example:
+        metro: metro
         name: name
         description: description
         project: project
@@ -10115,6 +10267,10 @@ components:
           type: string
         facility:
           description: A Facility ID or code.
+          type: string
+        metro:
+          description: A Metro ID or code. Required for creating a connection, unless
+            creating with facility.
           type: string
         type:
           description: Either 'shared' or 'dedicated'.
@@ -11042,6 +11198,7 @@ components:
         public: true
         netmask: netmask
         management: true
+        metro: '{}'
         cidr: 5
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         href: href
@@ -11079,6 +11236,8 @@ components:
         created_at:
           format: date-time
           type: string
+        metro:
+          $ref: '#/components/schemas/Metro'
         parent_block:
           $ref: '#/components/schemas/ParentBlock'
       type: object
@@ -11115,6 +11274,7 @@ components:
           public: true
           netmask: netmask
           management: true
+          metro: '{}'
           cidr: 5
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           href: href
@@ -11135,6 +11295,7 @@ components:
           public: true
           netmask: netmask
           management: true
+          metro: '{}'
           cidr: 5
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           href: href
@@ -11154,6 +11315,7 @@ components:
         public: true
         netmask: netmask
         management: true
+        metro: '{}'
         cidr: 6
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         href: href
@@ -11173,6 +11335,7 @@ components:
               longitude: longitude
             state: state
             zip_code: zip_code
+          metro: '{}'
           name: name
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
       properties:
@@ -11216,6 +11379,8 @@ components:
           type: array
         state:
           type: string
+        metro:
+          $ref: '#/components/schemas/Metro'
       type: object
     IPAssignmentInput:
       example:
@@ -11250,6 +11415,7 @@ components:
           public: true
           netmask: netmask
           management: true
+          metro: '{}'
           cidr: 5
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           href: href
@@ -11270,6 +11436,7 @@ components:
           public: true
           netmask: netmask
           management: true
+          metro: '{}'
           cidr: 5
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           href: href
@@ -11300,6 +11467,7 @@ components:
             public: true
             netmask: netmask
             management: true
+            metro: '{}'
             cidr: 5
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             href: href
@@ -11320,6 +11488,7 @@ components:
             public: true
             netmask: netmask
             management: true
+            metro: '{}'
             cidr: 5
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             href: href
@@ -11339,6 +11508,7 @@ components:
           public: true
           netmask: netmask
           management: true
+          metro: '{}'
           cidr: 6
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           href: href
@@ -11358,6 +11528,7 @@ components:
                 longitude: longitude
               state: state
               zip_code: zip_code
+            metro: '{}'
             name: name
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         - assignments:
@@ -11375,6 +11546,7 @@ components:
             public: true
             netmask: netmask
             management: true
+            metro: '{}'
             cidr: 5
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             href: href
@@ -11395,6 +11567,7 @@ components:
             public: true
             netmask: netmask
             management: true
+            metro: '{}'
             cidr: 5
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             href: href
@@ -11414,6 +11587,7 @@ components:
           public: true
           netmask: netmask
           management: true
+          metro: '{}'
           cidr: 6
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           href: href
@@ -11433,6 +11607,7 @@ components:
                 longitude: longitude
               state: state
               zip_code: zip_code
+            metro: '{}'
             name: name
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
       properties:
@@ -11457,6 +11632,7 @@ components:
         fail_on_approval_required: true
         quantity: 0
         comments: comments
+        metro: metro
         details: details
         customdata: '{}'
         type: type
@@ -11472,6 +11648,10 @@ components:
         comments:
           type: string
         facility:
+          type: string
+        metro:
+          description: The code of the metro you are creating the IP reservation request
+            in.
           type: string
         customdata:
           properties: {}
@@ -12068,6 +12248,9 @@ components:
         line: line
         name: name
         description: description
+        available_in_metros:
+        - href: href
+        - href: href
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         available_in:
         - href: href
@@ -12103,6 +12286,12 @@ components:
           items:
             $ref: '#/components/schemas/Href'
           type: array
+        available_in_metros:
+          description: Shows which metros the plan is available in, and the metro-based
+            price if it is different from the default price.
+          items:
+            $ref: '#/components/schemas/Href'
+          type: array
       type: object
     PlanList:
       example:
@@ -12112,6 +12301,9 @@ components:
           line: line
           name: name
           description: description
+          available_in_metros:
+          - href: href
+          - href: href
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           available_in:
           - href: href
@@ -12124,6 +12316,9 @@ components:
           line: line
           name: name
           description: description
+          available_in_metros:
+          - href: href
+          - href: href
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           available_in:
           - href: href
@@ -12459,6 +12654,7 @@ components:
               longitude: longitude
             state: state
             zip_code: zip_code
+          metro: '{}'
           name: name
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
       properties:
@@ -12490,6 +12686,7 @@ components:
                 longitude: longitude
               state: state
               zip_code: zip_code
+            metro: '{}'
             name: name
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         - name: name
@@ -12509,6 +12706,7 @@ components:
                 longitude: longitude
               state: state
               zip_code: zip_code
+            metro: '{}'
             name: name
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
       properties:
@@ -12896,6 +13094,9 @@ components:
           line: line
           name: name
           description: description
+          available_in_metros:
+          - href: href
+          - href: href
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           available_in:
           - href: href
@@ -13046,6 +13247,9 @@ components:
             line: line
             name: name
             description: description
+            available_in_metros:
+            - href: href
+            - href: href
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             available_in:
             - href: href
@@ -13080,6 +13284,9 @@ components:
             line: line
             name: name
             description: description
+            available_in_metros:
+            - href: href
+            - href: href
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             available_in:
             - href: href
@@ -13432,6 +13639,297 @@ components:
         yyz1:
           $ref: '#/components/schemas/CapacityPerNewFacility'
       type: object
+    MetroCapacityList:
+      example:
+        capacity:
+          sv:
+            c2.medium.x86:
+              level: level
+            baremetal_2a2:
+              level: level
+            m2.xlarge.x86:
+              level: level
+            baremetal_1:
+              level: level
+            baremetal_2a:
+              level: level
+            baremetal_0:
+              level: level
+            baremetal_3:
+              level: level
+            baremetal_s:
+              level: level
+            baremetal_2:
+              level: level
+          sg:
+            c2.medium.x86:
+              level: level
+            baremetal_2a2:
+              level: level
+            m2.xlarge.x86:
+              level: level
+            baremetal_1:
+              level: level
+            baremetal_2a:
+              level: level
+            baremetal_0:
+              level: level
+            baremetal_3:
+              level: level
+            baremetal_s:
+              level: level
+            baremetal_2:
+              level: level
+          ch:
+            c2.medium.x86:
+              level: level
+            baremetal_2a2:
+              level: level
+            m2.xlarge.x86:
+              level: level
+            baremetal_1:
+              level: level
+            baremetal_2a:
+              level: level
+            baremetal_0:
+              level: level
+            baremetal_3:
+              level: level
+            baremetal_s:
+              level: level
+            baremetal_2:
+              level: level
+          la:
+            c2.medium.x86:
+              level: level
+            baremetal_2a2:
+              level: level
+            m2.xlarge.x86:
+              level: level
+            baremetal_1:
+              level: level
+            baremetal_2a:
+              level: level
+            baremetal_0:
+              level: level
+            baremetal_3:
+              level: level
+            baremetal_s:
+              level: level
+            baremetal_2:
+              level: level
+          ny:
+            c2.medium.x86:
+              level: level
+            baremetal_2a2:
+              level: level
+            m2.xlarge.x86:
+              level: level
+            baremetal_1:
+              level: level
+            baremetal_2a:
+              level: level
+            baremetal_0:
+              level: level
+            baremetal_3:
+              level: level
+            baremetal_s:
+              level: level
+            baremetal_2:
+              level: level
+          am:
+            c2.medium.x86:
+              level: level
+            baremetal_2a2:
+              level: level
+            m2.xlarge.x86:
+              level: level
+            baremetal_1:
+              level: level
+            baremetal_2a:
+              level: level
+            baremetal_0:
+              level: level
+            baremetal_3:
+              level: level
+            baremetal_s:
+              level: level
+            baremetal_2:
+              level: level
+          da:
+            c2.medium.x86:
+              level: level
+            baremetal_2a2:
+              level: level
+            m2.xlarge.x86:
+              level: level
+            baremetal_1:
+              level: level
+            baremetal_2a:
+              level: level
+            baremetal_0:
+              level: level
+            baremetal_3:
+              level: level
+            baremetal_s:
+              level: level
+            baremetal_2:
+              level: level
+      properties:
+        capacity:
+          $ref: '#/components/schemas/MetroCapacityReport'
+      type: object
+    MetroCapacityReport:
+      example:
+        sv:
+          c2.medium.x86:
+            level: level
+          baremetal_2a2:
+            level: level
+          m2.xlarge.x86:
+            level: level
+          baremetal_1:
+            level: level
+          baremetal_2a:
+            level: level
+          baremetal_0:
+            level: level
+          baremetal_3:
+            level: level
+          baremetal_s:
+            level: level
+          baremetal_2:
+            level: level
+        sg:
+          c2.medium.x86:
+            level: level
+          baremetal_2a2:
+            level: level
+          m2.xlarge.x86:
+            level: level
+          baremetal_1:
+            level: level
+          baremetal_2a:
+            level: level
+          baremetal_0:
+            level: level
+          baremetal_3:
+            level: level
+          baremetal_s:
+            level: level
+          baremetal_2:
+            level: level
+        ch:
+          c2.medium.x86:
+            level: level
+          baremetal_2a2:
+            level: level
+          m2.xlarge.x86:
+            level: level
+          baremetal_1:
+            level: level
+          baremetal_2a:
+            level: level
+          baremetal_0:
+            level: level
+          baremetal_3:
+            level: level
+          baremetal_s:
+            level: level
+          baremetal_2:
+            level: level
+        la:
+          c2.medium.x86:
+            level: level
+          baremetal_2a2:
+            level: level
+          m2.xlarge.x86:
+            level: level
+          baremetal_1:
+            level: level
+          baremetal_2a:
+            level: level
+          baremetal_0:
+            level: level
+          baremetal_3:
+            level: level
+          baremetal_s:
+            level: level
+          baremetal_2:
+            level: level
+        ny:
+          c2.medium.x86:
+            level: level
+          baremetal_2a2:
+            level: level
+          m2.xlarge.x86:
+            level: level
+          baremetal_1:
+            level: level
+          baremetal_2a:
+            level: level
+          baremetal_0:
+            level: level
+          baremetal_3:
+            level: level
+          baremetal_s:
+            level: level
+          baremetal_2:
+            level: level
+        am:
+          c2.medium.x86:
+            level: level
+          baremetal_2a2:
+            level: level
+          m2.xlarge.x86:
+            level: level
+          baremetal_1:
+            level: level
+          baremetal_2a:
+            level: level
+          baremetal_0:
+            level: level
+          baremetal_3:
+            level: level
+          baremetal_s:
+            level: level
+          baremetal_2:
+            level: level
+        da:
+          c2.medium.x86:
+            level: level
+          baremetal_2a2:
+            level: level
+          m2.xlarge.x86:
+            level: level
+          baremetal_1:
+            level: level
+          baremetal_2a:
+            level: level
+          baremetal_0:
+            level: level
+          baremetal_3:
+            level: level
+          baremetal_s:
+            level: level
+          baremetal_2:
+            level: level
+      properties:
+        ny:
+          $ref: '#/components/schemas/CapacityPerFacility'
+        sv:
+          $ref: '#/components/schemas/CapacityPerFacility'
+        am:
+          $ref: '#/components/schemas/CapacityPerFacility'
+        ch:
+          $ref: '#/components/schemas/CapacityPerFacility'
+        la:
+          $ref: '#/components/schemas/CapacityPerFacility'
+        sg:
+          $ref: '#/components/schemas/CapacityPerFacility'
+        da:
+          $ref: '#/components/schemas/CapacityPerFacility'
+      type: object
     CapacityPerFacility:
       example:
         c2.medium.x86:
@@ -13529,6 +14027,34 @@ components:
         quantity:
           type: string
       type: object
+    CapacityPerMetroInput:
+      example:
+        servers:
+        - quantity: quantity
+          metro: metro
+          plan: plan
+        - quantity: quantity
+          metro: metro
+          plan: plan
+      properties:
+        servers:
+          items:
+            $ref: '#/components/schemas/MetroServerInfo'
+          type: array
+      type: object
+    MetroServerInfo:
+      example:
+        quantity: quantity
+        metro: metro
+        plan: plan
+      properties:
+        metro:
+          type: string
+        plan:
+          type: string
+        quantity:
+          type: string
+      type: object
     CapacityCheckPerFacilityList:
       example:
         servers:
@@ -13554,6 +14080,39 @@ components:
         plan: plan
       properties:
         facility:
+          type: string
+        plan:
+          type: string
+        quantity:
+          type: string
+        available:
+          type: boolean
+      type: object
+    CapacityCheckPerMetroList:
+      example:
+        servers:
+        - quantity: quantity
+          metro: metro
+          available: true
+          plan: plan
+        - quantity: quantity
+          metro: metro
+          available: true
+          plan: plan
+      properties:
+        servers:
+          items:
+            $ref: '#/components/schemas/CapacityCheckPerMetroInfo'
+          type: array
+      type: object
+    CapacityCheckPerMetroInfo:
+      example:
+        quantity: quantity
+        metro: metro
+        available: true
+        plan: plan
+      properties:
+        metro:
           type: string
         plan:
           type: string
@@ -13812,6 +14371,30 @@ components:
           $ref: '#/components/schemas/SpotPricesPerNewFacility'
         yyz1:
           $ref: '#/components/schemas/SpotPricesPerNewFacility'
+      type: object
+    SpotMarketPricesPerMetroList:
+      example:
+        spot_market_prices: '{}'
+      properties:
+        spot_market_prices:
+          $ref: '#/components/schemas/SpotPricesPerMetroReport'
+      type: object
+    SpotMarketPricesPerMetroReport:
+      properties:
+        ny:
+          $ref: '#/components/schemas/SpotPricesPerFacility'
+        sv:
+          $ref: '#/components/schemas/SpotPricesPerFacility'
+        am:
+          $ref: '#/components/schemas/SpotPricesPerFacility'
+        ch:
+          $ref: '#/components/schemas/SpotPricesPerFacility'
+        la:
+          $ref: '#/components/schemas/SpotPricesPerFacility'
+        sg:
+          $ref: '#/components/schemas/SpotPricesPerFacility'
+        da:
+          $ref: '#/components/schemas/SpotPricesPerFacility'
       type: object
     SpotPricesPerFacility:
       example:

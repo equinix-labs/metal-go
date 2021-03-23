@@ -57,11 +57,14 @@ docs/BgpSessionNeighbors.md
 docs/CapacityApi.md
 docs/CapacityCheckPerFacilityInfo.md
 docs/CapacityCheckPerFacilityList.md
+docs/CapacityCheckPerMetroInfo.md
+docs/CapacityCheckPerMetroList.md
 docs/CapacityInput.md
 docs/CapacityLevelPerBaremetal.md
 docs/CapacityList.md
 docs/CapacityPerBaremetal.md
 docs/CapacityPerFacility.md
+docs/CapacityPerMetroInput.md
 docs/CapacityPerNewFacility.md
 docs/CapacityReport.md
 docs/ConnectionsApi.md
@@ -131,6 +134,9 @@ docs/MembershipInput.md
 docs/MembershipList.md
 docs/MembershipsApi.md
 docs/Meta.md
+docs/MetroCapacityList.md
+docs/MetroCapacityReport.md
+docs/MetroServerInfo.md
 docs/NewPassword.md
 docs/OperatingSystem.md
 docs/OperatingSystemVersionsApi.md
@@ -178,6 +184,8 @@ docs/ServerInfo.md
 docs/SnapshotPolicy.md
 docs/SnapshotPolicyInput.md
 docs/SpotMarketPricesList.md
+docs/SpotMarketPricesPerMetroList.md
+docs/SpotMarketPricesPerMetroReport.md
 docs/SpotMarketRequest.md
 docs/SpotMarketRequestApi.md
 docs/SpotMarketRequestCreateInput.md
@@ -246,11 +254,14 @@ model_bgp_session_list.go
 model_bgp_session_neighbors.go
 model_capacity_check_per_facility_info.go
 model_capacity_check_per_facility_list.go
+model_capacity_check_per_metro_info.go
+model_capacity_check_per_metro_list.go
 model_capacity_input.go
 model_capacity_level_per_baremetal.go
 model_capacity_list.go
 model_capacity_per_baremetal.go
 model_capacity_per_facility.go
+model_capacity_per_metro_input.go
 model_capacity_per_new_facility.go
 model_capacity_report.go
 model_coordinates.go
@@ -308,6 +319,9 @@ model_membership.go
 model_membership_input.go
 model_membership_list.go
 model_meta.go
+model_metro_capacity_list.go
+model_metro_capacity_report.go
+model_metro_server_info.go
 model_new_password.go
 model_operating_system.go
 model_organization.go
@@ -341,6 +355,8 @@ model_server_info.go
 model_snapshot_policy.go
 model_snapshot_policy_input.go
 model_spot_market_prices_list.go
+model_spot_market_prices_per_metro_list.go
+model_spot_market_prices_per_metro_report.go
 model_spot_market_request.go
 model_spot_market_request_create_input.go
 model_spot_market_request_create_input_instance_attributes.go

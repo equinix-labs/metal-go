@@ -92,7 +92,9 @@ Class | Method | HTTP request | Description
 *BatchesApi* | [**FindBatchById**](docs/BatchesApi.md#findbatchbyid) | **Get** /batches/{id} | Retrieve a Batch
 *BatchesApi* | [**FindBatchesByProject**](docs/BatchesApi.md#findbatchesbyproject) | **Get** /projects/{id}/batches | Retrieve all batches by project
 *CapacityApi* | [**CheckCapacityForFacility**](docs/CapacityApi.md#checkcapacityforfacility) | **Post** /capacity | Check capacity
+*CapacityApi* | [**CheckCapacityForMetro**](docs/CapacityApi.md#checkcapacityformetro) | **Post** /capacity/metros | Check capacity for a metro
 *CapacityApi* | [**FindCapacityForFacility**](docs/CapacityApi.md#findcapacityforfacility) | **Get** /capacity | View capacity
+*CapacityApi* | [**FindCapacityForMetro**](docs/CapacityApi.md#findcapacityformetro) | **Get** /capacity/metros | View capacity for metros
 *ConnectionsApi* | [**CreateConnectionPortVirtualCircuit**](docs/ConnectionsApi.md#createconnectionportvirtualcircuit) | **Post** /connections/{connection_id}/ports/{port_id}/virtual-circuits | Create a new Virtual Circuit
 *ConnectionsApi* | [**CreateOrganizationInterconnection**](docs/ConnectionsApi.md#createorganizationinterconnection) | **Post** /organizations/{organization_id}/connections | Request a new connection for the organization
 *ConnectionsApi* | [**CreateProjectInterconnection**](docs/ConnectionsApi.md#createprojectinterconnection) | **Post** /projects/{project_id}/connections | Request a new connection for the project&#39;s organization
@@ -159,6 +161,7 @@ Class | Method | HTTP request | Description
 *LicensesApi* | [**FindLicenseById**](docs/LicensesApi.md#findlicensebyid) | **Get** /licenses/{id} | Retrieve a license
 *LicensesApi* | [**FindProjectLicenses**](docs/LicensesApi.md#findprojectlicenses) | **Get** /projects/{id}/licenses | Retrieve all licenses
 *LicensesApi* | [**UpdateLicense**](docs/LicensesApi.md#updatelicense) | **Put** /licenses/{id} | Update the license
+*MarketApi* | [**FindMetroSpotMarketPrices**](docs/MarketApi.md#findmetrospotmarketprices) | **Get** /market/spot/prices/metros | Get current spot market prices for metros
 *MarketApi* | [**FindSpotMarketPrices**](docs/MarketApi.md#findspotmarketprices) | **Get** /market/spot/prices | Get current spot market prices
 *MarketApi* | [**FindSpotMarketPricesHistory**](docs/MarketApi.md#findspotmarketpriceshistory) | **Get** /market/spot/prices/history | Get spot market prices for a given period of time
 *MembershipsApi* | [**DeleteMembership**](docs/MembershipsApi.md#deletemembership) | **Delete** /memberships/{id} | Delete the membership
@@ -280,11 +283,14 @@ Class | Method | HTTP request | Description
  - [BgpSessionNeighbors](docs/BgpSessionNeighbors.md)
  - [CapacityCheckPerFacilityInfo](docs/CapacityCheckPerFacilityInfo.md)
  - [CapacityCheckPerFacilityList](docs/CapacityCheckPerFacilityList.md)
+ - [CapacityCheckPerMetroInfo](docs/CapacityCheckPerMetroInfo.md)
+ - [CapacityCheckPerMetroList](docs/CapacityCheckPerMetroList.md)
  - [CapacityInput](docs/CapacityInput.md)
  - [CapacityLevelPerBaremetal](docs/CapacityLevelPerBaremetal.md)
  - [CapacityList](docs/CapacityList.md)
  - [CapacityPerBaremetal](docs/CapacityPerBaremetal.md)
  - [CapacityPerFacility](docs/CapacityPerFacility.md)
+ - [CapacityPerMetroInput](docs/CapacityPerMetroInput.md)
  - [CapacityPerNewFacility](docs/CapacityPerNewFacility.md)
  - [CapacityReport](docs/CapacityReport.md)
  - [Coordinates](docs/Coordinates.md)
@@ -342,6 +348,9 @@ Class | Method | HTTP request | Description
  - [MembershipInput](docs/MembershipInput.md)
  - [MembershipList](docs/MembershipList.md)
  - [Meta](docs/Meta.md)
+ - [MetroCapacityList](docs/MetroCapacityList.md)
+ - [MetroCapacityReport](docs/MetroCapacityReport.md)
+ - [MetroServerInfo](docs/MetroServerInfo.md)
  - [NewPassword](docs/NewPassword.md)
  - [OperatingSystem](docs/OperatingSystem.md)
  - [Organization](docs/Organization.md)
@@ -378,6 +387,8 @@ Class | Method | HTTP request | Description
  - [SnapshotPolicy](docs/SnapshotPolicy.md)
  - [SnapshotPolicyInput](docs/SnapshotPolicyInput.md)
  - [SpotMarketPricesList](docs/SpotMarketPricesList.md)
+ - [SpotMarketPricesPerMetroList](docs/SpotMarketPricesPerMetroList.md)
+ - [SpotMarketPricesPerMetroReport](docs/SpotMarketPricesPerMetroReport.md)
  - [SpotMarketRequest](docs/SpotMarketRequest.md)
  - [SpotMarketRequestCreateInput](docs/SpotMarketRequestCreateInput.md)
  - [SpotMarketRequestCreateInputInstanceAttributes](docs/SpotMarketRequestCreateInputInstanceAttributes.md)

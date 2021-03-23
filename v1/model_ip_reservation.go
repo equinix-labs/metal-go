@@ -35,6 +35,7 @@ type IPReservation struct {
 	Href *string `json:"href,omitempty"`
 	Tags *[]string `json:"tags,omitempty"`
 	State *string `json:"state,omitempty"`
+	Metro *Metro `json:"metro,omitempty"`
 }
 
 // NewIPReservation instantiates a new IPReservation object
@@ -598,6 +599,38 @@ func (o *IPReservation) SetState(v string) {
 	o.State = &v
 }
 
+// GetMetro returns the Metro field value if set, zero value otherwise.
+func (o *IPReservation) GetMetro() Metro {
+	if o == nil || o.Metro == nil {
+		var ret Metro
+		return ret
+	}
+	return *o.Metro
+}
+
+// GetMetroOk returns a tuple with the Metro field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IPReservation) GetMetroOk() (*Metro, bool) {
+	if o == nil || o.Metro == nil {
+		return nil, false
+	}
+	return o.Metro, true
+}
+
+// HasMetro returns a boolean if a field has been set.
+func (o *IPReservation) HasMetro() bool {
+	if o != nil && o.Metro != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMetro gets a reference to the given Metro and assigns it to the Metro field.
+func (o *IPReservation) SetMetro(v Metro) {
+	o.Metro = &v
+}
+
 func (o IPReservation) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Id != nil {
@@ -650,6 +683,9 @@ func (o IPReservation) MarshalJSON() ([]byte, error) {
 	}
 	if o.State != nil {
 		toSerialize["state"] = o.State
+	}
+	if o.Metro != nil {
+		toSerialize["metro"] = o.Metro
 	}
 	return json.Marshal(toSerialize)
 }

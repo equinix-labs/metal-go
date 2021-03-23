@@ -22,6 +22,7 @@ type Facility struct {
 	Code *string `json:"code,omitempty"`
 	Features *[]string `json:"features,omitempty"`
 	Address *Address `json:"address,omitempty"`
+	Metro *map[string]interface{} `json:"metro,omitempty"`
 }
 
 // NewFacility instantiates a new Facility object
@@ -201,6 +202,38 @@ func (o *Facility) SetAddress(v Address) {
 	o.Address = &v
 }
 
+// GetMetro returns the Metro field value if set, zero value otherwise.
+func (o *Facility) GetMetro() map[string]interface{} {
+	if o == nil || o.Metro == nil {
+		var ret map[string]interface{}
+		return ret
+	}
+	return *o.Metro
+}
+
+// GetMetroOk returns a tuple with the Metro field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Facility) GetMetroOk() (*map[string]interface{}, bool) {
+	if o == nil || o.Metro == nil {
+		return nil, false
+	}
+	return o.Metro, true
+}
+
+// HasMetro returns a boolean if a field has been set.
+func (o *Facility) HasMetro() bool {
+	if o != nil && o.Metro != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMetro gets a reference to the given map[string]interface{} and assigns it to the Metro field.
+func (o *Facility) SetMetro(v map[string]interface{}) {
+	o.Metro = &v
+}
+
 func (o Facility) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Id != nil {
@@ -217,6 +250,9 @@ func (o Facility) MarshalJSON() ([]byte, error) {
 	}
 	if o.Address != nil {
 		toSerialize["address"] = o.Address
+	}
+	if o.Metro != nil {
+		toSerialize["metro"] = o.Metro
 	}
 	return json.Marshal(toSerialize)
 }

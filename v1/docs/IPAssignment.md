@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **Gateway** | Pointer to **string** |  | [optional] 
 **Href** | Pointer to **string** |  | [optional] 
 **CreatedAt** | Pointer to **time.Time** |  | [optional] 
+**Metro** | Pointer to [**Metro**](Metro.md) |  | [optional] 
 **ParentBlock** | Pointer to [**ParentBlock**](ParentBlock.md) |  | [optional] 
 
 ## Methods
@@ -388,6 +389,31 @@ SetCreatedAt sets CreatedAt field to given value.
 `func (o *IPAssignment) HasCreatedAt() bool`
 
 HasCreatedAt returns a boolean if a field has been set.
+
+### GetMetro
+
+`func (o *IPAssignment) GetMetro() Metro`
+
+GetMetro returns the Metro field if non-nil, zero value otherwise.
+
+### GetMetroOk
+
+`func (o *IPAssignment) GetMetroOk() (*Metro, bool)`
+
+GetMetroOk returns a tuple with the Metro field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMetro
+
+`func (o *IPAssignment) SetMetro(v Metro)`
+
+SetMetro sets Metro field to given value.
+
+### HasMetro
+
+`func (o *IPAssignment) HasMetro() bool`
+
+HasMetro returns a boolean if a field has been set.
 
 ### GetParentBlock
 
