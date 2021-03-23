@@ -12,7 +12,7 @@ PACKAGE_MAJOR=v1
 SWAGGER=docker run --rm -v $(CURDIR):/local ${IMAGE}
 GOLANGCI_LINT=golangci-lint
 
-all: pull fetch patch gen mod
+all: pull fetch patch gen mod test
 
 pull:
 	docker pull ${IMAGE}
