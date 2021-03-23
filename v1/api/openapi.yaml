@@ -14574,12 +14574,279 @@ components:
       type: object
     SpotMarketPricesPerMetroList:
       example:
-        spot_market_prices: '{}'
+        spot_market_prices:
+          sv:
+            c2.medium.x86:
+              price: 0.8008282
+            baremetal_2a2:
+              price: 0.8008282
+            m2.xlarge.x86:
+              price: 0.8008282
+            baremetal_1:
+              price: 0.8008282
+            baremetal_2a:
+              price: 0.8008282
+            baremetal_0:
+              price: 0.8008282
+            baremetal_3:
+              price: 0.8008282
+            baremetal_s:
+              price: 0.8008282
+            baremetal_2:
+              price: 0.8008282
+          sg:
+            c2.medium.x86:
+              price: 0.8008282
+            baremetal_2a2:
+              price: 0.8008282
+            m2.xlarge.x86:
+              price: 0.8008282
+            baremetal_1:
+              price: 0.8008282
+            baremetal_2a:
+              price: 0.8008282
+            baremetal_0:
+              price: 0.8008282
+            baremetal_3:
+              price: 0.8008282
+            baremetal_s:
+              price: 0.8008282
+            baremetal_2:
+              price: 0.8008282
+          ch:
+            c2.medium.x86:
+              price: 0.8008282
+            baremetal_2a2:
+              price: 0.8008282
+            m2.xlarge.x86:
+              price: 0.8008282
+            baremetal_1:
+              price: 0.8008282
+            baremetal_2a:
+              price: 0.8008282
+            baremetal_0:
+              price: 0.8008282
+            baremetal_3:
+              price: 0.8008282
+            baremetal_s:
+              price: 0.8008282
+            baremetal_2:
+              price: 0.8008282
+          la:
+            c2.medium.x86:
+              price: 0.8008282
+            baremetal_2a2:
+              price: 0.8008282
+            m2.xlarge.x86:
+              price: 0.8008282
+            baremetal_1:
+              price: 0.8008282
+            baremetal_2a:
+              price: 0.8008282
+            baremetal_0:
+              price: 0.8008282
+            baremetal_3:
+              price: 0.8008282
+            baremetal_s:
+              price: 0.8008282
+            baremetal_2:
+              price: 0.8008282
+          ny:
+            c2.medium.x86:
+              price: 0.8008282
+            baremetal_2a2:
+              price: 0.8008282
+            m2.xlarge.x86:
+              price: 0.8008282
+            baremetal_1:
+              price: 0.8008282
+            baremetal_2a:
+              price: 0.8008282
+            baremetal_0:
+              price: 0.8008282
+            baremetal_3:
+              price: 0.8008282
+            baremetal_s:
+              price: 0.8008282
+            baremetal_2:
+              price: 0.8008282
+          am:
+            c2.medium.x86:
+              price: 0.8008282
+            baremetal_2a2:
+              price: 0.8008282
+            m2.xlarge.x86:
+              price: 0.8008282
+            baremetal_1:
+              price: 0.8008282
+            baremetal_2a:
+              price: 0.8008282
+            baremetal_0:
+              price: 0.8008282
+            baremetal_3:
+              price: 0.8008282
+            baremetal_s:
+              price: 0.8008282
+            baremetal_2:
+              price: 0.8008282
+          da:
+            c2.medium.x86:
+              price: 0.8008282
+            baremetal_2a2:
+              price: 0.8008282
+            m2.xlarge.x86:
+              price: 0.8008282
+            baremetal_1:
+              price: 0.8008282
+            baremetal_2a:
+              price: 0.8008282
+            baremetal_0:
+              price: 0.8008282
+            baremetal_3:
+              price: 0.8008282
+            baremetal_s:
+              price: 0.8008282
+            baremetal_2:
+              price: 0.8008282
       properties:
         spot_market_prices:
-          $ref: '#/components/schemas/SpotPricesPerMetroReport'
+          $ref: '#/components/schemas/SpotMarketPricesPerMetroReport'
       type: object
     SpotMarketPricesPerMetroReport:
+      example:
+        sv:
+          c2.medium.x86:
+            price: 0.8008282
+          baremetal_2a2:
+            price: 0.8008282
+          m2.xlarge.x86:
+            price: 0.8008282
+          baremetal_1:
+            price: 0.8008282
+          baremetal_2a:
+            price: 0.8008282
+          baremetal_0:
+            price: 0.8008282
+          baremetal_3:
+            price: 0.8008282
+          baremetal_s:
+            price: 0.8008282
+          baremetal_2:
+            price: 0.8008282
+        sg:
+          c2.medium.x86:
+            price: 0.8008282
+          baremetal_2a2:
+            price: 0.8008282
+          m2.xlarge.x86:
+            price: 0.8008282
+          baremetal_1:
+            price: 0.8008282
+          baremetal_2a:
+            price: 0.8008282
+          baremetal_0:
+            price: 0.8008282
+          baremetal_3:
+            price: 0.8008282
+          baremetal_s:
+            price: 0.8008282
+          baremetal_2:
+            price: 0.8008282
+        ch:
+          c2.medium.x86:
+            price: 0.8008282
+          baremetal_2a2:
+            price: 0.8008282
+          m2.xlarge.x86:
+            price: 0.8008282
+          baremetal_1:
+            price: 0.8008282
+          baremetal_2a:
+            price: 0.8008282
+          baremetal_0:
+            price: 0.8008282
+          baremetal_3:
+            price: 0.8008282
+          baremetal_s:
+            price: 0.8008282
+          baremetal_2:
+            price: 0.8008282
+        la:
+          c2.medium.x86:
+            price: 0.8008282
+          baremetal_2a2:
+            price: 0.8008282
+          m2.xlarge.x86:
+            price: 0.8008282
+          baremetal_1:
+            price: 0.8008282
+          baremetal_2a:
+            price: 0.8008282
+          baremetal_0:
+            price: 0.8008282
+          baremetal_3:
+            price: 0.8008282
+          baremetal_s:
+            price: 0.8008282
+          baremetal_2:
+            price: 0.8008282
+        ny:
+          c2.medium.x86:
+            price: 0.8008282
+          baremetal_2a2:
+            price: 0.8008282
+          m2.xlarge.x86:
+            price: 0.8008282
+          baremetal_1:
+            price: 0.8008282
+          baremetal_2a:
+            price: 0.8008282
+          baremetal_0:
+            price: 0.8008282
+          baremetal_3:
+            price: 0.8008282
+          baremetal_s:
+            price: 0.8008282
+          baremetal_2:
+            price: 0.8008282
+        am:
+          c2.medium.x86:
+            price: 0.8008282
+          baremetal_2a2:
+            price: 0.8008282
+          m2.xlarge.x86:
+            price: 0.8008282
+          baremetal_1:
+            price: 0.8008282
+          baremetal_2a:
+            price: 0.8008282
+          baremetal_0:
+            price: 0.8008282
+          baremetal_3:
+            price: 0.8008282
+          baremetal_s:
+            price: 0.8008282
+          baremetal_2:
+            price: 0.8008282
+        da:
+          c2.medium.x86:
+            price: 0.8008282
+          baremetal_2a2:
+            price: 0.8008282
+          m2.xlarge.x86:
+            price: 0.8008282
+          baremetal_1:
+            price: 0.8008282
+          baremetal_2a:
+            price: 0.8008282
+          baremetal_0:
+            price: 0.8008282
+          baremetal_3:
+            price: 0.8008282
+          baremetal_s:
+            price: 0.8008282
+          baremetal_2:
+            price: 0.8008282
       properties:
         ny:
           $ref: '#/components/schemas/SpotPricesPerFacility'
