@@ -1,0 +1,13 @@
+diff --git a/equinix-metal.patched.json b/equinix-metal.patched.json
+index 6bb7b82..807a1eb 100644
+--- a/equinix-metal.patched.json
++++ b/equinix-metal.patched.json
+@@ -12440,7 +12440,7 @@
+     "SpotMarketPricesPerMetroList": {
+       "properties": {
+         "spot_market_prices": {
+-          "$ref": "#/definitions/SpotPricesPerMetroReport"
++          "$ref": "#/definitions/SpotMarketPricesPerMetroReport"
+         }
+       }
+     },

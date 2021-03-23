@@ -30,6 +30,7 @@ type Interconnection struct {
 	Ports *[]InterconnectionPort `json:"ports,omitempty"`
 	Facility *Href `json:"facility,omitempty"`
 	Organization *Href `json:"organization,omitempty"`
+	Metro *Href `json:"metro,omitempty"`
 }
 
 // NewInterconnection instantiates a new Interconnection object
@@ -433,6 +434,38 @@ func (o *Interconnection) SetOrganization(v Href) {
 	o.Organization = &v
 }
 
+// GetMetro returns the Metro field value if set, zero value otherwise.
+func (o *Interconnection) GetMetro() Href {
+	if o == nil || o.Metro == nil {
+		var ret Href
+		return ret
+	}
+	return *o.Metro
+}
+
+// GetMetroOk returns a tuple with the Metro field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Interconnection) GetMetroOk() (*Href, bool) {
+	if o == nil || o.Metro == nil {
+		return nil, false
+	}
+	return o.Metro, true
+}
+
+// HasMetro returns a boolean if a field has been set.
+func (o *Interconnection) HasMetro() bool {
+	if o != nil && o.Metro != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMetro gets a reference to the given Href and assigns it to the Metro field.
+func (o *Interconnection) SetMetro(v Href) {
+	o.Metro = &v
+}
+
 func (o Interconnection) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Id != nil {
@@ -470,6 +503,9 @@ func (o Interconnection) MarshalJSON() ([]byte, error) {
 	}
 	if o.Organization != nil {
 		toSerialize["organization"] = o.Organization
+	}
+	if o.Metro != nil {
+		toSerialize["metro"] = o.Metro
 	}
 	return json.Marshal(toSerialize)
 }

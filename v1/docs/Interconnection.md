@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **Ports** | Pointer to [**[]InterconnectionPort**](InterconnectionPort.md) |  | [optional] 
 **Facility** | Pointer to [**Href**](Href.md) |  | [optional] 
 **Organization** | Pointer to [**Href**](Href.md) |  | [optional] 
+**Metro** | Pointer to [**Href**](Href.md) |  | [optional] 
 
 ## Methods
 
@@ -335,6 +336,31 @@ SetOrganization sets Organization field to given value.
 `func (o *Interconnection) HasOrganization() bool`
 
 HasOrganization returns a boolean if a field has been set.
+
+### GetMetro
+
+`func (o *Interconnection) GetMetro() Href`
+
+GetMetro returns the Metro field if non-nil, zero value otherwise.
+
+### GetMetroOk
+
+`func (o *Interconnection) GetMetroOk() (*Href, bool)`
+
+GetMetroOk returns a tuple with the Metro field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMetro
+
+`func (o *Interconnection) SetMetro(v Href)`
+
+SetMetro sets Metro field to given value.
+
+### HasMetro
+
+`func (o *Interconnection) HasMetro() bool`
+
+HasMetro returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

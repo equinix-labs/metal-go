@@ -29,6 +29,8 @@ type DeviceCreateInput struct {
 	Userdata *string `json:"userdata,omitempty"`
 	Locked *bool `json:"locked,omitempty"`
 	Customdata *map[string]interface{} `json:"customdata,omitempty"`
+	// Metro code or ID of where the instance should be provisioned in.
+	Metro *string `json:"metro,omitempty"`
 	HardwareReservationId *string `json:"hardware_reservation_id,omitempty"`
 	SpotInstance *bool `json:"spot_instance,omitempty"`
 	SpotPriceMax *float32 `json:"spot_price_max,omitempty"`
@@ -391,6 +393,38 @@ func (o *DeviceCreateInput) HasCustomdata() bool {
 // SetCustomdata gets a reference to the given map[string]interface{} and assigns it to the Customdata field.
 func (o *DeviceCreateInput) SetCustomdata(v map[string]interface{}) {
 	o.Customdata = &v
+}
+
+// GetMetro returns the Metro field value if set, zero value otherwise.
+func (o *DeviceCreateInput) GetMetro() string {
+	if o == nil || o.Metro == nil {
+		var ret string
+		return ret
+	}
+	return *o.Metro
+}
+
+// GetMetroOk returns a tuple with the Metro field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DeviceCreateInput) GetMetroOk() (*string, bool) {
+	if o == nil || o.Metro == nil {
+		return nil, false
+	}
+	return o.Metro, true
+}
+
+// HasMetro returns a boolean if a field has been set.
+func (o *DeviceCreateInput) HasMetro() bool {
+	if o != nil && o.Metro != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMetro gets a reference to the given string and assigns it to the Metro field.
+func (o *DeviceCreateInput) SetMetro(v string) {
+	o.Metro = &v
 }
 
 // GetHardwareReservationId returns the HardwareReservationId field value if set, zero value otherwise.
@@ -779,6 +813,9 @@ func (o DeviceCreateInput) MarshalJSON() ([]byte, error) {
 	}
 	if o.Customdata != nil {
 		toSerialize["customdata"] = o.Customdata
+	}
+	if o.Metro != nil {
+		toSerialize["metro"] = o.Metro
 	}
 	if o.HardwareReservationId != nil {
 		toSerialize["hardware_reservation_id"] = o.HardwareReservationId

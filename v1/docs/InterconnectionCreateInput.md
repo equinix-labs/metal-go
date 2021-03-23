@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **Name** | **string** |  | 
 **Description** | Pointer to **string** |  | [optional] 
 **Facility** | **string** | A Facility ID or code. | 
+**Metro** | Pointer to **string** | A Metro ID or code. Required for creating a connection, unless creating with facility. | [optional] 
 **Type** | **string** | Either &#39;shared&#39; or &#39;dedicated&#39;. | 
 **Redundancy** | **string** | Either &#39;primary&#39; or &#39;redundant&#39;. | 
 **ContactEmail** | Pointer to **string** |  | [optional] 
@@ -97,6 +98,31 @@ and a boolean to check if the value has been set.
 
 SetFacility sets Facility field to given value.
 
+
+### GetMetro
+
+`func (o *InterconnectionCreateInput) GetMetro() string`
+
+GetMetro returns the Metro field if non-nil, zero value otherwise.
+
+### GetMetroOk
+
+`func (o *InterconnectionCreateInput) GetMetroOk() (*string, bool)`
+
+GetMetroOk returns a tuple with the Metro field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMetro
+
+`func (o *InterconnectionCreateInput) SetMetro(v string)`
+
+SetMetro sets Metro field to given value.
+
+### HasMetro
+
+`func (o *InterconnectionCreateInput) HasMetro() bool`
+
+HasMetro returns a boolean if a field has been set.
 
 ### GetType
 

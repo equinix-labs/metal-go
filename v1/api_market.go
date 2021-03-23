@@ -27,6 +27,138 @@ var (
 // MarketApiService MarketApi service
 type MarketApiService service
 
+type ApiFindMetroSpotMarketPricesRequest struct {
+	ctx _context.Context
+	ApiService *MarketApiService
+	metro *string
+	plan *string
+}
+
+func (r ApiFindMetroSpotMarketPricesRequest) Metro(metro string) ApiFindMetroSpotMarketPricesRequest {
+	r.metro = &metro
+	return r
+}
+func (r ApiFindMetroSpotMarketPricesRequest) Plan(plan string) ApiFindMetroSpotMarketPricesRequest {
+	r.plan = &plan
+	return r
+}
+
+func (r ApiFindMetroSpotMarketPricesRequest) Execute() (SpotMarketPricesPerMetroList, *_nethttp.Response, error) {
+	return r.ApiService.FindMetroSpotMarketPricesExecute(r)
+}
+
+/*
+ * FindMetroSpotMarketPrices Get current spot market prices for metros
+ * Get Equinix Metal current spot market prices for all metros.
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @return ApiFindMetroSpotMarketPricesRequest
+ */
+func (a *MarketApiService) FindMetroSpotMarketPrices(ctx _context.Context) ApiFindMetroSpotMarketPricesRequest {
+	return ApiFindMetroSpotMarketPricesRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return SpotMarketPricesPerMetroList
+ */
+func (a *MarketApiService) FindMetroSpotMarketPricesExecute(r ApiFindMetroSpotMarketPricesRequest) (SpotMarketPricesPerMetroList, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  SpotMarketPricesPerMetroList
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MarketApiService.FindMetroSpotMarketPrices")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/market/spot/prices/metros"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	if r.metro != nil {
+		localVarQueryParams.Add("metro", parameterToString(*r.metro, ""))
+	}
+	if r.plan != nil {
+		localVarQueryParams.Add("plan", parameterToString(*r.plan, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["x_auth_token"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["X-Auth-Token"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiFindSpotMarketPricesRequest struct {
 	ctx _context.Context
 	ApiService *MarketApiService
@@ -166,6 +298,7 @@ type ApiFindSpotMarketPricesHistoryRequest struct {
 	plan *string
 	from *string
 	until *string
+	metro *string
 }
 
 func (r ApiFindSpotMarketPricesHistoryRequest) Facility(facility string) ApiFindSpotMarketPricesHistoryRequest {
@@ -182,6 +315,10 @@ func (r ApiFindSpotMarketPricesHistoryRequest) From(from string) ApiFindSpotMark
 }
 func (r ApiFindSpotMarketPricesHistoryRequest) Until(until string) ApiFindSpotMarketPricesHistoryRequest {
 	r.until = &until
+	return r
+}
+func (r ApiFindSpotMarketPricesHistoryRequest) Metro(metro string) ApiFindSpotMarketPricesHistoryRequest {
+	r.metro = &metro
 	return r
 }
 
@@ -243,6 +380,9 @@ func (a *MarketApiService) FindSpotMarketPricesHistoryExecute(r ApiFindSpotMarke
 
 	localVarQueryParams.Add("facility", parameterToString(*r.facility, ""))
 	localVarQueryParams.Add("plan", parameterToString(*r.plan, ""))
+	if r.metro != nil {
+		localVarQueryParams.Add("metro", parameterToString(*r.metro, ""))
+	}
 	localVarQueryParams.Add("from", parameterToString(*r.from, ""))
 	localVarQueryParams.Add("until", parameterToString(*r.until, ""))
 	// to determine the Content-Type header

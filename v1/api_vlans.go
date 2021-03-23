@@ -663,6 +663,7 @@ type ApiFindVirtualNetworksRequest struct {
 	id string
 	include *[]string
 	exclude *[]string
+	facility *string
 }
 
 func (r ApiFindVirtualNetworksRequest) Include(include []string) ApiFindVirtualNetworksRequest {
@@ -671,6 +672,10 @@ func (r ApiFindVirtualNetworksRequest) Include(include []string) ApiFindVirtualN
 }
 func (r ApiFindVirtualNetworksRequest) Exclude(exclude []string) ApiFindVirtualNetworksRequest {
 	r.exclude = &exclude
+	return r
+}
+func (r ApiFindVirtualNetworksRequest) Facility(facility string) ApiFindVirtualNetworksRequest {
+	r.facility = &facility
 	return r
 }
 
@@ -724,6 +729,9 @@ func (a *VLANsApiService) FindVirtualNetworksExecute(r ApiFindVirtualNetworksReq
 	}
 	if r.exclude != nil {
 		localVarQueryParams.Add("exclude", parameterToString(*r.exclude, "csv"))
+	}
+	if r.facility != nil {
+		localVarQueryParams.Add("facility", parameterToString(*r.facility, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

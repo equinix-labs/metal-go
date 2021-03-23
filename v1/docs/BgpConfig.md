@@ -5,11 +5,11 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **string** |  | [optional] 
-**Status** | Pointer to **string** | status requested is valid only for global deployment | [optional] 
+**Status** | Pointer to **string** | Status of the BGP Config. Status \&quot;requested\&quot; is valid only with the \&quot;global\&quot; deployment_type. | [optional] 
 **DeploymentType** | Pointer to **string** | In a Local BGP deployment, a customer uses an internal ASN to control routes within a single Equinix Metal datacenter. This means that the routes are never advertised to the global Internet. Global BGP, on the other hand, requires a customer to have a registered ASN and IP space.  | [optional] 
-**Asn** | Pointer to **int32** | Autonomous System Number | [optional] 
+**Asn** | Pointer to **int32** | Autonomous System Number. ASN is required with \&quot;global\&quot; deployment_type. With the \&quot;local\&quot; deployment_type the private ASN 65000 is assigned by default. | [optional] 
 **RouteObject** | Pointer to **string** | Specifies AS-MACRO (aka AS-SET) to use when building client route filters | [optional] 
-**Md5** | Pointer to **string** | (Optional) Password for BGP session in plaintext (not a checksum) | [optional] 
+**Md5** | Pointer to **NullableString** | (Optional) Password for BGP session in plaintext (not a checksum) | [optional] 
 **MaxPrefix** | Pointer to **int32** | The maximum number of route filters allowed per server | [optional] 
 **Project** | Pointer to [**Href**](Href.md) |  | [optional] 
 **CreatedAt** | Pointer to **time.Time** |  | [optional] 
@@ -187,6 +187,16 @@ SetMd5 sets Md5 field to given value.
 
 HasMd5 returns a boolean if a field has been set.
 
+### SetMd5Nil
+
+`func (o *BgpConfig) SetMd5Nil(b bool)`
+
+ SetMd5Nil sets the value for Md5 to be an explicit nil
+
+### UnsetMd5
+`func (o *BgpConfig) UnsetMd5()`
+
+UnsetMd5 ensures that no value is present for Md5, not even an explicit nil
 ### GetMaxPrefix
 
 `func (o *BgpConfig) GetMaxPrefix() int32`

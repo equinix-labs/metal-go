@@ -19,16 +19,16 @@ import (
 // BgpConfig struct for BgpConfig
 type BgpConfig struct {
 	Id *string `json:"id,omitempty"`
-	// status requested is valid only for global deployment
+	// Status of the BGP Config. Status \"requested\" is valid only with the \"global\" deployment_type.
 	Status *string `json:"status,omitempty"`
 	// In a Local BGP deployment, a customer uses an internal ASN to control routes within a single Equinix Metal datacenter. This means that the routes are never advertised to the global Internet. Global BGP, on the other hand, requires a customer to have a registered ASN and IP space. 
 	DeploymentType *string `json:"deployment_type,omitempty"`
-	// Autonomous System Number
+	// Autonomous System Number. ASN is required with \"global\" deployment_type. With the \"local\" deployment_type the private ASN 65000 is assigned by default.
 	Asn *int32 `json:"asn,omitempty"`
 	// Specifies AS-MACRO (aka AS-SET) to use when building client route filters
 	RouteObject *string `json:"route_object,omitempty"`
 	// (Optional) Password for BGP session in plaintext (not a checksum)
-	Md5 *string `json:"md5,omitempty"`
+	Md5 NullableString `json:"md5,omitempty"`
 	// The maximum number of route filters allowed per server
 	MaxPrefix *int32 `json:"max_prefix,omitempty"`
 	Project *Href `json:"project,omitempty"`
@@ -218,36 +218,46 @@ func (o *BgpConfig) SetRouteObject(v string) {
 	o.RouteObject = &v
 }
 
-// GetMd5 returns the Md5 field value if set, zero value otherwise.
+// GetMd5 returns the Md5 field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *BgpConfig) GetMd5() string {
-	if o == nil || o.Md5 == nil {
+	if o == nil || o.Md5.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.Md5
+	return *o.Md5.Get()
 }
 
 // GetMd5Ok returns a tuple with the Md5 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *BgpConfig) GetMd5Ok() (*string, bool) {
-	if o == nil || o.Md5 == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.Md5, true
+	return o.Md5.Get(), o.Md5.IsSet()
 }
 
 // HasMd5 returns a boolean if a field has been set.
 func (o *BgpConfig) HasMd5() bool {
-	if o != nil && o.Md5 != nil {
+	if o != nil && o.Md5.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetMd5 gets a reference to the given string and assigns it to the Md5 field.
+// SetMd5 gets a reference to the given NullableString and assigns it to the Md5 field.
 func (o *BgpConfig) SetMd5(v string) {
-	o.Md5 = &v
+	o.Md5.Set(&v)
+}
+// SetMd5Nil sets the value for Md5 to be an explicit nil
+func (o *BgpConfig) SetMd5Nil() {
+	o.Md5.Set(nil)
+}
+
+// UnsetMd5 ensures that no value is present for Md5, not even an explicit nil
+func (o *BgpConfig) UnsetMd5() {
+	o.Md5.Unset()
 }
 
 // GetMaxPrefix returns the MaxPrefix field value if set, zero value otherwise.
@@ -491,8 +501,8 @@ func (o BgpConfig) MarshalJSON() ([]byte, error) {
 	if o.RouteObject != nil {
 		toSerialize["route_object"] = o.RouteObject
 	}
-	if o.Md5 != nil {
-		toSerialize["md5"] = o.Md5
+	if o.Md5.IsSet() {
+		toSerialize["md5"] = o.Md5.Get()
 	}
 	if o.MaxPrefix != nil {
 		toSerialize["max_prefix"] = o.MaxPrefix

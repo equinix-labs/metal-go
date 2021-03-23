@@ -21,6 +21,8 @@ type InterconnectionCreateInput struct {
 	Description *string `json:"description,omitempty"`
 	// A Facility ID or code.
 	Facility string `json:"facility"`
+	// A Metro ID or code. Required for creating a connection, unless creating with facility.
+	Metro *string `json:"metro,omitempty"`
 	// Either 'shared' or 'dedicated'.
 	Type string `json:"type"`
 	// Either 'primary' or 'redundant'.
@@ -131,6 +133,38 @@ func (o *InterconnectionCreateInput) GetFacilityOk() (*string, bool) {
 // SetFacility sets field value
 func (o *InterconnectionCreateInput) SetFacility(v string) {
 	o.Facility = v
+}
+
+// GetMetro returns the Metro field value if set, zero value otherwise.
+func (o *InterconnectionCreateInput) GetMetro() string {
+	if o == nil || o.Metro == nil {
+		var ret string
+		return ret
+	}
+	return *o.Metro
+}
+
+// GetMetroOk returns a tuple with the Metro field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *InterconnectionCreateInput) GetMetroOk() (*string, bool) {
+	if o == nil || o.Metro == nil {
+		return nil, false
+	}
+	return o.Metro, true
+}
+
+// HasMetro returns a boolean if a field has been set.
+func (o *InterconnectionCreateInput) HasMetro() bool {
+	if o != nil && o.Metro != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMetro gets a reference to the given string and assigns it to the Metro field.
+func (o *InterconnectionCreateInput) SetMetro(v string) {
+	o.Metro = &v
 }
 
 // GetType returns the Type field value
@@ -319,6 +353,9 @@ func (o InterconnectionCreateInput) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["facility"] = o.Facility
+	}
+	if o.Metro != nil {
+		toSerialize["metro"] = o.Metro
 	}
 	if true {
 		toSerialize["type"] = o.Type

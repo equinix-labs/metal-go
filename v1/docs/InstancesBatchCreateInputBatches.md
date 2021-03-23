@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **Plan** | Pointer to **string** |  | [optional] 
 **Hostname** | Pointer to **string** |  | [optional] 
 **Hostnames** | Pointer to **[]string** |  | [optional] 
+**Facility** | Pointer to **[]string** | Array of facility codes the batch can use for provisioning. This param also takes a string if you want the batch to be fulfilled in only one facility. | [optional] 
 **Description** | Pointer to **string** |  | [optional] 
 **BillingCycle** | Pointer to **string** |  | [optional] 
 **OperatingSystem** | Pointer to **string** |  | [optional] 
@@ -114,6 +115,31 @@ SetHostnames sets Hostnames field to given value.
 `func (o *InstancesBatchCreateInputBatches) HasHostnames() bool`
 
 HasHostnames returns a boolean if a field has been set.
+
+### GetFacility
+
+`func (o *InstancesBatchCreateInputBatches) GetFacility() []string`
+
+GetFacility returns the Facility field if non-nil, zero value otherwise.
+
+### GetFacilityOk
+
+`func (o *InstancesBatchCreateInputBatches) GetFacilityOk() (*[]string, bool)`
+
+GetFacilityOk returns a tuple with the Facility field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFacility
+
+`func (o *InstancesBatchCreateInputBatches) SetFacility(v []string)`
+
+SetFacility sets Facility field to given value.
+
+### HasFacility
+
+`func (o *InstancesBatchCreateInputBatches) HasFacility() bool`
+
+HasFacility returns a boolean if a field has been set.
 
 ### GetDescription
 

@@ -21,6 +21,8 @@ type IPReservationRequestInput struct {
 	Quantity int32 `json:"quantity"`
 	Comments *string `json:"comments,omitempty"`
 	Facility *string `json:"facility,omitempty"`
+	// The code of the metro you are creating the IP reservation request in.
+	Metro *string `json:"metro,omitempty"`
 	Customdata *map[string]interface{} `json:"customdata,omitempty"`
 	Tags *[]string `json:"tags,omitempty"`
 	Details *string `json:"details,omitempty"`
@@ -156,6 +158,38 @@ func (o *IPReservationRequestInput) HasFacility() bool {
 // SetFacility gets a reference to the given string and assigns it to the Facility field.
 func (o *IPReservationRequestInput) SetFacility(v string) {
 	o.Facility = &v
+}
+
+// GetMetro returns the Metro field value if set, zero value otherwise.
+func (o *IPReservationRequestInput) GetMetro() string {
+	if o == nil || o.Metro == nil {
+		var ret string
+		return ret
+	}
+	return *o.Metro
+}
+
+// GetMetroOk returns a tuple with the Metro field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IPReservationRequestInput) GetMetroOk() (*string, bool) {
+	if o == nil || o.Metro == nil {
+		return nil, false
+	}
+	return o.Metro, true
+}
+
+// HasMetro returns a boolean if a field has been set.
+func (o *IPReservationRequestInput) HasMetro() bool {
+	if o != nil && o.Metro != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMetro gets a reference to the given string and assigns it to the Metro field.
+func (o *IPReservationRequestInput) SetMetro(v string) {
+	o.Metro = &v
 }
 
 // GetCustomdata returns the Customdata field value if set, zero value otherwise.
@@ -299,6 +333,9 @@ func (o IPReservationRequestInput) MarshalJSON() ([]byte, error) {
 	}
 	if o.Facility != nil {
 		toSerialize["facility"] = o.Facility
+	}
+	if o.Metro != nil {
+		toSerialize["metro"] = o.Metro
 	}
 	if o.Customdata != nil {
 		toSerialize["customdata"] = o.Customdata

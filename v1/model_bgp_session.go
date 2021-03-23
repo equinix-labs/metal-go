@@ -13,17 +13,21 @@ package v1
 
 import (
 	"encoding/json"
+	"time"
 )
 
 // BgpSession struct for BgpSession
 type BgpSession struct {
 	Id *string `json:"id,omitempty"`
+	// The status of the BGP Session will start \"unknown\" and progress to \"up\" or \"down\" depending on the devices.
 	Status *string `json:"status,omitempty"`
 	LearnedRoutes *[]string `json:"learned_routes,omitempty"`
 	AddressFamily *string `json:"address_family,omitempty"`
 	Device *Href `json:"device,omitempty"`
 	Href *string `json:"href,omitempty"`
 	DefaultRoute *bool `json:"default_route,omitempty"`
+	CreatedAt *time.Time `json:"created_at,omitempty"`
+	UpdatedAt *time.Time `json:"updated_at,omitempty"`
 }
 
 // NewBgpSession instantiates a new BgpSession object
@@ -267,6 +271,70 @@ func (o *BgpSession) SetDefaultRoute(v bool) {
 	o.DefaultRoute = &v
 }
 
+// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
+func (o *BgpSession) GetCreatedAt() time.Time {
+	if o == nil || o.CreatedAt == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.CreatedAt
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *BgpSession) GetCreatedAtOk() (*time.Time, bool) {
+	if o == nil || o.CreatedAt == nil {
+		return nil, false
+	}
+	return o.CreatedAt, true
+}
+
+// HasCreatedAt returns a boolean if a field has been set.
+func (o *BgpSession) HasCreatedAt() bool {
+	if o != nil && o.CreatedAt != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
+func (o *BgpSession) SetCreatedAt(v time.Time) {
+	o.CreatedAt = &v
+}
+
+// GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
+func (o *BgpSession) GetUpdatedAt() time.Time {
+	if o == nil || o.UpdatedAt == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.UpdatedAt
+}
+
+// GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *BgpSession) GetUpdatedAtOk() (*time.Time, bool) {
+	if o == nil || o.UpdatedAt == nil {
+		return nil, false
+	}
+	return o.UpdatedAt, true
+}
+
+// HasUpdatedAt returns a boolean if a field has been set.
+func (o *BgpSession) HasUpdatedAt() bool {
+	if o != nil && o.UpdatedAt != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetUpdatedAt gets a reference to the given time.Time and assigns it to the UpdatedAt field.
+func (o *BgpSession) SetUpdatedAt(v time.Time) {
+	o.UpdatedAt = &v
+}
+
 func (o BgpSession) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Id != nil {
@@ -289,6 +357,12 @@ func (o BgpSession) MarshalJSON() ([]byte, error) {
 	}
 	if o.DefaultRoute != nil {
 		toSerialize["default_route"] = o.DefaultRoute
+	}
+	if o.CreatedAt != nil {
+		toSerialize["created_at"] = o.CreatedAt
+	}
+	if o.UpdatedAt != nil {
+		toSerialize["updated_at"] = o.UpdatedAt
 	}
 	return json.Marshal(toSerialize)
 }

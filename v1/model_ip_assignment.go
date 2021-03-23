@@ -32,6 +32,7 @@ type IPAssignment struct {
 	Gateway *string `json:"gateway,omitempty"`
 	Href *string `json:"href,omitempty"`
 	CreatedAt *time.Time `json:"created_at,omitempty"`
+	Metro *Metro `json:"metro,omitempty"`
 	ParentBlock *ParentBlock `json:"parent_block,omitempty"`
 }
 
@@ -500,6 +501,38 @@ func (o *IPAssignment) SetCreatedAt(v time.Time) {
 	o.CreatedAt = &v
 }
 
+// GetMetro returns the Metro field value if set, zero value otherwise.
+func (o *IPAssignment) GetMetro() Metro {
+	if o == nil || o.Metro == nil {
+		var ret Metro
+		return ret
+	}
+	return *o.Metro
+}
+
+// GetMetroOk returns a tuple with the Metro field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IPAssignment) GetMetroOk() (*Metro, bool) {
+	if o == nil || o.Metro == nil {
+		return nil, false
+	}
+	return o.Metro, true
+}
+
+// HasMetro returns a boolean if a field has been set.
+func (o *IPAssignment) HasMetro() bool {
+	if o != nil && o.Metro != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMetro gets a reference to the given Metro and assigns it to the Metro field.
+func (o *IPAssignment) SetMetro(v Metro) {
+	o.Metro = &v
+}
+
 // GetParentBlock returns the ParentBlock field value if set, zero value otherwise.
 func (o *IPAssignment) GetParentBlock() ParentBlock {
 	if o == nil || o.ParentBlock == nil {
@@ -575,6 +608,9 @@ func (o IPAssignment) MarshalJSON() ([]byte, error) {
 	}
 	if o.CreatedAt != nil {
 		toSerialize["created_at"] = o.CreatedAt
+	}
+	if o.Metro != nil {
+		toSerialize["metro"] = o.Metro
 	}
 	if o.ParentBlock != nil {
 		toSerialize["parent_block"] = o.ParentBlock

@@ -53,6 +53,7 @@ type Device struct {
 	SshKeys *[]Href `json:"ssh_keys,omitempty"`
 	IpAddresses *[]IPAssignment `json:"ip_addresses,omitempty"`
 	ProvisioningEvents *[]Event `json:"provisioning_events,omitempty"`
+	Metro *Metro `json:"metro,omitempty"`
 }
 
 // NewDevice instantiates a new Device object
@@ -1192,6 +1193,38 @@ func (o *Device) SetProvisioningEvents(v []Event) {
 	o.ProvisioningEvents = &v
 }
 
+// GetMetro returns the Metro field value if set, zero value otherwise.
+func (o *Device) GetMetro() Metro {
+	if o == nil || o.Metro == nil {
+		var ret Metro
+		return ret
+	}
+	return *o.Metro
+}
+
+// GetMetroOk returns a tuple with the Metro field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Device) GetMetroOk() (*Metro, bool) {
+	if o == nil || o.Metro == nil {
+		return nil, false
+	}
+	return o.Metro, true
+}
+
+// HasMetro returns a boolean if a field has been set.
+func (o *Device) HasMetro() bool {
+	if o != nil && o.Metro != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMetro gets a reference to the given Metro and assigns it to the Metro field.
+func (o *Device) SetMetro(v Metro) {
+	o.Metro = &v
+}
+
 func (o Device) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Id != nil {
@@ -1298,6 +1331,9 @@ func (o Device) MarshalJSON() ([]byte, error) {
 	}
 	if o.ProvisioningEvents != nil {
 		toSerialize["provisioning_events"] = o.ProvisioningEvents
+	}
+	if o.Metro != nil {
+		toSerialize["metro"] = o.Metro
 	}
 	return json.Marshal(toSerialize)
 }

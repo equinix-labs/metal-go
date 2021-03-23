@@ -21,6 +21,7 @@ Name | Type | Description | Notes
 **Href** | Pointer to **string** |  | [optional] 
 **Tags** | Pointer to **[]string** |  | [optional] 
 **State** | Pointer to **string** |  | [optional] 
+**Metro** | Pointer to [**Metro**](Metro.md) |  | [optional] 
 
 ## Methods
 
@@ -465,6 +466,31 @@ SetState sets State field to given value.
 `func (o *IPReservation) HasState() bool`
 
 HasState returns a boolean if a field has been set.
+
+### GetMetro
+
+`func (o *IPReservation) GetMetro() Metro`
+
+GetMetro returns the Metro field if non-nil, zero value otherwise.
+
+### GetMetroOk
+
+`func (o *IPReservation) GetMetroOk() (*Metro, bool)`
+
+GetMetroOk returns a tuple with the Metro field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMetro
+
+`func (o *IPReservation) SetMetro(v Metro)`
+
+SetMetro sets Metro field to given value.
+
+### HasMetro
+
+`func (o *IPReservation) HasMetro() bool`
+
+HasMetro returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
