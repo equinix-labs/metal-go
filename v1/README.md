@@ -348,6 +348,7 @@ Class | Method | HTTP request | Description
  - [MembershipInput](docs/MembershipInput.md)
  - [MembershipList](docs/MembershipList.md)
  - [Meta](docs/Meta.md)
+ - [Metro](docs/Metro.md)
  - [MetroCapacityList](docs/MetroCapacityList.md)
  - [MetroCapacityReport](docs/MetroCapacityReport.md)
  - [MetroServerInfo](docs/MetroServerInfo.md)

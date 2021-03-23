@@ -134,6 +134,7 @@ docs/MembershipInput.md
 docs/MembershipList.md
 docs/MembershipsApi.md
 docs/Meta.md
+docs/Metro.md
 docs/MetroCapacityList.md
 docs/MetroCapacityReport.md
 docs/MetroServerInfo.md
@@ -319,6 +320,7 @@ model_membership.go
 model_membership_input.go
 model_membership_list.go
 model_meta.go
+model_metro.go
 model_metro_capacity_list.go
 model_metro_capacity_report.go
 model_metro_server_info.go

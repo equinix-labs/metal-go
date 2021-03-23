@@ -22,7 +22,7 @@ type Facility struct {
 	Code *string `json:"code,omitempty"`
 	Features *[]string `json:"features,omitempty"`
 	Address *Address `json:"address,omitempty"`
-	Metro *map[string]interface{} `json:"metro,omitempty"`
+	Metro *Metro `json:"metro,omitempty"`
 }
 
 // NewFacility instantiates a new Facility object
@@ -203,9 +203,9 @@ func (o *Facility) SetAddress(v Address) {
 }
 
 // GetMetro returns the Metro field value if set, zero value otherwise.
-func (o *Facility) GetMetro() map[string]interface{} {
+func (o *Facility) GetMetro() Metro {
 	if o == nil || o.Metro == nil {
-		var ret map[string]interface{}
+		var ret Metro
 		return ret
 	}
 	return *o.Metro
@@ -213,7 +213,7 @@ func (o *Facility) GetMetro() map[string]interface{} {
 
 // GetMetroOk returns a tuple with the Metro field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Facility) GetMetroOk() (*map[string]interface{}, bool) {
+func (o *Facility) GetMetroOk() (*Metro, bool) {
 	if o == nil || o.Metro == nil {
 		return nil, false
 	}
@@ -229,8 +229,8 @@ func (o *Facility) HasMetro() bool {
 	return false
 }
 
-// SetMetro gets a reference to the given map[string]interface{} and assigns it to the Metro field.
-func (o *Facility) SetMetro(v map[string]interface{}) {
+// SetMetro gets a reference to the given Metro and assigns it to the Metro field.
+func (o *Facility) SetMetro(v Metro) {
 	o.Metro = &v
 }
 

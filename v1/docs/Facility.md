@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **Code** | Pointer to **string** |  | [optional] 
 **Features** | Pointer to **[]string** |  | [optional] 
 **Address** | Pointer to [**Address**](Address.md) |  | [optional] 
-**Metro** | Pointer to **map[string]interface{}** |  | [optional] 
+**Metro** | Pointer to [**Metro**](Metro.md) |  | [optional] 
 
 ## Methods
 
@@ -157,20 +157,20 @@ HasAddress returns a boolean if a field has been set.
 
 ### GetMetro
 
-`func (o *Facility) GetMetro() map[string]interface{}`
+`func (o *Facility) GetMetro() Metro`
 
 GetMetro returns the Metro field if non-nil, zero value otherwise.
 
 ### GetMetroOk
 
-`func (o *Facility) GetMetroOk() (*map[string]interface{}, bool)`
+`func (o *Facility) GetMetroOk() (*Metro, bool)`
 
 GetMetroOk returns a tuple with the Metro field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMetro
 
-`func (o *Facility) SetMetro(v map[string]interface{})`
+`func (o *Facility) SetMetro(v Metro)`
 
 SetMetro sets Metro field to given value.
 

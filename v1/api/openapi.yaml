@@ -8388,7 +8388,10 @@ components:
             longitude: longitude
           state: state
           zip_code: zip_code
-        metro: '{}'
+        metro:
+          code: code
+          name: name
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         name: name
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
       properties:
@@ -8406,8 +8409,7 @@ components:
         address:
           $ref: '#/components/schemas/Address'
         metro:
-          properties: {}
-          type: object
+          $ref: '#/components/schemas/Metro'
       type: object
     FacilityList:
       example:
@@ -8426,7 +8428,10 @@ components:
               longitude: longitude
             state: state
             zip_code: zip_code
-          metro: '{}'
+          metro:
+            code: code
+            name: name
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           name: name
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         - features:
@@ -8443,7 +8448,10 @@ components:
               longitude: longitude
             state: state
             zip_code: zip_code
-          metro: '{}'
+          metro:
+            code: code
+            name: name
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           name: name
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
       properties:
@@ -8523,7 +8531,10 @@ components:
               longitude: longitude
             state: state
             zip_code: zip_code
-          metro: '{}'
+          metro:
+            code: code
+            name: name
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           name: name
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         plan:
@@ -8558,7 +8569,10 @@ components:
             public: true
             netmask: netmask
             management: true
-            metro: '{}'
+            metro:
+              code: code
+              name: name
+              id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             cidr: 5
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             href: href
@@ -8579,7 +8593,10 @@ components:
             public: true
             netmask: netmask
             management: true
-            metro: '{}'
+            metro:
+              code: code
+              name: name
+              id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             cidr: 5
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             href: href
@@ -8667,7 +8684,10 @@ components:
           ssh_keys:
           - href: href
           - href: href
-          metro: '{}'
+          metro:
+            code: code
+            name: name
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           location:
             cage: cage
             rack: rack
@@ -8692,7 +8712,10 @@ components:
                 longitude: longitude
               state: state
               zip_code: zip_code
-            metro: '{}'
+            metro:
+              code: code
+              name: name
+              id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             name: name
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
       properties:
@@ -8784,7 +8807,10 @@ components:
                 longitude: longitude
               state: state
               zip_code: zip_code
-            metro: '{}'
+            metro:
+              code: code
+              name: name
+              id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             name: name
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           plan:
@@ -8819,7 +8845,10 @@ components:
               public: true
               netmask: netmask
               management: true
-              metro: '{}'
+              metro:
+                code: code
+                name: name
+                id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
               cidr: 5
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
               href: href
@@ -8840,7 +8869,10 @@ components:
               public: true
               netmask: netmask
               management: true
-              metro: '{}'
+              metro:
+                code: code
+                name: name
+                id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
               cidr: 5
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
               href: href
@@ -8928,7 +8960,10 @@ components:
             ssh_keys:
             - href: href
             - href: href
-            metro: '{}'
+            metro:
+              code: code
+              name: name
+              id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             location:
               cage: cage
               rack: rack
@@ -8953,7 +8988,10 @@ components:
                   longitude: longitude
                 state: state
                 zip_code: zip_code
-              metro: '{}'
+              metro:
+                code: code
+                name: name
+                id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
               name: name
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         - remove_at: 2000-01-23T04:56:07.000+00:00
@@ -9006,7 +9044,10 @@ components:
                 longitude: longitude
               state: state
               zip_code: zip_code
-            metro: '{}'
+            metro:
+              code: code
+              name: name
+              id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             name: name
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           plan:
@@ -9041,7 +9082,10 @@ components:
               public: true
               netmask: netmask
               management: true
-              metro: '{}'
+              metro:
+                code: code
+                name: name
+                id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
               cidr: 5
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
               href: href
@@ -9062,7 +9106,10 @@ components:
               public: true
               netmask: netmask
               management: true
-              metro: '{}'
+              metro:
+                code: code
+                name: name
+                id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
               cidr: 5
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
               href: href
@@ -9150,7 +9197,10 @@ components:
             ssh_keys:
             - href: href
             - href: href
-            metro: '{}'
+            metro:
+              code: code
+              name: name
+              id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             location:
               cage: cage
               rack: rack
@@ -9175,7 +9225,10 @@ components:
                   longitude: longitude
                 state: state
                 zip_code: zip_code
-              metro: '{}'
+              metro:
+                code: code
+                name: name
+                id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
               name: name
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
       properties:
@@ -9203,7 +9256,10 @@ components:
           public: true
           netmask: netmask
           management: true
-          metro: '{}'
+          metro:
+            code: code
+            name: name
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           cidr: 5
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           href: href
@@ -9224,7 +9280,10 @@ components:
           public: true
           netmask: netmask
           management: true
-          metro: '{}'
+          metro:
+            code: code
+            name: name
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           cidr: 5
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           href: href
@@ -9312,7 +9371,10 @@ components:
         ssh_keys:
         - href: href
         - href: href
-        metro: '{}'
+        metro:
+          code: code
+          name: name
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         location:
           cage: cage
           rack: rack
@@ -9337,7 +9399,10 @@ components:
               longitude: longitude
             state: state
             zip_code: zip_code
-          metro: '{}'
+          metro:
+            code: code
+            name: name
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           name: name
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
       properties:
@@ -9622,7 +9687,10 @@ components:
             public: true
             netmask: netmask
             management: true
-            metro: '{}'
+            metro:
+              code: code
+              name: name
+              id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             cidr: 5
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             href: href
@@ -9643,7 +9711,10 @@ components:
             public: true
             netmask: netmask
             management: true
-            metro: '{}'
+            metro:
+              code: code
+              name: name
+              id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             cidr: 5
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             href: href
@@ -9731,7 +9802,10 @@ components:
           ssh_keys:
           - href: href
           - href: href
-          metro: '{}'
+          metro:
+            code: code
+            name: name
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           location:
             cage: cage
             rack: rack
@@ -9756,7 +9830,10 @@ components:
                 longitude: longitude
               state: state
               zip_code: zip_code
-            metro: '{}'
+            metro:
+              code: code
+              name: name
+              id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             name: name
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         - ip_addresses:
@@ -9774,7 +9851,10 @@ components:
             public: true
             netmask: netmask
             management: true
-            metro: '{}'
+            metro:
+              code: code
+              name: name
+              id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             cidr: 5
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             href: href
@@ -9795,7 +9875,10 @@ components:
             public: true
             netmask: netmask
             management: true
-            metro: '{}'
+            metro:
+              code: code
+              name: name
+              id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             cidr: 5
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             href: href
@@ -9883,7 +9966,10 @@ components:
           ssh_keys:
           - href: href
           - href: href
-          metro: '{}'
+          metro:
+            code: code
+            name: name
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           location:
             cage: cage
             rack: rack
@@ -9908,7 +9994,10 @@ components:
                 longitude: longitude
               state: state
               zip_code: zip_code
-            metro: '{}'
+            metro:
+              code: code
+              name: name
+              id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             name: name
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         meta:
@@ -10852,6 +10941,20 @@ components:
             type: string
           type: array
       type: object
+    Metro:
+      example:
+        code: code
+        name: name
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        id:
+          format: uuid
+          type: string
+        name:
+          type: string
+        code:
+          type: string
+      type: object
     BgpConfigRequestInput:
       example:
         use_case: use_case
@@ -11198,7 +11301,10 @@ components:
         public: true
         netmask: netmask
         management: true
-        metro: '{}'
+        metro:
+          code: code
+          name: name
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         cidr: 5
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         href: href
@@ -11274,7 +11380,10 @@ components:
           public: true
           netmask: netmask
           management: true
-          metro: '{}'
+          metro:
+            code: code
+            name: name
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           cidr: 5
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           href: href
@@ -11295,7 +11404,10 @@ components:
           public: true
           netmask: netmask
           management: true
-          metro: '{}'
+          metro:
+            code: code
+            name: name
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           cidr: 5
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           href: href
@@ -11315,7 +11427,10 @@ components:
         public: true
         netmask: netmask
         management: true
-        metro: '{}'
+        metro:
+          code: code
+          name: name
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         cidr: 6
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         href: href
@@ -11335,7 +11450,10 @@ components:
               longitude: longitude
             state: state
             zip_code: zip_code
-          metro: '{}'
+          metro:
+            code: code
+            name: name
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           name: name
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
       properties:
@@ -11415,7 +11533,10 @@ components:
           public: true
           netmask: netmask
           management: true
-          metro: '{}'
+          metro:
+            code: code
+            name: name
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           cidr: 5
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           href: href
@@ -11436,7 +11557,10 @@ components:
           public: true
           netmask: netmask
           management: true
-          metro: '{}'
+          metro:
+            code: code
+            name: name
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           cidr: 5
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           href: href
@@ -11467,7 +11591,10 @@ components:
             public: true
             netmask: netmask
             management: true
-            metro: '{}'
+            metro:
+              code: code
+              name: name
+              id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             cidr: 5
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             href: href
@@ -11488,7 +11615,10 @@ components:
             public: true
             netmask: netmask
             management: true
-            metro: '{}'
+            metro:
+              code: code
+              name: name
+              id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             cidr: 5
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             href: href
@@ -11508,7 +11638,10 @@ components:
           public: true
           netmask: netmask
           management: true
-          metro: '{}'
+          metro:
+            code: code
+            name: name
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           cidr: 6
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           href: href
@@ -11528,7 +11661,10 @@ components:
                 longitude: longitude
               state: state
               zip_code: zip_code
-            metro: '{}'
+            metro:
+              code: code
+              name: name
+              id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             name: name
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         - assignments:
@@ -11546,7 +11682,10 @@ components:
             public: true
             netmask: netmask
             management: true
-            metro: '{}'
+            metro:
+              code: code
+              name: name
+              id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             cidr: 5
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             href: href
@@ -11567,7 +11706,10 @@ components:
             public: true
             netmask: netmask
             management: true
-            metro: '{}'
+            metro:
+              code: code
+              name: name
+              id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             cidr: 5
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             href: href
@@ -11587,7 +11729,10 @@ components:
           public: true
           netmask: netmask
           management: true
-          metro: '{}'
+          metro:
+            code: code
+            name: name
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           cidr: 6
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           href: href
@@ -11607,7 +11752,10 @@ components:
                 longitude: longitude
               state: state
               zip_code: zip_code
-            metro: '{}'
+            metro:
+              code: code
+              name: name
+              id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             name: name
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
       properties:
@@ -12654,7 +12802,10 @@ components:
               longitude: longitude
             state: state
             zip_code: zip_code
-          metro: '{}'
+          metro:
+            code: code
+            name: name
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           name: name
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
       properties:
@@ -12686,7 +12837,10 @@ components:
                 longitude: longitude
               state: state
               zip_code: zip_code
-            metro: '{}'
+            metro:
+              code: code
+              name: name
+              id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             name: name
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         - name: name
@@ -12706,7 +12860,10 @@ components:
                 longitude: longitude
               state: state
               zip_code: zip_code
-            metro: '{}'
+            metro:
+              code: code
+              name: name
+              id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             name: name
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
       properties:
