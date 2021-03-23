@@ -1,0 +1,384 @@
+diff --git a/equinix-metal.patched.json b/equinix-metal.patched.json
+index 65a0aa5..135c830 100644
+--- a/equinix-metal.patched.json
++++ b/equinix-metal.patched.json
+@@ -88,6 +88,10 @@
+       "name": "Licenses",
+       "description": "Manage licenses. See project endpoints to list and create licenses for a particular project."
+     },
++    {
++      "name": "Metros",
++      "description": "Metro Management"
++    },
+     {
+       "name": "Memberships",
+       "description": "Membership Management (Project). Check out the product docs to learn more about [Membership](https://metal.equinix.com/developers/docs/accounts/)."
+@@ -776,6 +780,60 @@
+         }
+       }
+     },
++    "/capacity/metros": {
++      "get": {
++        "summary": "View capacity for metros",
++        "description": "Returns a list of metros and plans with their current capacity.",
++        "operationId": "findCapacityForMetro",
++        "tags": [
++          "Capacity"
++        ],
++        "responses": {
++          "200": {
++            "description": "ok",
++            "schema": {
++              "$ref": "#/definitions/MetroCapacityList"
++            }
++          },
++          "401": {
++            "description": "unauthorized"
++          }
++        }
++      },
++      "post": {
++        "summary": "Check capacity for a metro",
++        "description": "Validates if a deploy can be fulfilled in a metro.",
++        "operationId": "checkCapacityForMetro",
++        "tags": [
++          "Capacity"
++        ],
++        "parameters": [
++          {
++            "name": "servers",
++            "in": "body",
++            "description": "Metro to check capacity in",
++            "required": true,
++            "schema": {
++              "$ref": "#/definitions/CapacityPerMetroInput"
++            }
++          }
++        ],
++        "responses": {
++          "200": {
++            "description": "ok",
++            "schema": {
++              "$ref": "#/definitions/CapacityCheckPerMetroList"
++            }
++          },
++          "401": {
++            "description": "unauthorized"
++          },
++          "422": {
++            "description": "unprocessable entity"
++          }
++        }
++      }
++    },
+     "/devices/{id}/events": {
+       "get": {
+         "summary": "Retrieve device's events",
+@@ -6432,6 +6490,13 @@
+             "required": true,
+             "type": "string"
+           },
++          {
++            "name": "metro",
++            "in": "query",
++            "description": "Metro to check spot market price history",
++            "required": false,
++            "type": "string"
++          },
+           {
+             "name": "from",
+             "in": "query",
+@@ -6457,6 +6522,40 @@
+         }
+       }
+     },
++    "/market/spot/prices/metros": {
++      "get": {
++        "summary": "Get current spot market prices for metros",
++        "description": "Get Equinix Metal current spot market prices for all metros.",
++        "operationId": "findMetroSpotMarketPrices",
++        "tags": [
++          "Market"
++        ],
++        "parameters": [
++          {
++            "name": "metro",
++            "in": "query",
++            "description": "Metro to filter spot market prices",
++            "required": false,
++            "type": "string"
++          },
++          {
++            "name": "plan",
++            "in": "query",
++            "description": "Plan to filter spot market prices",
++            "required": false,
++            "type": "string"
++          }
++        ],
++        "responses": {
++          "200": {
++            "description": "ok",
++            "schema": {
++              "$ref": "#/definitions/SpotMarketPricesPerMetroList"
++            }
++          }
++        }
++      }
++    },
+     "/projects/{id}/spot-market-requests": {
+       "post": {
+         "summary": "Create a spot market request",
+@@ -9445,6 +9544,23 @@
+         },
+         "address": {
+           "$ref": "#/definitions/Address"
++        },
++        "metro": {
++          "type": "object",
++          "items": {
++            "properties": {
++              "id": {
++                "type": "string",
++                "format": "uuid"
++              },
++              "name": {
++                "type": "string"
++              },
++              "code": {
++                "type": "string"
++              }
++            }
++          }
+         }
+       }
+     },
+@@ -9654,6 +9770,10 @@
+           "items": {
+             "$ref": "#/definitions/Event"
+           }
++        },
++        "metro": {
++          "$ref": "#/definitions/Metro",
++          "description": "Lite version of metro object if instance was requested with metro"
+         }
+       }
+     },
+@@ -9697,6 +9817,10 @@
+         "customdata": {
+           "type": "object"
+         },
++        "metro": {
++          "type": "string",
++          "description": "Metro code or ID of where the instance should be provisioned in."
++        },
+         "hardware_reservation_id": {
+           "type": "string",
+           "format": "uuid",
+@@ -9898,6 +10022,9 @@
+         },
+         "organization": {
+           "$ref": "#/definitions/Href"
++        },
++        "metro": {
++          "$ref": "#/definitions/Href"
+         }
+       }
+     },
+@@ -9929,6 +10056,10 @@
+           "type": "string",
+           "description": "A Facility ID or code."
+         },
++        "metro": {
++          "type": "string",
++          "description": "A Metro ID or code. Required for creating a connection, unless creating with facility."
++        },
+         "type": {
+           "type": "string",
+           "description": "Either 'shared' or 'dedicated'."
+@@ -10604,6 +10735,9 @@
+           "type": "string",
+           "format": "date-time"
+         },
++        "metro": {
++          "$ref": "#/definitions/Metro"
++        },
+         "parent_block": {
+           "$ref": "#/definitions/ParentBlock"
+         }
+@@ -10685,6 +10819,9 @@
+         },
+         "state": {
+           "type": "string"
++        },
++        "metro": {
++          "$ref": "#/definitions/Metro"
+         }
+       }
+     },
+@@ -10752,6 +10889,10 @@
+         "facility": {
+           "type": "string"
+         },
++        "metro": {
++          "type": "string",
++          "description": "The code of the metro you are creating the IP reservation request in."
++        },
+         "customdata": {
+           "type": "object"
+         },
+@@ -11131,6 +11272,13 @@
+           "items": {
+             "$ref": "#/definitions/Href"
+           }
++        },
++        "available_in_metros": {
++          "type": "array",
++          "description": "Shows which metros the plan is available in, and the metro-based price if it is different from the default price.",
++          "items": {
++            "$ref": "#/definitions/Href"
++          }
+         }
+       }
+     },
+@@ -12002,6 +12150,38 @@
+         }
+       }
+     },
++    "MetroCapacityList": {
++      "properties": {
++        "capacity": {
++          "$ref": "#/definitions/MetroCapacityReport"
++        }
++      }
++    },
++    "MetroCapacityReport": {
++      "properties": {
++        "ny": {
++          "$ref": "#/definitions/CapacityPerFacility"
++        },
++        "sv": {
++          "$ref": "#/definitions/CapacityPerFacility"
++        },
++        "am": {
++          "$ref": "#/definitions/CapacityPerFacility"
++        },
++        "ch": {
++          "$ref": "#/definitions/CapacityPerFacility"
++        },
++        "la": {
++          "$ref": "#/definitions/CapacityPerFacility"
++        },
++        "sg": {
++          "$ref": "#/definitions/CapacityPerFacility"
++        },
++        "da": {
++          "$ref": "#/definitions/CapacityPerFacility"
++        }
++      }
++    },
+     "CapacityPerFacility": {
+       "properties": {
+         "baremetal_2a": {
+@@ -12090,6 +12270,29 @@
+         }
+       }
+     },
++    "CapacityPerMetroInput": {
++      "properties": {
++        "servers": {
++          "type": "array",
++          "items": {
++            "$ref": "#/definitions/MetroServerInfo"
++          }
++        }
++      }
++    },
++    "MetroServerInfo": {
++      "properties": {
++        "metro": {
++          "type": "string"
++        },
++        "plan": {
++          "type": "string"
++        },
++        "quantity": {
++          "type": "string"
++        }
++      }
++    },
+     "CapacityCheckPerFacilityList": {
+       "properties": {
+         "servers": {
+@@ -12116,6 +12319,32 @@
+         }
+       }
+     },
++    "CapacityCheckPerMetroList": {
++      "properties": {
++        "servers": {
++          "type": "array",
++          "items": {
++            "$ref": "#/definitions/CapacityCheckPerMetroInfo"
++          }
++        }
++      }
++    },
++    "CapacityCheckPerMetroInfo": {
++      "properties": {
++        "metro": {
++          "type": "string"
++        },
++        "plan": {
++          "type": "string"
++        },
++        "quantity": {
++          "type": "string"
++        },
++        "available": {
++          "type": "boolean"
++        }
++      }
++    },
+     "SpotMarketPricesList": {
+       "properties": {
+         "spot_market_prices": {
+@@ -12169,6 +12398,38 @@
+         }
+       }
+     },
++    "SpotMarketPricesPerMetroList": {
++      "properties": {
++        "spot_market_prices": {
++          "$ref": "#/definitions/SpotPricesPerMetroReport"
++        }
++      }
++    },
++    "SpotMarketPricesPerMetroReport": {
++      "properties": {
++        "ny": {
++          "$ref": "#/definitions/SpotPricesPerFacility"
++        },
++        "sv": {
++          "$ref": "#/definitions/SpotPricesPerFacility"
++        },
++        "am": {
++          "$ref": "#/definitions/SpotPricesPerFacility"
++        },
++        "ch": {
++          "$ref": "#/definitions/SpotPricesPerFacility"
++        },
++        "la": {
++          "$ref": "#/definitions/SpotPricesPerFacility"
++        },
++        "sg": {
++          "$ref": "#/definitions/SpotPricesPerFacility"
++        },
++        "da": {
++          "$ref": "#/definitions/SpotPricesPerFacility"
++        }
++      }
++    },
+     "SpotPricesPerFacility": {
+       "properties": {
+         "baremetal_2a": {
