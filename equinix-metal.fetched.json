@@ -8739,6 +8739,13 @@
             },
             "collectionFormat": "csv",
             "required": false
+          },
+          {
+            "name": "facility",
+            "in": "query",
+            "description": "Filter by Facility ID (uuid) or Facility Code",
+            "required": false,
+            "type": "string"
           }
         ],
         "responses": {
@@ -9243,6 +9250,13 @@
                 "items": {
                   "type": "string"
                 }
+              },
+              "facility": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Array of facility codes the batch can use for provisioning. This param also takes a string if you want the batch to be fulfilled in only one facility."
               },
               "description": {
                 "type": "string"
@@ -12672,23 +12686,6 @@
         }
       }
     },
-    "CreateEmailInput": {
-      "required": [
-        "address"
-      ],
-      "properties": {
-        "address": {
-          "type": "string"
-        }
-      }
-    },
-    "UpdateEmailInput": {
-      "properties": {
-        "default": {
-          "type": "boolean"
-        }
-      }
-    },
     "Email": {
       "properties": {
         "id": {
@@ -12706,6 +12703,23 @@
         },
         "href": {
           "type": "string"
+        }
+      }
+    },
+    "CreateEmailInput": {
+      "required": [
+        "address"
+      ],
+      "properties": {
+        "address": {
+          "type": "string"
+        }
+      }
+    },
+    "UpdateEmailInput": {
+      "properties": {
+        "default": {
+          "type": "boolean"
         }
       }
     }
