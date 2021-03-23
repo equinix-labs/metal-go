@@ -12440,7 +12440,7 @@
     "SpotMarketPricesPerMetroList": {
       "properties": {
         "spot_market_prices": {
-          "$ref": "#/definitions/SpotPricesPerMetroReport"
+          "$ref": "#/definitions/SpotMarketPricesPerMetroReport"
         }
       }
     },
