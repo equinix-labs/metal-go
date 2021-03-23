@@ -450,12 +450,6 @@ paths:
         description: BGP session to create
         required: true
       responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/BgpSession'
-          description: ok
         "201":
           content:
             application/json:
@@ -7637,6 +7631,11 @@ paths:
             type: string
           type: array
         style: form
+      - description: Filter by Facility ID (uuid) or Facility Code
+        in: query
+        name: facility
+        schema:
+          type: string
       responses:
         "200":
           content:
@@ -8136,6 +8135,9 @@ components:
           customdata: '{}'
           locked: true
           plan: plan
+          facility:
+          - facility
+          - facility
         - user_ssh_keys:
           - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -8174,6 +8176,9 @@ components:
           customdata: '{}'
           locked: true
           plan: plan
+          facility:
+          - facility
+          - facility
       properties:
         batches:
           items:
@@ -10977,26 +10982,30 @@ components:
     BgpConfig:
       example:
         sessions:
-        - address_family: address_family
+        - address_family: ipv4
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          created_at: 2000-01-23T04:56:07.000+00:00
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           href: href
           default_route: true
           device:
             href: href
-          status: status
+          status: unknown
           learned_routes:
-          - learned_routes
-          - learned_routes
-        - address_family: address_family
+          - 10.32.16.0/31
+          - 10.32.16.0/31
+        - address_family: ipv4
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          created_at: 2000-01-23T04:56:07.000+00:00
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           href: href
           default_route: true
           device:
             href: href
-          status: status
+          status: unknown
           learned_routes:
-          - learned_routes
-          - learned_routes
+          - 10.32.16.0/31
+          - 10.32.16.0/31
         ranges:
         - address_family: 1
           range: range
@@ -11023,7 +11032,8 @@ components:
           format: uuid
           type: string
         status:
-          description: status requested is valid only for global deployment
+          description: Status of the BGP Config. Status "requested" is valid only
+            with the "global" deployment_type.
           enum:
           - requested
           - enabled
@@ -11037,7 +11047,9 @@ components:
           - local
           type: string
         asn:
-          description: Autonomous System Number
+          description: Autonomous System Number. ASN is required with "global" deployment_type.
+            With the "local" deployment_type the private ASN 65000 is assigned by
+            default.
           type: integer
         route_object:
           description: Specifies AS-MACRO (aka AS-SET) to use when building client
@@ -11045,6 +11057,7 @@ components:
           type: string
         md5:
           description: (Optional) Password for BGP session in plaintext (not a checksum)
+          nullable: true
           type: string
         max_prefix:
           description: The maximum number of route filters allowed per server
@@ -11193,27 +11206,40 @@ components:
       type: object
     BgpSession:
       example:
-        address_family: address_family
+        address_family: ipv4
+        updated_at: 2000-01-23T04:56:07.000+00:00
+        created_at: 2000-01-23T04:56:07.000+00:00
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         href: href
         default_route: true
         device:
           href: href
-        status: status
+        status: unknown
         learned_routes:
-        - learned_routes
-        - learned_routes
+        - 10.32.16.0/31
+        - 10.32.16.0/31
       properties:
         id:
           format: uuid
           type: string
         status:
+          description: The status of the BGP Session will start "unknown" and progress
+            to "up" or "down" depending on the devices.
+          enum:
+          - unknown
+          - up
+          - down
           type: string
         learned_routes:
           items:
+            description: IPv4 or IPv6 range
+            example: 10.32.16.0/31
             type: string
           type: array
         address_family:
+          enum:
+          - ipv4
+          - ipv6
           type: string
         device:
           $ref: '#/components/schemas/Href'
@@ -11221,40 +11247,57 @@ components:
           type: string
         default_route:
           type: boolean
+        created_at:
+          format: date-time
+          type: string
+        updated_at:
+          format: date-time
+          type: string
       type: object
     BGPSessionInput:
       example:
-        address_family: address_family
-        default_route: true
+        address_family: ipv4
+        default_route: false
       properties:
         address_family:
+          description: Address family for BGP session.
+          enum:
+          - ipv4
+          - ipv6
+          example: ipv4
           type: string
         default_route:
+          default: false
+          description: Set the default route policy.
           type: boolean
       type: object
     BgpSessionList:
       example:
         bgp_sessions:
-        - address_family: address_family
+        - address_family: ipv4
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          created_at: 2000-01-23T04:56:07.000+00:00
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           href: href
           default_route: true
           device:
             href: href
-          status: status
+          status: unknown
           learned_routes:
-          - learned_routes
-          - learned_routes
-        - address_family: address_family
+          - 10.32.16.0/31
+          - 10.32.16.0/31
+        - address_family: ipv4
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          created_at: 2000-01-23T04:56:07.000+00:00
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           href: href
           default_route: true
           device:
             href: href
-          status: status
+          status: unknown
           learned_routes:
-          - learned_routes
-          - learned_routes
+          - 10.32.16.0/31
+          - 10.32.16.0/31
       properties:
         bgp_sessions:
           items:
@@ -15130,12 +15173,22 @@ components:
         customdata: '{}'
         locked: true
         plan: plan
+        facility:
+        - facility
+        - facility
       properties:
         plan:
           type: string
         hostname:
           type: string
         hostnames:
+          items:
+            type: string
+          type: array
+        facility:
+          description: Array of facility codes the batch can use for provisioning.
+            This param also takes a string if you want the batch to be fulfilled in
+            only one facility.
           items:
             type: string
           type: array

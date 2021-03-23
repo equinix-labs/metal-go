@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AddressFamily** | Pointer to **string** |  | [optional] 
-**DefaultRoute** | Pointer to **bool** |  | [optional] 
+**AddressFamily** | Pointer to **string** | Address family for BGP session. | [optional] 
+**DefaultRoute** | Pointer to **bool** | Set the default route policy. | [optional] [default to false]
 
 ## Methods
 

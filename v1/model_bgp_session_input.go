@@ -17,7 +17,9 @@ import (
 
 // BGPSessionInput struct for BGPSessionInput
 type BGPSessionInput struct {
+	// Address family for BGP session.
 	AddressFamily *string `json:"address_family,omitempty"`
+	// Set the default route policy.
 	DefaultRoute *bool `json:"default_route,omitempty"`
 }
 
@@ -27,6 +29,8 @@ type BGPSessionInput struct {
 // will change when the set of required properties is changed
 func NewBGPSessionInput() *BGPSessionInput {
 	this := BGPSessionInput{}
+	var defaultRoute bool = false
+	this.DefaultRoute = &defaultRoute
 	return &this
 }
 
@@ -35,6 +39,8 @@ func NewBGPSessionInput() *BGPSessionInput {
 // but it doesn't guarantee that properties required by API are set
 func NewBGPSessionInputWithDefaults() *BGPSessionInput {
 	this := BGPSessionInput{}
+	var defaultRoute bool = false
+	this.DefaultRoute = &defaultRoute
 	return &this
 }
 
