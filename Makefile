@@ -40,6 +40,12 @@ gen:
 		-o /local/${PACKAGE_MAJOR} \
 		-i /local/${SPEC_PATCHED_FILE}
 
+validate:
+	${SWAGGER} validate \
+		--recommend \
+		-i /local/${SPEC_PATCHED_FILE}
+
+
 mod:
 	cd v1 && go mod tidy
 
