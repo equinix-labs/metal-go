@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **Id** | Pointer to **string** |  | [optional] 
 **Name** | Pointer to **string** |  | [optional] 
 **Code** | Pointer to **string** |  | [optional] 
+**Country** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -101,6 +102,31 @@ SetCode sets Code field to given value.
 `func (o *Metro) HasCode() bool`
 
 HasCode returns a boolean if a field has been set.
+
+### GetCountry
+
+`func (o *Metro) GetCountry() string`
+
+GetCountry returns the Country field if non-nil, zero value otherwise.
+
+### GetCountryOk
+
+`func (o *Metro) GetCountryOk() (*string, bool)`
+
+GetCountryOk returns a tuple with the Country field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCountry
+
+`func (o *Metro) SetCountry(v string)`
+
+SetCountry sets Country field to given value.
+
+### HasCountry
+
+`func (o *Metro) HasCountry() bool`
+
+HasCountry returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -181,7 +181,7 @@ import (
 
 func main() {
     id := TODO // string | Project UUID
-    virtualNetwork := *openapiclient.NewVirtualNetworkCreateInput() // VirtualNetworkCreateInput | Virtual Network to create
+    virtualNetwork := *openapiclient.NewVirtualNetworkCreateInput("ProjectId_example") // VirtualNetworkCreateInput | Virtual Network to create
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
@@ -373,7 +373,7 @@ Name | Type | Description  | Notes
 
 ## FindVirtualNetworks
 
-> VirtualNetworkList FindVirtualNetworks(ctx, id).Include(include).Exclude(exclude).Facility(facility).Execute()
+> VirtualNetworkList FindVirtualNetworks(ctx, id).Include(include).Exclude(exclude).Facility(facility).Metro(metro).Execute()
 
 Retrieve all virtual networks
 
@@ -396,10 +396,11 @@ func main() {
     include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
     exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
     facility := "facility_example" // string | Filter by Facility ID (uuid) or Facility Code (optional)
+    metro := "metro_example" // string | Filter by Metro ID (uuid) or Metro Code (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.VLANsApi.FindVirtualNetworks(context.Background(), id).Include(include).Exclude(exclude).Facility(facility).Execute()
+    resp, r, err := api_client.VLANsApi.FindVirtualNetworks(context.Background(), id).Include(include).Exclude(exclude).Facility(facility).Metro(metro).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `VLANsApi.FindVirtualNetworks``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -428,6 +429,7 @@ Name | Type | Description  | Notes
  **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
  **exclude** | **[]string** | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | 
  **facility** | **string** | Filter by Facility ID (uuid) or Facility Code | 
+ **metro** | **string** | Filter by Metro ID (uuid) or Metro Code | 
 
 ### Return type
 

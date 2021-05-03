@@ -1,7 +1,7 @@
 /*
  * Metal API
  *
- * This is the API for Equinix Metal Product. Interact with your devices, user account, and projects.
+ * This is the API for Equinix Metal. The API allows you to programmatically interact with all of your Equinix Metal resources, including devices, networks, addresses, organizations, projects, and your user account.  The official API docs are hosted at <https://metal.equinix.com/developers/api>. 
  *
  * API version: 1.0.0
  * Contact: support@equinixmetal.com
@@ -27,6 +27,8 @@ type DeviceUpdateInput struct {
 	IpxeScriptUrl *string `json:"ipxe_script_url,omitempty"`
 	SpotInstance *bool `json:"spot_instance,omitempty"`
 	Customdata *map[string]interface{} `json:"customdata,omitempty"`
+	// If true, this instance can not be converted to a different network type.
+	NetworkFrozen *bool `json:"network_frozen,omitempty"`
 }
 
 // NewDeviceUpdateInput instantiates a new DeviceUpdateInput object
@@ -366,6 +368,38 @@ func (o *DeviceUpdateInput) SetCustomdata(v map[string]interface{}) {
 	o.Customdata = &v
 }
 
+// GetNetworkFrozen returns the NetworkFrozen field value if set, zero value otherwise.
+func (o *DeviceUpdateInput) GetNetworkFrozen() bool {
+	if o == nil || o.NetworkFrozen == nil {
+		var ret bool
+		return ret
+	}
+	return *o.NetworkFrozen
+}
+
+// GetNetworkFrozenOk returns a tuple with the NetworkFrozen field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DeviceUpdateInput) GetNetworkFrozenOk() (*bool, bool) {
+	if o == nil || o.NetworkFrozen == nil {
+		return nil, false
+	}
+	return o.NetworkFrozen, true
+}
+
+// HasNetworkFrozen returns a boolean if a field has been set.
+func (o *DeviceUpdateInput) HasNetworkFrozen() bool {
+	if o != nil && o.NetworkFrozen != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetNetworkFrozen gets a reference to the given bool and assigns it to the NetworkFrozen field.
+func (o *DeviceUpdateInput) SetNetworkFrozen(v bool) {
+	o.NetworkFrozen = &v
+}
+
 func (o DeviceUpdateInput) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Hostname != nil {
@@ -397,6 +431,9 @@ func (o DeviceUpdateInput) MarshalJSON() ([]byte, error) {
 	}
 	if o.Customdata != nil {
 		toSerialize["customdata"] = o.Customdata
+	}
+	if o.NetworkFrozen != nil {
+		toSerialize["network_frozen"] = o.NetworkFrozen
 	}
 	return json.Marshal(toSerialize)
 }

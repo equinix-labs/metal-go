@@ -14,7 +14,6 @@ Name | Type | Description | Notes
 **Legacy** | Pointer to **bool** |  | [optional] 
 **Class** | Pointer to **string** |  | [optional] 
 **AvailableIn** | Pointer to [**[]Href**](Href.md) | Shows which facilities the plan is available in, and the facility-based price if it is different from the default price. | [optional] 
-**AvailableInMetros** | Pointer to [**[]Href**](Href.md) | Shows which metros the plan is available in, and the metro-based price if it is different from the default price. | [optional] 
 
 ## Methods
 
@@ -284,31 +283,6 @@ SetAvailableIn sets AvailableIn field to given value.
 `func (o *Plan) HasAvailableIn() bool`
 
 HasAvailableIn returns a boolean if a field has been set.
-
-### GetAvailableInMetros
-
-`func (o *Plan) GetAvailableInMetros() []Href`
-
-GetAvailableInMetros returns the AvailableInMetros field if non-nil, zero value otherwise.
-
-### GetAvailableInMetrosOk
-
-`func (o *Plan) GetAvailableInMetrosOk() (*[]Href, bool)`
-
-GetAvailableInMetrosOk returns a tuple with the AvailableInMetros field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAvailableInMetros
-
-`func (o *Plan) SetAvailableInMetros(v []Href)`
-
-SetAvailableInMetros sets AvailableInMetros field to given value.
-
-### HasAvailableInMetros
-
-`func (o *Plan) HasAvailableInMetros() bool`
-
-HasAvailableInMetros returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

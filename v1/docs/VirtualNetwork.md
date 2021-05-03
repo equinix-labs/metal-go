@@ -9,6 +9,9 @@ Name | Type | Description | Notes
 **Vxlan** | Pointer to **int32** |  | [optional] 
 **Facility** | Pointer to [**Href**](Href.md) |  | [optional] 
 **Instances** | Pointer to [**[]Href**](Href.md) | A list of instances with ports currently associated to this Virtual Network. | [optional] 
+**MetroCode** | Pointer to **string** | The Metro code of the metro in which this Virtual Network is defined. | [optional] 
+**Metro** | Pointer to [**Href**](Href.md) |  | [optional] 
+**AssignedToVirtualCircuit** | Pointer to **bool** | True if the virtual network is attached to a virtual circuit. False if not. | [optional] 
 **AssignedTo** | Pointer to [**Href**](Href.md) |  | [optional] 
 **Href** | Pointer to **string** |  | [optional] 
 
@@ -155,6 +158,81 @@ SetInstances sets Instances field to given value.
 `func (o *VirtualNetwork) HasInstances() bool`
 
 HasInstances returns a boolean if a field has been set.
+
+### GetMetroCode
+
+`func (o *VirtualNetwork) GetMetroCode() string`
+
+GetMetroCode returns the MetroCode field if non-nil, zero value otherwise.
+
+### GetMetroCodeOk
+
+`func (o *VirtualNetwork) GetMetroCodeOk() (*string, bool)`
+
+GetMetroCodeOk returns a tuple with the MetroCode field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMetroCode
+
+`func (o *VirtualNetwork) SetMetroCode(v string)`
+
+SetMetroCode sets MetroCode field to given value.
+
+### HasMetroCode
+
+`func (o *VirtualNetwork) HasMetroCode() bool`
+
+HasMetroCode returns a boolean if a field has been set.
+
+### GetMetro
+
+`func (o *VirtualNetwork) GetMetro() Href`
+
+GetMetro returns the Metro field if non-nil, zero value otherwise.
+
+### GetMetroOk
+
+`func (o *VirtualNetwork) GetMetroOk() (*Href, bool)`
+
+GetMetroOk returns a tuple with the Metro field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMetro
+
+`func (o *VirtualNetwork) SetMetro(v Href)`
+
+SetMetro sets Metro field to given value.
+
+### HasMetro
+
+`func (o *VirtualNetwork) HasMetro() bool`
+
+HasMetro returns a boolean if a field has been set.
+
+### GetAssignedToVirtualCircuit
+
+`func (o *VirtualNetwork) GetAssignedToVirtualCircuit() bool`
+
+GetAssignedToVirtualCircuit returns the AssignedToVirtualCircuit field if non-nil, zero value otherwise.
+
+### GetAssignedToVirtualCircuitOk
+
+`func (o *VirtualNetwork) GetAssignedToVirtualCircuitOk() (*bool, bool)`
+
+GetAssignedToVirtualCircuitOk returns a tuple with the AssignedToVirtualCircuit field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAssignedToVirtualCircuit
+
+`func (o *VirtualNetwork) SetAssignedToVirtualCircuit(v bool)`
+
+SetAssignedToVirtualCircuit sets AssignedToVirtualCircuit field to given value.
+
+### HasAssignedToVirtualCircuit
+
+`func (o *VirtualNetwork) HasAssignedToVirtualCircuit() bool`
+
+HasAssignedToVirtualCircuit returns a boolean if a field has been set.
 
 ### GetAssignedTo
 

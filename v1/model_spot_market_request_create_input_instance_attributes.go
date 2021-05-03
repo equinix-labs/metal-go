@@ -1,7 +1,7 @@
 /*
  * Metal API
  *
- * This is the API for Equinix Metal Product. Interact with your devices, user account, and projects.
+ * This is the API for Equinix Metal. The API allows you to programmatically interact with all of your Equinix Metal resources, including devices, networks, addresses, organizations, projects, and your user account.  The official API docs are hosted at <https://metal.equinix.com/developers/api>. 
  *
  * API version: 1.0.0
  * Contact: support@equinixmetal.com
@@ -32,6 +32,7 @@ type SpotMarketRequestCreateInputInstanceAttributes struct {
 	ProjectSshKeys *[]string `json:"project_ssh_keys,omitempty"`
 	// The UUIDs of users whose SSH keys should be included on the provisioned device.
 	UserSshKeys *[]string `json:"user_ssh_keys,omitempty"`
+	NoSshKeys *bool `json:"no_ssh_keys,omitempty"`
 	Features *[]string `json:"features,omitempty"`
 	Customdata *map[string]interface{} `json:"customdata,omitempty"`
 	PublicIpv4SubnetSize *int32 `json:"public_ipv4_subnet_size,omitempty"`
@@ -471,6 +472,38 @@ func (o *SpotMarketRequestCreateInputInstanceAttributes) SetUserSshKeys(v []stri
 	o.UserSshKeys = &v
 }
 
+// GetNoSshKeys returns the NoSshKeys field value if set, zero value otherwise.
+func (o *SpotMarketRequestCreateInputInstanceAttributes) GetNoSshKeys() bool {
+	if o == nil || o.NoSshKeys == nil {
+		var ret bool
+		return ret
+	}
+	return *o.NoSshKeys
+}
+
+// GetNoSshKeysOk returns a tuple with the NoSshKeys field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SpotMarketRequestCreateInputInstanceAttributes) GetNoSshKeysOk() (*bool, bool) {
+	if o == nil || o.NoSshKeys == nil {
+		return nil, false
+	}
+	return o.NoSshKeys, true
+}
+
+// HasNoSshKeys returns a boolean if a field has been set.
+func (o *SpotMarketRequestCreateInputInstanceAttributes) HasNoSshKeys() bool {
+	if o != nil && o.NoSshKeys != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetNoSshKeys gets a reference to the given bool and assigns it to the NoSshKeys field.
+func (o *SpotMarketRequestCreateInputInstanceAttributes) SetNoSshKeys(v bool) {
+	o.NoSshKeys = &v
+}
+
 // GetFeatures returns the Features field value if set, zero value otherwise.
 func (o *SpotMarketRequestCreateInputInstanceAttributes) GetFeatures() []string {
 	if o == nil || o.Features == nil {
@@ -639,6 +672,9 @@ func (o SpotMarketRequestCreateInputInstanceAttributes) MarshalJSON() ([]byte, e
 	}
 	if o.UserSshKeys != nil {
 		toSerialize["user_ssh_keys"] = o.UserSshKeys
+	}
+	if o.NoSshKeys != nil {
+		toSerialize["no_ssh_keys"] = o.NoSshKeys
 	}
 	if o.Features != nil {
 		toSerialize["features"] = o.Features

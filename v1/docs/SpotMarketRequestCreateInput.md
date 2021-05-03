@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **MaxBidPrice** | Pointer to **float32** |  | [optional] 
 **EndAt** | Pointer to **time.Time** |  | [optional] 
 **Facilities** | Pointer to **[]string** |  | [optional] 
+**Metro** | Pointer to **string** | The metro ID or code the spot market request will be created in. | [optional] 
 
 ## Methods
 
@@ -179,6 +180,31 @@ SetFacilities sets Facilities field to given value.
 `func (o *SpotMarketRequestCreateInput) HasFacilities() bool`
 
 HasFacilities returns a boolean if a field has been set.
+
+### GetMetro
+
+`func (o *SpotMarketRequestCreateInput) GetMetro() string`
+
+GetMetro returns the Metro field if non-nil, zero value otherwise.
+
+### GetMetroOk
+
+`func (o *SpotMarketRequestCreateInput) GetMetroOk() (*string, bool)`
+
+GetMetroOk returns a tuple with the Metro field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMetro
+
+`func (o *SpotMarketRequestCreateInput) SetMetro(v string)`
+
+SetMetro sets Metro field to given value.
+
+### HasMetro
+
+`func (o *SpotMarketRequestCreateInput) HasMetro() bool`
+
+HasMetro returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

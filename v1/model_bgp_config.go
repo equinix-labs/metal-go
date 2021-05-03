@@ -1,7 +1,7 @@
 /*
  * Metal API
  *
- * This is the API for Equinix Metal Product. Interact with your devices, user account, and projects.
+ * This is the API for Equinix Metal. The API allows you to programmatically interact with all of your Equinix Metal resources, including devices, networks, addresses, organizations, projects, and your user account.  The official API docs are hosted at <https://metal.equinix.com/developers/api>. 
  *
  * API version: 1.0.0
  * Contact: support@equinixmetal.com
@@ -23,7 +23,7 @@ type BgpConfig struct {
 	Status *string `json:"status,omitempty"`
 	// In a Local BGP deployment, a customer uses an internal ASN to control routes within a single Equinix Metal datacenter. This means that the routes are never advertised to the global Internet. Global BGP, on the other hand, requires a customer to have a registered ASN and IP space. 
 	DeploymentType *string `json:"deployment_type,omitempty"`
-	// Autonomous System Number. ASN is required with \"global\" deployment_type. With the \"local\" deployment_type the private ASN 65000 is assigned by default.
+	// Autonomous System Number. ASN is required with Global BGP. With Local BGP the private ASN, 65000, is assigned.
 	Asn *int32 `json:"asn,omitempty"`
 	// Specifies AS-MACRO (aka AS-SET) to use when building client route filters
 	RouteObject *string `json:"route_object,omitempty"`

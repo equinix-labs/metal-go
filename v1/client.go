@@ -1,7 +1,7 @@
 /*
  * Metal API
  *
- * This is the API for Equinix Metal Product. Interact with your devices, user account, and projects.
+ * This is the API for Equinix Metal. The API allows you to programmatically interact with all of your Equinix Metal resources, including devices, networks, addresses, organizations, projects, and your user account.  The official API docs are hosted at <https://metal.equinix.com/developers/api>. 
  *
  * API version: 1.0.0
  * Contact: support@equinixmetal.com
@@ -49,6 +49,8 @@ type APIClient struct {
 
 	// API Services
 
+	AuthenticationApi *AuthenticationApiService
+
 	BGPApi *BGPApiService
 
 	BatchesApi *BatchesApiService
@@ -79,6 +81,8 @@ type APIClient struct {
 
 	MembershipsApi *MembershipsApiService
 
+	MetrosApi *MetrosApiService
+
 	OperatingSystemVersionsApi *OperatingSystemVersionsApiService
 
 	OperatingSystemsApi *OperatingSystemsApiService
@@ -97,9 +101,9 @@ type APIClient struct {
 
 	ProjectsApi *ProjectsApiService
 
-	RegionsApi *RegionsApiService
-
 	SSHKeysApi *SSHKeysApiService
+
+	SelfServiceReservationsApi *SelfServiceReservationsApiService
 
 	SpotMarketRequestApi *SpotMarketRequestApiService
 
@@ -116,8 +120,6 @@ type APIClient struct {
 	UsersApi *UsersApiService
 
 	VLANsApi *VLANsApiService
-
-	VPNApi *VPNApiService
 
 	VolumesApi *VolumesApiService
 }
@@ -138,6 +140,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.common.client = c
 
 	// API Services
+	c.AuthenticationApi = (*AuthenticationApiService)(&c.common)
 	c.BGPApi = (*BGPApiService)(&c.common)
 	c.BatchesApi = (*BatchesApiService)(&c.common)
 	c.CapacityApi = (*CapacityApiService)(&c.common)
@@ -153,6 +156,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.LicensesApi = (*LicensesApiService)(&c.common)
 	c.MarketApi = (*MarketApiService)(&c.common)
 	c.MembershipsApi = (*MembershipsApiService)(&c.common)
+	c.MetrosApi = (*MetrosApiService)(&c.common)
 	c.OperatingSystemVersionsApi = (*OperatingSystemVersionsApiService)(&c.common)
 	c.OperatingSystemsApi = (*OperatingSystemsApiService)(&c.common)
 	c.OrganizationsApi = (*OrganizationsApiService)(&c.common)
@@ -162,8 +166,8 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.PlansApi = (*PlansApiService)(&c.common)
 	c.PortsApi = (*PortsApiService)(&c.common)
 	c.ProjectsApi = (*ProjectsApiService)(&c.common)
-	c.RegionsApi = (*RegionsApiService)(&c.common)
 	c.SSHKeysApi = (*SSHKeysApiService)(&c.common)
+	c.SelfServiceReservationsApi = (*SelfServiceReservationsApiService)(&c.common)
 	c.SpotMarketRequestApi = (*SpotMarketRequestApiService)(&c.common)
 	c.TransferRequestsApi = (*TransferRequestsApiService)(&c.common)
 	c.TwoFactorAuthApi = (*TwoFactorAuthApiService)(&c.common)
@@ -172,7 +176,6 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.UserdataApi = (*UserdataApiService)(&c.common)
 	c.UsersApi = (*UsersApiService)(&c.common)
 	c.VLANsApi = (*VLANsApiService)(&c.common)
-	c.VPNApi = (*VPNApiService)(&c.common)
 	c.VolumesApi = (*VolumesApiService)(&c.common)
 
 	return c
@@ -206,7 +209,7 @@ func selectHeaderAccept(accepts []string) string {
 	return strings.Join(accepts, ",")
 }
 
-// contains is a case insenstive match, finding needle in a haystack
+// contains is a case insensitive match, finding needle in a haystack
 func contains(haystack []string, needle string) bool {
 	for _, a := range haystack {
 		if strings.ToLower(a) == strings.ToLower(needle) {

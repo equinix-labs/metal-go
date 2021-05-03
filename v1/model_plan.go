@@ -1,7 +1,7 @@
 /*
  * Metal API
  *
- * This is the API for Equinix Metal Product. Interact with your devices, user account, and projects.
+ * This is the API for Equinix Metal. The API allows you to programmatically interact with all of your Equinix Metal resources, including devices, networks, addresses, organizations, projects, and your user account.  The official API docs are hosted at <https://metal.equinix.com/developers/api>. 
  *
  * API version: 1.0.0
  * Contact: support@equinixmetal.com
@@ -28,8 +28,6 @@ type Plan struct {
 	Class *string `json:"class,omitempty"`
 	// Shows which facilities the plan is available in, and the facility-based price if it is different from the default price.
 	AvailableIn *[]Href `json:"available_in,omitempty"`
-	// Shows which metros the plan is available in, and the metro-based price if it is different from the default price.
-	AvailableInMetros *[]Href `json:"available_in_metros,omitempty"`
 }
 
 // NewPlan instantiates a new Plan object
@@ -369,38 +367,6 @@ func (o *Plan) SetAvailableIn(v []Href) {
 	o.AvailableIn = &v
 }
 
-// GetAvailableInMetros returns the AvailableInMetros field value if set, zero value otherwise.
-func (o *Plan) GetAvailableInMetros() []Href {
-	if o == nil || o.AvailableInMetros == nil {
-		var ret []Href
-		return ret
-	}
-	return *o.AvailableInMetros
-}
-
-// GetAvailableInMetrosOk returns a tuple with the AvailableInMetros field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Plan) GetAvailableInMetrosOk() (*[]Href, bool) {
-	if o == nil || o.AvailableInMetros == nil {
-		return nil, false
-	}
-	return o.AvailableInMetros, true
-}
-
-// HasAvailableInMetros returns a boolean if a field has been set.
-func (o *Plan) HasAvailableInMetros() bool {
-	if o != nil && o.AvailableInMetros != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetAvailableInMetros gets a reference to the given []Href and assigns it to the AvailableInMetros field.
-func (o *Plan) SetAvailableInMetros(v []Href) {
-	o.AvailableInMetros = &v
-}
-
 func (o Plan) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Id != nil {
@@ -432,9 +398,6 @@ func (o Plan) MarshalJSON() ([]byte, error) {
 	}
 	if o.AvailableIn != nil {
 		toSerialize["available_in"] = o.AvailableIn
-	}
-	if o.AvailableInMetros != nil {
-		toSerialize["available_in_metros"] = o.AvailableInMetros
 	}
 	return json.Marshal(toSerialize)
 }

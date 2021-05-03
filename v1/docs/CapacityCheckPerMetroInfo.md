@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Metro** | Pointer to **string** |  | [optional] 
-**Plan** | Pointer to **string** |  | [optional] 
-**Quantity** | Pointer to **string** |  | [optional] 
-**Available** | Pointer to **bool** |  | [optional] 
+**Metro** | Pointer to **string** | The metro ID or code sent to check capacity. | [optional] 
+**Plan** | Pointer to **string** | The plan ID or slug sent to check capacity. | [optional] 
+**Quantity** | Pointer to **string** | The number of servers sent to check capacity. | [optional] 
+**Available** | Pointer to **bool** | Returns true if there is enough capacity in the metro to fulfill the quantity set. Returns false if there is not enough. | [optional] 
 
 ## Methods
 

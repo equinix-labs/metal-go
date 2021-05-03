@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **EndAt** | Pointer to **time.Time** |  | [optional] 
 **Href** | Pointer to **string** |  | [optional] 
 **Facilities** | Pointer to [**Href**](Href.md) |  | [optional] 
+**Metro** | Pointer to [**Href**](Href.md) |  | [optional] 
 **Project** | Pointer to [**Href**](Href.md) |  | [optional] 
 **Instances** | Pointer to [**Href**](Href.md) |  | [optional] 
 
@@ -233,6 +234,31 @@ SetFacilities sets Facilities field to given value.
 `func (o *SpotMarketRequest) HasFacilities() bool`
 
 HasFacilities returns a boolean if a field has been set.
+
+### GetMetro
+
+`func (o *SpotMarketRequest) GetMetro() Href`
+
+GetMetro returns the Metro field if non-nil, zero value otherwise.
+
+### GetMetroOk
+
+`func (o *SpotMarketRequest) GetMetroOk() (*Href, bool)`
+
+GetMetroOk returns a tuple with the Metro field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMetro
+
+`func (o *SpotMarketRequest) SetMetro(v Href)`
+
+SetMetro sets Metro field to given value.
+
+### HasMetro
+
+`func (o *SpotMarketRequest) HasMetro() bool`
+
+HasMetro returns a boolean if a field has been set.
 
 ### GetProject
 

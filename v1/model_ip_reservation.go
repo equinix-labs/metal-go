@@ -1,7 +1,7 @@
 /*
  * Metal API
  *
- * This is the API for Equinix Metal Product. Interact with your devices, user account, and projects.
+ * This is the API for Equinix Metal. The API allows you to programmatically interact with all of your Equinix Metal resources, including devices, networks, addresses, organizations, projects, and your user account.  The official API docs are hosted at <https://metal.equinix.com/developers/api>. 
  *
  * API version: 1.0.0
  * Contact: support@equinixmetal.com
@@ -26,6 +26,7 @@ type IPReservation struct {
 	Cidr *int32 `json:"cidr,omitempty"`
 	Management *bool `json:"management,omitempty"`
 	Manageable *bool `json:"manageable,omitempty"`
+	GlobalIp *bool `json:"global_ip,omitempty"`
 	Addon *bool `json:"addon,omitempty"`
 	Bill *bool `json:"bill,omitempty"`
 	Assignments *[]IPAssignment `json:"assignments,omitempty"`
@@ -309,6 +310,38 @@ func (o *IPReservation) HasManageable() bool {
 // SetManageable gets a reference to the given bool and assigns it to the Manageable field.
 func (o *IPReservation) SetManageable(v bool) {
 	o.Manageable = &v
+}
+
+// GetGlobalIp returns the GlobalIp field value if set, zero value otherwise.
+func (o *IPReservation) GetGlobalIp() bool {
+	if o == nil || o.GlobalIp == nil {
+		var ret bool
+		return ret
+	}
+	return *o.GlobalIp
+}
+
+// GetGlobalIpOk returns a tuple with the GlobalIp field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IPReservation) GetGlobalIpOk() (*bool, bool) {
+	if o == nil || o.GlobalIp == nil {
+		return nil, false
+	}
+	return o.GlobalIp, true
+}
+
+// HasGlobalIp returns a boolean if a field has been set.
+func (o *IPReservation) HasGlobalIp() bool {
+	if o != nil && o.GlobalIp != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetGlobalIp gets a reference to the given bool and assigns it to the GlobalIp field.
+func (o *IPReservation) SetGlobalIp(v bool) {
+	o.GlobalIp = &v
 }
 
 // GetAddon returns the Addon field value if set, zero value otherwise.
@@ -656,6 +689,9 @@ func (o IPReservation) MarshalJSON() ([]byte, error) {
 	}
 	if o.Manageable != nil {
 		toSerialize["manageable"] = o.Manageable
+	}
+	if o.GlobalIp != nil {
+		toSerialize["global_ip"] = o.GlobalIp
 	}
 	if o.Addon != nil {
 		toSerialize["addon"] = o.Addon
