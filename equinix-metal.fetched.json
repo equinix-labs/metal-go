@@ -41,6 +41,18 @@
   ],
   "tags": [
     {
+      "name": "Authentication",
+      "description": "Hint: Equinix Metal's API can be reached at https://api.equinix.com/metal/v1\n\nMost of the endpoints in the API require authentication. Authenticating is done with an authentication token in the X-Auth-Token header.\n\n```\ncurl -H 'X-Auth-Token: my_authentication_token'\n```\n\nAuthentication tokens are used to identify the user your application is connecting to the API on behalf of. Think of authentication tokens as permanent sessions—the user creates authentication tokens, and your app can use them to connect to the API on their behalf until they delete the token.\n\n"
+    },
+    {
+      "name": "Common Parameters",
+      "description": "The Equinix Metal API uses a few methods to minimize network traffic and bandwidth:\n\n`include`\n\nFor resources that contain collections of other resources, the Equinix Metal API will return links to the other resources by default.\n\n```json\n{\n  ...\n  // Includes \"href\" links if the resource is reachable through the API.\n  \"projects\": [\n    { \"href\": \"/projects/5b590e4f-be96-4400-ae32-c315ee67964d\" },\n    { \"href\": \"/projects/f3f131c8-f302-49ef-8c44-9405022dc6dd\" }\n  ],\n  // Includes \"id\" attributes if not.\n  \"emails\": [\n    { \"id\": \"eb5d8c89-4d15-4c87-859c-5ae190ad5d9a\" },\n    { \"id\": \"c17f77ad-9070-4084-abaa-7538581d9523\" }\n  ]\n  ...\n}\n```\n\nHowever, if you're interested in acting on resources in the projects collection, it doesn't make sense to make a separate API call to retrieve each project. Instead, you can specify which collections you'd like to be included using the include parameter.\n\n```\n/user?include=projects\n```\nwill return\n\n```json\n{\n  ...\n  \"projects\": [\n    {\n      \"href\": \"/projects/c851d3c5-d55d-4b1a-99f1-96fc64768bc3\",\n      \"id\": \"c851d3c5-d55d-4b1a-99f1-96fc64768bc3\",\n      \"name\": \"Project 1\",\n      ...\n    },\n    {\n      \"href\": \"/projects/21f8e88b-bd4e-44ca-b956-4f3f88e6e5f2\",\n      \"id\": \"21f8e88b-bd4e-44ca-b956-4f3f88e6e5f2\",\n      \"name\": \"Project 2\",\n      ...\n    }\n  ],\n  ...\n}\n```\n\nThe `include` parameter is accepted for all `GET` requests on all resources and collections, and should be specified as a comma-separated list.\n\n```\n/user?include=emails,projects,memberships\n```\n\nYou may also include nested associations up to 3 levels deep using dot notation:\n\n```\n/user?include=memberships.projects\n```\n"
+    },
+    {
+      "name": "Errors",
+      "description": "Equinix Metal uses conventional HTTP response codes to indicate the success or failure of an API request.\n\nIn general: Codes in the 2xx range indicate success. Codes in the 4xx range indicate an error that failed given the information provided (e.g., a required parameter was omitted, a charge failed, etc.). Codes in the 5xx range indicate an error with Equinix Metal's servers (these are rare).\n\n| Code                               | Summary\n| ---------------------------------- | ------------------------------------------------------\n| 200 OK                             | Everything worked as expected.\n| 201 Create                         | Everything worked as expected, the resource was created.\n| 422 Bad Request                    | The request was unacceptable, often due to missing a required parameter.\n| 401 Unauthorized                   | No valid API key provided.\n| 404 Not Found                      | The requested resource doesn't exist.\n| 500, 502, 503, 504 - Server Errors | Something went wrong on Equinix Metal's end. (These are rare.)\n\nErrors (4xx, 5xx) reported by the API will include a JSON error response.  This response will be structured as one of the following:\n\n```json\n{\"error\": \"the error message\"}\n```\n\nor\n\n```json\n{\"errors\": [\"one error\", \"another error\"}\n```\n\nThe JSON response is not guaranteed so check the HTTP status message. JSON may not be included if the error is reported by an API intermediary, like a loadbalancer service.\n"
+    },
+    {
       "name": "Batches",
       "description": "Manage device batches. See project endpoints to list batches for a particular project. Check out the product docs to learn more about [Batch Deployment](https://metal.equinix.com/developers/docs/deploy/batch-deployment/)."
     },
@@ -125,12 +137,12 @@
       "description": "Project Management. Check out the product docs to learn more about [Projects](https://metal.equinix.com/developers/docs/accounts/)."
     },
     {
-      "name": "Regions",
-      "description": "Regions Listing"
-    },
-    {
       "name": "Market",
       "description": "Spot Market Prices Management. Check out the product docs to learn more about [Spot Market features](https://metal.equinix.com/developers/docs/deploy/spot-market/)."
+    },
+    {
+      "name": "SelfServiceReservations",
+      "description": "Self Service Reservations"
     },
     {
       "name": "SpotMarketRequest",
@@ -170,10 +182,298 @@
     },
     {
       "name": "Volumes",
-      "description": "Volume Management (Block Storage). "
+      "description": "Volume Management (Block Storage). Notice: Block storage support will be deprecated soon. Please check here: https://metal.equinix.com/developers/docs/resilience-recovery/elastic-block-storage/ for more details."
     }
   ],
   "paths": {
+    "/user/api-keys": {
+      "get": {
+        "summary": "Retrieve all user API keys",
+        "description": "Returns all API keys for the current user.",
+        "operationId": "findAPIKeys",
+        "tags": [
+          "Authentication"
+        ],
+        "parameters": [
+          {
+            "name": "include",
+            "in": "query",
+            "description": "Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "required": false
+          },
+          {
+            "name": "exclude",
+            "in": "query",
+            "description": "Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "$ref": "#/definitions/AuthTokenList"
+            }
+          },
+          "401": {
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a API key",
+        "description": "Creates a API key for the current user.",
+        "operationId": "createAPIKey",
+        "tags": [
+          "Authentication"
+        ],
+        "parameters": [
+          {
+            "name": "auth_token",
+            "in": "body",
+            "description": "API key to create",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AuthTokenInput"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "created",
+            "schema": {
+              "$ref": "#/definitions/AuthToken"
+            }
+          },
+          "401": {
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "422": {
+            "description": "unprocessable entity",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/user/api-keys/{id}": {
+      "delete": {
+        "summary": "Delete the API key",
+        "description": "Deletes the current user API key.",
+        "operationId": "deleteUserAPIKey",
+        "tags": [
+          "Authentication"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "API Key UUID",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "no content"
+          },
+          "401": {
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/projects/{id}/api-keys": {
+      "get": {
+        "summary": "Retrieve all API keys for the project.",
+        "description": "Returns all API keys for a specific project.",
+        "operationId": "findProjectAPIKeys",
+        "tags": [
+          "Authentication"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Project UUID",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "name": "include",
+            "in": "query",
+            "description": "Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "required": false
+          },
+          {
+            "name": "exclude",
+            "in": "query",
+            "description": "Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "$ref": "#/definitions/AuthTokenList"
+            }
+          },
+          "401": {
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create an API key for a project.",
+        "description": "Creates an API key for a project.",
+        "operationId": "createProjectAPIKey",
+        "tags": [
+          "Authentication"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Project UUID",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "name": "auth_token",
+            "in": "body",
+            "description": "API Key to create",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AuthTokenInput"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "created",
+            "schema": {
+              "$ref": "#/definitions/AuthToken"
+            }
+          },
+          "401": {
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "422": {
+            "description": "unprocessable entity",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/api-keys/{id}": {
+      "delete": {
+        "summary": "Delete the API key",
+        "description": "Deletes the API key.",
+        "operationId": "deleteAPIKey",
+        "tags": [
+          "Authentication"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "API Key UUID",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "no content"
+          },
+          "401": {
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
     "/projects/{id}/batches": {
       "get": {
         "summary": "Retrieve all batches by project",
@@ -322,12 +622,10 @@
           },
           {
             "name": "remove_associated_instances",
-            "in": "body",
-            "description": "Default route",
-            "required": true,
-            "schema": {
-              "type": "boolean"
-            }
+            "description": "Delete all instances created from this batch",
+            "in": "query",
+            "type": "boolean",
+            "default": false
           }
         ],
         "responses": {
@@ -871,6 +1169,69 @@
             "description": "ok",
             "schema": {
               "$ref": "#/definitions/CapacityCheckPerFacilityList"
+            }
+          },
+          "401": {
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "422": {
+            "description": "unprocessable entity",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/capacity/metros": {
+      "get": {
+        "summary": "View capacity for metros",
+        "description": "Returns a list of metros and plans with their current capacity.",
+        "operationId": "findCapacityForMetro",
+        "tags": [
+          "Capacity"
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "$ref": "#/definitions/MetroCapacityList"
+            }
+          },
+          "401": {
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Check capacity for a metro",
+        "description": "Validates if a deploy can be fulfilled in a metro.",
+        "operationId": "checkCapacityForMetro",
+        "tags": [
+          "Capacity"
+        ],
+        "parameters": [
+          {
+            "name": "servers",
+            "in": "body",
+            "description": "Metro to check capacity in",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CapacityPerMetroInput"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "$ref": "#/definitions/CapacityCheckPerMetroList"
             }
           },
           "401": {
@@ -2541,6 +2902,12 @@
             "schema": {
               "$ref": "#/definitions/Error"
             }
+          },
+          "422": {
+            "description": "unprocessable entity",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -2703,6 +3070,12 @@
             "schema": {
               "$ref": "#/definitions/Error"
             }
+          },
+          "422": {
+            "description": "unprocessable entity",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       },
@@ -2781,6 +3154,12 @@
           },
           "403": {
             "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "422": {
+            "description": "unprocessable entity",
             "schema": {
               "$ref": "#/definitions/Error"
             }
@@ -3266,60 +3645,6 @@
           },
           "404": {
             "description": "not found",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          }
-        }
-      }
-    },
-    "/virtual-networks/{id}/internet-gateways": {
-      "post": {
-        "tags": [
-          "InternetGateways",
-          "VLANs"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "Virtual Network UUID",
-            "required": true,
-            "type": "string",
-            "format": "uuid"
-          },
-          {
-            "name": "length",
-            "in": "query",
-            "description": "IP Reservation length",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "summary": "Create an internet gateway",
-        "description": "Creates an internet gateway.",
-        "operationId": "createInternetGateway",
-        "responses": {
-          "201": {
-            "description": "created",
-            "schema": {
-              "$ref": "#/definitions/InternetGateway"
-            }
-          },
-          "401": {
-            "description": "unauthorized",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          },
-          "404": {
-            "description": "not found",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          },
-          "422": {
-            "description": "unprocessable entity",
             "schema": {
               "$ref": "#/definitions/Error"
             }
@@ -7466,37 +7791,14 @@
         }
       }
     },
-    "/regions": {
+    "/projects/{project_id}/self-service/reservations": {
       "get": {
-        "summary": "Retrieve all regions",
-        "description": "Returns all regions.",
-        "operationId": "findRegions",
+        "summary": "Retrieve all reservations",
+        "description": "Returns all reservations.",
         "tags": [
-          "Regions"
+          "SelfServiceReservations"
         ],
         "parameters": [
-          {
-            "name": "include",
-            "in": "query",
-            "description": "Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.",
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "collectionFormat": "csv",
-            "required": false
-          },
-          {
-            "name": "exclude",
-            "in": "query",
-            "description": "Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.",
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "collectionFormat": "csv",
-            "required": false
-          },
           {
             "name": "page",
             "in": "query",
@@ -7518,17 +7820,118 @@
             "minimum": 1,
             "maximum": 1000,
             "required": false
+          },
+          {
+            "name": "project_id",
+            "in": "path",
+            "description": "Project UUID",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
           }
         ],
         "responses": {
           "200": {
             "description": "ok",
             "schema": {
-              "$ref": "#/definitions/RegionsList"
+              "$ref": "#/definitions/SelfServiceReservationList"
             }
           },
           "401": {
             "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a reservation",
+        "description": "Creates a reservation.",
+        "tags": [
+          "SelfServiceReservations"
+        ],
+        "parameters": [
+          {
+            "name": "reservation",
+            "in": "body",
+            "description": "reservation to create",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CreateSelfServiceReservationRequest"
+            }
+          },
+          {
+            "name": "project_id",
+            "in": "path",
+            "description": "Project UUID",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "created",
+            "schema": {
+              "$ref": "#/definitions/SelfServiceReservationResponse"
+            }
+          },
+          "401": {
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "422": {
+            "description": "unprocessable entity",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/projects/{project_id}/self-service/reservations/{id}": {
+      "get": {
+        "summary": "Retrieve a reservation",
+        "description": "Returns a reservation",
+        "tags": [
+          "SelfServiceReservations"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Reservation short_id",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "name": "project_id",
+            "in": "path",
+            "description": "Project UUID",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "$ref": "#/definitions/SelfServiceReservationResponse"
+            }
+          },
+          "401": {
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "not found",
             "schema": {
               "$ref": "#/definitions/Error"
             }
@@ -8310,6 +8713,7 @@
     },
     "/storage/{id}/attachments": {
       "get": {
+        "deprecated": true,
         "summary": "Retrieve all volume attachment",
         "description": "Returns a list of the current volume’s attachments.",
         "operationId": "findVolumeAttachments",
@@ -8376,6 +8780,7 @@
         }
       },
       "post": {
+        "deprecated": true,
         "summary": "Attach your volume",
         "description": "Attach your volume to a device.",
         "operationId": "createVolumeAttachment",
@@ -8437,6 +8842,7 @@
     },
     "/storage/attachments/{id}": {
       "get": {
+        "deprecated": true,
         "summary": "Retrieve an attachment",
         "description": "Returns a single attachment if the user has access",
         "operationId": "findVolumeAttachmentById",
@@ -8503,6 +8909,7 @@
         }
       },
       "delete": {
+        "deprecated": true,
         "summary": "Detach volume",
         "description": "Detach volume.",
         "operationId": "deleteVolumeAttachment",
@@ -8546,6 +8953,7 @@
     },
     "/storage/{id}/snapshots": {
       "get": {
+        "deprecated": true,
         "summary": "Retrieve all volume snapshot",
         "description": "Returns a list of the current volume’s snapshots. To create Volume Snapshots, please check the Volume Snapshot Policies feature.",
         "operationId": "findVolumeSnapshots",
@@ -8614,6 +9022,7 @@
     },
     "/storage/{volume_id}/snapshots/{id}": {
       "delete": {
+        "deprecated": true,
         "summary": "Delete volume snapshot",
         "description": "Delete volume snapshot.",
         "operationId": "deleteVolumeSnapshot",
@@ -8665,6 +9074,7 @@
     },
     "/storage/{id}/snapshot-policies": {
       "post": {
+        "deprecated": true,
         "summary": "Create a volume snapshot policy",
         "description": "Creates a new snapshot policy of your volume.",
         "operationId": "createVolumeSnapshotPolicy",
@@ -8740,6 +9150,7 @@
     },
     "/storage/snapshot-policies/{id}": {
       "put": {
+        "deprecated": true,
         "summary": "Update the volume snapshot policy",
         "description": "Updates the volume snapshot policy.",
         "operationId": "updateVolumeSnapshotPolicy",
@@ -8813,6 +9224,7 @@
         }
       },
       "delete": {
+        "deprecated": true,
         "summary": "Delete the volume snapshot policy",
         "description": "Deletes the volume snapshot policy.",
         "operationId": "deleteVolumeSnapshotPolicy",
@@ -8856,6 +9268,7 @@
     },
     "/projects/{id}/storage": {
       "get": {
+        "deprecated": true,
         "summary": "Retrieve all volumes",
         "description": "Returns a list of the current projects’s volumes.",
         "operationId": "findVolumes",
@@ -8944,6 +9357,7 @@
         }
       },
       "post": {
+        "deprecated": true,
         "summary": "Create a volume",
         "description": "Creates a new volume in our datacenter. The valid attribute values for `plan` and `facility` are:\n\n         \"facility\": \"ams1\", \"ewr1\", \"nrt1\", \"sjc1\"\n         \"plan\": \"storage_1\" (Standard), \"storage_2\" (Performance)",
         "operationId": "createVolume",
@@ -9005,6 +9419,7 @@
     },
     "/storage/{id}": {
       "get": {
+        "deprecated": true,
         "summary": "Retrieve a volume",
         "description": "Returns a single volume if the user has access",
         "operationId": "findVolumeById",
@@ -9071,6 +9486,7 @@
         }
       },
       "put": {
+        "deprecated": true,
         "summary": "Update the volume",
         "description": "Updates the volume.",
         "operationId": "updateVolume",
@@ -9130,6 +9546,7 @@
         }
       },
       "delete": {
+        "deprecated": true,
         "summary": "Delete the volume",
         "description": "Deletes the volume.",
         "operationId": "deleteVolume",
@@ -9173,6 +9590,7 @@
     },
     "/storage/{id}/restore": {
       "post": {
+        "deprecated": true,
         "summary": "Restore volume",
         "description": "Restore the volume to the given snapshot.",
         "operationId": "restoreVolume",
@@ -9232,6 +9650,7 @@
     },
     "/storage/{id}/clone": {
       "post": {
+        "deprecated": true,
         "summary": "Clone volume/snapshot",
         "description": "Clone your volume or snapshot into a new volume. To clone the volume, send an empty body. To promote a volume snapshot into a new volume, include the snapshot_timestamp attribute in the request body.",
         "operationId": "cloneVolume",
@@ -10678,6 +11097,60 @@
         }
       }
     },
+    "AuthToken": {
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "token": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "description": {
+          "type": "string",
+          "description": "Available only for API keys"
+        },
+        "read_only": {
+          "type": "boolean"
+        },
+        "user": {
+          "$ref": "#/definitions/User",
+          "description": "Available only for user tokens"
+        },
+        "project": {
+          "$ref": "#/definitions/Project",
+          "description": "Available only for project tokens"
+        }
+      }
+    },
+    "AuthTokenInput": {
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "read_only": {
+          "type": "boolean"
+        }
+      }
+    },
+    "AuthTokenList": {
+      "properties": {
+        "api_keys": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AuthToken"
+          }
+        }
+      }
+    },
     "Batch": {
       "properties": {
         "id": {
@@ -11517,6 +11990,10 @@
         },
         "customdata": {
           "type": "object"
+        },
+        "network_frozen": {
+          "type": "boolean",
+          "description": "If true, this instance can not be converted to a different network type."
         }
       }
     },
@@ -12212,18 +12689,13 @@
           "format": "uuid"
         },
         "status": {
-          "description": "The status of the BGP Session. Multiple status values may be reported when the device is connected to multiple switches, one value per switch.",
-          "type": "array",
-          "collectionFormat": "csv",
-          "items": {
-            "description": "Each status will start with \"unknown\" and progress to \"up\" or \"down\" depending on the connected device. Subsequent \"unknown\" values indicate a problem acquiring status from the switch.",
-            "type": "string",
-            "enum": [
-              "unknown",
-              "up",
-              "down"
-            ]
-          }
+          "description": " The status of the BGP Session. Multiple status values may be reported when the device is connected to multiple switches, one value per switch. Each status will start with \"unknown\" and progress to \"up\" or \"down\" depending on the connected device. Subsequent \"unknown\" values indicate a problem acquiring status from the switch. ",
+          "type": "string",
+          "enum": [
+            "unknown",
+            "up",
+            "down"
+          ]
         },
         "learned_routes": {
           "type": "array",
@@ -12314,33 +12786,6 @@
         }
       }
     },
-    "InternetGateway": {
-      "properties": {
-        "id": {
-          "type": "string",
-          "format": "uuid"
-        },
-        "created_at": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "virtual_network": {
-          "$ref": "#/definitions/Href"
-        },
-        "created_by": {
-          "type": "string"
-        },
-        "ip_reservations": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Href"
-          }
-        },
-        "href": {
-          "type": "string"
-        }
-      }
-    },
     "IPAssignment": {
       "properties": {
         "id": {
@@ -12366,6 +12811,9 @@
           "type": "boolean"
         },
         "manageable": {
+          "type": "boolean"
+        },
+        "global_ip": {
           "type": "boolean"
         },
         "assigned_to": {
@@ -12437,6 +12885,9 @@
           "type": "boolean"
         },
         "manageable": {
+          "type": "boolean"
+        },
+        "global_ip": {
           "type": "boolean"
         },
         "addon": {
@@ -12595,6 +13046,10 @@
         },
         "metro": {
           "$ref": "#/definitions/Href"
+        },
+        "assigned_to_virtual_circuit": {
+          "type": "boolean",
+          "description": "True if the virtual network is attached to a virtual circuit. False if not."
         },
         "assigned_to": {
           "$ref": "#/definitions/Href"
@@ -13189,27 +13644,164 @@
         }
       }
     },
-    "Region": {
+    "CreateSelfServiceReservationRequest": {
       "properties": {
-        "id": {
+        "start_date": {
           "type": "string",
-          "format": "uuid"
+          "format": "date-time"
         },
-        "name": {
+        "period": {
+          "properties": {
+            "unit": {
+              "type": "string",
+              "enum": [
+                "monthly"
+              ]
+            },
+            "count": {
+              "type": "number",
+              "enum": [
+                12,
+                36
+              ]
+            }
+          }
+        },
+        "terms": {
           "type": "string"
         },
-        "facility": {
-          "$ref": "#/definitions/Facility"
+        "item": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SelfServiceReservationItemRequest"
+          }
         }
       }
     },
-    "RegionsList": {
+    "SelfServiceReservationResponse": {
       "properties": {
-        "regions": {
+        "status": {
+          "type": "string"
+        },
+        "start_date": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "period": {
+          "properties": {
+            "unit": {
+              "type": "string",
+              "enum": [
+                "monthly"
+              ]
+            },
+            "count": {
+              "type": "number",
+              "enum": [
+                12,
+                36
+              ]
+            }
+          }
+        },
+        "total_cost": {
+          "type": "integer"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "terms": {
+          "type": "string"
+        },
+        "organization": {
+          "type": "string"
+        },
+        "organization_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "project": {
+          "type": "string"
+        },
+        "project_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "item": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/Region"
+            "$ref": "#/definitions/SelfServiceReservationItemResponse"
           }
+        }
+      }
+    },
+    "SelfServiceReservationList": {
+      "properties": {
+        "reservations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SelfServiceReservationResponse"
+          }
+        }
+      }
+    },
+    "SelfServiceReservationItemRequest": {
+      "properties": {
+        "metro_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "plan_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "quantity": {
+          "type": "integer"
+        },
+        "amount": {
+          "type": "number",
+          "format": "float"
+        },
+        "term": {
+          "type": "string"
+        }
+      }
+    },
+    "SelfServiceReservationItemResponse": {
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "metro_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "metro_code": {
+          "type": "string"
+        },
+        "metro_name": {
+          "type": "string"
+        },
+        "plan_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "plan_name": {
+          "type": "string"
+        },
+        "plan_slug": {
+          "type": "string"
+        },
+        "quantity": {
+          "type": "integer"
+        },
+        "amount": {
+          "type": "number",
+          "format": "float"
+        },
+        "term": {
+          "type": "string"
         }
       }
     },
@@ -13743,6 +14335,16 @@
         },
         "device_id": {
           "type": "string"
+        },
+        "priority": {
+          "type": "string",
+          "enum": [
+            "urgent",
+            "high",
+            "medium",
+            "low"
+          ],
+          "required": false
         }
       }
     },
@@ -14506,20 +15108,23 @@
         }
       }
     },
-    "CreateEmailInput": {
-      "required": [
-        "address"
-      ],
+    "Email": {
       "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
         "address": {
           "type": "string"
-        }
-      }
-    },
-    "UpdateEmailInput": {
-      "properties": {
+        },
         "default": {
           "type": "boolean"
+        },
+        "verified": {
+          "type": "boolean"
+        },
+        "href": {
+          "type": "string"
         }
       }
     },
@@ -14540,23 +15145,20 @@
         }
       }
     },
-    "Email": {
+    "CreateEmailInput": {
+      "required": [
+        "address"
+      ],
       "properties": {
-        "id": {
-          "type": "string",
-          "format": "uuid"
-        },
         "address": {
           "type": "string"
-        },
+        }
+      }
+    },
+    "UpdateEmailInput": {
+      "properties": {
         "default": {
           "type": "boolean"
-        },
-        "verified": {
-          "type": "boolean"
-        },
-        "href": {
-          "type": "string"
         }
       }
     }
