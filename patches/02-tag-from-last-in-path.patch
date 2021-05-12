@@ -188,14 +188,6 @@ index 3f01934..f03fcfd 100644
            "Batches"
          ],
          "parameters": [
-@@ -2886,7 +2865,6 @@
-     "/virtual-networks/{id}/internet-gateways": {
-       "post": {
-         "tags": [
--          "InternetGateways",
-           "VLANs"
-         ],
-         "parameters": [
 @@ -3060,8 +3038,7 @@
          "description": "Returns all invitations in a project.",
          "operationId": "findProjectInvitations",
