@@ -37,7 +37,7 @@ import (
 
 func main() {
     id := TODO // string | Project UUID
-    sshKey := *openapiclient.NewSSHKeyInput() // SSHKeyInput | ssh key to create
+    sshKey := *openapiclient.NewSSHKeyCreateInput() // SSHKeyCreateInput | ssh key to create
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
@@ -67,7 +67,7 @@ Other parameters are passed through a pointer to a apiCreateProjectSSHKeyRequest
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **sshKey** | [**SSHKeyInput**](SSHKeyInput.md) | ssh key to create | 
+ **sshKey** | [**SSHKeyCreateInput**](SSHKeyCreateInput.md) | ssh key to create | 
 
 ### Return type
 
@@ -108,7 +108,7 @@ import (
 )
 
 func main() {
-    sshKey := *openapiclient.NewSSHKeyInput() // SSHKeyInput | ssh key to create
+    sshKey := *openapiclient.NewSSHKeyCreateInput() // SSHKeyCreateInput | ssh key to create
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
@@ -133,7 +133,7 @@ Other parameters are passed through a pointer to a apiCreateSSHKeyRequest struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **sshKey** | [**SSHKeyInput**](SSHKeyInput.md) | ssh key to create | 
+ **sshKey** | [**SSHKeyCreateInput**](SSHKeyCreateInput.md) | ssh key to create | 
 
 ### Return type
 
@@ -214,7 +214,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

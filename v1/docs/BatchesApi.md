@@ -105,7 +105,7 @@ import (
 
 func main() {
     id := TODO // string | Batch UUID
-    removeAssociatedInstances := true // bool | Default route
+    removeAssociatedInstances := true // bool | Delete all instances created from this batch (optional) (default to false)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
@@ -133,7 +133,7 @@ Other parameters are passed through a pointer to a apiDeleteBatchRequest struct 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **removeAssociatedInstances** | **bool** | Default route | 
+ **removeAssociatedInstances** | **bool** | Delete all instances created from this batch | [default to false]
 
 ### Return type
 
@@ -145,8 +145,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: Not defined
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

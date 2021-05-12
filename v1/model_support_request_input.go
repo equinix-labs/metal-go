@@ -1,7 +1,7 @@
 /*
  * Metal API
  *
- * This is the API for Equinix Metal Product. Interact with your devices, user account, and projects.
+ * This is the API for Equinix Metal. The API allows you to programmatically interact with all of your Equinix Metal resources, including devices, networks, addresses, organizations, projects, and your user account.  The official API docs are hosted at <https://metal.equinix.com/developers/api>. 
  *
  * API version: 1.0.0
  * Contact: support@equinixmetal.com
@@ -21,6 +21,7 @@ type SupportRequestInput struct {
 	Message string `json:"message"`
 	ProjectId *string `json:"project_id,omitempty"`
 	DeviceId *string `json:"device_id,omitempty"`
+	Priority *string `json:"priority,omitempty"`
 }
 
 // NewSupportRequestInput instantiates a new SupportRequestInput object
@@ -154,6 +155,38 @@ func (o *SupportRequestInput) SetDeviceId(v string) {
 	o.DeviceId = &v
 }
 
+// GetPriority returns the Priority field value if set, zero value otherwise.
+func (o *SupportRequestInput) GetPriority() string {
+	if o == nil || o.Priority == nil {
+		var ret string
+		return ret
+	}
+	return *o.Priority
+}
+
+// GetPriorityOk returns a tuple with the Priority field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SupportRequestInput) GetPriorityOk() (*string, bool) {
+	if o == nil || o.Priority == nil {
+		return nil, false
+	}
+	return o.Priority, true
+}
+
+// HasPriority returns a boolean if a field has been set.
+func (o *SupportRequestInput) HasPriority() bool {
+	if o != nil && o.Priority != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPriority gets a reference to the given string and assigns it to the Priority field.
+func (o *SupportRequestInput) SetPriority(v string) {
+	o.Priority = &v
+}
+
 func (o SupportRequestInput) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
@@ -167,6 +200,9 @@ func (o SupportRequestInput) MarshalJSON() ([]byte, error) {
 	}
 	if o.DeviceId != nil {
 		toSerialize["device_id"] = o.DeviceId
+	}
+	if o.Priority != nil {
+		toSerialize["priority"] = o.Priority
 	}
 	return json.Marshal(toSerialize)
 }

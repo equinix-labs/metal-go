@@ -1,7 +1,7 @@
 /*
  * Metal API
  *
- * This is the API for Equinix Metal Product. Interact with your devices, user account, and projects.
+ * This is the API for Equinix Metal. The API allows you to programmatically interact with all of your Equinix Metal resources, including devices, networks, addresses, organizations, projects, and your user account.  The official API docs are hosted at <https://metal.equinix.com/developers/api>. 
  *
  * API version: 1.0.0
  * Contact: support@equinixmetal.com
@@ -18,32 +18,51 @@ import (
 
 // DeviceCreateInput struct for DeviceCreateInput
 type DeviceCreateInput struct {
+	// The datacenter where the device should be created.  The API will accept either a single facility `{ \"facility\": \"f1\" }`, or it can be instructed to create the device in the best available datacenter `{ \"facility\": \"any\" }`.  Additionally it is possible to set a prioritized location selection. For example `{ \"facility\": [\"f3\", \"f2\", \"any\"] }` can be used to prioritize `f3` and then `f2` before accepting `any` facility. If none of the facilities provided have availability for the requested device the request will fail.
 	Facility string `json:"facility"`
+	// The slug of the device plan to provision.
 	Plan string `json:"plan"`
+	// The hostname to use within the operating system. The same hostname may be used on multiple devices within a project.
 	Hostname *string `json:"hostname,omitempty"`
+	// Any description of the device or how it will be used. This may be used to inform other API consumers with project access.
 	Description *string `json:"description,omitempty"`
+	// The billing cycle of the device.
 	BillingCycle *string `json:"billing_cycle,omitempty"`
+	// The slug of the operating system to provision. Check the Equinix Metal operating system documentation for rules that may be imposed per operating system, including restrictions on IP address options and device plans.
 	OperatingSystem string `json:"operating_system"`
+	// When true, devices with a `custom_ipxe` OS will always boot to iPXE. The default setting of false ensures that iPXE will be used on only the first boot.
 	AlwaysPxe *bool `json:"always_pxe,omitempty"`
+	// When set, the device will chainload an iPXE Script at boot fetched from the supplied URL.        See [Custom iPXE](https://metal.equinix.com/developers/docs/operating-systems/custom-ipxe/) for more details.
 	IpxeScriptUrl *string `json:"ipxe_script_url,omitempty"`
+	// The userdata presented in the metadata service for this device.  Userdata is fetched and interpretted by the operating system installed on the device. Acceptable formats are determined by the operating system, with the exception of a special iPXE enabling syntax which is handled before the operating system starts.        See [Server User Data](https://metal.equinix.com/developers/docs/servers/user-data/) and [Provisioning with Custom iPXE](https://metal.equinix.com/developers/docs/operating-systems/custom-ipxe/#provisioning-with-custom-ipxe) for more details.
 	Userdata *string `json:"userdata,omitempty"`
+	// Wether the device should be locked, preventing accidental deletion.
 	Locked *bool `json:"locked,omitempty"`
+	// Customdata is an arbitrary JSON value that can be accessed via the metadata service.
 	Customdata *map[string]interface{} `json:"customdata,omitempty"`
 	// Metro code or ID of where the instance should be provisioned in.
 	Metro *string `json:"metro,omitempty"`
+	// The Hardware Reservation UUID to provision. Alternatively, `next-available` can be specified to select from any of the available hardware reservations. An error will be returned if the requested reservation option is not available.        See [Reserved Hardware](https://metal.equinix.com/developers/docs/deploy/reserved/) for more details.
 	HardwareReservationId *string `json:"hardware_reservation_id,omitempty"`
 	SpotInstance *bool `json:"spot_instance,omitempty"`
 	SpotPriceMax *float32 `json:"spot_price_max,omitempty"`
 	TerminationTime *time.Time `json:"termination_time,omitempty"`
 	Tags *[]string `json:"tags,omitempty"`
-	ProjectSshKeys *[]string `json:"project_ssh_keys,omitempty"`
-	// The UUIDs of users whose SSH keys should be included on the provisioned device.
-	UserSshKeys *[]string `json:"user_ssh_keys,omitempty"`
+	// A list of UUIDs identifying the device parent project that should be authorized to access this device (typically via /root/.ssh/authorized_keys). These keys will also appear in the device metadata.  If no SSH keys are specified (`user_ssh_keys`, `project_ssh_keys`, and `ssh_keys` are all empty lists or omitted), all parent project keys, parent project members keys and organization members keys will be included. This behaviour can be changed with 'no_ssh_keys' option to omit any SSH key being added.  
+	ProjectSshKeys []string `json:"project_ssh_keys,omitempty"`
+	// A list of UUIDs identifying the users that should be authorized to access this device (typically via /root/.ssh/authorized_keys).  These keys will also appear in the device metadata.  The users must be members of the project or organization.  If no SSH keys are specified (`user_ssh_keys`, `project_ssh_keys`, and `ssh_keys` are all empty lists or omitted), all parent project keys, parent project members keys and organization members keys will be included. This behaviour can be changed with 'no_ssh_keys' option to omit any SSH key being added. 
+	UserSshKeys []string `json:"user_ssh_keys,omitempty"`
+	// A list of new or existing project ssh_keys that should be authorized to access this device (typically via /root/.ssh/authorized_keys). These keys will also appear in the device metadata.  These keys are added in addition to any keys defined by   `project_ssh_keys` and `user_ssh_keys`. 
+	SshKeys []SSHKeyInput `json:"ssh_keys,omitempty"`
+	// Overrides default behaviour of attaching all of the organization members ssh keys and project ssh keys to device if no specific keys specified
+	NoSshKeys NullableBool `json:"no_ssh_keys,omitempty"`
+	// The features attribute allows you to optionally specify what features your server should have.  In the API shorthand syntax, all features listed are `required`:  ``` { \"features\": [\"tpm\"] } ```  Alternatively, if you do not require a certain feature, but would prefer to be assigned a server with that feature if there are any available, you may specify that feature with a `preferred` value. The request will not fail if we have no servers with that feature in our inventory. The API offers an alternative syntax for mixing preferred and required features:  ``` { \"features\": { \"tpm\": \"required\", \"raid\": \"preferred\" } } ```  The request will only fail if there are no available servers matching the required `tpm` criteria.
 	Features *[]string `json:"features,omitempty"`
 	// Deprecated. Use ip_addresses. Subnet range for addresses allocated to this device. Your project must have addresses available for a non-default request.
 	PublicIpv4SubnetSize *float32 `json:"public_ipv4_subnet_size,omitempty"`
 	// Deprecated. Use ip_addresses. Subnet range for addresses allocated to this device.
 	PrivateIpv4SubnetSize *float32 `json:"private_ipv4_subnet_size,omitempty"`
+	// The `ip_addresses attribute will allow you to specify the addresses you want created with your device.  The default value configures public IPv4, public IPv6, and private IPv4.  Private IPv4 address is required. When specifying `ip_addresses`, one of the array items must enable private IPv4.  Some operating systems require public IPv4 address. In those cases you will receive an error message if public IPv4 is not enabled.  For example, to only configure your server with a private IPv4 address, you can send `{ \"ip_addresses\": [{ \"address_family\": 4, \"public\": false }] }`.  It is possible to request a subnet size larger than a `/30` by assigning addresses using the UUID(s) of ip_reservations in your project.  For example, `{ \"ip_addresses\": [..., {\"address_family\": 4, \"public\": true, \"ip_reservations\": [\"uuid1\", \"uuid2\"]}] }`  To access a server without public IPs, you can use our Out-of-Band console access (SOS) or proxy through another server in the project with public IPs enabled.
 	IpAddresses *[]DeviceCreateInputIpAddresses `json:"ip_addresses,omitempty"`
 }
 
@@ -56,6 +75,12 @@ func NewDeviceCreateInput(facility string, plan string, operatingSystem string) 
 	this.Facility = facility
 	this.Plan = plan
 	this.OperatingSystem = operatingSystem
+	var alwaysPxe bool = false
+	this.AlwaysPxe = &alwaysPxe
+	var locked bool = false
+	this.Locked = &locked
+	var noSshKeys bool = false
+	this.NoSshKeys = *NewNullableBool(&noSshKeys)
 	return &this
 }
 
@@ -64,6 +89,12 @@ func NewDeviceCreateInput(facility string, plan string, operatingSystem string) 
 // but it doesn't guarantee that properties required by API are set
 func NewDeviceCreateInputWithDefaults() *DeviceCreateInput {
 	this := DeviceCreateInput{}
+	var alwaysPxe bool = false
+	this.AlwaysPxe = &alwaysPxe
+	var locked bool = false
+	this.Locked = &locked
+	var noSshKeys bool = false
+	this.NoSshKeys = *NewNullableBool(&noSshKeys)
 	return &this
 }
 
@@ -587,22 +618,23 @@ func (o *DeviceCreateInput) SetTags(v []string) {
 	o.Tags = &v
 }
 
-// GetProjectSshKeys returns the ProjectSshKeys field value if set, zero value otherwise.
+// GetProjectSshKeys returns the ProjectSshKeys field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *DeviceCreateInput) GetProjectSshKeys() []string {
-	if o == nil || o.ProjectSshKeys == nil {
+	if o == nil  {
 		var ret []string
 		return ret
 	}
-	return *o.ProjectSshKeys
+	return o.ProjectSshKeys
 }
 
 // GetProjectSshKeysOk returns a tuple with the ProjectSshKeys field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *DeviceCreateInput) GetProjectSshKeysOk() (*[]string, bool) {
 	if o == nil || o.ProjectSshKeys == nil {
 		return nil, false
 	}
-	return o.ProjectSshKeys, true
+	return &o.ProjectSshKeys, true
 }
 
 // HasProjectSshKeys returns a boolean if a field has been set.
@@ -616,25 +648,26 @@ func (o *DeviceCreateInput) HasProjectSshKeys() bool {
 
 // SetProjectSshKeys gets a reference to the given []string and assigns it to the ProjectSshKeys field.
 func (o *DeviceCreateInput) SetProjectSshKeys(v []string) {
-	o.ProjectSshKeys = &v
+	o.ProjectSshKeys = v
 }
 
-// GetUserSshKeys returns the UserSshKeys field value if set, zero value otherwise.
+// GetUserSshKeys returns the UserSshKeys field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *DeviceCreateInput) GetUserSshKeys() []string {
-	if o == nil || o.UserSshKeys == nil {
+	if o == nil  {
 		var ret []string
 		return ret
 	}
-	return *o.UserSshKeys
+	return o.UserSshKeys
 }
 
 // GetUserSshKeysOk returns a tuple with the UserSshKeys field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *DeviceCreateInput) GetUserSshKeysOk() (*[]string, bool) {
 	if o == nil || o.UserSshKeys == nil {
 		return nil, false
 	}
-	return o.UserSshKeys, true
+	return &o.UserSshKeys, true
 }
 
 // HasUserSshKeys returns a boolean if a field has been set.
@@ -648,7 +681,82 @@ func (o *DeviceCreateInput) HasUserSshKeys() bool {
 
 // SetUserSshKeys gets a reference to the given []string and assigns it to the UserSshKeys field.
 func (o *DeviceCreateInput) SetUserSshKeys(v []string) {
-	o.UserSshKeys = &v
+	o.UserSshKeys = v
+}
+
+// GetSshKeys returns the SshKeys field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *DeviceCreateInput) GetSshKeys() []SSHKeyInput {
+	if o == nil  {
+		var ret []SSHKeyInput
+		return ret
+	}
+	return o.SshKeys
+}
+
+// GetSshKeysOk returns a tuple with the SshKeys field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *DeviceCreateInput) GetSshKeysOk() (*[]SSHKeyInput, bool) {
+	if o == nil || o.SshKeys == nil {
+		return nil, false
+	}
+	return &o.SshKeys, true
+}
+
+// HasSshKeys returns a boolean if a field has been set.
+func (o *DeviceCreateInput) HasSshKeys() bool {
+	if o != nil && o.SshKeys != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSshKeys gets a reference to the given []SSHKeyInput and assigns it to the SshKeys field.
+func (o *DeviceCreateInput) SetSshKeys(v []SSHKeyInput) {
+	o.SshKeys = v
+}
+
+// GetNoSshKeys returns the NoSshKeys field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *DeviceCreateInput) GetNoSshKeys() bool {
+	if o == nil || o.NoSshKeys.Get() == nil {
+		var ret bool
+		return ret
+	}
+	return *o.NoSshKeys.Get()
+}
+
+// GetNoSshKeysOk returns a tuple with the NoSshKeys field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *DeviceCreateInput) GetNoSshKeysOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.NoSshKeys.Get(), o.NoSshKeys.IsSet()
+}
+
+// HasNoSshKeys returns a boolean if a field has been set.
+func (o *DeviceCreateInput) HasNoSshKeys() bool {
+	if o != nil && o.NoSshKeys.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetNoSshKeys gets a reference to the given NullableBool and assigns it to the NoSshKeys field.
+func (o *DeviceCreateInput) SetNoSshKeys(v bool) {
+	o.NoSshKeys.Set(&v)
+}
+// SetNoSshKeysNil sets the value for NoSshKeys to be an explicit nil
+func (o *DeviceCreateInput) SetNoSshKeysNil() {
+	o.NoSshKeys.Set(nil)
+}
+
+// UnsetNoSshKeys ensures that no value is present for NoSshKeys, not even an explicit nil
+func (o *DeviceCreateInput) UnsetNoSshKeys() {
+	o.NoSshKeys.Unset()
 }
 
 // GetFeatures returns the Features field value if set, zero value otherwise.
@@ -837,6 +945,12 @@ func (o DeviceCreateInput) MarshalJSON() ([]byte, error) {
 	}
 	if o.UserSshKeys != nil {
 		toSerialize["user_ssh_keys"] = o.UserSshKeys
+	}
+	if o.SshKeys != nil {
+		toSerialize["ssh_keys"] = o.SshKeys
+	}
+	if o.NoSshKeys.IsSet() {
+		toSerialize["no_ssh_keys"] = o.NoSshKeys.Get()
 	}
 	if o.Features != nil {
 		toSerialize["features"] = o.Features

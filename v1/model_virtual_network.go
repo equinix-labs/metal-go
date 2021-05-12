@@ -1,7 +1,7 @@
 /*
  * Metal API
  *
- * This is the API for Equinix Metal Product. Interact with your devices, user account, and projects.
+ * This is the API for Equinix Metal. The API allows you to programmatically interact with all of your Equinix Metal resources, including devices, networks, addresses, organizations, projects, and your user account.  The official API docs are hosted at <https://metal.equinix.com/developers/api>. 
  *
  * API version: 1.0.0
  * Contact: support@equinixmetal.com
@@ -23,6 +23,11 @@ type VirtualNetwork struct {
 	Facility *Href `json:"facility,omitempty"`
 	// A list of instances with ports currently associated to this Virtual Network.
 	Instances *[]Href `json:"instances,omitempty"`
+	// The Metro code of the metro in which this Virtual Network is defined.
+	MetroCode *string `json:"metro_code,omitempty"`
+	Metro *Href `json:"metro,omitempty"`
+	// True if the virtual network is attached to a virtual circuit. False if not.
+	AssignedToVirtualCircuit *bool `json:"assigned_to_virtual_circuit,omitempty"`
 	AssignedTo *Href `json:"assigned_to,omitempty"`
 	Href *string `json:"href,omitempty"`
 }
@@ -204,6 +209,102 @@ func (o *VirtualNetwork) SetInstances(v []Href) {
 	o.Instances = &v
 }
 
+// GetMetroCode returns the MetroCode field value if set, zero value otherwise.
+func (o *VirtualNetwork) GetMetroCode() string {
+	if o == nil || o.MetroCode == nil {
+		var ret string
+		return ret
+	}
+	return *o.MetroCode
+}
+
+// GetMetroCodeOk returns a tuple with the MetroCode field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VirtualNetwork) GetMetroCodeOk() (*string, bool) {
+	if o == nil || o.MetroCode == nil {
+		return nil, false
+	}
+	return o.MetroCode, true
+}
+
+// HasMetroCode returns a boolean if a field has been set.
+func (o *VirtualNetwork) HasMetroCode() bool {
+	if o != nil && o.MetroCode != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMetroCode gets a reference to the given string and assigns it to the MetroCode field.
+func (o *VirtualNetwork) SetMetroCode(v string) {
+	o.MetroCode = &v
+}
+
+// GetMetro returns the Metro field value if set, zero value otherwise.
+func (o *VirtualNetwork) GetMetro() Href {
+	if o == nil || o.Metro == nil {
+		var ret Href
+		return ret
+	}
+	return *o.Metro
+}
+
+// GetMetroOk returns a tuple with the Metro field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VirtualNetwork) GetMetroOk() (*Href, bool) {
+	if o == nil || o.Metro == nil {
+		return nil, false
+	}
+	return o.Metro, true
+}
+
+// HasMetro returns a boolean if a field has been set.
+func (o *VirtualNetwork) HasMetro() bool {
+	if o != nil && o.Metro != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMetro gets a reference to the given Href and assigns it to the Metro field.
+func (o *VirtualNetwork) SetMetro(v Href) {
+	o.Metro = &v
+}
+
+// GetAssignedToVirtualCircuit returns the AssignedToVirtualCircuit field value if set, zero value otherwise.
+func (o *VirtualNetwork) GetAssignedToVirtualCircuit() bool {
+	if o == nil || o.AssignedToVirtualCircuit == nil {
+		var ret bool
+		return ret
+	}
+	return *o.AssignedToVirtualCircuit
+}
+
+// GetAssignedToVirtualCircuitOk returns a tuple with the AssignedToVirtualCircuit field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VirtualNetwork) GetAssignedToVirtualCircuitOk() (*bool, bool) {
+	if o == nil || o.AssignedToVirtualCircuit == nil {
+		return nil, false
+	}
+	return o.AssignedToVirtualCircuit, true
+}
+
+// HasAssignedToVirtualCircuit returns a boolean if a field has been set.
+func (o *VirtualNetwork) HasAssignedToVirtualCircuit() bool {
+	if o != nil && o.AssignedToVirtualCircuit != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAssignedToVirtualCircuit gets a reference to the given bool and assigns it to the AssignedToVirtualCircuit field.
+func (o *VirtualNetwork) SetAssignedToVirtualCircuit(v bool) {
+	o.AssignedToVirtualCircuit = &v
+}
+
 // GetAssignedTo returns the AssignedTo field value if set, zero value otherwise.
 func (o *VirtualNetwork) GetAssignedTo() Href {
 	if o == nil || o.AssignedTo == nil {
@@ -284,6 +385,15 @@ func (o VirtualNetwork) MarshalJSON() ([]byte, error) {
 	}
 	if o.Instances != nil {
 		toSerialize["instances"] = o.Instances
+	}
+	if o.MetroCode != nil {
+		toSerialize["metro_code"] = o.MetroCode
+	}
+	if o.Metro != nil {
+		toSerialize["metro"] = o.Metro
+	}
+	if o.AssignedToVirtualCircuit != nil {
+		toSerialize["assigned_to_virtual_circuit"] = o.AssignedToVirtualCircuit
 	}
 	if o.AssignedTo != nil {
 		toSerialize["assigned_to"] = o.AssignedTo

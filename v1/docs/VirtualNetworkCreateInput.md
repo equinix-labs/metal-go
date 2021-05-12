@@ -4,15 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ProjectId** | Pointer to **string** |  | [optional] 
+**ProjectId** | **string** |  | 
 **Description** | Pointer to **string** |  | [optional] 
 **Facility** | Pointer to **string** | The UUID (or facility code) for the Facility in which to create this Virtual network. | [optional] 
+**Metro** | Pointer to **string** | The UUID (or metro code) for the Metro in which to create this Virtual Network. | [optional] 
+**Vxlan** | Pointer to **int32** | VLAN ID between 2-3999. Must be unique for the project within the Metro in which this Virtual Network is being created. If no value is specified, the next-available VLAN ID in the range 1000-1999 will be automatically selected. | [optional] 
 
 ## Methods
 
 ### NewVirtualNetworkCreateInput
 
-`func NewVirtualNetworkCreateInput() *VirtualNetworkCreateInput`
+`func NewVirtualNetworkCreateInput(projectId string, ) *VirtualNetworkCreateInput`
 
 NewVirtualNetworkCreateInput instantiates a new VirtualNetworkCreateInput object
 This constructor will assign default values to properties that have it defined,
@@ -46,11 +48,6 @@ and a boolean to check if the value has been set.
 
 SetProjectId sets ProjectId field to given value.
 
-### HasProjectId
-
-`func (o *VirtualNetworkCreateInput) HasProjectId() bool`
-
-HasProjectId returns a boolean if a field has been set.
 
 ### GetDescription
 
@@ -101,6 +98,56 @@ SetFacility sets Facility field to given value.
 `func (o *VirtualNetworkCreateInput) HasFacility() bool`
 
 HasFacility returns a boolean if a field has been set.
+
+### GetMetro
+
+`func (o *VirtualNetworkCreateInput) GetMetro() string`
+
+GetMetro returns the Metro field if non-nil, zero value otherwise.
+
+### GetMetroOk
+
+`func (o *VirtualNetworkCreateInput) GetMetroOk() (*string, bool)`
+
+GetMetroOk returns a tuple with the Metro field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMetro
+
+`func (o *VirtualNetworkCreateInput) SetMetro(v string)`
+
+SetMetro sets Metro field to given value.
+
+### HasMetro
+
+`func (o *VirtualNetworkCreateInput) HasMetro() bool`
+
+HasMetro returns a boolean if a field has been set.
+
+### GetVxlan
+
+`func (o *VirtualNetworkCreateInput) GetVxlan() int32`
+
+GetVxlan returns the Vxlan field if non-nil, zero value otherwise.
+
+### GetVxlanOk
+
+`func (o *VirtualNetworkCreateInput) GetVxlanOk() (*int32, bool)`
+
+GetVxlanOk returns a tuple with the Vxlan field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVxlan
+
+`func (o *VirtualNetworkCreateInput) SetVxlan(v int32)`
+
+SetVxlan sets Vxlan field to given value.
+
+### HasVxlan
+
+`func (o *VirtualNetworkCreateInput) HasVxlan() bool`
+
+HasVxlan returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

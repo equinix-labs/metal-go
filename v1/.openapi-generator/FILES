@@ -2,6 +2,7 @@
 .travis.yml
 README.md
 api/openapi.yaml
+api_authentication.go
 api_batches.go
 api_bgp.go
 api_capacity.go
@@ -17,6 +18,7 @@ api_ip_addresses.go
 api_licenses.go
 api_market.go
 api_memberships.go
+api_metros.go
 api_operating_system_versions.go
 api_operating_systems.go
 api_organizations.go
@@ -26,7 +28,7 @@ api_payment_methods.go
 api_plans.go
 api_ports.go
 api_projects.go
-api_regions.go
+api_self_service_reservations.go
 api_spot_market_request.go
 api_ssh_keys.go
 api_transfer_requests.go
@@ -37,10 +39,13 @@ api_userdata.go
 api_users.go
 api_vlans.go
 api_volumes.go
-api_vpn.go
 client.go
 configuration.go
 docs/Address.md
+docs/AuthToken.md
+docs/AuthTokenInput.md
+docs/AuthTokenList.md
+docs/AuthenticationApi.md
 docs/BGPApi.md
 docs/BGPSessionInput.md
 docs/Batch.md
@@ -70,6 +75,8 @@ docs/CapacityReport.md
 docs/ConnectionsApi.md
 docs/Coordinates.md
 docs/CreateEmailInput.md
+docs/CreateSelfServiceReservationRequest.md
+docs/CreateSelfServiceReservationRequestPeriod.md
 docs/Device.md
 docs/DeviceCreateInput.md
 docs/DeviceCreateInputIpAddresses.md
@@ -84,6 +91,7 @@ docs/EmailsApi.md
 docs/Entitlement.md
 docs/EntitlementInput.md
 docs/EntitlementList.md
+docs/Error.md
 docs/Event.md
 docs/EventInput.md
 docs/EventList.md
@@ -137,7 +145,9 @@ docs/Meta.md
 docs/Metro.md
 docs/MetroCapacityList.md
 docs/MetroCapacityReport.md
+docs/MetroList.md
 docs/MetroServerInfo.md
+docs/MetrosApi.md
 docs/NewPassword.md
 docs/OperatingSystem.md
 docs/OperatingSystemVersionsApi.md
@@ -174,13 +184,16 @@ docs/ProjectUsage.md
 docs/ProjectUsageList.md
 docs/ProjectsApi.md
 docs/RecoveryCodeList.md
-docs/Region.md
-docs/RegionsApi.md
-docs/RegionsList.md
 docs/SSHKey.md
+docs/SSHKeyCreateInput.md
 docs/SSHKeyInput.md
 docs/SSHKeyList.md
 docs/SSHKeysApi.md
+docs/SelfServiceReservationItemRequest.md
+docs/SelfServiceReservationItemResponse.md
+docs/SelfServiceReservationList.md
+docs/SelfServiceReservationResponse.md
+docs/SelfServiceReservationsApi.md
 docs/ServerInfo.md
 docs/SnapshotPolicy.md
 docs/SnapshotPolicyInput.md
@@ -218,8 +231,6 @@ docs/Userdata.md
 docs/UserdataApi.md
 docs/UsersApi.md
 docs/VLANsApi.md
-docs/VPNApi.md
-docs/VPNConfig.md
 docs/VirtualCircuit.md
 docs/VirtualCircuitCreateInput.md
 docs/VirtualCircuitList.md
@@ -242,6 +253,9 @@ git_push.sh
 go.mod
 go.sum
 model_address.go
+model_auth_token.go
+model_auth_token_input.go
+model_auth_token_list.go
 model_batch.go
 model_batches_list.go
 model_bgp_config.go
@@ -267,6 +281,8 @@ model_capacity_per_new_facility.go
 model_capacity_report.go
 model_coordinates.go
 model_create_email_input.go
+model_create_self_service_reservation_request.go
+model_create_self_service_reservation_request_period.go
 model_device.go
 model_device_create_input.go
 model_device_create_input_ip_addresses.go
@@ -279,6 +295,7 @@ model_email_input.go
 model_entitlement.go
 model_entitlement_input.go
 model_entitlement_list.go
+model_error.go
 model_event.go
 model_event_input.go
 model_event_list.go
@@ -323,6 +340,7 @@ model_meta.go
 model_metro.go
 model_metro_capacity_list.go
 model_metro_capacity_report.go
+model_metro_list.go
 model_metro_server_info.go
 model_new_password.go
 model_operating_system.go
@@ -351,8 +369,10 @@ model_project_update_input.go
 model_project_usage.go
 model_project_usage_list.go
 model_recovery_code_list.go
-model_region.go
-model_regions_list.go
+model_self_service_reservation_item_request.go
+model_self_service_reservation_item_response.go
+model_self_service_reservation_list.go
+model_self_service_reservation_response.go
 model_server_info.go
 model_snapshot_policy.go
 model_snapshot_policy_input.go
@@ -370,6 +390,7 @@ model_spot_prices_per_facility.go
 model_spot_prices_per_new_facility.go
 model_spot_prices_report.go
 model_ssh_key.go
+model_ssh_key_create_input.go
 model_ssh_key_input.go
 model_ssh_key_list.go
 model_subscribable_event.go
@@ -402,6 +423,5 @@ model_volume_snapshot.go
 model_volume_snapshot_input.go
 model_volume_snapshot_list.go
 model_volume_update_input.go
-model_vpn_config.go
 response.go
 utils.go

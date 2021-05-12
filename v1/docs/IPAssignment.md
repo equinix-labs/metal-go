@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **Cidr** | Pointer to **int32** |  | [optional] 
 **Management** | Pointer to **bool** |  | [optional] 
 **Manageable** | Pointer to **bool** |  | [optional] 
+**GlobalIp** | Pointer to **bool** |  | [optional] 
 **AssignedTo** | Pointer to [**Href**](Href.md) |  | [optional] 
 **Network** | Pointer to **string** |  | [optional] 
 **Address** | Pointer to **string** |  | [optional] 
@@ -239,6 +240,31 @@ SetManageable sets Manageable field to given value.
 `func (o *IPAssignment) HasManageable() bool`
 
 HasManageable returns a boolean if a field has been set.
+
+### GetGlobalIp
+
+`func (o *IPAssignment) GetGlobalIp() bool`
+
+GetGlobalIp returns the GlobalIp field if non-nil, zero value otherwise.
+
+### GetGlobalIpOk
+
+`func (o *IPAssignment) GetGlobalIpOk() (*bool, bool)`
+
+GetGlobalIpOk returns a tuple with the GlobalIp field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetGlobalIp
+
+`func (o *IPAssignment) SetGlobalIp(v bool)`
+
+SetGlobalIp sets GlobalIp field to given value.
+
+### HasGlobalIp
+
+`func (o *IPAssignment) HasGlobalIp() bool`
+
+HasGlobalIp returns a boolean if a field has been set.
 
 ### GetAssignedTo
 

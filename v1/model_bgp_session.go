@@ -1,7 +1,7 @@
 /*
  * Metal API
  *
- * This is the API for Equinix Metal Product. Interact with your devices, user account, and projects.
+ * This is the API for Equinix Metal. The API allows you to programmatically interact with all of your Equinix Metal resources, including devices, networks, addresses, organizations, projects, and your user account.  The official API docs are hosted at <https://metal.equinix.com/developers/api>. 
  *
  * API version: 1.0.0
  * Contact: support@equinixmetal.com
@@ -19,10 +19,10 @@ import (
 // BgpSession struct for BgpSession
 type BgpSession struct {
 	Id *string `json:"id,omitempty"`
-	// The status of the BGP Session will start \"unknown\" and progress to \"up\" or \"down\" depending on the devices.
+	//  The status of the BGP Session. Multiple status values may be reported when the device is connected to multiple switches, one value per switch. Each status will start with \"unknown\" and progress to \"up\" or \"down\" depending on the connected device. Subsequent \"unknown\" values indicate a problem acquiring status from the switch. 
 	Status *string `json:"status,omitempty"`
 	LearnedRoutes *[]string `json:"learned_routes,omitempty"`
-	AddressFamily *string `json:"address_family,omitempty"`
+	AddressFamily string `json:"address_family"`
 	Device *Href `json:"device,omitempty"`
 	Href *string `json:"href,omitempty"`
 	DefaultRoute *bool `json:"default_route,omitempty"`
@@ -34,8 +34,9 @@ type BgpSession struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewBgpSession() *BgpSession {
+func NewBgpSession(addressFamily string) *BgpSession {
 	this := BgpSession{}
+	this.AddressFamily = addressFamily
 	return &this
 }
 
@@ -143,36 +144,28 @@ func (o *BgpSession) SetLearnedRoutes(v []string) {
 	o.LearnedRoutes = &v
 }
 
-// GetAddressFamily returns the AddressFamily field value if set, zero value otherwise.
+// GetAddressFamily returns the AddressFamily field value
 func (o *BgpSession) GetAddressFamily() string {
-	if o == nil || o.AddressFamily == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.AddressFamily
+
+	return o.AddressFamily
 }
 
-// GetAddressFamilyOk returns a tuple with the AddressFamily field value if set, nil otherwise
+// GetAddressFamilyOk returns a tuple with the AddressFamily field value
 // and a boolean to check if the value has been set.
 func (o *BgpSession) GetAddressFamilyOk() (*string, bool) {
-	if o == nil || o.AddressFamily == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.AddressFamily, true
+	return &o.AddressFamily, true
 }
 
-// HasAddressFamily returns a boolean if a field has been set.
-func (o *BgpSession) HasAddressFamily() bool {
-	if o != nil && o.AddressFamily != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetAddressFamily gets a reference to the given string and assigns it to the AddressFamily field.
+// SetAddressFamily sets field value
 func (o *BgpSession) SetAddressFamily(v string) {
-	o.AddressFamily = &v
+	o.AddressFamily = v
 }
 
 // GetDevice returns the Device field value if set, zero value otherwise.
@@ -346,7 +339,7 @@ func (o BgpSession) MarshalJSON() ([]byte, error) {
 	if o.LearnedRoutes != nil {
 		toSerialize["learned_routes"] = o.LearnedRoutes
 	}
-	if o.AddressFamily != nil {
+	if true {
 		toSerialize["address_family"] = o.AddressFamily
 	}
 	if o.Device != nil {

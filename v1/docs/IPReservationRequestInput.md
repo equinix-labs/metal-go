@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **Quantity** | **int32** |  | 
 **Comments** | Pointer to **string** |  | [optional] 
 **Facility** | Pointer to **string** |  | [optional] 
-**Metro** | Pointer to **string** | The code of the metro you are creating the IP reservation request in. | [optional] 
+**Metro** | Pointer to **string** | The code of the metro you are requesting the IP reservation in. | [optional] 
 **Customdata** | Pointer to **map[string]interface{}** |  | [optional] 
 **Tags** | Pointer to **[]string** |  | [optional] 
 **Details** | Pointer to **string** |  | [optional] 

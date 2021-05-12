@@ -1,7 +1,7 @@
 /*
  * Metal API
  *
- * This is the API for Equinix Metal Product. Interact with your devices, user account, and projects.
+ * This is the API for Equinix Metal. The API allows you to programmatically interact with all of your Equinix Metal resources, including devices, networks, addresses, organizations, projects, and your user account.  The official API docs are hosted at <https://metal.equinix.com/developers/api>. 
  *
  * API version: 1.0.0
  * Contact: support@equinixmetal.com
@@ -23,9 +23,7 @@ type Port struct {
 	Data *map[string]interface{} `json:"data,omitempty"`
 	// Indicates whether or not the bond can be broken on the port (when applicable).
 	DisbondOperationSupported *bool `json:"disbond_operation_supported,omitempty"`
-	Hardware *Href `json:"hardware,omitempty"`
 	VirtualNetworks *[]Href `json:"virtual_networks,omitempty"`
-	ConnectedPort *Href `json:"connected_port,omitempty"`
 	Href *string `json:"href,omitempty"`
 }
 
@@ -206,38 +204,6 @@ func (o *Port) SetDisbondOperationSupported(v bool) {
 	o.DisbondOperationSupported = &v
 }
 
-// GetHardware returns the Hardware field value if set, zero value otherwise.
-func (o *Port) GetHardware() Href {
-	if o == nil || o.Hardware == nil {
-		var ret Href
-		return ret
-	}
-	return *o.Hardware
-}
-
-// GetHardwareOk returns a tuple with the Hardware field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Port) GetHardwareOk() (*Href, bool) {
-	if o == nil || o.Hardware == nil {
-		return nil, false
-	}
-	return o.Hardware, true
-}
-
-// HasHardware returns a boolean if a field has been set.
-func (o *Port) HasHardware() bool {
-	if o != nil && o.Hardware != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetHardware gets a reference to the given Href and assigns it to the Hardware field.
-func (o *Port) SetHardware(v Href) {
-	o.Hardware = &v
-}
-
 // GetVirtualNetworks returns the VirtualNetworks field value if set, zero value otherwise.
 func (o *Port) GetVirtualNetworks() []Href {
 	if o == nil || o.VirtualNetworks == nil {
@@ -268,38 +234,6 @@ func (o *Port) HasVirtualNetworks() bool {
 // SetVirtualNetworks gets a reference to the given []Href and assigns it to the VirtualNetworks field.
 func (o *Port) SetVirtualNetworks(v []Href) {
 	o.VirtualNetworks = &v
-}
-
-// GetConnectedPort returns the ConnectedPort field value if set, zero value otherwise.
-func (o *Port) GetConnectedPort() Href {
-	if o == nil || o.ConnectedPort == nil {
-		var ret Href
-		return ret
-	}
-	return *o.ConnectedPort
-}
-
-// GetConnectedPortOk returns a tuple with the ConnectedPort field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Port) GetConnectedPortOk() (*Href, bool) {
-	if o == nil || o.ConnectedPort == nil {
-		return nil, false
-	}
-	return o.ConnectedPort, true
-}
-
-// HasConnectedPort returns a boolean if a field has been set.
-func (o *Port) HasConnectedPort() bool {
-	if o != nil && o.ConnectedPort != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetConnectedPort gets a reference to the given Href and assigns it to the ConnectedPort field.
-func (o *Port) SetConnectedPort(v Href) {
-	o.ConnectedPort = &v
 }
 
 // GetHref returns the Href field value if set, zero value otherwise.
@@ -351,14 +285,8 @@ func (o Port) MarshalJSON() ([]byte, error) {
 	if o.DisbondOperationSupported != nil {
 		toSerialize["disbond_operation_supported"] = o.DisbondOperationSupported
 	}
-	if o.Hardware != nil {
-		toSerialize["hardware"] = o.Hardware
-	}
 	if o.VirtualNetworks != nil {
 		toSerialize["virtual_networks"] = o.VirtualNetworks
-	}
-	if o.ConnectedPort != nil {
-		toSerialize["connected_port"] = o.ConnectedPort
 	}
 	if o.Href != nil {
 		toSerialize["href"] = o.Href

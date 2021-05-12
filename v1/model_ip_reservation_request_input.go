@@ -1,7 +1,7 @@
 /*
  * Metal API
  *
- * This is the API for Equinix Metal Product. Interact with your devices, user account, and projects.
+ * This is the API for Equinix Metal. The API allows you to programmatically interact with all of your Equinix Metal resources, including devices, networks, addresses, organizations, projects, and your user account.  The official API docs are hosted at <https://metal.equinix.com/developers/api>. 
  *
  * API version: 1.0.0
  * Contact: support@equinixmetal.com
@@ -21,7 +21,7 @@ type IPReservationRequestInput struct {
 	Quantity int32 `json:"quantity"`
 	Comments *string `json:"comments,omitempty"`
 	Facility *string `json:"facility,omitempty"`
-	// The code of the metro you are creating the IP reservation request in.
+	// The code of the metro you are requesting the IP reservation in.
 	Metro *string `json:"metro,omitempty"`
 	Customdata *map[string]interface{} `json:"customdata,omitempty"`
 	Tags *[]string `json:"tags,omitempty"`

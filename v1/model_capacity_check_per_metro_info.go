@@ -1,7 +1,7 @@
 /*
  * Metal API
  *
- * This is the API for Equinix Metal Product. Interact with your devices, user account, and projects.
+ * This is the API for Equinix Metal. The API allows you to programmatically interact with all of your Equinix Metal resources, including devices, networks, addresses, organizations, projects, and your user account.  The official API docs are hosted at <https://metal.equinix.com/developers/api>. 
  *
  * API version: 1.0.0
  * Contact: support@equinixmetal.com
@@ -17,9 +17,13 @@ import (
 
 // CapacityCheckPerMetroInfo struct for CapacityCheckPerMetroInfo
 type CapacityCheckPerMetroInfo struct {
+	// The metro ID or code sent to check capacity.
 	Metro *string `json:"metro,omitempty"`
+	// The plan ID or slug sent to check capacity.
 	Plan *string `json:"plan,omitempty"`
+	// The number of servers sent to check capacity.
 	Quantity *string `json:"quantity,omitempty"`
+	// Returns true if there is enough capacity in the metro to fulfill the quantity set. Returns false if there is not enough.
 	Available *bool `json:"available,omitempty"`
 }
 

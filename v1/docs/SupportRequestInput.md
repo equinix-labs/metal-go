@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **Message** | **string** |  | 
 **ProjectId** | Pointer to **string** |  | [optional] 
 **DeviceId** | Pointer to **string** |  | [optional] 
+**Priority** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -117,6 +118,31 @@ SetDeviceId sets DeviceId field to given value.
 `func (o *SupportRequestInput) HasDeviceId() bool`
 
 HasDeviceId returns a boolean if a field has been set.
+
+### GetPriority
+
+`func (o *SupportRequestInput) GetPriority() string`
+
+GetPriority returns the Priority field if non-nil, zero value otherwise.
+
+### GetPriorityOk
+
+`func (o *SupportRequestInput) GetPriorityOk() (*string, bool)`
+
+GetPriorityOk returns a tuple with the Priority field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPriority
+
+`func (o *SupportRequestInput) SetPriority(v string)`
+
+SetPriority sets Priority field to given value.
+
+### HasPriority
+
+`func (o *SupportRequestInput) HasPriority() bool`
+
+HasPriority returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -1,7 +1,7 @@
 /*
  * Metal API
  *
- * This is the API for Equinix Metal Product. Interact with your devices, user account, and projects.
+ * This is the API for Equinix Metal. The API allows you to programmatically interact with all of your Equinix Metal resources, including devices, networks, addresses, organizations, projects, and your user account.  The official API docs are hosted at <https://metal.equinix.com/developers/api>. 
  *
  * API version: 1.0.0
  * Contact: support@equinixmetal.com
@@ -33,7 +33,7 @@ type APIResponse struct {
 	Payload []byte `json:"-"`
 }
 
-// NewAPIResponse returns a new APIResonse object.
+// NewAPIResponse returns a new APIResponse object.
 func NewAPIResponse(r *http.Response) *APIResponse {
 
 	response := &APIResponse{Response: r}

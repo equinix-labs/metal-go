@@ -1,7 +1,7 @@
 /*
  * Metal API
  *
- * This is the API for Equinix Metal Product. Interact with your devices, user account, and projects.
+ * This is the API for Equinix Metal. The API allows you to programmatically interact with all of your Equinix Metal resources, including devices, networks, addresses, organizations, projects, and your user account.  The official API docs are hosted at <https://metal.equinix.com/developers/api>. 
  *
  * API version: 1.0.0
  * Contact: support@equinixmetal.com
@@ -24,6 +24,8 @@ type SpotMarketRequestCreateInput struct {
 	MaxBidPrice *float32 `json:"max_bid_price,omitempty"`
 	EndAt *time.Time `json:"end_at,omitempty"`
 	Facilities *[]string `json:"facilities,omitempty"`
+	// The metro ID or code the spot market request will be created in.
+	Metro *string `json:"metro,omitempty"`
 }
 
 // NewSpotMarketRequestCreateInput instantiates a new SpotMarketRequestCreateInput object
@@ -235,6 +237,38 @@ func (o *SpotMarketRequestCreateInput) SetFacilities(v []string) {
 	o.Facilities = &v
 }
 
+// GetMetro returns the Metro field value if set, zero value otherwise.
+func (o *SpotMarketRequestCreateInput) GetMetro() string {
+	if o == nil || o.Metro == nil {
+		var ret string
+		return ret
+	}
+	return *o.Metro
+}
+
+// GetMetroOk returns a tuple with the Metro field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SpotMarketRequestCreateInput) GetMetroOk() (*string, bool) {
+	if o == nil || o.Metro == nil {
+		return nil, false
+	}
+	return o.Metro, true
+}
+
+// HasMetro returns a boolean if a field has been set.
+func (o *SpotMarketRequestCreateInput) HasMetro() bool {
+	if o != nil && o.Metro != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMetro gets a reference to the given string and assigns it to the Metro field.
+func (o *SpotMarketRequestCreateInput) SetMetro(v string) {
+	o.Metro = &v
+}
+
 func (o SpotMarketRequestCreateInput) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.InstanceAttributes != nil {
@@ -254,6 +288,9 @@ func (o SpotMarketRequestCreateInput) MarshalJSON() ([]byte, error) {
 	}
 	if o.Facilities != nil {
 		toSerialize["facilities"] = o.Facilities
+	}
+	if o.Metro != nil {
+		toSerialize["metro"] = o.Metro
 	}
 	return json.Marshal(toSerialize)
 }

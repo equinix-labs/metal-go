@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **Tags** | Pointer to **[]string** |  | [optional] 
 **ProjectSshKeys** | Pointer to **[]string** |  | [optional] 
 **UserSshKeys** | Pointer to **[]string** | The UUIDs of users whose SSH keys should be included on the provisioned device. | [optional] 
+**NoSshKeys** | Pointer to **bool** |  | [optional] 
 **Features** | Pointer to **[]string** |  | [optional] 
 **Customdata** | Pointer to **map[string]interface{}** |  | [optional] 
 **PublicIpv4SubnetSize** | Pointer to **int32** |  | [optional] 
@@ -365,6 +366,31 @@ SetUserSshKeys sets UserSshKeys field to given value.
 `func (o *SpotMarketRequestCreateInputInstanceAttributes) HasUserSshKeys() bool`
 
 HasUserSshKeys returns a boolean if a field has been set.
+
+### GetNoSshKeys
+
+`func (o *SpotMarketRequestCreateInputInstanceAttributes) GetNoSshKeys() bool`
+
+GetNoSshKeys returns the NoSshKeys field if non-nil, zero value otherwise.
+
+### GetNoSshKeysOk
+
+`func (o *SpotMarketRequestCreateInputInstanceAttributes) GetNoSshKeysOk() (*bool, bool)`
+
+GetNoSshKeysOk returns a tuple with the NoSshKeys field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNoSshKeys
+
+`func (o *SpotMarketRequestCreateInputInstanceAttributes) SetNoSshKeys(v bool)`
+
+SetNoSshKeys sets NoSshKeys field to given value.
+
+### HasNoSshKeys
+
+`func (o *SpotMarketRequestCreateInputInstanceAttributes) HasNoSshKeys() bool`
+
+HasNoSshKeys returns a boolean if a field has been set.
 
 ### GetFeatures
 

@@ -1,7 +1,7 @@
 /*
  * Metal API
  *
- * This is the API for Equinix Metal Product. Interact with your devices, user account, and projects.
+ * This is the API for Equinix Metal. The API allows you to programmatically interact with all of your Equinix Metal resources, including devices, networks, addresses, organizations, projects, and your user account.  The official API docs are hosted at <https://metal.equinix.com/developers/api>. 
  *
  * API version: 1.0.0
  * Contact: support@equinixmetal.com
@@ -20,6 +20,7 @@ type Metro struct {
 	Id *string `json:"id,omitempty"`
 	Name *string `json:"name,omitempty"`
 	Code *string `json:"code,omitempty"`
+	Country *string `json:"country,omitempty"`
 }
 
 // NewMetro instantiates a new Metro object
@@ -135,6 +136,38 @@ func (o *Metro) SetCode(v string) {
 	o.Code = &v
 }
 
+// GetCountry returns the Country field value if set, zero value otherwise.
+func (o *Metro) GetCountry() string {
+	if o == nil || o.Country == nil {
+		var ret string
+		return ret
+	}
+	return *o.Country
+}
+
+// GetCountryOk returns a tuple with the Country field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Metro) GetCountryOk() (*string, bool) {
+	if o == nil || o.Country == nil {
+		return nil, false
+	}
+	return o.Country, true
+}
+
+// HasCountry returns a boolean if a field has been set.
+func (o *Metro) HasCountry() bool {
+	if o != nil && o.Country != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCountry gets a reference to the given string and assigns it to the Country field.
+func (o *Metro) SetCountry(v string) {
+	o.Country = &v
+}
+
 func (o Metro) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Id != nil {
@@ -145,6 +178,9 @@ func (o Metro) MarshalJSON() ([]byte, error) {
 	}
 	if o.Code != nil {
 		toSerialize["code"] = o.Code
+	}
+	if o.Country != nil {
+		toSerialize["country"] = o.Country
 	}
 	return json.Marshal(toSerialize)
 }

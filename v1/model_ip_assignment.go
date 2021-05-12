@@ -1,7 +1,7 @@
 /*
  * Metal API
  *
- * This is the API for Equinix Metal Product. Interact with your devices, user account, and projects.
+ * This is the API for Equinix Metal. The API allows you to programmatically interact with all of your Equinix Metal resources, including devices, networks, addresses, organizations, projects, and your user account.  The official API docs are hosted at <https://metal.equinix.com/developers/api>. 
  *
  * API version: 1.0.0
  * Contact: support@equinixmetal.com
@@ -26,6 +26,7 @@ type IPAssignment struct {
 	Cidr *int32 `json:"cidr,omitempty"`
 	Management *bool `json:"management,omitempty"`
 	Manageable *bool `json:"manageable,omitempty"`
+	GlobalIp *bool `json:"global_ip,omitempty"`
 	AssignedTo *Href `json:"assigned_to,omitempty"`
 	Network *string `json:"network,omitempty"`
 	Address *string `json:"address,omitempty"`
@@ -309,6 +310,38 @@ func (o *IPAssignment) SetManageable(v bool) {
 	o.Manageable = &v
 }
 
+// GetGlobalIp returns the GlobalIp field value if set, zero value otherwise.
+func (o *IPAssignment) GetGlobalIp() bool {
+	if o == nil || o.GlobalIp == nil {
+		var ret bool
+		return ret
+	}
+	return *o.GlobalIp
+}
+
+// GetGlobalIpOk returns a tuple with the GlobalIp field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IPAssignment) GetGlobalIpOk() (*bool, bool) {
+	if o == nil || o.GlobalIp == nil {
+		return nil, false
+	}
+	return o.GlobalIp, true
+}
+
+// HasGlobalIp returns a boolean if a field has been set.
+func (o *IPAssignment) HasGlobalIp() bool {
+	if o != nil && o.GlobalIp != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetGlobalIp gets a reference to the given bool and assigns it to the GlobalIp field.
+func (o *IPAssignment) SetGlobalIp(v bool) {
+	o.GlobalIp = &v
+}
+
 // GetAssignedTo returns the AssignedTo field value if set, zero value otherwise.
 func (o *IPAssignment) GetAssignedTo() Href {
 	if o == nil || o.AssignedTo == nil {
@@ -590,6 +623,9 @@ func (o IPAssignment) MarshalJSON() ([]byte, error) {
 	}
 	if o.Manageable != nil {
 		toSerialize["manageable"] = o.Manageable
+	}
+	if o.GlobalIp != nil {
+		toSerialize["global_ip"] = o.GlobalIp
 	}
 	if o.AssignedTo != nil {
 		toSerialize["assigned_to"] = o.AssignedTo

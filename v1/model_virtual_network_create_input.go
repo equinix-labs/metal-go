@@ -1,7 +1,7 @@
 /*
  * Metal API
  *
- * This is the API for Equinix Metal Product. Interact with your devices, user account, and projects.
+ * This is the API for Equinix Metal. The API allows you to programmatically interact with all of your Equinix Metal resources, including devices, networks, addresses, organizations, projects, and your user account.  The official API docs are hosted at <https://metal.equinix.com/developers/api>. 
  *
  * API version: 1.0.0
  * Contact: support@equinixmetal.com
@@ -17,18 +17,23 @@ import (
 
 // VirtualNetworkCreateInput struct for VirtualNetworkCreateInput
 type VirtualNetworkCreateInput struct {
-	ProjectId *string `json:"project_id,omitempty"`
+	ProjectId string `json:"project_id"`
 	Description *string `json:"description,omitempty"`
 	// The UUID (or facility code) for the Facility in which to create this Virtual network.
 	Facility *string `json:"facility,omitempty"`
+	// The UUID (or metro code) for the Metro in which to create this Virtual Network.
+	Metro *string `json:"metro,omitempty"`
+	// VLAN ID between 2-3999. Must be unique for the project within the Metro in which this Virtual Network is being created. If no value is specified, the next-available VLAN ID in the range 1000-1999 will be automatically selected.
+	Vxlan *int32 `json:"vxlan,omitempty"`
 }
 
 // NewVirtualNetworkCreateInput instantiates a new VirtualNetworkCreateInput object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVirtualNetworkCreateInput() *VirtualNetworkCreateInput {
+func NewVirtualNetworkCreateInput(projectId string) *VirtualNetworkCreateInput {
 	this := VirtualNetworkCreateInput{}
+	this.ProjectId = projectId
 	return &this
 }
 
@@ -40,36 +45,28 @@ func NewVirtualNetworkCreateInputWithDefaults() *VirtualNetworkCreateInput {
 	return &this
 }
 
-// GetProjectId returns the ProjectId field value if set, zero value otherwise.
+// GetProjectId returns the ProjectId field value
 func (o *VirtualNetworkCreateInput) GetProjectId() string {
-	if o == nil || o.ProjectId == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.ProjectId
+
+	return o.ProjectId
 }
 
-// GetProjectIdOk returns a tuple with the ProjectId field value if set, nil otherwise
+// GetProjectIdOk returns a tuple with the ProjectId field value
 // and a boolean to check if the value has been set.
 func (o *VirtualNetworkCreateInput) GetProjectIdOk() (*string, bool) {
-	if o == nil || o.ProjectId == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.ProjectId, true
+	return &o.ProjectId, true
 }
 
-// HasProjectId returns a boolean if a field has been set.
-func (o *VirtualNetworkCreateInput) HasProjectId() bool {
-	if o != nil && o.ProjectId != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetProjectId gets a reference to the given string and assigns it to the ProjectId field.
+// SetProjectId sets field value
 func (o *VirtualNetworkCreateInput) SetProjectId(v string) {
-	o.ProjectId = &v
+	o.ProjectId = v
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise.
@@ -136,9 +133,73 @@ func (o *VirtualNetworkCreateInput) SetFacility(v string) {
 	o.Facility = &v
 }
 
+// GetMetro returns the Metro field value if set, zero value otherwise.
+func (o *VirtualNetworkCreateInput) GetMetro() string {
+	if o == nil || o.Metro == nil {
+		var ret string
+		return ret
+	}
+	return *o.Metro
+}
+
+// GetMetroOk returns a tuple with the Metro field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VirtualNetworkCreateInput) GetMetroOk() (*string, bool) {
+	if o == nil || o.Metro == nil {
+		return nil, false
+	}
+	return o.Metro, true
+}
+
+// HasMetro returns a boolean if a field has been set.
+func (o *VirtualNetworkCreateInput) HasMetro() bool {
+	if o != nil && o.Metro != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMetro gets a reference to the given string and assigns it to the Metro field.
+func (o *VirtualNetworkCreateInput) SetMetro(v string) {
+	o.Metro = &v
+}
+
+// GetVxlan returns the Vxlan field value if set, zero value otherwise.
+func (o *VirtualNetworkCreateInput) GetVxlan() int32 {
+	if o == nil || o.Vxlan == nil {
+		var ret int32
+		return ret
+	}
+	return *o.Vxlan
+}
+
+// GetVxlanOk returns a tuple with the Vxlan field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VirtualNetworkCreateInput) GetVxlanOk() (*int32, bool) {
+	if o == nil || o.Vxlan == nil {
+		return nil, false
+	}
+	return o.Vxlan, true
+}
+
+// HasVxlan returns a boolean if a field has been set.
+func (o *VirtualNetworkCreateInput) HasVxlan() bool {
+	if o != nil && o.Vxlan != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetVxlan gets a reference to the given int32 and assigns it to the Vxlan field.
+func (o *VirtualNetworkCreateInput) SetVxlan(v int32) {
+	o.Vxlan = &v
+}
+
 func (o VirtualNetworkCreateInput) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.ProjectId != nil {
+	if true {
 		toSerialize["project_id"] = o.ProjectId
 	}
 	if o.Description != nil {
@@ -146,6 +207,12 @@ func (o VirtualNetworkCreateInput) MarshalJSON() ([]byte, error) {
 	}
 	if o.Facility != nil {
 		toSerialize["facility"] = o.Facility
+	}
+	if o.Metro != nil {
+		toSerialize["metro"] = o.Metro
+	}
+	if o.Vxlan != nil {
+		toSerialize["vxlan"] = o.Vxlan
 	}
 	return json.Marshal(toSerialize)
 }

@@ -7,7 +7,8 @@ Name | Type | Description | Notes
 **Plan** | Pointer to **string** |  | [optional] 
 **Hostname** | Pointer to **string** |  | [optional] 
 **Hostnames** | Pointer to **[]string** |  | [optional] 
-**Facility** | Pointer to **[]string** | Array of facility codes the batch can use for provisioning. This param also takes a string if you want the batch to be fulfilled in only one facility. | [optional] 
+**Facility** | Pointer to **[]string** | Array of facility codes the batch can use for provisioning. This param also takes a string if you want the batch to be fulfilled in only one facility. Cannot be set if the metro is already set. | [optional] 
+**Metro** | Pointer to **string** | The metro ID or code the batch can use for provisioning. Cannot be set if the facility is already set. | [optional] 
 **Description** | Pointer to **string** |  | [optional] 
 **BillingCycle** | Pointer to **string** |  | [optional] 
 **OperatingSystem** | Pointer to **string** |  | [optional] 
@@ -18,6 +19,7 @@ Name | Type | Description | Notes
 **Tags** | Pointer to **[]string** |  | [optional] 
 **ProjectSshKeys** | Pointer to **[]string** |  | [optional] 
 **UserSshKeys** | Pointer to **[]string** | The UUIDs of users whose SSH keys should be included on the provisioned device. | [optional] 
+**NoSshKeys** | Pointer to **bool** |  | [optional] 
 **Features** | Pointer to **[]string** |  | [optional] 
 **Customdata** | Pointer to **map[string]interface{}** |  | [optional] 
 **IpAddresses** | Pointer to [**[]InstancesBatchCreateInputIpAddresses**](InstancesBatchCreateInputIpAddresses.md) |  | [optional] 
@@ -140,6 +142,31 @@ SetFacility sets Facility field to given value.
 `func (o *InstancesBatchCreateInputBatches) HasFacility() bool`
 
 HasFacility returns a boolean if a field has been set.
+
+### GetMetro
+
+`func (o *InstancesBatchCreateInputBatches) GetMetro() string`
+
+GetMetro returns the Metro field if non-nil, zero value otherwise.
+
+### GetMetroOk
+
+`func (o *InstancesBatchCreateInputBatches) GetMetroOk() (*string, bool)`
+
+GetMetroOk returns a tuple with the Metro field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMetro
+
+`func (o *InstancesBatchCreateInputBatches) SetMetro(v string)`
+
+SetMetro sets Metro field to given value.
+
+### HasMetro
+
+`func (o *InstancesBatchCreateInputBatches) HasMetro() bool`
+
+HasMetro returns a boolean if a field has been set.
 
 ### GetDescription
 
@@ -390,6 +417,31 @@ SetUserSshKeys sets UserSshKeys field to given value.
 `func (o *InstancesBatchCreateInputBatches) HasUserSshKeys() bool`
 
 HasUserSshKeys returns a boolean if a field has been set.
+
+### GetNoSshKeys
+
+`func (o *InstancesBatchCreateInputBatches) GetNoSshKeys() bool`
+
+GetNoSshKeys returns the NoSshKeys field if non-nil, zero value otherwise.
+
+### GetNoSshKeysOk
+
+`func (o *InstancesBatchCreateInputBatches) GetNoSshKeysOk() (*bool, bool)`
+
+GetNoSshKeysOk returns a tuple with the NoSshKeys field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNoSshKeys
+
+`func (o *InstancesBatchCreateInputBatches) SetNoSshKeys(v bool)`
+
+SetNoSshKeys sets NoSshKeys field to given value.
+
+### HasNoSshKeys
+
+`func (o *InstancesBatchCreateInputBatches) HasNoSshKeys() bool`
+
+HasNoSshKeys returns a boolean if a field has been set.
 
 ### GetFeatures
 

@@ -1,7 +1,7 @@
 /*
  * Metal API
  *
- * This is the API for Equinix Metal Product. Interact with your devices, user account, and projects.
+ * This is the API for Equinix Metal. The API allows you to programmatically interact with all of your Equinix Metal resources, including devices, networks, addresses, organizations, projects, and your user account.  The official API docs are hosted at <https://metal.equinix.com/developers/api>. 
  *
  * API version: 1.0.0
  * Contact: support@equinixmetal.com
@@ -21,8 +21,10 @@ type InstancesBatchCreateInputBatches struct {
 	Plan *string `json:"plan,omitempty"`
 	Hostname *string `json:"hostname,omitempty"`
 	Hostnames *[]string `json:"hostnames,omitempty"`
-	// Array of facility codes the batch can use for provisioning. This param also takes a string if you want the batch to be fulfilled in only one facility.
+	// Array of facility codes the batch can use for provisioning. This param also takes a string if you want the batch to be fulfilled in only one facility. Cannot be set if the metro is already set.
 	Facility *[]string `json:"facility,omitempty"`
+	// The metro ID or code the batch can use for provisioning. Cannot be set if the facility is already set.
+	Metro *string `json:"metro,omitempty"`
 	Description *string `json:"description,omitempty"`
 	BillingCycle *string `json:"billing_cycle,omitempty"`
 	OperatingSystem *string `json:"operating_system,omitempty"`
@@ -34,6 +36,7 @@ type InstancesBatchCreateInputBatches struct {
 	ProjectSshKeys *[]string `json:"project_ssh_keys,omitempty"`
 	// The UUIDs of users whose SSH keys should be included on the provisioned device.
 	UserSshKeys *[]string `json:"user_ssh_keys,omitempty"`
+	NoSshKeys *bool `json:"no_ssh_keys,omitempty"`
 	Features *[]string `json:"features,omitempty"`
 	Customdata *map[string]interface{} `json:"customdata,omitempty"`
 	IpAddresses *[]InstancesBatchCreateInputIpAddresses `json:"ip_addresses,omitempty"`
@@ -182,6 +185,38 @@ func (o *InstancesBatchCreateInputBatches) HasFacility() bool {
 // SetFacility gets a reference to the given []string and assigns it to the Facility field.
 func (o *InstancesBatchCreateInputBatches) SetFacility(v []string) {
 	o.Facility = &v
+}
+
+// GetMetro returns the Metro field value if set, zero value otherwise.
+func (o *InstancesBatchCreateInputBatches) GetMetro() string {
+	if o == nil || o.Metro == nil {
+		var ret string
+		return ret
+	}
+	return *o.Metro
+}
+
+// GetMetroOk returns a tuple with the Metro field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *InstancesBatchCreateInputBatches) GetMetroOk() (*string, bool) {
+	if o == nil || o.Metro == nil {
+		return nil, false
+	}
+	return o.Metro, true
+}
+
+// HasMetro returns a boolean if a field has been set.
+func (o *InstancesBatchCreateInputBatches) HasMetro() bool {
+	if o != nil && o.Metro != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMetro gets a reference to the given string and assigns it to the Metro field.
+func (o *InstancesBatchCreateInputBatches) SetMetro(v string) {
+	o.Metro = &v
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise.
@@ -504,6 +539,38 @@ func (o *InstancesBatchCreateInputBatches) SetUserSshKeys(v []string) {
 	o.UserSshKeys = &v
 }
 
+// GetNoSshKeys returns the NoSshKeys field value if set, zero value otherwise.
+func (o *InstancesBatchCreateInputBatches) GetNoSshKeys() bool {
+	if o == nil || o.NoSshKeys == nil {
+		var ret bool
+		return ret
+	}
+	return *o.NoSshKeys
+}
+
+// GetNoSshKeysOk returns a tuple with the NoSshKeys field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *InstancesBatchCreateInputBatches) GetNoSshKeysOk() (*bool, bool) {
+	if o == nil || o.NoSshKeys == nil {
+		return nil, false
+	}
+	return o.NoSshKeys, true
+}
+
+// HasNoSshKeys returns a boolean if a field has been set.
+func (o *InstancesBatchCreateInputBatches) HasNoSshKeys() bool {
+	if o != nil && o.NoSshKeys != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetNoSshKeys gets a reference to the given bool and assigns it to the NoSshKeys field.
+func (o *InstancesBatchCreateInputBatches) SetNoSshKeys(v bool) {
+	o.NoSshKeys = &v
+}
+
 // GetFeatures returns the Features field value if set, zero value otherwise.
 func (o *InstancesBatchCreateInputBatches) GetFeatures() []string {
 	if o == nil || o.Features == nil {
@@ -614,6 +681,9 @@ func (o InstancesBatchCreateInputBatches) MarshalJSON() ([]byte, error) {
 	if o.Facility != nil {
 		toSerialize["facility"] = o.Facility
 	}
+	if o.Metro != nil {
+		toSerialize["metro"] = o.Metro
+	}
 	if o.Description != nil {
 		toSerialize["description"] = o.Description
 	}
@@ -643,6 +713,9 @@ func (o InstancesBatchCreateInputBatches) MarshalJSON() ([]byte, error) {
 	}
 	if o.UserSshKeys != nil {
 		toSerialize["user_ssh_keys"] = o.UserSshKeys
+	}
+	if o.NoSshKeys != nil {
+		toSerialize["no_ssh_keys"] = o.NoSshKeys
 	}
 	if o.Features != nil {
 		toSerialize["features"] = o.Features

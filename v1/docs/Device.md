@@ -28,6 +28,7 @@ Name | Type | Description | Notes
 **IpxeScriptUrl** | Pointer to **string** |  | [optional] 
 **Location** | Pointer to [**HardwareLocation**](HardwareLocation.md) |  | [optional] 
 **Facility** | Pointer to [**Facility**](Facility.md) |  | [optional] 
+**Metro** | Pointer to [**Metro**](Metro.md) |  | [optional] 
 **Plan** | Pointer to [**Plan**](Plan.md) |  | [optional] 
 **Userdata** | Pointer to **string** |  | [optional] 
 **RootPassword** | Pointer to **string** |  | [optional] 
@@ -39,7 +40,6 @@ Name | Type | Description | Notes
 **SshKeys** | Pointer to [**[]Href**](Href.md) |  | [optional] 
 **IpAddresses** | Pointer to [**[]IPAssignment**](IPAssignment.md) |  | [optional] 
 **ProvisioningEvents** | Pointer to [**[]Event**](Event.md) |  | [optional] 
-**Metro** | Pointer to [**Metro**](Metro.md) |  | [optional] 
 
 ## Methods
 
@@ -660,6 +660,31 @@ SetFacility sets Facility field to given value.
 
 HasFacility returns a boolean if a field has been set.
 
+### GetMetro
+
+`func (o *Device) GetMetro() Metro`
+
+GetMetro returns the Metro field if non-nil, zero value otherwise.
+
+### GetMetroOk
+
+`func (o *Device) GetMetroOk() (*Metro, bool)`
+
+GetMetroOk returns a tuple with the Metro field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMetro
+
+`func (o *Device) SetMetro(v Metro)`
+
+SetMetro sets Metro field to given value.
+
+### HasMetro
+
+`func (o *Device) HasMetro() bool`
+
+HasMetro returns a boolean if a field has been set.
+
 ### GetPlan
 
 `func (o *Device) GetPlan() Plan`
@@ -934,31 +959,6 @@ SetProvisioningEvents sets ProvisioningEvents field to given value.
 `func (o *Device) HasProvisioningEvents() bool`
 
 HasProvisioningEvents returns a boolean if a field has been set.
-
-### GetMetro
-
-`func (o *Device) GetMetro() Metro`
-
-GetMetro returns the Metro field if non-nil, zero value otherwise.
-
-### GetMetroOk
-
-`func (o *Device) GetMetroOk() (*Metro, bool)`
-
-GetMetroOk returns a tuple with the Metro field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetMetro
-
-`func (o *Device) SetMetro(v Metro)`
-
-SetMetro sets Metro field to given value.
-
-### HasMetro
-
-`func (o *Device) HasMetro() bool`
-
-HasMetro returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

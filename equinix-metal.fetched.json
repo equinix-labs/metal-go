@@ -3,7 +3,7 @@
   "info": {
     "version": "1.0.0",
     "title": "Metal API",
-    "description": "This is the API for Equinix Metal Product. Interact with your devices, user account, and projects.",
+    "description": "This is the API for Equinix Metal. The API allows you to programmatically interact with all\nof your Equinix Metal resources, including devices, networks, addresses, organizations,\nprojects, and your user account.\n\nThe official API docs are hosted at <https://metal.equinix.com/developers/api>.\n",
     "termsOfService": "https://metal.equinix.com/legal/",
     "contact": {
       "name": "Equinix Metal API Team",
@@ -40,6 +40,18 @@
     }
   ],
   "tags": [
+    {
+      "name": "Authentication",
+      "description": "Hint: Equinix Metal's API can be reached at https://api.equinix.com/metal/v1\n\nMost of the endpoints in the API require authentication. Authenticating is done with an authentication token in the X-Auth-Token header.\n\n```\ncurl -H 'X-Auth-Token: my_authentication_token'\n```\n\nAuthentication tokens are used to identify the user your application is connecting to the API on behalf of. Think of authentication tokens as permanent sessions—the user creates authentication tokens, and your app can use them to connect to the API on their behalf until they delete the token.\n\n"
+    },
+    {
+      "name": "Common Parameters",
+      "description": "The Equinix Metal API uses a few methods to minimize network traffic and bandwidth:\n\n`include`\n\nFor resources that contain collections of other resources, the Equinix Metal API will return links to the other resources by default.\n\n```json\n{\n  ...\n  // Includes \"href\" links if the resource is reachable through the API.\n  \"projects\": [\n    { \"href\": \"/projects/5b590e4f-be96-4400-ae32-c315ee67964d\" },\n    { \"href\": \"/projects/f3f131c8-f302-49ef-8c44-9405022dc6dd\" }\n  ],\n  // Includes \"id\" attributes if not.\n  \"emails\": [\n    { \"id\": \"eb5d8c89-4d15-4c87-859c-5ae190ad5d9a\" },\n    { \"id\": \"c17f77ad-9070-4084-abaa-7538581d9523\" }\n  ]\n  ...\n}\n```\n\nHowever, if you're interested in acting on resources in the projects collection, it doesn't make sense to make a separate API call to retrieve each project. Instead, you can specify which collections you'd like to be included using the include parameter.\n\n```\n/user?include=projects\n```\nwill return\n\n```json\n{\n  ...\n  \"projects\": [\n    {\n      \"href\": \"/projects/c851d3c5-d55d-4b1a-99f1-96fc64768bc3\",\n      \"id\": \"c851d3c5-d55d-4b1a-99f1-96fc64768bc3\",\n      \"name\": \"Project 1\",\n      ...\n    },\n    {\n      \"href\": \"/projects/21f8e88b-bd4e-44ca-b956-4f3f88e6e5f2\",\n      \"id\": \"21f8e88b-bd4e-44ca-b956-4f3f88e6e5f2\",\n      \"name\": \"Project 2\",\n      ...\n    }\n  ],\n  ...\n}\n```\n\nThe `include` parameter is accepted for all `GET` requests on all resources and collections, and should be specified as a comma-separated list.\n\n```\n/user?include=emails,projects,memberships\n```\n\nYou may also include nested associations up to 3 levels deep using dot notation:\n\n```\n/user?include=memberships.projects\n```\n"
+    },
+    {
+      "name": "Errors",
+      "description": "Equinix Metal uses conventional HTTP response codes to indicate the success or failure of an API request.\n\nIn general: Codes in the 2xx range indicate success. Codes in the 4xx range indicate an error that failed given the information provided (e.g., a required parameter was omitted, a charge failed, etc.). Codes in the 5xx range indicate an error with Equinix Metal's servers (these are rare).\n\n| Code                               | Summary\n| ---------------------------------- | ------------------------------------------------------\n| 200 OK                             | Everything worked as expected.\n| 201 Create                         | Everything worked as expected, the resource was created.\n| 422 Bad Request                    | The request was unacceptable, often due to missing a required parameter.\n| 401 Unauthorized                   | No valid API key provided.\n| 404 Not Found                      | The requested resource doesn't exist.\n| 500, 502, 503, 504 - Server Errors | Something went wrong on Equinix Metal's end. (These are rare.)\n\nErrors (4xx, 5xx) reported by the API will include a JSON error response.  This response will be structured as one of the following:\n\n```json\n{\"error\": \"the error message\"}\n```\n\nor\n\n```json\n{\"errors\": [\"one error\", \"another error\"}\n```\n\nThe JSON response is not guaranteed so check the HTTP status message. JSON may not be included if the error is reported by an API intermediary, like a loadbalancer service.\n"
+    },
     {
       "name": "Batches",
       "description": "Manage device batches. See project endpoints to list batches for a particular project. Check out the product docs to learn more about [Batch Deployment](https://metal.equinix.com/developers/docs/deploy/batch-deployment/)."
@@ -93,6 +105,10 @@
       "description": "Membership Management (Project). Check out the product docs to learn more about [Membership](https://metal.equinix.com/developers/docs/accounts/)."
     },
     {
+      "name": "Metros",
+      "description": "Metro Management. Check out the product docs to learn more about [Metros](https://metal.equinix.com/developers/docs/locations/metros/)."
+    },
+    {
       "name": "OperatingSystems",
       "description": "Operating System Management. Check out the product docs to learn more about [Operating Systems choices](https://metal.equinix.com/developers/docs/operating-systems/)."
     },
@@ -121,12 +137,12 @@
       "description": "Project Management. Check out the product docs to learn more about [Projects](https://metal.equinix.com/developers/docs/accounts/)."
     },
     {
-      "name": "Regions",
-      "description": "Regions Listing"
-    },
-    {
       "name": "Market",
       "description": "Spot Market Prices Management. Check out the product docs to learn more about [Spot Market features](https://metal.equinix.com/developers/docs/deploy/spot-market/)."
+    },
+    {
+      "name": "SelfServiceReservations",
+      "description": "Self Service Reservations"
     },
     {
       "name": "SpotMarketRequest",
@@ -166,14 +182,298 @@
     },
     {
       "name": "Volumes",
-      "description": "Volume Management (Block Storage). "
-    },
-    {
-      "name": "VPN",
-      "description": "VPN Management. Check out the product docs to learn more about [Doorman VPN](https://metal.equinix.com/developers/docs/networking/features/)."
+      "description": "Volume Management (Block Storage). Notice: Block storage support will be deprecated soon. Please check here: https://metal.equinix.com/developers/docs/resilience-recovery/elastic-block-storage/ for more details."
     }
   ],
   "paths": {
+    "/user/api-keys": {
+      "get": {
+        "summary": "Retrieve all user API keys",
+        "description": "Returns all API keys for the current user.",
+        "operationId": "findAPIKeys",
+        "tags": [
+          "Authentication"
+        ],
+        "parameters": [
+          {
+            "name": "include",
+            "in": "query",
+            "description": "Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "required": false
+          },
+          {
+            "name": "exclude",
+            "in": "query",
+            "description": "Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "$ref": "#/definitions/AuthTokenList"
+            }
+          },
+          "401": {
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a API key",
+        "description": "Creates a API key for the current user.",
+        "operationId": "createAPIKey",
+        "tags": [
+          "Authentication"
+        ],
+        "parameters": [
+          {
+            "name": "auth_token",
+            "in": "body",
+            "description": "API key to create",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AuthTokenInput"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "created",
+            "schema": {
+              "$ref": "#/definitions/AuthToken"
+            }
+          },
+          "401": {
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "422": {
+            "description": "unprocessable entity",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/user/api-keys/{id}": {
+      "delete": {
+        "summary": "Delete the API key",
+        "description": "Deletes the current user API key.",
+        "operationId": "deleteUserAPIKey",
+        "tags": [
+          "Authentication"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "API Key UUID",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "no content"
+          },
+          "401": {
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/projects/{id}/api-keys": {
+      "get": {
+        "summary": "Retrieve all API keys for the project.",
+        "description": "Returns all API keys for a specific project.",
+        "operationId": "findProjectAPIKeys",
+        "tags": [
+          "Authentication"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Project UUID",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "name": "include",
+            "in": "query",
+            "description": "Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "required": false
+          },
+          {
+            "name": "exclude",
+            "in": "query",
+            "description": "Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "$ref": "#/definitions/AuthTokenList"
+            }
+          },
+          "401": {
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create an API key for a project.",
+        "description": "Creates an API key for a project.",
+        "operationId": "createProjectAPIKey",
+        "tags": [
+          "Authentication"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Project UUID",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "name": "auth_token",
+            "in": "body",
+            "description": "API Key to create",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AuthTokenInput"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "created",
+            "schema": {
+              "$ref": "#/definitions/AuthToken"
+            }
+          },
+          "401": {
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "422": {
+            "description": "unprocessable entity",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/api-keys/{id}": {
+      "delete": {
+        "summary": "Delete the API key",
+        "description": "Deletes the API key.",
+        "operationId": "deleteAPIKey",
+        "tags": [
+          "Authentication"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "API Key UUID",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "no content"
+          },
+          "401": {
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
     "/projects/{id}/batches": {
       "get": {
         "summary": "Retrieve all batches by project",
@@ -223,13 +523,22 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -282,10 +591,16 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       },
@@ -307,12 +622,10 @@
           },
           {
             "name": "remove_associated_instances",
-            "in": "body",
-            "description": "Default route",
-            "required": true,
-            "schema": {
-              "type": "boolean"
-            }
+            "description": "Delete all instances created from this batch",
+            "in": "query",
+            "type": "boolean",
+            "default": false
           }
         ],
         "responses": {
@@ -320,10 +633,16 @@
             "description": "no content"
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -361,16 +680,28 @@
             "description": "no content"
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "422": {
-            "description": "unprocessable entity"
+            "description": "unprocessable entity",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -424,13 +755,22 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found\n\nThe project was not found.\n"
+            "description": "not found\n\nThe project was not found.\n",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -462,13 +802,22 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -500,10 +849,16 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -535,10 +890,16 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       },
@@ -570,12 +931,6 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "ok",
-            "schema": {
-              "$ref": "#/definitions/BgpSession"
-            }
-          },
           "201": {
             "description": "created",
             "schema": {
@@ -583,13 +938,22 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "422": {
-            "description": "unprocessable entity"
+            "description": "unprocessable entity",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -642,13 +1006,22 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       },
@@ -674,13 +1047,22 @@
             "description": "no content"
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       },
@@ -715,16 +1097,28 @@
             "description": "ok"
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "422": {
-            "description": "unprocessable entity"
+            "description": "unprocessable entity",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -745,7 +1139,10 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       },
@@ -775,10 +1172,79 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "422": {
-            "description": "unprocessable entity"
+            "description": "unprocessable entity",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/capacity/metros": {
+      "get": {
+        "summary": "View capacity for metros",
+        "description": "Returns a list of metros and plans with their current capacity.",
+        "operationId": "findCapacityForMetro",
+        "tags": [
+          "Capacity"
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "$ref": "#/definitions/MetroCapacityList"
+            }
+          },
+          "401": {
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Check capacity for a metro",
+        "description": "Validates if a deploy can be fulfilled in a metro.",
+        "operationId": "checkCapacityForMetro",
+        "tags": [
+          "Capacity"
+        ],
+        "parameters": [
+          {
+            "name": "servers",
+            "in": "body",
+            "description": "Metro to check capacity in",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CapacityPerMetroInput"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "$ref": "#/definitions/CapacityCheckPerMetroList"
+            }
+          },
+          "401": {
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "422": {
+            "description": "unprocessable entity",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -854,13 +1320,22 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -936,13 +1411,22 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -1018,13 +1502,22 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -1100,13 +1593,22 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -1173,7 +1675,10 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -1226,13 +1731,22 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -1308,13 +1822,22 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -1398,13 +1921,22 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -1480,13 +2012,22 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -1542,7 +2083,10 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -1596,13 +2140,22 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -1656,13 +2209,22 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -1738,13 +2300,22 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -1797,13 +2368,22 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -1844,7 +2424,10 @@
             "description": "ok"
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -1886,13 +2469,22 @@
             "description": "accepted"
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "422": {
-            "description": "unprocessable entity"
+            "description": "unprocessable entity",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -1968,13 +2560,22 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -2050,19 +2651,28 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       },
       "post": {
         "summary": "Create a device",
-        "description": "Creates a new device and provisions it in our datacenter.\n\nType-specific options (such as operating_system for baremetal devices) should be included in the main data structure alongside hostname and plan.\n\nThe features attribute allows you to optionally specify what features your server should have.\n\nFor example, if you require a server with a TPM chip, you may specify `{ \"features\": { \"tpm\": \"required\" } }` (or `{ \"features\": [\"tpm\"] }` in shorthand).\n\nThe request will fail if there are no available servers matching your criteria. Alternatively, if you do not require a certain feature, but would prefer to be assigned a server with that feature if there are any available, you may specify that feature with a preferred value (see the example request below).\n\nThe request will not fail if we have no servers with that feature in our inventory.\n\nThe facilities attribute specifies in what datacenter you wish to create the device.\n\nYou can either specify a single facility `{ \"facility\": \"f1\" }` , or you can instruct to create the device in the best available datacenter `{ \"facility\": \"any\" }`. Additionally it is possible to set a prioritized location selection.\n\nFor example `{ \"facility\": [\"f3\", \"f2\", \"any\"] }` will try to assign to the facility f3, if there are no available f2, and so on. If \"any\" is not specified for \"facility\", the request will fail unless it can assign in the selected locations.\n\nThe `ip_addresses attribute will allow you to specify the addresses you want created with your device.\n\nTo maintain backwards compatibility, If the attribute is not sent in the request, it will be treated as if `{ \"ip_addresses\": [{ \"address_family\": 4, \"public\": true }, { \"address_family\": 4, \"public\": false }, { \"address_family\": 6, \"public\": true }] }` was sent.\n\nThe private IPv4 address is required and always need to be sent in the array. Not all operating systems support no public IPv4 address, so in those cases you will receive an error message.\n\nFor example, to only configure your server with a private IPv4 address, you can send `{ \"ip_addresses\": [{ \"address_family\": 4, \"public\": false }] }`.\n\nNote: when specifying a subnet size larger than a /30, you will need to supply the UUID(s) of existing ip_reservations in your project to assign IPs from.\n\nFor example, `{ \"ip_addresses\": [..., {\"address_family\": 4, \"public\": true, \"ip_reservations\": [\"uuid1\", \"uuid2\"]}] }`\n\nTo access a server without public IPs, you can use our Out-of-Band console access (SOS) or use another server with public IPs as a proxy.\n",
+        "description": "Creates a new device and provisions it in the specified location.\n\n      Device type-specific options are accepted.  For example, `baremetal` devices accept `operating_system`, `hostname`, and `plan`. These parameters may not be accepted for other device types. The default device type is `baremetal`.",
         "operationId": "createDevice",
         "tags": [
           "Projects",
@@ -2095,16 +2705,28 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "422": {
-            "description": "unprocessable entity"
+            "description": "unprocessable entity",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -2157,13 +2779,22 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       },
@@ -2201,16 +2832,28 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "422": {
-            "description": "unprocessable entity"
+            "description": "unprocessable entity",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       },
@@ -2243,13 +2886,28 @@
             "description": "no content"
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "422": {
+            "description": "unprocessable entity",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -2290,16 +2948,28 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "422": {
-            "description": "unprocessable entity"
+            "description": "unprocessable entity",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -2341,10 +3011,16 @@
             "description": "ok"
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -2384,10 +3060,22 @@
             }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "422": {
+            "description": "unprocessable entity",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       },
@@ -2416,10 +3104,16 @@
             }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -2459,7 +3153,16 @@
             }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "422": {
+            "description": "unprocessable entity",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       },
@@ -2488,10 +3191,16 @@
             }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -2522,10 +3231,16 @@
             }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       },
@@ -2563,10 +3278,16 @@
             }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       },
@@ -2595,10 +3316,16 @@
             }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -2629,10 +3356,16 @@
             }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -2671,10 +3404,16 @@
             }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -2713,10 +3452,16 @@
             }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       },
@@ -2762,10 +3507,16 @@
             }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -2796,10 +3547,16 @@
             }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       },
@@ -2843,10 +3600,16 @@
             }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       },
@@ -2875,55 +3638,16 @@
             }
           },
           "403": {
-            "description": "forbidden"
-          },
-          "404": {
-            "description": "not found"
-          }
-        }
-      }
-    },
-    "/virtual-networks/{id}/internet-gateways": {
-      "post": {
-        "tags": [
-          "InternetGateways",
-          "VLANs"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "Virtual Network UUID",
-            "required": true,
-            "type": "string",
-            "format": "uuid"
-          },
-          {
-            "name": "length",
-            "in": "query",
-            "description": "IP Reservation length",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "summary": "Create an internet gateway",
-        "description": "Creates an internet gateway.",
-        "operationId": "createInternetGateway",
-        "responses": {
-          "201": {
-            "description": "created",
+            "description": "forbidden",
             "schema": {
-              "$ref": "#/definitions/InternetGateway"
+              "$ref": "#/definitions/Error"
             }
           },
-          "401": {
-            "description": "unauthorized"
-          },
           "404": {
-            "description": "not found"
-          },
-          "422": {
-            "description": "unprocessable entity"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -2976,13 +3700,22 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       },
@@ -3011,13 +3744,22 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       },
@@ -3043,13 +3785,22 @@
             "description": "no content"
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -3125,13 +3876,22 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       },
@@ -3170,16 +3930,28 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "422": {
-            "description": "unprocessable entity"
+            "description": "unprocessable entity",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -3255,13 +4027,22 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       },
@@ -3300,16 +4081,28 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "422": {
-            "description": "unprocessable entity"
+            "description": "unprocessable entity",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -3377,13 +4170,22 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -3436,13 +4238,22 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       },
@@ -3468,13 +4279,22 @@
             "description": "no content"
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -3528,10 +4348,16 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       },
@@ -3570,13 +4396,22 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "422": {
-            "description": "unprocessable entity"
+            "description": "unprocessable entity",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -3725,13 +4560,22 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -3785,13 +4629,22 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       },
@@ -3830,16 +4683,28 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "422": {
-            "description": "unprocessable entity"
+            "description": "unprocessable entity",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -3915,13 +4780,22 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       },
@@ -3960,16 +4834,28 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "422": {
-            "description": "unprocessable entity"
+            "description": "unprocessable entity",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -4022,13 +4908,22 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       },
@@ -4066,16 +4961,28 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "422": {
-            "description": "unprocessable entity"
+            "description": "unprocessable entity",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       },
@@ -4101,13 +5008,22 @@
             "description": "no content"
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -4183,13 +5099,22 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -4242,13 +5167,22 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       },
@@ -4286,16 +5220,28 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "422": {
-            "description": "unprocessable entity"
+            "description": "unprocessable entity",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       },
@@ -4321,13 +5267,22 @@
             "description": "no content"
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -4355,13 +5310,22 @@
             "description": "ok"
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -4389,13 +5353,22 @@
             "description": "ok"
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -4423,13 +5396,22 @@
             "description": "ok"
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -4457,13 +5439,22 @@
             "description": "ok"
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -4491,13 +5482,22 @@
             "description": "ok"
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -4533,13 +5533,22 @@
             "description": "ok"
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -4575,13 +5584,22 @@
             "description": "ok"
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -4609,13 +5627,80 @@
             "description": "ok"
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/locations/metros": {
+      "get": {
+        "summary": "Retrieve all metros",
+        "description": "Provides a listing of available metros",
+        "operationId": "findMetros",
+        "tags": [
+          "Metros"
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "$ref": "#/definitions/MetroList"
+            }
+          },
+          "401": {
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/locations/metros/{id}": {
+      "get": {
+        "summary": "Retrieve a specific Metro's details",
+        "description": "Show the details for a metro, including name, code, and country.",
+        "operationId": "getMetro",
+        "tags": [
+          "Metros"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Metro UUID",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "$ref": "#/definitions/Metro"
+            }
+          },
+          "404": {
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -4655,13 +5740,22 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -4715,13 +5809,22 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -4742,7 +5845,10 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -4763,7 +5869,10 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -4854,7 +5963,10 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       },
@@ -4884,13 +5996,22 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "422": {
-            "description": "unprocessable entity"
+            "description": "unprocessable entity",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -4943,13 +6064,22 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       },
@@ -4987,16 +6117,28 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "422": {
-            "description": "unprocessable entity"
+            "description": "unprocessable entity",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       },
@@ -5022,10 +6164,16 @@
             "description": "no content"
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -5046,13 +6194,22 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "422": {
-            "description": "unprocessable entity"
+            "description": "unprocessable entity",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       },
@@ -5071,13 +6228,22 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "422": {
-            "description": "unprocessable entity"
+            "description": "unprocessable entity",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -5104,10 +6270,16 @@
             "description": "no content"
           },
           "400": {
-            "description": "bad request"
+            "description": "bad request",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -5125,16 +6297,28 @@
             "description": "no content"
           },
           "400": {
-            "description": "bad request"
+            "description": "bad request",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "422": {
-            "description": "unprocessable entity"
+            "description": "unprocessable entity",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "500": {
-            "description": "internal server error"
+            "description": "internal server error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -5161,10 +6345,16 @@
             "description": "created"
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "422": {
-            "description": "unprocessable entity"
+            "description": "unprocessable entity",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       },
@@ -5183,10 +6373,16 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "422": {
-            "description": "unprocessable entity"
+            "description": "unprocessable entity",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -5262,10 +6458,16 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       },
@@ -5304,13 +6506,22 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "422": {
-            "description": "unprocessable entity"
+            "description": "unprocessable entity",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -5363,10 +6574,16 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       },
@@ -5404,13 +6621,22 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "422": {
-            "description": "unprocessable entity"
+            "description": "unprocessable entity",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       },
@@ -5436,10 +6662,16 @@
             "description": "no content"
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -5484,7 +6716,10 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -5538,13 +6773,22 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -5598,13 +6842,22 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -5657,10 +6910,16 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -5701,16 +6960,28 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "422": {
-            "description": "unprocessable entity"
+            "description": "unprocessable entity",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -5751,16 +7022,28 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "422": {
-            "description": "unprocessable entity"
+            "description": "unprocessable entity",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -5798,16 +7081,28 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "422": {
-            "description": "unprocessable entity"
+            "description": "unprocessable entity",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -5845,16 +7140,28 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "422": {
-            "description": "unprocessable entity"
+            "description": "unprocessable entity",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -5894,16 +7201,28 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "422": {
-            "description": "unprocessable entity"
+            "description": "unprocessable entity",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -5943,16 +7262,28 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "422": {
-            "description": "unprocessable entity"
+            "description": "unprocessable entity",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -5991,13 +7322,22 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "422": {
-            "description": "unprocessable entity"
+            "description": "unprocessable entity",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       },
@@ -6027,13 +7367,22 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "422": {
-            "description": "unprocessable entity"
+            "description": "unprocessable entity",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -6109,7 +7458,10 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       },
@@ -6148,10 +7500,16 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "422": {
-            "description": "unprocessable entity"
+            "description": "unprocessable entity",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -6218,7 +7576,10 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       },
@@ -6248,10 +7609,16 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "422": {
-            "description": "unprocessable entity"
+            "description": "unprocessable entity",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -6304,13 +7671,22 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       },
@@ -6348,16 +7724,28 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "422": {
-            "description": "unprocessable entity"
+            "description": "unprocessable entity",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       },
@@ -6383,48 +7771,34 @@
             "description": "no content"
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
     },
-    "/regions": {
+    "/projects/{project_id}/self-service/reservations": {
       "get": {
-        "summary": "Retrieve all regions",
-        "description": "Returns all regions.",
-        "operationId": "findRegions",
+        "summary": "Retrieve all reservations",
+        "description": "Returns all reservations.",
         "tags": [
-          "Regions"
+          "SelfServiceReservations"
         ],
         "parameters": [
-          {
-            "name": "include",
-            "in": "query",
-            "description": "Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.",
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "collectionFormat": "csv",
-            "required": false
-          },
-          {
-            "name": "exclude",
-            "in": "query",
-            "description": "Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.",
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "collectionFormat": "csv",
-            "required": false
-          },
           {
             "name": "page",
             "in": "query",
@@ -6446,17 +7820,121 @@
             "minimum": 1,
             "maximum": 1000,
             "required": false
+          },
+          {
+            "name": "project_id",
+            "in": "path",
+            "description": "Project UUID",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
           }
         ],
         "responses": {
           "200": {
             "description": "ok",
             "schema": {
-              "$ref": "#/definitions/RegionsList"
+              "$ref": "#/definitions/SelfServiceReservationList"
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a reservation",
+        "description": "Creates a reservation.",
+        "tags": [
+          "SelfServiceReservations"
+        ],
+        "parameters": [
+          {
+            "name": "reservation",
+            "in": "body",
+            "description": "reservation to create",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CreateSelfServiceReservationRequest"
+            }
+          },
+          {
+            "name": "project_id",
+            "in": "path",
+            "description": "Project UUID",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "created",
+            "schema": {
+              "$ref": "#/definitions/SelfServiceReservationResponse"
+            }
+          },
+          "401": {
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "422": {
+            "description": "unprocessable entity",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/projects/{project_id}/self-service/reservations/{id}": {
+      "get": {
+        "summary": "Retrieve a reservation",
+        "description": "Returns a reservation",
+        "tags": [
+          "SelfServiceReservations"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Reservation short_id",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "name": "project_id",
+            "in": "path",
+            "description": "Project UUID",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "$ref": "#/definitions/SelfServiceReservationResponse"
+            }
+          },
+          "401": {
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -6519,6 +7997,13 @@
             "type": "string"
           },
           {
+            "name": "metro",
+            "in": "query",
+            "description": "Metro to check spot market price history",
+            "required": false,
+            "type": "string"
+          },
+          {
             "name": "from",
             "in": "query",
             "description": "Timestamp from range",
@@ -6538,6 +8023,40 @@
             "description": "ok",
             "schema": {
               "$ref": "#/definitions/SpotPricesHistoryReport"
+            }
+          }
+        }
+      }
+    },
+    "/market/spot/prices/metros": {
+      "get": {
+        "summary": "Get current spot market prices for metros",
+        "description": "Get Equinix Metal current spot market prices for all metros.",
+        "operationId": "findMetroSpotMarketPrices",
+        "tags": [
+          "Market"
+        ],
+        "parameters": [
+          {
+            "name": "metro",
+            "in": "query",
+            "description": "Metro to filter spot market prices",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "plan",
+            "in": "query",
+            "description": "Plan to filter spot market prices",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "$ref": "#/definitions/SpotMarketPricesPerMetroList"
             }
           }
         }
@@ -6579,13 +8098,22 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "422": {
-            "description": "unprocessable entity"
+            "description": "unprocessable entity",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       },
@@ -6615,10 +8143,16 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -6671,13 +8205,22 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       },
@@ -6710,13 +8253,22 @@
             "description": "no content"
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -6768,7 +8320,10 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       },
@@ -6786,7 +8341,7 @@
             "description": "ssh key to create",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/SSHKeyInput"
+              "$ref": "#/definitions/SSHKeyCreateInput"
             }
           }
         ],
@@ -6798,10 +8353,16 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "422": {
-            "description": "unprocessable entity"
+            "description": "unprocessable entity",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -6862,7 +8423,10 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       },
@@ -6889,7 +8453,7 @@
             "description": "ssh key to create",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/SSHKeyInput"
+              "$ref": "#/definitions/SSHKeyCreateInput"
             }
           }
         ],
@@ -6901,10 +8465,16 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "422": {
-            "description": "unprocessable entity"
+            "description": "unprocessable entity",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -6965,7 +8535,10 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -7018,13 +8591,22 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       },
@@ -7062,16 +8644,28 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "422": {
-            "description": "unprocessable entity"
+            "description": "unprocessable entity",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       },
@@ -7097,19 +8691,29 @@
             "description": "no content"
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
     },
     "/storage/{id}/attachments": {
       "get": {
+        "deprecated": true,
         "summary": "Retrieve all volume attachment",
         "description": "Returns a list of the current volume’s attachments.",
         "operationId": "findVolumeAttachments",
@@ -7156,17 +8760,27 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       },
       "post": {
+        "deprecated": true,
         "summary": "Attach your volume",
         "description": "Attach your volume to a device.",
         "operationId": "createVolumeAttachment",
@@ -7200,22 +8814,35 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "422": {
-            "description": "unprocessable entity"
+            "description": "unprocessable entity",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
     },
     "/storage/attachments/{id}": {
       "get": {
+        "deprecated": true,
         "summary": "Retrieve an attachment",
         "description": "Returns a single attachment if the user has access",
         "operationId": "findVolumeAttachmentById",
@@ -7262,17 +8889,27 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       },
       "delete": {
+        "deprecated": true,
         "summary": "Detach volume",
         "description": "Detach volume.",
         "operationId": "deleteVolumeAttachment",
@@ -7294,19 +8931,29 @@
             "description": "no content"
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
     },
     "/storage/{id}/snapshots": {
       "get": {
+        "deprecated": true,
         "summary": "Retrieve all volume snapshot",
         "description": "Returns a list of the current volume’s snapshots. To create Volume Snapshots, please check the Volume Snapshot Policies feature.",
         "operationId": "findVolumeSnapshots",
@@ -7353,19 +9000,29 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
     },
     "/storage/{volume_id}/snapshots/{id}": {
       "delete": {
+        "deprecated": true,
         "summary": "Delete volume snapshot",
         "description": "Delete volume snapshot.",
         "operationId": "deleteVolumeSnapshot",
@@ -7395,19 +9052,29 @@
             "description": "no content"
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
     },
     "/storage/{id}/snapshot-policies": {
       "post": {
+        "deprecated": true,
         "summary": "Create a volume snapshot policy",
         "description": "Creates a new snapshot policy of your volume.",
         "operationId": "createVolumeSnapshotPolicy",
@@ -7455,22 +9122,35 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "422": {
-            "description": "unprocessable entity"
+            "description": "unprocessable entity",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
     },
     "/storage/snapshot-policies/{id}": {
       "put": {
+        "deprecated": true,
         "summary": "Update the volume snapshot policy",
         "description": "Updates the volume snapshot policy.",
         "operationId": "updateVolumeSnapshotPolicy",
@@ -7518,20 +9198,33 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "422": {
-            "description": "unprocessable entity"
+            "description": "unprocessable entity",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       },
       "delete": {
+        "deprecated": true,
         "summary": "Delete the volume snapshot policy",
         "description": "Deletes the volume snapshot policy.",
         "operationId": "deleteVolumeSnapshotPolicy",
@@ -7553,19 +9246,29 @@
             "description": "no content"
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
     },
     "/projects/{id}/storage": {
       "get": {
+        "deprecated": true,
         "summary": "Retrieve all volumes",
         "description": "Returns a list of the current projects’s volumes.",
         "operationId": "findVolumes",
@@ -7634,17 +9337,27 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       },
       "post": {
+        "deprecated": true,
         "summary": "Create a volume",
         "description": "Creates a new volume in our datacenter. The valid attribute values for `plan` and `facility` are:\n\n         \"facility\": \"ams1\", \"ewr1\", \"nrt1\", \"sjc1\"\n         \"plan\": \"storage_1\" (Standard), \"storage_2\" (Performance)",
         "operationId": "createVolume",
@@ -7678,22 +9391,35 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "422": {
-            "description": "unprocessable entity"
+            "description": "unprocessable entity",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
     },
     "/storage/{id}": {
       "get": {
+        "deprecated": true,
         "summary": "Retrieve a volume",
         "description": "Returns a single volume if the user has access",
         "operationId": "findVolumeById",
@@ -7740,17 +9466,27 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       },
       "put": {
+        "deprecated": true,
         "summary": "Update the volume",
         "description": "Updates the volume.",
         "operationId": "updateVolume",
@@ -7784,20 +9520,33 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "422": {
-            "description": "unprocessable entity"
+            "description": "unprocessable entity",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       },
       "delete": {
+        "deprecated": true,
         "summary": "Delete the volume",
         "description": "Deletes the volume.",
         "operationId": "deleteVolume",
@@ -7819,19 +9568,29 @@
             "description": "no content"
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
     },
     "/storage/{id}/restore": {
       "post": {
+        "deprecated": true,
         "summary": "Restore volume",
         "description": "Restore the volume to the given snapshot.",
         "operationId": "restoreVolume",
@@ -7863,22 +9622,35 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "422": {
-            "description": "unprocessable entity"
+            "description": "unprocessable entity",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
     },
     "/storage/{id}/clone": {
       "post": {
+        "deprecated": true,
         "summary": "Clone volume/snapshot",
         "description": "Clone your volume or snapshot into a new volume. To clone the volume, send an empty body. To promote a volume snapshot into a new volume, include the snapshot_timestamp attribute in the request body.",
         "operationId": "cloneVolume",
@@ -7910,16 +9682,28 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "422": {
-            "description": "unprocessable entity"
+            "description": "unprocessable entity",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -7937,7 +9721,10 @@
             "description": "ok"
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       },
@@ -7953,10 +9740,16 @@
             "description": "no content"
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -7974,7 +9767,10 @@
             "description": "ok"
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       },
@@ -7990,10 +9786,16 @@
             "description": "no content"
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -8071,13 +9873,22 @@
             "description": "ok"
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -8131,10 +9942,16 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -8175,16 +9992,28 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "422": {
-            "description": "unprocessable entity"
+            "description": "unprocessable entity",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -8237,13 +10066,22 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       },
@@ -8269,13 +10107,22 @@
             "description": "no content"
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       },
@@ -8301,13 +10148,22 @@
             "description": "no content"
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -8355,10 +10211,16 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -8406,10 +10268,16 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -8436,10 +10304,16 @@
             "description": "no content"
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "422": {
-            "description": "unprocessable entity"
+            "description": "unprocessable entity",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -8506,7 +10380,10 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -8559,13 +10436,22 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -8610,7 +10496,10 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       },
@@ -8640,10 +10529,16 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "422": {
-            "description": "unprocessable entity"
+            "description": "unprocessable entity",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -8670,10 +10565,16 @@
             "description": "created"
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "422": {
-            "description": "unprocessable entity"
+            "description": "unprocessable entity",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       },
@@ -8739,6 +10640,20 @@
             },
             "collectionFormat": "csv",
             "required": false
+          },
+          {
+            "name": "facility",
+            "in": "query",
+            "description": "Filter by Facility ID (uuid) or Facility Code",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "metro",
+            "in": "query",
+            "description": "Filter by Metro ID (uuid) or Metro Code",
+            "required": false,
+            "type": "string"
           }
         ],
         "responses": {
@@ -8749,13 +10664,22 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       },
@@ -8794,16 +10718,28 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "422": {
-            "description": "unprocessable entity"
+            "description": "unprocessable entity",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -8834,16 +10770,28 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "422": {
-            "description": "unprocessable entity"
+            "description": "unprocessable entity",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       },
@@ -8872,93 +10820,28 @@
             }
           },
           "401": {
-            "description": "unauthorized"
-          },
-          "403": {
-            "description": "forbidden"
-          },
-          "404": {
-            "description": "not found"
-          },
-          "422": {
-            "description": "unprocessable entity"
-          }
-        }
-      }
-    },
-    "/user/vpn": {
-      "get": {
-        "summary": "Retrieve the client vpn config for current user",
-        "description": "Returns the client vpn config for the currently logged-in user.",
-        "operationId": "findCurrentUserVpnConfig",
-        "tags": [
-          "VPN"
-        ],
-        "parameters": [
-          {
-            "name": "code",
-            "in": "query",
-            "description": "Facility code",
-            "required": true,
-            "type": "string",
-            "enum": [
-              "ewr1",
-              "scj1",
-              "arm1",
-              "nrt1"
-            ]
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "ok",
+            "description": "unauthorized",
             "schema": {
-              "$ref": "#/definitions/VPNConfig"
+              "$ref": "#/definitions/Error"
             }
           },
-          "401": {
-            "description": "unauthorized"
+          "403": {
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "422": {
-            "description": "unprocessable entity"
-          }
-        }
-      },
-      "post": {
-        "summary": "Turn on vpn for the current user",
-        "description": "Turns on vpn for the currently logged-in user.",
-        "operationId": "turnOnCurrentUserVpn",
-        "tags": [
-          "VPN"
-        ],
-        "responses": {
-          "201": {
-            "description": "created"
-          },
-          "401": {
-            "description": "unauthorized"
-          },
-          "422": {
-            "description": "unprocessable entity"
-          }
-        }
-      },
-      "delete": {
-        "summary": "Turn off vpn for the current user",
-        "description": "Turns off vpn for the currently logged-in user.",
-        "operationId": "turnOffCurrentUserVpn",
-        "tags": [
-          "VPN"
-        ],
-        "responses": {
-          "204": {
-            "description": "no content"
-          },
-          "401": {
-            "description": "unauthorized"
-          },
-          "422": {
-            "description": "unprocessable entity"
+            "description": "unprocessable entity",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -8990,10 +10873,16 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "422": {
-            "description": "unprocessable entity"
+            "description": "unprocessable entity",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -9046,13 +10935,22 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       },
@@ -9090,16 +10988,28 @@
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "422": {
-            "description": "unprocessable entity"
+            "description": "unprocessable entity",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       },
@@ -9125,13 +11035,22 @@
             "description": "no content"
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "403": {
-            "description": "forbidden"
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -9175,6 +11094,60 @@
         },
         "longitude": {
           "type": "string"
+        }
+      }
+    },
+    "AuthToken": {
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "token": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "description": {
+          "type": "string",
+          "description": "Available only for API keys"
+        },
+        "read_only": {
+          "type": "boolean"
+        },
+        "user": {
+          "$ref": "#/definitions/User",
+          "description": "Available only for user tokens"
+        },
+        "project": {
+          "$ref": "#/definitions/Project",
+          "description": "Available only for project tokens"
+        }
+      }
+    },
+    "AuthTokenInput": {
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "read_only": {
+          "type": "boolean"
+        }
+      }
+    },
+    "AuthTokenList": {
+      "properties": {
+        "api_keys": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AuthToken"
+          }
         }
       }
     },
@@ -9244,6 +11217,17 @@
                   "type": "string"
                 }
               },
+              "facility": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Array of facility codes the batch can use for provisioning. This param also takes a string if you want the batch to be fulfilled in only one facility. Cannot be set if the metro is already set."
+              },
+              "metro": {
+                "type": "string",
+                "description": "The metro ID or code the batch can use for provisioning. Cannot be set if the facility is already set."
+              },
               "description": {
                 "type": "string"
               },
@@ -9286,6 +11270,9 @@
                   "type": "string",
                   "format": "uuid"
                 }
+              },
+              "no_ssh_keys": {
+                "type": "boolean"
               },
               "features": {
                 "type": "array",
@@ -9542,6 +11529,10 @@
         },
         "address": {
           "$ref": "#/definitions/Address"
+        },
+        "metro": {
+          "$ref": "#/definitions/Metro",
+          "description": "The metro the facility is in"
         }
       }
     },
@@ -9705,6 +11696,10 @@
         "facility": {
           "$ref": "#/definitions/Facility"
         },
+        "metro": {
+          "$ref": "#/definitions/Metro",
+          "description": "The metro the device is in"
+        },
         "plan": {
           "$ref": "#/definitions/Plan"
         },
@@ -9762,42 +11757,67 @@
       ],
       "properties": {
         "facility": {
+          "description": "The datacenter where the device should be created.\n\nThe API will accept either a single facility `{ \"facility\": \"f1\" }`, or it can be instructed to create the device in the best available datacenter `{ \"facility\": \"any\" }`.\n\nAdditionally it is possible to set a prioritized location selection. For example `{ \"facility\": [\"f3\", \"f2\", \"any\"] }` can be used to prioritize `f3` and then `f2` before accepting `any` facility. If none of the facilities provided have availability for the requested device the request will fail.",
           "type": "string"
         },
         "plan": {
+          "description": "The slug of the device plan to provision.",
           "type": "string"
         },
         "hostname": {
+          "description": "The hostname to use within the operating system. The same hostname may be used on multiple devices within a project.",
           "type": "string"
         },
         "description": {
+          "description": "Any description of the device or how it will be used. This may be used to inform other API consumers with project access.",
           "type": "string"
         },
         "billing_cycle": {
-          "type": "string"
+          "description": "The billing cycle of the device.",
+          "type": "string",
+          "enum": [
+            "hourly",
+            "daily",
+            "monthly",
+            "yearly"
+          ]
         },
         "operating_system": {
+          "description": "The slug of the operating system to provision. Check the Equinix Metal operating system documentation for rules that may be imposed per operating system, including restrictions on IP address options and device plans.",
           "type": "string"
         },
         "always_pxe": {
-          "type": "boolean"
+          "description": "When true, devices with a `custom_ipxe` OS will always boot to iPXE. The default setting of false ensures that iPXE will be used on only the first boot.",
+          "type": "boolean",
+          "default": false
         },
         "ipxe_script_url": {
+          "description": "When set, the device will chainload an iPXE Script at boot fetched from the supplied URL.\n\n      See [Custom iPXE](https://metal.equinix.com/developers/docs/operating-systems/custom-ipxe/) for more details.",
           "type": "string"
         },
         "userdata": {
+          "description": "The userdata presented in the metadata service for this device.  Userdata is fetched and interpretted by the operating system installed on the device. Acceptable formats are determined by the operating system, with the exception of a special iPXE enabling syntax which is handled before the operating system starts.\n\n      See [Server User Data](https://metal.equinix.com/developers/docs/servers/user-data/) and [Provisioning with Custom iPXE](https://metal.equinix.com/developers/docs/operating-systems/custom-ipxe/#provisioning-with-custom-ipxe) for more details.",
           "type": "string"
         },
         "locked": {
-          "type": "boolean"
+          "description": "Wether the device should be locked, preventing accidental deletion.",
+          "type": "boolean",
+          "default": false
         },
         "customdata": {
+          "description": "Customdata is an arbitrary JSON value that can be accessed via the metadata service.",
           "type": "object"
         },
+        "metro": {
+          "type": "string",
+          "description": "Metro code or ID of where the instance should be provisioned in."
+        },
         "hardware_reservation_id": {
+          "description": "The Hardware Reservation UUID to provision. Alternatively, `next-available` can be specified to select from any of the available hardware reservations. An error will be returned if the requested reservation option is not available.\n\n      See [Reserved Hardware](https://metal.equinix.com/developers/docs/deploy/reserved/) for more details.",
           "type": "string",
           "format": "uuid",
-          "example": "uuid or 'next-available'"
+          "example": "next-available",
+          "default": ""
         },
         "spot_instance": {
           "type": "boolean"
@@ -9818,6 +11838,9 @@
         },
         "project_ssh_keys": {
           "type": "array",
+          "description": "A list of UUIDs identifying the device parent project\nthat should be authorized to access this device (typically\nvia /root/.ssh/authorized_keys). These keys will also appear in the device metadata.\n\nIf no SSH keys are specified (`user_ssh_keys`, `project_ssh_keys`, and `ssh_keys` are all empty lists or omitted),\nall parent project keys, parent project members keys and organization members keys will be included. This behaviour can\nbe changed with 'no_ssh_keys' option to omit any SSH key being added.\n\n",
+          "x-nullable": true,
+          "default": null,
           "items": {
             "type": "string",
             "format": "uuid"
@@ -9825,13 +11848,31 @@
         },
         "user_ssh_keys": {
           "type": "array",
-          "description": "The UUIDs of users whose SSH keys should be included on the provisioned device.",
+          "description": "A list of UUIDs identifying the users\nthat should be authorized to access this device (typically\nvia /root/.ssh/authorized_keys).  These keys will also\nappear in the device metadata.\n\nThe users must be members of the project or organization.\n\nIf no SSH keys are specified (`user_ssh_keys`, `project_ssh_keys`, and `ssh_keys` are all empty lists or omitted),\nall parent project keys, parent project members keys and organization members keys will be included. This behaviour can\nbe changed with 'no_ssh_keys' option to omit any SSH key being added.\n",
+          "x-nullable": true,
+          "default": null,
           "items": {
             "type": "string",
             "format": "uuid"
           }
         },
+        "ssh_keys": {
+          "type": "array",
+          "description": "A list of new or existing project ssh_keys\nthat should be authorized to access this device (typically\nvia /root/.ssh/authorized_keys). These keys will also\nappear in the device metadata.\n\nThese keys are added in addition to any keys defined by\n  `project_ssh_keys` and `user_ssh_keys`.\n",
+          "x-nullable": true,
+          "default": null,
+          "items": {
+            "$ref": "#/definitions/SSHKeyInput"
+          }
+        },
+        "no_ssh_keys": {
+          "type": "boolean",
+          "description": "Overrides default behaviour of attaching all of the organization members ssh keys and project ssh keys to device if no specific keys specified",
+          "x-nullable": true,
+          "default": false
+        },
         "features": {
+          "description": "The features attribute allows you to optionally specify what features your server should have.\n\nIn the API shorthand syntax, all features listed are `required`:\n\n```\n{ \"features\": [\"tpm\"] }\n```\n\nAlternatively, if you do not require a certain feature, but would prefer to be assigned a server with that feature if there are any available, you may specify that feature with a `preferred` value. The request will not fail if we have no servers with that feature in our inventory. The API offers an alternative syntax for mixing preferred and required features:\n\n```\n{ \"features\": { \"tpm\": \"required\", \"raid\": \"preferred\" } }\n```\n\nThe request will only fail if there are no available servers matching the required `tpm` criteria.",
           "type": "array",
           "items": {
             "type": "string"
@@ -9852,6 +11893,7 @@
           "x-deprecated": true
         },
         "ip_addresses": {
+          "description": "The `ip_addresses attribute will allow you to specify the addresses you want created with your device.\n\nThe default value configures public IPv4, public IPv6, and private IPv4.\n\nPrivate IPv4 address is required. When specifying `ip_addresses`, one of the array items must enable private IPv4.\n\nSome operating systems require public IPv4 address. In those cases you will receive an error message if public IPv4 is not enabled.\n\nFor example, to only configure your server with a private IPv4 address, you can send `{ \"ip_addresses\": [{ \"address_family\": 4, \"public\": false }] }`.\n\nIt is possible to request a subnet size larger than a `/30` by assigning addresses using the UUID(s) of ip_reservations in your project.\n\nFor example, `{ \"ip_addresses\": [..., {\"address_family\": 4, \"public\": true, \"ip_reservations\": [\"uuid1\", \"uuid2\"]}] }`\n\nTo access a server without public IPs, you can use our Out-of-Band console access (SOS) or proxy through another server in the project with public IPs enabled.",
           "type": "array",
           "items": {
             "type": "object",
@@ -9886,7 +11928,21 @@
                 }
               }
             }
-          }
+          },
+          "default": [
+            {
+              "address_family": 4,
+              "public": true
+            },
+            {
+              "address_family": 4,
+              "public": false
+            },
+            {
+              "address_family": 6,
+              "public": true
+            }
+          ]
         }
       }
     },
@@ -9934,6 +11990,10 @@
         },
         "customdata": {
           "type": "object"
+        },
+        "network_frozen": {
+          "type": "boolean",
+          "description": "If true, this instance can not be converted to a different network type."
         }
       }
     },
@@ -9995,6 +12055,10 @@
         },
         "organization": {
           "$ref": "#/definitions/Href"
+        },
+        "metro": {
+          "$ref": "#/definitions/Href",
+          "description": "Details of the metro the facility is in"
         }
       }
     },
@@ -10025,6 +12089,10 @@
         "facility": {
           "type": "string",
           "description": "A Facility ID or code."
+        },
+        "metro": {
+          "type": "string",
+          "description": "A Metro ID or code. Required for creating a connection, unless creating with facility."
         },
         "type": {
           "type": "string",
@@ -10401,6 +12469,33 @@
         }
       }
     },
+    "Metro": {
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "name": {
+          "type": "string"
+        },
+        "code": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        }
+      }
+    },
+    "MetroList": {
+      "properties": {
+        "metros": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Metro"
+          }
+        }
+      }
+    },
     "BgpConfigRequestInput": {
       "required": [
         "deployment_type",
@@ -10429,7 +12524,7 @@
         },
         "status": {
           "type": "string",
-          "description": "status requested is valid only for global deployment",
+          "description": "Status of the BGP Config. Status \"requested\" is valid only with the \"global\" deployment_type.",
           "enum": [
             "requested",
             "enabled",
@@ -10442,11 +12537,14 @@
             "global",
             "local"
           ],
-          "description": "In a Local BGP deployment, a customer uses an internal ASN to control routes within a single Equinix Metal datacenter. This means that the routes are never advertised to the global Internet. Global BGP, on the other hand, requires a customer to have a registered ASN and IP space.\n"
+          "description": "In a Local BGP deployment, a customer uses an internal ASN to control routes within a single Equinix Metal datacenter. This means that the routes are never advertised to the global Internet. Global BGP, on the other hand, requires a customer to have a registered ASN and IP space.\n",
+          "example": "local"
         },
         "asn": {
           "type": "integer",
-          "description": "Autonomous System Number"
+          "format": "int32",
+          "description": "Autonomous System Number. ASN is required with Global BGP. With Local BGP the private ASN, 65000, is assigned.",
+          "example": 65000
         },
         "route_object": {
           "type": "string",
@@ -10454,11 +12552,13 @@
         },
         "md5": {
           "type": "string",
-          "description": "(Optional) Password for BGP session in plaintext (not a checksum)"
+          "description": "(Optional) Password for BGP session in plaintext (not a checksum)",
+          "x-nullable": true
         },
         "max_prefix": {
           "type": "integer",
-          "description": "The maximum number of route filters allowed per server"
+          "description": "The maximum number of route filters allowed per server",
+          "default": 10
         },
         "project": {
           "$ref": "#/definitions/Href"
@@ -10580,22 +12680,37 @@
       }
     },
     "BgpSession": {
+      "required": [
+        "address_family"
+      ],
       "properties": {
         "id": {
           "type": "string",
           "format": "uuid"
         },
         "status": {
-          "type": "string"
+          "description": " The status of the BGP Session. Multiple status values may be reported when the device is connected to multiple switches, one value per switch. Each status will start with \"unknown\" and progress to \"up\" or \"down\" depending on the connected device. Subsequent \"unknown\" values indicate a problem acquiring status from the switch. ",
+          "type": "string",
+          "enum": [
+            "unknown",
+            "up",
+            "down"
+          ]
         },
         "learned_routes": {
           "type": "array",
           "items": {
-            "type": "string"
+            "description": "IPv4 or IPv6 range",
+            "type": "string",
+            "example": "10.32.16.0/31"
           }
         },
         "address_family": {
-          "type": "string"
+          "type": "string",
+          "enum": [
+            "ipv4",
+            "ipv6"
+          ]
         },
         "device": {
           "$ref": "#/definitions/Href"
@@ -10605,16 +12720,32 @@
         },
         "default_route": {
           "type": "boolean"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
         }
       }
     },
     "BGPSessionInput": {
       "properties": {
         "address_family": {
-          "type": "string"
+          "description": "Address family for BGP session.",
+          "type": "string",
+          "enum": [
+            "ipv4",
+            "ipv6"
+          ],
+          "example": "ipv4"
         },
         "default_route": {
-          "type": "boolean"
+          "description": "Set the default route policy.",
+          "type": "boolean",
+          "default": false
         }
       }
     },
@@ -10655,33 +12786,6 @@
         }
       }
     },
-    "InternetGateway": {
-      "properties": {
-        "id": {
-          "type": "string",
-          "format": "uuid"
-        },
-        "created_at": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "virtual_network": {
-          "$ref": "#/definitions/Href"
-        },
-        "created_by": {
-          "type": "string"
-        },
-        "ip_reservations": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Href"
-          }
-        },
-        "href": {
-          "type": "string"
-        }
-      }
-    },
     "IPAssignment": {
       "properties": {
         "id": {
@@ -10709,6 +12813,9 @@
         "manageable": {
           "type": "boolean"
         },
+        "global_ip": {
+          "type": "boolean"
+        },
         "assigned_to": {
           "$ref": "#/definitions/Href"
         },
@@ -10727,6 +12834,10 @@
         "created_at": {
           "type": "string",
           "format": "date-time"
+        },
+        "metro": {
+          "$ref": "#/definitions/Metro",
+          "description": "The metro the IP address is in"
         },
         "parent_block": {
           "$ref": "#/definitions/ParentBlock"
@@ -10776,6 +12887,9 @@
         "manageable": {
           "type": "boolean"
         },
+        "global_ip": {
+          "type": "boolean"
+        },
         "addon": {
           "type": "boolean"
         },
@@ -10796,7 +12910,8 @@
           "format": "date-time"
         },
         "facility": {
-          "$ref": "#/definitions/Facility"
+          "$ref": "#/definitions/Facility",
+          "description": "The facility the IP reservation is in. Will not have a value if it is a metro-based IP reservation."
         },
         "href": {
           "type": "string"
@@ -10809,6 +12924,10 @@
         },
         "state": {
           "type": "string"
+        },
+        "metro": {
+          "$ref": "#/definitions/Metro",
+          "description": "The metro the IP reservation is in. If a facility is specified, this is the metro of that facility. If the facility is not specified, this is a metro-based IP reservation."
         }
       }
     },
@@ -10876,6 +12995,11 @@
         "facility": {
           "type": "string"
         },
+        "metro": {
+          "type": "string",
+          "description": "The code of the metro you are requesting the IP reservation in.",
+          "example": "SV"
+        },
         "customdata": {
           "type": "object"
         },
@@ -10916,6 +13040,17 @@
           },
           "description": "A list of instances with ports currently associated to this Virtual Network."
         },
+        "metro_code": {
+          "type": "string",
+          "description": "The Metro code of the metro in which this Virtual Network is defined."
+        },
+        "metro": {
+          "$ref": "#/definitions/Href"
+        },
+        "assigned_to_virtual_circuit": {
+          "type": "boolean",
+          "description": "True if the virtual network is attached to a virtual circuit. False if not."
+        },
         "assigned_to": {
           "$ref": "#/definitions/Href"
         },
@@ -10925,6 +13060,9 @@
       }
     },
     "VirtualNetworkCreateInput": {
+      "required": [
+        "project_id"
+      ],
       "properties": {
         "project_id": {
           "type": "string",
@@ -10936,6 +13074,15 @@
         "facility": {
           "type": "string",
           "description": "The UUID (or facility code) for the Facility in which to create this Virtual network."
+        },
+        "metro": {
+          "type": "string",
+          "description": "The UUID (or metro code) for the Metro in which to create this Virtual Network."
+        },
+        "vxlan": {
+          "type": "integer",
+          "description": "VLAN ID between 2-3999. Must be unique for the project within the Metro in which this Virtual Network is being created. If no value is specified, the next-available VLAN ID in the range 1000-1999 will be automatically selected.",
+          "example": 1099
         }
       }
     },
@@ -11307,17 +13454,11 @@
           "type": "boolean",
           "description": "Indicates whether or not the bond can be broken on the port (when applicable)."
         },
-        "hardware": {
-          "$ref": "#/definitions/Href"
-        },
         "virtual_networks": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/Href"
           }
-        },
-        "connected_port": {
-          "$ref": "#/definitions/Href"
         },
         "href": {
           "type": "string"
@@ -11497,27 +13638,164 @@
         }
       }
     },
-    "Region": {
+    "CreateSelfServiceReservationRequest": {
       "properties": {
-        "id": {
+        "start_date": {
           "type": "string",
-          "format": "uuid"
+          "format": "date-time"
         },
-        "name": {
+        "period": {
+          "properties": {
+            "unit": {
+              "type": "string",
+              "enum": [
+                "monthly"
+              ]
+            },
+            "count": {
+              "type": "number",
+              "enum": [
+                12,
+                36
+              ]
+            }
+          }
+        },
+        "terms": {
           "type": "string"
         },
-        "facility": {
-          "$ref": "#/definitions/Facility"
+        "item": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SelfServiceReservationItemRequest"
+          }
         }
       }
     },
-    "RegionsList": {
+    "SelfServiceReservationResponse": {
       "properties": {
-        "regions": {
+        "status": {
+          "type": "string"
+        },
+        "start_date": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "period": {
+          "properties": {
+            "unit": {
+              "type": "string",
+              "enum": [
+                "monthly"
+              ]
+            },
+            "count": {
+              "type": "number",
+              "enum": [
+                12,
+                36
+              ]
+            }
+          }
+        },
+        "total_cost": {
+          "type": "integer"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "terms": {
+          "type": "string"
+        },
+        "organization": {
+          "type": "string"
+        },
+        "organization_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "project": {
+          "type": "string"
+        },
+        "project_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "item": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/Region"
+            "$ref": "#/definitions/SelfServiceReservationItemResponse"
           }
+        }
+      }
+    },
+    "SelfServiceReservationList": {
+      "properties": {
+        "reservations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SelfServiceReservationResponse"
+          }
+        }
+      }
+    },
+    "SelfServiceReservationItemRequest": {
+      "properties": {
+        "metro_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "plan_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "quantity": {
+          "type": "integer"
+        },
+        "amount": {
+          "type": "number",
+          "format": "float"
+        },
+        "term": {
+          "type": "string"
+        }
+      }
+    },
+    "SelfServiceReservationItemResponse": {
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "metro_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "metro_code": {
+          "type": "string"
+        },
+        "metro_name": {
+          "type": "string"
+        },
+        "plan_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "plan_name": {
+          "type": "string"
+        },
+        "plan_slug": {
+          "type": "string"
+        },
+        "quantity": {
+          "type": "integer"
+        },
+        "amount": {
+          "type": "number",
+          "format": "float"
+        },
+        "term": {
+          "type": "string"
         }
       }
     },
@@ -11550,6 +13828,10 @@
         },
         "facilities": {
           "$ref": "#/definitions/Href"
+        },
+        "metro": {
+          "$ref": "#/definitions/Href",
+          "description": "The metro the spot market request was created in"
         },
         "project": {
           "$ref": "#/definitions/Href"
@@ -11629,6 +13911,9 @@
                 "format": "uuid"
               }
             },
+            "no_ssh_keys": {
+              "type": "boolean"
+            },
             "features": {
               "type": "array",
               "items": {
@@ -11666,6 +13951,10 @@
             "type": "string",
             "format": "uuid"
           }
+        },
+        "metro": {
+          "type": "string",
+          "description": "The metro ID or code the spot market request will be created in."
         }
       }
     },
@@ -11707,6 +13996,24 @@
         },
         "key": {
           "type": "string"
+        }
+      }
+    },
+    "SSHKeyCreateInput": {
+      "properties": {
+        "label": {
+          "type": "string"
+        },
+        "key": {
+          "type": "string"
+        },
+        "instances_ids": {
+          "type": "array",
+          "description": "List of instance UUIDs to associate SSH key with, when empty array is sent all instances belonging\n      to entity will be included",
+          "items": {
+            "type": "string",
+            "format": "uuid"
+          }
         }
       }
     },
@@ -12022,6 +14329,16 @@
         },
         "device_id": {
           "type": "string"
+        },
+        "priority": {
+          "type": "string",
+          "enum": [
+            "urgent",
+            "high",
+            "medium",
+            "low"
+          ],
+          "required": false
         }
       }
     },
@@ -12126,6 +14443,38 @@
         }
       }
     },
+    "MetroCapacityList": {
+      "properties": {
+        "capacity": {
+          "$ref": "#/definitions/MetroCapacityReport"
+        }
+      }
+    },
+    "MetroCapacityReport": {
+      "properties": {
+        "ny": {
+          "$ref": "#/definitions/CapacityPerFacility"
+        },
+        "sv": {
+          "$ref": "#/definitions/CapacityPerFacility"
+        },
+        "am": {
+          "$ref": "#/definitions/CapacityPerFacility"
+        },
+        "ch": {
+          "$ref": "#/definitions/CapacityPerFacility"
+        },
+        "la": {
+          "$ref": "#/definitions/CapacityPerFacility"
+        },
+        "sg": {
+          "$ref": "#/definitions/CapacityPerFacility"
+        },
+        "da": {
+          "$ref": "#/definitions/CapacityPerFacility"
+        }
+      }
+    },
     "CapacityPerFacility": {
       "properties": {
         "baremetal_2a": {
@@ -12214,6 +14563,32 @@
         }
       }
     },
+    "CapacityPerMetroInput": {
+      "properties": {
+        "servers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MetroServerInfo"
+          }
+        }
+      }
+    },
+    "MetroServerInfo": {
+      "properties": {
+        "metro": {
+          "type": "string",
+          "description": "The metro ID or code to check the capacity in."
+        },
+        "plan": {
+          "type": "string",
+          "description": "The plan ID or slug to check the capacity of."
+        },
+        "quantity": {
+          "type": "string",
+          "description": "The number of servers to check the capacity of."
+        }
+      }
+    },
     "CapacityCheckPerFacilityList": {
       "properties": {
         "servers": {
@@ -12237,6 +14612,36 @@
         },
         "available": {
           "type": "boolean"
+        }
+      }
+    },
+    "CapacityCheckPerMetroList": {
+      "properties": {
+        "servers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CapacityCheckPerMetroInfo"
+          }
+        }
+      }
+    },
+    "CapacityCheckPerMetroInfo": {
+      "properties": {
+        "metro": {
+          "type": "string",
+          "description": "The metro ID or code sent to check capacity."
+        },
+        "plan": {
+          "type": "string",
+          "description": "The plan ID or slug sent to check capacity."
+        },
+        "quantity": {
+          "type": "string",
+          "description": "The number of servers sent to check capacity."
+        },
+        "available": {
+          "type": "boolean",
+          "description": "Returns true if there is enough capacity in the metro to fulfill the quantity set. Returns false if there is not enough."
         }
       }
     },
@@ -12290,6 +14695,38 @@
         },
         "yyz1": {
           "$ref": "#/definitions/SpotPricesPerNewFacility"
+        }
+      }
+    },
+    "SpotMarketPricesPerMetroList": {
+      "properties": {
+        "spot_market_prices": {
+          "$ref": "#/definitions/SpotMarketPricesPerMetroReport"
+        }
+      }
+    },
+    "SpotMarketPricesPerMetroReport": {
+      "properties": {
+        "ny": {
+          "$ref": "#/definitions/SpotPricesPerFacility"
+        },
+        "sv": {
+          "$ref": "#/definitions/SpotPricesPerFacility"
+        },
+        "am": {
+          "$ref": "#/definitions/SpotPricesPerFacility"
+        },
+        "ch": {
+          "$ref": "#/definitions/SpotPricesPerFacility"
+        },
+        "la": {
+          "$ref": "#/definitions/SpotPricesPerFacility"
+        },
+        "sg": {
+          "$ref": "#/definitions/SpotPricesPerFacility"
+        },
+        "da": {
+          "$ref": "#/definitions/SpotPricesPerFacility"
         }
       }
     },
@@ -12382,13 +14819,6 @@
     "Userdata": {
       "properties": {
         "userdata": {
-          "type": "string"
-        }
-      }
-    },
-    "VPNConfig": {
-      "properties": {
-        "config": {
           "type": "string"
         }
       }
@@ -12672,23 +15102,6 @@
         }
       }
     },
-    "CreateEmailInput": {
-      "required": [
-        "address"
-      ],
-      "properties": {
-        "address": {
-          "type": "string"
-        }
-      }
-    },
-    "UpdateEmailInput": {
-      "properties": {
-        "default": {
-          "type": "boolean"
-        }
-      }
-    },
     "Email": {
       "properties": {
         "id": {
@@ -12706,6 +15119,40 @@
         },
         "href": {
           "type": "string"
+        }
+      }
+    },
+    "Error": {
+      "description": "Error responses are included with 4xx and 5xx HTTP responses from the API service. Either \"error\" or \"errors\" will be set.",
+      "properties": {
+        "error": {
+          "type": "string",
+          "description": "A description of the error that caused the request to fail."
+        },
+        "errors": {
+          "type": "array",
+          "description": "A list of errors that contributed to the request failing.",
+          "items": {
+            "type": "string",
+            "description": "An error message that contributed to the request failing."
+          }
+        }
+      }
+    },
+    "CreateEmailInput": {
+      "required": [
+        "address"
+      ],
+      "properties": {
+        "address": {
+          "type": "string"
+        }
+      }
+    },
+    "UpdateEmailInput": {
+      "properties": {
+        "default": {
+          "type": "boolean"
         }
       }
     }

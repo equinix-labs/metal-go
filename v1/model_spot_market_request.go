@@ -1,7 +1,7 @@
 /*
  * Metal API
  *
- * This is the API for Equinix Metal Product. Interact with your devices, user account, and projects.
+ * This is the API for Equinix Metal. The API allows you to programmatically interact with all of your Equinix Metal resources, including devices, networks, addresses, organizations, projects, and your user account.  The official API docs are hosted at <https://metal.equinix.com/developers/api>. 
  *
  * API version: 1.0.0
  * Contact: support@equinixmetal.com
@@ -26,6 +26,7 @@ type SpotMarketRequest struct {
 	EndAt *time.Time `json:"end_at,omitempty"`
 	Href *string `json:"href,omitempty"`
 	Facilities *Href `json:"facilities,omitempty"`
+	Metro *Href `json:"metro,omitempty"`
 	Project *Href `json:"project,omitempty"`
 	Instances *Href `json:"instances,omitempty"`
 }
@@ -303,6 +304,38 @@ func (o *SpotMarketRequest) SetFacilities(v Href) {
 	o.Facilities = &v
 }
 
+// GetMetro returns the Metro field value if set, zero value otherwise.
+func (o *SpotMarketRequest) GetMetro() Href {
+	if o == nil || o.Metro == nil {
+		var ret Href
+		return ret
+	}
+	return *o.Metro
+}
+
+// GetMetroOk returns a tuple with the Metro field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SpotMarketRequest) GetMetroOk() (*Href, bool) {
+	if o == nil || o.Metro == nil {
+		return nil, false
+	}
+	return o.Metro, true
+}
+
+// HasMetro returns a boolean if a field has been set.
+func (o *SpotMarketRequest) HasMetro() bool {
+	if o != nil && o.Metro != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMetro gets a reference to the given Href and assigns it to the Metro field.
+func (o *SpotMarketRequest) SetMetro(v Href) {
+	o.Metro = &v
+}
+
 // GetProject returns the Project field value if set, zero value otherwise.
 func (o *SpotMarketRequest) GetProject() Href {
 	if o == nil || o.Project == nil {
@@ -392,6 +425,9 @@ func (o SpotMarketRequest) MarshalJSON() ([]byte, error) {
 	}
 	if o.Facilities != nil {
 		toSerialize["facilities"] = o.Facilities
+	}
+	if o.Metro != nil {
+		toSerialize["metro"] = o.Metro
 	}
 	if o.Project != nil {
 		toSerialize["project"] = o.Project

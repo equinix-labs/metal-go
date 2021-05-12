@@ -1,7 +1,7 @@
 /*
  * Metal API
  *
- * This is the API for Equinix Metal Product. Interact with your devices, user account, and projects.
+ * This is the API for Equinix Metal. The API allows you to programmatically interact with all of your Equinix Metal resources, including devices, networks, addresses, organizations, projects, and your user account.  The official API docs are hosted at <https://metal.equinix.com/developers/api>. 
  *
  * API version: 1.0.0
  * Contact: support@equinixmetal.com
@@ -42,6 +42,7 @@ type Device struct {
 	IpxeScriptUrl *string `json:"ipxe_script_url,omitempty"`
 	Location *HardwareLocation `json:"location,omitempty"`
 	Facility *Facility `json:"facility,omitempty"`
+	Metro *Metro `json:"metro,omitempty"`
 	Plan *Plan `json:"plan,omitempty"`
 	Userdata *string `json:"userdata,omitempty"`
 	RootPassword *string `json:"root_password,omitempty"`
@@ -53,7 +54,6 @@ type Device struct {
 	SshKeys *[]Href `json:"ssh_keys,omitempty"`
 	IpAddresses *[]IPAssignment `json:"ip_addresses,omitempty"`
 	ProvisioningEvents *[]Event `json:"provisioning_events,omitempty"`
-	Metro *Metro `json:"metro,omitempty"`
 }
 
 // NewDevice instantiates a new Device object
@@ -841,6 +841,38 @@ func (o *Device) SetFacility(v Facility) {
 	o.Facility = &v
 }
 
+// GetMetro returns the Metro field value if set, zero value otherwise.
+func (o *Device) GetMetro() Metro {
+	if o == nil || o.Metro == nil {
+		var ret Metro
+		return ret
+	}
+	return *o.Metro
+}
+
+// GetMetroOk returns a tuple with the Metro field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Device) GetMetroOk() (*Metro, bool) {
+	if o == nil || o.Metro == nil {
+		return nil, false
+	}
+	return o.Metro, true
+}
+
+// HasMetro returns a boolean if a field has been set.
+func (o *Device) HasMetro() bool {
+	if o != nil && o.Metro != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMetro gets a reference to the given Metro and assigns it to the Metro field.
+func (o *Device) SetMetro(v Metro) {
+	o.Metro = &v
+}
+
 // GetPlan returns the Plan field value if set, zero value otherwise.
 func (o *Device) GetPlan() Plan {
 	if o == nil || o.Plan == nil {
@@ -1193,38 +1225,6 @@ func (o *Device) SetProvisioningEvents(v []Event) {
 	o.ProvisioningEvents = &v
 }
 
-// GetMetro returns the Metro field value if set, zero value otherwise.
-func (o *Device) GetMetro() Metro {
-	if o == nil || o.Metro == nil {
-		var ret Metro
-		return ret
-	}
-	return *o.Metro
-}
-
-// GetMetroOk returns a tuple with the Metro field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Device) GetMetroOk() (*Metro, bool) {
-	if o == nil || o.Metro == nil {
-		return nil, false
-	}
-	return o.Metro, true
-}
-
-// HasMetro returns a boolean if a field has been set.
-func (o *Device) HasMetro() bool {
-	if o != nil && o.Metro != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetMetro gets a reference to the given Metro and assigns it to the Metro field.
-func (o *Device) SetMetro(v Metro) {
-	o.Metro = &v
-}
-
 func (o Device) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Id != nil {
@@ -1299,6 +1299,9 @@ func (o Device) MarshalJSON() ([]byte, error) {
 	if o.Facility != nil {
 		toSerialize["facility"] = o.Facility
 	}
+	if o.Metro != nil {
+		toSerialize["metro"] = o.Metro
+	}
 	if o.Plan != nil {
 		toSerialize["plan"] = o.Plan
 	}
@@ -1331,9 +1334,6 @@ func (o Device) MarshalJSON() ([]byte, error) {
 	}
 	if o.ProvisioningEvents != nil {
 		toSerialize["provisioning_events"] = o.ProvisioningEvents
-	}
-	if o.Metro != nil {
-		toSerialize["metro"] = o.Metro
 	}
 	return json.Marshal(toSerialize)
 }

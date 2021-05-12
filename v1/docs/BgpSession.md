@@ -5,9 +5,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **string** |  | [optional] 
-**Status** | Pointer to **string** | The status of the BGP Session will start \&quot;unknown\&quot; and progress to \&quot;up\&quot; or \&quot;down\&quot; depending on the devices. | [optional] 
+**Status** | Pointer to **string** |  The status of the BGP Session. Multiple status values may be reported when the device is connected to multiple switches, one value per switch. Each status will start with \&quot;unknown\&quot; and progress to \&quot;up\&quot; or \&quot;down\&quot; depending on the connected device. Subsequent \&quot;unknown\&quot; values indicate a problem acquiring status from the switch.  | [optional] 
 **LearnedRoutes** | Pointer to **[]string** |  | [optional] 
-**AddressFamily** | Pointer to **string** |  | [optional] 
+**AddressFamily** | **string** |  | 
 **Device** | Pointer to [**Href**](Href.md) |  | [optional] 
 **Href** | Pointer to **string** |  | [optional] 
 **DefaultRoute** | Pointer to **bool** |  | [optional] 
@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 
 ### NewBgpSession
 
-`func NewBgpSession() *BgpSession`
+`func NewBgpSession(addressFamily string, ) *BgpSession`
 
 NewBgpSession instantiates a new BgpSession object
 This constructor will assign default values to properties that have it defined,
@@ -127,11 +127,6 @@ and a boolean to check if the value has been set.
 
 SetAddressFamily sets AddressFamily field to given value.
 
-### HasAddressFamily
-
-`func (o *BgpSession) HasAddressFamily() bool`
-
-HasAddressFamily returns a boolean if a field has been set.
 
 ### GetDevice
 

@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Metro** | Pointer to **string** |  | [optional] 
-**Plan** | Pointer to **string** |  | [optional] 
-**Quantity** | Pointer to **string** |  | [optional] 
+**Metro** | Pointer to **string** | The metro ID or code to check the capacity in. | [optional] 
+**Plan** | Pointer to **string** | The plan ID or slug to check the capacity of. | [optional] 
+**Quantity** | Pointer to **string** | The number of servers to check the capacity of. | [optional] 
 
 ## Methods
 
