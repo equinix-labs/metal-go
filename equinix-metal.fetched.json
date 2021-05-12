@@ -13454,17 +13454,11 @@
           "type": "boolean",
           "description": "Indicates whether or not the bond can be broken on the port (when applicable)."
         },
-        "hardware": {
-          "$ref": "#/definitions/Href"
-        },
         "virtual_networks": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/Href"
           }
-        },
-        "connected_port": {
-          "$ref": "#/definitions/Href"
         },
         "href": {
           "type": "string"

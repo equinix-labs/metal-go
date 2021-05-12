@@ -13399,17 +13399,11 @@
           "type": "boolean",
           "description": "Indicates whether or not the bond can be broken on the port (when applicable)."
         },
-        "hardware": {
-          "$ref": "#/definitions/Href"
-        },
         "virtual_networks": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/Href"
           }
-        },
-        "connected_port": {
-          "$ref": "#/definitions/Href"
         },
         "href": {
           "type": "string"
@@ -15053,23 +15047,6 @@
         }
       }
     },
-    "Error": {
-      "description": "Error responses are included with 4xx and 5xx HTTP responses from the API service. Either \"error\" or \"errors\" will be set.",
-      "properties": {
-        "error": {
-          "type": "string",
-          "description": "A description of the error that caused the request to fail."
-        },
-        "errors": {
-          "type": "array",
-          "description": "A list of errors that contributed to the request failing.",
-          "items": {
-            "type": "string",
-            "description": "An error message that contributed to the request failing."
-          }
-        }
-      }
-    },
     "Email": {
       "properties": {
         "id": {
@@ -15087,6 +15064,23 @@
         },
         "href": {
           "type": "string"
+        }
+      }
+    },
+    "Error": {
+      "description": "Error responses are included with 4xx and 5xx HTTP responses from the API service. Either \"error\" or \"errors\" will be set.",
+      "properties": {
+        "error": {
+          "type": "string",
+          "description": "A description of the error that caused the request to fail."
+        },
+        "errors": {
+          "type": "array",
+          "description": "A list of errors that contributed to the request failing.",
+          "items": {
+            "type": "string",
+            "description": "An error message that contributed to the request failing."
+          }
         }
       }
     },

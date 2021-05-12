@@ -9,9 +9,7 @@ Name | Type | Description | Notes
 **Name** | Pointer to **string** |  | [optional] 
 **Data** | Pointer to **map[string]interface{}** |  | [optional] 
 **DisbondOperationSupported** | Pointer to **bool** | Indicates whether or not the bond can be broken on the port (when applicable). | [optional] 
-**Hardware** | Pointer to [**Href**](Href.md) |  | [optional] 
 **VirtualNetworks** | Pointer to [**[]Href**](Href.md) |  | [optional] 
-**ConnectedPort** | Pointer to [**Href**](Href.md) |  | [optional] 
 **Href** | Pointer to **string** |  | [optional] 
 
 ## Methods
@@ -158,31 +156,6 @@ SetDisbondOperationSupported sets DisbondOperationSupported field to given value
 
 HasDisbondOperationSupported returns a boolean if a field has been set.
 
-### GetHardware
-
-`func (o *Port) GetHardware() Href`
-
-GetHardware returns the Hardware field if non-nil, zero value otherwise.
-
-### GetHardwareOk
-
-`func (o *Port) GetHardwareOk() (*Href, bool)`
-
-GetHardwareOk returns a tuple with the Hardware field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetHardware
-
-`func (o *Port) SetHardware(v Href)`
-
-SetHardware sets Hardware field to given value.
-
-### HasHardware
-
-`func (o *Port) HasHardware() bool`
-
-HasHardware returns a boolean if a field has been set.
-
 ### GetVirtualNetworks
 
 `func (o *Port) GetVirtualNetworks() []Href`
@@ -207,31 +180,6 @@ SetVirtualNetworks sets VirtualNetworks field to given value.
 `func (o *Port) HasVirtualNetworks() bool`
 
 HasVirtualNetworks returns a boolean if a field has been set.
-
-### GetConnectedPort
-
-`func (o *Port) GetConnectedPort() Href`
-
-GetConnectedPort returns the ConnectedPort field if non-nil, zero value otherwise.
-
-### GetConnectedPortOk
-
-`func (o *Port) GetConnectedPortOk() (*Href, bool)`
-
-GetConnectedPortOk returns a tuple with the ConnectedPort field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetConnectedPort
-
-`func (o *Port) SetConnectedPort(v Href)`
-
-SetConnectedPort sets ConnectedPort field to given value.
-
-### HasConnectedPort
-
-`func (o *Port) HasConnectedPort() bool`
-
-HasConnectedPort returns a boolean if a field has been set.
 
 ### GetHref
 

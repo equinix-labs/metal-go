@@ -14869,8 +14869,6 @@ components:
       example:
         disbond_operation_supported: true
         data: '{}'
-        connected_port:
-          href: href
         name: name
         virtual_networks:
         - href: href
@@ -14878,8 +14876,6 @@ components:
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         href: href
         type: type
-        hardware:
-          href: href
       properties:
         id:
           format: uuid
@@ -14895,14 +14891,10 @@ components:
           description: Indicates whether or not the bond can be broken on the port
             (when applicable).
           type: boolean
-        hardware:
-          $ref: '#/components/schemas/Href'
         virtual_networks:
           items:
             $ref: '#/components/schemas/Href'
           type: array
-        connected_port:
-          $ref: '#/components/schemas/Href'
         href:
           type: string
       type: object
@@ -17834,20 +17826,6 @@ components:
         meta:
           $ref: '#/components/schemas/Meta'
       type: object
-    Error:
-      description: Error responses are included with 4xx and 5xx HTTP responses from
-        the API service. Either "error" or "errors" will be set.
-      properties:
-        error:
-          description: A description of the error that caused the request to fail.
-          type: string
-        errors:
-          description: A list of errors that contributed to the request failing.
-          items:
-            description: An error message that contributed to the request failing.
-            type: string
-          type: array
-      type: object
     Email:
       example:
         default: true
@@ -17867,6 +17845,20 @@ components:
           type: boolean
         href:
           type: string
+      type: object
+    Error:
+      description: Error responses are included with 4xx and 5xx HTTP responses from
+        the API service. Either "error" or "errors" will be set.
+      properties:
+        error:
+          description: A description of the error that caused the request to fail.
+          type: string
+        errors:
+          description: A list of errors that contributed to the request failing.
+          items:
+            description: An error message that contributed to the request failing.
+            type: string
+          type: array
       type: object
     CreateEmailInput:
       example:
