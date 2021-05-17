@@ -17,8 +17,7 @@
   "schemes": [
     "https"
   ],
-  "host": "api.equinix.com",
-  "basePath": "/metal/v1",
+  "host": "localhost:3000",
   "consumes": [
     "application/json"
   ],
@@ -11524,15 +11523,44 @@
         "features": {
           "type": "array",
           "items": {
+            "type": "string",
+            "enum": [
+              "baremetal",
+              "backend_transfer",
+              "layer_2",
+              "global_ipv4",
+              "ibx"
+            ]
+          },
+          "example": [
+            "baremetal",
+            "backend_transfer",
+            "global_ipv4"
+          ]
+        },
+        "ip_ranges": {
+          "type": "array",
+          "description": "IP ranges registered in facility. Can be used for GeoIP location",
+          "items": {
             "type": "string"
-          }
+          },
+          "example": [
+            "2604:1380::/36",
+            "147.75.192.0/21"
+          ]
         },
         "address": {
           "$ref": "#/definitions/Address"
         },
         "metro": {
-          "$ref": "#/definitions/Metro",
-          "description": "The metro the facility is in"
+          "allOf": [
+            {
+              "$ref": "#/definitions/Metro"
+            },
+            {
+              "description": "The metro the facility is in"
+            }
+          ]
         }
       }
     },
@@ -11543,25 +11571,6 @@
           "items": {
             "$ref": "#/definitions/Facility"
           }
-        }
-      }
-    },
-    "HardwareLocation": {
-      "properties": {
-        "cage": {
-          "type": "string"
-        },
-        "facility": {
-          "type": "string"
-        },
-        "rack": {
-          "type": "string"
-        },
-        "row": {
-          "type": "string"
-        },
-        "switch": {
-          "type": "string"
         }
       }
     },
@@ -11664,22 +11673,26 @@
           "format": "date-time"
         },
         "spot_instance": {
-          "type": "boolean"
+          "type": "boolean",
+          "description": "Whether or not the device is a spot instance."
         },
         "spot_price_max": {
           "type": "number",
-          "format": "float"
+          "format": "float",
+          "description": "The maximum price per hour you are willing to pay to keep this spot instance.  If you are outbid, the termination will be set allowing two minutes before shutdown."
         },
         "termination_time": {
           "type": "string",
-          "format": "date-time"
+          "format": "date-time",
+          "description": "When the device will be terminated. This is commonly set in advance for ephemeral spot market instances but this field may also be set with on-demand and reservation instances to automatically delete the resource at a given time. The termination time can also be used to release a hardware reservation instance at a given time, keeping the reservation open for other uses.  On a spot market device, the termination time will be set automatically when outbid."
         },
         "customdata": {
           "type": "object"
         },
         "provisioning_percentage": {
           "type": "number",
-          "format": "float"
+          "format": "float",
+          "description": "Only visible while device provisioning"
         },
         "operating_system": {
           "$ref": "#/definitions/OperatingSystem"
@@ -11690,15 +11703,15 @@
         "ipxe_script_url": {
           "type": "string"
         },
-        "location": {
-          "$ref": "#/definitions/HardwareLocation"
-        },
         "facility": {
           "$ref": "#/definitions/Facility"
         },
         "metro": {
-          "$ref": "#/definitions/Metro",
-          "description": "The metro the device is in"
+          "allOf": [
+            {
+              "description": "The metro the facility is in"
+            }
+          ]
         },
         "plan": {
           "$ref": "#/definitions/Plan"
@@ -11707,18 +11720,45 @@
           "type": "string"
         },
         "root_password": {
-          "type": "string"
+          "type": "string",
+          "description": "Root password is automatically generated when server is provisioned and it is removed after 24 hours"
+        },
+        "switch_uuid": {
+          "type": "string",
+          "description": "Switch short id. This can be used to determine if two devices are connected to the same switch, for example."
+        },
+        "network_ports": {
+          "allOf": [
+            {
+              "$ref": "#/definitions/Port"
+            },
+            {
+              "description": "By default, servers at Equinix Metal are configured in a “bonded” mode using LACP (Link Aggregation Control Protocol). Each 2-port NIC is configured with a single bond (namely bond0) with both interfaces eth0 and eth1 as members of the bond in a default Layer 3 mode. Some device plans may have a different number of ports and bonds available."
+            }
+          ]
         },
         "href": {
           "type": "string"
         },
         "project": {
-          "$ref": "#/definitions/Href",
-          "description": "Full version of project object when included"
+          "allOf": [
+            {
+              "$ref": "#/definitions/Href"
+            },
+            {
+              "description": "Full version of project object when included"
+            }
+          ]
         },
         "project_lite": {
-          "$ref": "#/definitions/Href",
-          "description": "Lite version of project object when included"
+          "allOf": [
+            {
+              "$ref": "#/definitions/Href"
+            },
+            {
+              "description": "Lite version of project object when included"
+            }
+          ]
         },
         "volumes": {
           "type": "array",
@@ -11815,7 +11855,6 @@
         "hardware_reservation_id": {
           "description": "The Hardware Reservation UUID to provision. Alternatively, `next-available` can be specified to select from any of the available hardware reservations. An error will be returned if the requested reservation option is not available.\n\n      See [Reserved Hardware](https://metal.equinix.com/developers/docs/deploy/reserved/) for more details.",
           "type": "string",
-          "format": "uuid",
           "example": "next-available",
           "default": ""
         },
@@ -11952,7 +11991,11 @@
           "type": "number",
           "format": "integer",
           "description": "Address Family for IP Address",
-          "example": 4
+          "example": 4,
+          "enum": [
+            4,
+            6
+          ]
         }
       }
     },
@@ -13114,11 +13157,23 @@
         "version": {
           "type": "string"
         },
+        "preinstallable": {
+          "type": "boolean",
+          "description": "Servers can be already preinstalled with OS in order to shorten provision time."
+        },
         "provisionable_on": {
           "type": "array",
           "items": {
             "type": "string"
           }
+        },
+        "pricing": {
+          "type": "object",
+          "description": "This object contains price per time unit and optional multiplier value if licence price depends on hardware plan or components (e.g. number of cores)"
+        },
+        "licensed": {
+          "type": "boolean",
+          "description": "Licenced OS is priced according to pricing property"
         }
       }
     },
@@ -14337,8 +14392,7 @@
             "high",
             "medium",
             "low"
-          ],
-          "required": false
+          ]
         }
       }
     },
@@ -15102,6 +15156,23 @@
         }
       }
     },
+    "Error": {
+      "description": "Error responses are included with 4xx and 5xx HTTP responses from the API service. Either \"error\" or \"errors\" will be set.",
+      "properties": {
+        "error": {
+          "type": "string",
+          "description": "A description of the error that caused the request to fail."
+        },
+        "errors": {
+          "type": "array",
+          "description": "A list of errors that contributed to the request failing.",
+          "items": {
+            "type": "string",
+            "description": "An error message that contributed to the request failing."
+          }
+        }
+      }
+    },
     "Email": {
       "properties": {
         "id": {
@@ -15119,23 +15190,6 @@
         },
         "href": {
           "type": "string"
-        }
-      }
-    },
-    "Error": {
-      "description": "Error responses are included with 4xx and 5xx HTTP responses from the API service. Either \"error\" or \"errors\" will be set.",
-      "properties": {
-        "error": {
-          "type": "string",
-          "description": "A description of the error that caused the request to fail."
-        },
-        "errors": {
-          "type": "array",
-          "description": "A list of errors that contributed to the request failing.",
-          "items": {
-            "type": "string",
-            "description": "An error message that contributed to the request failing."
-          }
         }
       }
     },
