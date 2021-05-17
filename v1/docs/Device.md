@@ -18,20 +18,21 @@ Name | Type | Description | Notes
 **BondingMode** | Pointer to **int32** |  | [optional] 
 **CreatedAt** | Pointer to **time.Time** |  | [optional] 
 **UpdatedAt** | Pointer to **time.Time** |  | [optional] 
-**SpotInstance** | Pointer to **bool** |  | [optional] 
-**SpotPriceMax** | Pointer to **float32** |  | [optional] 
-**TerminationTime** | Pointer to **time.Time** |  | [optional] 
+**SpotInstance** | Pointer to **bool** | Whether or not the device is a spot instance. | [optional] 
+**SpotPriceMax** | Pointer to **float32** | The maximum price per hour you are willing to pay to keep this spot instance.  If you are outbid, the termination will be set allowing two minutes before shutdown. | [optional] 
+**TerminationTime** | Pointer to **time.Time** | When the device will be terminated. This is commonly set in advance for ephemeral spot market instances but this field may also be set with on-demand and reservation instances to automatically delete the resource at a given time. The termination time can also be used to release a hardware reservation instance at a given time, keeping the reservation open for other uses.  On a spot market device, the termination time will be set automatically when outbid. | [optional] 
 **Customdata** | Pointer to **map[string]interface{}** |  | [optional] 
-**ProvisioningPercentage** | Pointer to **float32** |  | [optional] 
+**ProvisioningPercentage** | Pointer to **float32** | Only visible while device provisioning | [optional] 
 **OperatingSystem** | Pointer to [**OperatingSystem**](OperatingSystem.md) |  | [optional] 
 **AlwaysPxe** | Pointer to **bool** |  | [optional] 
 **IpxeScriptUrl** | Pointer to **string** |  | [optional] 
-**Location** | Pointer to [**HardwareLocation**](HardwareLocation.md) |  | [optional] 
 **Facility** | Pointer to [**Facility**](Facility.md) |  | [optional] 
-**Metro** | Pointer to [**Metro**](Metro.md) |  | [optional] 
+**Metro** | Pointer to **map[string]interface{}** |  | [optional] 
 **Plan** | Pointer to [**Plan**](Plan.md) |  | [optional] 
 **Userdata** | Pointer to **string** |  | [optional] 
-**RootPassword** | Pointer to **string** |  | [optional] 
+**RootPassword** | Pointer to **string** | Root password is automatically generated when server is provisioned and it is removed after 24 hours | [optional] 
+**SwitchUuid** | Pointer to **string** | Switch short id. This can be used to determine if two devices are connected to the same switch, for example. | [optional] 
+**NetworkPorts** | Pointer to [**Port**](Port.md) |  | [optional] 
 **Href** | Pointer to **string** |  | [optional] 
 **Project** | Pointer to [**Href**](Href.md) |  | [optional] 
 **ProjectLite** | Pointer to [**Href**](Href.md) |  | [optional] 
@@ -610,31 +611,6 @@ SetIpxeScriptUrl sets IpxeScriptUrl field to given value.
 
 HasIpxeScriptUrl returns a boolean if a field has been set.
 
-### GetLocation
-
-`func (o *Device) GetLocation() HardwareLocation`
-
-GetLocation returns the Location field if non-nil, zero value otherwise.
-
-### GetLocationOk
-
-`func (o *Device) GetLocationOk() (*HardwareLocation, bool)`
-
-GetLocationOk returns a tuple with the Location field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetLocation
-
-`func (o *Device) SetLocation(v HardwareLocation)`
-
-SetLocation sets Location field to given value.
-
-### HasLocation
-
-`func (o *Device) HasLocation() bool`
-
-HasLocation returns a boolean if a field has been set.
-
 ### GetFacility
 
 `func (o *Device) GetFacility() Facility`
@@ -662,20 +638,20 @@ HasFacility returns a boolean if a field has been set.
 
 ### GetMetro
 
-`func (o *Device) GetMetro() Metro`
+`func (o *Device) GetMetro() map[string]interface{}`
 
 GetMetro returns the Metro field if non-nil, zero value otherwise.
 
 ### GetMetroOk
 
-`func (o *Device) GetMetroOk() (*Metro, bool)`
+`func (o *Device) GetMetroOk() (*map[string]interface{}, bool)`
 
 GetMetroOk returns a tuple with the Metro field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMetro
 
-`func (o *Device) SetMetro(v Metro)`
+`func (o *Device) SetMetro(v map[string]interface{})`
 
 SetMetro sets Metro field to given value.
 
@@ -759,6 +735,56 @@ SetRootPassword sets RootPassword field to given value.
 `func (o *Device) HasRootPassword() bool`
 
 HasRootPassword returns a boolean if a field has been set.
+
+### GetSwitchUuid
+
+`func (o *Device) GetSwitchUuid() string`
+
+GetSwitchUuid returns the SwitchUuid field if non-nil, zero value otherwise.
+
+### GetSwitchUuidOk
+
+`func (o *Device) GetSwitchUuidOk() (*string, bool)`
+
+GetSwitchUuidOk returns a tuple with the SwitchUuid field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSwitchUuid
+
+`func (o *Device) SetSwitchUuid(v string)`
+
+SetSwitchUuid sets SwitchUuid field to given value.
+
+### HasSwitchUuid
+
+`func (o *Device) HasSwitchUuid() bool`
+
+HasSwitchUuid returns a boolean if a field has been set.
+
+### GetNetworkPorts
+
+`func (o *Device) GetNetworkPorts() Port`
+
+GetNetworkPorts returns the NetworkPorts field if non-nil, zero value otherwise.
+
+### GetNetworkPortsOk
+
+`func (o *Device) GetNetworkPortsOk() (*Port, bool)`
+
+GetNetworkPortsOk returns a tuple with the NetworkPorts field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNetworkPorts
+
+`func (o *Device) SetNetworkPorts(v Port)`
+
+SetNetworkPorts sets NetworkPorts field to given value.
+
+### HasNetworkPorts
+
+`func (o *Device) HasNetworkPorts() bool`
+
+HasNetworkPorts returns a boolean if a field has been set.
 
 ### GetHref
 

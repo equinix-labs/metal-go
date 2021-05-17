@@ -21,6 +21,8 @@ type Facility struct {
 	Name *string `json:"name,omitempty"`
 	Code *string `json:"code,omitempty"`
 	Features *[]string `json:"features,omitempty"`
+	// IP ranges registered in facility. Can be used for GeoIP location
+	IpRanges *[]string `json:"ip_ranges,omitempty"`
 	Address *Address `json:"address,omitempty"`
 	Metro *Metro `json:"metro,omitempty"`
 }
@@ -170,6 +172,38 @@ func (o *Facility) SetFeatures(v []string) {
 	o.Features = &v
 }
 
+// GetIpRanges returns the IpRanges field value if set, zero value otherwise.
+func (o *Facility) GetIpRanges() []string {
+	if o == nil || o.IpRanges == nil {
+		var ret []string
+		return ret
+	}
+	return *o.IpRanges
+}
+
+// GetIpRangesOk returns a tuple with the IpRanges field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Facility) GetIpRangesOk() (*[]string, bool) {
+	if o == nil || o.IpRanges == nil {
+		return nil, false
+	}
+	return o.IpRanges, true
+}
+
+// HasIpRanges returns a boolean if a field has been set.
+func (o *Facility) HasIpRanges() bool {
+	if o != nil && o.IpRanges != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetIpRanges gets a reference to the given []string and assigns it to the IpRanges field.
+func (o *Facility) SetIpRanges(v []string) {
+	o.IpRanges = &v
+}
+
 // GetAddress returns the Address field value if set, zero value otherwise.
 func (o *Facility) GetAddress() Address {
 	if o == nil || o.Address == nil {
@@ -247,6 +281,9 @@ func (o Facility) MarshalJSON() ([]byte, error) {
 	}
 	if o.Features != nil {
 		toSerialize["features"] = o.Features
+	}
+	if o.IpRanges != nil {
+		toSerialize["ip_ranges"] = o.IpRanges
 	}
 	if o.Address != nil {
 		toSerialize["address"] = o.Address

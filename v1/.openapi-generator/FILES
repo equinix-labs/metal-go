@@ -103,7 +103,6 @@ docs/Facility.md
 docs/FacilityList.md
 docs/GlobalBgpRange.md
 docs/GlobalBgpRangeList.md
-docs/HardwareLocation.md
 docs/HardwareReservation.md
 docs/HardwareReservationList.md
 docs/HardwareReservationsApi.md
@@ -305,7 +304,6 @@ model_facility.go
 model_facility_list.go
 model_global_bgp_range.go
 model_global_bgp_range_list.go
-model_hardware_location.go
 model_hardware_reservation.go
 model_hardware_reservation_list.go
 model_href.go

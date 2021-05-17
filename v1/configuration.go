@@ -106,7 +106,7 @@ func NewConfiguration() *Configuration {
 		Debug:            false,
 		Servers:          ServerConfigurations{
 			{
-				URL: "https://api.equinix.com/metal/v1",
+				URL: "https://localhost:3000",
 				Description: "No description provided",
 			},
 		},

@@ -1,6 +1,6 @@
 # \UsagesApi
 
-All URIs are relative to *https://api.equinix.com/metal/v1*
+All URIs are relative to *https://localhost:3000*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------

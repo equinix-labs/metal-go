@@ -16,7 +16,7 @@ info:
   title: Metal API
   version: 1.0.0
 servers:
-- url: https://api.equinix.com/metal/v1
+- url: https://localhost:3000/
 security:
 - x_auth_token: []
 tags:
@@ -10488,8 +10488,9 @@ components:
     Facility:
       example:
         features:
-        - features
-        - features
+        - baremetal
+        - backend_transfer
+        - global_ipv4
         code: code
         address:
           country: country
@@ -10501,11 +10502,10 @@ components:
             longitude: longitude
           state: state
           zip_code: zip_code
-        metro:
-          country: country
-          code: code
-          name: name
-          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        ip_ranges:
+        - 2604:1380::/36
+        - 147.75.192.0/21
+        metro: '{}'
         name: name
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
       properties:
@@ -10517,20 +10517,43 @@ components:
         code:
           type: string
         features:
+          example:
+          - baremetal
+          - backend_transfer
+          - global_ipv4
+          items:
+            enum:
+            - baremetal
+            - backend_transfer
+            - layer_2
+            - global_ipv4
+            - ibx
+            type: string
+          type: array
+        ip_ranges:
+          description: IP ranges registered in facility. Can be used for GeoIP location
+          example:
+          - 2604:1380::/36
+          - 147.75.192.0/21
           items:
             type: string
           type: array
         address:
           $ref: '#/components/schemas/Address'
         metro:
-          $ref: '#/components/schemas/Metro'
+          allOf:
+          - $ref: '#/components/schemas/Metro'
+          - description: The metro the facility is in
+            type: object
+          type: object
       type: object
     FacilityList:
       example:
         facilities:
         - features:
-          - features
-          - features
+          - baremetal
+          - backend_transfer
+          - global_ipv4
           code: code
           address:
             country: country
@@ -10542,16 +10565,16 @@ components:
               longitude: longitude
             state: state
             zip_code: zip_code
-          metro:
-            country: country
-            code: code
-            name: name
-            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          ip_ranges:
+          - 2604:1380::/36
+          - 147.75.192.0/21
+          metro: '{}'
           name: name
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         - features:
-          - features
-          - features
+          - baremetal
+          - backend_transfer
+          - global_ipv4
           code: code
           address:
             country: country
@@ -10563,11 +10586,10 @@ components:
               longitude: longitude
             state: state
             zip_code: zip_code
-          metro:
-            country: country
-            code: code
-            name: name
-            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          ip_ranges:
+          - 2604:1380::/36
+          - 147.75.192.0/21
+          metro: '{}'
           name: name
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
       properties:
@@ -10575,25 +10597,6 @@ components:
           items:
             $ref: '#/components/schemas/Facility'
           type: array
-      type: object
-    HardwareLocation:
-      example:
-        cage: cage
-        rack: rack
-        row: row
-        facility: facility
-        switch: switch
-      properties:
-        cage:
-          type: string
-        facility:
-          type: string
-        rack:
-          type: string
-        row:
-          type: string
-        switch:
-          type: string
       type: object
     HardwareReservation:
       example:
@@ -10634,8 +10637,9 @@ components:
         href: href
         facility:
           features:
-          - features
-          - features
+          - baremetal
+          - backend_transfer
+          - global_ipv4
           code: code
           address:
             country: country
@@ -10647,11 +10651,10 @@ components:
               longitude: longitude
             state: state
             zip_code: zip_code
-          metro:
-            country: country
-            code: code
-            name: name
-            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          ip_ranges:
+          - 2604:1380::/36
+          - 147.75.192.0/21
+          metro: '{}'
           name: name
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         plan:
@@ -10724,8 +10727,8 @@ components:
           iqn: iqn
           description: description
           created_at: 2000-01-23T04:56:07.000+00:00
-          project:
-            href: href
+          project: '{}'
+          switch_uuid: switch_uuid
           bonding_mode: 0
           provisioning_events:
           - relationships:
@@ -10748,11 +10751,14 @@ components:
             href: href
             type: type
             body: body
+          network_ports: '{}'
           userdata: userdata
           hostname: hostname
           updated_at: 2000-01-23T04:56:07.000+00:00
           operating_system:
             distro: distro
+            preinstallable: true
+            licensed: true
             name: name
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             provisionable_on:
@@ -10760,6 +10766,7 @@ components:
             - provisionable_on
             version: version
             slug: slug
+            pricing: '{}'
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           state: state
           billing_cycle: billing_cycle
@@ -10786,8 +10793,7 @@ components:
           volumes:
           - href: href
           - href: href
-          project_lite:
-            href: href
+          project_lite: '{}'
           short_id: short_id
           termination_time: 2000-01-23T04:56:07.000+00:00
           tags:
@@ -10799,24 +10805,15 @@ components:
           ssh_keys:
           - href: href
           - href: href
-          metro:
-            country: country
-            code: code
-            name: name
-            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          location:
-            cage: cage
-            rack: rack
-            row: row
-            facility: facility
-            switch: switch
+          metro: '{}'
           always_pxe: true
           ipxe_script_url: ipxe_script_url
           user: user
           facility:
             features:
-            - features
-            - features
+            - baremetal
+            - backend_transfer
+            - global_ipv4
             code: code
             address:
               country: country
@@ -10828,11 +10825,10 @@ components:
                 longitude: longitude
               state: state
               zip_code: zip_code
-            metro:
-              country: country
-              code: code
-              name: name
-              id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            ip_ranges:
+            - 2604:1380::/36
+            - 147.75.192.0/21
+            metro: '{}'
             name: name
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
       properties:
@@ -10911,8 +10907,9 @@ components:
           href: href
           facility:
             features:
-            - features
-            - features
+            - baremetal
+            - backend_transfer
+            - global_ipv4
             code: code
             address:
               country: country
@@ -10924,11 +10921,10 @@ components:
                 longitude: longitude
               state: state
               zip_code: zip_code
-            metro:
-              country: country
-              code: code
-              name: name
-              id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            ip_ranges:
+            - 2604:1380::/36
+            - 147.75.192.0/21
+            metro: '{}'
             name: name
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           plan:
@@ -11001,8 +10997,8 @@ components:
             iqn: iqn
             description: description
             created_at: 2000-01-23T04:56:07.000+00:00
-            project:
-              href: href
+            project: '{}'
+            switch_uuid: switch_uuid
             bonding_mode: 0
             provisioning_events:
             - relationships:
@@ -11025,11 +11021,14 @@ components:
               href: href
               type: type
               body: body
+            network_ports: '{}'
             userdata: userdata
             hostname: hostname
             updated_at: 2000-01-23T04:56:07.000+00:00
             operating_system:
               distro: distro
+              preinstallable: true
+              licensed: true
               name: name
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
               provisionable_on:
@@ -11037,6 +11036,7 @@ components:
               - provisionable_on
               version: version
               slug: slug
+              pricing: '{}'
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             state: state
             billing_cycle: billing_cycle
@@ -11063,8 +11063,7 @@ components:
             volumes:
             - href: href
             - href: href
-            project_lite:
-              href: href
+            project_lite: '{}'
             short_id: short_id
             termination_time: 2000-01-23T04:56:07.000+00:00
             tags:
@@ -11076,24 +11075,15 @@ components:
             ssh_keys:
             - href: href
             - href: href
-            metro:
-              country: country
-              code: code
-              name: name
-              id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            location:
-              cage: cage
-              rack: rack
-              row: row
-              facility: facility
-              switch: switch
+            metro: '{}'
             always_pxe: true
             ipxe_script_url: ipxe_script_url
             user: user
             facility:
               features:
-              - features
-              - features
+              - baremetal
+              - backend_transfer
+              - global_ipv4
               code: code
               address:
                 country: country
@@ -11105,11 +11095,10 @@ components:
                   longitude: longitude
                 state: state
                 zip_code: zip_code
-              metro:
-                country: country
-                code: code
-                name: name
-                id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+              ip_ranges:
+              - 2604:1380::/36
+              - 147.75.192.0/21
+              metro: '{}'
               name: name
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         - remove_at: 2000-01-23T04:56:07.000+00:00
@@ -11149,8 +11138,9 @@ components:
           href: href
           facility:
             features:
-            - features
-            - features
+            - baremetal
+            - backend_transfer
+            - global_ipv4
             code: code
             address:
               country: country
@@ -11162,11 +11152,10 @@ components:
                 longitude: longitude
               state: state
               zip_code: zip_code
-            metro:
-              country: country
-              code: code
-              name: name
-              id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            ip_ranges:
+            - 2604:1380::/36
+            - 147.75.192.0/21
+            metro: '{}'
             name: name
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           plan:
@@ -11239,8 +11228,8 @@ components:
             iqn: iqn
             description: description
             created_at: 2000-01-23T04:56:07.000+00:00
-            project:
-              href: href
+            project: '{}'
+            switch_uuid: switch_uuid
             bonding_mode: 0
             provisioning_events:
             - relationships:
@@ -11263,11 +11252,14 @@ components:
               href: href
               type: type
               body: body
+            network_ports: '{}'
             userdata: userdata
             hostname: hostname
             updated_at: 2000-01-23T04:56:07.000+00:00
             operating_system:
               distro: distro
+              preinstallable: true
+              licensed: true
               name: name
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
               provisionable_on:
@@ -11275,6 +11267,7 @@ components:
               - provisionable_on
               version: version
               slug: slug
+              pricing: '{}'
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             state: state
             billing_cycle: billing_cycle
@@ -11301,8 +11294,7 @@ components:
             volumes:
             - href: href
             - href: href
-            project_lite:
-              href: href
+            project_lite: '{}'
             short_id: short_id
             termination_time: 2000-01-23T04:56:07.000+00:00
             tags:
@@ -11314,24 +11306,15 @@ components:
             ssh_keys:
             - href: href
             - href: href
-            metro:
-              country: country
-              code: code
-              name: name
-              id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            location:
-              cage: cage
-              rack: rack
-              row: row
-              facility: facility
-              switch: switch
+            metro: '{}'
             always_pxe: true
             ipxe_script_url: ipxe_script_url
             user: user
             facility:
               features:
-              - features
-              - features
+              - baremetal
+              - backend_transfer
+              - global_ipv4
               code: code
               address:
                 country: country
@@ -11343,11 +11326,10 @@ components:
                   longitude: longitude
                 state: state
                 zip_code: zip_code
-              metro:
-                country: country
-                code: code
-                name: name
-                id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+              ip_ranges:
+              - 2604:1380::/36
+              - 147.75.192.0/21
+              metro: '{}'
               name: name
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
       properties:
@@ -11416,8 +11398,8 @@ components:
         iqn: iqn
         description: description
         created_at: 2000-01-23T04:56:07.000+00:00
-        project:
-          href: href
+        project: '{}'
+        switch_uuid: switch_uuid
         bonding_mode: 0
         provisioning_events:
         - relationships:
@@ -11440,11 +11422,14 @@ components:
           href: href
           type: type
           body: body
+        network_ports: '{}'
         userdata: userdata
         hostname: hostname
         updated_at: 2000-01-23T04:56:07.000+00:00
         operating_system:
           distro: distro
+          preinstallable: true
+          licensed: true
           name: name
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           provisionable_on:
@@ -11452,6 +11437,7 @@ components:
           - provisionable_on
           version: version
           slug: slug
+          pricing: '{}'
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         state: state
         billing_cycle: billing_cycle
@@ -11478,8 +11464,7 @@ components:
         volumes:
         - href: href
         - href: href
-        project_lite:
-          href: href
+        project_lite: '{}'
         short_id: short_id
         termination_time: 2000-01-23T04:56:07.000+00:00
         tags:
@@ -11491,24 +11476,15 @@ components:
         ssh_keys:
         - href: href
         - href: href
-        metro:
-          country: country
-          code: code
-          name: name
-          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        location:
-          cage: cage
-          rack: rack
-          row: row
-          facility: facility
-          switch: switch
+        metro: '{}'
         always_pxe: true
         ipxe_script_url: ipxe_script_url
         user: user
         facility:
           features:
-          - features
-          - features
+          - baremetal
+          - backend_transfer
+          - global_ipv4
           code: code
           address:
             country: country
@@ -11520,11 +11496,10 @@ components:
               longitude: longitude
             state: state
             zip_code: zip_code
-          metro:
-            country: country
-            code: code
-            name: name
-            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          ip_ranges:
+          - 2604:1380::/36
+          - 147.75.192.0/21
+          metro: '{}'
           name: name
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
       properties:
@@ -11562,17 +11537,29 @@ components:
           format: date-time
           type: string
         spot_instance:
+          description: Whether or not the device is a spot instance.
           type: boolean
         spot_price_max:
+          description: The maximum price per hour you are willing to pay to keep this
+            spot instance.  If you are outbid, the termination will be set allowing
+            two minutes before shutdown.
           format: float
           type: number
         termination_time:
+          description: When the device will be terminated. This is commonly set in
+            advance for ephemeral spot market instances but this field may also be
+            set with on-demand and reservation instances to automatically delete the
+            resource at a given time. The termination time can also be used to release
+            a hardware reservation instance at a given time, keeping the reservation
+            open for other uses.  On a spot market device, the termination time will
+            be set automatically when outbid.
           format: date-time
           type: string
         customdata:
           properties: {}
           type: object
         provisioning_percentage:
+          description: Only visible while device provisioning
           format: float
           type: number
         operating_system:
@@ -11581,24 +11568,49 @@ components:
           type: boolean
         ipxe_script_url:
           type: string
-        location:
-          $ref: '#/components/schemas/HardwareLocation'
         facility:
           $ref: '#/components/schemas/Facility'
         metro:
-          $ref: '#/components/schemas/Metro'
+          allOf:
+          - description: The metro the facility is in
+            type: object
+          type: object
         plan:
           $ref: '#/components/schemas/Plan'
         userdata:
           type: string
         root_password:
+          description: Root password is automatically generated when server is provisioned
+            and it is removed after 24 hours
           type: string
+        switch_uuid:
+          description: Switch short id. This can be used to determine if two devices
+            are connected to the same switch, for example.
+          type: string
+        network_ports:
+          allOf:
+          - $ref: '#/components/schemas/Port'
+          - description: By default, servers at Equinix Metal are configured in a
+              “bonded” mode using LACP (Link Aggregation Control Protocol). Each 2-port
+              NIC is configured with a single bond (namely bond0) with both interfaces
+              eth0 and eth1 as members of the bond in a default Layer 3 mode. Some
+              device plans may have a different number of ports and bonds available.
+            type: object
+          type: object
         href:
           type: string
         project:
-          $ref: '#/components/schemas/Href'
+          allOf:
+          - $ref: '#/components/schemas/Href'
+          - description: Full version of project object when included
+            type: object
+          type: object
         project_lite:
-          $ref: '#/components/schemas/Href'
+          allOf:
+          - $ref: '#/components/schemas/Href'
+          - description: Lite version of project object when included
+            type: object
+          type: object
         volumes:
           items:
             $ref: '#/components/schemas/Href'
@@ -11665,7 +11677,7 @@ components:
           key: key
         no_ssh_keys: false
         metro: metro
-        hardware_reservation_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        hardware_reservation_id: next-available
         always_pxe: false
         ipxe_script_url: ipxe_script_url
         facility: facility
@@ -11735,11 +11747,12 @@ components:
             in.
           type: string
         hardware_reservation_id:
+          default: ""
           description: |-
             The Hardware Reservation UUID to provision. Alternatively, `next-available` can be specified to select from any of the available hardware reservations. An error will be returned if the requested reservation option is not available.
 
                   See [Reserved Hardware](https://metal.equinix.com/developers/docs/deploy/reserved/) for more details.
-          format: uuid
+          example: next-available
           type: string
         spot_instance:
           type: boolean
@@ -11973,8 +11986,8 @@ components:
           iqn: iqn
           description: description
           created_at: 2000-01-23T04:56:07.000+00:00
-          project:
-            href: href
+          project: '{}'
+          switch_uuid: switch_uuid
           bonding_mode: 0
           provisioning_events:
           - relationships:
@@ -11997,11 +12010,14 @@ components:
             href: href
             type: type
             body: body
+          network_ports: '{}'
           userdata: userdata
           hostname: hostname
           updated_at: 2000-01-23T04:56:07.000+00:00
           operating_system:
             distro: distro
+            preinstallable: true
+            licensed: true
             name: name
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             provisionable_on:
@@ -12009,6 +12025,7 @@ components:
             - provisionable_on
             version: version
             slug: slug
+            pricing: '{}'
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           state: state
           billing_cycle: billing_cycle
@@ -12035,8 +12052,7 @@ components:
           volumes:
           - href: href
           - href: href
-          project_lite:
-            href: href
+          project_lite: '{}'
           short_id: short_id
           termination_time: 2000-01-23T04:56:07.000+00:00
           tags:
@@ -12048,24 +12064,15 @@ components:
           ssh_keys:
           - href: href
           - href: href
-          metro:
-            country: country
-            code: code
-            name: name
-            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          location:
-            cage: cage
-            rack: rack
-            row: row
-            facility: facility
-            switch: switch
+          metro: '{}'
           always_pxe: true
           ipxe_script_url: ipxe_script_url
           user: user
           facility:
             features:
-            - features
-            - features
+            - baremetal
+            - backend_transfer
+            - global_ipv4
             code: code
             address:
               country: country
@@ -12077,11 +12084,10 @@ components:
                 longitude: longitude
               state: state
               zip_code: zip_code
-            metro:
-              country: country
-              code: code
-              name: name
-              id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            ip_ranges:
+            - 2604:1380::/36
+            - 147.75.192.0/21
+            metro: '{}'
             name: name
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         - ip_addresses:
@@ -12140,8 +12146,8 @@ components:
           iqn: iqn
           description: description
           created_at: 2000-01-23T04:56:07.000+00:00
-          project:
-            href: href
+          project: '{}'
+          switch_uuid: switch_uuid
           bonding_mode: 0
           provisioning_events:
           - relationships:
@@ -12164,11 +12170,14 @@ components:
             href: href
             type: type
             body: body
+          network_ports: '{}'
           userdata: userdata
           hostname: hostname
           updated_at: 2000-01-23T04:56:07.000+00:00
           operating_system:
             distro: distro
+            preinstallable: true
+            licensed: true
             name: name
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             provisionable_on:
@@ -12176,6 +12185,7 @@ components:
             - provisionable_on
             version: version
             slug: slug
+            pricing: '{}'
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           state: state
           billing_cycle: billing_cycle
@@ -12202,8 +12212,7 @@ components:
           volumes:
           - href: href
           - href: href
-          project_lite:
-            href: href
+          project_lite: '{}'
           short_id: short_id
           termination_time: 2000-01-23T04:56:07.000+00:00
           tags:
@@ -12215,24 +12224,15 @@ components:
           ssh_keys:
           - href: href
           - href: href
-          metro:
-            country: country
-            code: code
-            name: name
-            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          location:
-            cage: cage
-            rack: rack
-            row: row
-            facility: facility
-            switch: switch
+          metro: '{}'
           always_pxe: true
           ipxe_script_url: ipxe_script_url
           user: user
           facility:
             features:
-            - features
-            - features
+            - baremetal
+            - backend_transfer
+            - global_ipv4
             code: code
             address:
               country: country
@@ -12244,11 +12244,10 @@ components:
                 longitude: longitude
               state: state
               zip_code: zip_code
-            metro:
-              country: country
-              code: code
-              name: name
-              id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            ip_ranges:
+            - 2604:1380::/36
+            - 147.75.192.0/21
+            metro: '{}'
             name: name
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         meta:
@@ -13763,8 +13762,9 @@ components:
         global_ip: true
         facility:
           features:
-          - features
-          - features
+          - baremetal
+          - backend_transfer
+          - global_ipv4
           code: code
           address:
             country: country
@@ -13776,11 +13776,10 @@ components:
               longitude: longitude
             state: state
             zip_code: zip_code
-          metro:
-            country: country
-            code: code
-            name: name
-            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          ip_ranges:
+          - 2604:1380::/36
+          - 147.75.192.0/21
+          metro: '{}'
           name: name
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
       properties:
@@ -13987,8 +13986,9 @@ components:
           global_ip: true
           facility:
             features:
-            - features
-            - features
+            - baremetal
+            - backend_transfer
+            - global_ipv4
             code: code
             address:
               country: country
@@ -14000,11 +14000,10 @@ components:
                 longitude: longitude
               state: state
               zip_code: zip_code
-            metro:
-              country: country
-              code: code
-              name: name
-              id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            ip_ranges:
+            - 2604:1380::/36
+            - 147.75.192.0/21
+            metro: '{}'
             name: name
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         - assignments:
@@ -14085,8 +14084,9 @@ components:
           global_ip: true
           facility:
             features:
-            - features
-            - features
+            - baremetal
+            - backend_transfer
+            - global_ipv4
             code: code
             address:
               country: country
@@ -14098,11 +14098,10 @@ components:
                 longitude: longitude
               state: state
               zip_code: zip_code
-            metro:
-              country: country
-              code: code
-              name: name
-              id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            ip_ranges:
+            - 2604:1380::/36
+            - 147.75.192.0/21
+            metro: '{}'
             name: name
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
       properties:
@@ -14286,6 +14285,8 @@ components:
     OperatingSystem:
       example:
         distro: distro
+        preinstallable: true
+        licensed: true
         name: name
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         provisionable_on:
@@ -14293,6 +14294,7 @@ components:
         - provisionable_on
         version: version
         slug: slug
+        pricing: '{}'
       properties:
         id:
           format: uuid
@@ -14305,10 +14307,23 @@ components:
           type: string
         version:
           type: string
+        preinstallable:
+          description: Servers can be already preinstalled with OS in order to shorten
+            provision time.
+          type: boolean
         provisionable_on:
           items:
             type: string
           type: array
+        pricing:
+          description: This object contains price per time unit and optional multiplier
+            value if licence price depends on hardware plan or components (e.g. number
+            of cores)
+          properties: {}
+          type: object
+        licensed:
+          description: Licenced OS is priced according to pricing property
+          type: boolean
       type: object
     OperatingSystemList:
       items:
@@ -17826,6 +17841,20 @@ components:
         meta:
           $ref: '#/components/schemas/Meta'
       type: object
+    Error:
+      description: Error responses are included with 4xx and 5xx HTTP responses from
+        the API service. Either "error" or "errors" will be set.
+      properties:
+        error:
+          description: A description of the error that caused the request to fail.
+          type: string
+        errors:
+          description: A list of errors that contributed to the request failing.
+          items:
+            description: An error message that contributed to the request failing.
+            type: string
+          type: array
+      type: object
     Email:
       example:
         default: true
@@ -17845,20 +17874,6 @@ components:
           type: boolean
         href:
           type: string
-      type: object
-    Error:
-      description: Error responses are included with 4xx and 5xx HTTP responses from
-        the API service. Either "error" or "errors" will be set.
-      properties:
-        error:
-          description: A description of the error that caused the request to fail.
-          type: string
-        errors:
-          description: A list of errors that contributed to the request failing.
-          items:
-            description: An error message that contributed to the request failing.
-            type: string
-          type: array
       type: object
     CreateEmailInput:
       example:

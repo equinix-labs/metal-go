@@ -32,20 +32,27 @@ type Device struct {
 	BondingMode *int32 `json:"bonding_mode,omitempty"`
 	CreatedAt *time.Time `json:"created_at,omitempty"`
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
+	// Whether or not the device is a spot instance.
 	SpotInstance *bool `json:"spot_instance,omitempty"`
+	// The maximum price per hour you are willing to pay to keep this spot instance.  If you are outbid, the termination will be set allowing two minutes before shutdown.
 	SpotPriceMax *float32 `json:"spot_price_max,omitempty"`
+	// When the device will be terminated. This is commonly set in advance for ephemeral spot market instances but this field may also be set with on-demand and reservation instances to automatically delete the resource at a given time. The termination time can also be used to release a hardware reservation instance at a given time, keeping the reservation open for other uses.  On a spot market device, the termination time will be set automatically when outbid.
 	TerminationTime *time.Time `json:"termination_time,omitempty"`
 	Customdata *map[string]interface{} `json:"customdata,omitempty"`
+	// Only visible while device provisioning
 	ProvisioningPercentage *float32 `json:"provisioning_percentage,omitempty"`
 	OperatingSystem *OperatingSystem `json:"operating_system,omitempty"`
 	AlwaysPxe *bool `json:"always_pxe,omitempty"`
 	IpxeScriptUrl *string `json:"ipxe_script_url,omitempty"`
-	Location *HardwareLocation `json:"location,omitempty"`
 	Facility *Facility `json:"facility,omitempty"`
-	Metro *Metro `json:"metro,omitempty"`
+	Metro *map[string]interface{} `json:"metro,omitempty"`
 	Plan *Plan `json:"plan,omitempty"`
 	Userdata *string `json:"userdata,omitempty"`
+	// Root password is automatically generated when server is provisioned and it is removed after 24 hours
 	RootPassword *string `json:"root_password,omitempty"`
+	// Switch short id. This can be used to determine if two devices are connected to the same switch, for example.
+	SwitchUuid *string `json:"switch_uuid,omitempty"`
+	NetworkPorts *Port `json:"network_ports,omitempty"`
 	Href *string `json:"href,omitempty"`
 	Project *Href `json:"project,omitempty"`
 	ProjectLite *Href `json:"project_lite,omitempty"`
@@ -777,38 +784,6 @@ func (o *Device) SetIpxeScriptUrl(v string) {
 	o.IpxeScriptUrl = &v
 }
 
-// GetLocation returns the Location field value if set, zero value otherwise.
-func (o *Device) GetLocation() HardwareLocation {
-	if o == nil || o.Location == nil {
-		var ret HardwareLocation
-		return ret
-	}
-	return *o.Location
-}
-
-// GetLocationOk returns a tuple with the Location field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Device) GetLocationOk() (*HardwareLocation, bool) {
-	if o == nil || o.Location == nil {
-		return nil, false
-	}
-	return o.Location, true
-}
-
-// HasLocation returns a boolean if a field has been set.
-func (o *Device) HasLocation() bool {
-	if o != nil && o.Location != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetLocation gets a reference to the given HardwareLocation and assigns it to the Location field.
-func (o *Device) SetLocation(v HardwareLocation) {
-	o.Location = &v
-}
-
 // GetFacility returns the Facility field value if set, zero value otherwise.
 func (o *Device) GetFacility() Facility {
 	if o == nil || o.Facility == nil {
@@ -842,9 +817,9 @@ func (o *Device) SetFacility(v Facility) {
 }
 
 // GetMetro returns the Metro field value if set, zero value otherwise.
-func (o *Device) GetMetro() Metro {
+func (o *Device) GetMetro() map[string]interface{} {
 	if o == nil || o.Metro == nil {
-		var ret Metro
+		var ret map[string]interface{}
 		return ret
 	}
 	return *o.Metro
@@ -852,7 +827,7 @@ func (o *Device) GetMetro() Metro {
 
 // GetMetroOk returns a tuple with the Metro field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Device) GetMetroOk() (*Metro, bool) {
+func (o *Device) GetMetroOk() (*map[string]interface{}, bool) {
 	if o == nil || o.Metro == nil {
 		return nil, false
 	}
@@ -868,8 +843,8 @@ func (o *Device) HasMetro() bool {
 	return false
 }
 
-// SetMetro gets a reference to the given Metro and assigns it to the Metro field.
-func (o *Device) SetMetro(v Metro) {
+// SetMetro gets a reference to the given map[string]interface{} and assigns it to the Metro field.
+func (o *Device) SetMetro(v map[string]interface{}) {
 	o.Metro = &v
 }
 
@@ -967,6 +942,70 @@ func (o *Device) HasRootPassword() bool {
 // SetRootPassword gets a reference to the given string and assigns it to the RootPassword field.
 func (o *Device) SetRootPassword(v string) {
 	o.RootPassword = &v
+}
+
+// GetSwitchUuid returns the SwitchUuid field value if set, zero value otherwise.
+func (o *Device) GetSwitchUuid() string {
+	if o == nil || o.SwitchUuid == nil {
+		var ret string
+		return ret
+	}
+	return *o.SwitchUuid
+}
+
+// GetSwitchUuidOk returns a tuple with the SwitchUuid field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Device) GetSwitchUuidOk() (*string, bool) {
+	if o == nil || o.SwitchUuid == nil {
+		return nil, false
+	}
+	return o.SwitchUuid, true
+}
+
+// HasSwitchUuid returns a boolean if a field has been set.
+func (o *Device) HasSwitchUuid() bool {
+	if o != nil && o.SwitchUuid != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSwitchUuid gets a reference to the given string and assigns it to the SwitchUuid field.
+func (o *Device) SetSwitchUuid(v string) {
+	o.SwitchUuid = &v
+}
+
+// GetNetworkPorts returns the NetworkPorts field value if set, zero value otherwise.
+func (o *Device) GetNetworkPorts() Port {
+	if o == nil || o.NetworkPorts == nil {
+		var ret Port
+		return ret
+	}
+	return *o.NetworkPorts
+}
+
+// GetNetworkPortsOk returns a tuple with the NetworkPorts field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Device) GetNetworkPortsOk() (*Port, bool) {
+	if o == nil || o.NetworkPorts == nil {
+		return nil, false
+	}
+	return o.NetworkPorts, true
+}
+
+// HasNetworkPorts returns a boolean if a field has been set.
+func (o *Device) HasNetworkPorts() bool {
+	if o != nil && o.NetworkPorts != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetNetworkPorts gets a reference to the given Port and assigns it to the NetworkPorts field.
+func (o *Device) SetNetworkPorts(v Port) {
+	o.NetworkPorts = &v
 }
 
 // GetHref returns the Href field value if set, zero value otherwise.
@@ -1293,9 +1332,6 @@ func (o Device) MarshalJSON() ([]byte, error) {
 	if o.IpxeScriptUrl != nil {
 		toSerialize["ipxe_script_url"] = o.IpxeScriptUrl
 	}
-	if o.Location != nil {
-		toSerialize["location"] = o.Location
-	}
 	if o.Facility != nil {
 		toSerialize["facility"] = o.Facility
 	}
@@ -1310,6 +1346,12 @@ func (o Device) MarshalJSON() ([]byte, error) {
 	}
 	if o.RootPassword != nil {
 		toSerialize["root_password"] = o.RootPassword
+	}
+	if o.SwitchUuid != nil {
+		toSerialize["switch_uuid"] = o.SwitchUuid
+	}
+	if o.NetworkPorts != nil {
+		toSerialize["network_ports"] = o.NetworkPorts
 	}
 	if o.Href != nil {
 		toSerialize["href"] = o.Href

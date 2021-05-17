@@ -22,7 +22,13 @@ type OperatingSystem struct {
 	Name *string `json:"name,omitempty"`
 	Distro *string `json:"distro,omitempty"`
 	Version *string `json:"version,omitempty"`
+	// Servers can be already preinstalled with OS in order to shorten provision time.
+	Preinstallable *bool `json:"preinstallable,omitempty"`
 	ProvisionableOn *[]string `json:"provisionable_on,omitempty"`
+	// This object contains price per time unit and optional multiplier value if licence price depends on hardware plan or components (e.g. number of cores)
+	Pricing *map[string]interface{} `json:"pricing,omitempty"`
+	// Licenced OS is priced according to pricing property
+	Licensed *bool `json:"licensed,omitempty"`
 }
 
 // NewOperatingSystem instantiates a new OperatingSystem object
@@ -202,6 +208,38 @@ func (o *OperatingSystem) SetVersion(v string) {
 	o.Version = &v
 }
 
+// GetPreinstallable returns the Preinstallable field value if set, zero value otherwise.
+func (o *OperatingSystem) GetPreinstallable() bool {
+	if o == nil || o.Preinstallable == nil {
+		var ret bool
+		return ret
+	}
+	return *o.Preinstallable
+}
+
+// GetPreinstallableOk returns a tuple with the Preinstallable field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OperatingSystem) GetPreinstallableOk() (*bool, bool) {
+	if o == nil || o.Preinstallable == nil {
+		return nil, false
+	}
+	return o.Preinstallable, true
+}
+
+// HasPreinstallable returns a boolean if a field has been set.
+func (o *OperatingSystem) HasPreinstallable() bool {
+	if o != nil && o.Preinstallable != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPreinstallable gets a reference to the given bool and assigns it to the Preinstallable field.
+func (o *OperatingSystem) SetPreinstallable(v bool) {
+	o.Preinstallable = &v
+}
+
 // GetProvisionableOn returns the ProvisionableOn field value if set, zero value otherwise.
 func (o *OperatingSystem) GetProvisionableOn() []string {
 	if o == nil || o.ProvisionableOn == nil {
@@ -234,6 +272,70 @@ func (o *OperatingSystem) SetProvisionableOn(v []string) {
 	o.ProvisionableOn = &v
 }
 
+// GetPricing returns the Pricing field value if set, zero value otherwise.
+func (o *OperatingSystem) GetPricing() map[string]interface{} {
+	if o == nil || o.Pricing == nil {
+		var ret map[string]interface{}
+		return ret
+	}
+	return *o.Pricing
+}
+
+// GetPricingOk returns a tuple with the Pricing field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OperatingSystem) GetPricingOk() (*map[string]interface{}, bool) {
+	if o == nil || o.Pricing == nil {
+		return nil, false
+	}
+	return o.Pricing, true
+}
+
+// HasPricing returns a boolean if a field has been set.
+func (o *OperatingSystem) HasPricing() bool {
+	if o != nil && o.Pricing != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPricing gets a reference to the given map[string]interface{} and assigns it to the Pricing field.
+func (o *OperatingSystem) SetPricing(v map[string]interface{}) {
+	o.Pricing = &v
+}
+
+// GetLicensed returns the Licensed field value if set, zero value otherwise.
+func (o *OperatingSystem) GetLicensed() bool {
+	if o == nil || o.Licensed == nil {
+		var ret bool
+		return ret
+	}
+	return *o.Licensed
+}
+
+// GetLicensedOk returns a tuple with the Licensed field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OperatingSystem) GetLicensedOk() (*bool, bool) {
+	if o == nil || o.Licensed == nil {
+		return nil, false
+	}
+	return o.Licensed, true
+}
+
+// HasLicensed returns a boolean if a field has been set.
+func (o *OperatingSystem) HasLicensed() bool {
+	if o != nil && o.Licensed != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetLicensed gets a reference to the given bool and assigns it to the Licensed field.
+func (o *OperatingSystem) SetLicensed(v bool) {
+	o.Licensed = &v
+}
+
 func (o OperatingSystem) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Id != nil {
@@ -251,8 +353,17 @@ func (o OperatingSystem) MarshalJSON() ([]byte, error) {
 	if o.Version != nil {
 		toSerialize["version"] = o.Version
 	}
+	if o.Preinstallable != nil {
+		toSerialize["preinstallable"] = o.Preinstallable
+	}
 	if o.ProvisionableOn != nil {
 		toSerialize["provisionable_on"] = o.ProvisionableOn
+	}
+	if o.Pricing != nil {
+		toSerialize["pricing"] = o.Pricing
+	}
+	if o.Licensed != nil {
+		toSerialize["licensed"] = o.Licensed
 	}
 	return json.Marshal(toSerialize)
 }

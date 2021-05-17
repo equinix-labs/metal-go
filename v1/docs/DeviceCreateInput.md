@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 **Locked** | Pointer to **bool** | Wether the device should be locked, preventing accidental deletion. | [optional] [default to false]
 **Customdata** | Pointer to **map[string]interface{}** | Customdata is an arbitrary JSON value that can be accessed via the metadata service. | [optional] 
 **Metro** | Pointer to **string** | Metro code or ID of where the instance should be provisioned in. | [optional] 
-**HardwareReservationId** | Pointer to **string** | The Hardware Reservation UUID to provision. Alternatively, &#x60;next-available&#x60; can be specified to select from any of the available hardware reservations. An error will be returned if the requested reservation option is not available.        See [Reserved Hardware](https://metal.equinix.com/developers/docs/deploy/reserved/) for more details. | [optional] 
+**HardwareReservationId** | Pointer to **string** | The Hardware Reservation UUID to provision. Alternatively, &#x60;next-available&#x60; can be specified to select from any of the available hardware reservations. An error will be returned if the requested reservation option is not available.        See [Reserved Hardware](https://metal.equinix.com/developers/docs/deploy/reserved/) for more details. | [optional] [default to ""]
 **SpotInstance** | Pointer to **bool** |  | [optional] 
 **SpotPriceMax** | Pointer to **float32** |  | [optional] 
 **TerminationTime** | Pointer to **time.Time** |  | [optional] 

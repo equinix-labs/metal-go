@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **Name** | Pointer to **string** |  | [optional] 
 **Code** | Pointer to **string** |  | [optional] 
 **Features** | Pointer to **[]string** |  | [optional] 
+**IpRanges** | Pointer to **[]string** | IP ranges registered in facility. Can be used for GeoIP location | [optional] 
 **Address** | Pointer to [**Address**](Address.md) |  | [optional] 
 **Metro** | Pointer to [**Metro**](Metro.md) |  | [optional] 
 
@@ -129,6 +130,31 @@ SetFeatures sets Features field to given value.
 `func (o *Facility) HasFeatures() bool`
 
 HasFeatures returns a boolean if a field has been set.
+
+### GetIpRanges
+
+`func (o *Facility) GetIpRanges() []string`
+
+GetIpRanges returns the IpRanges field if non-nil, zero value otherwise.
+
+### GetIpRangesOk
+
+`func (o *Facility) GetIpRangesOk() (*[]string, bool)`
+
+GetIpRangesOk returns a tuple with the IpRanges field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIpRanges
+
+`func (o *Facility) SetIpRanges(v []string)`
+
+SetIpRanges sets IpRanges field to given value.
+
+### HasIpRanges
+
+`func (o *Facility) HasIpRanges() bool`
+
+HasIpRanges returns a boolean if a field has been set.
 
 ### GetAddress
 

@@ -79,6 +79,8 @@ func NewDeviceCreateInput(facility string, plan string, operatingSystem string) 
 	this.AlwaysPxe = &alwaysPxe
 	var locked bool = false
 	this.Locked = &locked
+	var hardwareReservationId string = ""
+	this.HardwareReservationId = &hardwareReservationId
 	var noSshKeys bool = false
 	this.NoSshKeys = *NewNullableBool(&noSshKeys)
 	return &this
@@ -93,6 +95,8 @@ func NewDeviceCreateInputWithDefaults() *DeviceCreateInput {
 	this.AlwaysPxe = &alwaysPxe
 	var locked bool = false
 	this.Locked = &locked
+	var hardwareReservationId string = ""
+	this.HardwareReservationId = &hardwareReservationId
 	var noSshKeys bool = false
 	this.NoSshKeys = *NewNullableBool(&noSshKeys)
 	return &this

@@ -79,7 +79,7 @@ ctx = context.WithValue(context.Background(), sw.ContextOperationServerVariables
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://api.equinix.com/metal/v1*
+All URIs are relative to *https://localhost:3000*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
@@ -334,7 +334,6 @@ Class | Method | HTTP request | Description
  - [FacilityList](docs/FacilityList.md)
  - [GlobalBgpRange](docs/GlobalBgpRange.md)
  - [GlobalBgpRangeList](docs/GlobalBgpRangeList.md)
- - [HardwareLocation](docs/HardwareLocation.md)
  - [HardwareReservation](docs/HardwareReservation.md)
  - [HardwareReservationList](docs/HardwareReservationList.md)
  - [Href](docs/Href.md)
