@@ -1,8 +1,8 @@
-# Golang client for Equinix Metal generated with go-swagger
+# Golang client for Equinix Metal
 
-This is experimental. Don't use it.
+This is experimental. Don't use it in production. Examples demonstrate that this client is usable. Please submit patches and open issues with your experience.
 
-This repo contains Golang code generated from customized [equinix-metal.swagger.json](equinix-metal.swagger.json) from the Equinix Metal API from <https://api.equinix.com/metal/v1/api-docs>.
+This repo contains Golang code generated from customized [equinix-metal.swagger.json](equinix-metal.swagger.json) from the Equinix Metal API from <https://api.equinix.com/metal/v1/api-docs>.  The client is generated using the Go client support built into the [OpenAPITools openapi-generator](https://github.com/OpenAPITools/openapi-generator).
 
 Contents:
 - `Makefile` includes tasks to fetch the API spec, apply patches, and generate a client
@@ -12,14 +12,13 @@ Contents:
 - `examples/` hand crafted examples to demonstrate usage
 - `v1/` generated client
 
-
 ## Build
 
 To build the client, run `make`.
 
 ## Examples
 
-You can see usage of the generated code in the `examples` directory. In order to try, export `METAL_AUTH_TOKEN` token and execute the code, e.g.
+You can see usage of the generated code in the [`examples` directory](https://github.com/t0mk/gometal/tree/main/examples). In order to try, export `METAL_AUTH_TOKEN` token and execute the code, e.g.
 
 ## Patches
 
