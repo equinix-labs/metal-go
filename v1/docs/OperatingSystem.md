@@ -9,7 +9,10 @@ Name | Type | Description | Notes
 **Name** | Pointer to **string** |  | [optional] 
 **Distro** | Pointer to **string** |  | [optional] 
 **Version** | Pointer to **string** |  | [optional] 
+**Preinstallable** | Pointer to **bool** | Servers can be already preinstalled with OS in order to shorten provision time. | [optional] 
 **ProvisionableOn** | Pointer to **[]string** |  | [optional] 
+**Pricing** | Pointer to **map[string]interface{}** | This object contains price per time unit and optional multiplier value if licence price depends on hardware plan or components (e.g. number of cores) | [optional] 
+**Licensed** | Pointer to **bool** | Licenced OS is priced according to pricing property | [optional] 
 
 ## Methods
 
@@ -155,6 +158,31 @@ SetVersion sets Version field to given value.
 
 HasVersion returns a boolean if a field has been set.
 
+### GetPreinstallable
+
+`func (o *OperatingSystem) GetPreinstallable() bool`
+
+GetPreinstallable returns the Preinstallable field if non-nil, zero value otherwise.
+
+### GetPreinstallableOk
+
+`func (o *OperatingSystem) GetPreinstallableOk() (*bool, bool)`
+
+GetPreinstallableOk returns a tuple with the Preinstallable field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPreinstallable
+
+`func (o *OperatingSystem) SetPreinstallable(v bool)`
+
+SetPreinstallable sets Preinstallable field to given value.
+
+### HasPreinstallable
+
+`func (o *OperatingSystem) HasPreinstallable() bool`
+
+HasPreinstallable returns a boolean if a field has been set.
+
 ### GetProvisionableOn
 
 `func (o *OperatingSystem) GetProvisionableOn() []string`
@@ -179,6 +207,56 @@ SetProvisionableOn sets ProvisionableOn field to given value.
 `func (o *OperatingSystem) HasProvisionableOn() bool`
 
 HasProvisionableOn returns a boolean if a field has been set.
+
+### GetPricing
+
+`func (o *OperatingSystem) GetPricing() map[string]interface{}`
+
+GetPricing returns the Pricing field if non-nil, zero value otherwise.
+
+### GetPricingOk
+
+`func (o *OperatingSystem) GetPricingOk() (*map[string]interface{}, bool)`
+
+GetPricingOk returns a tuple with the Pricing field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPricing
+
+`func (o *OperatingSystem) SetPricing(v map[string]interface{})`
+
+SetPricing sets Pricing field to given value.
+
+### HasPricing
+
+`func (o *OperatingSystem) HasPricing() bool`
+
+HasPricing returns a boolean if a field has been set.
+
+### GetLicensed
+
+`func (o *OperatingSystem) GetLicensed() bool`
+
+GetLicensed returns the Licensed field if non-nil, zero value otherwise.
+
+### GetLicensedOk
+
+`func (o *OperatingSystem) GetLicensedOk() (*bool, bool)`
+
+GetLicensedOk returns a tuple with the Licensed field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLicensed
+
+`func (o *OperatingSystem) SetLicensed(v bool)`
+
+SetLicensed sets Licensed field to given value.
+
+### HasLicensed
+
+`func (o *OperatingSystem) HasLicensed() bool`
+
+HasLicensed returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

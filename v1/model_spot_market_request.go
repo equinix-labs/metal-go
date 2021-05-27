@@ -26,7 +26,7 @@ type SpotMarketRequest struct {
 	EndAt *time.Time `json:"end_at,omitempty"`
 	Href *string `json:"href,omitempty"`
 	Facilities *Href `json:"facilities,omitempty"`
-	Metro *Href `json:"metro,omitempty"`
+	Metro *Metro `json:"metro,omitempty"`
 	Project *Href `json:"project,omitempty"`
 	Instances *Href `json:"instances,omitempty"`
 }
@@ -305,9 +305,9 @@ func (o *SpotMarketRequest) SetFacilities(v Href) {
 }
 
 // GetMetro returns the Metro field value if set, zero value otherwise.
-func (o *SpotMarketRequest) GetMetro() Href {
+func (o *SpotMarketRequest) GetMetro() Metro {
 	if o == nil || o.Metro == nil {
-		var ret Href
+		var ret Metro
 		return ret
 	}
 	return *o.Metro
@@ -315,7 +315,7 @@ func (o *SpotMarketRequest) GetMetro() Href {
 
 // GetMetroOk returns a tuple with the Metro field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SpotMarketRequest) GetMetroOk() (*Href, bool) {
+func (o *SpotMarketRequest) GetMetroOk() (*Metro, bool) {
 	if o == nil || o.Metro == nil {
 		return nil, false
 	}
@@ -331,8 +331,8 @@ func (o *SpotMarketRequest) HasMetro() bool {
 	return false
 }
 
-// SetMetro gets a reference to the given Href and assigns it to the Metro field.
-func (o *SpotMarketRequest) SetMetro(v Href) {
+// SetMetro gets a reference to the given Metro and assigns it to the Metro field.
+func (o *SpotMarketRequest) SetMetro(v Metro) {
 	o.Metro = &v
 }
 

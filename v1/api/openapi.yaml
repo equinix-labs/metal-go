@@ -147,9 +147,13 @@ tags:
 - description: Facility Management. Check out the product docs to learn more about
     [Facilities](https://metal.equinix.com/developers/docs/locations/).
   name: Facilities
+- description: Global BGP Range Management
+  name: GlobalBgpRanges
 - description: Hardware Reservation Management. Check out the product docs to learn
     more about [Reserved Hardware](https://metal.equinix.com/developers/docs/deploy/reserved/).
   name: HardwareReservations
+- description: Incident Management
+  name: Incidents
 - description: Manage invitations. See project endpoints to create a new invitation.
     Check out the product docs to learn more about [Invitations](https://metal.equinix.com/developers/docs/accounts/).
   name: Invitations
@@ -168,11 +172,15 @@ tags:
 - description: Operating System Management. Check out the product docs to learn more
     about [Operating Systems choices](https://metal.equinix.com/developers/docs/operating-systems/).
   name: OperatingSystems
+- description: Operating System Version Management
+  name: OperatingSystemVersions
 - description: Organizations Management. Check out the product docs to learn more
     about [Organizations](https://metal.equinix.com/developers/docs/accounts/).
   name: Organizations
 - description: Otps ManagementCheck out the product docs to learn more about [OTP](https://metal.equinix.com/developers/docs/accounts/two-factor-authentication/).
   name: Otps
+- description: Password Reset Token Management
+  name: PasswordResetTokens
 - description: Payment Method Management
   name: PaymentMethods
 - description: Plan Management (Device). Check out the product docs to learn more
@@ -195,6 +203,8 @@ tags:
 - description: Manage SSH keys. See project endpoints to list and create project-level
     SSH keys.
   name: SSHKeys
+- description: Support request
+  name: SupportRequest
 - description: Project Transfer Requests Management
   name: TransferRequests
 - description: Two Factor Authentication Management. Check out the product docs to
@@ -2019,6 +2029,46 @@ paths:
       summary: Retrieve all facilities visible by the organization
       tags:
       - Facilities
+  /projects/{id}/global-bgp-ranges:
+    get:
+      description: Returns all global bgp ranges for a project
+      operationId: findGlobalBgpRanges
+      parameters:
+      - description: Project UUID
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GlobalBgpRangeList'
+          description: ok
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: not found
+      summary: Retrieve all global bgp ranges
+      tags:
+      - GlobalBgpRanges
   /projects/{id}/hardware-reservations:
     get:
       description: Provides a collection of hardware reservations for a given project.
@@ -2164,6 +2214,7 @@ paths:
   /incidents:
     get:
       description: Retrieve the number of incidents.
+      operationId: findIncidents
       parameters:
       - description: Nested attributes to include. Included objects will return their
           full attributes. Attribute names can be dotted (up to 3 levels) to included
@@ -2199,7 +2250,7 @@ paths:
           description: unauthorized
       summary: Retrieve the number of incidents
       tags:
-      - incidents
+      - Incidents
   /devices/{id}/actions:
     post:
       description: 'Performs an action for the given device.  Possible actions include:
@@ -5155,6 +5206,7 @@ paths:
   /hardware-reservations/{id}/move:
     post:
       description: Move a hardware reservation to another project
+      operationId: moveHardwareReservation
       parameters:
       - description: Hardware Reservation UUID
         in: path
@@ -6999,6 +7051,7 @@ paths:
   /projects/{project_id}/self-service/reservations:
     get:
       description: Returns all reservations.
+      operationId: findSelfServiceReservations
       parameters:
       - description: Page to return
         in: query
@@ -7043,6 +7096,7 @@ paths:
       - SelfServiceReservations
     post:
       description: Creates a reservation.
+      operationId: createSelfServiceReservation
       parameters:
       - description: Project UUID
         in: path
@@ -7084,6 +7138,7 @@ paths:
   /projects/{project_id}/self-service/reservations/{id}:
     get:
       description: Returns a reservation
+      operationId: findSelfServiceReservation
       parameters:
       - description: Reservation short_id
         in: path
@@ -8689,6 +8744,49 @@ paths:
       summary: Clone volume/snapshot
       tags:
       - Volumes
+  /support-requests:
+    post:
+      description: Support Ticket.
+      operationId: requestSuppert
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SupportRequestInput'
+        description: Support Request to create
+        required: true
+      responses:
+        "204":
+          content: {}
+          description: no content
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: not found
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: unprocessable entity
+      summary: Create a support ticket
+      tags:
+      - SupportRequest
+      x-codegen-request-body-name: support_request
   /user/otp/app:
     delete:
       description: Disables two factor authentication.
@@ -9273,6 +9371,39 @@ paths:
       summary: Retrieve all users
       tags:
       - Users
+    post:
+      description: Creates a user.
+      operationId: createUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserCreateInput'
+        description: User to create
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: created
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: unauthorized
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: unprocessable entity
+      summary: Create a user
+      tags:
+      - Users
+      x-codegen-request-body-name: user
   /users/{id}:
     get:
       description: Returns a single user if the user has access
@@ -9909,60 +10040,9 @@ components:
         read_only: true
         created_at: 2000-01-23T04:56:07.000+00:00
         description: description
-        project:
-          devices:
-          - href: href
-          - href: href
-          volumes:
-          - href: href
-          - href: href
-          created_at: 2000-01-23T04:56:07.000+00:00
-          memberships:
-          - href: href
-          - href: href
-          bgp_config:
-            href: href
-          max_devices: '{}'
-          ssh_keys:
-          - href: href
-          - href: href
-          updated_at: 2000-01-23T04:56:07.000+00:00
-          invitations:
-          - href: href
-          - href: href
-          members:
-          - href: href
-          - href: href
-          name: name
-          network_status: '{}'
-          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          customdata: '{}'
-          payment_method:
-            href: href
+        project: '{}'
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        user:
-          avatar_thumb_url: avatar_thumb_url
-          last_login_at: 2000-01-23T04:56:07.000+00:00
-          max_projects: 0
-          timezone: timezone
-          last_name: last_name
-          created_at: 2000-01-23T04:56:07.000+00:00
-          short_id: short_id
-          fraud_score: fraud_score
-          emails:
-          - href: href
-          - href: href
-          full_name: full_name
-          avatar_url: avatar_url
-          updated_at: 2000-01-23T04:56:07.000+00:00
-          phone_number: phone_number
-          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          href: href
-          customdata: '{}'
-          first_name: first_name
-          two_factor_auth: two_factor_auth
-          max_organizations: 6
-          email: email
+        user: '{}'
         token: token
       properties:
         id:
@@ -9982,9 +10062,17 @@ components:
         read_only:
           type: boolean
         user:
-          $ref: '#/components/schemas/User'
+          allOf:
+          - $ref: '#/components/schemas/User'
+          - description: Available only for user tokens
+            type: object
+          type: object
         project:
-          $ref: '#/components/schemas/Project'
+          allOf:
+          - $ref: '#/components/schemas/Project'
+          - description: Available only for project tokens
+            type: object
+          type: object
       type: object
     AuthTokenInput:
       example:
@@ -10003,119 +10091,17 @@ components:
           read_only: true
           created_at: 2000-01-23T04:56:07.000+00:00
           description: description
-          project:
-            devices:
-            - href: href
-            - href: href
-            volumes:
-            - href: href
-            - href: href
-            created_at: 2000-01-23T04:56:07.000+00:00
-            memberships:
-            - href: href
-            - href: href
-            bgp_config:
-              href: href
-            max_devices: '{}'
-            ssh_keys:
-            - href: href
-            - href: href
-            updated_at: 2000-01-23T04:56:07.000+00:00
-            invitations:
-            - href: href
-            - href: href
-            members:
-            - href: href
-            - href: href
-            name: name
-            network_status: '{}'
-            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            customdata: '{}'
-            payment_method:
-              href: href
+          project: '{}'
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          user:
-            avatar_thumb_url: avatar_thumb_url
-            last_login_at: 2000-01-23T04:56:07.000+00:00
-            max_projects: 0
-            timezone: timezone
-            last_name: last_name
-            created_at: 2000-01-23T04:56:07.000+00:00
-            short_id: short_id
-            fraud_score: fraud_score
-            emails:
-            - href: href
-            - href: href
-            full_name: full_name
-            avatar_url: avatar_url
-            updated_at: 2000-01-23T04:56:07.000+00:00
-            phone_number: phone_number
-            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            href: href
-            customdata: '{}'
-            first_name: first_name
-            two_factor_auth: two_factor_auth
-            max_organizations: 6
-            email: email
+          user: '{}'
           token: token
         - updated_at: 2000-01-23T04:56:07.000+00:00
           read_only: true
           created_at: 2000-01-23T04:56:07.000+00:00
           description: description
-          project:
-            devices:
-            - href: href
-            - href: href
-            volumes:
-            - href: href
-            - href: href
-            created_at: 2000-01-23T04:56:07.000+00:00
-            memberships:
-            - href: href
-            - href: href
-            bgp_config:
-              href: href
-            max_devices: '{}'
-            ssh_keys:
-            - href: href
-            - href: href
-            updated_at: 2000-01-23T04:56:07.000+00:00
-            invitations:
-            - href: href
-            - href: href
-            members:
-            - href: href
-            - href: href
-            name: name
-            network_status: '{}'
-            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            customdata: '{}'
-            payment_method:
-              href: href
+          project: '{}'
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          user:
-            avatar_thumb_url: avatar_thumb_url
-            last_login_at: 2000-01-23T04:56:07.000+00:00
-            max_projects: 0
-            timezone: timezone
-            last_name: last_name
-            created_at: 2000-01-23T04:56:07.000+00:00
-            short_id: short_id
-            fraud_score: fraud_score
-            emails:
-            - href: href
-            - href: href
-            full_name: full_name
-            avatar_url: avatar_url
-            updated_at: 2000-01-23T04:56:07.000+00:00
-            phone_number: phone_number
-            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            href: href
-            customdata: '{}'
-            first_name: first_name
-            two_factor_auth: two_factor_auth
-            max_organizations: 6
-            email: email
+          user: '{}'
           token: token
       properties:
         api_keys:
@@ -10294,6 +10280,9 @@ components:
           type: array
       type: object
     EmailInput:
+      example:
+        default: true
+        address: address
       properties:
         address:
           type: string
@@ -10352,35 +10341,6 @@ components:
       - slug
       - weight
       type: object
-    EntitlementInput:
-      properties:
-        description:
-          type: string
-        slug:
-          type: string
-        weight:
-          type: integer
-        instance_quota:
-          properties: {}
-          type: object
-        project_quota:
-          type: integer
-        volume_quota:
-          properties: {}
-          type: object
-        feature_access:
-          properties: {}
-          type: object
-      type: object
-    EntitlementList:
-      properties:
-        entitlements:
-          items:
-            $ref: '#/components/schemas/Entitlement'
-          type: array
-        meta:
-          $ref: '#/components/schemas/Meta'
-      type: object
     Event:
       example:
         relationships:
@@ -10414,17 +10374,6 @@ components:
           type: string
         href:
           type: string
-      type: object
-    EventInput:
-      properties:
-        type:
-          type: string
-        body:
-          type: string
-        state:
-          type: string
-        private:
-          type: boolean
       type: object
     EventList:
       example:
@@ -10469,27 +10418,12 @@ components:
         meta:
           $ref: '#/components/schemas/Meta'
       type: object
-    EventTypeList:
-      properties:
-        event_types:
-          items:
-            $ref: '#/components/schemas/EventType'
-          type: array
-      type: object
-    EventType:
-      properties:
-        group:
-          type: string
-        events:
-          items:
-            type: string
-          type: array
-      type: object
     Facility:
       example:
         features:
-        - features
-        - features
+        - baremetal
+        - backend_transfer
+        - global_ipv4
         code: code
         address:
           country: country
@@ -10501,11 +10435,10 @@ components:
             longitude: longitude
           state: state
           zip_code: zip_code
-        metro:
-          country: country
-          code: code
-          name: name
-          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        ip_ranges:
+        - 2604:1380::/36
+        - 147.75.192.0/21
+        metro: '{}'
         name: name
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
       properties:
@@ -10517,20 +10450,43 @@ components:
         code:
           type: string
         features:
+          example:
+          - baremetal
+          - backend_transfer
+          - global_ipv4
+          items:
+            enum:
+            - baremetal
+            - backend_transfer
+            - layer_2
+            - global_ipv4
+            - ibx
+            type: string
+          type: array
+        ip_ranges:
+          description: IP ranges registered in facility. Can be used for GeoIP location
+          example:
+          - 2604:1380::/36
+          - 147.75.192.0/21
           items:
             type: string
           type: array
         address:
           $ref: '#/components/schemas/Address'
         metro:
-          $ref: '#/components/schemas/Metro'
+          allOf:
+          - $ref: '#/components/schemas/Metro'
+          - description: The metro the facility is in
+            type: object
+          type: object
       type: object
     FacilityList:
       example:
         facilities:
         - features:
-          - features
-          - features
+          - baremetal
+          - backend_transfer
+          - global_ipv4
           code: code
           address:
             country: country
@@ -10542,16 +10498,16 @@ components:
               longitude: longitude
             state: state
             zip_code: zip_code
-          metro:
-            country: country
-            code: code
-            name: name
-            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          ip_ranges:
+          - 2604:1380::/36
+          - 147.75.192.0/21
+          metro: '{}'
           name: name
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         - features:
-          - features
-          - features
+          - baremetal
+          - backend_transfer
+          - global_ipv4
           code: code
           address:
             country: country
@@ -10563,11 +10519,10 @@ components:
               longitude: longitude
             state: state
             zip_code: zip_code
-          metro:
-            country: country
-            code: code
-            name: name
-            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          ip_ranges:
+          - 2604:1380::/36
+          - 147.75.192.0/21
+          metro: '{}'
           name: name
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
       properties:
@@ -10576,28 +10531,10 @@ components:
             $ref: '#/components/schemas/Facility'
           type: array
       type: object
-    HardwareLocation:
-      example:
-        cage: cage
-        rack: rack
-        row: row
-        facility: facility
-        switch: switch
-      properties:
-        cage:
-          type: string
-        facility:
-          type: string
-        rack:
-          type: string
-        row:
-          type: string
-        switch:
-          type: string
-      type: object
     HardwareReservation:
       example:
-        remove_at: 2000-01-23T04:56:07.000+00:00
+        provisionable: true
+        custom_rate: 1050.5
         project:
           devices:
           - href: href
@@ -10629,13 +10566,15 @@ components:
           payment_method:
             href: href
         created_at: 2000-01-23T04:56:07.000+00:00
+        need_of_service: true
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         short_id: short_id
         href: href
         facility:
           features:
-          - features
-          - features
+          - baremetal
+          - backend_transfer
+          - global_ipv4
           code: code
           address:
             country: country
@@ -10647,11 +10586,10 @@ components:
               longitude: longitude
             state: state
             zip_code: zip_code
-          metro:
-            country: country
-            code: code
-            name: name
-            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          ip_ranges:
+          - 2604:1380::/36
+          - 147.75.192.0/21
+          metro: '{}'
           name: name
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         plan:
@@ -10683,11 +10621,7 @@ components:
             public: true
             netmask: netmask
             management: true
-            metro:
-              country: country
-              code: code
-              name: name
-              id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            metro: '{}'
             cidr: 5
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             href: href
@@ -10709,11 +10643,7 @@ components:
             public: true
             netmask: netmask
             management: true
-            metro:
-              country: country
-              code: code
-              name: name
-              id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            metro: '{}'
             cidr: 5
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             href: href
@@ -10724,8 +10654,8 @@ components:
           iqn: iqn
           description: description
           created_at: 2000-01-23T04:56:07.000+00:00
-          project:
-            href: href
+          project: '{}'
+          switch_uuid: switch_uuid
           bonding_mode: 0
           provisioning_events:
           - relationships:
@@ -10748,11 +10678,14 @@ components:
             href: href
             type: type
             body: body
+          network_ports: '{}'
           userdata: userdata
           hostname: hostname
           updated_at: 2000-01-23T04:56:07.000+00:00
           operating_system:
             distro: distro
+            preinstallable: true
+            licensed: true
             name: name
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             provisionable_on:
@@ -10760,6 +10693,7 @@ components:
             - provisionable_on
             version: version
             slug: slug
+            pricing: '{}'
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           state: state
           billing_cycle: billing_cycle
@@ -10786,8 +10720,7 @@ components:
           volumes:
           - href: href
           - href: href
-          project_lite:
-            href: href
+          project_lite: '{}'
           short_id: short_id
           termination_time: 2000-01-23T04:56:07.000+00:00
           tags:
@@ -10799,24 +10732,15 @@ components:
           ssh_keys:
           - href: href
           - href: href
-          metro:
-            country: country
-            code: code
-            name: name
-            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          location:
-            cage: cage
-            rack: rack
-            row: row
-            facility: facility
-            switch: switch
+          metro: '{}'
           always_pxe: true
           ipxe_script_url: ipxe_script_url
           user: user
           facility:
             features:
-            - features
-            - features
+            - baremetal
+            - backend_transfer
+            - global_ipv4
             code: code
             address:
               country: country
@@ -10828,18 +10752,19 @@ components:
                 longitude: longitude
               state: state
               zip_code: zip_code
-            metro:
-              country: country
-              code: code
-              name: name
-              id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            ip_ranges:
+            - 2604:1380::/36
+            - 147.75.192.0/21
+            metro: '{}'
             name: name
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        spare: true
       properties:
         id:
           format: uuid
           type: string
         short_id:
+          description: Short version of the ID.
           format: string
           type: string
         facility:
@@ -10855,9 +10780,23 @@ components:
         created_at:
           format: date-time
           type: string
-        remove_at:
-          format: date-time
-          type: string
+        spare:
+          description: Whether the Hardware Reservation is a spare. Spare Hardware
+            Reservations are used when a Hardware Reservations requires service from
+            Metal Equinix
+          type: boolean
+        need_of_service:
+          description: Whether this Device requires assistance from Metal Equinix.
+          type: boolean
+        provisionable:
+          description: Whether the reserved server is provisionable or not. Spare
+            devices can't be provisioned unless they are activated first.
+          type: boolean
+        custom_rate:
+          description: Amount that will be charged for every billing_cycle.
+          example: 1050.5
+          format: float
+          type: number
       type: object
     HardwareReservationList:
       example:
@@ -10874,7 +10813,8 @@ components:
           first:
             href: href
         hardware_reservations:
-        - remove_at: 2000-01-23T04:56:07.000+00:00
+        - provisionable: true
+          custom_rate: 1050.5
           project:
             devices:
             - href: href
@@ -10906,13 +10846,15 @@ components:
             payment_method:
               href: href
           created_at: 2000-01-23T04:56:07.000+00:00
+          need_of_service: true
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           short_id: short_id
           href: href
           facility:
             features:
-            - features
-            - features
+            - baremetal
+            - backend_transfer
+            - global_ipv4
             code: code
             address:
               country: country
@@ -10924,11 +10866,10 @@ components:
                 longitude: longitude
               state: state
               zip_code: zip_code
-            metro:
-              country: country
-              code: code
-              name: name
-              id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            ip_ranges:
+            - 2604:1380::/36
+            - 147.75.192.0/21
+            metro: '{}'
             name: name
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           plan:
@@ -10960,11 +10901,7 @@ components:
               public: true
               netmask: netmask
               management: true
-              metro:
-                country: country
-                code: code
-                name: name
-                id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+              metro: '{}'
               cidr: 5
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
               href: href
@@ -10986,11 +10923,7 @@ components:
               public: true
               netmask: netmask
               management: true
-              metro:
-                country: country
-                code: code
-                name: name
-                id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+              metro: '{}'
               cidr: 5
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
               href: href
@@ -11001,8 +10934,8 @@ components:
             iqn: iqn
             description: description
             created_at: 2000-01-23T04:56:07.000+00:00
-            project:
-              href: href
+            project: '{}'
+            switch_uuid: switch_uuid
             bonding_mode: 0
             provisioning_events:
             - relationships:
@@ -11025,11 +10958,14 @@ components:
               href: href
               type: type
               body: body
+            network_ports: '{}'
             userdata: userdata
             hostname: hostname
             updated_at: 2000-01-23T04:56:07.000+00:00
             operating_system:
               distro: distro
+              preinstallable: true
+              licensed: true
               name: name
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
               provisionable_on:
@@ -11037,6 +10973,7 @@ components:
               - provisionable_on
               version: version
               slug: slug
+              pricing: '{}'
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             state: state
             billing_cycle: billing_cycle
@@ -11063,8 +11000,7 @@ components:
             volumes:
             - href: href
             - href: href
-            project_lite:
-              href: href
+            project_lite: '{}'
             short_id: short_id
             termination_time: 2000-01-23T04:56:07.000+00:00
             tags:
@@ -11076,24 +11012,15 @@ components:
             ssh_keys:
             - href: href
             - href: href
-            metro:
-              country: country
-              code: code
-              name: name
-              id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            location:
-              cage: cage
-              rack: rack
-              row: row
-              facility: facility
-              switch: switch
+            metro: '{}'
             always_pxe: true
             ipxe_script_url: ipxe_script_url
             user: user
             facility:
               features:
-              - features
-              - features
+              - baremetal
+              - backend_transfer
+              - global_ipv4
               code: code
               address:
                 country: country
@@ -11105,14 +11032,15 @@ components:
                   longitude: longitude
                 state: state
                 zip_code: zip_code
-              metro:
-                country: country
-                code: code
-                name: name
-                id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+              ip_ranges:
+              - 2604:1380::/36
+              - 147.75.192.0/21
+              metro: '{}'
               name: name
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        - remove_at: 2000-01-23T04:56:07.000+00:00
+          spare: true
+        - provisionable: true
+          custom_rate: 1050.5
           project:
             devices:
             - href: href
@@ -11144,13 +11072,15 @@ components:
             payment_method:
               href: href
           created_at: 2000-01-23T04:56:07.000+00:00
+          need_of_service: true
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           short_id: short_id
           href: href
           facility:
             features:
-            - features
-            - features
+            - baremetal
+            - backend_transfer
+            - global_ipv4
             code: code
             address:
               country: country
@@ -11162,11 +11092,10 @@ components:
                 longitude: longitude
               state: state
               zip_code: zip_code
-            metro:
-              country: country
-              code: code
-              name: name
-              id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            ip_ranges:
+            - 2604:1380::/36
+            - 147.75.192.0/21
+            metro: '{}'
             name: name
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           plan:
@@ -11198,11 +11127,7 @@ components:
               public: true
               netmask: netmask
               management: true
-              metro:
-                country: country
-                code: code
-                name: name
-                id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+              metro: '{}'
               cidr: 5
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
               href: href
@@ -11224,11 +11149,7 @@ components:
               public: true
               netmask: netmask
               management: true
-              metro:
-                country: country
-                code: code
-                name: name
-                id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+              metro: '{}'
               cidr: 5
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
               href: href
@@ -11239,8 +11160,8 @@ components:
             iqn: iqn
             description: description
             created_at: 2000-01-23T04:56:07.000+00:00
-            project:
-              href: href
+            project: '{}'
+            switch_uuid: switch_uuid
             bonding_mode: 0
             provisioning_events:
             - relationships:
@@ -11263,11 +11184,14 @@ components:
               href: href
               type: type
               body: body
+            network_ports: '{}'
             userdata: userdata
             hostname: hostname
             updated_at: 2000-01-23T04:56:07.000+00:00
             operating_system:
               distro: distro
+              preinstallable: true
+              licensed: true
               name: name
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
               provisionable_on:
@@ -11275,6 +11199,7 @@ components:
               - provisionable_on
               version: version
               slug: slug
+              pricing: '{}'
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             state: state
             billing_cycle: billing_cycle
@@ -11301,8 +11226,7 @@ components:
             volumes:
             - href: href
             - href: href
-            project_lite:
-              href: href
+            project_lite: '{}'
             short_id: short_id
             termination_time: 2000-01-23T04:56:07.000+00:00
             tags:
@@ -11314,24 +11238,15 @@ components:
             ssh_keys:
             - href: href
             - href: href
-            metro:
-              country: country
-              code: code
-              name: name
-              id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            location:
-              cage: cage
-              rack: rack
-              row: row
-              facility: facility
-              switch: switch
+            metro: '{}'
             always_pxe: true
             ipxe_script_url: ipxe_script_url
             user: user
             facility:
               features:
-              - features
-              - features
+              - baremetal
+              - backend_transfer
+              - global_ipv4
               code: code
               address:
                 country: country
@@ -11343,13 +11258,13 @@ components:
                   longitude: longitude
                 state: state
                 zip_code: zip_code
-              metro:
-                country: country
-                code: code
-                name: name
-                id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+              ip_ranges:
+              - 2604:1380::/36
+              - 147.75.192.0/21
+              metro: '{}'
               name: name
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          spare: true
       properties:
         hardware_reservations:
           items:
@@ -11375,11 +11290,7 @@ components:
           public: true
           netmask: netmask
           management: true
-          metro:
-            country: country
-            code: code
-            name: name
-            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          metro: '{}'
           cidr: 5
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           href: href
@@ -11401,11 +11312,7 @@ components:
           public: true
           netmask: netmask
           management: true
-          metro:
-            country: country
-            code: code
-            name: name
-            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          metro: '{}'
           cidr: 5
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           href: href
@@ -11416,8 +11323,8 @@ components:
         iqn: iqn
         description: description
         created_at: 2000-01-23T04:56:07.000+00:00
-        project:
-          href: href
+        project: '{}'
+        switch_uuid: switch_uuid
         bonding_mode: 0
         provisioning_events:
         - relationships:
@@ -11440,11 +11347,14 @@ components:
           href: href
           type: type
           body: body
+        network_ports: '{}'
         userdata: userdata
         hostname: hostname
         updated_at: 2000-01-23T04:56:07.000+00:00
         operating_system:
           distro: distro
+          preinstallable: true
+          licensed: true
           name: name
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           provisionable_on:
@@ -11452,6 +11362,7 @@ components:
           - provisionable_on
           version: version
           slug: slug
+          pricing: '{}'
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         state: state
         billing_cycle: billing_cycle
@@ -11478,8 +11389,7 @@ components:
         volumes:
         - href: href
         - href: href
-        project_lite:
-          href: href
+        project_lite: '{}'
         short_id: short_id
         termination_time: 2000-01-23T04:56:07.000+00:00
         tags:
@@ -11491,24 +11401,15 @@ components:
         ssh_keys:
         - href: href
         - href: href
-        metro:
-          country: country
-          code: code
-          name: name
-          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        location:
-          cage: cage
-          rack: rack
-          row: row
-          facility: facility
-          switch: switch
+        metro: '{}'
         always_pxe: true
         ipxe_script_url: ipxe_script_url
         user: user
         facility:
           features:
-          - features
-          - features
+          - baremetal
+          - backend_transfer
+          - global_ipv4
           code: code
           address:
             country: country
@@ -11520,11 +11421,10 @@ components:
               longitude: longitude
             state: state
             zip_code: zip_code
-          metro:
-            country: country
-            code: code
-            name: name
-            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          ip_ranges:
+          - 2604:1380::/36
+          - 147.75.192.0/21
+          metro: '{}'
           name: name
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
       properties:
@@ -11562,17 +11462,29 @@ components:
           format: date-time
           type: string
         spot_instance:
+          description: Whether or not the device is a spot instance.
           type: boolean
         spot_price_max:
+          description: The maximum price per hour you are willing to pay to keep this
+            spot instance.  If you are outbid, the termination will be set allowing
+            two minutes before shutdown.
           format: float
           type: number
         termination_time:
+          description: When the device will be terminated. This is commonly set in
+            advance for ephemeral spot market instances but this field may also be
+            set with on-demand and reservation instances to automatically delete the
+            resource at a given time. The termination time can also be used to release
+            a hardware reservation instance at a given time, keeping the reservation
+            open for other uses.  On a spot market device, the termination time will
+            be set automatically when outbid.
           format: date-time
           type: string
         customdata:
           properties: {}
           type: object
         provisioning_percentage:
+          description: Only visible while device provisioning
           format: float
           type: number
         operating_system:
@@ -11581,24 +11493,50 @@ components:
           type: boolean
         ipxe_script_url:
           type: string
-        location:
-          $ref: '#/components/schemas/HardwareLocation'
         facility:
           $ref: '#/components/schemas/Facility'
         metro:
-          $ref: '#/components/schemas/Metro'
+          allOf:
+          - $ref: '#/components/schemas/Metro'
+          - description: The metro the facility is in
+            type: object
+          type: object
         plan:
           $ref: '#/components/schemas/Plan'
         userdata:
           type: string
         root_password:
+          description: Root password is automatically generated when server is provisioned
+            and it is removed after 24 hours
           type: string
+        switch_uuid:
+          description: Switch short id. This can be used to determine if two devices
+            are connected to the same switch, for example.
+          type: string
+        network_ports:
+          allOf:
+          - $ref: '#/components/schemas/Port'
+          - description: By default, servers at Equinix Metal are configured in a
+              “bonded” mode using LACP (Link Aggregation Control Protocol). Each 2-NIC
+              server is configured with a single bond (namely bond0) with both interfaces
+              eth0 and eth1 as members of the bond in a default Layer 3 mode. Some
+              device plans may have a different number of ports and bonds available.
+            type: object
+          type: object
         href:
           type: string
         project:
-          $ref: '#/components/schemas/Href'
+          allOf:
+          - $ref: '#/components/schemas/Href'
+          - description: Full version of project object when included
+            type: object
+          type: object
         project_lite:
-          $ref: '#/components/schemas/Href'
+          allOf:
+          - $ref: '#/components/schemas/Href'
+          - description: Lite version of project object when included
+            type: object
+          type: object
         volumes:
           items:
             $ref: '#/components/schemas/Href'
@@ -11665,7 +11603,7 @@ components:
           key: key
         no_ssh_keys: false
         metro: metro
-        hardware_reservation_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        hardware_reservation_id: next-available
         always_pxe: false
         ipxe_script_url: ipxe_script_url
         facility: facility
@@ -11723,7 +11661,8 @@ components:
           type: string
         locked:
           default: false
-          description: Wether the device should be locked, preventing accidental deletion.
+          description: Whether the device should be locked, preventing accidental
+            deletion.
           type: boolean
         customdata:
           description: Customdata is an arbitrary JSON value that can be accessed
@@ -11735,11 +11674,12 @@ components:
             in.
           type: string
         hardware_reservation_id:
+          default: ""
           description: |-
             The Hardware Reservation UUID to provision. Alternatively, `next-available` can be specified to select from any of the available hardware reservations. An error will be returned if the requested reservation option is not available.
 
                   See [Reserved Hardware](https://metal.equinix.com/developers/docs/deploy/reserved/) for more details.
-          format: uuid
+          example: next-available
           type: string
         spot_instance:
           type: boolean
@@ -11862,14 +11802,6 @@ components:
       - operating_system
       - plan
       type: object
-    IpAddressInput:
-      properties:
-        address_family:
-          description: Address Family for IP Address
-          example: 4.0
-          format: integer
-          type: number
-      type: object
     DeviceUpdateInput:
       example:
         userdata: userdata
@@ -11932,11 +11864,7 @@ components:
             public: true
             netmask: netmask
             management: true
-            metro:
-              country: country
-              code: code
-              name: name
-              id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            metro: '{}'
             cidr: 5
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             href: href
@@ -11958,11 +11886,7 @@ components:
             public: true
             netmask: netmask
             management: true
-            metro:
-              country: country
-              code: code
-              name: name
-              id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            metro: '{}'
             cidr: 5
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             href: href
@@ -11973,8 +11897,8 @@ components:
           iqn: iqn
           description: description
           created_at: 2000-01-23T04:56:07.000+00:00
-          project:
-            href: href
+          project: '{}'
+          switch_uuid: switch_uuid
           bonding_mode: 0
           provisioning_events:
           - relationships:
@@ -11997,11 +11921,14 @@ components:
             href: href
             type: type
             body: body
+          network_ports: '{}'
           userdata: userdata
           hostname: hostname
           updated_at: 2000-01-23T04:56:07.000+00:00
           operating_system:
             distro: distro
+            preinstallable: true
+            licensed: true
             name: name
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             provisionable_on:
@@ -12009,6 +11936,7 @@ components:
             - provisionable_on
             version: version
             slug: slug
+            pricing: '{}'
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           state: state
           billing_cycle: billing_cycle
@@ -12035,8 +11963,7 @@ components:
           volumes:
           - href: href
           - href: href
-          project_lite:
-            href: href
+          project_lite: '{}'
           short_id: short_id
           termination_time: 2000-01-23T04:56:07.000+00:00
           tags:
@@ -12048,24 +11975,15 @@ components:
           ssh_keys:
           - href: href
           - href: href
-          metro:
-            country: country
-            code: code
-            name: name
-            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          location:
-            cage: cage
-            rack: rack
-            row: row
-            facility: facility
-            switch: switch
+          metro: '{}'
           always_pxe: true
           ipxe_script_url: ipxe_script_url
           user: user
           facility:
             features:
-            - features
-            - features
+            - baremetal
+            - backend_transfer
+            - global_ipv4
             code: code
             address:
               country: country
@@ -12077,11 +11995,10 @@ components:
                 longitude: longitude
               state: state
               zip_code: zip_code
-            metro:
-              country: country
-              code: code
-              name: name
-              id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            ip_ranges:
+            - 2604:1380::/36
+            - 147.75.192.0/21
+            metro: '{}'
             name: name
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         - ip_addresses:
@@ -12099,11 +12016,7 @@ components:
             public: true
             netmask: netmask
             management: true
-            metro:
-              country: country
-              code: code
-              name: name
-              id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            metro: '{}'
             cidr: 5
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             href: href
@@ -12125,11 +12038,7 @@ components:
             public: true
             netmask: netmask
             management: true
-            metro:
-              country: country
-              code: code
-              name: name
-              id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            metro: '{}'
             cidr: 5
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             href: href
@@ -12140,8 +12049,8 @@ components:
           iqn: iqn
           description: description
           created_at: 2000-01-23T04:56:07.000+00:00
-          project:
-            href: href
+          project: '{}'
+          switch_uuid: switch_uuid
           bonding_mode: 0
           provisioning_events:
           - relationships:
@@ -12164,11 +12073,14 @@ components:
             href: href
             type: type
             body: body
+          network_ports: '{}'
           userdata: userdata
           hostname: hostname
           updated_at: 2000-01-23T04:56:07.000+00:00
           operating_system:
             distro: distro
+            preinstallable: true
+            licensed: true
             name: name
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             provisionable_on:
@@ -12176,6 +12088,7 @@ components:
             - provisionable_on
             version: version
             slug: slug
+            pricing: '{}'
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           state: state
           billing_cycle: billing_cycle
@@ -12202,8 +12115,7 @@ components:
           volumes:
           - href: href
           - href: href
-          project_lite:
-            href: href
+          project_lite: '{}'
           short_id: short_id
           termination_time: 2000-01-23T04:56:07.000+00:00
           tags:
@@ -12215,24 +12127,15 @@ components:
           ssh_keys:
           - href: href
           - href: href
-          metro:
-            country: country
-            code: code
-            name: name
-            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          location:
-            cage: cage
-            rack: rack
-            row: row
-            facility: facility
-            switch: switch
+          metro: '{}'
           always_pxe: true
           ipxe_script_url: ipxe_script_url
           user: user
           facility:
             features:
-            - features
-            - features
+            - baremetal
+            - backend_transfer
+            - global_ipv4
             code: code
             address:
               country: country
@@ -12244,11 +12147,10 @@ components:
                 longitude: longitude
               state: state
               zip_code: zip_code
-            metro:
-              country: country
-              code: code
-              name: name
-              id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            ip_ranges:
+            - 2604:1380::/36
+            - 147.75.192.0/21
+            metro: '{}'
             name: name
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         meta:
@@ -12353,8 +12255,7 @@ components:
         tags:
         - tags
         - tags
-        metro:
-          href: href
+        metro: '{}'
         organization:
           href: href
         name: name
@@ -12395,7 +12296,11 @@ components:
         organization:
           $ref: '#/components/schemas/Href'
         metro:
-          $ref: '#/components/schemas/Href'
+          allOf:
+          - $ref: '#/components/schemas/Metro'
+          - description: Details of the metro the facility is in
+            type: object
+          type: object
       type: object
     InterconnectionList:
       example:
@@ -12480,8 +12385,7 @@ components:
           tags:
           - tags
           - tags
-          metro:
-            href: href
+          metro: '{}'
           organization:
             href: href
           name: name
@@ -12570,8 +12474,7 @@ components:
           tags:
           - tags
           - tags
-          metro:
-            href: href
+          metro: '{}'
           organization:
             href: href
           name: name
@@ -13275,10 +13178,14 @@ components:
         ranges:
         - address_family: 6
           range: range
+          project:
+            href: href
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           href: href
         - address_family: 6
           range: range
+          project:
+            href: href
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           href: href
         max_prefix: 0
@@ -13358,7 +13265,7 @@ components:
         bgp_neighbors:
         - md5_password: md5_password
           customer_as: 65000.0
-          address_family: 0.8008281904610115
+          address_family: 4.0
           routes_in:
           - route: 10.32.16.0/31
             exact: true
@@ -13368,7 +13275,9 @@ components:
           multihop: true
           peer_as: 65530.0
           md5_enabled: true
-          peer_ips: '["10.32.16.0"] or ["169.254.255.1", "169.254.255.2"]'
+          peer_ips:
+          - 169.254.255.1
+          - 169.254.255.2
           routes_out:
           - route: 0.0.0.0/0
             exact: true
@@ -13376,7 +13285,7 @@ components:
             exact: true
         - md5_password: md5_password
           customer_as: 65000.0
-          address_family: 0.8008281904610115
+          address_family: 4.0
           routes_in:
           - route: 10.32.16.0/31
             exact: true
@@ -13386,7 +13295,9 @@ components:
           multihop: true
           peer_as: 65530.0
           md5_enabled: true
-          peer_ips: '["10.32.16.0"] or ["169.254.255.1", "169.254.255.2"]'
+          peer_ips:
+          - 169.254.255.1
+          - 169.254.255.2
           routes_out:
           - route: 0.0.0.0/0
             exact: true
@@ -13403,7 +13314,7 @@ components:
       example:
         md5_password: md5_password
         customer_as: 65000.0
-        address_family: 0.8008281904610115
+        address_family: 4.0
         routes_in:
         - route: 10.32.16.0/31
           exact: true
@@ -13413,7 +13324,9 @@ components:
         multihop: true
         peer_as: 65530.0
         md5_enabled: true
-        peer_ips: '["10.32.16.0"] or ["169.254.255.1", "169.254.255.2"]'
+        peer_ips:
+        - 169.254.255.1
+        - 169.254.255.2
         routes_out:
         - route: 0.0.0.0/0
           exact: true
@@ -13421,7 +13334,8 @@ components:
           exact: true
       properties:
         address_family:
-          description: Address Family for IP Address
+          description: Address Family for IP Address. Accepted values are 4 or 6
+          example: 4.0
           format: integer
           type: number
         customer_as:
@@ -13456,7 +13370,9 @@ components:
             of your BGP configuration. For non-multihop sessions, this will typically
             be a single gateway address for the device. For multihop sessions, it
             will be a list of IPs.
-          example: '["10.32.16.0"] or ["169.254.255.1", "169.254.255.2"]'
+          example:
+          - 169.254.255.1
+          - 169.254.255.2
           items:
             type: string
           type: array
@@ -13581,6 +13497,8 @@ components:
       example:
         address_family: 6
         range: range
+        project:
+          href: href
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         href: href
       properties:
@@ -13593,8 +13511,24 @@ components:
           type: string
         href:
           type: string
+        project:
+          $ref: '#/components/schemas/Href'
       type: object
     GlobalBgpRangeList:
+      example:
+        global_bgp_ranges:
+        - address_family: 6
+          range: range
+          project:
+            href: href
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          href: href
+        - address_family: 6
+          range: range
+          project:
+            href: href
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          href: href
       properties:
         global_bgp_ranges:
           items:
@@ -13617,11 +13551,7 @@ components:
         public: true
         netmask: netmask
         management: true
-        metro:
-          country: country
-          code: code
-          name: name
-          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        metro: '{}'
         cidr: 5
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         href: href
@@ -13663,7 +13593,11 @@ components:
           format: date-time
           type: string
         metro:
-          $ref: '#/components/schemas/Metro'
+          allOf:
+          - $ref: '#/components/schemas/Metro'
+          - description: The metro the IP address is in
+            type: object
+          type: object
         parent_block:
           $ref: '#/components/schemas/ParentBlock'
       type: object
@@ -13700,11 +13634,7 @@ components:
           public: true
           netmask: netmask
           management: true
-          metro:
-            country: country
-            code: code
-            name: name
-            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          metro: '{}'
           cidr: 5
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           href: href
@@ -13726,11 +13656,7 @@ components:
           public: true
           netmask: netmask
           management: true
-          metro:
-            country: country
-            code: code
-            name: name
-            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          metro: '{}'
           cidr: 5
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           href: href
@@ -13751,38 +13677,13 @@ components:
         public: true
         netmask: netmask
         management: true
-        metro:
-          country: country
-          code: code
-          name: name
-          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        metro: '{}'
         cidr: 6
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         href: href
         state: state
         global_ip: true
-        facility:
-          features:
-          - features
-          - features
-          code: code
-          address:
-            country: country
-            address: address
-            address2: address2
-            city: city
-            coordinates:
-              latitude: latitude
-              longitude: longitude
-            state: state
-            zip_code: zip_code
-          metro:
-            country: country
-            code: code
-            name: name
-            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          name: name
-          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        facility: '{}'
       properties:
         id:
           format: uuid
@@ -13817,7 +13718,12 @@ components:
           format: date-time
           type: string
         facility:
-          $ref: '#/components/schemas/Facility'
+          allOf:
+          - $ref: '#/components/schemas/Facility'
+          - description: The facility the IP reservation is in. Will not have a value
+              if it is a metro-based IP reservation.
+            type: object
+          type: object
         href:
           type: string
         tags:
@@ -13827,7 +13733,13 @@ components:
         state:
           type: string
         metro:
-          $ref: '#/components/schemas/Metro'
+          allOf:
+          - $ref: '#/components/schemas/Metro'
+          - description: The metro the IP reservation is in. If a facility is specified,
+              this is the metro of that facility. If the facility is not specified,
+              this is a metro-based IP reservation.
+            type: object
+          type: object
       type: object
     IPAssignmentInput:
       example:
@@ -13862,11 +13774,7 @@ components:
           public: true
           netmask: netmask
           management: true
-          metro:
-            country: country
-            code: code
-            name: name
-            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          metro: '{}'
           cidr: 5
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           href: href
@@ -13888,11 +13796,7 @@ components:
           public: true
           netmask: netmask
           management: true
-          metro:
-            country: country
-            code: code
-            name: name
-            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          metro: '{}'
           cidr: 5
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           href: href
@@ -13924,11 +13828,7 @@ components:
             public: true
             netmask: netmask
             management: true
-            metro:
-              country: country
-              code: code
-              name: name
-              id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            metro: '{}'
             cidr: 5
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             href: href
@@ -13950,11 +13850,7 @@ components:
             public: true
             netmask: netmask
             management: true
-            metro:
-              country: country
-              code: code
-              name: name
-              id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            metro: '{}'
             cidr: 5
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             href: href
@@ -13975,38 +13871,13 @@ components:
           public: true
           netmask: netmask
           management: true
-          metro:
-            country: country
-            code: code
-            name: name
-            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          metro: '{}'
           cidr: 6
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           href: href
           state: state
           global_ip: true
-          facility:
-            features:
-            - features
-            - features
-            code: code
-            address:
-              country: country
-              address: address
-              address2: address2
-              city: city
-              coordinates:
-                latitude: latitude
-                longitude: longitude
-              state: state
-              zip_code: zip_code
-            metro:
-              country: country
-              code: code
-              name: name
-              id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            name: name
-            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          facility: '{}'
         - assignments:
           - address: address
             parent_block:
@@ -14022,11 +13893,7 @@ components:
             public: true
             netmask: netmask
             management: true
-            metro:
-              country: country
-              code: code
-              name: name
-              id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            metro: '{}'
             cidr: 5
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             href: href
@@ -14048,11 +13915,7 @@ components:
             public: true
             netmask: netmask
             management: true
-            metro:
-              country: country
-              code: code
-              name: name
-              id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            metro: '{}'
             cidr: 5
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             href: href
@@ -14073,38 +13936,13 @@ components:
           public: true
           netmask: netmask
           management: true
-          metro:
-            country: country
-            code: code
-            name: name
-            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          metro: '{}'
           cidr: 6
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           href: href
           state: state
           global_ip: true
-          facility:
-            features:
-            - features
-            - features
-            code: code
-            address:
-              country: country
-              address: address
-              address2: address2
-              city: city
-              coordinates:
-                latitude: latitude
-                longitude: longitude
-              state: state
-              zip_code: zip_code
-            metro:
-              country: country
-              code: code
-              name: name
-              id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            name: name
-            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          facility: '{}'
       properties:
         ip_addresses:
           items:
@@ -14286,6 +14124,8 @@ components:
     OperatingSystem:
       example:
         distro: distro
+        preinstallable: true
+        licensed: true
         name: name
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         provisionable_on:
@@ -14293,6 +14133,7 @@ components:
         - provisionable_on
         version: version
         slug: slug
+        pricing: '{}'
       properties:
         id:
           format: uuid
@@ -14305,10 +14146,23 @@ components:
           type: string
         version:
           type: string
+        preinstallable:
+          description: Servers can be already preinstalled with OS in order to shorten
+            provision time.
+          type: boolean
         provisionable_on:
           items:
             type: string
           type: array
+        pricing:
+          description: This object contains price per time unit and optional multiplier
+            value if licence price depends on hardware plan or components (e.g. number
+            of cores)
+          properties: {}
+          type: object
+        licensed:
+          description: Licenced OS is priced according to pricing property
+          type: boolean
       type: object
     OperatingSystemList:
       items:
@@ -14850,21 +14704,6 @@ components:
             $ref: '#/components/schemas/Plan'
           type: array
       type: object
-    PlanVersion:
-      properties:
-        id:
-          format: uuid
-          type: string
-        slug:
-          type: string
-        name:
-          type: string
-        specs:
-          properties: {}
-          type: object
-        line:
-          type: string
-      type: object
     Port:
       example:
         disbond_operation_supported: true
@@ -14918,13 +14757,6 @@ components:
         request_ips:
           items:
             $ref: '#/components/schemas/PortConvertLayer3Input_request_ips'
-          type: array
-      type: object
-    PortList:
-      properties:
-        ports:
-          items:
-            $ref: '#/components/schemas/Port'
           type: array
       type: object
     Project:
@@ -15380,8 +15212,7 @@ components:
         end_at: 2000-01-23T04:56:07.000+00:00
         instances:
           href: href
-        metro:
-          href: href
+        metro: '{}'
         devices_min: 0
         created_at: 2000-01-23T04:56:07.000+00:00
         project:
@@ -15414,7 +15245,11 @@ components:
         facilities:
           $ref: '#/components/schemas/Href'
         metro:
-          $ref: '#/components/schemas/Href'
+          allOf:
+          - $ref: '#/components/schemas/Metro'
+          - description: The metro the spot market request was created in
+            type: object
+          type: object
         project:
           $ref: '#/components/schemas/Href'
         instances:
@@ -15426,8 +15261,7 @@ components:
         - end_at: 2000-01-23T04:56:07.000+00:00
           instances:
             href: href
-          metro:
-            href: href
+          metro: '{}'
           devices_min: 0
           created_at: 2000-01-23T04:56:07.000+00:00
           project:
@@ -15441,8 +15275,7 @@ components:
         - end_at: 2000-01-23T04:56:07.000+00:00
           instances:
             href: href
-          metro:
-            href: href
+          metro: '{}'
           devices_min: 0
           created_at: 2000-01-23T04:56:07.000+00:00
           project:
@@ -15689,14 +15522,6 @@ components:
           type: string
         volume:
           $ref: '#/components/schemas/Href'
-      type: object
-    VolumeSnapshotInput:
-      properties:
-        device_id:
-          format: uuid
-          type: string
-      required:
-      - device_id
       type: object
     VolumeSnapshotList:
       example:
@@ -15988,28 +15813,13 @@ components:
         meta:
           $ref: '#/components/schemas/Meta'
       type: object
-    SubscribableEvent:
-      properties:
-        id:
-          format: uuid
-          type: string
-        event_type:
-          type: string
-        event_name:
-          type: string
-        event_slug:
-          type: string
-      type: object
-    SubscribableEventsList:
-      properties:
-        subscribable_events:
-          items:
-            $ref: '#/components/schemas/SubscribableEvent'
-          type: array
-        meta:
-          $ref: '#/components/schemas/Meta'
-      type: object
     SupportRequestInput:
+      example:
+        device_id: device_id
+        project_id: project_id
+        subject: subject
+        message: message
+        priority: urgent
       properties:
         subject:
           type: string
@@ -16670,20 +16480,6 @@ components:
       properties:
         baremetal_1e:
           $ref: '#/components/schemas/CapacityLevelPerBaremetal'
-      type: object
-    CapacityPerBaremetal:
-      properties:
-        level:
-          type: string
-        available_servers:
-          type: integer
-        total_servers:
-          type: integer
-        market_buffer_percentage:
-          type: integer
-        market_floor_price:
-          format: float
-          type: number
       type: object
     CapacityLevelPerBaremetal:
       example:
@@ -17463,11 +17259,6 @@ components:
             type: string
           type: array
       type: object
-    Userdata:
-      properties:
-        userdata:
-          type: string
-      type: object
     TransferRequest:
       example:
         updated_at: 2000-01-23T04:56:07.000+00:00
@@ -17715,6 +17506,27 @@ components:
           type: object
       type: object
     UserCreateInput:
+      example:
+        level: level
+        timezone: timezone
+        last_name: last_name
+        avatar: ""
+        title: title
+        emails:
+        - default: true
+          address: address
+        - default: true
+          address: address
+        social_accounts: '{}'
+        password: password
+        verified_at: 2000-01-23T04:56:07.000+00:00
+        company_name: company_name
+        phone_number: phone_number
+        company_url: company_url
+        customdata: '{}'
+        locked: true
+        first_name: first_name
+        two_factor_auth: two_factor_auth
       properties:
         first_name:
           type: string

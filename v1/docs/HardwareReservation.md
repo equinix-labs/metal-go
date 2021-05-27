@@ -5,14 +5,17 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **string** |  | [optional] 
-**ShortId** | Pointer to **string** |  | [optional] 
+**ShortId** | Pointer to **string** | Short version of the ID. | [optional] 
 **Facility** | Pointer to [**Facility**](Facility.md) |  | [optional] 
 **Plan** | Pointer to [**Plan**](Plan.md) |  | [optional] 
 **Href** | Pointer to **string** |  | [optional] 
 **Project** | Pointer to [**Project**](Project.md) |  | [optional] 
 **Device** | Pointer to [**Device**](Device.md) |  | [optional] 
 **CreatedAt** | Pointer to **time.Time** |  | [optional] 
-**RemoveAt** | Pointer to **time.Time** |  | [optional] 
+**Spare** | Pointer to **bool** | Whether the Hardware Reservation is a spare. Spare Hardware Reservations are used when a Hardware Reservations requires service from Metal Equinix | [optional] 
+**NeedOfService** | Pointer to **bool** | Whether this Device requires assistance from Metal Equinix. | [optional] 
+**Provisionable** | Pointer to **bool** | Whether the reserved server is provisionable or not. Spare devices can&#39;t be provisioned unless they are activated first. | [optional] 
+**CustomRate** | Pointer to **float32** | Amount that will be charged for every billing_cycle. | [optional] 
 
 ## Methods
 
@@ -233,30 +236,105 @@ SetCreatedAt sets CreatedAt field to given value.
 
 HasCreatedAt returns a boolean if a field has been set.
 
-### GetRemoveAt
+### GetSpare
 
-`func (o *HardwareReservation) GetRemoveAt() time.Time`
+`func (o *HardwareReservation) GetSpare() bool`
 
-GetRemoveAt returns the RemoveAt field if non-nil, zero value otherwise.
+GetSpare returns the Spare field if non-nil, zero value otherwise.
 
-### GetRemoveAtOk
+### GetSpareOk
 
-`func (o *HardwareReservation) GetRemoveAtOk() (*time.Time, bool)`
+`func (o *HardwareReservation) GetSpareOk() (*bool, bool)`
 
-GetRemoveAtOk returns a tuple with the RemoveAt field if it's non-nil, zero value otherwise
+GetSpareOk returns a tuple with the Spare field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetRemoveAt
+### SetSpare
 
-`func (o *HardwareReservation) SetRemoveAt(v time.Time)`
+`func (o *HardwareReservation) SetSpare(v bool)`
 
-SetRemoveAt sets RemoveAt field to given value.
+SetSpare sets Spare field to given value.
 
-### HasRemoveAt
+### HasSpare
 
-`func (o *HardwareReservation) HasRemoveAt() bool`
+`func (o *HardwareReservation) HasSpare() bool`
 
-HasRemoveAt returns a boolean if a field has been set.
+HasSpare returns a boolean if a field has been set.
+
+### GetNeedOfService
+
+`func (o *HardwareReservation) GetNeedOfService() bool`
+
+GetNeedOfService returns the NeedOfService field if non-nil, zero value otherwise.
+
+### GetNeedOfServiceOk
+
+`func (o *HardwareReservation) GetNeedOfServiceOk() (*bool, bool)`
+
+GetNeedOfServiceOk returns a tuple with the NeedOfService field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNeedOfService
+
+`func (o *HardwareReservation) SetNeedOfService(v bool)`
+
+SetNeedOfService sets NeedOfService field to given value.
+
+### HasNeedOfService
+
+`func (o *HardwareReservation) HasNeedOfService() bool`
+
+HasNeedOfService returns a boolean if a field has been set.
+
+### GetProvisionable
+
+`func (o *HardwareReservation) GetProvisionable() bool`
+
+GetProvisionable returns the Provisionable field if non-nil, zero value otherwise.
+
+### GetProvisionableOk
+
+`func (o *HardwareReservation) GetProvisionableOk() (*bool, bool)`
+
+GetProvisionableOk returns a tuple with the Provisionable field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProvisionable
+
+`func (o *HardwareReservation) SetProvisionable(v bool)`
+
+SetProvisionable sets Provisionable field to given value.
+
+### HasProvisionable
+
+`func (o *HardwareReservation) HasProvisionable() bool`
+
+HasProvisionable returns a boolean if a field has been set.
+
+### GetCustomRate
+
+`func (o *HardwareReservation) GetCustomRate() float32`
+
+GetCustomRate returns the CustomRate field if non-nil, zero value otherwise.
+
+### GetCustomRateOk
+
+`func (o *HardwareReservation) GetCustomRateOk() (*float32, bool)`
+
+GetCustomRateOk returns a tuple with the CustomRate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCustomRate
+
+`func (o *HardwareReservation) SetCustomRate(v float32)`
+
+SetCustomRate sets CustomRate field to given value.
+
+### HasCustomRate
+
+`func (o *HardwareReservation) HasCustomRate() bool`
+
+HasCustomRate returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

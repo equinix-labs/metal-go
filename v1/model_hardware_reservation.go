@@ -19,6 +19,7 @@ import (
 // HardwareReservation struct for HardwareReservation
 type HardwareReservation struct {
 	Id *string `json:"id,omitempty"`
+	// Short version of the ID.
 	ShortId *string `json:"short_id,omitempty"`
 	Facility *Facility `json:"facility,omitempty"`
 	Plan *Plan `json:"plan,omitempty"`
@@ -26,7 +27,14 @@ type HardwareReservation struct {
 	Project *Project `json:"project,omitempty"`
 	Device *Device `json:"device,omitempty"`
 	CreatedAt *time.Time `json:"created_at,omitempty"`
-	RemoveAt *time.Time `json:"remove_at,omitempty"`
+	// Whether the Hardware Reservation is a spare. Spare Hardware Reservations are used when a Hardware Reservations requires service from Metal Equinix
+	Spare *bool `json:"spare,omitempty"`
+	// Whether this Device requires assistance from Metal Equinix.
+	NeedOfService *bool `json:"need_of_service,omitempty"`
+	// Whether the reserved server is provisionable or not. Spare devices can't be provisioned unless they are activated first.
+	Provisionable *bool `json:"provisionable,omitempty"`
+	// Amount that will be charged for every billing_cycle.
+	CustomRate *float32 `json:"custom_rate,omitempty"`
 }
 
 // NewHardwareReservation instantiates a new HardwareReservation object
@@ -302,36 +310,132 @@ func (o *HardwareReservation) SetCreatedAt(v time.Time) {
 	o.CreatedAt = &v
 }
 
-// GetRemoveAt returns the RemoveAt field value if set, zero value otherwise.
-func (o *HardwareReservation) GetRemoveAt() time.Time {
-	if o == nil || o.RemoveAt == nil {
-		var ret time.Time
+// GetSpare returns the Spare field value if set, zero value otherwise.
+func (o *HardwareReservation) GetSpare() bool {
+	if o == nil || o.Spare == nil {
+		var ret bool
 		return ret
 	}
-	return *o.RemoveAt
+	return *o.Spare
 }
 
-// GetRemoveAtOk returns a tuple with the RemoveAt field value if set, nil otherwise
+// GetSpareOk returns a tuple with the Spare field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HardwareReservation) GetRemoveAtOk() (*time.Time, bool) {
-	if o == nil || o.RemoveAt == nil {
+func (o *HardwareReservation) GetSpareOk() (*bool, bool) {
+	if o == nil || o.Spare == nil {
 		return nil, false
 	}
-	return o.RemoveAt, true
+	return o.Spare, true
 }
 
-// HasRemoveAt returns a boolean if a field has been set.
-func (o *HardwareReservation) HasRemoveAt() bool {
-	if o != nil && o.RemoveAt != nil {
+// HasSpare returns a boolean if a field has been set.
+func (o *HardwareReservation) HasSpare() bool {
+	if o != nil && o.Spare != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetRemoveAt gets a reference to the given time.Time and assigns it to the RemoveAt field.
-func (o *HardwareReservation) SetRemoveAt(v time.Time) {
-	o.RemoveAt = &v
+// SetSpare gets a reference to the given bool and assigns it to the Spare field.
+func (o *HardwareReservation) SetSpare(v bool) {
+	o.Spare = &v
+}
+
+// GetNeedOfService returns the NeedOfService field value if set, zero value otherwise.
+func (o *HardwareReservation) GetNeedOfService() bool {
+	if o == nil || o.NeedOfService == nil {
+		var ret bool
+		return ret
+	}
+	return *o.NeedOfService
+}
+
+// GetNeedOfServiceOk returns a tuple with the NeedOfService field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *HardwareReservation) GetNeedOfServiceOk() (*bool, bool) {
+	if o == nil || o.NeedOfService == nil {
+		return nil, false
+	}
+	return o.NeedOfService, true
+}
+
+// HasNeedOfService returns a boolean if a field has been set.
+func (o *HardwareReservation) HasNeedOfService() bool {
+	if o != nil && o.NeedOfService != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetNeedOfService gets a reference to the given bool and assigns it to the NeedOfService field.
+func (o *HardwareReservation) SetNeedOfService(v bool) {
+	o.NeedOfService = &v
+}
+
+// GetProvisionable returns the Provisionable field value if set, zero value otherwise.
+func (o *HardwareReservation) GetProvisionable() bool {
+	if o == nil || o.Provisionable == nil {
+		var ret bool
+		return ret
+	}
+	return *o.Provisionable
+}
+
+// GetProvisionableOk returns a tuple with the Provisionable field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *HardwareReservation) GetProvisionableOk() (*bool, bool) {
+	if o == nil || o.Provisionable == nil {
+		return nil, false
+	}
+	return o.Provisionable, true
+}
+
+// HasProvisionable returns a boolean if a field has been set.
+func (o *HardwareReservation) HasProvisionable() bool {
+	if o != nil && o.Provisionable != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetProvisionable gets a reference to the given bool and assigns it to the Provisionable field.
+func (o *HardwareReservation) SetProvisionable(v bool) {
+	o.Provisionable = &v
+}
+
+// GetCustomRate returns the CustomRate field value if set, zero value otherwise.
+func (o *HardwareReservation) GetCustomRate() float32 {
+	if o == nil || o.CustomRate == nil {
+		var ret float32
+		return ret
+	}
+	return *o.CustomRate
+}
+
+// GetCustomRateOk returns a tuple with the CustomRate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *HardwareReservation) GetCustomRateOk() (*float32, bool) {
+	if o == nil || o.CustomRate == nil {
+		return nil, false
+	}
+	return o.CustomRate, true
+}
+
+// HasCustomRate returns a boolean if a field has been set.
+func (o *HardwareReservation) HasCustomRate() bool {
+	if o != nil && o.CustomRate != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCustomRate gets a reference to the given float32 and assigns it to the CustomRate field.
+func (o *HardwareReservation) SetCustomRate(v float32) {
+	o.CustomRate = &v
 }
 
 func (o HardwareReservation) MarshalJSON() ([]byte, error) {
@@ -360,8 +464,17 @@ func (o HardwareReservation) MarshalJSON() ([]byte, error) {
 	if o.CreatedAt != nil {
 		toSerialize["created_at"] = o.CreatedAt
 	}
-	if o.RemoveAt != nil {
-		toSerialize["remove_at"] = o.RemoveAt
+	if o.Spare != nil {
+		toSerialize["spare"] = o.Spare
+	}
+	if o.NeedOfService != nil {
+		toSerialize["need_of_service"] = o.NeedOfService
+	}
+	if o.Provisionable != nil {
+		toSerialize["provisionable"] = o.Provisionable
+	}
+	if o.CustomRate != nil {
+		toSerialize["custom_rate"] = o.CustomRate
 	}
 	return json.Marshal(toSerialize)
 }

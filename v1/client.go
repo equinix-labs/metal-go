@@ -67,6 +67,8 @@ type APIClient struct {
 
 	FacilitiesApi *FacilitiesApiService
 
+	GlobalBgpRangesApi *GlobalBgpRangesApiService
+
 	HardwareReservationsApi *HardwareReservationsApiService
 
 	IPAddressesApi *IPAddressesApiService
@@ -106,6 +108,8 @@ type APIClient struct {
 	SelfServiceReservationsApi *SelfServiceReservationsApiService
 
 	SpotMarketRequestApi *SpotMarketRequestApiService
+
+	SupportRequestApi *SupportRequestApiService
 
 	TransferRequestsApi *TransferRequestsApiService
 
@@ -149,6 +153,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.EmailsApi = (*EmailsApiService)(&c.common)
 	c.EventsApi = (*EventsApiService)(&c.common)
 	c.FacilitiesApi = (*FacilitiesApiService)(&c.common)
+	c.GlobalBgpRangesApi = (*GlobalBgpRangesApiService)(&c.common)
 	c.HardwareReservationsApi = (*HardwareReservationsApiService)(&c.common)
 	c.IPAddressesApi = (*IPAddressesApiService)(&c.common)
 	c.IncidentsApi = (*IncidentsApiService)(&c.common)
@@ -169,6 +174,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.SSHKeysApi = (*SSHKeysApiService)(&c.common)
 	c.SelfServiceReservationsApi = (*SelfServiceReservationsApiService)(&c.common)
 	c.SpotMarketRequestApi = (*SpotMarketRequestApiService)(&c.common)
+	c.SupportRequestApi = (*SupportRequestApiService)(&c.common)
 	c.TransferRequestsApi = (*TransferRequestsApiService)(&c.common)
 	c.TwoFactorAuthApi = (*TwoFactorAuthApiService)(&c.common)
 	c.UsagesApi = (*UsagesApiService)(&c.common)

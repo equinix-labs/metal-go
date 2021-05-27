@@ -30,7 +30,7 @@ type Interconnection struct {
 	Ports *[]InterconnectionPort `json:"ports,omitempty"`
 	Facility *Href `json:"facility,omitempty"`
 	Organization *Href `json:"organization,omitempty"`
-	Metro *Href `json:"metro,omitempty"`
+	Metro *Metro `json:"metro,omitempty"`
 }
 
 // NewInterconnection instantiates a new Interconnection object
@@ -435,9 +435,9 @@ func (o *Interconnection) SetOrganization(v Href) {
 }
 
 // GetMetro returns the Metro field value if set, zero value otherwise.
-func (o *Interconnection) GetMetro() Href {
+func (o *Interconnection) GetMetro() Metro {
 	if o == nil || o.Metro == nil {
-		var ret Href
+		var ret Metro
 		return ret
 	}
 	return *o.Metro
@@ -445,7 +445,7 @@ func (o *Interconnection) GetMetro() Href {
 
 // GetMetroOk returns a tuple with the Metro field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Interconnection) GetMetroOk() (*Href, bool) {
+func (o *Interconnection) GetMetroOk() (*Metro, bool) {
 	if o == nil || o.Metro == nil {
 		return nil, false
 	}
@@ -461,8 +461,8 @@ func (o *Interconnection) HasMetro() bool {
 	return false
 }
 
-// SetMetro gets a reference to the given Href and assigns it to the Metro field.
-func (o *Interconnection) SetMetro(v Href) {
+// SetMetro gets a reference to the given Metro and assigns it to the Metro field.
+func (o *Interconnection) SetMetro(v Metro) {
 	o.Metro = &v
 }
 

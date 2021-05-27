@@ -17,7 +17,7 @@ import (
 
 // BgpNeighborData struct for BgpNeighborData
 type BgpNeighborData struct {
-	// Address Family for IP Address
+	// Address Family for IP Address. Accepted values are 4 or 6
 	AddressFamily *float32 `json:"address_family,omitempty"`
 	// The customer's ASN. In a local BGP deployment, this will be an internal ASN used to route within the data center. For a global BGP deployment, this will be the your own ASN, configured when you set up BGP for your project.
 	CustomerAs *float32 `json:"customer_as,omitempty"`

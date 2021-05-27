@@ -147,9 +147,10 @@ Class | Method | HTTP request | Description
 *FacilitiesApi* | [**FindFacilities**](docs/FacilitiesApi.md#findfacilities) | **Get** /facilities | Retrieve all facilities
 *FacilitiesApi* | [**FindFacilitiesByOrganization**](docs/FacilitiesApi.md#findfacilitiesbyorganization) | **Get** /organizations/{id}/facilities | Retrieve all facilities visible by the organization
 *FacilitiesApi* | [**FindFacilitiesByProject**](docs/FacilitiesApi.md#findfacilitiesbyproject) | **Get** /projects/{id}/facilities | Retrieve all facilities visible by the project
+*GlobalBgpRangesApi* | [**FindGlobalBgpRanges**](docs/GlobalBgpRangesApi.md#findglobalbgpranges) | **Get** /projects/{id}/global-bgp-ranges | Retrieve all global bgp ranges
 *HardwareReservationsApi* | [**FindHardwareReservationById**](docs/HardwareReservationsApi.md#findhardwarereservationbyid) | **Get** /hardware-reservations/{id} | Retrieve a hardware reservation
 *HardwareReservationsApi* | [**FindProjectHardwareReservations**](docs/HardwareReservationsApi.md#findprojecthardwarereservations) | **Get** /projects/{id}/hardware-reservations | Retrieve all hardware reservations for a given project
-*HardwareReservationsApi* | [**HardwareReservationsIdMovePost**](docs/HardwareReservationsApi.md#hardwarereservationsidmovepost) | **Post** /hardware-reservations/{id}/move | Move a hardware reservation
+*HardwareReservationsApi* | [**MoveHardwareReservation**](docs/HardwareReservationsApi.md#movehardwarereservation) | **Post** /hardware-reservations/{id}/move | Move a hardware reservation
 *IPAddressesApi* | [**CreateIPAssignment**](docs/IPAddressesApi.md#createipassignment) | **Post** /devices/{id}/ips | Create a ip assignment
 *IPAddressesApi* | [**DeleteIPAddress**](docs/IPAddressesApi.md#deleteipaddress) | **Delete** /ips/{id} | Unassign an ip address
 *IPAddressesApi* | [**FindIPAddressById**](docs/IPAddressesApi.md#findipaddressbyid) | **Get** /ips/{id} | Retrieve an ip address
@@ -158,7 +159,7 @@ Class | Method | HTTP request | Description
 *IPAddressesApi* | [**FindIPAvailabilities**](docs/IPAddressesApi.md#findipavailabilities) | **Get** /ips/{id}/available | Retrieve all available subnets of a particular reservation
 *IPAddressesApi* | [**FindIPReservations**](docs/IPAddressesApi.md#findipreservations) | **Get** /projects/{id}/ips | Retrieve all ip reservations
 *IPAddressesApi* | [**RequestIPReservation**](docs/IPAddressesApi.md#requestipreservation) | **Post** /projects/{id}/ips | Requesting IP reservations
-*IncidentsApi* | [**IncidentsGet**](docs/IncidentsApi.md#incidentsget) | **Get** /incidents | Retrieve the number of incidents
+*IncidentsApi* | [**FindIncidents**](docs/IncidentsApi.md#findincidents) | **Get** /incidents | Retrieve the number of incidents
 *InvitationsApi* | [**AcceptInvitation**](docs/InvitationsApi.md#acceptinvitation) | **Put** /invitations/{id} | Accept an invitation
 *InvitationsApi* | [**CreateOrganizationInvitation**](docs/InvitationsApi.md#createorganizationinvitation) | **Post** /organizations/{id}/invitations | Create an invitation for an organization
 *InvitationsApi* | [**CreateProjectInvitation**](docs/InvitationsApi.md#createprojectinvitation) | **Post** /projects/{project_id}/invitations | Create an invitation for a project
@@ -226,13 +227,14 @@ Class | Method | HTTP request | Description
 *SSHKeysApi* | [**FindSSHKeyById**](docs/SSHKeysApi.md#findsshkeybyid) | **Get** /ssh-keys/{id} | Retrieve a ssh key
 *SSHKeysApi* | [**FindSSHKeys**](docs/SSHKeysApi.md#findsshkeys) | **Get** /ssh-keys | Retrieve all ssh keys
 *SSHKeysApi* | [**UpdateSSHKey**](docs/SSHKeysApi.md#updatesshkey) | **Put** /ssh-keys/{id} | Update the ssh key
-*SelfServiceReservationsApi* | [**ProjectsProjectIdSelfServiceReservationsGet**](docs/SelfServiceReservationsApi.md#projectsprojectidselfservicereservationsget) | **Get** /projects/{project_id}/self-service/reservations | Retrieve all reservations
-*SelfServiceReservationsApi* | [**ProjectsProjectIdSelfServiceReservationsIdGet**](docs/SelfServiceReservationsApi.md#projectsprojectidselfservicereservationsidget) | **Get** /projects/{project_id}/self-service/reservations/{id} | Retrieve a reservation
-*SelfServiceReservationsApi* | [**ProjectsProjectIdSelfServiceReservationsPost**](docs/SelfServiceReservationsApi.md#projectsprojectidselfservicereservationspost) | **Post** /projects/{project_id}/self-service/reservations | Create a reservation
+*SelfServiceReservationsApi* | [**CreateSelfServiceReservation**](docs/SelfServiceReservationsApi.md#createselfservicereservation) | **Post** /projects/{project_id}/self-service/reservations | Create a reservation
+*SelfServiceReservationsApi* | [**FindSelfServiceReservation**](docs/SelfServiceReservationsApi.md#findselfservicereservation) | **Get** /projects/{project_id}/self-service/reservations/{id} | Retrieve a reservation
+*SelfServiceReservationsApi* | [**FindSelfServiceReservations**](docs/SelfServiceReservationsApi.md#findselfservicereservations) | **Get** /projects/{project_id}/self-service/reservations | Retrieve all reservations
 *SpotMarketRequestApi* | [**CreateSpotMarketRequest**](docs/SpotMarketRequestApi.md#createspotmarketrequest) | **Post** /projects/{id}/spot-market-requests | Create a spot market request
 *SpotMarketRequestApi* | [**DeleteSpotMarketRequest**](docs/SpotMarketRequestApi.md#deletespotmarketrequest) | **Delete** /spot-market-requests/{id} | Delete the spot market request
 *SpotMarketRequestApi* | [**FindSpotMarketRequestById**](docs/SpotMarketRequestApi.md#findspotmarketrequestbyid) | **Get** /spot-market-requests/{id} | Retrieve a spot market request
 *SpotMarketRequestApi* | [**ListSpotMarketRequests**](docs/SpotMarketRequestApi.md#listspotmarketrequests) | **Get** /projects/{id}/spot-market-requests | List spot market requests
+*SupportRequestApi* | [**RequestSuppert**](docs/SupportRequestApi.md#requestsuppert) | **Post** /support-requests | Create a support ticket
 *TransferRequestsApi* | [**AcceptTransferRequest**](docs/TransferRequestsApi.md#accepttransferrequest) | **Put** /transfers/{id} | Accept a transfer request
 *TransferRequestsApi* | [**CreateTransferRequest**](docs/TransferRequestsApi.md#createtransferrequest) | **Post** /projects/{id}/transfers | Create a transfer request
 *TransferRequestsApi* | [**DeclineTransferRequest**](docs/TransferRequestsApi.md#declinetransferrequest) | **Delete** /transfers/{id} | Decline a transfer request
@@ -247,6 +249,7 @@ Class | Method | HTTP request | Description
 *UserVerificationTokensApi* | [**ConsumeVerificationRequest**](docs/UserVerificationTokensApi.md#consumeverificationrequest) | **Put** /verify-email | Verify a user using an email verification token
 *UserVerificationTokensApi* | [**CreateValidationRequest**](docs/UserVerificationTokensApi.md#createvalidationrequest) | **Post** /verify-email | Create an email verification request
 *UserdataApi* | [**ValidateUserdata**](docs/UserdataApi.md#validateuserdata) | **Post** /userdata/validate | Validate user data
+*UsersApi* | [**CreateUser**](docs/UsersApi.md#createuser) | **Post** /users | Create a user
 *UsersApi* | [**FindCurrentUser**](docs/UsersApi.md#findcurrentuser) | **Get** /user | Retrieve the current user
 *UsersApi* | [**FindUserById**](docs/UsersApi.md#finduserbyid) | **Get** /users/{id} | Retrieve a user
 *UsersApi* | [**FindUserCustomdata**](docs/UsersApi.md#findusercustomdata) | **Get** /users/{id}/customdata | Retrieve the custom metadata of a user
@@ -303,7 +306,6 @@ Class | Method | HTTP request | Description
  - [CapacityInput](docs/CapacityInput.md)
  - [CapacityLevelPerBaremetal](docs/CapacityLevelPerBaremetal.md)
  - [CapacityList](docs/CapacityList.md)
- - [CapacityPerBaremetal](docs/CapacityPerBaremetal.md)
  - [CapacityPerFacility](docs/CapacityPerFacility.md)
  - [CapacityPerMetroInput](docs/CapacityPerMetroInput.md)
  - [CapacityPerNewFacility](docs/CapacityPerNewFacility.md)
@@ -322,19 +324,13 @@ Class | Method | HTTP request | Description
  - [Email](docs/Email.md)
  - [EmailInput](docs/EmailInput.md)
  - [Entitlement](docs/Entitlement.md)
- - [EntitlementInput](docs/EntitlementInput.md)
- - [EntitlementList](docs/EntitlementList.md)
  - [Error](docs/Error.md)
  - [Event](docs/Event.md)
- - [EventInput](docs/EventInput.md)
  - [EventList](docs/EventList.md)
- - [EventType](docs/EventType.md)
- - [EventTypeList](docs/EventTypeList.md)
  - [Facility](docs/Facility.md)
  - [FacilityList](docs/FacilityList.md)
  - [GlobalBgpRange](docs/GlobalBgpRange.md)
  - [GlobalBgpRangeList](docs/GlobalBgpRangeList.md)
- - [HardwareLocation](docs/HardwareLocation.md)
  - [HardwareReservation](docs/HardwareReservation.md)
  - [HardwareReservationList](docs/HardwareReservationList.md)
  - [Href](docs/Href.md)
@@ -357,7 +353,6 @@ Class | Method | HTTP request | Description
  - [Invitation](docs/Invitation.md)
  - [InvitationInput](docs/InvitationInput.md)
  - [InvitationList](docs/InvitationList.md)
- - [IpAddressInput](docs/IpAddressInput.md)
  - [License](docs/License.md)
  - [LicenseCreateInput](docs/LicenseCreateInput.md)
  - [LicenseList](docs/LicenseList.md)
@@ -384,12 +379,10 @@ Class | Method | HTTP request | Description
  - [PaymentMethodUpdateInput](docs/PaymentMethodUpdateInput.md)
  - [Plan](docs/Plan.md)
  - [PlanList](docs/PlanList.md)
- - [PlanVersion](docs/PlanVersion.md)
  - [Port](docs/Port.md)
  - [PortAssignInput](docs/PortAssignInput.md)
  - [PortConvertLayer3Input](docs/PortConvertLayer3Input.md)
  - [PortConvertLayer3InputRequestIps](docs/PortConvertLayer3InputRequestIps.md)
- - [PortList](docs/PortList.md)
  - [Project](docs/Project.md)
  - [ProjectCreateFromRootInput](docs/ProjectCreateFromRootInput.md)
  - [ProjectCreateInput](docs/ProjectCreateInput.md)
@@ -422,8 +415,6 @@ Class | Method | HTTP request | Description
  - [SpotPricesPerFacility](docs/SpotPricesPerFacility.md)
  - [SpotPricesPerNewFacility](docs/SpotPricesPerNewFacility.md)
  - [SpotPricesReport](docs/SpotPricesReport.md)
- - [SubscribableEvent](docs/SubscribableEvent.md)
- - [SubscribableEventsList](docs/SubscribableEventsList.md)
  - [SupportRequestInput](docs/SupportRequestInput.md)
  - [Timeframe](docs/Timeframe.md)
  - [TransferRequest](docs/TransferRequest.md)
@@ -434,7 +425,6 @@ Class | Method | HTTP request | Description
  - [UserCreateInput](docs/UserCreateInput.md)
  - [UserList](docs/UserList.md)
  - [UserUpdateInput](docs/UserUpdateInput.md)
- - [Userdata](docs/Userdata.md)
  - [VirtualCircuit](docs/VirtualCircuit.md)
  - [VirtualCircuitCreateInput](docs/VirtualCircuitCreateInput.md)
  - [VirtualCircuitList](docs/VirtualCircuitList.md)
@@ -449,7 +439,6 @@ Class | Method | HTTP request | Description
  - [VolumeCreateInput](docs/VolumeCreateInput.md)
  - [VolumeList](docs/VolumeList.md)
  - [VolumeSnapshot](docs/VolumeSnapshot.md)
- - [VolumeSnapshotInput](docs/VolumeSnapshotInput.md)
  - [VolumeSnapshotList](docs/VolumeSnapshotList.md)
  - [VolumeUpdateInput](docs/VolumeUpdateInput.md)
 
