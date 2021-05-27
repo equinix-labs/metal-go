@@ -36,7 +36,7 @@ type DeviceCreateInput struct {
 	IpxeScriptUrl *string `json:"ipxe_script_url,omitempty"`
 	// The userdata presented in the metadata service for this device.  Userdata is fetched and interpretted by the operating system installed on the device. Acceptable formats are determined by the operating system, with the exception of a special iPXE enabling syntax which is handled before the operating system starts.        See [Server User Data](https://metal.equinix.com/developers/docs/servers/user-data/) and [Provisioning with Custom iPXE](https://metal.equinix.com/developers/docs/operating-systems/custom-ipxe/#provisioning-with-custom-ipxe) for more details.
 	Userdata *string `json:"userdata,omitempty"`
-	// Wether the device should be locked, preventing accidental deletion.
+	// Whether the device should be locked, preventing accidental deletion.
 	Locked *bool `json:"locked,omitempty"`
 	// Customdata is an arbitrary JSON value that can be accessed via the metadata service.
 	Customdata *map[string]interface{} `json:"customdata,omitempty"`

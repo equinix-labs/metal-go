@@ -374,31 +374,31 @@ func (a *HardwareReservationsApiService) FindProjectHardwareReservationsExecute(
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiHardwareReservationsIdMovePostRequest struct {
+type ApiMoveHardwareReservationRequest struct {
 	ctx _context.Context
 	ApiService *HardwareReservationsApiService
 	id string
 	projectId *string
 }
 
-func (r ApiHardwareReservationsIdMovePostRequest) ProjectId(projectId string) ApiHardwareReservationsIdMovePostRequest {
+func (r ApiMoveHardwareReservationRequest) ProjectId(projectId string) ApiMoveHardwareReservationRequest {
 	r.projectId = &projectId
 	return r
 }
 
-func (r ApiHardwareReservationsIdMovePostRequest) Execute() (HardwareReservation, *_nethttp.Response, error) {
-	return r.ApiService.HardwareReservationsIdMovePostExecute(r)
+func (r ApiMoveHardwareReservationRequest) Execute() (HardwareReservation, *_nethttp.Response, error) {
+	return r.ApiService.MoveHardwareReservationExecute(r)
 }
 
 /*
- * HardwareReservationsIdMovePost Move a hardware reservation
+ * MoveHardwareReservation Move a hardware reservation
  * Move a hardware reservation to another project
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param id Hardware Reservation UUID
- * @return ApiHardwareReservationsIdMovePostRequest
+ * @return ApiMoveHardwareReservationRequest
  */
-func (a *HardwareReservationsApiService) HardwareReservationsIdMovePost(ctx _context.Context, id string) ApiHardwareReservationsIdMovePostRequest {
-	return ApiHardwareReservationsIdMovePostRequest{
+func (a *HardwareReservationsApiService) MoveHardwareReservation(ctx _context.Context, id string) ApiMoveHardwareReservationRequest {
+	return ApiMoveHardwareReservationRequest{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
@@ -409,7 +409,7 @@ func (a *HardwareReservationsApiService) HardwareReservationsIdMovePost(ctx _con
  * Execute executes the request
  * @return HardwareReservation
  */
-func (a *HardwareReservationsApiService) HardwareReservationsIdMovePostExecute(r ApiHardwareReservationsIdMovePostRequest) (HardwareReservation, *_nethttp.Response, error) {
+func (a *HardwareReservationsApiService) MoveHardwareReservationExecute(r ApiMoveHardwareReservationRequest) (HardwareReservation, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
@@ -419,7 +419,7 @@ func (a *HardwareReservationsApiService) HardwareReservationsIdMovePostExecute(r
 		localVarReturnValue  HardwareReservation
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HardwareReservationsApiService.HardwareReservationsIdMovePost")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HardwareReservationsApiService.MoveHardwareReservation")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}

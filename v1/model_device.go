@@ -45,7 +45,7 @@ type Device struct {
 	AlwaysPxe *bool `json:"always_pxe,omitempty"`
 	IpxeScriptUrl *string `json:"ipxe_script_url,omitempty"`
 	Facility *Facility `json:"facility,omitempty"`
-	Metro *map[string]interface{} `json:"metro,omitempty"`
+	Metro *Metro `json:"metro,omitempty"`
 	Plan *Plan `json:"plan,omitempty"`
 	Userdata *string `json:"userdata,omitempty"`
 	// Root password is automatically generated when server is provisioned and it is removed after 24 hours
@@ -817,9 +817,9 @@ func (o *Device) SetFacility(v Facility) {
 }
 
 // GetMetro returns the Metro field value if set, zero value otherwise.
-func (o *Device) GetMetro() map[string]interface{} {
+func (o *Device) GetMetro() Metro {
 	if o == nil || o.Metro == nil {
-		var ret map[string]interface{}
+		var ret Metro
 		return ret
 	}
 	return *o.Metro
@@ -827,7 +827,7 @@ func (o *Device) GetMetro() map[string]interface{} {
 
 // GetMetroOk returns a tuple with the Metro field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Device) GetMetroOk() (*map[string]interface{}, bool) {
+func (o *Device) GetMetroOk() (*Metro, bool) {
 	if o == nil || o.Metro == nil {
 		return nil, false
 	}
@@ -843,8 +843,8 @@ func (o *Device) HasMetro() bool {
 	return false
 }
 
-// SetMetro gets a reference to the given map[string]interface{} and assigns it to the Metro field.
-func (o *Device) SetMetro(v map[string]interface{}) {
+// SetMetro gets a reference to the given Metro and assigns it to the Metro field.
+func (o *Device) SetMetro(v Metro) {
 	o.Metro = &v
 }
 

@@ -17,6 +17,7 @@ import (
 	_ioutil "io/ioutil"
 	_nethttp "net/http"
 	_neturl "net/url"
+	"strings"
 )
 
 // Linger please
@@ -24,71 +25,61 @@ var (
 	_ _context.Context
 )
 
-// IncidentsApiService IncidentsApi service
-type IncidentsApiService service
+// GlobalBgpRangesApiService GlobalBgpRangesApi service
+type GlobalBgpRangesApiService service
 
-type ApiFindIncidentsRequest struct {
+type ApiFindGlobalBgpRangesRequest struct {
 	ctx _context.Context
-	ApiService *IncidentsApiService
-	include *[]string
-	exclude *[]string
+	ApiService *GlobalBgpRangesApiService
+	id string
 }
 
-func (r ApiFindIncidentsRequest) Include(include []string) ApiFindIncidentsRequest {
-	r.include = &include
-	return r
-}
-func (r ApiFindIncidentsRequest) Exclude(exclude []string) ApiFindIncidentsRequest {
-	r.exclude = &exclude
-	return r
-}
 
-func (r ApiFindIncidentsRequest) Execute() (*_nethttp.Response, error) {
-	return r.ApiService.FindIncidentsExecute(r)
+func (r ApiFindGlobalBgpRangesRequest) Execute() (GlobalBgpRangeList, *_nethttp.Response, error) {
+	return r.ApiService.FindGlobalBgpRangesExecute(r)
 }
 
 /*
- * FindIncidents Retrieve the number of incidents
- * Retrieve the number of incidents.
+ * FindGlobalBgpRanges Retrieve all global bgp ranges
+ * Returns all global bgp ranges for a project
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiFindIncidentsRequest
+ * @param id Project UUID
+ * @return ApiFindGlobalBgpRangesRequest
  */
-func (a *IncidentsApiService) FindIncidents(ctx _context.Context) ApiFindIncidentsRequest {
-	return ApiFindIncidentsRequest{
+func (a *GlobalBgpRangesApiService) FindGlobalBgpRanges(ctx _context.Context, id string) ApiFindGlobalBgpRangesRequest {
+	return ApiFindGlobalBgpRangesRequest{
 		ApiService: a,
 		ctx: ctx,
+		id: id,
 	}
 }
 
 /*
  * Execute executes the request
+ * @return GlobalBgpRangeList
  */
-func (a *IncidentsApiService) FindIncidentsExecute(r ApiFindIncidentsRequest) (*_nethttp.Response, error) {
+func (a *GlobalBgpRangesApiService) FindGlobalBgpRangesExecute(r ApiFindGlobalBgpRangesRequest) (GlobalBgpRangeList, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
+		localVarReturnValue  GlobalBgpRangeList
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IncidentsApiService.FindIncidents")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "GlobalBgpRangesApiService.FindGlobalBgpRanges")
 	if err != nil {
-		return nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/incidents"
+	localVarPath := localBasePath + "/projects/{id}/global-bgp-ranges"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	if r.include != nil {
-		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
-	}
-	if r.exclude != nil {
-		localVarQueryParams.Add("exclude", parameterToString(*r.exclude, "csv"))
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -122,19 +113,19 @@ func (a *IncidentsApiService) FindIncidentsExecute(r ApiFindIncidentsRequest) (*
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
-		return nil, err
+		return localVarReturnValue, nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -147,12 +138,41 @@ func (a *IncidentsApiService) FindIncidentsExecute(r ApiFindIncidentsRequest) (*
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
 		}
-		return localVarHTTPResponse, newErr
+		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	return localVarHTTPResponse, nil
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
 }

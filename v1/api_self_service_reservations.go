@@ -28,36 +28,31 @@ var (
 // SelfServiceReservationsApiService SelfServiceReservationsApi service
 type SelfServiceReservationsApiService service
 
-type ApiProjectsProjectIdSelfServiceReservationsGetRequest struct {
+type ApiCreateSelfServiceReservationRequest struct {
 	ctx _context.Context
 	ApiService *SelfServiceReservationsApiService
 	projectId string
-	page *int32
-	perPage *int32
+	reservation *CreateSelfServiceReservationRequest
 }
 
-func (r ApiProjectsProjectIdSelfServiceReservationsGetRequest) Page(page int32) ApiProjectsProjectIdSelfServiceReservationsGetRequest {
-	r.page = &page
-	return r
-}
-func (r ApiProjectsProjectIdSelfServiceReservationsGetRequest) PerPage(perPage int32) ApiProjectsProjectIdSelfServiceReservationsGetRequest {
-	r.perPage = &perPage
+func (r ApiCreateSelfServiceReservationRequest) Reservation(reservation CreateSelfServiceReservationRequest) ApiCreateSelfServiceReservationRequest {
+	r.reservation = &reservation
 	return r
 }
 
-func (r ApiProjectsProjectIdSelfServiceReservationsGetRequest) Execute() (SelfServiceReservationList, *_nethttp.Response, error) {
-	return r.ApiService.ProjectsProjectIdSelfServiceReservationsGetExecute(r)
+func (r ApiCreateSelfServiceReservationRequest) Execute() (SelfServiceReservationResponse, *_nethttp.Response, error) {
+	return r.ApiService.CreateSelfServiceReservationExecute(r)
 }
 
 /*
- * ProjectsProjectIdSelfServiceReservationsGet Retrieve all reservations
- * Returns all reservations.
+ * CreateSelfServiceReservation Create a reservation
+ * Creates a reservation.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param projectId Project UUID
- * @return ApiProjectsProjectIdSelfServiceReservationsGetRequest
+ * @return ApiCreateSelfServiceReservationRequest
  */
-func (a *SelfServiceReservationsApiService) ProjectsProjectIdSelfServiceReservationsGet(ctx _context.Context, projectId string) ApiProjectsProjectIdSelfServiceReservationsGetRequest {
-	return ApiProjectsProjectIdSelfServiceReservationsGetRequest{
+func (a *SelfServiceReservationsApiService) CreateSelfServiceReservation(ctx _context.Context, projectId string) ApiCreateSelfServiceReservationRequest {
+	return ApiCreateSelfServiceReservationRequest{
 		ApiService: a,
 		ctx: ctx,
 		projectId: projectId,
@@ -66,19 +61,19 @@ func (a *SelfServiceReservationsApiService) ProjectsProjectIdSelfServiceReservat
 
 /*
  * Execute executes the request
- * @return SelfServiceReservationList
+ * @return SelfServiceReservationResponse
  */
-func (a *SelfServiceReservationsApiService) ProjectsProjectIdSelfServiceReservationsGetExecute(r ApiProjectsProjectIdSelfServiceReservationsGetRequest) (SelfServiceReservationList, *_nethttp.Response, error) {
+func (a *SelfServiceReservationsApiService) CreateSelfServiceReservationExecute(r ApiCreateSelfServiceReservationRequest) (SelfServiceReservationResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  SelfServiceReservationList
+		localVarReturnValue  SelfServiceReservationResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SelfServiceReservationsApiService.ProjectsProjectIdSelfServiceReservationsGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SelfServiceReservationsApiService.CreateSelfServiceReservation")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
@@ -89,15 +84,12 @@ func (a *SelfServiceReservationsApiService) ProjectsProjectIdSelfServiceReservat
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	if r.reservation == nil {
+		return localVarReturnValue, nil, reportError("reservation is required and must be specified")
+	}
 
-	if r.page != nil {
-		localVarQueryParams.Add("page", parameterToString(*r.page, ""))
-	}
-	if r.perPage != nil {
-		localVarQueryParams.Add("per_page", parameterToString(*r.perPage, ""))
-	}
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
+	localVarHTTPContentTypes := []string{"application/json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -113,6 +105,8 @@ func (a *SelfServiceReservationsApiService) ProjectsProjectIdSelfServiceReservat
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	// body params
+	localVarPostBody = r.reservation
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -157,6 +151,16 @@ func (a *SelfServiceReservationsApiService) ProjectsProjectIdSelfServiceReservat
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -173,7 +177,7 @@ func (a *SelfServiceReservationsApiService) ProjectsProjectIdSelfServiceReservat
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiProjectsProjectIdSelfServiceReservationsIdGetRequest struct {
+type ApiFindSelfServiceReservationRequest struct {
 	ctx _context.Context
 	ApiService *SelfServiceReservationsApiService
 	id string
@@ -181,20 +185,20 @@ type ApiProjectsProjectIdSelfServiceReservationsIdGetRequest struct {
 }
 
 
-func (r ApiProjectsProjectIdSelfServiceReservationsIdGetRequest) Execute() (SelfServiceReservationResponse, *_nethttp.Response, error) {
-	return r.ApiService.ProjectsProjectIdSelfServiceReservationsIdGetExecute(r)
+func (r ApiFindSelfServiceReservationRequest) Execute() (SelfServiceReservationResponse, *_nethttp.Response, error) {
+	return r.ApiService.FindSelfServiceReservationExecute(r)
 }
 
 /*
- * ProjectsProjectIdSelfServiceReservationsIdGet Retrieve a reservation
+ * FindSelfServiceReservation Retrieve a reservation
  * Returns a reservation
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param id Reservation short_id
  * @param projectId Project UUID
- * @return ApiProjectsProjectIdSelfServiceReservationsIdGetRequest
+ * @return ApiFindSelfServiceReservationRequest
  */
-func (a *SelfServiceReservationsApiService) ProjectsProjectIdSelfServiceReservationsIdGet(ctx _context.Context, id string, projectId string) ApiProjectsProjectIdSelfServiceReservationsIdGetRequest {
-	return ApiProjectsProjectIdSelfServiceReservationsIdGetRequest{
+func (a *SelfServiceReservationsApiService) FindSelfServiceReservation(ctx _context.Context, id string, projectId string) ApiFindSelfServiceReservationRequest {
+	return ApiFindSelfServiceReservationRequest{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
@@ -206,7 +210,7 @@ func (a *SelfServiceReservationsApiService) ProjectsProjectIdSelfServiceReservat
  * Execute executes the request
  * @return SelfServiceReservationResponse
  */
-func (a *SelfServiceReservationsApiService) ProjectsProjectIdSelfServiceReservationsIdGetExecute(r ApiProjectsProjectIdSelfServiceReservationsIdGetRequest) (SelfServiceReservationResponse, *_nethttp.Response, error) {
+func (a *SelfServiceReservationsApiService) FindSelfServiceReservationExecute(r ApiFindSelfServiceReservationRequest) (SelfServiceReservationResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -216,7 +220,7 @@ func (a *SelfServiceReservationsApiService) ProjectsProjectIdSelfServiceReservat
 		localVarReturnValue  SelfServiceReservationResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SelfServiceReservationsApiService.ProjectsProjectIdSelfServiceReservationsIdGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SelfServiceReservationsApiService.FindSelfServiceReservation")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
@@ -316,31 +320,36 @@ func (a *SelfServiceReservationsApiService) ProjectsProjectIdSelfServiceReservat
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiProjectsProjectIdSelfServiceReservationsPostRequest struct {
+type ApiFindSelfServiceReservationsRequest struct {
 	ctx _context.Context
 	ApiService *SelfServiceReservationsApiService
 	projectId string
-	reservation *CreateSelfServiceReservationRequest
+	page *int32
+	perPage *int32
 }
 
-func (r ApiProjectsProjectIdSelfServiceReservationsPostRequest) Reservation(reservation CreateSelfServiceReservationRequest) ApiProjectsProjectIdSelfServiceReservationsPostRequest {
-	r.reservation = &reservation
+func (r ApiFindSelfServiceReservationsRequest) Page(page int32) ApiFindSelfServiceReservationsRequest {
+	r.page = &page
+	return r
+}
+func (r ApiFindSelfServiceReservationsRequest) PerPage(perPage int32) ApiFindSelfServiceReservationsRequest {
+	r.perPage = &perPage
 	return r
 }
 
-func (r ApiProjectsProjectIdSelfServiceReservationsPostRequest) Execute() (SelfServiceReservationResponse, *_nethttp.Response, error) {
-	return r.ApiService.ProjectsProjectIdSelfServiceReservationsPostExecute(r)
+func (r ApiFindSelfServiceReservationsRequest) Execute() (SelfServiceReservationList, *_nethttp.Response, error) {
+	return r.ApiService.FindSelfServiceReservationsExecute(r)
 }
 
 /*
- * ProjectsProjectIdSelfServiceReservationsPost Create a reservation
- * Creates a reservation.
+ * FindSelfServiceReservations Retrieve all reservations
+ * Returns all reservations.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param projectId Project UUID
- * @return ApiProjectsProjectIdSelfServiceReservationsPostRequest
+ * @return ApiFindSelfServiceReservationsRequest
  */
-func (a *SelfServiceReservationsApiService) ProjectsProjectIdSelfServiceReservationsPost(ctx _context.Context, projectId string) ApiProjectsProjectIdSelfServiceReservationsPostRequest {
-	return ApiProjectsProjectIdSelfServiceReservationsPostRequest{
+func (a *SelfServiceReservationsApiService) FindSelfServiceReservations(ctx _context.Context, projectId string) ApiFindSelfServiceReservationsRequest {
+	return ApiFindSelfServiceReservationsRequest{
 		ApiService: a,
 		ctx: ctx,
 		projectId: projectId,
@@ -349,19 +358,19 @@ func (a *SelfServiceReservationsApiService) ProjectsProjectIdSelfServiceReservat
 
 /*
  * Execute executes the request
- * @return SelfServiceReservationResponse
+ * @return SelfServiceReservationList
  */
-func (a *SelfServiceReservationsApiService) ProjectsProjectIdSelfServiceReservationsPostExecute(r ApiProjectsProjectIdSelfServiceReservationsPostRequest) (SelfServiceReservationResponse, *_nethttp.Response, error) {
+func (a *SelfServiceReservationsApiService) FindSelfServiceReservationsExecute(r ApiFindSelfServiceReservationsRequest) (SelfServiceReservationList, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  SelfServiceReservationResponse
+		localVarReturnValue  SelfServiceReservationList
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SelfServiceReservationsApiService.ProjectsProjectIdSelfServiceReservationsPost")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SelfServiceReservationsApiService.FindSelfServiceReservations")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
@@ -372,12 +381,15 @@ func (a *SelfServiceReservationsApiService) ProjectsProjectIdSelfServiceReservat
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if r.reservation == nil {
-		return localVarReturnValue, nil, reportError("reservation is required and must be specified")
-	}
 
+	if r.page != nil {
+		localVarQueryParams.Add("page", parameterToString(*r.page, ""))
+	}
+	if r.perPage != nil {
+		localVarQueryParams.Add("per_page", parameterToString(*r.perPage, ""))
+	}
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -393,8 +405,6 @@ func (a *SelfServiceReservationsApiService) ProjectsProjectIdSelfServiceReservat
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	// body params
-	localVarPostBody = r.reservation
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -432,16 +442,6 @@ func (a *SelfServiceReservationsApiService) ProjectsProjectIdSelfServiceReservat
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 422 {
 			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {

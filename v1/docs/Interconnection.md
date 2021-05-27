@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 **Ports** | Pointer to [**[]InterconnectionPort**](InterconnectionPort.md) |  | [optional] 
 **Facility** | Pointer to [**Href**](Href.md) |  | [optional] 
 **Organization** | Pointer to [**Href**](Href.md) |  | [optional] 
-**Metro** | Pointer to [**Href**](Href.md) |  | [optional] 
+**Metro** | Pointer to [**Metro**](Metro.md) |  | [optional] 
 
 ## Methods
 
@@ -339,20 +339,20 @@ HasOrganization returns a boolean if a field has been set.
 
 ### GetMetro
 
-`func (o *Interconnection) GetMetro() Href`
+`func (o *Interconnection) GetMetro() Metro`
 
 GetMetro returns the Metro field if non-nil, zero value otherwise.
 
 ### GetMetroOk
 
-`func (o *Interconnection) GetMetroOk() (*Href, bool)`
+`func (o *Interconnection) GetMetroOk() (*Metro, bool)`
 
 GetMetroOk returns a tuple with the Metro field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMetro
 
-`func (o *Interconnection) SetMetro(v Href)`
+`func (o *Interconnection) SetMetro(v Metro)`
 
 SetMetro sets Metro field to given value.
 

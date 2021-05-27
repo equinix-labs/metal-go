@@ -1,18 +1,18 @@
-# \UserdataApi
+# \SupportRequestApi
 
 All URIs are relative to *https://api.equinix.com/metal/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ValidateUserdata**](UserdataApi.md#ValidateUserdata) | **Post** /userdata/validate | Validate user data
+[**RequestSuppert**](SupportRequestApi.md#RequestSuppert) | **Post** /support-requests | Create a support ticket
 
 
 
-## ValidateUserdata
+## RequestSuppert
 
-> ValidateUserdata(ctx).Userdata(userdata).Execute()
+> RequestSuppert(ctx).SupportRequest(supportRequest).Execute()
 
-Validate user data
+Create a support ticket
 
 
 
@@ -29,13 +29,13 @@ import (
 )
 
 func main() {
-    userdata := "userdata_example" // string | Userdata to validate (optional)
+    supportRequest := *openapiclient.NewSupportRequestInput("Subject_example", "Message_example") // SupportRequestInput | Support Request to create
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.UserdataApi.ValidateUserdata(context.Background()).Userdata(userdata).Execute()
+    resp, r, err := api_client.SupportRequestApi.RequestSuppert(context.Background()).SupportRequest(supportRequest).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UserdataApi.ValidateUserdata``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `SupportRequestApi.RequestSuppert``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -47,12 +47,12 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiValidateUserdataRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiRequestSuppertRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userdata** | **string** | Userdata to validate | 
+ **supportRequest** | [**SupportRequestInput**](SupportRequestInput.md) | Support Request to create | 
 
 ### Return type
 
@@ -64,7 +64,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

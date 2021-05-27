@@ -1,15 +1,82 @@
 # \UsersApi
 
-All URIs are relative to *https://localhost:3000*
+All URIs are relative to *https://api.equinix.com/metal/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**CreateUser**](UsersApi.md#CreateUser) | **Post** /users | Create a user
 [**FindCurrentUser**](UsersApi.md#FindCurrentUser) | **Get** /user | Retrieve the current user
 [**FindUserById**](UsersApi.md#FindUserById) | **Get** /users/{id} | Retrieve a user
 [**FindUserCustomdata**](UsersApi.md#FindUserCustomdata) | **Get** /users/{id}/customdata | Retrieve the custom metadata of a user
 [**FindUsers**](UsersApi.md#FindUsers) | **Get** /users | Retrieve all users
 [**UpdateCurrentUser**](UsersApi.md#UpdateCurrentUser) | **Put** /user | Update the current user
 
+
+
+## CreateUser
+
+> User CreateUser(ctx).User(user).Execute()
+
+Create a user
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    user := *openapiclient.NewUserCreateInput("FirstName_example", "LastName_example", []openapiclient.EmailInput{*openapiclient.NewEmailInput("Address_example")}) // UserCreateInput | User to create
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.UsersApi.CreateUser(context.Background()).User(user).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.CreateUser``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateUser`: User
+    fmt.Fprintf(os.Stdout, "Response from `UsersApi.CreateUser`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateUserRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **user** | [**UserCreateInput**](UserCreateInput.md) | User to create | 
+
+### Return type
+
+[**User**](User.md)
+
+### Authorization
+
+[x_auth_token](../README.md#x_auth_token)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
 
 ## FindCurrentUser

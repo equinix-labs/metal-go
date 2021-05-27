@@ -1,12 +1,12 @@
 # \HardwareReservationsApi
 
-All URIs are relative to *https://localhost:3000*
+All URIs are relative to *https://api.equinix.com/metal/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**FindHardwareReservationById**](HardwareReservationsApi.md#FindHardwareReservationById) | **Get** /hardware-reservations/{id} | Retrieve a hardware reservation
 [**FindProjectHardwareReservations**](HardwareReservationsApi.md#FindProjectHardwareReservations) | **Get** /projects/{id}/hardware-reservations | Retrieve all hardware reservations for a given project
-[**HardwareReservationsIdMovePost**](HardwareReservationsApi.md#HardwareReservationsIdMovePost) | **Post** /hardware-reservations/{id}/move | Move a hardware reservation
+[**MoveHardwareReservation**](HardwareReservationsApi.md#MoveHardwareReservation) | **Post** /hardware-reservations/{id}/move | Move a hardware reservation
 
 
 
@@ -162,9 +162,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## HardwareReservationsIdMovePost
+## MoveHardwareReservation
 
-> HardwareReservation HardwareReservationsIdMovePost(ctx, id).ProjectId(projectId).Execute()
+> HardwareReservation MoveHardwareReservation(ctx, id).ProjectId(projectId).Execute()
 
 Move a hardware reservation
 
@@ -188,13 +188,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.HardwareReservationsApi.HardwareReservationsIdMovePost(context.Background(), id).ProjectId(projectId).Execute()
+    resp, r, err := api_client.HardwareReservationsApi.MoveHardwareReservation(context.Background(), id).ProjectId(projectId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `HardwareReservationsApi.HardwareReservationsIdMovePost``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `HardwareReservationsApi.MoveHardwareReservation``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `HardwareReservationsIdMovePost`: HardwareReservation
-    fmt.Fprintf(os.Stdout, "Response from `HardwareReservationsApi.HardwareReservationsIdMovePost`: %v\n", resp)
+    // response from `MoveHardwareReservation`: HardwareReservation
+    fmt.Fprintf(os.Stdout, "Response from `HardwareReservationsApi.MoveHardwareReservation`: %v\n", resp)
 }
 ```
 
@@ -208,7 +208,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiHardwareReservationsIdMovePostRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiMoveHardwareReservationRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes

@@ -21,6 +21,7 @@ type GlobalBgpRange struct {
 	AddressFamily *int32 `json:"address_family,omitempty"`
 	Range *string `json:"range,omitempty"`
 	Href *string `json:"href,omitempty"`
+	Project *Href `json:"project,omitempty"`
 }
 
 // NewGlobalBgpRange instantiates a new GlobalBgpRange object
@@ -168,6 +169,38 @@ func (o *GlobalBgpRange) SetHref(v string) {
 	o.Href = &v
 }
 
+// GetProject returns the Project field value if set, zero value otherwise.
+func (o *GlobalBgpRange) GetProject() Href {
+	if o == nil || o.Project == nil {
+		var ret Href
+		return ret
+	}
+	return *o.Project
+}
+
+// GetProjectOk returns a tuple with the Project field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GlobalBgpRange) GetProjectOk() (*Href, bool) {
+	if o == nil || o.Project == nil {
+		return nil, false
+	}
+	return o.Project, true
+}
+
+// HasProject returns a boolean if a field has been set.
+func (o *GlobalBgpRange) HasProject() bool {
+	if o != nil && o.Project != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetProject gets a reference to the given Href and assigns it to the Project field.
+func (o *GlobalBgpRange) SetProject(v Href) {
+	o.Project = &v
+}
+
 func (o GlobalBgpRange) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Id != nil {
@@ -181,6 +214,9 @@ func (o GlobalBgpRange) MarshalJSON() ([]byte, error) {
 	}
 	if o.Href != nil {
 		toSerialize["href"] = o.Href
+	}
+	if o.Project != nil {
+		toSerialize["project"] = o.Project
 	}
 	return json.Marshal(toSerialize)
 }

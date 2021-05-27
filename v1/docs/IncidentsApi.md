@@ -1,16 +1,16 @@
 # \IncidentsApi
 
-All URIs are relative to *https://localhost:3000*
+All URIs are relative to *https://api.equinix.com/metal/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**IncidentsGet**](IncidentsApi.md#IncidentsGet) | **Get** /incidents | Retrieve the number of incidents
+[**FindIncidents**](IncidentsApi.md#FindIncidents) | **Get** /incidents | Retrieve the number of incidents
 
 
 
-## IncidentsGet
+## FindIncidents
 
-> IncidentsGet(ctx).Include(include).Exclude(exclude).Execute()
+> FindIncidents(ctx).Include(include).Exclude(exclude).Execute()
 
 Retrieve the number of incidents
 
@@ -34,9 +34,9 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.IncidentsApi.IncidentsGet(context.Background()).Include(include).Exclude(exclude).Execute()
+    resp, r, err := api_client.IncidentsApi.FindIncidents(context.Background()).Include(include).Exclude(exclude).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `IncidentsApi.IncidentsGet``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `IncidentsApi.FindIncidents``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -48,7 +48,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiIncidentsGetRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiFindIncidentsRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes

@@ -27,7 +27,7 @@ Name | Type | Description | Notes
 **AlwaysPxe** | Pointer to **bool** |  | [optional] 
 **IpxeScriptUrl** | Pointer to **string** |  | [optional] 
 **Facility** | Pointer to [**Facility**](Facility.md) |  | [optional] 
-**Metro** | Pointer to **map[string]interface{}** |  | [optional] 
+**Metro** | Pointer to [**Metro**](Metro.md) |  | [optional] 
 **Plan** | Pointer to [**Plan**](Plan.md) |  | [optional] 
 **Userdata** | Pointer to **string** |  | [optional] 
 **RootPassword** | Pointer to **string** | Root password is automatically generated when server is provisioned and it is removed after 24 hours | [optional] 
@@ -638,20 +638,20 @@ HasFacility returns a boolean if a field has been set.
 
 ### GetMetro
 
-`func (o *Device) GetMetro() map[string]interface{}`
+`func (o *Device) GetMetro() Metro`
 
 GetMetro returns the Metro field if non-nil, zero value otherwise.
 
 ### GetMetroOk
 
-`func (o *Device) GetMetroOk() (*map[string]interface{}, bool)`
+`func (o *Device) GetMetroOk() (*Metro, bool)`
 
 GetMetroOk returns a tuple with the Metro field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMetro
 
-`func (o *Device) SetMetro(v map[string]interface{})`
+`func (o *Device) SetMetro(v Metro)`
 
 SetMetro sets Metro field to given value.
 

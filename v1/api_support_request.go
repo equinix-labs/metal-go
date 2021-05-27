@@ -24,37 +24,32 @@ var (
 	_ _context.Context
 )
 
-// IncidentsApiService IncidentsApi service
-type IncidentsApiService service
+// SupportRequestApiService SupportRequestApi service
+type SupportRequestApiService service
 
-type ApiFindIncidentsRequest struct {
+type ApiRequestSuppertRequest struct {
 	ctx _context.Context
-	ApiService *IncidentsApiService
-	include *[]string
-	exclude *[]string
+	ApiService *SupportRequestApiService
+	supportRequest *SupportRequestInput
 }
 
-func (r ApiFindIncidentsRequest) Include(include []string) ApiFindIncidentsRequest {
-	r.include = &include
-	return r
-}
-func (r ApiFindIncidentsRequest) Exclude(exclude []string) ApiFindIncidentsRequest {
-	r.exclude = &exclude
+func (r ApiRequestSuppertRequest) SupportRequest(supportRequest SupportRequestInput) ApiRequestSuppertRequest {
+	r.supportRequest = &supportRequest
 	return r
 }
 
-func (r ApiFindIncidentsRequest) Execute() (*_nethttp.Response, error) {
-	return r.ApiService.FindIncidentsExecute(r)
+func (r ApiRequestSuppertRequest) Execute() (*_nethttp.Response, error) {
+	return r.ApiService.RequestSuppertExecute(r)
 }
 
 /*
- * FindIncidents Retrieve the number of incidents
- * Retrieve the number of incidents.
+ * RequestSuppert Create a support ticket
+ * Support Ticket.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiFindIncidentsRequest
+ * @return ApiRequestSuppertRequest
  */
-func (a *IncidentsApiService) FindIncidents(ctx _context.Context) ApiFindIncidentsRequest {
-	return ApiFindIncidentsRequest{
+func (a *SupportRequestApiService) RequestSuppert(ctx _context.Context) ApiRequestSuppertRequest {
+	return ApiRequestSuppertRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -63,34 +58,31 @@ func (a *IncidentsApiService) FindIncidents(ctx _context.Context) ApiFindInciden
 /*
  * Execute executes the request
  */
-func (a *IncidentsApiService) FindIncidentsExecute(r ApiFindIncidentsRequest) (*_nethttp.Response, error) {
+func (a *SupportRequestApiService) RequestSuppertExecute(r ApiRequestSuppertRequest) (*_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IncidentsApiService.FindIncidents")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SupportRequestApiService.RequestSuppert")
 	if err != nil {
 		return nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/incidents"
+	localVarPath := localBasePath + "/support-requests"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	if r.supportRequest == nil {
+		return nil, reportError("supportRequest is required and must be specified")
+	}
 
-	if r.include != nil {
-		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
-	}
-	if r.exclude != nil {
-		localVarQueryParams.Add("exclude", parameterToString(*r.exclude, "csv"))
-	}
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
+	localVarHTTPContentTypes := []string{"application/json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -106,6 +98,8 @@ func (a *IncidentsApiService) FindIncidentsExecute(r ApiFindIncidentsRequest) (*
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	// body params
+	localVarPostBody = r.supportRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -143,6 +137,36 @@ func (a *IncidentsApiService) FindIncidentsExecute(r ApiFindIncidentsRequest) (*
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
 			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
