@@ -17,7 +17,8 @@
   "schemes": [
     "https"
   ],
-  "host": "localhost:3000",
+  "host": "api.equinix.com",
+  "basePath": "/metal/v1",
   "consumes": [
     "application/json"
   ],
@@ -84,8 +85,16 @@
       "description": "Facility Management. Check out the product docs to learn more about [Facilities](https://metal.equinix.com/developers/docs/locations/)."
     },
     {
+      "name": "GlobalBgpRanges",
+      "description": "Global BGP Range Management"
+    },
+    {
       "name": "HardwareReservations",
       "description": "Hardware Reservation Management. Check out the product docs to learn more about [Reserved Hardware](https://metal.equinix.com/developers/docs/deploy/reserved/)."
+    },
+    {
+      "name": "Incidents",
+      "description": "Incident Management"
     },
     {
       "name": "Invitations",
@@ -112,12 +121,20 @@
       "description": "Operating System Management. Check out the product docs to learn more about [Operating Systems choices](https://metal.equinix.com/developers/docs/operating-systems/)."
     },
     {
+      "name": "OperatingSystemVersions",
+      "description": "Operating System Version Management"
+    },
+    {
       "name": "Organizations",
       "description": "Organizations Management. Check out the product docs to learn more about [Organizations](https://metal.equinix.com/developers/docs/accounts/)."
     },
     {
       "name": "Otps",
       "description": "Otps ManagementCheck out the product docs to learn more about [OTP](https://metal.equinix.com/developers/docs/accounts/two-factor-authentication/)."
+    },
+    {
+      "name": "PasswordResetTokens",
+      "description": "Password Reset Token Management"
     },
     {
       "name": "PaymentMethods",
@@ -150,6 +167,10 @@
     {
       "name": "SSHKeys",
       "description": "Manage SSH keys. See project endpoints to list and create project-level SSH keys."
+    },
+    {
+      "name": "SupportRequest",
+      "description": "Support request"
     },
     {
       "name": "TransferRequests",
@@ -2228,6 +2249,53 @@
         }
       }
     },
+    "/projects/{id}/global-bgp-ranges": {
+      "get": {
+        "summary": "Retrieve all global bgp ranges",
+        "description": "Returns all global bgp ranges for a project",
+        "operationId": "findGlobalBgpRanges",
+        "tags": [
+          "GlobalBgpRanges",
+          "Projects"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Project UUID",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "$ref": "#/definitions/GlobalBgpRangeList"
+            }
+          },
+          "401": {
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "403": {
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
     "/projects/{id}/hardware-reservations": {
       "get": {
         "summary": "Retrieve all hardware reservations for a given project",
@@ -2391,8 +2459,9 @@
       "get": {
         "summary": "Retrieve the number of incidents",
         "description": "Retrieve the number of incidents.",
+        "operationId": "findIncidents",
         "tags": [
-          "incidents"
+          "Incidents"
         ],
         "parameters": [
           {
@@ -5708,6 +5777,7 @@
       "post": {
         "summary": "Move a hardware reservation",
         "description": "Move a hardware reservation to another project",
+        "operationId": "moveHardwareReservation",
         "tags": [
           "HardwareReservations"
         ],
@@ -7794,6 +7864,7 @@
       "get": {
         "summary": "Retrieve all reservations",
         "description": "Returns all reservations.",
+        "operationId": "findSelfServiceReservations",
         "tags": [
           "SelfServiceReservations"
         ],
@@ -7847,6 +7918,7 @@
       "post": {
         "summary": "Create a reservation",
         "description": "Creates a reservation.",
+        "operationId": "createSelfServiceReservation",
         "tags": [
           "SelfServiceReservations"
         ],
@@ -7895,6 +7967,7 @@
       "get": {
         "summary": "Retrieve a reservation",
         "description": "Returns a reservation",
+        "operationId": "findSelfServiceReservation",
         "tags": [
           "SelfServiceReservations"
         ],
@@ -9707,6 +9780,56 @@
         }
       }
     },
+    "/support-requests": {
+      "post": {
+        "tags": [
+          "SupportRequest"
+        ],
+        "summary": "Create a support ticket",
+        "description": "Support Ticket.",
+        "operationId": "requestSuppert",
+        "parameters": [
+          {
+            "name": "support_request",
+            "in": "body",
+            "description": "Support Request to create",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/SupportRequestInput"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "no content"
+          },
+          "401": {
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "403": {
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "422": {
+            "description": "unprocessable entity",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
     "/user/otp/app": {
       "post": {
         "summary": "Enable two factor auth using app",
@@ -10380,6 +10503,45 @@
           },
           "401": {
             "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a user",
+        "description": "Creates a user.",
+        "operationId": "createUser",
+        "tags": [
+          "Users"
+        ],
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "User to create",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UserCreateInput"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "created",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "401": {
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "422": {
+            "description": "unprocessable entity",
             "schema": {
               "$ref": "#/definitions/Error"
             }
@@ -11121,12 +11283,24 @@
           "type": "boolean"
         },
         "user": {
-          "$ref": "#/definitions/User",
-          "description": "Available only for user tokens"
+          "allOf": [
+            {
+              "$ref": "#/definitions/User"
+            },
+            {
+              "description": "Available only for user tokens"
+            }
+          ]
         },
         "project": {
-          "$ref": "#/definitions/Project",
-          "description": "Available only for project tokens"
+          "allOf": [
+            {
+              "$ref": "#/definitions/Project"
+            },
+            {
+              "description": "Available only for project tokens"
+            }
+          ]
         }
       }
     },
@@ -11384,45 +11558,6 @@
         }
       }
     },
-    "EntitlementInput": {
-      "properties": {
-        "description": {
-          "type": "string"
-        },
-        "slug": {
-          "type": "string"
-        },
-        "weight": {
-          "type": "integer"
-        },
-        "instance_quota": {
-          "type": "object"
-        },
-        "project_quota": {
-          "type": "integer",
-          "default": 0
-        },
-        "volume_quota": {
-          "type": "object"
-        },
-        "feature_access": {
-          "type": "object"
-        }
-      }
-    },
-    "EntitlementList": {
-      "properties": {
-        "entitlements": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Entitlement"
-          }
-        },
-        "meta": {
-          "$ref": "#/definitions/Meta"
-        }
-      }
-    },
     "Event": {
       "properties": {
         "id": {
@@ -11456,22 +11591,6 @@
         }
       }
     },
-    "EventInput": {
-      "properties": {
-        "type": {
-          "type": "string"
-        },
-        "body": {
-          "type": "string"
-        },
-        "state": {
-          "type": "string"
-        },
-        "private": {
-          "type": "boolean"
-        }
-      }
-    },
     "EventList": {
       "properties": {
         "events": {
@@ -11482,29 +11601,6 @@
         },
         "meta": {
           "$ref": "#/definitions/Meta"
-        }
-      }
-    },
-    "EventTypeList": {
-      "properties": {
-        "event_types": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/EventType"
-          }
-        }
-      }
-    },
-    "EventType": {
-      "properties": {
-        "group": {
-          "type": "string"
-        },
-        "events": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
         }
       }
     },
@@ -11582,7 +11678,8 @@
         },
         "short_id": {
           "type": "string",
-          "format": "string"
+          "format": "string",
+          "description": "Short version of the ID."
         },
         "facility": {
           "$ref": "#/definitions/Facility"
@@ -11603,9 +11700,23 @@
           "type": "string",
           "format": "date-time"
         },
-        "remove_at": {
-          "type": "string",
-          "format": "date-time"
+        "spare": {
+          "type": "boolean",
+          "description": "Whether the Hardware Reservation is a spare. Spare Hardware Reservations are used when a Hardware Reservations requires service from Metal Equinix"
+        },
+        "need_of_service": {
+          "type": "boolean",
+          "description": "Whether this Device requires assistance from Metal Equinix."
+        },
+        "provisionable": {
+          "type": "boolean",
+          "description": "Whether the reserved server is provisionable or not. Spare devices can't be provisioned unless they are activated first."
+        },
+        "custom_rate": {
+          "type": "number",
+          "format": "float",
+          "description": "Amount that will be charged for every billing_cycle.",
+          "example": 1050.5
         }
       }
     },
@@ -11709,6 +11820,9 @@
         "metro": {
           "allOf": [
             {
+              "$ref": "#/definitions/Metro"
+            },
+            {
               "description": "The metro the facility is in"
             }
           ]
@@ -11733,7 +11847,7 @@
               "$ref": "#/definitions/Port"
             },
             {
-              "description": "By default, servers at Equinix Metal are configured in a “bonded” mode using LACP (Link Aggregation Control Protocol). Each 2-port NIC is configured with a single bond (namely bond0) with both interfaces eth0 and eth1 as members of the bond in a default Layer 3 mode. Some device plans may have a different number of ports and bonds available."
+              "description": "By default, servers at Equinix Metal are configured in a “bonded” mode using LACP (Link Aggregation Control Protocol). Each 2-NIC server is configured with a single bond (namely bond0) with both interfaces eth0 and eth1 as members of the bond in a default Layer 3 mode. Some device plans may have a different number of ports and bonds available."
             }
           ]
         },
@@ -11840,7 +11954,7 @@
           "type": "string"
         },
         "locked": {
-          "description": "Wether the device should be locked, preventing accidental deletion.",
+          "description": "Whether the device should be locked, preventing accidental deletion.",
           "type": "boolean",
           "default": false
         },
@@ -11985,20 +12099,6 @@
         }
       }
     },
-    "IpAddressInput": {
-      "properties": {
-        "address_family": {
-          "type": "number",
-          "format": "integer",
-          "description": "Address Family for IP Address",
-          "example": 4,
-          "enum": [
-            4,
-            6
-          ]
-        }
-      }
-    },
     "DeviceUpdateInput": {
       "properties": {
         "hostname": {
@@ -12100,8 +12200,14 @@
           "$ref": "#/definitions/Href"
         },
         "metro": {
-          "$ref": "#/definitions/Href",
-          "description": "Details of the metro the facility is in"
+          "allOf": [
+            {
+              "$ref": "#/definitions/Metro"
+            },
+            {
+              "description": "Details of the metro the facility is in"
+            }
+          ]
         }
       }
     },
@@ -12649,14 +12755,14 @@
         "address_family": {
           "type": "number",
           "format": "integer",
-          "description": "Address Family for IP Address",
-          "example": "4 or 6"
+          "description": "Address Family for IP Address. Accepted values are 4 or 6",
+          "example": 4
         },
         "customer_as": {
           "type": "number",
           "format": "integer",
           "description": "The customer's ASN. In a local BGP deployment, this will be an internal ASN used to route within the data center. For a global BGP deployment, this will be the your own ASN, configured when you set up BGP for your project.",
-          "example": "65000"
+          "example": 65000
         },
         "customer_ip": {
           "type": "string",
@@ -12679,12 +12785,15 @@
           "type": "number",
           "format": "integer",
           "description": "The Peer ASN to use when configuring BGP on your device.",
-          "example": "65530"
+          "example": 65530
         },
         "peer_ips": {
           "type": "array",
           "description": "A list of one or more IP addresses to use for the Peer IP section of your BGP configuration. For non-multihop sessions, this will typically be a single gateway address for the device. For multihop sessions, it will be a list of IPs.",
-          "example": "[\"10.32.16.0\"] or [\"169.254.255.1\", \"169.254.255.2\"]",
+          "example": [
+            "169.254.255.1",
+            "169.254.255.2"
+          ],
           "items": {
             "type": "string"
           }
@@ -12816,6 +12925,9 @@
         },
         "href": {
           "type": "string"
+        },
+        "project": {
+          "$ref": "#/definitions/Href"
         }
       }
     },
@@ -12879,8 +12991,14 @@
           "format": "date-time"
         },
         "metro": {
-          "$ref": "#/definitions/Metro",
-          "description": "The metro the IP address is in"
+          "allOf": [
+            {
+              "$ref": "#/definitions/Metro"
+            },
+            {
+              "description": "The metro the IP address is in"
+            }
+          ]
         },
         "parent_block": {
           "$ref": "#/definitions/ParentBlock"
@@ -12953,8 +13071,14 @@
           "format": "date-time"
         },
         "facility": {
-          "$ref": "#/definitions/Facility",
-          "description": "The facility the IP reservation is in. Will not have a value if it is a metro-based IP reservation."
+          "allOf": [
+            {
+              "$ref": "#/definitions/Facility"
+            },
+            {
+              "description": "The facility the IP reservation is in. Will not have a value if it is a metro-based IP reservation."
+            }
+          ]
         },
         "href": {
           "type": "string"
@@ -12969,8 +13093,14 @@
           "type": "string"
         },
         "metro": {
-          "$ref": "#/definitions/Metro",
-          "description": "The metro the IP reservation is in. If a facility is specified, this is the metro of that facility. If the facility is not specified, this is a metro-based IP reservation."
+          "allOf": [
+            {
+              "$ref": "#/definitions/Metro"
+            },
+            {
+              "description": "The metro the IP reservation is in. If a facility is specified, this is the metro of that facility. If the facility is not specified, this is a metro-based IP reservation."
+            }
+          ]
         }
       }
     },
@@ -13470,26 +13600,6 @@
         }
       }
     },
-    "PlanVersion": {
-      "properties": {
-        "id": {
-          "type": "string",
-          "format": "uuid"
-        },
-        "slug": {
-          "type": "string"
-        },
-        "name": {
-          "type": "string"
-        },
-        "specs": {
-          "type": "object"
-        },
-        "line": {
-          "type": "string"
-        }
-      }
-    },
     "Port": {
       "properties": {
         "id": {
@@ -13541,16 +13651,6 @@
                 "type": "boolean"
               }
             }
-          }
-        }
-      }
-    },
-    "PortList": {
-      "properties": {
-        "ports": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Port"
           }
         }
       }
@@ -13885,8 +13985,14 @@
           "$ref": "#/definitions/Href"
         },
         "metro": {
-          "$ref": "#/definitions/Href",
-          "description": "The metro the spot market request was created in"
+          "allOf": [
+            {
+              "$ref": "#/definitions/Metro"
+            },
+            {
+              "description": "The metro the spot market request was created in"
+            }
+          ]
         },
         "project": {
           "$ref": "#/definitions/Href"
@@ -14146,17 +14252,6 @@
         }
       }
     },
-    "VolumeSnapshotInput": {
-      "required": [
-        "device_id"
-      ],
-      "properties": {
-        "device_id": {
-          "type": "string",
-          "format": "uuid"
-        }
-      }
-    },
     "VolumeSnapshotList": {
       "properties": {
         "snapshots": {
@@ -14330,36 +14425,6 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/Volume"
-          }
-        },
-        "meta": {
-          "$ref": "#/definitions/Meta"
-        }
-      }
-    },
-    "SubscribableEvent": {
-      "properties": {
-        "id": {
-          "type": "string",
-          "format": "uuid"
-        },
-        "event_type": {
-          "type": "string"
-        },
-        "event_name": {
-          "type": "string"
-        },
-        "event_slug": {
-          "type": "string"
-        }
-      }
-    },
-    "SubscribableEventsList": {
-      "properties": {
-        "subscribable_events": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/SubscribableEvent"
           }
         },
         "meta": {
@@ -14564,26 +14629,6 @@
       "properties": {
         "baremetal_1e": {
           "$ref": "#/definitions/CapacityLevelPerBaremetal"
-        }
-      }
-    },
-    "CapacityPerBaremetal": {
-      "properties": {
-        "level": {
-          "type": "string"
-        },
-        "available_servers": {
-          "type": "integer"
-        },
-        "total_servers": {
-          "type": "integer"
-        },
-        "market_buffer_percentage": {
-          "type": "integer"
-        },
-        "market_floor_price": {
-          "type": "number",
-          "format": "float"
         }
       }
     },
@@ -14870,13 +14915,6 @@
         }
       }
     },
-    "Userdata": {
-      "properties": {
-        "userdata": {
-          "type": "string"
-        }
-      }
-    },
     "TransferRequest": {
       "properties": {
         "id": {
@@ -15156,23 +15194,6 @@
         }
       }
     },
-    "Error": {
-      "description": "Error responses are included with 4xx and 5xx HTTP responses from the API service. Either \"error\" or \"errors\" will be set.",
-      "properties": {
-        "error": {
-          "type": "string",
-          "description": "A description of the error that caused the request to fail."
-        },
-        "errors": {
-          "type": "array",
-          "description": "A list of errors that contributed to the request failing.",
-          "items": {
-            "type": "string",
-            "description": "An error message that contributed to the request failing."
-          }
-        }
-      }
-    },
     "Email": {
       "properties": {
         "id": {
@@ -15190,6 +15211,23 @@
         },
         "href": {
           "type": "string"
+        }
+      }
+    },
+    "Error": {
+      "description": "Error responses are included with 4xx and 5xx HTTP responses from the API service. Either \"error\" or \"errors\" will be set.",
+      "properties": {
+        "error": {
+          "type": "string",
+          "description": "A description of the error that caused the request to fail."
+        },
+        "errors": {
+          "type": "array",
+          "description": "A list of errors that contributed to the request failing.",
+          "items": {
+            "type": "string",
+            "description": "An error message that contributed to the request failing."
+          }
         }
       }
     },
