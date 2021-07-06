@@ -34,6 +34,17 @@ The `json` code is very similar in areas. It may be necessary to include more co
 
 `git diff -U7`, or greater `-U` values can be used to ensure that the adjacent endpoint or model is referenced in the patch file. This will ensure that the patch has not drifted to another resource due to other changes.
 
+### Duplicate Errors
+
+The generator has problems handling multiple tags in operations. The generator will create duplicate types when it encounters this. Many of the needed patches remove the extra tags, usually choosing the most significant tag to keep, sometimes just choosing the first tag.
+
+The following `jq` command can help to filter the extra tags out:
+
+```sh
+cat equinix-metal.patched.json  | jq '. | select(((.paths[][].tags| type=="array"), length) > 1).paths[][].tags |= [.[0]]' > patches/0x-more-tags.patch
+```
+
+See <https://github.com/OpenAPITools/openapi-generator/issues/741> for the related bug.
 
 ## Generated Client
 

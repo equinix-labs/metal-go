@@ -1,0 +1,77 @@
+diff --git a/equinix-metal.patched.json b/equinix-metal.patched.json
+index 5651b01..a7af0a8 100644
+--- a/equinix-metal.patched.json
++++ b/equinix-metal.patched.json
+@@ -30,17 +30,15 @@
+       "type": "apiKey",
+       "name": "X-Auth-Token",
+       "in": "header"
+     }
+   },
+   "security": [
+     {
+-      "x_auth_token": [
+-
+-      ]
++      "x_auth_token": []
+     }
+   ],
+   "tags": [
+     {
+       "name": "Authentication",
+       "description": "Hint: Equinix Metal's API can be reached at https://api.equinix.com/metal/v1\n\nMost of the endpoints in the API require authentication. Authenticating is done with an authentication token in the X-Auth-Token header.\n\n```\ncurl -H 'X-Auth-Token: my_authentication_token'\n```\n\nAuthentication tokens are used to identify the user your application is connecting to the API on behalf of. Think of authentication tokens as permanent sessions—the user creates authentication tokens, and your app can use them to connect to the API on their behalf until they delete the token.\n\n"
+     },
+@@ -7875,16 +7873,15 @@
+     },
+     "/projects/{project_id}/self-service/reservations": {
+       "get": {
+         "summary": "Retrieve all reservations",
+         "description": "Returns all reservations.",
+         "operationId": "findSelfServiceReservations",
+         "tags": [
+-          "SelfServiceReservations",
+-          "IPAddresses"
++          "SelfServiceReservations"
+         ],
+         "parameters": [
+           {
+             "name": "page",
+             "in": "query",
+             "description": "Page to return",
+             "type": "integer",
+@@ -7930,16 +7927,15 @@
+         }
+       },
+       "post": {
+         "summary": "Create a reservation",
+         "description": "Creates a reservation.",
+         "operationId": "createSelfServiceReservation",
+         "tags": [
+-          "SelfServiceReservations",
+-          "IPAddresses"
++          "SelfServiceReservations"
+         ],
+         "parameters": [
+           {
+             "name": "reservation",
+             "in": "body",
+             "description": "reservation to create",
+             "required": true,
+@@ -7980,16 +7976,15 @@
+     },
+     "/projects/{project_id}/self-service/reservations/{id}": {
+       "get": {
+         "summary": "Retrieve a reservation",
+         "description": "Returns a reservation",
+         "operationId": "findSelfServiceReservation",
+         "tags": [
+-          "SelfServiceReservations",
+-          "IPAddresses"
++          "SelfServiceReservations"
+         ],
+         "parameters": [
+           {
+             "name": "id",
+             "in": "path",
+             "description": "Reservation short_id",
+             "required": true,

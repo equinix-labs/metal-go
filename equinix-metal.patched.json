@@ -34,9 +34,7 @@
   },
   "security": [
     {
-      "x_auth_token": [
-
-      ]
+      "x_auth_token": []
     }
   ],
   "tags": [
@@ -7879,8 +7877,7 @@
         "description": "Returns all reservations.",
         "operationId": "findSelfServiceReservations",
         "tags": [
-          "SelfServiceReservations",
-          "IPAddresses"
+          "SelfServiceReservations"
         ],
         "parameters": [
           {
@@ -7934,8 +7931,7 @@
         "description": "Creates a reservation.",
         "operationId": "createSelfServiceReservation",
         "tags": [
-          "SelfServiceReservations",
-          "IPAddresses"
+          "SelfServiceReservations"
         ],
         "parameters": [
           {
@@ -7984,8 +7980,7 @@
         "description": "Returns a reservation",
         "operationId": "findSelfServiceReservation",
         "tags": [
-          "SelfServiceReservations",
-          "IPAddresses"
+          "SelfServiceReservations"
         ],
         "parameters": [
           {
