@@ -34,9 +34,7 @@
   },
   "security": [
     {
-      "x_auth_token": [
-
-      ]
+      "x_auth_token": []
     }
   ],
   "tags": [
@@ -4298,6 +4296,64 @@
           }
         }
       },
+      "patch": {
+        "summary": "Update an ip address",
+        "description": "Update details about an ip address",
+        "operationId": "updateIPAddress",
+        "tags": [
+          "IPAddresses"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "IP Address UUID",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "name": "details",
+            "in": "query",
+            "description": "Notes for this IP Assignment",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "customdata",
+            "in": "query",
+            "description": "Provides the custom metadata stored for this IP Assignment in json format",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "$ref": "#/definitions/IPAssignment"
+            }
+          },
+          "401": {
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "403": {
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
       "delete": {
         "summary": "Unassign an ip address",
         "description": "Note! This call can be used to un-assign an IP assignment or delete an IP reservation. Un-assign an IP address record. Use the assignment UUID you get after attaching the IP. This will remove the relationship between an IP and the device and will make the IP address available to be assigned to another device. Delete and IP reservation. Use the reservation UUID you get after adding the IP to the project. This will permanently delete the IP block reservation from the project.",
@@ -4402,7 +4458,7 @@
         }
       },
       "post": {
-        "summary": "Create a ip assignment",
+        "summary": "Create an ip assignment",
         "description": "Creates an ip assignment for a device.",
         "operationId": "createIPAssignment",
         "tags": [
@@ -13760,7 +13816,7 @@
             }
           }
         },
-        "terms": {
+        "notes": {
           "type": "string"
         },
         "item": {
@@ -13804,7 +13860,7 @@
           "type": "string",
           "format": "date-time"
         },
-        "terms": {
+        "notes": {
           "type": "string"
         },
         "organization": {

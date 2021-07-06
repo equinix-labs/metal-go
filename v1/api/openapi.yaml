@@ -3945,6 +3945,58 @@ paths:
       summary: Retrieve an ip address
       tags:
       - IPAddresses
+    patch:
+      description: Update details about an ip address
+      operationId: updateIPAddress
+      parameters:
+      - description: IP Address UUID
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - description: Notes for this IP Assignment
+        in: query
+        name: details
+        required: true
+        schema:
+          type: string
+      - description: Provides the custom metadata stored for this IP Assignment in
+          json format
+        in: query
+        name: customdata
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IPAssignment'
+          description: ok
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: not found
+      summary: Update an ip address
+      tags:
+      - IPAddresses
   /devices/{id}/ips:
     get:
       description: Returns all ip assignments for a device.
@@ -4044,7 +4096,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
           description: unprocessable entity
-      summary: Create a ip assignment
+      summary: Create an ip assignment
       tags:
       - IPAddresses
       x-codegen-request-body-name: ip_assignment
@@ -14993,7 +15045,7 @@ components:
           quantity: 0
           term: term
           plan_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        terms: terms
+        notes: notes
         start_date: 2000-01-23T04:56:07.000+00:00
       properties:
         start_date:
@@ -15001,7 +15053,7 @@ components:
           type: string
         period:
           $ref: '#/components/schemas/CreateSelfServiceReservationRequest_period'
-        terms:
+        notes:
           type: string
         item:
           items:
@@ -15034,8 +15086,8 @@ components:
           id: id
           plan_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           plan_name: plan_name
+        notes: notes
         total_cost: 6
-        terms: terms
         project_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         organization: organization
         organization_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -15056,7 +15108,7 @@ components:
         created_at:
           format: date-time
           type: string
-        terms:
+        notes:
           type: string
         organization:
           type: string
@@ -15100,8 +15152,8 @@ components:
             id: id
             plan_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             plan_name: plan_name
+          notes: notes
           total_cost: 6
-          terms: terms
           project_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           organization: organization
           organization_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -15133,8 +15185,8 @@ components:
             id: id
             plan_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             plan_name: plan_name
+          notes: notes
           total_cost: 6
-          terms: terms
           project_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           organization: organization
           organization_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91

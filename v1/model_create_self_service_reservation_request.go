@@ -20,7 +20,7 @@ import (
 type CreateSelfServiceReservationRequest struct {
 	StartDate *time.Time `json:"start_date,omitempty"`
 	Period *CreateSelfServiceReservationRequestPeriod `json:"period,omitempty"`
-	Terms *string `json:"terms,omitempty"`
+	Notes *string `json:"notes,omitempty"`
 	Item *[]SelfServiceReservationItemRequest `json:"item,omitempty"`
 }
 
@@ -105,36 +105,36 @@ func (o *CreateSelfServiceReservationRequest) SetPeriod(v CreateSelfServiceReser
 	o.Period = &v
 }
 
-// GetTerms returns the Terms field value if set, zero value otherwise.
-func (o *CreateSelfServiceReservationRequest) GetTerms() string {
-	if o == nil || o.Terms == nil {
+// GetNotes returns the Notes field value if set, zero value otherwise.
+func (o *CreateSelfServiceReservationRequest) GetNotes() string {
+	if o == nil || o.Notes == nil {
 		var ret string
 		return ret
 	}
-	return *o.Terms
+	return *o.Notes
 }
 
-// GetTermsOk returns a tuple with the Terms field value if set, nil otherwise
+// GetNotesOk returns a tuple with the Notes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateSelfServiceReservationRequest) GetTermsOk() (*string, bool) {
-	if o == nil || o.Terms == nil {
+func (o *CreateSelfServiceReservationRequest) GetNotesOk() (*string, bool) {
+	if o == nil || o.Notes == nil {
 		return nil, false
 	}
-	return o.Terms, true
+	return o.Notes, true
 }
 
-// HasTerms returns a boolean if a field has been set.
-func (o *CreateSelfServiceReservationRequest) HasTerms() bool {
-	if o != nil && o.Terms != nil {
+// HasNotes returns a boolean if a field has been set.
+func (o *CreateSelfServiceReservationRequest) HasNotes() bool {
+	if o != nil && o.Notes != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetTerms gets a reference to the given string and assigns it to the Terms field.
-func (o *CreateSelfServiceReservationRequest) SetTerms(v string) {
-	o.Terms = &v
+// SetNotes gets a reference to the given string and assigns it to the Notes field.
+func (o *CreateSelfServiceReservationRequest) SetNotes(v string) {
+	o.Notes = &v
 }
 
 // GetItem returns the Item field value if set, zero value otherwise.
@@ -177,8 +177,8 @@ func (o CreateSelfServiceReservationRequest) MarshalJSON() ([]byte, error) {
 	if o.Period != nil {
 		toSerialize["period"] = o.Period
 	}
-	if o.Terms != nil {
-		toSerialize["terms"] = o.Terms
+	if o.Notes != nil {
+		toSerialize["notes"] = o.Notes
 	}
 	if o.Item != nil {
 		toSerialize["item"] = o.Item
