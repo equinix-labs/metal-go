@@ -41,7 +41,9 @@ The generator has problems handling multiple tags in operations. The generator w
 The following `jq` command can help to filter the extra tags out:
 
 ```sh
-cat equinix-metal.patched.json  | jq '. | select(((.paths[][].tags| type=="array"), length) > 1).paths[][].tags |= [.[0]]' > patches/0x-more-tags.patch
+cat equinix-metal.patched.json  | jq '. | select(((.paths[][].tags| type=="array"), length) > 1).paths[][].tags |= [.[0]]' > /tmp/foo
+mv /tmp/foo equinix-metal.patched.json
+git diff -U7 equinix-metal.patched.json > patches/0x-more-tags.patch
 ```
 
 See <https://github.com/OpenAPITools/openapi-generator/issues/741> for the related bug.
