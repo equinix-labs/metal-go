@@ -151,7 +151,7 @@ Class | Method | HTTP request | Description
 *HardwareReservationsApi* | [**FindHardwareReservationById**](docs/HardwareReservationsApi.md#findhardwarereservationbyid) | **Get** /hardware-reservations/{id} | Retrieve a hardware reservation
 *HardwareReservationsApi* | [**FindProjectHardwareReservations**](docs/HardwareReservationsApi.md#findprojecthardwarereservations) | **Get** /projects/{id}/hardware-reservations | Retrieve all hardware reservations for a given project
 *HardwareReservationsApi* | [**MoveHardwareReservation**](docs/HardwareReservationsApi.md#movehardwarereservation) | **Post** /hardware-reservations/{id}/move | Move a hardware reservation
-*IPAddressesApi* | [**CreateIPAssignment**](docs/IPAddressesApi.md#createipassignment) | **Post** /devices/{id}/ips | Create a ip assignment
+*IPAddressesApi* | [**CreateIPAssignment**](docs/IPAddressesApi.md#createipassignment) | **Post** /devices/{id}/ips | Create an ip assignment
 *IPAddressesApi* | [**DeleteIPAddress**](docs/IPAddressesApi.md#deleteipaddress) | **Delete** /ips/{id} | Unassign an ip address
 *IPAddressesApi* | [**FindIPAddressById**](docs/IPAddressesApi.md#findipaddressbyid) | **Get** /ips/{id} | Retrieve an ip address
 *IPAddressesApi* | [**FindIPAddressCustomdata**](docs/IPAddressesApi.md#findipaddresscustomdata) | **Get** /ips/{id}/customdata | Retrieve the custom metadata of an IP Reservation or IP Assignment
@@ -159,6 +159,7 @@ Class | Method | HTTP request | Description
 *IPAddressesApi* | [**FindIPAvailabilities**](docs/IPAddressesApi.md#findipavailabilities) | **Get** /ips/{id}/available | Retrieve all available subnets of a particular reservation
 *IPAddressesApi* | [**FindIPReservations**](docs/IPAddressesApi.md#findipreservations) | **Get** /projects/{id}/ips | Retrieve all ip reservations
 *IPAddressesApi* | [**RequestIPReservation**](docs/IPAddressesApi.md#requestipreservation) | **Post** /projects/{id}/ips | Requesting IP reservations
+*IPAddressesApi* | [**UpdateIPAddress**](docs/IPAddressesApi.md#updateipaddress) | **Patch** /ips/{id} | Update an ip address
 *IncidentsApi* | [**FindIncidents**](docs/IncidentsApi.md#findincidents) | **Get** /incidents | Retrieve the number of incidents
 *InvitationsApi* | [**AcceptInvitation**](docs/InvitationsApi.md#acceptinvitation) | **Put** /invitations/{id} | Accept an invitation
 *InvitationsApi* | [**CreateOrganizationInvitation**](docs/InvitationsApi.md#createorganizationinvitation) | **Post** /organizations/{id}/invitations | Create an invitation for an organization

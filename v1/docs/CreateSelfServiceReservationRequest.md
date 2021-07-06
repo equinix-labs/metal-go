@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **StartDate** | Pointer to **time.Time** |  | [optional] 
 **Period** | Pointer to [**CreateSelfServiceReservationRequestPeriod**](CreateSelfServiceReservationRequestPeriod.md) |  | [optional] 
-**Terms** | Pointer to **string** |  | [optional] 
+**Notes** | Pointer to **string** |  | [optional] 
 **Item** | Pointer to [**[]SelfServiceReservationItemRequest**](SelfServiceReservationItemRequest.md) |  | [optional] 
 
 ## Methods
@@ -78,30 +78,30 @@ SetPeriod sets Period field to given value.
 
 HasPeriod returns a boolean if a field has been set.
 
-### GetTerms
+### GetNotes
 
-`func (o *CreateSelfServiceReservationRequest) GetTerms() string`
+`func (o *CreateSelfServiceReservationRequest) GetNotes() string`
 
-GetTerms returns the Terms field if non-nil, zero value otherwise.
+GetNotes returns the Notes field if non-nil, zero value otherwise.
 
-### GetTermsOk
+### GetNotesOk
 
-`func (o *CreateSelfServiceReservationRequest) GetTermsOk() (*string, bool)`
+`func (o *CreateSelfServiceReservationRequest) GetNotesOk() (*string, bool)`
 
-GetTermsOk returns a tuple with the Terms field if it's non-nil, zero value otherwise
+GetNotesOk returns a tuple with the Notes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetTerms
+### SetNotes
 
-`func (o *CreateSelfServiceReservationRequest) SetTerms(v string)`
+`func (o *CreateSelfServiceReservationRequest) SetNotes(v string)`
 
-SetTerms sets Terms field to given value.
+SetNotes sets Notes field to given value.
 
-### HasTerms
+### HasNotes
 
-`func (o *CreateSelfServiceReservationRequest) HasTerms() bool`
+`func (o *CreateSelfServiceReservationRequest) HasNotes() bool`
 
-HasTerms returns a boolean if a field has been set.
+HasNotes returns a boolean if a field has been set.
 
 ### GetItem
 
