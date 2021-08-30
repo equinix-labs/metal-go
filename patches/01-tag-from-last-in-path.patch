@@ -1,0 +1,1085 @@
+--- equinix-metal.fetched.json	2021-08-30 16:48:22.000000000 -0400
++++ -	2021-08-30 16:48:22.000000000 -0400
+@@ -31,15 +31,13 @@
+       "name": "X-Auth-Token",
+       "in": "header"
+     }
+   },
+   "security": [
+     {
+-      "x_auth_token": [
+-
+-      ]
++      "x_auth_token": []
+     }
+   ],
+   "tags": [
+     {
+       "name": "Authentication",
+       "description": "Hint: Equinix Metal's API can be reached at https://api.equinix.com/metal/v1\n\nMost of the endpoints in the API require authentication. Authenticating is done with an authentication token in the X-Auth-Token header.\n\n```\ncurl -H 'X-Auth-Token: my_authentication_token'\n```\n\nAuthentication tokens are used to identify the user your application is connecting to the API on behalf of. Think of authentication tokens as permanent sessions—the user creates authentication tokens, and your app can use them to connect to the API on their behalf until they delete the token.\n\n"
+@@ -501,14 +499,13 @@
+     "/projects/{id}/batches": {
+       "get": {
+         "summary": "Retrieve all batches by project",
+         "description": "Returns all batches for the given project",
+         "operationId": "findBatchesByProject",
+         "tags": [
+-          "Projects",
+-          "Batches"
++          "Projects"
+         ],
+         "parameters": [
+           {
+             "name": "id",
+             "in": "path",
+             "description": "Project UUID",
+@@ -671,14 +668,13 @@
+         }
+       }
+     },
+     "/projects/{id}/bgp-configs": {
+       "post": {
+         "tags": [
+-          "Projects",
+-          "BGP"
++          "Projects"
+         ],
+         "parameters": [
+           {
+             "name": "id",
+             "in": "path",
+             "description": "Project UUID",
+@@ -733,14 +729,13 @@
+     "/projects/{id}/bgp-config": {
+       "get": {
+         "summary": "Retrieve a bgp config",
+         "description": "Returns a bgp config",
+         "operationId": "findBgpConfigByProject",
+         "tags": [
+-          "Projects",
+-          "BGP"
++          "Projects"
+         ],
+         "parameters": [
+           {
+             "name": "id",
+             "in": "path",
+             "description": "Project UUID",
+@@ -802,14 +797,13 @@
+     "/devices/{id}/bgp/neighbors": {
+       "get": {
+         "summary": "Retrieve BGP neighbor data for this device",
+         "description": "Provides a summary of the BGP neighbor data associated to the BGP sessions for this device.",
+         "operationId": "getBgpNeighborData",
+         "tags": [
+-          "Devices",
+-          "BGP"
++          "Devices"
+         ],
+         "parameters": [
+           {
+             "name": "id",
+             "in": "path",
+             "description": "Device UUID",
+@@ -849,14 +843,13 @@
+     "/projects/{id}/bgp/sessions": {
+       "get": {
+         "summary": "Retrieve all BGP sessions for project",
+         "description": "Provides a listing of available BGP sessions for the project.",
+         "operationId": "findProjectBgpSessions",
+         "tags": [
+-          "Projects",
+-          "BGP"
++          "Projects"
+         ],
+         "parameters": [
+           {
+             "name": "id",
+             "in": "path",
+             "description": "Project UUID",
+@@ -890,14 +883,13 @@
+     "/devices/{id}/bgp/sessions": {
+       "get": {
+         "summary": "Retrieve all BGP sessions",
+         "description": "Provides a listing of available BGP sessions for the device.",
+         "operationId": "findBgpSessions",
+         "tags": [
+-          "Devices",
+-          "BGP"
++          "Devices"
+         ],
+         "parameters": [
+           {
+             "name": "id",
+             "in": "path",
+             "description": "Device UUID",
+@@ -929,14 +921,13 @@
+       },
+       "post": {
+         "summary": "Create a BGP session",
+         "description": "Creates a BGP session.",
+         "operationId": "createBgpSession",
+         "tags": [
+-          "Devices",
+-          "BGP"
++          "Devices"
+         ],
+         "parameters": [
+           {
+             "name": "id",
+             "in": "path",
+             "description": "Device UUID",
+@@ -1276,14 +1267,13 @@
+     "/organizations/{id}/capacity/metros": {
+       "get": {
+         "summary": "View available hardware plans per Metro for given organization",
+         "description": "Returns a list of metros and plans with their current capacity.",
+         "operationId": "findOrganizationCapacityPerMetro",
+         "tags": [
+-          "Capacity",
+-          "Organizations"
++          "Capacity"
+         ],
+         "parameters": [
+           {
+             "name": "id",
+             "in": "path",
+             "description": "Organization UUID",
+@@ -1317,14 +1307,13 @@
+     "/organizations/{id}/capacity": {
+       "get": {
+         "summary": "View available hardware plans per Facility for given organization",
+         "description": "Returns a list of facilities and plans with their current capacity.",
+         "operationId": "findOrganizationCapacityPerFacility",
+         "tags": [
+-          "Capacity",
+-          "Organizations"
++          "Capacity"
+         ],
+         "parameters": [
+           {
+             "name": "id",
+             "in": "path",
+             "description": "Organization UUID",
+@@ -1358,14 +1347,13 @@
+     "/devices/{id}/events": {
+       "get": {
+         "summary": "Retrieve device's events",
+         "description": "Returns a list of events pertaining to a specific device",
+         "operationId": "findDeviceEvents",
+         "tags": [
+-          "Events",
+-          "Devices"
++          "Events"
+         ],
+         "parameters": [
+           {
+             "name": "id",
+             "in": "path",
+             "description": "Device UUID",
+@@ -1449,14 +1437,13 @@
+     "/organizations/{id}/events": {
+       "get": {
+         "summary": "Retrieve organization's events",
+         "description": "Returns a list of events for a single organization",
+         "operationId": "findOrganizationEvents",
+         "tags": [
+-          "Events",
+-          "Organizations"
++          "Events"
+         ],
+         "parameters": [
+           {
+             "name": "id",
+             "in": "path",
+             "description": "Organization UUID",
+@@ -1540,14 +1527,13 @@
+     "/projects/{id}/events": {
+       "get": {
+         "summary": "Retrieve project's events",
+         "description": "Returns a list of events for a single project",
+         "operationId": "findProjectEvents",
+         "tags": [
+-          "Events",
+-          "Projects"
++          "Events"
+         ],
+         "parameters": [
+           {
+             "name": "id",
+             "in": "path",
+             "description": "Project UUID",
+@@ -1631,14 +1617,13 @@
+     "/volumes/{id}/events": {
+       "get": {
+         "summary": "Retrieve volume's events",
+         "description": "Returns a list of the current volume’s events",
+         "operationId": "findVolumeEvents",
+         "tags": [
+-          "Events",
+-          "Volumes"
++          "Events"
+         ],
+         "parameters": [
+           {
+             "name": "id",
+             "in": "path",
+             "description": "Volume UUID",
+@@ -1860,14 +1845,13 @@
+     "/connections/{connection_id}/events": {
+       "get": {
+         "summary": "Retrieve connection events",
+         "description": "Returns a list of the connection events",
+         "operationId": "findConnectionEvents",
+         "tags": [
+-          "Events",
+-          "Connections"
++          "Events"
+         ],
+         "parameters": [
+           {
+             "name": "connection_id",
+             "in": "path",
+             "description": "Connection UUID",
+@@ -1951,14 +1935,13 @@
+     "/connections/{connection_id}/ports/{id}/events": {
+       "get": {
+         "summary": "Retrieve connection port events",
+         "description": "Returns a list of the connection port events",
+         "operationId": "findConnectionPortEvents",
+         "tags": [
+-          "Events",
+-          "Connections"
++          "Events"
+         ],
+         "parameters": [
+           {
+             "name": "connection_id",
+             "in": "path",
+             "description": "Connection UUID",
+@@ -2050,14 +2033,13 @@
+     "/virtual-circuit/{id}/events": {
+       "get": {
+         "summary": "Retrieve connection events",
+         "description": "Returns a list of the virtual circuit events",
+         "operationId": "findVirtualCircuitEvents",
+         "tags": [
+-          "Events",
+-          "Connections"
++          "Events"
+         ],
+         "parameters": [
+           {
+             "name": "id",
+             "in": "path",
+             "description": "Virtual Circuit UUID",
+@@ -2200,14 +2182,13 @@
+     "/projects/{id}/facilities": {
+       "get": {
+         "summary": "Retrieve all facilities visible by the project",
+         "description": "Returns a listing of available datacenters for the given project",
+         "operationId": "findFacilitiesByProject",
+         "tags": [
+-          "Facilities",
+-          "Projects"
++          "Facilities"
+         ],
+         "parameters": [
+           {
+             "name": "id",
+             "in": "path",
+             "description": "Project UUID",
+@@ -2269,14 +2250,13 @@
+     "/organizations/{id}/facilities": {
+       "get": {
+         "summary": "Retrieve all facilities visible by the organization",
+         "description": "Returns a listing of available datacenters for the given organization",
+         "operationId": "findFacilitiesByOrganization",
+         "tags": [
+-          "Facilities",
+-          "Organizations"
++          "Facilities"
+         ],
+         "parameters": [
+           {
+             "name": "id",
+             "in": "path",
+             "description": "Organization UUID",
+@@ -2338,14 +2318,13 @@
+     "/projects/{id}/global-bgp-ranges": {
+       "get": {
+         "summary": "Retrieve all global bgp ranges",
+         "description": "Returns all global bgp ranges for a project",
+         "operationId": "findGlobalBgpRanges",
+         "tags": [
+-          "GlobalBgpRanges",
+-          "Projects"
++          "GlobalBgpRanges"
+         ],
+         "parameters": [
+           {
+             "name": "id",
+             "in": "path",
+             "description": "Project UUID",
+@@ -2385,14 +2364,13 @@
+     "/projects/{id}/hardware-reservations": {
+       "get": {
+         "summary": "Retrieve all hardware reservations for a given project",
+         "description": "Provides a collection of hardware reservations for a given project.",
+         "operationId": "findProjectHardwareReservations",
+         "tags": [
+-          "Projects",
+-          "HardwareReservations"
++          "Projects"
+         ],
+         "parameters": [
+           {
+             "name": "id",
+             "in": "path",
+             "description": "Project UUID",
+@@ -2646,14 +2624,13 @@
+     "/organizations/{id}/devices": {
+       "get": {
+         "summary": "Retrieve all devices of an organization",
+         "description": "Provides a collection of devices for a given organization.",
+         "operationId": "findOrganizationDevices",
+         "tags": [
+-          "Organizations",
+-          "Devices"
++          "Organizations"
+         ],
+         "parameters": [
+           {
+             "name": "id",
+             "in": "path",
+             "description": "Organization UUID",
+@@ -2737,14 +2714,13 @@
+     "/projects/{id}/devices": {
+       "get": {
+         "summary": "Retrieve all devices of a project",
+         "description": "Provides a collection of devices for a given project.",
+         "operationId": "findProjectDevices",
+         "tags": [
+-          "Projects",
+-          "Devices"
++          "Projects"
+         ],
+         "parameters": [
+           {
+             "name": "id",
+             "in": "path",
+             "description": "Project UUID",
+@@ -2826,14 +2802,13 @@
+       },
+       "post": {
+         "summary": "Create a device",
+         "description": "Creates a new device and provisions it in the specified location.\n\n      Device type-specific options are accepted.  For example, `baremetal` devices accept `operating_system`, `hostname`, and `plan`. These parameters may not be accepted for other device types. The default device type is `baremetal`.",
+         "operationId": "createDevice",
+         "tags": [
+-          "Projects",
+-          "Devices"
++          "Projects"
+         ],
+         "parameters": [
+           {
+             "name": "id",
+             "in": "path",
+             "description": "Project UUID",
+@@ -3069,14 +3044,13 @@
+     "/projects/{id}/devices/batch": {
+       "post": {
+         "summary": "Create a devices batch",
+         "description": "Creates new devices in batch and provisions them in our datacenter.\n\nType-specific options (such as operating_system for baremetal devices) should be included in the main data structure alongside hostname and plan.\n\nThe features attribute allows you to optionally specify what features your server should have.\n\nFor example, if you require a server with a TPM chip, you may specify `{ \"features\": { \"tpm\": \"required\" } }` (or `{ \"features\": [\"tpm\"] }` in shorthand).\n\nThe request will fail if there are no available servers matching your criteria. Alternatively, if you do not require a certain feature, but would prefer to be assigned a server with that feature if there are any available, you may specify that feature with a preferred value (see the example request below).\n\nThe request will not fail if we have no servers with that feature in our inventory.\n\nThe facilities attribute specifies in what datacenter you wish to create the device.\n\nYou can either specify a single facility `{ \"facility\": \"f1\" }` , or you can instruct to create the device in the best available datacenter `{ \"facility\": \"any\" }`. Additionally it is possible to set a prioritized location selection.\n\nFor example `{ \"facility\": [\"f3\", \"f2\", \"any\"] }` will try to assign to the facility f3, if there are no available f2, and so on. If \"any\" is not specified for \"facility\", the request will fail unless it can assign in the selected locations.\n\nWith `{ \"facility\": \"any\" }` you have the option to diversify to indicate how many facilities you are willing to be spread across. For this purpose use parameter: `facility_diversity_level = N`.\n\nFor example:\n\n`{ \"facilities\": [\"sjc1\", \"ewr1\", \"any\"] ,  \"facility_diversity_level\" = 1, \"quantity\" = 10 }` will assign 10 devices into the same facility, trying first in \"sjc1\", and if there aren’t available, it will try in  \"ewr1\", otherwise any other.\n\nThe `ip_addresses` attribute will allow you to specify the addresses you want created with your device.\n\nTo maintain backwards compatibility, If the attribute is not sent in the request, it will be treated as if `{ \"ip_addresses\": [{ \"address_family\": 4, \"public\": true }, { \"address_family\": 4, \"public\": false }, { \"address_family\": 6, \"public\": true }] }` was sent.\n\nThe private IPv4 address is required and always need to be sent in the array. Not all operating systems support no public IPv4 address, so in those cases you will receive an error message.\n\nFor example, to only configure your server with a private IPv4 address, you can send `{ \"ip_addresses\": [{ \"address_family\": 4, \"public\": false }] }`.\n\nNote: when specifying a subnet size larger than a /30, you will need to supply the UUID(s) of existing ip_reservations in your project to assign IPs from.\n\nFor example, `{ \"ip_addresses\": [..., {\"address_family\": 4, \"public\": true, \"ip_reservations\": [\"uuid1\", \"uuid2\"]}] }`\n\nTo access a server without public IPs, you can use our Out-of-Band console access (SOS) or use another server with public IPs as a proxy.",
+         "operationId": "createDeviceBatch",
+         "tags": [
+-          "Devices",
+-          "Batches"
++          "Devices"
+         ],
+         "parameters": [
+           {
+             "name": "id",
+             "in": "path",
+             "description": "Project UUID",
+@@ -3962,14 +3936,13 @@
+     "/projects/{project_id}/invitations": {
+       "get": {
+         "summary": "Retrieve project invitations",
+         "description": "Returns all invitations in a project.",
+         "operationId": "findProjectInvitations",
+         "tags": [
+-          "Invitations",
+-          "Projects"
++          "Invitations"
+         ],
+         "parameters": [
+           {
+             "name": "include",
+             "in": "query",
+             "description": "Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.",
+@@ -4051,14 +4024,13 @@
+       },
+       "post": {
+         "summary": "Create an invitation for a project",
+         "description": "In order to add a user to a project, they must first be invited.",
+         "operationId": "createProjectInvitation",
+         "tags": [
+-          "Invitations",
+-          "Projects"
++          "Invitations"
+         ],
+         "parameters": [
+           {
+             "name": "project_id",
+             "in": "path",
+             "description": "Project UUID",
+@@ -4113,14 +4085,13 @@
+     "/organizations/{id}/invitations": {
+       "get": {
+         "summary": "Retrieve organization invitations",
+         "description": "Returns all invitations in an organization.",
+         "operationId": "findOrganizationInvitations",
+         "tags": [
+-          "Invitations",
+-          "Organizations"
++          "Invitations"
+         ],
+         "parameters": [
+           {
+             "name": "include",
+             "in": "query",
+             "description": "Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.",
+@@ -4202,14 +4173,13 @@
+       },
+       "post": {
+         "summary": "Create an invitation for an organization",
+         "description": "In order to add a user to an organization, they must first be invited.\nTo invite to several projects the parameter `projects_ids:[a,b,c]` can be used",
+         "operationId": "createOrganizationInvitation",
+         "tags": [
+-          "Invitations",
+-          "Organizations"
++          "Invitations"
+         ],
+         "parameters": [
+           {
+             "name": "id",
+             "in": "path",
+             "description": "Organization UUID",
+@@ -4264,14 +4234,13 @@
+     "/invitations": {
+       "get": {
+         "summary": "Retrieve current user invitations",
+         "description": "Returns all invitations in current user.",
+         "operationId": "findInvitations",
+         "tags": [
+-          "Invitations",
+-          "Users"
++          "Invitations"
+         ],
+         "parameters": [
+           {
+             "name": "include",
+             "in": "query",
+             "description": "Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.",
+@@ -4514,14 +4483,13 @@
+     "/devices/{id}/ips": {
+       "get": {
+         "summary": "Retrieve all ip assignments",
+         "description": "Returns all ip assignments for a device.",
+         "operationId": "findIPAssignments",
+         "tags": [
+-          "Devices",
+-          "IPAddresses"
++          "Devices"
+         ],
+         "parameters": [
+           {
+             "name": "id",
+             "in": "path",
+             "description": "Device UUID",
+@@ -4575,14 +4543,13 @@
+       },
+       "post": {
+         "summary": "Create an ip assignment",
+         "description": "Creates an ip assignment for a device.",
+         "operationId": "createIPAssignment",
+         "tags": [
+-          "Devices",
+-          "IPAddresses"
++          "Devices"
+         ],
+         "parameters": [
+           {
+             "name": "id",
+             "in": "path",
+             "description": "Device UUID",
+@@ -4795,14 +4762,13 @@
+     "/projects/{id}/ips": {
+       "get": {
+         "summary": "Retrieve all ip reservations",
+         "description": "Provides a list of IP resevations for a single project.",
+         "operationId": "findIPReservations",
+         "tags": [
+-          "Projects",
+-          "IPAddresses"
++          "Projects"
+         ],
+         "parameters": [
+           {
+             "name": "id",
+             "in": "path",
+             "description": "Project UUID",
+@@ -4859,14 +4825,13 @@
+             }
+           }
+         }
+       },
+       "post": {
+         "tags": [
+-          "Projects",
+-          "IPAddresses"
++          "Projects"
+         ],
+         "parameters": [
+           {
+             "name": "id",
+             "in": "path",
+             "description": "Project UUID",
+@@ -4924,14 +4889,13 @@
+     "/projects/{id}/licenses": {
+       "get": {
+         "summary": "Retrieve all licenses",
+         "description": "Provides a collection of licenses for a given project.",
+         "operationId": "findProjectLicenses",
+         "tags": [
+-          "Projects",
+-          "Licenses"
++          "Projects"
+         ],
+         "parameters": [
+           {
+             "name": "id",
+             "in": "path",
+             "description": "Project UUID",
+@@ -5013,14 +4977,13 @@
+       },
+       "post": {
+         "summary": "Create a License",
+         "description": "Creates a new license for the given project",
+         "operationId": "createLicense",
+         "tags": [
+-          "Projects",
+-          "Licenses"
++          "Projects"
+         ],
+         "parameters": [
+           {
+             "name": "id",
+             "in": "path",
+             "description": "Project UUID",
+@@ -5243,14 +5206,13 @@
+     "/projects/{project_id}/memberships": {
+       "get": {
+         "summary": "Retrieve project memberships",
+         "description": "Returns all memberships in a project.",
+         "operationId": "findProjectMemberships",
+         "tags": [
+-          "Projects",
+-          "Memberships"
++          "Projects"
+         ],
+         "parameters": [
+           {
+             "name": "include",
+             "in": "query",
+             "description": "Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.",
+@@ -5976,14 +5938,13 @@
+     "/organizations/{id}/operating-systems": {
+       "get": {
+         "summary": "Retrieve all operating systems visible by the organization",
+         "description": "Returns a listing of available operating systems for the given organization",
+         "operationId": "findOperatingSystemsByOrganization",
+         "tags": [
+-          "OperatingSystems",
+-          "Organizations"
++          "OperatingSystems"
+         ],
+         "parameters": [
+           {
+             "name": "id",
+             "in": "path",
+             "description": "Organization UUID",
+@@ -6603,14 +6564,13 @@
+     "/organizations/{id}/payment-methods": {
+       "get": {
+         "summary": "Retrieve all payment methods of an organization",
+         "description": "Returns all payment methods of an organization.",
+         "operationId": "findOrganizationPaymentMethods",
+         "tags": [
+-          "Organizations",
+-          "PaymentMethods"
++          "Organizations"
+         ],
+         "parameters": [
+           {
+             "name": "id",
+             "in": "path",
+             "description": "Organization UUID",
+@@ -6686,14 +6646,13 @@
+       },
+       "post": {
+         "summary": "Create a payment method for the given organization",
+         "description": "Creates a payment method.",
+         "operationId": "createPaymentMethod",
+         "tags": [
+-          "Organizations",
+-          "PaymentMethods"
++          "Organizations"
+         ],
+         "parameters": [
+           {
+             "name": "id",
+             "in": "path",
+             "description": "Organization UUID",
+@@ -6940,14 +6899,13 @@
+     "/projects/{id}/plans": {
+       "get": {
+         "summary": "Retrieve all plans visible by the project",
+         "description": "Returns a listing of available plans for the given project",
+         "operationId": "findPlansByProject",
+         "tags": [
+-          "Plans",
+-          "Projects"
++          "Plans"
+         ],
+         "parameters": [
+           {
+             "name": "id",
+             "in": "path",
+             "description": "Project UUID",
+@@ -7009,14 +6967,13 @@
+     "/organizations/{id}/plans": {
+       "get": {
+         "summary": "Retrieve all plans visible by the organization",
+         "description": "Returns a listing of available plans for the given organization",
+         "operationId": "findPlansByOrganization",
+         "tags": [
+-          "Plans",
+-          "Organizations"
++          "Plans"
+         ],
+         "parameters": [
+           {
+             "name": "id",
+             "in": "path",
+             "description": "Organization UUID",
+@@ -7140,14 +7097,13 @@
+     "/ports/{id}/assign": {
+       "post": {
+         "summary": "Assign a port to virtual network",
+         "description": "Assign a port for a hardware to virtual network.",
+         "operationId": "assignPort",
+         "tags": [
+-          "Ports",
+-          "VLANs"
++          "Ports"
+         ],
+         "parameters": [
+           {
+             "name": "id",
+             "in": "path",
+             "description": "Port UUID",
+@@ -7202,14 +7158,13 @@
+     "/ports/{id}/unassign": {
+       "post": {
+         "summary": "Unassign a port",
+         "description": "Unassign a port for a hardware.",
+         "operationId": "unassignPort",
+         "tags": [
+-          "Ports",
+-          "VLANs"
++          "Ports"
+         ],
+         "parameters": [
+           {
+             "name": "id",
+             "in": "path",
+             "description": "Port UUID",
+@@ -7504,14 +7459,13 @@
+     "/ports/{id}/native-vlan": {
+       "post": {
+         "summary": "Assign a native VLAN",
+         "description": "Sets a virtual network on this port as a \"native VLAN\". The VLAN must have already been assigned using the using the \"Assign a port to a virtual network\" operation.",
+         "operationId": "assignNativeVlan",
+         "tags": [
+-          "Ports",
+-          "VLANs"
++          "Ports"
+         ],
+         "parameters": [
+           {
+             "name": "id",
+             "in": "path",
+             "description": "Port UUID",
+@@ -7556,14 +7510,13 @@
+       },
+       "delete": {
+         "summary": "Remove native VLAN",
+         "description": "Removes the native VLAN from this port",
+         "operationId": "deleteNativeVlan",
+         "tags": [
+-          "Ports",
+-          "VLANs"
++          "Ports"
+         ],
+         "parameters": [
+           {
+             "name": "id",
+             "in": "path",
+             "description": "Port UUID",
+@@ -7603,14 +7556,13 @@
+     "/organizations/{id}/projects": {
+       "get": {
+         "summary": "Retrieve all projects of an organization",
+         "description": "Returns a collection of projects that belong to the organization.",
+         "operationId": "findOrganizationProjects",
+         "tags": [
+-          "Organizations",
+-          "Projects"
++          "Organizations"
+         ],
+         "parameters": [
+           {
+             "name": "id",
+             "in": "path",
+             "description": "Organization UUID",
+@@ -7680,14 +7632,13 @@
+       },
+       "post": {
+         "summary": "Create a project for the organization",
+         "description": "Creates a new project for the organization",
+         "operationId": "createOrganizationProject",
+         "tags": [
+-          "Organizations",
+-          "Projects"
++          "Organizations"
+         ],
+         "parameters": [
+           {
+             "name": "id",
+             "in": "path",
+             "description": "Organization UUID",
+@@ -8007,14 +7958,13 @@
+     "/projects/{project_id}/self-service/reservations": {
+       "get": {
+         "summary": "Retrieve all reservations",
+         "description": "Returns all reservations.",
+         "operationId": "findSelfServiceReservations",
+         "tags": [
+-          "SelfServiceReservations",
+-          "IPAddresses"
++          "SelfServiceReservations"
+         ],
+         "parameters": [
+           {
+             "name": "page",
+             "in": "query",
+             "description": "Page to return",
+@@ -8062,14 +8012,13 @@
+       },
+       "post": {
+         "summary": "Create a reservation",
+         "description": "Creates a reservation.",
+         "operationId": "createSelfServiceReservation",
+         "tags": [
+-          "SelfServiceReservations",
+-          "IPAddresses"
++          "SelfServiceReservations"
+         ],
+         "parameters": [
+           {
+             "name": "reservation",
+             "in": "body",
+             "description": "reservation to create",
+@@ -8112,14 +8061,13 @@
+     "/projects/{project_id}/self-service/reservations/{id}": {
+       "get": {
+         "summary": "Retrieve a reservation",
+         "description": "Returns a reservation",
+         "operationId": "findSelfServiceReservation",
+         "tags": [
+-          "SelfServiceReservations",
+-          "IPAddresses"
++          "SelfServiceReservations"
+         ],
+         "parameters": [
+           {
+             "name": "id",
+             "in": "path",
+             "description": "Reservation short_id",
+@@ -8284,14 +8232,13 @@
+     "/projects/{id}/spot-market-requests": {
+       "post": {
+         "summary": "Create a spot market request",
+         "description": "Creates a new spot market request.\n\nType-specific options (such as operating_system for baremetal devices) should be included in the main data structure alongside hostname and plan.\n\nThe features attribute allows you to optionally specify what features your server should have. For example, if you require a server with a TPM chip, you may specify `{ \"features\": { \"tpm\": \"required\" } }` (or `{ \"features\": [\"tpm\"] }` in shorthand).\n\nThe request will fail if there are no available servers matching your criteria. Alternatively, if you do not require a certain feature, but would prefer to be assigned a server with that feature if there are any available, you may specify that feature with a preferred value (see the example request below).\n\nThe request will not fail if we have no servers with that feature in our inventory.",
+         "operationId": "createSpotMarketRequest",
+         "tags": [
+-          "Projects",
+-          "SpotMarketRequest"
++          "Projects"
+         ],
+         "parameters": [
+           {
+             "name": "id",
+             "in": "path",
+             "description": "Project UUID",
+@@ -8338,14 +8285,13 @@
+       },
+       "get": {
+         "summary": "List spot market requests",
+         "description": "View all spot market requests for a given project.",
+         "operationId": "listSpotMarketRequests",
+         "tags": [
+-          "Projects",
+-          "SpotMarketRequest"
++          "Projects"
+         ],
+         "parameters": [
+           {
+             "name": "id",
+             "in": "path",
+             "description": "Project UUID",
+@@ -8589,14 +8535,13 @@
+     "/projects/{id}/ssh-keys": {
+       "get": {
+         "summary": "Retrieve a project's ssh keys",
+         "description": "Returns a collection of the project's ssh keys.",
+         "operationId": "findProjectSSHKeys",
+         "tags": [
+-          "Projects",
+-          "SSHKeys"
++          "Projects"
+         ],
+         "parameters": [
+           {
+             "name": "id",
+             "in": "path",
+             "description": "Project UUID",
+@@ -8651,14 +8596,13 @@
+       },
+       "post": {
+         "summary": "Create a ssh key for the given project",
+         "description": "Creates a ssh key.",
+         "operationId": "createProjectSSHKey",
+         "tags": [
+-          "Projects",
+-          "SSHKeys"
++          "Projects"
+         ],
+         "parameters": [
+           {
+             "name": "id",
+             "in": "path",
+             "description": "Project UUID",
+@@ -8701,14 +8645,13 @@
+     "/devices/{id}/ssh-keys": {
+       "get": {
+         "summary": "Retrieve a device's ssh keys",
+         "description": "Returns a collection of the device's ssh keys.",
+         "operationId": "findDeviceSSHKeys",
+         "tags": [
+-          "Projects",
+-          "SSHKeys"
++          "Projects"
+         ],
+         "parameters": [
+           {
+             "name": "id",
+             "in": "path",
+             "description": "Project UUID",
+@@ -10165,14 +10108,13 @@
+     "/organizations/{id}/transfers": {
+       "get": {
+         "summary": "Retrieve all project transfer requests from or to an organization",
+         "description": "Provides a collection of project transfer requests from or to the organization.",
+         "operationId": "findOrganizationTransfers",
+         "tags": [
+-          "Organizations",
+-          "TransferRequests"
++          "Organizations"
+         ],
+         "parameters": [
+           {
+             "name": "id",
+             "in": "path",
+             "description": "Organization UUID",
+@@ -10228,14 +10170,13 @@
+     "/projects/{id}/transfers": {
+       "post": {
+         "summary": "Create a transfer request",
+         "description": "Organization owners can transfer their projects to other organizations.",
+         "operationId": "createTransferRequest",
+         "tags": [
+-          "Projects",
+-          "TransferRequests"
++          "Projects"
+         ],
+         "parameters": [
+           {
+             "name": "id",
+             "in": "path",
+             "description": "UUID of the project to be transferred",
+@@ -10440,14 +10381,13 @@
+     "/devices/{id}/usages": {
+       "get": {
+         "summary": "Retrieve all usages for device",
+         "description": "Returns all usages for a device.",
+         "operationId": "findDeviceUsages",
+         "tags": [
+-          "Devices",
+-          "Usages"
++          "Devices"
+         ],
+         "parameters": [
+           {
+             "name": "id",
+             "in": "path",
+             "description": "Device UUID",
+@@ -10497,14 +10437,13 @@
+     "/projects/{id}/usages": {
+       "get": {
+         "summary": "Retrieve all usages for project",
+         "description": "Returns all usages for a project.",
+         "operationId": "findProjectUsage",
+         "tags": [
+-          "Devices",
+-          "Usages"
++          "Devices"
+         ],
+         "parameters": [
+           {
+             "name": "id",
+             "in": "path",
+             "description": "Project UUID",
+@@ -10912,14 +10851,13 @@
+     "/projects/{id}/virtual-networks": {
+       "get": {
+         "summary": "Retrieve all virtual networks",
+         "description": "Provides a list of virtual networks for a single project.",
+         "operationId": "findVirtualNetworks",
+         "tags": [
+-          "Projects",
+-          "VLANs"
++          "Projects"
+         ],
+         "parameters": [
+           {
+             "name": "id",
+             "in": "path",
+             "description": "Project UUID",
+@@ -10990,14 +10928,13 @@
+             }
+           }
+         }
+       },
+       "post": {
+         "tags": [
+-          "Projects",
+-          "VLANs"
++          "Projects"
+         ],
+         "parameters": [
+           {
+             "name": "id",
+             "in": "path",
+             "description": "Project UUID",
+@@ -11157,14 +11094,13 @@
+     "/ports/{id}/vlan-assignments/batches": {
+       "post": {
+         "summary": "Create a new Port-VLAN Assignment management batch",
+         "description": "Create a new asynchronous batch request which handles adding and/or removing the VLANs to which the port is assigned.",
+         "operationId": "createPortVlanAssignmentBatch",
+         "tags": [
+-          "Ports",
+-          "VLANs"
++          "Ports"
+         ],
+         "parameters": [
+           {
+             "name": "id",
+             "in": "path",
+             "description": "Port UUID",
+@@ -11217,14 +11153,13 @@
+       },
+       "get": {
+         "summary": "List the VLAN Assignment Batches for a port",
+         "description": "Show all the VLAN assignment batches that have been created for managing this port's VLAN assignments",
+         "operationId": "findPortVlanAssignmentBatches",
+         "tags": [
+-          "Ports",
+-          "VLANs"
++          "Ports"
+         ],
+         "parameters": [
+           {
+             "name": "id",
+             "in": "path",
+             "description": "Port UUID",
+@@ -11264,14 +11199,13 @@
+     "/ports/{id}/vlan-assignments/batches/{batch_id}": {
+       "get": {
+         "summary": "Retrieve a VLAN Assignment Batch's details",
+         "description": "Returns the details of an existing Port-VLAN Assignment batch, including the list of VLANs to assign or unassign, and the current state of the batch.",
+         "operationId": "findPortVlanAssignmentBatchByPortIdAndBatchId",
+         "tags": [
+-          "Ports",
+-          "VLANs"
++          "Ports"
+         ],
+         "parameters": [
+           {
+             "name": "id",
+             "in": "path",
+             "description": "Port UUID",
+@@ -11319,14 +11253,13 @@
+     "/ports/{id}/vlan-assignments": {
+       "get": {
+         "summary": "List Current VLAN assignments for a port",
+         "description": "Show the port's current VLAN assignments, including if this VLAN is set as native, and the current state of the assignment (ex. 'assigned' or 'unassigning')",
+         "operationId": "findPortVlanAssignments",
+         "tags": [
+-          "Ports",
+-          "VLANs"
++          "Ports"
+         ],
+         "parameters": [
+           {
+             "name": "id",
+             "in": "path",
+             "description": "Port UUID",
+@@ -11392,14 +11325,13 @@
+     "/ports/{id}/vlan-assignments/{assignment_id}": {
+       "get": {
+         "summary": "Show a particular Port VLAN assignment's details",
+         "description": "Show the details of a specific Port-VLAN assignment, including the current state and if the VLAN is set as native.",
+         "operationId": "findPortVlanAssignmentByPortIdAndAssignmentId",
+         "tags": [
+-          "Ports",
+-          "VLANs"
++          "Ports"
+         ],
+         "parameters": [
+           {
+             "name": "id",
+             "in": "path",
+             "description": "Port UUID",
+@@ -16201,7 +16133,7 @@
+         "default": {
+           "type": "boolean"
+         }
+       }
+     }
+   }
+-}
+\ No newline at end of file
++}
