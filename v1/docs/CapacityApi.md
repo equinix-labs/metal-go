@@ -8,6 +8,8 @@ Method | HTTP request | Description
 [**CheckCapacityForMetro**](CapacityApi.md#CheckCapacityForMetro) | **Post** /capacity/metros | Check capacity for a metro
 [**FindCapacityForFacility**](CapacityApi.md#FindCapacityForFacility) | **Get** /capacity | View capacity
 [**FindCapacityForMetro**](CapacityApi.md#FindCapacityForMetro) | **Get** /capacity/metros | View capacity for metros
+[**FindOrganizationCapacityPerFacility**](CapacityApi.md#FindOrganizationCapacityPerFacility) | **Get** /organizations/{id}/capacity | View available hardware plans per Facility for given organization
+[**FindOrganizationCapacityPerMetro**](CapacityApi.md#FindOrganizationCapacityPerMetro) | **Get** /organizations/{id}/capacity/metros | View available hardware plans per Metro for given organization
 
 
 
@@ -245,6 +247,146 @@ This endpoint does not need any parameter.
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiFindCapacityForMetroRequest struct via the builder pattern
+
+
+### Return type
+
+[**MetroCapacityList**](MetroCapacityList.md)
+
+### Authorization
+
+[x_auth_token](../README.md#x_auth_token)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## FindOrganizationCapacityPerFacility
+
+> CapacityList FindOrganizationCapacityPerFacility(ctx, id).Execute()
+
+View available hardware plans per Facility for given organization
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := TODO // string | Organization UUID
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.CapacityApi.FindOrganizationCapacityPerFacility(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `CapacityApi.FindOrganizationCapacityPerFacility``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `FindOrganizationCapacityPerFacility`: CapacityList
+    fmt.Fprintf(os.Stdout, "Response from `CapacityApi.FindOrganizationCapacityPerFacility`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | [**string**](.md) | Organization UUID | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiFindOrganizationCapacityPerFacilityRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**CapacityList**](CapacityList.md)
+
+### Authorization
+
+[x_auth_token](../README.md#x_auth_token)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## FindOrganizationCapacityPerMetro
+
+> MetroCapacityList FindOrganizationCapacityPerMetro(ctx, id).Execute()
+
+View available hardware plans per Metro for given organization
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := TODO // string | Organization UUID
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.CapacityApi.FindOrganizationCapacityPerMetro(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `CapacityApi.FindOrganizationCapacityPerMetro``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `FindOrganizationCapacityPerMetro`: MetroCapacityList
+    fmt.Fprintf(os.Stdout, "Response from `CapacityApi.FindOrganizationCapacityPerMetro`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | [**string**](.md) | Organization UUID | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiFindOrganizationCapacityPerMetroRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
 
 
 ### Return type

@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **NeedOfService** | Pointer to **bool** | Whether this Device requires assistance from Metal Equinix. | [optional] 
 **Provisionable** | Pointer to **bool** | Whether the reserved server is provisionable or not. Spare devices can&#39;t be provisioned unless they are activated first. | [optional] 
 **CustomRate** | Pointer to **float32** | Amount that will be charged for every billing_cycle. | [optional] 
+**SwitchUuid** | Pointer to **string** | Switch short id. This can be used to determine if two devices are connected to the same switch, for example. | [optional] 
 
 ## Methods
 
@@ -335,6 +336,31 @@ SetCustomRate sets CustomRate field to given value.
 `func (o *HardwareReservation) HasCustomRate() bool`
 
 HasCustomRate returns a boolean if a field has been set.
+
+### GetSwitchUuid
+
+`func (o *HardwareReservation) GetSwitchUuid() string`
+
+GetSwitchUuid returns the SwitchUuid field if non-nil, zero value otherwise.
+
+### GetSwitchUuidOk
+
+`func (o *HardwareReservation) GetSwitchUuidOk() (*string, bool)`
+
+GetSwitchUuidOk returns a tuple with the SwitchUuid field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSwitchUuid
+
+`func (o *HardwareReservation) SetSwitchUuid(v string)`
+
+SetSwitchUuid sets SwitchUuid field to given value.
+
+### HasSwitchUuid
+
+`func (o *HardwareReservation) HasSwitchUuid() bool`
+
+HasSwitchUuid returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

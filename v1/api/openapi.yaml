@@ -167,6 +167,9 @@ tags:
 - description: Membership Management (Project). Check out the product docs to learn
     more about [Membership](https://metal.equinix.com/developers/docs/accounts/).
   name: Memberships
+- description: Metal Gateway Management.Check out the product docs to learn more about
+    [Metal Gateways](https://metal.equinix.com/developers/docs/networking/metal-gateway/).
+  name: MetalGateways
 - description: Metro Management. Check out the product docs to learn more about [Metros](https://metal.equinix.com/developers/docs/locations/metros/).
   name: Metros
 - description: Operating System Management. Check out the product docs to learn more
@@ -540,7 +543,7 @@ paths:
           description: not found
       summary: Retrieve all batches by project
       tags:
-      - Batches
+      - Projects
   /batches/{id}:
     delete:
       description: Deletes the Batch.
@@ -682,7 +685,7 @@ paths:
           description: unprocessable entity
       summary: Requesting bgp config
       tags:
-      - BGP
+      - Projects
       x-codegen-request-body-name: bgp_config_request
   /projects/{id}/bgp-config:
     get:
@@ -752,7 +755,7 @@ paths:
             The project was not found.
       summary: Retrieve a bgp config
       tags:
-      - BGP
+      - Projects
   /devices/{id}/bgp/neighbors:
     get:
       description: Provides a summary of the BGP neighbor data associated to the BGP
@@ -793,7 +796,7 @@ paths:
           description: not found
       summary: Retrieve BGP neighbor data for this device
       tags:
-      - BGP
+      - Devices
   /projects/{id}/bgp/sessions:
     get:
       description: Provides a listing of available BGP sessions for the project.
@@ -827,7 +830,7 @@ paths:
           description: not found
       summary: Retrieve all BGP sessions for project
       tags:
-      - BGP
+      - Projects
   /devices/{id}/bgp/sessions:
     get:
       description: Provides a listing of available BGP sessions for the device.
@@ -861,7 +864,7 @@ paths:
           description: forbidden
       summary: Retrieve all BGP sessions
       tags:
-      - BGP
+      - Devices
     post:
       description: Creates a BGP session.
       operationId: createBgpSession
@@ -907,7 +910,7 @@ paths:
           description: unprocessable entity
       summary: Create a BGP session
       tags:
-      - BGP
+      - Devices
       x-codegen-request-body-name: bgp_session
   /bgp/sessions/{id}:
     delete:
@@ -1164,6 +1167,74 @@ paths:
       tags:
       - Capacity
       x-codegen-request-body-name: servers
+  /organizations/{id}/capacity/metros:
+    get:
+      description: Returns a list of metros and plans with their current capacity.
+      operationId: findOrganizationCapacityPerMetro
+      parameters:
+      - description: Organization UUID
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetroCapacityList'
+          description: ok
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: forbidden
+      summary: View available hardware plans per Metro for given organization
+      tags:
+      - Capacity
+  /organizations/{id}/capacity:
+    get:
+      description: Returns a list of facilities and plans with their current capacity.
+      operationId: findOrganizationCapacityPerFacility
+      parameters:
+      - description: Organization UUID
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CapacityList'
+          description: ok
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: forbidden
+      summary: View available hardware plans per Facility for given organization
+      tags:
+      - Capacity
   /devices/{id}/events:
     get:
       description: Returns a list of events pertaining to a specific device
@@ -2148,7 +2219,7 @@ paths:
           description: not found
       summary: Retrieve all hardware reservations for a given project
       tags:
-      - HardwareReservations
+      - Projects
   /hardware-reservations/{id}:
     get:
       description: Returns a single hardware reservation
@@ -2381,7 +2452,7 @@ paths:
           description: not found
       summary: Retrieve all devices of an organization
       tags:
-      - Devices
+      - Organizations
   /projects/{id}/devices:
     get:
       description: Provides a collection of devices for a given project.
@@ -2461,7 +2532,7 @@ paths:
           description: not found
       summary: Retrieve all devices of a project
       tags:
-      - Devices
+      - Projects
     post:
       description: |-
         Creates a new device and provisions it in the specified location.
@@ -2516,7 +2587,7 @@ paths:
           description: unprocessable entity
       summary: Create a device
       tags:
-      - Devices
+      - Projects
       x-codegen-request-body-name: device
   /devices/{id}:
     delete:
@@ -2772,7 +2843,7 @@ paths:
           description: unprocessable entity
       summary: Create a devices batch
       tags:
-      - Batches
+      - Devices
       x-codegen-request-body-name: batch
   /devices/{id}/bandwidth:
     get:
@@ -4052,7 +4123,7 @@ paths:
           description: not found
       summary: Retrieve all ip assignments
       tags:
-      - IPAddresses
+      - Devices
     post:
       description: Creates an ip assignment for a device.
       operationId: createIPAssignment
@@ -4098,7 +4169,7 @@ paths:
           description: unprocessable entity
       summary: Create an ip assignment
       tags:
-      - IPAddresses
+      - Devices
       x-codegen-request-body-name: ip_assignment
   /ips/{id}/available:
     get:
@@ -4317,7 +4388,7 @@ paths:
           description: not found
       summary: Retrieve all ip reservations
       tags:
-      - IPAddresses
+      - Projects
     post:
       description: Request more IP space for a project in order to have additional
         IP addresses to assign to devices.  If the request is within the max quota,
@@ -4375,7 +4446,7 @@ paths:
           description: unprocessable entity
       summary: Requesting IP reservations
       tags:
-      - IPAddresses
+      - Projects
       x-codegen-request-body-name: ip_reservation_request
   /projects/{id}/licenses:
     get:
@@ -4456,7 +4527,7 @@ paths:
           description: not found
       summary: Retrieve all licenses
       tags:
-      - Licenses
+      - Projects
     post:
       description: Creates a new license for the given project
       operationId: createLicense
@@ -4508,7 +4579,7 @@ paths:
           description: unprocessable entity
       summary: Create a License
       tags:
-      - Licenses
+      - Projects
       x-codegen-request-body-name: license
   /licenses/{id}:
     delete:
@@ -4740,7 +4811,7 @@ paths:
           description: not found
       summary: Retrieve project memberships
       tags:
-      - Memberships
+      - Projects
   /memberships/{id}:
     delete:
       description: Deletes the membership.
@@ -5930,7 +6001,7 @@ paths:
           description: not found
       summary: Retrieve all payment methods of an organization
       tags:
-      - PaymentMethods
+      - Organizations
     post:
       description: Creates a payment method.
       operationId: createPaymentMethod
@@ -5976,7 +6047,7 @@ paths:
           description: unprocessable entity
       summary: Create a payment method for the given organization
       tags:
-      - PaymentMethods
+      - Organizations
       x-codegen-request-body-name: payment_method
   /payment-methods/{id}:
     delete:
@@ -6388,7 +6459,7 @@ paths:
           description: unprocessable entity
       summary: Assign a port to virtual network
       tags:
-      - VLANs
+      - Ports
       x-codegen-request-body-name: vnid
   /ports/{id}/unassign:
     post:
@@ -6443,7 +6514,7 @@ paths:
           description: unprocessable entity
       summary: Unassign a port
       tags:
-      - VLANs
+      - Ports
       x-codegen-request-body-name: vnid
   /ports/{id}/disbond:
     post:
@@ -6695,7 +6766,7 @@ paths:
           description: unprocessable entity
       summary: Remove native VLAN
       tags:
-      - VLANs
+      - Ports
     post:
       description: Sets a virtual network on this port as a "native VLAN". The VLAN
         must have already been assigned using the using the "Assign a port to a virtual
@@ -6743,7 +6814,7 @@ paths:
           description: unprocessable entity
       summary: Assign a native VLAN
       tags:
-      - VLANs
+      - Ports
   /organizations/{id}/projects:
     get:
       description: Returns a collection of projects that belong to the organization.
@@ -6811,7 +6882,7 @@ paths:
           description: unauthorized
       summary: Retrieve all projects of an organization
       tags:
-      - Projects
+      - Organizations
     post:
       description: Creates a new project for the organization
       operationId: createOrganizationProject
@@ -6851,7 +6922,7 @@ paths:
           description: unprocessable entity
       summary: Create a project for the organization
       tags:
-      - Projects
+      - Organizations
       x-codegen-request-body-name: project
   /projects:
     get:
@@ -7358,7 +7429,7 @@ paths:
           description: not found
       summary: List spot market requests
       tags:
-      - SpotMarketRequest
+      - Projects
     post:
       description: |-
         Creates a new spot market request.
@@ -7413,7 +7484,7 @@ paths:
           description: unprocessable entity
       summary: Create a spot market request
       tags:
-      - SpotMarketRequest
+      - Projects
       x-codegen-request-body-name: spot_market_request
   /spot-market-requests/{id}:
     delete:
@@ -7653,7 +7724,7 @@ paths:
           description: unauthorized
       summary: Retrieve a project's ssh keys
       tags:
-      - SSHKeys
+      - Projects
     post:
       description: Creates a ssh key.
       operationId: createProjectSSHKey
@@ -7693,7 +7764,7 @@ paths:
           description: unprocessable entity
       summary: Create a ssh key for the given project
       tags:
-      - SSHKeys
+      - Projects
       x-codegen-request-body-name: ssh key
   /devices/{id}/ssh-keys:
     get:
@@ -7749,7 +7820,7 @@ paths:
           description: unauthorized
       summary: Retrieve a device's ssh keys
       tags:
-      - SSHKeys
+      - Projects
   /ssh-keys/{id}:
     delete:
       description: Deletes the ssh key.
@@ -9051,7 +9122,7 @@ paths:
           description: forbidden
       summary: Retrieve all project transfer requests from or to an organization
       tags:
-      - TransferRequests
+      - Organizations
   /projects/{id}/transfers:
     post:
       description: Organization owners can transfer their projects to other organizations.
@@ -9104,7 +9175,7 @@ paths:
           description: unprocessable entity
       summary: Create a transfer request
       tags:
-      - TransferRequests
+      - Projects
       x-codegen-request-body-name: transfer_request
   /transfers/{id}:
     delete:
@@ -9285,7 +9356,7 @@ paths:
           description: not found
       summary: Retrieve all usages for device
       tags:
-      - Usages
+      - Devices
   /projects/{id}/usages:
     get:
       description: Returns all usages for a project.
@@ -9331,7 +9402,7 @@ paths:
           description: not found
       summary: Retrieve all usages for project
       tags:
-      - Usages
+      - Devices
   /userdata/validate:
     post:
       description: Validates user data (Userdata)
@@ -9713,7 +9784,7 @@ paths:
           description: not found
       summary: Retrieve all virtual networks
       tags:
-      - VLANs
+      - Projects
     post:
       description: Creates an virtual network.
       operationId: createVirtualNetwork
@@ -9765,7 +9836,7 @@ paths:
           description: unprocessable entity
       summary: Create a virtual network
       tags:
-      - VLANs
+      - Projects
       x-codegen-request-body-name: virtual_network
   /virtual-networks/{id}:
     delete:
@@ -9858,6 +9929,467 @@ paths:
       summary: Get a virtual network
       tags:
       - VLANs
+  /ports/{id}/vlan-assignments/batches:
+    get:
+      description: Show all the VLAN assignment batches that have been created for
+        managing this port's VLAN assignments
+      operationId: findPortVlanAssignmentBatches
+      parameters:
+      - description: Port UUID
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PortVlanAssignmentBatchList'
+          description: ok
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: not found
+      summary: List the VLAN Assignment Batches for a port
+      tags:
+      - Ports
+    post:
+      description: Create a new asynchronous batch request which handles adding and/or
+        removing the VLANs to which the port is assigned.
+      operationId: createPortVlanAssignmentBatch
+      parameters:
+      - description: Port UUID
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PortVlanAssignmentBatchCreateInput'
+        description: VLAN Assignment batch details
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PortVlanAssignmentBatch'
+          description: created
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: not found
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: unprocessable entity
+      summary: Create a new Port-VLAN Assignment management batch
+      tags:
+      - Ports
+      x-codegen-request-body-name: vlan_assignments
+  /ports/{id}/vlan-assignments/batches/{batch_id}:
+    get:
+      description: Returns the details of an existing Port-VLAN Assignment batch,
+        including the list of VLANs to assign or unassign, and the current state of
+        the batch.
+      operationId: findPortVlanAssignmentBatchByPortIdAndBatchId
+      parameters:
+      - description: Port UUID
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - description: Batch ID
+        in: path
+        name: batch_id
+        required: true
+        schema:
+          format: uuid
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PortVlanAssignmentBatch'
+          description: ok
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: not found
+      summary: Retrieve a VLAN Assignment Batch's details
+      tags:
+      - Ports
+  /ports/{id}/vlan-assignments:
+    get:
+      description: Show the port's current VLAN assignments, including if this VLAN
+        is set as native, and the current state of the assignment (ex. 'assigned'
+        or 'unassigning')
+      operationId: findPortVlanAssignments
+      parameters:
+      - description: Port UUID
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - description: Nested attributes to include. Included objects will return their
+          full attributes. Attribute names can be dotted (up to 3 levels) to included
+          deeply nested objects.
+        explode: false
+        in: query
+        name: include
+        schema:
+          default: '["port","virtual_network"]'
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Nested attributes to exclude. Excluded objects will return only
+          the href attribute. Attribute names can be dotted (up to 3 levels) to exclude
+          deeply nested objects.
+        explode: false
+        in: query
+        name: exclude
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PortVlanAssignmentList'
+          description: ok
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: not found
+      summary: List Current VLAN assignments for a port
+      tags:
+      - Ports
+  /ports/{id}/vlan-assignments/{assignment_id}:
+    get:
+      description: Show the details of a specific Port-VLAN assignment, including
+        the current state and if the VLAN is set as native.
+      operationId: findPortVlanAssignmentByPortIdAndAssignmentId
+      parameters:
+      - description: Port UUID
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - description: Assignment ID
+        in: path
+        name: assignment_id
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - description: Nested attributes to include. Included objects will return their
+          full attributes. Attribute names can be dotted (up to 3 levels) to included
+          deeply nested objects.
+        explode: false
+        in: query
+        name: include
+        schema:
+          default: '["port","virtual_network"]'
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Nested attributes to exclude. Excluded objects will return only
+          the href attribute. Attribute names can be dotted (up to 3 levels) to exclude
+          deeply nested objects.
+        explode: false
+        in: query
+        name: exclude
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PortVlanAssignment'
+          description: ok
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: not found
+      summary: Show a particular Port VLAN assignment's details
+      tags:
+      - Ports
+  /projects/{project_id}/metal-gateways:
+    get:
+      description: Return all metal gateways for a project
+      operationId: findMetalGatewaysByProject
+      parameters:
+      - description: Project UUID
+        in: path
+        name: project_id
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - description: Page to return
+        in: query
+        name: page
+        schema:
+          default: 1
+          format: int32
+          maximum: 100000
+          minimum: 1
+          type: integer
+      - description: Items returned per page
+        in: query
+        name: per_page
+        schema:
+          default: 10
+          format: int32
+          maximum: 1000
+          minimum: 1
+          type: integer
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetalGatewayList'
+          description: ok
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: not found
+      summary: Returns all metal gateways for a project
+      tags:
+      - MetalGateways
+    post:
+      description: Create a metal gateway in a project
+      operationId: createMetalGateway
+      parameters:
+      - description: Project UUID
+        in: path
+        name: project_id
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - description: Page to return
+        in: query
+        name: page
+        schema:
+          default: 1
+          format: int32
+          maximum: 100000
+          minimum: 1
+          type: integer
+      - description: Items returned per page
+        in: query
+        name: per_page
+        schema:
+          default: 10
+          format: int32
+          maximum: 1000
+          minimum: 1
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MetalGatewayInput'
+        description: Metal Gateway to create
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetalGateway'
+          description: created
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: not found
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: unprocessable entity
+      summary: Create a metal gateway
+      tags:
+      - MetalGateways
+      x-codegen-request-body-name: metal_gateway
+  /metal-gateways/{id}:
+    delete:
+      description: Deletes a specific metal gateway
+      operationId: deleteMetalGateway
+      parameters:
+      - description: Metal Gateway UUID
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+      responses:
+        "204":
+          content: {}
+          description: no content
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: not found
+      summary: Deletes the metal gateway
+      tags:
+      - MetalGateways
+    get:
+      description: Returns a specific metal gateway
+      operationId: findMetalGatewayById
+      parameters:
+      - description: Metal Gateway UUID
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetalGateway'
+          description: ok
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: not found
+      summary: Returns the metal gateway
+      tags:
+      - MetalGateways
   /emails:
     post:
       description: Add a new email address to the current user.
@@ -10585,7 +11117,6 @@ components:
       type: object
     HardwareReservation:
       example:
-        provisionable: true
         custom_rate: 1050.5
         project:
           devices:
@@ -10618,9 +11149,11 @@ components:
           payment_method:
             href: href
         created_at: 2000-01-23T04:56:07.000+00:00
+        switch_uuid: switch_uuid
+        short_id: short_id
+        provisionable: true
         need_of_service: true
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        short_id: short_id
         href: href
         facility:
           features:
@@ -10849,6 +11382,10 @@ components:
           example: 1050.5
           format: float
           type: number
+        switch_uuid:
+          description: Switch short id. This can be used to determine if two devices
+            are connected to the same switch, for example.
+          type: string
       type: object
     HardwareReservationList:
       example:
@@ -10865,8 +11402,7 @@ components:
           first:
             href: href
         hardware_reservations:
-        - provisionable: true
-          custom_rate: 1050.5
+        - custom_rate: 1050.5
           project:
             devices:
             - href: href
@@ -10898,9 +11434,11 @@ components:
             payment_method:
               href: href
           created_at: 2000-01-23T04:56:07.000+00:00
+          switch_uuid: switch_uuid
+          short_id: short_id
+          provisionable: true
           need_of_service: true
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          short_id: short_id
           href: href
           facility:
             features:
@@ -11091,8 +11629,7 @@ components:
               name: name
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           spare: true
-        - provisionable: true
-          custom_rate: 1050.5
+        - custom_rate: 1050.5
           project:
             devices:
             - href: href
@@ -11124,9 +11661,11 @@ components:
             payment_method:
               href: href
           created_at: 2000-01-23T04:56:07.000+00:00
+          switch_uuid: switch_uuid
+          short_id: short_id
+          provisionable: true
           need_of_service: true
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          short_id: short_id
           href: href
           facility:
             features:
@@ -12307,6 +12846,7 @@ components:
         tags:
         - tags
         - tags
+        mode: standard
         metro: '{}'
         organization:
           href: href
@@ -12353,6 +12893,16 @@ components:
           - description: Details of the metro the facility is in
             type: object
           type: object
+        mode:
+          description: |-
+            The mode of the connection (only relevant to dedicated connections). Shared connections won't have this field. Can be either 'standard' or 'tunnel'.
+              The default mode of a dedicated connection is 'standard'. The mode can only be changed when there are no associated virtual circuits on the connection.
+              In tunnel mode, an 802.1q tunnel is added to a port to send/receive double tagged packets from server instances.
+          enum:
+          - standard
+          - tunnel
+          example: standard
+          type: string
       type: object
     InterconnectionList:
       example:
@@ -12437,6 +12987,7 @@ components:
           tags:
           - tags
           - tags
+          mode: standard
           metro: '{}'
           organization:
             href: href
@@ -12526,6 +13077,7 @@ components:
           tags:
           - tags
           - tags
+          mode: standard
           metro: '{}'
           organization:
             href: href
@@ -12543,6 +13095,7 @@ components:
       type: object
     InterconnectionCreateInput:
       example:
+        mode: standard
         metro: metro
         name: name
         description: description
@@ -12585,6 +13138,16 @@ components:
           items:
             type: string
           type: array
+        mode:
+          description: |-
+            The mode of the connection (only relevant to dedicated connections). Shared connections won't have this field. Can be either 'standard' or 'tunnel'.
+              The default mode of a dedicated connection is 'standard'. The mode can only be changed when there are no associated virtual circuits on the connection.
+              In tunnel mode, an 802.1q tunnel is added to a port to send/receive double tagged packets from server instances.
+          enum:
+          - standard
+          - tunnel
+          example: standard
+          type: string
       required:
       - facility
       - name
@@ -12593,6 +13156,7 @@ components:
       type: object
     InterconnectionUpdateInput:
       example:
+        mode: standard
         name: name
         description: description
         redundancy: redundancy
@@ -12615,6 +13179,16 @@ components:
           items:
             type: string
           type: array
+        mode:
+          description: |-
+            The mode of the connection (only relevant to dedicated connections). Shared connections won't have this field. Can be either 'standard' or 'tunnel'.
+              The default mode of a dedicated connection is 'standard'. The mode can only be changed when there are no associated virtual circuits on the connection.
+              In tunnel mode, an 802.1q tunnel is added to a port to send/receive double tagged packets from server instances.
+          enum:
+          - standard
+          - tunnel
+          example: standard
+          type: string
       type: object
     InterconnectionPort:
       example:
@@ -13772,8 +14346,10 @@ components:
         facility:
           allOf:
           - $ref: '#/components/schemas/Facility'
-          - description: The facility the IP reservation is in. Will not have a value
-              if it is a metro-based IP reservation.
+          - description: The facility the IP reservation is in. If the facility the
+              IP reservation was requested in is in a metro, a metro value will also
+              be set, and the subsequent IP reservation can be used on a metro level.
+              Can be null if requesting an IP reservation in a metro.
             type: object
           type: object
         href:
@@ -13787,9 +14363,9 @@ components:
         metro:
           allOf:
           - $ref: '#/components/schemas/Metro'
-          - description: The metro the IP reservation is in. If a facility is specified,
-              this is the metro of that facility. If the facility is not specified,
-              this is a metro-based IP reservation.
+          - description: The metro the IP reservation is in. As long as the IP reservation
+              has a metro, it can be used on a metro level. Can be null if requesting
+              an IP reservation in a facility that is not in a metro.
             type: object
           type: object
       type: object
@@ -17724,6 +18300,351 @@ components:
             type: string
           type: array
       type: object
+    PortVlanAssignmentBatch:
+      example:
+        quantity: 0
+        updated_at: 2000-01-23T04:56:07.000+00:00
+        port:
+          disbond_operation_supported: true
+          data: '{}'
+          name: name
+          virtual_networks:
+          - href: href
+          - href: href
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          href: href
+          type: type
+        created_at: 2000-01-23T04:56:07.000+00:00
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        state: queued
+        error_messages:
+        - error_messages
+        - error_messages
+        vlan_assignments:
+        - vlan: 6
+          native: true
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          state: assigned
+        - vlan: 6
+          native: true
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          state: assigned
+      properties:
+        id:
+          format: uuid
+          type: string
+        error_messages:
+          items:
+            type: string
+          type: array
+        quantity:
+          type: integer
+        state:
+          enum:
+          - queued
+          - in_progress
+          - completed
+          - failed
+          type: string
+        created_at:
+          format: date-time
+          type: string
+        updated_at:
+          format: date-time
+          type: string
+        port:
+          $ref: '#/components/schemas/Port'
+        vlan_assignments:
+          items:
+            $ref: '#/components/schemas/PortVlanAssignmentBatch_vlan_assignments'
+          type: array
+      type: object
+    PortVlanAssignmentBatchList:
+      example:
+        batches:
+        - quantity: 0
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          port:
+            disbond_operation_supported: true
+            data: '{}'
+            name: name
+            virtual_networks:
+            - href: href
+            - href: href
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            href: href
+            type: type
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          state: queued
+          error_messages:
+          - error_messages
+          - error_messages
+          vlan_assignments:
+          - vlan: 6
+            native: true
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            state: assigned
+          - vlan: 6
+            native: true
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            state: assigned
+        - quantity: 0
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          port:
+            disbond_operation_supported: true
+            data: '{}'
+            name: name
+            virtual_networks:
+            - href: href
+            - href: href
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            href: href
+            type: type
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          state: queued
+          error_messages:
+          - error_messages
+          - error_messages
+          vlan_assignments:
+          - vlan: 6
+            native: true
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            state: assigned
+          - vlan: 6
+            native: true
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            state: assigned
+      properties:
+        batches:
+          items:
+            $ref: '#/components/schemas/PortVlanAssignmentBatch'
+          type: array
+      type: object
+    PortVlanAssignmentBatchCreateInput:
+      example:
+        vlan_assignments:
+        - vlan: vlan
+          native: true
+          state: assigned
+        - vlan: vlan
+          native: true
+          state: assigned
+      properties:
+        vlan_assignments:
+          items:
+            $ref: '#/components/schemas/PortVlanAssignmentBatchCreateInput_vlan_assignments'
+          type: array
+      type: object
+    PortVlanAssignment:
+      example:
+        virtual_network:
+          href: href
+        updated_at: 2000-01-23T04:56:07.000+00:00
+        vlan: 0
+        native: true
+        port:
+          href: href
+        created_at: 2000-01-23T04:56:07.000+00:00
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        state: assigned
+      properties:
+        id:
+          format: uuid
+          type: string
+        created_at:
+          format: date-time
+          type: string
+        updated_at:
+          format: date-time
+          type: string
+        native:
+          type: boolean
+        state:
+          enum:
+          - assigned
+          - unassigning
+          type: string
+        vlan:
+          type: integer
+        port:
+          $ref: '#/components/schemas/Href'
+        virtual_network:
+          $ref: '#/components/schemas/Href'
+      type: object
+    PortVlanAssignmentList:
+      example:
+        vlan_assignments:
+        - virtual_network:
+            href: href
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          vlan: 0
+          native: true
+          port:
+            href: href
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          state: assigned
+        - virtual_network:
+            href: href
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          vlan: 0
+          native: true
+          port:
+            href: href
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          state: assigned
+      properties:
+        vlan_assignments:
+          items:
+            $ref: '#/components/schemas/PortVlanAssignment'
+          type: array
+      type: object
+    MetalGateway:
+      example:
+        virtual_network:
+          href: href
+        updated_at: 2000-01-23T04:56:07.000+00:00
+        ip_reservation:
+          href: href
+        project:
+          href: href
+        created_at: 2000-01-23T04:56:07.000+00:00
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        state: ready
+        href: href
+        created_by:
+          href: href
+      properties:
+        id:
+          format: uuid
+          type: string
+        state:
+          description: The current state of the Metal Gateway. 'Ready' indicates the
+            gateway record has been configured, but is currently not active on the
+            network. 'Active' indicates the gateway has been configured on the network.
+            'Deleting' is a temporary state used to indicate that the gateway is in
+            the process of being un-configured from the network, after which the gateway
+            record will be deleted.
+          enum:
+          - ready
+          - active
+          - deleting
+          type: string
+        project:
+          $ref: '#/components/schemas/Href'
+        virtual_network:
+          $ref: '#/components/schemas/Href'
+        ip_reservation:
+          $ref: '#/components/schemas/Href'
+        href:
+          type: string
+        created_at:
+          format: date-time
+          type: string
+        updated_at:
+          format: date-time
+          type: string
+        created_by:
+          $ref: '#/components/schemas/Href'
+      type: object
+    MetalGatewayLite:
+      properties:
+        id:
+          format: uuid
+          type: string
+        state:
+          description: The current state of the Metal Gateway. 'Ready' indicates the
+            gateway record has been configured, but is currently not active on the
+            network. 'Active' indicates the gateway has been configured on the network.
+            'Deleting' is a temporary state used to indicate that the gateway is in
+            the process of being un-configured from the network, after which the gateway
+            record will be deleted.
+          enum:
+          - ready
+          - active
+          - deleting
+          type: string
+        created_at:
+          format: date-time
+          type: string
+        updated_at:
+          format: date-time
+          type: string
+        gateway_address:
+          description: The gateway address with subnet CIDR value for this Metal Gateway.
+            For example, a Metal Gateway using an IP reservation with block 10.1.2.0/27
+            would have a gateway address of 10.1.2.1/27.
+          type: string
+        vlan:
+          description: 'The VLAN id of the Virtual Network record associated to this
+            Metal Gateway. Example: 1001.'
+          type: number
+        href:
+          type: string
+      type: object
+    MetalGatewayInput:
+      example:
+        ip_reservation_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        private_ipv4_subnet_size: 0
+        virtual_network_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        virtual_network_id:
+          description: The UUID of a metro virtual network that belongs to the same
+            project as where the metal gateway will be created in.
+          format: uuid
+          type: string
+        ip_reservation_id:
+          description: The UUID of an IP reservation that belongs to the same project
+            as where the metal gateway will be created in. This field is required
+            unless the private IPv4 subnet size is specified.
+          format: uuid
+          type: string
+        private_ipv4_subnet_size:
+          description: |-
+            The subnet size (8, 16, 32, 64, or 128) of the private IPv4 reservation that will be created for the metal gateway. This field is required unless a project IP reservation was specified.
+                      Please keep in mind that the number of private metal gateway ranges are limited per project. If you would like to increase the limit per project, please contact support for assistance.
+          type: integer
+      required:
+      - virtual_network_id
+      type: object
+    MetalGatewayList:
+      example:
+        MetalGateways:
+        - virtual_network:
+            href: href
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          ip_reservation:
+            href: href
+          project:
+            href: href
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          state: ready
+          href: href
+          created_by:
+            href: href
+        - virtual_network:
+            href: href
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          ip_reservation:
+            href: href
+          project:
+            href: href
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          state: ready
+          href: href
+          created_by:
+            href: href
+      properties:
+        MetalGateways:
+          items:
+            $ref: '#/components/schemas/MetalGateway'
+          type: array
+      type: object
     CreateEmailInput:
       example:
         address: address
@@ -18042,6 +18963,42 @@ components:
           type: integer
         private_ipv4_subnet_size:
           type: integer
+      type: object
+    PortVlanAssignmentBatch_vlan_assignments:
+      example:
+        vlan: 6
+        native: true
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        state: assigned
+      properties:
+        id:
+          format: uuid
+          type: string
+        vlan:
+          type: integer
+        state:
+          enum:
+          - assigned
+          - unassigned
+          type: string
+        native:
+          type: boolean
+      type: object
+    PortVlanAssignmentBatchCreateInput_vlan_assignments:
+      example:
+        vlan: vlan
+        native: true
+        state: assigned
+      properties:
+        vlan:
+          type: string
+        state:
+          enum:
+          - assigned
+          - unassigned
+          type: string
+        native:
+          type: boolean
       type: object
   securitySchemes:
     x_auth_token:

@@ -1,4 +1,5 @@
 .gitignore
+.openapi-generator-ignore
 .travis.yml
 README.md
 api/openapi.yaml
@@ -19,6 +20,7 @@ api_ip_addresses.go
 api_licenses.go
 api_market.go
 api_memberships.go
+api_metal_gateways.go
 api_metros.go
 api_operating_system_versions.go
 api_operating_systems.go
@@ -35,7 +37,6 @@ api_ssh_keys.go
 api_support_request.go
 api_transfer_requests.go
 api_two_factor_auth.go
-api_usages.go
 api_user_verification_tokens.go
 api_userdata.go
 api_users.go
@@ -137,6 +138,11 @@ docs/MembershipInput.md
 docs/MembershipList.md
 docs/MembershipsApi.md
 docs/Meta.md
+docs/MetalGateway.md
+docs/MetalGatewayInput.md
+docs/MetalGatewayList.md
+docs/MetalGatewayLite.md
+docs/MetalGatewaysApi.md
 docs/Metro.md
 docs/MetroCapacityList.md
 docs/MetroCapacityReport.md
@@ -167,6 +173,13 @@ docs/Port.md
 docs/PortAssignInput.md
 docs/PortConvertLayer3Input.md
 docs/PortConvertLayer3InputRequestIps.md
+docs/PortVlanAssignment.md
+docs/PortVlanAssignmentBatch.md
+docs/PortVlanAssignmentBatchCreateInput.md
+docs/PortVlanAssignmentBatchCreateInputVlanAssignments.md
+docs/PortVlanAssignmentBatchList.md
+docs/PortVlanAssignmentBatchVlanAssignments.md
+docs/PortVlanAssignmentList.md
 docs/PortsApi.md
 docs/Project.md
 docs/ProjectCreateFromRootInput.md
@@ -213,7 +226,6 @@ docs/TransferRequestList.md
 docs/TransferRequestsApi.md
 docs/TwoFactorAuthApi.md
 docs/UpdateEmailInput.md
-docs/UsagesApi.md
 docs/User.md
 docs/UserCreateInput.md
 docs/UserList.md
@@ -319,6 +331,10 @@ model_membership.go
 model_membership_input.go
 model_membership_list.go
 model_meta.go
+model_metal_gateway.go
+model_metal_gateway_input.go
+model_metal_gateway_list.go
+model_metal_gateway_lite.go
 model_metro.go
 model_metro_capacity_list.go
 model_metro_capacity_report.go
@@ -341,6 +357,13 @@ model_port.go
 model_port_assign_input.go
 model_port_convert_layer3_input.go
 model_port_convert_layer3_input_request_ips.go
+model_port_vlan_assignment.go
+model_port_vlan_assignment_batch.go
+model_port_vlan_assignment_batch_create_input.go
+model_port_vlan_assignment_batch_create_input_vlan_assignments.go
+model_port_vlan_assignment_batch_list.go
+model_port_vlan_assignment_batch_vlan_assignments.go
+model_port_vlan_assignment_list.go
 model_project.go
 model_project_create_from_root_input.go
 model_project_create_input.go
