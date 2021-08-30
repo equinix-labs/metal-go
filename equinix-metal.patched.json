@@ -111,6 +111,10 @@
       "description": "Membership Management (Project). Check out the product docs to learn more about [Membership](https://metal.equinix.com/developers/docs/accounts/)."
     },
     {
+      "name": "MetalGateways",
+      "description": "Metal Gateway Management.Check out the product docs to learn more about [Metal Gateways](https://metal.equinix.com/developers/docs/networking/metal-gateway/)."
+    },
+    {
       "name": "Metros",
       "description": "Metro Management. Check out the product docs to learn more about [Metros](https://metal.equinix.com/developers/docs/locations/metros/)."
     },
@@ -498,7 +502,7 @@
         "description": "Returns all batches for the given project",
         "operationId": "findBatchesByProject",
         "tags": [
-          "Batches"
+          "Projects"
         ],
         "parameters": [
           {
@@ -667,7 +671,7 @@
     "/projects/{id}/bgp-configs": {
       "post": {
         "tags": [
-          "BGP"
+          "Projects"
         ],
         "parameters": [
           {
@@ -728,7 +732,7 @@
         "description": "Returns a bgp config",
         "operationId": "findBgpConfigByProject",
         "tags": [
-          "BGP"
+          "Projects"
         ],
         "parameters": [
           {
@@ -796,7 +800,7 @@
         "description": "Provides a summary of the BGP neighbor data associated to the BGP sessions for this device.",
         "operationId": "getBgpNeighborData",
         "tags": [
-          "BGP"
+          "Devices"
         ],
         "parameters": [
           {
@@ -842,7 +846,7 @@
         "description": "Provides a listing of available BGP sessions for the project.",
         "operationId": "findProjectBgpSessions",
         "tags": [
-          "BGP"
+          "Projects"
         ],
         "parameters": [
           {
@@ -882,7 +886,7 @@
         "description": "Provides a listing of available BGP sessions for the device.",
         "operationId": "findBgpSessions",
         "tags": [
-          "BGP"
+          "Devices"
         ],
         "parameters": [
           {
@@ -920,7 +924,7 @@
         "description": "Creates a BGP session.",
         "operationId": "createBgpSession",
         "tags": [
-          "BGP"
+          "Devices"
         ],
         "parameters": [
           {
@@ -1253,6 +1257,86 @@
           },
           "422": {
             "description": "unprocessable entity",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/organizations/{id}/capacity/metros": {
+      "get": {
+        "summary": "View available hardware plans per Metro for given organization",
+        "description": "Returns a list of metros and plans with their current capacity.",
+        "operationId": "findOrganizationCapacityPerMetro",
+        "tags": [
+          "Capacity"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Organization UUID",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "$ref": "#/definitions/MetroCapacityList"
+            }
+          },
+          "401": {
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "403": {
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/organizations/{id}/capacity": {
+      "get": {
+        "summary": "View available hardware plans per Facility for given organization",
+        "description": "Returns a list of facilities and plans with their current capacity.",
+        "operationId": "findOrganizationCapacityPerFacility",
+        "tags": [
+          "Capacity"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Organization UUID",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "$ref": "#/definitions/CapacityList"
+            }
+          },
+          "401": {
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "403": {
+            "description": "forbidden",
             "schema": {
               "$ref": "#/definitions/Error"
             }
@@ -2283,7 +2367,7 @@
         "description": "Provides a collection of hardware reservations for a given project.",
         "operationId": "findProjectHardwareReservations",
         "tags": [
-          "HardwareReservations"
+          "Projects"
         ],
         "parameters": [
           {
@@ -2543,7 +2627,7 @@
         "description": "Provides a collection of devices for a given organization.",
         "operationId": "findOrganizationDevices",
         "tags": [
-          "Devices"
+          "Organizations"
         ],
         "parameters": [
           {
@@ -2633,7 +2717,7 @@
         "description": "Provides a collection of devices for a given project.",
         "operationId": "findProjectDevices",
         "tags": [
-          "Devices"
+          "Projects"
         ],
         "parameters": [
           {
@@ -2721,7 +2805,7 @@
         "description": "Creates a new device and provisions it in the specified location.\n\n      Device type-specific options are accepted.  For example, `baremetal` devices accept `operating_system`, `hostname`, and `plan`. These parameters may not be accepted for other device types. The default device type is `baremetal`.",
         "operationId": "createDevice",
         "tags": [
-          "Devices"
+          "Projects"
         ],
         "parameters": [
           {
@@ -2963,7 +3047,7 @@
         "description": "Creates new devices in batch and provisions them in our datacenter.\n\nType-specific options (such as operating_system for baremetal devices) should be included in the main data structure alongside hostname and plan.\n\nThe features attribute allows you to optionally specify what features your server should have.\n\nFor example, if you require a server with a TPM chip, you may specify `{ \"features\": { \"tpm\": \"required\" } }` (or `{ \"features\": [\"tpm\"] }` in shorthand).\n\nThe request will fail if there are no available servers matching your criteria. Alternatively, if you do not require a certain feature, but would prefer to be assigned a server with that feature if there are any available, you may specify that feature with a preferred value (see the example request below).\n\nThe request will not fail if we have no servers with that feature in our inventory.\n\nThe facilities attribute specifies in what datacenter you wish to create the device.\n\nYou can either specify a single facility `{ \"facility\": \"f1\" }` , or you can instruct to create the device in the best available datacenter `{ \"facility\": \"any\" }`. Additionally it is possible to set a prioritized location selection.\n\nFor example `{ \"facility\": [\"f3\", \"f2\", \"any\"] }` will try to assign to the facility f3, if there are no available f2, and so on. If \"any\" is not specified for \"facility\", the request will fail unless it can assign in the selected locations.\n\nWith `{ \"facility\": \"any\" }` you have the option to diversify to indicate how many facilities you are willing to be spread across. For this purpose use parameter: `facility_diversity_level = N`.\n\nFor example:\n\n`{ \"facilities\": [\"sjc1\", \"ewr1\", \"any\"] ,  \"facility_diversity_level\" = 1, \"quantity\" = 10 }` will assign 10 devices into the same facility, trying first in \"sjc1\", and if there aren’t available, it will try in  \"ewr1\", otherwise any other.\n\nThe `ip_addresses` attribute will allow you to specify the addresses you want created with your device.\n\nTo maintain backwards compatibility, If the attribute is not sent in the request, it will be treated as if `{ \"ip_addresses\": [{ \"address_family\": 4, \"public\": true }, { \"address_family\": 4, \"public\": false }, { \"address_family\": 6, \"public\": true }] }` was sent.\n\nThe private IPv4 address is required and always need to be sent in the array. Not all operating systems support no public IPv4 address, so in those cases you will receive an error message.\n\nFor example, to only configure your server with a private IPv4 address, you can send `{ \"ip_addresses\": [{ \"address_family\": 4, \"public\": false }] }`.\n\nNote: when specifying a subnet size larger than a /30, you will need to supply the UUID(s) of existing ip_reservations in your project to assign IPs from.\n\nFor example, `{ \"ip_addresses\": [..., {\"address_family\": 4, \"public\": true, \"ip_reservations\": [\"uuid1\", \"uuid2\"]}] }`\n\nTo access a server without public IPs, you can use our Out-of-Band console access (SOS) or use another server with public IPs as a proxy.",
         "operationId": "createDeviceBatch",
         "tags": [
-          "Batches"
+          "Devices"
         ],
         "parameters": [
           {
@@ -4402,7 +4486,7 @@
         "description": "Returns all ip assignments for a device.",
         "operationId": "findIPAssignments",
         "tags": [
-          "IPAddresses"
+          "Devices"
         ],
         "parameters": [
           {
@@ -4462,7 +4546,7 @@
         "description": "Creates an ip assignment for a device.",
         "operationId": "createIPAssignment",
         "tags": [
-          "IPAddresses"
+          "Devices"
         ],
         "parameters": [
           {
@@ -4681,7 +4765,7 @@
         "description": "Provides a list of IP resevations for a single project.",
         "operationId": "findIPReservations",
         "tags": [
-          "IPAddresses"
+          "Projects"
         ],
         "parameters": [
           {
@@ -4744,7 +4828,7 @@
       },
       "post": {
         "tags": [
-          "IPAddresses"
+          "Projects"
         ],
         "parameters": [
           {
@@ -4808,7 +4892,7 @@
         "description": "Provides a collection of licenses for a given project.",
         "operationId": "findProjectLicenses",
         "tags": [
-          "Licenses"
+          "Projects"
         ],
         "parameters": [
           {
@@ -4896,7 +4980,7 @@
         "description": "Creates a new license for the given project",
         "operationId": "createLicense",
         "tags": [
-          "Licenses"
+          "Projects"
         ],
         "parameters": [
           {
@@ -5125,7 +5209,7 @@
         "description": "Returns all memberships in a project.",
         "operationId": "findProjectMemberships",
         "tags": [
-          "Memberships"
+          "Projects"
         ],
         "parameters": [
           {
@@ -6483,7 +6567,7 @@
         "description": "Returns all payment methods of an organization.",
         "operationId": "findOrganizationPaymentMethods",
         "tags": [
-          "PaymentMethods"
+          "Organizations"
         ],
         "parameters": [
           {
@@ -6565,7 +6649,7 @@
         "description": "Creates a payment method.",
         "operationId": "createPaymentMethod",
         "tags": [
-          "PaymentMethods"
+          "Organizations"
         ],
         "parameters": [
           {
@@ -7016,7 +7100,7 @@
         "description": "Assign a port for a hardware to virtual network.",
         "operationId": "assignPort",
         "tags": [
-          "VLANs"
+          "Ports"
         ],
         "parameters": [
           {
@@ -7077,7 +7161,7 @@
         "description": "Unassign a port for a hardware.",
         "operationId": "unassignPort",
         "tags": [
-          "VLANs"
+          "Ports"
         ],
         "parameters": [
           {
@@ -7378,7 +7462,7 @@
         "description": "Sets a virtual network on this port as a \"native VLAN\". The VLAN must have already been assigned using the using the \"Assign a port to a virtual network\" operation.",
         "operationId": "assignNativeVlan",
         "tags": [
-          "VLANs"
+          "Ports"
         ],
         "parameters": [
           {
@@ -7429,7 +7513,7 @@
         "description": "Removes the native VLAN from this port",
         "operationId": "deleteNativeVlan",
         "tags": [
-          "VLANs"
+          "Ports"
         ],
         "parameters": [
           {
@@ -7475,7 +7559,7 @@
         "description": "Returns a collection of projects that belong to the organization.",
         "operationId": "findOrganizationProjects",
         "tags": [
-          "Projects"
+          "Organizations"
         ],
         "parameters": [
           {
@@ -7551,7 +7635,7 @@
         "description": "Creates a new project for the organization",
         "operationId": "createOrganizationProject",
         "tags": [
-          "Projects"
+          "Organizations"
         ],
         "parameters": [
           {
@@ -8151,7 +8235,7 @@
         "description": "Creates a new spot market request.\n\nType-specific options (such as operating_system for baremetal devices) should be included in the main data structure alongside hostname and plan.\n\nThe features attribute allows you to optionally specify what features your server should have. For example, if you require a server with a TPM chip, you may specify `{ \"features\": { \"tpm\": \"required\" } }` (or `{ \"features\": [\"tpm\"] }` in shorthand).\n\nThe request will fail if there are no available servers matching your criteria. Alternatively, if you do not require a certain feature, but would prefer to be assigned a server with that feature if there are any available, you may specify that feature with a preferred value (see the example request below).\n\nThe request will not fail if we have no servers with that feature in our inventory.",
         "operationId": "createSpotMarketRequest",
         "tags": [
-          "SpotMarketRequest"
+          "Projects"
         ],
         "parameters": [
           {
@@ -8204,7 +8288,7 @@
         "description": "View all spot market requests for a given project.",
         "operationId": "listSpotMarketRequests",
         "tags": [
-          "SpotMarketRequest"
+          "Projects"
         ],
         "parameters": [
           {
@@ -8454,7 +8538,7 @@
         "description": "Returns a collection of the project's ssh keys.",
         "operationId": "findProjectSSHKeys",
         "tags": [
-          "SSHKeys"
+          "Projects"
         ],
         "parameters": [
           {
@@ -8515,7 +8599,7 @@
         "description": "Creates a ssh key.",
         "operationId": "createProjectSSHKey",
         "tags": [
-          "SSHKeys"
+          "Projects"
         ],
         "parameters": [
           {
@@ -8564,7 +8648,7 @@
         "description": "Returns a collection of the device's ssh keys.",
         "operationId": "findDeviceSSHKeys",
         "tags": [
-          "SSHKeys"
+          "Projects"
         ],
         "parameters": [
           {
@@ -10027,7 +10111,7 @@
         "description": "Provides a collection of project transfer requests from or to the organization.",
         "operationId": "findOrganizationTransfers",
         "tags": [
-          "TransferRequests"
+          "Organizations"
         ],
         "parameters": [
           {
@@ -10089,7 +10173,7 @@
         "description": "Organization owners can transfer their projects to other organizations.",
         "operationId": "createTransferRequest",
         "tags": [
-          "TransferRequests"
+          "Projects"
         ],
         "parameters": [
           {
@@ -10300,7 +10384,7 @@
         "description": "Returns all usages for a device.",
         "operationId": "findDeviceUsages",
         "tags": [
-          "Usages"
+          "Devices"
         ],
         "parameters": [
           {
@@ -10356,7 +10440,7 @@
         "description": "Returns all usages for a project.",
         "operationId": "findProjectUsage",
         "tags": [
-          "Usages"
+          "Devices"
         ],
         "parameters": [
           {
@@ -10770,7 +10854,7 @@
         "description": "Provides a list of virtual networks for a single project.",
         "operationId": "findVirtualNetworks",
         "tags": [
-          "VLANs"
+          "Projects"
         ],
         "parameters": [
           {
@@ -10847,7 +10931,7 @@
       },
       "post": {
         "tags": [
-          "VLANs"
+          "Projects"
         ],
         "parameters": [
           {
@@ -11000,6 +11084,529 @@
           },
           "422": {
             "description": "unprocessable entity",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/ports/{id}/vlan-assignments/batches": {
+      "post": {
+        "summary": "Create a new Port-VLAN Assignment management batch",
+        "description": "Create a new asynchronous batch request which handles adding and/or removing the VLANs to which the port is assigned.",
+        "operationId": "createPortVlanAssignmentBatch",
+        "tags": [
+          "Ports"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Port UUID",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "name": "vlan_assignments",
+            "in": "body",
+            "description": "VLAN Assignment batch details",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/PortVlanAssignmentBatchCreateInput"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "created",
+            "schema": {
+              "$ref": "#/definitions/PortVlanAssignmentBatch"
+            }
+          },
+          "401": {
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "403": {
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "422": {
+            "description": "unprocessable entity",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "List the VLAN Assignment Batches for a port",
+        "description": "Show all the VLAN assignment batches that have been created for managing this port's VLAN assignments",
+        "operationId": "findPortVlanAssignmentBatches",
+        "tags": [
+          "Ports"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Port UUID",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "$ref": "#/definitions/PortVlanAssignmentBatchList"
+            }
+          },
+          "401": {
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "403": {
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/ports/{id}/vlan-assignments/batches/{batch_id}": {
+      "get": {
+        "summary": "Retrieve a VLAN Assignment Batch's details",
+        "description": "Returns the details of an existing Port-VLAN Assignment batch, including the list of VLANs to assign or unassign, and the current state of the batch.",
+        "operationId": "findPortVlanAssignmentBatchByPortIdAndBatchId",
+        "tags": [
+          "Ports"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Port UUID",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "name": "batch_id",
+            "in": "path",
+            "description": "Batch ID",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "$ref": "#/definitions/PortVlanAssignmentBatch"
+            }
+          },
+          "401": {
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "403": {
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/ports/{id}/vlan-assignments": {
+      "get": {
+        "summary": "List Current VLAN assignments for a port",
+        "description": "Show the port's current VLAN assignments, including if this VLAN is set as native, and the current state of the assignment (ex. 'assigned' or 'unassigning')",
+        "operationId": "findPortVlanAssignments",
+        "tags": [
+          "Ports"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Port UUID",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "name": "include",
+            "in": "query",
+            "description": "Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "default": [
+              "port",
+              "virtual_network"
+            ],
+            "required": false
+          },
+          {
+            "name": "exclude",
+            "in": "query",
+            "description": "Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "$ref": "#/definitions/PortVlanAssignmentList"
+            }
+          },
+          "401": {
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "403": {
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/ports/{id}/vlan-assignments/{assignment_id}": {
+      "get": {
+        "summary": "Show a particular Port VLAN assignment's details",
+        "description": "Show the details of a specific Port-VLAN assignment, including the current state and if the VLAN is set as native.",
+        "operationId": "findPortVlanAssignmentByPortIdAndAssignmentId",
+        "tags": [
+          "Ports"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Port UUID",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "name": "assignment_id",
+            "in": "path",
+            "description": "Assignment ID",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "name": "include",
+            "in": "query",
+            "description": "Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "default": [
+              "port",
+              "virtual_network"
+            ],
+            "required": false
+          },
+          {
+            "name": "exclude",
+            "in": "query",
+            "description": "Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "$ref": "#/definitions/PortVlanAssignment"
+            }
+          },
+          "401": {
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "403": {
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/projects/{project_id}/metal-gateways": {
+      "post": {
+        "summary": "Create a metal gateway",
+        "description": "Create a metal gateway in a project",
+        "operationId": "createMetalGateway",
+        "tags": [
+          "MetalGateways"
+        ],
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "description": "Project UUID",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page to return",
+            "type": "integer",
+            "format": "int32",
+            "default": 1,
+            "minimum": 1,
+            "maximum": 100000,
+            "required": false
+          },
+          {
+            "name": "per_page",
+            "in": "query",
+            "description": "Items returned per page",
+            "type": "integer",
+            "format": "int32",
+            "default": 10,
+            "minimum": 1,
+            "maximum": 1000,
+            "required": false
+          },
+          {
+            "name": "metal_gateway",
+            "in": "body",
+            "description": "Metal Gateway to create",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/MetalGatewayInput"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "created",
+            "schema": {
+              "$ref": "#/definitions/MetalGateway"
+            }
+          },
+          "401": {
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "422": {
+            "description": "unprocessable entity",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "Returns all metal gateways for a project",
+        "description": "Return all metal gateways for a project",
+        "operationId": "findMetalGatewaysByProject",
+        "tags": [
+          "MetalGateways"
+        ],
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "description": "Project UUID",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page to return",
+            "type": "integer",
+            "format": "int32",
+            "default": 1,
+            "minimum": 1,
+            "maximum": 100000,
+            "required": false
+          },
+          {
+            "name": "per_page",
+            "in": "query",
+            "description": "Items returned per page",
+            "type": "integer",
+            "format": "int32",
+            "default": 10,
+            "minimum": 1,
+            "maximum": 1000,
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "$ref": "#/definitions/MetalGatewayList"
+            }
+          },
+          "401": {
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/metal-gateways/{id}": {
+      "get": {
+        "summary": "Returns the metal gateway",
+        "description": "Returns a specific metal gateway",
+        "operationId": "findMetalGatewayById",
+        "tags": [
+          "MetalGateways"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Metal Gateway UUID",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "$ref": "#/definitions/MetalGateway"
+            }
+          },
+          "401": {
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Deletes the metal gateway",
+        "description": "Deletes a specific metal gateway",
+        "operationId": "deleteMetalGateway",
+        "tags": [
+          "MetalGateways"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Metal Gateway UUID",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "no content"
+          },
+          "401": {
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "not found",
             "schema": {
               "$ref": "#/definitions/Error"
             }
@@ -11717,6 +12324,10 @@
           "format": "float",
           "description": "Amount that will be charged for every billing_cycle.",
           "example": 1050.5
+        },
+        "switch_uuid": {
+          "type": "string",
+          "description": "Switch short id. This can be used to determine if two devices are connected to the same switch, for example."
         }
       }
     },
@@ -12208,6 +12819,15 @@
               "description": "Details of the metro the facility is in"
             }
           ]
+        },
+        "mode": {
+          "type": "string",
+          "description": "The mode of the connection (only relevant to dedicated connections). Shared connections won't have this field. Can be either 'standard' or 'tunnel'.\n  The default mode of a dedicated connection is 'standard'. The mode can only be changed when there are no associated virtual circuits on the connection.\n  In tunnel mode, an 802.1q tunnel is added to a port to send/receive double tagged packets from server instances.",
+          "enum": [
+            "standard",
+            "tunnel"
+          ],
+          "example": "standard"
         }
       }
     },
@@ -12266,6 +12886,15 @@
           "items": {
             "type": "string"
           }
+        },
+        "mode": {
+          "type": "string",
+          "description": "The mode of the connection (only relevant to dedicated connections). Shared connections won't have this field. Can be either 'standard' or 'tunnel'.\n  The default mode of a dedicated connection is 'standard'. The mode can only be changed when there are no associated virtual circuits on the connection.\n  In tunnel mode, an 802.1q tunnel is added to a port to send/receive double tagged packets from server instances.",
+          "enum": [
+            "standard",
+            "tunnel"
+          ],
+          "example": "standard"
         }
       }
     },
@@ -12289,6 +12918,15 @@
           "items": {
             "type": "string"
           }
+        },
+        "mode": {
+          "type": "string",
+          "description": "The mode of the connection (only relevant to dedicated connections). Shared connections won't have this field. Can be either 'standard' or 'tunnel'.\n  The default mode of a dedicated connection is 'standard'. The mode can only be changed when there are no associated virtual circuits on the connection.\n  In tunnel mode, an 802.1q tunnel is added to a port to send/receive double tagged packets from server instances.",
+          "enum": [
+            "standard",
+            "tunnel"
+          ],
+          "example": "standard"
         }
       }
     },
@@ -13076,7 +13714,7 @@
               "$ref": "#/definitions/Facility"
             },
             {
-              "description": "The facility the IP reservation is in. Will not have a value if it is a metro-based IP reservation."
+              "description": "The facility the IP reservation is in. If the facility the IP reservation was requested in is in a metro, a metro value will also be set, and the subsequent IP reservation can be used on a metro level. Can be null if requesting an IP reservation in a metro."
             }
           ]
         },
@@ -13098,7 +13736,7 @@
               "$ref": "#/definitions/Metro"
             },
             {
-              "description": "The metro the IP reservation is in. If a facility is specified, this is the metro of that facility. If the facility is not specified, this is a metro-based IP reservation."
+              "description": "The metro the IP reservation is in. As long as the IP reservation has a metro, it can be used on a metro level. Can be null if requesting an IP reservation in a facility that is not in a metro."
             }
           ]
         }
@@ -15227,6 +15865,255 @@
           "items": {
             "type": "string",
             "description": "An error message that contributed to the request failing."
+          }
+        }
+      }
+    },
+    "PortVlanAssignmentBatch": {
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "error_messages": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "quantity": {
+          "type": "integer"
+        },
+        "state": {
+          "type": "string",
+          "enum": [
+            "queued",
+            "in_progress",
+            "completed",
+            "failed"
+          ]
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "port": {
+          "$ref": "#/definitions/Port"
+        },
+        "vlan_assignments": {
+          "type": "array",
+          "items": {
+            "properties": {
+              "id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "vlan": {
+                "type": "integer"
+              },
+              "state": {
+                "type": "string",
+                "enum": [
+                  "assigned",
+                  "unassigned"
+                ]
+              },
+              "native": {
+                "type": "boolean"
+              }
+            }
+          }
+        }
+      }
+    },
+    "PortVlanAssignmentBatchList": {
+      "properties": {
+        "batches": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PortVlanAssignmentBatch"
+          }
+        }
+      }
+    },
+    "PortVlanAssignmentBatchCreateInput": {
+      "properties": {
+        "vlan_assignments": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "vlan": {
+                "type": "string"
+              },
+              "state": {
+                "type": "string",
+                "enum": [
+                  "assigned",
+                  "unassigned"
+                ]
+              },
+              "native": {
+                "type": "boolean"
+              }
+            }
+          }
+        }
+      }
+    },
+    "PortVlanAssignment": {
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "native": {
+          "type": "boolean"
+        },
+        "state": {
+          "type": "string",
+          "enum": [
+            "assigned",
+            "unassigning"
+          ]
+        },
+        "vlan": {
+          "type": "integer"
+        },
+        "port": {
+          "$ref": "#/definitions/Href"
+        },
+        "virtual_network": {
+          "$ref": "#/definitions/Href"
+        }
+      }
+    },
+    "PortVlanAssignmentList": {
+      "properties": {
+        "vlan_assignments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PortVlanAssignment"
+          }
+        }
+      }
+    },
+    "MetalGateway": {
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "state": {
+          "type": "string",
+          "enum": [
+            "ready",
+            "active",
+            "deleting"
+          ],
+          "description": "The current state of the Metal Gateway. 'Ready' indicates the gateway record has been configured, but is currently not active on the network. 'Active' indicates the gateway has been configured on the network. 'Deleting' is a temporary state used to indicate that the gateway is in the process of being un-configured from the network, after which the gateway record will be deleted."
+        },
+        "project": {
+          "$ref": "#/definitions/Href"
+        },
+        "virtual_network": {
+          "$ref": "#/definitions/Href"
+        },
+        "ip_reservation": {
+          "$ref": "#/definitions/Href"
+        },
+        "href": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "created_by": {
+          "$ref": "#/definitions/Href"
+        }
+      }
+    },
+    "MetalGatewayLite": {
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "state": {
+          "type": "string",
+          "enum": [
+            "ready",
+            "active",
+            "deleting"
+          ],
+          "description": "The current state of the Metal Gateway. 'Ready' indicates the gateway record has been configured, but is currently not active on the network. 'Active' indicates the gateway has been configured on the network. 'Deleting' is a temporary state used to indicate that the gateway is in the process of being un-configured from the network, after which the gateway record will be deleted."
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "gateway_address": {
+          "type": "string",
+          "description": "The gateway address with subnet CIDR value for this Metal Gateway. For example, a Metal Gateway using an IP reservation with block 10.1.2.0/27 would have a gateway address of 10.1.2.1/27."
+        },
+        "vlan": {
+          "type": "number",
+          "description": "The VLAN id of the Virtual Network record associated to this Metal Gateway. Example: 1001."
+        },
+        "href": {
+          "type": "string"
+        }
+      }
+    },
+    "MetalGatewayInput": {
+      "required": [
+        "project_id",
+        "virtual_network_id"
+      ],
+      "properties": {
+        "virtual_network_id": {
+          "type": "string",
+          "format": "uuid",
+          "description": "The UUID of a metro virtual network that belongs to the same project as where the metal gateway will be created in."
+        },
+        "ip_reservation_id": {
+          "type": "string",
+          "format": "uuid",
+          "description": "The UUID of an IP reservation that belongs to the same project as where the metal gateway will be created in. This field is required unless the private IPv4 subnet size is specified."
+        },
+        "private_ipv4_subnet_size": {
+          "type": "integer",
+          "description": "The subnet size (8, 16, 32, 64, or 128) of the private IPv4 reservation that will be created for the metal gateway. This field is required unless a project IP reservation was specified.\n          Please keep in mind that the number of private metal gateway ranges are limited per project. If you would like to increase the limit per project, please contact support for assistance."
+        }
+      }
+    },
+    "MetalGatewayList": {
+      "properties": {
+        "MetalGateways": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MetalGateway"
           }
         }
       }
