@@ -12,13 +12,16 @@ PACKAGE_MAJOR=v1
 SWAGGER=docker run --rm -v $(CURDIR):/local ${IMAGE}
 GOLANGCI_LINT=golangci-lint
 
-all: pull fetch patch gen mod test
+all: pull fetch fix-tags patch clean gen mod test stage
 
 pull:
 	docker pull ${IMAGE}
 
 fetch:
 	curl -o ${SPEC_FETCHED_FILE} ${SPEC_URL}
+
+fix-tags:
+	- jq '. | select(((.paths[][].tags| type=="array"), length) > 1).paths[][].tags |= [.[0]]' ${SPEC_FETCHED_FILE} | diff -d -U6 ${SPEC_FETCHED_FILE} - >  patches/01-tag-from-last-in-path.patch
 
 patch:
 	# patch is idempotent, always starting with the fetched
@@ -29,6 +32,9 @@ patch:
 		ARGS=${SPEC_PATCHED_FILE}; \
 	done
 	find ${SPEC_PATCHED_FILE} -empty -exec cp ${SPEC_FETCHED_FILE} ${SPEC_PATCHED_FILE} \;
+
+clean:
+	rm -rf v1/
 
 gen:
 	${SWAGGER} generate -g go \
@@ -70,3 +76,6 @@ remove-dupe-requests: ## Removes duplicate Request structs from the generated co
 	done
 lint:
 	@$(GOLANGCI_LINT) run -v --no-config --fast=false --fix --disable-all --enable goimports $(PACKAGE_MAJOR)
+
+stage:
+	git add --intent-to-add v1

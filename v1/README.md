@@ -89,23 +89,17 @@ Class | Method | HTTP request | Description
 *AuthenticationApi* | [**DeleteUserAPIKey**](docs/AuthenticationApi.md#deleteuserapikey) | **Delete** /user/api-keys/{id} | Delete the API key
 *AuthenticationApi* | [**FindAPIKeys**](docs/AuthenticationApi.md#findapikeys) | **Get** /user/api-keys | Retrieve all user API keys
 *AuthenticationApi* | [**FindProjectAPIKeys**](docs/AuthenticationApi.md#findprojectapikeys) | **Get** /projects/{id}/api-keys | Retrieve all API keys for the project.
-*BGPApi* | [**CreateBgpSession**](docs/BGPApi.md#createbgpsession) | **Post** /devices/{id}/bgp/sessions | Create a BGP session
 *BGPApi* | [**DeleteBgpSession**](docs/BGPApi.md#deletebgpsession) | **Delete** /bgp/sessions/{id} | Delete the BGP session
-*BGPApi* | [**FindBgpConfigByProject**](docs/BGPApi.md#findbgpconfigbyproject) | **Get** /projects/{id}/bgp-config | Retrieve a bgp config
 *BGPApi* | [**FindBgpSessionById**](docs/BGPApi.md#findbgpsessionbyid) | **Get** /bgp/sessions/{id} | Retrieve a BGP session
-*BGPApi* | [**FindBgpSessions**](docs/BGPApi.md#findbgpsessions) | **Get** /devices/{id}/bgp/sessions | Retrieve all BGP sessions
-*BGPApi* | [**FindProjectBgpSessions**](docs/BGPApi.md#findprojectbgpsessions) | **Get** /projects/{id}/bgp/sessions | Retrieve all BGP sessions for project
-*BGPApi* | [**GetBgpNeighborData**](docs/BGPApi.md#getbgpneighbordata) | **Get** /devices/{id}/bgp/neighbors | Retrieve BGP neighbor data for this device
-*BGPApi* | [**RequestBgpConfig**](docs/BGPApi.md#requestbgpconfig) | **Post** /projects/{id}/bgp-configs | Requesting bgp config
 *BGPApi* | [**UpdateBgpSession**](docs/BGPApi.md#updatebgpsession) | **Put** /bgp/sessions/{id} | Update the BGP session
-*BatchesApi* | [**CreateDeviceBatch**](docs/BatchesApi.md#createdevicebatch) | **Post** /projects/{id}/devices/batch | Create a devices batch
 *BatchesApi* | [**DeleteBatch**](docs/BatchesApi.md#deletebatch) | **Delete** /batches/{id} | Delete the Batch
 *BatchesApi* | [**FindBatchById**](docs/BatchesApi.md#findbatchbyid) | **Get** /batches/{id} | Retrieve a Batch
-*BatchesApi* | [**FindBatchesByProject**](docs/BatchesApi.md#findbatchesbyproject) | **Get** /projects/{id}/batches | Retrieve all batches by project
 *CapacityApi* | [**CheckCapacityForFacility**](docs/CapacityApi.md#checkcapacityforfacility) | **Post** /capacity | Check capacity
 *CapacityApi* | [**CheckCapacityForMetro**](docs/CapacityApi.md#checkcapacityformetro) | **Post** /capacity/metros | Check capacity for a metro
 *CapacityApi* | [**FindCapacityForFacility**](docs/CapacityApi.md#findcapacityforfacility) | **Get** /capacity | View capacity
 *CapacityApi* | [**FindCapacityForMetro**](docs/CapacityApi.md#findcapacityformetro) | **Get** /capacity/metros | View capacity for metros
+*CapacityApi* | [**FindOrganizationCapacityPerFacility**](docs/CapacityApi.md#findorganizationcapacityperfacility) | **Get** /organizations/{id}/capacity | View available hardware plans per Facility for given organization
+*CapacityApi* | [**FindOrganizationCapacityPerMetro**](docs/CapacityApi.md#findorganizationcapacitypermetro) | **Get** /organizations/{id}/capacity/metros | View available hardware plans per Metro for given organization
 *ConnectionsApi* | [**CreateConnectionPortVirtualCircuit**](docs/ConnectionsApi.md#createconnectionportvirtualcircuit) | **Post** /connections/{connection_id}/ports/{port_id}/virtual-circuits | Create a new Virtual Circuit
 *ConnectionsApi* | [**CreateOrganizationInterconnection**](docs/ConnectionsApi.md#createorganizationinterconnection) | **Post** /organizations/{organization_id}/connections | Request a new connection for the organization
 *ConnectionsApi* | [**CreateProjectInterconnection**](docs/ConnectionsApi.md#createprojectinterconnection) | **Post** /projects/{project_id}/connections | Request a new connection for the project&#39;s organization
@@ -120,15 +114,20 @@ Class | Method | HTTP request | Description
 *ConnectionsApi* | [**ProjectListInterconnections**](docs/ConnectionsApi.md#projectlistinterconnections) | **Get** /projects/{project_id}/connections | List project connections
 *ConnectionsApi* | [**UpdateInterconnection**](docs/ConnectionsApi.md#updateinterconnection) | **Put** /connections/{connection_id} | Update connection
 *ConnectionsApi* | [**UpdateVirtualCircuit**](docs/ConnectionsApi.md#updatevirtualcircuit) | **Put** /virtual-circuits/{id} | Update a virtual circuit
-*DevicesApi* | [**CreateDevice**](docs/DevicesApi.md#createdevice) | **Post** /projects/{id}/devices | Create a device
+*DevicesApi* | [**CreateBgpSession**](docs/DevicesApi.md#createbgpsession) | **Post** /devices/{id}/bgp/sessions | Create a BGP session
+*DevicesApi* | [**CreateDeviceBatch**](docs/DevicesApi.md#createdevicebatch) | **Post** /projects/{id}/devices/batch | Create a devices batch
+*DevicesApi* | [**CreateIPAssignment**](docs/DevicesApi.md#createipassignment) | **Post** /devices/{id}/ips | Create an ip assignment
 *DevicesApi* | [**DeleteDevice**](docs/DevicesApi.md#deletedevice) | **Delete** /devices/{id} | Delete the device
+*DevicesApi* | [**FindBgpSessions**](docs/DevicesApi.md#findbgpsessions) | **Get** /devices/{id}/bgp/sessions | Retrieve all BGP sessions
 *DevicesApi* | [**FindDeviceById**](docs/DevicesApi.md#finddevicebyid) | **Get** /devices/{id} | Retrieve a device
 *DevicesApi* | [**FindDeviceCustomdata**](docs/DevicesApi.md#finddevicecustomdata) | **Get** /devices/{id}/customdata | Retrieve the custom metadata of an instance
+*DevicesApi* | [**FindDeviceUsages**](docs/DevicesApi.md#finddeviceusages) | **Get** /devices/{id}/usages | Retrieve all usages for device
 *DevicesApi* | [**FindIPAssignmentCustomdata**](docs/DevicesApi.md#findipassignmentcustomdata) | **Get** /devices/{instance_id}/ips/{id}/customdata | Retrieve the custom metadata of an IP Assignment
+*DevicesApi* | [**FindIPAssignments**](docs/DevicesApi.md#findipassignments) | **Get** /devices/{id}/ips | Retrieve all ip assignments
 *DevicesApi* | [**FindInstanceBandwidth**](docs/DevicesApi.md#findinstancebandwidth) | **Get** /devices/{id}/bandwidth | Retrieve an instance bandwidth
-*DevicesApi* | [**FindOrganizationDevices**](docs/DevicesApi.md#findorganizationdevices) | **Get** /organizations/{id}/devices | Retrieve all devices of an organization
-*DevicesApi* | [**FindProjectDevices**](docs/DevicesApi.md#findprojectdevices) | **Get** /projects/{id}/devices | Retrieve all devices of a project
+*DevicesApi* | [**FindProjectUsage**](docs/DevicesApi.md#findprojectusage) | **Get** /projects/{id}/usages | Retrieve all usages for project
 *DevicesApi* | [**FindTraffic**](docs/DevicesApi.md#findtraffic) | **Get** /devices/{id}/traffic | Retrieve device traffic
+*DevicesApi* | [**GetBgpNeighborData**](docs/DevicesApi.md#getbgpneighbordata) | **Get** /devices/{id}/bgp/neighbors | Retrieve BGP neighbor data for this device
 *DevicesApi* | [**PerformAction**](docs/DevicesApi.md#performaction) | **Post** /devices/{id}/actions | Perform an action
 *DevicesApi* | [**UpdateDevice**](docs/DevicesApi.md#updatedevice) | **Put** /devices/{id} | Update the device
 *EmailsApi* | [**CreateEmail**](docs/EmailsApi.md#createemail) | **Post** /emails | Create an email
@@ -149,16 +148,11 @@ Class | Method | HTTP request | Description
 *FacilitiesApi* | [**FindFacilitiesByProject**](docs/FacilitiesApi.md#findfacilitiesbyproject) | **Get** /projects/{id}/facilities | Retrieve all facilities visible by the project
 *GlobalBgpRangesApi* | [**FindGlobalBgpRanges**](docs/GlobalBgpRangesApi.md#findglobalbgpranges) | **Get** /projects/{id}/global-bgp-ranges | Retrieve all global bgp ranges
 *HardwareReservationsApi* | [**FindHardwareReservationById**](docs/HardwareReservationsApi.md#findhardwarereservationbyid) | **Get** /hardware-reservations/{id} | Retrieve a hardware reservation
-*HardwareReservationsApi* | [**FindProjectHardwareReservations**](docs/HardwareReservationsApi.md#findprojecthardwarereservations) | **Get** /projects/{id}/hardware-reservations | Retrieve all hardware reservations for a given project
 *HardwareReservationsApi* | [**MoveHardwareReservation**](docs/HardwareReservationsApi.md#movehardwarereservation) | **Post** /hardware-reservations/{id}/move | Move a hardware reservation
-*IPAddressesApi* | [**CreateIPAssignment**](docs/IPAddressesApi.md#createipassignment) | **Post** /devices/{id}/ips | Create an ip assignment
 *IPAddressesApi* | [**DeleteIPAddress**](docs/IPAddressesApi.md#deleteipaddress) | **Delete** /ips/{id} | Unassign an ip address
 *IPAddressesApi* | [**FindIPAddressById**](docs/IPAddressesApi.md#findipaddressbyid) | **Get** /ips/{id} | Retrieve an ip address
 *IPAddressesApi* | [**FindIPAddressCustomdata**](docs/IPAddressesApi.md#findipaddresscustomdata) | **Get** /ips/{id}/customdata | Retrieve the custom metadata of an IP Reservation or IP Assignment
-*IPAddressesApi* | [**FindIPAssignments**](docs/IPAddressesApi.md#findipassignments) | **Get** /devices/{id}/ips | Retrieve all ip assignments
 *IPAddressesApi* | [**FindIPAvailabilities**](docs/IPAddressesApi.md#findipavailabilities) | **Get** /ips/{id}/available | Retrieve all available subnets of a particular reservation
-*IPAddressesApi* | [**FindIPReservations**](docs/IPAddressesApi.md#findipreservations) | **Get** /projects/{id}/ips | Retrieve all ip reservations
-*IPAddressesApi* | [**RequestIPReservation**](docs/IPAddressesApi.md#requestipreservation) | **Post** /projects/{id}/ips | Requesting IP reservations
 *IPAddressesApi* | [**UpdateIPAddress**](docs/IPAddressesApi.md#updateipaddress) | **Patch** /ips/{id} | Update an ip address
 *IncidentsApi* | [**FindIncidents**](docs/IncidentsApi.md#findincidents) | **Get** /incidents | Retrieve the number of incidents
 *InvitationsApi* | [**AcceptInvitation**](docs/InvitationsApi.md#acceptinvitation) | **Put** /invitations/{id} | Accept an invitation
@@ -169,27 +163,34 @@ Class | Method | HTTP request | Description
 *InvitationsApi* | [**FindInvitations**](docs/InvitationsApi.md#findinvitations) | **Get** /invitations | Retrieve current user invitations
 *InvitationsApi* | [**FindOrganizationInvitations**](docs/InvitationsApi.md#findorganizationinvitations) | **Get** /organizations/{id}/invitations | Retrieve organization invitations
 *InvitationsApi* | [**FindProjectInvitations**](docs/InvitationsApi.md#findprojectinvitations) | **Get** /projects/{project_id}/invitations | Retrieve project invitations
-*LicensesApi* | [**CreateLicense**](docs/LicensesApi.md#createlicense) | **Post** /projects/{id}/licenses | Create a License
 *LicensesApi* | [**DeleteLicense**](docs/LicensesApi.md#deletelicense) | **Delete** /licenses/{id} | Delete the license
 *LicensesApi* | [**FindLicenseById**](docs/LicensesApi.md#findlicensebyid) | **Get** /licenses/{id} | Retrieve a license
-*LicensesApi* | [**FindProjectLicenses**](docs/LicensesApi.md#findprojectlicenses) | **Get** /projects/{id}/licenses | Retrieve all licenses
 *LicensesApi* | [**UpdateLicense**](docs/LicensesApi.md#updatelicense) | **Put** /licenses/{id} | Update the license
 *MarketApi* | [**FindMetroSpotMarketPrices**](docs/MarketApi.md#findmetrospotmarketprices) | **Get** /market/spot/prices/metros | Get current spot market prices for metros
 *MarketApi* | [**FindSpotMarketPrices**](docs/MarketApi.md#findspotmarketprices) | **Get** /market/spot/prices | Get current spot market prices
 *MarketApi* | [**FindSpotMarketPricesHistory**](docs/MarketApi.md#findspotmarketpriceshistory) | **Get** /market/spot/prices/history | Get spot market prices for a given period of time
 *MembershipsApi* | [**DeleteMembership**](docs/MembershipsApi.md#deletemembership) | **Delete** /memberships/{id} | Delete the membership
 *MembershipsApi* | [**FindMembershipById**](docs/MembershipsApi.md#findmembershipbyid) | **Get** /memberships/{id} | Retrieve a membership
-*MembershipsApi* | [**FindProjectMemberships**](docs/MembershipsApi.md#findprojectmemberships) | **Get** /projects/{project_id}/memberships | Retrieve project memberships
 *MembershipsApi* | [**UpdateMembership**](docs/MembershipsApi.md#updatemembership) | **Put** /memberships/{id} | Update the membership
+*MetalGatewaysApi* | [**CreateMetalGateway**](docs/MetalGatewaysApi.md#createmetalgateway) | **Post** /projects/{project_id}/metal-gateways | Create a metal gateway
+*MetalGatewaysApi* | [**DeleteMetalGateway**](docs/MetalGatewaysApi.md#deletemetalgateway) | **Delete** /metal-gateways/{id} | Deletes the metal gateway
+*MetalGatewaysApi* | [**FindMetalGatewayById**](docs/MetalGatewaysApi.md#findmetalgatewaybyid) | **Get** /metal-gateways/{id} | Returns the metal gateway
+*MetalGatewaysApi* | [**FindMetalGatewaysByProject**](docs/MetalGatewaysApi.md#findmetalgatewaysbyproject) | **Get** /projects/{project_id}/metal-gateways | Returns all metal gateways for a project
 *MetrosApi* | [**FindMetros**](docs/MetrosApi.md#findmetros) | **Get** /locations/metros | Retrieve all metros
 *MetrosApi* | [**GetMetro**](docs/MetrosApi.md#getmetro) | **Get** /locations/metros/{id} | Retrieve a specific Metro&#39;s details
 *OperatingSystemVersionsApi* | [**FindOperatingSystemVersion**](docs/OperatingSystemVersionsApi.md#findoperatingsystemversion) | **Get** /operating-system-versions | Retrieve all operating system versions
 *OperatingSystemsApi* | [**FindOperatingSystems**](docs/OperatingSystemsApi.md#findoperatingsystems) | **Get** /operating-systems | Retrieve all operating systems
 *OperatingSystemsApi* | [**FindOperatingSystemsByOrganization**](docs/OperatingSystemsApi.md#findoperatingsystemsbyorganization) | **Get** /organizations/{id}/operating-systems | Retrieve all operating systems visible by the organization
 *OrganizationsApi* | [**CreateOrganization**](docs/OrganizationsApi.md#createorganization) | **Post** /organizations | Create an organization
+*OrganizationsApi* | [**CreateOrganizationProject**](docs/OrganizationsApi.md#createorganizationproject) | **Post** /organizations/{id}/projects | Create a project for the organization
+*OrganizationsApi* | [**CreatePaymentMethod**](docs/OrganizationsApi.md#createpaymentmethod) | **Post** /organizations/{id}/payment-methods | Create a payment method for the given organization
 *OrganizationsApi* | [**DeleteOrganization**](docs/OrganizationsApi.md#deleteorganization) | **Delete** /organizations/{id} | Delete the organization
 *OrganizationsApi* | [**FindOrganizationById**](docs/OrganizationsApi.md#findorganizationbyid) | **Get** /organizations/{id} | Retrieve an organization&#39;s details
 *OrganizationsApi* | [**FindOrganizationCustomdata**](docs/OrganizationsApi.md#findorganizationcustomdata) | **Get** /organizations/{id}/customdata | Retrieve the custom metadata of an organization
+*OrganizationsApi* | [**FindOrganizationDevices**](docs/OrganizationsApi.md#findorganizationdevices) | **Get** /organizations/{id}/devices | Retrieve all devices of an organization
+*OrganizationsApi* | [**FindOrganizationPaymentMethods**](docs/OrganizationsApi.md#findorganizationpaymentmethods) | **Get** /organizations/{id}/payment-methods | Retrieve all payment methods of an organization
+*OrganizationsApi* | [**FindOrganizationProjects**](docs/OrganizationsApi.md#findorganizationprojects) | **Get** /organizations/{id}/projects | Retrieve all projects of an organization
+*OrganizationsApi* | [**FindOrganizationTransfers**](docs/OrganizationsApi.md#findorganizationtransfers) | **Get** /organizations/{id}/transfers | Retrieve all project transfer requests from or to an organization
 *OrganizationsApi* | [**FindOrganizations**](docs/OrganizationsApi.md#findorganizations) | **Get** /organizations | Retrieve all organizations
 *OrganizationsApi* | [**UpdateOrganization**](docs/OrganizationsApi.md#updateorganization) | **Put** /organizations/{id} | Update the organization
 *OtpsApi* | [**FindEnsureOtp**](docs/OtpsApi.md#findensureotp) | **Post** /user/otp/verify/{otp} | Verify user by providing an OTP
@@ -198,55 +199,71 @@ Class | Method | HTTP request | Description
 *OtpsApi* | [**RegenerateCodes**](docs/OtpsApi.md#regeneratecodes) | **Post** /user/otp/recovery-codes | Generate new recovery codes
 *PasswordResetTokensApi* | [**CreatePasswordResetToken**](docs/PasswordResetTokensApi.md#createpasswordresettoken) | **Post** /reset-password | Create a password reset token
 *PasswordResetTokensApi* | [**ResetPassword**](docs/PasswordResetTokensApi.md#resetpassword) | **Delete** /reset-password | Reset current user password
-*PaymentMethodsApi* | [**CreatePaymentMethod**](docs/PaymentMethodsApi.md#createpaymentmethod) | **Post** /organizations/{id}/payment-methods | Create a payment method for the given organization
 *PaymentMethodsApi* | [**DeletePaymentMethod**](docs/PaymentMethodsApi.md#deletepaymentmethod) | **Delete** /payment-methods/{id} | Delete the payment method
-*PaymentMethodsApi* | [**FindOrganizationPaymentMethods**](docs/PaymentMethodsApi.md#findorganizationpaymentmethods) | **Get** /organizations/{id}/payment-methods | Retrieve all payment methods of an organization
 *PaymentMethodsApi* | [**FindPaymentMethodById**](docs/PaymentMethodsApi.md#findpaymentmethodbyid) | **Get** /payment-methods/{id} | Retrieve a payment method
 *PaymentMethodsApi* | [**UpdatePaymentMethod**](docs/PaymentMethodsApi.md#updatepaymentmethod) | **Put** /payment-methods/{id} | Update the payment method
 *PlansApi* | [**FindPlans**](docs/PlansApi.md#findplans) | **Get** /plans | Retrieve all plans
 *PlansApi* | [**FindPlansByOrganization**](docs/PlansApi.md#findplansbyorganization) | **Get** /organizations/{id}/plans | Retrieve all plans visible by the organization
 *PlansApi* | [**FindPlansByProject**](docs/PlansApi.md#findplansbyproject) | **Get** /projects/{id}/plans | Retrieve all plans visible by the project
+*PortsApi* | [**AssignNativeVlan**](docs/PortsApi.md#assignnativevlan) | **Post** /ports/{id}/native-vlan | Assign a native VLAN
+*PortsApi* | [**AssignPort**](docs/PortsApi.md#assignport) | **Post** /ports/{id}/assign | Assign a port to virtual network
 *PortsApi* | [**BondPort**](docs/PortsApi.md#bondport) | **Post** /ports/{id}/bond | Enabling bonding
 *PortsApi* | [**ConvertLayer2**](docs/PortsApi.md#convertlayer2) | **Post** /ports/{id}/convert/layer-2 | Convert to Layer 2
 *PortsApi* | [**ConvertLayer3**](docs/PortsApi.md#convertlayer3) | **Post** /ports/{id}/convert/layer-3 | Convert to Layer 3
+*PortsApi* | [**CreatePortVlanAssignmentBatch**](docs/PortsApi.md#createportvlanassignmentbatch) | **Post** /ports/{id}/vlan-assignments/batches | Create a new Port-VLAN Assignment management batch
+*PortsApi* | [**DeleteNativeVlan**](docs/PortsApi.md#deletenativevlan) | **Delete** /ports/{id}/native-vlan | Remove native VLAN
 *PortsApi* | [**DisbondPort**](docs/PortsApi.md#disbondport) | **Post** /ports/{id}/disbond | Disabling bonding
 *PortsApi* | [**FindPortById**](docs/PortsApi.md#findportbyid) | **Get** /ports/{id} | Retrieve a port
-*ProjectsApi* | [**CreateOrganizationProject**](docs/ProjectsApi.md#createorganizationproject) | **Post** /organizations/{id}/projects | Create a project for the organization
+*PortsApi* | [**FindPortVlanAssignmentBatchByPortIdAndBatchId**](docs/PortsApi.md#findportvlanassignmentbatchbyportidandbatchid) | **Get** /ports/{id}/vlan-assignments/batches/{batch_id} | Retrieve a VLAN Assignment Batch&#39;s details
+*PortsApi* | [**FindPortVlanAssignmentBatches**](docs/PortsApi.md#findportvlanassignmentbatches) | **Get** /ports/{id}/vlan-assignments/batches | List the VLAN Assignment Batches for a port
+*PortsApi* | [**FindPortVlanAssignmentByPortIdAndAssignmentId**](docs/PortsApi.md#findportvlanassignmentbyportidandassignmentid) | **Get** /ports/{id}/vlan-assignments/{assignment_id} | Show a particular Port VLAN assignment&#39;s details
+*PortsApi* | [**FindPortVlanAssignments**](docs/PortsApi.md#findportvlanassignments) | **Get** /ports/{id}/vlan-assignments | List Current VLAN assignments for a port
+*PortsApi* | [**UnassignPort**](docs/PortsApi.md#unassignport) | **Post** /ports/{id}/unassign | Unassign a port
+*ProjectsApi* | [**CreateDevice**](docs/ProjectsApi.md#createdevice) | **Post** /projects/{id}/devices | Create a device
+*ProjectsApi* | [**CreateLicense**](docs/ProjectsApi.md#createlicense) | **Post** /projects/{id}/licenses | Create a License
 *ProjectsApi* | [**CreateProject**](docs/ProjectsApi.md#createproject) | **Post** /projects | Create a project
+*ProjectsApi* | [**CreateProjectSSHKey**](docs/ProjectsApi.md#createprojectsshkey) | **Post** /projects/{id}/ssh-keys | Create a ssh key for the given project
+*ProjectsApi* | [**CreateSpotMarketRequest**](docs/ProjectsApi.md#createspotmarketrequest) | **Post** /projects/{id}/spot-market-requests | Create a spot market request
+*ProjectsApi* | [**CreateTransferRequest**](docs/ProjectsApi.md#createtransferrequest) | **Post** /projects/{id}/transfers | Create a transfer request
+*ProjectsApi* | [**CreateVirtualNetwork**](docs/ProjectsApi.md#createvirtualnetwork) | **Post** /projects/{id}/virtual-networks | Create a virtual network
 *ProjectsApi* | [**DeleteProject**](docs/ProjectsApi.md#deleteproject) | **Delete** /projects/{id} | Delete the project
+*ProjectsApi* | [**FindBatchesByProject**](docs/ProjectsApi.md#findbatchesbyproject) | **Get** /projects/{id}/batches | Retrieve all batches by project
+*ProjectsApi* | [**FindBgpConfigByProject**](docs/ProjectsApi.md#findbgpconfigbyproject) | **Get** /projects/{id}/bgp-config | Retrieve a bgp config
+*ProjectsApi* | [**FindDeviceSSHKeys**](docs/ProjectsApi.md#finddevicesshkeys) | **Get** /devices/{id}/ssh-keys | Retrieve a device&#39;s ssh keys
 *ProjectsApi* | [**FindIPReservationCustomdata**](docs/ProjectsApi.md#findipreservationcustomdata) | **Get** /projects/{project_id}/ips/{id}/customdata | Retrieve the custom metadata of an IP Reservation
-*ProjectsApi* | [**FindOrganizationProjects**](docs/ProjectsApi.md#findorganizationprojects) | **Get** /organizations/{id}/projects | Retrieve all projects of an organization
+*ProjectsApi* | [**FindIPReservations**](docs/ProjectsApi.md#findipreservations) | **Get** /projects/{id}/ips | Retrieve all ip reservations
+*ProjectsApi* | [**FindProjectBgpSessions**](docs/ProjectsApi.md#findprojectbgpsessions) | **Get** /projects/{id}/bgp/sessions | Retrieve all BGP sessions for project
 *ProjectsApi* | [**FindProjectById**](docs/ProjectsApi.md#findprojectbyid) | **Get** /projects/{id} | Retrieve a project
 *ProjectsApi* | [**FindProjectCustomdata**](docs/ProjectsApi.md#findprojectcustomdata) | **Get** /projects/{id}/customdata | Retrieve the custom metadata of a project
+*ProjectsApi* | [**FindProjectDevices**](docs/ProjectsApi.md#findprojectdevices) | **Get** /projects/{id}/devices | Retrieve all devices of a project
+*ProjectsApi* | [**FindProjectHardwareReservations**](docs/ProjectsApi.md#findprojecthardwarereservations) | **Get** /projects/{id}/hardware-reservations | Retrieve all hardware reservations for a given project
+*ProjectsApi* | [**FindProjectLicenses**](docs/ProjectsApi.md#findprojectlicenses) | **Get** /projects/{id}/licenses | Retrieve all licenses
+*ProjectsApi* | [**FindProjectMemberships**](docs/ProjectsApi.md#findprojectmemberships) | **Get** /projects/{project_id}/memberships | Retrieve project memberships
+*ProjectsApi* | [**FindProjectSSHKeys**](docs/ProjectsApi.md#findprojectsshkeys) | **Get** /projects/{id}/ssh-keys | Retrieve a project&#39;s ssh keys
 *ProjectsApi* | [**FindProjects**](docs/ProjectsApi.md#findprojects) | **Get** /projects | Retrieve all projects
+*ProjectsApi* | [**FindVirtualNetworks**](docs/ProjectsApi.md#findvirtualnetworks) | **Get** /projects/{id}/virtual-networks | Retrieve all virtual networks
+*ProjectsApi* | [**ListSpotMarketRequests**](docs/ProjectsApi.md#listspotmarketrequests) | **Get** /projects/{id}/spot-market-requests | List spot market requests
+*ProjectsApi* | [**RequestBgpConfig**](docs/ProjectsApi.md#requestbgpconfig) | **Post** /projects/{id}/bgp-configs | Requesting bgp config
+*ProjectsApi* | [**RequestIPReservation**](docs/ProjectsApi.md#requestipreservation) | **Post** /projects/{id}/ips | Requesting IP reservations
 *ProjectsApi* | [**UpdateProject**](docs/ProjectsApi.md#updateproject) | **Put** /projects/{id} | Update the project
-*SSHKeysApi* | [**CreateProjectSSHKey**](docs/SSHKeysApi.md#createprojectsshkey) | **Post** /projects/{id}/ssh-keys | Create a ssh key for the given project
 *SSHKeysApi* | [**CreateSSHKey**](docs/SSHKeysApi.md#createsshkey) | **Post** /ssh-keys | Create a ssh key for the current user
 *SSHKeysApi* | [**DeleteSSHKey**](docs/SSHKeysApi.md#deletesshkey) | **Delete** /ssh-keys/{id} | Delete the ssh key
-*SSHKeysApi* | [**FindDeviceSSHKeys**](docs/SSHKeysApi.md#finddevicesshkeys) | **Get** /devices/{id}/ssh-keys | Retrieve a device&#39;s ssh keys
-*SSHKeysApi* | [**FindProjectSSHKeys**](docs/SSHKeysApi.md#findprojectsshkeys) | **Get** /projects/{id}/ssh-keys | Retrieve a project&#39;s ssh keys
 *SSHKeysApi* | [**FindSSHKeyById**](docs/SSHKeysApi.md#findsshkeybyid) | **Get** /ssh-keys/{id} | Retrieve a ssh key
 *SSHKeysApi* | [**FindSSHKeys**](docs/SSHKeysApi.md#findsshkeys) | **Get** /ssh-keys | Retrieve all ssh keys
 *SSHKeysApi* | [**UpdateSSHKey**](docs/SSHKeysApi.md#updatesshkey) | **Put** /ssh-keys/{id} | Update the ssh key
 *SelfServiceReservationsApi* | [**CreateSelfServiceReservation**](docs/SelfServiceReservationsApi.md#createselfservicereservation) | **Post** /projects/{project_id}/self-service/reservations | Create a reservation
 *SelfServiceReservationsApi* | [**FindSelfServiceReservation**](docs/SelfServiceReservationsApi.md#findselfservicereservation) | **Get** /projects/{project_id}/self-service/reservations/{id} | Retrieve a reservation
 *SelfServiceReservationsApi* | [**FindSelfServiceReservations**](docs/SelfServiceReservationsApi.md#findselfservicereservations) | **Get** /projects/{project_id}/self-service/reservations | Retrieve all reservations
-*SpotMarketRequestApi* | [**CreateSpotMarketRequest**](docs/SpotMarketRequestApi.md#createspotmarketrequest) | **Post** /projects/{id}/spot-market-requests | Create a spot market request
 *SpotMarketRequestApi* | [**DeleteSpotMarketRequest**](docs/SpotMarketRequestApi.md#deletespotmarketrequest) | **Delete** /spot-market-requests/{id} | Delete the spot market request
 *SpotMarketRequestApi* | [**FindSpotMarketRequestById**](docs/SpotMarketRequestApi.md#findspotmarketrequestbyid) | **Get** /spot-market-requests/{id} | Retrieve a spot market request
-*SpotMarketRequestApi* | [**ListSpotMarketRequests**](docs/SpotMarketRequestApi.md#listspotmarketrequests) | **Get** /projects/{id}/spot-market-requests | List spot market requests
 *SupportRequestApi* | [**RequestSuppert**](docs/SupportRequestApi.md#requestsuppert) | **Post** /support-requests | Create a support ticket
 *TransferRequestsApi* | [**AcceptTransferRequest**](docs/TransferRequestsApi.md#accepttransferrequest) | **Put** /transfers/{id} | Accept a transfer request
-*TransferRequestsApi* | [**CreateTransferRequest**](docs/TransferRequestsApi.md#createtransferrequest) | **Post** /projects/{id}/transfers | Create a transfer request
 *TransferRequestsApi* | [**DeclineTransferRequest**](docs/TransferRequestsApi.md#declinetransferrequest) | **Delete** /transfers/{id} | Decline a transfer request
-*TransferRequestsApi* | [**FindOrganizationTransfers**](docs/TransferRequestsApi.md#findorganizationtransfers) | **Get** /organizations/{id}/transfers | Retrieve all project transfer requests from or to an organization
 *TransferRequestsApi* | [**FindTransferRequestById**](docs/TransferRequestsApi.md#findtransferrequestbyid) | **Get** /transfers/{id} | View a transfer request
 *TwoFactorAuthApi* | [**DisableTfaApp**](docs/TwoFactorAuthApi.md#disabletfaapp) | **Delete** /user/otp/app | Disable two factor authentication
 *TwoFactorAuthApi* | [**DisableTfaSms**](docs/TwoFactorAuthApi.md#disabletfasms) | **Delete** /user/otp/sms | Disable two factor authentication
 *TwoFactorAuthApi* | [**EnableTfaApp**](docs/TwoFactorAuthApi.md#enabletfaapp) | **Post** /user/otp/app | Enable two factor auth using app
 *TwoFactorAuthApi* | [**EnableTfaSms**](docs/TwoFactorAuthApi.md#enabletfasms) | **Post** /user/otp/sms | Enable two factor auth using sms
-*UsagesApi* | [**FindDeviceUsages**](docs/UsagesApi.md#finddeviceusages) | **Get** /devices/{id}/usages | Retrieve all usages for device
-*UsagesApi* | [**FindProjectUsage**](docs/UsagesApi.md#findprojectusage) | **Get** /projects/{id}/usages | Retrieve all usages for project
 *UserVerificationTokensApi* | [**ConsumeVerificationRequest**](docs/UserVerificationTokensApi.md#consumeverificationrequest) | **Put** /verify-email | Verify a user using an email verification token
 *UserVerificationTokensApi* | [**CreateValidationRequest**](docs/UserVerificationTokensApi.md#createvalidationrequest) | **Post** /verify-email | Create an email verification request
 *UserdataApi* | [**ValidateUserdata**](docs/UserdataApi.md#validateuserdata) | **Post** /userdata/validate | Validate user data
@@ -256,14 +273,8 @@ Class | Method | HTTP request | Description
 *UsersApi* | [**FindUserCustomdata**](docs/UsersApi.md#findusercustomdata) | **Get** /users/{id}/customdata | Retrieve the custom metadata of a user
 *UsersApi* | [**FindUsers**](docs/UsersApi.md#findusers) | **Get** /users | Retrieve all users
 *UsersApi* | [**UpdateCurrentUser**](docs/UsersApi.md#updatecurrentuser) | **Put** /user | Update the current user
-*VLANsApi* | [**AssignNativeVlan**](docs/VLANsApi.md#assignnativevlan) | **Post** /ports/{id}/native-vlan | Assign a native VLAN
-*VLANsApi* | [**AssignPort**](docs/VLANsApi.md#assignport) | **Post** /ports/{id}/assign | Assign a port to virtual network
-*VLANsApi* | [**CreateVirtualNetwork**](docs/VLANsApi.md#createvirtualnetwork) | **Post** /projects/{id}/virtual-networks | Create a virtual network
-*VLANsApi* | [**DeleteNativeVlan**](docs/VLANsApi.md#deletenativevlan) | **Delete** /ports/{id}/native-vlan | Remove native VLAN
 *VLANsApi* | [**DeleteVirtualNetwork**](docs/VLANsApi.md#deletevirtualnetwork) | **Delete** /virtual-networks/{id} | Delete a virtual network
-*VLANsApi* | [**FindVirtualNetworks**](docs/VLANsApi.md#findvirtualnetworks) | **Get** /projects/{id}/virtual-networks | Retrieve all virtual networks
 *VLANsApi* | [**GetVirtualNetwork**](docs/VLANsApi.md#getvirtualnetwork) | **Get** /virtual-networks/{id} | Get a virtual network
-*VLANsApi* | [**UnassignPort**](docs/VLANsApi.md#unassignport) | **Post** /ports/{id}/unassign | Unassign a port
 *VolumesApi* | [**CloneVolume**](docs/VolumesApi.md#clonevolume) | **Post** /storage/{id}/clone | Clone volume/snapshot
 *VolumesApi* | [**CreateVolume**](docs/VolumesApi.md#createvolume) | **Post** /projects/{id}/storage | Create a volume
 *VolumesApi* | [**CreateVolumeAttachment**](docs/VolumesApi.md#createvolumeattachment) | **Post** /storage/{id}/attachments | Attach your volume
@@ -362,6 +373,10 @@ Class | Method | HTTP request | Description
  - [MembershipInput](docs/MembershipInput.md)
  - [MembershipList](docs/MembershipList.md)
  - [Meta](docs/Meta.md)
+ - [MetalGateway](docs/MetalGateway.md)
+ - [MetalGatewayInput](docs/MetalGatewayInput.md)
+ - [MetalGatewayList](docs/MetalGatewayList.md)
+ - [MetalGatewayLite](docs/MetalGatewayLite.md)
  - [Metro](docs/Metro.md)
  - [MetroCapacityList](docs/MetroCapacityList.md)
  - [MetroCapacityReport](docs/MetroCapacityReport.md)
@@ -384,6 +399,13 @@ Class | Method | HTTP request | Description
  - [PortAssignInput](docs/PortAssignInput.md)
  - [PortConvertLayer3Input](docs/PortConvertLayer3Input.md)
  - [PortConvertLayer3InputRequestIps](docs/PortConvertLayer3InputRequestIps.md)
+ - [PortVlanAssignment](docs/PortVlanAssignment.md)
+ - [PortVlanAssignmentBatch](docs/PortVlanAssignmentBatch.md)
+ - [PortVlanAssignmentBatchCreateInput](docs/PortVlanAssignmentBatchCreateInput.md)
+ - [PortVlanAssignmentBatchCreateInputVlanAssignments](docs/PortVlanAssignmentBatchCreateInputVlanAssignments.md)
+ - [PortVlanAssignmentBatchList](docs/PortVlanAssignmentBatchList.md)
+ - [PortVlanAssignmentBatchVlanAssignments](docs/PortVlanAssignmentBatchVlanAssignments.md)
+ - [PortVlanAssignmentList](docs/PortVlanAssignmentList.md)
  - [Project](docs/Project.md)
  - [ProjectCreateFromRootInput](docs/ProjectCreateFromRootInput.md)
  - [ProjectCreateInput](docs/ProjectCreateInput.md)
