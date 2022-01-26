@@ -13,23 +13,23 @@ package v1
 
 import (
 	"bytes"
-	_context "context"
-	_ioutil "io/ioutil"
-	_nethttp "net/http"
-	_neturl "net/url"
+	"context"
+	"io/ioutil"
+	"net/http"
+	"net/url"
 	"strings"
 )
 
 // Linger please
 var (
-	_ _context.Context
+	_ context.Context
 )
 
 // AuthenticationApiService AuthenticationApi service
 type AuthenticationApiService service
 
 type ApiCreateAPIKeyRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *AuthenticationApiService
 	authToken *AuthTokenInput
 }
@@ -40,7 +40,7 @@ func (r ApiCreateAPIKeyRequest) AuthToken(authToken AuthTokenInput) ApiCreateAPI
 	return r
 }
 
-func (r ApiCreateAPIKeyRequest) Execute() (AuthToken, *_nethttp.Response, error) {
+func (r ApiCreateAPIKeyRequest) Execute() (*AuthToken, *http.Response, error) {
 	return r.ApiService.CreateAPIKeyExecute(r)
 }
 
@@ -49,10 +49,10 @@ CreateAPIKey Create a API key
 
 Creates a API key for the current user.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiCreateAPIKeyRequest
 */
-func (a *AuthenticationApiService) CreateAPIKey(ctx _context.Context) ApiCreateAPIKeyRequest {
+func (a *AuthenticationApiService) CreateAPIKey(ctx context.Context) ApiCreateAPIKeyRequest {
 	return ApiCreateAPIKeyRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -61,26 +61,24 @@ func (a *AuthenticationApiService) CreateAPIKey(ctx _context.Context) ApiCreateA
 
 // Execute executes the request
 //  @return AuthToken
-func (a *AuthenticationApiService) CreateAPIKeyExecute(r ApiCreateAPIKeyRequest) (AuthToken, *_nethttp.Response, error) {
+func (a *AuthenticationApiService) CreateAPIKeyExecute(r ApiCreateAPIKeyRequest) (*AuthToken, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  AuthToken
+		formFiles            []formFile
+		localVarReturnValue  *AuthToken
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AuthenticationApiService.CreateAPIKey")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/user/api-keys"
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.authToken == nil {
 		return localVarReturnValue, nil, reportError("authToken is required and must be specified")
 	}
@@ -118,7 +116,7 @@ func (a *AuthenticationApiService) CreateAPIKeyExecute(r ApiCreateAPIKeyRequest)
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -128,15 +126,15 @@ func (a *AuthenticationApiService) CreateAPIKeyExecute(r ApiCreateAPIKeyRequest)
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -174,7 +172,7 @@ func (a *AuthenticationApiService) CreateAPIKeyExecute(r ApiCreateAPIKeyRequest)
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -185,7 +183,7 @@ func (a *AuthenticationApiService) CreateAPIKeyExecute(r ApiCreateAPIKeyRequest)
 }
 
 type ApiCreateProjectAPIKeyRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *AuthenticationApiService
 	id string
 	authToken *AuthTokenInput
@@ -197,7 +195,7 @@ func (r ApiCreateProjectAPIKeyRequest) AuthToken(authToken AuthTokenInput) ApiCr
 	return r
 }
 
-func (r ApiCreateProjectAPIKeyRequest) Execute() (AuthToken, *_nethttp.Response, error) {
+func (r ApiCreateProjectAPIKeyRequest) Execute() (*AuthToken, *http.Response, error) {
 	return r.ApiService.CreateProjectAPIKeyExecute(r)
 }
 
@@ -206,11 +204,11 @@ CreateProjectAPIKey Create an API key for a project.
 
 Creates an API key for a project.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Project UUID
  @return ApiCreateProjectAPIKeyRequest
 */
-func (a *AuthenticationApiService) CreateProjectAPIKey(ctx _context.Context, id string) ApiCreateProjectAPIKeyRequest {
+func (a *AuthenticationApiService) CreateProjectAPIKey(ctx context.Context, id string) ApiCreateProjectAPIKeyRequest {
 	return ApiCreateProjectAPIKeyRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -220,27 +218,25 @@ func (a *AuthenticationApiService) CreateProjectAPIKey(ctx _context.Context, id 
 
 // Execute executes the request
 //  @return AuthToken
-func (a *AuthenticationApiService) CreateProjectAPIKeyExecute(r ApiCreateProjectAPIKeyRequest) (AuthToken, *_nethttp.Response, error) {
+func (a *AuthenticationApiService) CreateProjectAPIKeyExecute(r ApiCreateProjectAPIKeyRequest) (*AuthToken, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  AuthToken
+		formFiles            []formFile
+		localVarReturnValue  *AuthToken
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AuthenticationApiService.CreateProjectAPIKey")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/projects/{id}/api-keys"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.authToken == nil {
 		return localVarReturnValue, nil, reportError("authToken is required and must be specified")
 	}
@@ -278,7 +274,7 @@ func (a *AuthenticationApiService) CreateProjectAPIKeyExecute(r ApiCreateProject
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -288,15 +284,15 @@ func (a *AuthenticationApiService) CreateProjectAPIKeyExecute(r ApiCreateProject
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -334,7 +330,7 @@ func (a *AuthenticationApiService) CreateProjectAPIKeyExecute(r ApiCreateProject
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -345,13 +341,13 @@ func (a *AuthenticationApiService) CreateProjectAPIKeyExecute(r ApiCreateProject
 }
 
 type ApiDeleteAPIKeyRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *AuthenticationApiService
 	id string
 }
 
 
-func (r ApiDeleteAPIKeyRequest) Execute() (*_nethttp.Response, error) {
+func (r ApiDeleteAPIKeyRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeleteAPIKeyExecute(r)
 }
 
@@ -360,11 +356,11 @@ DeleteAPIKey Delete the API key
 
 Deletes the API key.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id API Key UUID
  @return ApiDeleteAPIKeyRequest
 */
-func (a *AuthenticationApiService) DeleteAPIKey(ctx _context.Context, id string) ApiDeleteAPIKeyRequest {
+func (a *AuthenticationApiService) DeleteAPIKey(ctx context.Context, id string) ApiDeleteAPIKeyRequest {
 	return ApiDeleteAPIKeyRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -373,26 +369,24 @@ func (a *AuthenticationApiService) DeleteAPIKey(ctx _context.Context, id string)
 }
 
 // Execute executes the request
-func (a *AuthenticationApiService) DeleteAPIKeyExecute(r ApiDeleteAPIKeyRequest) (*_nethttp.Response, error) {
+func (a *AuthenticationApiService) DeleteAPIKeyExecute(r ApiDeleteAPIKeyRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
+		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AuthenticationApiService.DeleteAPIKey")
 	if err != nil {
-		return nil, GenericOpenAPIError{error: err.Error()}
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api-keys/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -425,7 +419,7 @@ func (a *AuthenticationApiService) DeleteAPIKeyExecute(r ApiDeleteAPIKeyRequest)
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
 	}
@@ -435,15 +429,15 @@ func (a *AuthenticationApiService) DeleteAPIKeyExecute(r ApiDeleteAPIKeyRequest)
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -473,13 +467,13 @@ func (a *AuthenticationApiService) DeleteAPIKeyExecute(r ApiDeleteAPIKeyRequest)
 }
 
 type ApiDeleteUserAPIKeyRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *AuthenticationApiService
 	id string
 }
 
 
-func (r ApiDeleteUserAPIKeyRequest) Execute() (*_nethttp.Response, error) {
+func (r ApiDeleteUserAPIKeyRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeleteUserAPIKeyExecute(r)
 }
 
@@ -488,11 +482,11 @@ DeleteUserAPIKey Delete the API key
 
 Deletes the current user API key.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id API Key UUID
  @return ApiDeleteUserAPIKeyRequest
 */
-func (a *AuthenticationApiService) DeleteUserAPIKey(ctx _context.Context, id string) ApiDeleteUserAPIKeyRequest {
+func (a *AuthenticationApiService) DeleteUserAPIKey(ctx context.Context, id string) ApiDeleteUserAPIKeyRequest {
 	return ApiDeleteUserAPIKeyRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -501,26 +495,24 @@ func (a *AuthenticationApiService) DeleteUserAPIKey(ctx _context.Context, id str
 }
 
 // Execute executes the request
-func (a *AuthenticationApiService) DeleteUserAPIKeyExecute(r ApiDeleteUserAPIKeyRequest) (*_nethttp.Response, error) {
+func (a *AuthenticationApiService) DeleteUserAPIKeyExecute(r ApiDeleteUserAPIKeyRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
+		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AuthenticationApiService.DeleteUserAPIKey")
 	if err != nil {
-		return nil, GenericOpenAPIError{error: err.Error()}
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/user/api-keys/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -553,7 +545,7 @@ func (a *AuthenticationApiService) DeleteUserAPIKeyExecute(r ApiDeleteUserAPIKey
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
 	}
@@ -563,15 +555,15 @@ func (a *AuthenticationApiService) DeleteUserAPIKeyExecute(r ApiDeleteUserAPIKey
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -601,7 +593,7 @@ func (a *AuthenticationApiService) DeleteUserAPIKeyExecute(r ApiDeleteUserAPIKey
 }
 
 type ApiFindAPIKeysRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *AuthenticationApiService
 	include *[]string
 	exclude *[]string
@@ -618,7 +610,7 @@ func (r ApiFindAPIKeysRequest) Exclude(exclude []string) ApiFindAPIKeysRequest {
 	return r
 }
 
-func (r ApiFindAPIKeysRequest) Execute() (AuthTokenList, *_nethttp.Response, error) {
+func (r ApiFindAPIKeysRequest) Execute() (*AuthTokenList, *http.Response, error) {
 	return r.ApiService.FindAPIKeysExecute(r)
 }
 
@@ -627,10 +619,10 @@ FindAPIKeys Retrieve all user API keys
 
 Returns all API keys for the current user.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiFindAPIKeysRequest
 */
-func (a *AuthenticationApiService) FindAPIKeys(ctx _context.Context) ApiFindAPIKeysRequest {
+func (a *AuthenticationApiService) FindAPIKeys(ctx context.Context) ApiFindAPIKeysRequest {
 	return ApiFindAPIKeysRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -639,26 +631,24 @@ func (a *AuthenticationApiService) FindAPIKeys(ctx _context.Context) ApiFindAPIK
 
 // Execute executes the request
 //  @return AuthTokenList
-func (a *AuthenticationApiService) FindAPIKeysExecute(r ApiFindAPIKeysRequest) (AuthTokenList, *_nethttp.Response, error) {
+func (a *AuthenticationApiService) FindAPIKeysExecute(r ApiFindAPIKeysRequest) (*AuthTokenList, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  AuthTokenList
+		formFiles            []formFile
+		localVarReturnValue  *AuthTokenList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AuthenticationApiService.FindAPIKeys")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/user/api-keys"
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	if r.include != nil {
 		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
@@ -697,7 +687,7 @@ func (a *AuthenticationApiService) FindAPIKeysExecute(r ApiFindAPIKeysRequest) (
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -707,15 +697,15 @@ func (a *AuthenticationApiService) FindAPIKeysExecute(r ApiFindAPIKeysRequest) (
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -743,7 +733,7 @@ func (a *AuthenticationApiService) FindAPIKeysExecute(r ApiFindAPIKeysRequest) (
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -754,7 +744,7 @@ func (a *AuthenticationApiService) FindAPIKeysExecute(r ApiFindAPIKeysRequest) (
 }
 
 type ApiFindProjectAPIKeysRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *AuthenticationApiService
 	id string
 	include *[]string
@@ -772,7 +762,7 @@ func (r ApiFindProjectAPIKeysRequest) Exclude(exclude []string) ApiFindProjectAP
 	return r
 }
 
-func (r ApiFindProjectAPIKeysRequest) Execute() (AuthTokenList, *_nethttp.Response, error) {
+func (r ApiFindProjectAPIKeysRequest) Execute() (*AuthTokenList, *http.Response, error) {
 	return r.ApiService.FindProjectAPIKeysExecute(r)
 }
 
@@ -781,11 +771,11 @@ FindProjectAPIKeys Retrieve all API keys for the project.
 
 Returns all API keys for a specific project.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Project UUID
  @return ApiFindProjectAPIKeysRequest
 */
-func (a *AuthenticationApiService) FindProjectAPIKeys(ctx _context.Context, id string) ApiFindProjectAPIKeysRequest {
+func (a *AuthenticationApiService) FindProjectAPIKeys(ctx context.Context, id string) ApiFindProjectAPIKeysRequest {
 	return ApiFindProjectAPIKeysRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -795,27 +785,25 @@ func (a *AuthenticationApiService) FindProjectAPIKeys(ctx _context.Context, id s
 
 // Execute executes the request
 //  @return AuthTokenList
-func (a *AuthenticationApiService) FindProjectAPIKeysExecute(r ApiFindProjectAPIKeysRequest) (AuthTokenList, *_nethttp.Response, error) {
+func (a *AuthenticationApiService) FindProjectAPIKeysExecute(r ApiFindProjectAPIKeysRequest) (*AuthTokenList, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  AuthTokenList
+		formFiles            []formFile
+		localVarReturnValue  *AuthTokenList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AuthenticationApiService.FindProjectAPIKeys")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/projects/{id}/api-keys"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	if r.include != nil {
 		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
@@ -854,7 +842,7 @@ func (a *AuthenticationApiService) FindProjectAPIKeysExecute(r ApiFindProjectAPI
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -864,15 +852,15 @@ func (a *AuthenticationApiService) FindProjectAPIKeysExecute(r ApiFindProjectAPI
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -900,7 +888,7 @@ func (a *AuthenticationApiService) FindProjectAPIKeysExecute(r ApiFindProjectAPI
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}

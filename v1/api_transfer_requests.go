@@ -13,29 +13,29 @@ package v1
 
 import (
 	"bytes"
-	_context "context"
-	_ioutil "io/ioutil"
-	_nethttp "net/http"
-	_neturl "net/url"
+	"context"
+	"io/ioutil"
+	"net/http"
+	"net/url"
 	"strings"
 )
 
 // Linger please
 var (
-	_ _context.Context
+	_ context.Context
 )
 
 // TransferRequestsApiService TransferRequestsApi service
 type TransferRequestsApiService service
 
 type ApiAcceptTransferRequestRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *TransferRequestsApiService
 	id string
 }
 
 
-func (r ApiAcceptTransferRequestRequest) Execute() (*_nethttp.Response, error) {
+func (r ApiAcceptTransferRequestRequest) Execute() (*http.Response, error) {
 	return r.ApiService.AcceptTransferRequestExecute(r)
 }
 
@@ -44,11 +44,11 @@ AcceptTransferRequest Accept a transfer request
 
 Accept a transfer request.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Transfer request UUID
  @return ApiAcceptTransferRequestRequest
 */
-func (a *TransferRequestsApiService) AcceptTransferRequest(ctx _context.Context, id string) ApiAcceptTransferRequestRequest {
+func (a *TransferRequestsApiService) AcceptTransferRequest(ctx context.Context, id string) ApiAcceptTransferRequestRequest {
 	return ApiAcceptTransferRequestRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -57,26 +57,24 @@ func (a *TransferRequestsApiService) AcceptTransferRequest(ctx _context.Context,
 }
 
 // Execute executes the request
-func (a *TransferRequestsApiService) AcceptTransferRequestExecute(r ApiAcceptTransferRequestRequest) (*_nethttp.Response, error) {
+func (a *TransferRequestsApiService) AcceptTransferRequestExecute(r ApiAcceptTransferRequestRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPut
+		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TransferRequestsApiService.AcceptTransferRequest")
 	if err != nil {
-		return nil, GenericOpenAPIError{error: err.Error()}
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/transfers/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -109,7 +107,7 @@ func (a *TransferRequestsApiService) AcceptTransferRequestExecute(r ApiAcceptTra
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
 	}
@@ -119,15 +117,15 @@ func (a *TransferRequestsApiService) AcceptTransferRequestExecute(r ApiAcceptTra
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -167,13 +165,13 @@ func (a *TransferRequestsApiService) AcceptTransferRequestExecute(r ApiAcceptTra
 }
 
 type ApiDeclineTransferRequestRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *TransferRequestsApiService
 	id string
 }
 
 
-func (r ApiDeclineTransferRequestRequest) Execute() (*_nethttp.Response, error) {
+func (r ApiDeclineTransferRequestRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeclineTransferRequestExecute(r)
 }
 
@@ -182,11 +180,11 @@ DeclineTransferRequest Decline a transfer request
 
 Decline a transfer request.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Transfer request UUID
  @return ApiDeclineTransferRequestRequest
 */
-func (a *TransferRequestsApiService) DeclineTransferRequest(ctx _context.Context, id string) ApiDeclineTransferRequestRequest {
+func (a *TransferRequestsApiService) DeclineTransferRequest(ctx context.Context, id string) ApiDeclineTransferRequestRequest {
 	return ApiDeclineTransferRequestRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -195,26 +193,24 @@ func (a *TransferRequestsApiService) DeclineTransferRequest(ctx _context.Context
 }
 
 // Execute executes the request
-func (a *TransferRequestsApiService) DeclineTransferRequestExecute(r ApiDeclineTransferRequestRequest) (*_nethttp.Response, error) {
+func (a *TransferRequestsApiService) DeclineTransferRequestExecute(r ApiDeclineTransferRequestRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
+		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TransferRequestsApiService.DeclineTransferRequest")
 	if err != nil {
-		return nil, GenericOpenAPIError{error: err.Error()}
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/transfers/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -247,7 +243,7 @@ func (a *TransferRequestsApiService) DeclineTransferRequestExecute(r ApiDeclineT
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
 	}
@@ -257,15 +253,15 @@ func (a *TransferRequestsApiService) DeclineTransferRequestExecute(r ApiDeclineT
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -305,7 +301,7 @@ func (a *TransferRequestsApiService) DeclineTransferRequestExecute(r ApiDeclineT
 }
 
 type ApiFindTransferRequestByIdRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *TransferRequestsApiService
 	id string
 	include *[]string
@@ -323,7 +319,7 @@ func (r ApiFindTransferRequestByIdRequest) Exclude(exclude []string) ApiFindTran
 	return r
 }
 
-func (r ApiFindTransferRequestByIdRequest) Execute() (TransferRequest, *_nethttp.Response, error) {
+func (r ApiFindTransferRequestByIdRequest) Execute() (*TransferRequest, *http.Response, error) {
 	return r.ApiService.FindTransferRequestByIdExecute(r)
 }
 
@@ -332,11 +328,11 @@ FindTransferRequestById View a transfer request
 
 Returns a single transfer request.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Transfer request UUID
  @return ApiFindTransferRequestByIdRequest
 */
-func (a *TransferRequestsApiService) FindTransferRequestById(ctx _context.Context, id string) ApiFindTransferRequestByIdRequest {
+func (a *TransferRequestsApiService) FindTransferRequestById(ctx context.Context, id string) ApiFindTransferRequestByIdRequest {
 	return ApiFindTransferRequestByIdRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -346,27 +342,25 @@ func (a *TransferRequestsApiService) FindTransferRequestById(ctx _context.Contex
 
 // Execute executes the request
 //  @return TransferRequest
-func (a *TransferRequestsApiService) FindTransferRequestByIdExecute(r ApiFindTransferRequestByIdRequest) (TransferRequest, *_nethttp.Response, error) {
+func (a *TransferRequestsApiService) FindTransferRequestByIdExecute(r ApiFindTransferRequestByIdRequest) (*TransferRequest, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  TransferRequest
+		formFiles            []formFile
+		localVarReturnValue  *TransferRequest
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TransferRequestsApiService.FindTransferRequestById")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/transfers/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	if r.include != nil {
 		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
@@ -405,7 +399,7 @@ func (a *TransferRequestsApiService) FindTransferRequestByIdExecute(r ApiFindTra
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -415,15 +409,15 @@ func (a *TransferRequestsApiService) FindTransferRequestByIdExecute(r ApiFindTra
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -461,7 +455,7 @@ func (a *TransferRequestsApiService) FindTransferRequestByIdExecute(r ApiFindTra
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}

@@ -17,7 +17,7 @@ import (
 
 // CapacityInput struct for CapacityInput
 type CapacityInput struct {
-	Servers *[]ServerInfo `json:"servers,omitempty"`
+	Servers []ServerInfo `json:"servers,omitempty"`
 }
 
 // NewCapacityInput instantiates a new CapacityInput object
@@ -43,12 +43,12 @@ func (o *CapacityInput) GetServers() []ServerInfo {
 		var ret []ServerInfo
 		return ret
 	}
-	return *o.Servers
+	return o.Servers
 }
 
 // GetServersOk returns a tuple with the Servers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CapacityInput) GetServersOk() (*[]ServerInfo, bool) {
+func (o *CapacityInput) GetServersOk() ([]ServerInfo, bool) {
 	if o == nil || o.Servers == nil {
 		return nil, false
 	}
@@ -66,7 +66,7 @@ func (o *CapacityInput) HasServers() bool {
 
 // SetServers gets a reference to the given []ServerInfo and assigns it to the Servers field.
 func (o *CapacityInput) SetServers(v []ServerInfo) {
-	o.Servers = &v
+	o.Servers = v
 }
 
 func (o CapacityInput) MarshalJSON() ([]byte, error) {

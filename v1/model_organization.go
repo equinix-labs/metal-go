@@ -27,15 +27,15 @@ type Organization struct {
 	Logo **os.File `json:"logo,omitempty"`
 	CreatedAt *time.Time `json:"created_at,omitempty"`
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
-	Projects *[]Href `json:"projects,omitempty"`
-	Members *[]Href `json:"members,omitempty"`
-	Memberships *[]Href `json:"memberships,omitempty"`
+	Projects []Href `json:"projects,omitempty"`
+	Members []Href `json:"members,omitempty"`
+	Memberships []Href `json:"memberships,omitempty"`
 	Address *Address `json:"address,omitempty"`
 	BillingAddress *Address `json:"billing_address,omitempty"`
 	Entitlement *Entitlement `json:"entitlement,omitempty"`
 	Terms *int32 `json:"terms,omitempty"`
 	CreditAmount *float32 `json:"credit_amount,omitempty"`
-	Customdata *map[string]interface{} `json:"customdata,omitempty"`
+	Customdata map[string]interface{} `json:"customdata,omitempty"`
 	// Force to all members to have enabled the two factor authentication after that date, unless the value is null
 	Enforce2faAt *time.Time `json:"enforce_2fa_at,omitempty"`
 }
@@ -319,12 +319,12 @@ func (o *Organization) GetProjects() []Href {
 		var ret []Href
 		return ret
 	}
-	return *o.Projects
+	return o.Projects
 }
 
 // GetProjectsOk returns a tuple with the Projects field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Organization) GetProjectsOk() (*[]Href, bool) {
+func (o *Organization) GetProjectsOk() ([]Href, bool) {
 	if o == nil || o.Projects == nil {
 		return nil, false
 	}
@@ -342,7 +342,7 @@ func (o *Organization) HasProjects() bool {
 
 // SetProjects gets a reference to the given []Href and assigns it to the Projects field.
 func (o *Organization) SetProjects(v []Href) {
-	o.Projects = &v
+	o.Projects = v
 }
 
 // GetMembers returns the Members field value if set, zero value otherwise.
@@ -351,12 +351,12 @@ func (o *Organization) GetMembers() []Href {
 		var ret []Href
 		return ret
 	}
-	return *o.Members
+	return o.Members
 }
 
 // GetMembersOk returns a tuple with the Members field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Organization) GetMembersOk() (*[]Href, bool) {
+func (o *Organization) GetMembersOk() ([]Href, bool) {
 	if o == nil || o.Members == nil {
 		return nil, false
 	}
@@ -374,7 +374,7 @@ func (o *Organization) HasMembers() bool {
 
 // SetMembers gets a reference to the given []Href and assigns it to the Members field.
 func (o *Organization) SetMembers(v []Href) {
-	o.Members = &v
+	o.Members = v
 }
 
 // GetMemberships returns the Memberships field value if set, zero value otherwise.
@@ -383,12 +383,12 @@ func (o *Organization) GetMemberships() []Href {
 		var ret []Href
 		return ret
 	}
-	return *o.Memberships
+	return o.Memberships
 }
 
 // GetMembershipsOk returns a tuple with the Memberships field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Organization) GetMembershipsOk() (*[]Href, bool) {
+func (o *Organization) GetMembershipsOk() ([]Href, bool) {
 	if o == nil || o.Memberships == nil {
 		return nil, false
 	}
@@ -406,7 +406,7 @@ func (o *Organization) HasMemberships() bool {
 
 // SetMemberships gets a reference to the given []Href and assigns it to the Memberships field.
 func (o *Organization) SetMemberships(v []Href) {
-	o.Memberships = &v
+	o.Memberships = v
 }
 
 // GetAddress returns the Address field value if set, zero value otherwise.
@@ -575,12 +575,12 @@ func (o *Organization) GetCustomdata() map[string]interface{} {
 		var ret map[string]interface{}
 		return ret
 	}
-	return *o.Customdata
+	return o.Customdata
 }
 
 // GetCustomdataOk returns a tuple with the Customdata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Organization) GetCustomdataOk() (*map[string]interface{}, bool) {
+func (o *Organization) GetCustomdataOk() (map[string]interface{}, bool) {
 	if o == nil || o.Customdata == nil {
 		return nil, false
 	}
@@ -598,7 +598,7 @@ func (o *Organization) HasCustomdata() bool {
 
 // SetCustomdata gets a reference to the given map[string]interface{} and assigns it to the Customdata field.
 func (o *Organization) SetCustomdata(v map[string]interface{}) {
-	o.Customdata = &v
+	o.Customdata = v
 }
 
 // GetEnforce2faAt returns the Enforce2faAt field value if set, zero value otherwise.

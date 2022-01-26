@@ -17,7 +17,7 @@ import (
 
 // SSHKeyList struct for SSHKeyList
 type SSHKeyList struct {
-	SshKeys *[]SSHKey `json:"ssh_keys,omitempty"`
+	SshKeys []SSHKey `json:"ssh_keys,omitempty"`
 }
 
 // NewSSHKeyList instantiates a new SSHKeyList object
@@ -43,12 +43,12 @@ func (o *SSHKeyList) GetSshKeys() []SSHKey {
 		var ret []SSHKey
 		return ret
 	}
-	return *o.SshKeys
+	return o.SshKeys
 }
 
 // GetSshKeysOk returns a tuple with the SshKeys field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SSHKeyList) GetSshKeysOk() (*[]SSHKey, bool) {
+func (o *SSHKeyList) GetSshKeysOk() ([]SSHKey, bool) {
 	if o == nil || o.SshKeys == nil {
 		return nil, false
 	}
@@ -66,7 +66,7 @@ func (o *SSHKeyList) HasSshKeys() bool {
 
 // SetSshKeys gets a reference to the given []SSHKey and assigns it to the SshKeys field.
 func (o *SSHKeyList) SetSshKeys(v []SSHKey) {
-	o.SshKeys = &v
+	o.SshKeys = v
 }
 
 func (o SSHKeyList) MarshalJSON() ([]byte, error) {

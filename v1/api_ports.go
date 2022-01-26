@@ -13,23 +13,23 @@ package v1
 
 import (
 	"bytes"
-	_context "context"
-	_ioutil "io/ioutil"
-	_nethttp "net/http"
-	_neturl "net/url"
+	"context"
+	"io/ioutil"
+	"net/http"
+	"net/url"
 	"strings"
 )
 
 // Linger please
 var (
-	_ _context.Context
+	_ context.Context
 )
 
 // PortsApiService PortsApi service
 type PortsApiService service
 
 type ApiAssignNativeVlanRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *PortsApiService
 	id string
 	vnid *string
@@ -41,7 +41,7 @@ func (r ApiAssignNativeVlanRequest) Vnid(vnid string) ApiAssignNativeVlanRequest
 	return r
 }
 
-func (r ApiAssignNativeVlanRequest) Execute() (Port, *_nethttp.Response, error) {
+func (r ApiAssignNativeVlanRequest) Execute() (*Port, *http.Response, error) {
 	return r.ApiService.AssignNativeVlanExecute(r)
 }
 
@@ -50,11 +50,11 @@ AssignNativeVlan Assign a native VLAN
 
 Sets a virtual network on this port as a "native VLAN". The VLAN must have already been assigned using the using the "Assign a port to a virtual network" operation.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Port UUID
  @return ApiAssignNativeVlanRequest
 */
-func (a *PortsApiService) AssignNativeVlan(ctx _context.Context, id string) ApiAssignNativeVlanRequest {
+func (a *PortsApiService) AssignNativeVlan(ctx context.Context, id string) ApiAssignNativeVlanRequest {
 	return ApiAssignNativeVlanRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -64,27 +64,25 @@ func (a *PortsApiService) AssignNativeVlan(ctx _context.Context, id string) ApiA
 
 // Execute executes the request
 //  @return Port
-func (a *PortsApiService) AssignNativeVlanExecute(r ApiAssignNativeVlanRequest) (Port, *_nethttp.Response, error) {
+func (a *PortsApiService) AssignNativeVlanExecute(r ApiAssignNativeVlanRequest) (*Port, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  Port
+		formFiles            []formFile
+		localVarReturnValue  *Port
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PortsApiService.AssignNativeVlan")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/ports/{id}/native-vlan"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.vnid == nil {
 		return localVarReturnValue, nil, reportError("vnid is required and must be specified")
 	}
@@ -121,7 +119,7 @@ func (a *PortsApiService) AssignNativeVlanExecute(r ApiAssignNativeVlanRequest) 
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -131,15 +129,15 @@ func (a *PortsApiService) AssignNativeVlanExecute(r ApiAssignNativeVlanRequest) 
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -177,7 +175,7 @@ func (a *PortsApiService) AssignNativeVlanExecute(r ApiAssignNativeVlanRequest) 
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -188,7 +186,7 @@ func (a *PortsApiService) AssignNativeVlanExecute(r ApiAssignNativeVlanRequest) 
 }
 
 type ApiAssignPortRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *PortsApiService
 	id string
 	vnid *PortAssignInput
@@ -200,7 +198,7 @@ func (r ApiAssignPortRequest) Vnid(vnid PortAssignInput) ApiAssignPortRequest {
 	return r
 }
 
-func (r ApiAssignPortRequest) Execute() (Port, *_nethttp.Response, error) {
+func (r ApiAssignPortRequest) Execute() (*Port, *http.Response, error) {
 	return r.ApiService.AssignPortExecute(r)
 }
 
@@ -209,11 +207,11 @@ AssignPort Assign a port to virtual network
 
 Assign a port for a hardware to virtual network.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Port UUID
  @return ApiAssignPortRequest
 */
-func (a *PortsApiService) AssignPort(ctx _context.Context, id string) ApiAssignPortRequest {
+func (a *PortsApiService) AssignPort(ctx context.Context, id string) ApiAssignPortRequest {
 	return ApiAssignPortRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -223,27 +221,25 @@ func (a *PortsApiService) AssignPort(ctx _context.Context, id string) ApiAssignP
 
 // Execute executes the request
 //  @return Port
-func (a *PortsApiService) AssignPortExecute(r ApiAssignPortRequest) (Port, *_nethttp.Response, error) {
+func (a *PortsApiService) AssignPortExecute(r ApiAssignPortRequest) (*Port, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  Port
+		formFiles            []formFile
+		localVarReturnValue  *Port
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PortsApiService.AssignPort")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/ports/{id}/assign"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.vnid == nil {
 		return localVarReturnValue, nil, reportError("vnid is required and must be specified")
 	}
@@ -281,7 +277,7 @@ func (a *PortsApiService) AssignPortExecute(r ApiAssignPortRequest) (Port, *_net
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -291,15 +287,15 @@ func (a *PortsApiService) AssignPortExecute(r ApiAssignPortRequest) (Port, *_net
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -347,7 +343,7 @@ func (a *PortsApiService) AssignPortExecute(r ApiAssignPortRequest) (Port, *_net
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -358,7 +354,7 @@ func (a *PortsApiService) AssignPortExecute(r ApiAssignPortRequest) (Port, *_net
 }
 
 type ApiBondPortRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *PortsApiService
 	id string
 	bulkEnable *bool
@@ -370,7 +366,7 @@ func (r ApiBondPortRequest) BulkEnable(bulkEnable bool) ApiBondPortRequest {
 	return r
 }
 
-func (r ApiBondPortRequest) Execute() (Port, *_nethttp.Response, error) {
+func (r ApiBondPortRequest) Execute() (*Port, *http.Response, error) {
 	return r.ApiService.BondPortExecute(r)
 }
 
@@ -379,11 +375,11 @@ BondPort Enabling bonding
 
 Enabling bonding for one or all ports
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Port UUID
  @return ApiBondPortRequest
 */
-func (a *PortsApiService) BondPort(ctx _context.Context, id string) ApiBondPortRequest {
+func (a *PortsApiService) BondPort(ctx context.Context, id string) ApiBondPortRequest {
 	return ApiBondPortRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -393,27 +389,25 @@ func (a *PortsApiService) BondPort(ctx _context.Context, id string) ApiBondPortR
 
 // Execute executes the request
 //  @return Port
-func (a *PortsApiService) BondPortExecute(r ApiBondPortRequest) (Port, *_nethttp.Response, error) {
+func (a *PortsApiService) BondPortExecute(r ApiBondPortRequest) (*Port, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  Port
+		formFiles            []formFile
+		localVarReturnValue  *Port
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PortsApiService.BondPort")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/ports/{id}/bond"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	if r.bulkEnable != nil {
 		localVarQueryParams.Add("bulk_enable", parameterToString(*r.bulkEnable, ""))
@@ -449,7 +443,7 @@ func (a *PortsApiService) BondPortExecute(r ApiBondPortRequest) (Port, *_nethttp
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -459,15 +453,15 @@ func (a *PortsApiService) BondPortExecute(r ApiBondPortRequest) (Port, *_nethttp
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -515,7 +509,7 @@ func (a *PortsApiService) BondPortExecute(r ApiBondPortRequest) (Port, *_nethttp
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -526,7 +520,7 @@ func (a *PortsApiService) BondPortExecute(r ApiBondPortRequest) (Port, *_nethttp
 }
 
 type ApiConvertLayer2Request struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *PortsApiService
 	id string
 	vnid *PortAssignInput
@@ -538,7 +532,7 @@ func (r ApiConvertLayer2Request) Vnid(vnid PortAssignInput) ApiConvertLayer2Requ
 	return r
 }
 
-func (r ApiConvertLayer2Request) Execute() (Port, *_nethttp.Response, error) {
+func (r ApiConvertLayer2Request) Execute() (*Port, *http.Response, error) {
 	return r.ApiService.ConvertLayer2Execute(r)
 }
 
@@ -547,11 +541,11 @@ ConvertLayer2 Convert to Layer 2
 
 Converts a bond port to Layer 2. IP assignments of the port will be removed.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Port UUID
  @return ApiConvertLayer2Request
 */
-func (a *PortsApiService) ConvertLayer2(ctx _context.Context, id string) ApiConvertLayer2Request {
+func (a *PortsApiService) ConvertLayer2(ctx context.Context, id string) ApiConvertLayer2Request {
 	return ApiConvertLayer2Request{
 		ApiService: a,
 		ctx: ctx,
@@ -561,27 +555,25 @@ func (a *PortsApiService) ConvertLayer2(ctx _context.Context, id string) ApiConv
 
 // Execute executes the request
 //  @return Port
-func (a *PortsApiService) ConvertLayer2Execute(r ApiConvertLayer2Request) (Port, *_nethttp.Response, error) {
+func (a *PortsApiService) ConvertLayer2Execute(r ApiConvertLayer2Request) (*Port, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  Port
+		formFiles            []formFile
+		localVarReturnValue  *Port
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PortsApiService.ConvertLayer2")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/ports/{id}/convert/layer-2"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -616,7 +608,7 @@ func (a *PortsApiService) ConvertLayer2Execute(r ApiConvertLayer2Request) (Port,
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -626,15 +618,15 @@ func (a *PortsApiService) ConvertLayer2Execute(r ApiConvertLayer2Request) (Port,
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -682,7 +674,7 @@ func (a *PortsApiService) ConvertLayer2Execute(r ApiConvertLayer2Request) (Port,
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -693,7 +685,7 @@ func (a *PortsApiService) ConvertLayer2Execute(r ApiConvertLayer2Request) (Port,
 }
 
 type ApiConvertLayer3Request struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *PortsApiService
 	id string
 	requestIps *PortConvertLayer3Input
@@ -705,7 +697,7 @@ func (r ApiConvertLayer3Request) RequestIps(requestIps PortConvertLayer3Input) A
 	return r
 }
 
-func (r ApiConvertLayer3Request) Execute() (Port, *_nethttp.Response, error) {
+func (r ApiConvertLayer3Request) Execute() (*Port, *http.Response, error) {
 	return r.ApiService.ConvertLayer3Execute(r)
 }
 
@@ -714,11 +706,11 @@ ConvertLayer3 Convert to Layer 3
 
 Converts a bond port to Layer 3. VLANs must first be unassigned.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Port UUID
  @return ApiConvertLayer3Request
 */
-func (a *PortsApiService) ConvertLayer3(ctx _context.Context, id string) ApiConvertLayer3Request {
+func (a *PortsApiService) ConvertLayer3(ctx context.Context, id string) ApiConvertLayer3Request {
 	return ApiConvertLayer3Request{
 		ApiService: a,
 		ctx: ctx,
@@ -728,27 +720,25 @@ func (a *PortsApiService) ConvertLayer3(ctx _context.Context, id string) ApiConv
 
 // Execute executes the request
 //  @return Port
-func (a *PortsApiService) ConvertLayer3Execute(r ApiConvertLayer3Request) (Port, *_nethttp.Response, error) {
+func (a *PortsApiService) ConvertLayer3Execute(r ApiConvertLayer3Request) (*Port, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  Port
+		formFiles            []formFile
+		localVarReturnValue  *Port
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PortsApiService.ConvertLayer3")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/ports/{id}/convert/layer-3"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -783,7 +773,7 @@ func (a *PortsApiService) ConvertLayer3Execute(r ApiConvertLayer3Request) (Port,
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -793,15 +783,15 @@ func (a *PortsApiService) ConvertLayer3Execute(r ApiConvertLayer3Request) (Port,
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -849,7 +839,7 @@ func (a *PortsApiService) ConvertLayer3Execute(r ApiConvertLayer3Request) (Port,
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -860,7 +850,7 @@ func (a *PortsApiService) ConvertLayer3Execute(r ApiConvertLayer3Request) (Port,
 }
 
 type ApiCreatePortVlanAssignmentBatchRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *PortsApiService
 	id string
 	vlanAssignments *PortVlanAssignmentBatchCreateInput
@@ -872,7 +862,7 @@ func (r ApiCreatePortVlanAssignmentBatchRequest) VlanAssignments(vlanAssignments
 	return r
 }
 
-func (r ApiCreatePortVlanAssignmentBatchRequest) Execute() (PortVlanAssignmentBatch, *_nethttp.Response, error) {
+func (r ApiCreatePortVlanAssignmentBatchRequest) Execute() (*PortVlanAssignmentBatch, *http.Response, error) {
 	return r.ApiService.CreatePortVlanAssignmentBatchExecute(r)
 }
 
@@ -881,11 +871,11 @@ CreatePortVlanAssignmentBatch Create a new Port-VLAN Assignment management batch
 
 Create a new asynchronous batch request which handles adding and/or removing the VLANs to which the port is assigned.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Port UUID
  @return ApiCreatePortVlanAssignmentBatchRequest
 */
-func (a *PortsApiService) CreatePortVlanAssignmentBatch(ctx _context.Context, id string) ApiCreatePortVlanAssignmentBatchRequest {
+func (a *PortsApiService) CreatePortVlanAssignmentBatch(ctx context.Context, id string) ApiCreatePortVlanAssignmentBatchRequest {
 	return ApiCreatePortVlanAssignmentBatchRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -895,27 +885,25 @@ func (a *PortsApiService) CreatePortVlanAssignmentBatch(ctx _context.Context, id
 
 // Execute executes the request
 //  @return PortVlanAssignmentBatch
-func (a *PortsApiService) CreatePortVlanAssignmentBatchExecute(r ApiCreatePortVlanAssignmentBatchRequest) (PortVlanAssignmentBatch, *_nethttp.Response, error) {
+func (a *PortsApiService) CreatePortVlanAssignmentBatchExecute(r ApiCreatePortVlanAssignmentBatchRequest) (*PortVlanAssignmentBatch, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  PortVlanAssignmentBatch
+		formFiles            []formFile
+		localVarReturnValue  *PortVlanAssignmentBatch
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PortsApiService.CreatePortVlanAssignmentBatch")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/ports/{id}/vlan-assignments/batches"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.vlanAssignments == nil {
 		return localVarReturnValue, nil, reportError("vlanAssignments is required and must be specified")
 	}
@@ -953,7 +941,7 @@ func (a *PortsApiService) CreatePortVlanAssignmentBatchExecute(r ApiCreatePortVl
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -963,15 +951,15 @@ func (a *PortsApiService) CreatePortVlanAssignmentBatchExecute(r ApiCreatePortVl
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -1019,7 +1007,7 @@ func (a *PortsApiService) CreatePortVlanAssignmentBatchExecute(r ApiCreatePortVl
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -1030,13 +1018,13 @@ func (a *PortsApiService) CreatePortVlanAssignmentBatchExecute(r ApiCreatePortVl
 }
 
 type ApiDeleteNativeVlanRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *PortsApiService
 	id string
 }
 
 
-func (r ApiDeleteNativeVlanRequest) Execute() (Port, *_nethttp.Response, error) {
+func (r ApiDeleteNativeVlanRequest) Execute() (*Port, *http.Response, error) {
 	return r.ApiService.DeleteNativeVlanExecute(r)
 }
 
@@ -1045,11 +1033,11 @@ DeleteNativeVlan Remove native VLAN
 
 Removes the native VLAN from this port
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Port UUID
  @return ApiDeleteNativeVlanRequest
 */
-func (a *PortsApiService) DeleteNativeVlan(ctx _context.Context, id string) ApiDeleteNativeVlanRequest {
+func (a *PortsApiService) DeleteNativeVlan(ctx context.Context, id string) ApiDeleteNativeVlanRequest {
 	return ApiDeleteNativeVlanRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1059,27 +1047,25 @@ func (a *PortsApiService) DeleteNativeVlan(ctx _context.Context, id string) ApiD
 
 // Execute executes the request
 //  @return Port
-func (a *PortsApiService) DeleteNativeVlanExecute(r ApiDeleteNativeVlanRequest) (Port, *_nethttp.Response, error) {
+func (a *PortsApiService) DeleteNativeVlanExecute(r ApiDeleteNativeVlanRequest) (*Port, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
+		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  Port
+		formFiles            []formFile
+		localVarReturnValue  *Port
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PortsApiService.DeleteNativeVlan")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/ports/{id}/native-vlan"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1112,7 +1098,7 @@ func (a *PortsApiService) DeleteNativeVlanExecute(r ApiDeleteNativeVlanRequest) 
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -1122,15 +1108,15 @@ func (a *PortsApiService) DeleteNativeVlanExecute(r ApiDeleteNativeVlanRequest) 
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -1168,7 +1154,7 @@ func (a *PortsApiService) DeleteNativeVlanExecute(r ApiDeleteNativeVlanRequest) 
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -1179,7 +1165,7 @@ func (a *PortsApiService) DeleteNativeVlanExecute(r ApiDeleteNativeVlanRequest) 
 }
 
 type ApiDisbondPortRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *PortsApiService
 	id string
 	bulkDisable *bool
@@ -1191,7 +1177,7 @@ func (r ApiDisbondPortRequest) BulkDisable(bulkDisable bool) ApiDisbondPortReque
 	return r
 }
 
-func (r ApiDisbondPortRequest) Execute() (Port, *_nethttp.Response, error) {
+func (r ApiDisbondPortRequest) Execute() (*Port, *http.Response, error) {
 	return r.ApiService.DisbondPortExecute(r)
 }
 
@@ -1200,11 +1186,11 @@ DisbondPort Disabling bonding
 
 Disabling bonding for one or all ports
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Port UUID
  @return ApiDisbondPortRequest
 */
-func (a *PortsApiService) DisbondPort(ctx _context.Context, id string) ApiDisbondPortRequest {
+func (a *PortsApiService) DisbondPort(ctx context.Context, id string) ApiDisbondPortRequest {
 	return ApiDisbondPortRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1214,27 +1200,25 @@ func (a *PortsApiService) DisbondPort(ctx _context.Context, id string) ApiDisbon
 
 // Execute executes the request
 //  @return Port
-func (a *PortsApiService) DisbondPortExecute(r ApiDisbondPortRequest) (Port, *_nethttp.Response, error) {
+func (a *PortsApiService) DisbondPortExecute(r ApiDisbondPortRequest) (*Port, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  Port
+		formFiles            []formFile
+		localVarReturnValue  *Port
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PortsApiService.DisbondPort")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/ports/{id}/disbond"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	if r.bulkDisable != nil {
 		localVarQueryParams.Add("bulk_disable", parameterToString(*r.bulkDisable, ""))
@@ -1270,7 +1254,7 @@ func (a *PortsApiService) DisbondPortExecute(r ApiDisbondPortRequest) (Port, *_n
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -1280,15 +1264,15 @@ func (a *PortsApiService) DisbondPortExecute(r ApiDisbondPortRequest) (Port, *_n
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -1336,7 +1320,7 @@ func (a *PortsApiService) DisbondPortExecute(r ApiDisbondPortRequest) (Port, *_n
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -1347,7 +1331,7 @@ func (a *PortsApiService) DisbondPortExecute(r ApiDisbondPortRequest) (Port, *_n
 }
 
 type ApiFindPortByIdRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *PortsApiService
 	id string
 	include *[]string
@@ -1365,7 +1349,7 @@ func (r ApiFindPortByIdRequest) Exclude(exclude []string) ApiFindPortByIdRequest
 	return r
 }
 
-func (r ApiFindPortByIdRequest) Execute() (Port, *_nethttp.Response, error) {
+func (r ApiFindPortByIdRequest) Execute() (*Port, *http.Response, error) {
 	return r.ApiService.FindPortByIdExecute(r)
 }
 
@@ -1374,11 +1358,11 @@ FindPortById Retrieve a port
 
 Returns a port
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Port UUID
  @return ApiFindPortByIdRequest
 */
-func (a *PortsApiService) FindPortById(ctx _context.Context, id string) ApiFindPortByIdRequest {
+func (a *PortsApiService) FindPortById(ctx context.Context, id string) ApiFindPortByIdRequest {
 	return ApiFindPortByIdRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1388,27 +1372,25 @@ func (a *PortsApiService) FindPortById(ctx _context.Context, id string) ApiFindP
 
 // Execute executes the request
 //  @return Port
-func (a *PortsApiService) FindPortByIdExecute(r ApiFindPortByIdRequest) (Port, *_nethttp.Response, error) {
+func (a *PortsApiService) FindPortByIdExecute(r ApiFindPortByIdRequest) (*Port, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  Port
+		formFiles            []formFile
+		localVarReturnValue  *Port
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PortsApiService.FindPortById")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/ports/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	if r.include != nil {
 		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
@@ -1447,7 +1429,7 @@ func (a *PortsApiService) FindPortByIdExecute(r ApiFindPortByIdRequest) (Port, *
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -1457,15 +1439,15 @@ func (a *PortsApiService) FindPortByIdExecute(r ApiFindPortByIdRequest) (Port, *
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -1493,7 +1475,7 @@ func (a *PortsApiService) FindPortByIdExecute(r ApiFindPortByIdRequest) (Port, *
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -1504,14 +1486,14 @@ func (a *PortsApiService) FindPortByIdExecute(r ApiFindPortByIdRequest) (Port, *
 }
 
 type ApiFindPortVlanAssignmentBatchByPortIdAndBatchIdRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *PortsApiService
 	id string
 	batchId string
 }
 
 
-func (r ApiFindPortVlanAssignmentBatchByPortIdAndBatchIdRequest) Execute() (PortVlanAssignmentBatch, *_nethttp.Response, error) {
+func (r ApiFindPortVlanAssignmentBatchByPortIdAndBatchIdRequest) Execute() (*PortVlanAssignmentBatch, *http.Response, error) {
 	return r.ApiService.FindPortVlanAssignmentBatchByPortIdAndBatchIdExecute(r)
 }
 
@@ -1520,12 +1502,12 @@ FindPortVlanAssignmentBatchByPortIdAndBatchId Retrieve a VLAN Assignment Batch's
 
 Returns the details of an existing Port-VLAN Assignment batch, including the list of VLANs to assign or unassign, and the current state of the batch.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Port UUID
  @param batchId Batch ID
  @return ApiFindPortVlanAssignmentBatchByPortIdAndBatchIdRequest
 */
-func (a *PortsApiService) FindPortVlanAssignmentBatchByPortIdAndBatchId(ctx _context.Context, id string, batchId string) ApiFindPortVlanAssignmentBatchByPortIdAndBatchIdRequest {
+func (a *PortsApiService) FindPortVlanAssignmentBatchByPortIdAndBatchId(ctx context.Context, id string, batchId string) ApiFindPortVlanAssignmentBatchByPortIdAndBatchIdRequest {
 	return ApiFindPortVlanAssignmentBatchByPortIdAndBatchIdRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1536,28 +1518,26 @@ func (a *PortsApiService) FindPortVlanAssignmentBatchByPortIdAndBatchId(ctx _con
 
 // Execute executes the request
 //  @return PortVlanAssignmentBatch
-func (a *PortsApiService) FindPortVlanAssignmentBatchByPortIdAndBatchIdExecute(r ApiFindPortVlanAssignmentBatchByPortIdAndBatchIdRequest) (PortVlanAssignmentBatch, *_nethttp.Response, error) {
+func (a *PortsApiService) FindPortVlanAssignmentBatchByPortIdAndBatchIdExecute(r ApiFindPortVlanAssignmentBatchByPortIdAndBatchIdRequest) (*PortVlanAssignmentBatch, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  PortVlanAssignmentBatch
+		formFiles            []formFile
+		localVarReturnValue  *PortVlanAssignmentBatch
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PortsApiService.FindPortVlanAssignmentBatchByPortIdAndBatchId")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/ports/{id}/vlan-assignments/batches/{batch_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"batch_id"+"}", _neturl.PathEscape(parameterToString(r.batchId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"batch_id"+"}", url.PathEscape(parameterToString(r.batchId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1590,7 +1570,7 @@ func (a *PortsApiService) FindPortVlanAssignmentBatchByPortIdAndBatchIdExecute(r
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -1600,15 +1580,15 @@ func (a *PortsApiService) FindPortVlanAssignmentBatchByPortIdAndBatchIdExecute(r
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -1646,7 +1626,7 @@ func (a *PortsApiService) FindPortVlanAssignmentBatchByPortIdAndBatchIdExecute(r
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -1657,13 +1637,13 @@ func (a *PortsApiService) FindPortVlanAssignmentBatchByPortIdAndBatchIdExecute(r
 }
 
 type ApiFindPortVlanAssignmentBatchesRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *PortsApiService
 	id string
 }
 
 
-func (r ApiFindPortVlanAssignmentBatchesRequest) Execute() (PortVlanAssignmentBatchList, *_nethttp.Response, error) {
+func (r ApiFindPortVlanAssignmentBatchesRequest) Execute() (*PortVlanAssignmentBatchList, *http.Response, error) {
 	return r.ApiService.FindPortVlanAssignmentBatchesExecute(r)
 }
 
@@ -1672,11 +1652,11 @@ FindPortVlanAssignmentBatches List the VLAN Assignment Batches for a port
 
 Show all the VLAN assignment batches that have been created for managing this port's VLAN assignments
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Port UUID
  @return ApiFindPortVlanAssignmentBatchesRequest
 */
-func (a *PortsApiService) FindPortVlanAssignmentBatches(ctx _context.Context, id string) ApiFindPortVlanAssignmentBatchesRequest {
+func (a *PortsApiService) FindPortVlanAssignmentBatches(ctx context.Context, id string) ApiFindPortVlanAssignmentBatchesRequest {
 	return ApiFindPortVlanAssignmentBatchesRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1686,27 +1666,25 @@ func (a *PortsApiService) FindPortVlanAssignmentBatches(ctx _context.Context, id
 
 // Execute executes the request
 //  @return PortVlanAssignmentBatchList
-func (a *PortsApiService) FindPortVlanAssignmentBatchesExecute(r ApiFindPortVlanAssignmentBatchesRequest) (PortVlanAssignmentBatchList, *_nethttp.Response, error) {
+func (a *PortsApiService) FindPortVlanAssignmentBatchesExecute(r ApiFindPortVlanAssignmentBatchesRequest) (*PortVlanAssignmentBatchList, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  PortVlanAssignmentBatchList
+		formFiles            []formFile
+		localVarReturnValue  *PortVlanAssignmentBatchList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PortsApiService.FindPortVlanAssignmentBatches")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/ports/{id}/vlan-assignments/batches"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1739,7 +1717,7 @@ func (a *PortsApiService) FindPortVlanAssignmentBatchesExecute(r ApiFindPortVlan
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -1749,15 +1727,15 @@ func (a *PortsApiService) FindPortVlanAssignmentBatchesExecute(r ApiFindPortVlan
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -1795,7 +1773,7 @@ func (a *PortsApiService) FindPortVlanAssignmentBatchesExecute(r ApiFindPortVlan
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -1806,7 +1784,7 @@ func (a *PortsApiService) FindPortVlanAssignmentBatchesExecute(r ApiFindPortVlan
 }
 
 type ApiFindPortVlanAssignmentByPortIdAndAssignmentIdRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *PortsApiService
 	id string
 	assignmentId string
@@ -1825,7 +1803,7 @@ func (r ApiFindPortVlanAssignmentByPortIdAndAssignmentIdRequest) Exclude(exclude
 	return r
 }
 
-func (r ApiFindPortVlanAssignmentByPortIdAndAssignmentIdRequest) Execute() (PortVlanAssignment, *_nethttp.Response, error) {
+func (r ApiFindPortVlanAssignmentByPortIdAndAssignmentIdRequest) Execute() (*PortVlanAssignment, *http.Response, error) {
 	return r.ApiService.FindPortVlanAssignmentByPortIdAndAssignmentIdExecute(r)
 }
 
@@ -1834,12 +1812,12 @@ FindPortVlanAssignmentByPortIdAndAssignmentId Show a particular Port VLAN assign
 
 Show the details of a specific Port-VLAN assignment, including the current state and if the VLAN is set as native.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Port UUID
  @param assignmentId Assignment ID
  @return ApiFindPortVlanAssignmentByPortIdAndAssignmentIdRequest
 */
-func (a *PortsApiService) FindPortVlanAssignmentByPortIdAndAssignmentId(ctx _context.Context, id string, assignmentId string) ApiFindPortVlanAssignmentByPortIdAndAssignmentIdRequest {
+func (a *PortsApiService) FindPortVlanAssignmentByPortIdAndAssignmentId(ctx context.Context, id string, assignmentId string) ApiFindPortVlanAssignmentByPortIdAndAssignmentIdRequest {
 	return ApiFindPortVlanAssignmentByPortIdAndAssignmentIdRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1850,28 +1828,26 @@ func (a *PortsApiService) FindPortVlanAssignmentByPortIdAndAssignmentId(ctx _con
 
 // Execute executes the request
 //  @return PortVlanAssignment
-func (a *PortsApiService) FindPortVlanAssignmentByPortIdAndAssignmentIdExecute(r ApiFindPortVlanAssignmentByPortIdAndAssignmentIdRequest) (PortVlanAssignment, *_nethttp.Response, error) {
+func (a *PortsApiService) FindPortVlanAssignmentByPortIdAndAssignmentIdExecute(r ApiFindPortVlanAssignmentByPortIdAndAssignmentIdRequest) (*PortVlanAssignment, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  PortVlanAssignment
+		formFiles            []formFile
+		localVarReturnValue  *PortVlanAssignment
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PortsApiService.FindPortVlanAssignmentByPortIdAndAssignmentId")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/ports/{id}/vlan-assignments/{assignment_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"assignment_id"+"}", _neturl.PathEscape(parameterToString(r.assignmentId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"assignment_id"+"}", url.PathEscape(parameterToString(r.assignmentId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	if r.include != nil {
 		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
@@ -1910,7 +1886,7 @@ func (a *PortsApiService) FindPortVlanAssignmentByPortIdAndAssignmentIdExecute(r
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -1920,15 +1896,15 @@ func (a *PortsApiService) FindPortVlanAssignmentByPortIdAndAssignmentIdExecute(r
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -1966,7 +1942,7 @@ func (a *PortsApiService) FindPortVlanAssignmentByPortIdAndAssignmentIdExecute(r
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -1977,7 +1953,7 @@ func (a *PortsApiService) FindPortVlanAssignmentByPortIdAndAssignmentIdExecute(r
 }
 
 type ApiFindPortVlanAssignmentsRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *PortsApiService
 	id string
 	include *[]string
@@ -1995,7 +1971,7 @@ func (r ApiFindPortVlanAssignmentsRequest) Exclude(exclude []string) ApiFindPort
 	return r
 }
 
-func (r ApiFindPortVlanAssignmentsRequest) Execute() (PortVlanAssignmentList, *_nethttp.Response, error) {
+func (r ApiFindPortVlanAssignmentsRequest) Execute() (*PortVlanAssignmentList, *http.Response, error) {
 	return r.ApiService.FindPortVlanAssignmentsExecute(r)
 }
 
@@ -2004,11 +1980,11 @@ FindPortVlanAssignments List Current VLAN assignments for a port
 
 Show the port's current VLAN assignments, including if this VLAN is set as native, and the current state of the assignment (ex. 'assigned' or 'unassigning')
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Port UUID
  @return ApiFindPortVlanAssignmentsRequest
 */
-func (a *PortsApiService) FindPortVlanAssignments(ctx _context.Context, id string) ApiFindPortVlanAssignmentsRequest {
+func (a *PortsApiService) FindPortVlanAssignments(ctx context.Context, id string) ApiFindPortVlanAssignmentsRequest {
 	return ApiFindPortVlanAssignmentsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2018,27 +1994,25 @@ func (a *PortsApiService) FindPortVlanAssignments(ctx _context.Context, id strin
 
 // Execute executes the request
 //  @return PortVlanAssignmentList
-func (a *PortsApiService) FindPortVlanAssignmentsExecute(r ApiFindPortVlanAssignmentsRequest) (PortVlanAssignmentList, *_nethttp.Response, error) {
+func (a *PortsApiService) FindPortVlanAssignmentsExecute(r ApiFindPortVlanAssignmentsRequest) (*PortVlanAssignmentList, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  PortVlanAssignmentList
+		formFiles            []formFile
+		localVarReturnValue  *PortVlanAssignmentList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PortsApiService.FindPortVlanAssignments")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/ports/{id}/vlan-assignments"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	if r.include != nil {
 		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
@@ -2077,7 +2051,7 @@ func (a *PortsApiService) FindPortVlanAssignmentsExecute(r ApiFindPortVlanAssign
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -2087,15 +2061,15 @@ func (a *PortsApiService) FindPortVlanAssignmentsExecute(r ApiFindPortVlanAssign
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -2133,7 +2107,7 @@ func (a *PortsApiService) FindPortVlanAssignmentsExecute(r ApiFindPortVlanAssign
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -2144,7 +2118,7 @@ func (a *PortsApiService) FindPortVlanAssignmentsExecute(r ApiFindPortVlanAssign
 }
 
 type ApiUnassignPortRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *PortsApiService
 	id string
 	vnid *PortAssignInput
@@ -2156,7 +2130,7 @@ func (r ApiUnassignPortRequest) Vnid(vnid PortAssignInput) ApiUnassignPortReques
 	return r
 }
 
-func (r ApiUnassignPortRequest) Execute() (Port, *_nethttp.Response, error) {
+func (r ApiUnassignPortRequest) Execute() (*Port, *http.Response, error) {
 	return r.ApiService.UnassignPortExecute(r)
 }
 
@@ -2165,11 +2139,11 @@ UnassignPort Unassign a port
 
 Unassign a port for a hardware.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Port UUID
  @return ApiUnassignPortRequest
 */
-func (a *PortsApiService) UnassignPort(ctx _context.Context, id string) ApiUnassignPortRequest {
+func (a *PortsApiService) UnassignPort(ctx context.Context, id string) ApiUnassignPortRequest {
 	return ApiUnassignPortRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2179,27 +2153,25 @@ func (a *PortsApiService) UnassignPort(ctx _context.Context, id string) ApiUnass
 
 // Execute executes the request
 //  @return Port
-func (a *PortsApiService) UnassignPortExecute(r ApiUnassignPortRequest) (Port, *_nethttp.Response, error) {
+func (a *PortsApiService) UnassignPortExecute(r ApiUnassignPortRequest) (*Port, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  Port
+		formFiles            []formFile
+		localVarReturnValue  *Port
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PortsApiService.UnassignPort")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/ports/{id}/unassign"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.vnid == nil {
 		return localVarReturnValue, nil, reportError("vnid is required and must be specified")
 	}
@@ -2237,7 +2209,7 @@ func (a *PortsApiService) UnassignPortExecute(r ApiUnassignPortRequest) (Port, *
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -2247,15 +2219,15 @@ func (a *PortsApiService) UnassignPortExecute(r ApiUnassignPortRequest) (Port, *
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -2303,7 +2275,7 @@ func (a *PortsApiService) UnassignPortExecute(r ApiUnassignPortRequest) (Port, *
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}

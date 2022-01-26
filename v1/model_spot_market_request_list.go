@@ -17,7 +17,7 @@ import (
 
 // SpotMarketRequestList struct for SpotMarketRequestList
 type SpotMarketRequestList struct {
-	SpotMarketRequests *[]SpotMarketRequest `json:"spot_market_requests,omitempty"`
+	SpotMarketRequests []SpotMarketRequest `json:"spot_market_requests,omitempty"`
 }
 
 // NewSpotMarketRequestList instantiates a new SpotMarketRequestList object
@@ -43,12 +43,12 @@ func (o *SpotMarketRequestList) GetSpotMarketRequests() []SpotMarketRequest {
 		var ret []SpotMarketRequest
 		return ret
 	}
-	return *o.SpotMarketRequests
+	return o.SpotMarketRequests
 }
 
 // GetSpotMarketRequestsOk returns a tuple with the SpotMarketRequests field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SpotMarketRequestList) GetSpotMarketRequestsOk() (*[]SpotMarketRequest, bool) {
+func (o *SpotMarketRequestList) GetSpotMarketRequestsOk() ([]SpotMarketRequest, bool) {
 	if o == nil || o.SpotMarketRequests == nil {
 		return nil, false
 	}
@@ -66,7 +66,7 @@ func (o *SpotMarketRequestList) HasSpotMarketRequests() bool {
 
 // SetSpotMarketRequests gets a reference to the given []SpotMarketRequest and assigns it to the SpotMarketRequests field.
 func (o *SpotMarketRequestList) SetSpotMarketRequests(v []SpotMarketRequest) {
-	o.SpotMarketRequests = &v
+	o.SpotMarketRequests = v
 }
 
 func (o SpotMarketRequestList) MarshalJSON() ([]byte, error) {

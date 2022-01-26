@@ -22,12 +22,12 @@ type Plan struct {
 	Name *string `json:"name,omitempty"`
 	Description *string `json:"description,omitempty"`
 	Line *string `json:"line,omitempty"`
-	Specs *map[string]interface{} `json:"specs,omitempty"`
-	Pricing *map[string]interface{} `json:"pricing,omitempty"`
+	Specs map[string]interface{} `json:"specs,omitempty"`
+	Pricing map[string]interface{} `json:"pricing,omitempty"`
 	Legacy *bool `json:"legacy,omitempty"`
 	Class *string `json:"class,omitempty"`
 	// Shows which facilities the plan is available in, and the facility-based price if it is different from the default price.
-	AvailableIn *[]Href `json:"available_in,omitempty"`
+	AvailableIn []Href `json:"available_in,omitempty"`
 }
 
 // NewPlan instantiates a new Plan object
@@ -213,12 +213,12 @@ func (o *Plan) GetSpecs() map[string]interface{} {
 		var ret map[string]interface{}
 		return ret
 	}
-	return *o.Specs
+	return o.Specs
 }
 
 // GetSpecsOk returns a tuple with the Specs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Plan) GetSpecsOk() (*map[string]interface{}, bool) {
+func (o *Plan) GetSpecsOk() (map[string]interface{}, bool) {
 	if o == nil || o.Specs == nil {
 		return nil, false
 	}
@@ -236,7 +236,7 @@ func (o *Plan) HasSpecs() bool {
 
 // SetSpecs gets a reference to the given map[string]interface{} and assigns it to the Specs field.
 func (o *Plan) SetSpecs(v map[string]interface{}) {
-	o.Specs = &v
+	o.Specs = v
 }
 
 // GetPricing returns the Pricing field value if set, zero value otherwise.
@@ -245,12 +245,12 @@ func (o *Plan) GetPricing() map[string]interface{} {
 		var ret map[string]interface{}
 		return ret
 	}
-	return *o.Pricing
+	return o.Pricing
 }
 
 // GetPricingOk returns a tuple with the Pricing field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Plan) GetPricingOk() (*map[string]interface{}, bool) {
+func (o *Plan) GetPricingOk() (map[string]interface{}, bool) {
 	if o == nil || o.Pricing == nil {
 		return nil, false
 	}
@@ -268,7 +268,7 @@ func (o *Plan) HasPricing() bool {
 
 // SetPricing gets a reference to the given map[string]interface{} and assigns it to the Pricing field.
 func (o *Plan) SetPricing(v map[string]interface{}) {
-	o.Pricing = &v
+	o.Pricing = v
 }
 
 // GetLegacy returns the Legacy field value if set, zero value otherwise.
@@ -341,12 +341,12 @@ func (o *Plan) GetAvailableIn() []Href {
 		var ret []Href
 		return ret
 	}
-	return *o.AvailableIn
+	return o.AvailableIn
 }
 
 // GetAvailableInOk returns a tuple with the AvailableIn field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Plan) GetAvailableInOk() (*[]Href, bool) {
+func (o *Plan) GetAvailableInOk() ([]Href, bool) {
 	if o == nil || o.AvailableIn == nil {
 		return nil, false
 	}
@@ -364,7 +364,7 @@ func (o *Plan) HasAvailableIn() bool {
 
 // SetAvailableIn gets a reference to the given []Href and assigns it to the AvailableIn field.
 func (o *Plan) SetAvailableIn(v []Href) {
-	o.AvailableIn = &v
+	o.AvailableIn = v
 }
 
 func (o Plan) MarshalJSON() ([]byte, error) {

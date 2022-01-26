@@ -17,7 +17,7 @@ import (
 
 // GlobalBgpRangeList struct for GlobalBgpRangeList
 type GlobalBgpRangeList struct {
-	GlobalBgpRanges *[]GlobalBgpRange `json:"global_bgp_ranges,omitempty"`
+	GlobalBgpRanges []GlobalBgpRange `json:"global_bgp_ranges,omitempty"`
 }
 
 // NewGlobalBgpRangeList instantiates a new GlobalBgpRangeList object
@@ -43,12 +43,12 @@ func (o *GlobalBgpRangeList) GetGlobalBgpRanges() []GlobalBgpRange {
 		var ret []GlobalBgpRange
 		return ret
 	}
-	return *o.GlobalBgpRanges
+	return o.GlobalBgpRanges
 }
 
 // GetGlobalBgpRangesOk returns a tuple with the GlobalBgpRanges field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GlobalBgpRangeList) GetGlobalBgpRangesOk() (*[]GlobalBgpRange, bool) {
+func (o *GlobalBgpRangeList) GetGlobalBgpRangesOk() ([]GlobalBgpRange, bool) {
 	if o == nil || o.GlobalBgpRanges == nil {
 		return nil, false
 	}
@@ -66,7 +66,7 @@ func (o *GlobalBgpRangeList) HasGlobalBgpRanges() bool {
 
 // SetGlobalBgpRanges gets a reference to the given []GlobalBgpRange and assigns it to the GlobalBgpRanges field.
 func (o *GlobalBgpRangeList) SetGlobalBgpRanges(v []GlobalBgpRange) {
-	o.GlobalBgpRanges = &v
+	o.GlobalBgpRanges = v
 }
 
 func (o GlobalBgpRangeList) MarshalJSON() ([]byte, error) {

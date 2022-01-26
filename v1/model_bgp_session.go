@@ -21,7 +21,7 @@ type BgpSession struct {
 	Id *string `json:"id,omitempty"`
 	//  The status of the BGP Session. Multiple status values may be reported when the device is connected to multiple switches, one value per switch. Each status will start with \"unknown\" and progress to \"up\" or \"down\" depending on the connected device. Subsequent \"unknown\" values indicate a problem acquiring status from the switch. 
 	Status *string `json:"status,omitempty"`
-	LearnedRoutes *[]string `json:"learned_routes,omitempty"`
+	LearnedRoutes []string `json:"learned_routes,omitempty"`
 	AddressFamily string `json:"address_family"`
 	Device *Href `json:"device,omitempty"`
 	Href *string `json:"href,omitempty"`
@@ -118,12 +118,12 @@ func (o *BgpSession) GetLearnedRoutes() []string {
 		var ret []string
 		return ret
 	}
-	return *o.LearnedRoutes
+	return o.LearnedRoutes
 }
 
 // GetLearnedRoutesOk returns a tuple with the LearnedRoutes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BgpSession) GetLearnedRoutesOk() (*[]string, bool) {
+func (o *BgpSession) GetLearnedRoutesOk() ([]string, bool) {
 	if o == nil || o.LearnedRoutes == nil {
 		return nil, false
 	}
@@ -141,7 +141,7 @@ func (o *BgpSession) HasLearnedRoutes() bool {
 
 // SetLearnedRoutes gets a reference to the given []string and assigns it to the LearnedRoutes field.
 func (o *BgpSession) SetLearnedRoutes(v []string) {
-	o.LearnedRoutes = &v
+	o.LearnedRoutes = v
 }
 
 // GetAddressFamily returns the AddressFamily field value

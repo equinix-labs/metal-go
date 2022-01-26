@@ -33,8 +33,8 @@ func main() {
     token := "token_example" // string | User verification token
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.UserVerificationTokensApi.ConsumeVerificationRequest(context.Background()).Token(token).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.UserVerificationTokensApi.ConsumeVerificationRequest(context.Background()).Token(token).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UserVerificationTokensApi.ConsumeVerificationRequest``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -97,8 +97,8 @@ func main() {
     login := "login_example" // string | Email for verification request
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.UserVerificationTokensApi.CreateValidationRequest(context.Background()).Login(login).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.UserVerificationTokensApi.CreateValidationRequest(context.Background()).Login(login).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UserVerificationTokensApi.CreateValidationRequest``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

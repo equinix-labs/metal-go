@@ -1475,86 +1475,6 @@ paths:
       summary: Retrieve project's events
       tags:
       - Events
-  /volumes/{id}/events:
-    get:
-      description: Returns a list of the current volume’s events
-      operationId: findVolumeEvents
-      parameters:
-      - description: Volume UUID
-        in: path
-        name: id
-        required: true
-        schema:
-          format: uuid
-          type: string
-      - description: Nested attributes to include. Included objects will return their
-          full attributes. Attribute names can be dotted (up to 3 levels) to included
-          deeply nested objects.
-        explode: false
-        in: query
-        name: include
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
-      - description: Nested attributes to exclude. Excluded objects will return only
-          the href attribute. Attribute names can be dotted (up to 3 levels) to exclude
-          deeply nested objects.
-        explode: false
-        in: query
-        name: exclude
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
-      - description: Page to return
-        in: query
-        name: page
-        schema:
-          default: 1
-          format: int32
-          maximum: 100000
-          minimum: 1
-          type: integer
-      - description: Items returned per page
-        in: query
-        name: per_page
-        schema:
-          default: 10
-          format: int32
-          maximum: 1000
-          minimum: 1
-          type: integer
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/EventList'
-          description: ok
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: not found
-      summary: Retrieve volume's events
-      tags:
-      - Events
   /events:
     get:
       description: Returns a list of the current user’s events
@@ -2385,6 +2305,31 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: Filter by device facility
+        in: query
+        name: facility
+        schema:
+          type: string
+      - description: Filter by partial hostname
+        in: query
+        name: hostname
+        schema:
+          type: string
+      - description: Filter only reserved instances
+        in: query
+        name: reserved
+        schema:
+          type: boolean
+      - description: Filter by device tag
+        in: query
+        name: tag
+        schema:
+          type: string
+      - description: Filter by instance type (ondemand,spot,reserved)
+        in: query
+        name: type
+        schema:
+          type: string
       - description: Nested attributes to include. Included objects will return their
           full attributes. Attribute names can be dotted (up to 3 levels) to included
           deeply nested objects.
@@ -2464,6 +2409,31 @@ paths:
         required: true
         schema:
           format: uuid
+          type: string
+      - description: Filter by device facility
+        in: query
+        name: facility
+        schema:
+          type: string
+      - description: Filter by partial hostname
+        in: query
+        name: hostname
+        schema:
+          type: string
+      - description: Filter only reserved instances
+        in: query
+        name: reserved
+        schema:
+          type: boolean
+      - description: Filter by device tag
+        in: query
+        name: tag
+        schema:
+          type: string
+      - description: Filter by instance type (ondemand,spot,reserved)
+        in: query
+        name: type
+        schema:
           type: string
       - description: Nested attributes to include. Included objects will return their
           full attributes. Attribute names can be dotted (up to 3 levels) to included
@@ -5112,44 +5082,6 @@ paths:
       summary: Retrieve the custom metadata of an instance
       tags:
       - Devices
-  /storage/{id}/customdata:
-    get:
-      description: Provides the custom metadata stored for this storage volume in
-        json format
-      operationId: findVolumeCustomdata
-      parameters:
-      - description: Storage Volume UUID
-        in: path
-        name: id
-        required: true
-        schema:
-          format: uuid
-          type: string
-      responses:
-        "200":
-          content: {}
-          description: ok
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: not found
-      summary: Retrieve the custom metadata of a storage volume
-      tags:
-      - Volumes
   /projects/{project_id}/ips/{id}/customdata:
     get:
       description: Provides the custom metadata stored for this IP Reservation in
@@ -7972,901 +7904,6 @@ paths:
       tags:
       - SSHKeys
       x-codegen-request-body-name: ssh key
-  /storage/{id}/attachments:
-    get:
-      deprecated: true
-      description: Returns a list of the current volume’s attachments.
-      operationId: findVolumeAttachments
-      parameters:
-      - description: Volume UUID
-        in: path
-        name: id
-        required: true
-        schema:
-          format: uuid
-          type: string
-      - description: Nested attributes to include. Included objects will return their
-          full attributes. Attribute names can be dotted (up to 3 levels) to included
-          deeply nested objects.
-        explode: false
-        in: query
-        name: include
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
-      - description: Nested attributes to exclude. Excluded objects will return only
-          the href attribute. Attribute names can be dotted (up to 3 levels) to exclude
-          deeply nested objects.
-        explode: false
-        in: query
-        name: exclude
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/VolumeAttachmentList'
-          description: ok
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: not found
-      summary: Retrieve all volume attachment
-      tags:
-      - Volumes
-    post:
-      deprecated: true
-      description: Attach your volume to a device.
-      operationId: createVolumeAttachment
-      parameters:
-      - description: Volume UUID
-        in: path
-        name: id
-        required: true
-        schema:
-          format: uuid
-          type: string
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/VolumeAttachmentInput'
-        description: Device to attach
-        required: true
-      responses:
-        "201":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/VolumeAttachment'
-          description: created
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: not found
-        "422":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: unprocessable entity
-      summary: Attach your volume
-      tags:
-      - Volumes
-      x-codegen-request-body-name: attachment
-  /storage/attachments/{id}:
-    delete:
-      deprecated: true
-      description: Detach volume.
-      operationId: deleteVolumeAttachment
-      parameters:
-      - description: Attachment UUID
-        in: path
-        name: id
-        required: true
-        schema:
-          format: uuid
-          type: string
-      responses:
-        "204":
-          content: {}
-          description: no content
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: not found
-      summary: Detach volume
-      tags:
-      - Volumes
-    get:
-      deprecated: true
-      description: Returns a single attachment if the user has access
-      operationId: findVolumeAttachmentById
-      parameters:
-      - description: Attachment UUID
-        in: path
-        name: id
-        required: true
-        schema:
-          format: uuid
-          type: string
-      - description: Nested attributes to include. Included objects will return their
-          full attributes. Attribute names can be dotted (up to 3 levels) to included
-          deeply nested objects.
-        explode: false
-        in: query
-        name: include
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
-      - description: Nested attributes to exclude. Excluded objects will return only
-          the href attribute. Attribute names can be dotted (up to 3 levels) to exclude
-          deeply nested objects.
-        explode: false
-        in: query
-        name: exclude
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/VolumeAttachment'
-          description: ok
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: not found
-      summary: Retrieve an attachment
-      tags:
-      - Volumes
-  /storage/{id}/snapshots:
-    get:
-      deprecated: true
-      description: Returns a list of the current volume’s snapshots. To create Volume
-        Snapshots, please check the Volume Snapshot Policies feature.
-      operationId: findVolumeSnapshots
-      parameters:
-      - description: Volume UUID
-        in: path
-        name: id
-        required: true
-        schema:
-          format: uuid
-          type: string
-      - description: Nested attributes to include. Included objects will return their
-          full attributes. Attribute names can be dotted (up to 3 levels) to included
-          deeply nested objects.
-        explode: false
-        in: query
-        name: include
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
-      - description: Nested attributes to exclude. Excluded objects will return only
-          the href attribute. Attribute names can be dotted (up to 3 levels) to exclude
-          deeply nested objects.
-        explode: false
-        in: query
-        name: exclude
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/VolumeSnapshotList'
-          description: ok
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: not found
-      summary: Retrieve all volume snapshot
-      tags:
-      - Volumes
-  /storage/{volume_id}/snapshots/{id}:
-    delete:
-      deprecated: true
-      description: Delete volume snapshot.
-      operationId: deleteVolumeSnapshot
-      parameters:
-      - description: Volume UUID
-        in: path
-        name: volume_id
-        required: true
-        schema:
-          format: uuid
-          type: string
-      - description: Snapshot UUID
-        in: path
-        name: id
-        required: true
-        schema:
-          format: uuid
-          type: string
-      responses:
-        "204":
-          content: {}
-          description: no content
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: not found
-      summary: Delete volume snapshot
-      tags:
-      - Volumes
-  /storage/{id}/snapshot-policies:
-    post:
-      deprecated: true
-      description: Creates a new snapshot policy of your volume.
-      operationId: createVolumeSnapshotPolicy
-      parameters:
-      - description: Volume UUID
-        in: path
-        name: id
-        required: true
-        schema:
-          format: uuid
-          type: string
-      - description: Snapshot count
-        in: query
-        name: snapshot_count
-        schema:
-          type: integer
-      - description: Snapshot frequency
-        in: query
-        name: snapshot_frequency
-        required: true
-        schema:
-          enum:
-          - 1min
-          - 15min
-          - 1hour
-          - 1day
-          - 1week
-          - 1month
-          - 1year
-          type: string
-      responses:
-        "201":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/SnapshotPolicy'
-          description: created
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: not found
-        "422":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: unprocessable entity
-      summary: Create a volume snapshot policy
-      tags:
-      - Volumes
-  /storage/snapshot-policies/{id}:
-    delete:
-      deprecated: true
-      description: Deletes the volume snapshot policy.
-      operationId: deleteVolumeSnapshotPolicy
-      parameters:
-      - description: Snapshot Policy UUID
-        in: path
-        name: id
-        required: true
-        schema:
-          format: uuid
-          type: string
-      responses:
-        "204":
-          content: {}
-          description: no content
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: not found
-      summary: Delete the volume snapshot policy
-      tags:
-      - Volumes
-    put:
-      deprecated: true
-      description: Updates the volume snapshot policy.
-      operationId: updateVolumeSnapshotPolicy
-      parameters:
-      - description: Snapshot Policy UUID
-        in: path
-        name: id
-        required: true
-        schema:
-          format: uuid
-          type: string
-      - description: Snapshot count
-        in: query
-        name: snapshot_count
-        schema:
-          type: integer
-      - description: Snapshot frequency
-        in: query
-        name: snapshot_frequency
-        required: true
-        schema:
-          enum:
-          - 1min
-          - 15min
-          - 1hour
-          - 1day
-          - 1week
-          - 1month
-          - 1year
-          type: string
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/SnapshotPolicy'
-          description: ok
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: not found
-        "422":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: unprocessable entity
-      summary: Update the volume snapshot policy
-      tags:
-      - Volumes
-  /projects/{id}/storage:
-    get:
-      deprecated: true
-      description: Returns a list of the current projects’s volumes.
-      operationId: findVolumes
-      parameters:
-      - description: Project UUID
-        in: path
-        name: id
-        required: true
-        schema:
-          format: uuid
-          type: string
-      - description: Nested attributes to include. Included objects will return their
-          full attributes. Attribute names can be dotted (up to 3 levels) to included
-          deeply nested objects.
-        explode: false
-        in: query
-        name: include
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
-      - description: Nested attributes to exclude. Excluded objects will return only
-          the href attribute. Attribute names can be dotted (up to 3 levels) to exclude
-          deeply nested objects.
-        explode: false
-        in: query
-        name: exclude
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
-      - description: Page to return
-        in: query
-        name: page
-        schema:
-          default: 1
-          format: int32
-          maximum: 100000
-          minimum: 1
-          type: integer
-      - description: Items returned per page
-        in: query
-        name: per_page
-        schema:
-          default: 10
-          format: int32
-          maximum: 1000
-          minimum: 1
-          type: integer
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/VolumeList'
-          description: ok
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: not found
-      summary: Retrieve all volumes
-      tags:
-      - Volumes
-    post:
-      deprecated: true
-      description: |-
-        Creates a new volume in our datacenter. The valid attribute values for `plan` and `facility` are:
-
-                 "facility": "ams1", "ewr1", "nrt1", "sjc1"
-                 "plan": "storage_1" (Standard), "storage_2" (Performance)
-      operationId: createVolume
-      parameters:
-      - description: Project UUID
-        in: path
-        name: id
-        required: true
-        schema:
-          format: uuid
-          type: string
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/VolumeCreateInput'
-        description: Volume to create
-        required: true
-      responses:
-        "201":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Volume'
-          description: created
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: not found
-        "422":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: unprocessable entity
-      summary: Create a volume
-      tags:
-      - Volumes
-      x-codegen-request-body-name: volume
-  /storage/{id}:
-    delete:
-      deprecated: true
-      description: Deletes the volume.
-      operationId: deleteVolume
-      parameters:
-      - description: Volume UUID
-        in: path
-        name: id
-        required: true
-        schema:
-          format: uuid
-          type: string
-      responses:
-        "204":
-          content: {}
-          description: no content
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: not found
-      summary: Delete the volume
-      tags:
-      - Volumes
-    get:
-      deprecated: true
-      description: Returns a single volume if the user has access
-      operationId: findVolumeById
-      parameters:
-      - description: Volume UUID
-        in: path
-        name: id
-        required: true
-        schema:
-          format: uuid
-          type: string
-      - description: Nested attributes to include. Included objects will return their
-          full attributes. Attribute names can be dotted (up to 3 levels) to included
-          deeply nested objects.
-        explode: false
-        in: query
-        name: include
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
-      - description: Nested attributes to exclude. Excluded objects will return only
-          the href attribute. Attribute names can be dotted (up to 3 levels) to exclude
-          deeply nested objects.
-        explode: false
-        in: query
-        name: exclude
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Volume'
-          description: ok
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: not found
-      summary: Retrieve a volume
-      tags:
-      - Volumes
-    put:
-      deprecated: true
-      description: Updates the volume.
-      operationId: updateVolume
-      parameters:
-      - description: Volume UUID
-        in: path
-        name: id
-        required: true
-        schema:
-          format: uuid
-          type: string
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/VolumeUpdateInput'
-        description: Volume to update
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Volume'
-          description: ok
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: not found
-        "422":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: unprocessable entity
-      summary: Update the volume
-      tags:
-      - Volumes
-      x-codegen-request-body-name: volume
-  /storage/{id}/restore:
-    post:
-      deprecated: true
-      description: Restore the volume to the given snapshot.
-      operationId: restoreVolume
-      parameters:
-      - description: Volume UUID
-        in: path
-        name: id
-        required: true
-        schema:
-          format: uuid
-          type: string
-      - description: restore point
-        in: query
-        name: restore_point
-        required: true
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Volume'
-          description: ok
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: not found
-        "422":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: unprocessable entity
-      summary: Restore volume
-      tags:
-      - Volumes
-  /storage/{id}/clone:
-    post:
-      deprecated: true
-      description: Clone your volume or snapshot into a new volume. To clone the volume,
-        send an empty body. To promote a volume snapshot into a new volume, include
-        the snapshot_timestamp attribute in the request body.
-      operationId: cloneVolume
-      parameters:
-      - description: Volume UUID
-        in: path
-        name: id
-        required: true
-        schema:
-          format: uuid
-          type: string
-      - description: snapshot timestamp
-        in: query
-        name: snapshot_timestamp
-        schema:
-          type: string
-      responses:
-        "201":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Volume'
-          description: created
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: not found
-        "422":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: unprocessable entity
-      summary: Clone volume/snapshot
-      tags:
-      - Volumes
   /support-requests:
     post:
       description: Support Ticket.
@@ -11308,6 +10345,7 @@ components:
           project_lite: '{}'
           short_id: short_id
           termination_time: 2000-01-23T04:56:07.000+00:00
+          created_by: '{}'
           tags:
           - tags
           - tags
@@ -11593,6 +10631,7 @@ components:
             project_lite: '{}'
             short_id: short_id
             termination_time: 2000-01-23T04:56:07.000+00:00
+            created_by: '{}'
             tags:
             - tags
             - tags
@@ -11820,6 +10859,7 @@ components:
             project_lite: '{}'
             short_id: short_id
             termination_time: 2000-01-23T04:56:07.000+00:00
+            created_by: '{}'
             tags:
             - tags
             - tags
@@ -11983,6 +11023,7 @@ components:
         project_lite: '{}'
         short_id: short_id
         termination_time: 2000-01-23T04:56:07.000+00:00
+        created_by: '{}'
         tags:
         - tags
         - tags
@@ -12049,6 +11090,12 @@ components:
         created_at:
           format: date-time
           type: string
+        created_by:
+          allOf:
+          - $ref: '#/components/schemas/UserLite'
+          - description: The user that created the device.
+            type: object
+          type: object
         updated_at:
           format: date-time
           type: string
@@ -12557,6 +11604,7 @@ components:
           project_lite: '{}'
           short_id: short_id
           termination_time: 2000-01-23T04:56:07.000+00:00
+          created_by: '{}'
           tags:
           - tags
           - tags
@@ -12709,6 +11757,7 @@ components:
           project_lite: '{}'
           short_id: short_id
           termination_time: 2000-01-23T04:56:07.000+00:00
+          created_by: '{}'
           tags:
           - tags
           - tags
@@ -13457,6 +12506,7 @@ components:
         name:
           type: string
         speed:
+          description: Speed can be changed only if it is a dedicated connection
           type: string
         tags:
           items:
@@ -14299,6 +13349,14 @@ components:
         tags:
         - tags
         - tags
+        metal_gateway:
+          gateway_address: gateway_address
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          vlan: 1.4658129805029452
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          state: ready
+          href: href
         address_family: 0
         public: true
         netmask: netmask
@@ -14368,6 +13426,8 @@ components:
               an IP reservation in a facility that is not in a metro.
             type: object
           type: object
+        metal_gateway:
+          $ref: '#/components/schemas/MetalGatewayLite'
       type: object
     IPAssignmentInput:
       example:
@@ -14495,6 +13555,14 @@ components:
           tags:
           - tags
           - tags
+          metal_gateway:
+            gateway_address: gateway_address
+            updated_at: 2000-01-23T04:56:07.000+00:00
+            vlan: 1.4658129805029452
+            created_at: 2000-01-23T04:56:07.000+00:00
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            state: ready
+            href: href
           address_family: 0
           public: true
           netmask: netmask
@@ -14560,6 +13628,14 @@ components:
           tags:
           - tags
           - tags
+          metal_gateway:
+            gateway_address: gateway_address
+            updated_at: 2000-01-23T04:56:07.000+00:00
+            vlan: 1.4658129805029452
+            created_at: 2000-01-23T04:56:07.000+00:00
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            state: ready
+            href: href
           address_family: 0
           public: true
           netmask: netmask
@@ -14633,6 +13709,14 @@ components:
     VirtualNetwork:
       example:
         vxlan: 0
+        metal_gateway:
+          gateway_address: gateway_address
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          vlan: 1.4658129805029452
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          state: ready
+          href: href
         metro_code: metro_code
         instances:
         - href: href
@@ -14674,6 +13758,8 @@ components:
           description: True if the virtual network is attached to a virtual circuit.
             False if not.
           type: boolean
+        metal_gateway:
+          $ref: '#/components/schemas/MetalGatewayLite'
         assigned_to:
           $ref: '#/components/schemas/Href'
         href:
@@ -14714,6 +13800,14 @@ components:
       example:
         virtual_networks:
         - vxlan: 0
+          metal_gateway:
+            gateway_address: gateway_address
+            updated_at: 2000-01-23T04:56:07.000+00:00
+            vlan: 1.4658129805029452
+            created_at: 2000-01-23T04:56:07.000+00:00
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            state: ready
+            href: href
           metro_code: metro_code
           instances:
           - href: href
@@ -14729,6 +13823,14 @@ components:
           assigned_to:
             href: href
         - vxlan: 0
+          metal_gateway:
+            gateway_address: gateway_address
+            updated_at: 2000-01-23T04:56:07.000+00:00
+            vlan: 1.4658129805029452
+            created_at: 2000-01-23T04:56:07.000+00:00
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            state: ready
+            href: href
           metro_code: metro_code
           instances:
           - href: href
@@ -14793,9 +13895,36 @@ components:
           type: boolean
       type: object
     OperatingSystemList:
-      items:
-        $ref: '#/components/schemas/OperatingSystem'
-      type: array
+      example:
+        operating_systems:
+        - distro: distro
+          preinstallable: true
+          licensed: true
+          name: name
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          provisionable_on:
+          - provisionable_on
+          - provisionable_on
+          version: version
+          slug: slug
+          pricing: '{}'
+        - distro: distro
+          preinstallable: true
+          licensed: true
+          name: name
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          provisionable_on:
+          - provisionable_on
+          - provisionable_on
+          version: version
+          slug: slug
+          pricing: '{}'
+      properties:
+        operating_systems:
+          items:
+            $ref: '#/components/schemas/OperatingSystem'
+          type: array
+      type: object
     Organization:
       example:
         website: website
@@ -16071,375 +15200,6 @@ components:
           items:
             $ref: '#/components/schemas/SSHKey'
           type: array
-      type: object
-    VolumeAttachment:
-      example:
-        volume:
-          href: href
-        created_at: 2000-01-23T04:56:07.000+00:00
-        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        href: href
-        device:
-          href: href
-      properties:
-        id:
-          format: uuid
-          type: string
-        created_at:
-          format: date-time
-          type: string
-        volume:
-          $ref: '#/components/schemas/Href'
-        device:
-          $ref: '#/components/schemas/Href'
-        href:
-          type: string
-      type: object
-    VolumeAttachmentInput:
-      example:
-        device_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-      properties:
-        device_id:
-          format: uuid
-          type: string
-      required:
-      - device_id
-      type: object
-    VolumeAttachmentList:
-      example:
-        attachments:
-        - volume:
-            href: href
-          created_at: 2000-01-23T04:56:07.000+00:00
-          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          href: href
-          device:
-            href: href
-        - volume:
-            href: href
-          created_at: 2000-01-23T04:56:07.000+00:00
-          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          href: href
-          device:
-            href: href
-      properties:
-        attachments:
-          items:
-            $ref: '#/components/schemas/VolumeAttachment'
-          type: array
-      type: object
-    VolumeSnapshot:
-      example:
-        volume:
-          href: href
-        created_at: 2000-01-23T04:56:07.000+00:00
-        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        status: status
-        timestamp: 2000-01-23T04:56:07.000+00:00
-      properties:
-        id:
-          format: uuid
-          type: string
-        status:
-          type: string
-        created_at:
-          format: date-time
-          type: string
-        timestamp:
-          format: date-time
-          type: string
-        volume:
-          $ref: '#/components/schemas/Href'
-      type: object
-    VolumeSnapshotList:
-      example:
-        snapshots:
-        - volume:
-            href: href
-          created_at: 2000-01-23T04:56:07.000+00:00
-          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          status: status
-          timestamp: 2000-01-23T04:56:07.000+00:00
-        - volume:
-            href: href
-          created_at: 2000-01-23T04:56:07.000+00:00
-          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          status: status
-          timestamp: 2000-01-23T04:56:07.000+00:00
-      properties:
-        snapshots:
-          items:
-            $ref: '#/components/schemas/VolumeSnapshot'
-          type: array
-      type: object
-    SnapshotPolicy:
-      example:
-        snapshot_frequency: snapshot_frequency
-        volume:
-          href: href
-        snapshot_count: 20
-        updated_at: 2000-01-23T04:56:07.000+00:00
-        created_at: 2000-01-23T04:56:07.000+00:00
-        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        href: href
-      properties:
-        id:
-          format: uuid
-          type: string
-        snapshot_count:
-          exclusiveMaximum: false
-          maximum: 256
-          type: integer
-        snapshot_frequency:
-          type: string
-        created_at:
-          format: date-time
-          type: string
-        updated_at:
-          format: date-time
-          type: string
-        volume:
-          $ref: '#/components/schemas/Href'
-        href:
-          type: string
-      type: object
-    SnapshotPolicyInput:
-      example:
-        snapshot_frequency: snapshot_frequency
-        snapshot_count: 6
-      properties:
-        snapshot_count:
-          type: integer
-        snapshot_frequency:
-          type: string
-      type: object
-    Volume:
-      example:
-        attachments:
-        - href: href
-        - href: href
-        description: description
-        created_at: 2000-01-23T04:56:07.000+00:00
-        project:
-          href: href
-        size: 0
-        updated_at: 2000-01-23T04:56:07.000+00:00
-        snapshot_policies:
-        - href: href
-        - href: href
-        name: name
-        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        billing_cycle: billing_cycle
-        state: state
-        href: href
-        customdata: '{}'
-        locked: true
-        facility:
-          href: href
-        plan:
-          specs: '{}'
-          legacy: true
-          line: line
-          name: name
-          description: description
-          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          available_in:
-          - href: href
-          - href: href
-          class: class
-          slug: slug
-          pricing: '{}'
-      properties:
-        id:
-          format: uuid
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        size:
-          type: integer
-        locked:
-          type: boolean
-        billing_cycle:
-          type: string
-        state:
-          type: string
-        created_at:
-          format: date-time
-          type: string
-        updated_at:
-          format: date-time
-          type: string
-        project:
-          $ref: '#/components/schemas/Href'
-        facility:
-          $ref: '#/components/schemas/Href'
-        snapshot_policies:
-          items:
-            $ref: '#/components/schemas/Href'
-          type: array
-        attachments:
-          items:
-            $ref: '#/components/schemas/Href'
-          type: array
-        plan:
-          $ref: '#/components/schemas/Plan'
-        href:
-          type: string
-        customdata:
-          properties: {}
-          type: object
-      type: object
-    VolumeCreateInput:
-      example:
-        size: 0
-        snapshot_policies:
-          snapshot_frequency: snapshot_frequency
-          snapshot_count: 6
-        description: description
-        billing_cycle: billing_cycle
-        customdata: '{}'
-        locked: true
-        facility: facility
-        plan: plan
-      properties:
-        description:
-          type: string
-        facility:
-          description: ams1, ewr1, nrt1, sjc1
-          type: string
-        plan:
-          description: storage_1, storage_2
-          type: string
-        size:
-          type: integer
-        locked:
-          type: boolean
-        billing_cycle:
-          description: hourly
-          type: string
-        snapshot_policies:
-          $ref: '#/components/schemas/SnapshotPolicyInput'
-        customdata:
-          properties: {}
-          type: object
-      required:
-      - facility
-      - plan
-      - size
-      type: object
-    VolumeUpdateInput:
-      example:
-        size: 0
-        description: description
-        billing_cycle: billing_cycle
-        customdata: '{}'
-        locked: true
-      properties:
-        description:
-          type: string
-        size:
-          type: integer
-        locked:
-          type: boolean
-        billing_cycle:
-          description: hourly
-          type: string
-        customdata:
-          properties: {}
-          type: object
-      type: object
-    VolumeList:
-      example:
-        meta:
-          next:
-            href: href
-          total: 0
-          previous:
-            href: href
-          last:
-            href: href
-          self:
-            href: href
-          first:
-            href: href
-        volumes:
-        - attachments:
-          - href: href
-          - href: href
-          description: description
-          created_at: 2000-01-23T04:56:07.000+00:00
-          project:
-            href: href
-          size: 0
-          updated_at: 2000-01-23T04:56:07.000+00:00
-          snapshot_policies:
-          - href: href
-          - href: href
-          name: name
-          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          billing_cycle: billing_cycle
-          state: state
-          href: href
-          customdata: '{}'
-          locked: true
-          facility:
-            href: href
-          plan:
-            specs: '{}'
-            legacy: true
-            line: line
-            name: name
-            description: description
-            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            available_in:
-            - href: href
-            - href: href
-            class: class
-            slug: slug
-            pricing: '{}'
-        - attachments:
-          - href: href
-          - href: href
-          description: description
-          created_at: 2000-01-23T04:56:07.000+00:00
-          project:
-            href: href
-          size: 0
-          updated_at: 2000-01-23T04:56:07.000+00:00
-          snapshot_policies:
-          - href: href
-          - href: href
-          name: name
-          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          billing_cycle: billing_cycle
-          state: state
-          href: href
-          customdata: '{}'
-          locked: true
-          facility:
-            href: href
-          plan:
-            specs: '{}'
-            legacy: true
-            line: line
-            name: name
-            description: description
-            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            available_in:
-            - href: href
-            - href: href
-            class: class
-            slug: slug
-            pricing: '{}'
-      properties:
-        volumes:
-          items:
-            $ref: '#/components/schemas/Volume'
-          type: array
-        meta:
-          $ref: '#/components/schemas/Meta'
       type: object
     SupportRequestInput:
       example:
@@ -18106,6 +16866,45 @@ components:
           properties: {}
           type: object
       type: object
+    UserLite:
+      properties:
+        id:
+          description: ID of the User
+          format: uuid
+          type: string
+        short_id:
+          description: Short ID of the User
+          type: string
+        first_name:
+          description: First name of the User
+          type: string
+        last_name:
+          description: Last name of the User
+          type: string
+        full_name:
+          description: Full name of the User
+          type: string
+        email:
+          description: Primary email address of the User
+          type: string
+        avatar_thumb_url:
+          description: Avatar thumbnail URL of the User
+          type: string
+        created_at:
+          description: When the user was created
+          format: date-time
+          type: string
+        updated_at:
+          description: When the user details were last updated
+          format: date-time
+          type: string
+        href:
+          description: API URL uniquely representing the User
+          type: string
+      required:
+      - id
+      - short_id
+      type: object
     UserUpdateInput:
       example:
         password: password
@@ -18551,6 +17350,14 @@ components:
           $ref: '#/components/schemas/Href'
       type: object
     MetalGatewayLite:
+      example:
+        gateway_address: gateway_address
+        updated_at: 2000-01-23T04:56:07.000+00:00
+        vlan: 1.4658129805029452
+        created_at: 2000-01-23T04:56:07.000+00:00
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        state: ready
+        href: href
       properties:
         id:
           format: uuid

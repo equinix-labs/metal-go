@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 ## FindOperatingSystemVersion
 
-> []OperatingSystem FindOperatingSystemVersion(ctx).Execute()
+> OperatingSystemList FindOperatingSystemVersion(ctx).Execute()
 
 Retrieve all operating system versions
 
@@ -31,13 +31,13 @@ import (
 func main() {
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.OperatingSystemVersionsApi.FindOperatingSystemVersion(context.Background()).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.OperatingSystemVersionsApi.FindOperatingSystemVersion(context.Background()).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `OperatingSystemVersionsApi.FindOperatingSystemVersion``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindOperatingSystemVersion`: []OperatingSystem
+    // response from `FindOperatingSystemVersion`: OperatingSystemList
     fmt.Fprintf(os.Stdout, "Response from `OperatingSystemVersionsApi.FindOperatingSystemVersion`: %v\n", resp)
 }
 ```
@@ -53,7 +53,7 @@ Other parameters are passed through a pointer to a apiFindOperatingSystemVersion
 
 ### Return type
 
-[**[]OperatingSystem**](OperatingSystem.md)
+[**OperatingSystemList**](OperatingSystemList.md)
 
 ### Authorization
 

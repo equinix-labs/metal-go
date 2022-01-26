@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Description** | Pointer to **string** |  | [optional] 
 **Name** | Pointer to **string** |  | [optional] 
-**Speed** | Pointer to **string** |  | [optional] 
+**Speed** | Pointer to **string** | Speed can be changed only if it is a dedicated connection | [optional] 
 **Tags** | Pointer to **[]string** |  | [optional] 
 **Vnid** | Pointer to **string** | A Virtual Network record UUID or the VNID of a Virtual Network in your project. | [optional] 
 

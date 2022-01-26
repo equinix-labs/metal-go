@@ -17,7 +17,7 @@ import (
 
 // InstancesBatchCreateInput struct for InstancesBatchCreateInput
 type InstancesBatchCreateInput struct {
-	Batches *[]InstancesBatchCreateInputBatches `json:"batches,omitempty"`
+	Batches []InstancesBatchCreateInputBatches `json:"batches,omitempty"`
 }
 
 // NewInstancesBatchCreateInput instantiates a new InstancesBatchCreateInput object
@@ -43,12 +43,12 @@ func (o *InstancesBatchCreateInput) GetBatches() []InstancesBatchCreateInputBatc
 		var ret []InstancesBatchCreateInputBatches
 		return ret
 	}
-	return *o.Batches
+	return o.Batches
 }
 
 // GetBatchesOk returns a tuple with the Batches field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InstancesBatchCreateInput) GetBatchesOk() (*[]InstancesBatchCreateInputBatches, bool) {
+func (o *InstancesBatchCreateInput) GetBatchesOk() ([]InstancesBatchCreateInputBatches, bool) {
 	if o == nil || o.Batches == nil {
 		return nil, false
 	}
@@ -66,7 +66,7 @@ func (o *InstancesBatchCreateInput) HasBatches() bool {
 
 // SetBatches gets a reference to the given []InstancesBatchCreateInputBatches and assigns it to the Batches field.
 func (o *InstancesBatchCreateInput) SetBatches(v []InstancesBatchCreateInputBatches) {
-	o.Batches = &v
+	o.Batches = v
 }
 
 func (o InstancesBatchCreateInput) MarshalJSON() ([]byte, error) {

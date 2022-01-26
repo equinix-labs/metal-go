@@ -42,13 +42,13 @@ import (
 )
 
 func main() {
-    connectionId := TODO // string | UUID of the connection
-    portId := TODO // string | UUID of the connection port
+    connectionId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | UUID of the connection
+    portId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | UUID of the connection port
     virtualCircuit := *openapiclient.NewVirtualCircuitCreateInput() // VirtualCircuitCreateInput | Virtual Circuit details
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ConnectionsApi.CreateConnectionPortVirtualCircuit(context.Background(), connectionId, portId).VirtualCircuit(virtualCircuit).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ConnectionsApi.CreateConnectionPortVirtualCircuit(context.Background(), connectionId, portId).VirtualCircuit(virtualCircuit).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConnectionsApi.CreateConnectionPortVirtualCircuit``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -64,8 +64,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**connectionId** | [**string**](.md) | UUID of the connection | 
-**portId** | [**string**](.md) | UUID of the connection port | 
+**connectionId** | **string** | UUID of the connection | 
+**portId** | **string** | UUID of the connection port | 
 
 ### Other Parameters
 
@@ -117,12 +117,12 @@ import (
 )
 
 func main() {
-    organizationId := TODO // string | UUID of the organization
+    organizationId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | UUID of the organization
     connection := *openapiclient.NewInterconnectionCreateInput("Name_example", "Facility_example", "Type_example", "Redundancy_example") // InterconnectionCreateInput | Connection details
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ConnectionsApi.CreateOrganizationInterconnection(context.Background(), organizationId).Connection(connection).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ConnectionsApi.CreateOrganizationInterconnection(context.Background(), organizationId).Connection(connection).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConnectionsApi.CreateOrganizationInterconnection``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -138,7 +138,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**organizationId** | [**string**](.md) | UUID of the organization | 
+**organizationId** | **string** | UUID of the organization | 
 
 ### Other Parameters
 
@@ -189,12 +189,12 @@ import (
 )
 
 func main() {
-    projectId := TODO // string | UUID of the project
+    projectId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | UUID of the project
     connection := *openapiclient.NewInterconnectionCreateInput("Name_example", "Facility_example", "Type_example", "Redundancy_example") // InterconnectionCreateInput | Connection details
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ConnectionsApi.CreateProjectInterconnection(context.Background(), projectId).Connection(connection).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ConnectionsApi.CreateProjectInterconnection(context.Background(), projectId).Connection(connection).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConnectionsApi.CreateProjectInterconnection``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -210,7 +210,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**projectId** | [**string**](.md) | UUID of the project | 
+**projectId** | **string** | UUID of the project | 
 
 ### Other Parameters
 
@@ -261,11 +261,11 @@ import (
 )
 
 func main() {
-    connectionId := TODO // string | Connection UUID
+    connectionId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Connection UUID
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ConnectionsApi.DeleteInterconnection(context.Background(), connectionId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ConnectionsApi.DeleteInterconnection(context.Background(), connectionId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConnectionsApi.DeleteInterconnection``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -281,7 +281,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**connectionId** | [**string**](.md) | Connection UUID | 
+**connectionId** | **string** | Connection UUID | 
 
 ### Other Parameters
 
@@ -331,11 +331,11 @@ import (
 )
 
 func main() {
-    id := TODO // string | Virtual Circuit UUID
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Virtual Circuit UUID
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ConnectionsApi.DeleteVirtualCircuit(context.Background(), id).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ConnectionsApi.DeleteVirtualCircuit(context.Background(), id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConnectionsApi.DeleteVirtualCircuit``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -351,7 +351,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | [**string**](.md) | Virtual Circuit UUID | 
+**id** | **string** | Virtual Circuit UUID | 
 
 ### Other Parameters
 
@@ -401,12 +401,12 @@ import (
 )
 
 func main() {
-    connectionId := TODO // string | UUID of the connection
-    id := TODO // string | Port UUID
+    connectionId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | UUID of the connection
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Port UUID
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ConnectionsApi.GetConnectionPort(context.Background(), connectionId, id).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ConnectionsApi.GetConnectionPort(context.Background(), connectionId, id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConnectionsApi.GetConnectionPort``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -422,8 +422,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**connectionId** | [**string**](.md) | UUID of the connection | 
-**id** | [**string**](.md) | Port UUID | 
+**connectionId** | **string** | UUID of the connection | 
+**id** | **string** | Port UUID | 
 
 ### Other Parameters
 
@@ -474,11 +474,11 @@ import (
 )
 
 func main() {
-    connectionId := TODO // string | Connection UUID
+    connectionId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Connection UUID
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ConnectionsApi.GetInterconnection(context.Background(), connectionId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ConnectionsApi.GetInterconnection(context.Background(), connectionId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConnectionsApi.GetInterconnection``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -494,7 +494,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**connectionId** | [**string**](.md) | Connection UUID | 
+**connectionId** | **string** | Connection UUID | 
 
 ### Other Parameters
 
@@ -544,11 +544,11 @@ import (
 )
 
 func main() {
-    id := TODO // string | Virtual Circuit UUID
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Virtual Circuit UUID
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ConnectionsApi.GetVirtualCircuit(context.Background(), id).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ConnectionsApi.GetVirtualCircuit(context.Background(), id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConnectionsApi.GetVirtualCircuit``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -564,7 +564,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | [**string**](.md) | Virtual Circuit UUID | 
+**id** | **string** | Virtual Circuit UUID | 
 
 ### Other Parameters
 
@@ -614,12 +614,12 @@ import (
 )
 
 func main() {
-    connectionId := TODO // string | UUID of the connection
-    portId := TODO // string | UUID of the connection port
+    connectionId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | UUID of the connection
+    portId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | UUID of the connection port
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ConnectionsApi.ListConnectionPortVirtualCircuits(context.Background(), connectionId, portId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ConnectionsApi.ListConnectionPortVirtualCircuits(context.Background(), connectionId, portId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConnectionsApi.ListConnectionPortVirtualCircuits``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -635,8 +635,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**connectionId** | [**string**](.md) | UUID of the connection | 
-**portId** | [**string**](.md) | UUID of the connection port | 
+**connectionId** | **string** | UUID of the connection | 
+**portId** | **string** | UUID of the connection port | 
 
 ### Other Parameters
 
@@ -687,11 +687,11 @@ import (
 )
 
 func main() {
-    connectionId := TODO // string | UUID of the connection
+    connectionId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | UUID of the connection
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ConnectionsApi.ListConnectionPorts(context.Background(), connectionId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ConnectionsApi.ListConnectionPorts(context.Background(), connectionId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConnectionsApi.ListConnectionPorts``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -707,7 +707,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**connectionId** | [**string**](.md) | UUID of the connection | 
+**connectionId** | **string** | UUID of the connection | 
 
 ### Other Parameters
 
@@ -757,11 +757,11 @@ import (
 )
 
 func main() {
-    organizationId := TODO // string | UUID of the organization
+    organizationId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | UUID of the organization
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ConnectionsApi.OrganizationListInterconnections(context.Background(), organizationId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ConnectionsApi.OrganizationListInterconnections(context.Background(), organizationId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConnectionsApi.OrganizationListInterconnections``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -777,7 +777,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**organizationId** | [**string**](.md) | UUID of the organization | 
+**organizationId** | **string** | UUID of the organization | 
 
 ### Other Parameters
 
@@ -827,11 +827,11 @@ import (
 )
 
 func main() {
-    projectId := TODO // string | UUID of the project
+    projectId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | UUID of the project
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ConnectionsApi.ProjectListInterconnections(context.Background(), projectId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ConnectionsApi.ProjectListInterconnections(context.Background(), projectId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConnectionsApi.ProjectListInterconnections``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -847,7 +847,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**projectId** | [**string**](.md) | UUID of the project | 
+**projectId** | **string** | UUID of the project | 
 
 ### Other Parameters
 
@@ -897,12 +897,12 @@ import (
 )
 
 func main() {
-    connectionId := TODO // string | Connection UUID
+    connectionId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Connection UUID
     connection := *openapiclient.NewInterconnectionUpdateInput() // InterconnectionUpdateInput | Updated connection details
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ConnectionsApi.UpdateInterconnection(context.Background(), connectionId).Connection(connection).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ConnectionsApi.UpdateInterconnection(context.Background(), connectionId).Connection(connection).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConnectionsApi.UpdateInterconnection``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -918,7 +918,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**connectionId** | [**string**](.md) | Connection UUID | 
+**connectionId** | **string** | Connection UUID | 
 
 ### Other Parameters
 
@@ -969,12 +969,12 @@ import (
 )
 
 func main() {
-    id := TODO // string | Virtual Circuit UUID
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Virtual Circuit UUID
     virtualCircuit := *openapiclient.NewVirtualCircuitUpdateInput() // VirtualCircuitUpdateInput | Updated Virtual Circuit details
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ConnectionsApi.UpdateVirtualCircuit(context.Background(), id).VirtualCircuit(virtualCircuit).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ConnectionsApi.UpdateVirtualCircuit(context.Background(), id).VirtualCircuit(virtualCircuit).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConnectionsApi.UpdateVirtualCircuit``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -990,7 +990,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | [**string**](.md) | Virtual Circuit UUID | 
+**id** | **string** | Virtual Circuit UUID | 
 
 ### Other Parameters
 

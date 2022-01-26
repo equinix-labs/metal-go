@@ -13,23 +13,23 @@ package v1
 
 import (
 	"bytes"
-	_context "context"
-	_ioutil "io/ioutil"
-	_nethttp "net/http"
-	_neturl "net/url"
+	"context"
+	"io/ioutil"
+	"net/http"
+	"net/url"
 	"strings"
 )
 
 // Linger please
 var (
-	_ _context.Context
+	_ context.Context
 )
 
 // BatchesApiService BatchesApi service
 type BatchesApiService service
 
 type ApiDeleteBatchRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *BatchesApiService
 	id string
 	removeAssociatedInstances *bool
@@ -41,7 +41,7 @@ func (r ApiDeleteBatchRequest) RemoveAssociatedInstances(removeAssociatedInstanc
 	return r
 }
 
-func (r ApiDeleteBatchRequest) Execute() (*_nethttp.Response, error) {
+func (r ApiDeleteBatchRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeleteBatchExecute(r)
 }
 
@@ -50,11 +50,11 @@ DeleteBatch Delete the Batch
 
 Deletes the Batch.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Batch UUID
  @return ApiDeleteBatchRequest
 */
-func (a *BatchesApiService) DeleteBatch(ctx _context.Context, id string) ApiDeleteBatchRequest {
+func (a *BatchesApiService) DeleteBatch(ctx context.Context, id string) ApiDeleteBatchRequest {
 	return ApiDeleteBatchRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -63,26 +63,24 @@ func (a *BatchesApiService) DeleteBatch(ctx _context.Context, id string) ApiDele
 }
 
 // Execute executes the request
-func (a *BatchesApiService) DeleteBatchExecute(r ApiDeleteBatchRequest) (*_nethttp.Response, error) {
+func (a *BatchesApiService) DeleteBatchExecute(r ApiDeleteBatchRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
+		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BatchesApiService.DeleteBatch")
 	if err != nil {
-		return nil, GenericOpenAPIError{error: err.Error()}
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/batches/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	if r.removeAssociatedInstances != nil {
 		localVarQueryParams.Add("remove_associated_instances", parameterToString(*r.removeAssociatedInstances, ""))
@@ -118,7 +116,7 @@ func (a *BatchesApiService) DeleteBatchExecute(r ApiDeleteBatchRequest) (*_netht
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
 	}
@@ -128,15 +126,15 @@ func (a *BatchesApiService) DeleteBatchExecute(r ApiDeleteBatchRequest) (*_netht
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -166,7 +164,7 @@ func (a *BatchesApiService) DeleteBatchExecute(r ApiDeleteBatchRequest) (*_netht
 }
 
 type ApiFindBatchByIdRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *BatchesApiService
 	id string
 	include *[]string
@@ -184,7 +182,7 @@ func (r ApiFindBatchByIdRequest) Exclude(exclude []string) ApiFindBatchByIdReque
 	return r
 }
 
-func (r ApiFindBatchByIdRequest) Execute() (Batch, *_nethttp.Response, error) {
+func (r ApiFindBatchByIdRequest) Execute() (*Batch, *http.Response, error) {
 	return r.ApiService.FindBatchByIdExecute(r)
 }
 
@@ -193,11 +191,11 @@ FindBatchById Retrieve a Batch
 
 Returns a Batch
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Batch UUID
  @return ApiFindBatchByIdRequest
 */
-func (a *BatchesApiService) FindBatchById(ctx _context.Context, id string) ApiFindBatchByIdRequest {
+func (a *BatchesApiService) FindBatchById(ctx context.Context, id string) ApiFindBatchByIdRequest {
 	return ApiFindBatchByIdRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -207,27 +205,25 @@ func (a *BatchesApiService) FindBatchById(ctx _context.Context, id string) ApiFi
 
 // Execute executes the request
 //  @return Batch
-func (a *BatchesApiService) FindBatchByIdExecute(r ApiFindBatchByIdRequest) (Batch, *_nethttp.Response, error) {
+func (a *BatchesApiService) FindBatchByIdExecute(r ApiFindBatchByIdRequest) (*Batch, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  Batch
+		formFiles            []formFile
+		localVarReturnValue  *Batch
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BatchesApiService.FindBatchById")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/batches/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	if r.include != nil {
 		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
@@ -266,7 +262,7 @@ func (a *BatchesApiService) FindBatchByIdExecute(r ApiFindBatchByIdRequest) (Bat
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -276,15 +272,15 @@ func (a *BatchesApiService) FindBatchByIdExecute(r ApiFindBatchByIdRequest) (Bat
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -312,7 +308,7 @@ func (a *BatchesApiService) FindBatchByIdExecute(r ApiFindBatchByIdRequest) (Bat
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}

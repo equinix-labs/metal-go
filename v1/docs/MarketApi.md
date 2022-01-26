@@ -35,8 +35,8 @@ func main() {
     plan := "plan_example" // string | Plan to filter spot market prices (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.MarketApi.FindMetroSpotMarketPrices(context.Background()).Metro(metro).Plan(plan).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.MarketApi.FindMetroSpotMarketPrices(context.Background()).Metro(metro).Plan(plan).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MarketApi.FindMetroSpotMarketPrices``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -103,8 +103,8 @@ func main() {
     plan := "plan_example" // string | Plan to check spot market prices (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.MarketApi.FindSpotMarketPrices(context.Background()).Facility(facility).Plan(plan).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.MarketApi.FindSpotMarketPrices(context.Background()).Facility(facility).Plan(plan).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MarketApi.FindSpotMarketPrices``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -174,8 +174,8 @@ func main() {
     metro := "metro_example" // string | Metro to check spot market price history (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.MarketApi.FindSpotMarketPricesHistory(context.Background()).Facility(facility).Plan(plan).From(from).Until(until).Metro(metro).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.MarketApi.FindSpotMarketPricesHistory(context.Background()).Facility(facility).Plan(plan).From(from).Until(until).Metro(metro).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MarketApi.FindSpotMarketPricesHistory``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

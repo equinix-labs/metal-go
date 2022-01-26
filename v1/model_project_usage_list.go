@@ -17,7 +17,7 @@ import (
 
 // ProjectUsageList struct for ProjectUsageList
 type ProjectUsageList struct {
-	Usages *[]ProjectUsage `json:"usages,omitempty"`
+	Usages []ProjectUsage `json:"usages,omitempty"`
 }
 
 // NewProjectUsageList instantiates a new ProjectUsageList object
@@ -43,12 +43,12 @@ func (o *ProjectUsageList) GetUsages() []ProjectUsage {
 		var ret []ProjectUsage
 		return ret
 	}
-	return *o.Usages
+	return o.Usages
 }
 
 // GetUsagesOk returns a tuple with the Usages field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectUsageList) GetUsagesOk() (*[]ProjectUsage, bool) {
+func (o *ProjectUsageList) GetUsagesOk() ([]ProjectUsage, bool) {
 	if o == nil || o.Usages == nil {
 		return nil, false
 	}
@@ -66,7 +66,7 @@ func (o *ProjectUsageList) HasUsages() bool {
 
 // SetUsages gets a reference to the given []ProjectUsage and assigns it to the Usages field.
 func (o *ProjectUsageList) SetUsages(v []ProjectUsage) {
-	o.Usages = &v
+	o.Usages = v
 }
 
 func (o ProjectUsageList) MarshalJSON() ([]byte, error) {

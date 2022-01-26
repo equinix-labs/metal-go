@@ -17,7 +17,7 @@ import (
 
 // PaymentMethodList struct for PaymentMethodList
 type PaymentMethodList struct {
-	PaymentMethods *[]PaymentMethod `json:"payment_methods,omitempty"`
+	PaymentMethods []PaymentMethod `json:"payment_methods,omitempty"`
 }
 
 // NewPaymentMethodList instantiates a new PaymentMethodList object
@@ -43,12 +43,12 @@ func (o *PaymentMethodList) GetPaymentMethods() []PaymentMethod {
 		var ret []PaymentMethod
 		return ret
 	}
-	return *o.PaymentMethods
+	return o.PaymentMethods
 }
 
 // GetPaymentMethodsOk returns a tuple with the PaymentMethods field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PaymentMethodList) GetPaymentMethodsOk() (*[]PaymentMethod, bool) {
+func (o *PaymentMethodList) GetPaymentMethodsOk() ([]PaymentMethod, bool) {
 	if o == nil || o.PaymentMethods == nil {
 		return nil, false
 	}
@@ -66,7 +66,7 @@ func (o *PaymentMethodList) HasPaymentMethods() bool {
 
 // SetPaymentMethods gets a reference to the given []PaymentMethod and assigns it to the PaymentMethods field.
 func (o *PaymentMethodList) SetPaymentMethods(v []PaymentMethod) {
-	o.PaymentMethods = &v
+	o.PaymentMethods = v
 }
 
 func (o PaymentMethodList) MarshalJSON() ([]byte, error) {

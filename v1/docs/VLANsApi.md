@@ -30,11 +30,11 @@ import (
 )
 
 func main() {
-    id := TODO // string | Virtual Network UUID
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Virtual Network UUID
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.VLANsApi.DeleteVirtualNetwork(context.Background(), id).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VLANsApi.DeleteVirtualNetwork(context.Background(), id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `VLANsApi.DeleteVirtualNetwork``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -50,7 +50,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | [**string**](.md) | Virtual Network UUID | 
+**id** | **string** | Virtual Network UUID | 
 
 ### Other Parameters
 
@@ -100,11 +100,11 @@ import (
 )
 
 func main() {
-    id := TODO // string | Virtual Network UUID
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Virtual Network UUID
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.VLANsApi.GetVirtualNetwork(context.Background(), id).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VLANsApi.GetVirtualNetwork(context.Background(), id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `VLANsApi.GetVirtualNetwork``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -120,7 +120,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | [**string**](.md) | Virtual Network UUID | 
+**id** | **string** | Virtual Network UUID | 
 
 ### Other Parameters
 

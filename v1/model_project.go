@@ -22,17 +22,17 @@ type Project struct {
 	Name *string `json:"name,omitempty"`
 	CreatedAt *time.Time `json:"created_at,omitempty"`
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
-	MaxDevices *map[string]interface{} `json:"max_devices,omitempty"`
-	Members *[]Href `json:"members,omitempty"`
-	Memberships *[]Href `json:"memberships,omitempty"`
-	NetworkStatus *map[string]interface{} `json:"network_status,omitempty"`
-	Invitations *[]Href `json:"invitations,omitempty"`
+	MaxDevices map[string]interface{} `json:"max_devices,omitempty"`
+	Members []Href `json:"members,omitempty"`
+	Memberships []Href `json:"memberships,omitempty"`
+	NetworkStatus map[string]interface{} `json:"network_status,omitempty"`
+	Invitations []Href `json:"invitations,omitempty"`
 	PaymentMethod *Href `json:"payment_method,omitempty"`
-	Devices *[]Href `json:"devices,omitempty"`
-	SshKeys *[]Href `json:"ssh_keys,omitempty"`
-	Volumes *[]Href `json:"volumes,omitempty"`
+	Devices []Href `json:"devices,omitempty"`
+	SshKeys []Href `json:"ssh_keys,omitempty"`
+	Volumes []Href `json:"volumes,omitempty"`
 	BgpConfig *Href `json:"bgp_config,omitempty"`
-	Customdata *map[string]interface{} `json:"customdata,omitempty"`
+	Customdata map[string]interface{} `json:"customdata,omitempty"`
 }
 
 // NewProject instantiates a new Project object
@@ -186,12 +186,12 @@ func (o *Project) GetMaxDevices() map[string]interface{} {
 		var ret map[string]interface{}
 		return ret
 	}
-	return *o.MaxDevices
+	return o.MaxDevices
 }
 
 // GetMaxDevicesOk returns a tuple with the MaxDevices field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Project) GetMaxDevicesOk() (*map[string]interface{}, bool) {
+func (o *Project) GetMaxDevicesOk() (map[string]interface{}, bool) {
 	if o == nil || o.MaxDevices == nil {
 		return nil, false
 	}
@@ -209,7 +209,7 @@ func (o *Project) HasMaxDevices() bool {
 
 // SetMaxDevices gets a reference to the given map[string]interface{} and assigns it to the MaxDevices field.
 func (o *Project) SetMaxDevices(v map[string]interface{}) {
-	o.MaxDevices = &v
+	o.MaxDevices = v
 }
 
 // GetMembers returns the Members field value if set, zero value otherwise.
@@ -218,12 +218,12 @@ func (o *Project) GetMembers() []Href {
 		var ret []Href
 		return ret
 	}
-	return *o.Members
+	return o.Members
 }
 
 // GetMembersOk returns a tuple with the Members field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Project) GetMembersOk() (*[]Href, bool) {
+func (o *Project) GetMembersOk() ([]Href, bool) {
 	if o == nil || o.Members == nil {
 		return nil, false
 	}
@@ -241,7 +241,7 @@ func (o *Project) HasMembers() bool {
 
 // SetMembers gets a reference to the given []Href and assigns it to the Members field.
 func (o *Project) SetMembers(v []Href) {
-	o.Members = &v
+	o.Members = v
 }
 
 // GetMemberships returns the Memberships field value if set, zero value otherwise.
@@ -250,12 +250,12 @@ func (o *Project) GetMemberships() []Href {
 		var ret []Href
 		return ret
 	}
-	return *o.Memberships
+	return o.Memberships
 }
 
 // GetMembershipsOk returns a tuple with the Memberships field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Project) GetMembershipsOk() (*[]Href, bool) {
+func (o *Project) GetMembershipsOk() ([]Href, bool) {
 	if o == nil || o.Memberships == nil {
 		return nil, false
 	}
@@ -273,7 +273,7 @@ func (o *Project) HasMemberships() bool {
 
 // SetMemberships gets a reference to the given []Href and assigns it to the Memberships field.
 func (o *Project) SetMemberships(v []Href) {
-	o.Memberships = &v
+	o.Memberships = v
 }
 
 // GetNetworkStatus returns the NetworkStatus field value if set, zero value otherwise.
@@ -282,12 +282,12 @@ func (o *Project) GetNetworkStatus() map[string]interface{} {
 		var ret map[string]interface{}
 		return ret
 	}
-	return *o.NetworkStatus
+	return o.NetworkStatus
 }
 
 // GetNetworkStatusOk returns a tuple with the NetworkStatus field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Project) GetNetworkStatusOk() (*map[string]interface{}, bool) {
+func (o *Project) GetNetworkStatusOk() (map[string]interface{}, bool) {
 	if o == nil || o.NetworkStatus == nil {
 		return nil, false
 	}
@@ -305,7 +305,7 @@ func (o *Project) HasNetworkStatus() bool {
 
 // SetNetworkStatus gets a reference to the given map[string]interface{} and assigns it to the NetworkStatus field.
 func (o *Project) SetNetworkStatus(v map[string]interface{}) {
-	o.NetworkStatus = &v
+	o.NetworkStatus = v
 }
 
 // GetInvitations returns the Invitations field value if set, zero value otherwise.
@@ -314,12 +314,12 @@ func (o *Project) GetInvitations() []Href {
 		var ret []Href
 		return ret
 	}
-	return *o.Invitations
+	return o.Invitations
 }
 
 // GetInvitationsOk returns a tuple with the Invitations field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Project) GetInvitationsOk() (*[]Href, bool) {
+func (o *Project) GetInvitationsOk() ([]Href, bool) {
 	if o == nil || o.Invitations == nil {
 		return nil, false
 	}
@@ -337,7 +337,7 @@ func (o *Project) HasInvitations() bool {
 
 // SetInvitations gets a reference to the given []Href and assigns it to the Invitations field.
 func (o *Project) SetInvitations(v []Href) {
-	o.Invitations = &v
+	o.Invitations = v
 }
 
 // GetPaymentMethod returns the PaymentMethod field value if set, zero value otherwise.
@@ -378,12 +378,12 @@ func (o *Project) GetDevices() []Href {
 		var ret []Href
 		return ret
 	}
-	return *o.Devices
+	return o.Devices
 }
 
 // GetDevicesOk returns a tuple with the Devices field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Project) GetDevicesOk() (*[]Href, bool) {
+func (o *Project) GetDevicesOk() ([]Href, bool) {
 	if o == nil || o.Devices == nil {
 		return nil, false
 	}
@@ -401,7 +401,7 @@ func (o *Project) HasDevices() bool {
 
 // SetDevices gets a reference to the given []Href and assigns it to the Devices field.
 func (o *Project) SetDevices(v []Href) {
-	o.Devices = &v
+	o.Devices = v
 }
 
 // GetSshKeys returns the SshKeys field value if set, zero value otherwise.
@@ -410,12 +410,12 @@ func (o *Project) GetSshKeys() []Href {
 		var ret []Href
 		return ret
 	}
-	return *o.SshKeys
+	return o.SshKeys
 }
 
 // GetSshKeysOk returns a tuple with the SshKeys field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Project) GetSshKeysOk() (*[]Href, bool) {
+func (o *Project) GetSshKeysOk() ([]Href, bool) {
 	if o == nil || o.SshKeys == nil {
 		return nil, false
 	}
@@ -433,7 +433,7 @@ func (o *Project) HasSshKeys() bool {
 
 // SetSshKeys gets a reference to the given []Href and assigns it to the SshKeys field.
 func (o *Project) SetSshKeys(v []Href) {
-	o.SshKeys = &v
+	o.SshKeys = v
 }
 
 // GetVolumes returns the Volumes field value if set, zero value otherwise.
@@ -442,12 +442,12 @@ func (o *Project) GetVolumes() []Href {
 		var ret []Href
 		return ret
 	}
-	return *o.Volumes
+	return o.Volumes
 }
 
 // GetVolumesOk returns a tuple with the Volumes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Project) GetVolumesOk() (*[]Href, bool) {
+func (o *Project) GetVolumesOk() ([]Href, bool) {
 	if o == nil || o.Volumes == nil {
 		return nil, false
 	}
@@ -465,7 +465,7 @@ func (o *Project) HasVolumes() bool {
 
 // SetVolumes gets a reference to the given []Href and assigns it to the Volumes field.
 func (o *Project) SetVolumes(v []Href) {
-	o.Volumes = &v
+	o.Volumes = v
 }
 
 // GetBgpConfig returns the BgpConfig field value if set, zero value otherwise.
@@ -506,12 +506,12 @@ func (o *Project) GetCustomdata() map[string]interface{} {
 		var ret map[string]interface{}
 		return ret
 	}
-	return *o.Customdata
+	return o.Customdata
 }
 
 // GetCustomdataOk returns a tuple with the Customdata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Project) GetCustomdataOk() (*map[string]interface{}, bool) {
+func (o *Project) GetCustomdataOk() (map[string]interface{}, bool) {
 	if o == nil || o.Customdata == nil {
 		return nil, false
 	}
@@ -529,7 +529,7 @@ func (o *Project) HasCustomdata() bool {
 
 // SetCustomdata gets a reference to the given map[string]interface{} and assigns it to the Customdata field.
 func (o *Project) SetCustomdata(v map[string]interface{}) {
-	o.Customdata = &v
+	o.Customdata = v
 }
 
 func (o Project) MarshalJSON() ([]byte, error) {

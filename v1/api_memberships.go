@@ -13,29 +13,29 @@ package v1
 
 import (
 	"bytes"
-	_context "context"
-	_ioutil "io/ioutil"
-	_nethttp "net/http"
-	_neturl "net/url"
+	"context"
+	"io/ioutil"
+	"net/http"
+	"net/url"
 	"strings"
 )
 
 // Linger please
 var (
-	_ _context.Context
+	_ context.Context
 )
 
 // MembershipsApiService MembershipsApi service
 type MembershipsApiService service
 
 type ApiDeleteMembershipRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *MembershipsApiService
 	id string
 }
 
 
-func (r ApiDeleteMembershipRequest) Execute() (*_nethttp.Response, error) {
+func (r ApiDeleteMembershipRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeleteMembershipExecute(r)
 }
 
@@ -44,11 +44,11 @@ DeleteMembership Delete the membership
 
 Deletes the membership.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Membership UUID
  @return ApiDeleteMembershipRequest
 */
-func (a *MembershipsApiService) DeleteMembership(ctx _context.Context, id string) ApiDeleteMembershipRequest {
+func (a *MembershipsApiService) DeleteMembership(ctx context.Context, id string) ApiDeleteMembershipRequest {
 	return ApiDeleteMembershipRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -57,26 +57,24 @@ func (a *MembershipsApiService) DeleteMembership(ctx _context.Context, id string
 }
 
 // Execute executes the request
-func (a *MembershipsApiService) DeleteMembershipExecute(r ApiDeleteMembershipRequest) (*_nethttp.Response, error) {
+func (a *MembershipsApiService) DeleteMembershipExecute(r ApiDeleteMembershipRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
+		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MembershipsApiService.DeleteMembership")
 	if err != nil {
-		return nil, GenericOpenAPIError{error: err.Error()}
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/memberships/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -109,7 +107,7 @@ func (a *MembershipsApiService) DeleteMembershipExecute(r ApiDeleteMembershipReq
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
 	}
@@ -119,15 +117,15 @@ func (a *MembershipsApiService) DeleteMembershipExecute(r ApiDeleteMembershipReq
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -167,7 +165,7 @@ func (a *MembershipsApiService) DeleteMembershipExecute(r ApiDeleteMembershipReq
 }
 
 type ApiFindMembershipByIdRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *MembershipsApiService
 	id string
 	include *[]string
@@ -185,7 +183,7 @@ func (r ApiFindMembershipByIdRequest) Exclude(exclude []string) ApiFindMembershi
 	return r
 }
 
-func (r ApiFindMembershipByIdRequest) Execute() (Membership, *_nethttp.Response, error) {
+func (r ApiFindMembershipByIdRequest) Execute() (*Membership, *http.Response, error) {
 	return r.ApiService.FindMembershipByIdExecute(r)
 }
 
@@ -194,11 +192,11 @@ FindMembershipById Retrieve a membership
 
 Returns a single membership.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Membership UUID
  @return ApiFindMembershipByIdRequest
 */
-func (a *MembershipsApiService) FindMembershipById(ctx _context.Context, id string) ApiFindMembershipByIdRequest {
+func (a *MembershipsApiService) FindMembershipById(ctx context.Context, id string) ApiFindMembershipByIdRequest {
 	return ApiFindMembershipByIdRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -208,27 +206,25 @@ func (a *MembershipsApiService) FindMembershipById(ctx _context.Context, id stri
 
 // Execute executes the request
 //  @return Membership
-func (a *MembershipsApiService) FindMembershipByIdExecute(r ApiFindMembershipByIdRequest) (Membership, *_nethttp.Response, error) {
+func (a *MembershipsApiService) FindMembershipByIdExecute(r ApiFindMembershipByIdRequest) (*Membership, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  Membership
+		formFiles            []formFile
+		localVarReturnValue  *Membership
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MembershipsApiService.FindMembershipById")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/memberships/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	if r.include != nil {
 		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
@@ -267,7 +263,7 @@ func (a *MembershipsApiService) FindMembershipByIdExecute(r ApiFindMembershipByI
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -277,15 +273,15 @@ func (a *MembershipsApiService) FindMembershipByIdExecute(r ApiFindMembershipByI
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -323,7 +319,7 @@ func (a *MembershipsApiService) FindMembershipByIdExecute(r ApiFindMembershipByI
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -334,7 +330,7 @@ func (a *MembershipsApiService) FindMembershipByIdExecute(r ApiFindMembershipByI
 }
 
 type ApiUpdateMembershipRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *MembershipsApiService
 	id string
 	membership *MembershipInput
@@ -346,7 +342,7 @@ func (r ApiUpdateMembershipRequest) Membership(membership MembershipInput) ApiUp
 	return r
 }
 
-func (r ApiUpdateMembershipRequest) Execute() (Membership, *_nethttp.Response, error) {
+func (r ApiUpdateMembershipRequest) Execute() (*Membership, *http.Response, error) {
 	return r.ApiService.UpdateMembershipExecute(r)
 }
 
@@ -355,11 +351,11 @@ UpdateMembership Update the membership
 
 Updates the membership.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Membership UUID
  @return ApiUpdateMembershipRequest
 */
-func (a *MembershipsApiService) UpdateMembership(ctx _context.Context, id string) ApiUpdateMembershipRequest {
+func (a *MembershipsApiService) UpdateMembership(ctx context.Context, id string) ApiUpdateMembershipRequest {
 	return ApiUpdateMembershipRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -369,27 +365,25 @@ func (a *MembershipsApiService) UpdateMembership(ctx _context.Context, id string
 
 // Execute executes the request
 //  @return Membership
-func (a *MembershipsApiService) UpdateMembershipExecute(r ApiUpdateMembershipRequest) (Membership, *_nethttp.Response, error) {
+func (a *MembershipsApiService) UpdateMembershipExecute(r ApiUpdateMembershipRequest) (*Membership, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPut
+		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  Membership
+		formFiles            []formFile
+		localVarReturnValue  *Membership
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MembershipsApiService.UpdateMembership")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/memberships/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.membership == nil {
 		return localVarReturnValue, nil, reportError("membership is required and must be specified")
 	}
@@ -427,7 +421,7 @@ func (a *MembershipsApiService) UpdateMembershipExecute(r ApiUpdateMembershipReq
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -437,15 +431,15 @@ func (a *MembershipsApiService) UpdateMembershipExecute(r ApiUpdateMembershipReq
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -493,7 +487,7 @@ func (a *MembershipsApiService) UpdateMembershipExecute(r ApiUpdateMembershipReq
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}

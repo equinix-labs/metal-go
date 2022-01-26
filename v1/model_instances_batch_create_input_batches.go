@@ -20,9 +20,9 @@ import (
 type InstancesBatchCreateInputBatches struct {
 	Plan *string `json:"plan,omitempty"`
 	Hostname *string `json:"hostname,omitempty"`
-	Hostnames *[]string `json:"hostnames,omitempty"`
+	Hostnames []string `json:"hostnames,omitempty"`
 	// Array of facility codes the batch can use for provisioning. This param also takes a string if you want the batch to be fulfilled in only one facility. Cannot be set if the metro is already set.
-	Facility *[]string `json:"facility,omitempty"`
+	Facility []string `json:"facility,omitempty"`
 	// The metro ID or code the batch can use for provisioning. Cannot be set if the facility is already set.
 	Metro *string `json:"metro,omitempty"`
 	Description *string `json:"description,omitempty"`
@@ -32,14 +32,14 @@ type InstancesBatchCreateInputBatches struct {
 	Userdata *string `json:"userdata,omitempty"`
 	Locked *bool `json:"locked,omitempty"`
 	TerminationTime *time.Time `json:"termination_time,omitempty"`
-	Tags *[]string `json:"tags,omitempty"`
-	ProjectSshKeys *[]string `json:"project_ssh_keys,omitempty"`
+	Tags []string `json:"tags,omitempty"`
+	ProjectSshKeys []string `json:"project_ssh_keys,omitempty"`
 	// The UUIDs of users whose SSH keys should be included on the provisioned device.
-	UserSshKeys *[]string `json:"user_ssh_keys,omitempty"`
+	UserSshKeys []string `json:"user_ssh_keys,omitempty"`
 	NoSshKeys *bool `json:"no_ssh_keys,omitempty"`
-	Features *[]string `json:"features,omitempty"`
-	Customdata *map[string]interface{} `json:"customdata,omitempty"`
-	IpAddresses *[]InstancesBatchCreateInputIpAddresses `json:"ip_addresses,omitempty"`
+	Features []string `json:"features,omitempty"`
+	Customdata map[string]interface{} `json:"customdata,omitempty"`
+	IpAddresses []InstancesBatchCreateInputIpAddresses `json:"ip_addresses,omitempty"`
 }
 
 // NewInstancesBatchCreateInputBatches instantiates a new InstancesBatchCreateInputBatches object
@@ -129,12 +129,12 @@ func (o *InstancesBatchCreateInputBatches) GetHostnames() []string {
 		var ret []string
 		return ret
 	}
-	return *o.Hostnames
+	return o.Hostnames
 }
 
 // GetHostnamesOk returns a tuple with the Hostnames field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InstancesBatchCreateInputBatches) GetHostnamesOk() (*[]string, bool) {
+func (o *InstancesBatchCreateInputBatches) GetHostnamesOk() ([]string, bool) {
 	if o == nil || o.Hostnames == nil {
 		return nil, false
 	}
@@ -152,7 +152,7 @@ func (o *InstancesBatchCreateInputBatches) HasHostnames() bool {
 
 // SetHostnames gets a reference to the given []string and assigns it to the Hostnames field.
 func (o *InstancesBatchCreateInputBatches) SetHostnames(v []string) {
-	o.Hostnames = &v
+	o.Hostnames = v
 }
 
 // GetFacility returns the Facility field value if set, zero value otherwise.
@@ -161,12 +161,12 @@ func (o *InstancesBatchCreateInputBatches) GetFacility() []string {
 		var ret []string
 		return ret
 	}
-	return *o.Facility
+	return o.Facility
 }
 
 // GetFacilityOk returns a tuple with the Facility field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InstancesBatchCreateInputBatches) GetFacilityOk() (*[]string, bool) {
+func (o *InstancesBatchCreateInputBatches) GetFacilityOk() ([]string, bool) {
 	if o == nil || o.Facility == nil {
 		return nil, false
 	}
@@ -184,7 +184,7 @@ func (o *InstancesBatchCreateInputBatches) HasFacility() bool {
 
 // SetFacility gets a reference to the given []string and assigns it to the Facility field.
 func (o *InstancesBatchCreateInputBatches) SetFacility(v []string) {
-	o.Facility = &v
+	o.Facility = v
 }
 
 // GetMetro returns the Metro field value if set, zero value otherwise.
@@ -449,12 +449,12 @@ func (o *InstancesBatchCreateInputBatches) GetTags() []string {
 		var ret []string
 		return ret
 	}
-	return *o.Tags
+	return o.Tags
 }
 
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InstancesBatchCreateInputBatches) GetTagsOk() (*[]string, bool) {
+func (o *InstancesBatchCreateInputBatches) GetTagsOk() ([]string, bool) {
 	if o == nil || o.Tags == nil {
 		return nil, false
 	}
@@ -472,7 +472,7 @@ func (o *InstancesBatchCreateInputBatches) HasTags() bool {
 
 // SetTags gets a reference to the given []string and assigns it to the Tags field.
 func (o *InstancesBatchCreateInputBatches) SetTags(v []string) {
-	o.Tags = &v
+	o.Tags = v
 }
 
 // GetProjectSshKeys returns the ProjectSshKeys field value if set, zero value otherwise.
@@ -481,12 +481,12 @@ func (o *InstancesBatchCreateInputBatches) GetProjectSshKeys() []string {
 		var ret []string
 		return ret
 	}
-	return *o.ProjectSshKeys
+	return o.ProjectSshKeys
 }
 
 // GetProjectSshKeysOk returns a tuple with the ProjectSshKeys field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InstancesBatchCreateInputBatches) GetProjectSshKeysOk() (*[]string, bool) {
+func (o *InstancesBatchCreateInputBatches) GetProjectSshKeysOk() ([]string, bool) {
 	if o == nil || o.ProjectSshKeys == nil {
 		return nil, false
 	}
@@ -504,7 +504,7 @@ func (o *InstancesBatchCreateInputBatches) HasProjectSshKeys() bool {
 
 // SetProjectSshKeys gets a reference to the given []string and assigns it to the ProjectSshKeys field.
 func (o *InstancesBatchCreateInputBatches) SetProjectSshKeys(v []string) {
-	o.ProjectSshKeys = &v
+	o.ProjectSshKeys = v
 }
 
 // GetUserSshKeys returns the UserSshKeys field value if set, zero value otherwise.
@@ -513,12 +513,12 @@ func (o *InstancesBatchCreateInputBatches) GetUserSshKeys() []string {
 		var ret []string
 		return ret
 	}
-	return *o.UserSshKeys
+	return o.UserSshKeys
 }
 
 // GetUserSshKeysOk returns a tuple with the UserSshKeys field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InstancesBatchCreateInputBatches) GetUserSshKeysOk() (*[]string, bool) {
+func (o *InstancesBatchCreateInputBatches) GetUserSshKeysOk() ([]string, bool) {
 	if o == nil || o.UserSshKeys == nil {
 		return nil, false
 	}
@@ -536,7 +536,7 @@ func (o *InstancesBatchCreateInputBatches) HasUserSshKeys() bool {
 
 // SetUserSshKeys gets a reference to the given []string and assigns it to the UserSshKeys field.
 func (o *InstancesBatchCreateInputBatches) SetUserSshKeys(v []string) {
-	o.UserSshKeys = &v
+	o.UserSshKeys = v
 }
 
 // GetNoSshKeys returns the NoSshKeys field value if set, zero value otherwise.
@@ -577,12 +577,12 @@ func (o *InstancesBatchCreateInputBatches) GetFeatures() []string {
 		var ret []string
 		return ret
 	}
-	return *o.Features
+	return o.Features
 }
 
 // GetFeaturesOk returns a tuple with the Features field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InstancesBatchCreateInputBatches) GetFeaturesOk() (*[]string, bool) {
+func (o *InstancesBatchCreateInputBatches) GetFeaturesOk() ([]string, bool) {
 	if o == nil || o.Features == nil {
 		return nil, false
 	}
@@ -600,7 +600,7 @@ func (o *InstancesBatchCreateInputBatches) HasFeatures() bool {
 
 // SetFeatures gets a reference to the given []string and assigns it to the Features field.
 func (o *InstancesBatchCreateInputBatches) SetFeatures(v []string) {
-	o.Features = &v
+	o.Features = v
 }
 
 // GetCustomdata returns the Customdata field value if set, zero value otherwise.
@@ -609,12 +609,12 @@ func (o *InstancesBatchCreateInputBatches) GetCustomdata() map[string]interface{
 		var ret map[string]interface{}
 		return ret
 	}
-	return *o.Customdata
+	return o.Customdata
 }
 
 // GetCustomdataOk returns a tuple with the Customdata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InstancesBatchCreateInputBatches) GetCustomdataOk() (*map[string]interface{}, bool) {
+func (o *InstancesBatchCreateInputBatches) GetCustomdataOk() (map[string]interface{}, bool) {
 	if o == nil || o.Customdata == nil {
 		return nil, false
 	}
@@ -632,7 +632,7 @@ func (o *InstancesBatchCreateInputBatches) HasCustomdata() bool {
 
 // SetCustomdata gets a reference to the given map[string]interface{} and assigns it to the Customdata field.
 func (o *InstancesBatchCreateInputBatches) SetCustomdata(v map[string]interface{}) {
-	o.Customdata = &v
+	o.Customdata = v
 }
 
 // GetIpAddresses returns the IpAddresses field value if set, zero value otherwise.
@@ -641,12 +641,12 @@ func (o *InstancesBatchCreateInputBatches) GetIpAddresses() []InstancesBatchCrea
 		var ret []InstancesBatchCreateInputIpAddresses
 		return ret
 	}
-	return *o.IpAddresses
+	return o.IpAddresses
 }
 
 // GetIpAddressesOk returns a tuple with the IpAddresses field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InstancesBatchCreateInputBatches) GetIpAddressesOk() (*[]InstancesBatchCreateInputIpAddresses, bool) {
+func (o *InstancesBatchCreateInputBatches) GetIpAddressesOk() ([]InstancesBatchCreateInputIpAddresses, bool) {
 	if o == nil || o.IpAddresses == nil {
 		return nil, false
 	}
@@ -664,7 +664,7 @@ func (o *InstancesBatchCreateInputBatches) HasIpAddresses() bool {
 
 // SetIpAddresses gets a reference to the given []InstancesBatchCreateInputIpAddresses and assigns it to the IpAddresses field.
 func (o *InstancesBatchCreateInputBatches) SetIpAddresses(v []InstancesBatchCreateInputIpAddresses) {
-	o.IpAddresses = &v
+	o.IpAddresses = v
 }
 
 func (o InstancesBatchCreateInputBatches) MarshalJSON() ([]byte, error) {

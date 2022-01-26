@@ -13,27 +13,27 @@ package v1
 
 import (
 	"bytes"
-	_context "context"
-	_ioutil "io/ioutil"
-	_nethttp "net/http"
-	_neturl "net/url"
+	"context"
+	"io/ioutil"
+	"net/http"
+	"net/url"
 )
 
 // Linger please
 var (
-	_ _context.Context
+	_ context.Context
 )
 
 // OperatingSystemVersionsApiService OperatingSystemVersionsApi service
 type OperatingSystemVersionsApiService service
 
 type ApiFindOperatingSystemVersionRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *OperatingSystemVersionsApiService
 }
 
 
-func (r ApiFindOperatingSystemVersionRequest) Execute() ([]OperatingSystem, *_nethttp.Response, error) {
+func (r ApiFindOperatingSystemVersionRequest) Execute() (*OperatingSystemList, *http.Response, error) {
 	return r.ApiService.FindOperatingSystemVersionExecute(r)
 }
 
@@ -42,10 +42,10 @@ FindOperatingSystemVersion Retrieve all operating system versions
 
 Provides a listing of available operating system versions.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiFindOperatingSystemVersionRequest
 */
-func (a *OperatingSystemVersionsApiService) FindOperatingSystemVersion(ctx _context.Context) ApiFindOperatingSystemVersionRequest {
+func (a *OperatingSystemVersionsApiService) FindOperatingSystemVersion(ctx context.Context) ApiFindOperatingSystemVersionRequest {
 	return ApiFindOperatingSystemVersionRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -53,27 +53,25 @@ func (a *OperatingSystemVersionsApiService) FindOperatingSystemVersion(ctx _cont
 }
 
 // Execute executes the request
-//  @return []OperatingSystem
-func (a *OperatingSystemVersionsApiService) FindOperatingSystemVersionExecute(r ApiFindOperatingSystemVersionRequest) ([]OperatingSystem, *_nethttp.Response, error) {
+//  @return OperatingSystemList
+func (a *OperatingSystemVersionsApiService) FindOperatingSystemVersionExecute(r ApiFindOperatingSystemVersionRequest) (*OperatingSystemList, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  []OperatingSystem
+		formFiles            []formFile
+		localVarReturnValue  *OperatingSystemList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OperatingSystemVersionsApiService.FindOperatingSystemVersion")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/operating-system-versions"
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -106,7 +104,7 @@ func (a *OperatingSystemVersionsApiService) FindOperatingSystemVersionExecute(r 
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -116,15 +114,15 @@ func (a *OperatingSystemVersionsApiService) FindOperatingSystemVersionExecute(r 
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -142,7 +140,7 @@ func (a *OperatingSystemVersionsApiService) FindOperatingSystemVersionExecute(r 
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}

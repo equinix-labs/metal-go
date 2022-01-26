@@ -20,7 +20,7 @@ type SSHKeyCreateInput struct {
 	Label *string `json:"label,omitempty"`
 	Key *string `json:"key,omitempty"`
 	// List of instance UUIDs to associate SSH key with, when empty array is sent all instances belonging       to entity will be included
-	InstancesIds *[]string `json:"instances_ids,omitempty"`
+	InstancesIds []string `json:"instances_ids,omitempty"`
 }
 
 // NewSSHKeyCreateInput instantiates a new SSHKeyCreateInput object
@@ -110,12 +110,12 @@ func (o *SSHKeyCreateInput) GetInstancesIds() []string {
 		var ret []string
 		return ret
 	}
-	return *o.InstancesIds
+	return o.InstancesIds
 }
 
 // GetInstancesIdsOk returns a tuple with the InstancesIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SSHKeyCreateInput) GetInstancesIdsOk() (*[]string, bool) {
+func (o *SSHKeyCreateInput) GetInstancesIdsOk() ([]string, bool) {
 	if o == nil || o.InstancesIds == nil {
 		return nil, false
 	}
@@ -133,7 +133,7 @@ func (o *SSHKeyCreateInput) HasInstancesIds() bool {
 
 // SetInstancesIds gets a reference to the given []string and assigns it to the InstancesIds field.
 func (o *SSHKeyCreateInput) SetInstancesIds(v []string) {
-	o.InstancesIds = &v
+	o.InstancesIds = v
 }
 
 func (o SSHKeyCreateInput) MarshalJSON() ([]byte, error) {

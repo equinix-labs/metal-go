@@ -20,7 +20,7 @@ import (
 type SpotMarketRequestCreateInputInstanceAttributes struct {
 	Plan *string `json:"plan,omitempty"`
 	Hostname *string `json:"hostname,omitempty"`
-	Hostnames *[]string `json:"hostnames,omitempty"`
+	Hostnames []string `json:"hostnames,omitempty"`
 	Description *string `json:"description,omitempty"`
 	BillingCycle *string `json:"billing_cycle,omitempty"`
 	OperatingSystem *string `json:"operating_system,omitempty"`
@@ -28,13 +28,13 @@ type SpotMarketRequestCreateInputInstanceAttributes struct {
 	Userdata *string `json:"userdata,omitempty"`
 	Locked *bool `json:"locked,omitempty"`
 	TerminationTime *time.Time `json:"termination_time,omitempty"`
-	Tags *[]string `json:"tags,omitempty"`
-	ProjectSshKeys *[]string `json:"project_ssh_keys,omitempty"`
+	Tags []string `json:"tags,omitempty"`
+	ProjectSshKeys []string `json:"project_ssh_keys,omitempty"`
 	// The UUIDs of users whose SSH keys should be included on the provisioned device.
-	UserSshKeys *[]string `json:"user_ssh_keys,omitempty"`
+	UserSshKeys []string `json:"user_ssh_keys,omitempty"`
 	NoSshKeys *bool `json:"no_ssh_keys,omitempty"`
-	Features *[]string `json:"features,omitempty"`
-	Customdata *map[string]interface{} `json:"customdata,omitempty"`
+	Features []string `json:"features,omitempty"`
+	Customdata map[string]interface{} `json:"customdata,omitempty"`
 	PublicIpv4SubnetSize *int32 `json:"public_ipv4_subnet_size,omitempty"`
 	PrivateIpv4SubnetSize *int32 `json:"private_ipv4_subnet_size,omitempty"`
 }
@@ -126,12 +126,12 @@ func (o *SpotMarketRequestCreateInputInstanceAttributes) GetHostnames() []string
 		var ret []string
 		return ret
 	}
-	return *o.Hostnames
+	return o.Hostnames
 }
 
 // GetHostnamesOk returns a tuple with the Hostnames field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SpotMarketRequestCreateInputInstanceAttributes) GetHostnamesOk() (*[]string, bool) {
+func (o *SpotMarketRequestCreateInputInstanceAttributes) GetHostnamesOk() ([]string, bool) {
 	if o == nil || o.Hostnames == nil {
 		return nil, false
 	}
@@ -149,7 +149,7 @@ func (o *SpotMarketRequestCreateInputInstanceAttributes) HasHostnames() bool {
 
 // SetHostnames gets a reference to the given []string and assigns it to the Hostnames field.
 func (o *SpotMarketRequestCreateInputInstanceAttributes) SetHostnames(v []string) {
-	o.Hostnames = &v
+	o.Hostnames = v
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise.
@@ -382,12 +382,12 @@ func (o *SpotMarketRequestCreateInputInstanceAttributes) GetTags() []string {
 		var ret []string
 		return ret
 	}
-	return *o.Tags
+	return o.Tags
 }
 
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SpotMarketRequestCreateInputInstanceAttributes) GetTagsOk() (*[]string, bool) {
+func (o *SpotMarketRequestCreateInputInstanceAttributes) GetTagsOk() ([]string, bool) {
 	if o == nil || o.Tags == nil {
 		return nil, false
 	}
@@ -405,7 +405,7 @@ func (o *SpotMarketRequestCreateInputInstanceAttributes) HasTags() bool {
 
 // SetTags gets a reference to the given []string and assigns it to the Tags field.
 func (o *SpotMarketRequestCreateInputInstanceAttributes) SetTags(v []string) {
-	o.Tags = &v
+	o.Tags = v
 }
 
 // GetProjectSshKeys returns the ProjectSshKeys field value if set, zero value otherwise.
@@ -414,12 +414,12 @@ func (o *SpotMarketRequestCreateInputInstanceAttributes) GetProjectSshKeys() []s
 		var ret []string
 		return ret
 	}
-	return *o.ProjectSshKeys
+	return o.ProjectSshKeys
 }
 
 // GetProjectSshKeysOk returns a tuple with the ProjectSshKeys field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SpotMarketRequestCreateInputInstanceAttributes) GetProjectSshKeysOk() (*[]string, bool) {
+func (o *SpotMarketRequestCreateInputInstanceAttributes) GetProjectSshKeysOk() ([]string, bool) {
 	if o == nil || o.ProjectSshKeys == nil {
 		return nil, false
 	}
@@ -437,7 +437,7 @@ func (o *SpotMarketRequestCreateInputInstanceAttributes) HasProjectSshKeys() boo
 
 // SetProjectSshKeys gets a reference to the given []string and assigns it to the ProjectSshKeys field.
 func (o *SpotMarketRequestCreateInputInstanceAttributes) SetProjectSshKeys(v []string) {
-	o.ProjectSshKeys = &v
+	o.ProjectSshKeys = v
 }
 
 // GetUserSshKeys returns the UserSshKeys field value if set, zero value otherwise.
@@ -446,12 +446,12 @@ func (o *SpotMarketRequestCreateInputInstanceAttributes) GetUserSshKeys() []stri
 		var ret []string
 		return ret
 	}
-	return *o.UserSshKeys
+	return o.UserSshKeys
 }
 
 // GetUserSshKeysOk returns a tuple with the UserSshKeys field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SpotMarketRequestCreateInputInstanceAttributes) GetUserSshKeysOk() (*[]string, bool) {
+func (o *SpotMarketRequestCreateInputInstanceAttributes) GetUserSshKeysOk() ([]string, bool) {
 	if o == nil || o.UserSshKeys == nil {
 		return nil, false
 	}
@@ -469,7 +469,7 @@ func (o *SpotMarketRequestCreateInputInstanceAttributes) HasUserSshKeys() bool {
 
 // SetUserSshKeys gets a reference to the given []string and assigns it to the UserSshKeys field.
 func (o *SpotMarketRequestCreateInputInstanceAttributes) SetUserSshKeys(v []string) {
-	o.UserSshKeys = &v
+	o.UserSshKeys = v
 }
 
 // GetNoSshKeys returns the NoSshKeys field value if set, zero value otherwise.
@@ -510,12 +510,12 @@ func (o *SpotMarketRequestCreateInputInstanceAttributes) GetFeatures() []string 
 		var ret []string
 		return ret
 	}
-	return *o.Features
+	return o.Features
 }
 
 // GetFeaturesOk returns a tuple with the Features field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SpotMarketRequestCreateInputInstanceAttributes) GetFeaturesOk() (*[]string, bool) {
+func (o *SpotMarketRequestCreateInputInstanceAttributes) GetFeaturesOk() ([]string, bool) {
 	if o == nil || o.Features == nil {
 		return nil, false
 	}
@@ -533,7 +533,7 @@ func (o *SpotMarketRequestCreateInputInstanceAttributes) HasFeatures() bool {
 
 // SetFeatures gets a reference to the given []string and assigns it to the Features field.
 func (o *SpotMarketRequestCreateInputInstanceAttributes) SetFeatures(v []string) {
-	o.Features = &v
+	o.Features = v
 }
 
 // GetCustomdata returns the Customdata field value if set, zero value otherwise.
@@ -542,12 +542,12 @@ func (o *SpotMarketRequestCreateInputInstanceAttributes) GetCustomdata() map[str
 		var ret map[string]interface{}
 		return ret
 	}
-	return *o.Customdata
+	return o.Customdata
 }
 
 // GetCustomdataOk returns a tuple with the Customdata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SpotMarketRequestCreateInputInstanceAttributes) GetCustomdataOk() (*map[string]interface{}, bool) {
+func (o *SpotMarketRequestCreateInputInstanceAttributes) GetCustomdataOk() (map[string]interface{}, bool) {
 	if o == nil || o.Customdata == nil {
 		return nil, false
 	}
@@ -565,7 +565,7 @@ func (o *SpotMarketRequestCreateInputInstanceAttributes) HasCustomdata() bool {
 
 // SetCustomdata gets a reference to the given map[string]interface{} and assigns it to the Customdata field.
 func (o *SpotMarketRequestCreateInputInstanceAttributes) SetCustomdata(v map[string]interface{}) {
-	o.Customdata = &v
+	o.Customdata = v
 }
 
 // GetPublicIpv4SubnetSize returns the PublicIpv4SubnetSize field value if set, zero value otherwise.

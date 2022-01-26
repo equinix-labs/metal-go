@@ -17,7 +17,7 @@ import (
 
 // AuthTokenList struct for AuthTokenList
 type AuthTokenList struct {
-	ApiKeys *[]AuthToken `json:"api_keys,omitempty"`
+	ApiKeys []AuthToken `json:"api_keys,omitempty"`
 }
 
 // NewAuthTokenList instantiates a new AuthTokenList object
@@ -43,12 +43,12 @@ func (o *AuthTokenList) GetApiKeys() []AuthToken {
 		var ret []AuthToken
 		return ret
 	}
-	return *o.ApiKeys
+	return o.ApiKeys
 }
 
 // GetApiKeysOk returns a tuple with the ApiKeys field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AuthTokenList) GetApiKeysOk() (*[]AuthToken, bool) {
+func (o *AuthTokenList) GetApiKeysOk() ([]AuthToken, bool) {
 	if o == nil || o.ApiKeys == nil {
 		return nil, false
 	}
@@ -66,7 +66,7 @@ func (o *AuthTokenList) HasApiKeys() bool {
 
 // SetApiKeys gets a reference to the given []AuthToken and assigns it to the ApiKeys field.
 func (o *AuthTokenList) SetApiKeys(v []AuthToken) {
-	o.ApiKeys = &v
+	o.ApiKeys = v
 }
 
 func (o AuthTokenList) MarshalJSON() ([]byte, error) {

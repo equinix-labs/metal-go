@@ -13,28 +13,28 @@ package v1
 
 import (
 	"bytes"
-	_context "context"
-	_ioutil "io/ioutil"
-	_nethttp "net/http"
-	_neturl "net/url"
+	"context"
+	"io/ioutil"
+	"net/http"
+	"net/url"
 	"strings"
 )
 
 // Linger please
 var (
-	_ _context.Context
+	_ context.Context
 )
 
 // OperatingSystemsApiService OperatingSystemsApi service
 type OperatingSystemsApiService service
 
 type ApiFindOperatingSystemsRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *OperatingSystemsApiService
 }
 
 
-func (r ApiFindOperatingSystemsRequest) Execute() ([]OperatingSystem, *_nethttp.Response, error) {
+func (r ApiFindOperatingSystemsRequest) Execute() (*OperatingSystemList, *http.Response, error) {
 	return r.ApiService.FindOperatingSystemsExecute(r)
 }
 
@@ -43,10 +43,10 @@ FindOperatingSystems Retrieve all operating systems
 
 Provides a listing of available operating systems to provision your new device with.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiFindOperatingSystemsRequest
 */
-func (a *OperatingSystemsApiService) FindOperatingSystems(ctx _context.Context) ApiFindOperatingSystemsRequest {
+func (a *OperatingSystemsApiService) FindOperatingSystems(ctx context.Context) ApiFindOperatingSystemsRequest {
 	return ApiFindOperatingSystemsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -54,27 +54,25 @@ func (a *OperatingSystemsApiService) FindOperatingSystems(ctx _context.Context) 
 }
 
 // Execute executes the request
-//  @return []OperatingSystem
-func (a *OperatingSystemsApiService) FindOperatingSystemsExecute(r ApiFindOperatingSystemsRequest) ([]OperatingSystem, *_nethttp.Response, error) {
+//  @return OperatingSystemList
+func (a *OperatingSystemsApiService) FindOperatingSystemsExecute(r ApiFindOperatingSystemsRequest) (*OperatingSystemList, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  []OperatingSystem
+		formFiles            []formFile
+		localVarReturnValue  *OperatingSystemList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OperatingSystemsApiService.FindOperatingSystems")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/operating-systems"
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -107,7 +105,7 @@ func (a *OperatingSystemsApiService) FindOperatingSystemsExecute(r ApiFindOperat
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -117,15 +115,15 @@ func (a *OperatingSystemsApiService) FindOperatingSystemsExecute(r ApiFindOperat
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -143,7 +141,7 @@ func (a *OperatingSystemsApiService) FindOperatingSystemsExecute(r ApiFindOperat
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -154,7 +152,7 @@ func (a *OperatingSystemsApiService) FindOperatingSystemsExecute(r ApiFindOperat
 }
 
 type ApiFindOperatingSystemsByOrganizationRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *OperatingSystemsApiService
 	id string
 	include *[]string
@@ -172,7 +170,7 @@ func (r ApiFindOperatingSystemsByOrganizationRequest) Exclude(exclude []string) 
 	return r
 }
 
-func (r ApiFindOperatingSystemsByOrganizationRequest) Execute() ([]OperatingSystem, *_nethttp.Response, error) {
+func (r ApiFindOperatingSystemsByOrganizationRequest) Execute() (*OperatingSystemList, *http.Response, error) {
 	return r.ApiService.FindOperatingSystemsByOrganizationExecute(r)
 }
 
@@ -181,11 +179,11 @@ FindOperatingSystemsByOrganization Retrieve all operating systems visible by the
 
 Returns a listing of available operating systems for the given organization
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Organization UUID
  @return ApiFindOperatingSystemsByOrganizationRequest
 */
-func (a *OperatingSystemsApiService) FindOperatingSystemsByOrganization(ctx _context.Context, id string) ApiFindOperatingSystemsByOrganizationRequest {
+func (a *OperatingSystemsApiService) FindOperatingSystemsByOrganization(ctx context.Context, id string) ApiFindOperatingSystemsByOrganizationRequest {
 	return ApiFindOperatingSystemsByOrganizationRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -194,28 +192,26 @@ func (a *OperatingSystemsApiService) FindOperatingSystemsByOrganization(ctx _con
 }
 
 // Execute executes the request
-//  @return []OperatingSystem
-func (a *OperatingSystemsApiService) FindOperatingSystemsByOrganizationExecute(r ApiFindOperatingSystemsByOrganizationRequest) ([]OperatingSystem, *_nethttp.Response, error) {
+//  @return OperatingSystemList
+func (a *OperatingSystemsApiService) FindOperatingSystemsByOrganizationExecute(r ApiFindOperatingSystemsByOrganizationRequest) (*OperatingSystemList, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  []OperatingSystem
+		formFiles            []formFile
+		localVarReturnValue  *OperatingSystemList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OperatingSystemsApiService.FindOperatingSystemsByOrganization")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/organizations/{id}/operating-systems"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	if r.include != nil {
 		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
@@ -254,7 +250,7 @@ func (a *OperatingSystemsApiService) FindOperatingSystemsByOrganizationExecute(r
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -264,15 +260,15 @@ func (a *OperatingSystemsApiService) FindOperatingSystemsByOrganizationExecute(r
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -310,7 +306,7 @@ func (a *OperatingSystemsApiService) FindOperatingSystemsByOrganizationExecute(r
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}

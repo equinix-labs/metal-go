@@ -22,11 +22,11 @@ type DeviceUpdateInput struct {
 	BillingCycle *string `json:"billing_cycle,omitempty"`
 	Userdata *string `json:"userdata,omitempty"`
 	Locked *bool `json:"locked,omitempty"`
-	Tags *[]string `json:"tags,omitempty"`
+	Tags []string `json:"tags,omitempty"`
 	AlwaysPxe *bool `json:"always_pxe,omitempty"`
 	IpxeScriptUrl *string `json:"ipxe_script_url,omitempty"`
 	SpotInstance *bool `json:"spot_instance,omitempty"`
-	Customdata *map[string]interface{} `json:"customdata,omitempty"`
+	Customdata map[string]interface{} `json:"customdata,omitempty"`
 	// If true, this instance can not be converted to a different network type.
 	NetworkFrozen *bool `json:"network_frozen,omitempty"`
 }
@@ -214,12 +214,12 @@ func (o *DeviceUpdateInput) GetTags() []string {
 		var ret []string
 		return ret
 	}
-	return *o.Tags
+	return o.Tags
 }
 
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DeviceUpdateInput) GetTagsOk() (*[]string, bool) {
+func (o *DeviceUpdateInput) GetTagsOk() ([]string, bool) {
 	if o == nil || o.Tags == nil {
 		return nil, false
 	}
@@ -237,7 +237,7 @@ func (o *DeviceUpdateInput) HasTags() bool {
 
 // SetTags gets a reference to the given []string and assigns it to the Tags field.
 func (o *DeviceUpdateInput) SetTags(v []string) {
-	o.Tags = &v
+	o.Tags = v
 }
 
 // GetAlwaysPxe returns the AlwaysPxe field value if set, zero value otherwise.
@@ -342,12 +342,12 @@ func (o *DeviceUpdateInput) GetCustomdata() map[string]interface{} {
 		var ret map[string]interface{}
 		return ret
 	}
-	return *o.Customdata
+	return o.Customdata
 }
 
 // GetCustomdataOk returns a tuple with the Customdata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DeviceUpdateInput) GetCustomdataOk() (*map[string]interface{}, bool) {
+func (o *DeviceUpdateInput) GetCustomdataOk() (map[string]interface{}, bool) {
 	if o == nil || o.Customdata == nil {
 		return nil, false
 	}
@@ -365,7 +365,7 @@ func (o *DeviceUpdateInput) HasCustomdata() bool {
 
 // SetCustomdata gets a reference to the given map[string]interface{} and assigns it to the Customdata field.
 func (o *DeviceUpdateInput) SetCustomdata(v map[string]interface{}) {
-	o.Customdata = &v
+	o.Customdata = v
 }
 
 // GetNetworkFrozen returns the NetworkFrozen field value if set, zero value otherwise.

@@ -22,7 +22,7 @@ type Event struct {
 	State *string `json:"state,omitempty"`
 	Type *string `json:"type,omitempty"`
 	Body *string `json:"body,omitempty"`
-	Relationships *[]Href `json:"relationships,omitempty"`
+	Relationships []Href `json:"relationships,omitempty"`
 	Interpolated *string `json:"interpolated,omitempty"`
 	CreatedAt *time.Time `json:"created_at,omitempty"`
 	Href *string `json:"href,omitempty"`
@@ -179,12 +179,12 @@ func (o *Event) GetRelationships() []Href {
 		var ret []Href
 		return ret
 	}
-	return *o.Relationships
+	return o.Relationships
 }
 
 // GetRelationshipsOk returns a tuple with the Relationships field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Event) GetRelationshipsOk() (*[]Href, bool) {
+func (o *Event) GetRelationshipsOk() ([]Href, bool) {
 	if o == nil || o.Relationships == nil {
 		return nil, false
 	}
@@ -202,7 +202,7 @@ func (o *Event) HasRelationships() bool {
 
 // SetRelationships gets a reference to the given []Href and assigns it to the Relationships field.
 func (o *Event) SetRelationships(v []Href) {
-	o.Relationships = &v
+	o.Relationships = v
 }
 
 // GetInterpolated returns the Interpolated field value if set, zero value otherwise.

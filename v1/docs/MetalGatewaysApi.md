@@ -32,14 +32,14 @@ import (
 )
 
 func main() {
-    projectId := TODO // string | Project UUID
+    projectId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Project UUID
     metalGateway := *openapiclient.NewMetalGatewayInput("VirtualNetworkId_example") // MetalGatewayInput | Metal Gateway to create
     page := int32(56) // int32 | Page to return (optional) (default to 1)
     perPage := int32(56) // int32 | Items returned per page (optional) (default to 10)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.MetalGatewaysApi.CreateMetalGateway(context.Background(), projectId).MetalGateway(metalGateway).Page(page).PerPage(perPage).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.MetalGatewaysApi.CreateMetalGateway(context.Background(), projectId).MetalGateway(metalGateway).Page(page).PerPage(perPage).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MetalGatewaysApi.CreateMetalGateway``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -55,7 +55,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**projectId** | [**string**](.md) | Project UUID | 
+**projectId** | **string** | Project UUID | 
 
 ### Other Parameters
 
@@ -108,11 +108,11 @@ import (
 )
 
 func main() {
-    id := TODO // string | Metal Gateway UUID
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Metal Gateway UUID
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.MetalGatewaysApi.DeleteMetalGateway(context.Background(), id).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.MetalGatewaysApi.DeleteMetalGateway(context.Background(), id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MetalGatewaysApi.DeleteMetalGateway``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -126,7 +126,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | [**string**](.md) | Metal Gateway UUID | 
+**id** | **string** | Metal Gateway UUID | 
 
 ### Other Parameters
 
@@ -176,11 +176,11 @@ import (
 )
 
 func main() {
-    id := TODO // string | Metal Gateway UUID
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Metal Gateway UUID
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.MetalGatewaysApi.FindMetalGatewayById(context.Background(), id).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.MetalGatewaysApi.FindMetalGatewayById(context.Background(), id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MetalGatewaysApi.FindMetalGatewayById``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -196,7 +196,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | [**string**](.md) | Metal Gateway UUID | 
+**id** | **string** | Metal Gateway UUID | 
 
 ### Other Parameters
 
@@ -246,13 +246,13 @@ import (
 )
 
 func main() {
-    projectId := TODO // string | Project UUID
+    projectId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Project UUID
     page := int32(56) // int32 | Page to return (optional) (default to 1)
     perPage := int32(56) // int32 | Items returned per page (optional) (default to 10)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.MetalGatewaysApi.FindMetalGatewaysByProject(context.Background(), projectId).Page(page).PerPage(perPage).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.MetalGatewaysApi.FindMetalGatewaysByProject(context.Background(), projectId).Page(page).PerPage(perPage).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MetalGatewaysApi.FindMetalGatewaysByProject``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -268,7 +268,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**projectId** | [**string**](.md) | Project UUID | 
+**projectId** | **string** | Project UUID | 
 
 ### Other Parameters
 

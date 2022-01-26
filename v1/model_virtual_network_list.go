@@ -17,7 +17,7 @@ import (
 
 // VirtualNetworkList struct for VirtualNetworkList
 type VirtualNetworkList struct {
-	VirtualNetworks *[]VirtualNetwork `json:"virtual_networks,omitempty"`
+	VirtualNetworks []VirtualNetwork `json:"virtual_networks,omitempty"`
 }
 
 // NewVirtualNetworkList instantiates a new VirtualNetworkList object
@@ -43,12 +43,12 @@ func (o *VirtualNetworkList) GetVirtualNetworks() []VirtualNetwork {
 		var ret []VirtualNetwork
 		return ret
 	}
-	return *o.VirtualNetworks
+	return o.VirtualNetworks
 }
 
 // GetVirtualNetworksOk returns a tuple with the VirtualNetworks field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VirtualNetworkList) GetVirtualNetworksOk() (*[]VirtualNetwork, bool) {
+func (o *VirtualNetworkList) GetVirtualNetworksOk() ([]VirtualNetwork, bool) {
 	if o == nil || o.VirtualNetworks == nil {
 		return nil, false
 	}
@@ -66,7 +66,7 @@ func (o *VirtualNetworkList) HasVirtualNetworks() bool {
 
 // SetVirtualNetworks gets a reference to the given []VirtualNetwork and assigns it to the VirtualNetworks field.
 func (o *VirtualNetworkList) SetVirtualNetworks(v []VirtualNetwork) {
-	o.VirtualNetworks = &v
+	o.VirtualNetworks = v
 }
 
 func (o VirtualNetworkList) MarshalJSON() ([]byte, error) {

@@ -20,9 +20,9 @@ type Facility struct {
 	Id *string `json:"id,omitempty"`
 	Name *string `json:"name,omitempty"`
 	Code *string `json:"code,omitempty"`
-	Features *[]string `json:"features,omitempty"`
+	Features []string `json:"features,omitempty"`
 	// IP ranges registered in facility. Can be used for GeoIP location
-	IpRanges *[]string `json:"ip_ranges,omitempty"`
+	IpRanges []string `json:"ip_ranges,omitempty"`
 	Address *Address `json:"address,omitempty"`
 	Metro *Metro `json:"metro,omitempty"`
 }
@@ -146,12 +146,12 @@ func (o *Facility) GetFeatures() []string {
 		var ret []string
 		return ret
 	}
-	return *o.Features
+	return o.Features
 }
 
 // GetFeaturesOk returns a tuple with the Features field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Facility) GetFeaturesOk() (*[]string, bool) {
+func (o *Facility) GetFeaturesOk() ([]string, bool) {
 	if o == nil || o.Features == nil {
 		return nil, false
 	}
@@ -169,7 +169,7 @@ func (o *Facility) HasFeatures() bool {
 
 // SetFeatures gets a reference to the given []string and assigns it to the Features field.
 func (o *Facility) SetFeatures(v []string) {
-	o.Features = &v
+	o.Features = v
 }
 
 // GetIpRanges returns the IpRanges field value if set, zero value otherwise.
@@ -178,12 +178,12 @@ func (o *Facility) GetIpRanges() []string {
 		var ret []string
 		return ret
 	}
-	return *o.IpRanges
+	return o.IpRanges
 }
 
 // GetIpRangesOk returns a tuple with the IpRanges field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Facility) GetIpRangesOk() (*[]string, bool) {
+func (o *Facility) GetIpRangesOk() ([]string, bool) {
 	if o == nil || o.IpRanges == nil {
 		return nil, false
 	}
@@ -201,7 +201,7 @@ func (o *Facility) HasIpRanges() bool {
 
 // SetIpRanges gets a reference to the given []string and assigns it to the IpRanges field.
 func (o *Facility) SetIpRanges(v []string) {
-	o.IpRanges = &v
+	o.IpRanges = v
 }
 
 // GetAddress returns the Address field value if set, zero value otherwise.

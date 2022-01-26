@@ -13,29 +13,29 @@ package v1
 
 import (
 	"bytes"
-	_context "context"
-	_ioutil "io/ioutil"
-	_nethttp "net/http"
-	_neturl "net/url"
+	"context"
+	"io/ioutil"
+	"net/http"
+	"net/url"
 	"strings"
 )
 
 // Linger please
 var (
-	_ _context.Context
+	_ context.Context
 )
 
 // LicensesApiService LicensesApi service
 type LicensesApiService service
 
 type ApiDeleteLicenseRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *LicensesApiService
 	id string
 }
 
 
-func (r ApiDeleteLicenseRequest) Execute() (*_nethttp.Response, error) {
+func (r ApiDeleteLicenseRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeleteLicenseExecute(r)
 }
 
@@ -44,11 +44,11 @@ DeleteLicense Delete the license
 
 Deletes a license.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id License UUID
  @return ApiDeleteLicenseRequest
 */
-func (a *LicensesApiService) DeleteLicense(ctx _context.Context, id string) ApiDeleteLicenseRequest {
+func (a *LicensesApiService) DeleteLicense(ctx context.Context, id string) ApiDeleteLicenseRequest {
 	return ApiDeleteLicenseRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -57,26 +57,24 @@ func (a *LicensesApiService) DeleteLicense(ctx _context.Context, id string) ApiD
 }
 
 // Execute executes the request
-func (a *LicensesApiService) DeleteLicenseExecute(r ApiDeleteLicenseRequest) (*_nethttp.Response, error) {
+func (a *LicensesApiService) DeleteLicenseExecute(r ApiDeleteLicenseRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
+		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LicensesApiService.DeleteLicense")
 	if err != nil {
-		return nil, GenericOpenAPIError{error: err.Error()}
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/licenses/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -109,7 +107,7 @@ func (a *LicensesApiService) DeleteLicenseExecute(r ApiDeleteLicenseRequest) (*_
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
 	}
@@ -119,15 +117,15 @@ func (a *LicensesApiService) DeleteLicenseExecute(r ApiDeleteLicenseRequest) (*_
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -167,7 +165,7 @@ func (a *LicensesApiService) DeleteLicenseExecute(r ApiDeleteLicenseRequest) (*_
 }
 
 type ApiFindLicenseByIdRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *LicensesApiService
 	id string
 	include *[]string
@@ -185,7 +183,7 @@ func (r ApiFindLicenseByIdRequest) Exclude(exclude []string) ApiFindLicenseByIdR
 	return r
 }
 
-func (r ApiFindLicenseByIdRequest) Execute() (License, *_nethttp.Response, error) {
+func (r ApiFindLicenseByIdRequest) Execute() (*License, *http.Response, error) {
 	return r.ApiService.FindLicenseByIdExecute(r)
 }
 
@@ -194,11 +192,11 @@ FindLicenseById Retrieve a license
 
 Returns a license
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id License UUID
  @return ApiFindLicenseByIdRequest
 */
-func (a *LicensesApiService) FindLicenseById(ctx _context.Context, id string) ApiFindLicenseByIdRequest {
+func (a *LicensesApiService) FindLicenseById(ctx context.Context, id string) ApiFindLicenseByIdRequest {
 	return ApiFindLicenseByIdRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -208,27 +206,25 @@ func (a *LicensesApiService) FindLicenseById(ctx _context.Context, id string) Ap
 
 // Execute executes the request
 //  @return License
-func (a *LicensesApiService) FindLicenseByIdExecute(r ApiFindLicenseByIdRequest) (License, *_nethttp.Response, error) {
+func (a *LicensesApiService) FindLicenseByIdExecute(r ApiFindLicenseByIdRequest) (*License, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  License
+		formFiles            []formFile
+		localVarReturnValue  *License
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LicensesApiService.FindLicenseById")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/licenses/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	if r.include != nil {
 		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
@@ -267,7 +263,7 @@ func (a *LicensesApiService) FindLicenseByIdExecute(r ApiFindLicenseByIdRequest)
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -277,15 +273,15 @@ func (a *LicensesApiService) FindLicenseByIdExecute(r ApiFindLicenseByIdRequest)
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -323,7 +319,7 @@ func (a *LicensesApiService) FindLicenseByIdExecute(r ApiFindLicenseByIdRequest)
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -334,7 +330,7 @@ func (a *LicensesApiService) FindLicenseByIdExecute(r ApiFindLicenseByIdRequest)
 }
 
 type ApiUpdateLicenseRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *LicensesApiService
 	id string
 	license *LicenseUpdateInput
@@ -346,7 +342,7 @@ func (r ApiUpdateLicenseRequest) License(license LicenseUpdateInput) ApiUpdateLi
 	return r
 }
 
-func (r ApiUpdateLicenseRequest) Execute() (License, *_nethttp.Response, error) {
+func (r ApiUpdateLicenseRequest) Execute() (*License, *http.Response, error) {
 	return r.ApiService.UpdateLicenseExecute(r)
 }
 
@@ -355,11 +351,11 @@ UpdateLicense Update the license
 
 Updates the license.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id License UUID
  @return ApiUpdateLicenseRequest
 */
-func (a *LicensesApiService) UpdateLicense(ctx _context.Context, id string) ApiUpdateLicenseRequest {
+func (a *LicensesApiService) UpdateLicense(ctx context.Context, id string) ApiUpdateLicenseRequest {
 	return ApiUpdateLicenseRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -369,27 +365,25 @@ func (a *LicensesApiService) UpdateLicense(ctx _context.Context, id string) ApiU
 
 // Execute executes the request
 //  @return License
-func (a *LicensesApiService) UpdateLicenseExecute(r ApiUpdateLicenseRequest) (License, *_nethttp.Response, error) {
+func (a *LicensesApiService) UpdateLicenseExecute(r ApiUpdateLicenseRequest) (*License, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPut
+		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  License
+		formFiles            []formFile
+		localVarReturnValue  *License
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LicensesApiService.UpdateLicense")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/licenses/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.license == nil {
 		return localVarReturnValue, nil, reportError("license is required and must be specified")
 	}
@@ -427,7 +421,7 @@ func (a *LicensesApiService) UpdateLicenseExecute(r ApiUpdateLicenseRequest) (Li
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -437,15 +431,15 @@ func (a *LicensesApiService) UpdateLicenseExecute(r ApiUpdateLicenseRequest) (Li
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -493,7 +487,7 @@ func (a *LicensesApiService) UpdateLicenseExecute(r ApiUpdateLicenseRequest) (Li
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}

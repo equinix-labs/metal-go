@@ -20,10 +20,10 @@ type Port struct {
 	Id *string `json:"id,omitempty"`
 	Type *string `json:"type,omitempty"`
 	Name *string `json:"name,omitempty"`
-	Data *map[string]interface{} `json:"data,omitempty"`
+	Data map[string]interface{} `json:"data,omitempty"`
 	// Indicates whether or not the bond can be broken on the port (when applicable).
 	DisbondOperationSupported *bool `json:"disbond_operation_supported,omitempty"`
-	VirtualNetworks *[]Href `json:"virtual_networks,omitempty"`
+	VirtualNetworks []Href `json:"virtual_networks,omitempty"`
 	Href *string `json:"href,omitempty"`
 }
 
@@ -146,12 +146,12 @@ func (o *Port) GetData() map[string]interface{} {
 		var ret map[string]interface{}
 		return ret
 	}
-	return *o.Data
+	return o.Data
 }
 
 // GetDataOk returns a tuple with the Data field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Port) GetDataOk() (*map[string]interface{}, bool) {
+func (o *Port) GetDataOk() (map[string]interface{}, bool) {
 	if o == nil || o.Data == nil {
 		return nil, false
 	}
@@ -169,7 +169,7 @@ func (o *Port) HasData() bool {
 
 // SetData gets a reference to the given map[string]interface{} and assigns it to the Data field.
 func (o *Port) SetData(v map[string]interface{}) {
-	o.Data = &v
+	o.Data = v
 }
 
 // GetDisbondOperationSupported returns the DisbondOperationSupported field value if set, zero value otherwise.
@@ -210,12 +210,12 @@ func (o *Port) GetVirtualNetworks() []Href {
 		var ret []Href
 		return ret
 	}
-	return *o.VirtualNetworks
+	return o.VirtualNetworks
 }
 
 // GetVirtualNetworksOk returns a tuple with the VirtualNetworks field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Port) GetVirtualNetworksOk() (*[]Href, bool) {
+func (o *Port) GetVirtualNetworksOk() ([]Href, bool) {
 	if o == nil || o.VirtualNetworks == nil {
 		return nil, false
 	}
@@ -233,7 +233,7 @@ func (o *Port) HasVirtualNetworks() bool {
 
 // SetVirtualNetworks gets a reference to the given []Href and assigns it to the VirtualNetworks field.
 func (o *Port) SetVirtualNetworks(v []Href) {
-	o.VirtualNetworks = &v
+	o.VirtualNetworks = v
 }
 
 // GetHref returns the Href field value if set, zero value otherwise.

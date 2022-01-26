@@ -13,29 +13,29 @@ package v1
 
 import (
 	"bytes"
-	_context "context"
-	_ioutil "io/ioutil"
-	_nethttp "net/http"
-	_neturl "net/url"
+	"context"
+	"io/ioutil"
+	"net/http"
+	"net/url"
 	"strings"
 )
 
 // Linger please
 var (
-	_ _context.Context
+	_ context.Context
 )
 
 // IPAddressesApiService IPAddressesApi service
 type IPAddressesApiService service
 
 type ApiDeleteIPAddressRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *IPAddressesApiService
 	id string
 }
 
 
-func (r ApiDeleteIPAddressRequest) Execute() (*_nethttp.Response, error) {
+func (r ApiDeleteIPAddressRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeleteIPAddressExecute(r)
 }
 
@@ -44,11 +44,11 @@ DeleteIPAddress Unassign an ip address
 
 Note! This call can be used to un-assign an IP assignment or delete an IP reservation. Un-assign an IP address record. Use the assignment UUID you get after attaching the IP. This will remove the relationship between an IP and the device and will make the IP address available to be assigned to another device. Delete and IP reservation. Use the reservation UUID you get after adding the IP to the project. This will permanently delete the IP block reservation from the project.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id IP Address UUID
  @return ApiDeleteIPAddressRequest
 */
-func (a *IPAddressesApiService) DeleteIPAddress(ctx _context.Context, id string) ApiDeleteIPAddressRequest {
+func (a *IPAddressesApiService) DeleteIPAddress(ctx context.Context, id string) ApiDeleteIPAddressRequest {
 	return ApiDeleteIPAddressRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -57,26 +57,24 @@ func (a *IPAddressesApiService) DeleteIPAddress(ctx _context.Context, id string)
 }
 
 // Execute executes the request
-func (a *IPAddressesApiService) DeleteIPAddressExecute(r ApiDeleteIPAddressRequest) (*_nethttp.Response, error) {
+func (a *IPAddressesApiService) DeleteIPAddressExecute(r ApiDeleteIPAddressRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
+		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IPAddressesApiService.DeleteIPAddress")
 	if err != nil {
-		return nil, GenericOpenAPIError{error: err.Error()}
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/ips/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -109,7 +107,7 @@ func (a *IPAddressesApiService) DeleteIPAddressExecute(r ApiDeleteIPAddressReque
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
 	}
@@ -119,15 +117,15 @@ func (a *IPAddressesApiService) DeleteIPAddressExecute(r ApiDeleteIPAddressReque
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -167,7 +165,7 @@ func (a *IPAddressesApiService) DeleteIPAddressExecute(r ApiDeleteIPAddressReque
 }
 
 type ApiFindIPAddressByIdRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *IPAddressesApiService
 	id string
 	include *[]string
@@ -185,7 +183,7 @@ func (r ApiFindIPAddressByIdRequest) Exclude(exclude []string) ApiFindIPAddressB
 	return r
 }
 
-func (r ApiFindIPAddressByIdRequest) Execute() (IPAssignment, *_nethttp.Response, error) {
+func (r ApiFindIPAddressByIdRequest) Execute() (*IPAssignment, *http.Response, error) {
 	return r.ApiService.FindIPAddressByIdExecute(r)
 }
 
@@ -194,11 +192,11 @@ FindIPAddressById Retrieve an ip address
 
 Returns a single ip address if the user has access.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id IP Address UUID
  @return ApiFindIPAddressByIdRequest
 */
-func (a *IPAddressesApiService) FindIPAddressById(ctx _context.Context, id string) ApiFindIPAddressByIdRequest {
+func (a *IPAddressesApiService) FindIPAddressById(ctx context.Context, id string) ApiFindIPAddressByIdRequest {
 	return ApiFindIPAddressByIdRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -208,27 +206,25 @@ func (a *IPAddressesApiService) FindIPAddressById(ctx _context.Context, id strin
 
 // Execute executes the request
 //  @return IPAssignment
-func (a *IPAddressesApiService) FindIPAddressByIdExecute(r ApiFindIPAddressByIdRequest) (IPAssignment, *_nethttp.Response, error) {
+func (a *IPAddressesApiService) FindIPAddressByIdExecute(r ApiFindIPAddressByIdRequest) (*IPAssignment, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  IPAssignment
+		formFiles            []formFile
+		localVarReturnValue  *IPAssignment
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IPAddressesApiService.FindIPAddressById")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/ips/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	if r.include != nil {
 		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
@@ -267,7 +263,7 @@ func (a *IPAddressesApiService) FindIPAddressByIdExecute(r ApiFindIPAddressByIdR
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -277,15 +273,15 @@ func (a *IPAddressesApiService) FindIPAddressByIdExecute(r ApiFindIPAddressByIdR
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -323,7 +319,7 @@ func (a *IPAddressesApiService) FindIPAddressByIdExecute(r ApiFindIPAddressByIdR
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -334,13 +330,13 @@ func (a *IPAddressesApiService) FindIPAddressByIdExecute(r ApiFindIPAddressByIdR
 }
 
 type ApiFindIPAddressCustomdataRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *IPAddressesApiService
 	id string
 }
 
 
-func (r ApiFindIPAddressCustomdataRequest) Execute() (*_nethttp.Response, error) {
+func (r ApiFindIPAddressCustomdataRequest) Execute() (*http.Response, error) {
 	return r.ApiService.FindIPAddressCustomdataExecute(r)
 }
 
@@ -349,11 +345,11 @@ FindIPAddressCustomdata Retrieve the custom metadata of an IP Reservation or IP 
 
 Provides the custom metadata stored for this IP Reservation or IP Assignment in json format
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Ip Reservation UUID
  @return ApiFindIPAddressCustomdataRequest
 */
-func (a *IPAddressesApiService) FindIPAddressCustomdata(ctx _context.Context, id string) ApiFindIPAddressCustomdataRequest {
+func (a *IPAddressesApiService) FindIPAddressCustomdata(ctx context.Context, id string) ApiFindIPAddressCustomdataRequest {
 	return ApiFindIPAddressCustomdataRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -362,26 +358,24 @@ func (a *IPAddressesApiService) FindIPAddressCustomdata(ctx _context.Context, id
 }
 
 // Execute executes the request
-func (a *IPAddressesApiService) FindIPAddressCustomdataExecute(r ApiFindIPAddressCustomdataRequest) (*_nethttp.Response, error) {
+func (a *IPAddressesApiService) FindIPAddressCustomdataExecute(r ApiFindIPAddressCustomdataRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IPAddressesApiService.FindIPAddressCustomdata")
 	if err != nil {
-		return nil, GenericOpenAPIError{error: err.Error()}
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/ips/{id}/customdata"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -414,7 +408,7 @@ func (a *IPAddressesApiService) FindIPAddressCustomdataExecute(r ApiFindIPAddres
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
 	}
@@ -424,15 +418,15 @@ func (a *IPAddressesApiService) FindIPAddressCustomdataExecute(r ApiFindIPAddres
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -472,7 +466,7 @@ func (a *IPAddressesApiService) FindIPAddressCustomdataExecute(r ApiFindIPAddres
 }
 
 type ApiFindIPAvailabilitiesRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *IPAddressesApiService
 	id string
 	cidr *string
@@ -484,7 +478,7 @@ func (r ApiFindIPAvailabilitiesRequest) Cidr(cidr string) ApiFindIPAvailabilitie
 	return r
 }
 
-func (r ApiFindIPAvailabilitiesRequest) Execute() (IPAvailabilitiesList, *_nethttp.Response, error) {
+func (r ApiFindIPAvailabilitiesRequest) Execute() (*IPAvailabilitiesList, *http.Response, error) {
 	return r.ApiService.FindIPAvailabilitiesExecute(r)
 }
 
@@ -493,11 +487,11 @@ FindIPAvailabilities Retrieve all available subnets of a particular reservation
 
 Provides a list of IP resevations for a single project.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id IP Reservation UUID
  @return ApiFindIPAvailabilitiesRequest
 */
-func (a *IPAddressesApiService) FindIPAvailabilities(ctx _context.Context, id string) ApiFindIPAvailabilitiesRequest {
+func (a *IPAddressesApiService) FindIPAvailabilities(ctx context.Context, id string) ApiFindIPAvailabilitiesRequest {
 	return ApiFindIPAvailabilitiesRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -507,27 +501,25 @@ func (a *IPAddressesApiService) FindIPAvailabilities(ctx _context.Context, id st
 
 // Execute executes the request
 //  @return IPAvailabilitiesList
-func (a *IPAddressesApiService) FindIPAvailabilitiesExecute(r ApiFindIPAvailabilitiesRequest) (IPAvailabilitiesList, *_nethttp.Response, error) {
+func (a *IPAddressesApiService) FindIPAvailabilitiesExecute(r ApiFindIPAvailabilitiesRequest) (*IPAvailabilitiesList, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  IPAvailabilitiesList
+		formFiles            []formFile
+		localVarReturnValue  *IPAvailabilitiesList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IPAddressesApiService.FindIPAvailabilities")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/ips/{id}/available"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.cidr == nil {
 		return localVarReturnValue, nil, reportError("cidr is required and must be specified")
 	}
@@ -564,7 +556,7 @@ func (a *IPAddressesApiService) FindIPAvailabilitiesExecute(r ApiFindIPAvailabil
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -574,15 +566,15 @@ func (a *IPAddressesApiService) FindIPAvailabilitiesExecute(r ApiFindIPAvailabil
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -620,7 +612,7 @@ func (a *IPAddressesApiService) FindIPAvailabilitiesExecute(r ApiFindIPAvailabil
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -631,7 +623,7 @@ func (a *IPAddressesApiService) FindIPAvailabilitiesExecute(r ApiFindIPAvailabil
 }
 
 type ApiUpdateIPAddressRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *IPAddressesApiService
 	id string
 	details *string
@@ -649,7 +641,7 @@ func (r ApiUpdateIPAddressRequest) Customdata(customdata string) ApiUpdateIPAddr
 	return r
 }
 
-func (r ApiUpdateIPAddressRequest) Execute() (IPAssignment, *_nethttp.Response, error) {
+func (r ApiUpdateIPAddressRequest) Execute() (*IPAssignment, *http.Response, error) {
 	return r.ApiService.UpdateIPAddressExecute(r)
 }
 
@@ -658,11 +650,11 @@ UpdateIPAddress Update an ip address
 
 Update details about an ip address
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id IP Address UUID
  @return ApiUpdateIPAddressRequest
 */
-func (a *IPAddressesApiService) UpdateIPAddress(ctx _context.Context, id string) ApiUpdateIPAddressRequest {
+func (a *IPAddressesApiService) UpdateIPAddress(ctx context.Context, id string) ApiUpdateIPAddressRequest {
 	return ApiUpdateIPAddressRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -672,27 +664,25 @@ func (a *IPAddressesApiService) UpdateIPAddress(ctx _context.Context, id string)
 
 // Execute executes the request
 //  @return IPAssignment
-func (a *IPAddressesApiService) UpdateIPAddressExecute(r ApiUpdateIPAddressRequest) (IPAssignment, *_nethttp.Response, error) {
+func (a *IPAddressesApiService) UpdateIPAddressExecute(r ApiUpdateIPAddressRequest) (*IPAssignment, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPatch
+		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  IPAssignment
+		formFiles            []formFile
+		localVarReturnValue  *IPAssignment
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IPAddressesApiService.UpdateIPAddress")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/ips/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.details == nil {
 		return localVarReturnValue, nil, reportError("details is required and must be specified")
 	}
@@ -733,7 +723,7 @@ func (a *IPAddressesApiService) UpdateIPAddressExecute(r ApiUpdateIPAddressReque
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -743,15 +733,15 @@ func (a *IPAddressesApiService) UpdateIPAddressExecute(r ApiUpdateIPAddressReque
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -789,7 +779,7 @@ func (a *IPAddressesApiService) UpdateIPAddressExecute(r ApiUpdateIPAddressReque
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}

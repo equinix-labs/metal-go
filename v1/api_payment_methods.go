@@ -13,29 +13,29 @@ package v1
 
 import (
 	"bytes"
-	_context "context"
-	_ioutil "io/ioutil"
-	_nethttp "net/http"
-	_neturl "net/url"
+	"context"
+	"io/ioutil"
+	"net/http"
+	"net/url"
 	"strings"
 )
 
 // Linger please
 var (
-	_ _context.Context
+	_ context.Context
 )
 
 // PaymentMethodsApiService PaymentMethodsApi service
 type PaymentMethodsApiService service
 
 type ApiDeletePaymentMethodRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *PaymentMethodsApiService
 	id string
 }
 
 
-func (r ApiDeletePaymentMethodRequest) Execute() (*_nethttp.Response, error) {
+func (r ApiDeletePaymentMethodRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeletePaymentMethodExecute(r)
 }
 
@@ -44,11 +44,11 @@ DeletePaymentMethod Delete the payment method
 
 Deletes the payment method.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Payment Method UUID
  @return ApiDeletePaymentMethodRequest
 */
-func (a *PaymentMethodsApiService) DeletePaymentMethod(ctx _context.Context, id string) ApiDeletePaymentMethodRequest {
+func (a *PaymentMethodsApiService) DeletePaymentMethod(ctx context.Context, id string) ApiDeletePaymentMethodRequest {
 	return ApiDeletePaymentMethodRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -57,26 +57,24 @@ func (a *PaymentMethodsApiService) DeletePaymentMethod(ctx _context.Context, id 
 }
 
 // Execute executes the request
-func (a *PaymentMethodsApiService) DeletePaymentMethodExecute(r ApiDeletePaymentMethodRequest) (*_nethttp.Response, error) {
+func (a *PaymentMethodsApiService) DeletePaymentMethodExecute(r ApiDeletePaymentMethodRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
+		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PaymentMethodsApiService.DeletePaymentMethod")
 	if err != nil {
-		return nil, GenericOpenAPIError{error: err.Error()}
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/payment-methods/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -109,7 +107,7 @@ func (a *PaymentMethodsApiService) DeletePaymentMethodExecute(r ApiDeletePayment
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
 	}
@@ -119,15 +117,15 @@ func (a *PaymentMethodsApiService) DeletePaymentMethodExecute(r ApiDeletePayment
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -157,7 +155,7 @@ func (a *PaymentMethodsApiService) DeletePaymentMethodExecute(r ApiDeletePayment
 }
 
 type ApiFindPaymentMethodByIdRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *PaymentMethodsApiService
 	id string
 	include *[]string
@@ -175,7 +173,7 @@ func (r ApiFindPaymentMethodByIdRequest) Exclude(exclude []string) ApiFindPaymen
 	return r
 }
 
-func (r ApiFindPaymentMethodByIdRequest) Execute() (PaymentMethod, *_nethttp.Response, error) {
+func (r ApiFindPaymentMethodByIdRequest) Execute() (*PaymentMethod, *http.Response, error) {
 	return r.ApiService.FindPaymentMethodByIdExecute(r)
 }
 
@@ -184,11 +182,11 @@ FindPaymentMethodById Retrieve a payment method
 
 Returns a payment method
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Payment Method UUID
  @return ApiFindPaymentMethodByIdRequest
 */
-func (a *PaymentMethodsApiService) FindPaymentMethodById(ctx _context.Context, id string) ApiFindPaymentMethodByIdRequest {
+func (a *PaymentMethodsApiService) FindPaymentMethodById(ctx context.Context, id string) ApiFindPaymentMethodByIdRequest {
 	return ApiFindPaymentMethodByIdRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -198,27 +196,25 @@ func (a *PaymentMethodsApiService) FindPaymentMethodById(ctx _context.Context, i
 
 // Execute executes the request
 //  @return PaymentMethod
-func (a *PaymentMethodsApiService) FindPaymentMethodByIdExecute(r ApiFindPaymentMethodByIdRequest) (PaymentMethod, *_nethttp.Response, error) {
+func (a *PaymentMethodsApiService) FindPaymentMethodByIdExecute(r ApiFindPaymentMethodByIdRequest) (*PaymentMethod, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  PaymentMethod
+		formFiles            []formFile
+		localVarReturnValue  *PaymentMethod
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PaymentMethodsApiService.FindPaymentMethodById")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/payment-methods/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	if r.include != nil {
 		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
@@ -257,7 +253,7 @@ func (a *PaymentMethodsApiService) FindPaymentMethodByIdExecute(r ApiFindPayment
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -267,15 +263,15 @@ func (a *PaymentMethodsApiService) FindPaymentMethodByIdExecute(r ApiFindPayment
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -303,7 +299,7 @@ func (a *PaymentMethodsApiService) FindPaymentMethodByIdExecute(r ApiFindPayment
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -314,7 +310,7 @@ func (a *PaymentMethodsApiService) FindPaymentMethodByIdExecute(r ApiFindPayment
 }
 
 type ApiUpdatePaymentMethodRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *PaymentMethodsApiService
 	id string
 	paymentMethod *PaymentMethodUpdateInput
@@ -326,7 +322,7 @@ func (r ApiUpdatePaymentMethodRequest) PaymentMethod(paymentMethod PaymentMethod
 	return r
 }
 
-func (r ApiUpdatePaymentMethodRequest) Execute() (PaymentMethod, *_nethttp.Response, error) {
+func (r ApiUpdatePaymentMethodRequest) Execute() (*PaymentMethod, *http.Response, error) {
 	return r.ApiService.UpdatePaymentMethodExecute(r)
 }
 
@@ -335,11 +331,11 @@ UpdatePaymentMethod Update the payment method
 
 Updates the payment method.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Payment Method UUID
  @return ApiUpdatePaymentMethodRequest
 */
-func (a *PaymentMethodsApiService) UpdatePaymentMethod(ctx _context.Context, id string) ApiUpdatePaymentMethodRequest {
+func (a *PaymentMethodsApiService) UpdatePaymentMethod(ctx context.Context, id string) ApiUpdatePaymentMethodRequest {
 	return ApiUpdatePaymentMethodRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -349,27 +345,25 @@ func (a *PaymentMethodsApiService) UpdatePaymentMethod(ctx _context.Context, id 
 
 // Execute executes the request
 //  @return PaymentMethod
-func (a *PaymentMethodsApiService) UpdatePaymentMethodExecute(r ApiUpdatePaymentMethodRequest) (PaymentMethod, *_nethttp.Response, error) {
+func (a *PaymentMethodsApiService) UpdatePaymentMethodExecute(r ApiUpdatePaymentMethodRequest) (*PaymentMethod, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPut
+		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  PaymentMethod
+		formFiles            []formFile
+		localVarReturnValue  *PaymentMethod
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PaymentMethodsApiService.UpdatePaymentMethod")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/payment-methods/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.paymentMethod == nil {
 		return localVarReturnValue, nil, reportError("paymentMethod is required and must be specified")
 	}
@@ -407,7 +401,7 @@ func (a *PaymentMethodsApiService) UpdatePaymentMethodExecute(r ApiUpdatePayment
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -417,15 +411,15 @@ func (a *PaymentMethodsApiService) UpdatePaymentMethodExecute(r ApiUpdatePayment
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -463,7 +457,7 @@ func (a *PaymentMethodsApiService) UpdatePaymentMethodExecute(r ApiUpdatePayment
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}

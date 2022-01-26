@@ -19,8 +19,8 @@ import (
 type InvitationInput struct {
 	Invitee string `json:"invitee"`
 	Message *string `json:"message,omitempty"`
-	Roles *[]string `json:"roles,omitempty"`
-	ProjectsIds *[]string `json:"projects_ids,omitempty"`
+	Roles []string `json:"roles,omitempty"`
+	ProjectsIds []string `json:"projects_ids,omitempty"`
 }
 
 // NewInvitationInput instantiates a new InvitationInput object
@@ -103,12 +103,12 @@ func (o *InvitationInput) GetRoles() []string {
 		var ret []string
 		return ret
 	}
-	return *o.Roles
+	return o.Roles
 }
 
 // GetRolesOk returns a tuple with the Roles field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InvitationInput) GetRolesOk() (*[]string, bool) {
+func (o *InvitationInput) GetRolesOk() ([]string, bool) {
 	if o == nil || o.Roles == nil {
 		return nil, false
 	}
@@ -126,7 +126,7 @@ func (o *InvitationInput) HasRoles() bool {
 
 // SetRoles gets a reference to the given []string and assigns it to the Roles field.
 func (o *InvitationInput) SetRoles(v []string) {
-	o.Roles = &v
+	o.Roles = v
 }
 
 // GetProjectsIds returns the ProjectsIds field value if set, zero value otherwise.
@@ -135,12 +135,12 @@ func (o *InvitationInput) GetProjectsIds() []string {
 		var ret []string
 		return ret
 	}
-	return *o.ProjectsIds
+	return o.ProjectsIds
 }
 
 // GetProjectsIdsOk returns a tuple with the ProjectsIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InvitationInput) GetProjectsIdsOk() (*[]string, bool) {
+func (o *InvitationInput) GetProjectsIdsOk() ([]string, bool) {
 	if o == nil || o.ProjectsIds == nil {
 		return nil, false
 	}
@@ -158,7 +158,7 @@ func (o *InvitationInput) HasProjectsIds() bool {
 
 // SetProjectsIds gets a reference to the given []string and assigns it to the ProjectsIds field.
 func (o *InvitationInput) SetProjectsIds(v []string) {
-	o.ProjectsIds = &v
+	o.ProjectsIds = v
 }
 
 func (o InvitationInput) MarshalJSON() ([]byte, error) {

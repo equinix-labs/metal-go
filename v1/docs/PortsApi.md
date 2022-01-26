@@ -42,12 +42,12 @@ import (
 )
 
 func main() {
-    id := TODO // string | Port UUID
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Port UUID
     vnid := "vnid_example" // string | Virtual Network ID. May be the UUID of the Virtual Network record, or the VLAN value itself (ex: '1001').
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.PortsApi.AssignNativeVlan(context.Background(), id).Vnid(vnid).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.PortsApi.AssignNativeVlan(context.Background(), id).Vnid(vnid).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PortsApi.AssignNativeVlan``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -63,7 +63,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | [**string**](.md) | Port UUID | 
+**id** | **string** | Port UUID | 
 
 ### Other Parameters
 
@@ -114,12 +114,12 @@ import (
 )
 
 func main() {
-    id := TODO // string | Port UUID
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Port UUID
     vnid := *openapiclient.NewPortAssignInput() // PortAssignInput | Virtual Network ID. May be the UUID of the Virtual Network record, or the VLAN value itself (ex: '1001').
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.PortsApi.AssignPort(context.Background(), id).Vnid(vnid).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.PortsApi.AssignPort(context.Background(), id).Vnid(vnid).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PortsApi.AssignPort``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -135,7 +135,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | [**string**](.md) | Port UUID | 
+**id** | **string** | Port UUID | 
 
 ### Other Parameters
 
@@ -186,12 +186,12 @@ import (
 )
 
 func main() {
-    id := TODO // string | Port UUID
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Port UUID
     bulkEnable := true // bool | enable both ports (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.PortsApi.BondPort(context.Background(), id).BulkEnable(bulkEnable).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.PortsApi.BondPort(context.Background(), id).BulkEnable(bulkEnable).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PortsApi.BondPort``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -207,7 +207,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | [**string**](.md) | Port UUID | 
+**id** | **string** | Port UUID | 
 
 ### Other Parameters
 
@@ -258,12 +258,12 @@ import (
 )
 
 func main() {
-    id := TODO // string | Port UUID
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Port UUID
     vnid := *openapiclient.NewPortAssignInput() // PortAssignInput | Virtual Network ID (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.PortsApi.ConvertLayer2(context.Background(), id).Vnid(vnid).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.PortsApi.ConvertLayer2(context.Background(), id).Vnid(vnid).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PortsApi.ConvertLayer2``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -279,7 +279,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | [**string**](.md) | Port UUID | 
+**id** | **string** | Port UUID | 
 
 ### Other Parameters
 
@@ -330,12 +330,12 @@ import (
 )
 
 func main() {
-    id := TODO // string | Port UUID
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Port UUID
     requestIps := *openapiclient.NewPortConvertLayer3Input() // PortConvertLayer3Input | IPs to request (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.PortsApi.ConvertLayer3(context.Background(), id).RequestIps(requestIps).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.PortsApi.ConvertLayer3(context.Background(), id).RequestIps(requestIps).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PortsApi.ConvertLayer3``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -351,7 +351,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | [**string**](.md) | Port UUID | 
+**id** | **string** | Port UUID | 
 
 ### Other Parameters
 
@@ -402,12 +402,12 @@ import (
 )
 
 func main() {
-    id := TODO // string | Port UUID
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Port UUID
     vlanAssignments := *openapiclient.NewPortVlanAssignmentBatchCreateInput() // PortVlanAssignmentBatchCreateInput | VLAN Assignment batch details
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.PortsApi.CreatePortVlanAssignmentBatch(context.Background(), id).VlanAssignments(vlanAssignments).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.PortsApi.CreatePortVlanAssignmentBatch(context.Background(), id).VlanAssignments(vlanAssignments).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PortsApi.CreatePortVlanAssignmentBatch``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -423,7 +423,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | [**string**](.md) | Port UUID | 
+**id** | **string** | Port UUID | 
 
 ### Other Parameters
 
@@ -474,11 +474,11 @@ import (
 )
 
 func main() {
-    id := TODO // string | Port UUID
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Port UUID
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.PortsApi.DeleteNativeVlan(context.Background(), id).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.PortsApi.DeleteNativeVlan(context.Background(), id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PortsApi.DeleteNativeVlan``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -494,7 +494,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | [**string**](.md) | Port UUID | 
+**id** | **string** | Port UUID | 
 
 ### Other Parameters
 
@@ -544,12 +544,12 @@ import (
 )
 
 func main() {
-    id := TODO // string | Port UUID
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Port UUID
     bulkDisable := true // bool | disable both ports (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.PortsApi.DisbondPort(context.Background(), id).BulkDisable(bulkDisable).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.PortsApi.DisbondPort(context.Background(), id).BulkDisable(bulkDisable).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PortsApi.DisbondPort``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -565,7 +565,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | [**string**](.md) | Port UUID | 
+**id** | **string** | Port UUID | 
 
 ### Other Parameters
 
@@ -616,13 +616,13 @@ import (
 )
 
 func main() {
-    id := TODO // string | Port UUID
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Port UUID
     include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
     exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.PortsApi.FindPortById(context.Background(), id).Include(include).Exclude(exclude).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.PortsApi.FindPortById(context.Background(), id).Include(include).Exclude(exclude).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PortsApi.FindPortById``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -638,7 +638,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | [**string**](.md) | Port UUID | 
+**id** | **string** | Port UUID | 
 
 ### Other Parameters
 
@@ -690,12 +690,12 @@ import (
 )
 
 func main() {
-    id := TODO // string | Port UUID
-    batchId := TODO // string | Batch ID
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Port UUID
+    batchId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Batch ID
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.PortsApi.FindPortVlanAssignmentBatchByPortIdAndBatchId(context.Background(), id, batchId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.PortsApi.FindPortVlanAssignmentBatchByPortIdAndBatchId(context.Background(), id, batchId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PortsApi.FindPortVlanAssignmentBatchByPortIdAndBatchId``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -711,8 +711,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | [**string**](.md) | Port UUID | 
-**batchId** | [**string**](.md) | Batch ID | 
+**id** | **string** | Port UUID | 
+**batchId** | **string** | Batch ID | 
 
 ### Other Parameters
 
@@ -763,11 +763,11 @@ import (
 )
 
 func main() {
-    id := TODO // string | Port UUID
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Port UUID
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.PortsApi.FindPortVlanAssignmentBatches(context.Background(), id).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.PortsApi.FindPortVlanAssignmentBatches(context.Background(), id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PortsApi.FindPortVlanAssignmentBatches``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -783,7 +783,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | [**string**](.md) | Port UUID | 
+**id** | **string** | Port UUID | 
 
 ### Other Parameters
 
@@ -833,14 +833,14 @@ import (
 )
 
 func main() {
-    id := TODO // string | Port UUID
-    assignmentId := TODO // string | Assignment ID
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Port UUID
+    assignmentId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Assignment ID
     include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional) (default to ["port","virtual_network"])
     exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.PortsApi.FindPortVlanAssignmentByPortIdAndAssignmentId(context.Background(), id, assignmentId).Include(include).Exclude(exclude).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.PortsApi.FindPortVlanAssignmentByPortIdAndAssignmentId(context.Background(), id, assignmentId).Include(include).Exclude(exclude).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PortsApi.FindPortVlanAssignmentByPortIdAndAssignmentId``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -856,8 +856,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | [**string**](.md) | Port UUID | 
-**assignmentId** | [**string**](.md) | Assignment ID | 
+**id** | **string** | Port UUID | 
+**assignmentId** | **string** | Assignment ID | 
 
 ### Other Parameters
 
@@ -910,13 +910,13 @@ import (
 )
 
 func main() {
-    id := TODO // string | Port UUID
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Port UUID
     include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional) (default to ["port","virtual_network"])
     exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.PortsApi.FindPortVlanAssignments(context.Background(), id).Include(include).Exclude(exclude).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.PortsApi.FindPortVlanAssignments(context.Background(), id).Include(include).Exclude(exclude).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PortsApi.FindPortVlanAssignments``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -932,7 +932,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | [**string**](.md) | Port UUID | 
+**id** | **string** | Port UUID | 
 
 ### Other Parameters
 
@@ -984,12 +984,12 @@ import (
 )
 
 func main() {
-    id := TODO // string | Port UUID
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Port UUID
     vnid := *openapiclient.NewPortAssignInput() // PortAssignInput | Virtual Network ID. May be the UUID of the Virtual Network record, or the VLAN value itself (ex: '1001').
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.PortsApi.UnassignPort(context.Background(), id).Vnid(vnid).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.PortsApi.UnassignPort(context.Background(), id).Vnid(vnid).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PortsApi.UnassignPort``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1005,7 +1005,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | [**string**](.md) | Port UUID | 
+**id** | **string** | Port UUID | 
 
 ### Other Parameters
 

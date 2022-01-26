@@ -17,7 +17,7 @@ import (
 
 // ProjectList struct for ProjectList
 type ProjectList struct {
-	Projects *[]Project `json:"projects,omitempty"`
+	Projects []Project `json:"projects,omitempty"`
 	Meta *Meta `json:"meta,omitempty"`
 }
 
@@ -44,12 +44,12 @@ func (o *ProjectList) GetProjects() []Project {
 		var ret []Project
 		return ret
 	}
-	return *o.Projects
+	return o.Projects
 }
 
 // GetProjectsOk returns a tuple with the Projects field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectList) GetProjectsOk() (*[]Project, bool) {
+func (o *ProjectList) GetProjectsOk() ([]Project, bool) {
 	if o == nil || o.Projects == nil {
 		return nil, false
 	}
@@ -67,7 +67,7 @@ func (o *ProjectList) HasProjects() bool {
 
 // SetProjects gets a reference to the given []Project and assigns it to the Projects field.
 func (o *ProjectList) SetProjects(v []Project) {
-	o.Projects = &v
+	o.Projects = v
 }
 
 // GetMeta returns the Meta field value if set, zero value otherwise.

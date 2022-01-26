@@ -13,22 +13,22 @@ package v1
 
 import (
 	"bytes"
-	_context "context"
-	_ioutil "io/ioutil"
-	_nethttp "net/http"
-	_neturl "net/url"
+	"context"
+	"io/ioutil"
+	"net/http"
+	"net/url"
 )
 
 // Linger please
 var (
-	_ _context.Context
+	_ context.Context
 )
 
 // PasswordResetTokensApiService PasswordResetTokensApi service
 type PasswordResetTokensApiService service
 
 type ApiCreatePasswordResetTokenRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *PasswordResetTokensApiService
 	email *string
 }
@@ -39,7 +39,7 @@ func (r ApiCreatePasswordResetTokenRequest) Email(email string) ApiCreatePasswor
 	return r
 }
 
-func (r ApiCreatePasswordResetTokenRequest) Execute() (*_nethttp.Response, error) {
+func (r ApiCreatePasswordResetTokenRequest) Execute() (*http.Response, error) {
 	return r.ApiService.CreatePasswordResetTokenExecute(r)
 }
 
@@ -48,10 +48,10 @@ CreatePasswordResetToken Create a password reset token
 
 Creates a password reset token
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiCreatePasswordResetTokenRequest
 */
-func (a *PasswordResetTokensApiService) CreatePasswordResetToken(ctx _context.Context) ApiCreatePasswordResetTokenRequest {
+func (a *PasswordResetTokensApiService) CreatePasswordResetToken(ctx context.Context) ApiCreatePasswordResetTokenRequest {
 	return ApiCreatePasswordResetTokenRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -59,25 +59,23 @@ func (a *PasswordResetTokensApiService) CreatePasswordResetToken(ctx _context.Co
 }
 
 // Execute executes the request
-func (a *PasswordResetTokensApiService) CreatePasswordResetTokenExecute(r ApiCreatePasswordResetTokenRequest) (*_nethttp.Response, error) {
+func (a *PasswordResetTokensApiService) CreatePasswordResetTokenExecute(r ApiCreatePasswordResetTokenRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PasswordResetTokensApiService.CreatePasswordResetToken")
 	if err != nil {
-		return nil, GenericOpenAPIError{error: err.Error()}
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/reset-password"
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.email == nil {
 		return nil, reportError("email is required and must be specified")
 	}
@@ -114,7 +112,7 @@ func (a *PasswordResetTokensApiService) CreatePasswordResetTokenExecute(r ApiCre
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
 	}
@@ -124,15 +122,15 @@ func (a *PasswordResetTokensApiService) CreatePasswordResetTokenExecute(r ApiCre
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -162,12 +160,12 @@ func (a *PasswordResetTokensApiService) CreatePasswordResetTokenExecute(r ApiCre
 }
 
 type ApiResetPasswordRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *PasswordResetTokensApiService
 }
 
 
-func (r ApiResetPasswordRequest) Execute() (NewPassword, *_nethttp.Response, error) {
+func (r ApiResetPasswordRequest) Execute() (*NewPassword, *http.Response, error) {
 	return r.ApiService.ResetPasswordExecute(r)
 }
 
@@ -176,10 +174,10 @@ ResetPassword Reset current user password
 
 Resets current user password.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiResetPasswordRequest
 */
-func (a *PasswordResetTokensApiService) ResetPassword(ctx _context.Context) ApiResetPasswordRequest {
+func (a *PasswordResetTokensApiService) ResetPassword(ctx context.Context) ApiResetPasswordRequest {
 	return ApiResetPasswordRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -188,26 +186,24 @@ func (a *PasswordResetTokensApiService) ResetPassword(ctx _context.Context) ApiR
 
 // Execute executes the request
 //  @return NewPassword
-func (a *PasswordResetTokensApiService) ResetPasswordExecute(r ApiResetPasswordRequest) (NewPassword, *_nethttp.Response, error) {
+func (a *PasswordResetTokensApiService) ResetPasswordExecute(r ApiResetPasswordRequest) (*NewPassword, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
+		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  NewPassword
+		formFiles            []formFile
+		localVarReturnValue  *NewPassword
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PasswordResetTokensApiService.ResetPassword")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/reset-password"
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -240,7 +236,7 @@ func (a *PasswordResetTokensApiService) ResetPasswordExecute(r ApiResetPasswordR
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -250,15 +246,15 @@ func (a *PasswordResetTokensApiService) ResetPasswordExecute(r ApiResetPasswordR
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -286,7 +282,7 @@ func (a *PasswordResetTokensApiService) ResetPasswordExecute(r ApiResetPasswordR
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}

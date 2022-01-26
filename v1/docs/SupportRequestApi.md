@@ -32,8 +32,8 @@ func main() {
     supportRequest := *openapiclient.NewSupportRequestInput("Subject_example", "Message_example") // SupportRequestInput | Support Request to create
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.SupportRequestApi.RequestSuppert(context.Background()).SupportRequest(supportRequest).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.SupportRequestApi.RequestSuppert(context.Background()).SupportRequest(supportRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SupportRequestApi.RequestSuppert``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

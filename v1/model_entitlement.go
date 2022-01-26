@@ -22,13 +22,13 @@ type Entitlement struct {
 	Slug string `json:"slug"`
 	Name *string `json:"name,omitempty"`
 	Weight int32 `json:"weight"`
-	InstanceQuota *map[string]interface{} `json:"instance_quota,omitempty"`
+	InstanceQuota map[string]interface{} `json:"instance_quota,omitempty"`
 	ProjectQuota *int32 `json:"project_quota,omitempty"`
-	VolumeQuota *map[string]interface{} `json:"volume_quota,omitempty"`
-	IpQuota *map[string]interface{} `json:"ip_quota,omitempty"`
-	FeatureAccess *map[string]interface{} `json:"feature_access,omitempty"`
+	VolumeQuota map[string]interface{} `json:"volume_quota,omitempty"`
+	IpQuota map[string]interface{} `json:"ip_quota,omitempty"`
+	FeatureAccess map[string]interface{} `json:"feature_access,omitempty"`
 	Href *string `json:"href,omitempty"`
-	VolumeLimits *map[string]interface{} `json:"volume_limits,omitempty"`
+	VolumeLimits map[string]interface{} `json:"volume_limits,omitempty"`
 }
 
 // NewEntitlement instantiates a new Entitlement object
@@ -193,12 +193,12 @@ func (o *Entitlement) GetInstanceQuota() map[string]interface{} {
 		var ret map[string]interface{}
 		return ret
 	}
-	return *o.InstanceQuota
+	return o.InstanceQuota
 }
 
 // GetInstanceQuotaOk returns a tuple with the InstanceQuota field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Entitlement) GetInstanceQuotaOk() (*map[string]interface{}, bool) {
+func (o *Entitlement) GetInstanceQuotaOk() (map[string]interface{}, bool) {
 	if o == nil || o.InstanceQuota == nil {
 		return nil, false
 	}
@@ -216,7 +216,7 @@ func (o *Entitlement) HasInstanceQuota() bool {
 
 // SetInstanceQuota gets a reference to the given map[string]interface{} and assigns it to the InstanceQuota field.
 func (o *Entitlement) SetInstanceQuota(v map[string]interface{}) {
-	o.InstanceQuota = &v
+	o.InstanceQuota = v
 }
 
 // GetProjectQuota returns the ProjectQuota field value if set, zero value otherwise.
@@ -257,12 +257,12 @@ func (o *Entitlement) GetVolumeQuota() map[string]interface{} {
 		var ret map[string]interface{}
 		return ret
 	}
-	return *o.VolumeQuota
+	return o.VolumeQuota
 }
 
 // GetVolumeQuotaOk returns a tuple with the VolumeQuota field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Entitlement) GetVolumeQuotaOk() (*map[string]interface{}, bool) {
+func (o *Entitlement) GetVolumeQuotaOk() (map[string]interface{}, bool) {
 	if o == nil || o.VolumeQuota == nil {
 		return nil, false
 	}
@@ -280,7 +280,7 @@ func (o *Entitlement) HasVolumeQuota() bool {
 
 // SetVolumeQuota gets a reference to the given map[string]interface{} and assigns it to the VolumeQuota field.
 func (o *Entitlement) SetVolumeQuota(v map[string]interface{}) {
-	o.VolumeQuota = &v
+	o.VolumeQuota = v
 }
 
 // GetIpQuota returns the IpQuota field value if set, zero value otherwise.
@@ -289,12 +289,12 @@ func (o *Entitlement) GetIpQuota() map[string]interface{} {
 		var ret map[string]interface{}
 		return ret
 	}
-	return *o.IpQuota
+	return o.IpQuota
 }
 
 // GetIpQuotaOk returns a tuple with the IpQuota field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Entitlement) GetIpQuotaOk() (*map[string]interface{}, bool) {
+func (o *Entitlement) GetIpQuotaOk() (map[string]interface{}, bool) {
 	if o == nil || o.IpQuota == nil {
 		return nil, false
 	}
@@ -312,7 +312,7 @@ func (o *Entitlement) HasIpQuota() bool {
 
 // SetIpQuota gets a reference to the given map[string]interface{} and assigns it to the IpQuota field.
 func (o *Entitlement) SetIpQuota(v map[string]interface{}) {
-	o.IpQuota = &v
+	o.IpQuota = v
 }
 
 // GetFeatureAccess returns the FeatureAccess field value if set, zero value otherwise.
@@ -321,12 +321,12 @@ func (o *Entitlement) GetFeatureAccess() map[string]interface{} {
 		var ret map[string]interface{}
 		return ret
 	}
-	return *o.FeatureAccess
+	return o.FeatureAccess
 }
 
 // GetFeatureAccessOk returns a tuple with the FeatureAccess field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Entitlement) GetFeatureAccessOk() (*map[string]interface{}, bool) {
+func (o *Entitlement) GetFeatureAccessOk() (map[string]interface{}, bool) {
 	if o == nil || o.FeatureAccess == nil {
 		return nil, false
 	}
@@ -344,7 +344,7 @@ func (o *Entitlement) HasFeatureAccess() bool {
 
 // SetFeatureAccess gets a reference to the given map[string]interface{} and assigns it to the FeatureAccess field.
 func (o *Entitlement) SetFeatureAccess(v map[string]interface{}) {
-	o.FeatureAccess = &v
+	o.FeatureAccess = v
 }
 
 // GetHref returns the Href field value if set, zero value otherwise.
@@ -385,12 +385,12 @@ func (o *Entitlement) GetVolumeLimits() map[string]interface{} {
 		var ret map[string]interface{}
 		return ret
 	}
-	return *o.VolumeLimits
+	return o.VolumeLimits
 }
 
 // GetVolumeLimitsOk returns a tuple with the VolumeLimits field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Entitlement) GetVolumeLimitsOk() (*map[string]interface{}, bool) {
+func (o *Entitlement) GetVolumeLimitsOk() (map[string]interface{}, bool) {
 	if o == nil || o.VolumeLimits == nil {
 		return nil, false
 	}
@@ -408,7 +408,7 @@ func (o *Entitlement) HasVolumeLimits() bool {
 
 // SetVolumeLimits gets a reference to the given map[string]interface{} and assigns it to the VolumeLimits field.
 func (o *Entitlement) SetVolumeLimits(v map[string]interface{}) {
-	o.VolumeLimits = &v
+	o.VolumeLimits = v
 }
 
 func (o Entitlement) MarshalJSON() ([]byte, error) {

@@ -29,12 +29,12 @@ type UserCreateInput struct {
 	CompanyName *string `json:"company_name,omitempty"`
 	CompanyUrl *string `json:"company_url,omitempty"`
 	VerifiedAt *time.Time `json:"verified_at,omitempty"`
-	SocialAccounts *map[string]interface{} `json:"social_accounts,omitempty"`
+	SocialAccounts map[string]interface{} `json:"social_accounts,omitempty"`
 	TwoFactorAuth *string `json:"two_factor_auth,omitempty"`
 	Avatar **os.File `json:"avatar,omitempty"`
 	Emails []EmailInput `json:"emails"`
 	Locked *bool `json:"locked,omitempty"`
-	Customdata *map[string]interface{} `json:"customdata,omitempty"`
+	Customdata map[string]interface{} `json:"customdata,omitempty"`
 }
 
 // NewUserCreateInput instantiates a new UserCreateInput object
@@ -367,12 +367,12 @@ func (o *UserCreateInput) GetSocialAccounts() map[string]interface{} {
 		var ret map[string]interface{}
 		return ret
 	}
-	return *o.SocialAccounts
+	return o.SocialAccounts
 }
 
 // GetSocialAccountsOk returns a tuple with the SocialAccounts field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UserCreateInput) GetSocialAccountsOk() (*map[string]interface{}, bool) {
+func (o *UserCreateInput) GetSocialAccountsOk() (map[string]interface{}, bool) {
 	if o == nil || o.SocialAccounts == nil {
 		return nil, false
 	}
@@ -390,7 +390,7 @@ func (o *UserCreateInput) HasSocialAccounts() bool {
 
 // SetSocialAccounts gets a reference to the given map[string]interface{} and assigns it to the SocialAccounts field.
 func (o *UserCreateInput) SetSocialAccounts(v map[string]interface{}) {
-	o.SocialAccounts = &v
+	o.SocialAccounts = v
 }
 
 // GetTwoFactorAuth returns the TwoFactorAuth field value if set, zero value otherwise.
@@ -469,11 +469,11 @@ func (o *UserCreateInput) GetEmails() []EmailInput {
 
 // GetEmailsOk returns a tuple with the Emails field value
 // and a boolean to check if the value has been set.
-func (o *UserCreateInput) GetEmailsOk() (*[]EmailInput, bool) {
+func (o *UserCreateInput) GetEmailsOk() ([]EmailInput, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.Emails, true
+	return o.Emails, true
 }
 
 // SetEmails sets field value
@@ -519,12 +519,12 @@ func (o *UserCreateInput) GetCustomdata() map[string]interface{} {
 		var ret map[string]interface{}
 		return ret
 	}
-	return *o.Customdata
+	return o.Customdata
 }
 
 // GetCustomdataOk returns a tuple with the Customdata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UserCreateInput) GetCustomdataOk() (*map[string]interface{}, bool) {
+func (o *UserCreateInput) GetCustomdataOk() (map[string]interface{}, bool) {
 	if o == nil || o.Customdata == nil {
 		return nil, false
 	}
@@ -542,7 +542,7 @@ func (o *UserCreateInput) HasCustomdata() bool {
 
 // SetCustomdata gets a reference to the given map[string]interface{} and assigns it to the Customdata field.
 func (o *UserCreateInput) SetCustomdata(v map[string]interface{}) {
-	o.Customdata = &v
+	o.Customdata = v
 }
 
 func (o UserCreateInput) MarshalJSON() ([]byte, error) {

@@ -29,11 +29,11 @@ import (
 )
 
 func main() {
-    id := TODO // string | Project UUID
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Project UUID
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.GlobalBgpRangesApi.FindGlobalBgpRanges(context.Background(), id).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.GlobalBgpRangesApi.FindGlobalBgpRanges(context.Background(), id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `GlobalBgpRangesApi.FindGlobalBgpRanges``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -49,7 +49,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | [**string**](.md) | Project UUID | 
+**id** | **string** | Project UUID | 
 
 ### Other Parameters
 

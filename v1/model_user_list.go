@@ -17,7 +17,7 @@ import (
 
 // UserList struct for UserList
 type UserList struct {
-	Users *[]User `json:"users,omitempty"`
+	Users []User `json:"users,omitempty"`
 	Meta *Meta `json:"meta,omitempty"`
 }
 
@@ -44,12 +44,12 @@ func (o *UserList) GetUsers() []User {
 		var ret []User
 		return ret
 	}
-	return *o.Users
+	return o.Users
 }
 
 // GetUsersOk returns a tuple with the Users field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UserList) GetUsersOk() (*[]User, bool) {
+func (o *UserList) GetUsersOk() ([]User, bool) {
 	if o == nil || o.Users == nil {
 		return nil, false
 	}
@@ -67,7 +67,7 @@ func (o *UserList) HasUsers() bool {
 
 // SetUsers gets a reference to the given []User and assigns it to the Users field.
 func (o *UserList) SetUsers(v []User) {
-	o.Users = &v
+	o.Users = v
 }
 
 // GetMeta returns the Meta field value if set, zero value otherwise.

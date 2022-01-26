@@ -17,7 +17,7 @@ import (
 
 // DeviceUsageList struct for DeviceUsageList
 type DeviceUsageList struct {
-	Usages *[]DeviceUsage `json:"usages,omitempty"`
+	Usages []DeviceUsage `json:"usages,omitempty"`
 }
 
 // NewDeviceUsageList instantiates a new DeviceUsageList object
@@ -43,12 +43,12 @@ func (o *DeviceUsageList) GetUsages() []DeviceUsage {
 		var ret []DeviceUsage
 		return ret
 	}
-	return *o.Usages
+	return o.Usages
 }
 
 // GetUsagesOk returns a tuple with the Usages field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DeviceUsageList) GetUsagesOk() (*[]DeviceUsage, bool) {
+func (o *DeviceUsageList) GetUsagesOk() ([]DeviceUsage, bool) {
 	if o == nil || o.Usages == nil {
 		return nil, false
 	}
@@ -66,7 +66,7 @@ func (o *DeviceUsageList) HasUsages() bool {
 
 // SetUsages gets a reference to the given []DeviceUsage and assigns it to the Usages field.
 func (o *DeviceUsageList) SetUsages(v []DeviceUsage) {
-	o.Usages = &v
+	o.Usages = v
 }
 
 func (o DeviceUsageList) MarshalJSON() ([]byte, error) {

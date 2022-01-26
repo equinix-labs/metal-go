@@ -13,28 +13,28 @@ package v1
 
 import (
 	"bytes"
-	_context "context"
-	_ioutil "io/ioutil"
-	_nethttp "net/http"
-	_neturl "net/url"
+	"context"
+	"io/ioutil"
+	"net/http"
+	"net/url"
 	"strings"
 )
 
 // Linger please
 var (
-	_ _context.Context
+	_ context.Context
 )
 
 // MetrosApiService MetrosApi service
 type MetrosApiService service
 
 type ApiFindMetrosRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *MetrosApiService
 }
 
 
-func (r ApiFindMetrosRequest) Execute() (MetroList, *_nethttp.Response, error) {
+func (r ApiFindMetrosRequest) Execute() (*MetroList, *http.Response, error) {
 	return r.ApiService.FindMetrosExecute(r)
 }
 
@@ -43,10 +43,10 @@ FindMetros Retrieve all metros
 
 Provides a listing of available metros
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiFindMetrosRequest
 */
-func (a *MetrosApiService) FindMetros(ctx _context.Context) ApiFindMetrosRequest {
+func (a *MetrosApiService) FindMetros(ctx context.Context) ApiFindMetrosRequest {
 	return ApiFindMetrosRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -55,26 +55,24 @@ func (a *MetrosApiService) FindMetros(ctx _context.Context) ApiFindMetrosRequest
 
 // Execute executes the request
 //  @return MetroList
-func (a *MetrosApiService) FindMetrosExecute(r ApiFindMetrosRequest) (MetroList, *_nethttp.Response, error) {
+func (a *MetrosApiService) FindMetrosExecute(r ApiFindMetrosRequest) (*MetroList, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  MetroList
+		formFiles            []formFile
+		localVarReturnValue  *MetroList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetrosApiService.FindMetros")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/locations/metros"
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -107,7 +105,7 @@ func (a *MetrosApiService) FindMetrosExecute(r ApiFindMetrosRequest) (MetroList,
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -117,15 +115,15 @@ func (a *MetrosApiService) FindMetrosExecute(r ApiFindMetrosRequest) (MetroList,
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -143,7 +141,7 @@ func (a *MetrosApiService) FindMetrosExecute(r ApiFindMetrosRequest) (MetroList,
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -154,13 +152,13 @@ func (a *MetrosApiService) FindMetrosExecute(r ApiFindMetrosRequest) (MetroList,
 }
 
 type ApiGetMetroRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *MetrosApiService
 	id string
 }
 
 
-func (r ApiGetMetroRequest) Execute() (Metro, *_nethttp.Response, error) {
+func (r ApiGetMetroRequest) Execute() (*Metro, *http.Response, error) {
 	return r.ApiService.GetMetroExecute(r)
 }
 
@@ -169,11 +167,11 @@ GetMetro Retrieve a specific Metro's details
 
 Show the details for a metro, including name, code, and country.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Metro UUID
  @return ApiGetMetroRequest
 */
-func (a *MetrosApiService) GetMetro(ctx _context.Context, id string) ApiGetMetroRequest {
+func (a *MetrosApiService) GetMetro(ctx context.Context, id string) ApiGetMetroRequest {
 	return ApiGetMetroRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -183,27 +181,25 @@ func (a *MetrosApiService) GetMetro(ctx _context.Context, id string) ApiGetMetro
 
 // Execute executes the request
 //  @return Metro
-func (a *MetrosApiService) GetMetroExecute(r ApiGetMetroRequest) (Metro, *_nethttp.Response, error) {
+func (a *MetrosApiService) GetMetroExecute(r ApiGetMetroRequest) (*Metro, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  Metro
+		formFiles            []formFile
+		localVarReturnValue  *Metro
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetrosApiService.GetMetro")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/locations/metros/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -236,7 +232,7 @@ func (a *MetrosApiService) GetMetroExecute(r ApiGetMetroRequest) (Metro, *_netht
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -246,15 +242,15 @@ func (a *MetrosApiService) GetMetroExecute(r ApiGetMetroRequest) (Metro, *_netht
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -272,7 +268,7 @@ func (a *MetrosApiService) GetMetroExecute(r ApiGetMetroRequest) (Metro, *_netht
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}

@@ -41,7 +41,6 @@ api_user_verification_tokens.go
 api_userdata.go
 api_users.go
 api_vlans.go
-api_volumes.go
 client.go
 configuration.go
 docs/Address.md
@@ -151,6 +150,7 @@ docs/MetroServerInfo.md
 docs/MetrosApi.md
 docs/NewPassword.md
 docs/OperatingSystem.md
+docs/OperatingSystemList.md
 docs/OperatingSystemVersionsApi.md
 docs/OperatingSystemsApi.md
 docs/Organization.md
@@ -201,8 +201,6 @@ docs/SelfServiceReservationList.md
 docs/SelfServiceReservationResponse.md
 docs/SelfServiceReservationsApi.md
 docs/ServerInfo.md
-docs/SnapshotPolicy.md
-docs/SnapshotPolicyInput.md
 docs/SpotMarketPricesList.md
 docs/SpotMarketPricesPerMetroList.md
 docs/SpotMarketPricesPerMetroReport.md
@@ -229,6 +227,7 @@ docs/UpdateEmailInput.md
 docs/User.md
 docs/UserCreateInput.md
 docs/UserList.md
+docs/UserLite.md
 docs/UserUpdateInput.md
 docs/UserVerificationTokensApi.md
 docs/UserdataApi.md
@@ -241,16 +240,6 @@ docs/VirtualCircuitUpdateInput.md
 docs/VirtualNetwork.md
 docs/VirtualNetworkCreateInput.md
 docs/VirtualNetworkList.md
-docs/Volume.md
-docs/VolumeAttachment.md
-docs/VolumeAttachmentInput.md
-docs/VolumeAttachmentList.md
-docs/VolumeCreateInput.md
-docs/VolumeList.md
-docs/VolumeSnapshot.md
-docs/VolumeSnapshotList.md
-docs/VolumeUpdateInput.md
-docs/VolumesApi.md
 git_push.sh
 go.mod
 go.sum
@@ -342,6 +331,7 @@ model_metro_list.go
 model_metro_server_info.go
 model_new_password.go
 model_operating_system.go
+model_operating_system_list.go
 model_organization.go
 model_organization_input.go
 model_organization_list.go
@@ -377,8 +367,6 @@ model_self_service_reservation_item_response.go
 model_self_service_reservation_list.go
 model_self_service_reservation_response.go
 model_server_info.go
-model_snapshot_policy.go
-model_snapshot_policy_input.go
 model_spot_market_prices_list.go
 model_spot_market_prices_per_metro_list.go
 model_spot_market_prices_per_metro_report.go
@@ -405,6 +393,7 @@ model_update_email_input.go
 model_user.go
 model_user_create_input.go
 model_user_list.go
+model_user_lite.go
 model_user_update_input.go
 model_virtual_circuit.go
 model_virtual_circuit_create_input.go
@@ -413,14 +402,5 @@ model_virtual_circuit_update_input.go
 model_virtual_network.go
 model_virtual_network_create_input.go
 model_virtual_network_list.go
-model_volume.go
-model_volume_attachment.go
-model_volume_attachment_input.go
-model_volume_attachment_list.go
-model_volume_create_input.go
-model_volume_list.go
-model_volume_snapshot.go
-model_volume_snapshot_list.go
-model_volume_update_input.go
 response.go
 utils.go

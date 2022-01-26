@@ -19,12 +19,12 @@ import (
 // Batch struct for Batch
 type Batch struct {
 	Id *string `json:"id,omitempty"`
-	ErrorMessages *[]string `json:"error_messages,omitempty"`
+	ErrorMessages []string `json:"error_messages,omitempty"`
 	Quantity *int32 `json:"quantity,omitempty"`
 	State *string `json:"state,omitempty"`
 	CreatedAt *time.Time `json:"created_at,omitempty"`
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
-	Devices *[]Href `json:"devices,omitempty"`
+	Devices []Href `json:"devices,omitempty"`
 	Project *Href `json:"project,omitempty"`
 }
 
@@ -83,12 +83,12 @@ func (o *Batch) GetErrorMessages() []string {
 		var ret []string
 		return ret
 	}
-	return *o.ErrorMessages
+	return o.ErrorMessages
 }
 
 // GetErrorMessagesOk returns a tuple with the ErrorMessages field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Batch) GetErrorMessagesOk() (*[]string, bool) {
+func (o *Batch) GetErrorMessagesOk() ([]string, bool) {
 	if o == nil || o.ErrorMessages == nil {
 		return nil, false
 	}
@@ -106,7 +106,7 @@ func (o *Batch) HasErrorMessages() bool {
 
 // SetErrorMessages gets a reference to the given []string and assigns it to the ErrorMessages field.
 func (o *Batch) SetErrorMessages(v []string) {
-	o.ErrorMessages = &v
+	o.ErrorMessages = v
 }
 
 // GetQuantity returns the Quantity field value if set, zero value otherwise.
@@ -243,12 +243,12 @@ func (o *Batch) GetDevices() []Href {
 		var ret []Href
 		return ret
 	}
-	return *o.Devices
+	return o.Devices
 }
 
 // GetDevicesOk returns a tuple with the Devices field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Batch) GetDevicesOk() (*[]Href, bool) {
+func (o *Batch) GetDevicesOk() ([]Href, bool) {
 	if o == nil || o.Devices == nil {
 		return nil, false
 	}
@@ -266,7 +266,7 @@ func (o *Batch) HasDevices() bool {
 
 // SetDevices gets a reference to the given []Href and assigns it to the Devices field.
 func (o *Batch) SetDevices(v []Href) {
-	o.Devices = &v
+	o.Devices = v
 }
 
 // GetProject returns the Project field value if set, zero value otherwise.

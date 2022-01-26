@@ -17,7 +17,7 @@ import (
 
 // InterconnectionPortList struct for InterconnectionPortList
 type InterconnectionPortList struct {
-	Ports *[]InterconnectionPort `json:"ports,omitempty"`
+	Ports []InterconnectionPort `json:"ports,omitempty"`
 }
 
 // NewInterconnectionPortList instantiates a new InterconnectionPortList object
@@ -43,12 +43,12 @@ func (o *InterconnectionPortList) GetPorts() []InterconnectionPort {
 		var ret []InterconnectionPort
 		return ret
 	}
-	return *o.Ports
+	return o.Ports
 }
 
 // GetPortsOk returns a tuple with the Ports field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InterconnectionPortList) GetPortsOk() (*[]InterconnectionPort, bool) {
+func (o *InterconnectionPortList) GetPortsOk() ([]InterconnectionPort, bool) {
 	if o == nil || o.Ports == nil {
 		return nil, false
 	}
@@ -66,7 +66,7 @@ func (o *InterconnectionPortList) HasPorts() bool {
 
 // SetPorts gets a reference to the given []InterconnectionPort and assigns it to the Ports field.
 func (o *InterconnectionPortList) SetPorts(v []InterconnectionPort) {
-	o.Ports = &v
+	o.Ports = v
 }
 
 func (o InterconnectionPortList) MarshalJSON() ([]byte, error) {

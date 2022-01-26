@@ -34,10 +34,10 @@ type User struct {
 	Timezone *string `json:"timezone,omitempty"`
 	FraudScore *string `json:"fraud_score,omitempty"`
 	LastLoginAt *time.Time `json:"last_login_at,omitempty"`
-	Emails *[]Href `json:"emails,omitempty"`
+	Emails []Href `json:"emails,omitempty"`
 	Href *string `json:"href,omitempty"`
 	PhoneNumber *string `json:"phone_number,omitempty"`
-	Customdata *map[string]interface{} `json:"customdata,omitempty"`
+	Customdata map[string]interface{} `json:"customdata,omitempty"`
 }
 
 // NewUser instantiates a new User object
@@ -575,12 +575,12 @@ func (o *User) GetEmails() []Href {
 		var ret []Href
 		return ret
 	}
-	return *o.Emails
+	return o.Emails
 }
 
 // GetEmailsOk returns a tuple with the Emails field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *User) GetEmailsOk() (*[]Href, bool) {
+func (o *User) GetEmailsOk() ([]Href, bool) {
 	if o == nil || o.Emails == nil {
 		return nil, false
 	}
@@ -598,7 +598,7 @@ func (o *User) HasEmails() bool {
 
 // SetEmails gets a reference to the given []Href and assigns it to the Emails field.
 func (o *User) SetEmails(v []Href) {
-	o.Emails = &v
+	o.Emails = v
 }
 
 // GetHref returns the Href field value if set, zero value otherwise.
@@ -671,12 +671,12 @@ func (o *User) GetCustomdata() map[string]interface{} {
 		var ret map[string]interface{}
 		return ret
 	}
-	return *o.Customdata
+	return o.Customdata
 }
 
 // GetCustomdataOk returns a tuple with the Customdata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *User) GetCustomdataOk() (*map[string]interface{}, bool) {
+func (o *User) GetCustomdataOk() (map[string]interface{}, bool) {
 	if o == nil || o.Customdata == nil {
 		return nil, false
 	}
@@ -694,7 +694,7 @@ func (o *User) HasCustomdata() bool {
 
 // SetCustomdata gets a reference to the given map[string]interface{} and assigns it to the Customdata field.
 func (o *User) SetCustomdata(v map[string]interface{}) {
-	o.Customdata = &v
+	o.Customdata = v
 }
 
 func (o User) MarshalJSON() ([]byte, error) {

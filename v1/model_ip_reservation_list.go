@@ -17,7 +17,7 @@ import (
 
 // IPReservationList struct for IPReservationList
 type IPReservationList struct {
-	IpAddresses *[]IPReservation `json:"ip_addresses,omitempty"`
+	IpAddresses []IPReservation `json:"ip_addresses,omitempty"`
 }
 
 // NewIPReservationList instantiates a new IPReservationList object
@@ -43,12 +43,12 @@ func (o *IPReservationList) GetIpAddresses() []IPReservation {
 		var ret []IPReservation
 		return ret
 	}
-	return *o.IpAddresses
+	return o.IpAddresses
 }
 
 // GetIpAddressesOk returns a tuple with the IpAddresses field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IPReservationList) GetIpAddressesOk() (*[]IPReservation, bool) {
+func (o *IPReservationList) GetIpAddressesOk() ([]IPReservation, bool) {
 	if o == nil || o.IpAddresses == nil {
 		return nil, false
 	}
@@ -66,7 +66,7 @@ func (o *IPReservationList) HasIpAddresses() bool {
 
 // SetIpAddresses gets a reference to the given []IPReservation and assigns it to the IpAddresses field.
 func (o *IPReservationList) SetIpAddresses(v []IPReservation) {
-	o.IpAddresses = &v
+	o.IpAddresses = v
 }
 
 func (o IPReservationList) MarshalJSON() ([]byte, error) {

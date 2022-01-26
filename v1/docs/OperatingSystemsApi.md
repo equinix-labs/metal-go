@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 ## FindOperatingSystems
 
-> []OperatingSystem FindOperatingSystems(ctx).Execute()
+> OperatingSystemList FindOperatingSystems(ctx).Execute()
 
 Retrieve all operating systems
 
@@ -32,13 +32,13 @@ import (
 func main() {
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.OperatingSystemsApi.FindOperatingSystems(context.Background()).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.OperatingSystemsApi.FindOperatingSystems(context.Background()).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `OperatingSystemsApi.FindOperatingSystems``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindOperatingSystems`: []OperatingSystem
+    // response from `FindOperatingSystems`: OperatingSystemList
     fmt.Fprintf(os.Stdout, "Response from `OperatingSystemsApi.FindOperatingSystems`: %v\n", resp)
 }
 ```
@@ -54,7 +54,7 @@ Other parameters are passed through a pointer to a apiFindOperatingSystemsReques
 
 ### Return type
 
-[**[]OperatingSystem**](OperatingSystem.md)
+[**OperatingSystemList**](OperatingSystemList.md)
 
 ### Authorization
 
@@ -72,7 +72,7 @@ Other parameters are passed through a pointer to a apiFindOperatingSystemsReques
 
 ## FindOperatingSystemsByOrganization
 
-> []OperatingSystem FindOperatingSystemsByOrganization(ctx, id).Include(include).Exclude(exclude).Execute()
+> OperatingSystemList FindOperatingSystemsByOrganization(ctx, id).Include(include).Exclude(exclude).Execute()
 
 Retrieve all operating systems visible by the organization
 
@@ -91,18 +91,18 @@ import (
 )
 
 func main() {
-    id := TODO // string | Organization UUID
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Organization UUID
     include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
     exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.OperatingSystemsApi.FindOperatingSystemsByOrganization(context.Background(), id).Include(include).Exclude(exclude).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.OperatingSystemsApi.FindOperatingSystemsByOrganization(context.Background(), id).Include(include).Exclude(exclude).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `OperatingSystemsApi.FindOperatingSystemsByOrganization``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindOperatingSystemsByOrganization`: []OperatingSystem
+    // response from `FindOperatingSystemsByOrganization`: OperatingSystemList
     fmt.Fprintf(os.Stdout, "Response from `OperatingSystemsApi.FindOperatingSystemsByOrganization`: %v\n", resp)
 }
 ```
@@ -113,7 +113,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | [**string**](.md) | Organization UUID | 
+**id** | **string** | Organization UUID | 
 
 ### Other Parameters
 
@@ -128,7 +128,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]OperatingSystem**](OperatingSystem.md)
+[**OperatingSystemList**](OperatingSystemList.md)
 
 ### Authorization
 

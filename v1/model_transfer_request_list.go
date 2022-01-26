@@ -17,7 +17,7 @@ import (
 
 // TransferRequestList struct for TransferRequestList
 type TransferRequestList struct {
-	Transfers *[]TransferRequest `json:"transfers,omitempty"`
+	Transfers []TransferRequest `json:"transfers,omitempty"`
 }
 
 // NewTransferRequestList instantiates a new TransferRequestList object
@@ -43,12 +43,12 @@ func (o *TransferRequestList) GetTransfers() []TransferRequest {
 		var ret []TransferRequest
 		return ret
 	}
-	return *o.Transfers
+	return o.Transfers
 }
 
 // GetTransfersOk returns a tuple with the Transfers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TransferRequestList) GetTransfersOk() (*[]TransferRequest, bool) {
+func (o *TransferRequestList) GetTransfersOk() ([]TransferRequest, bool) {
 	if o == nil || o.Transfers == nil {
 		return nil, false
 	}
@@ -66,7 +66,7 @@ func (o *TransferRequestList) HasTransfers() bool {
 
 // SetTransfers gets a reference to the given []TransferRequest and assigns it to the Transfers field.
 func (o *TransferRequestList) SetTransfers(v []TransferRequest) {
-	o.Transfers = &v
+	o.Transfers = v
 }
 
 func (o TransferRequestList) MarshalJSON() ([]byte, error) {

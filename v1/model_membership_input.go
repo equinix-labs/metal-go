@@ -17,7 +17,7 @@ import (
 
 // MembershipInput struct for MembershipInput
 type MembershipInput struct {
-	Role *[]string `json:"role,omitempty"`
+	Role []string `json:"role,omitempty"`
 }
 
 // NewMembershipInput instantiates a new MembershipInput object
@@ -43,12 +43,12 @@ func (o *MembershipInput) GetRole() []string {
 		var ret []string
 		return ret
 	}
-	return *o.Role
+	return o.Role
 }
 
 // GetRoleOk returns a tuple with the Role field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MembershipInput) GetRoleOk() (*[]string, bool) {
+func (o *MembershipInput) GetRoleOk() ([]string, bool) {
 	if o == nil || o.Role == nil {
 		return nil, false
 	}
@@ -66,7 +66,7 @@ func (o *MembershipInput) HasRole() bool {
 
 // SetRole gets a reference to the given []string and assigns it to the Role field.
 func (o *MembershipInput) SetRole(v []string) {
-	o.Role = &v
+	o.Role = v
 }
 
 func (o MembershipInput) MarshalJSON() ([]byte, error) {

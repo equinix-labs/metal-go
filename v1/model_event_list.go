@@ -17,7 +17,7 @@ import (
 
 // EventList struct for EventList
 type EventList struct {
-	Events *[]Event `json:"events,omitempty"`
+	Events []Event `json:"events,omitempty"`
 	Meta *Meta `json:"meta,omitempty"`
 }
 
@@ -44,12 +44,12 @@ func (o *EventList) GetEvents() []Event {
 		var ret []Event
 		return ret
 	}
-	return *o.Events
+	return o.Events
 }
 
 // GetEventsOk returns a tuple with the Events field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *EventList) GetEventsOk() (*[]Event, bool) {
+func (o *EventList) GetEventsOk() ([]Event, bool) {
 	if o == nil || o.Events == nil {
 		return nil, false
 	}
@@ -67,7 +67,7 @@ func (o *EventList) HasEvents() bool {
 
 // SetEvents gets a reference to the given []Event and assigns it to the Events field.
 func (o *EventList) SetEvents(v []Event) {
-	o.Events = &v
+	o.Events = v
 }
 
 // GetMeta returns the Meta field value if set, zero value otherwise.

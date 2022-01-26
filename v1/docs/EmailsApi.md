@@ -35,8 +35,8 @@ func main() {
     email := *openapiclient.NewCreateEmailInput("Address_example") // CreateEmailInput | Email to create
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.EmailsApi.CreateEmail(context.Background()).Email(email).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.EmailsApi.CreateEmail(context.Background()).Email(email).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `EmailsApi.CreateEmail``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -98,11 +98,11 @@ import (
 )
 
 func main() {
-    id := TODO // string | Email UUID
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Email UUID
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.EmailsApi.DeleteEmail(context.Background(), id).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.EmailsApi.DeleteEmail(context.Background(), id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `EmailsApi.DeleteEmail``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -116,7 +116,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | [**string**](.md) | Email UUID | 
+**id** | **string** | Email UUID | 
 
 ### Other Parameters
 
@@ -166,13 +166,13 @@ import (
 )
 
 func main() {
-    id := TODO // string | Email UUID
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Email UUID
     include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
     exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.EmailsApi.FindEmailById(context.Background(), id).Include(include).Exclude(exclude).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.EmailsApi.FindEmailById(context.Background(), id).Include(include).Exclude(exclude).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `EmailsApi.FindEmailById``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -188,7 +188,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | [**string**](.md) | Email UUID | 
+**id** | **string** | Email UUID | 
 
 ### Other Parameters
 
@@ -240,12 +240,12 @@ import (
 )
 
 func main() {
-    id := TODO // string | Email UUID
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Email UUID
     email := *openapiclient.NewUpdateEmailInput() // UpdateEmailInput | email to update
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.EmailsApi.UpdateEmail(context.Background(), id).Email(email).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.EmailsApi.UpdateEmail(context.Background(), id).Email(email).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `EmailsApi.UpdateEmail``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -261,7 +261,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | [**string**](.md) | Email UUID | 
+**id** | **string** | Email UUID | 
 
 ### Other Parameters
 

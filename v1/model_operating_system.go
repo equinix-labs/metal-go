@@ -24,9 +24,9 @@ type OperatingSystem struct {
 	Version *string `json:"version,omitempty"`
 	// Servers can be already preinstalled with OS in order to shorten provision time.
 	Preinstallable *bool `json:"preinstallable,omitempty"`
-	ProvisionableOn *[]string `json:"provisionable_on,omitempty"`
+	ProvisionableOn []string `json:"provisionable_on,omitempty"`
 	// This object contains price per time unit and optional multiplier value if licence price depends on hardware plan or components (e.g. number of cores)
-	Pricing *map[string]interface{} `json:"pricing,omitempty"`
+	Pricing map[string]interface{} `json:"pricing,omitempty"`
 	// Licenced OS is priced according to pricing property
 	Licensed *bool `json:"licensed,omitempty"`
 }
@@ -246,12 +246,12 @@ func (o *OperatingSystem) GetProvisionableOn() []string {
 		var ret []string
 		return ret
 	}
-	return *o.ProvisionableOn
+	return o.ProvisionableOn
 }
 
 // GetProvisionableOnOk returns a tuple with the ProvisionableOn field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OperatingSystem) GetProvisionableOnOk() (*[]string, bool) {
+func (o *OperatingSystem) GetProvisionableOnOk() ([]string, bool) {
 	if o == nil || o.ProvisionableOn == nil {
 		return nil, false
 	}
@@ -269,7 +269,7 @@ func (o *OperatingSystem) HasProvisionableOn() bool {
 
 // SetProvisionableOn gets a reference to the given []string and assigns it to the ProvisionableOn field.
 func (o *OperatingSystem) SetProvisionableOn(v []string) {
-	o.ProvisionableOn = &v
+	o.ProvisionableOn = v
 }
 
 // GetPricing returns the Pricing field value if set, zero value otherwise.
@@ -278,12 +278,12 @@ func (o *OperatingSystem) GetPricing() map[string]interface{} {
 		var ret map[string]interface{}
 		return ret
 	}
-	return *o.Pricing
+	return o.Pricing
 }
 
 // GetPricingOk returns a tuple with the Pricing field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OperatingSystem) GetPricingOk() (*map[string]interface{}, bool) {
+func (o *OperatingSystem) GetPricingOk() (map[string]interface{}, bool) {
 	if o == nil || o.Pricing == nil {
 		return nil, false
 	}
@@ -301,7 +301,7 @@ func (o *OperatingSystem) HasPricing() bool {
 
 // SetPricing gets a reference to the given map[string]interface{} and assigns it to the Pricing field.
 func (o *OperatingSystem) SetPricing(v map[string]interface{}) {
-	o.Pricing = &v
+	o.Pricing = v
 }
 
 // GetLicensed returns the Licensed field value if set, zero value otherwise.

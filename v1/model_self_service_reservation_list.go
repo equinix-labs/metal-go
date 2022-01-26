@@ -17,7 +17,7 @@ import (
 
 // SelfServiceReservationList struct for SelfServiceReservationList
 type SelfServiceReservationList struct {
-	Reservations *[]SelfServiceReservationResponse `json:"reservations,omitempty"`
+	Reservations []SelfServiceReservationResponse `json:"reservations,omitempty"`
 }
 
 // NewSelfServiceReservationList instantiates a new SelfServiceReservationList object
@@ -43,12 +43,12 @@ func (o *SelfServiceReservationList) GetReservations() []SelfServiceReservationR
 		var ret []SelfServiceReservationResponse
 		return ret
 	}
-	return *o.Reservations
+	return o.Reservations
 }
 
 // GetReservationsOk returns a tuple with the Reservations field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SelfServiceReservationList) GetReservationsOk() (*[]SelfServiceReservationResponse, bool) {
+func (o *SelfServiceReservationList) GetReservationsOk() ([]SelfServiceReservationResponse, bool) {
 	if o == nil || o.Reservations == nil {
 		return nil, false
 	}
@@ -66,7 +66,7 @@ func (o *SelfServiceReservationList) HasReservations() bool {
 
 // SetReservations gets a reference to the given []SelfServiceReservationResponse and assigns it to the Reservations field.
 func (o *SelfServiceReservationList) SetReservations(v []SelfServiceReservationResponse) {
-	o.Reservations = &v
+	o.Reservations = v
 }
 
 func (o SelfServiceReservationList) MarshalJSON() ([]byte, error) {

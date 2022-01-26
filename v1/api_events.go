@@ -13,23 +13,23 @@ package v1
 
 import (
 	"bytes"
-	_context "context"
-	_ioutil "io/ioutil"
-	_nethttp "net/http"
-	_neturl "net/url"
+	"context"
+	"io/ioutil"
+	"net/http"
+	"net/url"
 	"strings"
 )
 
 // Linger please
 var (
-	_ _context.Context
+	_ context.Context
 )
 
 // EventsApiService EventsApi service
 type EventsApiService service
 
 type ApiFindConnectionEventsRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *EventsApiService
 	connectionId string
 	include *[]string
@@ -59,7 +59,7 @@ func (r ApiFindConnectionEventsRequest) PerPage(perPage int32) ApiFindConnection
 	return r
 }
 
-func (r ApiFindConnectionEventsRequest) Execute() (Event, *_nethttp.Response, error) {
+func (r ApiFindConnectionEventsRequest) Execute() (*Event, *http.Response, error) {
 	return r.ApiService.FindConnectionEventsExecute(r)
 }
 
@@ -68,11 +68,11 @@ FindConnectionEvents Retrieve connection events
 
 Returns a list of the connection events
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param connectionId Connection UUID
  @return ApiFindConnectionEventsRequest
 */
-func (a *EventsApiService) FindConnectionEvents(ctx _context.Context, connectionId string) ApiFindConnectionEventsRequest {
+func (a *EventsApiService) FindConnectionEvents(ctx context.Context, connectionId string) ApiFindConnectionEventsRequest {
 	return ApiFindConnectionEventsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -82,27 +82,25 @@ func (a *EventsApiService) FindConnectionEvents(ctx _context.Context, connection
 
 // Execute executes the request
 //  @return Event
-func (a *EventsApiService) FindConnectionEventsExecute(r ApiFindConnectionEventsRequest) (Event, *_nethttp.Response, error) {
+func (a *EventsApiService) FindConnectionEventsExecute(r ApiFindConnectionEventsRequest) (*Event, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  Event
+		formFiles            []formFile
+		localVarReturnValue  *Event
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EventsApiService.FindConnectionEvents")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/connections/{connection_id}/events"
-	localVarPath = strings.Replace(localVarPath, "{"+"connection_id"+"}", _neturl.PathEscape(parameterToString(r.connectionId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"connection_id"+"}", url.PathEscape(parameterToString(r.connectionId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	if r.include != nil {
 		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
@@ -147,7 +145,7 @@ func (a *EventsApiService) FindConnectionEventsExecute(r ApiFindConnectionEvents
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -157,15 +155,15 @@ func (a *EventsApiService) FindConnectionEventsExecute(r ApiFindConnectionEvents
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -203,7 +201,7 @@ func (a *EventsApiService) FindConnectionEventsExecute(r ApiFindConnectionEvents
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -214,7 +212,7 @@ func (a *EventsApiService) FindConnectionEventsExecute(r ApiFindConnectionEvents
 }
 
 type ApiFindConnectionPortEventsRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *EventsApiService
 	connectionId string
 	id string
@@ -245,7 +243,7 @@ func (r ApiFindConnectionPortEventsRequest) PerPage(perPage int32) ApiFindConnec
 	return r
 }
 
-func (r ApiFindConnectionPortEventsRequest) Execute() (Event, *_nethttp.Response, error) {
+func (r ApiFindConnectionPortEventsRequest) Execute() (*Event, *http.Response, error) {
 	return r.ApiService.FindConnectionPortEventsExecute(r)
 }
 
@@ -254,12 +252,12 @@ FindConnectionPortEvents Retrieve connection port events
 
 Returns a list of the connection port events
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param connectionId Connection UUID
  @param id Connection Port UUID
  @return ApiFindConnectionPortEventsRequest
 */
-func (a *EventsApiService) FindConnectionPortEvents(ctx _context.Context, connectionId string, id string) ApiFindConnectionPortEventsRequest {
+func (a *EventsApiService) FindConnectionPortEvents(ctx context.Context, connectionId string, id string) ApiFindConnectionPortEventsRequest {
 	return ApiFindConnectionPortEventsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -270,28 +268,26 @@ func (a *EventsApiService) FindConnectionPortEvents(ctx _context.Context, connec
 
 // Execute executes the request
 //  @return Event
-func (a *EventsApiService) FindConnectionPortEventsExecute(r ApiFindConnectionPortEventsRequest) (Event, *_nethttp.Response, error) {
+func (a *EventsApiService) FindConnectionPortEventsExecute(r ApiFindConnectionPortEventsRequest) (*Event, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  Event
+		formFiles            []formFile
+		localVarReturnValue  *Event
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EventsApiService.FindConnectionPortEvents")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/connections/{connection_id}/ports/{id}/events"
-	localVarPath = strings.Replace(localVarPath, "{"+"connection_id"+"}", _neturl.PathEscape(parameterToString(r.connectionId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"connection_id"+"}", url.PathEscape(parameterToString(r.connectionId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	if r.include != nil {
 		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
@@ -336,7 +332,7 @@ func (a *EventsApiService) FindConnectionPortEventsExecute(r ApiFindConnectionPo
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -346,15 +342,15 @@ func (a *EventsApiService) FindConnectionPortEventsExecute(r ApiFindConnectionPo
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -392,7 +388,7 @@ func (a *EventsApiService) FindConnectionPortEventsExecute(r ApiFindConnectionPo
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -403,7 +399,7 @@ func (a *EventsApiService) FindConnectionPortEventsExecute(r ApiFindConnectionPo
 }
 
 type ApiFindDeviceEventsRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *EventsApiService
 	id string
 	include *[]string
@@ -433,7 +429,7 @@ func (r ApiFindDeviceEventsRequest) PerPage(perPage int32) ApiFindDeviceEventsRe
 	return r
 }
 
-func (r ApiFindDeviceEventsRequest) Execute() (EventList, *_nethttp.Response, error) {
+func (r ApiFindDeviceEventsRequest) Execute() (*EventList, *http.Response, error) {
 	return r.ApiService.FindDeviceEventsExecute(r)
 }
 
@@ -442,11 +438,11 @@ FindDeviceEvents Retrieve device's events
 
 Returns a list of events pertaining to a specific device
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Device UUID
  @return ApiFindDeviceEventsRequest
 */
-func (a *EventsApiService) FindDeviceEvents(ctx _context.Context, id string) ApiFindDeviceEventsRequest {
+func (a *EventsApiService) FindDeviceEvents(ctx context.Context, id string) ApiFindDeviceEventsRequest {
 	return ApiFindDeviceEventsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -456,27 +452,25 @@ func (a *EventsApiService) FindDeviceEvents(ctx _context.Context, id string) Api
 
 // Execute executes the request
 //  @return EventList
-func (a *EventsApiService) FindDeviceEventsExecute(r ApiFindDeviceEventsRequest) (EventList, *_nethttp.Response, error) {
+func (a *EventsApiService) FindDeviceEventsExecute(r ApiFindDeviceEventsRequest) (*EventList, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  EventList
+		formFiles            []formFile
+		localVarReturnValue  *EventList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EventsApiService.FindDeviceEvents")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/devices/{id}/events"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	if r.include != nil {
 		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
@@ -521,7 +515,7 @@ func (a *EventsApiService) FindDeviceEventsExecute(r ApiFindDeviceEventsRequest)
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -531,15 +525,15 @@ func (a *EventsApiService) FindDeviceEventsExecute(r ApiFindDeviceEventsRequest)
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -577,7 +571,7 @@ func (a *EventsApiService) FindDeviceEventsExecute(r ApiFindDeviceEventsRequest)
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -588,7 +582,7 @@ func (a *EventsApiService) FindDeviceEventsExecute(r ApiFindDeviceEventsRequest)
 }
 
 type ApiFindEventByIdRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *EventsApiService
 	id string
 	include *[]string
@@ -606,7 +600,7 @@ func (r ApiFindEventByIdRequest) Exclude(exclude []string) ApiFindEventByIdReque
 	return r
 }
 
-func (r ApiFindEventByIdRequest) Execute() (Event, *_nethttp.Response, error) {
+func (r ApiFindEventByIdRequest) Execute() (*Event, *http.Response, error) {
 	return r.ApiService.FindEventByIdExecute(r)
 }
 
@@ -615,11 +609,11 @@ FindEventById Retrieve an event
 
 Returns a single event if the user has access
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Event UUID
  @return ApiFindEventByIdRequest
 */
-func (a *EventsApiService) FindEventById(ctx _context.Context, id string) ApiFindEventByIdRequest {
+func (a *EventsApiService) FindEventById(ctx context.Context, id string) ApiFindEventByIdRequest {
 	return ApiFindEventByIdRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -629,27 +623,25 @@ func (a *EventsApiService) FindEventById(ctx _context.Context, id string) ApiFin
 
 // Execute executes the request
 //  @return Event
-func (a *EventsApiService) FindEventByIdExecute(r ApiFindEventByIdRequest) (Event, *_nethttp.Response, error) {
+func (a *EventsApiService) FindEventByIdExecute(r ApiFindEventByIdRequest) (*Event, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  Event
+		formFiles            []formFile
+		localVarReturnValue  *Event
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EventsApiService.FindEventById")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/events/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	if r.include != nil {
 		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
@@ -688,7 +680,7 @@ func (a *EventsApiService) FindEventByIdExecute(r ApiFindEventByIdRequest) (Even
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -698,15 +690,15 @@ func (a *EventsApiService) FindEventByIdExecute(r ApiFindEventByIdRequest) (Even
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -744,7 +736,7 @@ func (a *EventsApiService) FindEventByIdExecute(r ApiFindEventByIdRequest) (Even
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -755,7 +747,7 @@ func (a *EventsApiService) FindEventByIdExecute(r ApiFindEventByIdRequest) (Even
 }
 
 type ApiFindEventsRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *EventsApiService
 	include *[]string
 	exclude *[]string
@@ -784,7 +776,7 @@ func (r ApiFindEventsRequest) PerPage(perPage int32) ApiFindEventsRequest {
 	return r
 }
 
-func (r ApiFindEventsRequest) Execute() (EventList, *_nethttp.Response, error) {
+func (r ApiFindEventsRequest) Execute() (*EventList, *http.Response, error) {
 	return r.ApiService.FindEventsExecute(r)
 }
 
@@ -793,10 +785,10 @@ FindEvents Retrieve current user's events
 
 Returns a list of the current user’s events
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiFindEventsRequest
 */
-func (a *EventsApiService) FindEvents(ctx _context.Context) ApiFindEventsRequest {
+func (a *EventsApiService) FindEvents(ctx context.Context) ApiFindEventsRequest {
 	return ApiFindEventsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -805,26 +797,24 @@ func (a *EventsApiService) FindEvents(ctx _context.Context) ApiFindEventsRequest
 
 // Execute executes the request
 //  @return EventList
-func (a *EventsApiService) FindEventsExecute(r ApiFindEventsRequest) (EventList, *_nethttp.Response, error) {
+func (a *EventsApiService) FindEventsExecute(r ApiFindEventsRequest) (*EventList, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  EventList
+		formFiles            []formFile
+		localVarReturnValue  *EventList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EventsApiService.FindEvents")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/events"
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	if r.include != nil {
 		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
@@ -869,7 +859,7 @@ func (a *EventsApiService) FindEventsExecute(r ApiFindEventsRequest) (EventList,
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -879,15 +869,15 @@ func (a *EventsApiService) FindEventsExecute(r ApiFindEventsRequest) (EventList,
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -905,7 +895,7 @@ func (a *EventsApiService) FindEventsExecute(r ApiFindEventsRequest) (EventList,
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -916,7 +906,7 @@ func (a *EventsApiService) FindEventsExecute(r ApiFindEventsRequest) (EventList,
 }
 
 type ApiFindOrganizationEventsRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *EventsApiService
 	id string
 	include *[]string
@@ -946,7 +936,7 @@ func (r ApiFindOrganizationEventsRequest) PerPage(perPage int32) ApiFindOrganiza
 	return r
 }
 
-func (r ApiFindOrganizationEventsRequest) Execute() (EventList, *_nethttp.Response, error) {
+func (r ApiFindOrganizationEventsRequest) Execute() (*EventList, *http.Response, error) {
 	return r.ApiService.FindOrganizationEventsExecute(r)
 }
 
@@ -955,11 +945,11 @@ FindOrganizationEvents Retrieve organization's events
 
 Returns a list of events for a single organization
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Organization UUID
  @return ApiFindOrganizationEventsRequest
 */
-func (a *EventsApiService) FindOrganizationEvents(ctx _context.Context, id string) ApiFindOrganizationEventsRequest {
+func (a *EventsApiService) FindOrganizationEvents(ctx context.Context, id string) ApiFindOrganizationEventsRequest {
 	return ApiFindOrganizationEventsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -969,27 +959,25 @@ func (a *EventsApiService) FindOrganizationEvents(ctx _context.Context, id strin
 
 // Execute executes the request
 //  @return EventList
-func (a *EventsApiService) FindOrganizationEventsExecute(r ApiFindOrganizationEventsRequest) (EventList, *_nethttp.Response, error) {
+func (a *EventsApiService) FindOrganizationEventsExecute(r ApiFindOrganizationEventsRequest) (*EventList, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  EventList
+		formFiles            []formFile
+		localVarReturnValue  *EventList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EventsApiService.FindOrganizationEvents")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/organizations/{id}/events"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	if r.include != nil {
 		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
@@ -1034,7 +1022,7 @@ func (a *EventsApiService) FindOrganizationEventsExecute(r ApiFindOrganizationEv
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -1044,15 +1032,15 @@ func (a *EventsApiService) FindOrganizationEventsExecute(r ApiFindOrganizationEv
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -1090,7 +1078,7 @@ func (a *EventsApiService) FindOrganizationEventsExecute(r ApiFindOrganizationEv
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -1101,7 +1089,7 @@ func (a *EventsApiService) FindOrganizationEventsExecute(r ApiFindOrganizationEv
 }
 
 type ApiFindProjectEventsRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *EventsApiService
 	id string
 	include *[]string
@@ -1131,7 +1119,7 @@ func (r ApiFindProjectEventsRequest) PerPage(perPage int32) ApiFindProjectEvents
 	return r
 }
 
-func (r ApiFindProjectEventsRequest) Execute() (EventList, *_nethttp.Response, error) {
+func (r ApiFindProjectEventsRequest) Execute() (*EventList, *http.Response, error) {
 	return r.ApiService.FindProjectEventsExecute(r)
 }
 
@@ -1140,11 +1128,11 @@ FindProjectEvents Retrieve project's events
 
 Returns a list of events for a single project
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Project UUID
  @return ApiFindProjectEventsRequest
 */
-func (a *EventsApiService) FindProjectEvents(ctx _context.Context, id string) ApiFindProjectEventsRequest {
+func (a *EventsApiService) FindProjectEvents(ctx context.Context, id string) ApiFindProjectEventsRequest {
 	return ApiFindProjectEventsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1154,27 +1142,25 @@ func (a *EventsApiService) FindProjectEvents(ctx _context.Context, id string) Ap
 
 // Execute executes the request
 //  @return EventList
-func (a *EventsApiService) FindProjectEventsExecute(r ApiFindProjectEventsRequest) (EventList, *_nethttp.Response, error) {
+func (a *EventsApiService) FindProjectEventsExecute(r ApiFindProjectEventsRequest) (*EventList, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  EventList
+		formFiles            []formFile
+		localVarReturnValue  *EventList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EventsApiService.FindProjectEvents")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/projects/{id}/events"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	if r.include != nil {
 		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
@@ -1219,7 +1205,7 @@ func (a *EventsApiService) FindProjectEventsExecute(r ApiFindProjectEventsReques
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -1229,15 +1215,15 @@ func (a *EventsApiService) FindProjectEventsExecute(r ApiFindProjectEventsReques
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -1275,7 +1261,7 @@ func (a *EventsApiService) FindProjectEventsExecute(r ApiFindProjectEventsReques
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -1286,7 +1272,7 @@ func (a *EventsApiService) FindProjectEventsExecute(r ApiFindProjectEventsReques
 }
 
 type ApiFindVirtualCircuitEventsRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *EventsApiService
 	id string
 	include *[]string
@@ -1316,7 +1302,7 @@ func (r ApiFindVirtualCircuitEventsRequest) PerPage(perPage int32) ApiFindVirtua
 	return r
 }
 
-func (r ApiFindVirtualCircuitEventsRequest) Execute() (Event, *_nethttp.Response, error) {
+func (r ApiFindVirtualCircuitEventsRequest) Execute() (*Event, *http.Response, error) {
 	return r.ApiService.FindVirtualCircuitEventsExecute(r)
 }
 
@@ -1325,11 +1311,11 @@ FindVirtualCircuitEvents Retrieve connection events
 
 Returns a list of the virtual circuit events
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Virtual Circuit UUID
  @return ApiFindVirtualCircuitEventsRequest
 */
-func (a *EventsApiService) FindVirtualCircuitEvents(ctx _context.Context, id string) ApiFindVirtualCircuitEventsRequest {
+func (a *EventsApiService) FindVirtualCircuitEvents(ctx context.Context, id string) ApiFindVirtualCircuitEventsRequest {
 	return ApiFindVirtualCircuitEventsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1339,27 +1325,25 @@ func (a *EventsApiService) FindVirtualCircuitEvents(ctx _context.Context, id str
 
 // Execute executes the request
 //  @return Event
-func (a *EventsApiService) FindVirtualCircuitEventsExecute(r ApiFindVirtualCircuitEventsRequest) (Event, *_nethttp.Response, error) {
+func (a *EventsApiService) FindVirtualCircuitEventsExecute(r ApiFindVirtualCircuitEventsRequest) (*Event, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  Event
+		formFiles            []formFile
+		localVarReturnValue  *Event
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EventsApiService.FindVirtualCircuitEvents")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/virtual-circuit/{id}/events"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	if r.include != nil {
 		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
@@ -1404,7 +1388,7 @@ func (a *EventsApiService) FindVirtualCircuitEventsExecute(r ApiFindVirtualCircu
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -1414,15 +1398,15 @@ func (a *EventsApiService) FindVirtualCircuitEventsExecute(r ApiFindVirtualCircu
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -1460,192 +1444,7 @@ func (a *EventsApiService) FindVirtualCircuitEventsExecute(r ApiFindVirtualCircu
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiFindVolumeEventsRequest struct {
-	ctx _context.Context
-	ApiService *EventsApiService
-	id string
-	include *[]string
-	exclude *[]string
-	page *int32
-	perPage *int32
-}
-
-// Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
-func (r ApiFindVolumeEventsRequest) Include(include []string) ApiFindVolumeEventsRequest {
-	r.include = &include
-	return r
-}
-// Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
-func (r ApiFindVolumeEventsRequest) Exclude(exclude []string) ApiFindVolumeEventsRequest {
-	r.exclude = &exclude
-	return r
-}
-// Page to return
-func (r ApiFindVolumeEventsRequest) Page(page int32) ApiFindVolumeEventsRequest {
-	r.page = &page
-	return r
-}
-// Items returned per page
-func (r ApiFindVolumeEventsRequest) PerPage(perPage int32) ApiFindVolumeEventsRequest {
-	r.perPage = &perPage
-	return r
-}
-
-func (r ApiFindVolumeEventsRequest) Execute() (EventList, *_nethttp.Response, error) {
-	return r.ApiService.FindVolumeEventsExecute(r)
-}
-
-/*
-FindVolumeEvents Retrieve volume's events
-
-Returns a list of the current volume’s events
-
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Volume UUID
- @return ApiFindVolumeEventsRequest
-*/
-func (a *EventsApiService) FindVolumeEvents(ctx _context.Context, id string) ApiFindVolumeEventsRequest {
-	return ApiFindVolumeEventsRequest{
-		ApiService: a,
-		ctx: ctx,
-		id: id,
-	}
-}
-
-// Execute executes the request
-//  @return EventList
-func (a *EventsApiService) FindVolumeEventsExecute(r ApiFindVolumeEventsRequest) (EventList, *_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  EventList
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EventsApiService.FindVolumeEvents")
-	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/volumes/{id}/events"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-
-	if r.include != nil {
-		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
-	}
-	if r.exclude != nil {
-		localVarQueryParams.Add("exclude", parameterToString(*r.exclude, "csv"))
-	}
-	if r.page != nil {
-		localVarQueryParams.Add("page", parameterToString(*r.page, ""))
-	}
-	if r.perPage != nil {
-		localVarQueryParams.Add("per_page", parameterToString(*r.perPage, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["x_auth_token"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["X-Auth-Token"] = key
-			}
-		}
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}

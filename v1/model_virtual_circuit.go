@@ -25,7 +25,7 @@ type VirtualCircuit struct {
 	NniVlan *int32 `json:"nni_vlan,omitempty"`
 	// integer representing bps speed
 	Speed *int32 `json:"speed,omitempty"`
-	Tags *[]string `json:"tags,omitempty"`
+	Tags []string `json:"tags,omitempty"`
 	Project *Href `json:"project,omitempty"`
 	VirtualNetwork *Href `json:"virtual_network,omitempty"`
 }
@@ -277,12 +277,12 @@ func (o *VirtualCircuit) GetTags() []string {
 		var ret []string
 		return ret
 	}
-	return *o.Tags
+	return o.Tags
 }
 
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VirtualCircuit) GetTagsOk() (*[]string, bool) {
+func (o *VirtualCircuit) GetTagsOk() ([]string, bool) {
 	if o == nil || o.Tags == nil {
 		return nil, false
 	}
@@ -300,7 +300,7 @@ func (o *VirtualCircuit) HasTags() bool {
 
 // SetTags gets a reference to the given []string and assigns it to the Tags field.
 func (o *VirtualCircuit) SetTags(v []string) {
-	o.Tags = &v
+	o.Tags = v
 }
 
 // GetProject returns the Project field value if set, zero value otherwise.

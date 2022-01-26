@@ -17,7 +17,7 @@ import (
 
 // HardwareReservationList struct for HardwareReservationList
 type HardwareReservationList struct {
-	HardwareReservations *[]HardwareReservation `json:"hardware_reservations,omitempty"`
+	HardwareReservations []HardwareReservation `json:"hardware_reservations,omitempty"`
 	Meta *Meta `json:"meta,omitempty"`
 }
 
@@ -44,12 +44,12 @@ func (o *HardwareReservationList) GetHardwareReservations() []HardwareReservatio
 		var ret []HardwareReservation
 		return ret
 	}
-	return *o.HardwareReservations
+	return o.HardwareReservations
 }
 
 // GetHardwareReservationsOk returns a tuple with the HardwareReservations field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HardwareReservationList) GetHardwareReservationsOk() (*[]HardwareReservation, bool) {
+func (o *HardwareReservationList) GetHardwareReservationsOk() ([]HardwareReservation, bool) {
 	if o == nil || o.HardwareReservations == nil {
 		return nil, false
 	}
@@ -67,7 +67,7 @@ func (o *HardwareReservationList) HasHardwareReservations() bool {
 
 // SetHardwareReservations gets a reference to the given []HardwareReservation and assigns it to the HardwareReservations field.
 func (o *HardwareReservationList) SetHardwareReservations(v []HardwareReservation) {
-	o.HardwareReservations = &v
+	o.HardwareReservations = v
 }
 
 // GetMeta returns the Meta field value if set, zero value otherwise.

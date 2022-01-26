@@ -19,8 +19,9 @@ import (
 type VirtualCircuitUpdateInput struct {
 	Description *string `json:"description,omitempty"`
 	Name *string `json:"name,omitempty"`
+	// Speed can be changed only if it is a dedicated connection
 	Speed *string `json:"speed,omitempty"`
-	Tags *[]string `json:"tags,omitempty"`
+	Tags []string `json:"tags,omitempty"`
 	// A Virtual Network record UUID or the VNID of a Virtual Network in your project.
 	Vnid *string `json:"vnid,omitempty"`
 }
@@ -144,12 +145,12 @@ func (o *VirtualCircuitUpdateInput) GetTags() []string {
 		var ret []string
 		return ret
 	}
-	return *o.Tags
+	return o.Tags
 }
 
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VirtualCircuitUpdateInput) GetTagsOk() (*[]string, bool) {
+func (o *VirtualCircuitUpdateInput) GetTagsOk() ([]string, bool) {
 	if o == nil || o.Tags == nil {
 		return nil, false
 	}
@@ -167,7 +168,7 @@ func (o *VirtualCircuitUpdateInput) HasTags() bool {
 
 // SetTags gets a reference to the given []string and assigns it to the Tags field.
 func (o *VirtualCircuitUpdateInput) SetTags(v []string) {
-	o.Tags = &v
+	o.Tags = v
 }
 
 // GetVnid returns the Vnid field value if set, zero value otherwise.

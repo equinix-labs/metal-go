@@ -17,7 +17,7 @@ import (
 
 // CapacityPerMetroInput struct for CapacityPerMetroInput
 type CapacityPerMetroInput struct {
-	Servers *[]MetroServerInfo `json:"servers,omitempty"`
+	Servers []MetroServerInfo `json:"servers,omitempty"`
 }
 
 // NewCapacityPerMetroInput instantiates a new CapacityPerMetroInput object
@@ -43,12 +43,12 @@ func (o *CapacityPerMetroInput) GetServers() []MetroServerInfo {
 		var ret []MetroServerInfo
 		return ret
 	}
-	return *o.Servers
+	return o.Servers
 }
 
 // GetServersOk returns a tuple with the Servers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CapacityPerMetroInput) GetServersOk() (*[]MetroServerInfo, bool) {
+func (o *CapacityPerMetroInput) GetServersOk() ([]MetroServerInfo, bool) {
 	if o == nil || o.Servers == nil {
 		return nil, false
 	}
@@ -66,7 +66,7 @@ func (o *CapacityPerMetroInput) HasServers() bool {
 
 // SetServers gets a reference to the given []MetroServerInfo and assigns it to the Servers field.
 func (o *CapacityPerMetroInput) SetServers(v []MetroServerInfo) {
-	o.Servers = &v
+	o.Servers = v
 }
 
 func (o CapacityPerMetroInput) MarshalJSON() ([]byte, error) {

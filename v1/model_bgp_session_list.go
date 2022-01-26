@@ -17,7 +17,7 @@ import (
 
 // BgpSessionList struct for BgpSessionList
 type BgpSessionList struct {
-	BgpSessions *[]BgpSession `json:"bgp_sessions,omitempty"`
+	BgpSessions []BgpSession `json:"bgp_sessions,omitempty"`
 }
 
 // NewBgpSessionList instantiates a new BgpSessionList object
@@ -43,12 +43,12 @@ func (o *BgpSessionList) GetBgpSessions() []BgpSession {
 		var ret []BgpSession
 		return ret
 	}
-	return *o.BgpSessions
+	return o.BgpSessions
 }
 
 // GetBgpSessionsOk returns a tuple with the BgpSessions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BgpSessionList) GetBgpSessionsOk() (*[]BgpSession, bool) {
+func (o *BgpSessionList) GetBgpSessionsOk() ([]BgpSession, bool) {
 	if o == nil || o.BgpSessions == nil {
 		return nil, false
 	}
@@ -66,7 +66,7 @@ func (o *BgpSessionList) HasBgpSessions() bool {
 
 // SetBgpSessions gets a reference to the given []BgpSession and assigns it to the BgpSessions field.
 func (o *BgpSessionList) SetBgpSessions(v []BgpSession) {
-	o.BgpSessions = &v
+	o.BgpSessions = v
 }
 
 func (o BgpSessionList) MarshalJSON() ([]byte, error) {

@@ -44,12 +44,12 @@ import (
 )
 
 func main() {
-    id := TODO // string | Device UUID
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Device UUID
     bgpSession := *openapiclient.NewBGPSessionInput() // BGPSessionInput | BGP session to create
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DevicesApi.CreateBgpSession(context.Background(), id).BgpSession(bgpSession).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DevicesApi.CreateBgpSession(context.Background(), id).BgpSession(bgpSession).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DevicesApi.CreateBgpSession``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -65,7 +65,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | [**string**](.md) | Device UUID | 
+**id** | **string** | Device UUID | 
 
 ### Other Parameters
 
@@ -116,12 +116,12 @@ import (
 )
 
 func main() {
-    id := TODO // string | Project UUID
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Project UUID
     batch := *openapiclient.NewInstancesBatchCreateInput() // InstancesBatchCreateInput | Batches to create
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DevicesApi.CreateDeviceBatch(context.Background(), id).Batch(batch).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DevicesApi.CreateDeviceBatch(context.Background(), id).Batch(batch).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DevicesApi.CreateDeviceBatch``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -137,7 +137,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | [**string**](.md) | Project UUID | 
+**id** | **string** | Project UUID | 
 
 ### Other Parameters
 
@@ -188,12 +188,12 @@ import (
 )
 
 func main() {
-    id := TODO // string | Device UUID
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Device UUID
     ipAssignment := *openapiclient.NewIPAssignmentInput("Address_example") // IPAssignmentInput | IPAssignment to create
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DevicesApi.CreateIPAssignment(context.Background(), id).IpAssignment(ipAssignment).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DevicesApi.CreateIPAssignment(context.Background(), id).IpAssignment(ipAssignment).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DevicesApi.CreateIPAssignment``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -209,7 +209,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | [**string**](.md) | Device UUID | 
+**id** | **string** | Device UUID | 
 
 ### Other Parameters
 
@@ -260,12 +260,12 @@ import (
 )
 
 func main() {
-    id := TODO // string | Device UUID
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Device UUID
     forceDelete := true // bool | Force the deletion of the device, by detaching any storage volume still active. (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DevicesApi.DeleteDevice(context.Background(), id).ForceDelete(forceDelete).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DevicesApi.DeleteDevice(context.Background(), id).ForceDelete(forceDelete).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DevicesApi.DeleteDevice``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -279,7 +279,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | [**string**](.md) | Device UUID | 
+**id** | **string** | Device UUID | 
 
 ### Other Parameters
 
@@ -330,11 +330,11 @@ import (
 )
 
 func main() {
-    id := TODO // string | Device UUID
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Device UUID
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DevicesApi.FindBgpSessions(context.Background(), id).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DevicesApi.FindBgpSessions(context.Background(), id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DevicesApi.FindBgpSessions``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -350,7 +350,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | [**string**](.md) | Device UUID | 
+**id** | **string** | Device UUID | 
 
 ### Other Parameters
 
@@ -400,13 +400,13 @@ import (
 )
 
 func main() {
-    id := TODO // string | Device UUID
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Device UUID
     include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
     exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DevicesApi.FindDeviceById(context.Background(), id).Include(include).Exclude(exclude).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DevicesApi.FindDeviceById(context.Background(), id).Include(include).Exclude(exclude).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DevicesApi.FindDeviceById``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -422,7 +422,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | [**string**](.md) | Device UUID | 
+**id** | **string** | Device UUID | 
 
 ### Other Parameters
 
@@ -474,11 +474,11 @@ import (
 )
 
 func main() {
-    id := TODO // string | Instance UUID
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Instance UUID
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DevicesApi.FindDeviceCustomdata(context.Background(), id).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DevicesApi.FindDeviceCustomdata(context.Background(), id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DevicesApi.FindDeviceCustomdata``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -492,7 +492,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | [**string**](.md) | Instance UUID | 
+**id** | **string** | Instance UUID | 
 
 ### Other Parameters
 
@@ -542,13 +542,13 @@ import (
 )
 
 func main() {
-    id := TODO // string | Device UUID
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Device UUID
     createdAfter := "createdAfter_example" // string | Filter usages created after this date (optional)
     createdBefore := "createdBefore_example" // string | Filter usages created before this date (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DevicesApi.FindDeviceUsages(context.Background(), id).CreatedAfter(createdAfter).CreatedBefore(createdBefore).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DevicesApi.FindDeviceUsages(context.Background(), id).CreatedAfter(createdAfter).CreatedBefore(createdBefore).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DevicesApi.FindDeviceUsages``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -564,7 +564,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | [**string**](.md) | Device UUID | 
+**id** | **string** | Device UUID | 
 
 ### Other Parameters
 
@@ -616,12 +616,12 @@ import (
 )
 
 func main() {
-    instanceId := TODO // string | Instance UUID
-    id := TODO // string | Ip Assignment UUID
+    instanceId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Instance UUID
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Ip Assignment UUID
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DevicesApi.FindIPAssignmentCustomdata(context.Background(), instanceId, id).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DevicesApi.FindIPAssignmentCustomdata(context.Background(), instanceId, id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DevicesApi.FindIPAssignmentCustomdata``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -635,8 +635,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**instanceId** | [**string**](.md) | Instance UUID | 
-**id** | [**string**](.md) | Ip Assignment UUID | 
+**instanceId** | **string** | Instance UUID | 
+**id** | **string** | Ip Assignment UUID | 
 
 ### Other Parameters
 
@@ -687,13 +687,13 @@ import (
 )
 
 func main() {
-    id := TODO // string | Device UUID
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Device UUID
     include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
     exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DevicesApi.FindIPAssignments(context.Background(), id).Include(include).Exclude(exclude).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DevicesApi.FindIPAssignments(context.Background(), id).Include(include).Exclude(exclude).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DevicesApi.FindIPAssignments``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -709,7 +709,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | [**string**](.md) | Device UUID | 
+**id** | **string** | Device UUID | 
 
 ### Other Parameters
 
@@ -761,13 +761,13 @@ import (
 )
 
 func main() {
-    id := TODO // string | Device UUID
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Device UUID
     from := "from_example" // string | Timestamp from range
     until := "until_example" // string | Timestamp to range
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DevicesApi.FindInstanceBandwidth(context.Background(), id).From(from).Until(until).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DevicesApi.FindInstanceBandwidth(context.Background(), id).From(from).Until(until).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DevicesApi.FindInstanceBandwidth``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -781,7 +781,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | [**string**](.md) | Device UUID | 
+**id** | **string** | Device UUID | 
 
 ### Other Parameters
 
@@ -833,13 +833,13 @@ import (
 )
 
 func main() {
-    id := TODO // string | Project UUID
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Project UUID
     createdAfter := "createdAfter_example" // string | Filter usages created after this date (optional)
     createdBefore := "createdBefore_example" // string | Filter usages created before this date (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DevicesApi.FindProjectUsage(context.Background(), id).CreatedAfter(createdAfter).CreatedBefore(createdBefore).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DevicesApi.FindProjectUsage(context.Background(), id).CreatedAfter(createdAfter).CreatedBefore(createdBefore).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DevicesApi.FindProjectUsage``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -855,7 +855,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | [**string**](.md) | Project UUID | 
+**id** | **string** | Project UUID | 
 
 ### Other Parameters
 
@@ -908,15 +908,15 @@ import (
 )
 
 func main() {
-    id := TODO // string | Device UUID
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Device UUID
     direction := "direction_example" // string | Traffic direction
     timeframe := *openapiclient.NewTimeframe(time.Now(), time.Now()) // Timeframe | Traffic timeframe
     interval := "interval_example" // string | Traffic interval (optional)
     bucket := "bucket_example" // string | Traffic bucket (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DevicesApi.FindTraffic(context.Background(), id).Direction(direction).Timeframe(timeframe).Interval(interval).Bucket(bucket).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DevicesApi.FindTraffic(context.Background(), id).Direction(direction).Timeframe(timeframe).Interval(interval).Bucket(bucket).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DevicesApi.FindTraffic``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -930,7 +930,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | [**string**](.md) | Device UUID | 
+**id** | **string** | Device UUID | 
 
 ### Other Parameters
 
@@ -984,11 +984,11 @@ import (
 )
 
 func main() {
-    id := TODO // string | Device UUID
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Device UUID
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DevicesApi.GetBgpNeighborData(context.Background(), id).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DevicesApi.GetBgpNeighborData(context.Background(), id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DevicesApi.GetBgpNeighborData``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1004,7 +1004,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | [**string**](.md) | Device UUID | 
+**id** | **string** | Device UUID | 
 
 ### Other Parameters
 
@@ -1054,12 +1054,12 @@ import (
 )
 
 func main() {
-    id := TODO // string | Device UUID
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Device UUID
     type_ := "type__example" // string | Action to perform
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DevicesApi.PerformAction(context.Background(), id).Type_(type_).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DevicesApi.PerformAction(context.Background(), id).Type_(type_).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DevicesApi.PerformAction``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1073,7 +1073,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | [**string**](.md) | Device UUID | 
+**id** | **string** | Device UUID | 
 
 ### Other Parameters
 
@@ -1124,12 +1124,12 @@ import (
 )
 
 func main() {
-    id := TODO // string | Device UUID
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Device UUID
     device := *openapiclient.NewDeviceUpdateInput() // DeviceUpdateInput | Facility to update
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DevicesApi.UpdateDevice(context.Background(), id).Device(device).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DevicesApi.UpdateDevice(context.Background(), id).Device(device).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DevicesApi.UpdateDevice``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1145,7 +1145,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | [**string**](.md) | Device UUID | 
+**id** | **string** | Device UUID | 
 
 ### Other Parameters
 
