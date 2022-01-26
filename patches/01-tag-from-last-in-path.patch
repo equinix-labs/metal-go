@@ -1,5 +1,5 @@
---- equinix-metal.fetched.json	2021-08-30 16:48:22.000000000 -0400
-+++ -	2021-08-30 16:48:22.000000000 -0400
+--- equinix-metal.fetched.json	2022-01-26 12:58:47.000000000 -0500
++++ -	2022-01-26 12:58:47.000000000 -0500
 @@ -31,15 +31,13 @@
        "name": "X-Auth-Token",
        "in": "header"
@@ -209,23 +209,7 @@
              "name": "id",
              "in": "path",
              "description": "Project UUID",
-@@ -1631,14 +1617,13 @@
-     "/volumes/{id}/events": {
-       "get": {
-         "summary": "Retrieve volume's events",
-         "description": "Returns a list of the current volume’s events",
-         "operationId": "findVolumeEvents",
-         "tags": [
--          "Events",
--          "Volumes"
-+          "Events"
-         ],
-         "parameters": [
-           {
-             "name": "id",
-             "in": "path",
-             "description": "Volume UUID",
-@@ -1860,14 +1845,13 @@
+@@ -1769,14 +1755,13 @@
      "/connections/{connection_id}/events": {
        "get": {
          "summary": "Retrieve connection events",
@@ -241,7 +225,7 @@
              "name": "connection_id",
              "in": "path",
              "description": "Connection UUID",
-@@ -1951,14 +1935,13 @@
+@@ -1860,14 +1845,13 @@
      "/connections/{connection_id}/ports/{id}/events": {
        "get": {
          "summary": "Retrieve connection port events",
@@ -257,7 +241,7 @@
              "name": "connection_id",
              "in": "path",
              "description": "Connection UUID",
-@@ -2050,14 +2033,13 @@
+@@ -1959,14 +1943,13 @@
      "/virtual-circuit/{id}/events": {
        "get": {
          "summary": "Retrieve connection events",
@@ -273,7 +257,7 @@
              "name": "id",
              "in": "path",
              "description": "Virtual Circuit UUID",
-@@ -2200,14 +2182,13 @@
+@@ -2109,14 +2092,13 @@
      "/projects/{id}/facilities": {
        "get": {
          "summary": "Retrieve all facilities visible by the project",
@@ -289,7 +273,7 @@
              "name": "id",
              "in": "path",
              "description": "Project UUID",
-@@ -2269,14 +2250,13 @@
+@@ -2178,14 +2160,13 @@
      "/organizations/{id}/facilities": {
        "get": {
          "summary": "Retrieve all facilities visible by the organization",
@@ -305,7 +289,7 @@
              "name": "id",
              "in": "path",
              "description": "Organization UUID",
-@@ -2338,14 +2318,13 @@
+@@ -2247,14 +2228,13 @@
      "/projects/{id}/global-bgp-ranges": {
        "get": {
          "summary": "Retrieve all global bgp ranges",
@@ -321,7 +305,7 @@
              "name": "id",
              "in": "path",
              "description": "Project UUID",
-@@ -2385,14 +2364,13 @@
+@@ -2294,14 +2274,13 @@
      "/projects/{id}/hardware-reservations": {
        "get": {
          "summary": "Retrieve all hardware reservations for a given project",
@@ -337,7 +321,7 @@
              "name": "id",
              "in": "path",
              "description": "Project UUID",
-@@ -2646,14 +2624,13 @@
+@@ -2555,14 +2534,13 @@
      "/organizations/{id}/devices": {
        "get": {
          "summary": "Retrieve all devices of an organization",
@@ -353,7 +337,7 @@
              "name": "id",
              "in": "path",
              "description": "Organization UUID",
-@@ -2737,14 +2714,13 @@
+@@ -2681,14 +2659,13 @@
      "/projects/{id}/devices": {
        "get": {
          "summary": "Retrieve all devices of a project",
@@ -369,7 +353,7 @@
              "name": "id",
              "in": "path",
              "description": "Project UUID",
-@@ -2826,14 +2802,13 @@
+@@ -2805,14 +2782,13 @@
        },
        "post": {
          "summary": "Create a device",
@@ -385,7 +369,7 @@
              "name": "id",
              "in": "path",
              "description": "Project UUID",
-@@ -3069,14 +3044,13 @@
+@@ -3048,14 +3024,13 @@
      "/projects/{id}/devices/batch": {
        "post": {
          "summary": "Create a devices batch",
@@ -401,7 +385,7 @@
              "name": "id",
              "in": "path",
              "description": "Project UUID",
-@@ -3962,14 +3936,13 @@
+@@ -3941,14 +3916,13 @@
      "/projects/{project_id}/invitations": {
        "get": {
          "summary": "Retrieve project invitations",
@@ -417,7 +401,7 @@
              "name": "include",
              "in": "query",
              "description": "Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.",
-@@ -4051,14 +4024,13 @@
+@@ -4030,14 +4004,13 @@
        },
        "post": {
          "summary": "Create an invitation for a project",
@@ -433,7 +417,7 @@
              "name": "project_id",
              "in": "path",
              "description": "Project UUID",
-@@ -4113,14 +4085,13 @@
+@@ -4092,14 +4065,13 @@
      "/organizations/{id}/invitations": {
        "get": {
          "summary": "Retrieve organization invitations",
@@ -449,7 +433,7 @@
              "name": "include",
              "in": "query",
              "description": "Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.",
-@@ -4202,14 +4173,13 @@
+@@ -4181,14 +4153,13 @@
        },
        "post": {
          "summary": "Create an invitation for an organization",
@@ -465,7 +449,7 @@
              "name": "id",
              "in": "path",
              "description": "Organization UUID",
-@@ -4264,14 +4234,13 @@
+@@ -4243,14 +4214,13 @@
      "/invitations": {
        "get": {
          "summary": "Retrieve current user invitations",
@@ -481,7 +465,7 @@
              "name": "include",
              "in": "query",
              "description": "Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.",
-@@ -4514,14 +4483,13 @@
+@@ -4493,14 +4463,13 @@
      "/devices/{id}/ips": {
        "get": {
          "summary": "Retrieve all ip assignments",
@@ -497,7 +481,7 @@
              "name": "id",
              "in": "path",
              "description": "Device UUID",
-@@ -4575,14 +4543,13 @@
+@@ -4554,14 +4523,13 @@
        },
        "post": {
          "summary": "Create an ip assignment",
@@ -513,7 +497,7 @@
              "name": "id",
              "in": "path",
              "description": "Device UUID",
-@@ -4795,14 +4762,13 @@
+@@ -4774,14 +4742,13 @@
      "/projects/{id}/ips": {
        "get": {
          "summary": "Retrieve all ip reservations",
@@ -529,7 +513,7 @@
              "name": "id",
              "in": "path",
              "description": "Project UUID",
-@@ -4859,14 +4825,13 @@
+@@ -4838,14 +4805,13 @@
              }
            }
          }
@@ -545,7 +529,7 @@
              "name": "id",
              "in": "path",
              "description": "Project UUID",
-@@ -4924,14 +4889,13 @@
+@@ -4903,14 +4869,13 @@
      "/projects/{id}/licenses": {
        "get": {
          "summary": "Retrieve all licenses",
@@ -561,7 +545,7 @@
              "name": "id",
              "in": "path",
              "description": "Project UUID",
-@@ -5013,14 +4977,13 @@
+@@ -4992,14 +4957,13 @@
        },
        "post": {
          "summary": "Create a License",
@@ -577,7 +561,7 @@
              "name": "id",
              "in": "path",
              "description": "Project UUID",
-@@ -5243,14 +5206,13 @@
+@@ -5222,14 +5186,13 @@
      "/projects/{project_id}/memberships": {
        "get": {
          "summary": "Retrieve project memberships",
@@ -593,7 +577,7 @@
              "name": "include",
              "in": "query",
              "description": "Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.",
-@@ -5976,14 +5938,13 @@
+@@ -5912,14 +5875,13 @@
      "/organizations/{id}/operating-systems": {
        "get": {
          "summary": "Retrieve all operating systems visible by the organization",
@@ -609,7 +593,7 @@
              "name": "id",
              "in": "path",
              "description": "Organization UUID",
-@@ -6603,14 +6564,13 @@
+@@ -6539,14 +6501,13 @@
      "/organizations/{id}/payment-methods": {
        "get": {
          "summary": "Retrieve all payment methods of an organization",
@@ -625,7 +609,7 @@
              "name": "id",
              "in": "path",
              "description": "Organization UUID",
-@@ -6686,14 +6646,13 @@
+@@ -6622,14 +6583,13 @@
        },
        "post": {
          "summary": "Create a payment method for the given organization",
@@ -641,7 +625,7 @@
              "name": "id",
              "in": "path",
              "description": "Organization UUID",
-@@ -6940,14 +6899,13 @@
+@@ -6876,14 +6836,13 @@
      "/projects/{id}/plans": {
        "get": {
          "summary": "Retrieve all plans visible by the project",
@@ -657,7 +641,7 @@
              "name": "id",
              "in": "path",
              "description": "Project UUID",
-@@ -7009,14 +6967,13 @@
+@@ -6945,14 +6904,13 @@
      "/organizations/{id}/plans": {
        "get": {
          "summary": "Retrieve all plans visible by the organization",
@@ -673,7 +657,7 @@
              "name": "id",
              "in": "path",
              "description": "Organization UUID",
-@@ -7140,14 +7097,13 @@
+@@ -7076,14 +7034,13 @@
      "/ports/{id}/assign": {
        "post": {
          "summary": "Assign a port to virtual network",
@@ -689,7 +673,7 @@
              "name": "id",
              "in": "path",
              "description": "Port UUID",
-@@ -7202,14 +7158,13 @@
+@@ -7138,14 +7095,13 @@
      "/ports/{id}/unassign": {
        "post": {
          "summary": "Unassign a port",
@@ -705,7 +689,7 @@
              "name": "id",
              "in": "path",
              "description": "Port UUID",
-@@ -7504,14 +7459,13 @@
+@@ -7440,14 +7396,13 @@
      "/ports/{id}/native-vlan": {
        "post": {
          "summary": "Assign a native VLAN",
@@ -721,7 +705,7 @@
              "name": "id",
              "in": "path",
              "description": "Port UUID",
-@@ -7556,14 +7510,13 @@
+@@ -7492,14 +7447,13 @@
        },
        "delete": {
          "summary": "Remove native VLAN",
@@ -737,7 +721,7 @@
              "name": "id",
              "in": "path",
              "description": "Port UUID",
-@@ -7603,14 +7556,13 @@
+@@ -7539,14 +7493,13 @@
      "/organizations/{id}/projects": {
        "get": {
          "summary": "Retrieve all projects of an organization",
@@ -753,7 +737,7 @@
              "name": "id",
              "in": "path",
              "description": "Organization UUID",
-@@ -7680,14 +7632,13 @@
+@@ -7616,14 +7569,13 @@
        },
        "post": {
          "summary": "Create a project for the organization",
@@ -769,7 +753,7 @@
              "name": "id",
              "in": "path",
              "description": "Organization UUID",
-@@ -8007,14 +7958,13 @@
+@@ -7943,14 +7895,13 @@
      "/projects/{project_id}/self-service/reservations": {
        "get": {
          "summary": "Retrieve all reservations",
@@ -785,7 +769,7 @@
              "name": "page",
              "in": "query",
              "description": "Page to return",
-@@ -8062,14 +8012,13 @@
+@@ -7998,14 +7949,13 @@
        },
        "post": {
          "summary": "Create a reservation",
@@ -801,7 +785,7 @@
              "name": "reservation",
              "in": "body",
              "description": "reservation to create",
-@@ -8112,14 +8061,13 @@
+@@ -8048,14 +7998,13 @@
      "/projects/{project_id}/self-service/reservations/{id}": {
        "get": {
          "summary": "Retrieve a reservation",
@@ -817,7 +801,7 @@
              "name": "id",
              "in": "path",
              "description": "Reservation short_id",
-@@ -8284,14 +8232,13 @@
+@@ -8220,14 +8169,13 @@
      "/projects/{id}/spot-market-requests": {
        "post": {
          "summary": "Create a spot market request",
@@ -833,7 +817,7 @@
              "name": "id",
              "in": "path",
              "description": "Project UUID",
-@@ -8338,14 +8285,13 @@
+@@ -8274,14 +8222,13 @@
        },
        "get": {
          "summary": "List spot market requests",
@@ -849,7 +833,7 @@
              "name": "id",
              "in": "path",
              "description": "Project UUID",
-@@ -8589,14 +8535,13 @@
+@@ -8525,14 +8472,13 @@
      "/projects/{id}/ssh-keys": {
        "get": {
          "summary": "Retrieve a project's ssh keys",
@@ -865,7 +849,7 @@
              "name": "id",
              "in": "path",
              "description": "Project UUID",
-@@ -8651,14 +8596,13 @@
+@@ -8587,14 +8533,13 @@
        },
        "post": {
          "summary": "Create a ssh key for the given project",
@@ -881,7 +865,7 @@
              "name": "id",
              "in": "path",
              "description": "Project UUID",
-@@ -8701,14 +8645,13 @@
+@@ -8637,14 +8582,13 @@
      "/devices/{id}/ssh-keys": {
        "get": {
          "summary": "Retrieve a device's ssh keys",
@@ -897,7 +881,7 @@
              "name": "id",
              "in": "path",
              "description": "Project UUID",
-@@ -10165,14 +10108,13 @@
+@@ -9104,14 +9048,13 @@
      "/organizations/{id}/transfers": {
        "get": {
          "summary": "Retrieve all project transfer requests from or to an organization",
@@ -913,7 +897,7 @@
              "name": "id",
              "in": "path",
              "description": "Organization UUID",
-@@ -10228,14 +10170,13 @@
+@@ -9167,14 +9110,13 @@
      "/projects/{id}/transfers": {
        "post": {
          "summary": "Create a transfer request",
@@ -929,7 +913,7 @@
              "name": "id",
              "in": "path",
              "description": "UUID of the project to be transferred",
-@@ -10440,14 +10381,13 @@
+@@ -9379,14 +9321,13 @@
      "/devices/{id}/usages": {
        "get": {
          "summary": "Retrieve all usages for device",
@@ -945,7 +929,7 @@
              "name": "id",
              "in": "path",
              "description": "Device UUID",
-@@ -10497,14 +10437,13 @@
+@@ -9436,14 +9377,13 @@
      "/projects/{id}/usages": {
        "get": {
          "summary": "Retrieve all usages for project",
@@ -961,7 +945,7 @@
              "name": "id",
              "in": "path",
              "description": "Project UUID",
-@@ -10912,14 +10851,13 @@
+@@ -9851,14 +9791,13 @@
      "/projects/{id}/virtual-networks": {
        "get": {
          "summary": "Retrieve all virtual networks",
@@ -977,7 +961,7 @@
              "name": "id",
              "in": "path",
              "description": "Project UUID",
-@@ -10990,14 +10928,13 @@
+@@ -9929,14 +9868,13 @@
              }
            }
          }
@@ -993,7 +977,7 @@
              "name": "id",
              "in": "path",
              "description": "Project UUID",
-@@ -11157,14 +11094,13 @@
+@@ -10096,14 +10034,13 @@
      "/ports/{id}/vlan-assignments/batches": {
        "post": {
          "summary": "Create a new Port-VLAN Assignment management batch",
@@ -1009,7 +993,7 @@
              "name": "id",
              "in": "path",
              "description": "Port UUID",
-@@ -11217,14 +11153,13 @@
+@@ -10156,14 +10093,13 @@
        },
        "get": {
          "summary": "List the VLAN Assignment Batches for a port",
@@ -1025,7 +1009,7 @@
              "name": "id",
              "in": "path",
              "description": "Port UUID",
-@@ -11264,14 +11199,13 @@
+@@ -10203,14 +10139,13 @@
      "/ports/{id}/vlan-assignments/batches/{batch_id}": {
        "get": {
          "summary": "Retrieve a VLAN Assignment Batch's details",
@@ -1041,7 +1025,7 @@
              "name": "id",
              "in": "path",
              "description": "Port UUID",
-@@ -11319,14 +11253,13 @@
+@@ -10258,14 +10193,13 @@
      "/ports/{id}/vlan-assignments": {
        "get": {
          "summary": "List Current VLAN assignments for a port",
@@ -1057,7 +1041,7 @@
              "name": "id",
              "in": "path",
              "description": "Port UUID",
-@@ -11392,14 +11325,13 @@
+@@ -10331,14 +10265,13 @@
      "/ports/{id}/vlan-assignments/{assignment_id}": {
        "get": {
          "summary": "Show a particular Port VLAN assignment's details",
@@ -1073,7 +1057,7 @@
              "name": "id",
              "in": "path",
              "description": "Port UUID",
-@@ -16201,7 +16133,7 @@
+@@ -14967,7 +14900,7 @@
          "default": {
            "type": "boolean"
          }
