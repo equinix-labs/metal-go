@@ -1,5 +1,8 @@
 .PHONY: all gen patch fetch
 
+CURRENT_UID := $(shell id -u)
+CURRENT_GID := $(shell id -g)
+
 # https://github.com/OpenAPITools/openapi-generator-cli
 SPEC_URL:=https://api.equinix.com/metal/v1/api-docs
 SPEC_FETCHED_FILE:=equinix-metal.fetched.json
@@ -9,7 +12,7 @@ GIT_ORG=t0mk
 GIT_REPO=gometal
 PACKAGE_MAJOR=v1
 
-SWAGGER=docker run --rm -v $(CURDIR):/local ${IMAGE}
+SWAGGER=docker run --rm -u ${CURRENT_UID}:${CURRENT_GID} -v $(CURDIR):/local ${IMAGE}
 GOLANGCI_LINT=golangci-lint
 
 all: pull fetch fix-tags patch clean gen mod test stage
@@ -50,7 +53,6 @@ validate:
 	${SWAGGER} validate \
 		--recommend \
 		-i /local/${SPEC_PATCHED_FILE}
-
 
 mod:
 	cd v1 && go mod tidy
