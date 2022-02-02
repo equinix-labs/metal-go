@@ -19,7 +19,7 @@ import (
 type IPAssignmentInput struct {
 	Address string `json:"address"`
 	Manageable *bool `json:"manageable,omitempty"`
-	Customdata *map[string]interface{} `json:"customdata,omitempty"`
+	Customdata map[string]interface{} `json:"customdata,omitempty"`
 }
 
 // NewIPAssignmentInput instantiates a new IPAssignmentInput object
@@ -102,12 +102,12 @@ func (o *IPAssignmentInput) GetCustomdata() map[string]interface{} {
 		var ret map[string]interface{}
 		return ret
 	}
-	return *o.Customdata
+	return o.Customdata
 }
 
 // GetCustomdataOk returns a tuple with the Customdata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IPAssignmentInput) GetCustomdataOk() (*map[string]interface{}, bool) {
+func (o *IPAssignmentInput) GetCustomdataOk() (map[string]interface{}, bool) {
 	if o == nil || o.Customdata == nil {
 		return nil, false
 	}
@@ -125,7 +125,7 @@ func (o *IPAssignmentInput) HasCustomdata() bool {
 
 // SetCustomdata gets a reference to the given map[string]interface{} and assigns it to the Customdata field.
 func (o *IPAssignmentInput) SetCustomdata(v map[string]interface{}) {
-	o.Customdata = &v
+	o.Customdata = v
 }
 
 func (o IPAssignmentInput) MarshalJSON() ([]byte, error) {

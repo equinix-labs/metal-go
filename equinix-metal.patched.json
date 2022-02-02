@@ -1614,96 +1614,6 @@
         }
       }
     },
-    "/volumes/{id}/events": {
-      "get": {
-        "summary": "Retrieve volume's events",
-        "description": "Returns a list of the current volume’s events",
-        "operationId": "findVolumeEvents",
-        "tags": [
-          "Events"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "Volume UUID",
-            "required": true,
-            "type": "string",
-            "format": "uuid"
-          },
-          {
-            "name": "include",
-            "in": "query",
-            "description": "Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.",
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "collectionFormat": "csv",
-            "required": false
-          },
-          {
-            "name": "exclude",
-            "in": "query",
-            "description": "Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.",
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "collectionFormat": "csv",
-            "required": false
-          },
-          {
-            "name": "page",
-            "in": "query",
-            "description": "Page to return",
-            "type": "integer",
-            "format": "int32",
-            "default": 1,
-            "minimum": 1,
-            "maximum": 100000,
-            "required": false
-          },
-          {
-            "name": "per_page",
-            "in": "query",
-            "description": "Items returned per page",
-            "type": "integer",
-            "format": "int32",
-            "default": 10,
-            "minimum": 1,
-            "maximum": 1000,
-            "required": false
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "ok",
-            "schema": {
-              "$ref": "#/definitions/EventList"
-            }
-          },
-          "401": {
-            "description": "unauthorized",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          },
-          "403": {
-            "description": "forbidden",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          },
-          "404": {
-            "description": "not found",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          }
-        }
-      }
-    },
     "/events": {
       "get": {
         "summary": "Retrieve current user's events",
@@ -2639,6 +2549,41 @@
             "format": "uuid"
           },
           {
+            "name": "facility",
+            "in": "query",
+            "description": "Filter by device facility",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "hostname",
+            "in": "query",
+            "description": "Filter by partial hostname",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "reserved",
+            "in": "query",
+            "description": "Filter only reserved instances",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "tag",
+            "in": "query",
+            "description": "Filter by device tag",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "description": "Filter by instance type (ondemand,spot,reserved)",
+            "required": false,
+            "type": "string"
+          },
+          {
             "name": "include",
             "in": "query",
             "description": "Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.",
@@ -2727,6 +2672,41 @@
             "required": true,
             "type": "string",
             "format": "uuid"
+          },
+          {
+            "name": "facility",
+            "in": "query",
+            "description": "Filter by device facility",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "hostname",
+            "in": "query",
+            "description": "Filter by partial hostname",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "reserved",
+            "in": "query",
+            "description": "Filter only reserved instances",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "tag",
+            "in": "query",
+            "description": "Filter by device tag",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "description": "Filter by instance type (ondemand,spot,reserved)",
+            "required": false,
+            "type": "string"
           },
           {
             "name": "include",
@@ -5603,49 +5583,6 @@
             "name": "id",
             "in": "path",
             "description": "Instance UUID",
-            "required": true,
-            "type": "string",
-            "format": "uuid"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "ok"
-          },
-          "401": {
-            "description": "unauthorized",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          },
-          "403": {
-            "description": "forbidden",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          },
-          "404": {
-            "description": "not found",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          }
-        }
-      }
-    },
-    "/storage/{id}/customdata": {
-      "get": {
-        "summary": "Retrieve the custom metadata of a storage volume",
-        "description": "Provides the custom metadata stored for this storage volume in json format",
-        "operationId": "findVolumeCustomdata",
-        "tags": [
-          "Volumes"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "Storage Volume UUID",
             "required": true,
             "type": "string",
             "format": "uuid"
@@ -8873,1003 +8810,6 @@
         }
       }
     },
-    "/storage/{id}/attachments": {
-      "get": {
-        "deprecated": true,
-        "summary": "Retrieve all volume attachment",
-        "description": "Returns a list of the current volume’s attachments.",
-        "operationId": "findVolumeAttachments",
-        "tags": [
-          "Volumes"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "Volume UUID",
-            "required": true,
-            "type": "string",
-            "format": "uuid"
-          },
-          {
-            "name": "include",
-            "in": "query",
-            "description": "Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.",
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "collectionFormat": "csv",
-            "required": false
-          },
-          {
-            "name": "exclude",
-            "in": "query",
-            "description": "Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.",
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "collectionFormat": "csv",
-            "required": false
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "ok",
-            "schema": {
-              "$ref": "#/definitions/VolumeAttachmentList"
-            }
-          },
-          "401": {
-            "description": "unauthorized",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          },
-          "403": {
-            "description": "forbidden",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          },
-          "404": {
-            "description": "not found",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          }
-        }
-      },
-      "post": {
-        "deprecated": true,
-        "summary": "Attach your volume",
-        "description": "Attach your volume to a device.",
-        "operationId": "createVolumeAttachment",
-        "tags": [
-          "Volumes"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "Volume UUID",
-            "required": true,
-            "type": "string",
-            "format": "uuid"
-          },
-          {
-            "name": "attachment",
-            "in": "body",
-            "description": "Device to attach",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/VolumeAttachmentInput"
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "created",
-            "schema": {
-              "$ref": "#/definitions/VolumeAttachment"
-            }
-          },
-          "401": {
-            "description": "unauthorized",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          },
-          "403": {
-            "description": "forbidden",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          },
-          "404": {
-            "description": "not found",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          },
-          "422": {
-            "description": "unprocessable entity",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          }
-        }
-      }
-    },
-    "/storage/attachments/{id}": {
-      "get": {
-        "deprecated": true,
-        "summary": "Retrieve an attachment",
-        "description": "Returns a single attachment if the user has access",
-        "operationId": "findVolumeAttachmentById",
-        "tags": [
-          "Volumes"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "Attachment UUID",
-            "required": true,
-            "type": "string",
-            "format": "uuid"
-          },
-          {
-            "name": "include",
-            "in": "query",
-            "description": "Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.",
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "collectionFormat": "csv",
-            "required": false
-          },
-          {
-            "name": "exclude",
-            "in": "query",
-            "description": "Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.",
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "collectionFormat": "csv",
-            "required": false
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "ok",
-            "schema": {
-              "$ref": "#/definitions/VolumeAttachment"
-            }
-          },
-          "401": {
-            "description": "unauthorized",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          },
-          "403": {
-            "description": "forbidden",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          },
-          "404": {
-            "description": "not found",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          }
-        }
-      },
-      "delete": {
-        "deprecated": true,
-        "summary": "Detach volume",
-        "description": "Detach volume.",
-        "operationId": "deleteVolumeAttachment",
-        "tags": [
-          "Volumes"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "Attachment UUID",
-            "required": true,
-            "type": "string",
-            "format": "uuid"
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "no content"
-          },
-          "401": {
-            "description": "unauthorized",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          },
-          "403": {
-            "description": "forbidden",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          },
-          "404": {
-            "description": "not found",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          }
-        }
-      }
-    },
-    "/storage/{id}/snapshots": {
-      "get": {
-        "deprecated": true,
-        "summary": "Retrieve all volume snapshot",
-        "description": "Returns a list of the current volume’s snapshots. To create Volume Snapshots, please check the Volume Snapshot Policies feature.",
-        "operationId": "findVolumeSnapshots",
-        "tags": [
-          "Volumes"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "Volume UUID",
-            "required": true,
-            "type": "string",
-            "format": "uuid"
-          },
-          {
-            "name": "include",
-            "in": "query",
-            "description": "Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.",
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "collectionFormat": "csv",
-            "required": false
-          },
-          {
-            "name": "exclude",
-            "in": "query",
-            "description": "Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.",
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "collectionFormat": "csv",
-            "required": false
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "ok",
-            "schema": {
-              "$ref": "#/definitions/VolumeSnapshotList"
-            }
-          },
-          "401": {
-            "description": "unauthorized",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          },
-          "403": {
-            "description": "forbidden",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          },
-          "404": {
-            "description": "not found",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          }
-        }
-      }
-    },
-    "/storage/{volume_id}/snapshots/{id}": {
-      "delete": {
-        "deprecated": true,
-        "summary": "Delete volume snapshot",
-        "description": "Delete volume snapshot.",
-        "operationId": "deleteVolumeSnapshot",
-        "tags": [
-          "Volumes"
-        ],
-        "parameters": [
-          {
-            "name": "volume_id",
-            "in": "path",
-            "description": "Volume UUID",
-            "required": true,
-            "type": "string",
-            "format": "uuid"
-          },
-          {
-            "name": "id",
-            "in": "path",
-            "description": "Snapshot UUID",
-            "required": true,
-            "type": "string",
-            "format": "uuid"
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "no content"
-          },
-          "401": {
-            "description": "unauthorized",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          },
-          "403": {
-            "description": "forbidden",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          },
-          "404": {
-            "description": "not found",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          }
-        }
-      }
-    },
-    "/storage/{id}/snapshot-policies": {
-      "post": {
-        "deprecated": true,
-        "summary": "Create a volume snapshot policy",
-        "description": "Creates a new snapshot policy of your volume.",
-        "operationId": "createVolumeSnapshotPolicy",
-        "tags": [
-          "Volumes"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "Volume UUID",
-            "required": true,
-            "type": "string",
-            "format": "uuid"
-          },
-          {
-            "name": "snapshot_count",
-            "in": "query",
-            "description": "Snapshot count",
-            "required": false,
-            "type": "integer"
-          },
-          {
-            "name": "snapshot_frequency",
-            "in": "query",
-            "description": "Snapshot frequency",
-            "required": true,
-            "type": "string",
-            "enum": [
-              "1min",
-              "15min",
-              "1hour",
-              "1day",
-              "1week",
-              "1month",
-              "1year"
-            ]
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "created",
-            "schema": {
-              "$ref": "#/definitions/SnapshotPolicy"
-            }
-          },
-          "401": {
-            "description": "unauthorized",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          },
-          "403": {
-            "description": "forbidden",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          },
-          "404": {
-            "description": "not found",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          },
-          "422": {
-            "description": "unprocessable entity",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          }
-        }
-      }
-    },
-    "/storage/snapshot-policies/{id}": {
-      "put": {
-        "deprecated": true,
-        "summary": "Update the volume snapshot policy",
-        "description": "Updates the volume snapshot policy.",
-        "operationId": "updateVolumeSnapshotPolicy",
-        "tags": [
-          "Volumes"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "Snapshot Policy UUID",
-            "required": true,
-            "type": "string",
-            "format": "uuid"
-          },
-          {
-            "name": "snapshot_count",
-            "in": "query",
-            "description": "Snapshot count",
-            "required": false,
-            "type": "integer"
-          },
-          {
-            "name": "snapshot_frequency",
-            "in": "query",
-            "description": "Snapshot frequency",
-            "required": true,
-            "type": "string",
-            "enum": [
-              "1min",
-              "15min",
-              "1hour",
-              "1day",
-              "1week",
-              "1month",
-              "1year"
-            ]
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "ok",
-            "schema": {
-              "$ref": "#/definitions/SnapshotPolicy"
-            }
-          },
-          "401": {
-            "description": "unauthorized",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          },
-          "403": {
-            "description": "forbidden",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          },
-          "404": {
-            "description": "not found",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          },
-          "422": {
-            "description": "unprocessable entity",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          }
-        }
-      },
-      "delete": {
-        "deprecated": true,
-        "summary": "Delete the volume snapshot policy",
-        "description": "Deletes the volume snapshot policy.",
-        "operationId": "deleteVolumeSnapshotPolicy",
-        "tags": [
-          "Volumes"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "Snapshot Policy UUID",
-            "required": true,
-            "type": "string",
-            "format": "uuid"
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "no content"
-          },
-          "401": {
-            "description": "unauthorized",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          },
-          "403": {
-            "description": "forbidden",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          },
-          "404": {
-            "description": "not found",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          }
-        }
-      }
-    },
-    "/projects/{id}/storage": {
-      "get": {
-        "deprecated": true,
-        "summary": "Retrieve all volumes",
-        "description": "Returns a list of the current projects’s volumes.",
-        "operationId": "findVolumes",
-        "tags": [
-          "Volumes"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "Project UUID",
-            "required": true,
-            "type": "string",
-            "format": "uuid"
-          },
-          {
-            "name": "include",
-            "in": "query",
-            "description": "Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.",
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "collectionFormat": "csv",
-            "required": false
-          },
-          {
-            "name": "exclude",
-            "in": "query",
-            "description": "Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.",
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "collectionFormat": "csv",
-            "required": false
-          },
-          {
-            "name": "page",
-            "in": "query",
-            "description": "Page to return",
-            "type": "integer",
-            "format": "int32",
-            "default": 1,
-            "minimum": 1,
-            "maximum": 100000,
-            "required": false
-          },
-          {
-            "name": "per_page",
-            "in": "query",
-            "description": "Items returned per page",
-            "type": "integer",
-            "format": "int32",
-            "default": 10,
-            "minimum": 1,
-            "maximum": 1000,
-            "required": false
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "ok",
-            "schema": {
-              "$ref": "#/definitions/VolumeList"
-            }
-          },
-          "401": {
-            "description": "unauthorized",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          },
-          "403": {
-            "description": "forbidden",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          },
-          "404": {
-            "description": "not found",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          }
-        }
-      },
-      "post": {
-        "deprecated": true,
-        "summary": "Create a volume",
-        "description": "Creates a new volume in our datacenter. The valid attribute values for `plan` and `facility` are:\n\n         \"facility\": \"ams1\", \"ewr1\", \"nrt1\", \"sjc1\"\n         \"plan\": \"storage_1\" (Standard), \"storage_2\" (Performance)",
-        "operationId": "createVolume",
-        "tags": [
-          "Volumes"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "Project UUID",
-            "required": true,
-            "type": "string",
-            "format": "uuid"
-          },
-          {
-            "name": "volume",
-            "in": "body",
-            "description": "Volume to create",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/VolumeCreateInput"
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "created",
-            "schema": {
-              "$ref": "#/definitions/Volume"
-            }
-          },
-          "401": {
-            "description": "unauthorized",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          },
-          "403": {
-            "description": "forbidden",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          },
-          "404": {
-            "description": "not found",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          },
-          "422": {
-            "description": "unprocessable entity",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          }
-        }
-      }
-    },
-    "/storage/{id}": {
-      "get": {
-        "deprecated": true,
-        "summary": "Retrieve a volume",
-        "description": "Returns a single volume if the user has access",
-        "operationId": "findVolumeById",
-        "tags": [
-          "Volumes"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "Volume UUID",
-            "required": true,
-            "type": "string",
-            "format": "uuid"
-          },
-          {
-            "name": "include",
-            "in": "query",
-            "description": "Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.",
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "collectionFormat": "csv",
-            "required": false
-          },
-          {
-            "name": "exclude",
-            "in": "query",
-            "description": "Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.",
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "collectionFormat": "csv",
-            "required": false
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "ok",
-            "schema": {
-              "$ref": "#/definitions/Volume"
-            }
-          },
-          "401": {
-            "description": "unauthorized",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          },
-          "403": {
-            "description": "forbidden",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          },
-          "404": {
-            "description": "not found",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          }
-        }
-      },
-      "put": {
-        "deprecated": true,
-        "summary": "Update the volume",
-        "description": "Updates the volume.",
-        "operationId": "updateVolume",
-        "tags": [
-          "Volumes"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "Volume UUID",
-            "required": true,
-            "type": "string",
-            "format": "uuid"
-          },
-          {
-            "name": "volume",
-            "in": "body",
-            "description": "Volume to update",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/VolumeUpdateInput"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "ok",
-            "schema": {
-              "$ref": "#/definitions/Volume"
-            }
-          },
-          "401": {
-            "description": "unauthorized",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          },
-          "403": {
-            "description": "forbidden",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          },
-          "404": {
-            "description": "not found",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          },
-          "422": {
-            "description": "unprocessable entity",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          }
-        }
-      },
-      "delete": {
-        "deprecated": true,
-        "summary": "Delete the volume",
-        "description": "Deletes the volume.",
-        "operationId": "deleteVolume",
-        "tags": [
-          "Volumes"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "Volume UUID",
-            "required": true,
-            "type": "string",
-            "format": "uuid"
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "no content"
-          },
-          "401": {
-            "description": "unauthorized",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          },
-          "403": {
-            "description": "forbidden",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          },
-          "404": {
-            "description": "not found",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          }
-        }
-      }
-    },
-    "/storage/{id}/restore": {
-      "post": {
-        "deprecated": true,
-        "summary": "Restore volume",
-        "description": "Restore the volume to the given snapshot.",
-        "operationId": "restoreVolume",
-        "tags": [
-          "Volumes"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "Volume UUID",
-            "required": true,
-            "type": "string",
-            "format": "uuid"
-          },
-          {
-            "name": "restore_point",
-            "in": "query",
-            "description": "restore point",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "ok",
-            "schema": {
-              "$ref": "#/definitions/Volume"
-            }
-          },
-          "401": {
-            "description": "unauthorized",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          },
-          "403": {
-            "description": "forbidden",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          },
-          "404": {
-            "description": "not found",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          },
-          "422": {
-            "description": "unprocessable entity",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          }
-        }
-      }
-    },
-    "/storage/{id}/clone": {
-      "post": {
-        "deprecated": true,
-        "summary": "Clone volume/snapshot",
-        "description": "Clone your volume or snapshot into a new volume. To clone the volume, send an empty body. To promote a volume snapshot into a new volume, include the snapshot_timestamp attribute in the request body.",
-        "operationId": "cloneVolume",
-        "tags": [
-          "Volumes"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "Volume UUID",
-            "required": true,
-            "type": "string",
-            "format": "uuid"
-          },
-          {
-            "name": "snapshot_timestamp",
-            "in": "query",
-            "description": "snapshot timestamp",
-            "required": false,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "created",
-            "schema": {
-              "$ref": "#/definitions/Volume"
-            }
-          },
-          "401": {
-            "description": "unauthorized",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          },
-          "403": {
-            "description": "forbidden",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          },
-          "404": {
-            "description": "not found",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          },
-          "422": {
-            "description": "unprocessable entity",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          }
-        }
-      }
-    },
     "/support-requests": {
       "post": {
         "tags": [
@@ -12390,6 +11330,16 @@
           "type": "string",
           "format": "date-time"
         },
+        "created_by": {
+          "allOf": [
+            {
+              "$ref": "#/definitions/UserLite"
+            },
+            {
+              "description": "The user that created the device."
+            }
+          ]
+        },
         "updated_at": {
           "type": "string",
           "format": "date-time"
@@ -13057,7 +12007,8 @@
           "type": "string"
         },
         "speed": {
-          "type": "string"
+          "type": "string",
+          "description": "Speed can be changed only if it is a dedicated connection"
         },
         "tags": {
           "type": "array",
@@ -13739,6 +12690,9 @@
               "description": "The metro the IP reservation is in. As long as the IP reservation has a metro, it can be used on a metro level. Can be null if requesting an IP reservation in a facility that is not in a metro."
             }
           ]
+        },
+        "metal_gateway": {
+          "$ref": "#/definitions/MetalGatewayLite"
         }
       }
     },
@@ -13862,6 +12816,9 @@
           "type": "boolean",
           "description": "True if the virtual network is attached to a virtual circuit. False if not."
         },
+        "metal_gateway": {
+          "$ref": "#/definitions/MetalGatewayLite"
+        },
         "assigned_to": {
           "$ref": "#/definitions/Href"
         },
@@ -13946,9 +12903,13 @@
       }
     },
     "OperatingSystemList": {
-      "type": "array",
-      "items": {
-        "$ref": "#/definitions/OperatingSystem"
+      "properties": {
+        "operating_systems": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/OperatingSystem"
+          }
+        }
       }
     },
     "Organization": {
@@ -14826,250 +13787,6 @@
         }
       }
     },
-    "VolumeAttachment": {
-      "properties": {
-        "id": {
-          "type": "string",
-          "format": "uuid"
-        },
-        "created_at": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "volume": {
-          "$ref": "#/definitions/Href"
-        },
-        "device": {
-          "$ref": "#/definitions/Href"
-        },
-        "href": {
-          "type": "string"
-        }
-      }
-    },
-    "VolumeAttachmentInput": {
-      "required": [
-        "device_id"
-      ],
-      "properties": {
-        "device_id": {
-          "type": "string",
-          "format": "uuid"
-        }
-      }
-    },
-    "VolumeAttachmentList": {
-      "properties": {
-        "attachments": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/VolumeAttachment"
-          }
-        }
-      }
-    },
-    "VolumeSnapshot": {
-      "properties": {
-        "id": {
-          "type": "string",
-          "format": "uuid"
-        },
-        "status": {
-          "type": "string"
-        },
-        "created_at": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "timestamp": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "volume": {
-          "$ref": "#/definitions/Href"
-        }
-      }
-    },
-    "VolumeSnapshotList": {
-      "properties": {
-        "snapshots": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/VolumeSnapshot"
-          }
-        }
-      }
-    },
-    "SnapshotPolicy": {
-      "properties": {
-        "id": {
-          "type": "string",
-          "format": "uuid"
-        },
-        "snapshot_count": {
-          "type": "integer",
-          "maximum": 256,
-          "exclusiveMaximum": false
-        },
-        "snapshot_frequency": {
-          "type": "string"
-        },
-        "created_at": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "updated_at": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "volume": {
-          "$ref": "#/definitions/Href"
-        },
-        "href": {
-          "type": "string"
-        }
-      }
-    },
-    "SnapshotPolicyInput": {
-      "properties": {
-        "snapshot_count": {
-          "type": "integer"
-        },
-        "snapshot_frequency": {
-          "type": "string"
-        }
-      }
-    },
-    "Volume": {
-      "properties": {
-        "id": {
-          "type": "string",
-          "format": "uuid"
-        },
-        "name": {
-          "type": "string"
-        },
-        "description": {
-          "type": "string"
-        },
-        "size": {
-          "type": "integer"
-        },
-        "locked": {
-          "type": "boolean"
-        },
-        "billing_cycle": {
-          "type": "string"
-        },
-        "state": {
-          "type": "string"
-        },
-        "created_at": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "updated_at": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "project": {
-          "$ref": "#/definitions/Href"
-        },
-        "facility": {
-          "$ref": "#/definitions/Href"
-        },
-        "snapshot_policies": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Href"
-          }
-        },
-        "attachments": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Href"
-          }
-        },
-        "plan": {
-          "$ref": "#/definitions/Plan"
-        },
-        "href": {
-          "type": "string"
-        },
-        "customdata": {
-          "type": "object"
-        }
-      }
-    },
-    "VolumeCreateInput": {
-      "required": [
-        "facility",
-        "plan",
-        "size"
-      ],
-      "properties": {
-        "description": {
-          "type": "string"
-        },
-        "facility": {
-          "type": "string",
-          "description": "ams1, ewr1, nrt1, sjc1"
-        },
-        "plan": {
-          "type": "string",
-          "description": "storage_1, storage_2"
-        },
-        "size": {
-          "type": "integer"
-        },
-        "locked": {
-          "type": "boolean"
-        },
-        "billing_cycle": {
-          "type": "string",
-          "description": "hourly"
-        },
-        "snapshot_policies": {
-          "$ref": "#/definitions/SnapshotPolicyInput"
-        },
-        "customdata": {
-          "type": "object"
-        }
-      }
-    },
-    "VolumeUpdateInput": {
-      "properties": {
-        "description": {
-          "type": "string"
-        },
-        "size": {
-          "type": "integer"
-        },
-        "locked": {
-          "type": "boolean"
-        },
-        "billing_cycle": {
-          "type": "string",
-          "description": "hourly"
-        },
-        "customdata": {
-          "type": "object"
-        }
-      }
-    },
-    "VolumeList": {
-      "properties": {
-        "volumes": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Volume"
-          }
-        },
-        "meta": {
-          "$ref": "#/definitions/Meta"
-        }
-      }
-    },
     "SupportRequestInput": {
       "required": [
         "subject",
@@ -15731,6 +14448,57 @@
         }
       }
     },
+    "UserLite": {
+      "required": [
+        "id",
+        "short_id"
+      ],
+      "properties": {
+        "id": {
+          "description": "ID of the User",
+          "type": "string",
+          "format": "uuid"
+        },
+        "short_id": {
+          "description": "Short ID of the User",
+          "type": "string"
+        },
+        "first_name": {
+          "description": "First name of the User",
+          "type": "string"
+        },
+        "last_name": {
+          "description": "Last name of the User",
+          "type": "string"
+        },
+        "full_name": {
+          "description": "Full name of the User",
+          "type": "string"
+        },
+        "email": {
+          "description": "Primary email address of the User",
+          "type": "string"
+        },
+        "avatar_thumb_url": {
+          "description": "Avatar thumbnail URL of the User",
+          "type": "string"
+        },
+        "created_at": {
+          "description": "When the user was created",
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "description": "When the user details were last updated",
+          "type": "string",
+          "format": "date-time"
+        },
+        "href": {
+          "description": "API URL uniquely representing the User",
+          "type": "string"
+        }
+      }
+    },
     "UserUpdateInput": {
       "properties": {
         "first_name": {
@@ -16088,7 +14856,6 @@
     },
     "MetalGatewayInput": {
       "required": [
-        "project_id",
         "virtual_network_id"
       ],
       "properties": {

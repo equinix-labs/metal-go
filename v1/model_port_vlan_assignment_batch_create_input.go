@@ -17,7 +17,7 @@ import (
 
 // PortVlanAssignmentBatchCreateInput struct for PortVlanAssignmentBatchCreateInput
 type PortVlanAssignmentBatchCreateInput struct {
-	VlanAssignments *[]PortVlanAssignmentBatchCreateInputVlanAssignments `json:"vlan_assignments,omitempty"`
+	VlanAssignments []PortVlanAssignmentBatchCreateInputVlanAssignments `json:"vlan_assignments,omitempty"`
 }
 
 // NewPortVlanAssignmentBatchCreateInput instantiates a new PortVlanAssignmentBatchCreateInput object
@@ -43,12 +43,12 @@ func (o *PortVlanAssignmentBatchCreateInput) GetVlanAssignments() []PortVlanAssi
 		var ret []PortVlanAssignmentBatchCreateInputVlanAssignments
 		return ret
 	}
-	return *o.VlanAssignments
+	return o.VlanAssignments
 }
 
 // GetVlanAssignmentsOk returns a tuple with the VlanAssignments field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PortVlanAssignmentBatchCreateInput) GetVlanAssignmentsOk() (*[]PortVlanAssignmentBatchCreateInputVlanAssignments, bool) {
+func (o *PortVlanAssignmentBatchCreateInput) GetVlanAssignmentsOk() ([]PortVlanAssignmentBatchCreateInputVlanAssignments, bool) {
 	if o == nil || o.VlanAssignments == nil {
 		return nil, false
 	}
@@ -66,7 +66,7 @@ func (o *PortVlanAssignmentBatchCreateInput) HasVlanAssignments() bool {
 
 // SetVlanAssignments gets a reference to the given []PortVlanAssignmentBatchCreateInputVlanAssignments and assigns it to the VlanAssignments field.
 func (o *PortVlanAssignmentBatchCreateInput) SetVlanAssignments(v []PortVlanAssignmentBatchCreateInputVlanAssignments) {
-	o.VlanAssignments = &v
+	o.VlanAssignments = v
 }
 
 func (o PortVlanAssignmentBatchCreateInput) MarshalJSON() ([]byte, error) {

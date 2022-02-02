@@ -17,7 +17,7 @@ import (
 
 // OrganizationList struct for OrganizationList
 type OrganizationList struct {
-	Organizations *[]Organization `json:"organizations,omitempty"`
+	Organizations []Organization `json:"organizations,omitempty"`
 	Meta *Meta `json:"meta,omitempty"`
 }
 
@@ -44,12 +44,12 @@ func (o *OrganizationList) GetOrganizations() []Organization {
 		var ret []Organization
 		return ret
 	}
-	return *o.Organizations
+	return o.Organizations
 }
 
 // GetOrganizationsOk returns a tuple with the Organizations field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OrganizationList) GetOrganizationsOk() (*[]Organization, bool) {
+func (o *OrganizationList) GetOrganizationsOk() ([]Organization, bool) {
 	if o == nil || o.Organizations == nil {
 		return nil, false
 	}
@@ -67,7 +67,7 @@ func (o *OrganizationList) HasOrganizations() bool {
 
 // SetOrganizations gets a reference to the given []Organization and assigns it to the Organizations field.
 func (o *OrganizationList) SetOrganizations(v []Organization) {
-	o.Organizations = &v
+	o.Organizations = v
 }
 
 // GetMeta returns the Meta field value if set, zero value otherwise.

@@ -32,8 +32,8 @@ func main() {
     userdata := "userdata_example" // string | Userdata to validate (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.UserdataApi.ValidateUserdata(context.Background()).Userdata(userdata).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.UserdataApi.ValidateUserdata(context.Background()).Userdata(userdata).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UserdataApi.ValidateUserdata``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

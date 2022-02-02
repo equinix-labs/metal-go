@@ -13,23 +13,23 @@ package v1
 
 import (
 	"bytes"
-	_context "context"
-	_ioutil "io/ioutil"
-	_nethttp "net/http"
-	_neturl "net/url"
+	"context"
+	"io/ioutil"
+	"net/http"
+	"net/url"
 	"strings"
 )
 
 // Linger please
 var (
-	_ _context.Context
+	_ context.Context
 )
 
 // ProjectsApiService ProjectsApi service
 type ProjectsApiService service
 
 type ApiCreateDeviceRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *ProjectsApiService
 	id string
 	device *DeviceCreateInput
@@ -41,7 +41,7 @@ func (r ApiCreateDeviceRequest) Device(device DeviceCreateInput) ApiCreateDevice
 	return r
 }
 
-func (r ApiCreateDeviceRequest) Execute() (Device, *_nethttp.Response, error) {
+func (r ApiCreateDeviceRequest) Execute() (*Device, *http.Response, error) {
 	return r.ApiService.CreateDeviceExecute(r)
 }
 
@@ -52,11 +52,11 @@ Creates a new device and provisions it in the specified location.
 
       Device type-specific options are accepted.  For example, `baremetal` devices accept `operating_system`, `hostname`, and `plan`. These parameters may not be accepted for other device types. The default device type is `baremetal`.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Project UUID
  @return ApiCreateDeviceRequest
 */
-func (a *ProjectsApiService) CreateDevice(ctx _context.Context, id string) ApiCreateDeviceRequest {
+func (a *ProjectsApiService) CreateDevice(ctx context.Context, id string) ApiCreateDeviceRequest {
 	return ApiCreateDeviceRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -66,27 +66,25 @@ func (a *ProjectsApiService) CreateDevice(ctx _context.Context, id string) ApiCr
 
 // Execute executes the request
 //  @return Device
-func (a *ProjectsApiService) CreateDeviceExecute(r ApiCreateDeviceRequest) (Device, *_nethttp.Response, error) {
+func (a *ProjectsApiService) CreateDeviceExecute(r ApiCreateDeviceRequest) (*Device, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  Device
+		formFiles            []formFile
+		localVarReturnValue  *Device
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.CreateDevice")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/projects/{id}/devices"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.device == nil {
 		return localVarReturnValue, nil, reportError("device is required and must be specified")
 	}
@@ -124,7 +122,7 @@ func (a *ProjectsApiService) CreateDeviceExecute(r ApiCreateDeviceRequest) (Devi
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -134,15 +132,15 @@ func (a *ProjectsApiService) CreateDeviceExecute(r ApiCreateDeviceRequest) (Devi
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -190,7 +188,7 @@ func (a *ProjectsApiService) CreateDeviceExecute(r ApiCreateDeviceRequest) (Devi
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -201,7 +199,7 @@ func (a *ProjectsApiService) CreateDeviceExecute(r ApiCreateDeviceRequest) (Devi
 }
 
 type ApiCreateLicenseRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *ProjectsApiService
 	id string
 	license *LicenseCreateInput
@@ -213,7 +211,7 @@ func (r ApiCreateLicenseRequest) License(license LicenseCreateInput) ApiCreateLi
 	return r
 }
 
-func (r ApiCreateLicenseRequest) Execute() (License, *_nethttp.Response, error) {
+func (r ApiCreateLicenseRequest) Execute() (*License, *http.Response, error) {
 	return r.ApiService.CreateLicenseExecute(r)
 }
 
@@ -222,11 +220,11 @@ CreateLicense Create a License
 
 Creates a new license for the given project
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Project UUID
  @return ApiCreateLicenseRequest
 */
-func (a *ProjectsApiService) CreateLicense(ctx _context.Context, id string) ApiCreateLicenseRequest {
+func (a *ProjectsApiService) CreateLicense(ctx context.Context, id string) ApiCreateLicenseRequest {
 	return ApiCreateLicenseRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -236,27 +234,25 @@ func (a *ProjectsApiService) CreateLicense(ctx _context.Context, id string) ApiC
 
 // Execute executes the request
 //  @return License
-func (a *ProjectsApiService) CreateLicenseExecute(r ApiCreateLicenseRequest) (License, *_nethttp.Response, error) {
+func (a *ProjectsApiService) CreateLicenseExecute(r ApiCreateLicenseRequest) (*License, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  License
+		formFiles            []formFile
+		localVarReturnValue  *License
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.CreateLicense")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/projects/{id}/licenses"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.license == nil {
 		return localVarReturnValue, nil, reportError("license is required and must be specified")
 	}
@@ -294,7 +290,7 @@ func (a *ProjectsApiService) CreateLicenseExecute(r ApiCreateLicenseRequest) (Li
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -304,15 +300,15 @@ func (a *ProjectsApiService) CreateLicenseExecute(r ApiCreateLicenseRequest) (Li
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -360,7 +356,7 @@ func (a *ProjectsApiService) CreateLicenseExecute(r ApiCreateLicenseRequest) (Li
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -371,7 +367,7 @@ func (a *ProjectsApiService) CreateLicenseExecute(r ApiCreateLicenseRequest) (Li
 }
 
 type ApiCreateProjectRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *ProjectsApiService
 	project *ProjectCreateFromRootInput
 }
@@ -382,7 +378,7 @@ func (r ApiCreateProjectRequest) Project(project ProjectCreateFromRootInput) Api
 	return r
 }
 
-func (r ApiCreateProjectRequest) Execute() (Project, *_nethttp.Response, error) {
+func (r ApiCreateProjectRequest) Execute() (*Project, *http.Response, error) {
 	return r.ApiService.CreateProjectExecute(r)
 }
 
@@ -391,10 +387,10 @@ CreateProject Create a project
 
 Creates a new project for the user default organization. If the user don't have an organization, a new one will be created.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiCreateProjectRequest
 */
-func (a *ProjectsApiService) CreateProject(ctx _context.Context) ApiCreateProjectRequest {
+func (a *ProjectsApiService) CreateProject(ctx context.Context) ApiCreateProjectRequest {
 	return ApiCreateProjectRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -403,26 +399,24 @@ func (a *ProjectsApiService) CreateProject(ctx _context.Context) ApiCreateProjec
 
 // Execute executes the request
 //  @return Project
-func (a *ProjectsApiService) CreateProjectExecute(r ApiCreateProjectRequest) (Project, *_nethttp.Response, error) {
+func (a *ProjectsApiService) CreateProjectExecute(r ApiCreateProjectRequest) (*Project, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  Project
+		formFiles            []formFile
+		localVarReturnValue  *Project
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.CreateProject")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/projects"
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.project == nil {
 		return localVarReturnValue, nil, reportError("project is required and must be specified")
 	}
@@ -460,7 +454,7 @@ func (a *ProjectsApiService) CreateProjectExecute(r ApiCreateProjectRequest) (Pr
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -470,15 +464,15 @@ func (a *ProjectsApiService) CreateProjectExecute(r ApiCreateProjectRequest) (Pr
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -506,7 +500,7 @@ func (a *ProjectsApiService) CreateProjectExecute(r ApiCreateProjectRequest) (Pr
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -517,7 +511,7 @@ func (a *ProjectsApiService) CreateProjectExecute(r ApiCreateProjectRequest) (Pr
 }
 
 type ApiCreateProjectSSHKeyRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *ProjectsApiService
 	id string
 	sshKey *SSHKeyCreateInput
@@ -529,7 +523,7 @@ func (r ApiCreateProjectSSHKeyRequest) SshKey(sshKey SSHKeyCreateInput) ApiCreat
 	return r
 }
 
-func (r ApiCreateProjectSSHKeyRequest) Execute() (SSHKey, *_nethttp.Response, error) {
+func (r ApiCreateProjectSSHKeyRequest) Execute() (*SSHKey, *http.Response, error) {
 	return r.ApiService.CreateProjectSSHKeyExecute(r)
 }
 
@@ -538,11 +532,11 @@ CreateProjectSSHKey Create a ssh key for the given project
 
 Creates a ssh key.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Project UUID
  @return ApiCreateProjectSSHKeyRequest
 */
-func (a *ProjectsApiService) CreateProjectSSHKey(ctx _context.Context, id string) ApiCreateProjectSSHKeyRequest {
+func (a *ProjectsApiService) CreateProjectSSHKey(ctx context.Context, id string) ApiCreateProjectSSHKeyRequest {
 	return ApiCreateProjectSSHKeyRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -552,27 +546,25 @@ func (a *ProjectsApiService) CreateProjectSSHKey(ctx _context.Context, id string
 
 // Execute executes the request
 //  @return SSHKey
-func (a *ProjectsApiService) CreateProjectSSHKeyExecute(r ApiCreateProjectSSHKeyRequest) (SSHKey, *_nethttp.Response, error) {
+func (a *ProjectsApiService) CreateProjectSSHKeyExecute(r ApiCreateProjectSSHKeyRequest) (*SSHKey, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  SSHKey
+		formFiles            []formFile
+		localVarReturnValue  *SSHKey
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.CreateProjectSSHKey")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/projects/{id}/ssh-keys"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.sshKey == nil {
 		return localVarReturnValue, nil, reportError("sshKey is required and must be specified")
 	}
@@ -610,7 +602,7 @@ func (a *ProjectsApiService) CreateProjectSSHKeyExecute(r ApiCreateProjectSSHKey
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -620,15 +612,15 @@ func (a *ProjectsApiService) CreateProjectSSHKeyExecute(r ApiCreateProjectSSHKey
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -656,7 +648,7 @@ func (a *ProjectsApiService) CreateProjectSSHKeyExecute(r ApiCreateProjectSSHKey
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -667,7 +659,7 @@ func (a *ProjectsApiService) CreateProjectSSHKeyExecute(r ApiCreateProjectSSHKey
 }
 
 type ApiCreateSpotMarketRequestRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *ProjectsApiService
 	id string
 	spotMarketRequest *SpotMarketRequestCreateInput
@@ -679,7 +671,7 @@ func (r ApiCreateSpotMarketRequestRequest) SpotMarketRequest(spotMarketRequest S
 	return r
 }
 
-func (r ApiCreateSpotMarketRequestRequest) Execute() (SpotMarketRequest, *_nethttp.Response, error) {
+func (r ApiCreateSpotMarketRequestRequest) Execute() (*SpotMarketRequest, *http.Response, error) {
 	return r.ApiService.CreateSpotMarketRequestExecute(r)
 }
 
@@ -696,11 +688,11 @@ The request will fail if there are no available servers matching your criteria. 
 
 The request will not fail if we have no servers with that feature in our inventory.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Project UUID
  @return ApiCreateSpotMarketRequestRequest
 */
-func (a *ProjectsApiService) CreateSpotMarketRequest(ctx _context.Context, id string) ApiCreateSpotMarketRequestRequest {
+func (a *ProjectsApiService) CreateSpotMarketRequest(ctx context.Context, id string) ApiCreateSpotMarketRequestRequest {
 	return ApiCreateSpotMarketRequestRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -710,27 +702,25 @@ func (a *ProjectsApiService) CreateSpotMarketRequest(ctx _context.Context, id st
 
 // Execute executes the request
 //  @return SpotMarketRequest
-func (a *ProjectsApiService) CreateSpotMarketRequestExecute(r ApiCreateSpotMarketRequestRequest) (SpotMarketRequest, *_nethttp.Response, error) {
+func (a *ProjectsApiService) CreateSpotMarketRequestExecute(r ApiCreateSpotMarketRequestRequest) (*SpotMarketRequest, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  SpotMarketRequest
+		formFiles            []formFile
+		localVarReturnValue  *SpotMarketRequest
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.CreateSpotMarketRequest")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/projects/{id}/spot-market-requests"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.spotMarketRequest == nil {
 		return localVarReturnValue, nil, reportError("spotMarketRequest is required and must be specified")
 	}
@@ -768,7 +758,7 @@ func (a *ProjectsApiService) CreateSpotMarketRequestExecute(r ApiCreateSpotMarke
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -778,15 +768,15 @@ func (a *ProjectsApiService) CreateSpotMarketRequestExecute(r ApiCreateSpotMarke
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -824,7 +814,7 @@ func (a *ProjectsApiService) CreateSpotMarketRequestExecute(r ApiCreateSpotMarke
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -835,7 +825,7 @@ func (a *ProjectsApiService) CreateSpotMarketRequestExecute(r ApiCreateSpotMarke
 }
 
 type ApiCreateTransferRequestRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *ProjectsApiService
 	id string
 	transferRequest *TransferRequestInput
@@ -847,7 +837,7 @@ func (r ApiCreateTransferRequestRequest) TransferRequest(transferRequest Transfe
 	return r
 }
 
-func (r ApiCreateTransferRequestRequest) Execute() (TransferRequest, *_nethttp.Response, error) {
+func (r ApiCreateTransferRequestRequest) Execute() (*TransferRequest, *http.Response, error) {
 	return r.ApiService.CreateTransferRequestExecute(r)
 }
 
@@ -856,11 +846,11 @@ CreateTransferRequest Create a transfer request
 
 Organization owners can transfer their projects to other organizations.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id UUID of the project to be transferred
  @return ApiCreateTransferRequestRequest
 */
-func (a *ProjectsApiService) CreateTransferRequest(ctx _context.Context, id string) ApiCreateTransferRequestRequest {
+func (a *ProjectsApiService) CreateTransferRequest(ctx context.Context, id string) ApiCreateTransferRequestRequest {
 	return ApiCreateTransferRequestRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -870,27 +860,25 @@ func (a *ProjectsApiService) CreateTransferRequest(ctx _context.Context, id stri
 
 // Execute executes the request
 //  @return TransferRequest
-func (a *ProjectsApiService) CreateTransferRequestExecute(r ApiCreateTransferRequestRequest) (TransferRequest, *_nethttp.Response, error) {
+func (a *ProjectsApiService) CreateTransferRequestExecute(r ApiCreateTransferRequestRequest) (*TransferRequest, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  TransferRequest
+		formFiles            []formFile
+		localVarReturnValue  *TransferRequest
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.CreateTransferRequest")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/projects/{id}/transfers"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.transferRequest == nil {
 		return localVarReturnValue, nil, reportError("transferRequest is required and must be specified")
 	}
@@ -928,7 +916,7 @@ func (a *ProjectsApiService) CreateTransferRequestExecute(r ApiCreateTransferReq
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -938,15 +926,15 @@ func (a *ProjectsApiService) CreateTransferRequestExecute(r ApiCreateTransferReq
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -994,7 +982,7 @@ func (a *ProjectsApiService) CreateTransferRequestExecute(r ApiCreateTransferReq
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -1005,7 +993,7 @@ func (a *ProjectsApiService) CreateTransferRequestExecute(r ApiCreateTransferReq
 }
 
 type ApiCreateVirtualNetworkRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *ProjectsApiService
 	id string
 	virtualNetwork *VirtualNetworkCreateInput
@@ -1017,7 +1005,7 @@ func (r ApiCreateVirtualNetworkRequest) VirtualNetwork(virtualNetwork VirtualNet
 	return r
 }
 
-func (r ApiCreateVirtualNetworkRequest) Execute() (VirtualNetwork, *_nethttp.Response, error) {
+func (r ApiCreateVirtualNetworkRequest) Execute() (*VirtualNetwork, *http.Response, error) {
 	return r.ApiService.CreateVirtualNetworkExecute(r)
 }
 
@@ -1026,11 +1014,11 @@ CreateVirtualNetwork Create a virtual network
 
 Creates an virtual network.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Project UUID
  @return ApiCreateVirtualNetworkRequest
 */
-func (a *ProjectsApiService) CreateVirtualNetwork(ctx _context.Context, id string) ApiCreateVirtualNetworkRequest {
+func (a *ProjectsApiService) CreateVirtualNetwork(ctx context.Context, id string) ApiCreateVirtualNetworkRequest {
 	return ApiCreateVirtualNetworkRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1040,27 +1028,25 @@ func (a *ProjectsApiService) CreateVirtualNetwork(ctx _context.Context, id strin
 
 // Execute executes the request
 //  @return VirtualNetwork
-func (a *ProjectsApiService) CreateVirtualNetworkExecute(r ApiCreateVirtualNetworkRequest) (VirtualNetwork, *_nethttp.Response, error) {
+func (a *ProjectsApiService) CreateVirtualNetworkExecute(r ApiCreateVirtualNetworkRequest) (*VirtualNetwork, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  VirtualNetwork
+		formFiles            []formFile
+		localVarReturnValue  *VirtualNetwork
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.CreateVirtualNetwork")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/projects/{id}/virtual-networks"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.virtualNetwork == nil {
 		return localVarReturnValue, nil, reportError("virtualNetwork is required and must be specified")
 	}
@@ -1098,7 +1084,7 @@ func (a *ProjectsApiService) CreateVirtualNetworkExecute(r ApiCreateVirtualNetwo
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -1108,15 +1094,15 @@ func (a *ProjectsApiService) CreateVirtualNetworkExecute(r ApiCreateVirtualNetwo
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -1164,7 +1150,7 @@ func (a *ProjectsApiService) CreateVirtualNetworkExecute(r ApiCreateVirtualNetwo
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -1175,13 +1161,13 @@ func (a *ProjectsApiService) CreateVirtualNetworkExecute(r ApiCreateVirtualNetwo
 }
 
 type ApiDeleteProjectRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *ProjectsApiService
 	id string
 }
 
 
-func (r ApiDeleteProjectRequest) Execute() (*_nethttp.Response, error) {
+func (r ApiDeleteProjectRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeleteProjectExecute(r)
 }
 
@@ -1190,11 +1176,11 @@ DeleteProject Delete the project
 
 Deletes the project.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Project UUID
  @return ApiDeleteProjectRequest
 */
-func (a *ProjectsApiService) DeleteProject(ctx _context.Context, id string) ApiDeleteProjectRequest {
+func (a *ProjectsApiService) DeleteProject(ctx context.Context, id string) ApiDeleteProjectRequest {
 	return ApiDeleteProjectRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1203,26 +1189,24 @@ func (a *ProjectsApiService) DeleteProject(ctx _context.Context, id string) ApiD
 }
 
 // Execute executes the request
-func (a *ProjectsApiService) DeleteProjectExecute(r ApiDeleteProjectRequest) (*_nethttp.Response, error) {
+func (a *ProjectsApiService) DeleteProjectExecute(r ApiDeleteProjectRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
+		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.DeleteProject")
 	if err != nil {
-		return nil, GenericOpenAPIError{error: err.Error()}
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/projects/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1255,7 +1239,7 @@ func (a *ProjectsApiService) DeleteProjectExecute(r ApiDeleteProjectRequest) (*_
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
 	}
@@ -1265,15 +1249,15 @@ func (a *ProjectsApiService) DeleteProjectExecute(r ApiDeleteProjectRequest) (*_
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -1313,7 +1297,7 @@ func (a *ProjectsApiService) DeleteProjectExecute(r ApiDeleteProjectRequest) (*_
 }
 
 type ApiFindBatchesByProjectRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *ProjectsApiService
 	id string
 	include *[]string
@@ -1331,7 +1315,7 @@ func (r ApiFindBatchesByProjectRequest) Exclude(exclude []string) ApiFindBatches
 	return r
 }
 
-func (r ApiFindBatchesByProjectRequest) Execute() (BatchesList, *_nethttp.Response, error) {
+func (r ApiFindBatchesByProjectRequest) Execute() (*BatchesList, *http.Response, error) {
 	return r.ApiService.FindBatchesByProjectExecute(r)
 }
 
@@ -1340,11 +1324,11 @@ FindBatchesByProject Retrieve all batches by project
 
 Returns all batches for the given project
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Project UUID
  @return ApiFindBatchesByProjectRequest
 */
-func (a *ProjectsApiService) FindBatchesByProject(ctx _context.Context, id string) ApiFindBatchesByProjectRequest {
+func (a *ProjectsApiService) FindBatchesByProject(ctx context.Context, id string) ApiFindBatchesByProjectRequest {
 	return ApiFindBatchesByProjectRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1354,27 +1338,25 @@ func (a *ProjectsApiService) FindBatchesByProject(ctx _context.Context, id strin
 
 // Execute executes the request
 //  @return BatchesList
-func (a *ProjectsApiService) FindBatchesByProjectExecute(r ApiFindBatchesByProjectRequest) (BatchesList, *_nethttp.Response, error) {
+func (a *ProjectsApiService) FindBatchesByProjectExecute(r ApiFindBatchesByProjectRequest) (*BatchesList, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  BatchesList
+		formFiles            []formFile
+		localVarReturnValue  *BatchesList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.FindBatchesByProject")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/projects/{id}/batches"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	if r.include != nil {
 		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
@@ -1413,7 +1395,7 @@ func (a *ProjectsApiService) FindBatchesByProjectExecute(r ApiFindBatchesByProje
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -1423,15 +1405,15 @@ func (a *ProjectsApiService) FindBatchesByProjectExecute(r ApiFindBatchesByProje
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -1469,7 +1451,7 @@ func (a *ProjectsApiService) FindBatchesByProjectExecute(r ApiFindBatchesByProje
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -1480,7 +1462,7 @@ func (a *ProjectsApiService) FindBatchesByProjectExecute(r ApiFindBatchesByProje
 }
 
 type ApiFindBgpConfigByProjectRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *ProjectsApiService
 	id string
 	include *[]string
@@ -1498,7 +1480,7 @@ func (r ApiFindBgpConfigByProjectRequest) Exclude(exclude []string) ApiFindBgpCo
 	return r
 }
 
-func (r ApiFindBgpConfigByProjectRequest) Execute() (BgpConfig, *_nethttp.Response, error) {
+func (r ApiFindBgpConfigByProjectRequest) Execute() (*BgpConfig, *http.Response, error) {
 	return r.ApiService.FindBgpConfigByProjectExecute(r)
 }
 
@@ -1507,11 +1489,11 @@ FindBgpConfigByProject Retrieve a bgp config
 
 Returns a bgp config
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Project UUID
  @return ApiFindBgpConfigByProjectRequest
 */
-func (a *ProjectsApiService) FindBgpConfigByProject(ctx _context.Context, id string) ApiFindBgpConfigByProjectRequest {
+func (a *ProjectsApiService) FindBgpConfigByProject(ctx context.Context, id string) ApiFindBgpConfigByProjectRequest {
 	return ApiFindBgpConfigByProjectRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1521,27 +1503,25 @@ func (a *ProjectsApiService) FindBgpConfigByProject(ctx _context.Context, id str
 
 // Execute executes the request
 //  @return BgpConfig
-func (a *ProjectsApiService) FindBgpConfigByProjectExecute(r ApiFindBgpConfigByProjectRequest) (BgpConfig, *_nethttp.Response, error) {
+func (a *ProjectsApiService) FindBgpConfigByProjectExecute(r ApiFindBgpConfigByProjectRequest) (*BgpConfig, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  BgpConfig
+		formFiles            []formFile
+		localVarReturnValue  *BgpConfig
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.FindBgpConfigByProject")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/projects/{id}/bgp-config"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	if r.include != nil {
 		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
@@ -1580,7 +1560,7 @@ func (a *ProjectsApiService) FindBgpConfigByProjectExecute(r ApiFindBgpConfigByP
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -1590,15 +1570,15 @@ func (a *ProjectsApiService) FindBgpConfigByProjectExecute(r ApiFindBgpConfigByP
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -1636,7 +1616,7 @@ func (a *ProjectsApiService) FindBgpConfigByProjectExecute(r ApiFindBgpConfigByP
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -1647,7 +1627,7 @@ func (a *ProjectsApiService) FindBgpConfigByProjectExecute(r ApiFindBgpConfigByP
 }
 
 type ApiFindDeviceSSHKeysRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *ProjectsApiService
 	id string
 	searchString *string
@@ -1671,7 +1651,7 @@ func (r ApiFindDeviceSSHKeysRequest) Exclude(exclude []string) ApiFindDeviceSSHK
 	return r
 }
 
-func (r ApiFindDeviceSSHKeysRequest) Execute() (SSHKeyList, *_nethttp.Response, error) {
+func (r ApiFindDeviceSSHKeysRequest) Execute() (*SSHKeyList, *http.Response, error) {
 	return r.ApiService.FindDeviceSSHKeysExecute(r)
 }
 
@@ -1680,11 +1660,11 @@ FindDeviceSSHKeys Retrieve a device's ssh keys
 
 Returns a collection of the device's ssh keys.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Project UUID
  @return ApiFindDeviceSSHKeysRequest
 */
-func (a *ProjectsApiService) FindDeviceSSHKeys(ctx _context.Context, id string) ApiFindDeviceSSHKeysRequest {
+func (a *ProjectsApiService) FindDeviceSSHKeys(ctx context.Context, id string) ApiFindDeviceSSHKeysRequest {
 	return ApiFindDeviceSSHKeysRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1694,27 +1674,25 @@ func (a *ProjectsApiService) FindDeviceSSHKeys(ctx _context.Context, id string) 
 
 // Execute executes the request
 //  @return SSHKeyList
-func (a *ProjectsApiService) FindDeviceSSHKeysExecute(r ApiFindDeviceSSHKeysRequest) (SSHKeyList, *_nethttp.Response, error) {
+func (a *ProjectsApiService) FindDeviceSSHKeysExecute(r ApiFindDeviceSSHKeysRequest) (*SSHKeyList, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  SSHKeyList
+		formFiles            []formFile
+		localVarReturnValue  *SSHKeyList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.FindDeviceSSHKeys")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/devices/{id}/ssh-keys"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	if r.searchString != nil {
 		localVarQueryParams.Add("Search string", parameterToString(*r.searchString, ""))
@@ -1756,7 +1734,7 @@ func (a *ProjectsApiService) FindDeviceSSHKeysExecute(r ApiFindDeviceSSHKeysRequ
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -1766,15 +1744,15 @@ func (a *ProjectsApiService) FindDeviceSSHKeysExecute(r ApiFindDeviceSSHKeysRequ
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -1792,7 +1770,7 @@ func (a *ProjectsApiService) FindDeviceSSHKeysExecute(r ApiFindDeviceSSHKeysRequ
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -1803,14 +1781,14 @@ func (a *ProjectsApiService) FindDeviceSSHKeysExecute(r ApiFindDeviceSSHKeysRequ
 }
 
 type ApiFindIPReservationCustomdataRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *ProjectsApiService
 	projectId string
 	id string
 }
 
 
-func (r ApiFindIPReservationCustomdataRequest) Execute() (*_nethttp.Response, error) {
+func (r ApiFindIPReservationCustomdataRequest) Execute() (*http.Response, error) {
 	return r.ApiService.FindIPReservationCustomdataExecute(r)
 }
 
@@ -1819,12 +1797,12 @@ FindIPReservationCustomdata Retrieve the custom metadata of an IP Reservation
 
 Provides the custom metadata stored for this IP Reservation in json format
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param projectId Project UUID
  @param id Ip Reservation UUID
  @return ApiFindIPReservationCustomdataRequest
 */
-func (a *ProjectsApiService) FindIPReservationCustomdata(ctx _context.Context, projectId string, id string) ApiFindIPReservationCustomdataRequest {
+func (a *ProjectsApiService) FindIPReservationCustomdata(ctx context.Context, projectId string, id string) ApiFindIPReservationCustomdataRequest {
 	return ApiFindIPReservationCustomdataRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1834,27 +1812,25 @@ func (a *ProjectsApiService) FindIPReservationCustomdata(ctx _context.Context, p
 }
 
 // Execute executes the request
-func (a *ProjectsApiService) FindIPReservationCustomdataExecute(r ApiFindIPReservationCustomdataRequest) (*_nethttp.Response, error) {
+func (a *ProjectsApiService) FindIPReservationCustomdataExecute(r ApiFindIPReservationCustomdataRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.FindIPReservationCustomdata")
 	if err != nil {
-		return nil, GenericOpenAPIError{error: err.Error()}
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/projects/{project_id}/ips/{id}/customdata"
-	localVarPath = strings.Replace(localVarPath, "{"+"project_id"+"}", _neturl.PathEscape(parameterToString(r.projectId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"project_id"+"}", url.PathEscape(parameterToString(r.projectId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1887,7 +1863,7 @@ func (a *ProjectsApiService) FindIPReservationCustomdataExecute(r ApiFindIPReser
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
 	}
@@ -1897,15 +1873,15 @@ func (a *ProjectsApiService) FindIPReservationCustomdataExecute(r ApiFindIPReser
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -1945,7 +1921,7 @@ func (a *ProjectsApiService) FindIPReservationCustomdataExecute(r ApiFindIPReser
 }
 
 type ApiFindIPReservationsRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *ProjectsApiService
 	id string
 	include *[]string
@@ -1963,7 +1939,7 @@ func (r ApiFindIPReservationsRequest) Exclude(exclude []string) ApiFindIPReserva
 	return r
 }
 
-func (r ApiFindIPReservationsRequest) Execute() (IPReservationList, *_nethttp.Response, error) {
+func (r ApiFindIPReservationsRequest) Execute() (*IPReservationList, *http.Response, error) {
 	return r.ApiService.FindIPReservationsExecute(r)
 }
 
@@ -1972,11 +1948,11 @@ FindIPReservations Retrieve all ip reservations
 
 Provides a list of IP resevations for a single project.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Project UUID
  @return ApiFindIPReservationsRequest
 */
-func (a *ProjectsApiService) FindIPReservations(ctx _context.Context, id string) ApiFindIPReservationsRequest {
+func (a *ProjectsApiService) FindIPReservations(ctx context.Context, id string) ApiFindIPReservationsRequest {
 	return ApiFindIPReservationsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1986,27 +1962,25 @@ func (a *ProjectsApiService) FindIPReservations(ctx _context.Context, id string)
 
 // Execute executes the request
 //  @return IPReservationList
-func (a *ProjectsApiService) FindIPReservationsExecute(r ApiFindIPReservationsRequest) (IPReservationList, *_nethttp.Response, error) {
+func (a *ProjectsApiService) FindIPReservationsExecute(r ApiFindIPReservationsRequest) (*IPReservationList, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  IPReservationList
+		formFiles            []formFile
+		localVarReturnValue  *IPReservationList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.FindIPReservations")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/projects/{id}/ips"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	if r.include != nil {
 		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
@@ -2045,7 +2019,7 @@ func (a *ProjectsApiService) FindIPReservationsExecute(r ApiFindIPReservationsRe
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -2055,15 +2029,15 @@ func (a *ProjectsApiService) FindIPReservationsExecute(r ApiFindIPReservationsRe
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -2101,7 +2075,7 @@ func (a *ProjectsApiService) FindIPReservationsExecute(r ApiFindIPReservationsRe
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -2112,13 +2086,13 @@ func (a *ProjectsApiService) FindIPReservationsExecute(r ApiFindIPReservationsRe
 }
 
 type ApiFindProjectBgpSessionsRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *ProjectsApiService
 	id string
 }
 
 
-func (r ApiFindProjectBgpSessionsRequest) Execute() (BgpSessionList, *_nethttp.Response, error) {
+func (r ApiFindProjectBgpSessionsRequest) Execute() (*BgpSessionList, *http.Response, error) {
 	return r.ApiService.FindProjectBgpSessionsExecute(r)
 }
 
@@ -2127,11 +2101,11 @@ FindProjectBgpSessions Retrieve all BGP sessions for project
 
 Provides a listing of available BGP sessions for the project.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Project UUID
  @return ApiFindProjectBgpSessionsRequest
 */
-func (a *ProjectsApiService) FindProjectBgpSessions(ctx _context.Context, id string) ApiFindProjectBgpSessionsRequest {
+func (a *ProjectsApiService) FindProjectBgpSessions(ctx context.Context, id string) ApiFindProjectBgpSessionsRequest {
 	return ApiFindProjectBgpSessionsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2141,27 +2115,25 @@ func (a *ProjectsApiService) FindProjectBgpSessions(ctx _context.Context, id str
 
 // Execute executes the request
 //  @return BgpSessionList
-func (a *ProjectsApiService) FindProjectBgpSessionsExecute(r ApiFindProjectBgpSessionsRequest) (BgpSessionList, *_nethttp.Response, error) {
+func (a *ProjectsApiService) FindProjectBgpSessionsExecute(r ApiFindProjectBgpSessionsRequest) (*BgpSessionList, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  BgpSessionList
+		formFiles            []formFile
+		localVarReturnValue  *BgpSessionList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.FindProjectBgpSessions")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/projects/{id}/bgp/sessions"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -2194,7 +2166,7 @@ func (a *ProjectsApiService) FindProjectBgpSessionsExecute(r ApiFindProjectBgpSe
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -2204,15 +2176,15 @@ func (a *ProjectsApiService) FindProjectBgpSessionsExecute(r ApiFindProjectBgpSe
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -2240,7 +2212,7 @@ func (a *ProjectsApiService) FindProjectBgpSessionsExecute(r ApiFindProjectBgpSe
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -2251,7 +2223,7 @@ func (a *ProjectsApiService) FindProjectBgpSessionsExecute(r ApiFindProjectBgpSe
 }
 
 type ApiFindProjectByIdRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *ProjectsApiService
 	id string
 	include *[]string
@@ -2269,7 +2241,7 @@ func (r ApiFindProjectByIdRequest) Exclude(exclude []string) ApiFindProjectByIdR
 	return r
 }
 
-func (r ApiFindProjectByIdRequest) Execute() (Project, *_nethttp.Response, error) {
+func (r ApiFindProjectByIdRequest) Execute() (*Project, *http.Response, error) {
 	return r.ApiService.FindProjectByIdExecute(r)
 }
 
@@ -2278,11 +2250,11 @@ FindProjectById Retrieve a project
 
 Returns a single project if the user has access
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Project UUID
  @return ApiFindProjectByIdRequest
 */
-func (a *ProjectsApiService) FindProjectById(ctx _context.Context, id string) ApiFindProjectByIdRequest {
+func (a *ProjectsApiService) FindProjectById(ctx context.Context, id string) ApiFindProjectByIdRequest {
 	return ApiFindProjectByIdRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2292,27 +2264,25 @@ func (a *ProjectsApiService) FindProjectById(ctx _context.Context, id string) Ap
 
 // Execute executes the request
 //  @return Project
-func (a *ProjectsApiService) FindProjectByIdExecute(r ApiFindProjectByIdRequest) (Project, *_nethttp.Response, error) {
+func (a *ProjectsApiService) FindProjectByIdExecute(r ApiFindProjectByIdRequest) (*Project, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  Project
+		formFiles            []formFile
+		localVarReturnValue  *Project
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.FindProjectById")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/projects/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	if r.include != nil {
 		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
@@ -2351,7 +2321,7 @@ func (a *ProjectsApiService) FindProjectByIdExecute(r ApiFindProjectByIdRequest)
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -2361,15 +2331,15 @@ func (a *ProjectsApiService) FindProjectByIdExecute(r ApiFindProjectByIdRequest)
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -2407,7 +2377,7 @@ func (a *ProjectsApiService) FindProjectByIdExecute(r ApiFindProjectByIdRequest)
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -2418,13 +2388,13 @@ func (a *ProjectsApiService) FindProjectByIdExecute(r ApiFindProjectByIdRequest)
 }
 
 type ApiFindProjectCustomdataRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *ProjectsApiService
 	id string
 }
 
 
-func (r ApiFindProjectCustomdataRequest) Execute() (*_nethttp.Response, error) {
+func (r ApiFindProjectCustomdataRequest) Execute() (*http.Response, error) {
 	return r.ApiService.FindProjectCustomdataExecute(r)
 }
 
@@ -2433,11 +2403,11 @@ FindProjectCustomdata Retrieve the custom metadata of a project
 
 Provides the custom metadata stored for this project in json format
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Project UUID
  @return ApiFindProjectCustomdataRequest
 */
-func (a *ProjectsApiService) FindProjectCustomdata(ctx _context.Context, id string) ApiFindProjectCustomdataRequest {
+func (a *ProjectsApiService) FindProjectCustomdata(ctx context.Context, id string) ApiFindProjectCustomdataRequest {
 	return ApiFindProjectCustomdataRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2446,26 +2416,24 @@ func (a *ProjectsApiService) FindProjectCustomdata(ctx _context.Context, id stri
 }
 
 // Execute executes the request
-func (a *ProjectsApiService) FindProjectCustomdataExecute(r ApiFindProjectCustomdataRequest) (*_nethttp.Response, error) {
+func (a *ProjectsApiService) FindProjectCustomdataExecute(r ApiFindProjectCustomdataRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.FindProjectCustomdata")
 	if err != nil {
-		return nil, GenericOpenAPIError{error: err.Error()}
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/projects/{id}/customdata"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -2498,7 +2466,7 @@ func (a *ProjectsApiService) FindProjectCustomdataExecute(r ApiFindProjectCustom
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
 	}
@@ -2508,15 +2476,15 @@ func (a *ProjectsApiService) FindProjectCustomdataExecute(r ApiFindProjectCustom
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -2556,15 +2524,45 @@ func (a *ProjectsApiService) FindProjectCustomdataExecute(r ApiFindProjectCustom
 }
 
 type ApiFindProjectDevicesRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *ProjectsApiService
 	id string
+	facility *string
+	hostname *string
+	reserved *bool
+	tag *string
+	type_ *string
 	include *[]string
 	exclude *[]string
 	page *int32
 	perPage *int32
 }
 
+// Filter by device facility
+func (r ApiFindProjectDevicesRequest) Facility(facility string) ApiFindProjectDevicesRequest {
+	r.facility = &facility
+	return r
+}
+// Filter by partial hostname
+func (r ApiFindProjectDevicesRequest) Hostname(hostname string) ApiFindProjectDevicesRequest {
+	r.hostname = &hostname
+	return r
+}
+// Filter only reserved instances
+func (r ApiFindProjectDevicesRequest) Reserved(reserved bool) ApiFindProjectDevicesRequest {
+	r.reserved = &reserved
+	return r
+}
+// Filter by device tag
+func (r ApiFindProjectDevicesRequest) Tag(tag string) ApiFindProjectDevicesRequest {
+	r.tag = &tag
+	return r
+}
+// Filter by instance type (ondemand,spot,reserved)
+func (r ApiFindProjectDevicesRequest) Type_(type_ string) ApiFindProjectDevicesRequest {
+	r.type_ = &type_
+	return r
+}
 // Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
 func (r ApiFindProjectDevicesRequest) Include(include []string) ApiFindProjectDevicesRequest {
 	r.include = &include
@@ -2586,7 +2584,7 @@ func (r ApiFindProjectDevicesRequest) PerPage(perPage int32) ApiFindProjectDevic
 	return r
 }
 
-func (r ApiFindProjectDevicesRequest) Execute() (DeviceList, *_nethttp.Response, error) {
+func (r ApiFindProjectDevicesRequest) Execute() (*DeviceList, *http.Response, error) {
 	return r.ApiService.FindProjectDevicesExecute(r)
 }
 
@@ -2595,11 +2593,11 @@ FindProjectDevices Retrieve all devices of a project
 
 Provides a collection of devices for a given project.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Project UUID
  @return ApiFindProjectDevicesRequest
 */
-func (a *ProjectsApiService) FindProjectDevices(ctx _context.Context, id string) ApiFindProjectDevicesRequest {
+func (a *ProjectsApiService) FindProjectDevices(ctx context.Context, id string) ApiFindProjectDevicesRequest {
 	return ApiFindProjectDevicesRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2609,28 +2607,41 @@ func (a *ProjectsApiService) FindProjectDevices(ctx _context.Context, id string)
 
 // Execute executes the request
 //  @return DeviceList
-func (a *ProjectsApiService) FindProjectDevicesExecute(r ApiFindProjectDevicesRequest) (DeviceList, *_nethttp.Response, error) {
+func (a *ProjectsApiService) FindProjectDevicesExecute(r ApiFindProjectDevicesRequest) (*DeviceList, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  DeviceList
+		formFiles            []formFile
+		localVarReturnValue  *DeviceList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.FindProjectDevices")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/projects/{id}/devices"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
+	if r.facility != nil {
+		localVarQueryParams.Add("facility", parameterToString(*r.facility, ""))
+	}
+	if r.hostname != nil {
+		localVarQueryParams.Add("hostname", parameterToString(*r.hostname, ""))
+	}
+	if r.reserved != nil {
+		localVarQueryParams.Add("reserved", parameterToString(*r.reserved, ""))
+	}
+	if r.tag != nil {
+		localVarQueryParams.Add("tag", parameterToString(*r.tag, ""))
+	}
+	if r.type_ != nil {
+		localVarQueryParams.Add("type", parameterToString(*r.type_, ""))
+	}
 	if r.include != nil {
 		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
 	}
@@ -2674,7 +2685,7 @@ func (a *ProjectsApiService) FindProjectDevicesExecute(r ApiFindProjectDevicesRe
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -2684,15 +2695,15 @@ func (a *ProjectsApiService) FindProjectDevicesExecute(r ApiFindProjectDevicesRe
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -2730,7 +2741,7 @@ func (a *ProjectsApiService) FindProjectDevicesExecute(r ApiFindProjectDevicesRe
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -2741,7 +2752,7 @@ func (a *ProjectsApiService) FindProjectDevicesExecute(r ApiFindProjectDevicesRe
 }
 
 type ApiFindProjectHardwareReservationsRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *ProjectsApiService
 	id string
 	include *[]string
@@ -2771,7 +2782,7 @@ func (r ApiFindProjectHardwareReservationsRequest) PerPage(perPage int32) ApiFin
 	return r
 }
 
-func (r ApiFindProjectHardwareReservationsRequest) Execute() (HardwareReservationList, *_nethttp.Response, error) {
+func (r ApiFindProjectHardwareReservationsRequest) Execute() (*HardwareReservationList, *http.Response, error) {
 	return r.ApiService.FindProjectHardwareReservationsExecute(r)
 }
 
@@ -2780,11 +2791,11 @@ FindProjectHardwareReservations Retrieve all hardware reservations for a given p
 
 Provides a collection of hardware reservations for a given project.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Project UUID
  @return ApiFindProjectHardwareReservationsRequest
 */
-func (a *ProjectsApiService) FindProjectHardwareReservations(ctx _context.Context, id string) ApiFindProjectHardwareReservationsRequest {
+func (a *ProjectsApiService) FindProjectHardwareReservations(ctx context.Context, id string) ApiFindProjectHardwareReservationsRequest {
 	return ApiFindProjectHardwareReservationsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2794,27 +2805,25 @@ func (a *ProjectsApiService) FindProjectHardwareReservations(ctx _context.Contex
 
 // Execute executes the request
 //  @return HardwareReservationList
-func (a *ProjectsApiService) FindProjectHardwareReservationsExecute(r ApiFindProjectHardwareReservationsRequest) (HardwareReservationList, *_nethttp.Response, error) {
+func (a *ProjectsApiService) FindProjectHardwareReservationsExecute(r ApiFindProjectHardwareReservationsRequest) (*HardwareReservationList, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  HardwareReservationList
+		formFiles            []formFile
+		localVarReturnValue  *HardwareReservationList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.FindProjectHardwareReservations")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/projects/{id}/hardware-reservations"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	if r.include != nil {
 		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
@@ -2859,7 +2868,7 @@ func (a *ProjectsApiService) FindProjectHardwareReservationsExecute(r ApiFindPro
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -2869,15 +2878,15 @@ func (a *ProjectsApiService) FindProjectHardwareReservationsExecute(r ApiFindPro
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -2915,7 +2924,7 @@ func (a *ProjectsApiService) FindProjectHardwareReservationsExecute(r ApiFindPro
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -2926,7 +2935,7 @@ func (a *ProjectsApiService) FindProjectHardwareReservationsExecute(r ApiFindPro
 }
 
 type ApiFindProjectLicensesRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *ProjectsApiService
 	id string
 	include *[]string
@@ -2956,7 +2965,7 @@ func (r ApiFindProjectLicensesRequest) PerPage(perPage int32) ApiFindProjectLice
 	return r
 }
 
-func (r ApiFindProjectLicensesRequest) Execute() (LicenseList, *_nethttp.Response, error) {
+func (r ApiFindProjectLicensesRequest) Execute() (*LicenseList, *http.Response, error) {
 	return r.ApiService.FindProjectLicensesExecute(r)
 }
 
@@ -2965,11 +2974,11 @@ FindProjectLicenses Retrieve all licenses
 
 Provides a collection of licenses for a given project.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Project UUID
  @return ApiFindProjectLicensesRequest
 */
-func (a *ProjectsApiService) FindProjectLicenses(ctx _context.Context, id string) ApiFindProjectLicensesRequest {
+func (a *ProjectsApiService) FindProjectLicenses(ctx context.Context, id string) ApiFindProjectLicensesRequest {
 	return ApiFindProjectLicensesRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2979,27 +2988,25 @@ func (a *ProjectsApiService) FindProjectLicenses(ctx _context.Context, id string
 
 // Execute executes the request
 //  @return LicenseList
-func (a *ProjectsApiService) FindProjectLicensesExecute(r ApiFindProjectLicensesRequest) (LicenseList, *_nethttp.Response, error) {
+func (a *ProjectsApiService) FindProjectLicensesExecute(r ApiFindProjectLicensesRequest) (*LicenseList, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  LicenseList
+		formFiles            []formFile
+		localVarReturnValue  *LicenseList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.FindProjectLicenses")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/projects/{id}/licenses"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	if r.include != nil {
 		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
@@ -3044,7 +3051,7 @@ func (a *ProjectsApiService) FindProjectLicensesExecute(r ApiFindProjectLicenses
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -3054,15 +3061,15 @@ func (a *ProjectsApiService) FindProjectLicensesExecute(r ApiFindProjectLicenses
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -3100,7 +3107,7 @@ func (a *ProjectsApiService) FindProjectLicensesExecute(r ApiFindProjectLicenses
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -3111,7 +3118,7 @@ func (a *ProjectsApiService) FindProjectLicensesExecute(r ApiFindProjectLicenses
 }
 
 type ApiFindProjectMembershipsRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *ProjectsApiService
 	projectId string
 	include *[]string
@@ -3141,7 +3148,7 @@ func (r ApiFindProjectMembershipsRequest) PerPage(perPage int32) ApiFindProjectM
 	return r
 }
 
-func (r ApiFindProjectMembershipsRequest) Execute() (MembershipList, *_nethttp.Response, error) {
+func (r ApiFindProjectMembershipsRequest) Execute() (*MembershipList, *http.Response, error) {
 	return r.ApiService.FindProjectMembershipsExecute(r)
 }
 
@@ -3150,11 +3157,11 @@ FindProjectMemberships Retrieve project memberships
 
 Returns all memberships in a project.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param projectId Project UUID
  @return ApiFindProjectMembershipsRequest
 */
-func (a *ProjectsApiService) FindProjectMemberships(ctx _context.Context, projectId string) ApiFindProjectMembershipsRequest {
+func (a *ProjectsApiService) FindProjectMemberships(ctx context.Context, projectId string) ApiFindProjectMembershipsRequest {
 	return ApiFindProjectMembershipsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -3164,27 +3171,25 @@ func (a *ProjectsApiService) FindProjectMemberships(ctx _context.Context, projec
 
 // Execute executes the request
 //  @return MembershipList
-func (a *ProjectsApiService) FindProjectMembershipsExecute(r ApiFindProjectMembershipsRequest) (MembershipList, *_nethttp.Response, error) {
+func (a *ProjectsApiService) FindProjectMembershipsExecute(r ApiFindProjectMembershipsRequest) (*MembershipList, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  MembershipList
+		formFiles            []formFile
+		localVarReturnValue  *MembershipList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.FindProjectMemberships")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/projects/{project_id}/memberships"
-	localVarPath = strings.Replace(localVarPath, "{"+"project_id"+"}", _neturl.PathEscape(parameterToString(r.projectId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"project_id"+"}", url.PathEscape(parameterToString(r.projectId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	if r.include != nil {
 		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
@@ -3229,7 +3234,7 @@ func (a *ProjectsApiService) FindProjectMembershipsExecute(r ApiFindProjectMembe
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -3239,15 +3244,15 @@ func (a *ProjectsApiService) FindProjectMembershipsExecute(r ApiFindProjectMembe
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -3285,7 +3290,7 @@ func (a *ProjectsApiService) FindProjectMembershipsExecute(r ApiFindProjectMembe
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -3296,7 +3301,7 @@ func (a *ProjectsApiService) FindProjectMembershipsExecute(r ApiFindProjectMembe
 }
 
 type ApiFindProjectSSHKeysRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *ProjectsApiService
 	id string
 	searchString *string
@@ -3320,7 +3325,7 @@ func (r ApiFindProjectSSHKeysRequest) Exclude(exclude []string) ApiFindProjectSS
 	return r
 }
 
-func (r ApiFindProjectSSHKeysRequest) Execute() (SSHKeyList, *_nethttp.Response, error) {
+func (r ApiFindProjectSSHKeysRequest) Execute() (*SSHKeyList, *http.Response, error) {
 	return r.ApiService.FindProjectSSHKeysExecute(r)
 }
 
@@ -3329,11 +3334,11 @@ FindProjectSSHKeys Retrieve a project's ssh keys
 
 Returns a collection of the project's ssh keys.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Project UUID
  @return ApiFindProjectSSHKeysRequest
 */
-func (a *ProjectsApiService) FindProjectSSHKeys(ctx _context.Context, id string) ApiFindProjectSSHKeysRequest {
+func (a *ProjectsApiService) FindProjectSSHKeys(ctx context.Context, id string) ApiFindProjectSSHKeysRequest {
 	return ApiFindProjectSSHKeysRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -3343,27 +3348,25 @@ func (a *ProjectsApiService) FindProjectSSHKeys(ctx _context.Context, id string)
 
 // Execute executes the request
 //  @return SSHKeyList
-func (a *ProjectsApiService) FindProjectSSHKeysExecute(r ApiFindProjectSSHKeysRequest) (SSHKeyList, *_nethttp.Response, error) {
+func (a *ProjectsApiService) FindProjectSSHKeysExecute(r ApiFindProjectSSHKeysRequest) (*SSHKeyList, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  SSHKeyList
+		formFiles            []formFile
+		localVarReturnValue  *SSHKeyList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.FindProjectSSHKeys")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/projects/{id}/ssh-keys"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	if r.searchString != nil {
 		localVarQueryParams.Add("Search string", parameterToString(*r.searchString, ""))
@@ -3405,7 +3408,7 @@ func (a *ProjectsApiService) FindProjectSSHKeysExecute(r ApiFindProjectSSHKeysRe
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -3415,15 +3418,15 @@ func (a *ProjectsApiService) FindProjectSSHKeysExecute(r ApiFindProjectSSHKeysRe
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -3441,7 +3444,7 @@ func (a *ProjectsApiService) FindProjectSSHKeysExecute(r ApiFindProjectSSHKeysRe
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -3452,7 +3455,7 @@ func (a *ProjectsApiService) FindProjectSSHKeysExecute(r ApiFindProjectSSHKeysRe
 }
 
 type ApiFindProjectsRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *ProjectsApiService
 	include *[]string
 	exclude *[]string
@@ -3481,7 +3484,7 @@ func (r ApiFindProjectsRequest) PerPage(perPage int32) ApiFindProjectsRequest {
 	return r
 }
 
-func (r ApiFindProjectsRequest) Execute() (ProjectList, *_nethttp.Response, error) {
+func (r ApiFindProjectsRequest) Execute() (*ProjectList, *http.Response, error) {
 	return r.ApiService.FindProjectsExecute(r)
 }
 
@@ -3490,10 +3493,10 @@ FindProjects Retrieve all projects
 
 Returns a collection of projects that the current user is a member of.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiFindProjectsRequest
 */
-func (a *ProjectsApiService) FindProjects(ctx _context.Context) ApiFindProjectsRequest {
+func (a *ProjectsApiService) FindProjects(ctx context.Context) ApiFindProjectsRequest {
 	return ApiFindProjectsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -3502,26 +3505,24 @@ func (a *ProjectsApiService) FindProjects(ctx _context.Context) ApiFindProjectsR
 
 // Execute executes the request
 //  @return ProjectList
-func (a *ProjectsApiService) FindProjectsExecute(r ApiFindProjectsRequest) (ProjectList, *_nethttp.Response, error) {
+func (a *ProjectsApiService) FindProjectsExecute(r ApiFindProjectsRequest) (*ProjectList, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  ProjectList
+		formFiles            []formFile
+		localVarReturnValue  *ProjectList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.FindProjects")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/projects"
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	if r.include != nil {
 		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
@@ -3566,7 +3567,7 @@ func (a *ProjectsApiService) FindProjectsExecute(r ApiFindProjectsRequest) (Proj
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -3576,15 +3577,15 @@ func (a *ProjectsApiService) FindProjectsExecute(r ApiFindProjectsRequest) (Proj
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -3602,7 +3603,7 @@ func (a *ProjectsApiService) FindProjectsExecute(r ApiFindProjectsRequest) (Proj
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -3613,7 +3614,7 @@ func (a *ProjectsApiService) FindProjectsExecute(r ApiFindProjectsRequest) (Proj
 }
 
 type ApiFindVirtualNetworksRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *ProjectsApiService
 	id string
 	include *[]string
@@ -3643,7 +3644,7 @@ func (r ApiFindVirtualNetworksRequest) Metro(metro string) ApiFindVirtualNetwork
 	return r
 }
 
-func (r ApiFindVirtualNetworksRequest) Execute() (VirtualNetworkList, *_nethttp.Response, error) {
+func (r ApiFindVirtualNetworksRequest) Execute() (*VirtualNetworkList, *http.Response, error) {
 	return r.ApiService.FindVirtualNetworksExecute(r)
 }
 
@@ -3652,11 +3653,11 @@ FindVirtualNetworks Retrieve all virtual networks
 
 Provides a list of virtual networks for a single project.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Project UUID
  @return ApiFindVirtualNetworksRequest
 */
-func (a *ProjectsApiService) FindVirtualNetworks(ctx _context.Context, id string) ApiFindVirtualNetworksRequest {
+func (a *ProjectsApiService) FindVirtualNetworks(ctx context.Context, id string) ApiFindVirtualNetworksRequest {
 	return ApiFindVirtualNetworksRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -3666,27 +3667,25 @@ func (a *ProjectsApiService) FindVirtualNetworks(ctx _context.Context, id string
 
 // Execute executes the request
 //  @return VirtualNetworkList
-func (a *ProjectsApiService) FindVirtualNetworksExecute(r ApiFindVirtualNetworksRequest) (VirtualNetworkList, *_nethttp.Response, error) {
+func (a *ProjectsApiService) FindVirtualNetworksExecute(r ApiFindVirtualNetworksRequest) (*VirtualNetworkList, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  VirtualNetworkList
+		formFiles            []formFile
+		localVarReturnValue  *VirtualNetworkList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.FindVirtualNetworks")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/projects/{id}/virtual-networks"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	if r.include != nil {
 		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
@@ -3731,7 +3730,7 @@ func (a *ProjectsApiService) FindVirtualNetworksExecute(r ApiFindVirtualNetworks
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -3741,15 +3740,15 @@ func (a *ProjectsApiService) FindVirtualNetworksExecute(r ApiFindVirtualNetworks
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -3787,7 +3786,7 @@ func (a *ProjectsApiService) FindVirtualNetworksExecute(r ApiFindVirtualNetworks
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -3798,13 +3797,13 @@ func (a *ProjectsApiService) FindVirtualNetworksExecute(r ApiFindVirtualNetworks
 }
 
 type ApiListSpotMarketRequestsRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *ProjectsApiService
 	id string
 }
 
 
-func (r ApiListSpotMarketRequestsRequest) Execute() (SpotMarketRequestList, *_nethttp.Response, error) {
+func (r ApiListSpotMarketRequestsRequest) Execute() (*SpotMarketRequestList, *http.Response, error) {
 	return r.ApiService.ListSpotMarketRequestsExecute(r)
 }
 
@@ -3813,11 +3812,11 @@ ListSpotMarketRequests List spot market requests
 
 View all spot market requests for a given project.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Project UUID
  @return ApiListSpotMarketRequestsRequest
 */
-func (a *ProjectsApiService) ListSpotMarketRequests(ctx _context.Context, id string) ApiListSpotMarketRequestsRequest {
+func (a *ProjectsApiService) ListSpotMarketRequests(ctx context.Context, id string) ApiListSpotMarketRequestsRequest {
 	return ApiListSpotMarketRequestsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -3827,27 +3826,25 @@ func (a *ProjectsApiService) ListSpotMarketRequests(ctx _context.Context, id str
 
 // Execute executes the request
 //  @return SpotMarketRequestList
-func (a *ProjectsApiService) ListSpotMarketRequestsExecute(r ApiListSpotMarketRequestsRequest) (SpotMarketRequestList, *_nethttp.Response, error) {
+func (a *ProjectsApiService) ListSpotMarketRequestsExecute(r ApiListSpotMarketRequestsRequest) (*SpotMarketRequestList, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  SpotMarketRequestList
+		formFiles            []formFile
+		localVarReturnValue  *SpotMarketRequestList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.ListSpotMarketRequests")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/projects/{id}/spot-market-requests"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -3880,7 +3877,7 @@ func (a *ProjectsApiService) ListSpotMarketRequestsExecute(r ApiListSpotMarketRe
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -3890,15 +3887,15 @@ func (a *ProjectsApiService) ListSpotMarketRequestsExecute(r ApiListSpotMarketRe
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -3926,7 +3923,7 @@ func (a *ProjectsApiService) ListSpotMarketRequestsExecute(r ApiListSpotMarketRe
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -3937,7 +3934,7 @@ func (a *ProjectsApiService) ListSpotMarketRequestsExecute(r ApiListSpotMarketRe
 }
 
 type ApiRequestBgpConfigRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *ProjectsApiService
 	id string
 	bgpConfigRequest *BgpConfigRequestInput
@@ -3949,7 +3946,7 @@ func (r ApiRequestBgpConfigRequest) BgpConfigRequest(bgpConfigRequest BgpConfigR
 	return r
 }
 
-func (r ApiRequestBgpConfigRequest) Execute() (*_nethttp.Response, error) {
+func (r ApiRequestBgpConfigRequest) Execute() (*http.Response, error) {
 	return r.ApiService.RequestBgpConfigExecute(r)
 }
 
@@ -3958,11 +3955,11 @@ RequestBgpConfig Requesting bgp config
 
 Requests to enable bgp configuration for a project.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Project UUID
  @return ApiRequestBgpConfigRequest
 */
-func (a *ProjectsApiService) RequestBgpConfig(ctx _context.Context, id string) ApiRequestBgpConfigRequest {
+func (a *ProjectsApiService) RequestBgpConfig(ctx context.Context, id string) ApiRequestBgpConfigRequest {
 	return ApiRequestBgpConfigRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -3971,26 +3968,24 @@ func (a *ProjectsApiService) RequestBgpConfig(ctx _context.Context, id string) A
 }
 
 // Execute executes the request
-func (a *ProjectsApiService) RequestBgpConfigExecute(r ApiRequestBgpConfigRequest) (*_nethttp.Response, error) {
+func (a *ProjectsApiService) RequestBgpConfigExecute(r ApiRequestBgpConfigRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.RequestBgpConfig")
 	if err != nil {
-		return nil, GenericOpenAPIError{error: err.Error()}
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/projects/{id}/bgp-configs"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.bgpConfigRequest == nil {
 		return nil, reportError("bgpConfigRequest is required and must be specified")
 	}
@@ -4028,7 +4023,7 @@ func (a *ProjectsApiService) RequestBgpConfigExecute(r ApiRequestBgpConfigReques
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
 	}
@@ -4038,15 +4033,15 @@ func (a *ProjectsApiService) RequestBgpConfigExecute(r ApiRequestBgpConfigReques
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -4096,7 +4091,7 @@ func (a *ProjectsApiService) RequestBgpConfigExecute(r ApiRequestBgpConfigReques
 }
 
 type ApiRequestIPReservationRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *ProjectsApiService
 	id string
 	ipReservationRequest *IPReservationRequestInput
@@ -4108,7 +4103,7 @@ func (r ApiRequestIPReservationRequest) IpReservationRequest(ipReservationReques
 	return r
 }
 
-func (r ApiRequestIPReservationRequest) Execute() (IPReservation, *_nethttp.Response, error) {
+func (r ApiRequestIPReservationRequest) Execute() (*IPReservation, *http.Response, error) {
 	return r.ApiService.RequestIPReservationExecute(r)
 }
 
@@ -4117,11 +4112,11 @@ RequestIPReservation Requesting IP reservations
 
 Request more IP space for a project in order to have additional IP addresses to assign to devices.  If the request is within the max quota, an IP reservation will be created. If the project will exceed its IP quota, a request will be submitted for review, and will return an IP Reservation with a `state` of `pending`. You can automatically have the request fail with HTTP status 422 instead of triggering the review process by providing the `fail_on_approval_required` parameter set to `true` in the request.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Project UUID
  @return ApiRequestIPReservationRequest
 */
-func (a *ProjectsApiService) RequestIPReservation(ctx _context.Context, id string) ApiRequestIPReservationRequest {
+func (a *ProjectsApiService) RequestIPReservation(ctx context.Context, id string) ApiRequestIPReservationRequest {
 	return ApiRequestIPReservationRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -4131,27 +4126,25 @@ func (a *ProjectsApiService) RequestIPReservation(ctx _context.Context, id strin
 
 // Execute executes the request
 //  @return IPReservation
-func (a *ProjectsApiService) RequestIPReservationExecute(r ApiRequestIPReservationRequest) (IPReservation, *_nethttp.Response, error) {
+func (a *ProjectsApiService) RequestIPReservationExecute(r ApiRequestIPReservationRequest) (*IPReservation, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  IPReservation
+		formFiles            []formFile
+		localVarReturnValue  *IPReservation
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.RequestIPReservation")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/projects/{id}/ips"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.ipReservationRequest == nil {
 		return localVarReturnValue, nil, reportError("ipReservationRequest is required and must be specified")
 	}
@@ -4189,7 +4182,7 @@ func (a *ProjectsApiService) RequestIPReservationExecute(r ApiRequestIPReservati
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -4199,15 +4192,15 @@ func (a *ProjectsApiService) RequestIPReservationExecute(r ApiRequestIPReservati
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -4255,7 +4248,7 @@ func (a *ProjectsApiService) RequestIPReservationExecute(r ApiRequestIPReservati
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -4266,7 +4259,7 @@ func (a *ProjectsApiService) RequestIPReservationExecute(r ApiRequestIPReservati
 }
 
 type ApiUpdateProjectRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *ProjectsApiService
 	id string
 	project *ProjectUpdateInput
@@ -4278,7 +4271,7 @@ func (r ApiUpdateProjectRequest) Project(project ProjectUpdateInput) ApiUpdatePr
 	return r
 }
 
-func (r ApiUpdateProjectRequest) Execute() (Project, *_nethttp.Response, error) {
+func (r ApiUpdateProjectRequest) Execute() (*Project, *http.Response, error) {
 	return r.ApiService.UpdateProjectExecute(r)
 }
 
@@ -4287,11 +4280,11 @@ UpdateProject Update the project
 
 Updates the project.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Project UUID
  @return ApiUpdateProjectRequest
 */
-func (a *ProjectsApiService) UpdateProject(ctx _context.Context, id string) ApiUpdateProjectRequest {
+func (a *ProjectsApiService) UpdateProject(ctx context.Context, id string) ApiUpdateProjectRequest {
 	return ApiUpdateProjectRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -4301,27 +4294,25 @@ func (a *ProjectsApiService) UpdateProject(ctx _context.Context, id string) ApiU
 
 // Execute executes the request
 //  @return Project
-func (a *ProjectsApiService) UpdateProjectExecute(r ApiUpdateProjectRequest) (Project, *_nethttp.Response, error) {
+func (a *ProjectsApiService) UpdateProjectExecute(r ApiUpdateProjectRequest) (*Project, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPut
+		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  Project
+		formFiles            []formFile
+		localVarReturnValue  *Project
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.UpdateProject")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/projects/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.project == nil {
 		return localVarReturnValue, nil, reportError("project is required and must be specified")
 	}
@@ -4359,7 +4350,7 @@ func (a *ProjectsApiService) UpdateProjectExecute(r ApiUpdateProjectRequest) (Pr
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -4369,15 +4360,15 @@ func (a *ProjectsApiService) UpdateProjectExecute(r ApiUpdateProjectRequest) (Pr
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -4425,7 +4416,7 @@ func (a *ProjectsApiService) UpdateProjectExecute(r ApiUpdateProjectRequest) (Pr
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}

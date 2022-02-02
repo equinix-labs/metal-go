@@ -17,7 +17,7 @@ import (
 
 // IPAssignmentList struct for IPAssignmentList
 type IPAssignmentList struct {
-	IpAddresses *[]IPAssignment `json:"ip_addresses,omitempty"`
+	IpAddresses []IPAssignment `json:"ip_addresses,omitempty"`
 }
 
 // NewIPAssignmentList instantiates a new IPAssignmentList object
@@ -43,12 +43,12 @@ func (o *IPAssignmentList) GetIpAddresses() []IPAssignment {
 		var ret []IPAssignment
 		return ret
 	}
-	return *o.IpAddresses
+	return o.IpAddresses
 }
 
 // GetIpAddressesOk returns a tuple with the IpAddresses field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IPAssignmentList) GetIpAddressesOk() (*[]IPAssignment, bool) {
+func (o *IPAssignmentList) GetIpAddressesOk() ([]IPAssignment, bool) {
 	if o == nil || o.IpAddresses == nil {
 		return nil, false
 	}
@@ -66,7 +66,7 @@ func (o *IPAssignmentList) HasIpAddresses() bool {
 
 // SetIpAddresses gets a reference to the given []IPAssignment and assigns it to the IpAddresses field.
 func (o *IPAssignmentList) SetIpAddresses(v []IPAssignment) {
-	o.IpAddresses = &v
+	o.IpAddresses = v
 }
 
 func (o IPAssignmentList) MarshalJSON() ([]byte, error) {

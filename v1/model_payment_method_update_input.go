@@ -22,7 +22,7 @@ type PaymentMethodUpdateInput struct {
 	CardholderName *string `json:"cardholder_name,omitempty"`
 	ExpirationMonth *string `json:"expiration_month,omitempty"`
 	ExpirationYear *int32 `json:"expiration_year,omitempty"`
-	BillingAddress *map[string]interface{} `json:"billing_address,omitempty"`
+	BillingAddress map[string]interface{} `json:"billing_address,omitempty"`
 }
 
 // NewPaymentMethodUpdateInput instantiates a new PaymentMethodUpdateInput object
@@ -208,12 +208,12 @@ func (o *PaymentMethodUpdateInput) GetBillingAddress() map[string]interface{} {
 		var ret map[string]interface{}
 		return ret
 	}
-	return *o.BillingAddress
+	return o.BillingAddress
 }
 
 // GetBillingAddressOk returns a tuple with the BillingAddress field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PaymentMethodUpdateInput) GetBillingAddressOk() (*map[string]interface{}, bool) {
+func (o *PaymentMethodUpdateInput) GetBillingAddressOk() (map[string]interface{}, bool) {
 	if o == nil || o.BillingAddress == nil {
 		return nil, false
 	}
@@ -231,7 +231,7 @@ func (o *PaymentMethodUpdateInput) HasBillingAddress() bool {
 
 // SetBillingAddress gets a reference to the given map[string]interface{} and assigns it to the BillingAddress field.
 func (o *PaymentMethodUpdateInput) SetBillingAddress(v map[string]interface{}) {
-	o.BillingAddress = &v
+	o.BillingAddress = v
 }
 
 func (o PaymentMethodUpdateInput) MarshalJSON() ([]byte, error) {

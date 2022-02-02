@@ -17,7 +17,7 @@ import (
 
 // MetroList struct for MetroList
 type MetroList struct {
-	Metros *[]Metro `json:"metros,omitempty"`
+	Metros []Metro `json:"metros,omitempty"`
 }
 
 // NewMetroList instantiates a new MetroList object
@@ -43,12 +43,12 @@ func (o *MetroList) GetMetros() []Metro {
 		var ret []Metro
 		return ret
 	}
-	return *o.Metros
+	return o.Metros
 }
 
 // GetMetrosOk returns a tuple with the Metros field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetroList) GetMetrosOk() (*[]Metro, bool) {
+func (o *MetroList) GetMetrosOk() ([]Metro, bool) {
 	if o == nil || o.Metros == nil {
 		return nil, false
 	}
@@ -66,7 +66,7 @@ func (o *MetroList) HasMetros() bool {
 
 // SetMetros gets a reference to the given []Metro and assigns it to the Metros field.
 func (o *MetroList) SetMetros(v []Metro) {
-	o.Metros = &v
+	o.Metros = v
 }
 
 func (o MetroList) MarshalJSON() ([]byte, error) {

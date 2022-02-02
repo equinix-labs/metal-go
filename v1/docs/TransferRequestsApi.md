@@ -31,11 +31,11 @@ import (
 )
 
 func main() {
-    id := TODO // string | Transfer request UUID
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Transfer request UUID
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.TransferRequestsApi.AcceptTransferRequest(context.Background(), id).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.TransferRequestsApi.AcceptTransferRequest(context.Background(), id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TransferRequestsApi.AcceptTransferRequest``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -49,7 +49,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | [**string**](.md) | Transfer request UUID | 
+**id** | **string** | Transfer request UUID | 
 
 ### Other Parameters
 
@@ -99,11 +99,11 @@ import (
 )
 
 func main() {
-    id := TODO // string | Transfer request UUID
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Transfer request UUID
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.TransferRequestsApi.DeclineTransferRequest(context.Background(), id).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.TransferRequestsApi.DeclineTransferRequest(context.Background(), id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TransferRequestsApi.DeclineTransferRequest``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -117,7 +117,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | [**string**](.md) | Transfer request UUID | 
+**id** | **string** | Transfer request UUID | 
 
 ### Other Parameters
 
@@ -167,13 +167,13 @@ import (
 )
 
 func main() {
-    id := TODO // string | Transfer request UUID
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Transfer request UUID
     include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
     exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.TransferRequestsApi.FindTransferRequestById(context.Background(), id).Include(include).Exclude(exclude).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.TransferRequestsApi.FindTransferRequestById(context.Background(), id).Include(include).Exclude(exclude).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TransferRequestsApi.FindTransferRequestById``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -189,7 +189,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | [**string**](.md) | Transfer request UUID | 
+**id** | **string** | Transfer request UUID | 
 
 ### Other Parameters
 

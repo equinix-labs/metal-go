@@ -27,7 +27,7 @@ go get golang.org/x/net/context
 Put the package under your project folder and add the following in import:
 
 ```golang
-import sw "./v1"
+import v1 "github.com/t0mk/gometal"
 ```
 
 To use a proxy, set the environment variable `HTTP_PROXY`:
@@ -45,7 +45,7 @@ Default configuration comes with `Servers` field that contains server objects as
 For using other server than the one defined on index 0 set context value `sw.ContextServerIndex` of type `int`.
 
 ```golang
-ctx := context.WithValue(context.Background(), sw.ContextServerIndex, 1)
+ctx := context.WithValue(context.Background(), v1.ContextServerIndex, 1)
 ```
 
 ### Templated Server URL
@@ -53,7 +53,7 @@ ctx := context.WithValue(context.Background(), sw.ContextServerIndex, 1)
 Templated server URL is formatted using default variables from configuration or from context value `sw.ContextServerVariables` of type `map[string]string`.
 
 ```golang
-ctx := context.WithValue(context.Background(), sw.ContextServerVariables, map[string]string{
+ctx := context.WithValue(context.Background(), v1.ContextServerVariables, map[string]string{
 	"basePath": "v2",
 })
 ```
@@ -63,14 +63,14 @@ Note, enum values are always validated and all unused variables are silently ign
 ### URLs Configuration per Operation
 
 Each operation can use different server URL defined using `OperationServers` map in the `Configuration`.
-An operation is uniquely identifield by `"{classname}Service.{nickname}"` string.
+An operation is uniquely identified by `"{classname}Service.{nickname}"` string.
 Similar rules for overriding default operation server index and variables applies by using `sw.ContextOperationServerIndices` and `sw.ContextOperationServerVariables` context maps.
 
 ```
-ctx := context.WithValue(context.Background(), sw.ContextOperationServerIndices, map[string]int{
+ctx := context.WithValue(context.Background(), v1.ContextOperationServerIndices, map[string]int{
 	"{classname}Service.{nickname}": 2,
 })
-ctx = context.WithValue(context.Background(), sw.ContextOperationServerVariables, map[string]map[string]string{
+ctx = context.WithValue(context.Background(), v1.ContextOperationServerVariables, map[string]map[string]string{
 	"{classname}Service.{nickname}": {
 		"port": "8443",
 	},
@@ -142,7 +142,6 @@ Class | Method | HTTP request | Description
 *EventsApi* | [**FindOrganizationEvents**](docs/EventsApi.md#findorganizationevents) | **Get** /organizations/{id}/events | Retrieve organization&#39;s events
 *EventsApi* | [**FindProjectEvents**](docs/EventsApi.md#findprojectevents) | **Get** /projects/{id}/events | Retrieve project&#39;s events
 *EventsApi* | [**FindVirtualCircuitEvents**](docs/EventsApi.md#findvirtualcircuitevents) | **Get** /virtual-circuit/{id}/events | Retrieve connection events
-*EventsApi* | [**FindVolumeEvents**](docs/EventsApi.md#findvolumeevents) | **Get** /volumes/{id}/events | Retrieve volume&#39;s events
 *FacilitiesApi* | [**FindFacilities**](docs/FacilitiesApi.md#findfacilities) | **Get** /facilities | Retrieve all facilities
 *FacilitiesApi* | [**FindFacilitiesByOrganization**](docs/FacilitiesApi.md#findfacilitiesbyorganization) | **Get** /organizations/{id}/facilities | Retrieve all facilities visible by the organization
 *FacilitiesApi* | [**FindFacilitiesByProject**](docs/FacilitiesApi.md#findfacilitiesbyproject) | **Get** /projects/{id}/facilities | Retrieve all facilities visible by the project
@@ -275,23 +274,6 @@ Class | Method | HTTP request | Description
 *UsersApi* | [**UpdateCurrentUser**](docs/UsersApi.md#updatecurrentuser) | **Put** /user | Update the current user
 *VLANsApi* | [**DeleteVirtualNetwork**](docs/VLANsApi.md#deletevirtualnetwork) | **Delete** /virtual-networks/{id} | Delete a virtual network
 *VLANsApi* | [**GetVirtualNetwork**](docs/VLANsApi.md#getvirtualnetwork) | **Get** /virtual-networks/{id} | Get a virtual network
-*VolumesApi* | [**CloneVolume**](docs/VolumesApi.md#clonevolume) | **Post** /storage/{id}/clone | Clone volume/snapshot
-*VolumesApi* | [**CreateVolume**](docs/VolumesApi.md#createvolume) | **Post** /projects/{id}/storage | Create a volume
-*VolumesApi* | [**CreateVolumeAttachment**](docs/VolumesApi.md#createvolumeattachment) | **Post** /storage/{id}/attachments | Attach your volume
-*VolumesApi* | [**CreateVolumeSnapshotPolicy**](docs/VolumesApi.md#createvolumesnapshotpolicy) | **Post** /storage/{id}/snapshot-policies | Create a volume snapshot policy
-*VolumesApi* | [**DeleteVolume**](docs/VolumesApi.md#deletevolume) | **Delete** /storage/{id} | Delete the volume
-*VolumesApi* | [**DeleteVolumeAttachment**](docs/VolumesApi.md#deletevolumeattachment) | **Delete** /storage/attachments/{id} | Detach volume
-*VolumesApi* | [**DeleteVolumeSnapshot**](docs/VolumesApi.md#deletevolumesnapshot) | **Delete** /storage/{volume_id}/snapshots/{id} | Delete volume snapshot
-*VolumesApi* | [**DeleteVolumeSnapshotPolicy**](docs/VolumesApi.md#deletevolumesnapshotpolicy) | **Delete** /storage/snapshot-policies/{id} | Delete the volume snapshot policy
-*VolumesApi* | [**FindVolumeAttachmentById**](docs/VolumesApi.md#findvolumeattachmentbyid) | **Get** /storage/attachments/{id} | Retrieve an attachment
-*VolumesApi* | [**FindVolumeAttachments**](docs/VolumesApi.md#findvolumeattachments) | **Get** /storage/{id}/attachments | Retrieve all volume attachment
-*VolumesApi* | [**FindVolumeById**](docs/VolumesApi.md#findvolumebyid) | **Get** /storage/{id} | Retrieve a volume
-*VolumesApi* | [**FindVolumeCustomdata**](docs/VolumesApi.md#findvolumecustomdata) | **Get** /storage/{id}/customdata | Retrieve the custom metadata of a storage volume
-*VolumesApi* | [**FindVolumeSnapshots**](docs/VolumesApi.md#findvolumesnapshots) | **Get** /storage/{id}/snapshots | Retrieve all volume snapshot
-*VolumesApi* | [**FindVolumes**](docs/VolumesApi.md#findvolumes) | **Get** /projects/{id}/storage | Retrieve all volumes
-*VolumesApi* | [**RestoreVolume**](docs/VolumesApi.md#restorevolume) | **Post** /storage/{id}/restore | Restore volume
-*VolumesApi* | [**UpdateVolume**](docs/VolumesApi.md#updatevolume) | **Put** /storage/{id} | Update the volume
-*VolumesApi* | [**UpdateVolumeSnapshotPolicy**](docs/VolumesApi.md#updatevolumesnapshotpolicy) | **Put** /storage/snapshot-policies/{id} | Update the volume snapshot policy
 
 
 ## Documentation For Models
@@ -384,6 +366,7 @@ Class | Method | HTTP request | Description
  - [MetroServerInfo](docs/MetroServerInfo.md)
  - [NewPassword](docs/NewPassword.md)
  - [OperatingSystem](docs/OperatingSystem.md)
+ - [OperatingSystemList](docs/OperatingSystemList.md)
  - [Organization](docs/Organization.md)
  - [OrganizationInput](docs/OrganizationInput.md)
  - [OrganizationList](docs/OrganizationList.md)
@@ -423,8 +406,6 @@ Class | Method | HTTP request | Description
  - [SelfServiceReservationList](docs/SelfServiceReservationList.md)
  - [SelfServiceReservationResponse](docs/SelfServiceReservationResponse.md)
  - [ServerInfo](docs/ServerInfo.md)
- - [SnapshotPolicy](docs/SnapshotPolicy.md)
- - [SnapshotPolicyInput](docs/SnapshotPolicyInput.md)
  - [SpotMarketPricesList](docs/SpotMarketPricesList.md)
  - [SpotMarketPricesPerMetroList](docs/SpotMarketPricesPerMetroList.md)
  - [SpotMarketPricesPerMetroReport](docs/SpotMarketPricesPerMetroReport.md)
@@ -447,6 +428,7 @@ Class | Method | HTTP request | Description
  - [User](docs/User.md)
  - [UserCreateInput](docs/UserCreateInput.md)
  - [UserList](docs/UserList.md)
+ - [UserLite](docs/UserLite.md)
  - [UserUpdateInput](docs/UserUpdateInput.md)
  - [VirtualCircuit](docs/VirtualCircuit.md)
  - [VirtualCircuitCreateInput](docs/VirtualCircuitCreateInput.md)
@@ -455,15 +437,6 @@ Class | Method | HTTP request | Description
  - [VirtualNetwork](docs/VirtualNetwork.md)
  - [VirtualNetworkCreateInput](docs/VirtualNetworkCreateInput.md)
  - [VirtualNetworkList](docs/VirtualNetworkList.md)
- - [Volume](docs/Volume.md)
- - [VolumeAttachment](docs/VolumeAttachment.md)
- - [VolumeAttachmentInput](docs/VolumeAttachmentInput.md)
- - [VolumeAttachmentList](docs/VolumeAttachmentList.md)
- - [VolumeCreateInput](docs/VolumeCreateInput.md)
- - [VolumeList](docs/VolumeList.md)
- - [VolumeSnapshot](docs/VolumeSnapshot.md)
- - [VolumeSnapshotList](docs/VolumeSnapshotList.md)
- - [VolumeUpdateInput](docs/VolumeUpdateInput.md)
 
 
 ## Documentation For Authorization

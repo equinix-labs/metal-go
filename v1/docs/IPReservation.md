@@ -23,6 +23,7 @@ Name | Type | Description | Notes
 **Tags** | Pointer to **[]string** |  | [optional] 
 **State** | Pointer to **string** |  | [optional] 
 **Metro** | Pointer to [**Metro**](Metro.md) |  | [optional] 
+**MetalGateway** | Pointer to [**MetalGatewayLite**](MetalGatewayLite.md) |  | [optional] 
 
 ## Methods
 
@@ -517,6 +518,31 @@ SetMetro sets Metro field to given value.
 `func (o *IPReservation) HasMetro() bool`
 
 HasMetro returns a boolean if a field has been set.
+
+### GetMetalGateway
+
+`func (o *IPReservation) GetMetalGateway() MetalGatewayLite`
+
+GetMetalGateway returns the MetalGateway field if non-nil, zero value otherwise.
+
+### GetMetalGatewayOk
+
+`func (o *IPReservation) GetMetalGatewayOk() (*MetalGatewayLite, bool)`
+
+GetMetalGatewayOk returns a tuple with the MetalGateway field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMetalGateway
+
+`func (o *IPReservation) SetMetalGateway(v MetalGatewayLite)`
+
+SetMetalGateway sets MetalGateway field to given value.
+
+### HasMetalGateway
+
+`func (o *IPReservation) HasMetalGateway() bool`
+
+HasMetalGateway returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

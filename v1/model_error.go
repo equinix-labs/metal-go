@@ -20,7 +20,7 @@ type Error struct {
 	// A description of the error that caused the request to fail.
 	Error *string `json:"error,omitempty"`
 	// A list of errors that contributed to the request failing.
-	Errors *[]string `json:"errors,omitempty"`
+	Errors []string `json:"errors,omitempty"`
 }
 
 // NewError instantiates a new Error object
@@ -78,12 +78,12 @@ func (o *Error) GetErrors() []string {
 		var ret []string
 		return ret
 	}
-	return *o.Errors
+	return o.Errors
 }
 
 // GetErrorsOk returns a tuple with the Errors field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Error) GetErrorsOk() (*[]string, bool) {
+func (o *Error) GetErrorsOk() ([]string, bool) {
 	if o == nil || o.Errors == nil {
 		return nil, false
 	}
@@ -101,7 +101,7 @@ func (o *Error) HasErrors() bool {
 
 // SetErrors gets a reference to the given []string and assigns it to the Errors field.
 func (o *Error) SetErrors(v []string) {
-	o.Errors = &v
+	o.Errors = v
 }
 
 func (o Error) MarshalJSON() ([]byte, error) {

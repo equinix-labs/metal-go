@@ -17,7 +17,7 @@ import (
 
 // MembershipList struct for MembershipList
 type MembershipList struct {
-	Memberships *[]Membership `json:"memberships,omitempty"`
+	Memberships []Membership `json:"memberships,omitempty"`
 }
 
 // NewMembershipList instantiates a new MembershipList object
@@ -43,12 +43,12 @@ func (o *MembershipList) GetMemberships() []Membership {
 		var ret []Membership
 		return ret
 	}
-	return *o.Memberships
+	return o.Memberships
 }
 
 // GetMembershipsOk returns a tuple with the Memberships field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MembershipList) GetMembershipsOk() (*[]Membership, bool) {
+func (o *MembershipList) GetMembershipsOk() ([]Membership, bool) {
 	if o == nil || o.Memberships == nil {
 		return nil, false
 	}
@@ -66,7 +66,7 @@ func (o *MembershipList) HasMemberships() bool {
 
 // SetMemberships gets a reference to the given []Membership and assigns it to the Memberships field.
 func (o *MembershipList) SetMemberships(v []Membership) {
-	o.Memberships = &v
+	o.Memberships = v
 }
 
 func (o MembershipList) MarshalJSON() ([]byte, error) {

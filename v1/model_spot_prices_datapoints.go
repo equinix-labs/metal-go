@@ -17,7 +17,7 @@ import (
 
 // SpotPricesDatapoints struct for SpotPricesDatapoints
 type SpotPricesDatapoints struct {
-	Datapoints *[][]float32 `json:"datapoints,omitempty"`
+	Datapoints [][]float32 `json:"datapoints,omitempty"`
 }
 
 // NewSpotPricesDatapoints instantiates a new SpotPricesDatapoints object
@@ -43,12 +43,12 @@ func (o *SpotPricesDatapoints) GetDatapoints() [][]float32 {
 		var ret [][]float32
 		return ret
 	}
-	return *o.Datapoints
+	return o.Datapoints
 }
 
 // GetDatapointsOk returns a tuple with the Datapoints field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SpotPricesDatapoints) GetDatapointsOk() (*[][]float32, bool) {
+func (o *SpotPricesDatapoints) GetDatapointsOk() ([][]float32, bool) {
 	if o == nil || o.Datapoints == nil {
 		return nil, false
 	}
@@ -66,7 +66,7 @@ func (o *SpotPricesDatapoints) HasDatapoints() bool {
 
 // SetDatapoints gets a reference to the given [][]float32 and assigns it to the Datapoints field.
 func (o *SpotPricesDatapoints) SetDatapoints(v [][]float32) {
-	o.Datapoints = &v
+	o.Datapoints = v
 }
 
 func (o SpotPricesDatapoints) MarshalJSON() ([]byte, error) {

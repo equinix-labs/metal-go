@@ -17,7 +17,7 @@ import (
 
 // DeviceList struct for DeviceList
 type DeviceList struct {
-	Devices *[]Device `json:"devices,omitempty"`
+	Devices []Device `json:"devices,omitempty"`
 	Meta *Meta `json:"meta,omitempty"`
 }
 
@@ -44,12 +44,12 @@ func (o *DeviceList) GetDevices() []Device {
 		var ret []Device
 		return ret
 	}
-	return *o.Devices
+	return o.Devices
 }
 
 // GetDevicesOk returns a tuple with the Devices field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DeviceList) GetDevicesOk() (*[]Device, bool) {
+func (o *DeviceList) GetDevicesOk() ([]Device, bool) {
 	if o == nil || o.Devices == nil {
 		return nil, false
 	}
@@ -67,7 +67,7 @@ func (o *DeviceList) HasDevices() bool {
 
 // SetDevices gets a reference to the given []Device and assigns it to the Devices field.
 func (o *DeviceList) SetDevices(v []Device) {
-	o.Devices = &v
+	o.Devices = v
 }
 
 // GetMeta returns the Meta field value if set, zero value otherwise.

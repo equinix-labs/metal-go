@@ -29,14 +29,15 @@ type IPReservation struct {
 	GlobalIp *bool `json:"global_ip,omitempty"`
 	Addon *bool `json:"addon,omitempty"`
 	Bill *bool `json:"bill,omitempty"`
-	Assignments *[]IPAssignment `json:"assignments,omitempty"`
+	Assignments []IPAssignment `json:"assignments,omitempty"`
 	Network *string `json:"network,omitempty"`
 	CreatedAt *time.Time `json:"created_at,omitempty"`
 	Facility *Facility `json:"facility,omitempty"`
 	Href *string `json:"href,omitempty"`
-	Tags *[]string `json:"tags,omitempty"`
+	Tags []string `json:"tags,omitempty"`
 	State *string `json:"state,omitempty"`
 	Metro *Metro `json:"metro,omitempty"`
+	MetalGateway *MetalGatewayLite `json:"metal_gateway,omitempty"`
 }
 
 // NewIPReservation instantiates a new IPReservation object
@@ -414,12 +415,12 @@ func (o *IPReservation) GetAssignments() []IPAssignment {
 		var ret []IPAssignment
 		return ret
 	}
-	return *o.Assignments
+	return o.Assignments
 }
 
 // GetAssignmentsOk returns a tuple with the Assignments field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IPReservation) GetAssignmentsOk() (*[]IPAssignment, bool) {
+func (o *IPReservation) GetAssignmentsOk() ([]IPAssignment, bool) {
 	if o == nil || o.Assignments == nil {
 		return nil, false
 	}
@@ -437,7 +438,7 @@ func (o *IPReservation) HasAssignments() bool {
 
 // SetAssignments gets a reference to the given []IPAssignment and assigns it to the Assignments field.
 func (o *IPReservation) SetAssignments(v []IPAssignment) {
-	o.Assignments = &v
+	o.Assignments = v
 }
 
 // GetNetwork returns the Network field value if set, zero value otherwise.
@@ -574,12 +575,12 @@ func (o *IPReservation) GetTags() []string {
 		var ret []string
 		return ret
 	}
-	return *o.Tags
+	return o.Tags
 }
 
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IPReservation) GetTagsOk() (*[]string, bool) {
+func (o *IPReservation) GetTagsOk() ([]string, bool) {
 	if o == nil || o.Tags == nil {
 		return nil, false
 	}
@@ -597,7 +598,7 @@ func (o *IPReservation) HasTags() bool {
 
 // SetTags gets a reference to the given []string and assigns it to the Tags field.
 func (o *IPReservation) SetTags(v []string) {
-	o.Tags = &v
+	o.Tags = v
 }
 
 // GetState returns the State field value if set, zero value otherwise.
@@ -664,6 +665,38 @@ func (o *IPReservation) SetMetro(v Metro) {
 	o.Metro = &v
 }
 
+// GetMetalGateway returns the MetalGateway field value if set, zero value otherwise.
+func (o *IPReservation) GetMetalGateway() MetalGatewayLite {
+	if o == nil || o.MetalGateway == nil {
+		var ret MetalGatewayLite
+		return ret
+	}
+	return *o.MetalGateway
+}
+
+// GetMetalGatewayOk returns a tuple with the MetalGateway field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IPReservation) GetMetalGatewayOk() (*MetalGatewayLite, bool) {
+	if o == nil || o.MetalGateway == nil {
+		return nil, false
+	}
+	return o.MetalGateway, true
+}
+
+// HasMetalGateway returns a boolean if a field has been set.
+func (o *IPReservation) HasMetalGateway() bool {
+	if o != nil && o.MetalGateway != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMetalGateway gets a reference to the given MetalGatewayLite and assigns it to the MetalGateway field.
+func (o *IPReservation) SetMetalGateway(v MetalGatewayLite) {
+	o.MetalGateway = &v
+}
+
 func (o IPReservation) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Id != nil {
@@ -722,6 +755,9 @@ func (o IPReservation) MarshalJSON() ([]byte, error) {
 	}
 	if o.Metro != nil {
 		toSerialize["metro"] = o.Metro
+	}
+	if o.MetalGateway != nil {
+		toSerialize["metal_gateway"] = o.MetalGateway
 	}
 	return json.Marshal(toSerialize)
 }

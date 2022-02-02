@@ -32,11 +32,11 @@ type BgpNeighborData struct {
 	// The Peer ASN to use when configuring BGP on your device.
 	PeerAs *float32 `json:"peer_as,omitempty"`
 	// A list of one or more IP addresses to use for the Peer IP section of your BGP configuration. For non-multihop sessions, this will typically be a single gateway address for the device. For multihop sessions, it will be a list of IPs.
-	PeerIps *[]string `json:"peer_ips,omitempty"`
+	PeerIps []string `json:"peer_ips,omitempty"`
 	// A list of project subnets
-	RoutesIn *[]BgpNeighborDataRoutesIn `json:"routes_in,omitempty"`
+	RoutesIn []BgpNeighborDataRoutesIn `json:"routes_in,omitempty"`
 	// A list of outgoing routes. Only populated if the BGP session has default route enabled.
-	RoutesOut *[]BgpNeighborDataRoutesOut `json:"routes_out,omitempty"`
+	RoutesOut []BgpNeighborDataRoutesOut `json:"routes_out,omitempty"`
 }
 
 // NewBgpNeighborData instantiates a new BgpNeighborData object
@@ -286,12 +286,12 @@ func (o *BgpNeighborData) GetPeerIps() []string {
 		var ret []string
 		return ret
 	}
-	return *o.PeerIps
+	return o.PeerIps
 }
 
 // GetPeerIpsOk returns a tuple with the PeerIps field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BgpNeighborData) GetPeerIpsOk() (*[]string, bool) {
+func (o *BgpNeighborData) GetPeerIpsOk() ([]string, bool) {
 	if o == nil || o.PeerIps == nil {
 		return nil, false
 	}
@@ -309,7 +309,7 @@ func (o *BgpNeighborData) HasPeerIps() bool {
 
 // SetPeerIps gets a reference to the given []string and assigns it to the PeerIps field.
 func (o *BgpNeighborData) SetPeerIps(v []string) {
-	o.PeerIps = &v
+	o.PeerIps = v
 }
 
 // GetRoutesIn returns the RoutesIn field value if set, zero value otherwise.
@@ -318,12 +318,12 @@ func (o *BgpNeighborData) GetRoutesIn() []BgpNeighborDataRoutesIn {
 		var ret []BgpNeighborDataRoutesIn
 		return ret
 	}
-	return *o.RoutesIn
+	return o.RoutesIn
 }
 
 // GetRoutesInOk returns a tuple with the RoutesIn field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BgpNeighborData) GetRoutesInOk() (*[]BgpNeighborDataRoutesIn, bool) {
+func (o *BgpNeighborData) GetRoutesInOk() ([]BgpNeighborDataRoutesIn, bool) {
 	if o == nil || o.RoutesIn == nil {
 		return nil, false
 	}
@@ -341,7 +341,7 @@ func (o *BgpNeighborData) HasRoutesIn() bool {
 
 // SetRoutesIn gets a reference to the given []BgpNeighborDataRoutesIn and assigns it to the RoutesIn field.
 func (o *BgpNeighborData) SetRoutesIn(v []BgpNeighborDataRoutesIn) {
-	o.RoutesIn = &v
+	o.RoutesIn = v
 }
 
 // GetRoutesOut returns the RoutesOut field value if set, zero value otherwise.
@@ -350,12 +350,12 @@ func (o *BgpNeighborData) GetRoutesOut() []BgpNeighborDataRoutesOut {
 		var ret []BgpNeighborDataRoutesOut
 		return ret
 	}
-	return *o.RoutesOut
+	return o.RoutesOut
 }
 
 // GetRoutesOutOk returns a tuple with the RoutesOut field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BgpNeighborData) GetRoutesOutOk() (*[]BgpNeighborDataRoutesOut, bool) {
+func (o *BgpNeighborData) GetRoutesOutOk() ([]BgpNeighborDataRoutesOut, bool) {
 	if o == nil || o.RoutesOut == nil {
 		return nil, false
 	}
@@ -373,7 +373,7 @@ func (o *BgpNeighborData) HasRoutesOut() bool {
 
 // SetRoutesOut gets a reference to the given []BgpNeighborDataRoutesOut and assigns it to the RoutesOut field.
 func (o *BgpNeighborData) SetRoutesOut(v []BgpNeighborDataRoutesOut) {
-	o.RoutesOut = &v
+	o.RoutesOut = v
 }
 
 func (o BgpNeighborData) MarshalJSON() ([]byte, error) {

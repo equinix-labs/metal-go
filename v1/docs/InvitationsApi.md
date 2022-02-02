@@ -36,11 +36,11 @@ import (
 )
 
 func main() {
-    id := TODO // string | Invitation UUID
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Invitation UUID
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.InvitationsApi.AcceptInvitation(context.Background(), id).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.InvitationsApi.AcceptInvitation(context.Background(), id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `InvitationsApi.AcceptInvitation``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -56,7 +56,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | [**string**](.md) | Invitation UUID | 
+**id** | **string** | Invitation UUID | 
 
 ### Other Parameters
 
@@ -106,12 +106,12 @@ import (
 )
 
 func main() {
-    id := TODO // string | Organization UUID
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Organization UUID
     invitation := *openapiclient.NewInvitationInput("Invitee_example") // InvitationInput | Invitation to create
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.InvitationsApi.CreateOrganizationInvitation(context.Background(), id).Invitation(invitation).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.InvitationsApi.CreateOrganizationInvitation(context.Background(), id).Invitation(invitation).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `InvitationsApi.CreateOrganizationInvitation``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -127,7 +127,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | [**string**](.md) | Organization UUID | 
+**id** | **string** | Organization UUID | 
 
 ### Other Parameters
 
@@ -178,12 +178,12 @@ import (
 )
 
 func main() {
-    projectId := TODO // string | Project UUID
+    projectId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Project UUID
     invitation := *openapiclient.NewInvitationInput("Invitee_example") // InvitationInput | Invitation to create
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.InvitationsApi.CreateProjectInvitation(context.Background(), projectId).Invitation(invitation).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.InvitationsApi.CreateProjectInvitation(context.Background(), projectId).Invitation(invitation).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `InvitationsApi.CreateProjectInvitation``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -199,7 +199,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**projectId** | [**string**](.md) | Project UUID | 
+**projectId** | **string** | Project UUID | 
 
 ### Other Parameters
 
@@ -250,11 +250,11 @@ import (
 )
 
 func main() {
-    id := TODO // string | Invitation UUID
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Invitation UUID
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.InvitationsApi.DeclineInvitation(context.Background(), id).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.InvitationsApi.DeclineInvitation(context.Background(), id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `InvitationsApi.DeclineInvitation``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -268,7 +268,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | [**string**](.md) | Invitation UUID | 
+**id** | **string** | Invitation UUID | 
 
 ### Other Parameters
 
@@ -318,13 +318,13 @@ import (
 )
 
 func main() {
-    id := TODO // string | Invitation UUID
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Invitation UUID
     include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
     exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.InvitationsApi.FindInvitationById(context.Background(), id).Include(include).Exclude(exclude).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.InvitationsApi.FindInvitationById(context.Background(), id).Include(include).Exclude(exclude).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `InvitationsApi.FindInvitationById``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -340,7 +340,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | [**string**](.md) | Invitation UUID | 
+**id** | **string** | Invitation UUID | 
 
 ### Other Parameters
 
@@ -398,8 +398,8 @@ func main() {
     perPage := int32(56) // int32 | Items returned per page (optional) (default to 10)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.InvitationsApi.FindInvitations(context.Background()).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.InvitationsApi.FindInvitations(context.Background()).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `InvitationsApi.FindInvitations``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -464,15 +464,15 @@ import (
 )
 
 func main() {
-    id := TODO // string | Organization UUID
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Organization UUID
     include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
     exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
     page := int32(56) // int32 | Page to return (optional) (default to 1)
     perPage := int32(56) // int32 | Items returned per page (optional) (default to 10)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.InvitationsApi.FindOrganizationInvitations(context.Background(), id).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.InvitationsApi.FindOrganizationInvitations(context.Background(), id).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `InvitationsApi.FindOrganizationInvitations``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -488,7 +488,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | [**string**](.md) | Organization UUID | 
+**id** | **string** | Organization UUID | 
 
 ### Other Parameters
 
@@ -542,15 +542,15 @@ import (
 )
 
 func main() {
-    projectId := TODO // string | Project UUID
+    projectId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Project UUID
     include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
     exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
     page := int32(56) // int32 | Page to return (optional) (default to 1)
     perPage := int32(56) // int32 | Items returned per page (optional) (default to 10)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.InvitationsApi.FindProjectInvitations(context.Background(), projectId).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.InvitationsApi.FindProjectInvitations(context.Background(), projectId).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `InvitationsApi.FindProjectInvitations``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -566,7 +566,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**projectId** | [**string**](.md) | Project UUID | 
+**projectId** | **string** | Project UUID | 
 
 ### Other Parameters
 

@@ -13,23 +13,23 @@ package v1
 
 import (
 	"bytes"
-	_context "context"
-	_ioutil "io/ioutil"
-	_nethttp "net/http"
-	_neturl "net/url"
+	"context"
+	"io/ioutil"
+	"net/http"
+	"net/url"
 	"strings"
 )
 
 // Linger please
 var (
-	_ _context.Context
+	_ context.Context
 )
 
 // HardwareReservationsApiService HardwareReservationsApi service
 type HardwareReservationsApiService service
 
 type ApiFindHardwareReservationByIdRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *HardwareReservationsApiService
 	id string
 	include *[]string
@@ -47,7 +47,7 @@ func (r ApiFindHardwareReservationByIdRequest) Exclude(exclude []string) ApiFind
 	return r
 }
 
-func (r ApiFindHardwareReservationByIdRequest) Execute() (Device, *_nethttp.Response, error) {
+func (r ApiFindHardwareReservationByIdRequest) Execute() (*Device, *http.Response, error) {
 	return r.ApiService.FindHardwareReservationByIdExecute(r)
 }
 
@@ -56,11 +56,11 @@ FindHardwareReservationById Retrieve a hardware reservation
 
 Returns a single hardware reservation
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id HardwareReservation UUID
  @return ApiFindHardwareReservationByIdRequest
 */
-func (a *HardwareReservationsApiService) FindHardwareReservationById(ctx _context.Context, id string) ApiFindHardwareReservationByIdRequest {
+func (a *HardwareReservationsApiService) FindHardwareReservationById(ctx context.Context, id string) ApiFindHardwareReservationByIdRequest {
 	return ApiFindHardwareReservationByIdRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -70,27 +70,25 @@ func (a *HardwareReservationsApiService) FindHardwareReservationById(ctx _contex
 
 // Execute executes the request
 //  @return Device
-func (a *HardwareReservationsApiService) FindHardwareReservationByIdExecute(r ApiFindHardwareReservationByIdRequest) (Device, *_nethttp.Response, error) {
+func (a *HardwareReservationsApiService) FindHardwareReservationByIdExecute(r ApiFindHardwareReservationByIdRequest) (*Device, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  Device
+		formFiles            []formFile
+		localVarReturnValue  *Device
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HardwareReservationsApiService.FindHardwareReservationById")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/hardware-reservations/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	if r.include != nil {
 		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
@@ -129,7 +127,7 @@ func (a *HardwareReservationsApiService) FindHardwareReservationByIdExecute(r Ap
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -139,15 +137,15 @@ func (a *HardwareReservationsApiService) FindHardwareReservationByIdExecute(r Ap
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -185,7 +183,7 @@ func (a *HardwareReservationsApiService) FindHardwareReservationByIdExecute(r Ap
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -196,7 +194,7 @@ func (a *HardwareReservationsApiService) FindHardwareReservationByIdExecute(r Ap
 }
 
 type ApiMoveHardwareReservationRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *HardwareReservationsApiService
 	id string
 	projectId *string
@@ -208,7 +206,7 @@ func (r ApiMoveHardwareReservationRequest) ProjectId(projectId string) ApiMoveHa
 	return r
 }
 
-func (r ApiMoveHardwareReservationRequest) Execute() (HardwareReservation, *_nethttp.Response, error) {
+func (r ApiMoveHardwareReservationRequest) Execute() (*HardwareReservation, *http.Response, error) {
 	return r.ApiService.MoveHardwareReservationExecute(r)
 }
 
@@ -217,11 +215,11 @@ MoveHardwareReservation Move a hardware reservation
 
 Move a hardware reservation to another project
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Hardware Reservation UUID
  @return ApiMoveHardwareReservationRequest
 */
-func (a *HardwareReservationsApiService) MoveHardwareReservation(ctx _context.Context, id string) ApiMoveHardwareReservationRequest {
+func (a *HardwareReservationsApiService) MoveHardwareReservation(ctx context.Context, id string) ApiMoveHardwareReservationRequest {
 	return ApiMoveHardwareReservationRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -231,27 +229,25 @@ func (a *HardwareReservationsApiService) MoveHardwareReservation(ctx _context.Co
 
 // Execute executes the request
 //  @return HardwareReservation
-func (a *HardwareReservationsApiService) MoveHardwareReservationExecute(r ApiMoveHardwareReservationRequest) (HardwareReservation, *_nethttp.Response, error) {
+func (a *HardwareReservationsApiService) MoveHardwareReservationExecute(r ApiMoveHardwareReservationRequest) (*HardwareReservation, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  HardwareReservation
+		formFiles            []formFile
+		localVarReturnValue  *HardwareReservation
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HardwareReservationsApiService.MoveHardwareReservation")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/hardware-reservations/{id}/move"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.projectId == nil {
 		return localVarReturnValue, nil, reportError("projectId is required and must be specified")
 	}
@@ -289,7 +285,7 @@ func (a *HardwareReservationsApiService) MoveHardwareReservationExecute(r ApiMov
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -299,15 +295,15 @@ func (a *HardwareReservationsApiService) MoveHardwareReservationExecute(r ApiMov
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -345,7 +341,7 @@ func (a *HardwareReservationsApiService) MoveHardwareReservationExecute(r ApiMov
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}

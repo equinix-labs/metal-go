@@ -31,11 +31,11 @@ import (
 )
 
 func main() {
-    id := TODO // string | Payment Method UUID
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Payment Method UUID
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.PaymentMethodsApi.DeletePaymentMethod(context.Background(), id).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.PaymentMethodsApi.DeletePaymentMethod(context.Background(), id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PaymentMethodsApi.DeletePaymentMethod``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -49,7 +49,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | [**string**](.md) | Payment Method UUID | 
+**id** | **string** | Payment Method UUID | 
 
 ### Other Parameters
 
@@ -99,13 +99,13 @@ import (
 )
 
 func main() {
-    id := TODO // string | Payment Method UUID
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Payment Method UUID
     include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
     exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.PaymentMethodsApi.FindPaymentMethodById(context.Background(), id).Include(include).Exclude(exclude).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.PaymentMethodsApi.FindPaymentMethodById(context.Background(), id).Include(include).Exclude(exclude).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PaymentMethodsApi.FindPaymentMethodById``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -121,7 +121,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | [**string**](.md) | Payment Method UUID | 
+**id** | **string** | Payment Method UUID | 
 
 ### Other Parameters
 
@@ -173,12 +173,12 @@ import (
 )
 
 func main() {
-    id := TODO // string | Payment Method UUID
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Payment Method UUID
     paymentMethod := *openapiclient.NewPaymentMethodUpdateInput() // PaymentMethodUpdateInput | Payment Method to update
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.PaymentMethodsApi.UpdatePaymentMethod(context.Background(), id).PaymentMethod(paymentMethod).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.PaymentMethodsApi.UpdatePaymentMethod(context.Background(), id).PaymentMethod(paymentMethod).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PaymentMethodsApi.UpdatePaymentMethod``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -194,7 +194,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | [**string**](.md) | Payment Method UUID | 
+**id** | **string** | Payment Method UUID | 
 
 ### Other Parameters
 

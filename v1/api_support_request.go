@@ -13,22 +13,22 @@ package v1
 
 import (
 	"bytes"
-	_context "context"
-	_ioutil "io/ioutil"
-	_nethttp "net/http"
-	_neturl "net/url"
+	"context"
+	"io/ioutil"
+	"net/http"
+	"net/url"
 )
 
 // Linger please
 var (
-	_ _context.Context
+	_ context.Context
 )
 
 // SupportRequestApiService SupportRequestApi service
 type SupportRequestApiService service
 
 type ApiRequestSuppertRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *SupportRequestApiService
 	supportRequest *SupportRequestInput
 }
@@ -39,7 +39,7 @@ func (r ApiRequestSuppertRequest) SupportRequest(supportRequest SupportRequestIn
 	return r
 }
 
-func (r ApiRequestSuppertRequest) Execute() (*_nethttp.Response, error) {
+func (r ApiRequestSuppertRequest) Execute() (*http.Response, error) {
 	return r.ApiService.RequestSuppertExecute(r)
 }
 
@@ -48,10 +48,10 @@ RequestSuppert Create a support ticket
 
 Support Ticket.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiRequestSuppertRequest
 */
-func (a *SupportRequestApiService) RequestSuppert(ctx _context.Context) ApiRequestSuppertRequest {
+func (a *SupportRequestApiService) RequestSuppert(ctx context.Context) ApiRequestSuppertRequest {
 	return ApiRequestSuppertRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -59,25 +59,23 @@ func (a *SupportRequestApiService) RequestSuppert(ctx _context.Context) ApiReque
 }
 
 // Execute executes the request
-func (a *SupportRequestApiService) RequestSuppertExecute(r ApiRequestSuppertRequest) (*_nethttp.Response, error) {
+func (a *SupportRequestApiService) RequestSuppertExecute(r ApiRequestSuppertRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SupportRequestApiService.RequestSuppert")
 	if err != nil {
-		return nil, GenericOpenAPIError{error: err.Error()}
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/support-requests"
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.supportRequest == nil {
 		return nil, reportError("supportRequest is required and must be specified")
 	}
@@ -115,7 +113,7 @@ func (a *SupportRequestApiService) RequestSuppertExecute(r ApiRequestSuppertRequ
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
 	}
@@ -125,15 +123,15 @@ func (a *SupportRequestApiService) RequestSuppertExecute(r ApiRequestSuppertRequ
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}

@@ -13,29 +13,29 @@ package v1
 
 import (
 	"bytes"
-	_context "context"
-	_ioutil "io/ioutil"
-	_nethttp "net/http"
-	_neturl "net/url"
+	"context"
+	"io/ioutil"
+	"net/http"
+	"net/url"
 	"strings"
 )
 
 // Linger please
 var (
-	_ _context.Context
+	_ context.Context
 )
 
 // VLANsApiService VLANsApi service
 type VLANsApiService service
 
 type ApiDeleteVirtualNetworkRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *VLANsApiService
 	id string
 }
 
 
-func (r ApiDeleteVirtualNetworkRequest) Execute() (VirtualNetwork, *_nethttp.Response, error) {
+func (r ApiDeleteVirtualNetworkRequest) Execute() (*VirtualNetwork, *http.Response, error) {
 	return r.ApiService.DeleteVirtualNetworkExecute(r)
 }
 
@@ -44,11 +44,11 @@ DeleteVirtualNetwork Delete a virtual network
 
 Deletes a virtual network.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Virtual Network UUID
  @return ApiDeleteVirtualNetworkRequest
 */
-func (a *VLANsApiService) DeleteVirtualNetwork(ctx _context.Context, id string) ApiDeleteVirtualNetworkRequest {
+func (a *VLANsApiService) DeleteVirtualNetwork(ctx context.Context, id string) ApiDeleteVirtualNetworkRequest {
 	return ApiDeleteVirtualNetworkRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -58,27 +58,25 @@ func (a *VLANsApiService) DeleteVirtualNetwork(ctx _context.Context, id string) 
 
 // Execute executes the request
 //  @return VirtualNetwork
-func (a *VLANsApiService) DeleteVirtualNetworkExecute(r ApiDeleteVirtualNetworkRequest) (VirtualNetwork, *_nethttp.Response, error) {
+func (a *VLANsApiService) DeleteVirtualNetworkExecute(r ApiDeleteVirtualNetworkRequest) (*VirtualNetwork, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
+		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  VirtualNetwork
+		formFiles            []formFile
+		localVarReturnValue  *VirtualNetwork
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VLANsApiService.DeleteVirtualNetwork")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/virtual-networks/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -111,7 +109,7 @@ func (a *VLANsApiService) DeleteVirtualNetworkExecute(r ApiDeleteVirtualNetworkR
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -121,15 +119,15 @@ func (a *VLANsApiService) DeleteVirtualNetworkExecute(r ApiDeleteVirtualNetworkR
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -177,7 +175,7 @@ func (a *VLANsApiService) DeleteVirtualNetworkExecute(r ApiDeleteVirtualNetworkR
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -188,13 +186,13 @@ func (a *VLANsApiService) DeleteVirtualNetworkExecute(r ApiDeleteVirtualNetworkR
 }
 
 type ApiGetVirtualNetworkRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *VLANsApiService
 	id string
 }
 
 
-func (r ApiGetVirtualNetworkRequest) Execute() (VirtualNetwork, *_nethttp.Response, error) {
+func (r ApiGetVirtualNetworkRequest) Execute() (*VirtualNetwork, *http.Response, error) {
 	return r.ApiService.GetVirtualNetworkExecute(r)
 }
 
@@ -203,11 +201,11 @@ GetVirtualNetwork Get a virtual network
 
 Get a virtual network.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Virtual Network UUID
  @return ApiGetVirtualNetworkRequest
 */
-func (a *VLANsApiService) GetVirtualNetwork(ctx _context.Context, id string) ApiGetVirtualNetworkRequest {
+func (a *VLANsApiService) GetVirtualNetwork(ctx context.Context, id string) ApiGetVirtualNetworkRequest {
 	return ApiGetVirtualNetworkRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -217,27 +215,25 @@ func (a *VLANsApiService) GetVirtualNetwork(ctx _context.Context, id string) Api
 
 // Execute executes the request
 //  @return VirtualNetwork
-func (a *VLANsApiService) GetVirtualNetworkExecute(r ApiGetVirtualNetworkRequest) (VirtualNetwork, *_nethttp.Response, error) {
+func (a *VLANsApiService) GetVirtualNetworkExecute(r ApiGetVirtualNetworkRequest) (*VirtualNetwork, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  VirtualNetwork
+		formFiles            []formFile
+		localVarReturnValue  *VirtualNetwork
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VLANsApiService.GetVirtualNetwork")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/virtual-networks/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -270,7 +266,7 @@ func (a *VLANsApiService) GetVirtualNetworkExecute(r ApiGetVirtualNetworkRequest
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -280,15 +276,15 @@ func (a *VLANsApiService) GetVirtualNetworkExecute(r ApiGetVirtualNetworkRequest
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -336,7 +332,7 @@ func (a *VLANsApiService) GetVirtualNetworkExecute(r ApiGetVirtualNetworkRequest
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}

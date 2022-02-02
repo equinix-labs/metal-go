@@ -13,22 +13,22 @@ package v1
 
 import (
 	"bytes"
-	_context "context"
-	_ioutil "io/ioutil"
-	_nethttp "net/http"
-	_neturl "net/url"
+	"context"
+	"io/ioutil"
+	"net/http"
+	"net/url"
 )
 
 // Linger please
 var (
-	_ _context.Context
+	_ context.Context
 )
 
 // MarketApiService MarketApi service
 type MarketApiService service
 
 type ApiFindMetroSpotMarketPricesRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *MarketApiService
 	metro *string
 	plan *string
@@ -45,7 +45,7 @@ func (r ApiFindMetroSpotMarketPricesRequest) Plan(plan string) ApiFindMetroSpotM
 	return r
 }
 
-func (r ApiFindMetroSpotMarketPricesRequest) Execute() (SpotMarketPricesPerMetroList, *_nethttp.Response, error) {
+func (r ApiFindMetroSpotMarketPricesRequest) Execute() (*SpotMarketPricesPerMetroList, *http.Response, error) {
 	return r.ApiService.FindMetroSpotMarketPricesExecute(r)
 }
 
@@ -54,10 +54,10 @@ FindMetroSpotMarketPrices Get current spot market prices for metros
 
 Get Equinix Metal current spot market prices for all metros.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiFindMetroSpotMarketPricesRequest
 */
-func (a *MarketApiService) FindMetroSpotMarketPrices(ctx _context.Context) ApiFindMetroSpotMarketPricesRequest {
+func (a *MarketApiService) FindMetroSpotMarketPrices(ctx context.Context) ApiFindMetroSpotMarketPricesRequest {
 	return ApiFindMetroSpotMarketPricesRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -66,26 +66,24 @@ func (a *MarketApiService) FindMetroSpotMarketPrices(ctx _context.Context) ApiFi
 
 // Execute executes the request
 //  @return SpotMarketPricesPerMetroList
-func (a *MarketApiService) FindMetroSpotMarketPricesExecute(r ApiFindMetroSpotMarketPricesRequest) (SpotMarketPricesPerMetroList, *_nethttp.Response, error) {
+func (a *MarketApiService) FindMetroSpotMarketPricesExecute(r ApiFindMetroSpotMarketPricesRequest) (*SpotMarketPricesPerMetroList, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  SpotMarketPricesPerMetroList
+		formFiles            []formFile
+		localVarReturnValue  *SpotMarketPricesPerMetroList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MarketApiService.FindMetroSpotMarketPrices")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/market/spot/prices/metros"
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	if r.metro != nil {
 		localVarQueryParams.Add("metro", parameterToString(*r.metro, ""))
@@ -124,7 +122,7 @@ func (a *MarketApiService) FindMetroSpotMarketPricesExecute(r ApiFindMetroSpotMa
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -134,15 +132,15 @@ func (a *MarketApiService) FindMetroSpotMarketPricesExecute(r ApiFindMetroSpotMa
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -151,7 +149,7 @@ func (a *MarketApiService) FindMetroSpotMarketPricesExecute(r ApiFindMetroSpotMa
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -162,7 +160,7 @@ func (a *MarketApiService) FindMetroSpotMarketPricesExecute(r ApiFindMetroSpotMa
 }
 
 type ApiFindSpotMarketPricesRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *MarketApiService
 	facility *string
 	plan *string
@@ -179,7 +177,7 @@ func (r ApiFindSpotMarketPricesRequest) Plan(plan string) ApiFindSpotMarketPrice
 	return r
 }
 
-func (r ApiFindSpotMarketPricesRequest) Execute() (SpotMarketPricesList, *_nethttp.Response, error) {
+func (r ApiFindSpotMarketPricesRequest) Execute() (*SpotMarketPricesList, *http.Response, error) {
 	return r.ApiService.FindSpotMarketPricesExecute(r)
 }
 
@@ -188,10 +186,10 @@ FindSpotMarketPrices Get current spot market prices
 
 Get Equinix Metal current spot market prices.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiFindSpotMarketPricesRequest
 */
-func (a *MarketApiService) FindSpotMarketPrices(ctx _context.Context) ApiFindSpotMarketPricesRequest {
+func (a *MarketApiService) FindSpotMarketPrices(ctx context.Context) ApiFindSpotMarketPricesRequest {
 	return ApiFindSpotMarketPricesRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -200,26 +198,24 @@ func (a *MarketApiService) FindSpotMarketPrices(ctx _context.Context) ApiFindSpo
 
 // Execute executes the request
 //  @return SpotMarketPricesList
-func (a *MarketApiService) FindSpotMarketPricesExecute(r ApiFindSpotMarketPricesRequest) (SpotMarketPricesList, *_nethttp.Response, error) {
+func (a *MarketApiService) FindSpotMarketPricesExecute(r ApiFindSpotMarketPricesRequest) (*SpotMarketPricesList, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  SpotMarketPricesList
+		formFiles            []formFile
+		localVarReturnValue  *SpotMarketPricesList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MarketApiService.FindSpotMarketPrices")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/market/spot/prices"
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	if r.facility != nil {
 		localVarQueryParams.Add("facility", parameterToString(*r.facility, ""))
@@ -258,7 +254,7 @@ func (a *MarketApiService) FindSpotMarketPricesExecute(r ApiFindSpotMarketPrices
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -268,15 +264,15 @@ func (a *MarketApiService) FindSpotMarketPricesExecute(r ApiFindSpotMarketPrices
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -285,7 +281,7 @@ func (a *MarketApiService) FindSpotMarketPricesExecute(r ApiFindSpotMarketPrices
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -296,7 +292,7 @@ func (a *MarketApiService) FindSpotMarketPricesExecute(r ApiFindSpotMarketPrices
 }
 
 type ApiFindSpotMarketPricesHistoryRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *MarketApiService
 	facility *string
 	plan *string
@@ -331,7 +327,7 @@ func (r ApiFindSpotMarketPricesHistoryRequest) Metro(metro string) ApiFindSpotMa
 	return r
 }
 
-func (r ApiFindSpotMarketPricesHistoryRequest) Execute() (SpotPricesHistoryReport, *_nethttp.Response, error) {
+func (r ApiFindSpotMarketPricesHistoryRequest) Execute() (*SpotPricesHistoryReport, *http.Response, error) {
 	return r.ApiService.FindSpotMarketPricesHistoryExecute(r)
 }
 
@@ -342,10 +338,10 @@ Get spot market prices for a given plan and facility in a fixed period of time
 
 *Note: In the `200` response, the property `datapoints` contains arrays of `[float, integer]`.*
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiFindSpotMarketPricesHistoryRequest
 */
-func (a *MarketApiService) FindSpotMarketPricesHistory(ctx _context.Context) ApiFindSpotMarketPricesHistoryRequest {
+func (a *MarketApiService) FindSpotMarketPricesHistory(ctx context.Context) ApiFindSpotMarketPricesHistoryRequest {
 	return ApiFindSpotMarketPricesHistoryRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -354,26 +350,24 @@ func (a *MarketApiService) FindSpotMarketPricesHistory(ctx _context.Context) Api
 
 // Execute executes the request
 //  @return SpotPricesHistoryReport
-func (a *MarketApiService) FindSpotMarketPricesHistoryExecute(r ApiFindSpotMarketPricesHistoryRequest) (SpotPricesHistoryReport, *_nethttp.Response, error) {
+func (a *MarketApiService) FindSpotMarketPricesHistoryExecute(r ApiFindSpotMarketPricesHistoryRequest) (*SpotPricesHistoryReport, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  SpotPricesHistoryReport
+		formFiles            []formFile
+		localVarReturnValue  *SpotPricesHistoryReport
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MarketApiService.FindSpotMarketPricesHistory")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/market/spot/prices/history"
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.facility == nil {
 		return localVarReturnValue, nil, reportError("facility is required and must be specified")
 	}
@@ -425,7 +419,7 @@ func (a *MarketApiService) FindSpotMarketPricesHistoryExecute(r ApiFindSpotMarke
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -435,15 +429,15 @@ func (a *MarketApiService) FindSpotMarketPricesHistoryExecute(r ApiFindSpotMarke
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -452,7 +446,7 @@ func (a *MarketApiService) FindSpotMarketPricesHistoryExecute(r ApiFindSpotMarke
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}

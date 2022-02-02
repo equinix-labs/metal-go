@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **Locked** | Pointer to **bool** |  | [optional] 
 **BondingMode** | Pointer to **int32** |  | [optional] 
 **CreatedAt** | Pointer to **time.Time** |  | [optional] 
+**CreatedBy** | Pointer to [**UserLite**](UserLite.md) |  | [optional] 
 **UpdatedAt** | Pointer to **time.Time** |  | [optional] 
 **SpotInstance** | Pointer to **bool** | Whether or not the device is a spot instance. | [optional] 
 **SpotPriceMax** | Pointer to **float32** | The maximum price per hour you are willing to pay to keep this spot instance.  If you are outbid, the termination will be set allowing two minutes before shutdown. | [optional] 
@@ -385,6 +386,31 @@ SetCreatedAt sets CreatedAt field to given value.
 `func (o *Device) HasCreatedAt() bool`
 
 HasCreatedAt returns a boolean if a field has been set.
+
+### GetCreatedBy
+
+`func (o *Device) GetCreatedBy() UserLite`
+
+GetCreatedBy returns the CreatedBy field if non-nil, zero value otherwise.
+
+### GetCreatedByOk
+
+`func (o *Device) GetCreatedByOk() (*UserLite, bool)`
+
+GetCreatedByOk returns a tuple with the CreatedBy field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCreatedBy
+
+`func (o *Device) SetCreatedBy(v UserLite)`
+
+SetCreatedBy sets CreatedBy field to given value.
+
+### HasCreatedBy
+
+`func (o *Device) HasCreatedBy() bool`
+
+HasCreatedBy returns a boolean if a field has been set.
 
 ### GetUpdatedAt
 

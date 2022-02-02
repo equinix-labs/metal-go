@@ -13,23 +13,23 @@ package v1
 
 import (
 	"bytes"
-	_context "context"
-	_ioutil "io/ioutil"
-	_nethttp "net/http"
-	_neturl "net/url"
+	"context"
+	"io/ioutil"
+	"net/http"
+	"net/url"
 	"strings"
 )
 
 // Linger please
 var (
-	_ _context.Context
+	_ context.Context
 )
 
 // FacilitiesApiService FacilitiesApi service
 type FacilitiesApiService service
 
 type ApiFindFacilitiesRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *FacilitiesApiService
 	include *[]string
 	exclude *[]string
@@ -46,7 +46,7 @@ func (r ApiFindFacilitiesRequest) Exclude(exclude []string) ApiFindFacilitiesReq
 	return r
 }
 
-func (r ApiFindFacilitiesRequest) Execute() (FacilityList, *_nethttp.Response, error) {
+func (r ApiFindFacilitiesRequest) Execute() (*FacilityList, *http.Response, error) {
 	return r.ApiService.FindFacilitiesExecute(r)
 }
 
@@ -55,10 +55,10 @@ FindFacilities Retrieve all facilities
 
 Provides a listing of available datacenters where you can provision Packet devices.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiFindFacilitiesRequest
 */
-func (a *FacilitiesApiService) FindFacilities(ctx _context.Context) ApiFindFacilitiesRequest {
+func (a *FacilitiesApiService) FindFacilities(ctx context.Context) ApiFindFacilitiesRequest {
 	return ApiFindFacilitiesRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -67,26 +67,24 @@ func (a *FacilitiesApiService) FindFacilities(ctx _context.Context) ApiFindFacil
 
 // Execute executes the request
 //  @return FacilityList
-func (a *FacilitiesApiService) FindFacilitiesExecute(r ApiFindFacilitiesRequest) (FacilityList, *_nethttp.Response, error) {
+func (a *FacilitiesApiService) FindFacilitiesExecute(r ApiFindFacilitiesRequest) (*FacilityList, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  FacilityList
+		formFiles            []formFile
+		localVarReturnValue  *FacilityList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FacilitiesApiService.FindFacilities")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/facilities"
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	if r.include != nil {
 		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
@@ -125,7 +123,7 @@ func (a *FacilitiesApiService) FindFacilitiesExecute(r ApiFindFacilitiesRequest)
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -135,15 +133,15 @@ func (a *FacilitiesApiService) FindFacilitiesExecute(r ApiFindFacilitiesRequest)
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -161,7 +159,7 @@ func (a *FacilitiesApiService) FindFacilitiesExecute(r ApiFindFacilitiesRequest)
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -172,7 +170,7 @@ func (a *FacilitiesApiService) FindFacilitiesExecute(r ApiFindFacilitiesRequest)
 }
 
 type ApiFindFacilitiesByOrganizationRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *FacilitiesApiService
 	id string
 	include *[]string
@@ -190,7 +188,7 @@ func (r ApiFindFacilitiesByOrganizationRequest) Exclude(exclude []string) ApiFin
 	return r
 }
 
-func (r ApiFindFacilitiesByOrganizationRequest) Execute() (FacilityList, *_nethttp.Response, error) {
+func (r ApiFindFacilitiesByOrganizationRequest) Execute() (*FacilityList, *http.Response, error) {
 	return r.ApiService.FindFacilitiesByOrganizationExecute(r)
 }
 
@@ -199,11 +197,11 @@ FindFacilitiesByOrganization Retrieve all facilities visible by the organization
 
 Returns a listing of available datacenters for the given organization
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Organization UUID
  @return ApiFindFacilitiesByOrganizationRequest
 */
-func (a *FacilitiesApiService) FindFacilitiesByOrganization(ctx _context.Context, id string) ApiFindFacilitiesByOrganizationRequest {
+func (a *FacilitiesApiService) FindFacilitiesByOrganization(ctx context.Context, id string) ApiFindFacilitiesByOrganizationRequest {
 	return ApiFindFacilitiesByOrganizationRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -213,27 +211,25 @@ func (a *FacilitiesApiService) FindFacilitiesByOrganization(ctx _context.Context
 
 // Execute executes the request
 //  @return FacilityList
-func (a *FacilitiesApiService) FindFacilitiesByOrganizationExecute(r ApiFindFacilitiesByOrganizationRequest) (FacilityList, *_nethttp.Response, error) {
+func (a *FacilitiesApiService) FindFacilitiesByOrganizationExecute(r ApiFindFacilitiesByOrganizationRequest) (*FacilityList, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  FacilityList
+		formFiles            []formFile
+		localVarReturnValue  *FacilityList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FacilitiesApiService.FindFacilitiesByOrganization")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/organizations/{id}/facilities"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	if r.include != nil {
 		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
@@ -272,7 +268,7 @@ func (a *FacilitiesApiService) FindFacilitiesByOrganizationExecute(r ApiFindFaci
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -282,15 +278,15 @@ func (a *FacilitiesApiService) FindFacilitiesByOrganizationExecute(r ApiFindFaci
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -328,7 +324,7 @@ func (a *FacilitiesApiService) FindFacilitiesByOrganizationExecute(r ApiFindFaci
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -339,7 +335,7 @@ func (a *FacilitiesApiService) FindFacilitiesByOrganizationExecute(r ApiFindFaci
 }
 
 type ApiFindFacilitiesByProjectRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *FacilitiesApiService
 	id string
 	include *[]string
@@ -357,7 +353,7 @@ func (r ApiFindFacilitiesByProjectRequest) Exclude(exclude []string) ApiFindFaci
 	return r
 }
 
-func (r ApiFindFacilitiesByProjectRequest) Execute() (FacilityList, *_nethttp.Response, error) {
+func (r ApiFindFacilitiesByProjectRequest) Execute() (*FacilityList, *http.Response, error) {
 	return r.ApiService.FindFacilitiesByProjectExecute(r)
 }
 
@@ -366,11 +362,11 @@ FindFacilitiesByProject Retrieve all facilities visible by the project
 
 Returns a listing of available datacenters for the given project
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Project UUID
  @return ApiFindFacilitiesByProjectRequest
 */
-func (a *FacilitiesApiService) FindFacilitiesByProject(ctx _context.Context, id string) ApiFindFacilitiesByProjectRequest {
+func (a *FacilitiesApiService) FindFacilitiesByProject(ctx context.Context, id string) ApiFindFacilitiesByProjectRequest {
 	return ApiFindFacilitiesByProjectRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -380,27 +376,25 @@ func (a *FacilitiesApiService) FindFacilitiesByProject(ctx _context.Context, id 
 
 // Execute executes the request
 //  @return FacilityList
-func (a *FacilitiesApiService) FindFacilitiesByProjectExecute(r ApiFindFacilitiesByProjectRequest) (FacilityList, *_nethttp.Response, error) {
+func (a *FacilitiesApiService) FindFacilitiesByProjectExecute(r ApiFindFacilitiesByProjectRequest) (*FacilityList, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  FacilityList
+		formFiles            []formFile
+		localVarReturnValue  *FacilityList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FacilitiesApiService.FindFacilitiesByProject")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/projects/{id}/facilities"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	if r.include != nil {
 		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
@@ -439,7 +433,7 @@ func (a *FacilitiesApiService) FindFacilitiesByProjectExecute(r ApiFindFacilitie
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -449,15 +443,15 @@ func (a *FacilitiesApiService) FindFacilitiesByProjectExecute(r ApiFindFacilitie
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -495,7 +489,7 @@ func (a *FacilitiesApiService) FindFacilitiesByProjectExecute(r ApiFindFacilitie
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}

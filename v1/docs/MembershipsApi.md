@@ -31,11 +31,11 @@ import (
 )
 
 func main() {
-    id := TODO // string | Membership UUID
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Membership UUID
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.MembershipsApi.DeleteMembership(context.Background(), id).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.MembershipsApi.DeleteMembership(context.Background(), id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MembershipsApi.DeleteMembership``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -49,7 +49,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | [**string**](.md) | Membership UUID | 
+**id** | **string** | Membership UUID | 
 
 ### Other Parameters
 
@@ -99,13 +99,13 @@ import (
 )
 
 func main() {
-    id := TODO // string | Membership UUID
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Membership UUID
     include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
     exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.MembershipsApi.FindMembershipById(context.Background(), id).Include(include).Exclude(exclude).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.MembershipsApi.FindMembershipById(context.Background(), id).Include(include).Exclude(exclude).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MembershipsApi.FindMembershipById``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -121,7 +121,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | [**string**](.md) | Membership UUID | 
+**id** | **string** | Membership UUID | 
 
 ### Other Parameters
 
@@ -173,12 +173,12 @@ import (
 )
 
 func main() {
-    id := TODO // string | Membership UUID
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Membership UUID
     membership := *openapiclient.NewMembershipInput() // MembershipInput | Membership to update
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.MembershipsApi.UpdateMembership(context.Background(), id).Membership(membership).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.MembershipsApi.UpdateMembership(context.Background(), id).Membership(membership).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MembershipsApi.UpdateMembership``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -194,7 +194,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | [**string**](.md) | Membership UUID | 
+**id** | **string** | Membership UUID | 
 
 ### Other Parameters
 

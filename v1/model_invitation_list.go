@@ -17,7 +17,7 @@ import (
 
 // InvitationList struct for InvitationList
 type InvitationList struct {
-	Invitations *[]Membership `json:"invitations,omitempty"`
+	Invitations []Membership `json:"invitations,omitempty"`
 }
 
 // NewInvitationList instantiates a new InvitationList object
@@ -43,12 +43,12 @@ func (o *InvitationList) GetInvitations() []Membership {
 		var ret []Membership
 		return ret
 	}
-	return *o.Invitations
+	return o.Invitations
 }
 
 // GetInvitationsOk returns a tuple with the Invitations field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InvitationList) GetInvitationsOk() (*[]Membership, bool) {
+func (o *InvitationList) GetInvitationsOk() ([]Membership, bool) {
 	if o == nil || o.Invitations == nil {
 		return nil, false
 	}
@@ -66,7 +66,7 @@ func (o *InvitationList) HasInvitations() bool {
 
 // SetInvitations gets a reference to the given []Membership and assigns it to the Invitations field.
 func (o *InvitationList) SetInvitations(v []Membership) {
-	o.Invitations = &v
+	o.Invitations = v
 }
 
 func (o InvitationList) MarshalJSON() ([]byte, error) {

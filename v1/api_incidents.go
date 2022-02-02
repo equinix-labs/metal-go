@@ -13,22 +13,22 @@ package v1
 
 import (
 	"bytes"
-	_context "context"
-	_ioutil "io/ioutil"
-	_nethttp "net/http"
-	_neturl "net/url"
+	"context"
+	"io/ioutil"
+	"net/http"
+	"net/url"
 )
 
 // Linger please
 var (
-	_ _context.Context
+	_ context.Context
 )
 
 // IncidentsApiService IncidentsApi service
 type IncidentsApiService service
 
 type ApiFindIncidentsRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *IncidentsApiService
 	include *[]string
 	exclude *[]string
@@ -45,7 +45,7 @@ func (r ApiFindIncidentsRequest) Exclude(exclude []string) ApiFindIncidentsReque
 	return r
 }
 
-func (r ApiFindIncidentsRequest) Execute() (*_nethttp.Response, error) {
+func (r ApiFindIncidentsRequest) Execute() (*http.Response, error) {
 	return r.ApiService.FindIncidentsExecute(r)
 }
 
@@ -54,10 +54,10 @@ FindIncidents Retrieve the number of incidents
 
 Retrieve the number of incidents.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiFindIncidentsRequest
 */
-func (a *IncidentsApiService) FindIncidents(ctx _context.Context) ApiFindIncidentsRequest {
+func (a *IncidentsApiService) FindIncidents(ctx context.Context) ApiFindIncidentsRequest {
 	return ApiFindIncidentsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -65,25 +65,23 @@ func (a *IncidentsApiService) FindIncidents(ctx _context.Context) ApiFindInciden
 }
 
 // Execute executes the request
-func (a *IncidentsApiService) FindIncidentsExecute(r ApiFindIncidentsRequest) (*_nethttp.Response, error) {
+func (a *IncidentsApiService) FindIncidentsExecute(r ApiFindIncidentsRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IncidentsApiService.FindIncidents")
 	if err != nil {
-		return nil, GenericOpenAPIError{error: err.Error()}
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/incidents"
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	if r.include != nil {
 		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
@@ -122,7 +120,7 @@ func (a *IncidentsApiService) FindIncidentsExecute(r ApiFindIncidentsRequest) (*
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
 	}
@@ -132,15 +130,15 @@ func (a *IncidentsApiService) FindIncidentsExecute(r ApiFindIncidentsRequest) (*
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}

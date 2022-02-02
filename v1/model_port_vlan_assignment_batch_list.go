@@ -17,7 +17,7 @@ import (
 
 // PortVlanAssignmentBatchList struct for PortVlanAssignmentBatchList
 type PortVlanAssignmentBatchList struct {
-	Batches *[]PortVlanAssignmentBatch `json:"batches,omitempty"`
+	Batches []PortVlanAssignmentBatch `json:"batches,omitempty"`
 }
 
 // NewPortVlanAssignmentBatchList instantiates a new PortVlanAssignmentBatchList object
@@ -43,12 +43,12 @@ func (o *PortVlanAssignmentBatchList) GetBatches() []PortVlanAssignmentBatch {
 		var ret []PortVlanAssignmentBatch
 		return ret
 	}
-	return *o.Batches
+	return o.Batches
 }
 
 // GetBatchesOk returns a tuple with the Batches field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PortVlanAssignmentBatchList) GetBatchesOk() (*[]PortVlanAssignmentBatch, bool) {
+func (o *PortVlanAssignmentBatchList) GetBatchesOk() ([]PortVlanAssignmentBatch, bool) {
 	if o == nil || o.Batches == nil {
 		return nil, false
 	}
@@ -66,7 +66,7 @@ func (o *PortVlanAssignmentBatchList) HasBatches() bool {
 
 // SetBatches gets a reference to the given []PortVlanAssignmentBatch and assigns it to the Batches field.
 func (o *PortVlanAssignmentBatchList) SetBatches(v []PortVlanAssignmentBatch) {
-	o.Batches = &v
+	o.Batches = v
 }
 
 func (o PortVlanAssignmentBatchList) MarshalJSON() ([]byte, error) {

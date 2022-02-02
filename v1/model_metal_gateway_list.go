@@ -17,7 +17,7 @@ import (
 
 // MetalGatewayList struct for MetalGatewayList
 type MetalGatewayList struct {
-	MetalGateways *[]MetalGateway `json:"MetalGateways,omitempty"`
+	MetalGateways []MetalGateway `json:"MetalGateways,omitempty"`
 }
 
 // NewMetalGatewayList instantiates a new MetalGatewayList object
@@ -43,12 +43,12 @@ func (o *MetalGatewayList) GetMetalGateways() []MetalGateway {
 		var ret []MetalGateway
 		return ret
 	}
-	return *o.MetalGateways
+	return o.MetalGateways
 }
 
 // GetMetalGatewaysOk returns a tuple with the MetalGateways field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetalGatewayList) GetMetalGatewaysOk() (*[]MetalGateway, bool) {
+func (o *MetalGatewayList) GetMetalGatewaysOk() ([]MetalGateway, bool) {
 	if o == nil || o.MetalGateways == nil {
 		return nil, false
 	}
@@ -66,7 +66,7 @@ func (o *MetalGatewayList) HasMetalGateways() bool {
 
 // SetMetalGateways gets a reference to the given []MetalGateway and assigns it to the MetalGateways field.
 func (o *MetalGatewayList) SetMetalGateways(v []MetalGateway) {
-	o.MetalGateways = &v
+	o.MetalGateways = v
 }
 
 func (o MetalGatewayList) MarshalJSON() ([]byte, error) {

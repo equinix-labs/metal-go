@@ -13,27 +13,27 @@ package v1
 
 import (
 	"bytes"
-	_context "context"
-	_ioutil "io/ioutil"
-	_nethttp "net/http"
-	_neturl "net/url"
+	"context"
+	"io/ioutil"
+	"net/http"
+	"net/url"
 )
 
 // Linger please
 var (
-	_ _context.Context
+	_ context.Context
 )
 
 // TwoFactorAuthApiService TwoFactorAuthApi service
 type TwoFactorAuthApiService service
 
 type ApiDisableTfaAppRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *TwoFactorAuthApiService
 }
 
 
-func (r ApiDisableTfaAppRequest) Execute() (*_nethttp.Response, error) {
+func (r ApiDisableTfaAppRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DisableTfaAppExecute(r)
 }
 
@@ -42,10 +42,10 @@ DisableTfaApp Disable two factor authentication
 
 Disables two factor authentication.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiDisableTfaAppRequest
 */
-func (a *TwoFactorAuthApiService) DisableTfaApp(ctx _context.Context) ApiDisableTfaAppRequest {
+func (a *TwoFactorAuthApiService) DisableTfaApp(ctx context.Context) ApiDisableTfaAppRequest {
 	return ApiDisableTfaAppRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -53,25 +53,23 @@ func (a *TwoFactorAuthApiService) DisableTfaApp(ctx _context.Context) ApiDisable
 }
 
 // Execute executes the request
-func (a *TwoFactorAuthApiService) DisableTfaAppExecute(r ApiDisableTfaAppRequest) (*_nethttp.Response, error) {
+func (a *TwoFactorAuthApiService) DisableTfaAppExecute(r ApiDisableTfaAppRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
+		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TwoFactorAuthApiService.DisableTfaApp")
 	if err != nil {
-		return nil, GenericOpenAPIError{error: err.Error()}
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/user/otp/app"
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -104,7 +102,7 @@ func (a *TwoFactorAuthApiService) DisableTfaAppExecute(r ApiDisableTfaAppRequest
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
 	}
@@ -114,15 +112,15 @@ func (a *TwoFactorAuthApiService) DisableTfaAppExecute(r ApiDisableTfaAppRequest
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -152,12 +150,12 @@ func (a *TwoFactorAuthApiService) DisableTfaAppExecute(r ApiDisableTfaAppRequest
 }
 
 type ApiDisableTfaSmsRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *TwoFactorAuthApiService
 }
 
 
-func (r ApiDisableTfaSmsRequest) Execute() (*_nethttp.Response, error) {
+func (r ApiDisableTfaSmsRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DisableTfaSmsExecute(r)
 }
 
@@ -166,10 +164,10 @@ DisableTfaSms Disable two factor authentication
 
 Disables two factor authentication.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiDisableTfaSmsRequest
 */
-func (a *TwoFactorAuthApiService) DisableTfaSms(ctx _context.Context) ApiDisableTfaSmsRequest {
+func (a *TwoFactorAuthApiService) DisableTfaSms(ctx context.Context) ApiDisableTfaSmsRequest {
 	return ApiDisableTfaSmsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -177,25 +175,23 @@ func (a *TwoFactorAuthApiService) DisableTfaSms(ctx _context.Context) ApiDisable
 }
 
 // Execute executes the request
-func (a *TwoFactorAuthApiService) DisableTfaSmsExecute(r ApiDisableTfaSmsRequest) (*_nethttp.Response, error) {
+func (a *TwoFactorAuthApiService) DisableTfaSmsExecute(r ApiDisableTfaSmsRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
+		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TwoFactorAuthApiService.DisableTfaSms")
 	if err != nil {
-		return nil, GenericOpenAPIError{error: err.Error()}
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/user/otp/sms"
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -228,7 +224,7 @@ func (a *TwoFactorAuthApiService) DisableTfaSmsExecute(r ApiDisableTfaSmsRequest
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
 	}
@@ -238,15 +234,15 @@ func (a *TwoFactorAuthApiService) DisableTfaSmsExecute(r ApiDisableTfaSmsRequest
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -276,12 +272,12 @@ func (a *TwoFactorAuthApiService) DisableTfaSmsExecute(r ApiDisableTfaSmsRequest
 }
 
 type ApiEnableTfaAppRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *TwoFactorAuthApiService
 }
 
 
-func (r ApiEnableTfaAppRequest) Execute() (*_nethttp.Response, error) {
+func (r ApiEnableTfaAppRequest) Execute() (*http.Response, error) {
 	return r.ApiService.EnableTfaAppExecute(r)
 }
 
@@ -290,10 +286,10 @@ EnableTfaApp Enable two factor auth using app
 
 Enables two factor authentication using authenticator app.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiEnableTfaAppRequest
 */
-func (a *TwoFactorAuthApiService) EnableTfaApp(ctx _context.Context) ApiEnableTfaAppRequest {
+func (a *TwoFactorAuthApiService) EnableTfaApp(ctx context.Context) ApiEnableTfaAppRequest {
 	return ApiEnableTfaAppRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -301,25 +297,23 @@ func (a *TwoFactorAuthApiService) EnableTfaApp(ctx _context.Context) ApiEnableTf
 }
 
 // Execute executes the request
-func (a *TwoFactorAuthApiService) EnableTfaAppExecute(r ApiEnableTfaAppRequest) (*_nethttp.Response, error) {
+func (a *TwoFactorAuthApiService) EnableTfaAppExecute(r ApiEnableTfaAppRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TwoFactorAuthApiService.EnableTfaApp")
 	if err != nil {
-		return nil, GenericOpenAPIError{error: err.Error()}
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/user/otp/app"
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -352,7 +346,7 @@ func (a *TwoFactorAuthApiService) EnableTfaAppExecute(r ApiEnableTfaAppRequest) 
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
 	}
@@ -362,15 +356,15 @@ func (a *TwoFactorAuthApiService) EnableTfaAppExecute(r ApiEnableTfaAppRequest) 
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -390,12 +384,12 @@ func (a *TwoFactorAuthApiService) EnableTfaAppExecute(r ApiEnableTfaAppRequest) 
 }
 
 type ApiEnableTfaSmsRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *TwoFactorAuthApiService
 }
 
 
-func (r ApiEnableTfaSmsRequest) Execute() (*_nethttp.Response, error) {
+func (r ApiEnableTfaSmsRequest) Execute() (*http.Response, error) {
 	return r.ApiService.EnableTfaSmsExecute(r)
 }
 
@@ -404,10 +398,10 @@ EnableTfaSms Enable two factor auth using sms
 
 Enables two factor authentication with sms.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiEnableTfaSmsRequest
 */
-func (a *TwoFactorAuthApiService) EnableTfaSms(ctx _context.Context) ApiEnableTfaSmsRequest {
+func (a *TwoFactorAuthApiService) EnableTfaSms(ctx context.Context) ApiEnableTfaSmsRequest {
 	return ApiEnableTfaSmsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -415,25 +409,23 @@ func (a *TwoFactorAuthApiService) EnableTfaSms(ctx _context.Context) ApiEnableTf
 }
 
 // Execute executes the request
-func (a *TwoFactorAuthApiService) EnableTfaSmsExecute(r ApiEnableTfaSmsRequest) (*_nethttp.Response, error) {
+func (a *TwoFactorAuthApiService) EnableTfaSmsExecute(r ApiEnableTfaSmsRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TwoFactorAuthApiService.EnableTfaSms")
 	if err != nil {
-		return nil, GenericOpenAPIError{error: err.Error()}
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/user/otp/sms"
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -466,7 +458,7 @@ func (a *TwoFactorAuthApiService) EnableTfaSmsExecute(r ApiEnableTfaSmsRequest) 
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
 	}
@@ -476,15 +468,15 @@ func (a *TwoFactorAuthApiService) EnableTfaSmsExecute(r ApiEnableTfaSmsRequest) 
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}

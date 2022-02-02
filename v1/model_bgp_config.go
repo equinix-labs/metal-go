@@ -35,9 +35,9 @@ type BgpConfig struct {
 	CreatedAt *time.Time `json:"created_at,omitempty"`
 	RequestedAt *time.Time `json:"requested_at,omitempty"`
 	// The direct connections between neighboring routers that want to exchange routing information.
-	Sessions *[]BgpSession `json:"sessions,omitempty"`
+	Sessions []BgpSession `json:"sessions,omitempty"`
 	// The IP block ranges associated to the ASN (Populated in Global BGP only)
-	Ranges *[]GlobalBgpRange `json:"ranges,omitempty"`
+	Ranges []GlobalBgpRange `json:"ranges,omitempty"`
 	Href *string `json:"href,omitempty"`
 }
 
@@ -394,12 +394,12 @@ func (o *BgpConfig) GetSessions() []BgpSession {
 		var ret []BgpSession
 		return ret
 	}
-	return *o.Sessions
+	return o.Sessions
 }
 
 // GetSessionsOk returns a tuple with the Sessions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BgpConfig) GetSessionsOk() (*[]BgpSession, bool) {
+func (o *BgpConfig) GetSessionsOk() ([]BgpSession, bool) {
 	if o == nil || o.Sessions == nil {
 		return nil, false
 	}
@@ -417,7 +417,7 @@ func (o *BgpConfig) HasSessions() bool {
 
 // SetSessions gets a reference to the given []BgpSession and assigns it to the Sessions field.
 func (o *BgpConfig) SetSessions(v []BgpSession) {
-	o.Sessions = &v
+	o.Sessions = v
 }
 
 // GetRanges returns the Ranges field value if set, zero value otherwise.
@@ -426,12 +426,12 @@ func (o *BgpConfig) GetRanges() []GlobalBgpRange {
 		var ret []GlobalBgpRange
 		return ret
 	}
-	return *o.Ranges
+	return o.Ranges
 }
 
 // GetRangesOk returns a tuple with the Ranges field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BgpConfig) GetRangesOk() (*[]GlobalBgpRange, bool) {
+func (o *BgpConfig) GetRangesOk() ([]GlobalBgpRange, bool) {
 	if o == nil || o.Ranges == nil {
 		return nil, false
 	}
@@ -449,7 +449,7 @@ func (o *BgpConfig) HasRanges() bool {
 
 // SetRanges gets a reference to the given []GlobalBgpRange and assigns it to the Ranges field.
 func (o *BgpConfig) SetRanges(v []GlobalBgpRange) {
-	o.Ranges = &v
+	o.Ranges = v
 }
 
 // GetHref returns the Href field value if set, zero value otherwise.

@@ -19,13 +19,13 @@ import (
 // Invitation struct for Invitation
 type Invitation struct {
 	Id *string `json:"id,omitempty"`
-	Roles *[]string `json:"roles,omitempty"`
+	Roles []string `json:"roles,omitempty"`
 	Invitee *string `json:"invitee,omitempty"`
 	CreatedAt *time.Time `json:"created_at,omitempty"`
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
 	InvitedBy *Href `json:"invited_by,omitempty"`
 	Organization *Href `json:"organization,omitempty"`
-	ProjectsIds *[]string `json:"projects_ids,omitempty"`
+	ProjectsIds []string `json:"projects_ids,omitempty"`
 	Invitation *Href `json:"invitation,omitempty"`
 	Href *string `json:"href,omitempty"`
 }
@@ -85,12 +85,12 @@ func (o *Invitation) GetRoles() []string {
 		var ret []string
 		return ret
 	}
-	return *o.Roles
+	return o.Roles
 }
 
 // GetRolesOk returns a tuple with the Roles field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Invitation) GetRolesOk() (*[]string, bool) {
+func (o *Invitation) GetRolesOk() ([]string, bool) {
 	if o == nil || o.Roles == nil {
 		return nil, false
 	}
@@ -108,7 +108,7 @@ func (o *Invitation) HasRoles() bool {
 
 // SetRoles gets a reference to the given []string and assigns it to the Roles field.
 func (o *Invitation) SetRoles(v []string) {
-	o.Roles = &v
+	o.Roles = v
 }
 
 // GetInvitee returns the Invitee field value if set, zero value otherwise.
@@ -277,12 +277,12 @@ func (o *Invitation) GetProjectsIds() []string {
 		var ret []string
 		return ret
 	}
-	return *o.ProjectsIds
+	return o.ProjectsIds
 }
 
 // GetProjectsIdsOk returns a tuple with the ProjectsIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Invitation) GetProjectsIdsOk() (*[]string, bool) {
+func (o *Invitation) GetProjectsIdsOk() ([]string, bool) {
 	if o == nil || o.ProjectsIds == nil {
 		return nil, false
 	}
@@ -300,7 +300,7 @@ func (o *Invitation) HasProjectsIds() bool {
 
 // SetProjectsIds gets a reference to the given []string and assigns it to the ProjectsIds field.
 func (o *Invitation) SetProjectsIds(v []string) {
-	o.ProjectsIds = &v
+	o.ProjectsIds = v
 }
 
 // GetInvitation returns the Invitation field value if set, zero value otherwise.

@@ -55,12 +55,12 @@ import (
 )
 
 func main() {
-    id := TODO // string | Project UUID
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Project UUID
     device := *openapiclient.NewDeviceCreateInput("Facility_example", "Plan_example", "OperatingSystem_example") // DeviceCreateInput | Device to create
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ProjectsApi.CreateDevice(context.Background(), id).Device(device).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ProjectsApi.CreateDevice(context.Background(), id).Device(device).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ProjectsApi.CreateDevice``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -76,7 +76,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | [**string**](.md) | Project UUID | 
+**id** | **string** | Project UUID | 
 
 ### Other Parameters
 
@@ -127,12 +127,12 @@ import (
 )
 
 func main() {
-    id := TODO // string | Project UUID
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Project UUID
     license := *openapiclient.NewLicenseCreateInput() // LicenseCreateInput | License to create
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ProjectsApi.CreateLicense(context.Background(), id).License(license).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ProjectsApi.CreateLicense(context.Background(), id).License(license).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ProjectsApi.CreateLicense``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -148,7 +148,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | [**string**](.md) | Project UUID | 
+**id** | **string** | Project UUID | 
 
 ### Other Parameters
 
@@ -202,8 +202,8 @@ func main() {
     project := *openapiclient.NewProjectCreateFromRootInput("Name_example") // ProjectCreateFromRootInput | Project to create
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ProjectsApi.CreateProject(context.Background()).Project(project).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ProjectsApi.CreateProject(context.Background()).Project(project).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ProjectsApi.CreateProject``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -265,12 +265,12 @@ import (
 )
 
 func main() {
-    id := TODO // string | Project UUID
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Project UUID
     sshKey := *openapiclient.NewSSHKeyCreateInput() // SSHKeyCreateInput | ssh key to create
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ProjectsApi.CreateProjectSSHKey(context.Background(), id).SshKey(sshKey).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ProjectsApi.CreateProjectSSHKey(context.Background(), id).SshKey(sshKey).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ProjectsApi.CreateProjectSSHKey``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -286,7 +286,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | [**string**](.md) | Project UUID | 
+**id** | **string** | Project UUID | 
 
 ### Other Parameters
 
@@ -337,12 +337,12 @@ import (
 )
 
 func main() {
-    id := TODO // string | Project UUID
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Project UUID
     spotMarketRequest := *openapiclient.NewSpotMarketRequestCreateInput() // SpotMarketRequestCreateInput | Spot Market Request to create
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ProjectsApi.CreateSpotMarketRequest(context.Background(), id).SpotMarketRequest(spotMarketRequest).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ProjectsApi.CreateSpotMarketRequest(context.Background(), id).SpotMarketRequest(spotMarketRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ProjectsApi.CreateSpotMarketRequest``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -358,7 +358,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | [**string**](.md) | Project UUID | 
+**id** | **string** | Project UUID | 
 
 ### Other Parameters
 
@@ -409,12 +409,12 @@ import (
 )
 
 func main() {
-    id := TODO // string | UUID of the project to be transferred
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | UUID of the project to be transferred
     transferRequest := *openapiclient.NewTransferRequestInput() // TransferRequestInput | Transfer Request to create
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ProjectsApi.CreateTransferRequest(context.Background(), id).TransferRequest(transferRequest).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ProjectsApi.CreateTransferRequest(context.Background(), id).TransferRequest(transferRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ProjectsApi.CreateTransferRequest``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -430,7 +430,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | [**string**](.md) | UUID of the project to be transferred | 
+**id** | **string** | UUID of the project to be transferred | 
 
 ### Other Parameters
 
@@ -481,12 +481,12 @@ import (
 )
 
 func main() {
-    id := TODO // string | Project UUID
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Project UUID
     virtualNetwork := *openapiclient.NewVirtualNetworkCreateInput("ProjectId_example") // VirtualNetworkCreateInput | Virtual Network to create
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ProjectsApi.CreateVirtualNetwork(context.Background(), id).VirtualNetwork(virtualNetwork).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ProjectsApi.CreateVirtualNetwork(context.Background(), id).VirtualNetwork(virtualNetwork).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ProjectsApi.CreateVirtualNetwork``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -502,7 +502,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | [**string**](.md) | Project UUID | 
+**id** | **string** | Project UUID | 
 
 ### Other Parameters
 
@@ -553,11 +553,11 @@ import (
 )
 
 func main() {
-    id := TODO // string | Project UUID
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Project UUID
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ProjectsApi.DeleteProject(context.Background(), id).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ProjectsApi.DeleteProject(context.Background(), id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ProjectsApi.DeleteProject``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -571,7 +571,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | [**string**](.md) | Project UUID | 
+**id** | **string** | Project UUID | 
 
 ### Other Parameters
 
@@ -621,13 +621,13 @@ import (
 )
 
 func main() {
-    id := TODO // string | Project UUID
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Project UUID
     include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
     exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ProjectsApi.FindBatchesByProject(context.Background(), id).Include(include).Exclude(exclude).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ProjectsApi.FindBatchesByProject(context.Background(), id).Include(include).Exclude(exclude).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ProjectsApi.FindBatchesByProject``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -643,7 +643,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | [**string**](.md) | Project UUID | 
+**id** | **string** | Project UUID | 
 
 ### Other Parameters
 
@@ -695,13 +695,13 @@ import (
 )
 
 func main() {
-    id := TODO // string | Project UUID
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Project UUID
     include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
     exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ProjectsApi.FindBgpConfigByProject(context.Background(), id).Include(include).Exclude(exclude).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ProjectsApi.FindBgpConfigByProject(context.Background(), id).Include(include).Exclude(exclude).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ProjectsApi.FindBgpConfigByProject``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -717,7 +717,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | [**string**](.md) | Project UUID | 
+**id** | **string** | Project UUID | 
 
 ### Other Parameters
 
@@ -769,14 +769,14 @@ import (
 )
 
 func main() {
-    id := TODO // string | Project UUID
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Project UUID
     searchString := "searchString_example" // string | Search by key, label, or fingerprint (optional)
     include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
     exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ProjectsApi.FindDeviceSSHKeys(context.Background(), id).SearchString(searchString).Include(include).Exclude(exclude).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ProjectsApi.FindDeviceSSHKeys(context.Background(), id).SearchString(searchString).Include(include).Exclude(exclude).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ProjectsApi.FindDeviceSSHKeys``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -792,7 +792,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | [**string**](.md) | Project UUID | 
+**id** | **string** | Project UUID | 
 
 ### Other Parameters
 
@@ -845,12 +845,12 @@ import (
 )
 
 func main() {
-    projectId := TODO // string | Project UUID
-    id := TODO // string | Ip Reservation UUID
+    projectId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Project UUID
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Ip Reservation UUID
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ProjectsApi.FindIPReservationCustomdata(context.Background(), projectId, id).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ProjectsApi.FindIPReservationCustomdata(context.Background(), projectId, id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ProjectsApi.FindIPReservationCustomdata``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -864,8 +864,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**projectId** | [**string**](.md) | Project UUID | 
-**id** | [**string**](.md) | Ip Reservation UUID | 
+**projectId** | **string** | Project UUID | 
+**id** | **string** | Ip Reservation UUID | 
 
 ### Other Parameters
 
@@ -916,13 +916,13 @@ import (
 )
 
 func main() {
-    id := TODO // string | Project UUID
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Project UUID
     include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
     exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ProjectsApi.FindIPReservations(context.Background(), id).Include(include).Exclude(exclude).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ProjectsApi.FindIPReservations(context.Background(), id).Include(include).Exclude(exclude).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ProjectsApi.FindIPReservations``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -938,7 +938,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | [**string**](.md) | Project UUID | 
+**id** | **string** | Project UUID | 
 
 ### Other Parameters
 
@@ -990,11 +990,11 @@ import (
 )
 
 func main() {
-    id := TODO // string | Project UUID
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Project UUID
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ProjectsApi.FindProjectBgpSessions(context.Background(), id).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ProjectsApi.FindProjectBgpSessions(context.Background(), id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ProjectsApi.FindProjectBgpSessions``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1010,7 +1010,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | [**string**](.md) | Project UUID | 
+**id** | **string** | Project UUID | 
 
 ### Other Parameters
 
@@ -1060,13 +1060,13 @@ import (
 )
 
 func main() {
-    id := TODO // string | Project UUID
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Project UUID
     include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
     exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ProjectsApi.FindProjectById(context.Background(), id).Include(include).Exclude(exclude).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ProjectsApi.FindProjectById(context.Background(), id).Include(include).Exclude(exclude).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ProjectsApi.FindProjectById``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1082,7 +1082,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | [**string**](.md) | Project UUID | 
+**id** | **string** | Project UUID | 
 
 ### Other Parameters
 
@@ -1134,11 +1134,11 @@ import (
 )
 
 func main() {
-    id := TODO // string | Project UUID
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Project UUID
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ProjectsApi.FindProjectCustomdata(context.Background(), id).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ProjectsApi.FindProjectCustomdata(context.Background(), id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ProjectsApi.FindProjectCustomdata``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1152,7 +1152,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | [**string**](.md) | Project UUID | 
+**id** | **string** | Project UUID | 
 
 ### Other Parameters
 
@@ -1183,7 +1183,7 @@ Name | Type | Description  | Notes
 
 ## FindProjectDevices
 
-> DeviceList FindProjectDevices(ctx, id).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
+> DeviceList FindProjectDevices(ctx, id).Facility(facility).Hostname(hostname).Reserved(reserved).Tag(tag).Type_(type_).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
 
 Retrieve all devices of a project
 
@@ -1202,15 +1202,20 @@ import (
 )
 
 func main() {
-    id := TODO // string | Project UUID
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Project UUID
+    facility := "facility_example" // string | Filter by device facility (optional)
+    hostname := "hostname_example" // string | Filter by partial hostname (optional)
+    reserved := true // bool | Filter only reserved instances (optional)
+    tag := "tag_example" // string | Filter by device tag (optional)
+    type_ := "type__example" // string | Filter by instance type (ondemand,spot,reserved) (optional)
     include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
     exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
     page := int32(56) // int32 | Page to return (optional) (default to 1)
     perPage := int32(56) // int32 | Items returned per page (optional) (default to 10)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ProjectsApi.FindProjectDevices(context.Background(), id).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ProjectsApi.FindProjectDevices(context.Background(), id).Facility(facility).Hostname(hostname).Reserved(reserved).Tag(tag).Type_(type_).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ProjectsApi.FindProjectDevices``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1226,7 +1231,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | [**string**](.md) | Project UUID | 
+**id** | **string** | Project UUID | 
 
 ### Other Parameters
 
@@ -1236,6 +1241,11 @@ Other parameters are passed through a pointer to a apiFindProjectDevicesRequest 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **facility** | **string** | Filter by device facility | 
+ **hostname** | **string** | Filter by partial hostname | 
+ **reserved** | **bool** | Filter only reserved instances | 
+ **tag** | **string** | Filter by device tag | 
+ **type_** | **string** | Filter by instance type (ondemand,spot,reserved) | 
  **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
  **exclude** | **[]string** | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | 
  **page** | **int32** | Page to return | [default to 1]
@@ -1280,15 +1290,15 @@ import (
 )
 
 func main() {
-    id := TODO // string | Project UUID
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Project UUID
     include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
     exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
     page := int32(56) // int32 | Page to return (optional) (default to 1)
     perPage := int32(56) // int32 | Items returned per page (optional) (default to 10)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ProjectsApi.FindProjectHardwareReservations(context.Background(), id).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ProjectsApi.FindProjectHardwareReservations(context.Background(), id).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ProjectsApi.FindProjectHardwareReservations``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1304,7 +1314,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | [**string**](.md) | Project UUID | 
+**id** | **string** | Project UUID | 
 
 ### Other Parameters
 
@@ -1358,15 +1368,15 @@ import (
 )
 
 func main() {
-    id := TODO // string | Project UUID
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Project UUID
     include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
     exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
     page := int32(56) // int32 | Page to return (optional) (default to 1)
     perPage := int32(56) // int32 | Items returned per page (optional) (default to 10)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ProjectsApi.FindProjectLicenses(context.Background(), id).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ProjectsApi.FindProjectLicenses(context.Background(), id).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ProjectsApi.FindProjectLicenses``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1382,7 +1392,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | [**string**](.md) | Project UUID | 
+**id** | **string** | Project UUID | 
 
 ### Other Parameters
 
@@ -1436,15 +1446,15 @@ import (
 )
 
 func main() {
-    projectId := TODO // string | Project UUID
+    projectId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Project UUID
     include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
     exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
     page := int32(56) // int32 | Page to return (optional) (default to 1)
     perPage := int32(56) // int32 | Items returned per page (optional) (default to 10)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ProjectsApi.FindProjectMemberships(context.Background(), projectId).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ProjectsApi.FindProjectMemberships(context.Background(), projectId).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ProjectsApi.FindProjectMemberships``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1460,7 +1470,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**projectId** | [**string**](.md) | Project UUID | 
+**projectId** | **string** | Project UUID | 
 
 ### Other Parameters
 
@@ -1514,14 +1524,14 @@ import (
 )
 
 func main() {
-    id := TODO // string | Project UUID
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Project UUID
     searchString := "searchString_example" // string | Search by key, label, or fingerprint (optional)
     include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
     exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ProjectsApi.FindProjectSSHKeys(context.Background(), id).SearchString(searchString).Include(include).Exclude(exclude).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ProjectsApi.FindProjectSSHKeys(context.Background(), id).SearchString(searchString).Include(include).Exclude(exclude).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ProjectsApi.FindProjectSSHKeys``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1537,7 +1547,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | [**string**](.md) | Project UUID | 
+**id** | **string** | Project UUID | 
 
 ### Other Parameters
 
@@ -1596,8 +1606,8 @@ func main() {
     perPage := int32(56) // int32 | Items returned per page (optional) (default to 10)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ProjectsApi.FindProjects(context.Background()).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ProjectsApi.FindProjects(context.Background()).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ProjectsApi.FindProjects``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1662,15 +1672,15 @@ import (
 )
 
 func main() {
-    id := TODO // string | Project UUID
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Project UUID
     include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
     exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
     facility := "facility_example" // string | Filter by Facility ID (uuid) or Facility Code (optional)
     metro := "metro_example" // string | Filter by Metro ID (uuid) or Metro Code (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ProjectsApi.FindVirtualNetworks(context.Background(), id).Include(include).Exclude(exclude).Facility(facility).Metro(metro).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ProjectsApi.FindVirtualNetworks(context.Background(), id).Include(include).Exclude(exclude).Facility(facility).Metro(metro).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ProjectsApi.FindVirtualNetworks``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1686,7 +1696,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | [**string**](.md) | Project UUID | 
+**id** | **string** | Project UUID | 
 
 ### Other Parameters
 
@@ -1740,11 +1750,11 @@ import (
 )
 
 func main() {
-    id := TODO // string | Project UUID
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Project UUID
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ProjectsApi.ListSpotMarketRequests(context.Background(), id).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ProjectsApi.ListSpotMarketRequests(context.Background(), id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ProjectsApi.ListSpotMarketRequests``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1760,7 +1770,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | [**string**](.md) | Project UUID | 
+**id** | **string** | Project UUID | 
 
 ### Other Parameters
 
@@ -1810,12 +1820,12 @@ import (
 )
 
 func main() {
-    id := TODO // string | Project UUID
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Project UUID
     bgpConfigRequest := *openapiclient.NewBgpConfigRequestInput("DeploymentType_example", int32(123)) // BgpConfigRequestInput | BGP config Request to create
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ProjectsApi.RequestBgpConfig(context.Background(), id).BgpConfigRequest(bgpConfigRequest).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ProjectsApi.RequestBgpConfig(context.Background(), id).BgpConfigRequest(bgpConfigRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ProjectsApi.RequestBgpConfig``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1829,7 +1839,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | [**string**](.md) | Project UUID | 
+**id** | **string** | Project UUID | 
 
 ### Other Parameters
 
@@ -1880,12 +1890,12 @@ import (
 )
 
 func main() {
-    id := TODO // string | Project UUID
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Project UUID
     ipReservationRequest := *openapiclient.NewIPReservationRequestInput("Type_example", int32(123)) // IPReservationRequestInput | IP Reservation Request to create
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ProjectsApi.RequestIPReservation(context.Background(), id).IpReservationRequest(ipReservationRequest).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ProjectsApi.RequestIPReservation(context.Background(), id).IpReservationRequest(ipReservationRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ProjectsApi.RequestIPReservation``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1901,7 +1911,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | [**string**](.md) | Project UUID | 
+**id** | **string** | Project UUID | 
 
 ### Other Parameters
 
@@ -1952,12 +1962,12 @@ import (
 )
 
 func main() {
-    id := TODO // string | Project UUID
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Project UUID
     project := *openapiclient.NewProjectUpdateInput() // ProjectUpdateInput | Project to update
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ProjectsApi.UpdateProject(context.Background(), id).Project(project).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ProjectsApi.UpdateProject(context.Background(), id).Project(project).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ProjectsApi.UpdateProject``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1973,7 +1983,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | [**string**](.md) | Project UUID | 
+**id** | **string** | Project UUID | 
 
 ### Other Parameters
 

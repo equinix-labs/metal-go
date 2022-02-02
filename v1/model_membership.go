@@ -19,7 +19,7 @@ import (
 // Membership struct for Membership
 type Membership struct {
 	Id *string `json:"id,omitempty"`
-	Roles *[]string `json:"roles,omitempty"`
+	Roles []string `json:"roles,omitempty"`
 	CreatedAt *time.Time `json:"created_at,omitempty"`
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
 	Project *Href `json:"project,omitempty"`
@@ -82,12 +82,12 @@ func (o *Membership) GetRoles() []string {
 		var ret []string
 		return ret
 	}
-	return *o.Roles
+	return o.Roles
 }
 
 // GetRolesOk returns a tuple with the Roles field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Membership) GetRolesOk() (*[]string, bool) {
+func (o *Membership) GetRolesOk() ([]string, bool) {
 	if o == nil || o.Roles == nil {
 		return nil, false
 	}
@@ -105,7 +105,7 @@ func (o *Membership) HasRoles() bool {
 
 // SetRoles gets a reference to the given []string and assigns it to the Roles field.
 func (o *Membership) SetRoles(v []string) {
-	o.Roles = &v
+	o.Roles = v
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.

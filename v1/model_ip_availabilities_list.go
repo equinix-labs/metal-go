@@ -17,7 +17,7 @@ import (
 
 // IPAvailabilitiesList struct for IPAvailabilitiesList
 type IPAvailabilitiesList struct {
-	Available *[]string `json:"available,omitempty"`
+	Available []string `json:"available,omitempty"`
 }
 
 // NewIPAvailabilitiesList instantiates a new IPAvailabilitiesList object
@@ -43,12 +43,12 @@ func (o *IPAvailabilitiesList) GetAvailable() []string {
 		var ret []string
 		return ret
 	}
-	return *o.Available
+	return o.Available
 }
 
 // GetAvailableOk returns a tuple with the Available field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IPAvailabilitiesList) GetAvailableOk() (*[]string, bool) {
+func (o *IPAvailabilitiesList) GetAvailableOk() ([]string, bool) {
 	if o == nil || o.Available == nil {
 		return nil, false
 	}
@@ -66,7 +66,7 @@ func (o *IPAvailabilitiesList) HasAvailable() bool {
 
 // SetAvailable gets a reference to the given []string and assigns it to the Available field.
 func (o *IPAvailabilitiesList) SetAvailable(v []string) {
-	o.Available = &v
+	o.Available = v
 }
 
 func (o IPAvailabilitiesList) MarshalJSON() ([]byte, error) {

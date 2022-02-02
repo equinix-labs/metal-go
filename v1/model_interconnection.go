@@ -26,8 +26,8 @@ type Interconnection struct {
 	Redundancy *string `json:"redundancy,omitempty"`
 	// The connection's speed in bps.
 	Speed *int32 `json:"speed,omitempty"`
-	Tags *[]string `json:"tags,omitempty"`
-	Ports *[]InterconnectionPort `json:"ports,omitempty"`
+	Tags []string `json:"tags,omitempty"`
+	Ports []InterconnectionPort `json:"ports,omitempty"`
 	Facility *Href `json:"facility,omitempty"`
 	Organization *Href `json:"organization,omitempty"`
 	Metro *Metro `json:"metro,omitempty"`
@@ -314,12 +314,12 @@ func (o *Interconnection) GetTags() []string {
 		var ret []string
 		return ret
 	}
-	return *o.Tags
+	return o.Tags
 }
 
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Interconnection) GetTagsOk() (*[]string, bool) {
+func (o *Interconnection) GetTagsOk() ([]string, bool) {
 	if o == nil || o.Tags == nil {
 		return nil, false
 	}
@@ -337,7 +337,7 @@ func (o *Interconnection) HasTags() bool {
 
 // SetTags gets a reference to the given []string and assigns it to the Tags field.
 func (o *Interconnection) SetTags(v []string) {
-	o.Tags = &v
+	o.Tags = v
 }
 
 // GetPorts returns the Ports field value if set, zero value otherwise.
@@ -346,12 +346,12 @@ func (o *Interconnection) GetPorts() []InterconnectionPort {
 		var ret []InterconnectionPort
 		return ret
 	}
-	return *o.Ports
+	return o.Ports
 }
 
 // GetPortsOk returns a tuple with the Ports field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Interconnection) GetPortsOk() (*[]InterconnectionPort, bool) {
+func (o *Interconnection) GetPortsOk() ([]InterconnectionPort, bool) {
 	if o == nil || o.Ports == nil {
 		return nil, false
 	}
@@ -369,7 +369,7 @@ func (o *Interconnection) HasPorts() bool {
 
 // SetPorts gets a reference to the given []InterconnectionPort and assigns it to the Ports field.
 func (o *Interconnection) SetPorts(v []InterconnectionPort) {
-	o.Ports = &v
+	o.Ports = v
 }
 
 // GetFacility returns the Facility field value if set, zero value otherwise.

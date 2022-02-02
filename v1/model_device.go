@@ -23,7 +23,7 @@ type Device struct {
 	Hostname *string `json:"hostname,omitempty"`
 	Description *string `json:"description,omitempty"`
 	State *string `json:"state,omitempty"`
-	Tags *[]string `json:"tags,omitempty"`
+	Tags []string `json:"tags,omitempty"`
 	ImageUrl *string `json:"image_url,omitempty"`
 	BillingCycle *string `json:"billing_cycle,omitempty"`
 	User *string `json:"user,omitempty"`
@@ -31,6 +31,7 @@ type Device struct {
 	Locked *bool `json:"locked,omitempty"`
 	BondingMode *int32 `json:"bonding_mode,omitempty"`
 	CreatedAt *time.Time `json:"created_at,omitempty"`
+	CreatedBy *UserLite `json:"created_by,omitempty"`
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
 	// Whether or not the device is a spot instance.
 	SpotInstance *bool `json:"spot_instance,omitempty"`
@@ -38,7 +39,7 @@ type Device struct {
 	SpotPriceMax *float32 `json:"spot_price_max,omitempty"`
 	// When the device will be terminated. This is commonly set in advance for ephemeral spot market instances but this field may also be set with on-demand and reservation instances to automatically delete the resource at a given time. The termination time can also be used to release a hardware reservation instance at a given time, keeping the reservation open for other uses.  On a spot market device, the termination time will be set automatically when outbid.
 	TerminationTime *time.Time `json:"termination_time,omitempty"`
-	Customdata *map[string]interface{} `json:"customdata,omitempty"`
+	Customdata map[string]interface{} `json:"customdata,omitempty"`
 	// Only visible while device provisioning
 	ProvisioningPercentage *float32 `json:"provisioning_percentage,omitempty"`
 	OperatingSystem *OperatingSystem `json:"operating_system,omitempty"`
@@ -56,11 +57,11 @@ type Device struct {
 	Href *string `json:"href,omitempty"`
 	Project *Href `json:"project,omitempty"`
 	ProjectLite *Href `json:"project_lite,omitempty"`
-	Volumes *[]Href `json:"volumes,omitempty"`
+	Volumes []Href `json:"volumes,omitempty"`
 	HardwareReservation *Href `json:"hardware_reservation,omitempty"`
-	SshKeys *[]Href `json:"ssh_keys,omitempty"`
-	IpAddresses *[]IPAssignment `json:"ip_addresses,omitempty"`
-	ProvisioningEvents *[]Event `json:"provisioning_events,omitempty"`
+	SshKeys []Href `json:"ssh_keys,omitempty"`
+	IpAddresses []IPAssignment `json:"ip_addresses,omitempty"`
+	ProvisioningEvents []Event `json:"provisioning_events,omitempty"`
 }
 
 // NewDevice instantiates a new Device object
@@ -246,12 +247,12 @@ func (o *Device) GetTags() []string {
 		var ret []string
 		return ret
 	}
-	return *o.Tags
+	return o.Tags
 }
 
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Device) GetTagsOk() (*[]string, bool) {
+func (o *Device) GetTagsOk() ([]string, bool) {
 	if o == nil || o.Tags == nil {
 		return nil, false
 	}
@@ -269,7 +270,7 @@ func (o *Device) HasTags() bool {
 
 // SetTags gets a reference to the given []string and assigns it to the Tags field.
 func (o *Device) SetTags(v []string) {
-	o.Tags = &v
+	o.Tags = v
 }
 
 // GetImageUrl returns the ImageUrl field value if set, zero value otherwise.
@@ -496,6 +497,38 @@ func (o *Device) SetCreatedAt(v time.Time) {
 	o.CreatedAt = &v
 }
 
+// GetCreatedBy returns the CreatedBy field value if set, zero value otherwise.
+func (o *Device) GetCreatedBy() UserLite {
+	if o == nil || o.CreatedBy == nil {
+		var ret UserLite
+		return ret
+	}
+	return *o.CreatedBy
+}
+
+// GetCreatedByOk returns a tuple with the CreatedBy field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Device) GetCreatedByOk() (*UserLite, bool) {
+	if o == nil || o.CreatedBy == nil {
+		return nil, false
+	}
+	return o.CreatedBy, true
+}
+
+// HasCreatedBy returns a boolean if a field has been set.
+func (o *Device) HasCreatedBy() bool {
+	if o != nil && o.CreatedBy != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCreatedBy gets a reference to the given UserLite and assigns it to the CreatedBy field.
+func (o *Device) SetCreatedBy(v UserLite) {
+	o.CreatedBy = &v
+}
+
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *Device) GetUpdatedAt() time.Time {
 	if o == nil || o.UpdatedAt == nil {
@@ -630,12 +663,12 @@ func (o *Device) GetCustomdata() map[string]interface{} {
 		var ret map[string]interface{}
 		return ret
 	}
-	return *o.Customdata
+	return o.Customdata
 }
 
 // GetCustomdataOk returns a tuple with the Customdata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Device) GetCustomdataOk() (*map[string]interface{}, bool) {
+func (o *Device) GetCustomdataOk() (map[string]interface{}, bool) {
 	if o == nil || o.Customdata == nil {
 		return nil, false
 	}
@@ -653,7 +686,7 @@ func (o *Device) HasCustomdata() bool {
 
 // SetCustomdata gets a reference to the given map[string]interface{} and assigns it to the Customdata field.
 func (o *Device) SetCustomdata(v map[string]interface{}) {
-	o.Customdata = &v
+	o.Customdata = v
 }
 
 // GetProvisioningPercentage returns the ProvisioningPercentage field value if set, zero value otherwise.
@@ -1110,12 +1143,12 @@ func (o *Device) GetVolumes() []Href {
 		var ret []Href
 		return ret
 	}
-	return *o.Volumes
+	return o.Volumes
 }
 
 // GetVolumesOk returns a tuple with the Volumes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Device) GetVolumesOk() (*[]Href, bool) {
+func (o *Device) GetVolumesOk() ([]Href, bool) {
 	if o == nil || o.Volumes == nil {
 		return nil, false
 	}
@@ -1133,7 +1166,7 @@ func (o *Device) HasVolumes() bool {
 
 // SetVolumes gets a reference to the given []Href and assigns it to the Volumes field.
 func (o *Device) SetVolumes(v []Href) {
-	o.Volumes = &v
+	o.Volumes = v
 }
 
 // GetHardwareReservation returns the HardwareReservation field value if set, zero value otherwise.
@@ -1174,12 +1207,12 @@ func (o *Device) GetSshKeys() []Href {
 		var ret []Href
 		return ret
 	}
-	return *o.SshKeys
+	return o.SshKeys
 }
 
 // GetSshKeysOk returns a tuple with the SshKeys field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Device) GetSshKeysOk() (*[]Href, bool) {
+func (o *Device) GetSshKeysOk() ([]Href, bool) {
 	if o == nil || o.SshKeys == nil {
 		return nil, false
 	}
@@ -1197,7 +1230,7 @@ func (o *Device) HasSshKeys() bool {
 
 // SetSshKeys gets a reference to the given []Href and assigns it to the SshKeys field.
 func (o *Device) SetSshKeys(v []Href) {
-	o.SshKeys = &v
+	o.SshKeys = v
 }
 
 // GetIpAddresses returns the IpAddresses field value if set, zero value otherwise.
@@ -1206,12 +1239,12 @@ func (o *Device) GetIpAddresses() []IPAssignment {
 		var ret []IPAssignment
 		return ret
 	}
-	return *o.IpAddresses
+	return o.IpAddresses
 }
 
 // GetIpAddressesOk returns a tuple with the IpAddresses field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Device) GetIpAddressesOk() (*[]IPAssignment, bool) {
+func (o *Device) GetIpAddressesOk() ([]IPAssignment, bool) {
 	if o == nil || o.IpAddresses == nil {
 		return nil, false
 	}
@@ -1229,7 +1262,7 @@ func (o *Device) HasIpAddresses() bool {
 
 // SetIpAddresses gets a reference to the given []IPAssignment and assigns it to the IpAddresses field.
 func (o *Device) SetIpAddresses(v []IPAssignment) {
-	o.IpAddresses = &v
+	o.IpAddresses = v
 }
 
 // GetProvisioningEvents returns the ProvisioningEvents field value if set, zero value otherwise.
@@ -1238,12 +1271,12 @@ func (o *Device) GetProvisioningEvents() []Event {
 		var ret []Event
 		return ret
 	}
-	return *o.ProvisioningEvents
+	return o.ProvisioningEvents
 }
 
 // GetProvisioningEventsOk returns a tuple with the ProvisioningEvents field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Device) GetProvisioningEventsOk() (*[]Event, bool) {
+func (o *Device) GetProvisioningEventsOk() ([]Event, bool) {
 	if o == nil || o.ProvisioningEvents == nil {
 		return nil, false
 	}
@@ -1261,7 +1294,7 @@ func (o *Device) HasProvisioningEvents() bool {
 
 // SetProvisioningEvents gets a reference to the given []Event and assigns it to the ProvisioningEvents field.
 func (o *Device) SetProvisioningEvents(v []Event) {
-	o.ProvisioningEvents = &v
+	o.ProvisioningEvents = v
 }
 
 func (o Device) MarshalJSON() ([]byte, error) {
@@ -1304,6 +1337,9 @@ func (o Device) MarshalJSON() ([]byte, error) {
 	}
 	if o.CreatedAt != nil {
 		toSerialize["created_at"] = o.CreatedAt
+	}
+	if o.CreatedBy != nil {
+		toSerialize["created_by"] = o.CreatedBy
 	}
 	if o.UpdatedAt != nil {
 		toSerialize["updated_at"] = o.UpdatedAt

@@ -13,22 +13,22 @@ package v1
 
 import (
 	"bytes"
-	_context "context"
-	_ioutil "io/ioutil"
-	_nethttp "net/http"
-	_neturl "net/url"
+	"context"
+	"io/ioutil"
+	"net/http"
+	"net/url"
 )
 
 // Linger please
 var (
-	_ _context.Context
+	_ context.Context
 )
 
 // UserVerificationTokensApiService UserVerificationTokensApi service
 type UserVerificationTokensApiService service
 
 type ApiConsumeVerificationRequestRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *UserVerificationTokensApiService
 	token *string
 }
@@ -39,7 +39,7 @@ func (r ApiConsumeVerificationRequestRequest) Token(token string) ApiConsumeVeri
 	return r
 }
 
-func (r ApiConsumeVerificationRequestRequest) Execute() (*_nethttp.Response, error) {
+func (r ApiConsumeVerificationRequestRequest) Execute() (*http.Response, error) {
 	return r.ApiService.ConsumeVerificationRequestExecute(r)
 }
 
@@ -48,10 +48,10 @@ ConsumeVerificationRequest Verify a user using an email verification token
 
 Consumes an email verification token and verifies the user associated with it.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiConsumeVerificationRequestRequest
 */
-func (a *UserVerificationTokensApiService) ConsumeVerificationRequest(ctx _context.Context) ApiConsumeVerificationRequestRequest {
+func (a *UserVerificationTokensApiService) ConsumeVerificationRequest(ctx context.Context) ApiConsumeVerificationRequestRequest {
 	return ApiConsumeVerificationRequestRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -59,25 +59,23 @@ func (a *UserVerificationTokensApiService) ConsumeVerificationRequest(ctx _conte
 }
 
 // Execute executes the request
-func (a *UserVerificationTokensApiService) ConsumeVerificationRequestExecute(r ApiConsumeVerificationRequestRequest) (*_nethttp.Response, error) {
+func (a *UserVerificationTokensApiService) ConsumeVerificationRequestExecute(r ApiConsumeVerificationRequestRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPut
+		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserVerificationTokensApiService.ConsumeVerificationRequest")
 	if err != nil {
-		return nil, GenericOpenAPIError{error: err.Error()}
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/verify-email"
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.token == nil {
 		return nil, reportError("token is required and must be specified")
 	}
@@ -114,7 +112,7 @@ func (a *UserVerificationTokensApiService) ConsumeVerificationRequestExecute(r A
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
 	}
@@ -124,15 +122,15 @@ func (a *UserVerificationTokensApiService) ConsumeVerificationRequestExecute(r A
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -143,7 +141,7 @@ func (a *UserVerificationTokensApiService) ConsumeVerificationRequestExecute(r A
 }
 
 type ApiCreateValidationRequestRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *UserVerificationTokensApiService
 	login *string
 }
@@ -154,7 +152,7 @@ func (r ApiCreateValidationRequestRequest) Login(login string) ApiCreateValidati
 	return r
 }
 
-func (r ApiCreateValidationRequestRequest) Execute() (*_nethttp.Response, error) {
+func (r ApiCreateValidationRequestRequest) Execute() (*http.Response, error) {
 	return r.ApiService.CreateValidationRequestExecute(r)
 }
 
@@ -163,10 +161,10 @@ CreateValidationRequest Create an email verification request
 
 Creates an email verification request
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiCreateValidationRequestRequest
 */
-func (a *UserVerificationTokensApiService) CreateValidationRequest(ctx _context.Context) ApiCreateValidationRequestRequest {
+func (a *UserVerificationTokensApiService) CreateValidationRequest(ctx context.Context) ApiCreateValidationRequestRequest {
 	return ApiCreateValidationRequestRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -174,25 +172,23 @@ func (a *UserVerificationTokensApiService) CreateValidationRequest(ctx _context.
 }
 
 // Execute executes the request
-func (a *UserVerificationTokensApiService) CreateValidationRequestExecute(r ApiCreateValidationRequestRequest) (*_nethttp.Response, error) {
+func (a *UserVerificationTokensApiService) CreateValidationRequestExecute(r ApiCreateValidationRequestRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserVerificationTokensApiService.CreateValidationRequest")
 	if err != nil {
-		return nil, GenericOpenAPIError{error: err.Error()}
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/verify-email"
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.login == nil {
 		return nil, reportError("login is required and must be specified")
 	}
@@ -229,7 +225,7 @@ func (a *UserVerificationTokensApiService) CreateValidationRequestExecute(r ApiC
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
 	}
@@ -239,15 +235,15 @@ func (a *UserVerificationTokensApiService) CreateValidationRequestExecute(r ApiC
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}

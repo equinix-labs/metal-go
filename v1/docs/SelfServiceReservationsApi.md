@@ -31,12 +31,12 @@ import (
 )
 
 func main() {
-    projectId := TODO // string | Project UUID
+    projectId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Project UUID
     reservation := *openapiclient.NewCreateSelfServiceReservationRequest() // CreateSelfServiceReservationRequest | reservation to create
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.SelfServiceReservationsApi.CreateSelfServiceReservation(context.Background(), projectId).Reservation(reservation).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.SelfServiceReservationsApi.CreateSelfServiceReservation(context.Background(), projectId).Reservation(reservation).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SelfServiceReservationsApi.CreateSelfServiceReservation``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -52,7 +52,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**projectId** | [**string**](.md) | Project UUID | 
+**projectId** | **string** | Project UUID | 
 
 ### Other Parameters
 
@@ -103,12 +103,12 @@ import (
 )
 
 func main() {
-    id := TODO // string | Reservation short_id
-    projectId := TODO // string | Project UUID
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Reservation short_id
+    projectId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Project UUID
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.SelfServiceReservationsApi.FindSelfServiceReservation(context.Background(), id, projectId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.SelfServiceReservationsApi.FindSelfServiceReservation(context.Background(), id, projectId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SelfServiceReservationsApi.FindSelfServiceReservation``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -124,8 +124,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | [**string**](.md) | Reservation short_id | 
-**projectId** | [**string**](.md) | Project UUID | 
+**id** | **string** | Reservation short_id | 
+**projectId** | **string** | Project UUID | 
 
 ### Other Parameters
 
@@ -176,13 +176,13 @@ import (
 )
 
 func main() {
-    projectId := TODO // string | Project UUID
+    projectId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Project UUID
     page := int32(56) // int32 | Page to return (optional) (default to 1)
     perPage := int32(56) // int32 | Items returned per page (optional) (default to 10)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.SelfServiceReservationsApi.FindSelfServiceReservations(context.Background(), projectId).Page(page).PerPage(perPage).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.SelfServiceReservationsApi.FindSelfServiceReservations(context.Background(), projectId).Page(page).PerPage(perPage).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SelfServiceReservationsApi.FindSelfServiceReservations``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -198,7 +198,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**projectId** | [**string**](.md) | Project UUID | 
+**projectId** | **string** | Project UUID | 
 
 ### Other Parameters
 

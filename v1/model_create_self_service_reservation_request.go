@@ -21,7 +21,7 @@ type CreateSelfServiceReservationRequest struct {
 	StartDate *time.Time `json:"start_date,omitempty"`
 	Period *CreateSelfServiceReservationRequestPeriod `json:"period,omitempty"`
 	Notes *string `json:"notes,omitempty"`
-	Item *[]SelfServiceReservationItemRequest `json:"item,omitempty"`
+	Item []SelfServiceReservationItemRequest `json:"item,omitempty"`
 }
 
 // NewCreateSelfServiceReservationRequest instantiates a new CreateSelfServiceReservationRequest object
@@ -143,12 +143,12 @@ func (o *CreateSelfServiceReservationRequest) GetItem() []SelfServiceReservation
 		var ret []SelfServiceReservationItemRequest
 		return ret
 	}
-	return *o.Item
+	return o.Item
 }
 
 // GetItemOk returns a tuple with the Item field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateSelfServiceReservationRequest) GetItemOk() (*[]SelfServiceReservationItemRequest, bool) {
+func (o *CreateSelfServiceReservationRequest) GetItemOk() ([]SelfServiceReservationItemRequest, bool) {
 	if o == nil || o.Item == nil {
 		return nil, false
 	}
@@ -166,7 +166,7 @@ func (o *CreateSelfServiceReservationRequest) HasItem() bool {
 
 // SetItem gets a reference to the given []SelfServiceReservationItemRequest and assigns it to the Item field.
 func (o *CreateSelfServiceReservationRequest) SetItem(v []SelfServiceReservationItemRequest) {
-	o.Item = &v
+	o.Item = v
 }
 
 func (o CreateSelfServiceReservationRequest) MarshalJSON() ([]byte, error) {

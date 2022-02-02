@@ -17,7 +17,7 @@ import (
 
 // RecoveryCodeList struct for RecoveryCodeList
 type RecoveryCodeList struct {
-	RecoveryCodes *[]string `json:"recovery_codes,omitempty"`
+	RecoveryCodes []string `json:"recovery_codes,omitempty"`
 }
 
 // NewRecoveryCodeList instantiates a new RecoveryCodeList object
@@ -43,12 +43,12 @@ func (o *RecoveryCodeList) GetRecoveryCodes() []string {
 		var ret []string
 		return ret
 	}
-	return *o.RecoveryCodes
+	return o.RecoveryCodes
 }
 
 // GetRecoveryCodesOk returns a tuple with the RecoveryCodes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RecoveryCodeList) GetRecoveryCodesOk() (*[]string, bool) {
+func (o *RecoveryCodeList) GetRecoveryCodesOk() ([]string, bool) {
 	if o == nil || o.RecoveryCodes == nil {
 		return nil, false
 	}
@@ -66,7 +66,7 @@ func (o *RecoveryCodeList) HasRecoveryCodes() bool {
 
 // SetRecoveryCodes gets a reference to the given []string and assigns it to the RecoveryCodes field.
 func (o *RecoveryCodeList) SetRecoveryCodes(v []string) {
-	o.RecoveryCodes = &v
+	o.RecoveryCodes = v
 }
 
 func (o RecoveryCodeList) MarshalJSON() ([]byte, error) {

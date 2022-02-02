@@ -33,11 +33,11 @@ import (
 )
 
 func main() {
-    id := TODO // string | IP Address UUID
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | IP Address UUID
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.IPAddressesApi.DeleteIPAddress(context.Background(), id).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.IPAddressesApi.DeleteIPAddress(context.Background(), id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `IPAddressesApi.DeleteIPAddress``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -51,7 +51,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | [**string**](.md) | IP Address UUID | 
+**id** | **string** | IP Address UUID | 
 
 ### Other Parameters
 
@@ -101,13 +101,13 @@ import (
 )
 
 func main() {
-    id := TODO // string | IP Address UUID
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | IP Address UUID
     include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
     exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.IPAddressesApi.FindIPAddressById(context.Background(), id).Include(include).Exclude(exclude).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.IPAddressesApi.FindIPAddressById(context.Background(), id).Include(include).Exclude(exclude).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `IPAddressesApi.FindIPAddressById``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -123,7 +123,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | [**string**](.md) | IP Address UUID | 
+**id** | **string** | IP Address UUID | 
 
 ### Other Parameters
 
@@ -175,11 +175,11 @@ import (
 )
 
 func main() {
-    id := TODO // string | Ip Reservation UUID
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Ip Reservation UUID
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.IPAddressesApi.FindIPAddressCustomdata(context.Background(), id).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.IPAddressesApi.FindIPAddressCustomdata(context.Background(), id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `IPAddressesApi.FindIPAddressCustomdata``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -193,7 +193,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | [**string**](.md) | Ip Reservation UUID | 
+**id** | **string** | Ip Reservation UUID | 
 
 ### Other Parameters
 
@@ -243,12 +243,12 @@ import (
 )
 
 func main() {
-    id := TODO // string | IP Reservation UUID
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | IP Reservation UUID
     cidr := "cidr_example" // string | Size of subnets in bits
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.IPAddressesApi.FindIPAvailabilities(context.Background(), id).Cidr(cidr).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.IPAddressesApi.FindIPAvailabilities(context.Background(), id).Cidr(cidr).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `IPAddressesApi.FindIPAvailabilities``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -264,7 +264,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | [**string**](.md) | IP Reservation UUID | 
+**id** | **string** | IP Reservation UUID | 
 
 ### Other Parameters
 
@@ -315,13 +315,13 @@ import (
 )
 
 func main() {
-    id := TODO // string | IP Address UUID
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | IP Address UUID
     details := "details_example" // string | Notes for this IP Assignment
     customdata := "customdata_example" // string | Provides the custom metadata stored for this IP Assignment in json format
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.IPAddressesApi.UpdateIPAddress(context.Background(), id).Details(details).Customdata(customdata).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.IPAddressesApi.UpdateIPAddress(context.Background(), id).Details(details).Customdata(customdata).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `IPAddressesApi.UpdateIPAddress``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -337,7 +337,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | [**string**](.md) | IP Address UUID | 
+**id** | **string** | IP Address UUID | 
 
 ### Other Parameters
 

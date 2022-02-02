@@ -17,7 +17,7 @@ import (
 
 // LicenseList struct for LicenseList
 type LicenseList struct {
-	Licenses *[]License `json:"licenses,omitempty"`
+	Licenses []License `json:"licenses,omitempty"`
 }
 
 // NewLicenseList instantiates a new LicenseList object
@@ -43,12 +43,12 @@ func (o *LicenseList) GetLicenses() []License {
 		var ret []License
 		return ret
 	}
-	return *o.Licenses
+	return o.Licenses
 }
 
 // GetLicensesOk returns a tuple with the Licenses field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LicenseList) GetLicensesOk() (*[]License, bool) {
+func (o *LicenseList) GetLicensesOk() ([]License, bool) {
 	if o == nil || o.Licenses == nil {
 		return nil, false
 	}
@@ -66,7 +66,7 @@ func (o *LicenseList) HasLicenses() bool {
 
 // SetLicenses gets a reference to the given []License and assigns it to the Licenses field.
 func (o *LicenseList) SetLicenses(v []License) {
-	o.Licenses = &v
+	o.Licenses = v
 }
 
 func (o LicenseList) MarshalJSON() ([]byte, error) {

@@ -17,7 +17,7 @@ import (
 
 // InterconnectionList struct for InterconnectionList
 type InterconnectionList struct {
-	Interconnections *[]Interconnection `json:"interconnections,omitempty"`
+	Interconnections []Interconnection `json:"interconnections,omitempty"`
 }
 
 // NewInterconnectionList instantiates a new InterconnectionList object
@@ -43,12 +43,12 @@ func (o *InterconnectionList) GetInterconnections() []Interconnection {
 		var ret []Interconnection
 		return ret
 	}
-	return *o.Interconnections
+	return o.Interconnections
 }
 
 // GetInterconnectionsOk returns a tuple with the Interconnections field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InterconnectionList) GetInterconnectionsOk() (*[]Interconnection, bool) {
+func (o *InterconnectionList) GetInterconnectionsOk() ([]Interconnection, bool) {
 	if o == nil || o.Interconnections == nil {
 		return nil, false
 	}
@@ -66,7 +66,7 @@ func (o *InterconnectionList) HasInterconnections() bool {
 
 // SetInterconnections gets a reference to the given []Interconnection and assigns it to the Interconnections field.
 func (o *InterconnectionList) SetInterconnections(v []Interconnection) {
-	o.Interconnections = &v
+	o.Interconnections = v
 }
 
 func (o InterconnectionList) MarshalJSON() ([]byte, error) {

@@ -13,23 +13,23 @@ package v1
 
 import (
 	"bytes"
-	_context "context"
-	_ioutil "io/ioutil"
-	_nethttp "net/http"
-	_neturl "net/url"
+	"context"
+	"io/ioutil"
+	"net/http"
+	"net/url"
 	"strings"
 )
 
 // Linger please
 var (
-	_ _context.Context
+	_ context.Context
 )
 
 // PlansApiService PlansApi service
 type PlansApiService service
 
 type ApiFindPlansRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *PlansApiService
 	include *[]string
 	exclude *[]string
@@ -46,7 +46,7 @@ func (r ApiFindPlansRequest) Exclude(exclude []string) ApiFindPlansRequest {
 	return r
 }
 
-func (r ApiFindPlansRequest) Execute() (PlanList, *_nethttp.Response, error) {
+func (r ApiFindPlansRequest) Execute() (*PlanList, *http.Response, error) {
 	return r.ApiService.FindPlansExecute(r)
 }
 
@@ -55,10 +55,10 @@ FindPlans Retrieve all plans
 
 Provides a listing of available plans to provision your device on.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiFindPlansRequest
 */
-func (a *PlansApiService) FindPlans(ctx _context.Context) ApiFindPlansRequest {
+func (a *PlansApiService) FindPlans(ctx context.Context) ApiFindPlansRequest {
 	return ApiFindPlansRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -67,26 +67,24 @@ func (a *PlansApiService) FindPlans(ctx _context.Context) ApiFindPlansRequest {
 
 // Execute executes the request
 //  @return PlanList
-func (a *PlansApiService) FindPlansExecute(r ApiFindPlansRequest) (PlanList, *_nethttp.Response, error) {
+func (a *PlansApiService) FindPlansExecute(r ApiFindPlansRequest) (*PlanList, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  PlanList
+		formFiles            []formFile
+		localVarReturnValue  *PlanList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PlansApiService.FindPlans")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/plans"
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	if r.include != nil {
 		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
@@ -125,7 +123,7 @@ func (a *PlansApiService) FindPlansExecute(r ApiFindPlansRequest) (PlanList, *_n
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -135,15 +133,15 @@ func (a *PlansApiService) FindPlansExecute(r ApiFindPlansRequest) (PlanList, *_n
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -161,7 +159,7 @@ func (a *PlansApiService) FindPlansExecute(r ApiFindPlansRequest) (PlanList, *_n
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -172,7 +170,7 @@ func (a *PlansApiService) FindPlansExecute(r ApiFindPlansRequest) (PlanList, *_n
 }
 
 type ApiFindPlansByOrganizationRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *PlansApiService
 	id string
 	include *[]string
@@ -190,7 +188,7 @@ func (r ApiFindPlansByOrganizationRequest) Exclude(exclude []string) ApiFindPlan
 	return r
 }
 
-func (r ApiFindPlansByOrganizationRequest) Execute() (PlanList, *_nethttp.Response, error) {
+func (r ApiFindPlansByOrganizationRequest) Execute() (*PlanList, *http.Response, error) {
 	return r.ApiService.FindPlansByOrganizationExecute(r)
 }
 
@@ -199,11 +197,11 @@ FindPlansByOrganization Retrieve all plans visible by the organization
 
 Returns a listing of available plans for the given organization
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Organization UUID
  @return ApiFindPlansByOrganizationRequest
 */
-func (a *PlansApiService) FindPlansByOrganization(ctx _context.Context, id string) ApiFindPlansByOrganizationRequest {
+func (a *PlansApiService) FindPlansByOrganization(ctx context.Context, id string) ApiFindPlansByOrganizationRequest {
 	return ApiFindPlansByOrganizationRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -213,27 +211,25 @@ func (a *PlansApiService) FindPlansByOrganization(ctx _context.Context, id strin
 
 // Execute executes the request
 //  @return PlanList
-func (a *PlansApiService) FindPlansByOrganizationExecute(r ApiFindPlansByOrganizationRequest) (PlanList, *_nethttp.Response, error) {
+func (a *PlansApiService) FindPlansByOrganizationExecute(r ApiFindPlansByOrganizationRequest) (*PlanList, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  PlanList
+		formFiles            []formFile
+		localVarReturnValue  *PlanList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PlansApiService.FindPlansByOrganization")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/organizations/{id}/plans"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	if r.include != nil {
 		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
@@ -272,7 +268,7 @@ func (a *PlansApiService) FindPlansByOrganizationExecute(r ApiFindPlansByOrganiz
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -282,15 +278,15 @@ func (a *PlansApiService) FindPlansByOrganizationExecute(r ApiFindPlansByOrganiz
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -328,7 +324,7 @@ func (a *PlansApiService) FindPlansByOrganizationExecute(r ApiFindPlansByOrganiz
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -339,7 +335,7 @@ func (a *PlansApiService) FindPlansByOrganizationExecute(r ApiFindPlansByOrganiz
 }
 
 type ApiFindPlansByProjectRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *PlansApiService
 	id string
 	include *[]string
@@ -357,7 +353,7 @@ func (r ApiFindPlansByProjectRequest) Exclude(exclude []string) ApiFindPlansByPr
 	return r
 }
 
-func (r ApiFindPlansByProjectRequest) Execute() (PlanList, *_nethttp.Response, error) {
+func (r ApiFindPlansByProjectRequest) Execute() (*PlanList, *http.Response, error) {
 	return r.ApiService.FindPlansByProjectExecute(r)
 }
 
@@ -366,11 +362,11 @@ FindPlansByProject Retrieve all plans visible by the project
 
 Returns a listing of available plans for the given project
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Project UUID
  @return ApiFindPlansByProjectRequest
 */
-func (a *PlansApiService) FindPlansByProject(ctx _context.Context, id string) ApiFindPlansByProjectRequest {
+func (a *PlansApiService) FindPlansByProject(ctx context.Context, id string) ApiFindPlansByProjectRequest {
 	return ApiFindPlansByProjectRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -380,27 +376,25 @@ func (a *PlansApiService) FindPlansByProject(ctx _context.Context, id string) Ap
 
 // Execute executes the request
 //  @return PlanList
-func (a *PlansApiService) FindPlansByProjectExecute(r ApiFindPlansByProjectRequest) (PlanList, *_nethttp.Response, error) {
+func (a *PlansApiService) FindPlansByProjectExecute(r ApiFindPlansByProjectRequest) (*PlanList, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  PlanList
+		formFiles            []formFile
+		localVarReturnValue  *PlanList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PlansApiService.FindPlansByProject")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/projects/{id}/plans"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	if r.include != nil {
 		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
@@ -439,7 +433,7 @@ func (a *PlansApiService) FindPlansByProjectExecute(r ApiFindPlansByProjectReque
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -449,15 +443,15 @@ func (a *PlansApiService) FindPlansByProjectExecute(r ApiFindPlansByProjectReque
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -495,7 +489,7 @@ func (a *PlansApiService) FindPlansByProjectExecute(r ApiFindPlansByProjectReque
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}

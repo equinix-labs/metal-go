@@ -13,23 +13,23 @@ package v1
 
 import (
 	"bytes"
-	_context "context"
-	_ioutil "io/ioutil"
-	_nethttp "net/http"
-	_neturl "net/url"
+	"context"
+	"io/ioutil"
+	"net/http"
+	"net/url"
 	"strings"
 )
 
 // Linger please
 var (
-	_ _context.Context
+	_ context.Context
 )
 
 // DevicesApiService DevicesApi service
 type DevicesApiService service
 
 type ApiCreateBgpSessionRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *DevicesApiService
 	id string
 	bgpSession *BGPSessionInput
@@ -41,7 +41,7 @@ func (r ApiCreateBgpSessionRequest) BgpSession(bgpSession BGPSessionInput) ApiCr
 	return r
 }
 
-func (r ApiCreateBgpSessionRequest) Execute() (BgpSession, *_nethttp.Response, error) {
+func (r ApiCreateBgpSessionRequest) Execute() (*BgpSession, *http.Response, error) {
 	return r.ApiService.CreateBgpSessionExecute(r)
 }
 
@@ -50,11 +50,11 @@ CreateBgpSession Create a BGP session
 
 Creates a BGP session.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Device UUID
  @return ApiCreateBgpSessionRequest
 */
-func (a *DevicesApiService) CreateBgpSession(ctx _context.Context, id string) ApiCreateBgpSessionRequest {
+func (a *DevicesApiService) CreateBgpSession(ctx context.Context, id string) ApiCreateBgpSessionRequest {
 	return ApiCreateBgpSessionRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -64,27 +64,25 @@ func (a *DevicesApiService) CreateBgpSession(ctx _context.Context, id string) Ap
 
 // Execute executes the request
 //  @return BgpSession
-func (a *DevicesApiService) CreateBgpSessionExecute(r ApiCreateBgpSessionRequest) (BgpSession, *_nethttp.Response, error) {
+func (a *DevicesApiService) CreateBgpSessionExecute(r ApiCreateBgpSessionRequest) (*BgpSession, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  BgpSession
+		formFiles            []formFile
+		localVarReturnValue  *BgpSession
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.CreateBgpSession")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/devices/{id}/bgp/sessions"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.bgpSession == nil {
 		return localVarReturnValue, nil, reportError("bgpSession is required and must be specified")
 	}
@@ -122,7 +120,7 @@ func (a *DevicesApiService) CreateBgpSessionExecute(r ApiCreateBgpSessionRequest
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -132,15 +130,15 @@ func (a *DevicesApiService) CreateBgpSessionExecute(r ApiCreateBgpSessionRequest
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -178,7 +176,7 @@ func (a *DevicesApiService) CreateBgpSessionExecute(r ApiCreateBgpSessionRequest
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -189,7 +187,7 @@ func (a *DevicesApiService) CreateBgpSessionExecute(r ApiCreateBgpSessionRequest
 }
 
 type ApiCreateDeviceBatchRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *DevicesApiService
 	id string
 	batch *InstancesBatchCreateInput
@@ -201,7 +199,7 @@ func (r ApiCreateDeviceBatchRequest) Batch(batch InstancesBatchCreateInput) ApiC
 	return r
 }
 
-func (r ApiCreateDeviceBatchRequest) Execute() (BatchesList, *_nethttp.Response, error) {
+func (r ApiCreateDeviceBatchRequest) Execute() (*BatchesList, *http.Response, error) {
 	return r.ApiService.CreateDeviceBatchExecute(r)
 }
 
@@ -246,11 +244,11 @@ For example, `{ "ip_addresses": [..., {"address_family": 4, "public": true, "ip_
 
 To access a server without public IPs, you can use our Out-of-Band console access (SOS) or use another server with public IPs as a proxy.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Project UUID
  @return ApiCreateDeviceBatchRequest
 */
-func (a *DevicesApiService) CreateDeviceBatch(ctx _context.Context, id string) ApiCreateDeviceBatchRequest {
+func (a *DevicesApiService) CreateDeviceBatch(ctx context.Context, id string) ApiCreateDeviceBatchRequest {
 	return ApiCreateDeviceBatchRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -260,27 +258,25 @@ func (a *DevicesApiService) CreateDeviceBatch(ctx _context.Context, id string) A
 
 // Execute executes the request
 //  @return BatchesList
-func (a *DevicesApiService) CreateDeviceBatchExecute(r ApiCreateDeviceBatchRequest) (BatchesList, *_nethttp.Response, error) {
+func (a *DevicesApiService) CreateDeviceBatchExecute(r ApiCreateDeviceBatchRequest) (*BatchesList, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  BatchesList
+		formFiles            []formFile
+		localVarReturnValue  *BatchesList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.CreateDeviceBatch")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/projects/{id}/devices/batch"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.batch == nil {
 		return localVarReturnValue, nil, reportError("batch is required and must be specified")
 	}
@@ -318,7 +314,7 @@ func (a *DevicesApiService) CreateDeviceBatchExecute(r ApiCreateDeviceBatchReque
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -328,15 +324,15 @@ func (a *DevicesApiService) CreateDeviceBatchExecute(r ApiCreateDeviceBatchReque
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -384,7 +380,7 @@ func (a *DevicesApiService) CreateDeviceBatchExecute(r ApiCreateDeviceBatchReque
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -395,7 +391,7 @@ func (a *DevicesApiService) CreateDeviceBatchExecute(r ApiCreateDeviceBatchReque
 }
 
 type ApiCreateIPAssignmentRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *DevicesApiService
 	id string
 	ipAssignment *IPAssignmentInput
@@ -407,7 +403,7 @@ func (r ApiCreateIPAssignmentRequest) IpAssignment(ipAssignment IPAssignmentInpu
 	return r
 }
 
-func (r ApiCreateIPAssignmentRequest) Execute() (IPAssignment, *_nethttp.Response, error) {
+func (r ApiCreateIPAssignmentRequest) Execute() (*IPAssignment, *http.Response, error) {
 	return r.ApiService.CreateIPAssignmentExecute(r)
 }
 
@@ -416,11 +412,11 @@ CreateIPAssignment Create an ip assignment
 
 Creates an ip assignment for a device.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Device UUID
  @return ApiCreateIPAssignmentRequest
 */
-func (a *DevicesApiService) CreateIPAssignment(ctx _context.Context, id string) ApiCreateIPAssignmentRequest {
+func (a *DevicesApiService) CreateIPAssignment(ctx context.Context, id string) ApiCreateIPAssignmentRequest {
 	return ApiCreateIPAssignmentRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -430,27 +426,25 @@ func (a *DevicesApiService) CreateIPAssignment(ctx _context.Context, id string) 
 
 // Execute executes the request
 //  @return IPAssignment
-func (a *DevicesApiService) CreateIPAssignmentExecute(r ApiCreateIPAssignmentRequest) (IPAssignment, *_nethttp.Response, error) {
+func (a *DevicesApiService) CreateIPAssignmentExecute(r ApiCreateIPAssignmentRequest) (*IPAssignment, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  IPAssignment
+		formFiles            []formFile
+		localVarReturnValue  *IPAssignment
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.CreateIPAssignment")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/devices/{id}/ips"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.ipAssignment == nil {
 		return localVarReturnValue, nil, reportError("ipAssignment is required and must be specified")
 	}
@@ -488,7 +482,7 @@ func (a *DevicesApiService) CreateIPAssignmentExecute(r ApiCreateIPAssignmentReq
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -498,15 +492,15 @@ func (a *DevicesApiService) CreateIPAssignmentExecute(r ApiCreateIPAssignmentReq
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -544,7 +538,7 @@ func (a *DevicesApiService) CreateIPAssignmentExecute(r ApiCreateIPAssignmentReq
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -555,7 +549,7 @@ func (a *DevicesApiService) CreateIPAssignmentExecute(r ApiCreateIPAssignmentReq
 }
 
 type ApiDeleteDeviceRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *DevicesApiService
 	id string
 	forceDelete *bool
@@ -567,7 +561,7 @@ func (r ApiDeleteDeviceRequest) ForceDelete(forceDelete bool) ApiDeleteDeviceReq
 	return r
 }
 
-func (r ApiDeleteDeviceRequest) Execute() (*_nethttp.Response, error) {
+func (r ApiDeleteDeviceRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeleteDeviceExecute(r)
 }
 
@@ -576,11 +570,11 @@ DeleteDevice Delete the device
 
 Deletes a device and deprovisions it in our datacenter.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Device UUID
  @return ApiDeleteDeviceRequest
 */
-func (a *DevicesApiService) DeleteDevice(ctx _context.Context, id string) ApiDeleteDeviceRequest {
+func (a *DevicesApiService) DeleteDevice(ctx context.Context, id string) ApiDeleteDeviceRequest {
 	return ApiDeleteDeviceRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -589,26 +583,24 @@ func (a *DevicesApiService) DeleteDevice(ctx _context.Context, id string) ApiDel
 }
 
 // Execute executes the request
-func (a *DevicesApiService) DeleteDeviceExecute(r ApiDeleteDeviceRequest) (*_nethttp.Response, error) {
+func (a *DevicesApiService) DeleteDeviceExecute(r ApiDeleteDeviceRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
+		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.DeleteDevice")
 	if err != nil {
-		return nil, GenericOpenAPIError{error: err.Error()}
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/devices/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	if r.forceDelete != nil {
 		localVarQueryParams.Add("force_delete", parameterToString(*r.forceDelete, ""))
@@ -644,7 +636,7 @@ func (a *DevicesApiService) DeleteDeviceExecute(r ApiDeleteDeviceRequest) (*_net
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
 	}
@@ -654,15 +646,15 @@ func (a *DevicesApiService) DeleteDeviceExecute(r ApiDeleteDeviceRequest) (*_net
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -712,13 +704,13 @@ func (a *DevicesApiService) DeleteDeviceExecute(r ApiDeleteDeviceRequest) (*_net
 }
 
 type ApiFindBgpSessionsRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *DevicesApiService
 	id string
 }
 
 
-func (r ApiFindBgpSessionsRequest) Execute() (BgpSessionList, *_nethttp.Response, error) {
+func (r ApiFindBgpSessionsRequest) Execute() (*BgpSessionList, *http.Response, error) {
 	return r.ApiService.FindBgpSessionsExecute(r)
 }
 
@@ -727,11 +719,11 @@ FindBgpSessions Retrieve all BGP sessions
 
 Provides a listing of available BGP sessions for the device.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Device UUID
  @return ApiFindBgpSessionsRequest
 */
-func (a *DevicesApiService) FindBgpSessions(ctx _context.Context, id string) ApiFindBgpSessionsRequest {
+func (a *DevicesApiService) FindBgpSessions(ctx context.Context, id string) ApiFindBgpSessionsRequest {
 	return ApiFindBgpSessionsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -741,27 +733,25 @@ func (a *DevicesApiService) FindBgpSessions(ctx _context.Context, id string) Api
 
 // Execute executes the request
 //  @return BgpSessionList
-func (a *DevicesApiService) FindBgpSessionsExecute(r ApiFindBgpSessionsRequest) (BgpSessionList, *_nethttp.Response, error) {
+func (a *DevicesApiService) FindBgpSessionsExecute(r ApiFindBgpSessionsRequest) (*BgpSessionList, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  BgpSessionList
+		formFiles            []formFile
+		localVarReturnValue  *BgpSessionList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.FindBgpSessions")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/devices/{id}/bgp/sessions"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -794,7 +784,7 @@ func (a *DevicesApiService) FindBgpSessionsExecute(r ApiFindBgpSessionsRequest) 
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -804,15 +794,15 @@ func (a *DevicesApiService) FindBgpSessionsExecute(r ApiFindBgpSessionsRequest) 
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -840,7 +830,7 @@ func (a *DevicesApiService) FindBgpSessionsExecute(r ApiFindBgpSessionsRequest) 
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -851,7 +841,7 @@ func (a *DevicesApiService) FindBgpSessionsExecute(r ApiFindBgpSessionsRequest) 
 }
 
 type ApiFindDeviceByIdRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *DevicesApiService
 	id string
 	include *[]string
@@ -869,7 +859,7 @@ func (r ApiFindDeviceByIdRequest) Exclude(exclude []string) ApiFindDeviceByIdReq
 	return r
 }
 
-func (r ApiFindDeviceByIdRequest) Execute() (Device, *_nethttp.Response, error) {
+func (r ApiFindDeviceByIdRequest) Execute() (*Device, *http.Response, error) {
 	return r.ApiService.FindDeviceByIdExecute(r)
 }
 
@@ -879,11 +869,11 @@ FindDeviceById Retrieve a device
 Type-specific options (such as facility for baremetal devices) will be included as part of the main data structure.
                          State value can be one of: active inactive queued or provisioning
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Device UUID
  @return ApiFindDeviceByIdRequest
 */
-func (a *DevicesApiService) FindDeviceById(ctx _context.Context, id string) ApiFindDeviceByIdRequest {
+func (a *DevicesApiService) FindDeviceById(ctx context.Context, id string) ApiFindDeviceByIdRequest {
 	return ApiFindDeviceByIdRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -893,27 +883,25 @@ func (a *DevicesApiService) FindDeviceById(ctx _context.Context, id string) ApiF
 
 // Execute executes the request
 //  @return Device
-func (a *DevicesApiService) FindDeviceByIdExecute(r ApiFindDeviceByIdRequest) (Device, *_nethttp.Response, error) {
+func (a *DevicesApiService) FindDeviceByIdExecute(r ApiFindDeviceByIdRequest) (*Device, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  Device
+		formFiles            []formFile
+		localVarReturnValue  *Device
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.FindDeviceById")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/devices/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	if r.include != nil {
 		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
@@ -952,7 +940,7 @@ func (a *DevicesApiService) FindDeviceByIdExecute(r ApiFindDeviceByIdRequest) (D
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -962,15 +950,15 @@ func (a *DevicesApiService) FindDeviceByIdExecute(r ApiFindDeviceByIdRequest) (D
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -1008,7 +996,7 @@ func (a *DevicesApiService) FindDeviceByIdExecute(r ApiFindDeviceByIdRequest) (D
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -1019,13 +1007,13 @@ func (a *DevicesApiService) FindDeviceByIdExecute(r ApiFindDeviceByIdRequest) (D
 }
 
 type ApiFindDeviceCustomdataRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *DevicesApiService
 	id string
 }
 
 
-func (r ApiFindDeviceCustomdataRequest) Execute() (*_nethttp.Response, error) {
+func (r ApiFindDeviceCustomdataRequest) Execute() (*http.Response, error) {
 	return r.ApiService.FindDeviceCustomdataExecute(r)
 }
 
@@ -1034,11 +1022,11 @@ FindDeviceCustomdata Retrieve the custom metadata of an instance
 
 Provides the custom metadata stored for this instance in json format
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Instance UUID
  @return ApiFindDeviceCustomdataRequest
 */
-func (a *DevicesApiService) FindDeviceCustomdata(ctx _context.Context, id string) ApiFindDeviceCustomdataRequest {
+func (a *DevicesApiService) FindDeviceCustomdata(ctx context.Context, id string) ApiFindDeviceCustomdataRequest {
 	return ApiFindDeviceCustomdataRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1047,26 +1035,24 @@ func (a *DevicesApiService) FindDeviceCustomdata(ctx _context.Context, id string
 }
 
 // Execute executes the request
-func (a *DevicesApiService) FindDeviceCustomdataExecute(r ApiFindDeviceCustomdataRequest) (*_nethttp.Response, error) {
+func (a *DevicesApiService) FindDeviceCustomdataExecute(r ApiFindDeviceCustomdataRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.FindDeviceCustomdata")
 	if err != nil {
-		return nil, GenericOpenAPIError{error: err.Error()}
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/devices/{id}/customdata"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1099,7 +1085,7 @@ func (a *DevicesApiService) FindDeviceCustomdataExecute(r ApiFindDeviceCustomdat
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
 	}
@@ -1109,15 +1095,15 @@ func (a *DevicesApiService) FindDeviceCustomdataExecute(r ApiFindDeviceCustomdat
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -1157,7 +1143,7 @@ func (a *DevicesApiService) FindDeviceCustomdataExecute(r ApiFindDeviceCustomdat
 }
 
 type ApiFindDeviceUsagesRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *DevicesApiService
 	id string
 	createdAfter *string
@@ -1175,7 +1161,7 @@ func (r ApiFindDeviceUsagesRequest) CreatedBefore(createdBefore string) ApiFindD
 	return r
 }
 
-func (r ApiFindDeviceUsagesRequest) Execute() (DeviceUsageList, *_nethttp.Response, error) {
+func (r ApiFindDeviceUsagesRequest) Execute() (*DeviceUsageList, *http.Response, error) {
 	return r.ApiService.FindDeviceUsagesExecute(r)
 }
 
@@ -1184,11 +1170,11 @@ FindDeviceUsages Retrieve all usages for device
 
 Returns all usages for a device.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Device UUID
  @return ApiFindDeviceUsagesRequest
 */
-func (a *DevicesApiService) FindDeviceUsages(ctx _context.Context, id string) ApiFindDeviceUsagesRequest {
+func (a *DevicesApiService) FindDeviceUsages(ctx context.Context, id string) ApiFindDeviceUsagesRequest {
 	return ApiFindDeviceUsagesRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1198,27 +1184,25 @@ func (a *DevicesApiService) FindDeviceUsages(ctx _context.Context, id string) Ap
 
 // Execute executes the request
 //  @return DeviceUsageList
-func (a *DevicesApiService) FindDeviceUsagesExecute(r ApiFindDeviceUsagesRequest) (DeviceUsageList, *_nethttp.Response, error) {
+func (a *DevicesApiService) FindDeviceUsagesExecute(r ApiFindDeviceUsagesRequest) (*DeviceUsageList, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  DeviceUsageList
+		formFiles            []formFile
+		localVarReturnValue  *DeviceUsageList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.FindDeviceUsages")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/devices/{id}/usages"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	if r.createdAfter != nil {
 		localVarQueryParams.Add("created[after]", parameterToString(*r.createdAfter, ""))
@@ -1257,7 +1241,7 @@ func (a *DevicesApiService) FindDeviceUsagesExecute(r ApiFindDeviceUsagesRequest
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -1267,15 +1251,15 @@ func (a *DevicesApiService) FindDeviceUsagesExecute(r ApiFindDeviceUsagesRequest
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -1303,7 +1287,7 @@ func (a *DevicesApiService) FindDeviceUsagesExecute(r ApiFindDeviceUsagesRequest
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -1314,14 +1298,14 @@ func (a *DevicesApiService) FindDeviceUsagesExecute(r ApiFindDeviceUsagesRequest
 }
 
 type ApiFindIPAssignmentCustomdataRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *DevicesApiService
 	instanceId string
 	id string
 }
 
 
-func (r ApiFindIPAssignmentCustomdataRequest) Execute() (*_nethttp.Response, error) {
+func (r ApiFindIPAssignmentCustomdataRequest) Execute() (*http.Response, error) {
 	return r.ApiService.FindIPAssignmentCustomdataExecute(r)
 }
 
@@ -1330,12 +1314,12 @@ FindIPAssignmentCustomdata Retrieve the custom metadata of an IP Assignment
 
 Provides the custom metadata stored for this IP Assignment in json format
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param instanceId Instance UUID
  @param id Ip Assignment UUID
  @return ApiFindIPAssignmentCustomdataRequest
 */
-func (a *DevicesApiService) FindIPAssignmentCustomdata(ctx _context.Context, instanceId string, id string) ApiFindIPAssignmentCustomdataRequest {
+func (a *DevicesApiService) FindIPAssignmentCustomdata(ctx context.Context, instanceId string, id string) ApiFindIPAssignmentCustomdataRequest {
 	return ApiFindIPAssignmentCustomdataRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1345,27 +1329,25 @@ func (a *DevicesApiService) FindIPAssignmentCustomdata(ctx _context.Context, ins
 }
 
 // Execute executes the request
-func (a *DevicesApiService) FindIPAssignmentCustomdataExecute(r ApiFindIPAssignmentCustomdataRequest) (*_nethttp.Response, error) {
+func (a *DevicesApiService) FindIPAssignmentCustomdataExecute(r ApiFindIPAssignmentCustomdataRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.FindIPAssignmentCustomdata")
 	if err != nil {
-		return nil, GenericOpenAPIError{error: err.Error()}
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/devices/{instance_id}/ips/{id}/customdata"
-	localVarPath = strings.Replace(localVarPath, "{"+"instance_id"+"}", _neturl.PathEscape(parameterToString(r.instanceId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"instance_id"+"}", url.PathEscape(parameterToString(r.instanceId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1398,7 +1380,7 @@ func (a *DevicesApiService) FindIPAssignmentCustomdataExecute(r ApiFindIPAssignm
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
 	}
@@ -1408,15 +1390,15 @@ func (a *DevicesApiService) FindIPAssignmentCustomdataExecute(r ApiFindIPAssignm
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -1456,7 +1438,7 @@ func (a *DevicesApiService) FindIPAssignmentCustomdataExecute(r ApiFindIPAssignm
 }
 
 type ApiFindIPAssignmentsRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *DevicesApiService
 	id string
 	include *[]string
@@ -1474,7 +1456,7 @@ func (r ApiFindIPAssignmentsRequest) Exclude(exclude []string) ApiFindIPAssignme
 	return r
 }
 
-func (r ApiFindIPAssignmentsRequest) Execute() (IPAssignmentList, *_nethttp.Response, error) {
+func (r ApiFindIPAssignmentsRequest) Execute() (*IPAssignmentList, *http.Response, error) {
 	return r.ApiService.FindIPAssignmentsExecute(r)
 }
 
@@ -1483,11 +1465,11 @@ FindIPAssignments Retrieve all ip assignments
 
 Returns all ip assignments for a device.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Device UUID
  @return ApiFindIPAssignmentsRequest
 */
-func (a *DevicesApiService) FindIPAssignments(ctx _context.Context, id string) ApiFindIPAssignmentsRequest {
+func (a *DevicesApiService) FindIPAssignments(ctx context.Context, id string) ApiFindIPAssignmentsRequest {
 	return ApiFindIPAssignmentsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1497,27 +1479,25 @@ func (a *DevicesApiService) FindIPAssignments(ctx _context.Context, id string) A
 
 // Execute executes the request
 //  @return IPAssignmentList
-func (a *DevicesApiService) FindIPAssignmentsExecute(r ApiFindIPAssignmentsRequest) (IPAssignmentList, *_nethttp.Response, error) {
+func (a *DevicesApiService) FindIPAssignmentsExecute(r ApiFindIPAssignmentsRequest) (*IPAssignmentList, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  IPAssignmentList
+		formFiles            []formFile
+		localVarReturnValue  *IPAssignmentList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.FindIPAssignments")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/devices/{id}/ips"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	if r.include != nil {
 		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
@@ -1556,7 +1536,7 @@ func (a *DevicesApiService) FindIPAssignmentsExecute(r ApiFindIPAssignmentsReque
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -1566,15 +1546,15 @@ func (a *DevicesApiService) FindIPAssignmentsExecute(r ApiFindIPAssignmentsReque
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -1602,7 +1582,7 @@ func (a *DevicesApiService) FindIPAssignmentsExecute(r ApiFindIPAssignmentsReque
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -1613,7 +1593,7 @@ func (a *DevicesApiService) FindIPAssignmentsExecute(r ApiFindIPAssignmentsReque
 }
 
 type ApiFindInstanceBandwidthRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *DevicesApiService
 	id string
 	from *string
@@ -1631,7 +1611,7 @@ func (r ApiFindInstanceBandwidthRequest) Until(until string) ApiFindInstanceBand
 	return r
 }
 
-func (r ApiFindInstanceBandwidthRequest) Execute() (*_nethttp.Response, error) {
+func (r ApiFindInstanceBandwidthRequest) Execute() (*http.Response, error) {
 	return r.ApiService.FindInstanceBandwidthExecute(r)
 }
 
@@ -1640,11 +1620,11 @@ FindInstanceBandwidth Retrieve an instance bandwidth
 
 Retrieve an instance bandwidth for a given period of time.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Device UUID
  @return ApiFindInstanceBandwidthRequest
 */
-func (a *DevicesApiService) FindInstanceBandwidth(ctx _context.Context, id string) ApiFindInstanceBandwidthRequest {
+func (a *DevicesApiService) FindInstanceBandwidth(ctx context.Context, id string) ApiFindInstanceBandwidthRequest {
 	return ApiFindInstanceBandwidthRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1653,26 +1633,24 @@ func (a *DevicesApiService) FindInstanceBandwidth(ctx _context.Context, id strin
 }
 
 // Execute executes the request
-func (a *DevicesApiService) FindInstanceBandwidthExecute(r ApiFindInstanceBandwidthRequest) (*_nethttp.Response, error) {
+func (a *DevicesApiService) FindInstanceBandwidthExecute(r ApiFindInstanceBandwidthRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.FindInstanceBandwidth")
 	if err != nil {
-		return nil, GenericOpenAPIError{error: err.Error()}
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/devices/{id}/bandwidth"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.from == nil {
 		return nil, reportError("from is required and must be specified")
 	}
@@ -1713,7 +1691,7 @@ func (a *DevicesApiService) FindInstanceBandwidthExecute(r ApiFindInstanceBandwi
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
 	}
@@ -1723,15 +1701,15 @@ func (a *DevicesApiService) FindInstanceBandwidthExecute(r ApiFindInstanceBandwi
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -1761,7 +1739,7 @@ func (a *DevicesApiService) FindInstanceBandwidthExecute(r ApiFindInstanceBandwi
 }
 
 type ApiFindProjectUsageRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *DevicesApiService
 	id string
 	createdAfter *string
@@ -1779,7 +1757,7 @@ func (r ApiFindProjectUsageRequest) CreatedBefore(createdBefore string) ApiFindP
 	return r
 }
 
-func (r ApiFindProjectUsageRequest) Execute() (ProjectUsageList, *_nethttp.Response, error) {
+func (r ApiFindProjectUsageRequest) Execute() (*ProjectUsageList, *http.Response, error) {
 	return r.ApiService.FindProjectUsageExecute(r)
 }
 
@@ -1788,11 +1766,11 @@ FindProjectUsage Retrieve all usages for project
 
 Returns all usages for a project.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Project UUID
  @return ApiFindProjectUsageRequest
 */
-func (a *DevicesApiService) FindProjectUsage(ctx _context.Context, id string) ApiFindProjectUsageRequest {
+func (a *DevicesApiService) FindProjectUsage(ctx context.Context, id string) ApiFindProjectUsageRequest {
 	return ApiFindProjectUsageRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1802,27 +1780,25 @@ func (a *DevicesApiService) FindProjectUsage(ctx _context.Context, id string) Ap
 
 // Execute executes the request
 //  @return ProjectUsageList
-func (a *DevicesApiService) FindProjectUsageExecute(r ApiFindProjectUsageRequest) (ProjectUsageList, *_nethttp.Response, error) {
+func (a *DevicesApiService) FindProjectUsageExecute(r ApiFindProjectUsageRequest) (*ProjectUsageList, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  ProjectUsageList
+		formFiles            []formFile
+		localVarReturnValue  *ProjectUsageList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.FindProjectUsage")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/projects/{id}/usages"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	if r.createdAfter != nil {
 		localVarQueryParams.Add("created[after]", parameterToString(*r.createdAfter, ""))
@@ -1861,7 +1837,7 @@ func (a *DevicesApiService) FindProjectUsageExecute(r ApiFindProjectUsageRequest
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -1871,15 +1847,15 @@ func (a *DevicesApiService) FindProjectUsageExecute(r ApiFindProjectUsageRequest
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -1907,7 +1883,7 @@ func (a *DevicesApiService) FindProjectUsageExecute(r ApiFindProjectUsageRequest
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -1918,7 +1894,7 @@ func (a *DevicesApiService) FindProjectUsageExecute(r ApiFindProjectUsageRequest
 }
 
 type ApiFindTrafficRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *DevicesApiService
 	id string
 	direction *string
@@ -1948,7 +1924,7 @@ func (r ApiFindTrafficRequest) Bucket(bucket string) ApiFindTrafficRequest {
 	return r
 }
 
-func (r ApiFindTrafficRequest) Execute() (*_nethttp.Response, error) {
+func (r ApiFindTrafficRequest) Execute() (*http.Response, error) {
 	return r.ApiService.FindTrafficExecute(r)
 }
 
@@ -1957,11 +1933,11 @@ FindTraffic Retrieve device traffic
 
 Returns traffic for a specific device.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Device UUID
  @return ApiFindTrafficRequest
 */
-func (a *DevicesApiService) FindTraffic(ctx _context.Context, id string) ApiFindTrafficRequest {
+func (a *DevicesApiService) FindTraffic(ctx context.Context, id string) ApiFindTrafficRequest {
 	return ApiFindTrafficRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1970,26 +1946,24 @@ func (a *DevicesApiService) FindTraffic(ctx _context.Context, id string) ApiFind
 }
 
 // Execute executes the request
-func (a *DevicesApiService) FindTrafficExecute(r ApiFindTrafficRequest) (*_nethttp.Response, error) {
+func (a *DevicesApiService) FindTrafficExecute(r ApiFindTrafficRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.FindTraffic")
 	if err != nil {
-		return nil, GenericOpenAPIError{error: err.Error()}
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/devices/{id}/traffic"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.direction == nil {
 		return nil, reportError("direction is required and must be specified")
 	}
@@ -2037,7 +2011,7 @@ func (a *DevicesApiService) FindTrafficExecute(r ApiFindTrafficRequest) (*_netht
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
 	}
@@ -2047,15 +2021,15 @@ func (a *DevicesApiService) FindTrafficExecute(r ApiFindTrafficRequest) (*_netht
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -2095,13 +2069,13 @@ func (a *DevicesApiService) FindTrafficExecute(r ApiFindTrafficRequest) (*_netht
 }
 
 type ApiGetBgpNeighborDataRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *DevicesApiService
 	id string
 }
 
 
-func (r ApiGetBgpNeighborDataRequest) Execute() (BgpSessionNeighbors, *_nethttp.Response, error) {
+func (r ApiGetBgpNeighborDataRequest) Execute() (*BgpSessionNeighbors, *http.Response, error) {
 	return r.ApiService.GetBgpNeighborDataExecute(r)
 }
 
@@ -2110,11 +2084,11 @@ GetBgpNeighborData Retrieve BGP neighbor data for this device
 
 Provides a summary of the BGP neighbor data associated to the BGP sessions for this device.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Device UUID
  @return ApiGetBgpNeighborDataRequest
 */
-func (a *DevicesApiService) GetBgpNeighborData(ctx _context.Context, id string) ApiGetBgpNeighborDataRequest {
+func (a *DevicesApiService) GetBgpNeighborData(ctx context.Context, id string) ApiGetBgpNeighborDataRequest {
 	return ApiGetBgpNeighborDataRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2124,27 +2098,25 @@ func (a *DevicesApiService) GetBgpNeighborData(ctx _context.Context, id string) 
 
 // Execute executes the request
 //  @return BgpSessionNeighbors
-func (a *DevicesApiService) GetBgpNeighborDataExecute(r ApiGetBgpNeighborDataRequest) (BgpSessionNeighbors, *_nethttp.Response, error) {
+func (a *DevicesApiService) GetBgpNeighborDataExecute(r ApiGetBgpNeighborDataRequest) (*BgpSessionNeighbors, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  BgpSessionNeighbors
+		formFiles            []formFile
+		localVarReturnValue  *BgpSessionNeighbors
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.GetBgpNeighborData")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/devices/{id}/bgp/neighbors"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -2177,7 +2149,7 @@ func (a *DevicesApiService) GetBgpNeighborDataExecute(r ApiGetBgpNeighborDataReq
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -2187,15 +2159,15 @@ func (a *DevicesApiService) GetBgpNeighborDataExecute(r ApiGetBgpNeighborDataReq
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -2233,7 +2205,7 @@ func (a *DevicesApiService) GetBgpNeighborDataExecute(r ApiGetBgpNeighborDataReq
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -2244,7 +2216,7 @@ func (a *DevicesApiService) GetBgpNeighborDataExecute(r ApiGetBgpNeighborDataReq
 }
 
 type ApiPerformActionRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *DevicesApiService
 	id string
 	type_ *string
@@ -2256,7 +2228,7 @@ func (r ApiPerformActionRequest) Type_(type_ string) ApiPerformActionRequest {
 	return r
 }
 
-func (r ApiPerformActionRequest) Execute() (*_nethttp.Response, error) {
+func (r ApiPerformActionRequest) Execute() (*http.Response, error) {
 	return r.ApiService.PerformActionExecute(r)
 }
 
@@ -2265,11 +2237,11 @@ PerformAction Perform an action
 
 Performs an action for the given device.  Possible actions include: power_on, power_off, reboot, reinstall, and rescue (reboot the device into rescue OS.)
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Device UUID
  @return ApiPerformActionRequest
 */
-func (a *DevicesApiService) PerformAction(ctx _context.Context, id string) ApiPerformActionRequest {
+func (a *DevicesApiService) PerformAction(ctx context.Context, id string) ApiPerformActionRequest {
 	return ApiPerformActionRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2278,26 +2250,24 @@ func (a *DevicesApiService) PerformAction(ctx _context.Context, id string) ApiPe
 }
 
 // Execute executes the request
-func (a *DevicesApiService) PerformActionExecute(r ApiPerformActionRequest) (*_nethttp.Response, error) {
+func (a *DevicesApiService) PerformActionExecute(r ApiPerformActionRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.PerformAction")
 	if err != nil {
-		return nil, GenericOpenAPIError{error: err.Error()}
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/devices/{id}/actions"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.type_ == nil {
 		return nil, reportError("type_ is required and must be specified")
 	}
@@ -2334,7 +2304,7 @@ func (a *DevicesApiService) PerformActionExecute(r ApiPerformActionRequest) (*_n
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
 	}
@@ -2344,15 +2314,15 @@ func (a *DevicesApiService) PerformActionExecute(r ApiPerformActionRequest) (*_n
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -2392,7 +2362,7 @@ func (a *DevicesApiService) PerformActionExecute(r ApiPerformActionRequest) (*_n
 }
 
 type ApiUpdateDeviceRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *DevicesApiService
 	id string
 	device *DeviceUpdateInput
@@ -2404,7 +2374,7 @@ func (r ApiUpdateDeviceRequest) Device(device DeviceUpdateInput) ApiUpdateDevice
 	return r
 }
 
-func (r ApiUpdateDeviceRequest) Execute() (Device, *_nethttp.Response, error) {
+func (r ApiUpdateDeviceRequest) Execute() (*Device, *http.Response, error) {
 	return r.ApiService.UpdateDeviceExecute(r)
 }
 
@@ -2413,11 +2383,11 @@ UpdateDevice Update the device
 
 Updates the device.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Device UUID
  @return ApiUpdateDeviceRequest
 */
-func (a *DevicesApiService) UpdateDevice(ctx _context.Context, id string) ApiUpdateDeviceRequest {
+func (a *DevicesApiService) UpdateDevice(ctx context.Context, id string) ApiUpdateDeviceRequest {
 	return ApiUpdateDeviceRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2427,27 +2397,25 @@ func (a *DevicesApiService) UpdateDevice(ctx _context.Context, id string) ApiUpd
 
 // Execute executes the request
 //  @return Device
-func (a *DevicesApiService) UpdateDeviceExecute(r ApiUpdateDeviceRequest) (Device, *_nethttp.Response, error) {
+func (a *DevicesApiService) UpdateDeviceExecute(r ApiUpdateDeviceRequest) (*Device, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPut
+		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  Device
+		formFiles            []formFile
+		localVarReturnValue  *Device
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.UpdateDevice")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/devices/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.device == nil {
 		return localVarReturnValue, nil, reportError("device is required and must be specified")
 	}
@@ -2485,7 +2453,7 @@ func (a *DevicesApiService) UpdateDeviceExecute(r ApiUpdateDeviceRequest) (Devic
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -2495,15 +2463,15 @@ func (a *DevicesApiService) UpdateDeviceExecute(r ApiUpdateDeviceRequest) (Devic
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -2551,7 +2519,7 @@ func (a *DevicesApiService) UpdateDeviceExecute(r ApiUpdateDeviceRequest) (Devic
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}

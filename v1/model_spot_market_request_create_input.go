@@ -23,7 +23,7 @@ type SpotMarketRequestCreateInput struct {
 	DevicesMax *int32 `json:"devices_max,omitempty"`
 	MaxBidPrice *float32 `json:"max_bid_price,omitempty"`
 	EndAt *time.Time `json:"end_at,omitempty"`
-	Facilities *[]string `json:"facilities,omitempty"`
+	Facilities []string `json:"facilities,omitempty"`
 	// The metro ID or code the spot market request will be created in.
 	Metro *string `json:"metro,omitempty"`
 }
@@ -211,12 +211,12 @@ func (o *SpotMarketRequestCreateInput) GetFacilities() []string {
 		var ret []string
 		return ret
 	}
-	return *o.Facilities
+	return o.Facilities
 }
 
 // GetFacilitiesOk returns a tuple with the Facilities field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SpotMarketRequestCreateInput) GetFacilitiesOk() (*[]string, bool) {
+func (o *SpotMarketRequestCreateInput) GetFacilitiesOk() ([]string, bool) {
 	if o == nil || o.Facilities == nil {
 		return nil, false
 	}
@@ -234,7 +234,7 @@ func (o *SpotMarketRequestCreateInput) HasFacilities() bool {
 
 // SetFacilities gets a reference to the given []string and assigns it to the Facilities field.
 func (o *SpotMarketRequestCreateInput) SetFacilities(v []string) {
-	o.Facilities = &v
+	o.Facilities = v
 }
 
 // GetMetro returns the Metro field value if set, zero value otherwise.

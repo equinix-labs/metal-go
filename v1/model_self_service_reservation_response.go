@@ -28,7 +28,7 @@ type SelfServiceReservationResponse struct {
 	OrganizationId *string `json:"organization_id,omitempty"`
 	Project *string `json:"project,omitempty"`
 	ProjectId *string `json:"project_id,omitempty"`
-	Item *[]SelfServiceReservationItemResponse `json:"item,omitempty"`
+	Item []SelfServiceReservationItemResponse `json:"item,omitempty"`
 }
 
 // NewSelfServiceReservationResponse instantiates a new SelfServiceReservationResponse object
@@ -374,12 +374,12 @@ func (o *SelfServiceReservationResponse) GetItem() []SelfServiceReservationItemR
 		var ret []SelfServiceReservationItemResponse
 		return ret
 	}
-	return *o.Item
+	return o.Item
 }
 
 // GetItemOk returns a tuple with the Item field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SelfServiceReservationResponse) GetItemOk() (*[]SelfServiceReservationItemResponse, bool) {
+func (o *SelfServiceReservationResponse) GetItemOk() ([]SelfServiceReservationItemResponse, bool) {
 	if o == nil || o.Item == nil {
 		return nil, false
 	}
@@ -397,7 +397,7 @@ func (o *SelfServiceReservationResponse) HasItem() bool {
 
 // SetItem gets a reference to the given []SelfServiceReservationItemResponse and assigns it to the Item field.
 func (o *SelfServiceReservationResponse) SetItem(v []SelfServiceReservationItemResponse) {
-	o.Item = &v
+	o.Item = v
 }
 
 func (o SelfServiceReservationResponse) MarshalJSON() ([]byte, error) {

@@ -33,8 +33,8 @@ func main() {
     email := "email_example" // string | Email of user to create password reset token
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.PasswordResetTokensApi.CreatePasswordResetToken(context.Background()).Email(email).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.PasswordResetTokensApi.CreatePasswordResetToken(context.Background()).Email(email).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PasswordResetTokensApi.CreatePasswordResetToken``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -96,8 +96,8 @@ import (
 func main() {
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.PasswordResetTokensApi.ResetPassword(context.Background()).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.PasswordResetTokensApi.ResetPassword(context.Background()).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PasswordResetTokensApi.ResetPassword``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

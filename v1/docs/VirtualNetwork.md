@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **MetroCode** | Pointer to **string** | The Metro code of the metro in which this Virtual Network is defined. | [optional] 
 **Metro** | Pointer to [**Href**](Href.md) |  | [optional] 
 **AssignedToVirtualCircuit** | Pointer to **bool** | True if the virtual network is attached to a virtual circuit. False if not. | [optional] 
+**MetalGateway** | Pointer to [**MetalGatewayLite**](MetalGatewayLite.md) |  | [optional] 
 **AssignedTo** | Pointer to [**Href**](Href.md) |  | [optional] 
 **Href** | Pointer to **string** |  | [optional] 
 
@@ -233,6 +234,31 @@ SetAssignedToVirtualCircuit sets AssignedToVirtualCircuit field to given value.
 `func (o *VirtualNetwork) HasAssignedToVirtualCircuit() bool`
 
 HasAssignedToVirtualCircuit returns a boolean if a field has been set.
+
+### GetMetalGateway
+
+`func (o *VirtualNetwork) GetMetalGateway() MetalGatewayLite`
+
+GetMetalGateway returns the MetalGateway field if non-nil, zero value otherwise.
+
+### GetMetalGatewayOk
+
+`func (o *VirtualNetwork) GetMetalGatewayOk() (*MetalGatewayLite, bool)`
+
+GetMetalGatewayOk returns a tuple with the MetalGateway field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMetalGateway
+
+`func (o *VirtualNetwork) SetMetalGateway(v MetalGatewayLite)`
+
+SetMetalGateway sets MetalGateway field to given value.
+
+### HasMetalGateway
+
+`func (o *VirtualNetwork) HasMetalGateway() bool`
+
+HasMetalGateway returns a boolean if a field has been set.
 
 ### GetAssignedTo
 

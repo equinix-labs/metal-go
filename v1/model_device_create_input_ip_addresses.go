@@ -24,7 +24,7 @@ type DeviceCreateInputIpAddresses struct {
 	// Cidr Size for the IP Block created. Valid values depends on the operating system being provisioned. (28..32 for IPv4 addresses, 124..127 for IPv6 addresses)
 	Cidr *float32 `json:"cidr,omitempty"`
 	// UUIDs of any IP reservations to use when assigning IPs
-	IpReservations *[]string `json:"ip_reservations,omitempty"`
+	IpReservations []string `json:"ip_reservations,omitempty"`
 }
 
 // NewDeviceCreateInputIpAddresses instantiates a new DeviceCreateInputIpAddresses object
@@ -150,12 +150,12 @@ func (o *DeviceCreateInputIpAddresses) GetIpReservations() []string {
 		var ret []string
 		return ret
 	}
-	return *o.IpReservations
+	return o.IpReservations
 }
 
 // GetIpReservationsOk returns a tuple with the IpReservations field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DeviceCreateInputIpAddresses) GetIpReservationsOk() (*[]string, bool) {
+func (o *DeviceCreateInputIpAddresses) GetIpReservationsOk() ([]string, bool) {
 	if o == nil || o.IpReservations == nil {
 		return nil, false
 	}
@@ -173,7 +173,7 @@ func (o *DeviceCreateInputIpAddresses) HasIpReservations() bool {
 
 // SetIpReservations gets a reference to the given []string and assigns it to the IpReservations field.
 func (o *DeviceCreateInputIpAddresses) SetIpReservations(v []string) {
-	o.IpReservations = &v
+	o.IpReservations = v
 }
 
 func (o DeviceCreateInputIpAddresses) MarshalJSON() ([]byte, error) {

@@ -24,7 +24,7 @@ type UserUpdateInput struct {
 	Timezone *string `json:"timezone,omitempty"`
 	Password *string `json:"password,omitempty"`
 	Avatar **os.File `json:"avatar,omitempty"`
-	Customdata *map[string]interface{} `json:"customdata,omitempty"`
+	Customdata map[string]interface{} `json:"customdata,omitempty"`
 }
 
 // NewUserUpdateInput instantiates a new UserUpdateInput object
@@ -242,12 +242,12 @@ func (o *UserUpdateInput) GetCustomdata() map[string]interface{} {
 		var ret map[string]interface{}
 		return ret
 	}
-	return *o.Customdata
+	return o.Customdata
 }
 
 // GetCustomdataOk returns a tuple with the Customdata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UserUpdateInput) GetCustomdataOk() (*map[string]interface{}, bool) {
+func (o *UserUpdateInput) GetCustomdataOk() (map[string]interface{}, bool) {
 	if o == nil || o.Customdata == nil {
 		return nil, false
 	}
@@ -265,7 +265,7 @@ func (o *UserUpdateInput) HasCustomdata() bool {
 
 // SetCustomdata gets a reference to the given map[string]interface{} and assigns it to the Customdata field.
 func (o *UserUpdateInput) SetCustomdata(v map[string]interface{}) {
-	o.Customdata = &v
+	o.Customdata = v
 }
 
 func (o UserUpdateInput) MarshalJSON() ([]byte, error) {

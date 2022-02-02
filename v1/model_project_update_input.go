@@ -20,7 +20,7 @@ type ProjectUpdateInput struct {
 	Name *string `json:"name,omitempty"`
 	PaymentMethodId *string `json:"payment_method_id,omitempty"`
 	BackendTransferEnabled *bool `json:"backend_transfer_enabled,omitempty"`
-	Customdata *map[string]interface{} `json:"customdata,omitempty"`
+	Customdata map[string]interface{} `json:"customdata,omitempty"`
 }
 
 // NewProjectUpdateInput instantiates a new ProjectUpdateInput object
@@ -142,12 +142,12 @@ func (o *ProjectUpdateInput) GetCustomdata() map[string]interface{} {
 		var ret map[string]interface{}
 		return ret
 	}
-	return *o.Customdata
+	return o.Customdata
 }
 
 // GetCustomdataOk returns a tuple with the Customdata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectUpdateInput) GetCustomdataOk() (*map[string]interface{}, bool) {
+func (o *ProjectUpdateInput) GetCustomdataOk() (map[string]interface{}, bool) {
 	if o == nil || o.Customdata == nil {
 		return nil, false
 	}
@@ -165,7 +165,7 @@ func (o *ProjectUpdateInput) HasCustomdata() bool {
 
 // SetCustomdata gets a reference to the given map[string]interface{} and assigns it to the Customdata field.
 func (o *ProjectUpdateInput) SetCustomdata(v map[string]interface{}) {
-	o.Customdata = &v
+	o.Customdata = v
 }
 
 func (o ProjectUpdateInput) MarshalJSON() ([]byte, error) {

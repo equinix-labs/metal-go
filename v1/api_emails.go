@@ -13,23 +13,23 @@ package v1
 
 import (
 	"bytes"
-	_context "context"
-	_ioutil "io/ioutil"
-	_nethttp "net/http"
-	_neturl "net/url"
+	"context"
+	"io/ioutil"
+	"net/http"
+	"net/url"
 	"strings"
 )
 
 // Linger please
 var (
-	_ _context.Context
+	_ context.Context
 )
 
 // EmailsApiService EmailsApi service
 type EmailsApiService service
 
 type ApiCreateEmailRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *EmailsApiService
 	email *CreateEmailInput
 }
@@ -40,7 +40,7 @@ func (r ApiCreateEmailRequest) Email(email CreateEmailInput) ApiCreateEmailReque
 	return r
 }
 
-func (r ApiCreateEmailRequest) Execute() (Email, *_nethttp.Response, error) {
+func (r ApiCreateEmailRequest) Execute() (*Email, *http.Response, error) {
 	return r.ApiService.CreateEmailExecute(r)
 }
 
@@ -49,10 +49,10 @@ CreateEmail Create an email
 
 Add a new email address to the current user.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiCreateEmailRequest
 */
-func (a *EmailsApiService) CreateEmail(ctx _context.Context) ApiCreateEmailRequest {
+func (a *EmailsApiService) CreateEmail(ctx context.Context) ApiCreateEmailRequest {
 	return ApiCreateEmailRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -61,26 +61,24 @@ func (a *EmailsApiService) CreateEmail(ctx _context.Context) ApiCreateEmailReque
 
 // Execute executes the request
 //  @return Email
-func (a *EmailsApiService) CreateEmailExecute(r ApiCreateEmailRequest) (Email, *_nethttp.Response, error) {
+func (a *EmailsApiService) CreateEmailExecute(r ApiCreateEmailRequest) (*Email, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  Email
+		formFiles            []formFile
+		localVarReturnValue  *Email
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EmailsApiService.CreateEmail")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/emails"
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.email == nil {
 		return localVarReturnValue, nil, reportError("email is required and must be specified")
 	}
@@ -118,7 +116,7 @@ func (a *EmailsApiService) CreateEmailExecute(r ApiCreateEmailRequest) (Email, *
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -128,15 +126,15 @@ func (a *EmailsApiService) CreateEmailExecute(r ApiCreateEmailRequest) (Email, *
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -164,7 +162,7 @@ func (a *EmailsApiService) CreateEmailExecute(r ApiCreateEmailRequest) (Email, *
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -175,13 +173,13 @@ func (a *EmailsApiService) CreateEmailExecute(r ApiCreateEmailRequest) (Email, *
 }
 
 type ApiDeleteEmailRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *EmailsApiService
 	id string
 }
 
 
-func (r ApiDeleteEmailRequest) Execute() (*_nethttp.Response, error) {
+func (r ApiDeleteEmailRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeleteEmailExecute(r)
 }
 
@@ -190,11 +188,11 @@ DeleteEmail Delete the email
 
 Deletes the email.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Email UUID
  @return ApiDeleteEmailRequest
 */
-func (a *EmailsApiService) DeleteEmail(ctx _context.Context, id string) ApiDeleteEmailRequest {
+func (a *EmailsApiService) DeleteEmail(ctx context.Context, id string) ApiDeleteEmailRequest {
 	return ApiDeleteEmailRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -203,26 +201,24 @@ func (a *EmailsApiService) DeleteEmail(ctx _context.Context, id string) ApiDelet
 }
 
 // Execute executes the request
-func (a *EmailsApiService) DeleteEmailExecute(r ApiDeleteEmailRequest) (*_nethttp.Response, error) {
+func (a *EmailsApiService) DeleteEmailExecute(r ApiDeleteEmailRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
+		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EmailsApiService.DeleteEmail")
 	if err != nil {
-		return nil, GenericOpenAPIError{error: err.Error()}
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/emails/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -255,7 +251,7 @@ func (a *EmailsApiService) DeleteEmailExecute(r ApiDeleteEmailRequest) (*_nethtt
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
 	}
@@ -265,15 +261,15 @@ func (a *EmailsApiService) DeleteEmailExecute(r ApiDeleteEmailRequest) (*_nethtt
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -313,7 +309,7 @@ func (a *EmailsApiService) DeleteEmailExecute(r ApiDeleteEmailRequest) (*_nethtt
 }
 
 type ApiFindEmailByIdRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *EmailsApiService
 	id string
 	include *[]string
@@ -331,7 +327,7 @@ func (r ApiFindEmailByIdRequest) Exclude(exclude []string) ApiFindEmailByIdReque
 	return r
 }
 
-func (r ApiFindEmailByIdRequest) Execute() (Email, *_nethttp.Response, error) {
+func (r ApiFindEmailByIdRequest) Execute() (*Email, *http.Response, error) {
 	return r.ApiService.FindEmailByIdExecute(r)
 }
 
@@ -340,11 +336,11 @@ FindEmailById Retrieve an email
 
 Provides one of the user’s emails.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Email UUID
  @return ApiFindEmailByIdRequest
 */
-func (a *EmailsApiService) FindEmailById(ctx _context.Context, id string) ApiFindEmailByIdRequest {
+func (a *EmailsApiService) FindEmailById(ctx context.Context, id string) ApiFindEmailByIdRequest {
 	return ApiFindEmailByIdRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -354,27 +350,25 @@ func (a *EmailsApiService) FindEmailById(ctx _context.Context, id string) ApiFin
 
 // Execute executes the request
 //  @return Email
-func (a *EmailsApiService) FindEmailByIdExecute(r ApiFindEmailByIdRequest) (Email, *_nethttp.Response, error) {
+func (a *EmailsApiService) FindEmailByIdExecute(r ApiFindEmailByIdRequest) (*Email, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  Email
+		formFiles            []formFile
+		localVarReturnValue  *Email
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EmailsApiService.FindEmailById")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/emails/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	if r.include != nil {
 		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
@@ -413,7 +407,7 @@ func (a *EmailsApiService) FindEmailByIdExecute(r ApiFindEmailByIdRequest) (Emai
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -423,15 +417,15 @@ func (a *EmailsApiService) FindEmailByIdExecute(r ApiFindEmailByIdRequest) (Emai
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -469,7 +463,7 @@ func (a *EmailsApiService) FindEmailByIdExecute(r ApiFindEmailByIdRequest) (Emai
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -480,7 +474,7 @@ func (a *EmailsApiService) FindEmailByIdExecute(r ApiFindEmailByIdRequest) (Emai
 }
 
 type ApiUpdateEmailRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *EmailsApiService
 	id string
 	email *UpdateEmailInput
@@ -492,7 +486,7 @@ func (r ApiUpdateEmailRequest) Email(email UpdateEmailInput) ApiUpdateEmailReque
 	return r
 }
 
-func (r ApiUpdateEmailRequest) Execute() (Email, *_nethttp.Response, error) {
+func (r ApiUpdateEmailRequest) Execute() (*Email, *http.Response, error) {
 	return r.ApiService.UpdateEmailExecute(r)
 }
 
@@ -501,11 +495,11 @@ UpdateEmail Update the email
 
 Updates the email.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Email UUID
  @return ApiUpdateEmailRequest
 */
-func (a *EmailsApiService) UpdateEmail(ctx _context.Context, id string) ApiUpdateEmailRequest {
+func (a *EmailsApiService) UpdateEmail(ctx context.Context, id string) ApiUpdateEmailRequest {
 	return ApiUpdateEmailRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -515,27 +509,25 @@ func (a *EmailsApiService) UpdateEmail(ctx _context.Context, id string) ApiUpdat
 
 // Execute executes the request
 //  @return Email
-func (a *EmailsApiService) UpdateEmailExecute(r ApiUpdateEmailRequest) (Email, *_nethttp.Response, error) {
+func (a *EmailsApiService) UpdateEmailExecute(r ApiUpdateEmailRequest) (*Email, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPut
+		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  Email
+		formFiles            []formFile
+		localVarReturnValue  *Email
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EmailsApiService.UpdateEmail")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/emails/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.email == nil {
 		return localVarReturnValue, nil, reportError("email is required and must be specified")
 	}
@@ -573,7 +565,7 @@ func (a *EmailsApiService) UpdateEmailExecute(r ApiUpdateEmailRequest) (Email, *
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -583,15 +575,15 @@ func (a *EmailsApiService) UpdateEmailExecute(r ApiUpdateEmailRequest) (Email, *
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -639,7 +631,7 @@ func (a *EmailsApiService) UpdateEmailExecute(r ApiUpdateEmailRequest) (Email, *
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}

@@ -17,7 +17,7 @@ import (
 
 // PlanList struct for PlanList
 type PlanList struct {
-	Plans *[]Plan `json:"plans,omitempty"`
+	Plans []Plan `json:"plans,omitempty"`
 }
 
 // NewPlanList instantiates a new PlanList object
@@ -43,12 +43,12 @@ func (o *PlanList) GetPlans() []Plan {
 		var ret []Plan
 		return ret
 	}
-	return *o.Plans
+	return o.Plans
 }
 
 // GetPlansOk returns a tuple with the Plans field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PlanList) GetPlansOk() (*[]Plan, bool) {
+func (o *PlanList) GetPlansOk() ([]Plan, bool) {
 	if o == nil || o.Plans == nil {
 		return nil, false
 	}
@@ -66,7 +66,7 @@ func (o *PlanList) HasPlans() bool {
 
 // SetPlans gets a reference to the given []Plan and assigns it to the Plans field.
 func (o *PlanList) SetPlans(v []Plan) {
-	o.Plans = &v
+	o.Plans = v
 }
 
 func (o PlanList) MarshalJSON() ([]byte, error) {

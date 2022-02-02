@@ -36,8 +36,8 @@ func main() {
     sshKey := *openapiclient.NewSSHKeyCreateInput() // SSHKeyCreateInput | ssh key to create
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.SSHKeysApi.CreateSSHKey(context.Background()).SshKey(sshKey).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.SSHKeysApi.CreateSSHKey(context.Background()).SshKey(sshKey).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SSHKeysApi.CreateSSHKey``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -99,11 +99,11 @@ import (
 )
 
 func main() {
-    id := TODO // string | ssh key UUID
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | ssh key UUID
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.SSHKeysApi.DeleteSSHKey(context.Background(), id).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.SSHKeysApi.DeleteSSHKey(context.Background(), id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SSHKeysApi.DeleteSSHKey``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -117,7 +117,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | [**string**](.md) | ssh key UUID | 
+**id** | **string** | ssh key UUID | 
 
 ### Other Parameters
 
@@ -167,13 +167,13 @@ import (
 )
 
 func main() {
-    id := TODO // string | SSH Key UUID
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | SSH Key UUID
     include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
     exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.SSHKeysApi.FindSSHKeyById(context.Background(), id).Include(include).Exclude(exclude).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.SSHKeysApi.FindSSHKeyById(context.Background(), id).Include(include).Exclude(exclude).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SSHKeysApi.FindSSHKeyById``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -189,7 +189,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | [**string**](.md) | SSH Key UUID | 
+**id** | **string** | SSH Key UUID | 
 
 ### Other Parameters
 
@@ -246,8 +246,8 @@ func main() {
     exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.SSHKeysApi.FindSSHKeys(context.Background()).SearchString(searchString).Include(include).Exclude(exclude).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.SSHKeysApi.FindSSHKeys(context.Background()).SearchString(searchString).Include(include).Exclude(exclude).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SSHKeysApi.FindSSHKeys``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -311,12 +311,12 @@ import (
 )
 
 func main() {
-    id := TODO // string | SSH Key UUID
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | SSH Key UUID
     sshKey := *openapiclient.NewSSHKeyInput() // SSHKeyInput | ssh key to update
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.SSHKeysApi.UpdateSSHKey(context.Background(), id).SshKey(sshKey).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.SSHKeysApi.UpdateSSHKey(context.Background(), id).SshKey(sshKey).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SSHKeysApi.UpdateSSHKey``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -332,7 +332,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | [**string**](.md) | SSH Key UUID | 
+**id** | **string** | SSH Key UUID | 
 
 ### Other Parameters
 

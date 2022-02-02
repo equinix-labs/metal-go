@@ -17,7 +17,7 @@ import (
 
 // BatchesList struct for BatchesList
 type BatchesList struct {
-	Batches *[]Batch `json:"batches,omitempty"`
+	Batches []Batch `json:"batches,omitempty"`
 }
 
 // NewBatchesList instantiates a new BatchesList object
@@ -43,12 +43,12 @@ func (o *BatchesList) GetBatches() []Batch {
 		var ret []Batch
 		return ret
 	}
-	return *o.Batches
+	return o.Batches
 }
 
 // GetBatchesOk returns a tuple with the Batches field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BatchesList) GetBatchesOk() (*[]Batch, bool) {
+func (o *BatchesList) GetBatchesOk() ([]Batch, bool) {
 	if o == nil || o.Batches == nil {
 		return nil, false
 	}
@@ -66,7 +66,7 @@ func (o *BatchesList) HasBatches() bool {
 
 // SetBatches gets a reference to the given []Batch and assigns it to the Batches field.
 func (o *BatchesList) SetBatches(v []Batch) {
-	o.Batches = &v
+	o.Batches = v
 }
 
 func (o BatchesList) MarshalJSON() ([]byte, error) {

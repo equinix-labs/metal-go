@@ -37,8 +37,8 @@ func main() {
     facility := *openapiclient.NewCapacityInput() // CapacityInput | Facility to check capacity in
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.CapacityApi.CheckCapacityForFacility(context.Background()).Facility(facility).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.CapacityApi.CheckCapacityForFacility(context.Background()).Facility(facility).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `CapacityApi.CheckCapacityForFacility``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -103,8 +103,8 @@ func main() {
     servers := *openapiclient.NewCapacityPerMetroInput() // CapacityPerMetroInput | Metro to check capacity in
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.CapacityApi.CheckCapacityForMetro(context.Background()).Servers(servers).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.CapacityApi.CheckCapacityForMetro(context.Background()).Servers(servers).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `CapacityApi.CheckCapacityForMetro``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -168,8 +168,8 @@ import (
 func main() {
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.CapacityApi.FindCapacityForFacility(context.Background()).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.CapacityApi.FindCapacityForFacility(context.Background()).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `CapacityApi.FindCapacityForFacility``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -229,8 +229,8 @@ import (
 func main() {
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.CapacityApi.FindCapacityForMetro(context.Background()).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.CapacityApi.FindCapacityForMetro(context.Background()).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `CapacityApi.FindCapacityForMetro``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -288,11 +288,11 @@ import (
 )
 
 func main() {
-    id := TODO // string | Organization UUID
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Organization UUID
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.CapacityApi.FindOrganizationCapacityPerFacility(context.Background(), id).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.CapacityApi.FindOrganizationCapacityPerFacility(context.Background(), id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `CapacityApi.FindOrganizationCapacityPerFacility``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -308,7 +308,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | [**string**](.md) | Organization UUID | 
+**id** | **string** | Organization UUID | 
 
 ### Other Parameters
 
@@ -358,11 +358,11 @@ import (
 )
 
 func main() {
-    id := TODO // string | Organization UUID
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Organization UUID
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.CapacityApi.FindOrganizationCapacityPerMetro(context.Background(), id).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.CapacityApi.FindOrganizationCapacityPerMetro(context.Background(), id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `CapacityApi.FindOrganizationCapacityPerMetro``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -378,7 +378,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | [**string**](.md) | Organization UUID | 
+**id** | **string** | Organization UUID | 
 
 ### Other Parameters
 

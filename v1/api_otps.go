@@ -13,29 +13,29 @@ package v1
 
 import (
 	"bytes"
-	_context "context"
-	_ioutil "io/ioutil"
-	_nethttp "net/http"
-	_neturl "net/url"
+	"context"
+	"io/ioutil"
+	"net/http"
+	"net/url"
 	"strings"
 )
 
 // Linger please
 var (
-	_ _context.Context
+	_ context.Context
 )
 
 // OtpsApiService OtpsApi service
 type OtpsApiService service
 
 type ApiFindEnsureOtpRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *OtpsApiService
 	otp string
 }
 
 
-func (r ApiFindEnsureOtpRequest) Execute() (*_nethttp.Response, error) {
+func (r ApiFindEnsureOtpRequest) Execute() (*http.Response, error) {
 	return r.ApiService.FindEnsureOtpExecute(r)
 }
 
@@ -44,11 +44,11 @@ FindEnsureOtp Verify user by providing an OTP
 
 It verifies the user once a valid OTP is provided. It gives back a session token, essentially logging in the user.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param otp OTP
  @return ApiFindEnsureOtpRequest
 */
-func (a *OtpsApiService) FindEnsureOtp(ctx _context.Context, otp string) ApiFindEnsureOtpRequest {
+func (a *OtpsApiService) FindEnsureOtp(ctx context.Context, otp string) ApiFindEnsureOtpRequest {
 	return ApiFindEnsureOtpRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -57,26 +57,24 @@ func (a *OtpsApiService) FindEnsureOtp(ctx _context.Context, otp string) ApiFind
 }
 
 // Execute executes the request
-func (a *OtpsApiService) FindEnsureOtpExecute(r ApiFindEnsureOtpRequest) (*_nethttp.Response, error) {
+func (a *OtpsApiService) FindEnsureOtpExecute(r ApiFindEnsureOtpRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OtpsApiService.FindEnsureOtp")
 	if err != nil {
-		return nil, GenericOpenAPIError{error: err.Error()}
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/user/otp/verify/{otp}"
-	localVarPath = strings.Replace(localVarPath, "{"+"otp"+"}", _neturl.PathEscape(parameterToString(r.otp, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"otp"+"}", url.PathEscape(parameterToString(r.otp, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -109,7 +107,7 @@ func (a *OtpsApiService) FindEnsureOtpExecute(r ApiFindEnsureOtpRequest) (*_neth
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
 	}
@@ -119,15 +117,15 @@ func (a *OtpsApiService) FindEnsureOtpExecute(r ApiFindEnsureOtpRequest) (*_neth
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -157,12 +155,12 @@ func (a *OtpsApiService) FindEnsureOtpExecute(r ApiFindEnsureOtpRequest) (*_neth
 }
 
 type ApiFindRecoveryCodesRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *OtpsApiService
 }
 
 
-func (r ApiFindRecoveryCodesRequest) Execute() (RecoveryCodeList, *_nethttp.Response, error) {
+func (r ApiFindRecoveryCodesRequest) Execute() (*RecoveryCodeList, *http.Response, error) {
 	return r.ApiService.FindRecoveryCodesExecute(r)
 }
 
@@ -171,10 +169,10 @@ FindRecoveryCodes Retrieve my recovery codes
 
 Returns my recovery codes.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiFindRecoveryCodesRequest
 */
-func (a *OtpsApiService) FindRecoveryCodes(ctx _context.Context) ApiFindRecoveryCodesRequest {
+func (a *OtpsApiService) FindRecoveryCodes(ctx context.Context) ApiFindRecoveryCodesRequest {
 	return ApiFindRecoveryCodesRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -183,26 +181,24 @@ func (a *OtpsApiService) FindRecoveryCodes(ctx _context.Context) ApiFindRecovery
 
 // Execute executes the request
 //  @return RecoveryCodeList
-func (a *OtpsApiService) FindRecoveryCodesExecute(r ApiFindRecoveryCodesRequest) (RecoveryCodeList, *_nethttp.Response, error) {
+func (a *OtpsApiService) FindRecoveryCodesExecute(r ApiFindRecoveryCodesRequest) (*RecoveryCodeList, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  RecoveryCodeList
+		formFiles            []formFile
+		localVarReturnValue  *RecoveryCodeList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OtpsApiService.FindRecoveryCodes")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/user/otp/recovery-codes"
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -235,7 +231,7 @@ func (a *OtpsApiService) FindRecoveryCodesExecute(r ApiFindRecoveryCodesRequest)
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -245,15 +241,15 @@ func (a *OtpsApiService) FindRecoveryCodesExecute(r ApiFindRecoveryCodesRequest)
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -291,7 +287,7 @@ func (a *OtpsApiService) FindRecoveryCodesExecute(r ApiFindRecoveryCodesRequest)
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -302,12 +298,12 @@ func (a *OtpsApiService) FindRecoveryCodesExecute(r ApiFindRecoveryCodesRequest)
 }
 
 type ApiReceiveCodesRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *OtpsApiService
 }
 
 
-func (r ApiReceiveCodesRequest) Execute() (*_nethttp.Response, error) {
+func (r ApiReceiveCodesRequest) Execute() (*http.Response, error) {
 	return r.ApiService.ReceiveCodesExecute(r)
 }
 
@@ -316,10 +312,10 @@ ReceiveCodes Receive an OTP per sms
 
 Sends an OTP to the user's mobile phone.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiReceiveCodesRequest
 */
-func (a *OtpsApiService) ReceiveCodes(ctx _context.Context) ApiReceiveCodesRequest {
+func (a *OtpsApiService) ReceiveCodes(ctx context.Context) ApiReceiveCodesRequest {
 	return ApiReceiveCodesRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -327,25 +323,23 @@ func (a *OtpsApiService) ReceiveCodes(ctx _context.Context) ApiReceiveCodesReque
 }
 
 // Execute executes the request
-func (a *OtpsApiService) ReceiveCodesExecute(r ApiReceiveCodesRequest) (*_nethttp.Response, error) {
+func (a *OtpsApiService) ReceiveCodesExecute(r ApiReceiveCodesRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OtpsApiService.ReceiveCodes")
 	if err != nil {
-		return nil, GenericOpenAPIError{error: err.Error()}
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/user/otp/sms/receive"
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -378,7 +372,7 @@ func (a *OtpsApiService) ReceiveCodesExecute(r ApiReceiveCodesRequest) (*_nethtt
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
 	}
@@ -388,15 +382,15 @@ func (a *OtpsApiService) ReceiveCodesExecute(r ApiReceiveCodesRequest) (*_nethtt
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -446,12 +440,12 @@ func (a *OtpsApiService) ReceiveCodesExecute(r ApiReceiveCodesRequest) (*_nethtt
 }
 
 type ApiRegenerateCodesRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *OtpsApiService
 }
 
 
-func (r ApiRegenerateCodesRequest) Execute() (RecoveryCodeList, *_nethttp.Response, error) {
+func (r ApiRegenerateCodesRequest) Execute() (*RecoveryCodeList, *http.Response, error) {
 	return r.ApiService.RegenerateCodesExecute(r)
 }
 
@@ -460,10 +454,10 @@ RegenerateCodes Generate new recovery codes
 
 Generate a new set of recovery codes.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiRegenerateCodesRequest
 */
-func (a *OtpsApiService) RegenerateCodes(ctx _context.Context) ApiRegenerateCodesRequest {
+func (a *OtpsApiService) RegenerateCodes(ctx context.Context) ApiRegenerateCodesRequest {
 	return ApiRegenerateCodesRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -472,26 +466,24 @@ func (a *OtpsApiService) RegenerateCodes(ctx _context.Context) ApiRegenerateCode
 
 // Execute executes the request
 //  @return RecoveryCodeList
-func (a *OtpsApiService) RegenerateCodesExecute(r ApiRegenerateCodesRequest) (RecoveryCodeList, *_nethttp.Response, error) {
+func (a *OtpsApiService) RegenerateCodesExecute(r ApiRegenerateCodesRequest) (*RecoveryCodeList, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  RecoveryCodeList
+		formFiles            []formFile
+		localVarReturnValue  *RecoveryCodeList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OtpsApiService.RegenerateCodes")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/user/otp/recovery-codes"
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -524,7 +516,7 @@ func (a *OtpsApiService) RegenerateCodesExecute(r ApiRegenerateCodesRequest) (Re
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -534,15 +526,15 @@ func (a *OtpsApiService) RegenerateCodesExecute(r ApiRegenerateCodesRequest) (Re
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -580,7 +572,7 @@ func (a *OtpsApiService) RegenerateCodesExecute(r ApiRegenerateCodesRequest) (Re
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}

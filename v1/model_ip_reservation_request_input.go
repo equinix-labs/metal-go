@@ -23,8 +23,8 @@ type IPReservationRequestInput struct {
 	Facility *string `json:"facility,omitempty"`
 	// The code of the metro you are requesting the IP reservation in.
 	Metro *string `json:"metro,omitempty"`
-	Customdata *map[string]interface{} `json:"customdata,omitempty"`
-	Tags *[]string `json:"tags,omitempty"`
+	Customdata map[string]interface{} `json:"customdata,omitempty"`
+	Tags []string `json:"tags,omitempty"`
 	Details *string `json:"details,omitempty"`
 	FailOnApprovalRequired *bool `json:"fail_on_approval_required,omitempty"`
 }
@@ -198,12 +198,12 @@ func (o *IPReservationRequestInput) GetCustomdata() map[string]interface{} {
 		var ret map[string]interface{}
 		return ret
 	}
-	return *o.Customdata
+	return o.Customdata
 }
 
 // GetCustomdataOk returns a tuple with the Customdata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IPReservationRequestInput) GetCustomdataOk() (*map[string]interface{}, bool) {
+func (o *IPReservationRequestInput) GetCustomdataOk() (map[string]interface{}, bool) {
 	if o == nil || o.Customdata == nil {
 		return nil, false
 	}
@@ -221,7 +221,7 @@ func (o *IPReservationRequestInput) HasCustomdata() bool {
 
 // SetCustomdata gets a reference to the given map[string]interface{} and assigns it to the Customdata field.
 func (o *IPReservationRequestInput) SetCustomdata(v map[string]interface{}) {
-	o.Customdata = &v
+	o.Customdata = v
 }
 
 // GetTags returns the Tags field value if set, zero value otherwise.
@@ -230,12 +230,12 @@ func (o *IPReservationRequestInput) GetTags() []string {
 		var ret []string
 		return ret
 	}
-	return *o.Tags
+	return o.Tags
 }
 
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IPReservationRequestInput) GetTagsOk() (*[]string, bool) {
+func (o *IPReservationRequestInput) GetTagsOk() ([]string, bool) {
 	if o == nil || o.Tags == nil {
 		return nil, false
 	}
@@ -253,7 +253,7 @@ func (o *IPReservationRequestInput) HasTags() bool {
 
 // SetTags gets a reference to the given []string and assigns it to the Tags field.
 func (o *IPReservationRequestInput) SetTags(v []string) {
-	o.Tags = &v
+	o.Tags = v
 }
 
 // GetDetails returns the Details field value if set, zero value otherwise.

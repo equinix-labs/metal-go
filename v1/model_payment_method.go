@@ -32,7 +32,7 @@ type PaymentMethod struct {
 	Email *string `json:"email,omitempty"`
 	CreatedByUser *Href `json:"created_by_user,omitempty"`
 	Organization *Href `json:"organization,omitempty"`
-	Projects *[]Href `json:"projects,omitempty"`
+	Projects []Href `json:"projects,omitempty"`
 }
 
 // NewPaymentMethod instantiates a new PaymentMethod object
@@ -506,12 +506,12 @@ func (o *PaymentMethod) GetProjects() []Href {
 		var ret []Href
 		return ret
 	}
-	return *o.Projects
+	return o.Projects
 }
 
 // GetProjectsOk returns a tuple with the Projects field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PaymentMethod) GetProjectsOk() (*[]Href, bool) {
+func (o *PaymentMethod) GetProjectsOk() ([]Href, bool) {
 	if o == nil || o.Projects == nil {
 		return nil, false
 	}
@@ -529,7 +529,7 @@ func (o *PaymentMethod) HasProjects() bool {
 
 // SetProjects gets a reference to the given []Href and assigns it to the Projects field.
 func (o *PaymentMethod) SetProjects(v []Href) {
-	o.Projects = &v
+	o.Projects = v
 }
 
 func (o PaymentMethod) MarshalJSON() ([]byte, error) {

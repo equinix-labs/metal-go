@@ -26,7 +26,7 @@ type OrganizationInput struct {
 	Logo **os.File `json:"logo,omitempty"`
 	Address *Address `json:"address,omitempty"`
 	BillingAddress *Address `json:"billing_address,omitempty"`
-	Customdata *map[string]interface{} `json:"customdata,omitempty"`
+	Customdata map[string]interface{} `json:"customdata,omitempty"`
 	// Force to all members to have enabled the two factor authentication after that date, unless the value is null
 	Enforce2faAt *time.Time `json:"enforce_2fa_at,omitempty"`
 }
@@ -278,12 +278,12 @@ func (o *OrganizationInput) GetCustomdata() map[string]interface{} {
 		var ret map[string]interface{}
 		return ret
 	}
-	return *o.Customdata
+	return o.Customdata
 }
 
 // GetCustomdataOk returns a tuple with the Customdata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OrganizationInput) GetCustomdataOk() (*map[string]interface{}, bool) {
+func (o *OrganizationInput) GetCustomdataOk() (map[string]interface{}, bool) {
 	if o == nil || o.Customdata == nil {
 		return nil, false
 	}
@@ -301,7 +301,7 @@ func (o *OrganizationInput) HasCustomdata() bool {
 
 // SetCustomdata gets a reference to the given map[string]interface{} and assigns it to the Customdata field.
 func (o *OrganizationInput) SetCustomdata(v map[string]interface{}) {
-	o.Customdata = &v
+	o.Customdata = v
 }
 
 // GetEnforce2faAt returns the Enforce2faAt field value if set, zero value otherwise.

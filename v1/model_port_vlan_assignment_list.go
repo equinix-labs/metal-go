@@ -17,7 +17,7 @@ import (
 
 // PortVlanAssignmentList struct for PortVlanAssignmentList
 type PortVlanAssignmentList struct {
-	VlanAssignments *[]PortVlanAssignment `json:"vlan_assignments,omitempty"`
+	VlanAssignments []PortVlanAssignment `json:"vlan_assignments,omitempty"`
 }
 
 // NewPortVlanAssignmentList instantiates a new PortVlanAssignmentList object
@@ -43,12 +43,12 @@ func (o *PortVlanAssignmentList) GetVlanAssignments() []PortVlanAssignment {
 		var ret []PortVlanAssignment
 		return ret
 	}
-	return *o.VlanAssignments
+	return o.VlanAssignments
 }
 
 // GetVlanAssignmentsOk returns a tuple with the VlanAssignments field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PortVlanAssignmentList) GetVlanAssignmentsOk() (*[]PortVlanAssignment, bool) {
+func (o *PortVlanAssignmentList) GetVlanAssignmentsOk() ([]PortVlanAssignment, bool) {
 	if o == nil || o.VlanAssignments == nil {
 		return nil, false
 	}
@@ -66,7 +66,7 @@ func (o *PortVlanAssignmentList) HasVlanAssignments() bool {
 
 // SetVlanAssignments gets a reference to the given []PortVlanAssignment and assigns it to the VlanAssignments field.
 func (o *PortVlanAssignmentList) SetVlanAssignments(v []PortVlanAssignment) {
-	o.VlanAssignments = &v
+	o.VlanAssignments = v
 }
 
 func (o PortVlanAssignmentList) MarshalJSON() ([]byte, error) {

@@ -17,7 +17,7 @@ import (
 
 // FacilityList struct for FacilityList
 type FacilityList struct {
-	Facilities *[]Facility `json:"facilities,omitempty"`
+	Facilities []Facility `json:"facilities,omitempty"`
 }
 
 // NewFacilityList instantiates a new FacilityList object
@@ -43,12 +43,12 @@ func (o *FacilityList) GetFacilities() []Facility {
 		var ret []Facility
 		return ret
 	}
-	return *o.Facilities
+	return o.Facilities
 }
 
 // GetFacilitiesOk returns a tuple with the Facilities field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FacilityList) GetFacilitiesOk() (*[]Facility, bool) {
+func (o *FacilityList) GetFacilitiesOk() ([]Facility, bool) {
 	if o == nil || o.Facilities == nil {
 		return nil, false
 	}
@@ -66,7 +66,7 @@ func (o *FacilityList) HasFacilities() bool {
 
 // SetFacilities gets a reference to the given []Facility and assigns it to the Facilities field.
 func (o *FacilityList) SetFacilities(v []Facility) {
-	o.Facilities = &v
+	o.Facilities = v
 }
 
 func (o FacilityList) MarshalJSON() ([]byte, error) {

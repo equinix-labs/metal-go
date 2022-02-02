@@ -22,12 +22,13 @@ type VirtualNetwork struct {
 	Vxlan *int32 `json:"vxlan,omitempty"`
 	Facility *Href `json:"facility,omitempty"`
 	// A list of instances with ports currently associated to this Virtual Network.
-	Instances *[]Href `json:"instances,omitempty"`
+	Instances []Href `json:"instances,omitempty"`
 	// The Metro code of the metro in which this Virtual Network is defined.
 	MetroCode *string `json:"metro_code,omitempty"`
 	Metro *Href `json:"metro,omitempty"`
 	// True if the virtual network is attached to a virtual circuit. False if not.
 	AssignedToVirtualCircuit *bool `json:"assigned_to_virtual_circuit,omitempty"`
+	MetalGateway *MetalGatewayLite `json:"metal_gateway,omitempty"`
 	AssignedTo *Href `json:"assigned_to,omitempty"`
 	Href *string `json:"href,omitempty"`
 }
@@ -183,12 +184,12 @@ func (o *VirtualNetwork) GetInstances() []Href {
 		var ret []Href
 		return ret
 	}
-	return *o.Instances
+	return o.Instances
 }
 
 // GetInstancesOk returns a tuple with the Instances field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VirtualNetwork) GetInstancesOk() (*[]Href, bool) {
+func (o *VirtualNetwork) GetInstancesOk() ([]Href, bool) {
 	if o == nil || o.Instances == nil {
 		return nil, false
 	}
@@ -206,7 +207,7 @@ func (o *VirtualNetwork) HasInstances() bool {
 
 // SetInstances gets a reference to the given []Href and assigns it to the Instances field.
 func (o *VirtualNetwork) SetInstances(v []Href) {
-	o.Instances = &v
+	o.Instances = v
 }
 
 // GetMetroCode returns the MetroCode field value if set, zero value otherwise.
@@ -305,6 +306,38 @@ func (o *VirtualNetwork) SetAssignedToVirtualCircuit(v bool) {
 	o.AssignedToVirtualCircuit = &v
 }
 
+// GetMetalGateway returns the MetalGateway field value if set, zero value otherwise.
+func (o *VirtualNetwork) GetMetalGateway() MetalGatewayLite {
+	if o == nil || o.MetalGateway == nil {
+		var ret MetalGatewayLite
+		return ret
+	}
+	return *o.MetalGateway
+}
+
+// GetMetalGatewayOk returns a tuple with the MetalGateway field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VirtualNetwork) GetMetalGatewayOk() (*MetalGatewayLite, bool) {
+	if o == nil || o.MetalGateway == nil {
+		return nil, false
+	}
+	return o.MetalGateway, true
+}
+
+// HasMetalGateway returns a boolean if a field has been set.
+func (o *VirtualNetwork) HasMetalGateway() bool {
+	if o != nil && o.MetalGateway != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMetalGateway gets a reference to the given MetalGatewayLite and assigns it to the MetalGateway field.
+func (o *VirtualNetwork) SetMetalGateway(v MetalGatewayLite) {
+	o.MetalGateway = &v
+}
+
 // GetAssignedTo returns the AssignedTo field value if set, zero value otherwise.
 func (o *VirtualNetwork) GetAssignedTo() Href {
 	if o == nil || o.AssignedTo == nil {
@@ -394,6 +427,9 @@ func (o VirtualNetwork) MarshalJSON() ([]byte, error) {
 	}
 	if o.AssignedToVirtualCircuit != nil {
 		toSerialize["assigned_to_virtual_circuit"] = o.AssignedToVirtualCircuit
+	}
+	if o.MetalGateway != nil {
+		toSerialize["metal_gateway"] = o.MetalGateway
 	}
 	if o.AssignedTo != nil {
 		toSerialize["assigned_to"] = o.AssignedTo

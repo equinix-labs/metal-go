@@ -13,22 +13,22 @@ package v1
 
 import (
 	"bytes"
-	_context "context"
-	_ioutil "io/ioutil"
-	_nethttp "net/http"
-	_neturl "net/url"
+	"context"
+	"io/ioutil"
+	"net/http"
+	"net/url"
 )
 
 // Linger please
 var (
-	_ _context.Context
+	_ context.Context
 )
 
 // UserdataApiService UserdataApi service
 type UserdataApiService service
 
 type ApiValidateUserdataRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *UserdataApiService
 	userdata *string
 }
@@ -39,7 +39,7 @@ func (r ApiValidateUserdataRequest) Userdata(userdata string) ApiValidateUserdat
 	return r
 }
 
-func (r ApiValidateUserdataRequest) Execute() (*_nethttp.Response, error) {
+func (r ApiValidateUserdataRequest) Execute() (*http.Response, error) {
 	return r.ApiService.ValidateUserdataExecute(r)
 }
 
@@ -48,10 +48,10 @@ ValidateUserdata Validate user data
 
 Validates user data (Userdata)
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiValidateUserdataRequest
 */
-func (a *UserdataApiService) ValidateUserdata(ctx _context.Context) ApiValidateUserdataRequest {
+func (a *UserdataApiService) ValidateUserdata(ctx context.Context) ApiValidateUserdataRequest {
 	return ApiValidateUserdataRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -59,25 +59,23 @@ func (a *UserdataApiService) ValidateUserdata(ctx _context.Context) ApiValidateU
 }
 
 // Execute executes the request
-func (a *UserdataApiService) ValidateUserdataExecute(r ApiValidateUserdataRequest) (*_nethttp.Response, error) {
+func (a *UserdataApiService) ValidateUserdataExecute(r ApiValidateUserdataRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserdataApiService.ValidateUserdata")
 	if err != nil {
-		return nil, GenericOpenAPIError{error: err.Error()}
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/userdata/validate"
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	if r.userdata != nil {
 		localVarQueryParams.Add("userdata", parameterToString(*r.userdata, ""))
@@ -113,7 +111,7 @@ func (a *UserdataApiService) ValidateUserdataExecute(r ApiValidateUserdataReques
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
 	}
@@ -123,15 +121,15 @@ func (a *UserdataApiService) ValidateUserdataExecute(r ApiValidateUserdataReques
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}

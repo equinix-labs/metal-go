@@ -22,7 +22,7 @@ type InterconnectionUpdateInput struct {
 	Redundancy *string `json:"redundancy,omitempty"`
 	Description *string `json:"description,omitempty"`
 	ContactEmail *string `json:"contact_email,omitempty"`
-	Tags *[]string `json:"tags,omitempty"`
+	Tags []string `json:"tags,omitempty"`
 	// The mode of the connection (only relevant to dedicated connections). Shared connections won't have this field. Can be either 'standard' or 'tunnel'.   The default mode of a dedicated connection is 'standard'. The mode can only be changed when there are no associated virtual circuits on the connection.   In tunnel mode, an 802.1q tunnel is added to a port to send/receive double tagged packets from server instances.
 	Mode *string `json:"mode,omitempty"`
 }
@@ -178,12 +178,12 @@ func (o *InterconnectionUpdateInput) GetTags() []string {
 		var ret []string
 		return ret
 	}
-	return *o.Tags
+	return o.Tags
 }
 
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InterconnectionUpdateInput) GetTagsOk() (*[]string, bool) {
+func (o *InterconnectionUpdateInput) GetTagsOk() ([]string, bool) {
 	if o == nil || o.Tags == nil {
 		return nil, false
 	}
@@ -201,7 +201,7 @@ func (o *InterconnectionUpdateInput) HasTags() bool {
 
 // SetTags gets a reference to the given []string and assigns it to the Tags field.
 func (o *InterconnectionUpdateInput) SetTags(v []string) {
-	o.Tags = &v
+	o.Tags = v
 }
 
 // GetMode returns the Mode field value if set, zero value otherwise.

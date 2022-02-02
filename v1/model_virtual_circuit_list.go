@@ -17,7 +17,7 @@ import (
 
 // VirtualCircuitList struct for VirtualCircuitList
 type VirtualCircuitList struct {
-	VirtualCircuits *[]VirtualCircuit `json:"virtual_circuits,omitempty"`
+	VirtualCircuits []VirtualCircuit `json:"virtual_circuits,omitempty"`
 }
 
 // NewVirtualCircuitList instantiates a new VirtualCircuitList object
@@ -43,12 +43,12 @@ func (o *VirtualCircuitList) GetVirtualCircuits() []VirtualCircuit {
 		var ret []VirtualCircuit
 		return ret
 	}
-	return *o.VirtualCircuits
+	return o.VirtualCircuits
 }
 
 // GetVirtualCircuitsOk returns a tuple with the VirtualCircuits field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VirtualCircuitList) GetVirtualCircuitsOk() (*[]VirtualCircuit, bool) {
+func (o *VirtualCircuitList) GetVirtualCircuitsOk() ([]VirtualCircuit, bool) {
 	if o == nil || o.VirtualCircuits == nil {
 		return nil, false
 	}
@@ -66,7 +66,7 @@ func (o *VirtualCircuitList) HasVirtualCircuits() bool {
 
 // SetVirtualCircuits gets a reference to the given []VirtualCircuit and assigns it to the VirtualCircuits field.
 func (o *VirtualCircuitList) SetVirtualCircuits(v []VirtualCircuit) {
-	o.VirtualCircuits = &v
+	o.VirtualCircuits = v
 }
 
 func (o VirtualCircuitList) MarshalJSON() ([]byte, error) {

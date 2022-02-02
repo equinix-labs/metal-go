@@ -13,29 +13,29 @@ package v1
 
 import (
 	"bytes"
-	_context "context"
-	_ioutil "io/ioutil"
-	_nethttp "net/http"
-	_neturl "net/url"
+	"context"
+	"io/ioutil"
+	"net/http"
+	"net/url"
 	"strings"
 )
 
 // Linger please
 var (
-	_ _context.Context
+	_ context.Context
 )
 
 // InvitationsApiService InvitationsApi service
 type InvitationsApiService service
 
 type ApiAcceptInvitationRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *InvitationsApiService
 	id string
 }
 
 
-func (r ApiAcceptInvitationRequest) Execute() (Membership, *_nethttp.Response, error) {
+func (r ApiAcceptInvitationRequest) Execute() (*Membership, *http.Response, error) {
 	return r.ApiService.AcceptInvitationExecute(r)
 }
 
@@ -44,11 +44,11 @@ AcceptInvitation Accept an invitation
 
 Accept an invitation.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Invitation UUID
  @return ApiAcceptInvitationRequest
 */
-func (a *InvitationsApiService) AcceptInvitation(ctx _context.Context, id string) ApiAcceptInvitationRequest {
+func (a *InvitationsApiService) AcceptInvitation(ctx context.Context, id string) ApiAcceptInvitationRequest {
 	return ApiAcceptInvitationRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -58,27 +58,25 @@ func (a *InvitationsApiService) AcceptInvitation(ctx _context.Context, id string
 
 // Execute executes the request
 //  @return Membership
-func (a *InvitationsApiService) AcceptInvitationExecute(r ApiAcceptInvitationRequest) (Membership, *_nethttp.Response, error) {
+func (a *InvitationsApiService) AcceptInvitationExecute(r ApiAcceptInvitationRequest) (*Membership, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPut
+		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  Membership
+		formFiles            []formFile
+		localVarReturnValue  *Membership
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InvitationsApiService.AcceptInvitation")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/invitations/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -111,7 +109,7 @@ func (a *InvitationsApiService) AcceptInvitationExecute(r ApiAcceptInvitationReq
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -121,15 +119,15 @@ func (a *InvitationsApiService) AcceptInvitationExecute(r ApiAcceptInvitationReq
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -167,7 +165,7 @@ func (a *InvitationsApiService) AcceptInvitationExecute(r ApiAcceptInvitationReq
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -178,7 +176,7 @@ func (a *InvitationsApiService) AcceptInvitationExecute(r ApiAcceptInvitationReq
 }
 
 type ApiCreateOrganizationInvitationRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *InvitationsApiService
 	id string
 	invitation *InvitationInput
@@ -190,7 +188,7 @@ func (r ApiCreateOrganizationInvitationRequest) Invitation(invitation Invitation
 	return r
 }
 
-func (r ApiCreateOrganizationInvitationRequest) Execute() (Invitation, *_nethttp.Response, error) {
+func (r ApiCreateOrganizationInvitationRequest) Execute() (*Invitation, *http.Response, error) {
 	return r.ApiService.CreateOrganizationInvitationExecute(r)
 }
 
@@ -200,11 +198,11 @@ CreateOrganizationInvitation Create an invitation for an organization
 In order to add a user to an organization, they must first be invited.
 To invite to several projects the parameter `projects_ids:[a,b,c]` can be used
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Organization UUID
  @return ApiCreateOrganizationInvitationRequest
 */
-func (a *InvitationsApiService) CreateOrganizationInvitation(ctx _context.Context, id string) ApiCreateOrganizationInvitationRequest {
+func (a *InvitationsApiService) CreateOrganizationInvitation(ctx context.Context, id string) ApiCreateOrganizationInvitationRequest {
 	return ApiCreateOrganizationInvitationRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -214,27 +212,25 @@ func (a *InvitationsApiService) CreateOrganizationInvitation(ctx _context.Contex
 
 // Execute executes the request
 //  @return Invitation
-func (a *InvitationsApiService) CreateOrganizationInvitationExecute(r ApiCreateOrganizationInvitationRequest) (Invitation, *_nethttp.Response, error) {
+func (a *InvitationsApiService) CreateOrganizationInvitationExecute(r ApiCreateOrganizationInvitationRequest) (*Invitation, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  Invitation
+		formFiles            []formFile
+		localVarReturnValue  *Invitation
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InvitationsApiService.CreateOrganizationInvitation")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/organizations/{id}/invitations"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.invitation == nil {
 		return localVarReturnValue, nil, reportError("invitation is required and must be specified")
 	}
@@ -272,7 +268,7 @@ func (a *InvitationsApiService) CreateOrganizationInvitationExecute(r ApiCreateO
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -282,15 +278,15 @@ func (a *InvitationsApiService) CreateOrganizationInvitationExecute(r ApiCreateO
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -338,7 +334,7 @@ func (a *InvitationsApiService) CreateOrganizationInvitationExecute(r ApiCreateO
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -349,7 +345,7 @@ func (a *InvitationsApiService) CreateOrganizationInvitationExecute(r ApiCreateO
 }
 
 type ApiCreateProjectInvitationRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *InvitationsApiService
 	projectId string
 	invitation *InvitationInput
@@ -361,7 +357,7 @@ func (r ApiCreateProjectInvitationRequest) Invitation(invitation InvitationInput
 	return r
 }
 
-func (r ApiCreateProjectInvitationRequest) Execute() (Invitation, *_nethttp.Response, error) {
+func (r ApiCreateProjectInvitationRequest) Execute() (*Invitation, *http.Response, error) {
 	return r.ApiService.CreateProjectInvitationExecute(r)
 }
 
@@ -370,11 +366,11 @@ CreateProjectInvitation Create an invitation for a project
 
 In order to add a user to a project, they must first be invited.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param projectId Project UUID
  @return ApiCreateProjectInvitationRequest
 */
-func (a *InvitationsApiService) CreateProjectInvitation(ctx _context.Context, projectId string) ApiCreateProjectInvitationRequest {
+func (a *InvitationsApiService) CreateProjectInvitation(ctx context.Context, projectId string) ApiCreateProjectInvitationRequest {
 	return ApiCreateProjectInvitationRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -384,27 +380,25 @@ func (a *InvitationsApiService) CreateProjectInvitation(ctx _context.Context, pr
 
 // Execute executes the request
 //  @return Invitation
-func (a *InvitationsApiService) CreateProjectInvitationExecute(r ApiCreateProjectInvitationRequest) (Invitation, *_nethttp.Response, error) {
+func (a *InvitationsApiService) CreateProjectInvitationExecute(r ApiCreateProjectInvitationRequest) (*Invitation, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  Invitation
+		formFiles            []formFile
+		localVarReturnValue  *Invitation
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InvitationsApiService.CreateProjectInvitation")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/projects/{project_id}/invitations"
-	localVarPath = strings.Replace(localVarPath, "{"+"project_id"+"}", _neturl.PathEscape(parameterToString(r.projectId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"project_id"+"}", url.PathEscape(parameterToString(r.projectId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.invitation == nil {
 		return localVarReturnValue, nil, reportError("invitation is required and must be specified")
 	}
@@ -442,7 +436,7 @@ func (a *InvitationsApiService) CreateProjectInvitationExecute(r ApiCreateProjec
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -452,15 +446,15 @@ func (a *InvitationsApiService) CreateProjectInvitationExecute(r ApiCreateProjec
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -508,7 +502,7 @@ func (a *InvitationsApiService) CreateProjectInvitationExecute(r ApiCreateProjec
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -519,13 +513,13 @@ func (a *InvitationsApiService) CreateProjectInvitationExecute(r ApiCreateProjec
 }
 
 type ApiDeclineInvitationRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *InvitationsApiService
 	id string
 }
 
 
-func (r ApiDeclineInvitationRequest) Execute() (*_nethttp.Response, error) {
+func (r ApiDeclineInvitationRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeclineInvitationExecute(r)
 }
 
@@ -534,11 +528,11 @@ DeclineInvitation Decline an invitation
 
 Decline an invitation.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Invitation UUID
  @return ApiDeclineInvitationRequest
 */
-func (a *InvitationsApiService) DeclineInvitation(ctx _context.Context, id string) ApiDeclineInvitationRequest {
+func (a *InvitationsApiService) DeclineInvitation(ctx context.Context, id string) ApiDeclineInvitationRequest {
 	return ApiDeclineInvitationRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -547,26 +541,24 @@ func (a *InvitationsApiService) DeclineInvitation(ctx _context.Context, id strin
 }
 
 // Execute executes the request
-func (a *InvitationsApiService) DeclineInvitationExecute(r ApiDeclineInvitationRequest) (*_nethttp.Response, error) {
+func (a *InvitationsApiService) DeclineInvitationExecute(r ApiDeclineInvitationRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
+		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InvitationsApiService.DeclineInvitation")
 	if err != nil {
-		return nil, GenericOpenAPIError{error: err.Error()}
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/invitations/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -599,7 +591,7 @@ func (a *InvitationsApiService) DeclineInvitationExecute(r ApiDeclineInvitationR
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
 	}
@@ -609,15 +601,15 @@ func (a *InvitationsApiService) DeclineInvitationExecute(r ApiDeclineInvitationR
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -657,7 +649,7 @@ func (a *InvitationsApiService) DeclineInvitationExecute(r ApiDeclineInvitationR
 }
 
 type ApiFindInvitationByIdRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *InvitationsApiService
 	id string
 	include *[]string
@@ -675,7 +667,7 @@ func (r ApiFindInvitationByIdRequest) Exclude(exclude []string) ApiFindInvitatio
 	return r
 }
 
-func (r ApiFindInvitationByIdRequest) Execute() (Invitation, *_nethttp.Response, error) {
+func (r ApiFindInvitationByIdRequest) Execute() (*Invitation, *http.Response, error) {
 	return r.ApiService.FindInvitationByIdExecute(r)
 }
 
@@ -684,11 +676,11 @@ FindInvitationById View an invitation
 
 Returns a single invitation. (It include the `invitable` to maintain backward compatibility but will be removed soon)
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Invitation UUID
  @return ApiFindInvitationByIdRequest
 */
-func (a *InvitationsApiService) FindInvitationById(ctx _context.Context, id string) ApiFindInvitationByIdRequest {
+func (a *InvitationsApiService) FindInvitationById(ctx context.Context, id string) ApiFindInvitationByIdRequest {
 	return ApiFindInvitationByIdRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -698,27 +690,25 @@ func (a *InvitationsApiService) FindInvitationById(ctx _context.Context, id stri
 
 // Execute executes the request
 //  @return Invitation
-func (a *InvitationsApiService) FindInvitationByIdExecute(r ApiFindInvitationByIdRequest) (Invitation, *_nethttp.Response, error) {
+func (a *InvitationsApiService) FindInvitationByIdExecute(r ApiFindInvitationByIdRequest) (*Invitation, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  Invitation
+		formFiles            []formFile
+		localVarReturnValue  *Invitation
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InvitationsApiService.FindInvitationById")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/invitations/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	if r.include != nil {
 		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
@@ -757,7 +747,7 @@ func (a *InvitationsApiService) FindInvitationByIdExecute(r ApiFindInvitationByI
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -767,15 +757,15 @@ func (a *InvitationsApiService) FindInvitationByIdExecute(r ApiFindInvitationByI
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -813,7 +803,7 @@ func (a *InvitationsApiService) FindInvitationByIdExecute(r ApiFindInvitationByI
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -824,7 +814,7 @@ func (a *InvitationsApiService) FindInvitationByIdExecute(r ApiFindInvitationByI
 }
 
 type ApiFindInvitationsRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *InvitationsApiService
 	include *[]string
 	exclude *[]string
@@ -853,7 +843,7 @@ func (r ApiFindInvitationsRequest) PerPage(perPage int32) ApiFindInvitationsRequ
 	return r
 }
 
-func (r ApiFindInvitationsRequest) Execute() (InvitationList, *_nethttp.Response, error) {
+func (r ApiFindInvitationsRequest) Execute() (*InvitationList, *http.Response, error) {
 	return r.ApiService.FindInvitationsExecute(r)
 }
 
@@ -862,10 +852,10 @@ FindInvitations Retrieve current user invitations
 
 Returns all invitations in current user.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiFindInvitationsRequest
 */
-func (a *InvitationsApiService) FindInvitations(ctx _context.Context) ApiFindInvitationsRequest {
+func (a *InvitationsApiService) FindInvitations(ctx context.Context) ApiFindInvitationsRequest {
 	return ApiFindInvitationsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -874,26 +864,24 @@ func (a *InvitationsApiService) FindInvitations(ctx _context.Context) ApiFindInv
 
 // Execute executes the request
 //  @return InvitationList
-func (a *InvitationsApiService) FindInvitationsExecute(r ApiFindInvitationsRequest) (InvitationList, *_nethttp.Response, error) {
+func (a *InvitationsApiService) FindInvitationsExecute(r ApiFindInvitationsRequest) (*InvitationList, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  InvitationList
+		formFiles            []formFile
+		localVarReturnValue  *InvitationList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InvitationsApiService.FindInvitations")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/invitations"
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	if r.include != nil {
 		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
@@ -938,7 +926,7 @@ func (a *InvitationsApiService) FindInvitationsExecute(r ApiFindInvitationsReque
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -948,15 +936,15 @@ func (a *InvitationsApiService) FindInvitationsExecute(r ApiFindInvitationsReque
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -994,7 +982,7 @@ func (a *InvitationsApiService) FindInvitationsExecute(r ApiFindInvitationsReque
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -1005,7 +993,7 @@ func (a *InvitationsApiService) FindInvitationsExecute(r ApiFindInvitationsReque
 }
 
 type ApiFindOrganizationInvitationsRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *InvitationsApiService
 	id string
 	include *[]string
@@ -1035,7 +1023,7 @@ func (r ApiFindOrganizationInvitationsRequest) PerPage(perPage int32) ApiFindOrg
 	return r
 }
 
-func (r ApiFindOrganizationInvitationsRequest) Execute() (InvitationList, *_nethttp.Response, error) {
+func (r ApiFindOrganizationInvitationsRequest) Execute() (*InvitationList, *http.Response, error) {
 	return r.ApiService.FindOrganizationInvitationsExecute(r)
 }
 
@@ -1044,11 +1032,11 @@ FindOrganizationInvitations Retrieve organization invitations
 
 Returns all invitations in an organization.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Organization UUID
  @return ApiFindOrganizationInvitationsRequest
 */
-func (a *InvitationsApiService) FindOrganizationInvitations(ctx _context.Context, id string) ApiFindOrganizationInvitationsRequest {
+func (a *InvitationsApiService) FindOrganizationInvitations(ctx context.Context, id string) ApiFindOrganizationInvitationsRequest {
 	return ApiFindOrganizationInvitationsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1058,27 +1046,25 @@ func (a *InvitationsApiService) FindOrganizationInvitations(ctx _context.Context
 
 // Execute executes the request
 //  @return InvitationList
-func (a *InvitationsApiService) FindOrganizationInvitationsExecute(r ApiFindOrganizationInvitationsRequest) (InvitationList, *_nethttp.Response, error) {
+func (a *InvitationsApiService) FindOrganizationInvitationsExecute(r ApiFindOrganizationInvitationsRequest) (*InvitationList, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  InvitationList
+		formFiles            []formFile
+		localVarReturnValue  *InvitationList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InvitationsApiService.FindOrganizationInvitations")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/organizations/{id}/invitations"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	if r.include != nil {
 		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
@@ -1123,7 +1109,7 @@ func (a *InvitationsApiService) FindOrganizationInvitationsExecute(r ApiFindOrga
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -1133,15 +1119,15 @@ func (a *InvitationsApiService) FindOrganizationInvitationsExecute(r ApiFindOrga
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -1179,7 +1165,7 @@ func (a *InvitationsApiService) FindOrganizationInvitationsExecute(r ApiFindOrga
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -1190,7 +1176,7 @@ func (a *InvitationsApiService) FindOrganizationInvitationsExecute(r ApiFindOrga
 }
 
 type ApiFindProjectInvitationsRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *InvitationsApiService
 	projectId string
 	include *[]string
@@ -1220,7 +1206,7 @@ func (r ApiFindProjectInvitationsRequest) PerPage(perPage int32) ApiFindProjectI
 	return r
 }
 
-func (r ApiFindProjectInvitationsRequest) Execute() (InvitationList, *_nethttp.Response, error) {
+func (r ApiFindProjectInvitationsRequest) Execute() (*InvitationList, *http.Response, error) {
 	return r.ApiService.FindProjectInvitationsExecute(r)
 }
 
@@ -1229,11 +1215,11 @@ FindProjectInvitations Retrieve project invitations
 
 Returns all invitations in a project.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param projectId Project UUID
  @return ApiFindProjectInvitationsRequest
 */
-func (a *InvitationsApiService) FindProjectInvitations(ctx _context.Context, projectId string) ApiFindProjectInvitationsRequest {
+func (a *InvitationsApiService) FindProjectInvitations(ctx context.Context, projectId string) ApiFindProjectInvitationsRequest {
 	return ApiFindProjectInvitationsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1243,27 +1229,25 @@ func (a *InvitationsApiService) FindProjectInvitations(ctx _context.Context, pro
 
 // Execute executes the request
 //  @return InvitationList
-func (a *InvitationsApiService) FindProjectInvitationsExecute(r ApiFindProjectInvitationsRequest) (InvitationList, *_nethttp.Response, error) {
+func (a *InvitationsApiService) FindProjectInvitationsExecute(r ApiFindProjectInvitationsRequest) (*InvitationList, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  InvitationList
+		formFiles            []formFile
+		localVarReturnValue  *InvitationList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InvitationsApiService.FindProjectInvitations")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/projects/{project_id}/invitations"
-	localVarPath = strings.Replace(localVarPath, "{"+"project_id"+"}", _neturl.PathEscape(parameterToString(r.projectId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"project_id"+"}", url.PathEscape(parameterToString(r.projectId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	if r.include != nil {
 		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
@@ -1308,7 +1292,7 @@ func (a *InvitationsApiService) FindProjectInvitationsExecute(r ApiFindProjectIn
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -1318,15 +1302,15 @@ func (a *InvitationsApiService) FindProjectInvitationsExecute(r ApiFindProjectIn
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -1364,7 +1348,7 @@ func (a *InvitationsApiService) FindProjectInvitationsExecute(r ApiFindProjectIn
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
