@@ -73,10 +73,10 @@ test:
 	go test -v ./...
 
 clean-docs:
-	rm -rf README.md docs
+	rm -rf docs API.md
 
 move-docs:
-	mv ${PACKAGE_PREFIX}/${PACKAGE_MAJOR}/README.md .
+	mv ${PACKAGE_PREFIX}/${PACKAGE_MAJOR}/API.md .
 	mv ${PACKAGE_PREFIX}/${PACKAGE_MAJOR}/docs .
 
 docs: clean-docs move-docs

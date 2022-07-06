@@ -50,5 +50,5 @@ See <https://github.com/OpenAPITools/openapi-generator/issues/741> for the relat
 
 ## Generated Client
 
-See [v1/README.md](v1/README.md)
+See [API.md](API.md)
 
