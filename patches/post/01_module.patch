@@ -1,0 +1,13 @@
+diff --git a/README.md b/README.md
+index 34d42ea..b170903 100644
+--- a/README.md
++++ b/README.md
+@@ -13,7 +13,7 @@ For more information, please visit [https://equinix.com/about/](https://equinix.
+ ## Installation
+ Put the package under your project folder and add the following in import:
+ ```golang
+-import "./v1"
++import "github.com/equinix-labs/metal-go/metal/v1"
+ ```
+ 
+ ## Documentation for API Endpoints
