@@ -4,18 +4,21 @@ CURRENT_UID := $(shell id -u)
 CURRENT_GID := $(shell id -g)
 
 # https://github.com/OpenAPITools/openapi-generator-cli
+
 SPEC_URL:=https://api.equinix.com/metal/v1/api-docs
-SPEC_FETCHED_FILE:=equinix-metal.fetched.json
-SPEC_PATCHED_FILE:=equinix-metal.patched.json
+
+SPEC_FETCHED_FILE:=spec.fetched.json
+SPEC_PATCHED_FILE:=spec.patched.json
 IMAGE=openapitools/openapi-generator-cli
-GIT_ORG=t0mk
-GIT_REPO=gometal
+GIT_ORG=equinix-labs
+GIT_REPO=metal-go
+PACKAGE_PREFIX=metal
 PACKAGE_MAJOR=v1
 
 SWAGGER=docker run --rm -u ${CURRENT_UID}:${CURRENT_GID} -v $(CURDIR):/local ${IMAGE}
 GOLANGCI_LINT=golangci-lint
 
-all: pull fetch fix-tags patch clean gen mod test stage
+all: pull fetch patch clean gen mod docs move-other patch-post fmt test stage
 
 pull:
 	docker pull ${IMAGE}
@@ -30,11 +33,18 @@ patch:
 	# patch is idempotent, always starting with the fetched
 	# fetched file to create the patched file.
 	ARGS="-o ${SPEC_PATCHED_FILE} ${SPEC_FETCHED_FILE}"; \
-	for diff in $(shell find patches -name \*.patch | sort -n); do \
+	for diff in $(shell find patches/${SPEC_FETCHED_FILE} -name \*.patch | sort -n); do \
 		patch --no-backup-if-mismatch -N -t $$ARGS $$diff; \
 		ARGS=${SPEC_PATCHED_FILE}; \
 	done
 	find ${SPEC_PATCHED_FILE} -empty -exec cp ${SPEC_FETCHED_FILE} ${SPEC_PATCHED_FILE} \;
+
+patch-post:
+	# patch is idempotent, always starting with the generated files
+	for diff in $(shell find patches/post -name \*.patch | sort -n); do \
+		patch --no-backup-if-mismatch -N -t -p1 -i $$diff; \
+	done
+
 
 clean:
 	rm -rf v1/
@@ -46,7 +56,7 @@ gen:
 		--api-package models \
 		--git-user-id ${GIT_ORG} \
 		--git-repo-id ${GIT_REPO} \
-		-o /local/${PACKAGE_MAJOR} \
+		-o /local/${PACKAGE_PREFIX}/${PACKAGE_MAJOR} \
 		-i /local/${SPEC_PATCHED_FILE}
 
 validate:
@@ -55,10 +65,27 @@ validate:
 		-i /local/${SPEC_PATCHED_FILE}
 
 mod:
-	cd v1 && go mod tidy
+	rm -f go.mod go.sum ${PACKAGE_PREFIX}/${PACKAGE_MAJOR}/go.mod ${PACKAGE_PREFIX}/${PACKAGE_MAJOR}/go.sum
+	go mod init github.com/${GIT_ORG}/${GIT_REPO}
+	go mod tidy
 
 test:
-	cd v1 && go test -v ./...
+	go test -v ./...
+
+clean-docs:
+	rm -rf README.md docs
+
+move-docs:
+	mv ${PACKAGE_PREFIX}/${PACKAGE_MAJOR}/README.md .
+	mv ${PACKAGE_PREFIX}/${PACKAGE_MAJOR}/docs .
+
+docs: clean-docs move-docs
+
+move-other:
+	rm -rf api .travis.yml git_push.sh
+	rm -f ${PACKAGE_PREFIX}/${PACKAGE_MAJOR}/.travis.yml
+	mv ${PACKAGE_PREFIX}/${PACKAGE_MAJOR}/api .
+	mv ${PACKAGE_PREFIX}/${PACKAGE_MAJOR}/git_push.sh .
 
 # https://github.com/OpenAPITools/openapi-generator/issues/741#issuecomment-569791780
 remove-dupe-requests: ## Removes duplicate Request structs from the generated code
@@ -77,7 +104,10 @@ remove-dupe-requests: ## Removes duplicate Request structs from the generated co
 	  done \
 	done
 lint:
-	@$(GOLANGCI_LINT) run -v --no-config --fast=false --fix --disable-all --enable goimports $(PACKAGE_MAJOR)
+	@$(GOLANGCI_LINT) run -v --no-config --fast=false --fix --disable-all --enable goimports $(PACKAGE_PREFIX)
+
+fmt:
+	go run mvdan.cc/gofumpt@v0.3.1 -l -w $(PACKAGE_PREFIX)
 
 stage:
-	git add --intent-to-add v1
+	test -d .git && git add --intent-to-add README.md docs ${PACKAGE_PREFIX} go.mod go.sum
