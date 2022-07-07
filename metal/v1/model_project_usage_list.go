@@ -17,7 +17,7 @@ import (
 
 // ProjectUsageList struct for ProjectUsageList
 type ProjectUsageList struct {
-	Usages []ProjectUsage `json:"usages,omitempty"`
+	Usages []FindProjectUsage200ResponseUsagesInner `json:"usages,omitempty"`
 }
 
 // NewProjectUsageList instantiates a new ProjectUsageList object
@@ -38,9 +38,9 @@ func NewProjectUsageListWithDefaults() *ProjectUsageList {
 }
 
 // GetUsages returns the Usages field value if set, zero value otherwise.
-func (o *ProjectUsageList) GetUsages() []ProjectUsage {
+func (o *ProjectUsageList) GetUsages() []FindProjectUsage200ResponseUsagesInner {
 	if o == nil || o.Usages == nil {
-		var ret []ProjectUsage
+		var ret []FindProjectUsage200ResponseUsagesInner
 		return ret
 	}
 	return o.Usages
@@ -48,7 +48,7 @@ func (o *ProjectUsageList) GetUsages() []ProjectUsage {
 
 // GetUsagesOk returns a tuple with the Usages field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectUsageList) GetUsagesOk() ([]ProjectUsage, bool) {
+func (o *ProjectUsageList) GetUsagesOk() ([]FindProjectUsage200ResponseUsagesInner, bool) {
 	if o == nil || o.Usages == nil {
 		return nil, false
 	}
@@ -64,8 +64,8 @@ func (o *ProjectUsageList) HasUsages() bool {
 	return false
 }
 
-// SetUsages gets a reference to the given []ProjectUsage and assigns it to the Usages field.
-func (o *ProjectUsageList) SetUsages(v []ProjectUsage) {
+// SetUsages gets a reference to the given []FindProjectUsage200ResponseUsagesInner and assigns it to the Usages field.
+func (o *ProjectUsageList) SetUsages(v []FindProjectUsage200ResponseUsagesInner) {
 	o.Usages = v
 }
 

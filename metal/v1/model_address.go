@@ -17,24 +17,24 @@ import (
 
 // Address struct for Address
 type Address struct {
-	Address     string       `json:"address"`
-	Address2    *string      `json:"address2,omitempty"`
-	City        *string      `json:"city,omitempty"`
-	State       *string      `json:"state,omitempty"`
-	ZipCode     string       `json:"zip_code"`
-	Country     string       `json:"country"`
-	Coordinates *Coordinates `json:"coordinates,omitempty"`
+	Address     string                                               `json:"address"`
+	Address2    *string                                              `json:"address2,omitempty"`
+	City        *string                                              `json:"city,omitempty"`
+	Coordinates *FindDeviceById200ResponseFacilityAddressCoordinates `json:"coordinates,omitempty"`
+	Country     string                                               `json:"country"`
+	State       *string                                              `json:"state,omitempty"`
+	ZipCode     string                                               `json:"zip_code"`
 }
 
 // NewAddress instantiates a new Address object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAddress(address string, zipCode string, country string) *Address {
+func NewAddress(address string, country string, zipCode string) *Address {
 	this := Address{}
 	this.Address = address
-	this.ZipCode = zipCode
 	this.Country = country
+	this.ZipCode = zipCode
 	return &this
 }
 
@@ -134,6 +134,62 @@ func (o *Address) SetCity(v string) {
 	o.City = &v
 }
 
+// GetCoordinates returns the Coordinates field value if set, zero value otherwise.
+func (o *Address) GetCoordinates() FindDeviceById200ResponseFacilityAddressCoordinates {
+	if o == nil || o.Coordinates == nil {
+		var ret FindDeviceById200ResponseFacilityAddressCoordinates
+		return ret
+	}
+	return *o.Coordinates
+}
+
+// GetCoordinatesOk returns a tuple with the Coordinates field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Address) GetCoordinatesOk() (*FindDeviceById200ResponseFacilityAddressCoordinates, bool) {
+	if o == nil || o.Coordinates == nil {
+		return nil, false
+	}
+	return o.Coordinates, true
+}
+
+// HasCoordinates returns a boolean if a field has been set.
+func (o *Address) HasCoordinates() bool {
+	if o != nil && o.Coordinates != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCoordinates gets a reference to the given FindDeviceById200ResponseFacilityAddressCoordinates and assigns it to the Coordinates field.
+func (o *Address) SetCoordinates(v FindDeviceById200ResponseFacilityAddressCoordinates) {
+	o.Coordinates = &v
+}
+
+// GetCountry returns the Country field value
+func (o *Address) GetCountry() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Country
+}
+
+// GetCountryOk returns a tuple with the Country field value
+// and a boolean to check if the value has been set.
+func (o *Address) GetCountryOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Country, true
+}
+
+// SetCountry sets field value
+func (o *Address) SetCountry(v string) {
+	o.Country = v
+}
+
 // GetState returns the State field value if set, zero value otherwise.
 func (o *Address) GetState() string {
 	if o == nil || o.State == nil {
@@ -190,62 +246,6 @@ func (o *Address) SetZipCode(v string) {
 	o.ZipCode = v
 }
 
-// GetCountry returns the Country field value
-func (o *Address) GetCountry() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Country
-}
-
-// GetCountryOk returns a tuple with the Country field value
-// and a boolean to check if the value has been set.
-func (o *Address) GetCountryOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Country, true
-}
-
-// SetCountry sets field value
-func (o *Address) SetCountry(v string) {
-	o.Country = v
-}
-
-// GetCoordinates returns the Coordinates field value if set, zero value otherwise.
-func (o *Address) GetCoordinates() Coordinates {
-	if o == nil || o.Coordinates == nil {
-		var ret Coordinates
-		return ret
-	}
-	return *o.Coordinates
-}
-
-// GetCoordinatesOk returns a tuple with the Coordinates field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Address) GetCoordinatesOk() (*Coordinates, bool) {
-	if o == nil || o.Coordinates == nil {
-		return nil, false
-	}
-	return o.Coordinates, true
-}
-
-// HasCoordinates returns a boolean if a field has been set.
-func (o *Address) HasCoordinates() bool {
-	if o != nil && o.Coordinates != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetCoordinates gets a reference to the given Coordinates and assigns it to the Coordinates field.
-func (o *Address) SetCoordinates(v Coordinates) {
-	o.Coordinates = &v
-}
-
 func (o Address) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
@@ -257,17 +257,17 @@ func (o Address) MarshalJSON() ([]byte, error) {
 	if o.City != nil {
 		toSerialize["city"] = o.City
 	}
+	if o.Coordinates != nil {
+		toSerialize["coordinates"] = o.Coordinates
+	}
+	if true {
+		toSerialize["country"] = o.Country
+	}
 	if o.State != nil {
 		toSerialize["state"] = o.State
 	}
 	if true {
 		toSerialize["zip_code"] = o.ZipCode
-	}
-	if true {
-		toSerialize["country"] = o.Country
-	}
-	if o.Coordinates != nil {
-		toSerialize["coordinates"] = o.Coordinates
 	}
 	return json.Marshal(toSerialize)
 }

@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**CreateUser**](UsersApi.md#CreateUser) | **Post** /users | Create a user
 [**FindCurrentUser**](UsersApi.md#FindCurrentUser) | **Get** /user | Retrieve the current user
+[**FindInvitations**](UsersApi.md#FindInvitations) | **Get** /invitations | Retrieve current user invitations
 [**FindUserById**](UsersApi.md#FindUserById) | **Get** /users/{id} | Retrieve a user
 [**FindUserCustomdata**](UsersApi.md#FindUserCustomdata) | **Get** /users/{id}/customdata | Retrieve the custom metadata of a user
 [**FindUsers**](UsersApi.md#FindUsers) | **Get** /users | Retrieve all users
@@ -15,7 +16,7 @@ Method | HTTP request | Description
 
 ## CreateUser
 
-> User CreateUser(ctx).User(user).Execute()
+> FindProjectAPIKeys200ResponseApiKeysInnerUserAllOf CreateUser(ctx).Body(body).Execute()
 
 Create a user
 
@@ -34,16 +35,16 @@ import (
 )
 
 func main() {
-    user := *openapiclient.NewUserCreateInput("FirstName_example", "LastName_example", []openapiclient.EmailInput{*openapiclient.NewEmailInput("Address_example")}) // UserCreateInput | User to create
+    body := *openapiclient.NewCreateUserRequest([]openapiclient.CreateUserRequestEmailsInner{*openapiclient.NewCreateUserRequestEmailsInner("Address_example")}, "FirstName_example", "LastName_example") // CreateUserRequest | User to create
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.UsersApi.CreateUser(context.Background()).User(user).Execute()
+    resp, r, err := apiClient.UsersApi.CreateUser(context.Background()).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.CreateUser``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateUser`: User
+    // response from `CreateUser`: FindProjectAPIKeys200ResponseApiKeysInnerUserAllOf
     fmt.Fprintf(os.Stdout, "Response from `UsersApi.CreateUser`: %v\n", resp)
 }
 ```
@@ -59,11 +60,11 @@ Other parameters are passed through a pointer to a apiCreateUserRequest struct v
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **user** | [**UserCreateInput**](UserCreateInput.md) | User to create | 
+ **body** | [**CreateUserRequest**](CreateUserRequest.md) | User to create | 
 
 ### Return type
 
-[**User**](User.md)
+[**FindProjectAPIKeys200ResponseApiKeysInnerUserAllOf**](FindProjectAPIKeys200ResponseApiKeysInnerUserAllOf.md)
 
 ### Authorization
 
@@ -81,7 +82,7 @@ Name | Type | Description  | Notes
 
 ## FindCurrentUser
 
-> User FindCurrentUser(ctx).Include(include).Exclude(exclude).Execute()
+> FindProjectAPIKeys200ResponseApiKeysInnerUserAllOf FindCurrentUser(ctx).Include(include).Exclude(exclude).Execute()
 
 Retrieve the current user
 
@@ -110,7 +111,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.FindCurrentUser``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindCurrentUser`: User
+    // response from `FindCurrentUser`: FindProjectAPIKeys200ResponseApiKeysInnerUserAllOf
     fmt.Fprintf(os.Stdout, "Response from `UsersApi.FindCurrentUser`: %v\n", resp)
 }
 ```
@@ -131,7 +132,79 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**User**](User.md)
+[**FindProjectAPIKeys200ResponseApiKeysInnerUserAllOf**](FindProjectAPIKeys200ResponseApiKeysInnerUserAllOf.md)
+
+### Authorization
+
+[x_auth_token](../README.md#x_auth_token)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## FindInvitations
+
+> FindInvitations200Response FindInvitations(ctx).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
+
+Retrieve current user invitations
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
+    exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
+    page := int32(56) // int32 | Page to return (optional) (default to 1)
+    perPage := int32(56) // int32 | Items returned per page (optional) (default to 10)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.UsersApi.FindInvitations(context.Background()).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.FindInvitations``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `FindInvitations`: FindInvitations200Response
+    fmt.Fprintf(os.Stdout, "Response from `UsersApi.FindInvitations`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiFindInvitationsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
+ **exclude** | **[]string** | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | 
+ **page** | **int32** | Page to return | [default to 1]
+ **perPage** | **int32** | Items returned per page | [default to 10]
+
+### Return type
+
+[**FindInvitations200Response**](FindInvitations200Response.md)
 
 ### Authorization
 
@@ -149,7 +222,7 @@ Name | Type | Description  | Notes
 
 ## FindUserById
 
-> User FindUserById(ctx, id).Include(include).Exclude(exclude).Execute()
+> FindProjectAPIKeys200ResponseApiKeysInnerUserAllOf FindUserById(ctx, id).Include(include).Exclude(exclude).Execute()
 
 Retrieve a user
 
@@ -179,7 +252,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.FindUserById``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindUserById`: User
+    // response from `FindUserById`: FindProjectAPIKeys200ResponseApiKeysInnerUserAllOf
     fmt.Fprintf(os.Stdout, "Response from `UsersApi.FindUserById`: %v\n", resp)
 }
 ```
@@ -205,7 +278,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**User**](User.md)
+[**FindProjectAPIKeys200ResponseApiKeysInnerUserAllOf**](FindProjectAPIKeys200ResponseApiKeysInnerUserAllOf.md)
 
 ### Authorization
 
@@ -291,7 +364,7 @@ Name | Type | Description  | Notes
 
 ## FindUsers
 
-> UserList FindUsers(ctx).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
+> FindUsers200Response FindUsers(ctx).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
 
 Retrieve all users
 
@@ -322,7 +395,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.FindUsers``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindUsers`: UserList
+    // response from `FindUsers`: FindUsers200Response
     fmt.Fprintf(os.Stdout, "Response from `UsersApi.FindUsers`: %v\n", resp)
 }
 ```
@@ -345,7 +418,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**UserList**](UserList.md)
+[**FindUsers200Response**](FindUsers200Response.md)
 
 ### Authorization
 
@@ -363,7 +436,7 @@ Name | Type | Description  | Notes
 
 ## UpdateCurrentUser
 
-> User UpdateCurrentUser(ctx).User(user).Execute()
+> FindProjectAPIKeys200ResponseApiKeysInnerUserAllOf UpdateCurrentUser(ctx).Body(body).Execute()
 
 Update the current user
 
@@ -382,16 +455,16 @@ import (
 )
 
 func main() {
-    user := *openapiclient.NewUserUpdateInput() // UserUpdateInput | User to update
+    body := *openapiclient.NewUpdateCurrentUserRequest() // UpdateCurrentUserRequest | User to update
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.UsersApi.UpdateCurrentUser(context.Background()).User(user).Execute()
+    resp, r, err := apiClient.UsersApi.UpdateCurrentUser(context.Background()).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.UpdateCurrentUser``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateCurrentUser`: User
+    // response from `UpdateCurrentUser`: FindProjectAPIKeys200ResponseApiKeysInnerUserAllOf
     fmt.Fprintf(os.Stdout, "Response from `UsersApi.UpdateCurrentUser`: %v\n", resp)
 }
 ```
@@ -407,11 +480,11 @@ Other parameters are passed through a pointer to a apiUpdateCurrentUserRequest s
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **user** | [**UserUpdateInput**](UserUpdateInput.md) | User to update | 
+ **body** | [**UpdateCurrentUserRequest**](UpdateCurrentUserRequest.md) | User to update | 
 
 ### Return type
 
-[**User**](User.md)
+[**FindProjectAPIKeys200ResponseApiKeysInnerUserAllOf**](FindProjectAPIKeys200ResponseApiKeysInnerUserAllOf.md)
 
 ### Authorization
 

@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 ## CreateSelfServiceReservation
 
-> SelfServiceReservationResponse CreateSelfServiceReservation(ctx, projectId).Reservation(reservation).Execute()
+> FindSelfServiceReservations200ResponseReservationsInner CreateSelfServiceReservation(ctx, projectId).Body(body).Execute()
 
 Create a reservation
 
@@ -32,16 +32,16 @@ import (
 
 func main() {
     projectId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Project UUID
-    reservation := *openapiclient.NewCreateSelfServiceReservationRequest() // CreateSelfServiceReservationRequest | reservation to create
+    body := *openapiclient.NewCreateSelfServiceReservationRequest() // CreateSelfServiceReservationRequest | reservation to create
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.SelfServiceReservationsApi.CreateSelfServiceReservation(context.Background(), projectId).Reservation(reservation).Execute()
+    resp, r, err := apiClient.SelfServiceReservationsApi.CreateSelfServiceReservation(context.Background(), projectId).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SelfServiceReservationsApi.CreateSelfServiceReservation``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateSelfServiceReservation`: SelfServiceReservationResponse
+    // response from `CreateSelfServiceReservation`: FindSelfServiceReservations200ResponseReservationsInner
     fmt.Fprintf(os.Stdout, "Response from `SelfServiceReservationsApi.CreateSelfServiceReservation`: %v\n", resp)
 }
 ```
@@ -62,11 +62,11 @@ Other parameters are passed through a pointer to a apiCreateSelfServiceReservati
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **reservation** | [**CreateSelfServiceReservationRequest**](CreateSelfServiceReservationRequest.md) | reservation to create | 
+ **body** | [**CreateSelfServiceReservationRequest**](CreateSelfServiceReservationRequest.md) | reservation to create | 
 
 ### Return type
 
-[**SelfServiceReservationResponse**](SelfServiceReservationResponse.md)
+[**FindSelfServiceReservations200ResponseReservationsInner**](FindSelfServiceReservations200ResponseReservationsInner.md)
 
 ### Authorization
 
@@ -84,7 +84,7 @@ Name | Type | Description  | Notes
 
 ## FindSelfServiceReservation
 
-> SelfServiceReservationResponse FindSelfServiceReservation(ctx, id, projectId).Execute()
+> FindSelfServiceReservations200ResponseReservationsInner FindSelfServiceReservation(ctx, id, projectId).Execute()
 
 Retrieve a reservation
 
@@ -113,7 +113,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `SelfServiceReservationsApi.FindSelfServiceReservation``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindSelfServiceReservation`: SelfServiceReservationResponse
+    // response from `FindSelfServiceReservation`: FindSelfServiceReservations200ResponseReservationsInner
     fmt.Fprintf(os.Stdout, "Response from `SelfServiceReservationsApi.FindSelfServiceReservation`: %v\n", resp)
 }
 ```
@@ -139,7 +139,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SelfServiceReservationResponse**](SelfServiceReservationResponse.md)
+[**FindSelfServiceReservations200ResponseReservationsInner**](FindSelfServiceReservations200ResponseReservationsInner.md)
 
 ### Authorization
 
@@ -157,7 +157,7 @@ Name | Type | Description  | Notes
 
 ## FindSelfServiceReservations
 
-> SelfServiceReservationList FindSelfServiceReservations(ctx, projectId).Page(page).PerPage(perPage).Execute()
+> FindSelfServiceReservations200Response FindSelfServiceReservations(ctx, projectId).Page(page).PerPage(perPage).Execute()
 
 Retrieve all reservations
 
@@ -187,7 +187,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `SelfServiceReservationsApi.FindSelfServiceReservations``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindSelfServiceReservations`: SelfServiceReservationList
+    // response from `FindSelfServiceReservations`: FindSelfServiceReservations200Response
     fmt.Fprintf(os.Stdout, "Response from `SelfServiceReservationsApi.FindSelfServiceReservations`: %v\n", resp)
 }
 ```
@@ -213,7 +213,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SelfServiceReservationList**](SelfServiceReservationList.md)
+[**FindSelfServiceReservations200Response**](FindSelfServiceReservations200Response.md)
 
 ### Authorization
 

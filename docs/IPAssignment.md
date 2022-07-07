@@ -4,23 +4,23 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **string** |  | [optional] 
-**AddressFamily** | Pointer to **int32** |  | [optional] 
-**Netmask** | Pointer to **string** |  | [optional] 
-**Public** | Pointer to **bool** |  | [optional] 
-**Enabled** | Pointer to **bool** |  | [optional] 
-**Cidr** | Pointer to **int32** |  | [optional] 
-**Management** | Pointer to **bool** |  | [optional] 
-**Manageable** | Pointer to **bool** |  | [optional] 
-**GlobalIp** | Pointer to **bool** |  | [optional] 
-**AssignedTo** | Pointer to [**Href**](Href.md) |  | [optional] 
-**Network** | Pointer to **string** |  | [optional] 
 **Address** | Pointer to **string** |  | [optional] 
-**Gateway** | Pointer to **string** |  | [optional] 
-**Href** | Pointer to **string** |  | [optional] 
+**AddressFamily** | Pointer to **int32** |  | [optional] 
+**AssignedTo** | Pointer to [**FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
+**Cidr** | Pointer to **int32** |  | [optional] 
 **CreatedAt** | Pointer to **time.Time** |  | [optional] 
-**Metro** | Pointer to [**IPAssignmentMetro**](IPAssignmentMetro.md) |  | [optional] 
-**ParentBlock** | Pointer to [**ParentBlock**](ParentBlock.md) |  | [optional] 
+**Enabled** | Pointer to **bool** |  | [optional] 
+**Gateway** | Pointer to **string** |  | [optional] 
+**GlobalIp** | Pointer to **bool** |  | [optional] 
+**Href** | Pointer to **string** |  | [optional] 
+**Id** | Pointer to **string** |  | [optional] 
+**Manageable** | Pointer to **bool** |  | [optional] 
+**Management** | Pointer to **bool** |  | [optional] 
+**Metro** | Pointer to [**FindDeviceById200ResponseIpAddressesInnerMetro**](FindDeviceById200ResponseIpAddressesInnerMetro.md) |  | [optional] 
+**Netmask** | Pointer to **string** |  | [optional] 
+**Network** | Pointer to **string** |  | [optional] 
+**ParentBlock** | Pointer to [**FindDeviceById200ResponseIpAddressesInnerParentBlock**](FindDeviceById200ResponseIpAddressesInnerParentBlock.md) |  | [optional] 
+**Public** | Pointer to **bool** |  | [optional] 
 
 ## Methods
 
@@ -40,281 +40,6 @@ will change when the set of required properties is changed
 NewIPAssignmentWithDefaults instantiates a new IPAssignment object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetId
-
-`func (o *IPAssignment) GetId() string`
-
-GetId returns the Id field if non-nil, zero value otherwise.
-
-### GetIdOk
-
-`func (o *IPAssignment) GetIdOk() (*string, bool)`
-
-GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetId
-
-`func (o *IPAssignment) SetId(v string)`
-
-SetId sets Id field to given value.
-
-### HasId
-
-`func (o *IPAssignment) HasId() bool`
-
-HasId returns a boolean if a field has been set.
-
-### GetAddressFamily
-
-`func (o *IPAssignment) GetAddressFamily() int32`
-
-GetAddressFamily returns the AddressFamily field if non-nil, zero value otherwise.
-
-### GetAddressFamilyOk
-
-`func (o *IPAssignment) GetAddressFamilyOk() (*int32, bool)`
-
-GetAddressFamilyOk returns a tuple with the AddressFamily field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAddressFamily
-
-`func (o *IPAssignment) SetAddressFamily(v int32)`
-
-SetAddressFamily sets AddressFamily field to given value.
-
-### HasAddressFamily
-
-`func (o *IPAssignment) HasAddressFamily() bool`
-
-HasAddressFamily returns a boolean if a field has been set.
-
-### GetNetmask
-
-`func (o *IPAssignment) GetNetmask() string`
-
-GetNetmask returns the Netmask field if non-nil, zero value otherwise.
-
-### GetNetmaskOk
-
-`func (o *IPAssignment) GetNetmaskOk() (*string, bool)`
-
-GetNetmaskOk returns a tuple with the Netmask field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetNetmask
-
-`func (o *IPAssignment) SetNetmask(v string)`
-
-SetNetmask sets Netmask field to given value.
-
-### HasNetmask
-
-`func (o *IPAssignment) HasNetmask() bool`
-
-HasNetmask returns a boolean if a field has been set.
-
-### GetPublic
-
-`func (o *IPAssignment) GetPublic() bool`
-
-GetPublic returns the Public field if non-nil, zero value otherwise.
-
-### GetPublicOk
-
-`func (o *IPAssignment) GetPublicOk() (*bool, bool)`
-
-GetPublicOk returns a tuple with the Public field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPublic
-
-`func (o *IPAssignment) SetPublic(v bool)`
-
-SetPublic sets Public field to given value.
-
-### HasPublic
-
-`func (o *IPAssignment) HasPublic() bool`
-
-HasPublic returns a boolean if a field has been set.
-
-### GetEnabled
-
-`func (o *IPAssignment) GetEnabled() bool`
-
-GetEnabled returns the Enabled field if non-nil, zero value otherwise.
-
-### GetEnabledOk
-
-`func (o *IPAssignment) GetEnabledOk() (*bool, bool)`
-
-GetEnabledOk returns a tuple with the Enabled field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetEnabled
-
-`func (o *IPAssignment) SetEnabled(v bool)`
-
-SetEnabled sets Enabled field to given value.
-
-### HasEnabled
-
-`func (o *IPAssignment) HasEnabled() bool`
-
-HasEnabled returns a boolean if a field has been set.
-
-### GetCidr
-
-`func (o *IPAssignment) GetCidr() int32`
-
-GetCidr returns the Cidr field if non-nil, zero value otherwise.
-
-### GetCidrOk
-
-`func (o *IPAssignment) GetCidrOk() (*int32, bool)`
-
-GetCidrOk returns a tuple with the Cidr field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCidr
-
-`func (o *IPAssignment) SetCidr(v int32)`
-
-SetCidr sets Cidr field to given value.
-
-### HasCidr
-
-`func (o *IPAssignment) HasCidr() bool`
-
-HasCidr returns a boolean if a field has been set.
-
-### GetManagement
-
-`func (o *IPAssignment) GetManagement() bool`
-
-GetManagement returns the Management field if non-nil, zero value otherwise.
-
-### GetManagementOk
-
-`func (o *IPAssignment) GetManagementOk() (*bool, bool)`
-
-GetManagementOk returns a tuple with the Management field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetManagement
-
-`func (o *IPAssignment) SetManagement(v bool)`
-
-SetManagement sets Management field to given value.
-
-### HasManagement
-
-`func (o *IPAssignment) HasManagement() bool`
-
-HasManagement returns a boolean if a field has been set.
-
-### GetManageable
-
-`func (o *IPAssignment) GetManageable() bool`
-
-GetManageable returns the Manageable field if non-nil, zero value otherwise.
-
-### GetManageableOk
-
-`func (o *IPAssignment) GetManageableOk() (*bool, bool)`
-
-GetManageableOk returns a tuple with the Manageable field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetManageable
-
-`func (o *IPAssignment) SetManageable(v bool)`
-
-SetManageable sets Manageable field to given value.
-
-### HasManageable
-
-`func (o *IPAssignment) HasManageable() bool`
-
-HasManageable returns a boolean if a field has been set.
-
-### GetGlobalIp
-
-`func (o *IPAssignment) GetGlobalIp() bool`
-
-GetGlobalIp returns the GlobalIp field if non-nil, zero value otherwise.
-
-### GetGlobalIpOk
-
-`func (o *IPAssignment) GetGlobalIpOk() (*bool, bool)`
-
-GetGlobalIpOk returns a tuple with the GlobalIp field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetGlobalIp
-
-`func (o *IPAssignment) SetGlobalIp(v bool)`
-
-SetGlobalIp sets GlobalIp field to given value.
-
-### HasGlobalIp
-
-`func (o *IPAssignment) HasGlobalIp() bool`
-
-HasGlobalIp returns a boolean if a field has been set.
-
-### GetAssignedTo
-
-`func (o *IPAssignment) GetAssignedTo() Href`
-
-GetAssignedTo returns the AssignedTo field if non-nil, zero value otherwise.
-
-### GetAssignedToOk
-
-`func (o *IPAssignment) GetAssignedToOk() (*Href, bool)`
-
-GetAssignedToOk returns a tuple with the AssignedTo field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAssignedTo
-
-`func (o *IPAssignment) SetAssignedTo(v Href)`
-
-SetAssignedTo sets AssignedTo field to given value.
-
-### HasAssignedTo
-
-`func (o *IPAssignment) HasAssignedTo() bool`
-
-HasAssignedTo returns a boolean if a field has been set.
-
-### GetNetwork
-
-`func (o *IPAssignment) GetNetwork() string`
-
-GetNetwork returns the Network field if non-nil, zero value otherwise.
-
-### GetNetworkOk
-
-`func (o *IPAssignment) GetNetworkOk() (*string, bool)`
-
-GetNetworkOk returns a tuple with the Network field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetNetwork
-
-`func (o *IPAssignment) SetNetwork(v string)`
-
-SetNetwork sets Network field to given value.
-
-### HasNetwork
-
-`func (o *IPAssignment) HasNetwork() bool`
-
-HasNetwork returns a boolean if a field has been set.
 
 ### GetAddress
 
@@ -341,55 +66,80 @@ SetAddress sets Address field to given value.
 
 HasAddress returns a boolean if a field has been set.
 
-### GetGateway
+### GetAddressFamily
 
-`func (o *IPAssignment) GetGateway() string`
+`func (o *IPAssignment) GetAddressFamily() int32`
 
-GetGateway returns the Gateway field if non-nil, zero value otherwise.
+GetAddressFamily returns the AddressFamily field if non-nil, zero value otherwise.
 
-### GetGatewayOk
+### GetAddressFamilyOk
 
-`func (o *IPAssignment) GetGatewayOk() (*string, bool)`
+`func (o *IPAssignment) GetAddressFamilyOk() (*int32, bool)`
 
-GetGatewayOk returns a tuple with the Gateway field if it's non-nil, zero value otherwise
+GetAddressFamilyOk returns a tuple with the AddressFamily field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetGateway
+### SetAddressFamily
 
-`func (o *IPAssignment) SetGateway(v string)`
+`func (o *IPAssignment) SetAddressFamily(v int32)`
 
-SetGateway sets Gateway field to given value.
+SetAddressFamily sets AddressFamily field to given value.
 
-### HasGateway
+### HasAddressFamily
 
-`func (o *IPAssignment) HasGateway() bool`
+`func (o *IPAssignment) HasAddressFamily() bool`
 
-HasGateway returns a boolean if a field has been set.
+HasAddressFamily returns a boolean if a field has been set.
 
-### GetHref
+### GetAssignedTo
 
-`func (o *IPAssignment) GetHref() string`
+`func (o *IPAssignment) GetAssignedTo() FindBatchById200ResponseDevicesInner`
 
-GetHref returns the Href field if non-nil, zero value otherwise.
+GetAssignedTo returns the AssignedTo field if non-nil, zero value otherwise.
 
-### GetHrefOk
+### GetAssignedToOk
 
-`func (o *IPAssignment) GetHrefOk() (*string, bool)`
+`func (o *IPAssignment) GetAssignedToOk() (*FindBatchById200ResponseDevicesInner, bool)`
 
-GetHrefOk returns a tuple with the Href field if it's non-nil, zero value otherwise
+GetAssignedToOk returns a tuple with the AssignedTo field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetHref
+### SetAssignedTo
 
-`func (o *IPAssignment) SetHref(v string)`
+`func (o *IPAssignment) SetAssignedTo(v FindBatchById200ResponseDevicesInner)`
 
-SetHref sets Href field to given value.
+SetAssignedTo sets AssignedTo field to given value.
 
-### HasHref
+### HasAssignedTo
 
-`func (o *IPAssignment) HasHref() bool`
+`func (o *IPAssignment) HasAssignedTo() bool`
 
-HasHref returns a boolean if a field has been set.
+HasAssignedTo returns a boolean if a field has been set.
+
+### GetCidr
+
+`func (o *IPAssignment) GetCidr() int32`
+
+GetCidr returns the Cidr field if non-nil, zero value otherwise.
+
+### GetCidrOk
+
+`func (o *IPAssignment) GetCidrOk() (*int32, bool)`
+
+GetCidrOk returns a tuple with the Cidr field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCidr
+
+`func (o *IPAssignment) SetCidr(v int32)`
+
+SetCidr sets Cidr field to given value.
+
+### HasCidr
+
+`func (o *IPAssignment) HasCidr() bool`
+
+HasCidr returns a boolean if a field has been set.
 
 ### GetCreatedAt
 
@@ -416,22 +166,197 @@ SetCreatedAt sets CreatedAt field to given value.
 
 HasCreatedAt returns a boolean if a field has been set.
 
+### GetEnabled
+
+`func (o *IPAssignment) GetEnabled() bool`
+
+GetEnabled returns the Enabled field if non-nil, zero value otherwise.
+
+### GetEnabledOk
+
+`func (o *IPAssignment) GetEnabledOk() (*bool, bool)`
+
+GetEnabledOk returns a tuple with the Enabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEnabled
+
+`func (o *IPAssignment) SetEnabled(v bool)`
+
+SetEnabled sets Enabled field to given value.
+
+### HasEnabled
+
+`func (o *IPAssignment) HasEnabled() bool`
+
+HasEnabled returns a boolean if a field has been set.
+
+### GetGateway
+
+`func (o *IPAssignment) GetGateway() string`
+
+GetGateway returns the Gateway field if non-nil, zero value otherwise.
+
+### GetGatewayOk
+
+`func (o *IPAssignment) GetGatewayOk() (*string, bool)`
+
+GetGatewayOk returns a tuple with the Gateway field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetGateway
+
+`func (o *IPAssignment) SetGateway(v string)`
+
+SetGateway sets Gateway field to given value.
+
+### HasGateway
+
+`func (o *IPAssignment) HasGateway() bool`
+
+HasGateway returns a boolean if a field has been set.
+
+### GetGlobalIp
+
+`func (o *IPAssignment) GetGlobalIp() bool`
+
+GetGlobalIp returns the GlobalIp field if non-nil, zero value otherwise.
+
+### GetGlobalIpOk
+
+`func (o *IPAssignment) GetGlobalIpOk() (*bool, bool)`
+
+GetGlobalIpOk returns a tuple with the GlobalIp field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetGlobalIp
+
+`func (o *IPAssignment) SetGlobalIp(v bool)`
+
+SetGlobalIp sets GlobalIp field to given value.
+
+### HasGlobalIp
+
+`func (o *IPAssignment) HasGlobalIp() bool`
+
+HasGlobalIp returns a boolean if a field has been set.
+
+### GetHref
+
+`func (o *IPAssignment) GetHref() string`
+
+GetHref returns the Href field if non-nil, zero value otherwise.
+
+### GetHrefOk
+
+`func (o *IPAssignment) GetHrefOk() (*string, bool)`
+
+GetHrefOk returns a tuple with the Href field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHref
+
+`func (o *IPAssignment) SetHref(v string)`
+
+SetHref sets Href field to given value.
+
+### HasHref
+
+`func (o *IPAssignment) HasHref() bool`
+
+HasHref returns a boolean if a field has been set.
+
+### GetId
+
+`func (o *IPAssignment) GetId() string`
+
+GetId returns the Id field if non-nil, zero value otherwise.
+
+### GetIdOk
+
+`func (o *IPAssignment) GetIdOk() (*string, bool)`
+
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetId
+
+`func (o *IPAssignment) SetId(v string)`
+
+SetId sets Id field to given value.
+
+### HasId
+
+`func (o *IPAssignment) HasId() bool`
+
+HasId returns a boolean if a field has been set.
+
+### GetManageable
+
+`func (o *IPAssignment) GetManageable() bool`
+
+GetManageable returns the Manageable field if non-nil, zero value otherwise.
+
+### GetManageableOk
+
+`func (o *IPAssignment) GetManageableOk() (*bool, bool)`
+
+GetManageableOk returns a tuple with the Manageable field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetManageable
+
+`func (o *IPAssignment) SetManageable(v bool)`
+
+SetManageable sets Manageable field to given value.
+
+### HasManageable
+
+`func (o *IPAssignment) HasManageable() bool`
+
+HasManageable returns a boolean if a field has been set.
+
+### GetManagement
+
+`func (o *IPAssignment) GetManagement() bool`
+
+GetManagement returns the Management field if non-nil, zero value otherwise.
+
+### GetManagementOk
+
+`func (o *IPAssignment) GetManagementOk() (*bool, bool)`
+
+GetManagementOk returns a tuple with the Management field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetManagement
+
+`func (o *IPAssignment) SetManagement(v bool)`
+
+SetManagement sets Management field to given value.
+
+### HasManagement
+
+`func (o *IPAssignment) HasManagement() bool`
+
+HasManagement returns a boolean if a field has been set.
+
 ### GetMetro
 
-`func (o *IPAssignment) GetMetro() IPAssignmentMetro`
+`func (o *IPAssignment) GetMetro() FindDeviceById200ResponseIpAddressesInnerMetro`
 
 GetMetro returns the Metro field if non-nil, zero value otherwise.
 
 ### GetMetroOk
 
-`func (o *IPAssignment) GetMetroOk() (*IPAssignmentMetro, bool)`
+`func (o *IPAssignment) GetMetroOk() (*FindDeviceById200ResponseIpAddressesInnerMetro, bool)`
 
 GetMetroOk returns a tuple with the Metro field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMetro
 
-`func (o *IPAssignment) SetMetro(v IPAssignmentMetro)`
+`func (o *IPAssignment) SetMetro(v FindDeviceById200ResponseIpAddressesInnerMetro)`
 
 SetMetro sets Metro field to given value.
 
@@ -441,22 +366,72 @@ SetMetro sets Metro field to given value.
 
 HasMetro returns a boolean if a field has been set.
 
+### GetNetmask
+
+`func (o *IPAssignment) GetNetmask() string`
+
+GetNetmask returns the Netmask field if non-nil, zero value otherwise.
+
+### GetNetmaskOk
+
+`func (o *IPAssignment) GetNetmaskOk() (*string, bool)`
+
+GetNetmaskOk returns a tuple with the Netmask field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNetmask
+
+`func (o *IPAssignment) SetNetmask(v string)`
+
+SetNetmask sets Netmask field to given value.
+
+### HasNetmask
+
+`func (o *IPAssignment) HasNetmask() bool`
+
+HasNetmask returns a boolean if a field has been set.
+
+### GetNetwork
+
+`func (o *IPAssignment) GetNetwork() string`
+
+GetNetwork returns the Network field if non-nil, zero value otherwise.
+
+### GetNetworkOk
+
+`func (o *IPAssignment) GetNetworkOk() (*string, bool)`
+
+GetNetworkOk returns a tuple with the Network field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNetwork
+
+`func (o *IPAssignment) SetNetwork(v string)`
+
+SetNetwork sets Network field to given value.
+
+### HasNetwork
+
+`func (o *IPAssignment) HasNetwork() bool`
+
+HasNetwork returns a boolean if a field has been set.
+
 ### GetParentBlock
 
-`func (o *IPAssignment) GetParentBlock() ParentBlock`
+`func (o *IPAssignment) GetParentBlock() FindDeviceById200ResponseIpAddressesInnerParentBlock`
 
 GetParentBlock returns the ParentBlock field if non-nil, zero value otherwise.
 
 ### GetParentBlockOk
 
-`func (o *IPAssignment) GetParentBlockOk() (*ParentBlock, bool)`
+`func (o *IPAssignment) GetParentBlockOk() (*FindDeviceById200ResponseIpAddressesInnerParentBlock, bool)`
 
 GetParentBlockOk returns a tuple with the ParentBlock field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetParentBlock
 
-`func (o *IPAssignment) SetParentBlock(v ParentBlock)`
+`func (o *IPAssignment) SetParentBlock(v FindDeviceById200ResponseIpAddressesInnerParentBlock)`
 
 SetParentBlock sets ParentBlock field to given value.
 
@@ -465,6 +440,31 @@ SetParentBlock sets ParentBlock field to given value.
 `func (o *IPAssignment) HasParentBlock() bool`
 
 HasParentBlock returns a boolean if a field has been set.
+
+### GetPublic
+
+`func (o *IPAssignment) GetPublic() bool`
+
+GetPublic returns the Public field if non-nil, zero value otherwise.
+
+### GetPublicOk
+
+`func (o *IPAssignment) GetPublicOk() (*bool, bool)`
+
+GetPublicOk returns a tuple with the Public field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPublic
+
+`func (o *IPAssignment) SetPublic(v bool)`
+
+SetPublic sets Public field to given value.
+
+### HasPublic
+
+`func (o *IPAssignment) HasPublic() bool`
+
+HasPublic returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

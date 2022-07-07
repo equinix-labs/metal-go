@@ -8,6 +8,8 @@ Method | HTTP request | Description
 [**FindIPAddressById**](IPAddressesApi.md#FindIPAddressById) | **Get** /ips/{id} | Retrieve an ip address
 [**FindIPAddressCustomdata**](IPAddressesApi.md#FindIPAddressCustomdata) | **Get** /ips/{id}/customdata | Retrieve the custom metadata of an IP Reservation or IP Assignment
 [**FindIPAvailabilities**](IPAddressesApi.md#FindIPAvailabilities) | **Get** /ips/{id}/available | Retrieve all available subnets of a particular reservation
+[**FindIPReservations**](IPAddressesApi.md#FindIPReservations) | **Get** /projects/{id}/ips | Retrieve all ip reservations
+[**RequestIPReservation**](IPAddressesApi.md#RequestIPReservation) | **Post** /projects/{id}/ips | Requesting IP reservations
 [**UpdateIPAddress**](IPAddressesApi.md#UpdateIPAddress) | **Patch** /ips/{id} | Update an ip address
 
 
@@ -82,7 +84,7 @@ Name | Type | Description  | Notes
 
 ## FindIPAddressById
 
-> IPAssignment FindIPAddressById(ctx, id).Include(include).Exclude(exclude).Execute()
+> map[string]interface{} FindIPAddressById(ctx, id).Include(include).Exclude(exclude).Execute()
 
 Retrieve an ip address
 
@@ -112,7 +114,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `IPAddressesApi.FindIPAddressById``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindIPAddressById`: IPAssignment
+    // response from `FindIPAddressById`: map[string]interface{}
     fmt.Fprintf(os.Stdout, "Response from `IPAddressesApi.FindIPAddressById`: %v\n", resp)
 }
 ```
@@ -138,7 +140,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**IPAssignment**](IPAssignment.md)
+**map[string]interface{}**
 
 ### Authorization
 
@@ -224,7 +226,7 @@ Name | Type | Description  | Notes
 
 ## FindIPAvailabilities
 
-> IPAvailabilitiesList FindIPAvailabilities(ctx, id).Cidr(cidr).Execute()
+> FindIPAvailabilities200Response FindIPAvailabilities(ctx, id).Cidr(cidr).Execute()
 
 Retrieve all available subnets of a particular reservation
 
@@ -253,7 +255,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `IPAddressesApi.FindIPAvailabilities``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindIPAvailabilities`: IPAvailabilitiesList
+    // response from `FindIPAvailabilities`: FindIPAvailabilities200Response
     fmt.Fprintf(os.Stdout, "Response from `IPAddressesApi.FindIPAvailabilities`: %v\n", resp)
 }
 ```
@@ -278,7 +280,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**IPAvailabilitiesList**](IPAvailabilitiesList.md)
+[**FindIPAvailabilities200Response**](FindIPAvailabilities200Response.md)
 
 ### Authorization
 
@@ -294,9 +296,157 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## FindIPReservations
+
+> FindIPReservations200Response FindIPReservations(ctx, id).Types(types).Include(include).Exclude(exclude).Execute()
+
+Retrieve all ip reservations
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Project UUID
+    types := []string{"Types_example"} // []string | Filter project IP reservations by reservation type (optional)
+    include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
+    exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.IPAddressesApi.FindIPReservations(context.Background(), id).Types(types).Include(include).Exclude(exclude).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `IPAddressesApi.FindIPReservations``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `FindIPReservations`: FindIPReservations200Response
+    fmt.Fprintf(os.Stdout, "Response from `IPAddressesApi.FindIPReservations`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** | Project UUID | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiFindIPReservationsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **types** | **[]string** | Filter project IP reservations by reservation type | 
+ **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
+ **exclude** | **[]string** | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | 
+
+### Return type
+
+[**FindIPReservations200Response**](FindIPReservations200Response.md)
+
+### Authorization
+
+[x_auth_token](../README.md#x_auth_token)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## RequestIPReservation
+
+> map[string]interface{} RequestIPReservation(ctx, id).Body(body).Execute()
+
+Requesting IP reservations
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Project UUID
+    body := map[string]interface{}{ ... } // map[string]interface{} | IP Reservation Request to create
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.IPAddressesApi.RequestIPReservation(context.Background(), id).Body(body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `IPAddressesApi.RequestIPReservation``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `RequestIPReservation`: map[string]interface{}
+    fmt.Fprintf(os.Stdout, "Response from `IPAddressesApi.RequestIPReservation`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** | Project UUID | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiRequestIPReservationRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **body** | **map[string]interface{}** | IP Reservation Request to create | 
+
+### Return type
+
+**map[string]interface{}**
+
+### Authorization
+
+[x_auth_token](../README.md#x_auth_token)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## UpdateIPAddress
 
-> IPAssignment UpdateIPAddress(ctx, id).Details(details).Customdata(customdata).Execute()
+> map[string]interface{} UpdateIPAddress(ctx, id).Details(details).Customdata(customdata).Execute()
 
 Update an ip address
 
@@ -326,7 +476,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `IPAddressesApi.UpdateIPAddress``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateIPAddress`: IPAssignment
+    // response from `UpdateIPAddress`: map[string]interface{}
     fmt.Fprintf(os.Stdout, "Response from `IPAddressesApi.UpdateIPAddress`: %v\n", resp)
 }
 ```
@@ -352,7 +502,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**IPAssignment**](IPAssignment.md)
+**map[string]interface{}**
 
 ### Authorization
 

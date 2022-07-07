@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **string** |  | [optional] 
-**PaymentMethodId** | Pointer to **string** |  | [optional] 
 **BackendTransferEnabled** | Pointer to **bool** |  | [optional] 
 **Customdata** | Pointer to **map[string]interface{}** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
+**PaymentMethodId** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -27,56 +27,6 @@ will change when the set of required properties is changed
 NewProjectUpdateInputWithDefaults instantiates a new ProjectUpdateInput object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetName
-
-`func (o *ProjectUpdateInput) GetName() string`
-
-GetName returns the Name field if non-nil, zero value otherwise.
-
-### GetNameOk
-
-`func (o *ProjectUpdateInput) GetNameOk() (*string, bool)`
-
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetName
-
-`func (o *ProjectUpdateInput) SetName(v string)`
-
-SetName sets Name field to given value.
-
-### HasName
-
-`func (o *ProjectUpdateInput) HasName() bool`
-
-HasName returns a boolean if a field has been set.
-
-### GetPaymentMethodId
-
-`func (o *ProjectUpdateInput) GetPaymentMethodId() string`
-
-GetPaymentMethodId returns the PaymentMethodId field if non-nil, zero value otherwise.
-
-### GetPaymentMethodIdOk
-
-`func (o *ProjectUpdateInput) GetPaymentMethodIdOk() (*string, bool)`
-
-GetPaymentMethodIdOk returns a tuple with the PaymentMethodId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPaymentMethodId
-
-`func (o *ProjectUpdateInput) SetPaymentMethodId(v string)`
-
-SetPaymentMethodId sets PaymentMethodId field to given value.
-
-### HasPaymentMethodId
-
-`func (o *ProjectUpdateInput) HasPaymentMethodId() bool`
-
-HasPaymentMethodId returns a boolean if a field has been set.
 
 ### GetBackendTransferEnabled
 
@@ -127,6 +77,56 @@ SetCustomdata sets Customdata field to given value.
 `func (o *ProjectUpdateInput) HasCustomdata() bool`
 
 HasCustomdata returns a boolean if a field has been set.
+
+### GetName
+
+`func (o *ProjectUpdateInput) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *ProjectUpdateInput) GetNameOk() (*string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetName
+
+`func (o *ProjectUpdateInput) SetName(v string)`
+
+SetName sets Name field to given value.
+
+### HasName
+
+`func (o *ProjectUpdateInput) HasName() bool`
+
+HasName returns a boolean if a field has been set.
+
+### GetPaymentMethodId
+
+`func (o *ProjectUpdateInput) GetPaymentMethodId() string`
+
+GetPaymentMethodId returns the PaymentMethodId field if non-nil, zero value otherwise.
+
+### GetPaymentMethodIdOk
+
+`func (o *ProjectUpdateInput) GetPaymentMethodIdOk() (*string, bool)`
+
+GetPaymentMethodIdOk returns a tuple with the PaymentMethodId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPaymentMethodId
+
+`func (o *ProjectUpdateInput) SetPaymentMethodId(v string)`
+
+SetPaymentMethodId sets PaymentMethodId field to given value.
+
+### HasPaymentMethodId
+
+`func (o *ProjectUpdateInput) HasPaymentMethodId() bool`
+
+HasPaymentMethodId returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

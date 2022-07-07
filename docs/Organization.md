@@ -4,24 +4,23 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **string** |  | [optional] 
-**Name** | Pointer to **string** |  | [optional] 
-**Description** | Pointer to **string** |  | [optional] 
-**Website** | Pointer to **string** |  | [optional] 
-**Twitter** | Pointer to **string** |  | [optional] 
-**Logo** | Pointer to ***os.File** |  | [optional] 
+**Address** | Pointer to [**FindDeviceById200ResponseFacilityAddress**](FindDeviceById200ResponseFacilityAddress.md) |  | [optional] 
+**BillingAddress** | Pointer to [**FindDeviceById200ResponseFacilityAddress**](FindDeviceById200ResponseFacilityAddress.md) |  | [optional] 
 **CreatedAt** | Pointer to **time.Time** |  | [optional] 
-**UpdatedAt** | Pointer to **time.Time** |  | [optional] 
-**Projects** | Pointer to [**[]Href**](Href.md) |  | [optional] 
-**Members** | Pointer to [**[]Href**](Href.md) |  | [optional] 
-**Memberships** | Pointer to [**[]Href**](Href.md) |  | [optional] 
-**Address** | Pointer to [**Address**](Address.md) |  | [optional] 
-**BillingAddress** | Pointer to [**Address**](Address.md) |  | [optional] 
-**Entitlement** | Pointer to [**Entitlement**](Entitlement.md) |  | [optional] 
-**Terms** | Pointer to **int32** |  | [optional] 
 **CreditAmount** | Pointer to **float32** |  | [optional] 
 **Customdata** | Pointer to **map[string]interface{}** |  | [optional] 
+**Description** | Pointer to **string** |  | [optional] 
 **Enforce2faAt** | Pointer to **time.Time** | Force to all members to have enabled the two factor authentication after that date, unless the value is null | [optional] 
+**Id** | Pointer to **string** |  | [optional] 
+**Logo** | Pointer to ***os.File** |  | [optional] 
+**Members** | Pointer to [**[]FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
+**Memberships** | Pointer to [**[]FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
+**Projects** | Pointer to [**[]FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
+**Terms** | Pointer to **int32** |  | [optional] 
+**Twitter** | Pointer to **string** |  | [optional] 
+**UpdatedAt** | Pointer to **time.Time** |  | [optional] 
+**Website** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -42,155 +41,55 @@ NewOrganizationWithDefaults instantiates a new Organization object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetId
+### GetAddress
 
-`func (o *Organization) GetId() string`
+`func (o *Organization) GetAddress() FindDeviceById200ResponseFacilityAddress`
 
-GetId returns the Id field if non-nil, zero value otherwise.
+GetAddress returns the Address field if non-nil, zero value otherwise.
 
-### GetIdOk
+### GetAddressOk
 
-`func (o *Organization) GetIdOk() (*string, bool)`
+`func (o *Organization) GetAddressOk() (*FindDeviceById200ResponseFacilityAddress, bool)`
 
-GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+GetAddressOk returns a tuple with the Address field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetId
+### SetAddress
 
-`func (o *Organization) SetId(v string)`
+`func (o *Organization) SetAddress(v FindDeviceById200ResponseFacilityAddress)`
 
-SetId sets Id field to given value.
+SetAddress sets Address field to given value.
 
-### HasId
+### HasAddress
 
-`func (o *Organization) HasId() bool`
+`func (o *Organization) HasAddress() bool`
 
-HasId returns a boolean if a field has been set.
+HasAddress returns a boolean if a field has been set.
 
-### GetName
+### GetBillingAddress
 
-`func (o *Organization) GetName() string`
+`func (o *Organization) GetBillingAddress() FindDeviceById200ResponseFacilityAddress`
 
-GetName returns the Name field if non-nil, zero value otherwise.
+GetBillingAddress returns the BillingAddress field if non-nil, zero value otherwise.
 
-### GetNameOk
+### GetBillingAddressOk
 
-`func (o *Organization) GetNameOk() (*string, bool)`
+`func (o *Organization) GetBillingAddressOk() (*FindDeviceById200ResponseFacilityAddress, bool)`
 
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+GetBillingAddressOk returns a tuple with the BillingAddress field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetName
+### SetBillingAddress
 
-`func (o *Organization) SetName(v string)`
+`func (o *Organization) SetBillingAddress(v FindDeviceById200ResponseFacilityAddress)`
 
-SetName sets Name field to given value.
+SetBillingAddress sets BillingAddress field to given value.
 
-### HasName
+### HasBillingAddress
 
-`func (o *Organization) HasName() bool`
+`func (o *Organization) HasBillingAddress() bool`
 
-HasName returns a boolean if a field has been set.
-
-### GetDescription
-
-`func (o *Organization) GetDescription() string`
-
-GetDescription returns the Description field if non-nil, zero value otherwise.
-
-### GetDescriptionOk
-
-`func (o *Organization) GetDescriptionOk() (*string, bool)`
-
-GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDescription
-
-`func (o *Organization) SetDescription(v string)`
-
-SetDescription sets Description field to given value.
-
-### HasDescription
-
-`func (o *Organization) HasDescription() bool`
-
-HasDescription returns a boolean if a field has been set.
-
-### GetWebsite
-
-`func (o *Organization) GetWebsite() string`
-
-GetWebsite returns the Website field if non-nil, zero value otherwise.
-
-### GetWebsiteOk
-
-`func (o *Organization) GetWebsiteOk() (*string, bool)`
-
-GetWebsiteOk returns a tuple with the Website field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetWebsite
-
-`func (o *Organization) SetWebsite(v string)`
-
-SetWebsite sets Website field to given value.
-
-### HasWebsite
-
-`func (o *Organization) HasWebsite() bool`
-
-HasWebsite returns a boolean if a field has been set.
-
-### GetTwitter
-
-`func (o *Organization) GetTwitter() string`
-
-GetTwitter returns the Twitter field if non-nil, zero value otherwise.
-
-### GetTwitterOk
-
-`func (o *Organization) GetTwitterOk() (*string, bool)`
-
-GetTwitterOk returns a tuple with the Twitter field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTwitter
-
-`func (o *Organization) SetTwitter(v string)`
-
-SetTwitter sets Twitter field to given value.
-
-### HasTwitter
-
-`func (o *Organization) HasTwitter() bool`
-
-HasTwitter returns a boolean if a field has been set.
-
-### GetLogo
-
-`func (o *Organization) GetLogo() *os.File`
-
-GetLogo returns the Logo field if non-nil, zero value otherwise.
-
-### GetLogoOk
-
-`func (o *Organization) GetLogoOk() (**os.File, bool)`
-
-GetLogoOk returns a tuple with the Logo field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetLogo
-
-`func (o *Organization) SetLogo(v *os.File)`
-
-SetLogo sets Logo field to given value.
-
-### HasLogo
-
-`func (o *Organization) HasLogo() bool`
-
-HasLogo returns a boolean if a field has been set.
+HasBillingAddress returns a boolean if a field has been set.
 
 ### GetCreatedAt
 
@@ -216,206 +115,6 @@ SetCreatedAt sets CreatedAt field to given value.
 `func (o *Organization) HasCreatedAt() bool`
 
 HasCreatedAt returns a boolean if a field has been set.
-
-### GetUpdatedAt
-
-`func (o *Organization) GetUpdatedAt() time.Time`
-
-GetUpdatedAt returns the UpdatedAt field if non-nil, zero value otherwise.
-
-### GetUpdatedAtOk
-
-`func (o *Organization) GetUpdatedAtOk() (*time.Time, bool)`
-
-GetUpdatedAtOk returns a tuple with the UpdatedAt field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetUpdatedAt
-
-`func (o *Organization) SetUpdatedAt(v time.Time)`
-
-SetUpdatedAt sets UpdatedAt field to given value.
-
-### HasUpdatedAt
-
-`func (o *Organization) HasUpdatedAt() bool`
-
-HasUpdatedAt returns a boolean if a field has been set.
-
-### GetProjects
-
-`func (o *Organization) GetProjects() []Href`
-
-GetProjects returns the Projects field if non-nil, zero value otherwise.
-
-### GetProjectsOk
-
-`func (o *Organization) GetProjectsOk() (*[]Href, bool)`
-
-GetProjectsOk returns a tuple with the Projects field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetProjects
-
-`func (o *Organization) SetProjects(v []Href)`
-
-SetProjects sets Projects field to given value.
-
-### HasProjects
-
-`func (o *Organization) HasProjects() bool`
-
-HasProjects returns a boolean if a field has been set.
-
-### GetMembers
-
-`func (o *Organization) GetMembers() []Href`
-
-GetMembers returns the Members field if non-nil, zero value otherwise.
-
-### GetMembersOk
-
-`func (o *Organization) GetMembersOk() (*[]Href, bool)`
-
-GetMembersOk returns a tuple with the Members field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetMembers
-
-`func (o *Organization) SetMembers(v []Href)`
-
-SetMembers sets Members field to given value.
-
-### HasMembers
-
-`func (o *Organization) HasMembers() bool`
-
-HasMembers returns a boolean if a field has been set.
-
-### GetMemberships
-
-`func (o *Organization) GetMemberships() []Href`
-
-GetMemberships returns the Memberships field if non-nil, zero value otherwise.
-
-### GetMembershipsOk
-
-`func (o *Organization) GetMembershipsOk() (*[]Href, bool)`
-
-GetMembershipsOk returns a tuple with the Memberships field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetMemberships
-
-`func (o *Organization) SetMemberships(v []Href)`
-
-SetMemberships sets Memberships field to given value.
-
-### HasMemberships
-
-`func (o *Organization) HasMemberships() bool`
-
-HasMemberships returns a boolean if a field has been set.
-
-### GetAddress
-
-`func (o *Organization) GetAddress() Address`
-
-GetAddress returns the Address field if non-nil, zero value otherwise.
-
-### GetAddressOk
-
-`func (o *Organization) GetAddressOk() (*Address, bool)`
-
-GetAddressOk returns a tuple with the Address field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAddress
-
-`func (o *Organization) SetAddress(v Address)`
-
-SetAddress sets Address field to given value.
-
-### HasAddress
-
-`func (o *Organization) HasAddress() bool`
-
-HasAddress returns a boolean if a field has been set.
-
-### GetBillingAddress
-
-`func (o *Organization) GetBillingAddress() Address`
-
-GetBillingAddress returns the BillingAddress field if non-nil, zero value otherwise.
-
-### GetBillingAddressOk
-
-`func (o *Organization) GetBillingAddressOk() (*Address, bool)`
-
-GetBillingAddressOk returns a tuple with the BillingAddress field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetBillingAddress
-
-`func (o *Organization) SetBillingAddress(v Address)`
-
-SetBillingAddress sets BillingAddress field to given value.
-
-### HasBillingAddress
-
-`func (o *Organization) HasBillingAddress() bool`
-
-HasBillingAddress returns a boolean if a field has been set.
-
-### GetEntitlement
-
-`func (o *Organization) GetEntitlement() Entitlement`
-
-GetEntitlement returns the Entitlement field if non-nil, zero value otherwise.
-
-### GetEntitlementOk
-
-`func (o *Organization) GetEntitlementOk() (*Entitlement, bool)`
-
-GetEntitlementOk returns a tuple with the Entitlement field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetEntitlement
-
-`func (o *Organization) SetEntitlement(v Entitlement)`
-
-SetEntitlement sets Entitlement field to given value.
-
-### HasEntitlement
-
-`func (o *Organization) HasEntitlement() bool`
-
-HasEntitlement returns a boolean if a field has been set.
-
-### GetTerms
-
-`func (o *Organization) GetTerms() int32`
-
-GetTerms returns the Terms field if non-nil, zero value otherwise.
-
-### GetTermsOk
-
-`func (o *Organization) GetTermsOk() (*int32, bool)`
-
-GetTermsOk returns a tuple with the Terms field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTerms
-
-`func (o *Organization) SetTerms(v int32)`
-
-SetTerms sets Terms field to given value.
-
-### HasTerms
-
-`func (o *Organization) HasTerms() bool`
-
-HasTerms returns a boolean if a field has been set.
 
 ### GetCreditAmount
 
@@ -467,6 +166,31 @@ SetCustomdata sets Customdata field to given value.
 
 HasCustomdata returns a boolean if a field has been set.
 
+### GetDescription
+
+`func (o *Organization) GetDescription() string`
+
+GetDescription returns the Description field if non-nil, zero value otherwise.
+
+### GetDescriptionOk
+
+`func (o *Organization) GetDescriptionOk() (*string, bool)`
+
+GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDescription
+
+`func (o *Organization) SetDescription(v string)`
+
+SetDescription sets Description field to given value.
+
+### HasDescription
+
+`func (o *Organization) HasDescription() bool`
+
+HasDescription returns a boolean if a field has been set.
+
 ### GetEnforce2faAt
 
 `func (o *Organization) GetEnforce2faAt() time.Time`
@@ -491,6 +215,256 @@ SetEnforce2faAt sets Enforce2faAt field to given value.
 `func (o *Organization) HasEnforce2faAt() bool`
 
 HasEnforce2faAt returns a boolean if a field has been set.
+
+### GetId
+
+`func (o *Organization) GetId() string`
+
+GetId returns the Id field if non-nil, zero value otherwise.
+
+### GetIdOk
+
+`func (o *Organization) GetIdOk() (*string, bool)`
+
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetId
+
+`func (o *Organization) SetId(v string)`
+
+SetId sets Id field to given value.
+
+### HasId
+
+`func (o *Organization) HasId() bool`
+
+HasId returns a boolean if a field has been set.
+
+### GetLogo
+
+`func (o *Organization) GetLogo() *os.File`
+
+GetLogo returns the Logo field if non-nil, zero value otherwise.
+
+### GetLogoOk
+
+`func (o *Organization) GetLogoOk() (**os.File, bool)`
+
+GetLogoOk returns a tuple with the Logo field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLogo
+
+`func (o *Organization) SetLogo(v *os.File)`
+
+SetLogo sets Logo field to given value.
+
+### HasLogo
+
+`func (o *Organization) HasLogo() bool`
+
+HasLogo returns a boolean if a field has been set.
+
+### GetMembers
+
+`func (o *Organization) GetMembers() []FindBatchById200ResponseDevicesInner`
+
+GetMembers returns the Members field if non-nil, zero value otherwise.
+
+### GetMembersOk
+
+`func (o *Organization) GetMembersOk() (*[]FindBatchById200ResponseDevicesInner, bool)`
+
+GetMembersOk returns a tuple with the Members field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMembers
+
+`func (o *Organization) SetMembers(v []FindBatchById200ResponseDevicesInner)`
+
+SetMembers sets Members field to given value.
+
+### HasMembers
+
+`func (o *Organization) HasMembers() bool`
+
+HasMembers returns a boolean if a field has been set.
+
+### GetMemberships
+
+`func (o *Organization) GetMemberships() []FindBatchById200ResponseDevicesInner`
+
+GetMemberships returns the Memberships field if non-nil, zero value otherwise.
+
+### GetMembershipsOk
+
+`func (o *Organization) GetMembershipsOk() (*[]FindBatchById200ResponseDevicesInner, bool)`
+
+GetMembershipsOk returns a tuple with the Memberships field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMemberships
+
+`func (o *Organization) SetMemberships(v []FindBatchById200ResponseDevicesInner)`
+
+SetMemberships sets Memberships field to given value.
+
+### HasMemberships
+
+`func (o *Organization) HasMemberships() bool`
+
+HasMemberships returns a boolean if a field has been set.
+
+### GetName
+
+`func (o *Organization) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *Organization) GetNameOk() (*string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetName
+
+`func (o *Organization) SetName(v string)`
+
+SetName sets Name field to given value.
+
+### HasName
+
+`func (o *Organization) HasName() bool`
+
+HasName returns a boolean if a field has been set.
+
+### GetProjects
+
+`func (o *Organization) GetProjects() []FindBatchById200ResponseDevicesInner`
+
+GetProjects returns the Projects field if non-nil, zero value otherwise.
+
+### GetProjectsOk
+
+`func (o *Organization) GetProjectsOk() (*[]FindBatchById200ResponseDevicesInner, bool)`
+
+GetProjectsOk returns a tuple with the Projects field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProjects
+
+`func (o *Organization) SetProjects(v []FindBatchById200ResponseDevicesInner)`
+
+SetProjects sets Projects field to given value.
+
+### HasProjects
+
+`func (o *Organization) HasProjects() bool`
+
+HasProjects returns a boolean if a field has been set.
+
+### GetTerms
+
+`func (o *Organization) GetTerms() int32`
+
+GetTerms returns the Terms field if non-nil, zero value otherwise.
+
+### GetTermsOk
+
+`func (o *Organization) GetTermsOk() (*int32, bool)`
+
+GetTermsOk returns a tuple with the Terms field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTerms
+
+`func (o *Organization) SetTerms(v int32)`
+
+SetTerms sets Terms field to given value.
+
+### HasTerms
+
+`func (o *Organization) HasTerms() bool`
+
+HasTerms returns a boolean if a field has been set.
+
+### GetTwitter
+
+`func (o *Organization) GetTwitter() string`
+
+GetTwitter returns the Twitter field if non-nil, zero value otherwise.
+
+### GetTwitterOk
+
+`func (o *Organization) GetTwitterOk() (*string, bool)`
+
+GetTwitterOk returns a tuple with the Twitter field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTwitter
+
+`func (o *Organization) SetTwitter(v string)`
+
+SetTwitter sets Twitter field to given value.
+
+### HasTwitter
+
+`func (o *Organization) HasTwitter() bool`
+
+HasTwitter returns a boolean if a field has been set.
+
+### GetUpdatedAt
+
+`func (o *Organization) GetUpdatedAt() time.Time`
+
+GetUpdatedAt returns the UpdatedAt field if non-nil, zero value otherwise.
+
+### GetUpdatedAtOk
+
+`func (o *Organization) GetUpdatedAtOk() (*time.Time, bool)`
+
+GetUpdatedAtOk returns a tuple with the UpdatedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUpdatedAt
+
+`func (o *Organization) SetUpdatedAt(v time.Time)`
+
+SetUpdatedAt sets UpdatedAt field to given value.
+
+### HasUpdatedAt
+
+`func (o *Organization) HasUpdatedAt() bool`
+
+HasUpdatedAt returns a boolean if a field has been set.
+
+### GetWebsite
+
+`func (o *Organization) GetWebsite() string`
+
+GetWebsite returns the Website field if non-nil, zero value otherwise.
+
+### GetWebsiteOk
+
+`func (o *Organization) GetWebsiteOk() (*string, bool)`
+
+GetWebsiteOk returns a tuple with the Website field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetWebsite
+
+`func (o *Organization) SetWebsite(v string)`
+
+SetWebsite sets Website field to given value.
+
+### HasWebsite
+
+`func (o *Organization) HasWebsite() bool`
+
+HasWebsite returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

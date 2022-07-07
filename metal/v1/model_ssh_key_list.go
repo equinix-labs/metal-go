@@ -17,7 +17,7 @@ import (
 
 // SSHKeyList struct for SSHKeyList
 type SSHKeyList struct {
-	SshKeys []SSHKey `json:"ssh_keys,omitempty"`
+	SshKeys []FindDeviceSSHKeys200ResponseSshKeysInner `json:"ssh_keys,omitempty"`
 }
 
 // NewSSHKeyList instantiates a new SSHKeyList object
@@ -38,9 +38,9 @@ func NewSSHKeyListWithDefaults() *SSHKeyList {
 }
 
 // GetSshKeys returns the SshKeys field value if set, zero value otherwise.
-func (o *SSHKeyList) GetSshKeys() []SSHKey {
+func (o *SSHKeyList) GetSshKeys() []FindDeviceSSHKeys200ResponseSshKeysInner {
 	if o == nil || o.SshKeys == nil {
-		var ret []SSHKey
+		var ret []FindDeviceSSHKeys200ResponseSshKeysInner
 		return ret
 	}
 	return o.SshKeys
@@ -48,7 +48,7 @@ func (o *SSHKeyList) GetSshKeys() []SSHKey {
 
 // GetSshKeysOk returns a tuple with the SshKeys field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SSHKeyList) GetSshKeysOk() ([]SSHKey, bool) {
+func (o *SSHKeyList) GetSshKeysOk() ([]FindDeviceSSHKeys200ResponseSshKeysInner, bool) {
 	if o == nil || o.SshKeys == nil {
 		return nil, false
 	}
@@ -64,8 +64,8 @@ func (o *SSHKeyList) HasSshKeys() bool {
 	return false
 }
 
-// SetSshKeys gets a reference to the given []SSHKey and assigns it to the SshKeys field.
-func (o *SSHKeyList) SetSshKeys(v []SSHKey) {
+// SetSshKeys gets a reference to the given []FindDeviceSSHKeys200ResponseSshKeysInner and assigns it to the SshKeys field.
+func (o *SSHKeyList) SetSshKeys(v []FindDeviceSSHKeys200ResponseSshKeysInner) {
 	o.SshKeys = v
 }
 

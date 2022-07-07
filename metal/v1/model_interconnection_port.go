@@ -17,14 +17,14 @@ import (
 
 // InterconnectionPort struct for InterconnectionPort
 type InterconnectionPort struct {
-	Id *string `json:"id,omitempty"`
+	Id           *string                               `json:"id,omitempty"`
+	Organization *FindBatchById200ResponseDevicesInner `json:"organization,omitempty"`
 	// Either 'primary' or 'secondary'.
 	Role   *string `json:"role,omitempty"`
 	Status *string `json:"status,omitempty"`
 	// A switch 'short ID'
-	SwitchId        *string             `json:"switch_id,omitempty"`
-	VirtualCircuits *VirtualCircuitList `json:"virtual_circuits,omitempty"`
-	Organization    *Href               `json:"organization,omitempty"`
+	SwitchId        *string                                                 `json:"switch_id,omitempty"`
+	VirtualCircuits *GetInterconnection200ResponsePortsInnerVirtualCircuits `json:"virtual_circuits,omitempty"`
 }
 
 // NewInterconnectionPort instantiates a new InterconnectionPort object
@@ -74,6 +74,38 @@ func (o *InterconnectionPort) HasId() bool {
 // SetId gets a reference to the given string and assigns it to the Id field.
 func (o *InterconnectionPort) SetId(v string) {
 	o.Id = &v
+}
+
+// GetOrganization returns the Organization field value if set, zero value otherwise.
+func (o *InterconnectionPort) GetOrganization() FindBatchById200ResponseDevicesInner {
+	if o == nil || o.Organization == nil {
+		var ret FindBatchById200ResponseDevicesInner
+		return ret
+	}
+	return *o.Organization
+}
+
+// GetOrganizationOk returns a tuple with the Organization field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *InterconnectionPort) GetOrganizationOk() (*FindBatchById200ResponseDevicesInner, bool) {
+	if o == nil || o.Organization == nil {
+		return nil, false
+	}
+	return o.Organization, true
+}
+
+// HasOrganization returns a boolean if a field has been set.
+func (o *InterconnectionPort) HasOrganization() bool {
+	if o != nil && o.Organization != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetOrganization gets a reference to the given FindBatchById200ResponseDevicesInner and assigns it to the Organization field.
+func (o *InterconnectionPort) SetOrganization(v FindBatchById200ResponseDevicesInner) {
+	o.Organization = &v
 }
 
 // GetRole returns the Role field value if set, zero value otherwise.
@@ -173,9 +205,9 @@ func (o *InterconnectionPort) SetSwitchId(v string) {
 }
 
 // GetVirtualCircuits returns the VirtualCircuits field value if set, zero value otherwise.
-func (o *InterconnectionPort) GetVirtualCircuits() VirtualCircuitList {
+func (o *InterconnectionPort) GetVirtualCircuits() GetInterconnection200ResponsePortsInnerVirtualCircuits {
 	if o == nil || o.VirtualCircuits == nil {
-		var ret VirtualCircuitList
+		var ret GetInterconnection200ResponsePortsInnerVirtualCircuits
 		return ret
 	}
 	return *o.VirtualCircuits
@@ -183,7 +215,7 @@ func (o *InterconnectionPort) GetVirtualCircuits() VirtualCircuitList {
 
 // GetVirtualCircuitsOk returns a tuple with the VirtualCircuits field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InterconnectionPort) GetVirtualCircuitsOk() (*VirtualCircuitList, bool) {
+func (o *InterconnectionPort) GetVirtualCircuitsOk() (*GetInterconnection200ResponsePortsInnerVirtualCircuits, bool) {
 	if o == nil || o.VirtualCircuits == nil {
 		return nil, false
 	}
@@ -199,47 +231,18 @@ func (o *InterconnectionPort) HasVirtualCircuits() bool {
 	return false
 }
 
-// SetVirtualCircuits gets a reference to the given VirtualCircuitList and assigns it to the VirtualCircuits field.
-func (o *InterconnectionPort) SetVirtualCircuits(v VirtualCircuitList) {
+// SetVirtualCircuits gets a reference to the given GetInterconnection200ResponsePortsInnerVirtualCircuits and assigns it to the VirtualCircuits field.
+func (o *InterconnectionPort) SetVirtualCircuits(v GetInterconnection200ResponsePortsInnerVirtualCircuits) {
 	o.VirtualCircuits = &v
-}
-
-// GetOrganization returns the Organization field value if set, zero value otherwise.
-func (o *InterconnectionPort) GetOrganization() Href {
-	if o == nil || o.Organization == nil {
-		var ret Href
-		return ret
-	}
-	return *o.Organization
-}
-
-// GetOrganizationOk returns a tuple with the Organization field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *InterconnectionPort) GetOrganizationOk() (*Href, bool) {
-	if o == nil || o.Organization == nil {
-		return nil, false
-	}
-	return o.Organization, true
-}
-
-// HasOrganization returns a boolean if a field has been set.
-func (o *InterconnectionPort) HasOrganization() bool {
-	if o != nil && o.Organization != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetOrganization gets a reference to the given Href and assigns it to the Organization field.
-func (o *InterconnectionPort) SetOrganization(v Href) {
-	o.Organization = &v
 }
 
 func (o InterconnectionPort) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Id != nil {
 		toSerialize["id"] = o.Id
+	}
+	if o.Organization != nil {
+		toSerialize["organization"] = o.Organization
 	}
 	if o.Role != nil {
 		toSerialize["role"] = o.Role
@@ -252,9 +255,6 @@ func (o InterconnectionPort) MarshalJSON() ([]byte, error) {
 	}
 	if o.VirtualCircuits != nil {
 		toSerialize["virtual_circuits"] = o.VirtualCircuits
-	}
-	if o.Organization != nil {
-		toSerialize["organization"] = o.Organization
 	}
 	return json.Marshal(toSerialize)
 }

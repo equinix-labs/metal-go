@@ -5,23 +5,26 @@ All URIs are relative to *https://api.equinix.com/metal/v1*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**CreateOrganization**](OrganizationsApi.md#CreateOrganization) | **Post** /organizations | Create an organization
+[**CreateOrganizationInvitation**](OrganizationsApi.md#CreateOrganizationInvitation) | **Post** /organizations/{id}/invitations | Create an invitation for an organization
 [**CreateOrganizationProject**](OrganizationsApi.md#CreateOrganizationProject) | **Post** /organizations/{id}/projects | Create a project for the organization
 [**CreatePaymentMethod**](OrganizationsApi.md#CreatePaymentMethod) | **Post** /organizations/{id}/payment-methods | Create a payment method for the given organization
 [**DeleteOrganization**](OrganizationsApi.md#DeleteOrganization) | **Delete** /organizations/{id} | Delete the organization
+[**FindOperatingSystemsByOrganization**](OrganizationsApi.md#FindOperatingSystemsByOrganization) | **Get** /organizations/{id}/operating-systems | Retrieve all operating systems visible by the organization
 [**FindOrganizationById**](OrganizationsApi.md#FindOrganizationById) | **Get** /organizations/{id} | Retrieve an organization&#39;s details
 [**FindOrganizationCustomdata**](OrganizationsApi.md#FindOrganizationCustomdata) | **Get** /organizations/{id}/customdata | Retrieve the custom metadata of an organization
-[**FindOrganizationDevices**](OrganizationsApi.md#FindOrganizationDevices) | **Get** /organizations/{id}/devices | Retrieve all devices of an organization
+[**FindOrganizationInvitations**](OrganizationsApi.md#FindOrganizationInvitations) | **Get** /organizations/{id}/invitations | Retrieve organization invitations
 [**FindOrganizationPaymentMethods**](OrganizationsApi.md#FindOrganizationPaymentMethods) | **Get** /organizations/{id}/payment-methods | Retrieve all payment methods of an organization
 [**FindOrganizationProjects**](OrganizationsApi.md#FindOrganizationProjects) | **Get** /organizations/{id}/projects | Retrieve all projects of an organization
 [**FindOrganizationTransfers**](OrganizationsApi.md#FindOrganizationTransfers) | **Get** /organizations/{id}/transfers | Retrieve all project transfer requests from or to an organization
 [**FindOrganizations**](OrganizationsApi.md#FindOrganizations) | **Get** /organizations | Retrieve all organizations
+[**FindPlansByOrganization**](OrganizationsApi.md#FindPlansByOrganization) | **Get** /organizations/{id}/plans | Retrieve all plans visible by the organization
 [**UpdateOrganization**](OrganizationsApi.md#UpdateOrganization) | **Put** /organizations/{id} | Update the organization
 
 
 
 ## CreateOrganization
 
-> Organization CreateOrganization(ctx).Organization(organization).Execute()
+> FindOrganizations200ResponseOrganizationsInner CreateOrganization(ctx).Body(body).Execute()
 
 Create an organization
 
@@ -40,16 +43,16 @@ import (
 )
 
 func main() {
-    organization := *openapiclient.NewOrganizationInput() // OrganizationInput | Organization to create
+    body := *openapiclient.NewCreateOrganizationRequest() // CreateOrganizationRequest | Organization to create
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.OrganizationsApi.CreateOrganization(context.Background()).Organization(organization).Execute()
+    resp, r, err := apiClient.OrganizationsApi.CreateOrganization(context.Background()).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.CreateOrganization``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateOrganization`: Organization
+    // response from `CreateOrganization`: FindOrganizations200ResponseOrganizationsInner
     fmt.Fprintf(os.Stdout, "Response from `OrganizationsApi.CreateOrganization`: %v\n", resp)
 }
 ```
@@ -65,11 +68,83 @@ Other parameters are passed through a pointer to a apiCreateOrganizationRequest 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | [**OrganizationInput**](OrganizationInput.md) | Organization to create | 
+ **body** | [**CreateOrganizationRequest**](CreateOrganizationRequest.md) | Organization to create | 
 
 ### Return type
 
-[**Organization**](Organization.md)
+[**FindOrganizations200ResponseOrganizationsInner**](FindOrganizations200ResponseOrganizationsInner.md)
+
+### Authorization
+
+[x_auth_token](../README.md#x_auth_token)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## CreateOrganizationInvitation
+
+> FindInvitationById200Response CreateOrganizationInvitation(ctx, id).Body(body).Execute()
+
+Create an invitation for an organization
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Organization UUID
+    body := *openapiclient.NewCreateOrganizationInvitationRequest("Invitee_example") // CreateOrganizationInvitationRequest | Invitation to create
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.OrganizationsApi.CreateOrganizationInvitation(context.Background(), id).Body(body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.CreateOrganizationInvitation``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateOrganizationInvitation`: FindInvitationById200Response
+    fmt.Fprintf(os.Stdout, "Response from `OrganizationsApi.CreateOrganizationInvitation`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** | Organization UUID | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateOrganizationInvitationRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **body** | [**CreateOrganizationInvitationRequest**](CreateOrganizationInvitationRequest.md) | Invitation to create | 
+
+### Return type
+
+[**FindInvitationById200Response**](FindInvitationById200Response.md)
 
 ### Authorization
 
@@ -87,7 +162,7 @@ Name | Type | Description  | Notes
 
 ## CreateOrganizationProject
 
-> Project CreateOrganizationProject(ctx, id).Project(project).Execute()
+> MoveHardwareReservation201ResponseProject CreateOrganizationProject(ctx, id).Body(body).Execute()
 
 Create a project for the organization
 
@@ -107,16 +182,16 @@ import (
 
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Organization UUID
-    project := *openapiclient.NewProjectCreateInput("Name_example") // ProjectCreateInput | Project to create
+    body := *openapiclient.NewCreateOrganizationProjectRequest("Name_example") // CreateOrganizationProjectRequest | Project to create
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.OrganizationsApi.CreateOrganizationProject(context.Background(), id).Project(project).Execute()
+    resp, r, err := apiClient.OrganizationsApi.CreateOrganizationProject(context.Background(), id).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.CreateOrganizationProject``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateOrganizationProject`: Project
+    // response from `CreateOrganizationProject`: MoveHardwareReservation201ResponseProject
     fmt.Fprintf(os.Stdout, "Response from `OrganizationsApi.CreateOrganizationProject`: %v\n", resp)
 }
 ```
@@ -137,11 +212,11 @@ Other parameters are passed through a pointer to a apiCreateOrganizationProjectR
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **project** | [**ProjectCreateInput**](ProjectCreateInput.md) | Project to create | 
+ **body** | [**CreateOrganizationProjectRequest**](CreateOrganizationProjectRequest.md) | Project to create | 
 
 ### Return type
 
-[**Project**](Project.md)
+[**MoveHardwareReservation201ResponseProject**](MoveHardwareReservation201ResponseProject.md)
 
 ### Authorization
 
@@ -159,7 +234,7 @@ Name | Type | Description  | Notes
 
 ## CreatePaymentMethod
 
-> PaymentMethod CreatePaymentMethod(ctx, id).PaymentMethod(paymentMethod).Execute()
+> FindOrganizationPaymentMethods200ResponsePaymentMethodsInner CreatePaymentMethod(ctx, id).Body(body).Execute()
 
 Create a payment method for the given organization
 
@@ -179,16 +254,16 @@ import (
 
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Organization UUID
-    paymentMethod := *openapiclient.NewPaymentMethodCreateInput("Name_example", "Nonce_example") // PaymentMethodCreateInput | Payment Method to create
+    body := *openapiclient.NewCreatePaymentMethodRequest("Name_example", "Nonce_example") // CreatePaymentMethodRequest | Payment Method to create
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.OrganizationsApi.CreatePaymentMethod(context.Background(), id).PaymentMethod(paymentMethod).Execute()
+    resp, r, err := apiClient.OrganizationsApi.CreatePaymentMethod(context.Background(), id).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.CreatePaymentMethod``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreatePaymentMethod`: PaymentMethod
+    // response from `CreatePaymentMethod`: FindOrganizationPaymentMethods200ResponsePaymentMethodsInner
     fmt.Fprintf(os.Stdout, "Response from `OrganizationsApi.CreatePaymentMethod`: %v\n", resp)
 }
 ```
@@ -209,11 +284,11 @@ Other parameters are passed through a pointer to a apiCreatePaymentMethodRequest
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **paymentMethod** | [**PaymentMethodCreateInput**](PaymentMethodCreateInput.md) | Payment Method to create | 
+ **body** | [**CreatePaymentMethodRequest**](CreatePaymentMethodRequest.md) | Payment Method to create | 
 
 ### Return type
 
-[**PaymentMethod**](PaymentMethod.md)
+[**FindOrganizationPaymentMethods200ResponsePaymentMethodsInner**](FindOrganizationPaymentMethods200ResponsePaymentMethodsInner.md)
 
 ### Authorization
 
@@ -297,9 +372,83 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## FindOperatingSystemsByOrganization
+
+> FindOperatingSystemVersion200Response FindOperatingSystemsByOrganization(ctx, id).Include(include).Exclude(exclude).Execute()
+
+Retrieve all operating systems visible by the organization
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Organization UUID
+    include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
+    exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.OrganizationsApi.FindOperatingSystemsByOrganization(context.Background(), id).Include(include).Exclude(exclude).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.FindOperatingSystemsByOrganization``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `FindOperatingSystemsByOrganization`: FindOperatingSystemVersion200Response
+    fmt.Fprintf(os.Stdout, "Response from `OrganizationsApi.FindOperatingSystemsByOrganization`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** | Organization UUID | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiFindOperatingSystemsByOrganizationRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
+ **exclude** | **[]string** | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | 
+
+### Return type
+
+[**FindOperatingSystemVersion200Response**](FindOperatingSystemVersion200Response.md)
+
+### Authorization
+
+[x_auth_token](../README.md#x_auth_token)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## FindOrganizationById
 
-> Organization FindOrganizationById(ctx, id).Include(include).Exclude(exclude).Execute()
+> FindOrganizations200ResponseOrganizationsInner FindOrganizationById(ctx, id).Include(include).Exclude(exclude).Execute()
 
 Retrieve an organization's details
 
@@ -329,7 +478,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.FindOrganizationById``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindOrganizationById`: Organization
+    // response from `FindOrganizationById`: FindOrganizations200ResponseOrganizationsInner
     fmt.Fprintf(os.Stdout, "Response from `OrganizationsApi.FindOrganizationById`: %v\n", resp)
 }
 ```
@@ -355,7 +504,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Organization**](Organization.md)
+[**FindOrganizations200ResponseOrganizationsInner**](FindOrganizations200ResponseOrganizationsInner.md)
 
 ### Authorization
 
@@ -439,11 +588,11 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## FindOrganizationDevices
+## FindOrganizationInvitations
 
-> DeviceList FindOrganizationDevices(ctx, id).Facility(facility).Hostname(hostname).Reserved(reserved).Tag(tag).Type_(type_).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
+> FindInvitations200Response FindOrganizationInvitations(ctx, id).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
 
-Retrieve all devices of an organization
+Retrieve organization invitations
 
 
 
@@ -461,11 +610,6 @@ import (
 
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Organization UUID
-    facility := "facility_example" // string | Filter by device facility (optional)
-    hostname := "hostname_example" // string | Filter by partial hostname (optional)
-    reserved := true // bool | Filter only reserved instances (optional)
-    tag := "tag_example" // string | Filter by device tag (optional)
-    type_ := "type__example" // string | Filter by instance type (ondemand,spot,reserved) (optional)
     include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
     exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
     page := int32(56) // int32 | Page to return (optional) (default to 1)
@@ -473,13 +617,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.OrganizationsApi.FindOrganizationDevices(context.Background(), id).Facility(facility).Hostname(hostname).Reserved(reserved).Tag(tag).Type_(type_).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
+    resp, r, err := apiClient.OrganizationsApi.FindOrganizationInvitations(context.Background(), id).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.FindOrganizationDevices``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.FindOrganizationInvitations``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindOrganizationDevices`: DeviceList
-    fmt.Fprintf(os.Stdout, "Response from `OrganizationsApi.FindOrganizationDevices`: %v\n", resp)
+    // response from `FindOrganizationInvitations`: FindInvitations200Response
+    fmt.Fprintf(os.Stdout, "Response from `OrganizationsApi.FindOrganizationInvitations`: %v\n", resp)
 }
 ```
 
@@ -493,17 +637,12 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiFindOrganizationDevicesRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiFindOrganizationInvitationsRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **facility** | **string** | Filter by device facility | 
- **hostname** | **string** | Filter by partial hostname | 
- **reserved** | **bool** | Filter only reserved instances | 
- **tag** | **string** | Filter by device tag | 
- **type_** | **string** | Filter by instance type (ondemand,spot,reserved) | 
  **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
  **exclude** | **[]string** | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | 
  **page** | **int32** | Page to return | [default to 1]
@@ -511,7 +650,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DeviceList**](DeviceList.md)
+[**FindInvitations200Response**](FindInvitations200Response.md)
 
 ### Authorization
 
@@ -529,7 +668,7 @@ Name | Type | Description  | Notes
 
 ## FindOrganizationPaymentMethods
 
-> PaymentMethodList FindOrganizationPaymentMethods(ctx, id).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
+> FindOrganizationPaymentMethods200Response FindOrganizationPaymentMethods(ctx, id).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
 
 Retrieve all payment methods of an organization
 
@@ -561,7 +700,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.FindOrganizationPaymentMethods``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindOrganizationPaymentMethods`: PaymentMethodList
+    // response from `FindOrganizationPaymentMethods`: FindOrganizationPaymentMethods200Response
     fmt.Fprintf(os.Stdout, "Response from `OrganizationsApi.FindOrganizationPaymentMethods`: %v\n", resp)
 }
 ```
@@ -589,7 +728,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PaymentMethodList**](PaymentMethodList.md)
+[**FindOrganizationPaymentMethods200Response**](FindOrganizationPaymentMethods200Response.md)
 
 ### Authorization
 
@@ -607,7 +746,7 @@ Name | Type | Description  | Notes
 
 ## FindOrganizationProjects
 
-> ProjectList FindOrganizationProjects(ctx, id).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
+> FindOrganizationProjects200Response FindOrganizationProjects(ctx, id).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
 
 Retrieve all projects of an organization
 
@@ -639,7 +778,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.FindOrganizationProjects``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindOrganizationProjects`: ProjectList
+    // response from `FindOrganizationProjects`: FindOrganizationProjects200Response
     fmt.Fprintf(os.Stdout, "Response from `OrganizationsApi.FindOrganizationProjects`: %v\n", resp)
 }
 ```
@@ -667,7 +806,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ProjectList**](ProjectList.md)
+[**FindOrganizationProjects200Response**](FindOrganizationProjects200Response.md)
 
 ### Authorization
 
@@ -685,7 +824,7 @@ Name | Type | Description  | Notes
 
 ## FindOrganizationTransfers
 
-> TransferRequestList FindOrganizationTransfers(ctx, id).Include(include).Exclude(exclude).Execute()
+> FindOrganizationTransfers200Response FindOrganizationTransfers(ctx, id).Include(include).Exclude(exclude).Execute()
 
 Retrieve all project transfer requests from or to an organization
 
@@ -715,7 +854,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.FindOrganizationTransfers``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindOrganizationTransfers`: TransferRequestList
+    // response from `FindOrganizationTransfers`: FindOrganizationTransfers200Response
     fmt.Fprintf(os.Stdout, "Response from `OrganizationsApi.FindOrganizationTransfers`: %v\n", resp)
 }
 ```
@@ -741,7 +880,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TransferRequestList**](TransferRequestList.md)
+[**FindOrganizationTransfers200Response**](FindOrganizationTransfers200Response.md)
 
 ### Authorization
 
@@ -759,7 +898,7 @@ Name | Type | Description  | Notes
 
 ## FindOrganizations
 
-> OrganizationList FindOrganizations(ctx).Personal(personal).WithoutProjects(withoutProjects).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
+> FindOrganizations200Response FindOrganizations(ctx).Personal(personal).WithoutProjects(withoutProjects).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
 
 Retrieve all organizations
 
@@ -792,7 +931,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.FindOrganizations``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindOrganizations`: OrganizationList
+    // response from `FindOrganizations`: FindOrganizations200Response
     fmt.Fprintf(os.Stdout, "Response from `OrganizationsApi.FindOrganizations`: %v\n", resp)
 }
 ```
@@ -817,7 +956,81 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**OrganizationList**](OrganizationList.md)
+[**FindOrganizations200Response**](FindOrganizations200Response.md)
+
+### Authorization
+
+[x_auth_token](../README.md#x_auth_token)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## FindPlansByOrganization
+
+> FindPlansByOrganization200Response FindPlansByOrganization(ctx, id).Include(include).Exclude(exclude).Execute()
+
+Retrieve all plans visible by the organization
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Organization UUID
+    include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
+    exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.OrganizationsApi.FindPlansByOrganization(context.Background(), id).Include(include).Exclude(exclude).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.FindPlansByOrganization``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `FindPlansByOrganization`: FindPlansByOrganization200Response
+    fmt.Fprintf(os.Stdout, "Response from `OrganizationsApi.FindPlansByOrganization`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** | Organization UUID | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiFindPlansByOrganizationRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
+ **exclude** | **[]string** | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | 
+
+### Return type
+
+[**FindPlansByOrganization200Response**](FindPlansByOrganization200Response.md)
 
 ### Authorization
 
@@ -835,7 +1048,7 @@ Name | Type | Description  | Notes
 
 ## UpdateOrganization
 
-> Organization UpdateOrganization(ctx, id).Organization(organization).Execute()
+> FindOrganizations200ResponseOrganizationsInner UpdateOrganization(ctx, id).Body(body).Execute()
 
 Update the organization
 
@@ -855,16 +1068,16 @@ import (
 
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Organization UUID
-    organization := *openapiclient.NewOrganizationInput() // OrganizationInput | Organization to update
+    body := *openapiclient.NewCreateOrganizationRequest() // CreateOrganizationRequest | Organization to update
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.OrganizationsApi.UpdateOrganization(context.Background(), id).Organization(organization).Execute()
+    resp, r, err := apiClient.OrganizationsApi.UpdateOrganization(context.Background(), id).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.UpdateOrganization``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateOrganization`: Organization
+    // response from `UpdateOrganization`: FindOrganizations200ResponseOrganizationsInner
     fmt.Fprintf(os.Stdout, "Response from `OrganizationsApi.UpdateOrganization`: %v\n", resp)
 }
 ```
@@ -885,11 +1098,11 @@ Other parameters are passed through a pointer to a apiUpdateOrganizationRequest 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **organization** | [**OrganizationInput**](OrganizationInput.md) | Organization to update | 
+ **body** | [**CreateOrganizationRequest**](CreateOrganizationRequest.md) | Organization to update | 
 
 ### Return type
 
-[**Organization**](Organization.md)
+[**FindOrganizations200ResponseOrganizationsInner**](FindOrganizations200ResponseOrganizationsInner.md)
 
 ### Authorization
 

@@ -17,8 +17,8 @@ import (
 
 // BgpConfigRequestInput struct for BgpConfigRequestInput
 type BgpConfigRequestInput struct {
-	DeploymentType string  `json:"deployment_type"`
 	Asn            int32   `json:"asn"`
+	DeploymentType string  `json:"deployment_type"`
 	Md5            *string `json:"md5,omitempty"`
 	UseCase        *string `json:"use_case,omitempty"`
 }
@@ -27,10 +27,10 @@ type BgpConfigRequestInput struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewBgpConfigRequestInput(deploymentType string, asn int32) *BgpConfigRequestInput {
+func NewBgpConfigRequestInput(asn int32, deploymentType string) *BgpConfigRequestInput {
 	this := BgpConfigRequestInput{}
-	this.DeploymentType = deploymentType
 	this.Asn = asn
+	this.DeploymentType = deploymentType
 	return &this
 }
 
@@ -40,30 +40,6 @@ func NewBgpConfigRequestInput(deploymentType string, asn int32) *BgpConfigReques
 func NewBgpConfigRequestInputWithDefaults() *BgpConfigRequestInput {
 	this := BgpConfigRequestInput{}
 	return &this
-}
-
-// GetDeploymentType returns the DeploymentType field value
-func (o *BgpConfigRequestInput) GetDeploymentType() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.DeploymentType
-}
-
-// GetDeploymentTypeOk returns a tuple with the DeploymentType field value
-// and a boolean to check if the value has been set.
-func (o *BgpConfigRequestInput) GetDeploymentTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.DeploymentType, true
-}
-
-// SetDeploymentType sets field value
-func (o *BgpConfigRequestInput) SetDeploymentType(v string) {
-	o.DeploymentType = v
 }
 
 // GetAsn returns the Asn field value
@@ -88,6 +64,30 @@ func (o *BgpConfigRequestInput) GetAsnOk() (*int32, bool) {
 // SetAsn sets field value
 func (o *BgpConfigRequestInput) SetAsn(v int32) {
 	o.Asn = v
+}
+
+// GetDeploymentType returns the DeploymentType field value
+func (o *BgpConfigRequestInput) GetDeploymentType() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.DeploymentType
+}
+
+// GetDeploymentTypeOk returns a tuple with the DeploymentType field value
+// and a boolean to check if the value has been set.
+func (o *BgpConfigRequestInput) GetDeploymentTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.DeploymentType, true
+}
+
+// SetDeploymentType sets field value
+func (o *BgpConfigRequestInput) SetDeploymentType(v string) {
+	o.DeploymentType = v
 }
 
 // GetMd5 returns the Md5 field value if set, zero value otherwise.
@@ -157,10 +157,10 @@ func (o *BgpConfigRequestInput) SetUseCase(v string) {
 func (o BgpConfigRequestInput) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
-		toSerialize["deployment_type"] = o.DeploymentType
+		toSerialize["asn"] = o.Asn
 	}
 	if true {
-		toSerialize["asn"] = o.Asn
+		toSerialize["deployment_type"] = o.DeploymentType
 	}
 	if o.Md5 != nil {
 		toSerialize["md5"] = o.Md5

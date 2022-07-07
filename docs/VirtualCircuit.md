@@ -4,22 +4,24 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **string** |  | [optional] 
-**Name** | Pointer to **string** |  | [optional] 
-**Description** | Pointer to **string** |  | [optional] 
-**Status** | Pointer to **string** |  | [optional] 
-**Vnid** | Pointer to **int32** |  | [optional] 
-**NniVlan** | Pointer to **int32** |  | [optional] 
+**Tags** | **[]string** |  | 
+**Bill** | **bool** | True if the Virtual Circuit is being billed. Currently, only Virtual Circuits that are created with A-side service tokens will be billed. Usage will start the first time the Virtual Circuit becomes active, and will not stop until it is deleted. | [default to false]
+**Description** | **string** |  | 
+**Id** | **string** |  | 
+**Name** | **string** |  | 
+**NniVlan** | **int32** |  | 
+**Port** | [**FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | 
+**Project** | [**FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | 
 **Speed** | Pointer to **int32** | integer representing bps speed | [optional] 
-**Tags** | Pointer to **[]string** |  | [optional] 
-**Project** | Pointer to [**Href**](Href.md) |  | [optional] 
-**VirtualNetwork** | Pointer to [**Href**](Href.md) |  | [optional] 
+**Status** | **string** |  | 
+**VirtualNetwork** | [**FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | 
+**Vnid** | **int32** |  | 
 
 ## Methods
 
 ### NewVirtualCircuit
 
-`func NewVirtualCircuit() *VirtualCircuit`
+`func NewVirtualCircuit(tags []string, bill bool, description string, id string, name string, nniVlan int32, port FindBatchById200ResponseDevicesInner, project FindBatchById200ResponseDevicesInner, status string, virtualNetwork FindBatchById200ResponseDevicesInner, vnid int32, ) *VirtualCircuit`
 
 NewVirtualCircuit instantiates a new VirtualCircuit object
 This constructor will assign default values to properties that have it defined,
@@ -34,55 +36,45 @@ NewVirtualCircuitWithDefaults instantiates a new VirtualCircuit object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetId
+### GetTags
 
-`func (o *VirtualCircuit) GetId() string`
+`func (o *VirtualCircuit) GetTags() []string`
 
-GetId returns the Id field if non-nil, zero value otherwise.
+GetTags returns the Tags field if non-nil, zero value otherwise.
 
-### GetIdOk
+### GetTagsOk
 
-`func (o *VirtualCircuit) GetIdOk() (*string, bool)`
+`func (o *VirtualCircuit) GetTagsOk() (*[]string, bool)`
 
-GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+GetTagsOk returns a tuple with the Tags field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetId
+### SetTags
 
-`func (o *VirtualCircuit) SetId(v string)`
+`func (o *VirtualCircuit) SetTags(v []string)`
 
-SetId sets Id field to given value.
+SetTags sets Tags field to given value.
 
-### HasId
 
-`func (o *VirtualCircuit) HasId() bool`
+### GetBill
 
-HasId returns a boolean if a field has been set.
+`func (o *VirtualCircuit) GetBill() bool`
 
-### GetName
+GetBill returns the Bill field if non-nil, zero value otherwise.
 
-`func (o *VirtualCircuit) GetName() string`
+### GetBillOk
 
-GetName returns the Name field if non-nil, zero value otherwise.
+`func (o *VirtualCircuit) GetBillOk() (*bool, bool)`
 
-### GetNameOk
-
-`func (o *VirtualCircuit) GetNameOk() (*string, bool)`
-
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+GetBillOk returns a tuple with the Bill field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetName
+### SetBill
 
-`func (o *VirtualCircuit) SetName(v string)`
+`func (o *VirtualCircuit) SetBill(v bool)`
 
-SetName sets Name field to given value.
+SetBill sets Bill field to given value.
 
-### HasName
-
-`func (o *VirtualCircuit) HasName() bool`
-
-HasName returns a boolean if a field has been set.
 
 ### GetDescription
 
@@ -103,61 +95,46 @@ and a boolean to check if the value has been set.
 
 SetDescription sets Description field to given value.
 
-### HasDescription
 
-`func (o *VirtualCircuit) HasDescription() bool`
+### GetId
 
-HasDescription returns a boolean if a field has been set.
+`func (o *VirtualCircuit) GetId() string`
 
-### GetStatus
+GetId returns the Id field if non-nil, zero value otherwise.
 
-`func (o *VirtualCircuit) GetStatus() string`
+### GetIdOk
 
-GetStatus returns the Status field if non-nil, zero value otherwise.
+`func (o *VirtualCircuit) GetIdOk() (*string, bool)`
 
-### GetStatusOk
-
-`func (o *VirtualCircuit) GetStatusOk() (*string, bool)`
-
-GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetStatus
+### SetId
 
-`func (o *VirtualCircuit) SetStatus(v string)`
+`func (o *VirtualCircuit) SetId(v string)`
 
-SetStatus sets Status field to given value.
+SetId sets Id field to given value.
 
-### HasStatus
 
-`func (o *VirtualCircuit) HasStatus() bool`
+### GetName
 
-HasStatus returns a boolean if a field has been set.
+`func (o *VirtualCircuit) GetName() string`
 
-### GetVnid
+GetName returns the Name field if non-nil, zero value otherwise.
 
-`func (o *VirtualCircuit) GetVnid() int32`
+### GetNameOk
 
-GetVnid returns the Vnid field if non-nil, zero value otherwise.
+`func (o *VirtualCircuit) GetNameOk() (*string, bool)`
 
-### GetVnidOk
-
-`func (o *VirtualCircuit) GetVnidOk() (*int32, bool)`
-
-GetVnidOk returns a tuple with the Vnid field if it's non-nil, zero value otherwise
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetVnid
+### SetName
 
-`func (o *VirtualCircuit) SetVnid(v int32)`
+`func (o *VirtualCircuit) SetName(v string)`
 
-SetVnid sets Vnid field to given value.
+SetName sets Name field to given value.
 
-### HasVnid
-
-`func (o *VirtualCircuit) HasVnid() bool`
-
-HasVnid returns a boolean if a field has been set.
 
 ### GetNniVlan
 
@@ -178,11 +155,46 @@ and a boolean to check if the value has been set.
 
 SetNniVlan sets NniVlan field to given value.
 
-### HasNniVlan
 
-`func (o *VirtualCircuit) HasNniVlan() bool`
+### GetPort
 
-HasNniVlan returns a boolean if a field has been set.
+`func (o *VirtualCircuit) GetPort() FindBatchById200ResponseDevicesInner`
+
+GetPort returns the Port field if non-nil, zero value otherwise.
+
+### GetPortOk
+
+`func (o *VirtualCircuit) GetPortOk() (*FindBatchById200ResponseDevicesInner, bool)`
+
+GetPortOk returns a tuple with the Port field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPort
+
+`func (o *VirtualCircuit) SetPort(v FindBatchById200ResponseDevicesInner)`
+
+SetPort sets Port field to given value.
+
+
+### GetProject
+
+`func (o *VirtualCircuit) GetProject() FindBatchById200ResponseDevicesInner`
+
+GetProject returns the Project field if non-nil, zero value otherwise.
+
+### GetProjectOk
+
+`func (o *VirtualCircuit) GetProjectOk() (*FindBatchById200ResponseDevicesInner, bool)`
+
+GetProjectOk returns a tuple with the Project field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProject
+
+`func (o *VirtualCircuit) SetProject(v FindBatchById200ResponseDevicesInner)`
+
+SetProject sets Project field to given value.
+
 
 ### GetSpeed
 
@@ -209,80 +221,65 @@ SetSpeed sets Speed field to given value.
 
 HasSpeed returns a boolean if a field has been set.
 
-### GetTags
+### GetStatus
 
-`func (o *VirtualCircuit) GetTags() []string`
+`func (o *VirtualCircuit) GetStatus() string`
 
-GetTags returns the Tags field if non-nil, zero value otherwise.
+GetStatus returns the Status field if non-nil, zero value otherwise.
 
-### GetTagsOk
+### GetStatusOk
 
-`func (o *VirtualCircuit) GetTagsOk() (*[]string, bool)`
+`func (o *VirtualCircuit) GetStatusOk() (*string, bool)`
 
-GetTagsOk returns a tuple with the Tags field if it's non-nil, zero value otherwise
+GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetTags
+### SetStatus
 
-`func (o *VirtualCircuit) SetTags(v []string)`
+`func (o *VirtualCircuit) SetStatus(v string)`
 
-SetTags sets Tags field to given value.
+SetStatus sets Status field to given value.
 
-### HasTags
-
-`func (o *VirtualCircuit) HasTags() bool`
-
-HasTags returns a boolean if a field has been set.
-
-### GetProject
-
-`func (o *VirtualCircuit) GetProject() Href`
-
-GetProject returns the Project field if non-nil, zero value otherwise.
-
-### GetProjectOk
-
-`func (o *VirtualCircuit) GetProjectOk() (*Href, bool)`
-
-GetProjectOk returns a tuple with the Project field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetProject
-
-`func (o *VirtualCircuit) SetProject(v Href)`
-
-SetProject sets Project field to given value.
-
-### HasProject
-
-`func (o *VirtualCircuit) HasProject() bool`
-
-HasProject returns a boolean if a field has been set.
 
 ### GetVirtualNetwork
 
-`func (o *VirtualCircuit) GetVirtualNetwork() Href`
+`func (o *VirtualCircuit) GetVirtualNetwork() FindBatchById200ResponseDevicesInner`
 
 GetVirtualNetwork returns the VirtualNetwork field if non-nil, zero value otherwise.
 
 ### GetVirtualNetworkOk
 
-`func (o *VirtualCircuit) GetVirtualNetworkOk() (*Href, bool)`
+`func (o *VirtualCircuit) GetVirtualNetworkOk() (*FindBatchById200ResponseDevicesInner, bool)`
 
 GetVirtualNetworkOk returns a tuple with the VirtualNetwork field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVirtualNetwork
 
-`func (o *VirtualCircuit) SetVirtualNetwork(v Href)`
+`func (o *VirtualCircuit) SetVirtualNetwork(v FindBatchById200ResponseDevicesInner)`
 
 SetVirtualNetwork sets VirtualNetwork field to given value.
 
-### HasVirtualNetwork
 
-`func (o *VirtualCircuit) HasVirtualNetwork() bool`
+### GetVnid
 
-HasVirtualNetwork returns a boolean if a field has been set.
+`func (o *VirtualCircuit) GetVnid() int32`
+
+GetVnid returns the Vnid field if non-nil, zero value otherwise.
+
+### GetVnidOk
+
+`func (o *VirtualCircuit) GetVnidOk() (*int32, bool)`
+
+GetVnidOk returns a tuple with the Vnid field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVnid
+
+`func (o *VirtualCircuit) SetVnid(v int32)`
+
+SetVnid sets Vnid field to given value.
+
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

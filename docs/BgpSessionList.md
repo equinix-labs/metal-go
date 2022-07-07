@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**BgpSessions** | Pointer to [**[]BgpSession**](BgpSession.md) |  | [optional] 
+**BgpSessions** | Pointer to [**[]FindBgpSessionById200Response**](FindBgpSessionById200Response.md) |  | [optional] 
 
 ## Methods
 
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetBgpSessions
 
-`func (o *BgpSessionList) GetBgpSessions() []BgpSession`
+`func (o *BgpSessionList) GetBgpSessions() []FindBgpSessionById200Response`
 
 GetBgpSessions returns the BgpSessions field if non-nil, zero value otherwise.
 
 ### GetBgpSessionsOk
 
-`func (o *BgpSessionList) GetBgpSessionsOk() (*[]BgpSession, bool)`
+`func (o *BgpSessionList) GetBgpSessionsOk() (*[]FindBgpSessionById200Response, bool)`
 
 GetBgpSessionsOk returns a tuple with the BgpSessions field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetBgpSessions
 
-`func (o *BgpSessionList) SetBgpSessions(v []BgpSession)`
+`func (o *BgpSessionList) SetBgpSessions(v []FindBgpSessionById200Response)`
 
 SetBgpSessions sets BgpSessions field to given value.
 

@@ -17,7 +17,7 @@ import (
 
 // BgpSessionList struct for BgpSessionList
 type BgpSessionList struct {
-	BgpSessions []BgpSession `json:"bgp_sessions,omitempty"`
+	BgpSessions []FindBgpSessionById200Response `json:"bgp_sessions,omitempty"`
 }
 
 // NewBgpSessionList instantiates a new BgpSessionList object
@@ -38,9 +38,9 @@ func NewBgpSessionListWithDefaults() *BgpSessionList {
 }
 
 // GetBgpSessions returns the BgpSessions field value if set, zero value otherwise.
-func (o *BgpSessionList) GetBgpSessions() []BgpSession {
+func (o *BgpSessionList) GetBgpSessions() []FindBgpSessionById200Response {
 	if o == nil || o.BgpSessions == nil {
-		var ret []BgpSession
+		var ret []FindBgpSessionById200Response
 		return ret
 	}
 	return o.BgpSessions
@@ -48,7 +48,7 @@ func (o *BgpSessionList) GetBgpSessions() []BgpSession {
 
 // GetBgpSessionsOk returns a tuple with the BgpSessions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BgpSessionList) GetBgpSessionsOk() ([]BgpSession, bool) {
+func (o *BgpSessionList) GetBgpSessionsOk() ([]FindBgpSessionById200Response, bool) {
 	if o == nil || o.BgpSessions == nil {
 		return nil, false
 	}
@@ -64,8 +64,8 @@ func (o *BgpSessionList) HasBgpSessions() bool {
 	return false
 }
 
-// SetBgpSessions gets a reference to the given []BgpSession and assigns it to the BgpSessions field.
-func (o *BgpSessionList) SetBgpSessions(v []BgpSession) {
+// SetBgpSessions gets a reference to the given []FindBgpSessionById200Response and assigns it to the BgpSessions field.
+func (o *BgpSessionList) SetBgpSessions(v []FindBgpSessionById200Response) {
 	o.BgpSessions = v
 }
 

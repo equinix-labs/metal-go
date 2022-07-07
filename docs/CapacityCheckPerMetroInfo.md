@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Available** | Pointer to **bool** | Returns true if there is enough capacity in the metro to fulfill the quantity set. Returns false if there is not enough. | [optional] 
 **Metro** | Pointer to **string** | The metro ID or code sent to check capacity. | [optional] 
 **Plan** | Pointer to **string** | The plan ID or slug sent to check capacity. | [optional] 
 **Quantity** | Pointer to **string** | The number of servers sent to check capacity. | [optional] 
-**Available** | Pointer to **bool** | Returns true if there is enough capacity in the metro to fulfill the quantity set. Returns false if there is not enough. | [optional] 
 
 ## Methods
 
@@ -27,6 +27,31 @@ will change when the set of required properties is changed
 NewCapacityCheckPerMetroInfoWithDefaults instantiates a new CapacityCheckPerMetroInfo object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetAvailable
+
+`func (o *CapacityCheckPerMetroInfo) GetAvailable() bool`
+
+GetAvailable returns the Available field if non-nil, zero value otherwise.
+
+### GetAvailableOk
+
+`func (o *CapacityCheckPerMetroInfo) GetAvailableOk() (*bool, bool)`
+
+GetAvailableOk returns a tuple with the Available field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAvailable
+
+`func (o *CapacityCheckPerMetroInfo) SetAvailable(v bool)`
+
+SetAvailable sets Available field to given value.
+
+### HasAvailable
+
+`func (o *CapacityCheckPerMetroInfo) HasAvailable() bool`
+
+HasAvailable returns a boolean if a field has been set.
 
 ### GetMetro
 
@@ -102,31 +127,6 @@ SetQuantity sets Quantity field to given value.
 `func (o *CapacityCheckPerMetroInfo) HasQuantity() bool`
 
 HasQuantity returns a boolean if a field has been set.
-
-### GetAvailable
-
-`func (o *CapacityCheckPerMetroInfo) GetAvailable() bool`
-
-GetAvailable returns the Available field if non-nil, zero value otherwise.
-
-### GetAvailableOk
-
-`func (o *CapacityCheckPerMetroInfo) GetAvailableOk() (*bool, bool)`
-
-GetAvailableOk returns a tuple with the Available field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAvailable
-
-`func (o *CapacityCheckPerMetroInfo) SetAvailable(v bool)`
-
-SetAvailable sets Available field to given value.
-
-### HasAvailable
-
-`func (o *CapacityCheckPerMetroInfo) HasAvailable() bool`
-
-HasAvailable returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

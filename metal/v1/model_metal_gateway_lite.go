@@ -18,16 +18,16 @@ import (
 
 // MetalGatewayLite struct for MetalGatewayLite
 type MetalGatewayLite struct {
-	Id *string `json:"id,omitempty"`
-	// The current state of the Metal Gateway. 'Ready' indicates the gateway record has been configured, but is currently not active on the network. 'Active' indicates the gateway has been configured on the network. 'Deleting' is a temporary state used to indicate that the gateway is in the process of being un-configured from the network, after which the gateway record will be deleted.
-	State     *string    `json:"state,omitempty"`
 	CreatedAt *time.Time `json:"created_at,omitempty"`
-	UpdatedAt *time.Time `json:"updated_at,omitempty"`
 	// The gateway address with subnet CIDR value for this Metal Gateway. For example, a Metal Gateway using an IP reservation with block 10.1.2.0/27 would have a gateway address of 10.1.2.1/27.
 	GatewayAddress *string `json:"gateway_address,omitempty"`
+	Href           *string `json:"href,omitempty"`
+	Id             *string `json:"id,omitempty"`
+	// The current state of the Metal Gateway. 'Ready' indicates the gateway record has been configured, but is currently not active on the network. 'Active' indicates the gateway has been configured on the network. 'Deleting' is a temporary state used to indicate that the gateway is in the process of being un-configured from the network, after which the gateway record will be deleted.
+	State     *string    `json:"state,omitempty"`
+	UpdatedAt *time.Time `json:"updated_at,omitempty"`
 	// The VLAN id of the Virtual Network record associated to this Metal Gateway. Example: 1001.
 	Vlan *float32 `json:"vlan,omitempty"`
-	Href *string  `json:"href,omitempty"`
 }
 
 // NewMetalGatewayLite instantiates a new MetalGatewayLite object
@@ -45,6 +45,102 @@ func NewMetalGatewayLite() *MetalGatewayLite {
 func NewMetalGatewayLiteWithDefaults() *MetalGatewayLite {
 	this := MetalGatewayLite{}
 	return &this
+}
+
+// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
+func (o *MetalGatewayLite) GetCreatedAt() time.Time {
+	if o == nil || o.CreatedAt == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.CreatedAt
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MetalGatewayLite) GetCreatedAtOk() (*time.Time, bool) {
+	if o == nil || o.CreatedAt == nil {
+		return nil, false
+	}
+	return o.CreatedAt, true
+}
+
+// HasCreatedAt returns a boolean if a field has been set.
+func (o *MetalGatewayLite) HasCreatedAt() bool {
+	if o != nil && o.CreatedAt != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
+func (o *MetalGatewayLite) SetCreatedAt(v time.Time) {
+	o.CreatedAt = &v
+}
+
+// GetGatewayAddress returns the GatewayAddress field value if set, zero value otherwise.
+func (o *MetalGatewayLite) GetGatewayAddress() string {
+	if o == nil || o.GatewayAddress == nil {
+		var ret string
+		return ret
+	}
+	return *o.GatewayAddress
+}
+
+// GetGatewayAddressOk returns a tuple with the GatewayAddress field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MetalGatewayLite) GetGatewayAddressOk() (*string, bool) {
+	if o == nil || o.GatewayAddress == nil {
+		return nil, false
+	}
+	return o.GatewayAddress, true
+}
+
+// HasGatewayAddress returns a boolean if a field has been set.
+func (o *MetalGatewayLite) HasGatewayAddress() bool {
+	if o != nil && o.GatewayAddress != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetGatewayAddress gets a reference to the given string and assigns it to the GatewayAddress field.
+func (o *MetalGatewayLite) SetGatewayAddress(v string) {
+	o.GatewayAddress = &v
+}
+
+// GetHref returns the Href field value if set, zero value otherwise.
+func (o *MetalGatewayLite) GetHref() string {
+	if o == nil || o.Href == nil {
+		var ret string
+		return ret
+	}
+	return *o.Href
+}
+
+// GetHrefOk returns a tuple with the Href field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MetalGatewayLite) GetHrefOk() (*string, bool) {
+	if o == nil || o.Href == nil {
+		return nil, false
+	}
+	return o.Href, true
+}
+
+// HasHref returns a boolean if a field has been set.
+func (o *MetalGatewayLite) HasHref() bool {
+	if o != nil && o.Href != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHref gets a reference to the given string and assigns it to the Href field.
+func (o *MetalGatewayLite) SetHref(v string) {
+	o.Href = &v
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
@@ -111,38 +207,6 @@ func (o *MetalGatewayLite) SetState(v string) {
 	o.State = &v
 }
 
-// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
-func (o *MetalGatewayLite) GetCreatedAt() time.Time {
-	if o == nil || o.CreatedAt == nil {
-		var ret time.Time
-		return ret
-	}
-	return *o.CreatedAt
-}
-
-// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *MetalGatewayLite) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || o.CreatedAt == nil {
-		return nil, false
-	}
-	return o.CreatedAt, true
-}
-
-// HasCreatedAt returns a boolean if a field has been set.
-func (o *MetalGatewayLite) HasCreatedAt() bool {
-	if o != nil && o.CreatedAt != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
-func (o *MetalGatewayLite) SetCreatedAt(v time.Time) {
-	o.CreatedAt = &v
-}
-
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *MetalGatewayLite) GetUpdatedAt() time.Time {
 	if o == nil || o.UpdatedAt == nil {
@@ -173,38 +237,6 @@ func (o *MetalGatewayLite) HasUpdatedAt() bool {
 // SetUpdatedAt gets a reference to the given time.Time and assigns it to the UpdatedAt field.
 func (o *MetalGatewayLite) SetUpdatedAt(v time.Time) {
 	o.UpdatedAt = &v
-}
-
-// GetGatewayAddress returns the GatewayAddress field value if set, zero value otherwise.
-func (o *MetalGatewayLite) GetGatewayAddress() string {
-	if o == nil || o.GatewayAddress == nil {
-		var ret string
-		return ret
-	}
-	return *o.GatewayAddress
-}
-
-// GetGatewayAddressOk returns a tuple with the GatewayAddress field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *MetalGatewayLite) GetGatewayAddressOk() (*string, bool) {
-	if o == nil || o.GatewayAddress == nil {
-		return nil, false
-	}
-	return o.GatewayAddress, true
-}
-
-// HasGatewayAddress returns a boolean if a field has been set.
-func (o *MetalGatewayLite) HasGatewayAddress() bool {
-	if o != nil && o.GatewayAddress != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetGatewayAddress gets a reference to the given string and assigns it to the GatewayAddress field.
-func (o *MetalGatewayLite) SetGatewayAddress(v string) {
-	o.GatewayAddress = &v
 }
 
 // GetVlan returns the Vlan field value if set, zero value otherwise.
@@ -239,60 +271,28 @@ func (o *MetalGatewayLite) SetVlan(v float32) {
 	o.Vlan = &v
 }
 
-// GetHref returns the Href field value if set, zero value otherwise.
-func (o *MetalGatewayLite) GetHref() string {
-	if o == nil || o.Href == nil {
-		var ret string
-		return ret
-	}
-	return *o.Href
-}
-
-// GetHrefOk returns a tuple with the Href field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *MetalGatewayLite) GetHrefOk() (*string, bool) {
-	if o == nil || o.Href == nil {
-		return nil, false
-	}
-	return o.Href, true
-}
-
-// HasHref returns a boolean if a field has been set.
-func (o *MetalGatewayLite) HasHref() bool {
-	if o != nil && o.Href != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetHref gets a reference to the given string and assigns it to the Href field.
-func (o *MetalGatewayLite) SetHref(v string) {
-	o.Href = &v
-}
-
 func (o MetalGatewayLite) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.CreatedAt != nil {
+		toSerialize["created_at"] = o.CreatedAt
+	}
+	if o.GatewayAddress != nil {
+		toSerialize["gateway_address"] = o.GatewayAddress
+	}
+	if o.Href != nil {
+		toSerialize["href"] = o.Href
+	}
 	if o.Id != nil {
 		toSerialize["id"] = o.Id
 	}
 	if o.State != nil {
 		toSerialize["state"] = o.State
 	}
-	if o.CreatedAt != nil {
-		toSerialize["created_at"] = o.CreatedAt
-	}
 	if o.UpdatedAt != nil {
 		toSerialize["updated_at"] = o.UpdatedAt
 	}
-	if o.GatewayAddress != nil {
-		toSerialize["gateway_address"] = o.GatewayAddress
-	}
 	if o.Vlan != nil {
 		toSerialize["vlan"] = o.Vlan
-	}
-	if o.Href != nil {
-		toSerialize["href"] = o.Href
 	}
 	return json.Marshal(toSerialize)
 }

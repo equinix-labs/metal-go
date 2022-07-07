@@ -26,16 +26,16 @@ type EmailsApiService service
 type ApiCreateEmailRequest struct {
 	ctx        context.Context
 	ApiService *EmailsApiService
-	email      *CreateEmailInput
+	body       *CreateEmailRequest
 }
 
 // Email to create
-func (r ApiCreateEmailRequest) Email(email CreateEmailInput) ApiCreateEmailRequest {
-	r.email = &email
+func (r ApiCreateEmailRequest) Body(body CreateEmailRequest) ApiCreateEmailRequest {
+	r.body = &body
 	return r
 }
 
-func (r ApiCreateEmailRequest) Execute() (*Email, *http.Response, error) {
+func (r ApiCreateEmailRequest) Execute() (*CreateEmail201Response, *http.Response, error) {
 	return r.ApiService.CreateEmailExecute(r)
 }
 
@@ -55,13 +55,13 @@ func (a *EmailsApiService) CreateEmail(ctx context.Context) ApiCreateEmailReques
 }
 
 // Execute executes the request
-//  @return Email
-func (a *EmailsApiService) CreateEmailExecute(r ApiCreateEmailRequest) (*Email, *http.Response, error) {
+//  @return CreateEmail201Response
+func (a *EmailsApiService) CreateEmailExecute(r ApiCreateEmailRequest) (*CreateEmail201Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *Email
+		localVarReturnValue *CreateEmail201Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EmailsApiService.CreateEmail")
@@ -74,8 +74,8 @@ func (a *EmailsApiService) CreateEmailExecute(r ApiCreateEmailRequest) (*Email, 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.email == nil {
-		return localVarReturnValue, nil, reportError("email is required and must be specified")
+	if r.body == nil {
+		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -96,7 +96,7 @@ func (a *EmailsApiService) CreateEmailExecute(r ApiCreateEmailRequest) (*Email, 
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.email
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -134,7 +134,7 @@ func (a *EmailsApiService) CreateEmailExecute(r ApiCreateEmailRequest) (*Email, 
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -144,7 +144,7 @@ func (a *EmailsApiService) CreateEmailExecute(r ApiCreateEmailRequest) (*Email, 
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -268,7 +268,7 @@ func (a *EmailsApiService) DeleteEmailExecute(r ApiDeleteEmailRequest) (*http.Re
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -278,7 +278,7 @@ func (a *EmailsApiService) DeleteEmailExecute(r ApiDeleteEmailRequest) (*http.Re
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -288,7 +288,7 @@ func (a *EmailsApiService) DeleteEmailExecute(r ApiDeleteEmailRequest) (*http.Re
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -322,7 +322,7 @@ func (r ApiFindEmailByIdRequest) Exclude(exclude []string) ApiFindEmailByIdReque
 	return r
 }
 
-func (r ApiFindEmailByIdRequest) Execute() (*Email, *http.Response, error) {
+func (r ApiFindEmailByIdRequest) Execute() (*CreateEmail201Response, *http.Response, error) {
 	return r.ApiService.FindEmailByIdExecute(r)
 }
 
@@ -344,13 +344,13 @@ func (a *EmailsApiService) FindEmailById(ctx context.Context, id string) ApiFind
 }
 
 // Execute executes the request
-//  @return Email
-func (a *EmailsApiService) FindEmailByIdExecute(r ApiFindEmailByIdRequest) (*Email, *http.Response, error) {
+//  @return CreateEmail201Response
+func (a *EmailsApiService) FindEmailByIdExecute(r ApiFindEmailByIdRequest) (*CreateEmail201Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *Email
+		localVarReturnValue *CreateEmail201Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EmailsApiService.FindEmailById")
@@ -425,7 +425,7 @@ func (a *EmailsApiService) FindEmailByIdExecute(r ApiFindEmailByIdRequest) (*Ema
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -435,7 +435,7 @@ func (a *EmailsApiService) FindEmailByIdExecute(r ApiFindEmailByIdRequest) (*Ema
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -445,7 +445,7 @@ func (a *EmailsApiService) FindEmailByIdExecute(r ApiFindEmailByIdRequest) (*Ema
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -472,16 +472,16 @@ type ApiUpdateEmailRequest struct {
 	ctx        context.Context
 	ApiService *EmailsApiService
 	id         string
-	email      *UpdateEmailInput
+	body       *UpdateEmailRequest
 }
 
 // email to update
-func (r ApiUpdateEmailRequest) Email(email UpdateEmailInput) ApiUpdateEmailRequest {
-	r.email = &email
+func (r ApiUpdateEmailRequest) Body(body UpdateEmailRequest) ApiUpdateEmailRequest {
+	r.body = &body
 	return r
 }
 
-func (r ApiUpdateEmailRequest) Execute() (*Email, *http.Response, error) {
+func (r ApiUpdateEmailRequest) Execute() (*CreateEmail201Response, *http.Response, error) {
 	return r.ApiService.UpdateEmailExecute(r)
 }
 
@@ -503,13 +503,13 @@ func (a *EmailsApiService) UpdateEmail(ctx context.Context, id string) ApiUpdate
 }
 
 // Execute executes the request
-//  @return Email
-func (a *EmailsApiService) UpdateEmailExecute(r ApiUpdateEmailRequest) (*Email, *http.Response, error) {
+//  @return CreateEmail201Response
+func (a *EmailsApiService) UpdateEmailExecute(r ApiUpdateEmailRequest) (*CreateEmail201Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *Email
+		localVarReturnValue *CreateEmail201Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EmailsApiService.UpdateEmail")
@@ -523,8 +523,8 @@ func (a *EmailsApiService) UpdateEmailExecute(r ApiUpdateEmailRequest) (*Email, 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.email == nil {
-		return localVarReturnValue, nil, reportError("email is required and must be specified")
+	if r.body == nil {
+		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -545,7 +545,7 @@ func (a *EmailsApiService) UpdateEmailExecute(r ApiUpdateEmailRequest) (*Email, 
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.email
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -583,7 +583,7 @@ func (a *EmailsApiService) UpdateEmailExecute(r ApiUpdateEmailRequest) (*Email, 
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -593,7 +593,7 @@ func (a *EmailsApiService) UpdateEmailExecute(r ApiUpdateEmailRequest) (*Email, 
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -603,7 +603,7 @@ func (a *EmailsApiService) UpdateEmailExecute(r ApiUpdateEmailRequest) (*Email, 
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -613,7 +613,7 @@ func (a *EmailsApiService) UpdateEmailExecute(r ApiUpdateEmailRequest) (*Email, 
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

@@ -17,12 +17,12 @@ import (
 
 // VirtualNetworkCreateInput struct for VirtualNetworkCreateInput
 type VirtualNetworkCreateInput struct {
-	ProjectId   string  `json:"project_id"`
 	Description *string `json:"description,omitempty"`
 	// The UUID (or facility code) for the Facility in which to create this Virtual network.
 	Facility *string `json:"facility,omitempty"`
 	// The UUID (or metro code) for the Metro in which to create this Virtual Network.
-	Metro *string `json:"metro,omitempty"`
+	Metro     *string `json:"metro,omitempty"`
+	ProjectId string  `json:"project_id"`
 	// VLAN ID between 2-3999. Must be unique for the project within the Metro in which this Virtual Network is being created. If no value is specified, the next-available VLAN ID in the range 1000-1999 will be automatically selected.
 	Vxlan *int32 `json:"vxlan,omitempty"`
 }
@@ -43,30 +43,6 @@ func NewVirtualNetworkCreateInput(projectId string) *VirtualNetworkCreateInput {
 func NewVirtualNetworkCreateInputWithDefaults() *VirtualNetworkCreateInput {
 	this := VirtualNetworkCreateInput{}
 	return &this
-}
-
-// GetProjectId returns the ProjectId field value
-func (o *VirtualNetworkCreateInput) GetProjectId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.ProjectId
-}
-
-// GetProjectIdOk returns a tuple with the ProjectId field value
-// and a boolean to check if the value has been set.
-func (o *VirtualNetworkCreateInput) GetProjectIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.ProjectId, true
-}
-
-// SetProjectId sets field value
-func (o *VirtualNetworkCreateInput) SetProjectId(v string) {
-	o.ProjectId = v
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise.
@@ -165,6 +141,30 @@ func (o *VirtualNetworkCreateInput) SetMetro(v string) {
 	o.Metro = &v
 }
 
+// GetProjectId returns the ProjectId field value
+func (o *VirtualNetworkCreateInput) GetProjectId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.ProjectId
+}
+
+// GetProjectIdOk returns a tuple with the ProjectId field value
+// and a boolean to check if the value has been set.
+func (o *VirtualNetworkCreateInput) GetProjectIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ProjectId, true
+}
+
+// SetProjectId sets field value
+func (o *VirtualNetworkCreateInput) SetProjectId(v string) {
+	o.ProjectId = v
+}
+
 // GetVxlan returns the Vxlan field value if set, zero value otherwise.
 func (o *VirtualNetworkCreateInput) GetVxlan() int32 {
 	if o == nil || o.Vxlan == nil {
@@ -199,9 +199,6 @@ func (o *VirtualNetworkCreateInput) SetVxlan(v int32) {
 
 func (o VirtualNetworkCreateInput) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["project_id"] = o.ProjectId
-	}
 	if o.Description != nil {
 		toSerialize["description"] = o.Description
 	}
@@ -210,6 +207,9 @@ func (o VirtualNetworkCreateInput) MarshalJSON() ([]byte, error) {
 	}
 	if o.Metro != nil {
 		toSerialize["metro"] = o.Metro
+	}
+	if true {
+		toSerialize["project_id"] = o.ProjectId
 	}
 	if o.Vxlan != nil {
 		toSerialize["vxlan"] = o.Vxlan

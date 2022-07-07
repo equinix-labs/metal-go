@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Projects** | Pointer to [**[]Project**](Project.md) |  | [optional] 
-**Meta** | Pointer to [**Meta**](Meta.md) |  | [optional] 
+**Meta** | Pointer to [**FindDeviceEvents200ResponseMeta**](FindDeviceEvents200ResponseMeta.md) |  | [optional] 
+**Projects** | Pointer to [**[]MoveHardwareReservation201ResponseProject**](MoveHardwareReservation201ResponseProject.md) |  | [optional] 
 
 ## Methods
 
@@ -26,47 +26,22 @@ NewProjectListWithDefaults instantiates a new ProjectList object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetProjects
-
-`func (o *ProjectList) GetProjects() []Project`
-
-GetProjects returns the Projects field if non-nil, zero value otherwise.
-
-### GetProjectsOk
-
-`func (o *ProjectList) GetProjectsOk() (*[]Project, bool)`
-
-GetProjectsOk returns a tuple with the Projects field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetProjects
-
-`func (o *ProjectList) SetProjects(v []Project)`
-
-SetProjects sets Projects field to given value.
-
-### HasProjects
-
-`func (o *ProjectList) HasProjects() bool`
-
-HasProjects returns a boolean if a field has been set.
-
 ### GetMeta
 
-`func (o *ProjectList) GetMeta() Meta`
+`func (o *ProjectList) GetMeta() FindDeviceEvents200ResponseMeta`
 
 GetMeta returns the Meta field if non-nil, zero value otherwise.
 
 ### GetMetaOk
 
-`func (o *ProjectList) GetMetaOk() (*Meta, bool)`
+`func (o *ProjectList) GetMetaOk() (*FindDeviceEvents200ResponseMeta, bool)`
 
 GetMetaOk returns a tuple with the Meta field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMeta
 
-`func (o *ProjectList) SetMeta(v Meta)`
+`func (o *ProjectList) SetMeta(v FindDeviceEvents200ResponseMeta)`
 
 SetMeta sets Meta field to given value.
 
@@ -75,6 +50,31 @@ SetMeta sets Meta field to given value.
 `func (o *ProjectList) HasMeta() bool`
 
 HasMeta returns a boolean if a field has been set.
+
+### GetProjects
+
+`func (o *ProjectList) GetProjects() []MoveHardwareReservation201ResponseProject`
+
+GetProjects returns the Projects field if non-nil, zero value otherwise.
+
+### GetProjectsOk
+
+`func (o *ProjectList) GetProjectsOk() (*[]MoveHardwareReservation201ResponseProject, bool)`
+
+GetProjectsOk returns a tuple with the Projects field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProjects
+
+`func (o *ProjectList) SetProjects(v []MoveHardwareReservation201ResponseProject)`
+
+SetProjects sets Projects field to given value.
+
+### HasProjects
+
+`func (o *ProjectList) HasProjects() bool`
+
+HasProjects returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -18,14 +18,14 @@ import (
 
 // PortVlanAssignment struct for PortVlanAssignment
 type PortVlanAssignment struct {
-	Id             *string    `json:"id,omitempty"`
-	CreatedAt      *time.Time `json:"created_at,omitempty"`
-	UpdatedAt      *time.Time `json:"updated_at,omitempty"`
-	Native         *bool      `json:"native,omitempty"`
-	State          *string    `json:"state,omitempty"`
-	Vlan           *int32     `json:"vlan,omitempty"`
-	Port           *Href      `json:"port,omitempty"`
-	VirtualNetwork *Href      `json:"virtual_network,omitempty"`
+	CreatedAt      *time.Time                            `json:"created_at,omitempty"`
+	Id             *string                               `json:"id,omitempty"`
+	Native         *bool                                 `json:"native,omitempty"`
+	Port           *FindBatchById200ResponseDevicesInner `json:"port,omitempty"`
+	State          *string                               `json:"state,omitempty"`
+	UpdatedAt      *time.Time                            `json:"updated_at,omitempty"`
+	VirtualNetwork *FindBatchById200ResponseDevicesInner `json:"virtual_network,omitempty"`
+	Vlan           *int32                                `json:"vlan,omitempty"`
 }
 
 // NewPortVlanAssignment instantiates a new PortVlanAssignment object
@@ -43,38 +43,6 @@ func NewPortVlanAssignment() *PortVlanAssignment {
 func NewPortVlanAssignmentWithDefaults() *PortVlanAssignment {
 	this := PortVlanAssignment{}
 	return &this
-}
-
-// GetId returns the Id field value if set, zero value otherwise.
-func (o *PortVlanAssignment) GetId() string {
-	if o == nil || o.Id == nil {
-		var ret string
-		return ret
-	}
-	return *o.Id
-}
-
-// GetIdOk returns a tuple with the Id field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *PortVlanAssignment) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
-		return nil, false
-	}
-	return o.Id, true
-}
-
-// HasId returns a boolean if a field has been set.
-func (o *PortVlanAssignment) HasId() bool {
-	if o != nil && o.Id != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetId gets a reference to the given string and assigns it to the Id field.
-func (o *PortVlanAssignment) SetId(v string) {
-	o.Id = &v
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
@@ -109,36 +77,36 @@ func (o *PortVlanAssignment) SetCreatedAt(v time.Time) {
 	o.CreatedAt = &v
 }
 
-// GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
-func (o *PortVlanAssignment) GetUpdatedAt() time.Time {
-	if o == nil || o.UpdatedAt == nil {
-		var ret time.Time
+// GetId returns the Id field value if set, zero value otherwise.
+func (o *PortVlanAssignment) GetId() string {
+	if o == nil || o.Id == nil {
+		var ret string
 		return ret
 	}
-	return *o.UpdatedAt
+	return *o.Id
 }
 
-// GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PortVlanAssignment) GetUpdatedAtOk() (*time.Time, bool) {
-	if o == nil || o.UpdatedAt == nil {
+func (o *PortVlanAssignment) GetIdOk() (*string, bool) {
+	if o == nil || o.Id == nil {
 		return nil, false
 	}
-	return o.UpdatedAt, true
+	return o.Id, true
 }
 
-// HasUpdatedAt returns a boolean if a field has been set.
-func (o *PortVlanAssignment) HasUpdatedAt() bool {
-	if o != nil && o.UpdatedAt != nil {
+// HasId returns a boolean if a field has been set.
+func (o *PortVlanAssignment) HasId() bool {
+	if o != nil && o.Id != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetUpdatedAt gets a reference to the given time.Time and assigns it to the UpdatedAt field.
-func (o *PortVlanAssignment) SetUpdatedAt(v time.Time) {
-	o.UpdatedAt = &v
+// SetId gets a reference to the given string and assigns it to the Id field.
+func (o *PortVlanAssignment) SetId(v string) {
+	o.Id = &v
 }
 
 // GetNative returns the Native field value if set, zero value otherwise.
@@ -173,6 +141,38 @@ func (o *PortVlanAssignment) SetNative(v bool) {
 	o.Native = &v
 }
 
+// GetPort returns the Port field value if set, zero value otherwise.
+func (o *PortVlanAssignment) GetPort() FindBatchById200ResponseDevicesInner {
+	if o == nil || o.Port == nil {
+		var ret FindBatchById200ResponseDevicesInner
+		return ret
+	}
+	return *o.Port
+}
+
+// GetPortOk returns a tuple with the Port field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PortVlanAssignment) GetPortOk() (*FindBatchById200ResponseDevicesInner, bool) {
+	if o == nil || o.Port == nil {
+		return nil, false
+	}
+	return o.Port, true
+}
+
+// HasPort returns a boolean if a field has been set.
+func (o *PortVlanAssignment) HasPort() bool {
+	if o != nil && o.Port != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPort gets a reference to the given FindBatchById200ResponseDevicesInner and assigns it to the Port field.
+func (o *PortVlanAssignment) SetPort(v FindBatchById200ResponseDevicesInner) {
+	o.Port = &v
+}
+
 // GetState returns the State field value if set, zero value otherwise.
 func (o *PortVlanAssignment) GetState() string {
 	if o == nil || o.State == nil {
@@ -203,6 +203,70 @@ func (o *PortVlanAssignment) HasState() bool {
 // SetState gets a reference to the given string and assigns it to the State field.
 func (o *PortVlanAssignment) SetState(v string) {
 	o.State = &v
+}
+
+// GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
+func (o *PortVlanAssignment) GetUpdatedAt() time.Time {
+	if o == nil || o.UpdatedAt == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.UpdatedAt
+}
+
+// GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PortVlanAssignment) GetUpdatedAtOk() (*time.Time, bool) {
+	if o == nil || o.UpdatedAt == nil {
+		return nil, false
+	}
+	return o.UpdatedAt, true
+}
+
+// HasUpdatedAt returns a boolean if a field has been set.
+func (o *PortVlanAssignment) HasUpdatedAt() bool {
+	if o != nil && o.UpdatedAt != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetUpdatedAt gets a reference to the given time.Time and assigns it to the UpdatedAt field.
+func (o *PortVlanAssignment) SetUpdatedAt(v time.Time) {
+	o.UpdatedAt = &v
+}
+
+// GetVirtualNetwork returns the VirtualNetwork field value if set, zero value otherwise.
+func (o *PortVlanAssignment) GetVirtualNetwork() FindBatchById200ResponseDevicesInner {
+	if o == nil || o.VirtualNetwork == nil {
+		var ret FindBatchById200ResponseDevicesInner
+		return ret
+	}
+	return *o.VirtualNetwork
+}
+
+// GetVirtualNetworkOk returns a tuple with the VirtualNetwork field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PortVlanAssignment) GetVirtualNetworkOk() (*FindBatchById200ResponseDevicesInner, bool) {
+	if o == nil || o.VirtualNetwork == nil {
+		return nil, false
+	}
+	return o.VirtualNetwork, true
+}
+
+// HasVirtualNetwork returns a boolean if a field has been set.
+func (o *PortVlanAssignment) HasVirtualNetwork() bool {
+	if o != nil && o.VirtualNetwork != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetVirtualNetwork gets a reference to the given FindBatchById200ResponseDevicesInner and assigns it to the VirtualNetwork field.
+func (o *PortVlanAssignment) SetVirtualNetwork(v FindBatchById200ResponseDevicesInner) {
+	o.VirtualNetwork = &v
 }
 
 // GetVlan returns the Vlan field value if set, zero value otherwise.
@@ -237,95 +301,31 @@ func (o *PortVlanAssignment) SetVlan(v int32) {
 	o.Vlan = &v
 }
 
-// GetPort returns the Port field value if set, zero value otherwise.
-func (o *PortVlanAssignment) GetPort() Href {
-	if o == nil || o.Port == nil {
-		var ret Href
-		return ret
-	}
-	return *o.Port
-}
-
-// GetPortOk returns a tuple with the Port field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *PortVlanAssignment) GetPortOk() (*Href, bool) {
-	if o == nil || o.Port == nil {
-		return nil, false
-	}
-	return o.Port, true
-}
-
-// HasPort returns a boolean if a field has been set.
-func (o *PortVlanAssignment) HasPort() bool {
-	if o != nil && o.Port != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetPort gets a reference to the given Href and assigns it to the Port field.
-func (o *PortVlanAssignment) SetPort(v Href) {
-	o.Port = &v
-}
-
-// GetVirtualNetwork returns the VirtualNetwork field value if set, zero value otherwise.
-func (o *PortVlanAssignment) GetVirtualNetwork() Href {
-	if o == nil || o.VirtualNetwork == nil {
-		var ret Href
-		return ret
-	}
-	return *o.VirtualNetwork
-}
-
-// GetVirtualNetworkOk returns a tuple with the VirtualNetwork field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *PortVlanAssignment) GetVirtualNetworkOk() (*Href, bool) {
-	if o == nil || o.VirtualNetwork == nil {
-		return nil, false
-	}
-	return o.VirtualNetwork, true
-}
-
-// HasVirtualNetwork returns a boolean if a field has been set.
-func (o *PortVlanAssignment) HasVirtualNetwork() bool {
-	if o != nil && o.VirtualNetwork != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetVirtualNetwork gets a reference to the given Href and assigns it to the VirtualNetwork field.
-func (o *PortVlanAssignment) SetVirtualNetwork(v Href) {
-	o.VirtualNetwork = &v
-}
-
 func (o PortVlanAssignment) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
-	}
 	if o.CreatedAt != nil {
 		toSerialize["created_at"] = o.CreatedAt
 	}
-	if o.UpdatedAt != nil {
-		toSerialize["updated_at"] = o.UpdatedAt
+	if o.Id != nil {
+		toSerialize["id"] = o.Id
 	}
 	if o.Native != nil {
 		toSerialize["native"] = o.Native
 	}
-	if o.State != nil {
-		toSerialize["state"] = o.State
-	}
-	if o.Vlan != nil {
-		toSerialize["vlan"] = o.Vlan
-	}
 	if o.Port != nil {
 		toSerialize["port"] = o.Port
 	}
+	if o.State != nil {
+		toSerialize["state"] = o.State
+	}
+	if o.UpdatedAt != nil {
+		toSerialize["updated_at"] = o.UpdatedAt
+	}
 	if o.VirtualNetwork != nil {
 		toSerialize["virtual_network"] = o.VirtualNetwork
+	}
+	if o.Vlan != nil {
+		toSerialize["vlan"] = o.Vlan
 	}
 	return json.Marshal(toSerialize)
 }

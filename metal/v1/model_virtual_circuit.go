@@ -17,25 +17,39 @@ import (
 
 // VirtualCircuit struct for VirtualCircuit
 type VirtualCircuit struct {
-	Id          *string `json:"id,omitempty"`
-	Name        *string `json:"name,omitempty"`
-	Description *string `json:"description,omitempty"`
-	Status      *string `json:"status,omitempty"`
-	Vnid        *int32  `json:"vnid,omitempty"`
-	NniVlan     *int32  `json:"nni_vlan,omitempty"`
+	Tags []string `json:"tags"`
+	// True if the Virtual Circuit is being billed. Currently, only Virtual Circuits that are created with A-side service tokens will be billed. Usage will start the first time the Virtual Circuit becomes active, and will not stop until it is deleted.
+	Bill        bool                                 `json:"bill"`
+	Description string                               `json:"description"`
+	Id          string                               `json:"id"`
+	Name        string                               `json:"name"`
+	NniVlan     int32                                `json:"nni_vlan"`
+	Port        FindBatchById200ResponseDevicesInner `json:"port"`
+	Project     FindBatchById200ResponseDevicesInner `json:"project"`
 	// integer representing bps speed
-	Speed          *int32   `json:"speed,omitempty"`
-	Tags           []string `json:"tags,omitempty"`
-	Project        *Href    `json:"project,omitempty"`
-	VirtualNetwork *Href    `json:"virtual_network,omitempty"`
+	Speed          *int32                               `json:"speed,omitempty"`
+	Status         string                               `json:"status"`
+	VirtualNetwork FindBatchById200ResponseDevicesInner `json:"virtual_network"`
+	Vnid           int32                                `json:"vnid"`
 }
 
 // NewVirtualCircuit instantiates a new VirtualCircuit object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVirtualCircuit() *VirtualCircuit {
+func NewVirtualCircuit(tags []string, bill bool, description string, id string, name string, nniVlan int32, port FindBatchById200ResponseDevicesInner, project FindBatchById200ResponseDevicesInner, status string, virtualNetwork FindBatchById200ResponseDevicesInner, vnid int32) *VirtualCircuit {
 	this := VirtualCircuit{}
+	this.Tags = tags
+	this.Bill = bill
+	this.Description = description
+	this.Id = id
+	this.Name = name
+	this.NniVlan = nniVlan
+	this.Port = port
+	this.Project = project
+	this.Status = status
+	this.VirtualNetwork = virtualNetwork
+	this.Vnid = vnid
 	return &this
 }
 
@@ -44,199 +58,201 @@ func NewVirtualCircuit() *VirtualCircuit {
 // but it doesn't guarantee that properties required by API are set
 func NewVirtualCircuitWithDefaults() *VirtualCircuit {
 	this := VirtualCircuit{}
+	var bill bool = false
+	this.Bill = bill
 	return &this
 }
 
-// GetId returns the Id field value if set, zero value otherwise.
-func (o *VirtualCircuit) GetId() string {
-	if o == nil || o.Id == nil {
-		var ret string
+// GetTags returns the Tags field value
+func (o *VirtualCircuit) GetTags() []string {
+	if o == nil {
+		var ret []string
 		return ret
 	}
-	return *o.Id
+
+	return o.Tags
 }
 
-// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// GetTagsOk returns a tuple with the Tags field value
 // and a boolean to check if the value has been set.
-func (o *VirtualCircuit) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+func (o *VirtualCircuit) GetTagsOk() ([]string, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Id, true
+	return o.Tags, true
 }
 
-// HasId returns a boolean if a field has been set.
-func (o *VirtualCircuit) HasId() bool {
-	if o != nil && o.Id != nil {
-		return true
-	}
-
-	return false
+// SetTags sets field value
+func (o *VirtualCircuit) SetTags(v []string) {
+	o.Tags = v
 }
 
-// SetId gets a reference to the given string and assigns it to the Id field.
-func (o *VirtualCircuit) SetId(v string) {
-	o.Id = &v
-}
-
-// GetName returns the Name field value if set, zero value otherwise.
-func (o *VirtualCircuit) GetName() string {
-	if o == nil || o.Name == nil {
-		var ret string
+// GetBill returns the Bill field value
+func (o *VirtualCircuit) GetBill() bool {
+	if o == nil {
+		var ret bool
 		return ret
 	}
-	return *o.Name
+
+	return o.Bill
 }
 
-// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// GetBillOk returns a tuple with the Bill field value
 // and a boolean to check if the value has been set.
-func (o *VirtualCircuit) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
+func (o *VirtualCircuit) GetBillOk() (*bool, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Name, true
+	return &o.Bill, true
 }
 
-// HasName returns a boolean if a field has been set.
-func (o *VirtualCircuit) HasName() bool {
-	if o != nil && o.Name != nil {
-		return true
-	}
-
-	return false
+// SetBill sets field value
+func (o *VirtualCircuit) SetBill(v bool) {
+	o.Bill = v
 }
 
-// SetName gets a reference to the given string and assigns it to the Name field.
-func (o *VirtualCircuit) SetName(v string) {
-	o.Name = &v
-}
-
-// GetDescription returns the Description field value if set, zero value otherwise.
+// GetDescription returns the Description field value
 func (o *VirtualCircuit) GetDescription() string {
-	if o == nil || o.Description == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Description
+
+	return o.Description
 }
 
-// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
+// GetDescriptionOk returns a tuple with the Description field value
 // and a boolean to check if the value has been set.
 func (o *VirtualCircuit) GetDescriptionOk() (*string, bool) {
-	if o == nil || o.Description == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Description, true
+	return &o.Description, true
 }
 
-// HasDescription returns a boolean if a field has been set.
-func (o *VirtualCircuit) HasDescription() bool {
-	if o != nil && o.Description != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetDescription gets a reference to the given string and assigns it to the Description field.
+// SetDescription sets field value
 func (o *VirtualCircuit) SetDescription(v string) {
-	o.Description = &v
+	o.Description = v
 }
 
-// GetStatus returns the Status field value if set, zero value otherwise.
-func (o *VirtualCircuit) GetStatus() string {
-	if o == nil || o.Status == nil {
+// GetId returns the Id field value
+func (o *VirtualCircuit) GetId() string {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Status
+
+	return o.Id
 }
 
-// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
+// GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *VirtualCircuit) GetStatusOk() (*string, bool) {
-	if o == nil || o.Status == nil {
+func (o *VirtualCircuit) GetIdOk() (*string, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Status, true
+	return &o.Id, true
 }
 
-// HasStatus returns a boolean if a field has been set.
-func (o *VirtualCircuit) HasStatus() bool {
-	if o != nil && o.Status != nil {
-		return true
-	}
-
-	return false
+// SetId sets field value
+func (o *VirtualCircuit) SetId(v string) {
+	o.Id = v
 }
 
-// SetStatus gets a reference to the given string and assigns it to the Status field.
-func (o *VirtualCircuit) SetStatus(v string) {
-	o.Status = &v
-}
-
-// GetVnid returns the Vnid field value if set, zero value otherwise.
-func (o *VirtualCircuit) GetVnid() int32 {
-	if o == nil || o.Vnid == nil {
-		var ret int32
+// GetName returns the Name field value
+func (o *VirtualCircuit) GetName() string {
+	if o == nil {
+		var ret string
 		return ret
 	}
-	return *o.Vnid
+
+	return o.Name
 }
 
-// GetVnidOk returns a tuple with the Vnid field value if set, nil otherwise
+// GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *VirtualCircuit) GetVnidOk() (*int32, bool) {
-	if o == nil || o.Vnid == nil {
+func (o *VirtualCircuit) GetNameOk() (*string, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Vnid, true
+	return &o.Name, true
 }
 
-// HasVnid returns a boolean if a field has been set.
-func (o *VirtualCircuit) HasVnid() bool {
-	if o != nil && o.Vnid != nil {
-		return true
-	}
-
-	return false
+// SetName sets field value
+func (o *VirtualCircuit) SetName(v string) {
+	o.Name = v
 }
 
-// SetVnid gets a reference to the given int32 and assigns it to the Vnid field.
-func (o *VirtualCircuit) SetVnid(v int32) {
-	o.Vnid = &v
-}
-
-// GetNniVlan returns the NniVlan field value if set, zero value otherwise.
+// GetNniVlan returns the NniVlan field value
 func (o *VirtualCircuit) GetNniVlan() int32 {
-	if o == nil || o.NniVlan == nil {
+	if o == nil {
 		var ret int32
 		return ret
 	}
-	return *o.NniVlan
+
+	return o.NniVlan
 }
 
-// GetNniVlanOk returns a tuple with the NniVlan field value if set, nil otherwise
+// GetNniVlanOk returns a tuple with the NniVlan field value
 // and a boolean to check if the value has been set.
 func (o *VirtualCircuit) GetNniVlanOk() (*int32, bool) {
-	if o == nil || o.NniVlan == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.NniVlan, true
+	return &o.NniVlan, true
 }
 
-// HasNniVlan returns a boolean if a field has been set.
-func (o *VirtualCircuit) HasNniVlan() bool {
-	if o != nil && o.NniVlan != nil {
-		return true
+// SetNniVlan sets field value
+func (o *VirtualCircuit) SetNniVlan(v int32) {
+	o.NniVlan = v
+}
+
+// GetPort returns the Port field value
+func (o *VirtualCircuit) GetPort() FindBatchById200ResponseDevicesInner {
+	if o == nil {
+		var ret FindBatchById200ResponseDevicesInner
+		return ret
 	}
 
-	return false
+	return o.Port
 }
 
-// SetNniVlan gets a reference to the given int32 and assigns it to the NniVlan field.
-func (o *VirtualCircuit) SetNniVlan(v int32) {
-	o.NniVlan = &v
+// GetPortOk returns a tuple with the Port field value
+// and a boolean to check if the value has been set.
+func (o *VirtualCircuit) GetPortOk() (*FindBatchById200ResponseDevicesInner, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Port, true
+}
+
+// SetPort sets field value
+func (o *VirtualCircuit) SetPort(v FindBatchById200ResponseDevicesInner) {
+	o.Port = v
+}
+
+// GetProject returns the Project field value
+func (o *VirtualCircuit) GetProject() FindBatchById200ResponseDevicesInner {
+	if o == nil {
+		var ret FindBatchById200ResponseDevicesInner
+		return ret
+	}
+
+	return o.Project
+}
+
+// GetProjectOk returns a tuple with the Project field value
+// and a boolean to check if the value has been set.
+func (o *VirtualCircuit) GetProjectOk() (*FindBatchById200ResponseDevicesInner, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Project, true
+}
+
+// SetProject sets field value
+func (o *VirtualCircuit) SetProject(v FindBatchById200ResponseDevicesInner) {
+	o.Project = v
 }
 
 // GetSpeed returns the Speed field value if set, zero value otherwise.
@@ -271,133 +287,115 @@ func (o *VirtualCircuit) SetSpeed(v int32) {
 	o.Speed = &v
 }
 
-// GetTags returns the Tags field value if set, zero value otherwise.
-func (o *VirtualCircuit) GetTags() []string {
-	if o == nil || o.Tags == nil {
-		var ret []string
+// GetStatus returns the Status field value
+func (o *VirtualCircuit) GetStatus() string {
+	if o == nil {
+		var ret string
 		return ret
 	}
-	return o.Tags
+
+	return o.Status
 }
 
-// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
+// GetStatusOk returns a tuple with the Status field value
 // and a boolean to check if the value has been set.
-func (o *VirtualCircuit) GetTagsOk() ([]string, bool) {
-	if o == nil || o.Tags == nil {
+func (o *VirtualCircuit) GetStatusOk() (*string, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Tags, true
+	return &o.Status, true
 }
 
-// HasTags returns a boolean if a field has been set.
-func (o *VirtualCircuit) HasTags() bool {
-	if o != nil && o.Tags != nil {
-		return true
-	}
-
-	return false
+// SetStatus sets field value
+func (o *VirtualCircuit) SetStatus(v string) {
+	o.Status = v
 }
 
-// SetTags gets a reference to the given []string and assigns it to the Tags field.
-func (o *VirtualCircuit) SetTags(v []string) {
-	o.Tags = v
-}
-
-// GetProject returns the Project field value if set, zero value otherwise.
-func (o *VirtualCircuit) GetProject() Href {
-	if o == nil || o.Project == nil {
-		var ret Href
+// GetVirtualNetwork returns the VirtualNetwork field value
+func (o *VirtualCircuit) GetVirtualNetwork() FindBatchById200ResponseDevicesInner {
+	if o == nil {
+		var ret FindBatchById200ResponseDevicesInner
 		return ret
 	}
-	return *o.Project
+
+	return o.VirtualNetwork
 }
 
-// GetProjectOk returns a tuple with the Project field value if set, nil otherwise
+// GetVirtualNetworkOk returns a tuple with the VirtualNetwork field value
 // and a boolean to check if the value has been set.
-func (o *VirtualCircuit) GetProjectOk() (*Href, bool) {
-	if o == nil || o.Project == nil {
+func (o *VirtualCircuit) GetVirtualNetworkOk() (*FindBatchById200ResponseDevicesInner, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Project, true
+	return &o.VirtualNetwork, true
 }
 
-// HasProject returns a boolean if a field has been set.
-func (o *VirtualCircuit) HasProject() bool {
-	if o != nil && o.Project != nil {
-		return true
-	}
-
-	return false
+// SetVirtualNetwork sets field value
+func (o *VirtualCircuit) SetVirtualNetwork(v FindBatchById200ResponseDevicesInner) {
+	o.VirtualNetwork = v
 }
 
-// SetProject gets a reference to the given Href and assigns it to the Project field.
-func (o *VirtualCircuit) SetProject(v Href) {
-	o.Project = &v
-}
-
-// GetVirtualNetwork returns the VirtualNetwork field value if set, zero value otherwise.
-func (o *VirtualCircuit) GetVirtualNetwork() Href {
-	if o == nil || o.VirtualNetwork == nil {
-		var ret Href
+// GetVnid returns the Vnid field value
+func (o *VirtualCircuit) GetVnid() int32 {
+	if o == nil {
+		var ret int32
 		return ret
 	}
-	return *o.VirtualNetwork
+
+	return o.Vnid
 }
 
-// GetVirtualNetworkOk returns a tuple with the VirtualNetwork field value if set, nil otherwise
+// GetVnidOk returns a tuple with the Vnid field value
 // and a boolean to check if the value has been set.
-func (o *VirtualCircuit) GetVirtualNetworkOk() (*Href, bool) {
-	if o == nil || o.VirtualNetwork == nil {
+func (o *VirtualCircuit) GetVnidOk() (*int32, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.VirtualNetwork, true
+	return &o.Vnid, true
 }
 
-// HasVirtualNetwork returns a boolean if a field has been set.
-func (o *VirtualCircuit) HasVirtualNetwork() bool {
-	if o != nil && o.VirtualNetwork != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetVirtualNetwork gets a reference to the given Href and assigns it to the VirtualNetwork field.
-func (o *VirtualCircuit) SetVirtualNetwork(v Href) {
-	o.VirtualNetwork = &v
+// SetVnid sets field value
+func (o *VirtualCircuit) SetVnid(v int32) {
+	o.Vnid = v
 }
 
 func (o VirtualCircuit) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
+	if true {
+		toSerialize["tags"] = o.Tags
 	}
-	if o.Name != nil {
-		toSerialize["name"] = o.Name
+	if true {
+		toSerialize["bill"] = o.Bill
 	}
-	if o.Description != nil {
+	if true {
 		toSerialize["description"] = o.Description
 	}
-	if o.Status != nil {
-		toSerialize["status"] = o.Status
+	if true {
+		toSerialize["id"] = o.Id
 	}
-	if o.Vnid != nil {
-		toSerialize["vnid"] = o.Vnid
+	if true {
+		toSerialize["name"] = o.Name
 	}
-	if o.NniVlan != nil {
+	if true {
 		toSerialize["nni_vlan"] = o.NniVlan
+	}
+	if true {
+		toSerialize["port"] = o.Port
+	}
+	if true {
+		toSerialize["project"] = o.Project
 	}
 	if o.Speed != nil {
 		toSerialize["speed"] = o.Speed
 	}
-	if o.Tags != nil {
-		toSerialize["tags"] = o.Tags
+	if true {
+		toSerialize["status"] = o.Status
 	}
-	if o.Project != nil {
-		toSerialize["project"] = o.Project
-	}
-	if o.VirtualNetwork != nil {
+	if true {
 		toSerialize["virtual_network"] = o.VirtualNetwork
+	}
+	if true {
+		toSerialize["vnid"] = o.Vnid
 	}
 	return json.Marshal(toSerialize)
 }

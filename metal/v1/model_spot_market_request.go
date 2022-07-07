@@ -18,17 +18,17 @@ import (
 
 // SpotMarketRequest struct for SpotMarketRequest
 type SpotMarketRequest struct {
-	Id          *string                 `json:"id,omitempty"`
-	DevicesMin  *int32                  `json:"devices_min,omitempty"`
-	DevicesMax  *int32                  `json:"devices_max,omitempty"`
-	MaxBidPrice *float32                `json:"max_bid_price,omitempty"`
-	CreatedAt   *time.Time              `json:"created_at,omitempty"`
-	EndAt       *time.Time              `json:"end_at,omitempty"`
-	Href        *string                 `json:"href,omitempty"`
-	Facilities  *Href                   `json:"facilities,omitempty"`
-	Metro       *SpotMarketRequestMetro `json:"metro,omitempty"`
-	Project     *Href                   `json:"project,omitempty"`
-	Instances   *Href                   `json:"instances,omitempty"`
+	CreatedAt   *time.Time                                                     `json:"created_at,omitempty"`
+	DevicesMax  *int32                                                         `json:"devices_max,omitempty"`
+	DevicesMin  *int32                                                         `json:"devices_min,omitempty"`
+	EndAt       *time.Time                                                     `json:"end_at,omitempty"`
+	Facilities  *FindBatchById200ResponseDevicesInner                          `json:"facilities,omitempty"`
+	Href        *string                                                        `json:"href,omitempty"`
+	Id          *string                                                        `json:"id,omitempty"`
+	Instances   *FindBatchById200ResponseDevicesInner                          `json:"instances,omitempty"`
+	MaxBidPrice *float32                                                       `json:"max_bid_price,omitempty"`
+	Metro       *ListSpotMarketRequests200ResponseSpotMarketRequestsInnerMetro `json:"metro,omitempty"`
+	Project     *FindBatchById200ResponseDevicesInner                          `json:"project,omitempty"`
 }
 
 // NewSpotMarketRequest instantiates a new SpotMarketRequest object
@@ -46,134 +46,6 @@ func NewSpotMarketRequest() *SpotMarketRequest {
 func NewSpotMarketRequestWithDefaults() *SpotMarketRequest {
 	this := SpotMarketRequest{}
 	return &this
-}
-
-// GetId returns the Id field value if set, zero value otherwise.
-func (o *SpotMarketRequest) GetId() string {
-	if o == nil || o.Id == nil {
-		var ret string
-		return ret
-	}
-	return *o.Id
-}
-
-// GetIdOk returns a tuple with the Id field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *SpotMarketRequest) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
-		return nil, false
-	}
-	return o.Id, true
-}
-
-// HasId returns a boolean if a field has been set.
-func (o *SpotMarketRequest) HasId() bool {
-	if o != nil && o.Id != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetId gets a reference to the given string and assigns it to the Id field.
-func (o *SpotMarketRequest) SetId(v string) {
-	o.Id = &v
-}
-
-// GetDevicesMin returns the DevicesMin field value if set, zero value otherwise.
-func (o *SpotMarketRequest) GetDevicesMin() int32 {
-	if o == nil || o.DevicesMin == nil {
-		var ret int32
-		return ret
-	}
-	return *o.DevicesMin
-}
-
-// GetDevicesMinOk returns a tuple with the DevicesMin field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *SpotMarketRequest) GetDevicesMinOk() (*int32, bool) {
-	if o == nil || o.DevicesMin == nil {
-		return nil, false
-	}
-	return o.DevicesMin, true
-}
-
-// HasDevicesMin returns a boolean if a field has been set.
-func (o *SpotMarketRequest) HasDevicesMin() bool {
-	if o != nil && o.DevicesMin != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetDevicesMin gets a reference to the given int32 and assigns it to the DevicesMin field.
-func (o *SpotMarketRequest) SetDevicesMin(v int32) {
-	o.DevicesMin = &v
-}
-
-// GetDevicesMax returns the DevicesMax field value if set, zero value otherwise.
-func (o *SpotMarketRequest) GetDevicesMax() int32 {
-	if o == nil || o.DevicesMax == nil {
-		var ret int32
-		return ret
-	}
-	return *o.DevicesMax
-}
-
-// GetDevicesMaxOk returns a tuple with the DevicesMax field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *SpotMarketRequest) GetDevicesMaxOk() (*int32, bool) {
-	if o == nil || o.DevicesMax == nil {
-		return nil, false
-	}
-	return o.DevicesMax, true
-}
-
-// HasDevicesMax returns a boolean if a field has been set.
-func (o *SpotMarketRequest) HasDevicesMax() bool {
-	if o != nil && o.DevicesMax != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetDevicesMax gets a reference to the given int32 and assigns it to the DevicesMax field.
-func (o *SpotMarketRequest) SetDevicesMax(v int32) {
-	o.DevicesMax = &v
-}
-
-// GetMaxBidPrice returns the MaxBidPrice field value if set, zero value otherwise.
-func (o *SpotMarketRequest) GetMaxBidPrice() float32 {
-	if o == nil || o.MaxBidPrice == nil {
-		var ret float32
-		return ret
-	}
-	return *o.MaxBidPrice
-}
-
-// GetMaxBidPriceOk returns a tuple with the MaxBidPrice field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *SpotMarketRequest) GetMaxBidPriceOk() (*float32, bool) {
-	if o == nil || o.MaxBidPrice == nil {
-		return nil, false
-	}
-	return o.MaxBidPrice, true
-}
-
-// HasMaxBidPrice returns a boolean if a field has been set.
-func (o *SpotMarketRequest) HasMaxBidPrice() bool {
-	if o != nil && o.MaxBidPrice != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetMaxBidPrice gets a reference to the given float32 and assigns it to the MaxBidPrice field.
-func (o *SpotMarketRequest) SetMaxBidPrice(v float32) {
-	o.MaxBidPrice = &v
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
@@ -208,6 +80,70 @@ func (o *SpotMarketRequest) SetCreatedAt(v time.Time) {
 	o.CreatedAt = &v
 }
 
+// GetDevicesMax returns the DevicesMax field value if set, zero value otherwise.
+func (o *SpotMarketRequest) GetDevicesMax() int32 {
+	if o == nil || o.DevicesMax == nil {
+		var ret int32
+		return ret
+	}
+	return *o.DevicesMax
+}
+
+// GetDevicesMaxOk returns a tuple with the DevicesMax field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SpotMarketRequest) GetDevicesMaxOk() (*int32, bool) {
+	if o == nil || o.DevicesMax == nil {
+		return nil, false
+	}
+	return o.DevicesMax, true
+}
+
+// HasDevicesMax returns a boolean if a field has been set.
+func (o *SpotMarketRequest) HasDevicesMax() bool {
+	if o != nil && o.DevicesMax != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDevicesMax gets a reference to the given int32 and assigns it to the DevicesMax field.
+func (o *SpotMarketRequest) SetDevicesMax(v int32) {
+	o.DevicesMax = &v
+}
+
+// GetDevicesMin returns the DevicesMin field value if set, zero value otherwise.
+func (o *SpotMarketRequest) GetDevicesMin() int32 {
+	if o == nil || o.DevicesMin == nil {
+		var ret int32
+		return ret
+	}
+	return *o.DevicesMin
+}
+
+// GetDevicesMinOk returns a tuple with the DevicesMin field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SpotMarketRequest) GetDevicesMinOk() (*int32, bool) {
+	if o == nil || o.DevicesMin == nil {
+		return nil, false
+	}
+	return o.DevicesMin, true
+}
+
+// HasDevicesMin returns a boolean if a field has been set.
+func (o *SpotMarketRequest) HasDevicesMin() bool {
+	if o != nil && o.DevicesMin != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDevicesMin gets a reference to the given int32 and assigns it to the DevicesMin field.
+func (o *SpotMarketRequest) SetDevicesMin(v int32) {
+	o.DevicesMin = &v
+}
+
 // GetEndAt returns the EndAt field value if set, zero value otherwise.
 func (o *SpotMarketRequest) GetEndAt() time.Time {
 	if o == nil || o.EndAt == nil {
@@ -238,6 +174,38 @@ func (o *SpotMarketRequest) HasEndAt() bool {
 // SetEndAt gets a reference to the given time.Time and assigns it to the EndAt field.
 func (o *SpotMarketRequest) SetEndAt(v time.Time) {
 	o.EndAt = &v
+}
+
+// GetFacilities returns the Facilities field value if set, zero value otherwise.
+func (o *SpotMarketRequest) GetFacilities() FindBatchById200ResponseDevicesInner {
+	if o == nil || o.Facilities == nil {
+		var ret FindBatchById200ResponseDevicesInner
+		return ret
+	}
+	return *o.Facilities
+}
+
+// GetFacilitiesOk returns a tuple with the Facilities field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SpotMarketRequest) GetFacilitiesOk() (*FindBatchById200ResponseDevicesInner, bool) {
+	if o == nil || o.Facilities == nil {
+		return nil, false
+	}
+	return o.Facilities, true
+}
+
+// HasFacilities returns a boolean if a field has been set.
+func (o *SpotMarketRequest) HasFacilities() bool {
+	if o != nil && o.Facilities != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetFacilities gets a reference to the given FindBatchById200ResponseDevicesInner and assigns it to the Facilities field.
+func (o *SpotMarketRequest) SetFacilities(v FindBatchById200ResponseDevicesInner) {
+	o.Facilities = &v
 }
 
 // GetHref returns the Href field value if set, zero value otherwise.
@@ -272,106 +240,42 @@ func (o *SpotMarketRequest) SetHref(v string) {
 	o.Href = &v
 }
 
-// GetFacilities returns the Facilities field value if set, zero value otherwise.
-func (o *SpotMarketRequest) GetFacilities() Href {
-	if o == nil || o.Facilities == nil {
-		var ret Href
+// GetId returns the Id field value if set, zero value otherwise.
+func (o *SpotMarketRequest) GetId() string {
+	if o == nil || o.Id == nil {
+		var ret string
 		return ret
 	}
-	return *o.Facilities
+	return *o.Id
 }
 
-// GetFacilitiesOk returns a tuple with the Facilities field value if set, nil otherwise
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SpotMarketRequest) GetFacilitiesOk() (*Href, bool) {
-	if o == nil || o.Facilities == nil {
+func (o *SpotMarketRequest) GetIdOk() (*string, bool) {
+	if o == nil || o.Id == nil {
 		return nil, false
 	}
-	return o.Facilities, true
+	return o.Id, true
 }
 
-// HasFacilities returns a boolean if a field has been set.
-func (o *SpotMarketRequest) HasFacilities() bool {
-	if o != nil && o.Facilities != nil {
+// HasId returns a boolean if a field has been set.
+func (o *SpotMarketRequest) HasId() bool {
+	if o != nil && o.Id != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetFacilities gets a reference to the given Href and assigns it to the Facilities field.
-func (o *SpotMarketRequest) SetFacilities(v Href) {
-	o.Facilities = &v
-}
-
-// GetMetro returns the Metro field value if set, zero value otherwise.
-func (o *SpotMarketRequest) GetMetro() SpotMarketRequestMetro {
-	if o == nil || o.Metro == nil {
-		var ret SpotMarketRequestMetro
-		return ret
-	}
-	return *o.Metro
-}
-
-// GetMetroOk returns a tuple with the Metro field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *SpotMarketRequest) GetMetroOk() (*SpotMarketRequestMetro, bool) {
-	if o == nil || o.Metro == nil {
-		return nil, false
-	}
-	return o.Metro, true
-}
-
-// HasMetro returns a boolean if a field has been set.
-func (o *SpotMarketRequest) HasMetro() bool {
-	if o != nil && o.Metro != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetMetro gets a reference to the given SpotMarketRequestMetro and assigns it to the Metro field.
-func (o *SpotMarketRequest) SetMetro(v SpotMarketRequestMetro) {
-	o.Metro = &v
-}
-
-// GetProject returns the Project field value if set, zero value otherwise.
-func (o *SpotMarketRequest) GetProject() Href {
-	if o == nil || o.Project == nil {
-		var ret Href
-		return ret
-	}
-	return *o.Project
-}
-
-// GetProjectOk returns a tuple with the Project field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *SpotMarketRequest) GetProjectOk() (*Href, bool) {
-	if o == nil || o.Project == nil {
-		return nil, false
-	}
-	return o.Project, true
-}
-
-// HasProject returns a boolean if a field has been set.
-func (o *SpotMarketRequest) HasProject() bool {
-	if o != nil && o.Project != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetProject gets a reference to the given Href and assigns it to the Project field.
-func (o *SpotMarketRequest) SetProject(v Href) {
-	o.Project = &v
+// SetId gets a reference to the given string and assigns it to the Id field.
+func (o *SpotMarketRequest) SetId(v string) {
+	o.Id = &v
 }
 
 // GetInstances returns the Instances field value if set, zero value otherwise.
-func (o *SpotMarketRequest) GetInstances() Href {
+func (o *SpotMarketRequest) GetInstances() FindBatchById200ResponseDevicesInner {
 	if o == nil || o.Instances == nil {
-		var ret Href
+		var ret FindBatchById200ResponseDevicesInner
 		return ret
 	}
 	return *o.Instances
@@ -379,7 +283,7 @@ func (o *SpotMarketRequest) GetInstances() Href {
 
 // GetInstancesOk returns a tuple with the Instances field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SpotMarketRequest) GetInstancesOk() (*Href, bool) {
+func (o *SpotMarketRequest) GetInstancesOk() (*FindBatchById200ResponseDevicesInner, bool) {
 	if o == nil || o.Instances == nil {
 		return nil, false
 	}
@@ -395,45 +299,141 @@ func (o *SpotMarketRequest) HasInstances() bool {
 	return false
 }
 
-// SetInstances gets a reference to the given Href and assigns it to the Instances field.
-func (o *SpotMarketRequest) SetInstances(v Href) {
+// SetInstances gets a reference to the given FindBatchById200ResponseDevicesInner and assigns it to the Instances field.
+func (o *SpotMarketRequest) SetInstances(v FindBatchById200ResponseDevicesInner) {
 	o.Instances = &v
+}
+
+// GetMaxBidPrice returns the MaxBidPrice field value if set, zero value otherwise.
+func (o *SpotMarketRequest) GetMaxBidPrice() float32 {
+	if o == nil || o.MaxBidPrice == nil {
+		var ret float32
+		return ret
+	}
+	return *o.MaxBidPrice
+}
+
+// GetMaxBidPriceOk returns a tuple with the MaxBidPrice field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SpotMarketRequest) GetMaxBidPriceOk() (*float32, bool) {
+	if o == nil || o.MaxBidPrice == nil {
+		return nil, false
+	}
+	return o.MaxBidPrice, true
+}
+
+// HasMaxBidPrice returns a boolean if a field has been set.
+func (o *SpotMarketRequest) HasMaxBidPrice() bool {
+	if o != nil && o.MaxBidPrice != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMaxBidPrice gets a reference to the given float32 and assigns it to the MaxBidPrice field.
+func (o *SpotMarketRequest) SetMaxBidPrice(v float32) {
+	o.MaxBidPrice = &v
+}
+
+// GetMetro returns the Metro field value if set, zero value otherwise.
+func (o *SpotMarketRequest) GetMetro() ListSpotMarketRequests200ResponseSpotMarketRequestsInnerMetro {
+	if o == nil || o.Metro == nil {
+		var ret ListSpotMarketRequests200ResponseSpotMarketRequestsInnerMetro
+		return ret
+	}
+	return *o.Metro
+}
+
+// GetMetroOk returns a tuple with the Metro field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SpotMarketRequest) GetMetroOk() (*ListSpotMarketRequests200ResponseSpotMarketRequestsInnerMetro, bool) {
+	if o == nil || o.Metro == nil {
+		return nil, false
+	}
+	return o.Metro, true
+}
+
+// HasMetro returns a boolean if a field has been set.
+func (o *SpotMarketRequest) HasMetro() bool {
+	if o != nil && o.Metro != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMetro gets a reference to the given ListSpotMarketRequests200ResponseSpotMarketRequestsInnerMetro and assigns it to the Metro field.
+func (o *SpotMarketRequest) SetMetro(v ListSpotMarketRequests200ResponseSpotMarketRequestsInnerMetro) {
+	o.Metro = &v
+}
+
+// GetProject returns the Project field value if set, zero value otherwise.
+func (o *SpotMarketRequest) GetProject() FindBatchById200ResponseDevicesInner {
+	if o == nil || o.Project == nil {
+		var ret FindBatchById200ResponseDevicesInner
+		return ret
+	}
+	return *o.Project
+}
+
+// GetProjectOk returns a tuple with the Project field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SpotMarketRequest) GetProjectOk() (*FindBatchById200ResponseDevicesInner, bool) {
+	if o == nil || o.Project == nil {
+		return nil, false
+	}
+	return o.Project, true
+}
+
+// HasProject returns a boolean if a field has been set.
+func (o *SpotMarketRequest) HasProject() bool {
+	if o != nil && o.Project != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetProject gets a reference to the given FindBatchById200ResponseDevicesInner and assigns it to the Project field.
+func (o *SpotMarketRequest) SetProject(v FindBatchById200ResponseDevicesInner) {
+	o.Project = &v
 }
 
 func (o SpotMarketRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
-	}
-	if o.DevicesMin != nil {
-		toSerialize["devices_min"] = o.DevicesMin
+	if o.CreatedAt != nil {
+		toSerialize["created_at"] = o.CreatedAt
 	}
 	if o.DevicesMax != nil {
 		toSerialize["devices_max"] = o.DevicesMax
 	}
-	if o.MaxBidPrice != nil {
-		toSerialize["max_bid_price"] = o.MaxBidPrice
-	}
-	if o.CreatedAt != nil {
-		toSerialize["created_at"] = o.CreatedAt
+	if o.DevicesMin != nil {
+		toSerialize["devices_min"] = o.DevicesMin
 	}
 	if o.EndAt != nil {
 		toSerialize["end_at"] = o.EndAt
 	}
+	if o.Facilities != nil {
+		toSerialize["facilities"] = o.Facilities
+	}
 	if o.Href != nil {
 		toSerialize["href"] = o.Href
 	}
-	if o.Facilities != nil {
-		toSerialize["facilities"] = o.Facilities
+	if o.Id != nil {
+		toSerialize["id"] = o.Id
+	}
+	if o.Instances != nil {
+		toSerialize["instances"] = o.Instances
+	}
+	if o.MaxBidPrice != nil {
+		toSerialize["max_bid_price"] = o.MaxBidPrice
 	}
 	if o.Metro != nil {
 		toSerialize["metro"] = o.Metro
 	}
 	if o.Project != nil {
 		toSerialize["project"] = o.Project
-	}
-	if o.Instances != nil {
-		toSerialize["instances"] = o.Instances
 	}
 	return json.Marshal(toSerialize)
 }

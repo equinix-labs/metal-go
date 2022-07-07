@@ -18,16 +18,16 @@ import (
 
 // BgpSession struct for BgpSession
 type BgpSession struct {
-	Id *string `json:"id,omitempty"`
+	AddressFamily string                                `json:"address_family"`
+	CreatedAt     *time.Time                            `json:"created_at,omitempty"`
+	DefaultRoute  *bool                                 `json:"default_route,omitempty"`
+	Device        *FindBatchById200ResponseDevicesInner `json:"device,omitempty"`
+	Href          *string                               `json:"href,omitempty"`
+	Id            *string                               `json:"id,omitempty"`
+	LearnedRoutes []string                              `json:"learned_routes,omitempty"`
 	//  The status of the BGP Session. Multiple status values may be reported when the device is connected to multiple switches, one value per switch. Each status will start with \"unknown\" and progress to \"up\" or \"down\" depending on the connected device. Subsequent \"unknown\" values indicate a problem acquiring status from the switch.
-	Status        *string    `json:"status,omitempty"`
-	LearnedRoutes []string   `json:"learned_routes,omitempty"`
-	AddressFamily string     `json:"address_family"`
-	Device        *Href      `json:"device,omitempty"`
-	Href          *string    `json:"href,omitempty"`
-	DefaultRoute  *bool      `json:"default_route,omitempty"`
-	CreatedAt     *time.Time `json:"created_at,omitempty"`
-	UpdatedAt     *time.Time `json:"updated_at,omitempty"`
+	Status    *string    `json:"status,omitempty"`
+	UpdatedAt *time.Time `json:"updated_at,omitempty"`
 }
 
 // NewBgpSession instantiates a new BgpSession object
@@ -46,102 +46,6 @@ func NewBgpSession(addressFamily string) *BgpSession {
 func NewBgpSessionWithDefaults() *BgpSession {
 	this := BgpSession{}
 	return &this
-}
-
-// GetId returns the Id field value if set, zero value otherwise.
-func (o *BgpSession) GetId() string {
-	if o == nil || o.Id == nil {
-		var ret string
-		return ret
-	}
-	return *o.Id
-}
-
-// GetIdOk returns a tuple with the Id field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *BgpSession) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
-		return nil, false
-	}
-	return o.Id, true
-}
-
-// HasId returns a boolean if a field has been set.
-func (o *BgpSession) HasId() bool {
-	if o != nil && o.Id != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetId gets a reference to the given string and assigns it to the Id field.
-func (o *BgpSession) SetId(v string) {
-	o.Id = &v
-}
-
-// GetStatus returns the Status field value if set, zero value otherwise.
-func (o *BgpSession) GetStatus() string {
-	if o == nil || o.Status == nil {
-		var ret string
-		return ret
-	}
-	return *o.Status
-}
-
-// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *BgpSession) GetStatusOk() (*string, bool) {
-	if o == nil || o.Status == nil {
-		return nil, false
-	}
-	return o.Status, true
-}
-
-// HasStatus returns a boolean if a field has been set.
-func (o *BgpSession) HasStatus() bool {
-	if o != nil && o.Status != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetStatus gets a reference to the given string and assigns it to the Status field.
-func (o *BgpSession) SetStatus(v string) {
-	o.Status = &v
-}
-
-// GetLearnedRoutes returns the LearnedRoutes field value if set, zero value otherwise.
-func (o *BgpSession) GetLearnedRoutes() []string {
-	if o == nil || o.LearnedRoutes == nil {
-		var ret []string
-		return ret
-	}
-	return o.LearnedRoutes
-}
-
-// GetLearnedRoutesOk returns a tuple with the LearnedRoutes field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *BgpSession) GetLearnedRoutesOk() ([]string, bool) {
-	if o == nil || o.LearnedRoutes == nil {
-		return nil, false
-	}
-	return o.LearnedRoutes, true
-}
-
-// HasLearnedRoutes returns a boolean if a field has been set.
-func (o *BgpSession) HasLearnedRoutes() bool {
-	if o != nil && o.LearnedRoutes != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetLearnedRoutes gets a reference to the given []string and assigns it to the LearnedRoutes field.
-func (o *BgpSession) SetLearnedRoutes(v []string) {
-	o.LearnedRoutes = v
 }
 
 // GetAddressFamily returns the AddressFamily field value
@@ -168,10 +72,74 @@ func (o *BgpSession) SetAddressFamily(v string) {
 	o.AddressFamily = v
 }
 
+// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
+func (o *BgpSession) GetCreatedAt() time.Time {
+	if o == nil || o.CreatedAt == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.CreatedAt
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *BgpSession) GetCreatedAtOk() (*time.Time, bool) {
+	if o == nil || o.CreatedAt == nil {
+		return nil, false
+	}
+	return o.CreatedAt, true
+}
+
+// HasCreatedAt returns a boolean if a field has been set.
+func (o *BgpSession) HasCreatedAt() bool {
+	if o != nil && o.CreatedAt != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
+func (o *BgpSession) SetCreatedAt(v time.Time) {
+	o.CreatedAt = &v
+}
+
+// GetDefaultRoute returns the DefaultRoute field value if set, zero value otherwise.
+func (o *BgpSession) GetDefaultRoute() bool {
+	if o == nil || o.DefaultRoute == nil {
+		var ret bool
+		return ret
+	}
+	return *o.DefaultRoute
+}
+
+// GetDefaultRouteOk returns a tuple with the DefaultRoute field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *BgpSession) GetDefaultRouteOk() (*bool, bool) {
+	if o == nil || o.DefaultRoute == nil {
+		return nil, false
+	}
+	return o.DefaultRoute, true
+}
+
+// HasDefaultRoute returns a boolean if a field has been set.
+func (o *BgpSession) HasDefaultRoute() bool {
+	if o != nil && o.DefaultRoute != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDefaultRoute gets a reference to the given bool and assigns it to the DefaultRoute field.
+func (o *BgpSession) SetDefaultRoute(v bool) {
+	o.DefaultRoute = &v
+}
+
 // GetDevice returns the Device field value if set, zero value otherwise.
-func (o *BgpSession) GetDevice() Href {
+func (o *BgpSession) GetDevice() FindBatchById200ResponseDevicesInner {
 	if o == nil || o.Device == nil {
-		var ret Href
+		var ret FindBatchById200ResponseDevicesInner
 		return ret
 	}
 	return *o.Device
@@ -179,7 +147,7 @@ func (o *BgpSession) GetDevice() Href {
 
 // GetDeviceOk returns a tuple with the Device field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BgpSession) GetDeviceOk() (*Href, bool) {
+func (o *BgpSession) GetDeviceOk() (*FindBatchById200ResponseDevicesInner, bool) {
 	if o == nil || o.Device == nil {
 		return nil, false
 	}
@@ -195,8 +163,8 @@ func (o *BgpSession) HasDevice() bool {
 	return false
 }
 
-// SetDevice gets a reference to the given Href and assigns it to the Device field.
-func (o *BgpSession) SetDevice(v Href) {
+// SetDevice gets a reference to the given FindBatchById200ResponseDevicesInner and assigns it to the Device field.
+func (o *BgpSession) SetDevice(v FindBatchById200ResponseDevicesInner) {
 	o.Device = &v
 }
 
@@ -232,68 +200,100 @@ func (o *BgpSession) SetHref(v string) {
 	o.Href = &v
 }
 
-// GetDefaultRoute returns the DefaultRoute field value if set, zero value otherwise.
-func (o *BgpSession) GetDefaultRoute() bool {
-	if o == nil || o.DefaultRoute == nil {
-		var ret bool
+// GetId returns the Id field value if set, zero value otherwise.
+func (o *BgpSession) GetId() string {
+	if o == nil || o.Id == nil {
+		var ret string
 		return ret
 	}
-	return *o.DefaultRoute
+	return *o.Id
 }
 
-// GetDefaultRouteOk returns a tuple with the DefaultRoute field value if set, nil otherwise
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BgpSession) GetDefaultRouteOk() (*bool, bool) {
-	if o == nil || o.DefaultRoute == nil {
+func (o *BgpSession) GetIdOk() (*string, bool) {
+	if o == nil || o.Id == nil {
 		return nil, false
 	}
-	return o.DefaultRoute, true
+	return o.Id, true
 }
 
-// HasDefaultRoute returns a boolean if a field has been set.
-func (o *BgpSession) HasDefaultRoute() bool {
-	if o != nil && o.DefaultRoute != nil {
+// HasId returns a boolean if a field has been set.
+func (o *BgpSession) HasId() bool {
+	if o != nil && o.Id != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetDefaultRoute gets a reference to the given bool and assigns it to the DefaultRoute field.
-func (o *BgpSession) SetDefaultRoute(v bool) {
-	o.DefaultRoute = &v
+// SetId gets a reference to the given string and assigns it to the Id field.
+func (o *BgpSession) SetId(v string) {
+	o.Id = &v
 }
 
-// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
-func (o *BgpSession) GetCreatedAt() time.Time {
-	if o == nil || o.CreatedAt == nil {
-		var ret time.Time
+// GetLearnedRoutes returns the LearnedRoutes field value if set, zero value otherwise.
+func (o *BgpSession) GetLearnedRoutes() []string {
+	if o == nil || o.LearnedRoutes == nil {
+		var ret []string
 		return ret
 	}
-	return *o.CreatedAt
+	return o.LearnedRoutes
 }
 
-// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
+// GetLearnedRoutesOk returns a tuple with the LearnedRoutes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BgpSession) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || o.CreatedAt == nil {
+func (o *BgpSession) GetLearnedRoutesOk() ([]string, bool) {
+	if o == nil || o.LearnedRoutes == nil {
 		return nil, false
 	}
-	return o.CreatedAt, true
+	return o.LearnedRoutes, true
 }
 
-// HasCreatedAt returns a boolean if a field has been set.
-func (o *BgpSession) HasCreatedAt() bool {
-	if o != nil && o.CreatedAt != nil {
+// HasLearnedRoutes returns a boolean if a field has been set.
+func (o *BgpSession) HasLearnedRoutes() bool {
+	if o != nil && o.LearnedRoutes != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
-func (o *BgpSession) SetCreatedAt(v time.Time) {
-	o.CreatedAt = &v
+// SetLearnedRoutes gets a reference to the given []string and assigns it to the LearnedRoutes field.
+func (o *BgpSession) SetLearnedRoutes(v []string) {
+	o.LearnedRoutes = v
+}
+
+// GetStatus returns the Status field value if set, zero value otherwise.
+func (o *BgpSession) GetStatus() string {
+	if o == nil || o.Status == nil {
+		var ret string
+		return ret
+	}
+	return *o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *BgpSession) GetStatusOk() (*string, bool) {
+	if o == nil || o.Status == nil {
+		return nil, false
+	}
+	return o.Status, true
+}
+
+// HasStatus returns a boolean if a field has been set.
+func (o *BgpSession) HasStatus() bool {
+	if o != nil && o.Status != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetStatus gets a reference to the given string and assigns it to the Status field.
+func (o *BgpSession) SetStatus(v string) {
+	o.Status = &v
 }
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
@@ -330,17 +330,14 @@ func (o *BgpSession) SetUpdatedAt(v time.Time) {
 
 func (o BgpSession) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
-	}
-	if o.Status != nil {
-		toSerialize["status"] = o.Status
-	}
-	if o.LearnedRoutes != nil {
-		toSerialize["learned_routes"] = o.LearnedRoutes
-	}
 	if true {
 		toSerialize["address_family"] = o.AddressFamily
+	}
+	if o.CreatedAt != nil {
+		toSerialize["created_at"] = o.CreatedAt
+	}
+	if o.DefaultRoute != nil {
+		toSerialize["default_route"] = o.DefaultRoute
 	}
 	if o.Device != nil {
 		toSerialize["device"] = o.Device
@@ -348,11 +345,14 @@ func (o BgpSession) MarshalJSON() ([]byte, error) {
 	if o.Href != nil {
 		toSerialize["href"] = o.Href
 	}
-	if o.DefaultRoute != nil {
-		toSerialize["default_route"] = o.DefaultRoute
+	if o.Id != nil {
+		toSerialize["id"] = o.Id
 	}
-	if o.CreatedAt != nil {
-		toSerialize["created_at"] = o.CreatedAt
+	if o.LearnedRoutes != nil {
+		toSerialize["learned_routes"] = o.LearnedRoutes
+	}
+	if o.Status != nil {
+		toSerialize["status"] = o.Status
 	}
 	if o.UpdatedAt != nil {
 		toSerialize["updated_at"] = o.UpdatedAt

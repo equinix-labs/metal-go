@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**InstanceAttributes** | Pointer to [**SpotMarketRequestCreateInputInstanceAttributes**](SpotMarketRequestCreateInputInstanceAttributes.md) |  | [optional] 
-**DevicesMin** | Pointer to **int32** |  | [optional] 
 **DevicesMax** | Pointer to **int32** |  | [optional] 
-**MaxBidPrice** | Pointer to **float32** |  | [optional] 
+**DevicesMin** | Pointer to **int32** |  | [optional] 
 **EndAt** | Pointer to **time.Time** |  | [optional] 
 **Facilities** | Pointer to **[]string** |  | [optional] 
+**InstanceAttributes** | Pointer to [**CreateSpotMarketRequestRequestInstanceAttributes**](CreateSpotMarketRequestRequestInstanceAttributes.md) |  | [optional] 
+**MaxBidPrice** | Pointer to **float32** |  | [optional] 
 **Metro** | Pointer to **string** | The metro ID or code the spot market request will be created in. | [optional] 
 
 ## Methods
@@ -30,56 +30,6 @@ will change when the set of required properties is changed
 NewSpotMarketRequestCreateInputWithDefaults instantiates a new SpotMarketRequestCreateInput object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetInstanceAttributes
-
-`func (o *SpotMarketRequestCreateInput) GetInstanceAttributes() SpotMarketRequestCreateInputInstanceAttributes`
-
-GetInstanceAttributes returns the InstanceAttributes field if non-nil, zero value otherwise.
-
-### GetInstanceAttributesOk
-
-`func (o *SpotMarketRequestCreateInput) GetInstanceAttributesOk() (*SpotMarketRequestCreateInputInstanceAttributes, bool)`
-
-GetInstanceAttributesOk returns a tuple with the InstanceAttributes field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetInstanceAttributes
-
-`func (o *SpotMarketRequestCreateInput) SetInstanceAttributes(v SpotMarketRequestCreateInputInstanceAttributes)`
-
-SetInstanceAttributes sets InstanceAttributes field to given value.
-
-### HasInstanceAttributes
-
-`func (o *SpotMarketRequestCreateInput) HasInstanceAttributes() bool`
-
-HasInstanceAttributes returns a boolean if a field has been set.
-
-### GetDevicesMin
-
-`func (o *SpotMarketRequestCreateInput) GetDevicesMin() int32`
-
-GetDevicesMin returns the DevicesMin field if non-nil, zero value otherwise.
-
-### GetDevicesMinOk
-
-`func (o *SpotMarketRequestCreateInput) GetDevicesMinOk() (*int32, bool)`
-
-GetDevicesMinOk returns a tuple with the DevicesMin field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDevicesMin
-
-`func (o *SpotMarketRequestCreateInput) SetDevicesMin(v int32)`
-
-SetDevicesMin sets DevicesMin field to given value.
-
-### HasDevicesMin
-
-`func (o *SpotMarketRequestCreateInput) HasDevicesMin() bool`
-
-HasDevicesMin returns a boolean if a field has been set.
 
 ### GetDevicesMax
 
@@ -106,30 +56,30 @@ SetDevicesMax sets DevicesMax field to given value.
 
 HasDevicesMax returns a boolean if a field has been set.
 
-### GetMaxBidPrice
+### GetDevicesMin
 
-`func (o *SpotMarketRequestCreateInput) GetMaxBidPrice() float32`
+`func (o *SpotMarketRequestCreateInput) GetDevicesMin() int32`
 
-GetMaxBidPrice returns the MaxBidPrice field if non-nil, zero value otherwise.
+GetDevicesMin returns the DevicesMin field if non-nil, zero value otherwise.
 
-### GetMaxBidPriceOk
+### GetDevicesMinOk
 
-`func (o *SpotMarketRequestCreateInput) GetMaxBidPriceOk() (*float32, bool)`
+`func (o *SpotMarketRequestCreateInput) GetDevicesMinOk() (*int32, bool)`
 
-GetMaxBidPriceOk returns a tuple with the MaxBidPrice field if it's non-nil, zero value otherwise
+GetDevicesMinOk returns a tuple with the DevicesMin field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetMaxBidPrice
+### SetDevicesMin
 
-`func (o *SpotMarketRequestCreateInput) SetMaxBidPrice(v float32)`
+`func (o *SpotMarketRequestCreateInput) SetDevicesMin(v int32)`
 
-SetMaxBidPrice sets MaxBidPrice field to given value.
+SetDevicesMin sets DevicesMin field to given value.
 
-### HasMaxBidPrice
+### HasDevicesMin
 
-`func (o *SpotMarketRequestCreateInput) HasMaxBidPrice() bool`
+`func (o *SpotMarketRequestCreateInput) HasDevicesMin() bool`
 
-HasMaxBidPrice returns a boolean if a field has been set.
+HasDevicesMin returns a boolean if a field has been set.
 
 ### GetEndAt
 
@@ -180,6 +130,56 @@ SetFacilities sets Facilities field to given value.
 `func (o *SpotMarketRequestCreateInput) HasFacilities() bool`
 
 HasFacilities returns a boolean if a field has been set.
+
+### GetInstanceAttributes
+
+`func (o *SpotMarketRequestCreateInput) GetInstanceAttributes() CreateSpotMarketRequestRequestInstanceAttributes`
+
+GetInstanceAttributes returns the InstanceAttributes field if non-nil, zero value otherwise.
+
+### GetInstanceAttributesOk
+
+`func (o *SpotMarketRequestCreateInput) GetInstanceAttributesOk() (*CreateSpotMarketRequestRequestInstanceAttributes, bool)`
+
+GetInstanceAttributesOk returns a tuple with the InstanceAttributes field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetInstanceAttributes
+
+`func (o *SpotMarketRequestCreateInput) SetInstanceAttributes(v CreateSpotMarketRequestRequestInstanceAttributes)`
+
+SetInstanceAttributes sets InstanceAttributes field to given value.
+
+### HasInstanceAttributes
+
+`func (o *SpotMarketRequestCreateInput) HasInstanceAttributes() bool`
+
+HasInstanceAttributes returns a boolean if a field has been set.
+
+### GetMaxBidPrice
+
+`func (o *SpotMarketRequestCreateInput) GetMaxBidPrice() float32`
+
+GetMaxBidPrice returns the MaxBidPrice field if non-nil, zero value otherwise.
+
+### GetMaxBidPriceOk
+
+`func (o *SpotMarketRequestCreateInput) GetMaxBidPriceOk() (*float32, bool)`
+
+GetMaxBidPriceOk returns a tuple with the MaxBidPrice field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMaxBidPrice
+
+`func (o *SpotMarketRequestCreateInput) SetMaxBidPrice(v float32)`
+
+SetMaxBidPrice sets MaxBidPrice field to given value.
+
+### HasMaxBidPrice
+
+`func (o *SpotMarketRequestCreateInput) HasMaxBidPrice() bool`
+
+HasMaxBidPrice returns a boolean if a field has been set.
 
 ### GetMetro
 

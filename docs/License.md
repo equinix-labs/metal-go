@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **string** |  | [optional] 
 **Description** | Pointer to **string** |  | [optional] 
+**Id** | Pointer to **string** |  | [optional] 
 **LicenseKey** | Pointer to **string** |  | [optional] 
-**LicenseeProduct** | Pointer to [**Href**](Href.md) |  | [optional] 
+**LicenseeProduct** | Pointer to [**FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
+**Project** | Pointer to [**FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
 **Size** | Pointer to **float32** |  | [optional] 
-**Project** | Pointer to [**Href**](Href.md) |  | [optional] 
 
 ## Methods
 
@@ -29,31 +29,6 @@ will change when the set of required properties is changed
 NewLicenseWithDefaults instantiates a new License object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetId
-
-`func (o *License) GetId() string`
-
-GetId returns the Id field if non-nil, zero value otherwise.
-
-### GetIdOk
-
-`func (o *License) GetIdOk() (*string, bool)`
-
-GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetId
-
-`func (o *License) SetId(v string)`
-
-SetId sets Id field to given value.
-
-### HasId
-
-`func (o *License) HasId() bool`
-
-HasId returns a boolean if a field has been set.
 
 ### GetDescription
 
@@ -79,6 +54,31 @@ SetDescription sets Description field to given value.
 `func (o *License) HasDescription() bool`
 
 HasDescription returns a boolean if a field has been set.
+
+### GetId
+
+`func (o *License) GetId() string`
+
+GetId returns the Id field if non-nil, zero value otherwise.
+
+### GetIdOk
+
+`func (o *License) GetIdOk() (*string, bool)`
+
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetId
+
+`func (o *License) SetId(v string)`
+
+SetId sets Id field to given value.
+
+### HasId
+
+`func (o *License) HasId() bool`
+
+HasId returns a boolean if a field has been set.
 
 ### GetLicenseKey
 
@@ -107,20 +107,20 @@ HasLicenseKey returns a boolean if a field has been set.
 
 ### GetLicenseeProduct
 
-`func (o *License) GetLicenseeProduct() Href`
+`func (o *License) GetLicenseeProduct() FindBatchById200ResponseDevicesInner`
 
 GetLicenseeProduct returns the LicenseeProduct field if non-nil, zero value otherwise.
 
 ### GetLicenseeProductOk
 
-`func (o *License) GetLicenseeProductOk() (*Href, bool)`
+`func (o *License) GetLicenseeProductOk() (*FindBatchById200ResponseDevicesInner, bool)`
 
 GetLicenseeProductOk returns a tuple with the LicenseeProduct field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLicenseeProduct
 
-`func (o *License) SetLicenseeProduct(v Href)`
+`func (o *License) SetLicenseeProduct(v FindBatchById200ResponseDevicesInner)`
 
 SetLicenseeProduct sets LicenseeProduct field to given value.
 
@@ -129,6 +129,31 @@ SetLicenseeProduct sets LicenseeProduct field to given value.
 `func (o *License) HasLicenseeProduct() bool`
 
 HasLicenseeProduct returns a boolean if a field has been set.
+
+### GetProject
+
+`func (o *License) GetProject() FindBatchById200ResponseDevicesInner`
+
+GetProject returns the Project field if non-nil, zero value otherwise.
+
+### GetProjectOk
+
+`func (o *License) GetProjectOk() (*FindBatchById200ResponseDevicesInner, bool)`
+
+GetProjectOk returns a tuple with the Project field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProject
+
+`func (o *License) SetProject(v FindBatchById200ResponseDevicesInner)`
+
+SetProject sets Project field to given value.
+
+### HasProject
+
+`func (o *License) HasProject() bool`
+
+HasProject returns a boolean if a field has been set.
 
 ### GetSize
 
@@ -154,31 +179,6 @@ SetSize sets Size field to given value.
 `func (o *License) HasSize() bool`
 
 HasSize returns a boolean if a field has been set.
-
-### GetProject
-
-`func (o *License) GetProject() Href`
-
-GetProject returns the Project field if non-nil, zero value otherwise.
-
-### GetProjectOk
-
-`func (o *License) GetProjectOk() (*Href, bool)`
-
-GetProjectOk returns a tuple with the Project field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetProject
-
-`func (o *License) SetProject(v Href)`
-
-SetProject sets Project field to given value.
-
-### HasProject
-
-`func (o *License) HasProject() bool`
-
-HasProject returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

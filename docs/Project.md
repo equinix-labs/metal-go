@@ -4,21 +4,21 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **string** |  | [optional] 
-**Name** | Pointer to **string** |  | [optional] 
+**BgpConfig** | Pointer to [**FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
 **CreatedAt** | Pointer to **time.Time** |  | [optional] 
-**UpdatedAt** | Pointer to **time.Time** |  | [optional] 
-**MaxDevices** | Pointer to **map[string]interface{}** |  | [optional] 
-**Members** | Pointer to [**[]Href**](Href.md) |  | [optional] 
-**Memberships** | Pointer to [**[]Href**](Href.md) |  | [optional] 
-**NetworkStatus** | Pointer to **map[string]interface{}** |  | [optional] 
-**Invitations** | Pointer to [**[]Href**](Href.md) |  | [optional] 
-**PaymentMethod** | Pointer to [**Href**](Href.md) |  | [optional] 
-**Devices** | Pointer to [**[]Href**](Href.md) |  | [optional] 
-**SshKeys** | Pointer to [**[]Href**](Href.md) |  | [optional] 
-**Volumes** | Pointer to [**[]Href**](Href.md) |  | [optional] 
-**BgpConfig** | Pointer to [**Href**](Href.md) |  | [optional] 
 **Customdata** | Pointer to **map[string]interface{}** |  | [optional] 
+**Devices** | Pointer to [**[]FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
+**Id** | Pointer to **string** |  | [optional] 
+**Invitations** | Pointer to [**[]FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
+**MaxDevices** | Pointer to **map[string]interface{}** |  | [optional] 
+**Members** | Pointer to [**[]FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
+**Memberships** | Pointer to [**[]FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
+**NetworkStatus** | Pointer to **map[string]interface{}** |  | [optional] 
+**PaymentMethod** | Pointer to [**FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
+**SshKeys** | Pointer to [**[]FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
+**UpdatedAt** | Pointer to **time.Time** |  | [optional] 
+**Volumes** | Pointer to [**[]FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
 
 ## Methods
 
@@ -39,55 +39,30 @@ NewProjectWithDefaults instantiates a new Project object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetId
+### GetBgpConfig
 
-`func (o *Project) GetId() string`
+`func (o *Project) GetBgpConfig() FindBatchById200ResponseDevicesInner`
 
-GetId returns the Id field if non-nil, zero value otherwise.
+GetBgpConfig returns the BgpConfig field if non-nil, zero value otherwise.
 
-### GetIdOk
+### GetBgpConfigOk
 
-`func (o *Project) GetIdOk() (*string, bool)`
+`func (o *Project) GetBgpConfigOk() (*FindBatchById200ResponseDevicesInner, bool)`
 
-GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+GetBgpConfigOk returns a tuple with the BgpConfig field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetId
+### SetBgpConfig
 
-`func (o *Project) SetId(v string)`
+`func (o *Project) SetBgpConfig(v FindBatchById200ResponseDevicesInner)`
 
-SetId sets Id field to given value.
+SetBgpConfig sets BgpConfig field to given value.
 
-### HasId
+### HasBgpConfig
 
-`func (o *Project) HasId() bool`
+`func (o *Project) HasBgpConfig() bool`
 
-HasId returns a boolean if a field has been set.
-
-### GetName
-
-`func (o *Project) GetName() string`
-
-GetName returns the Name field if non-nil, zero value otherwise.
-
-### GetNameOk
-
-`func (o *Project) GetNameOk() (*string, bool)`
-
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetName
-
-`func (o *Project) SetName(v string)`
-
-SetName sets Name field to given value.
-
-### HasName
-
-`func (o *Project) HasName() bool`
-
-HasName returns a boolean if a field has been set.
+HasBgpConfig returns a boolean if a field has been set.
 
 ### GetCreatedAt
 
@@ -114,30 +89,105 @@ SetCreatedAt sets CreatedAt field to given value.
 
 HasCreatedAt returns a boolean if a field has been set.
 
-### GetUpdatedAt
+### GetCustomdata
 
-`func (o *Project) GetUpdatedAt() time.Time`
+`func (o *Project) GetCustomdata() map[string]interface{}`
 
-GetUpdatedAt returns the UpdatedAt field if non-nil, zero value otherwise.
+GetCustomdata returns the Customdata field if non-nil, zero value otherwise.
 
-### GetUpdatedAtOk
+### GetCustomdataOk
 
-`func (o *Project) GetUpdatedAtOk() (*time.Time, bool)`
+`func (o *Project) GetCustomdataOk() (*map[string]interface{}, bool)`
 
-GetUpdatedAtOk returns a tuple with the UpdatedAt field if it's non-nil, zero value otherwise
+GetCustomdataOk returns a tuple with the Customdata field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetUpdatedAt
+### SetCustomdata
 
-`func (o *Project) SetUpdatedAt(v time.Time)`
+`func (o *Project) SetCustomdata(v map[string]interface{})`
 
-SetUpdatedAt sets UpdatedAt field to given value.
+SetCustomdata sets Customdata field to given value.
 
-### HasUpdatedAt
+### HasCustomdata
 
-`func (o *Project) HasUpdatedAt() bool`
+`func (o *Project) HasCustomdata() bool`
 
-HasUpdatedAt returns a boolean if a field has been set.
+HasCustomdata returns a boolean if a field has been set.
+
+### GetDevices
+
+`func (o *Project) GetDevices() []FindBatchById200ResponseDevicesInner`
+
+GetDevices returns the Devices field if non-nil, zero value otherwise.
+
+### GetDevicesOk
+
+`func (o *Project) GetDevicesOk() (*[]FindBatchById200ResponseDevicesInner, bool)`
+
+GetDevicesOk returns a tuple with the Devices field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDevices
+
+`func (o *Project) SetDevices(v []FindBatchById200ResponseDevicesInner)`
+
+SetDevices sets Devices field to given value.
+
+### HasDevices
+
+`func (o *Project) HasDevices() bool`
+
+HasDevices returns a boolean if a field has been set.
+
+### GetId
+
+`func (o *Project) GetId() string`
+
+GetId returns the Id field if non-nil, zero value otherwise.
+
+### GetIdOk
+
+`func (o *Project) GetIdOk() (*string, bool)`
+
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetId
+
+`func (o *Project) SetId(v string)`
+
+SetId sets Id field to given value.
+
+### HasId
+
+`func (o *Project) HasId() bool`
+
+HasId returns a boolean if a field has been set.
+
+### GetInvitations
+
+`func (o *Project) GetInvitations() []FindBatchById200ResponseDevicesInner`
+
+GetInvitations returns the Invitations field if non-nil, zero value otherwise.
+
+### GetInvitationsOk
+
+`func (o *Project) GetInvitationsOk() (*[]FindBatchById200ResponseDevicesInner, bool)`
+
+GetInvitationsOk returns a tuple with the Invitations field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetInvitations
+
+`func (o *Project) SetInvitations(v []FindBatchById200ResponseDevicesInner)`
+
+SetInvitations sets Invitations field to given value.
+
+### HasInvitations
+
+`func (o *Project) HasInvitations() bool`
+
+HasInvitations returns a boolean if a field has been set.
 
 ### GetMaxDevices
 
@@ -166,20 +216,20 @@ HasMaxDevices returns a boolean if a field has been set.
 
 ### GetMembers
 
-`func (o *Project) GetMembers() []Href`
+`func (o *Project) GetMembers() []FindBatchById200ResponseDevicesInner`
 
 GetMembers returns the Members field if non-nil, zero value otherwise.
 
 ### GetMembersOk
 
-`func (o *Project) GetMembersOk() (*[]Href, bool)`
+`func (o *Project) GetMembersOk() (*[]FindBatchById200ResponseDevicesInner, bool)`
 
 GetMembersOk returns a tuple with the Members field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMembers
 
-`func (o *Project) SetMembers(v []Href)`
+`func (o *Project) SetMembers(v []FindBatchById200ResponseDevicesInner)`
 
 SetMembers sets Members field to given value.
 
@@ -191,20 +241,20 @@ HasMembers returns a boolean if a field has been set.
 
 ### GetMemberships
 
-`func (o *Project) GetMemberships() []Href`
+`func (o *Project) GetMemberships() []FindBatchById200ResponseDevicesInner`
 
 GetMemberships returns the Memberships field if non-nil, zero value otherwise.
 
 ### GetMembershipsOk
 
-`func (o *Project) GetMembershipsOk() (*[]Href, bool)`
+`func (o *Project) GetMembershipsOk() (*[]FindBatchById200ResponseDevicesInner, bool)`
 
 GetMembershipsOk returns a tuple with the Memberships field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMemberships
 
-`func (o *Project) SetMemberships(v []Href)`
+`func (o *Project) SetMemberships(v []FindBatchById200ResponseDevicesInner)`
 
 SetMemberships sets Memberships field to given value.
 
@@ -213,6 +263,31 @@ SetMemberships sets Memberships field to given value.
 `func (o *Project) HasMemberships() bool`
 
 HasMemberships returns a boolean if a field has been set.
+
+### GetName
+
+`func (o *Project) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *Project) GetNameOk() (*string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetName
+
+`func (o *Project) SetName(v string)`
+
+SetName sets Name field to given value.
+
+### HasName
+
+`func (o *Project) HasName() bool`
+
+HasName returns a boolean if a field has been set.
 
 ### GetNetworkStatus
 
@@ -239,47 +314,22 @@ SetNetworkStatus sets NetworkStatus field to given value.
 
 HasNetworkStatus returns a boolean if a field has been set.
 
-### GetInvitations
-
-`func (o *Project) GetInvitations() []Href`
-
-GetInvitations returns the Invitations field if non-nil, zero value otherwise.
-
-### GetInvitationsOk
-
-`func (o *Project) GetInvitationsOk() (*[]Href, bool)`
-
-GetInvitationsOk returns a tuple with the Invitations field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetInvitations
-
-`func (o *Project) SetInvitations(v []Href)`
-
-SetInvitations sets Invitations field to given value.
-
-### HasInvitations
-
-`func (o *Project) HasInvitations() bool`
-
-HasInvitations returns a boolean if a field has been set.
-
 ### GetPaymentMethod
 
-`func (o *Project) GetPaymentMethod() Href`
+`func (o *Project) GetPaymentMethod() FindBatchById200ResponseDevicesInner`
 
 GetPaymentMethod returns the PaymentMethod field if non-nil, zero value otherwise.
 
 ### GetPaymentMethodOk
 
-`func (o *Project) GetPaymentMethodOk() (*Href, bool)`
+`func (o *Project) GetPaymentMethodOk() (*FindBatchById200ResponseDevicesInner, bool)`
 
 GetPaymentMethodOk returns a tuple with the PaymentMethod field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPaymentMethod
 
-`func (o *Project) SetPaymentMethod(v Href)`
+`func (o *Project) SetPaymentMethod(v FindBatchById200ResponseDevicesInner)`
 
 SetPaymentMethod sets PaymentMethod field to given value.
 
@@ -289,47 +339,22 @@ SetPaymentMethod sets PaymentMethod field to given value.
 
 HasPaymentMethod returns a boolean if a field has been set.
 
-### GetDevices
-
-`func (o *Project) GetDevices() []Href`
-
-GetDevices returns the Devices field if non-nil, zero value otherwise.
-
-### GetDevicesOk
-
-`func (o *Project) GetDevicesOk() (*[]Href, bool)`
-
-GetDevicesOk returns a tuple with the Devices field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDevices
-
-`func (o *Project) SetDevices(v []Href)`
-
-SetDevices sets Devices field to given value.
-
-### HasDevices
-
-`func (o *Project) HasDevices() bool`
-
-HasDevices returns a boolean if a field has been set.
-
 ### GetSshKeys
 
-`func (o *Project) GetSshKeys() []Href`
+`func (o *Project) GetSshKeys() []FindBatchById200ResponseDevicesInner`
 
 GetSshKeys returns the SshKeys field if non-nil, zero value otherwise.
 
 ### GetSshKeysOk
 
-`func (o *Project) GetSshKeysOk() (*[]Href, bool)`
+`func (o *Project) GetSshKeysOk() (*[]FindBatchById200ResponseDevicesInner, bool)`
 
 GetSshKeysOk returns a tuple with the SshKeys field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSshKeys
 
-`func (o *Project) SetSshKeys(v []Href)`
+`func (o *Project) SetSshKeys(v []FindBatchById200ResponseDevicesInner)`
 
 SetSshKeys sets SshKeys field to given value.
 
@@ -339,22 +364,47 @@ SetSshKeys sets SshKeys field to given value.
 
 HasSshKeys returns a boolean if a field has been set.
 
+### GetUpdatedAt
+
+`func (o *Project) GetUpdatedAt() time.Time`
+
+GetUpdatedAt returns the UpdatedAt field if non-nil, zero value otherwise.
+
+### GetUpdatedAtOk
+
+`func (o *Project) GetUpdatedAtOk() (*time.Time, bool)`
+
+GetUpdatedAtOk returns a tuple with the UpdatedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUpdatedAt
+
+`func (o *Project) SetUpdatedAt(v time.Time)`
+
+SetUpdatedAt sets UpdatedAt field to given value.
+
+### HasUpdatedAt
+
+`func (o *Project) HasUpdatedAt() bool`
+
+HasUpdatedAt returns a boolean if a field has been set.
+
 ### GetVolumes
 
-`func (o *Project) GetVolumes() []Href`
+`func (o *Project) GetVolumes() []FindBatchById200ResponseDevicesInner`
 
 GetVolumes returns the Volumes field if non-nil, zero value otherwise.
 
 ### GetVolumesOk
 
-`func (o *Project) GetVolumesOk() (*[]Href, bool)`
+`func (o *Project) GetVolumesOk() (*[]FindBatchById200ResponseDevicesInner, bool)`
 
 GetVolumesOk returns a tuple with the Volumes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVolumes
 
-`func (o *Project) SetVolumes(v []Href)`
+`func (o *Project) SetVolumes(v []FindBatchById200ResponseDevicesInner)`
 
 SetVolumes sets Volumes field to given value.
 
@@ -363,56 +413,6 @@ SetVolumes sets Volumes field to given value.
 `func (o *Project) HasVolumes() bool`
 
 HasVolumes returns a boolean if a field has been set.
-
-### GetBgpConfig
-
-`func (o *Project) GetBgpConfig() Href`
-
-GetBgpConfig returns the BgpConfig field if non-nil, zero value otherwise.
-
-### GetBgpConfigOk
-
-`func (o *Project) GetBgpConfigOk() (*Href, bool)`
-
-GetBgpConfigOk returns a tuple with the BgpConfig field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetBgpConfig
-
-`func (o *Project) SetBgpConfig(v Href)`
-
-SetBgpConfig sets BgpConfig field to given value.
-
-### HasBgpConfig
-
-`func (o *Project) HasBgpConfig() bool`
-
-HasBgpConfig returns a boolean if a field has been set.
-
-### GetCustomdata
-
-`func (o *Project) GetCustomdata() map[string]interface{}`
-
-GetCustomdata returns the Customdata field if non-nil, zero value otherwise.
-
-### GetCustomdataOk
-
-`func (o *Project) GetCustomdataOk() (*map[string]interface{}, bool)`
-
-GetCustomdataOk returns a tuple with the Customdata field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCustomdata
-
-`func (o *Project) SetCustomdata(v map[string]interface{})`
-
-SetCustomdata sets Customdata field to given value.
-
-### HasCustomdata
-
-`func (o *Project) HasCustomdata() bool`
-
-HasCustomdata returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

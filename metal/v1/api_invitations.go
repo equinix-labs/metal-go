@@ -29,7 +29,7 @@ type ApiAcceptInvitationRequest struct {
 	id         string
 }
 
-func (r ApiAcceptInvitationRequest) Execute() (*Membership, *http.Response, error) {
+func (r ApiAcceptInvitationRequest) Execute() (*FindInvitations200ResponseInvitationsInner, *http.Response, error) {
 	return r.ApiService.AcceptInvitationExecute(r)
 }
 
@@ -51,13 +51,13 @@ func (a *InvitationsApiService) AcceptInvitation(ctx context.Context, id string)
 }
 
 // Execute executes the request
-//  @return Membership
-func (a *InvitationsApiService) AcceptInvitationExecute(r ApiAcceptInvitationRequest) (*Membership, *http.Response, error) {
+//  @return FindInvitations200ResponseInvitationsInner
+func (a *InvitationsApiService) AcceptInvitationExecute(r ApiAcceptInvitationRequest) (*FindInvitations200ResponseInvitationsInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *Membership
+		localVarReturnValue *FindInvitations200ResponseInvitationsInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InvitationsApiService.AcceptInvitation")
@@ -126,7 +126,7 @@ func (a *InvitationsApiService) AcceptInvitationExecute(r ApiAcceptInvitationReq
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -136,7 +136,7 @@ func (a *InvitationsApiService) AcceptInvitationExecute(r ApiAcceptInvitationReq
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -146,344 +146,7 @@ func (a *InvitationsApiService) AcceptInvitationExecute(r ApiAcceptInvitationReq
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiCreateOrganizationInvitationRequest struct {
-	ctx        context.Context
-	ApiService *InvitationsApiService
-	id         string
-	invitation *InvitationInput
-}
-
-// Invitation to create
-func (r ApiCreateOrganizationInvitationRequest) Invitation(invitation InvitationInput) ApiCreateOrganizationInvitationRequest {
-	r.invitation = &invitation
-	return r
-}
-
-func (r ApiCreateOrganizationInvitationRequest) Execute() (*Invitation, *http.Response, error) {
-	return r.ApiService.CreateOrganizationInvitationExecute(r)
-}
-
-/*
-CreateOrganizationInvitation Create an invitation for an organization
-
-In order to add a user to an organization, they must first be invited.
-To invite to several projects the parameter `projects_ids:[a,b,c]` can be used
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Organization UUID
- @return ApiCreateOrganizationInvitationRequest
-*/
-func (a *InvitationsApiService) CreateOrganizationInvitation(ctx context.Context, id string) ApiCreateOrganizationInvitationRequest {
-	return ApiCreateOrganizationInvitationRequest{
-		ApiService: a,
-		ctx:        ctx,
-		id:         id,
-	}
-}
-
-// Execute executes the request
-//  @return Invitation
-func (a *InvitationsApiService) CreateOrganizationInvitationExecute(r ApiCreateOrganizationInvitationRequest) (*Invitation, *http.Response, error) {
-	var (
-		localVarHTTPMethod  = http.MethodPost
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *Invitation
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InvitationsApiService.CreateOrganizationInvitation")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/organizations/{id}/invitations"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if r.invitation == nil {
-		return localVarReturnValue, nil, reportError("invitation is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	// body params
-	localVarPostBody = r.invitation
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["x_auth_token"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["X-Auth-Token"] = key
-			}
-		}
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 422 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiCreateProjectInvitationRequest struct {
-	ctx        context.Context
-	ApiService *InvitationsApiService
-	projectId  string
-	invitation *InvitationInput
-}
-
-// Invitation to create
-func (r ApiCreateProjectInvitationRequest) Invitation(invitation InvitationInput) ApiCreateProjectInvitationRequest {
-	r.invitation = &invitation
-	return r
-}
-
-func (r ApiCreateProjectInvitationRequest) Execute() (*Invitation, *http.Response, error) {
-	return r.ApiService.CreateProjectInvitationExecute(r)
-}
-
-/*
-CreateProjectInvitation Create an invitation for a project
-
-In order to add a user to a project, they must first be invited.
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param projectId Project UUID
- @return ApiCreateProjectInvitationRequest
-*/
-func (a *InvitationsApiService) CreateProjectInvitation(ctx context.Context, projectId string) ApiCreateProjectInvitationRequest {
-	return ApiCreateProjectInvitationRequest{
-		ApiService: a,
-		ctx:        ctx,
-		projectId:  projectId,
-	}
-}
-
-// Execute executes the request
-//  @return Invitation
-func (a *InvitationsApiService) CreateProjectInvitationExecute(r ApiCreateProjectInvitationRequest) (*Invitation, *http.Response, error) {
-	var (
-		localVarHTTPMethod  = http.MethodPost
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *Invitation
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InvitationsApiService.CreateProjectInvitation")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/projects/{project_id}/invitations"
-	localVarPath = strings.Replace(localVarPath, "{"+"project_id"+"}", url.PathEscape(parameterToString(r.projectId, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if r.invitation == nil {
-		return localVarReturnValue, nil, reportError("invitation is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	// body params
-	localVarPostBody = r.invitation
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["x_auth_token"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["X-Auth-Token"] = key
-			}
-		}
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 422 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -607,7 +270,7 @@ func (a *InvitationsApiService) DeclineInvitationExecute(r ApiDeclineInvitationR
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -617,7 +280,7 @@ func (a *InvitationsApiService) DeclineInvitationExecute(r ApiDeclineInvitationR
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -627,7 +290,7 @@ func (a *InvitationsApiService) DeclineInvitationExecute(r ApiDeclineInvitationR
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -661,7 +324,7 @@ func (r ApiFindInvitationByIdRequest) Exclude(exclude []string) ApiFindInvitatio
 	return r
 }
 
-func (r ApiFindInvitationByIdRequest) Execute() (*Invitation, *http.Response, error) {
+func (r ApiFindInvitationByIdRequest) Execute() (*FindInvitationById200Response, *http.Response, error) {
 	return r.ApiService.FindInvitationByIdExecute(r)
 }
 
@@ -683,13 +346,13 @@ func (a *InvitationsApiService) FindInvitationById(ctx context.Context, id strin
 }
 
 // Execute executes the request
-//  @return Invitation
-func (a *InvitationsApiService) FindInvitationByIdExecute(r ApiFindInvitationByIdRequest) (*Invitation, *http.Response, error) {
+//  @return FindInvitationById200Response
+func (a *InvitationsApiService) FindInvitationByIdExecute(r ApiFindInvitationByIdRequest) (*FindInvitationById200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *Invitation
+		localVarReturnValue *FindInvitationById200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InvitationsApiService.FindInvitationById")
@@ -764,7 +427,7 @@ func (a *InvitationsApiService) FindInvitationByIdExecute(r ApiFindInvitationByI
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -774,7 +437,7 @@ func (a *InvitationsApiService) FindInvitationByIdExecute(r ApiFindInvitationByI
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -784,561 +447,7 @@ func (a *InvitationsApiService) FindInvitationByIdExecute(r ApiFindInvitationByI
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiFindInvitationsRequest struct {
-	ctx        context.Context
-	ApiService *InvitationsApiService
-	include    *[]string
-	exclude    *[]string
-	page       *int32
-	perPage    *int32
-}
-
-// Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
-func (r ApiFindInvitationsRequest) Include(include []string) ApiFindInvitationsRequest {
-	r.include = &include
-	return r
-}
-
-// Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
-func (r ApiFindInvitationsRequest) Exclude(exclude []string) ApiFindInvitationsRequest {
-	r.exclude = &exclude
-	return r
-}
-
-// Page to return
-func (r ApiFindInvitationsRequest) Page(page int32) ApiFindInvitationsRequest {
-	r.page = &page
-	return r
-}
-
-// Items returned per page
-func (r ApiFindInvitationsRequest) PerPage(perPage int32) ApiFindInvitationsRequest {
-	r.perPage = &perPage
-	return r
-}
-
-func (r ApiFindInvitationsRequest) Execute() (*InvitationList, *http.Response, error) {
-	return r.ApiService.FindInvitationsExecute(r)
-}
-
-/*
-FindInvitations Retrieve current user invitations
-
-Returns all invitations in current user.
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiFindInvitationsRequest
-*/
-func (a *InvitationsApiService) FindInvitations(ctx context.Context) ApiFindInvitationsRequest {
-	return ApiFindInvitationsRequest{
-		ApiService: a,
-		ctx:        ctx,
-	}
-}
-
-// Execute executes the request
-//  @return InvitationList
-func (a *InvitationsApiService) FindInvitationsExecute(r ApiFindInvitationsRequest) (*InvitationList, *http.Response, error) {
-	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *InvitationList
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InvitationsApiService.FindInvitations")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/invitations"
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	if r.include != nil {
-		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
-	}
-	if r.exclude != nil {
-		localVarQueryParams.Add("exclude", parameterToString(*r.exclude, "csv"))
-	}
-	if r.page != nil {
-		localVarQueryParams.Add("page", parameterToString(*r.page, ""))
-	}
-	if r.perPage != nil {
-		localVarQueryParams.Add("per_page", parameterToString(*r.perPage, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["x_auth_token"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["X-Auth-Token"] = key
-			}
-		}
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiFindOrganizationInvitationsRequest struct {
-	ctx        context.Context
-	ApiService *InvitationsApiService
-	id         string
-	include    *[]string
-	exclude    *[]string
-	page       *int32
-	perPage    *int32
-}
-
-// Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
-func (r ApiFindOrganizationInvitationsRequest) Include(include []string) ApiFindOrganizationInvitationsRequest {
-	r.include = &include
-	return r
-}
-
-// Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
-func (r ApiFindOrganizationInvitationsRequest) Exclude(exclude []string) ApiFindOrganizationInvitationsRequest {
-	r.exclude = &exclude
-	return r
-}
-
-// Page to return
-func (r ApiFindOrganizationInvitationsRequest) Page(page int32) ApiFindOrganizationInvitationsRequest {
-	r.page = &page
-	return r
-}
-
-// Items returned per page
-func (r ApiFindOrganizationInvitationsRequest) PerPage(perPage int32) ApiFindOrganizationInvitationsRequest {
-	r.perPage = &perPage
-	return r
-}
-
-func (r ApiFindOrganizationInvitationsRequest) Execute() (*InvitationList, *http.Response, error) {
-	return r.ApiService.FindOrganizationInvitationsExecute(r)
-}
-
-/*
-FindOrganizationInvitations Retrieve organization invitations
-
-Returns all invitations in an organization.
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Organization UUID
- @return ApiFindOrganizationInvitationsRequest
-*/
-func (a *InvitationsApiService) FindOrganizationInvitations(ctx context.Context, id string) ApiFindOrganizationInvitationsRequest {
-	return ApiFindOrganizationInvitationsRequest{
-		ApiService: a,
-		ctx:        ctx,
-		id:         id,
-	}
-}
-
-// Execute executes the request
-//  @return InvitationList
-func (a *InvitationsApiService) FindOrganizationInvitationsExecute(r ApiFindOrganizationInvitationsRequest) (*InvitationList, *http.Response, error) {
-	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *InvitationList
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InvitationsApiService.FindOrganizationInvitations")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/organizations/{id}/invitations"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	if r.include != nil {
-		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
-	}
-	if r.exclude != nil {
-		localVarQueryParams.Add("exclude", parameterToString(*r.exclude, "csv"))
-	}
-	if r.page != nil {
-		localVarQueryParams.Add("page", parameterToString(*r.page, ""))
-	}
-	if r.perPage != nil {
-		localVarQueryParams.Add("per_page", parameterToString(*r.perPage, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["x_auth_token"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["X-Auth-Token"] = key
-			}
-		}
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiFindProjectInvitationsRequest struct {
-	ctx        context.Context
-	ApiService *InvitationsApiService
-	projectId  string
-	include    *[]string
-	exclude    *[]string
-	page       *int32
-	perPage    *int32
-}
-
-// Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
-func (r ApiFindProjectInvitationsRequest) Include(include []string) ApiFindProjectInvitationsRequest {
-	r.include = &include
-	return r
-}
-
-// Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
-func (r ApiFindProjectInvitationsRequest) Exclude(exclude []string) ApiFindProjectInvitationsRequest {
-	r.exclude = &exclude
-	return r
-}
-
-// Page to return
-func (r ApiFindProjectInvitationsRequest) Page(page int32) ApiFindProjectInvitationsRequest {
-	r.page = &page
-	return r
-}
-
-// Items returned per page
-func (r ApiFindProjectInvitationsRequest) PerPage(perPage int32) ApiFindProjectInvitationsRequest {
-	r.perPage = &perPage
-	return r
-}
-
-func (r ApiFindProjectInvitationsRequest) Execute() (*InvitationList, *http.Response, error) {
-	return r.ApiService.FindProjectInvitationsExecute(r)
-}
-
-/*
-FindProjectInvitations Retrieve project invitations
-
-Returns all invitations in a project.
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param projectId Project UUID
- @return ApiFindProjectInvitationsRequest
-*/
-func (a *InvitationsApiService) FindProjectInvitations(ctx context.Context, projectId string) ApiFindProjectInvitationsRequest {
-	return ApiFindProjectInvitationsRequest{
-		ApiService: a,
-		ctx:        ctx,
-		projectId:  projectId,
-	}
-}
-
-// Execute executes the request
-//  @return InvitationList
-func (a *InvitationsApiService) FindProjectInvitationsExecute(r ApiFindProjectInvitationsRequest) (*InvitationList, *http.Response, error) {
-	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *InvitationList
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InvitationsApiService.FindProjectInvitations")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/projects/{project_id}/invitations"
-	localVarPath = strings.Replace(localVarPath, "{"+"project_id"+"}", url.PathEscape(parameterToString(r.projectId, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	if r.include != nil {
-		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
-	}
-	if r.exclude != nil {
-		localVarQueryParams.Add("exclude", parameterToString(*r.exclude, "csv"))
-	}
-	if r.page != nil {
-		localVarQueryParams.Add("page", parameterToString(*r.page, ""))
-	}
-	if r.perPage != nil {
-		localVarQueryParams.Add("per_page", parameterToString(*r.perPage, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["x_auth_token"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["X-Auth-Token"] = key
-			}
-		}
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

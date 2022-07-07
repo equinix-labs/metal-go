@@ -18,14 +18,14 @@ import (
 
 // Batch struct for Batch
 type Batch struct {
-	Id            *string    `json:"id,omitempty"`
-	ErrorMessages []string   `json:"error_messages,omitempty"`
-	Quantity      *int32     `json:"quantity,omitempty"`
-	State         *string    `json:"state,omitempty"`
-	CreatedAt     *time.Time `json:"created_at,omitempty"`
-	UpdatedAt     *time.Time `json:"updated_at,omitempty"`
-	Devices       []Href     `json:"devices,omitempty"`
-	Project       *Href      `json:"project,omitempty"`
+	CreatedAt     *time.Time                             `json:"created_at,omitempty"`
+	Devices       []FindBatchById200ResponseDevicesInner `json:"devices,omitempty"`
+	ErrorMessages []string                               `json:"error_messages,omitempty"`
+	Id            *string                                `json:"id,omitempty"`
+	Project       *FindBatchById200ResponseDevicesInner  `json:"project,omitempty"`
+	Quantity      *int32                                 `json:"quantity,omitempty"`
+	State         *string                                `json:"state,omitempty"`
+	UpdatedAt     *time.Time                             `json:"updated_at,omitempty"`
 }
 
 // NewBatch instantiates a new Batch object
@@ -43,6 +43,102 @@ func NewBatch() *Batch {
 func NewBatchWithDefaults() *Batch {
 	this := Batch{}
 	return &this
+}
+
+// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
+func (o *Batch) GetCreatedAt() time.Time {
+	if o == nil || o.CreatedAt == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.CreatedAt
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Batch) GetCreatedAtOk() (*time.Time, bool) {
+	if o == nil || o.CreatedAt == nil {
+		return nil, false
+	}
+	return o.CreatedAt, true
+}
+
+// HasCreatedAt returns a boolean if a field has been set.
+func (o *Batch) HasCreatedAt() bool {
+	if o != nil && o.CreatedAt != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
+func (o *Batch) SetCreatedAt(v time.Time) {
+	o.CreatedAt = &v
+}
+
+// GetDevices returns the Devices field value if set, zero value otherwise.
+func (o *Batch) GetDevices() []FindBatchById200ResponseDevicesInner {
+	if o == nil || o.Devices == nil {
+		var ret []FindBatchById200ResponseDevicesInner
+		return ret
+	}
+	return o.Devices
+}
+
+// GetDevicesOk returns a tuple with the Devices field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Batch) GetDevicesOk() ([]FindBatchById200ResponseDevicesInner, bool) {
+	if o == nil || o.Devices == nil {
+		return nil, false
+	}
+	return o.Devices, true
+}
+
+// HasDevices returns a boolean if a field has been set.
+func (o *Batch) HasDevices() bool {
+	if o != nil && o.Devices != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDevices gets a reference to the given []FindBatchById200ResponseDevicesInner and assigns it to the Devices field.
+func (o *Batch) SetDevices(v []FindBatchById200ResponseDevicesInner) {
+	o.Devices = v
+}
+
+// GetErrorMessages returns the ErrorMessages field value if set, zero value otherwise.
+func (o *Batch) GetErrorMessages() []string {
+	if o == nil || o.ErrorMessages == nil {
+		var ret []string
+		return ret
+	}
+	return o.ErrorMessages
+}
+
+// GetErrorMessagesOk returns a tuple with the ErrorMessages field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Batch) GetErrorMessagesOk() ([]string, bool) {
+	if o == nil || o.ErrorMessages == nil {
+		return nil, false
+	}
+	return o.ErrorMessages, true
+}
+
+// HasErrorMessages returns a boolean if a field has been set.
+func (o *Batch) HasErrorMessages() bool {
+	if o != nil && o.ErrorMessages != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetErrorMessages gets a reference to the given []string and assigns it to the ErrorMessages field.
+func (o *Batch) SetErrorMessages(v []string) {
+	o.ErrorMessages = v
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
@@ -77,36 +173,36 @@ func (o *Batch) SetId(v string) {
 	o.Id = &v
 }
 
-// GetErrorMessages returns the ErrorMessages field value if set, zero value otherwise.
-func (o *Batch) GetErrorMessages() []string {
-	if o == nil || o.ErrorMessages == nil {
-		var ret []string
+// GetProject returns the Project field value if set, zero value otherwise.
+func (o *Batch) GetProject() FindBatchById200ResponseDevicesInner {
+	if o == nil || o.Project == nil {
+		var ret FindBatchById200ResponseDevicesInner
 		return ret
 	}
-	return o.ErrorMessages
+	return *o.Project
 }
 
-// GetErrorMessagesOk returns a tuple with the ErrorMessages field value if set, nil otherwise
+// GetProjectOk returns a tuple with the Project field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Batch) GetErrorMessagesOk() ([]string, bool) {
-	if o == nil || o.ErrorMessages == nil {
+func (o *Batch) GetProjectOk() (*FindBatchById200ResponseDevicesInner, bool) {
+	if o == nil || o.Project == nil {
 		return nil, false
 	}
-	return o.ErrorMessages, true
+	return o.Project, true
 }
 
-// HasErrorMessages returns a boolean if a field has been set.
-func (o *Batch) HasErrorMessages() bool {
-	if o != nil && o.ErrorMessages != nil {
+// HasProject returns a boolean if a field has been set.
+func (o *Batch) HasProject() bool {
+	if o != nil && o.Project != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetErrorMessages gets a reference to the given []string and assigns it to the ErrorMessages field.
-func (o *Batch) SetErrorMessages(v []string) {
-	o.ErrorMessages = v
+// SetProject gets a reference to the given FindBatchById200ResponseDevicesInner and assigns it to the Project field.
+func (o *Batch) SetProject(v FindBatchById200ResponseDevicesInner) {
+	o.Project = &v
 }
 
 // GetQuantity returns the Quantity field value if set, zero value otherwise.
@@ -173,38 +269,6 @@ func (o *Batch) SetState(v string) {
 	o.State = &v
 }
 
-// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
-func (o *Batch) GetCreatedAt() time.Time {
-	if o == nil || o.CreatedAt == nil {
-		var ret time.Time
-		return ret
-	}
-	return *o.CreatedAt
-}
-
-// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Batch) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || o.CreatedAt == nil {
-		return nil, false
-	}
-	return o.CreatedAt, true
-}
-
-// HasCreatedAt returns a boolean if a field has been set.
-func (o *Batch) HasCreatedAt() bool {
-	if o != nil && o.CreatedAt != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
-func (o *Batch) SetCreatedAt(v time.Time) {
-	o.CreatedAt = &v
-}
-
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *Batch) GetUpdatedAt() time.Time {
 	if o == nil || o.UpdatedAt == nil {
@@ -237,77 +301,22 @@ func (o *Batch) SetUpdatedAt(v time.Time) {
 	o.UpdatedAt = &v
 }
 
-// GetDevices returns the Devices field value if set, zero value otherwise.
-func (o *Batch) GetDevices() []Href {
-	if o == nil || o.Devices == nil {
-		var ret []Href
-		return ret
-	}
-	return o.Devices
-}
-
-// GetDevicesOk returns a tuple with the Devices field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Batch) GetDevicesOk() ([]Href, bool) {
-	if o == nil || o.Devices == nil {
-		return nil, false
-	}
-	return o.Devices, true
-}
-
-// HasDevices returns a boolean if a field has been set.
-func (o *Batch) HasDevices() bool {
-	if o != nil && o.Devices != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetDevices gets a reference to the given []Href and assigns it to the Devices field.
-func (o *Batch) SetDevices(v []Href) {
-	o.Devices = v
-}
-
-// GetProject returns the Project field value if set, zero value otherwise.
-func (o *Batch) GetProject() Href {
-	if o == nil || o.Project == nil {
-		var ret Href
-		return ret
-	}
-	return *o.Project
-}
-
-// GetProjectOk returns a tuple with the Project field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Batch) GetProjectOk() (*Href, bool) {
-	if o == nil || o.Project == nil {
-		return nil, false
-	}
-	return o.Project, true
-}
-
-// HasProject returns a boolean if a field has been set.
-func (o *Batch) HasProject() bool {
-	if o != nil && o.Project != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetProject gets a reference to the given Href and assigns it to the Project field.
-func (o *Batch) SetProject(v Href) {
-	o.Project = &v
-}
-
 func (o Batch) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
+	if o.CreatedAt != nil {
+		toSerialize["created_at"] = o.CreatedAt
+	}
+	if o.Devices != nil {
+		toSerialize["devices"] = o.Devices
 	}
 	if o.ErrorMessages != nil {
 		toSerialize["error_messages"] = o.ErrorMessages
+	}
+	if o.Id != nil {
+		toSerialize["id"] = o.Id
+	}
+	if o.Project != nil {
+		toSerialize["project"] = o.Project
 	}
 	if o.Quantity != nil {
 		toSerialize["quantity"] = o.Quantity
@@ -315,17 +324,8 @@ func (o Batch) MarshalJSON() ([]byte, error) {
 	if o.State != nil {
 		toSerialize["state"] = o.State
 	}
-	if o.CreatedAt != nil {
-		toSerialize["created_at"] = o.CreatedAt
-	}
 	if o.UpdatedAt != nil {
 		toSerialize["updated_at"] = o.UpdatedAt
-	}
-	if o.Devices != nil {
-		toSerialize["devices"] = o.Devices
-	}
-	if o.Project != nil {
-		toSerialize["project"] = o.Project
 	}
 	return json.Marshal(toSerialize)
 }

@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 ## CreateMetalGateway
 
-> MetalGateway CreateMetalGateway(ctx, projectId).MetalGateway(metalGateway).Page(page).PerPage(perPage).Execute()
+> map[string]interface{} CreateMetalGateway(ctx, projectId).Body(body).Page(page).PerPage(perPage).Execute()
 
 Create a metal gateway
 
@@ -33,18 +33,18 @@ import (
 
 func main() {
     projectId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Project UUID
-    metalGateway := *openapiclient.NewMetalGatewayInput("VirtualNetworkId_example") // MetalGatewayInput | Metal Gateway to create
+    body := map[string]interface{}{ ... } // map[string]interface{} | Metal Gateway to create
     page := int32(56) // int32 | Page to return (optional) (default to 1)
     perPage := int32(56) // int32 | Items returned per page (optional) (default to 10)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.MetalGatewaysApi.CreateMetalGateway(context.Background(), projectId).MetalGateway(metalGateway).Page(page).PerPage(perPage).Execute()
+    resp, r, err := apiClient.MetalGatewaysApi.CreateMetalGateway(context.Background(), projectId).Body(body).Page(page).PerPage(perPage).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MetalGatewaysApi.CreateMetalGateway``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateMetalGateway`: MetalGateway
+    // response from `CreateMetalGateway`: map[string]interface{}
     fmt.Fprintf(os.Stdout, "Response from `MetalGatewaysApi.CreateMetalGateway`: %v\n", resp)
 }
 ```
@@ -65,13 +65,13 @@ Other parameters are passed through a pointer to a apiCreateMetalGatewayRequest 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **metalGateway** | [**MetalGatewayInput**](MetalGatewayInput.md) | Metal Gateway to create | 
+ **body** | **map[string]interface{}** | Metal Gateway to create | 
  **page** | **int32** | Page to return | [default to 1]
  **perPage** | **int32** | Items returned per page | [default to 10]
 
 ### Return type
 
-[**MetalGateway**](MetalGateway.md)
+**map[string]interface{}**
 
 ### Authorization
 
@@ -157,7 +157,7 @@ Name | Type | Description  | Notes
 
 ## FindMetalGatewayById
 
-> MetalGateway FindMetalGatewayById(ctx, id).Execute()
+> map[string]interface{} FindMetalGatewayById(ctx, id).Execute()
 
 Returns the metal gateway
 
@@ -185,7 +185,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `MetalGatewaysApi.FindMetalGatewayById``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindMetalGatewayById`: MetalGateway
+    // response from `FindMetalGatewayById`: map[string]interface{}
     fmt.Fprintf(os.Stdout, "Response from `MetalGatewaysApi.FindMetalGatewayById`: %v\n", resp)
 }
 ```
@@ -209,7 +209,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**MetalGateway**](MetalGateway.md)
+**map[string]interface{}**
 
 ### Authorization
 
@@ -227,7 +227,7 @@ Name | Type | Description  | Notes
 
 ## FindMetalGatewaysByProject
 
-> MetalGatewayList FindMetalGatewaysByProject(ctx, projectId).Page(page).PerPage(perPage).Execute()
+> FindMetalGatewaysByProject200Response FindMetalGatewaysByProject(ctx, projectId).Page(page).PerPage(perPage).Execute()
 
 Returns all metal gateways for a project
 
@@ -257,7 +257,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `MetalGatewaysApi.FindMetalGatewaysByProject``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindMetalGatewaysByProject`: MetalGatewayList
+    // response from `FindMetalGatewaysByProject`: FindMetalGatewaysByProject200Response
     fmt.Fprintf(os.Stdout, "Response from `MetalGatewaysApi.FindMetalGatewaysByProject`: %v\n", resp)
 }
 ```
@@ -283,7 +283,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**MetalGatewayList**](MetalGatewayList.md)
+[**FindMetalGatewaysByProject200Response**](FindMetalGatewaysByProject200Response.md)
 
 ### Authorization
 

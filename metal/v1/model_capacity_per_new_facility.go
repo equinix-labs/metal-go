@@ -17,7 +17,7 @@ import (
 
 // CapacityPerNewFacility struct for CapacityPerNewFacility
 type CapacityPerNewFacility struct {
-	Baremetal1e *CapacityLevelPerBaremetal `json:"baremetal_1e,omitempty"`
+	Baremetal1e *FindCapacityForFacility200ResponseCapacityAms1Baremetal0 `json:"baremetal_1e,omitempty"`
 }
 
 // NewCapacityPerNewFacility instantiates a new CapacityPerNewFacility object
@@ -38,9 +38,9 @@ func NewCapacityPerNewFacilityWithDefaults() *CapacityPerNewFacility {
 }
 
 // GetBaremetal1e returns the Baremetal1e field value if set, zero value otherwise.
-func (o *CapacityPerNewFacility) GetBaremetal1e() CapacityLevelPerBaremetal {
+func (o *CapacityPerNewFacility) GetBaremetal1e() FindCapacityForFacility200ResponseCapacityAms1Baremetal0 {
 	if o == nil || o.Baremetal1e == nil {
-		var ret CapacityLevelPerBaremetal
+		var ret FindCapacityForFacility200ResponseCapacityAms1Baremetal0
 		return ret
 	}
 	return *o.Baremetal1e
@@ -48,7 +48,7 @@ func (o *CapacityPerNewFacility) GetBaremetal1e() CapacityLevelPerBaremetal {
 
 // GetBaremetal1eOk returns a tuple with the Baremetal1e field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CapacityPerNewFacility) GetBaremetal1eOk() (*CapacityLevelPerBaremetal, bool) {
+func (o *CapacityPerNewFacility) GetBaremetal1eOk() (*FindCapacityForFacility200ResponseCapacityAms1Baremetal0, bool) {
 	if o == nil || o.Baremetal1e == nil {
 		return nil, false
 	}
@@ -64,8 +64,8 @@ func (o *CapacityPerNewFacility) HasBaremetal1e() bool {
 	return false
 }
 
-// SetBaremetal1e gets a reference to the given CapacityLevelPerBaremetal and assigns it to the Baremetal1e field.
-func (o *CapacityPerNewFacility) SetBaremetal1e(v CapacityLevelPerBaremetal) {
+// SetBaremetal1e gets a reference to the given FindCapacityForFacility200ResponseCapacityAms1Baremetal0 and assigns it to the Baremetal1e field.
+func (o *CapacityPerNewFacility) SetBaremetal1e(v FindCapacityForFacility200ResponseCapacityAms1Baremetal0) {
 	o.Baremetal1e = &v
 }
 

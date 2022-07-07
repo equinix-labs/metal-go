@@ -4,17 +4,92 @@ All URIs are relative to *https://api.equinix.com/metal/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**CreateProjectSSHKey**](SSHKeysApi.md#CreateProjectSSHKey) | **Post** /projects/{id}/ssh-keys | Create a ssh key for the given project
 [**CreateSSHKey**](SSHKeysApi.md#CreateSSHKey) | **Post** /ssh-keys | Create a ssh key for the current user
 [**DeleteSSHKey**](SSHKeysApi.md#DeleteSSHKey) | **Delete** /ssh-keys/{id} | Delete the ssh key
+[**FindDeviceSSHKeys**](SSHKeysApi.md#FindDeviceSSHKeys) | **Get** /devices/{id}/ssh-keys | Retrieve a device&#39;s ssh keys
+[**FindProjectSSHKeys**](SSHKeysApi.md#FindProjectSSHKeys) | **Get** /projects/{id}/ssh-keys | Retrieve a project&#39;s ssh keys
 [**FindSSHKeyById**](SSHKeysApi.md#FindSSHKeyById) | **Get** /ssh-keys/{id} | Retrieve a ssh key
 [**FindSSHKeys**](SSHKeysApi.md#FindSSHKeys) | **Get** /ssh-keys | Retrieve all ssh keys
 [**UpdateSSHKey**](SSHKeysApi.md#UpdateSSHKey) | **Put** /ssh-keys/{id} | Update the ssh key
 
 
 
+## CreateProjectSSHKey
+
+> FindDeviceSSHKeys200ResponseSshKeysInner CreateProjectSSHKey(ctx, id).Body(body).Execute()
+
+Create a ssh key for the given project
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Project UUID
+    body := *openapiclient.NewCreateProjectSSHKeyRequest() // CreateProjectSSHKeyRequest | ssh key to create
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.SSHKeysApi.CreateProjectSSHKey(context.Background(), id).Body(body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `SSHKeysApi.CreateProjectSSHKey``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateProjectSSHKey`: FindDeviceSSHKeys200ResponseSshKeysInner
+    fmt.Fprintf(os.Stdout, "Response from `SSHKeysApi.CreateProjectSSHKey`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** | Project UUID | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateProjectSSHKeyRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **body** | [**CreateProjectSSHKeyRequest**](CreateProjectSSHKeyRequest.md) | ssh key to create | 
+
+### Return type
+
+[**FindDeviceSSHKeys200ResponseSshKeysInner**](FindDeviceSSHKeys200ResponseSshKeysInner.md)
+
+### Authorization
+
+[x_auth_token](../README.md#x_auth_token)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## CreateSSHKey
 
-> SSHKey CreateSSHKey(ctx).SshKey(sshKey).Execute()
+> FindDeviceSSHKeys200ResponseSshKeysInner CreateSSHKey(ctx).Body(body).Execute()
 
 Create a ssh key for the current user
 
@@ -33,16 +108,16 @@ import (
 )
 
 func main() {
-    sshKey := *openapiclient.NewSSHKeyCreateInput() // SSHKeyCreateInput | ssh key to create
+    body := *openapiclient.NewCreateProjectSSHKeyRequest() // CreateProjectSSHKeyRequest | ssh key to create
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.SSHKeysApi.CreateSSHKey(context.Background()).SshKey(sshKey).Execute()
+    resp, r, err := apiClient.SSHKeysApi.CreateSSHKey(context.Background()).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SSHKeysApi.CreateSSHKey``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateSSHKey`: SSHKey
+    // response from `CreateSSHKey`: FindDeviceSSHKeys200ResponseSshKeysInner
     fmt.Fprintf(os.Stdout, "Response from `SSHKeysApi.CreateSSHKey`: %v\n", resp)
 }
 ```
@@ -58,11 +133,11 @@ Other parameters are passed through a pointer to a apiCreateSSHKeyRequest struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **sshKey** | [**SSHKeyCreateInput**](SSHKeyCreateInput.md) | ssh key to create | 
+ **body** | [**CreateProjectSSHKeyRequest**](CreateProjectSSHKeyRequest.md) | ssh key to create | 
 
 ### Return type
 
-[**SSHKey**](SSHKey.md)
+[**FindDeviceSSHKeys200ResponseSshKeysInner**](FindDeviceSSHKeys200ResponseSshKeysInner.md)
 
 ### Authorization
 
@@ -146,9 +221,161 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## FindDeviceSSHKeys
+
+> FindDeviceSSHKeys200Response FindDeviceSSHKeys(ctx, id).SearchString(searchString).Include(include).Exclude(exclude).Execute()
+
+Retrieve a device's ssh keys
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Project UUID
+    searchString := "searchString_example" // string | Search by key, label, or fingerprint (optional)
+    include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
+    exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.SSHKeysApi.FindDeviceSSHKeys(context.Background(), id).SearchString(searchString).Include(include).Exclude(exclude).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `SSHKeysApi.FindDeviceSSHKeys``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `FindDeviceSSHKeys`: FindDeviceSSHKeys200Response
+    fmt.Fprintf(os.Stdout, "Response from `SSHKeysApi.FindDeviceSSHKeys`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** | Project UUID | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiFindDeviceSSHKeysRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **searchString** | **string** | Search by key, label, or fingerprint | 
+ **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
+ **exclude** | **[]string** | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | 
+
+### Return type
+
+[**FindDeviceSSHKeys200Response**](FindDeviceSSHKeys200Response.md)
+
+### Authorization
+
+[x_auth_token](../README.md#x_auth_token)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## FindProjectSSHKeys
+
+> FindDeviceSSHKeys200Response FindProjectSSHKeys(ctx, id).SearchString(searchString).Include(include).Exclude(exclude).Execute()
+
+Retrieve a project's ssh keys
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Project UUID
+    searchString := "searchString_example" // string | Search by key, label, or fingerprint (optional)
+    include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
+    exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.SSHKeysApi.FindProjectSSHKeys(context.Background(), id).SearchString(searchString).Include(include).Exclude(exclude).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `SSHKeysApi.FindProjectSSHKeys``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `FindProjectSSHKeys`: FindDeviceSSHKeys200Response
+    fmt.Fprintf(os.Stdout, "Response from `SSHKeysApi.FindProjectSSHKeys`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** | Project UUID | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiFindProjectSSHKeysRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **searchString** | **string** | Search by key, label, or fingerprint | 
+ **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
+ **exclude** | **[]string** | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | 
+
+### Return type
+
+[**FindDeviceSSHKeys200Response**](FindDeviceSSHKeys200Response.md)
+
+### Authorization
+
+[x_auth_token](../README.md#x_auth_token)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## FindSSHKeyById
 
-> SSHKey FindSSHKeyById(ctx, id).Include(include).Exclude(exclude).Execute()
+> FindDeviceSSHKeys200ResponseSshKeysInner FindSSHKeyById(ctx, id).Include(include).Exclude(exclude).Execute()
 
 Retrieve a ssh key
 
@@ -178,7 +405,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `SSHKeysApi.FindSSHKeyById``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindSSHKeyById`: SSHKey
+    // response from `FindSSHKeyById`: FindDeviceSSHKeys200ResponseSshKeysInner
     fmt.Fprintf(os.Stdout, "Response from `SSHKeysApi.FindSSHKeyById`: %v\n", resp)
 }
 ```
@@ -204,7 +431,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SSHKey**](SSHKey.md)
+[**FindDeviceSSHKeys200ResponseSshKeysInner**](FindDeviceSSHKeys200ResponseSshKeysInner.md)
 
 ### Authorization
 
@@ -222,7 +449,7 @@ Name | Type | Description  | Notes
 
 ## FindSSHKeys
 
-> SSHKeyList FindSSHKeys(ctx).SearchString(searchString).Include(include).Exclude(exclude).Execute()
+> FindDeviceSSHKeys200Response FindSSHKeys(ctx).SearchString(searchString).Include(include).Exclude(exclude).Execute()
 
 Retrieve all ssh keys
 
@@ -252,7 +479,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `SSHKeysApi.FindSSHKeys``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindSSHKeys`: SSHKeyList
+    // response from `FindSSHKeys`: FindDeviceSSHKeys200Response
     fmt.Fprintf(os.Stdout, "Response from `SSHKeysApi.FindSSHKeys`: %v\n", resp)
 }
 ```
@@ -274,7 +501,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SSHKeyList**](SSHKeyList.md)
+[**FindDeviceSSHKeys200Response**](FindDeviceSSHKeys200Response.md)
 
 ### Authorization
 
@@ -292,7 +519,7 @@ Name | Type | Description  | Notes
 
 ## UpdateSSHKey
 
-> SSHKey UpdateSSHKey(ctx, id).SshKey(sshKey).Execute()
+> FindDeviceSSHKeys200ResponseSshKeysInner UpdateSSHKey(ctx, id).Body(body).Execute()
 
 Update the ssh key
 
@@ -312,16 +539,16 @@ import (
 
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | SSH Key UUID
-    sshKey := *openapiclient.NewSSHKeyInput() // SSHKeyInput | ssh key to update
+    body := *openapiclient.NewCreateDeviceRequestAllOfSshKeysInner() // CreateDeviceRequestAllOfSshKeysInner | ssh key to update
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.SSHKeysApi.UpdateSSHKey(context.Background(), id).SshKey(sshKey).Execute()
+    resp, r, err := apiClient.SSHKeysApi.UpdateSSHKey(context.Background(), id).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SSHKeysApi.UpdateSSHKey``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateSSHKey`: SSHKey
+    // response from `UpdateSSHKey`: FindDeviceSSHKeys200ResponseSshKeysInner
     fmt.Fprintf(os.Stdout, "Response from `SSHKeysApi.UpdateSSHKey`: %v\n", resp)
 }
 ```
@@ -342,11 +569,11 @@ Other parameters are passed through a pointer to a apiUpdateSSHKeyRequest struct
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **sshKey** | [**SSHKeyInput**](SSHKeyInput.md) | ssh key to update | 
+ **body** | [**CreateDeviceRequestAllOfSshKeysInner**](CreateDeviceRequestAllOfSshKeysInner.md) | ssh key to update | 
 
 ### Return type
 
-[**SSHKey**](SSHKey.md)
+[**FindDeviceSSHKeys200ResponseSshKeysInner**](FindDeviceSSHKeys200ResponseSshKeysInner.md)
 
 ### Authorization
 

@@ -4,21 +4,21 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **string** |  | [optional] 
-**Name** | Pointer to **string** |  | [optional] 
-**Type** | Pointer to **string** |  | [optional] 
-**Default** | Pointer to **bool** |  | [optional] 
-**CreatedAt** | Pointer to **time.Time** |  | [optional] 
-**UpdatedAt** | Pointer to **time.Time** |  | [optional] 
+**BillingAddress** | Pointer to [**FindOrganizationPaymentMethods200ResponsePaymentMethodsInnerBillingAddress**](FindOrganizationPaymentMethods200ResponsePaymentMethodsInnerBillingAddress.md) |  | [optional] 
 **CardType** | Pointer to **string** |  | [optional] 
+**CardholderName** | Pointer to **string** |  | [optional] 
+**CreatedAt** | Pointer to **time.Time** |  | [optional] 
+**CreatedByUser** | Pointer to [**FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
+**Default** | Pointer to **bool** |  | [optional] 
+**Email** | Pointer to **string** |  | [optional] 
 **ExpirationMonth** | Pointer to **string** |  | [optional] 
 **ExpirationYear** | Pointer to **string** |  | [optional] 
-**CardholderName** | Pointer to **string** |  | [optional] 
-**BillingAddress** | Pointer to [**PaymentMethodBillingAddress**](PaymentMethodBillingAddress.md) |  | [optional] 
-**Email** | Pointer to **string** |  | [optional] 
-**CreatedByUser** | Pointer to [**Href**](Href.md) |  | [optional] 
-**Organization** | Pointer to [**Href**](Href.md) |  | [optional] 
-**Projects** | Pointer to [**[]Href**](Href.md) |  | [optional] 
+**Id** | Pointer to **string** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
+**Organization** | Pointer to [**FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
+**Projects** | Pointer to [**[]FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
+**Type** | Pointer to **string** |  | [optional] 
+**UpdatedAt** | Pointer to **time.Time** |  | [optional] 
 
 ## Methods
 
@@ -39,105 +39,80 @@ NewPaymentMethodWithDefaults instantiates a new PaymentMethod object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetId
+### GetBillingAddress
 
-`func (o *PaymentMethod) GetId() string`
+`func (o *PaymentMethod) GetBillingAddress() FindOrganizationPaymentMethods200ResponsePaymentMethodsInnerBillingAddress`
 
-GetId returns the Id field if non-nil, zero value otherwise.
+GetBillingAddress returns the BillingAddress field if non-nil, zero value otherwise.
 
-### GetIdOk
+### GetBillingAddressOk
 
-`func (o *PaymentMethod) GetIdOk() (*string, bool)`
+`func (o *PaymentMethod) GetBillingAddressOk() (*FindOrganizationPaymentMethods200ResponsePaymentMethodsInnerBillingAddress, bool)`
 
-GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+GetBillingAddressOk returns a tuple with the BillingAddress field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetId
+### SetBillingAddress
 
-`func (o *PaymentMethod) SetId(v string)`
+`func (o *PaymentMethod) SetBillingAddress(v FindOrganizationPaymentMethods200ResponsePaymentMethodsInnerBillingAddress)`
 
-SetId sets Id field to given value.
+SetBillingAddress sets BillingAddress field to given value.
 
-### HasId
+### HasBillingAddress
 
-`func (o *PaymentMethod) HasId() bool`
+`func (o *PaymentMethod) HasBillingAddress() bool`
 
-HasId returns a boolean if a field has been set.
+HasBillingAddress returns a boolean if a field has been set.
 
-### GetName
+### GetCardType
 
-`func (o *PaymentMethod) GetName() string`
+`func (o *PaymentMethod) GetCardType() string`
 
-GetName returns the Name field if non-nil, zero value otherwise.
+GetCardType returns the CardType field if non-nil, zero value otherwise.
 
-### GetNameOk
+### GetCardTypeOk
 
-`func (o *PaymentMethod) GetNameOk() (*string, bool)`
+`func (o *PaymentMethod) GetCardTypeOk() (*string, bool)`
 
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+GetCardTypeOk returns a tuple with the CardType field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetName
+### SetCardType
 
-`func (o *PaymentMethod) SetName(v string)`
+`func (o *PaymentMethod) SetCardType(v string)`
 
-SetName sets Name field to given value.
+SetCardType sets CardType field to given value.
 
-### HasName
+### HasCardType
 
-`func (o *PaymentMethod) HasName() bool`
+`func (o *PaymentMethod) HasCardType() bool`
 
-HasName returns a boolean if a field has been set.
+HasCardType returns a boolean if a field has been set.
 
-### GetType
+### GetCardholderName
 
-`func (o *PaymentMethod) GetType() string`
+`func (o *PaymentMethod) GetCardholderName() string`
 
-GetType returns the Type field if non-nil, zero value otherwise.
+GetCardholderName returns the CardholderName field if non-nil, zero value otherwise.
 
-### GetTypeOk
+### GetCardholderNameOk
 
-`func (o *PaymentMethod) GetTypeOk() (*string, bool)`
+`func (o *PaymentMethod) GetCardholderNameOk() (*string, bool)`
 
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+GetCardholderNameOk returns a tuple with the CardholderName field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetType
+### SetCardholderName
 
-`func (o *PaymentMethod) SetType(v string)`
+`func (o *PaymentMethod) SetCardholderName(v string)`
 
-SetType sets Type field to given value.
+SetCardholderName sets CardholderName field to given value.
 
-### HasType
+### HasCardholderName
 
-`func (o *PaymentMethod) HasType() bool`
+`func (o *PaymentMethod) HasCardholderName() bool`
 
-HasType returns a boolean if a field has been set.
-
-### GetDefault
-
-`func (o *PaymentMethod) GetDefault() bool`
-
-GetDefault returns the Default field if non-nil, zero value otherwise.
-
-### GetDefaultOk
-
-`func (o *PaymentMethod) GetDefaultOk() (*bool, bool)`
-
-GetDefaultOk returns a tuple with the Default field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDefault
-
-`func (o *PaymentMethod) SetDefault(v bool)`
-
-SetDefault sets Default field to given value.
-
-### HasDefault
-
-`func (o *PaymentMethod) HasDefault() bool`
-
-HasDefault returns a boolean if a field has been set.
+HasCardholderName returns a boolean if a field has been set.
 
 ### GetCreatedAt
 
@@ -164,55 +139,80 @@ SetCreatedAt sets CreatedAt field to given value.
 
 HasCreatedAt returns a boolean if a field has been set.
 
-### GetUpdatedAt
+### GetCreatedByUser
 
-`func (o *PaymentMethod) GetUpdatedAt() time.Time`
+`func (o *PaymentMethod) GetCreatedByUser() FindBatchById200ResponseDevicesInner`
 
-GetUpdatedAt returns the UpdatedAt field if non-nil, zero value otherwise.
+GetCreatedByUser returns the CreatedByUser field if non-nil, zero value otherwise.
 
-### GetUpdatedAtOk
+### GetCreatedByUserOk
 
-`func (o *PaymentMethod) GetUpdatedAtOk() (*time.Time, bool)`
+`func (o *PaymentMethod) GetCreatedByUserOk() (*FindBatchById200ResponseDevicesInner, bool)`
 
-GetUpdatedAtOk returns a tuple with the UpdatedAt field if it's non-nil, zero value otherwise
+GetCreatedByUserOk returns a tuple with the CreatedByUser field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetUpdatedAt
+### SetCreatedByUser
 
-`func (o *PaymentMethod) SetUpdatedAt(v time.Time)`
+`func (o *PaymentMethod) SetCreatedByUser(v FindBatchById200ResponseDevicesInner)`
 
-SetUpdatedAt sets UpdatedAt field to given value.
+SetCreatedByUser sets CreatedByUser field to given value.
 
-### HasUpdatedAt
+### HasCreatedByUser
 
-`func (o *PaymentMethod) HasUpdatedAt() bool`
+`func (o *PaymentMethod) HasCreatedByUser() bool`
 
-HasUpdatedAt returns a boolean if a field has been set.
+HasCreatedByUser returns a boolean if a field has been set.
 
-### GetCardType
+### GetDefault
 
-`func (o *PaymentMethod) GetCardType() string`
+`func (o *PaymentMethod) GetDefault() bool`
 
-GetCardType returns the CardType field if non-nil, zero value otherwise.
+GetDefault returns the Default field if non-nil, zero value otherwise.
 
-### GetCardTypeOk
+### GetDefaultOk
 
-`func (o *PaymentMethod) GetCardTypeOk() (*string, bool)`
+`func (o *PaymentMethod) GetDefaultOk() (*bool, bool)`
 
-GetCardTypeOk returns a tuple with the CardType field if it's non-nil, zero value otherwise
+GetDefaultOk returns a tuple with the Default field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetCardType
+### SetDefault
 
-`func (o *PaymentMethod) SetCardType(v string)`
+`func (o *PaymentMethod) SetDefault(v bool)`
 
-SetCardType sets CardType field to given value.
+SetDefault sets Default field to given value.
 
-### HasCardType
+### HasDefault
 
-`func (o *PaymentMethod) HasCardType() bool`
+`func (o *PaymentMethod) HasDefault() bool`
 
-HasCardType returns a boolean if a field has been set.
+HasDefault returns a boolean if a field has been set.
+
+### GetEmail
+
+`func (o *PaymentMethod) GetEmail() string`
+
+GetEmail returns the Email field if non-nil, zero value otherwise.
+
+### GetEmailOk
+
+`func (o *PaymentMethod) GetEmailOk() (*string, bool)`
+
+GetEmailOk returns a tuple with the Email field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEmail
+
+`func (o *PaymentMethod) SetEmail(v string)`
+
+SetEmail sets Email field to given value.
+
+### HasEmail
+
+`func (o *PaymentMethod) HasEmail() bool`
+
+HasEmail returns a boolean if a field has been set.
 
 ### GetExpirationMonth
 
@@ -264,122 +264,72 @@ SetExpirationYear sets ExpirationYear field to given value.
 
 HasExpirationYear returns a boolean if a field has been set.
 
-### GetCardholderName
+### GetId
 
-`func (o *PaymentMethod) GetCardholderName() string`
+`func (o *PaymentMethod) GetId() string`
 
-GetCardholderName returns the CardholderName field if non-nil, zero value otherwise.
+GetId returns the Id field if non-nil, zero value otherwise.
 
-### GetCardholderNameOk
+### GetIdOk
 
-`func (o *PaymentMethod) GetCardholderNameOk() (*string, bool)`
+`func (o *PaymentMethod) GetIdOk() (*string, bool)`
 
-GetCardholderNameOk returns a tuple with the CardholderName field if it's non-nil, zero value otherwise
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetCardholderName
+### SetId
 
-`func (o *PaymentMethod) SetCardholderName(v string)`
+`func (o *PaymentMethod) SetId(v string)`
 
-SetCardholderName sets CardholderName field to given value.
+SetId sets Id field to given value.
 
-### HasCardholderName
+### HasId
 
-`func (o *PaymentMethod) HasCardholderName() bool`
+`func (o *PaymentMethod) HasId() bool`
 
-HasCardholderName returns a boolean if a field has been set.
+HasId returns a boolean if a field has been set.
 
-### GetBillingAddress
+### GetName
 
-`func (o *PaymentMethod) GetBillingAddress() PaymentMethodBillingAddress`
+`func (o *PaymentMethod) GetName() string`
 
-GetBillingAddress returns the BillingAddress field if non-nil, zero value otherwise.
+GetName returns the Name field if non-nil, zero value otherwise.
 
-### GetBillingAddressOk
+### GetNameOk
 
-`func (o *PaymentMethod) GetBillingAddressOk() (*PaymentMethodBillingAddress, bool)`
+`func (o *PaymentMethod) GetNameOk() (*string, bool)`
 
-GetBillingAddressOk returns a tuple with the BillingAddress field if it's non-nil, zero value otherwise
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetBillingAddress
+### SetName
 
-`func (o *PaymentMethod) SetBillingAddress(v PaymentMethodBillingAddress)`
+`func (o *PaymentMethod) SetName(v string)`
 
-SetBillingAddress sets BillingAddress field to given value.
+SetName sets Name field to given value.
 
-### HasBillingAddress
+### HasName
 
-`func (o *PaymentMethod) HasBillingAddress() bool`
+`func (o *PaymentMethod) HasName() bool`
 
-HasBillingAddress returns a boolean if a field has been set.
-
-### GetEmail
-
-`func (o *PaymentMethod) GetEmail() string`
-
-GetEmail returns the Email field if non-nil, zero value otherwise.
-
-### GetEmailOk
-
-`func (o *PaymentMethod) GetEmailOk() (*string, bool)`
-
-GetEmailOk returns a tuple with the Email field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetEmail
-
-`func (o *PaymentMethod) SetEmail(v string)`
-
-SetEmail sets Email field to given value.
-
-### HasEmail
-
-`func (o *PaymentMethod) HasEmail() bool`
-
-HasEmail returns a boolean if a field has been set.
-
-### GetCreatedByUser
-
-`func (o *PaymentMethod) GetCreatedByUser() Href`
-
-GetCreatedByUser returns the CreatedByUser field if non-nil, zero value otherwise.
-
-### GetCreatedByUserOk
-
-`func (o *PaymentMethod) GetCreatedByUserOk() (*Href, bool)`
-
-GetCreatedByUserOk returns a tuple with the CreatedByUser field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCreatedByUser
-
-`func (o *PaymentMethod) SetCreatedByUser(v Href)`
-
-SetCreatedByUser sets CreatedByUser field to given value.
-
-### HasCreatedByUser
-
-`func (o *PaymentMethod) HasCreatedByUser() bool`
-
-HasCreatedByUser returns a boolean if a field has been set.
+HasName returns a boolean if a field has been set.
 
 ### GetOrganization
 
-`func (o *PaymentMethod) GetOrganization() Href`
+`func (o *PaymentMethod) GetOrganization() FindBatchById200ResponseDevicesInner`
 
 GetOrganization returns the Organization field if non-nil, zero value otherwise.
 
 ### GetOrganizationOk
 
-`func (o *PaymentMethod) GetOrganizationOk() (*Href, bool)`
+`func (o *PaymentMethod) GetOrganizationOk() (*FindBatchById200ResponseDevicesInner, bool)`
 
 GetOrganizationOk returns a tuple with the Organization field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOrganization
 
-`func (o *PaymentMethod) SetOrganization(v Href)`
+`func (o *PaymentMethod) SetOrganization(v FindBatchById200ResponseDevicesInner)`
 
 SetOrganization sets Organization field to given value.
 
@@ -391,20 +341,20 @@ HasOrganization returns a boolean if a field has been set.
 
 ### GetProjects
 
-`func (o *PaymentMethod) GetProjects() []Href`
+`func (o *PaymentMethod) GetProjects() []FindBatchById200ResponseDevicesInner`
 
 GetProjects returns the Projects field if non-nil, zero value otherwise.
 
 ### GetProjectsOk
 
-`func (o *PaymentMethod) GetProjectsOk() (*[]Href, bool)`
+`func (o *PaymentMethod) GetProjectsOk() (*[]FindBatchById200ResponseDevicesInner, bool)`
 
 GetProjectsOk returns a tuple with the Projects field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetProjects
 
-`func (o *PaymentMethod) SetProjects(v []Href)`
+`func (o *PaymentMethod) SetProjects(v []FindBatchById200ResponseDevicesInner)`
 
 SetProjects sets Projects field to given value.
 
@@ -413,6 +363,56 @@ SetProjects sets Projects field to given value.
 `func (o *PaymentMethod) HasProjects() bool`
 
 HasProjects returns a boolean if a field has been set.
+
+### GetType
+
+`func (o *PaymentMethod) GetType() string`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *PaymentMethod) GetTypeOk() (*string, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *PaymentMethod) SetType(v string)`
+
+SetType sets Type field to given value.
+
+### HasType
+
+`func (o *PaymentMethod) HasType() bool`
+
+HasType returns a boolean if a field has been set.
+
+### GetUpdatedAt
+
+`func (o *PaymentMethod) GetUpdatedAt() time.Time`
+
+GetUpdatedAt returns the UpdatedAt field if non-nil, zero value otherwise.
+
+### GetUpdatedAtOk
+
+`func (o *PaymentMethod) GetUpdatedAtOk() (*time.Time, bool)`
+
+GetUpdatedAtOk returns a tuple with the UpdatedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUpdatedAt
+
+`func (o *PaymentMethod) SetUpdatedAt(v time.Time)`
+
+SetUpdatedAt sets UpdatedAt field to given value.
+
+### HasUpdatedAt
+
+`func (o *PaymentMethod) HasUpdatedAt() bool`
+
+HasUpdatedAt returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

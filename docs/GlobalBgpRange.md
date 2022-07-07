@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **string** |  | [optional] 
 **AddressFamily** | Pointer to **int32** |  | [optional] 
-**Range** | Pointer to **string** |  | [optional] 
 **Href** | Pointer to **string** |  | [optional] 
-**Project** | Pointer to [**Href**](Href.md) |  | [optional] 
+**Id** | Pointer to **string** |  | [optional] 
+**Project** | Pointer to [**FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
+**Range** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -28,31 +28,6 @@ will change when the set of required properties is changed
 NewGlobalBgpRangeWithDefaults instantiates a new GlobalBgpRange object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetId
-
-`func (o *GlobalBgpRange) GetId() string`
-
-GetId returns the Id field if non-nil, zero value otherwise.
-
-### GetIdOk
-
-`func (o *GlobalBgpRange) GetIdOk() (*string, bool)`
-
-GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetId
-
-`func (o *GlobalBgpRange) SetId(v string)`
-
-SetId sets Id field to given value.
-
-### HasId
-
-`func (o *GlobalBgpRange) HasId() bool`
-
-HasId returns a boolean if a field has been set.
 
 ### GetAddressFamily
 
@@ -79,31 +54,6 @@ SetAddressFamily sets AddressFamily field to given value.
 
 HasAddressFamily returns a boolean if a field has been set.
 
-### GetRange
-
-`func (o *GlobalBgpRange) GetRange() string`
-
-GetRange returns the Range field if non-nil, zero value otherwise.
-
-### GetRangeOk
-
-`func (o *GlobalBgpRange) GetRangeOk() (*string, bool)`
-
-GetRangeOk returns a tuple with the Range field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRange
-
-`func (o *GlobalBgpRange) SetRange(v string)`
-
-SetRange sets Range field to given value.
-
-### HasRange
-
-`func (o *GlobalBgpRange) HasRange() bool`
-
-HasRange returns a boolean if a field has been set.
-
 ### GetHref
 
 `func (o *GlobalBgpRange) GetHref() string`
@@ -129,22 +79,47 @@ SetHref sets Href field to given value.
 
 HasHref returns a boolean if a field has been set.
 
+### GetId
+
+`func (o *GlobalBgpRange) GetId() string`
+
+GetId returns the Id field if non-nil, zero value otherwise.
+
+### GetIdOk
+
+`func (o *GlobalBgpRange) GetIdOk() (*string, bool)`
+
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetId
+
+`func (o *GlobalBgpRange) SetId(v string)`
+
+SetId sets Id field to given value.
+
+### HasId
+
+`func (o *GlobalBgpRange) HasId() bool`
+
+HasId returns a boolean if a field has been set.
+
 ### GetProject
 
-`func (o *GlobalBgpRange) GetProject() Href`
+`func (o *GlobalBgpRange) GetProject() FindBatchById200ResponseDevicesInner`
 
 GetProject returns the Project field if non-nil, zero value otherwise.
 
 ### GetProjectOk
 
-`func (o *GlobalBgpRange) GetProjectOk() (*Href, bool)`
+`func (o *GlobalBgpRange) GetProjectOk() (*FindBatchById200ResponseDevicesInner, bool)`
 
 GetProjectOk returns a tuple with the Project field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetProject
 
-`func (o *GlobalBgpRange) SetProject(v Href)`
+`func (o *GlobalBgpRange) SetProject(v FindBatchById200ResponseDevicesInner)`
 
 SetProject sets Project field to given value.
 
@@ -153,6 +128,31 @@ SetProject sets Project field to given value.
 `func (o *GlobalBgpRange) HasProject() bool`
 
 HasProject returns a boolean if a field has been set.
+
+### GetRange
+
+`func (o *GlobalBgpRange) GetRange() string`
+
+GetRange returns the Range field if non-nil, zero value otherwise.
+
+### GetRangeOk
+
+`func (o *GlobalBgpRange) GetRangeOk() (*string, bool)`
+
+GetRangeOk returns a tuple with the Range field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRange
+
+`func (o *GlobalBgpRange) SetRange(v string)`
+
+SetRange sets Range field to given value.
+
+### HasRange
+
+`func (o *GlobalBgpRange) HasRange() bool`
+
+HasRange returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

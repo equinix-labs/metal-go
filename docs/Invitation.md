@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **string** |  | [optional] 
-**Roles** | Pointer to **[]string** |  | [optional] 
-**Invitee** | Pointer to **string** |  | [optional] 
 **CreatedAt** | Pointer to **time.Time** |  | [optional] 
-**UpdatedAt** | Pointer to **time.Time** |  | [optional] 
-**InvitedBy** | Pointer to [**Href**](Href.md) |  | [optional] 
-**Organization** | Pointer to [**Href**](Href.md) |  | [optional] 
-**ProjectsIds** | Pointer to **[]string** |  | [optional] 
-**Invitation** | Pointer to [**Href**](Href.md) |  | [optional] 
 **Href** | Pointer to **string** |  | [optional] 
+**Id** | Pointer to **string** |  | [optional] 
+**Invitation** | Pointer to [**FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
+**InvitedBy** | Pointer to [**FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
+**Invitee** | Pointer to **string** |  | [optional] 
+**Organization** | Pointer to [**FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
+**ProjectsIds** | Pointer to **[]string** |  | [optional] 
+**Roles** | Pointer to **[]string** |  | [optional] 
+**UpdatedAt** | Pointer to **time.Time** |  | [optional] 
 
 ## Methods
 
@@ -33,81 +33,6 @@ will change when the set of required properties is changed
 NewInvitationWithDefaults instantiates a new Invitation object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetId
-
-`func (o *Invitation) GetId() string`
-
-GetId returns the Id field if non-nil, zero value otherwise.
-
-### GetIdOk
-
-`func (o *Invitation) GetIdOk() (*string, bool)`
-
-GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetId
-
-`func (o *Invitation) SetId(v string)`
-
-SetId sets Id field to given value.
-
-### HasId
-
-`func (o *Invitation) HasId() bool`
-
-HasId returns a boolean if a field has been set.
-
-### GetRoles
-
-`func (o *Invitation) GetRoles() []string`
-
-GetRoles returns the Roles field if non-nil, zero value otherwise.
-
-### GetRolesOk
-
-`func (o *Invitation) GetRolesOk() (*[]string, bool)`
-
-GetRolesOk returns a tuple with the Roles field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRoles
-
-`func (o *Invitation) SetRoles(v []string)`
-
-SetRoles sets Roles field to given value.
-
-### HasRoles
-
-`func (o *Invitation) HasRoles() bool`
-
-HasRoles returns a boolean if a field has been set.
-
-### GetInvitee
-
-`func (o *Invitation) GetInvitee() string`
-
-GetInvitee returns the Invitee field if non-nil, zero value otherwise.
-
-### GetInviteeOk
-
-`func (o *Invitation) GetInviteeOk() (*string, bool)`
-
-GetInviteeOk returns a tuple with the Invitee field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetInvitee
-
-`func (o *Invitation) SetInvitee(v string)`
-
-SetInvitee sets Invitee field to given value.
-
-### HasInvitee
-
-`func (o *Invitation) HasInvitee() bool`
-
-HasInvitee returns a boolean if a field has been set.
 
 ### GetCreatedAt
 
@@ -134,47 +59,97 @@ SetCreatedAt sets CreatedAt field to given value.
 
 HasCreatedAt returns a boolean if a field has been set.
 
-### GetUpdatedAt
+### GetHref
 
-`func (o *Invitation) GetUpdatedAt() time.Time`
+`func (o *Invitation) GetHref() string`
 
-GetUpdatedAt returns the UpdatedAt field if non-nil, zero value otherwise.
+GetHref returns the Href field if non-nil, zero value otherwise.
 
-### GetUpdatedAtOk
+### GetHrefOk
 
-`func (o *Invitation) GetUpdatedAtOk() (*time.Time, bool)`
+`func (o *Invitation) GetHrefOk() (*string, bool)`
 
-GetUpdatedAtOk returns a tuple with the UpdatedAt field if it's non-nil, zero value otherwise
+GetHrefOk returns a tuple with the Href field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetUpdatedAt
+### SetHref
 
-`func (o *Invitation) SetUpdatedAt(v time.Time)`
+`func (o *Invitation) SetHref(v string)`
 
-SetUpdatedAt sets UpdatedAt field to given value.
+SetHref sets Href field to given value.
 
-### HasUpdatedAt
+### HasHref
 
-`func (o *Invitation) HasUpdatedAt() bool`
+`func (o *Invitation) HasHref() bool`
 
-HasUpdatedAt returns a boolean if a field has been set.
+HasHref returns a boolean if a field has been set.
+
+### GetId
+
+`func (o *Invitation) GetId() string`
+
+GetId returns the Id field if non-nil, zero value otherwise.
+
+### GetIdOk
+
+`func (o *Invitation) GetIdOk() (*string, bool)`
+
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetId
+
+`func (o *Invitation) SetId(v string)`
+
+SetId sets Id field to given value.
+
+### HasId
+
+`func (o *Invitation) HasId() bool`
+
+HasId returns a boolean if a field has been set.
+
+### GetInvitation
+
+`func (o *Invitation) GetInvitation() FindBatchById200ResponseDevicesInner`
+
+GetInvitation returns the Invitation field if non-nil, zero value otherwise.
+
+### GetInvitationOk
+
+`func (o *Invitation) GetInvitationOk() (*FindBatchById200ResponseDevicesInner, bool)`
+
+GetInvitationOk returns a tuple with the Invitation field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetInvitation
+
+`func (o *Invitation) SetInvitation(v FindBatchById200ResponseDevicesInner)`
+
+SetInvitation sets Invitation field to given value.
+
+### HasInvitation
+
+`func (o *Invitation) HasInvitation() bool`
+
+HasInvitation returns a boolean if a field has been set.
 
 ### GetInvitedBy
 
-`func (o *Invitation) GetInvitedBy() Href`
+`func (o *Invitation) GetInvitedBy() FindBatchById200ResponseDevicesInner`
 
 GetInvitedBy returns the InvitedBy field if non-nil, zero value otherwise.
 
 ### GetInvitedByOk
 
-`func (o *Invitation) GetInvitedByOk() (*Href, bool)`
+`func (o *Invitation) GetInvitedByOk() (*FindBatchById200ResponseDevicesInner, bool)`
 
 GetInvitedByOk returns a tuple with the InvitedBy field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetInvitedBy
 
-`func (o *Invitation) SetInvitedBy(v Href)`
+`func (o *Invitation) SetInvitedBy(v FindBatchById200ResponseDevicesInner)`
 
 SetInvitedBy sets InvitedBy field to given value.
 
@@ -184,22 +159,47 @@ SetInvitedBy sets InvitedBy field to given value.
 
 HasInvitedBy returns a boolean if a field has been set.
 
+### GetInvitee
+
+`func (o *Invitation) GetInvitee() string`
+
+GetInvitee returns the Invitee field if non-nil, zero value otherwise.
+
+### GetInviteeOk
+
+`func (o *Invitation) GetInviteeOk() (*string, bool)`
+
+GetInviteeOk returns a tuple with the Invitee field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetInvitee
+
+`func (o *Invitation) SetInvitee(v string)`
+
+SetInvitee sets Invitee field to given value.
+
+### HasInvitee
+
+`func (o *Invitation) HasInvitee() bool`
+
+HasInvitee returns a boolean if a field has been set.
+
 ### GetOrganization
 
-`func (o *Invitation) GetOrganization() Href`
+`func (o *Invitation) GetOrganization() FindBatchById200ResponseDevicesInner`
 
 GetOrganization returns the Organization field if non-nil, zero value otherwise.
 
 ### GetOrganizationOk
 
-`func (o *Invitation) GetOrganizationOk() (*Href, bool)`
+`func (o *Invitation) GetOrganizationOk() (*FindBatchById200ResponseDevicesInner, bool)`
 
 GetOrganizationOk returns a tuple with the Organization field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOrganization
 
-`func (o *Invitation) SetOrganization(v Href)`
+`func (o *Invitation) SetOrganization(v FindBatchById200ResponseDevicesInner)`
 
 SetOrganization sets Organization field to given value.
 
@@ -234,55 +234,55 @@ SetProjectsIds sets ProjectsIds field to given value.
 
 HasProjectsIds returns a boolean if a field has been set.
 
-### GetInvitation
+### GetRoles
 
-`func (o *Invitation) GetInvitation() Href`
+`func (o *Invitation) GetRoles() []string`
 
-GetInvitation returns the Invitation field if non-nil, zero value otherwise.
+GetRoles returns the Roles field if non-nil, zero value otherwise.
 
-### GetInvitationOk
+### GetRolesOk
 
-`func (o *Invitation) GetInvitationOk() (*Href, bool)`
+`func (o *Invitation) GetRolesOk() (*[]string, bool)`
 
-GetInvitationOk returns a tuple with the Invitation field if it's non-nil, zero value otherwise
+GetRolesOk returns a tuple with the Roles field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetInvitation
+### SetRoles
 
-`func (o *Invitation) SetInvitation(v Href)`
+`func (o *Invitation) SetRoles(v []string)`
 
-SetInvitation sets Invitation field to given value.
+SetRoles sets Roles field to given value.
 
-### HasInvitation
+### HasRoles
 
-`func (o *Invitation) HasInvitation() bool`
+`func (o *Invitation) HasRoles() bool`
 
-HasInvitation returns a boolean if a field has been set.
+HasRoles returns a boolean if a field has been set.
 
-### GetHref
+### GetUpdatedAt
 
-`func (o *Invitation) GetHref() string`
+`func (o *Invitation) GetUpdatedAt() time.Time`
 
-GetHref returns the Href field if non-nil, zero value otherwise.
+GetUpdatedAt returns the UpdatedAt field if non-nil, zero value otherwise.
 
-### GetHrefOk
+### GetUpdatedAtOk
 
-`func (o *Invitation) GetHrefOk() (*string, bool)`
+`func (o *Invitation) GetUpdatedAtOk() (*time.Time, bool)`
 
-GetHrefOk returns a tuple with the Href field if it's non-nil, zero value otherwise
+GetUpdatedAtOk returns a tuple with the UpdatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetHref
+### SetUpdatedAt
 
-`func (o *Invitation) SetHref(v string)`
+`func (o *Invitation) SetUpdatedAt(v time.Time)`
 
-SetHref sets Href field to given value.
+SetUpdatedAt sets UpdatedAt field to given value.
 
-### HasHref
+### HasUpdatedAt
 
-`func (o *Invitation) HasHref() bool`
+`func (o *Invitation) HasUpdatedAt() bool`
 
-HasHref returns a boolean if a field has been set.
+HasUpdatedAt returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

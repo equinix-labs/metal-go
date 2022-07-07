@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**BgpNeighbors** | Pointer to [**[]BgpNeighborData**](BgpNeighborData.md) | A list of BGP session neighbor data | [optional] 
+**BgpNeighbors** | Pointer to [**[]GetBgpNeighborData200ResponseBgpNeighborsInner**](GetBgpNeighborData200ResponseBgpNeighborsInner.md) | A list of BGP session neighbor data | [optional] 
 
 ## Methods
 
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetBgpNeighbors
 
-`func (o *BgpSessionNeighbors) GetBgpNeighbors() []BgpNeighborData`
+`func (o *BgpSessionNeighbors) GetBgpNeighbors() []GetBgpNeighborData200ResponseBgpNeighborsInner`
 
 GetBgpNeighbors returns the BgpNeighbors field if non-nil, zero value otherwise.
 
 ### GetBgpNeighborsOk
 
-`func (o *BgpSessionNeighbors) GetBgpNeighborsOk() (*[]BgpNeighborData, bool)`
+`func (o *BgpSessionNeighbors) GetBgpNeighborsOk() (*[]GetBgpNeighborData200ResponseBgpNeighborsInner, bool)`
 
 GetBgpNeighborsOk returns a tuple with the BgpNeighbors field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetBgpNeighbors
 
-`func (o *BgpSessionNeighbors) SetBgpNeighbors(v []BgpNeighborData)`
+`func (o *BgpSessionNeighbors) SetBgpNeighbors(v []GetBgpNeighborData200ResponseBgpNeighborsInner)`
 
 SetBgpNeighbors sets BgpNeighbors field to given value.
 

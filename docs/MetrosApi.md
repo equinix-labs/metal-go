@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 ## FindMetros
 
-> MetroList FindMetros(ctx).Execute()
+> FindMetros200Response FindMetros(ctx).Execute()
 
 Retrieve all metros
 
@@ -38,7 +38,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `MetrosApi.FindMetros``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindMetros`: MetroList
+    // response from `FindMetros`: FindMetros200Response
     fmt.Fprintf(os.Stdout, "Response from `MetrosApi.FindMetros`: %v\n", resp)
 }
 ```
@@ -54,7 +54,7 @@ Other parameters are passed through a pointer to a apiFindMetrosRequest struct v
 
 ### Return type
 
-[**MetroList**](MetroList.md)
+[**FindMetros200Response**](FindMetros200Response.md)
 
 ### Authorization
 
@@ -72,7 +72,7 @@ Other parameters are passed through a pointer to a apiFindMetrosRequest struct v
 
 ## GetMetro
 
-> Metro GetMetro(ctx, id).Execute()
+> GetInterconnection200ResponseMetroAllOf GetMetro(ctx, id).Execute()
 
 Retrieve a specific Metro's details
 
@@ -100,7 +100,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `MetrosApi.GetMetro``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetMetro`: Metro
+    // response from `GetMetro`: GetInterconnection200ResponseMetroAllOf
     fmt.Fprintf(os.Stdout, "Response from `MetrosApi.GetMetro`: %v\n", resp)
 }
 ```
@@ -124,7 +124,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Metro**](Metro.md)
+[**GetInterconnection200ResponseMetroAllOf**](GetInterconnection200ResponseMetroAllOf.md)
 
 ### Authorization
 

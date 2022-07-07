@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**MetalGateways** | Pointer to [**[]MetalGateway**](MetalGateway.md) |  | [optional] 
+**MetalGateways** | Pointer to **[]map[string]interface{}** |  | [optional] 
 
 ## Methods
 
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetMetalGateways
 
-`func (o *MetalGatewayList) GetMetalGateways() []MetalGateway`
+`func (o *MetalGatewayList) GetMetalGateways() []map[string]interface{}`
 
 GetMetalGateways returns the MetalGateways field if non-nil, zero value otherwise.
 
 ### GetMetalGatewaysOk
 
-`func (o *MetalGatewayList) GetMetalGatewaysOk() (*[]MetalGateway, bool)`
+`func (o *MetalGatewayList) GetMetalGatewaysOk() (*[]map[string]interface{}, bool)`
 
 GetMetalGatewaysOk returns a tuple with the MetalGateways field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMetalGateways
 
-`func (o *MetalGatewayList) SetMetalGateways(v []MetalGateway)`
+`func (o *MetalGatewayList) SetMetalGateways(v []map[string]interface{})`
 
 SetMetalGateways sets MetalGateways field to given value.
 

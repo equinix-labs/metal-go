@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 ## CreateAPIKey
 
-> AuthToken CreateAPIKey(ctx).AuthToken(authToken).Execute()
+> FindProjectAPIKeys200ResponseApiKeysInner CreateAPIKey(ctx).Body(body).Execute()
 
 Create a API key
 
@@ -34,16 +34,16 @@ import (
 )
 
 func main() {
-    authToken := *openapiclient.NewAuthTokenInput() // AuthTokenInput | API key to create
+    body := *openapiclient.NewCreateProjectAPIKeyRequest() // CreateProjectAPIKeyRequest | API key to create
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AuthenticationApi.CreateAPIKey(context.Background()).AuthToken(authToken).Execute()
+    resp, r, err := apiClient.AuthenticationApi.CreateAPIKey(context.Background()).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AuthenticationApi.CreateAPIKey``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateAPIKey`: AuthToken
+    // response from `CreateAPIKey`: FindProjectAPIKeys200ResponseApiKeysInner
     fmt.Fprintf(os.Stdout, "Response from `AuthenticationApi.CreateAPIKey`: %v\n", resp)
 }
 ```
@@ -59,11 +59,11 @@ Other parameters are passed through a pointer to a apiCreateAPIKeyRequest struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **authToken** | [**AuthTokenInput**](AuthTokenInput.md) | API key to create | 
+ **body** | [**CreateProjectAPIKeyRequest**](CreateProjectAPIKeyRequest.md) | API key to create | 
 
 ### Return type
 
-[**AuthToken**](AuthToken.md)
+[**FindProjectAPIKeys200ResponseApiKeysInner**](FindProjectAPIKeys200ResponseApiKeysInner.md)
 
 ### Authorization
 
@@ -81,7 +81,7 @@ Name | Type | Description  | Notes
 
 ## CreateProjectAPIKey
 
-> AuthToken CreateProjectAPIKey(ctx, id).AuthToken(authToken).Execute()
+> FindProjectAPIKeys200ResponseApiKeysInner CreateProjectAPIKey(ctx, id).Body(body).Execute()
 
 Create an API key for a project.
 
@@ -101,16 +101,16 @@ import (
 
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Project UUID
-    authToken := *openapiclient.NewAuthTokenInput() // AuthTokenInput | API Key to create
+    body := *openapiclient.NewCreateProjectAPIKeyRequest() // CreateProjectAPIKeyRequest | API Key to create
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AuthenticationApi.CreateProjectAPIKey(context.Background(), id).AuthToken(authToken).Execute()
+    resp, r, err := apiClient.AuthenticationApi.CreateProjectAPIKey(context.Background(), id).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AuthenticationApi.CreateProjectAPIKey``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateProjectAPIKey`: AuthToken
+    // response from `CreateProjectAPIKey`: FindProjectAPIKeys200ResponseApiKeysInner
     fmt.Fprintf(os.Stdout, "Response from `AuthenticationApi.CreateProjectAPIKey`: %v\n", resp)
 }
 ```
@@ -131,11 +131,11 @@ Other parameters are passed through a pointer to a apiCreateProjectAPIKeyRequest
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **authToken** | [**AuthTokenInput**](AuthTokenInput.md) | API Key to create | 
+ **body** | [**CreateProjectAPIKeyRequest**](CreateProjectAPIKeyRequest.md) | API Key to create | 
 
 ### Return type
 
-[**AuthToken**](AuthToken.md)
+[**FindProjectAPIKeys200ResponseApiKeysInner**](FindProjectAPIKeys200ResponseApiKeysInner.md)
 
 ### Authorization
 
@@ -289,7 +289,7 @@ Name | Type | Description  | Notes
 
 ## FindAPIKeys
 
-> AuthTokenList FindAPIKeys(ctx).Include(include).Exclude(exclude).Execute()
+> FindProjectAPIKeys200Response FindAPIKeys(ctx).Include(include).Exclude(exclude).Execute()
 
 Retrieve all user API keys
 
@@ -318,7 +318,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `AuthenticationApi.FindAPIKeys``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindAPIKeys`: AuthTokenList
+    // response from `FindAPIKeys`: FindProjectAPIKeys200Response
     fmt.Fprintf(os.Stdout, "Response from `AuthenticationApi.FindAPIKeys`: %v\n", resp)
 }
 ```
@@ -339,7 +339,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AuthTokenList**](AuthTokenList.md)
+[**FindProjectAPIKeys200Response**](FindProjectAPIKeys200Response.md)
 
 ### Authorization
 
@@ -357,7 +357,7 @@ Name | Type | Description  | Notes
 
 ## FindProjectAPIKeys
 
-> AuthTokenList FindProjectAPIKeys(ctx, id).Include(include).Exclude(exclude).Execute()
+> FindProjectAPIKeys200Response FindProjectAPIKeys(ctx, id).Include(include).Exclude(exclude).Execute()
 
 Retrieve all API keys for the project.
 
@@ -387,7 +387,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `AuthenticationApi.FindProjectAPIKeys``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindProjectAPIKeys`: AuthTokenList
+    // response from `FindProjectAPIKeys`: FindProjectAPIKeys200Response
     fmt.Fprintf(os.Stdout, "Response from `AuthenticationApi.FindProjectAPIKeys`: %v\n", resp)
 }
 ```
@@ -413,7 +413,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AuthTokenList**](AuthTokenList.md)
+[**FindProjectAPIKeys200Response**](FindProjectAPIKeys200Response.md)
 
 ### Authorization
 

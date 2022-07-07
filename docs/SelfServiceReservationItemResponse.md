@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Amount** | Pointer to **float32** |  | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
-**MetroId** | Pointer to **string** |  | [optional] 
 **MetroCode** | Pointer to **string** |  | [optional] 
+**MetroId** | Pointer to **string** |  | [optional] 
 **MetroName** | Pointer to **string** |  | [optional] 
 **PlanId** | Pointer to **string** |  | [optional] 
 **PlanName** | Pointer to **string** |  | [optional] 
 **PlanSlug** | Pointer to **string** |  | [optional] 
 **Quantity** | Pointer to **int32** |  | [optional] 
-**Amount** | Pointer to **float32** |  | [optional] 
 **Term** | Pointer to **string** |  | [optional] 
 
 ## Methods
@@ -33,6 +33,31 @@ will change when the set of required properties is changed
 NewSelfServiceReservationItemResponseWithDefaults instantiates a new SelfServiceReservationItemResponse object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetAmount
+
+`func (o *SelfServiceReservationItemResponse) GetAmount() float32`
+
+GetAmount returns the Amount field if non-nil, zero value otherwise.
+
+### GetAmountOk
+
+`func (o *SelfServiceReservationItemResponse) GetAmountOk() (*float32, bool)`
+
+GetAmountOk returns a tuple with the Amount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAmount
+
+`func (o *SelfServiceReservationItemResponse) SetAmount(v float32)`
+
+SetAmount sets Amount field to given value.
+
+### HasAmount
+
+`func (o *SelfServiceReservationItemResponse) HasAmount() bool`
+
+HasAmount returns a boolean if a field has been set.
 
 ### GetId
 
@@ -59,31 +84,6 @@ SetId sets Id field to given value.
 
 HasId returns a boolean if a field has been set.
 
-### GetMetroId
-
-`func (o *SelfServiceReservationItemResponse) GetMetroId() string`
-
-GetMetroId returns the MetroId field if non-nil, zero value otherwise.
-
-### GetMetroIdOk
-
-`func (o *SelfServiceReservationItemResponse) GetMetroIdOk() (*string, bool)`
-
-GetMetroIdOk returns a tuple with the MetroId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetMetroId
-
-`func (o *SelfServiceReservationItemResponse) SetMetroId(v string)`
-
-SetMetroId sets MetroId field to given value.
-
-### HasMetroId
-
-`func (o *SelfServiceReservationItemResponse) HasMetroId() bool`
-
-HasMetroId returns a boolean if a field has been set.
-
 ### GetMetroCode
 
 `func (o *SelfServiceReservationItemResponse) GetMetroCode() string`
@@ -108,6 +108,31 @@ SetMetroCode sets MetroCode field to given value.
 `func (o *SelfServiceReservationItemResponse) HasMetroCode() bool`
 
 HasMetroCode returns a boolean if a field has been set.
+
+### GetMetroId
+
+`func (o *SelfServiceReservationItemResponse) GetMetroId() string`
+
+GetMetroId returns the MetroId field if non-nil, zero value otherwise.
+
+### GetMetroIdOk
+
+`func (o *SelfServiceReservationItemResponse) GetMetroIdOk() (*string, bool)`
+
+GetMetroIdOk returns a tuple with the MetroId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMetroId
+
+`func (o *SelfServiceReservationItemResponse) SetMetroId(v string)`
+
+SetMetroId sets MetroId field to given value.
+
+### HasMetroId
+
+`func (o *SelfServiceReservationItemResponse) HasMetroId() bool`
+
+HasMetroId returns a boolean if a field has been set.
 
 ### GetMetroName
 
@@ -233,31 +258,6 @@ SetQuantity sets Quantity field to given value.
 `func (o *SelfServiceReservationItemResponse) HasQuantity() bool`
 
 HasQuantity returns a boolean if a field has been set.
-
-### GetAmount
-
-`func (o *SelfServiceReservationItemResponse) GetAmount() float32`
-
-GetAmount returns the Amount field if non-nil, zero value otherwise.
-
-### GetAmountOk
-
-`func (o *SelfServiceReservationItemResponse) GetAmountOk() (*float32, bool)`
-
-GetAmountOk returns a tuple with the Amount field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAmount
-
-`func (o *SelfServiceReservationItemResponse) SetAmount(v float32)`
-
-SetAmount sets Amount field to given value.
-
-### HasAmount
-
-`func (o *SelfServiceReservationItemResponse) HasAmount() bool`
-
-HasAmount returns a boolean if a field has been set.
 
 ### GetTerm
 

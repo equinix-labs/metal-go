@@ -4,26 +4,26 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **string** |  | [optional] 
-**ShortId** | Pointer to **string** |  | [optional] 
-**FirstName** | Pointer to **string** |  | [optional] 
-**LastName** | Pointer to **string** |  | [optional] 
-**FullName** | Pointer to **string** |  | [optional] 
-**Email** | Pointer to **string** |  | [optional] 
-**AvatarUrl** | Pointer to **string** |  | [optional] 
 **AvatarThumbUrl** | Pointer to **string** |  | [optional] 
-**TwoFactorAuth** | Pointer to **string** |  | [optional] 
-**MaxProjects** | Pointer to **int32** |  | [optional] 
-**MaxOrganizations** | Pointer to **int32** |  | [optional] 
+**AvatarUrl** | Pointer to **string** |  | [optional] 
 **CreatedAt** | Pointer to **time.Time** |  | [optional] 
-**UpdatedAt** | Pointer to **time.Time** |  | [optional] 
-**Timezone** | Pointer to **string** |  | [optional] 
-**FraudScore** | Pointer to **string** |  | [optional] 
-**LastLoginAt** | Pointer to **time.Time** |  | [optional] 
-**Emails** | Pointer to [**[]Href**](Href.md) |  | [optional] 
-**Href** | Pointer to **string** |  | [optional] 
-**PhoneNumber** | Pointer to **string** |  | [optional] 
 **Customdata** | Pointer to **map[string]interface{}** |  | [optional] 
+**Email** | Pointer to **string** |  | [optional] 
+**Emails** | Pointer to [**[]FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
+**FirstName** | Pointer to **string** |  | [optional] 
+**FraudScore** | Pointer to **string** |  | [optional] 
+**FullName** | Pointer to **string** |  | [optional] 
+**Href** | Pointer to **string** |  | [optional] 
+**Id** | Pointer to **string** |  | [optional] 
+**LastLoginAt** | Pointer to **time.Time** |  | [optional] 
+**LastName** | Pointer to **string** |  | [optional] 
+**MaxOrganizations** | Pointer to **int32** |  | [optional] 
+**MaxProjects** | Pointer to **int32** |  | [optional] 
+**PhoneNumber** | Pointer to **string** |  | [optional] 
+**ShortId** | Pointer to **string** |  | [optional] 
+**Timezone** | Pointer to **string** |  | [optional] 
+**TwoFactorAuth** | Pointer to **string** |  | [optional] 
+**UpdatedAt** | Pointer to **time.Time** |  | [optional] 
 
 ## Methods
 
@@ -43,181 +43,6 @@ will change when the set of required properties is changed
 NewUserWithDefaults instantiates a new User object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetId
-
-`func (o *User) GetId() string`
-
-GetId returns the Id field if non-nil, zero value otherwise.
-
-### GetIdOk
-
-`func (o *User) GetIdOk() (*string, bool)`
-
-GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetId
-
-`func (o *User) SetId(v string)`
-
-SetId sets Id field to given value.
-
-### HasId
-
-`func (o *User) HasId() bool`
-
-HasId returns a boolean if a field has been set.
-
-### GetShortId
-
-`func (o *User) GetShortId() string`
-
-GetShortId returns the ShortId field if non-nil, zero value otherwise.
-
-### GetShortIdOk
-
-`func (o *User) GetShortIdOk() (*string, bool)`
-
-GetShortIdOk returns a tuple with the ShortId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetShortId
-
-`func (o *User) SetShortId(v string)`
-
-SetShortId sets ShortId field to given value.
-
-### HasShortId
-
-`func (o *User) HasShortId() bool`
-
-HasShortId returns a boolean if a field has been set.
-
-### GetFirstName
-
-`func (o *User) GetFirstName() string`
-
-GetFirstName returns the FirstName field if non-nil, zero value otherwise.
-
-### GetFirstNameOk
-
-`func (o *User) GetFirstNameOk() (*string, bool)`
-
-GetFirstNameOk returns a tuple with the FirstName field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetFirstName
-
-`func (o *User) SetFirstName(v string)`
-
-SetFirstName sets FirstName field to given value.
-
-### HasFirstName
-
-`func (o *User) HasFirstName() bool`
-
-HasFirstName returns a boolean if a field has been set.
-
-### GetLastName
-
-`func (o *User) GetLastName() string`
-
-GetLastName returns the LastName field if non-nil, zero value otherwise.
-
-### GetLastNameOk
-
-`func (o *User) GetLastNameOk() (*string, bool)`
-
-GetLastNameOk returns a tuple with the LastName field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetLastName
-
-`func (o *User) SetLastName(v string)`
-
-SetLastName sets LastName field to given value.
-
-### HasLastName
-
-`func (o *User) HasLastName() bool`
-
-HasLastName returns a boolean if a field has been set.
-
-### GetFullName
-
-`func (o *User) GetFullName() string`
-
-GetFullName returns the FullName field if non-nil, zero value otherwise.
-
-### GetFullNameOk
-
-`func (o *User) GetFullNameOk() (*string, bool)`
-
-GetFullNameOk returns a tuple with the FullName field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetFullName
-
-`func (o *User) SetFullName(v string)`
-
-SetFullName sets FullName field to given value.
-
-### HasFullName
-
-`func (o *User) HasFullName() bool`
-
-HasFullName returns a boolean if a field has been set.
-
-### GetEmail
-
-`func (o *User) GetEmail() string`
-
-GetEmail returns the Email field if non-nil, zero value otherwise.
-
-### GetEmailOk
-
-`func (o *User) GetEmailOk() (*string, bool)`
-
-GetEmailOk returns a tuple with the Email field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetEmail
-
-`func (o *User) SetEmail(v string)`
-
-SetEmail sets Email field to given value.
-
-### HasEmail
-
-`func (o *User) HasEmail() bool`
-
-HasEmail returns a boolean if a field has been set.
-
-### GetAvatarUrl
-
-`func (o *User) GetAvatarUrl() string`
-
-GetAvatarUrl returns the AvatarUrl field if non-nil, zero value otherwise.
-
-### GetAvatarUrlOk
-
-`func (o *User) GetAvatarUrlOk() (*string, bool)`
-
-GetAvatarUrlOk returns a tuple with the AvatarUrl field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAvatarUrl
-
-`func (o *User) SetAvatarUrl(v string)`
-
-SetAvatarUrl sets AvatarUrl field to given value.
-
-### HasAvatarUrl
-
-`func (o *User) HasAvatarUrl() bool`
-
-HasAvatarUrl returns a boolean if a field has been set.
 
 ### GetAvatarThumbUrl
 
@@ -244,80 +69,30 @@ SetAvatarThumbUrl sets AvatarThumbUrl field to given value.
 
 HasAvatarThumbUrl returns a boolean if a field has been set.
 
-### GetTwoFactorAuth
+### GetAvatarUrl
 
-`func (o *User) GetTwoFactorAuth() string`
+`func (o *User) GetAvatarUrl() string`
 
-GetTwoFactorAuth returns the TwoFactorAuth field if non-nil, zero value otherwise.
+GetAvatarUrl returns the AvatarUrl field if non-nil, zero value otherwise.
 
-### GetTwoFactorAuthOk
+### GetAvatarUrlOk
 
-`func (o *User) GetTwoFactorAuthOk() (*string, bool)`
+`func (o *User) GetAvatarUrlOk() (*string, bool)`
 
-GetTwoFactorAuthOk returns a tuple with the TwoFactorAuth field if it's non-nil, zero value otherwise
+GetAvatarUrlOk returns a tuple with the AvatarUrl field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetTwoFactorAuth
+### SetAvatarUrl
 
-`func (o *User) SetTwoFactorAuth(v string)`
+`func (o *User) SetAvatarUrl(v string)`
 
-SetTwoFactorAuth sets TwoFactorAuth field to given value.
+SetAvatarUrl sets AvatarUrl field to given value.
 
-### HasTwoFactorAuth
+### HasAvatarUrl
 
-`func (o *User) HasTwoFactorAuth() bool`
+`func (o *User) HasAvatarUrl() bool`
 
-HasTwoFactorAuth returns a boolean if a field has been set.
-
-### GetMaxProjects
-
-`func (o *User) GetMaxProjects() int32`
-
-GetMaxProjects returns the MaxProjects field if non-nil, zero value otherwise.
-
-### GetMaxProjectsOk
-
-`func (o *User) GetMaxProjectsOk() (*int32, bool)`
-
-GetMaxProjectsOk returns a tuple with the MaxProjects field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetMaxProjects
-
-`func (o *User) SetMaxProjects(v int32)`
-
-SetMaxProjects sets MaxProjects field to given value.
-
-### HasMaxProjects
-
-`func (o *User) HasMaxProjects() bool`
-
-HasMaxProjects returns a boolean if a field has been set.
-
-### GetMaxOrganizations
-
-`func (o *User) GetMaxOrganizations() int32`
-
-GetMaxOrganizations returns the MaxOrganizations field if non-nil, zero value otherwise.
-
-### GetMaxOrganizationsOk
-
-`func (o *User) GetMaxOrganizationsOk() (*int32, bool)`
-
-GetMaxOrganizationsOk returns a tuple with the MaxOrganizations field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetMaxOrganizations
-
-`func (o *User) SetMaxOrganizations(v int32)`
-
-SetMaxOrganizations sets MaxOrganizations field to given value.
-
-### HasMaxOrganizations
-
-`func (o *User) HasMaxOrganizations() bool`
-
-HasMaxOrganizations returns a boolean if a field has been set.
+HasAvatarUrl returns a boolean if a field has been set.
 
 ### GetCreatedAt
 
@@ -344,55 +119,105 @@ SetCreatedAt sets CreatedAt field to given value.
 
 HasCreatedAt returns a boolean if a field has been set.
 
-### GetUpdatedAt
+### GetCustomdata
 
-`func (o *User) GetUpdatedAt() time.Time`
+`func (o *User) GetCustomdata() map[string]interface{}`
 
-GetUpdatedAt returns the UpdatedAt field if non-nil, zero value otherwise.
+GetCustomdata returns the Customdata field if non-nil, zero value otherwise.
 
-### GetUpdatedAtOk
+### GetCustomdataOk
 
-`func (o *User) GetUpdatedAtOk() (*time.Time, bool)`
+`func (o *User) GetCustomdataOk() (*map[string]interface{}, bool)`
 
-GetUpdatedAtOk returns a tuple with the UpdatedAt field if it's non-nil, zero value otherwise
+GetCustomdataOk returns a tuple with the Customdata field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetUpdatedAt
+### SetCustomdata
 
-`func (o *User) SetUpdatedAt(v time.Time)`
+`func (o *User) SetCustomdata(v map[string]interface{})`
 
-SetUpdatedAt sets UpdatedAt field to given value.
+SetCustomdata sets Customdata field to given value.
 
-### HasUpdatedAt
+### HasCustomdata
 
-`func (o *User) HasUpdatedAt() bool`
+`func (o *User) HasCustomdata() bool`
 
-HasUpdatedAt returns a boolean if a field has been set.
+HasCustomdata returns a boolean if a field has been set.
 
-### GetTimezone
+### GetEmail
 
-`func (o *User) GetTimezone() string`
+`func (o *User) GetEmail() string`
 
-GetTimezone returns the Timezone field if non-nil, zero value otherwise.
+GetEmail returns the Email field if non-nil, zero value otherwise.
 
-### GetTimezoneOk
+### GetEmailOk
 
-`func (o *User) GetTimezoneOk() (*string, bool)`
+`func (o *User) GetEmailOk() (*string, bool)`
 
-GetTimezoneOk returns a tuple with the Timezone field if it's non-nil, zero value otherwise
+GetEmailOk returns a tuple with the Email field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetTimezone
+### SetEmail
 
-`func (o *User) SetTimezone(v string)`
+`func (o *User) SetEmail(v string)`
 
-SetTimezone sets Timezone field to given value.
+SetEmail sets Email field to given value.
 
-### HasTimezone
+### HasEmail
 
-`func (o *User) HasTimezone() bool`
+`func (o *User) HasEmail() bool`
 
-HasTimezone returns a boolean if a field has been set.
+HasEmail returns a boolean if a field has been set.
+
+### GetEmails
+
+`func (o *User) GetEmails() []FindBatchById200ResponseDevicesInner`
+
+GetEmails returns the Emails field if non-nil, zero value otherwise.
+
+### GetEmailsOk
+
+`func (o *User) GetEmailsOk() (*[]FindBatchById200ResponseDevicesInner, bool)`
+
+GetEmailsOk returns a tuple with the Emails field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEmails
+
+`func (o *User) SetEmails(v []FindBatchById200ResponseDevicesInner)`
+
+SetEmails sets Emails field to given value.
+
+### HasEmails
+
+`func (o *User) HasEmails() bool`
+
+HasEmails returns a boolean if a field has been set.
+
+### GetFirstName
+
+`func (o *User) GetFirstName() string`
+
+GetFirstName returns the FirstName field if non-nil, zero value otherwise.
+
+### GetFirstNameOk
+
+`func (o *User) GetFirstNameOk() (*string, bool)`
+
+GetFirstNameOk returns a tuple with the FirstName field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFirstName
+
+`func (o *User) SetFirstName(v string)`
+
+SetFirstName sets FirstName field to given value.
+
+### HasFirstName
+
+`func (o *User) HasFirstName() bool`
+
+HasFirstName returns a boolean if a field has been set.
 
 ### GetFraudScore
 
@@ -419,55 +244,30 @@ SetFraudScore sets FraudScore field to given value.
 
 HasFraudScore returns a boolean if a field has been set.
 
-### GetLastLoginAt
+### GetFullName
 
-`func (o *User) GetLastLoginAt() time.Time`
+`func (o *User) GetFullName() string`
 
-GetLastLoginAt returns the LastLoginAt field if non-nil, zero value otherwise.
+GetFullName returns the FullName field if non-nil, zero value otherwise.
 
-### GetLastLoginAtOk
+### GetFullNameOk
 
-`func (o *User) GetLastLoginAtOk() (*time.Time, bool)`
+`func (o *User) GetFullNameOk() (*string, bool)`
 
-GetLastLoginAtOk returns a tuple with the LastLoginAt field if it's non-nil, zero value otherwise
+GetFullNameOk returns a tuple with the FullName field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetLastLoginAt
+### SetFullName
 
-`func (o *User) SetLastLoginAt(v time.Time)`
+`func (o *User) SetFullName(v string)`
 
-SetLastLoginAt sets LastLoginAt field to given value.
+SetFullName sets FullName field to given value.
 
-### HasLastLoginAt
+### HasFullName
 
-`func (o *User) HasLastLoginAt() bool`
+`func (o *User) HasFullName() bool`
 
-HasLastLoginAt returns a boolean if a field has been set.
-
-### GetEmails
-
-`func (o *User) GetEmails() []Href`
-
-GetEmails returns the Emails field if non-nil, zero value otherwise.
-
-### GetEmailsOk
-
-`func (o *User) GetEmailsOk() (*[]Href, bool)`
-
-GetEmailsOk returns a tuple with the Emails field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetEmails
-
-`func (o *User) SetEmails(v []Href)`
-
-SetEmails sets Emails field to given value.
-
-### HasEmails
-
-`func (o *User) HasEmails() bool`
-
-HasEmails returns a boolean if a field has been set.
+HasFullName returns a boolean if a field has been set.
 
 ### GetHref
 
@@ -494,6 +294,131 @@ SetHref sets Href field to given value.
 
 HasHref returns a boolean if a field has been set.
 
+### GetId
+
+`func (o *User) GetId() string`
+
+GetId returns the Id field if non-nil, zero value otherwise.
+
+### GetIdOk
+
+`func (o *User) GetIdOk() (*string, bool)`
+
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetId
+
+`func (o *User) SetId(v string)`
+
+SetId sets Id field to given value.
+
+### HasId
+
+`func (o *User) HasId() bool`
+
+HasId returns a boolean if a field has been set.
+
+### GetLastLoginAt
+
+`func (o *User) GetLastLoginAt() time.Time`
+
+GetLastLoginAt returns the LastLoginAt field if non-nil, zero value otherwise.
+
+### GetLastLoginAtOk
+
+`func (o *User) GetLastLoginAtOk() (*time.Time, bool)`
+
+GetLastLoginAtOk returns a tuple with the LastLoginAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLastLoginAt
+
+`func (o *User) SetLastLoginAt(v time.Time)`
+
+SetLastLoginAt sets LastLoginAt field to given value.
+
+### HasLastLoginAt
+
+`func (o *User) HasLastLoginAt() bool`
+
+HasLastLoginAt returns a boolean if a field has been set.
+
+### GetLastName
+
+`func (o *User) GetLastName() string`
+
+GetLastName returns the LastName field if non-nil, zero value otherwise.
+
+### GetLastNameOk
+
+`func (o *User) GetLastNameOk() (*string, bool)`
+
+GetLastNameOk returns a tuple with the LastName field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLastName
+
+`func (o *User) SetLastName(v string)`
+
+SetLastName sets LastName field to given value.
+
+### HasLastName
+
+`func (o *User) HasLastName() bool`
+
+HasLastName returns a boolean if a field has been set.
+
+### GetMaxOrganizations
+
+`func (o *User) GetMaxOrganizations() int32`
+
+GetMaxOrganizations returns the MaxOrganizations field if non-nil, zero value otherwise.
+
+### GetMaxOrganizationsOk
+
+`func (o *User) GetMaxOrganizationsOk() (*int32, bool)`
+
+GetMaxOrganizationsOk returns a tuple with the MaxOrganizations field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMaxOrganizations
+
+`func (o *User) SetMaxOrganizations(v int32)`
+
+SetMaxOrganizations sets MaxOrganizations field to given value.
+
+### HasMaxOrganizations
+
+`func (o *User) HasMaxOrganizations() bool`
+
+HasMaxOrganizations returns a boolean if a field has been set.
+
+### GetMaxProjects
+
+`func (o *User) GetMaxProjects() int32`
+
+GetMaxProjects returns the MaxProjects field if non-nil, zero value otherwise.
+
+### GetMaxProjectsOk
+
+`func (o *User) GetMaxProjectsOk() (*int32, bool)`
+
+GetMaxProjectsOk returns a tuple with the MaxProjects field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMaxProjects
+
+`func (o *User) SetMaxProjects(v int32)`
+
+SetMaxProjects sets MaxProjects field to given value.
+
+### HasMaxProjects
+
+`func (o *User) HasMaxProjects() bool`
+
+HasMaxProjects returns a boolean if a field has been set.
+
 ### GetPhoneNumber
 
 `func (o *User) GetPhoneNumber() string`
@@ -519,30 +444,105 @@ SetPhoneNumber sets PhoneNumber field to given value.
 
 HasPhoneNumber returns a boolean if a field has been set.
 
-### GetCustomdata
+### GetShortId
 
-`func (o *User) GetCustomdata() map[string]interface{}`
+`func (o *User) GetShortId() string`
 
-GetCustomdata returns the Customdata field if non-nil, zero value otherwise.
+GetShortId returns the ShortId field if non-nil, zero value otherwise.
 
-### GetCustomdataOk
+### GetShortIdOk
 
-`func (o *User) GetCustomdataOk() (*map[string]interface{}, bool)`
+`func (o *User) GetShortIdOk() (*string, bool)`
 
-GetCustomdataOk returns a tuple with the Customdata field if it's non-nil, zero value otherwise
+GetShortIdOk returns a tuple with the ShortId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetCustomdata
+### SetShortId
 
-`func (o *User) SetCustomdata(v map[string]interface{})`
+`func (o *User) SetShortId(v string)`
 
-SetCustomdata sets Customdata field to given value.
+SetShortId sets ShortId field to given value.
 
-### HasCustomdata
+### HasShortId
 
-`func (o *User) HasCustomdata() bool`
+`func (o *User) HasShortId() bool`
 
-HasCustomdata returns a boolean if a field has been set.
+HasShortId returns a boolean if a field has been set.
+
+### GetTimezone
+
+`func (o *User) GetTimezone() string`
+
+GetTimezone returns the Timezone field if non-nil, zero value otherwise.
+
+### GetTimezoneOk
+
+`func (o *User) GetTimezoneOk() (*string, bool)`
+
+GetTimezoneOk returns a tuple with the Timezone field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTimezone
+
+`func (o *User) SetTimezone(v string)`
+
+SetTimezone sets Timezone field to given value.
+
+### HasTimezone
+
+`func (o *User) HasTimezone() bool`
+
+HasTimezone returns a boolean if a field has been set.
+
+### GetTwoFactorAuth
+
+`func (o *User) GetTwoFactorAuth() string`
+
+GetTwoFactorAuth returns the TwoFactorAuth field if non-nil, zero value otherwise.
+
+### GetTwoFactorAuthOk
+
+`func (o *User) GetTwoFactorAuthOk() (*string, bool)`
+
+GetTwoFactorAuthOk returns a tuple with the TwoFactorAuth field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTwoFactorAuth
+
+`func (o *User) SetTwoFactorAuth(v string)`
+
+SetTwoFactorAuth sets TwoFactorAuth field to given value.
+
+### HasTwoFactorAuth
+
+`func (o *User) HasTwoFactorAuth() bool`
+
+HasTwoFactorAuth returns a boolean if a field has been set.
+
+### GetUpdatedAt
+
+`func (o *User) GetUpdatedAt() time.Time`
+
+GetUpdatedAt returns the UpdatedAt field if non-nil, zero value otherwise.
+
+### GetUpdatedAtOk
+
+`func (o *User) GetUpdatedAtOk() (*time.Time, bool)`
+
+GetUpdatedAtOk returns a tuple with the UpdatedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUpdatedAt
+
+`func (o *User) SetUpdatedAt(v time.Time)`
+
+SetUpdatedAt sets UpdatedAt field to given value.
+
+### HasUpdatedAt
+
+`func (o *User) HasUpdatedAt() bool`
+
+HasUpdatedAt returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

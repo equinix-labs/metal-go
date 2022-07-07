@@ -17,12 +17,12 @@ import (
 
 // Meta struct for Meta
 type Meta struct {
-	First    *Href  `json:"first,omitempty"`
-	Previous *Href  `json:"previous,omitempty"`
-	Self     *Href  `json:"self,omitempty"`
-	Next     *Href  `json:"next,omitempty"`
-	Last     *Href  `json:"last,omitempty"`
-	Total    *int32 `json:"total,omitempty"`
+	First    *FindBatchById200ResponseDevicesInner `json:"first,omitempty"`
+	Last     *FindBatchById200ResponseDevicesInner `json:"last,omitempty"`
+	Next     *FindBatchById200ResponseDevicesInner `json:"next,omitempty"`
+	Previous *FindBatchById200ResponseDevicesInner `json:"previous,omitempty"`
+	Self     *FindBatchById200ResponseDevicesInner `json:"self,omitempty"`
+	Total    *int32                                `json:"total,omitempty"`
 }
 
 // NewMeta instantiates a new Meta object
@@ -43,9 +43,9 @@ func NewMetaWithDefaults() *Meta {
 }
 
 // GetFirst returns the First field value if set, zero value otherwise.
-func (o *Meta) GetFirst() Href {
+func (o *Meta) GetFirst() FindBatchById200ResponseDevicesInner {
 	if o == nil || o.First == nil {
-		var ret Href
+		var ret FindBatchById200ResponseDevicesInner
 		return ret
 	}
 	return *o.First
@@ -53,7 +53,7 @@ func (o *Meta) GetFirst() Href {
 
 // GetFirstOk returns a tuple with the First field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Meta) GetFirstOk() (*Href, bool) {
+func (o *Meta) GetFirstOk() (*FindBatchById200ResponseDevicesInner, bool) {
 	if o == nil || o.First == nil {
 		return nil, false
 	}
@@ -69,111 +69,15 @@ func (o *Meta) HasFirst() bool {
 	return false
 }
 
-// SetFirst gets a reference to the given Href and assigns it to the First field.
-func (o *Meta) SetFirst(v Href) {
+// SetFirst gets a reference to the given FindBatchById200ResponseDevicesInner and assigns it to the First field.
+func (o *Meta) SetFirst(v FindBatchById200ResponseDevicesInner) {
 	o.First = &v
 }
 
-// GetPrevious returns the Previous field value if set, zero value otherwise.
-func (o *Meta) GetPrevious() Href {
-	if o == nil || o.Previous == nil {
-		var ret Href
-		return ret
-	}
-	return *o.Previous
-}
-
-// GetPreviousOk returns a tuple with the Previous field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Meta) GetPreviousOk() (*Href, bool) {
-	if o == nil || o.Previous == nil {
-		return nil, false
-	}
-	return o.Previous, true
-}
-
-// HasPrevious returns a boolean if a field has been set.
-func (o *Meta) HasPrevious() bool {
-	if o != nil && o.Previous != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetPrevious gets a reference to the given Href and assigns it to the Previous field.
-func (o *Meta) SetPrevious(v Href) {
-	o.Previous = &v
-}
-
-// GetSelf returns the Self field value if set, zero value otherwise.
-func (o *Meta) GetSelf() Href {
-	if o == nil || o.Self == nil {
-		var ret Href
-		return ret
-	}
-	return *o.Self
-}
-
-// GetSelfOk returns a tuple with the Self field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Meta) GetSelfOk() (*Href, bool) {
-	if o == nil || o.Self == nil {
-		return nil, false
-	}
-	return o.Self, true
-}
-
-// HasSelf returns a boolean if a field has been set.
-func (o *Meta) HasSelf() bool {
-	if o != nil && o.Self != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetSelf gets a reference to the given Href and assigns it to the Self field.
-func (o *Meta) SetSelf(v Href) {
-	o.Self = &v
-}
-
-// GetNext returns the Next field value if set, zero value otherwise.
-func (o *Meta) GetNext() Href {
-	if o == nil || o.Next == nil {
-		var ret Href
-		return ret
-	}
-	return *o.Next
-}
-
-// GetNextOk returns a tuple with the Next field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Meta) GetNextOk() (*Href, bool) {
-	if o == nil || o.Next == nil {
-		return nil, false
-	}
-	return o.Next, true
-}
-
-// HasNext returns a boolean if a field has been set.
-func (o *Meta) HasNext() bool {
-	if o != nil && o.Next != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetNext gets a reference to the given Href and assigns it to the Next field.
-func (o *Meta) SetNext(v Href) {
-	o.Next = &v
-}
-
 // GetLast returns the Last field value if set, zero value otherwise.
-func (o *Meta) GetLast() Href {
+func (o *Meta) GetLast() FindBatchById200ResponseDevicesInner {
 	if o == nil || o.Last == nil {
-		var ret Href
+		var ret FindBatchById200ResponseDevicesInner
 		return ret
 	}
 	return *o.Last
@@ -181,7 +85,7 @@ func (o *Meta) GetLast() Href {
 
 // GetLastOk returns a tuple with the Last field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Meta) GetLastOk() (*Href, bool) {
+func (o *Meta) GetLastOk() (*FindBatchById200ResponseDevicesInner, bool) {
 	if o == nil || o.Last == nil {
 		return nil, false
 	}
@@ -197,9 +101,105 @@ func (o *Meta) HasLast() bool {
 	return false
 }
 
-// SetLast gets a reference to the given Href and assigns it to the Last field.
-func (o *Meta) SetLast(v Href) {
+// SetLast gets a reference to the given FindBatchById200ResponseDevicesInner and assigns it to the Last field.
+func (o *Meta) SetLast(v FindBatchById200ResponseDevicesInner) {
 	o.Last = &v
+}
+
+// GetNext returns the Next field value if set, zero value otherwise.
+func (o *Meta) GetNext() FindBatchById200ResponseDevicesInner {
+	if o == nil || o.Next == nil {
+		var ret FindBatchById200ResponseDevicesInner
+		return ret
+	}
+	return *o.Next
+}
+
+// GetNextOk returns a tuple with the Next field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Meta) GetNextOk() (*FindBatchById200ResponseDevicesInner, bool) {
+	if o == nil || o.Next == nil {
+		return nil, false
+	}
+	return o.Next, true
+}
+
+// HasNext returns a boolean if a field has been set.
+func (o *Meta) HasNext() bool {
+	if o != nil && o.Next != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetNext gets a reference to the given FindBatchById200ResponseDevicesInner and assigns it to the Next field.
+func (o *Meta) SetNext(v FindBatchById200ResponseDevicesInner) {
+	o.Next = &v
+}
+
+// GetPrevious returns the Previous field value if set, zero value otherwise.
+func (o *Meta) GetPrevious() FindBatchById200ResponseDevicesInner {
+	if o == nil || o.Previous == nil {
+		var ret FindBatchById200ResponseDevicesInner
+		return ret
+	}
+	return *o.Previous
+}
+
+// GetPreviousOk returns a tuple with the Previous field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Meta) GetPreviousOk() (*FindBatchById200ResponseDevicesInner, bool) {
+	if o == nil || o.Previous == nil {
+		return nil, false
+	}
+	return o.Previous, true
+}
+
+// HasPrevious returns a boolean if a field has been set.
+func (o *Meta) HasPrevious() bool {
+	if o != nil && o.Previous != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPrevious gets a reference to the given FindBatchById200ResponseDevicesInner and assigns it to the Previous field.
+func (o *Meta) SetPrevious(v FindBatchById200ResponseDevicesInner) {
+	o.Previous = &v
+}
+
+// GetSelf returns the Self field value if set, zero value otherwise.
+func (o *Meta) GetSelf() FindBatchById200ResponseDevicesInner {
+	if o == nil || o.Self == nil {
+		var ret FindBatchById200ResponseDevicesInner
+		return ret
+	}
+	return *o.Self
+}
+
+// GetSelfOk returns a tuple with the Self field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Meta) GetSelfOk() (*FindBatchById200ResponseDevicesInner, bool) {
+	if o == nil || o.Self == nil {
+		return nil, false
+	}
+	return o.Self, true
+}
+
+// HasSelf returns a boolean if a field has been set.
+func (o *Meta) HasSelf() bool {
+	if o != nil && o.Self != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSelf gets a reference to the given FindBatchById200ResponseDevicesInner and assigns it to the Self field.
+func (o *Meta) SetSelf(v FindBatchById200ResponseDevicesInner) {
+	o.Self = &v
 }
 
 // GetTotal returns the Total field value if set, zero value otherwise.
@@ -239,17 +239,17 @@ func (o Meta) MarshalJSON() ([]byte, error) {
 	if o.First != nil {
 		toSerialize["first"] = o.First
 	}
+	if o.Last != nil {
+		toSerialize["last"] = o.Last
+	}
+	if o.Next != nil {
+		toSerialize["next"] = o.Next
+	}
 	if o.Previous != nil {
 		toSerialize["previous"] = o.Previous
 	}
 	if o.Self != nil {
 		toSerialize["self"] = o.Self
-	}
-	if o.Next != nil {
-		toSerialize["next"] = o.Next
-	}
-	if o.Last != nil {
-		toSerialize["last"] = o.Last
 	}
 	if o.Total != nil {
 		toSerialize["total"] = o.Total

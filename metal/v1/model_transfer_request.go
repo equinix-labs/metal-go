@@ -18,12 +18,12 @@ import (
 
 // TransferRequest struct for TransferRequest
 type TransferRequest struct {
-	Id                 *string    `json:"id,omitempty"`
-	CreatedAt          *time.Time `json:"created_at,omitempty"`
-	UpdatedAt          *time.Time `json:"updated_at,omitempty"`
-	TargetOrganization *Href      `json:"target_organization,omitempty"`
-	Project            *Href      `json:"project,omitempty"`
-	Href               *string    `json:"href,omitempty"`
+	CreatedAt          *time.Time                            `json:"created_at,omitempty"`
+	Href               *string                               `json:"href,omitempty"`
+	Id                 *string                               `json:"id,omitempty"`
+	Project            *FindBatchById200ResponseDevicesInner `json:"project,omitempty"`
+	TargetOrganization *FindBatchById200ResponseDevicesInner `json:"target_organization,omitempty"`
+	UpdatedAt          *time.Time                            `json:"updated_at,omitempty"`
 }
 
 // NewTransferRequest instantiates a new TransferRequest object
@@ -41,38 +41,6 @@ func NewTransferRequest() *TransferRequest {
 func NewTransferRequestWithDefaults() *TransferRequest {
 	this := TransferRequest{}
 	return &this
-}
-
-// GetId returns the Id field value if set, zero value otherwise.
-func (o *TransferRequest) GetId() string {
-	if o == nil || o.Id == nil {
-		var ret string
-		return ret
-	}
-	return *o.Id
-}
-
-// GetIdOk returns a tuple with the Id field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *TransferRequest) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
-		return nil, false
-	}
-	return o.Id, true
-}
-
-// HasId returns a boolean if a field has been set.
-func (o *TransferRequest) HasId() bool {
-	if o != nil && o.Id != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetId gets a reference to the given string and assigns it to the Id field.
-func (o *TransferRequest) SetId(v string) {
-	o.Id = &v
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
@@ -107,102 +75,6 @@ func (o *TransferRequest) SetCreatedAt(v time.Time) {
 	o.CreatedAt = &v
 }
 
-// GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
-func (o *TransferRequest) GetUpdatedAt() time.Time {
-	if o == nil || o.UpdatedAt == nil {
-		var ret time.Time
-		return ret
-	}
-	return *o.UpdatedAt
-}
-
-// GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *TransferRequest) GetUpdatedAtOk() (*time.Time, bool) {
-	if o == nil || o.UpdatedAt == nil {
-		return nil, false
-	}
-	return o.UpdatedAt, true
-}
-
-// HasUpdatedAt returns a boolean if a field has been set.
-func (o *TransferRequest) HasUpdatedAt() bool {
-	if o != nil && o.UpdatedAt != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetUpdatedAt gets a reference to the given time.Time and assigns it to the UpdatedAt field.
-func (o *TransferRequest) SetUpdatedAt(v time.Time) {
-	o.UpdatedAt = &v
-}
-
-// GetTargetOrganization returns the TargetOrganization field value if set, zero value otherwise.
-func (o *TransferRequest) GetTargetOrganization() Href {
-	if o == nil || o.TargetOrganization == nil {
-		var ret Href
-		return ret
-	}
-	return *o.TargetOrganization
-}
-
-// GetTargetOrganizationOk returns a tuple with the TargetOrganization field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *TransferRequest) GetTargetOrganizationOk() (*Href, bool) {
-	if o == nil || o.TargetOrganization == nil {
-		return nil, false
-	}
-	return o.TargetOrganization, true
-}
-
-// HasTargetOrganization returns a boolean if a field has been set.
-func (o *TransferRequest) HasTargetOrganization() bool {
-	if o != nil && o.TargetOrganization != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetTargetOrganization gets a reference to the given Href and assigns it to the TargetOrganization field.
-func (o *TransferRequest) SetTargetOrganization(v Href) {
-	o.TargetOrganization = &v
-}
-
-// GetProject returns the Project field value if set, zero value otherwise.
-func (o *TransferRequest) GetProject() Href {
-	if o == nil || o.Project == nil {
-		var ret Href
-		return ret
-	}
-	return *o.Project
-}
-
-// GetProjectOk returns a tuple with the Project field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *TransferRequest) GetProjectOk() (*Href, bool) {
-	if o == nil || o.Project == nil {
-		return nil, false
-	}
-	return o.Project, true
-}
-
-// HasProject returns a boolean if a field has been set.
-func (o *TransferRequest) HasProject() bool {
-	if o != nil && o.Project != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetProject gets a reference to the given Href and assigns it to the Project field.
-func (o *TransferRequest) SetProject(v Href) {
-	o.Project = &v
-}
-
 // GetHref returns the Href field value if set, zero value otherwise.
 func (o *TransferRequest) GetHref() string {
 	if o == nil || o.Href == nil {
@@ -235,25 +107,153 @@ func (o *TransferRequest) SetHref(v string) {
 	o.Href = &v
 }
 
+// GetId returns the Id field value if set, zero value otherwise.
+func (o *TransferRequest) GetId() string {
+	if o == nil || o.Id == nil {
+		var ret string
+		return ret
+	}
+	return *o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *TransferRequest) GetIdOk() (*string, bool) {
+	if o == nil || o.Id == nil {
+		return nil, false
+	}
+	return o.Id, true
+}
+
+// HasId returns a boolean if a field has been set.
+func (o *TransferRequest) HasId() bool {
+	if o != nil && o.Id != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given string and assigns it to the Id field.
+func (o *TransferRequest) SetId(v string) {
+	o.Id = &v
+}
+
+// GetProject returns the Project field value if set, zero value otherwise.
+func (o *TransferRequest) GetProject() FindBatchById200ResponseDevicesInner {
+	if o == nil || o.Project == nil {
+		var ret FindBatchById200ResponseDevicesInner
+		return ret
+	}
+	return *o.Project
+}
+
+// GetProjectOk returns a tuple with the Project field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *TransferRequest) GetProjectOk() (*FindBatchById200ResponseDevicesInner, bool) {
+	if o == nil || o.Project == nil {
+		return nil, false
+	}
+	return o.Project, true
+}
+
+// HasProject returns a boolean if a field has been set.
+func (o *TransferRequest) HasProject() bool {
+	if o != nil && o.Project != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetProject gets a reference to the given FindBatchById200ResponseDevicesInner and assigns it to the Project field.
+func (o *TransferRequest) SetProject(v FindBatchById200ResponseDevicesInner) {
+	o.Project = &v
+}
+
+// GetTargetOrganization returns the TargetOrganization field value if set, zero value otherwise.
+func (o *TransferRequest) GetTargetOrganization() FindBatchById200ResponseDevicesInner {
+	if o == nil || o.TargetOrganization == nil {
+		var ret FindBatchById200ResponseDevicesInner
+		return ret
+	}
+	return *o.TargetOrganization
+}
+
+// GetTargetOrganizationOk returns a tuple with the TargetOrganization field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *TransferRequest) GetTargetOrganizationOk() (*FindBatchById200ResponseDevicesInner, bool) {
+	if o == nil || o.TargetOrganization == nil {
+		return nil, false
+	}
+	return o.TargetOrganization, true
+}
+
+// HasTargetOrganization returns a boolean if a field has been set.
+func (o *TransferRequest) HasTargetOrganization() bool {
+	if o != nil && o.TargetOrganization != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTargetOrganization gets a reference to the given FindBatchById200ResponseDevicesInner and assigns it to the TargetOrganization field.
+func (o *TransferRequest) SetTargetOrganization(v FindBatchById200ResponseDevicesInner) {
+	o.TargetOrganization = &v
+}
+
+// GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
+func (o *TransferRequest) GetUpdatedAt() time.Time {
+	if o == nil || o.UpdatedAt == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.UpdatedAt
+}
+
+// GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *TransferRequest) GetUpdatedAtOk() (*time.Time, bool) {
+	if o == nil || o.UpdatedAt == nil {
+		return nil, false
+	}
+	return o.UpdatedAt, true
+}
+
+// HasUpdatedAt returns a boolean if a field has been set.
+func (o *TransferRequest) HasUpdatedAt() bool {
+	if o != nil && o.UpdatedAt != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetUpdatedAt gets a reference to the given time.Time and assigns it to the UpdatedAt field.
+func (o *TransferRequest) SetUpdatedAt(v time.Time) {
+	o.UpdatedAt = &v
+}
+
 func (o TransferRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
-	}
 	if o.CreatedAt != nil {
 		toSerialize["created_at"] = o.CreatedAt
 	}
-	if o.UpdatedAt != nil {
-		toSerialize["updated_at"] = o.UpdatedAt
+	if o.Href != nil {
+		toSerialize["href"] = o.Href
 	}
-	if o.TargetOrganization != nil {
-		toSerialize["target_organization"] = o.TargetOrganization
+	if o.Id != nil {
+		toSerialize["id"] = o.Id
 	}
 	if o.Project != nil {
 		toSerialize["project"] = o.Project
 	}
-	if o.Href != nil {
-		toSerialize["href"] = o.Href
+	if o.TargetOrganization != nil {
+		toSerialize["target_organization"] = o.TargetOrganization
+	}
+	if o.UpdatedAt != nil {
+		toSerialize["updated_at"] = o.UpdatedAt
 	}
 	return json.Marshal(toSerialize)
 }

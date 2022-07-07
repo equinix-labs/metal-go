@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**IpAddresses** | Pointer to [**[]IPAssignment**](IPAssignment.md) |  | [optional] 
+**IpAddresses** | Pointer to [**[]FindDeviceById200ResponseIpAddressesInner**](FindDeviceById200ResponseIpAddressesInner.md) |  | [optional] 
 
 ## Methods
 
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetIpAddresses
 
-`func (o *IPAssignmentList) GetIpAddresses() []IPAssignment`
+`func (o *IPAssignmentList) GetIpAddresses() []FindDeviceById200ResponseIpAddressesInner`
 
 GetIpAddresses returns the IpAddresses field if non-nil, zero value otherwise.
 
 ### GetIpAddressesOk
 
-`func (o *IPAssignmentList) GetIpAddressesOk() (*[]IPAssignment, bool)`
+`func (o *IPAssignmentList) GetIpAddressesOk() (*[]FindDeviceById200ResponseIpAddressesInner, bool)`
 
 GetIpAddressesOk returns a tuple with the IpAddresses field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIpAddresses
 
-`func (o *IPAssignmentList) SetIpAddresses(v []IPAssignment)`
+`func (o *IPAssignmentList) SetIpAddresses(v []FindDeviceById200ResponseIpAddressesInner)`
 
 SetIpAddresses sets IpAddresses field to given value.
 

@@ -17,7 +17,7 @@ import (
 
 // BatchesList struct for BatchesList
 type BatchesList struct {
-	Batches []Batch `json:"batches,omitempty"`
+	Batches []FindBatchById200Response `json:"batches,omitempty"`
 }
 
 // NewBatchesList instantiates a new BatchesList object
@@ -38,9 +38,9 @@ func NewBatchesListWithDefaults() *BatchesList {
 }
 
 // GetBatches returns the Batches field value if set, zero value otherwise.
-func (o *BatchesList) GetBatches() []Batch {
+func (o *BatchesList) GetBatches() []FindBatchById200Response {
 	if o == nil || o.Batches == nil {
-		var ret []Batch
+		var ret []FindBatchById200Response
 		return ret
 	}
 	return o.Batches
@@ -48,7 +48,7 @@ func (o *BatchesList) GetBatches() []Batch {
 
 // GetBatchesOk returns a tuple with the Batches field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BatchesList) GetBatchesOk() ([]Batch, bool) {
+func (o *BatchesList) GetBatchesOk() ([]FindBatchById200Response, bool) {
 	if o == nil || o.Batches == nil {
 		return nil, false
 	}
@@ -64,8 +64,8 @@ func (o *BatchesList) HasBatches() bool {
 	return false
 }
 
-// SetBatches gets a reference to the given []Batch and assigns it to the Batches field.
-func (o *BatchesList) SetBatches(v []Batch) {
+// SetBatches gets a reference to the given []FindBatchById200Response and assigns it to the Batches field.
+func (o *BatchesList) SetBatches(v []FindBatchById200Response) {
 	o.Batches = v
 }
 

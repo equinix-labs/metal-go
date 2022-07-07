@@ -17,7 +17,7 @@ import (
 
 // OperatingSystemList struct for OperatingSystemList
 type OperatingSystemList struct {
-	OperatingSystems []OperatingSystem `json:"operating_systems,omitempty"`
+	OperatingSystems []FindDeviceById200ResponseOperatingSystem `json:"operating_systems,omitempty"`
 }
 
 // NewOperatingSystemList instantiates a new OperatingSystemList object
@@ -38,9 +38,9 @@ func NewOperatingSystemListWithDefaults() *OperatingSystemList {
 }
 
 // GetOperatingSystems returns the OperatingSystems field value if set, zero value otherwise.
-func (o *OperatingSystemList) GetOperatingSystems() []OperatingSystem {
+func (o *OperatingSystemList) GetOperatingSystems() []FindDeviceById200ResponseOperatingSystem {
 	if o == nil || o.OperatingSystems == nil {
-		var ret []OperatingSystem
+		var ret []FindDeviceById200ResponseOperatingSystem
 		return ret
 	}
 	return o.OperatingSystems
@@ -48,7 +48,7 @@ func (o *OperatingSystemList) GetOperatingSystems() []OperatingSystem {
 
 // GetOperatingSystemsOk returns a tuple with the OperatingSystems field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OperatingSystemList) GetOperatingSystemsOk() ([]OperatingSystem, bool) {
+func (o *OperatingSystemList) GetOperatingSystemsOk() ([]FindDeviceById200ResponseOperatingSystem, bool) {
 	if o == nil || o.OperatingSystems == nil {
 		return nil, false
 	}
@@ -64,8 +64,8 @@ func (o *OperatingSystemList) HasOperatingSystems() bool {
 	return false
 }
 
-// SetOperatingSystems gets a reference to the given []OperatingSystem and assigns it to the OperatingSystems field.
-func (o *OperatingSystemList) SetOperatingSystems(v []OperatingSystem) {
+// SetOperatingSystems gets a reference to the given []FindDeviceById200ResponseOperatingSystem and assigns it to the OperatingSystems field.
+func (o *OperatingSystemList) SetOperatingSystems(v []FindDeviceById200ResponseOperatingSystem) {
 	o.OperatingSystems = v
 }
 

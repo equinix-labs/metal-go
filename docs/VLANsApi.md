@@ -4,14 +4,88 @@ All URIs are relative to *https://api.equinix.com/metal/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**CreateVirtualNetwork**](VLANsApi.md#CreateVirtualNetwork) | **Post** /projects/{id}/virtual-networks | Create a virtual network
 [**DeleteVirtualNetwork**](VLANsApi.md#DeleteVirtualNetwork) | **Delete** /virtual-networks/{id} | Delete a virtual network
+[**FindVirtualNetworks**](VLANsApi.md#FindVirtualNetworks) | **Get** /projects/{id}/virtual-networks | Retrieve all virtual networks
 [**GetVirtualNetwork**](VLANsApi.md#GetVirtualNetwork) | **Get** /virtual-networks/{id} | Get a virtual network
 
 
 
+## CreateVirtualNetwork
+
+> FindVirtualNetworks200ResponseVirtualNetworksInner CreateVirtualNetwork(ctx, id).Body(body).Execute()
+
+Create a virtual network
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Project UUID
+    body := *openapiclient.NewCreateVirtualNetworkRequest("ProjectId_example") // CreateVirtualNetworkRequest | Virtual Network to create
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VLANsApi.CreateVirtualNetwork(context.Background(), id).Body(body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VLANsApi.CreateVirtualNetwork``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateVirtualNetwork`: FindVirtualNetworks200ResponseVirtualNetworksInner
+    fmt.Fprintf(os.Stdout, "Response from `VLANsApi.CreateVirtualNetwork`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** | Project UUID | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateVirtualNetworkRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **body** | [**CreateVirtualNetworkRequest**](CreateVirtualNetworkRequest.md) | Virtual Network to create | 
+
+### Return type
+
+[**FindVirtualNetworks200ResponseVirtualNetworksInner**](FindVirtualNetworks200ResponseVirtualNetworksInner.md)
+
+### Authorization
+
+[x_auth_token](../README.md#x_auth_token)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## DeleteVirtualNetwork
 
-> VirtualNetwork DeleteVirtualNetwork(ctx, id).Execute()
+> FindVirtualNetworks200ResponseVirtualNetworksInner DeleteVirtualNetwork(ctx, id).Execute()
 
 Delete a virtual network
 
@@ -39,7 +113,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `VLANsApi.DeleteVirtualNetwork``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `DeleteVirtualNetwork`: VirtualNetwork
+    // response from `DeleteVirtualNetwork`: FindVirtualNetworks200ResponseVirtualNetworksInner
     fmt.Fprintf(os.Stdout, "Response from `VLANsApi.DeleteVirtualNetwork`: %v\n", resp)
 }
 ```
@@ -63,7 +137,85 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**VirtualNetwork**](VirtualNetwork.md)
+[**FindVirtualNetworks200ResponseVirtualNetworksInner**](FindVirtualNetworks200ResponseVirtualNetworksInner.md)
+
+### Authorization
+
+[x_auth_token](../README.md#x_auth_token)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## FindVirtualNetworks
+
+> FindVirtualNetworks200Response FindVirtualNetworks(ctx, id).Include(include).Exclude(exclude).Facility(facility).Metro(metro).Execute()
+
+Retrieve all virtual networks
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Project UUID
+    include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
+    exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
+    facility := "facility_example" // string | Filter by Facility ID (uuid) or Facility Code (optional)
+    metro := "metro_example" // string | Filter by Metro ID (uuid) or Metro Code (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VLANsApi.FindVirtualNetworks(context.Background(), id).Include(include).Exclude(exclude).Facility(facility).Metro(metro).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VLANsApi.FindVirtualNetworks``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `FindVirtualNetworks`: FindVirtualNetworks200Response
+    fmt.Fprintf(os.Stdout, "Response from `VLANsApi.FindVirtualNetworks`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** | Project UUID | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiFindVirtualNetworksRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
+ **exclude** | **[]string** | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | 
+ **facility** | **string** | Filter by Facility ID (uuid) or Facility Code | 
+ **metro** | **string** | Filter by Metro ID (uuid) or Metro Code | 
+
+### Return type
+
+[**FindVirtualNetworks200Response**](FindVirtualNetworks200Response.md)
 
 ### Authorization
 
@@ -81,7 +233,7 @@ Name | Type | Description  | Notes
 
 ## GetVirtualNetwork
 
-> VirtualNetwork GetVirtualNetwork(ctx, id).Execute()
+> FindVirtualNetworks200ResponseVirtualNetworksInner GetVirtualNetwork(ctx, id).Execute()
 
 Get a virtual network
 
@@ -109,7 +261,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `VLANsApi.GetVirtualNetwork``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetVirtualNetwork`: VirtualNetwork
+    // response from `GetVirtualNetwork`: FindVirtualNetworks200ResponseVirtualNetworksInner
     fmt.Fprintf(os.Stdout, "Response from `VLANsApi.GetVirtualNetwork`: %v\n", resp)
 }
 ```
@@ -133,7 +285,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**VirtualNetwork**](VirtualNetwork.md)
+[**FindVirtualNetworks200ResponseVirtualNetworksInner**](FindVirtualNetworks200ResponseVirtualNetworksInner.md)
 
 ### Authorization
 

@@ -17,7 +17,7 @@ import (
 
 // VirtualCircuitList struct for VirtualCircuitList
 type VirtualCircuitList struct {
-	VirtualCircuits []VirtualCircuit `json:"virtual_circuits,omitempty"`
+	VirtualCircuits []map[string]interface{} `json:"virtual_circuits,omitempty"`
 }
 
 // NewVirtualCircuitList instantiates a new VirtualCircuitList object
@@ -38,9 +38,9 @@ func NewVirtualCircuitListWithDefaults() *VirtualCircuitList {
 }
 
 // GetVirtualCircuits returns the VirtualCircuits field value if set, zero value otherwise.
-func (o *VirtualCircuitList) GetVirtualCircuits() []VirtualCircuit {
+func (o *VirtualCircuitList) GetVirtualCircuits() []map[string]interface{} {
 	if o == nil || o.VirtualCircuits == nil {
-		var ret []VirtualCircuit
+		var ret []map[string]interface{}
 		return ret
 	}
 	return o.VirtualCircuits
@@ -48,7 +48,7 @@ func (o *VirtualCircuitList) GetVirtualCircuits() []VirtualCircuit {
 
 // GetVirtualCircuitsOk returns a tuple with the VirtualCircuits field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VirtualCircuitList) GetVirtualCircuitsOk() ([]VirtualCircuit, bool) {
+func (o *VirtualCircuitList) GetVirtualCircuitsOk() ([]map[string]interface{}, bool) {
 	if o == nil || o.VirtualCircuits == nil {
 		return nil, false
 	}
@@ -64,8 +64,8 @@ func (o *VirtualCircuitList) HasVirtualCircuits() bool {
 	return false
 }
 
-// SetVirtualCircuits gets a reference to the given []VirtualCircuit and assigns it to the VirtualCircuits field.
-func (o *VirtualCircuitList) SetVirtualCircuits(v []VirtualCircuit) {
+// SetVirtualCircuits gets a reference to the given []map[string]interface{} and assigns it to the VirtualCircuits field.
+func (o *VirtualCircuitList) SetVirtualCircuits(v []map[string]interface{}) {
 	o.VirtualCircuits = v
 }
 

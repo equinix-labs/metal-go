@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ApiKeys** | Pointer to [**[]AuthToken**](AuthToken.md) |  | [optional] 
+**ApiKeys** | Pointer to [**[]FindProjectAPIKeys200ResponseApiKeysInner**](FindProjectAPIKeys200ResponseApiKeysInner.md) |  | [optional] 
 
 ## Methods
 
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetApiKeys
 
-`func (o *AuthTokenList) GetApiKeys() []AuthToken`
+`func (o *AuthTokenList) GetApiKeys() []FindProjectAPIKeys200ResponseApiKeysInner`
 
 GetApiKeys returns the ApiKeys field if non-nil, zero value otherwise.
 
 ### GetApiKeysOk
 
-`func (o *AuthTokenList) GetApiKeysOk() (*[]AuthToken, bool)`
+`func (o *AuthTokenList) GetApiKeysOk() (*[]FindProjectAPIKeys200ResponseApiKeysInner, bool)`
 
 GetApiKeysOk returns a tuple with the ApiKeys field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetApiKeys
 
-`func (o *AuthTokenList) SetApiKeys(v []AuthToken)`
+`func (o *AuthTokenList) SetApiKeys(v []FindProjectAPIKeys200ResponseApiKeysInner)`
 
 SetApiKeys sets ApiKeys field to given value.
 

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Baremetal1e** | Pointer to [**CapacityLevelPerBaremetal**](CapacityLevelPerBaremetal.md) |  | [optional] 
+**Baremetal1e** | Pointer to [**FindCapacityForFacility200ResponseCapacityAms1Baremetal0**](FindCapacityForFacility200ResponseCapacityAms1Baremetal0.md) |  | [optional] 
 
 ## Methods
 
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetBaremetal1e
 
-`func (o *CapacityPerNewFacility) GetBaremetal1e() CapacityLevelPerBaremetal`
+`func (o *CapacityPerNewFacility) GetBaremetal1e() FindCapacityForFacility200ResponseCapacityAms1Baremetal0`
 
 GetBaremetal1e returns the Baremetal1e field if non-nil, zero value otherwise.
 
 ### GetBaremetal1eOk
 
-`func (o *CapacityPerNewFacility) GetBaremetal1eOk() (*CapacityLevelPerBaremetal, bool)`
+`func (o *CapacityPerNewFacility) GetBaremetal1eOk() (*FindCapacityForFacility200ResponseCapacityAms1Baremetal0, bool)`
 
 GetBaremetal1eOk returns a tuple with the Baremetal1e field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetBaremetal1e
 
-`func (o *CapacityPerNewFacility) SetBaremetal1e(v CapacityLevelPerBaremetal)`
+`func (o *CapacityPerNewFacility) SetBaremetal1e(v FindCapacityForFacility200ResponseCapacityAms1Baremetal0)`
 
 SetBaremetal1e sets Baremetal1e field to given value.
 

@@ -17,8 +17,8 @@ import (
 
 // SSHKeyInput struct for SSHKeyInput
 type SSHKeyInput struct {
-	Label *string `json:"label,omitempty"`
 	Key   *string `json:"key,omitempty"`
+	Label *string `json:"label,omitempty"`
 }
 
 // NewSSHKeyInput instantiates a new SSHKeyInput object
@@ -36,38 +36,6 @@ func NewSSHKeyInput() *SSHKeyInput {
 func NewSSHKeyInputWithDefaults() *SSHKeyInput {
 	this := SSHKeyInput{}
 	return &this
-}
-
-// GetLabel returns the Label field value if set, zero value otherwise.
-func (o *SSHKeyInput) GetLabel() string {
-	if o == nil || o.Label == nil {
-		var ret string
-		return ret
-	}
-	return *o.Label
-}
-
-// GetLabelOk returns a tuple with the Label field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *SSHKeyInput) GetLabelOk() (*string, bool) {
-	if o == nil || o.Label == nil {
-		return nil, false
-	}
-	return o.Label, true
-}
-
-// HasLabel returns a boolean if a field has been set.
-func (o *SSHKeyInput) HasLabel() bool {
-	if o != nil && o.Label != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetLabel gets a reference to the given string and assigns it to the Label field.
-func (o *SSHKeyInput) SetLabel(v string) {
-	o.Label = &v
 }
 
 // GetKey returns the Key field value if set, zero value otherwise.
@@ -102,13 +70,45 @@ func (o *SSHKeyInput) SetKey(v string) {
 	o.Key = &v
 }
 
+// GetLabel returns the Label field value if set, zero value otherwise.
+func (o *SSHKeyInput) GetLabel() string {
+	if o == nil || o.Label == nil {
+		var ret string
+		return ret
+	}
+	return *o.Label
+}
+
+// GetLabelOk returns a tuple with the Label field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SSHKeyInput) GetLabelOk() (*string, bool) {
+	if o == nil || o.Label == nil {
+		return nil, false
+	}
+	return o.Label, true
+}
+
+// HasLabel returns a boolean if a field has been set.
+func (o *SSHKeyInput) HasLabel() bool {
+	if o != nil && o.Label != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetLabel gets a reference to the given string and assigns it to the Label field.
+func (o *SSHKeyInput) SetLabel(v string) {
+	o.Label = &v
+}
+
 func (o SSHKeyInput) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Label != nil {
-		toSerialize["label"] = o.Label
-	}
 	if o.Key != nil {
 		toSerialize["key"] = o.Key
+	}
+	if o.Label != nil {
+		toSerialize["label"] = o.Label
 	}
 	return json.Marshal(toSerialize)
 }

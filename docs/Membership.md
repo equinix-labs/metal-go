@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **string** |  | [optional] 
-**Roles** | Pointer to **[]string** |  | [optional] 
 **CreatedAt** | Pointer to **time.Time** |  | [optional] 
-**UpdatedAt** | Pointer to **time.Time** |  | [optional] 
-**Project** | Pointer to [**Href**](Href.md) |  | [optional] 
-**User** | Pointer to [**Href**](Href.md) |  | [optional] 
 **Href** | Pointer to **string** |  | [optional] 
+**Id** | Pointer to **string** |  | [optional] 
+**Project** | Pointer to [**FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
+**Roles** | Pointer to **[]string** |  | [optional] 
+**UpdatedAt** | Pointer to **time.Time** |  | [optional] 
+**User** | Pointer to [**FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
 
 ## Methods
 
@@ -30,56 +30,6 @@ will change when the set of required properties is changed
 NewMembershipWithDefaults instantiates a new Membership object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetId
-
-`func (o *Membership) GetId() string`
-
-GetId returns the Id field if non-nil, zero value otherwise.
-
-### GetIdOk
-
-`func (o *Membership) GetIdOk() (*string, bool)`
-
-GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetId
-
-`func (o *Membership) SetId(v string)`
-
-SetId sets Id field to given value.
-
-### HasId
-
-`func (o *Membership) HasId() bool`
-
-HasId returns a boolean if a field has been set.
-
-### GetRoles
-
-`func (o *Membership) GetRoles() []string`
-
-GetRoles returns the Roles field if non-nil, zero value otherwise.
-
-### GetRolesOk
-
-`func (o *Membership) GetRolesOk() (*[]string, bool)`
-
-GetRolesOk returns a tuple with the Roles field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRoles
-
-`func (o *Membership) SetRoles(v []string)`
-
-SetRoles sets Roles field to given value.
-
-### HasRoles
-
-`func (o *Membership) HasRoles() bool`
-
-HasRoles returns a boolean if a field has been set.
 
 ### GetCreatedAt
 
@@ -106,6 +56,106 @@ SetCreatedAt sets CreatedAt field to given value.
 
 HasCreatedAt returns a boolean if a field has been set.
 
+### GetHref
+
+`func (o *Membership) GetHref() string`
+
+GetHref returns the Href field if non-nil, zero value otherwise.
+
+### GetHrefOk
+
+`func (o *Membership) GetHrefOk() (*string, bool)`
+
+GetHrefOk returns a tuple with the Href field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHref
+
+`func (o *Membership) SetHref(v string)`
+
+SetHref sets Href field to given value.
+
+### HasHref
+
+`func (o *Membership) HasHref() bool`
+
+HasHref returns a boolean if a field has been set.
+
+### GetId
+
+`func (o *Membership) GetId() string`
+
+GetId returns the Id field if non-nil, zero value otherwise.
+
+### GetIdOk
+
+`func (o *Membership) GetIdOk() (*string, bool)`
+
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetId
+
+`func (o *Membership) SetId(v string)`
+
+SetId sets Id field to given value.
+
+### HasId
+
+`func (o *Membership) HasId() bool`
+
+HasId returns a boolean if a field has been set.
+
+### GetProject
+
+`func (o *Membership) GetProject() FindBatchById200ResponseDevicesInner`
+
+GetProject returns the Project field if non-nil, zero value otherwise.
+
+### GetProjectOk
+
+`func (o *Membership) GetProjectOk() (*FindBatchById200ResponseDevicesInner, bool)`
+
+GetProjectOk returns a tuple with the Project field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProject
+
+`func (o *Membership) SetProject(v FindBatchById200ResponseDevicesInner)`
+
+SetProject sets Project field to given value.
+
+### HasProject
+
+`func (o *Membership) HasProject() bool`
+
+HasProject returns a boolean if a field has been set.
+
+### GetRoles
+
+`func (o *Membership) GetRoles() []string`
+
+GetRoles returns the Roles field if non-nil, zero value otherwise.
+
+### GetRolesOk
+
+`func (o *Membership) GetRolesOk() (*[]string, bool)`
+
+GetRolesOk returns a tuple with the Roles field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRoles
+
+`func (o *Membership) SetRoles(v []string)`
+
+SetRoles sets Roles field to given value.
+
+### HasRoles
+
+`func (o *Membership) HasRoles() bool`
+
+HasRoles returns a boolean if a field has been set.
+
 ### GetUpdatedAt
 
 `func (o *Membership) GetUpdatedAt() time.Time`
@@ -131,47 +181,22 @@ SetUpdatedAt sets UpdatedAt field to given value.
 
 HasUpdatedAt returns a boolean if a field has been set.
 
-### GetProject
-
-`func (o *Membership) GetProject() Href`
-
-GetProject returns the Project field if non-nil, zero value otherwise.
-
-### GetProjectOk
-
-`func (o *Membership) GetProjectOk() (*Href, bool)`
-
-GetProjectOk returns a tuple with the Project field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetProject
-
-`func (o *Membership) SetProject(v Href)`
-
-SetProject sets Project field to given value.
-
-### HasProject
-
-`func (o *Membership) HasProject() bool`
-
-HasProject returns a boolean if a field has been set.
-
 ### GetUser
 
-`func (o *Membership) GetUser() Href`
+`func (o *Membership) GetUser() FindBatchById200ResponseDevicesInner`
 
 GetUser returns the User field if non-nil, zero value otherwise.
 
 ### GetUserOk
 
-`func (o *Membership) GetUserOk() (*Href, bool)`
+`func (o *Membership) GetUserOk() (*FindBatchById200ResponseDevicesInner, bool)`
 
 GetUserOk returns a tuple with the User field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUser
 
-`func (o *Membership) SetUser(v Href)`
+`func (o *Membership) SetUser(v FindBatchById200ResponseDevicesInner)`
 
 SetUser sets User field to given value.
 
@@ -180,31 +205,6 @@ SetUser sets User field to given value.
 `func (o *Membership) HasUser() bool`
 
 HasUser returns a boolean if a field has been set.
-
-### GetHref
-
-`func (o *Membership) GetHref() string`
-
-GetHref returns the Href field if non-nil, zero value otherwise.
-
-### GetHrefOk
-
-`func (o *Membership) GetHrefOk() (*string, bool)`
-
-GetHrefOk returns a tuple with the Href field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetHref
-
-`func (o *Membership) SetHref(v string)`
-
-SetHref sets Href field to given value.
-
-### HasHref
-
-`func (o *Membership) HasHref() bool`
-
-HasHref returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

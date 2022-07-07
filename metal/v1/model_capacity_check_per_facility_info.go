@@ -17,10 +17,10 @@ import (
 
 // CapacityCheckPerFacilityInfo struct for CapacityCheckPerFacilityInfo
 type CapacityCheckPerFacilityInfo struct {
+	Available *bool   `json:"available,omitempty"`
 	Facility  *string `json:"facility,omitempty"`
 	Plan      *string `json:"plan,omitempty"`
 	Quantity  *string `json:"quantity,omitempty"`
-	Available *bool   `json:"available,omitempty"`
 }
 
 // NewCapacityCheckPerFacilityInfo instantiates a new CapacityCheckPerFacilityInfo object
@@ -38,6 +38,38 @@ func NewCapacityCheckPerFacilityInfo() *CapacityCheckPerFacilityInfo {
 func NewCapacityCheckPerFacilityInfoWithDefaults() *CapacityCheckPerFacilityInfo {
 	this := CapacityCheckPerFacilityInfo{}
 	return &this
+}
+
+// GetAvailable returns the Available field value if set, zero value otherwise.
+func (o *CapacityCheckPerFacilityInfo) GetAvailable() bool {
+	if o == nil || o.Available == nil {
+		var ret bool
+		return ret
+	}
+	return *o.Available
+}
+
+// GetAvailableOk returns a tuple with the Available field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CapacityCheckPerFacilityInfo) GetAvailableOk() (*bool, bool) {
+	if o == nil || o.Available == nil {
+		return nil, false
+	}
+	return o.Available, true
+}
+
+// HasAvailable returns a boolean if a field has been set.
+func (o *CapacityCheckPerFacilityInfo) HasAvailable() bool {
+	if o != nil && o.Available != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAvailable gets a reference to the given bool and assigns it to the Available field.
+func (o *CapacityCheckPerFacilityInfo) SetAvailable(v bool) {
+	o.Available = &v
 }
 
 // GetFacility returns the Facility field value if set, zero value otherwise.
@@ -136,40 +168,11 @@ func (o *CapacityCheckPerFacilityInfo) SetQuantity(v string) {
 	o.Quantity = &v
 }
 
-// GetAvailable returns the Available field value if set, zero value otherwise.
-func (o *CapacityCheckPerFacilityInfo) GetAvailable() bool {
-	if o == nil || o.Available == nil {
-		var ret bool
-		return ret
-	}
-	return *o.Available
-}
-
-// GetAvailableOk returns a tuple with the Available field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CapacityCheckPerFacilityInfo) GetAvailableOk() (*bool, bool) {
-	if o == nil || o.Available == nil {
-		return nil, false
-	}
-	return o.Available, true
-}
-
-// HasAvailable returns a boolean if a field has been set.
-func (o *CapacityCheckPerFacilityInfo) HasAvailable() bool {
-	if o != nil && o.Available != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetAvailable gets a reference to the given bool and assigns it to the Available field.
-func (o *CapacityCheckPerFacilityInfo) SetAvailable(v bool) {
-	o.Available = &v
-}
-
 func (o CapacityCheckPerFacilityInfo) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.Available != nil {
+		toSerialize["available"] = o.Available
+	}
 	if o.Facility != nil {
 		toSerialize["facility"] = o.Facility
 	}
@@ -178,9 +181,6 @@ func (o CapacityCheckPerFacilityInfo) MarshalJSON() ([]byte, error) {
 	}
 	if o.Quantity != nil {
 		toSerialize["quantity"] = o.Quantity
-	}
-	if o.Available != nil {
-		toSerialize["available"] = o.Available
 	}
 	return json.Marshal(toSerialize)
 }

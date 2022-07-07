@@ -18,26 +18,26 @@ import (
 
 // User struct for User
 type User struct {
-	Id               *string                `json:"id,omitempty"`
-	ShortId          *string                `json:"short_id,omitempty"`
-	FirstName        *string                `json:"first_name,omitempty"`
-	LastName         *string                `json:"last_name,omitempty"`
-	FullName         *string                `json:"full_name,omitempty"`
-	Email            *string                `json:"email,omitempty"`
-	AvatarUrl        *string                `json:"avatar_url,omitempty"`
-	AvatarThumbUrl   *string                `json:"avatar_thumb_url,omitempty"`
-	TwoFactorAuth    *string                `json:"two_factor_auth,omitempty"`
-	MaxProjects      *int32                 `json:"max_projects,omitempty"`
-	MaxOrganizations *int32                 `json:"max_organizations,omitempty"`
-	CreatedAt        *time.Time             `json:"created_at,omitempty"`
-	UpdatedAt        *time.Time             `json:"updated_at,omitempty"`
-	Timezone         *string                `json:"timezone,omitempty"`
-	FraudScore       *string                `json:"fraud_score,omitempty"`
-	LastLoginAt      *time.Time             `json:"last_login_at,omitempty"`
-	Emails           []Href                 `json:"emails,omitempty"`
-	Href             *string                `json:"href,omitempty"`
-	PhoneNumber      *string                `json:"phone_number,omitempty"`
-	Customdata       map[string]interface{} `json:"customdata,omitempty"`
+	AvatarThumbUrl   *string                                `json:"avatar_thumb_url,omitempty"`
+	AvatarUrl        *string                                `json:"avatar_url,omitempty"`
+	CreatedAt        *time.Time                             `json:"created_at,omitempty"`
+	Customdata       map[string]interface{}                 `json:"customdata,omitempty"`
+	Email            *string                                `json:"email,omitempty"`
+	Emails           []FindBatchById200ResponseDevicesInner `json:"emails,omitempty"`
+	FirstName        *string                                `json:"first_name,omitempty"`
+	FraudScore       *string                                `json:"fraud_score,omitempty"`
+	FullName         *string                                `json:"full_name,omitempty"`
+	Href             *string                                `json:"href,omitempty"`
+	Id               *string                                `json:"id,omitempty"`
+	LastLoginAt      *time.Time                             `json:"last_login_at,omitempty"`
+	LastName         *string                                `json:"last_name,omitempty"`
+	MaxOrganizations *int32                                 `json:"max_organizations,omitempty"`
+	MaxProjects      *int32                                 `json:"max_projects,omitempty"`
+	PhoneNumber      *string                                `json:"phone_number,omitempty"`
+	ShortId          *string                                `json:"short_id,omitempty"`
+	Timezone         *string                                `json:"timezone,omitempty"`
+	TwoFactorAuth    *string                                `json:"two_factor_auth,omitempty"`
+	UpdatedAt        *time.Time                             `json:"updated_at,omitempty"`
 }
 
 // NewUser instantiates a new User object
@@ -55,230 +55,6 @@ func NewUser() *User {
 func NewUserWithDefaults() *User {
 	this := User{}
 	return &this
-}
-
-// GetId returns the Id field value if set, zero value otherwise.
-func (o *User) GetId() string {
-	if o == nil || o.Id == nil {
-		var ret string
-		return ret
-	}
-	return *o.Id
-}
-
-// GetIdOk returns a tuple with the Id field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *User) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
-		return nil, false
-	}
-	return o.Id, true
-}
-
-// HasId returns a boolean if a field has been set.
-func (o *User) HasId() bool {
-	if o != nil && o.Id != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetId gets a reference to the given string and assigns it to the Id field.
-func (o *User) SetId(v string) {
-	o.Id = &v
-}
-
-// GetShortId returns the ShortId field value if set, zero value otherwise.
-func (o *User) GetShortId() string {
-	if o == nil || o.ShortId == nil {
-		var ret string
-		return ret
-	}
-	return *o.ShortId
-}
-
-// GetShortIdOk returns a tuple with the ShortId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *User) GetShortIdOk() (*string, bool) {
-	if o == nil || o.ShortId == nil {
-		return nil, false
-	}
-	return o.ShortId, true
-}
-
-// HasShortId returns a boolean if a field has been set.
-func (o *User) HasShortId() bool {
-	if o != nil && o.ShortId != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetShortId gets a reference to the given string and assigns it to the ShortId field.
-func (o *User) SetShortId(v string) {
-	o.ShortId = &v
-}
-
-// GetFirstName returns the FirstName field value if set, zero value otherwise.
-func (o *User) GetFirstName() string {
-	if o == nil || o.FirstName == nil {
-		var ret string
-		return ret
-	}
-	return *o.FirstName
-}
-
-// GetFirstNameOk returns a tuple with the FirstName field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *User) GetFirstNameOk() (*string, bool) {
-	if o == nil || o.FirstName == nil {
-		return nil, false
-	}
-	return o.FirstName, true
-}
-
-// HasFirstName returns a boolean if a field has been set.
-func (o *User) HasFirstName() bool {
-	if o != nil && o.FirstName != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetFirstName gets a reference to the given string and assigns it to the FirstName field.
-func (o *User) SetFirstName(v string) {
-	o.FirstName = &v
-}
-
-// GetLastName returns the LastName field value if set, zero value otherwise.
-func (o *User) GetLastName() string {
-	if o == nil || o.LastName == nil {
-		var ret string
-		return ret
-	}
-	return *o.LastName
-}
-
-// GetLastNameOk returns a tuple with the LastName field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *User) GetLastNameOk() (*string, bool) {
-	if o == nil || o.LastName == nil {
-		return nil, false
-	}
-	return o.LastName, true
-}
-
-// HasLastName returns a boolean if a field has been set.
-func (o *User) HasLastName() bool {
-	if o != nil && o.LastName != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetLastName gets a reference to the given string and assigns it to the LastName field.
-func (o *User) SetLastName(v string) {
-	o.LastName = &v
-}
-
-// GetFullName returns the FullName field value if set, zero value otherwise.
-func (o *User) GetFullName() string {
-	if o == nil || o.FullName == nil {
-		var ret string
-		return ret
-	}
-	return *o.FullName
-}
-
-// GetFullNameOk returns a tuple with the FullName field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *User) GetFullNameOk() (*string, bool) {
-	if o == nil || o.FullName == nil {
-		return nil, false
-	}
-	return o.FullName, true
-}
-
-// HasFullName returns a boolean if a field has been set.
-func (o *User) HasFullName() bool {
-	if o != nil && o.FullName != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetFullName gets a reference to the given string and assigns it to the FullName field.
-func (o *User) SetFullName(v string) {
-	o.FullName = &v
-}
-
-// GetEmail returns the Email field value if set, zero value otherwise.
-func (o *User) GetEmail() string {
-	if o == nil || o.Email == nil {
-		var ret string
-		return ret
-	}
-	return *o.Email
-}
-
-// GetEmailOk returns a tuple with the Email field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *User) GetEmailOk() (*string, bool) {
-	if o == nil || o.Email == nil {
-		return nil, false
-	}
-	return o.Email, true
-}
-
-// HasEmail returns a boolean if a field has been set.
-func (o *User) HasEmail() bool {
-	if o != nil && o.Email != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetEmail gets a reference to the given string and assigns it to the Email field.
-func (o *User) SetEmail(v string) {
-	o.Email = &v
-}
-
-// GetAvatarUrl returns the AvatarUrl field value if set, zero value otherwise.
-func (o *User) GetAvatarUrl() string {
-	if o == nil || o.AvatarUrl == nil {
-		var ret string
-		return ret
-	}
-	return *o.AvatarUrl
-}
-
-// GetAvatarUrlOk returns a tuple with the AvatarUrl field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *User) GetAvatarUrlOk() (*string, bool) {
-	if o == nil || o.AvatarUrl == nil {
-		return nil, false
-	}
-	return o.AvatarUrl, true
-}
-
-// HasAvatarUrl returns a boolean if a field has been set.
-func (o *User) HasAvatarUrl() bool {
-	if o != nil && o.AvatarUrl != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetAvatarUrl gets a reference to the given string and assigns it to the AvatarUrl field.
-func (o *User) SetAvatarUrl(v string) {
-	o.AvatarUrl = &v
 }
 
 // GetAvatarThumbUrl returns the AvatarThumbUrl field value if set, zero value otherwise.
@@ -313,100 +89,36 @@ func (o *User) SetAvatarThumbUrl(v string) {
 	o.AvatarThumbUrl = &v
 }
 
-// GetTwoFactorAuth returns the TwoFactorAuth field value if set, zero value otherwise.
-func (o *User) GetTwoFactorAuth() string {
-	if o == nil || o.TwoFactorAuth == nil {
+// GetAvatarUrl returns the AvatarUrl field value if set, zero value otherwise.
+func (o *User) GetAvatarUrl() string {
+	if o == nil || o.AvatarUrl == nil {
 		var ret string
 		return ret
 	}
-	return *o.TwoFactorAuth
+	return *o.AvatarUrl
 }
 
-// GetTwoFactorAuthOk returns a tuple with the TwoFactorAuth field value if set, nil otherwise
+// GetAvatarUrlOk returns a tuple with the AvatarUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *User) GetTwoFactorAuthOk() (*string, bool) {
-	if o == nil || o.TwoFactorAuth == nil {
+func (o *User) GetAvatarUrlOk() (*string, bool) {
+	if o == nil || o.AvatarUrl == nil {
 		return nil, false
 	}
-	return o.TwoFactorAuth, true
+	return o.AvatarUrl, true
 }
 
-// HasTwoFactorAuth returns a boolean if a field has been set.
-func (o *User) HasTwoFactorAuth() bool {
-	if o != nil && o.TwoFactorAuth != nil {
+// HasAvatarUrl returns a boolean if a field has been set.
+func (o *User) HasAvatarUrl() bool {
+	if o != nil && o.AvatarUrl != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetTwoFactorAuth gets a reference to the given string and assigns it to the TwoFactorAuth field.
-func (o *User) SetTwoFactorAuth(v string) {
-	o.TwoFactorAuth = &v
-}
-
-// GetMaxProjects returns the MaxProjects field value if set, zero value otherwise.
-func (o *User) GetMaxProjects() int32 {
-	if o == nil || o.MaxProjects == nil {
-		var ret int32
-		return ret
-	}
-	return *o.MaxProjects
-}
-
-// GetMaxProjectsOk returns a tuple with the MaxProjects field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *User) GetMaxProjectsOk() (*int32, bool) {
-	if o == nil || o.MaxProjects == nil {
-		return nil, false
-	}
-	return o.MaxProjects, true
-}
-
-// HasMaxProjects returns a boolean if a field has been set.
-func (o *User) HasMaxProjects() bool {
-	if o != nil && o.MaxProjects != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetMaxProjects gets a reference to the given int32 and assigns it to the MaxProjects field.
-func (o *User) SetMaxProjects(v int32) {
-	o.MaxProjects = &v
-}
-
-// GetMaxOrganizations returns the MaxOrganizations field value if set, zero value otherwise.
-func (o *User) GetMaxOrganizations() int32 {
-	if o == nil || o.MaxOrganizations == nil {
-		var ret int32
-		return ret
-	}
-	return *o.MaxOrganizations
-}
-
-// GetMaxOrganizationsOk returns a tuple with the MaxOrganizations field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *User) GetMaxOrganizationsOk() (*int32, bool) {
-	if o == nil || o.MaxOrganizations == nil {
-		return nil, false
-	}
-	return o.MaxOrganizations, true
-}
-
-// HasMaxOrganizations returns a boolean if a field has been set.
-func (o *User) HasMaxOrganizations() bool {
-	if o != nil && o.MaxOrganizations != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetMaxOrganizations gets a reference to the given int32 and assigns it to the MaxOrganizations field.
-func (o *User) SetMaxOrganizations(v int32) {
-	o.MaxOrganizations = &v
+// SetAvatarUrl gets a reference to the given string and assigns it to the AvatarUrl field.
+func (o *User) SetAvatarUrl(v string) {
+	o.AvatarUrl = &v
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
@@ -441,68 +153,132 @@ func (o *User) SetCreatedAt(v time.Time) {
 	o.CreatedAt = &v
 }
 
-// GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
-func (o *User) GetUpdatedAt() time.Time {
-	if o == nil || o.UpdatedAt == nil {
-		var ret time.Time
+// GetCustomdata returns the Customdata field value if set, zero value otherwise.
+func (o *User) GetCustomdata() map[string]interface{} {
+	if o == nil || o.Customdata == nil {
+		var ret map[string]interface{}
 		return ret
 	}
-	return *o.UpdatedAt
+	return o.Customdata
 }
 
-// GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
+// GetCustomdataOk returns a tuple with the Customdata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *User) GetUpdatedAtOk() (*time.Time, bool) {
-	if o == nil || o.UpdatedAt == nil {
+func (o *User) GetCustomdataOk() (map[string]interface{}, bool) {
+	if o == nil || o.Customdata == nil {
 		return nil, false
 	}
-	return o.UpdatedAt, true
+	return o.Customdata, true
 }
 
-// HasUpdatedAt returns a boolean if a field has been set.
-func (o *User) HasUpdatedAt() bool {
-	if o != nil && o.UpdatedAt != nil {
+// HasCustomdata returns a boolean if a field has been set.
+func (o *User) HasCustomdata() bool {
+	if o != nil && o.Customdata != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetUpdatedAt gets a reference to the given time.Time and assigns it to the UpdatedAt field.
-func (o *User) SetUpdatedAt(v time.Time) {
-	o.UpdatedAt = &v
+// SetCustomdata gets a reference to the given map[string]interface{} and assigns it to the Customdata field.
+func (o *User) SetCustomdata(v map[string]interface{}) {
+	o.Customdata = v
 }
 
-// GetTimezone returns the Timezone field value if set, zero value otherwise.
-func (o *User) GetTimezone() string {
-	if o == nil || o.Timezone == nil {
+// GetEmail returns the Email field value if set, zero value otherwise.
+func (o *User) GetEmail() string {
+	if o == nil || o.Email == nil {
 		var ret string
 		return ret
 	}
-	return *o.Timezone
+	return *o.Email
 }
 
-// GetTimezoneOk returns a tuple with the Timezone field value if set, nil otherwise
+// GetEmailOk returns a tuple with the Email field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *User) GetTimezoneOk() (*string, bool) {
-	if o == nil || o.Timezone == nil {
+func (o *User) GetEmailOk() (*string, bool) {
+	if o == nil || o.Email == nil {
 		return nil, false
 	}
-	return o.Timezone, true
+	return o.Email, true
 }
 
-// HasTimezone returns a boolean if a field has been set.
-func (o *User) HasTimezone() bool {
-	if o != nil && o.Timezone != nil {
+// HasEmail returns a boolean if a field has been set.
+func (o *User) HasEmail() bool {
+	if o != nil && o.Email != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetTimezone gets a reference to the given string and assigns it to the Timezone field.
-func (o *User) SetTimezone(v string) {
-	o.Timezone = &v
+// SetEmail gets a reference to the given string and assigns it to the Email field.
+func (o *User) SetEmail(v string) {
+	o.Email = &v
+}
+
+// GetEmails returns the Emails field value if set, zero value otherwise.
+func (o *User) GetEmails() []FindBatchById200ResponseDevicesInner {
+	if o == nil || o.Emails == nil {
+		var ret []FindBatchById200ResponseDevicesInner
+		return ret
+	}
+	return o.Emails
+}
+
+// GetEmailsOk returns a tuple with the Emails field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *User) GetEmailsOk() ([]FindBatchById200ResponseDevicesInner, bool) {
+	if o == nil || o.Emails == nil {
+		return nil, false
+	}
+	return o.Emails, true
+}
+
+// HasEmails returns a boolean if a field has been set.
+func (o *User) HasEmails() bool {
+	if o != nil && o.Emails != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetEmails gets a reference to the given []FindBatchById200ResponseDevicesInner and assigns it to the Emails field.
+func (o *User) SetEmails(v []FindBatchById200ResponseDevicesInner) {
+	o.Emails = v
+}
+
+// GetFirstName returns the FirstName field value if set, zero value otherwise.
+func (o *User) GetFirstName() string {
+	if o == nil || o.FirstName == nil {
+		var ret string
+		return ret
+	}
+	return *o.FirstName
+}
+
+// GetFirstNameOk returns a tuple with the FirstName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *User) GetFirstNameOk() (*string, bool) {
+	if o == nil || o.FirstName == nil {
+		return nil, false
+	}
+	return o.FirstName, true
+}
+
+// HasFirstName returns a boolean if a field has been set.
+func (o *User) HasFirstName() bool {
+	if o != nil && o.FirstName != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetFirstName gets a reference to the given string and assigns it to the FirstName field.
+func (o *User) SetFirstName(v string) {
+	o.FirstName = &v
 }
 
 // GetFraudScore returns the FraudScore field value if set, zero value otherwise.
@@ -537,68 +313,36 @@ func (o *User) SetFraudScore(v string) {
 	o.FraudScore = &v
 }
 
-// GetLastLoginAt returns the LastLoginAt field value if set, zero value otherwise.
-func (o *User) GetLastLoginAt() time.Time {
-	if o == nil || o.LastLoginAt == nil {
-		var ret time.Time
+// GetFullName returns the FullName field value if set, zero value otherwise.
+func (o *User) GetFullName() string {
+	if o == nil || o.FullName == nil {
+		var ret string
 		return ret
 	}
-	return *o.LastLoginAt
+	return *o.FullName
 }
 
-// GetLastLoginAtOk returns a tuple with the LastLoginAt field value if set, nil otherwise
+// GetFullNameOk returns a tuple with the FullName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *User) GetLastLoginAtOk() (*time.Time, bool) {
-	if o == nil || o.LastLoginAt == nil {
+func (o *User) GetFullNameOk() (*string, bool) {
+	if o == nil || o.FullName == nil {
 		return nil, false
 	}
-	return o.LastLoginAt, true
+	return o.FullName, true
 }
 
-// HasLastLoginAt returns a boolean if a field has been set.
-func (o *User) HasLastLoginAt() bool {
-	if o != nil && o.LastLoginAt != nil {
+// HasFullName returns a boolean if a field has been set.
+func (o *User) HasFullName() bool {
+	if o != nil && o.FullName != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetLastLoginAt gets a reference to the given time.Time and assigns it to the LastLoginAt field.
-func (o *User) SetLastLoginAt(v time.Time) {
-	o.LastLoginAt = &v
-}
-
-// GetEmails returns the Emails field value if set, zero value otherwise.
-func (o *User) GetEmails() []Href {
-	if o == nil || o.Emails == nil {
-		var ret []Href
-		return ret
-	}
-	return o.Emails
-}
-
-// GetEmailsOk returns a tuple with the Emails field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *User) GetEmailsOk() ([]Href, bool) {
-	if o == nil || o.Emails == nil {
-		return nil, false
-	}
-	return o.Emails, true
-}
-
-// HasEmails returns a boolean if a field has been set.
-func (o *User) HasEmails() bool {
-	if o != nil && o.Emails != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetEmails gets a reference to the given []Href and assigns it to the Emails field.
-func (o *User) SetEmails(v []Href) {
-	o.Emails = v
+// SetFullName gets a reference to the given string and assigns it to the FullName field.
+func (o *User) SetFullName(v string) {
+	o.FullName = &v
 }
 
 // GetHref returns the Href field value if set, zero value otherwise.
@@ -633,6 +377,166 @@ func (o *User) SetHref(v string) {
 	o.Href = &v
 }
 
+// GetId returns the Id field value if set, zero value otherwise.
+func (o *User) GetId() string {
+	if o == nil || o.Id == nil {
+		var ret string
+		return ret
+	}
+	return *o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *User) GetIdOk() (*string, bool) {
+	if o == nil || o.Id == nil {
+		return nil, false
+	}
+	return o.Id, true
+}
+
+// HasId returns a boolean if a field has been set.
+func (o *User) HasId() bool {
+	if o != nil && o.Id != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given string and assigns it to the Id field.
+func (o *User) SetId(v string) {
+	o.Id = &v
+}
+
+// GetLastLoginAt returns the LastLoginAt field value if set, zero value otherwise.
+func (o *User) GetLastLoginAt() time.Time {
+	if o == nil || o.LastLoginAt == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.LastLoginAt
+}
+
+// GetLastLoginAtOk returns a tuple with the LastLoginAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *User) GetLastLoginAtOk() (*time.Time, bool) {
+	if o == nil || o.LastLoginAt == nil {
+		return nil, false
+	}
+	return o.LastLoginAt, true
+}
+
+// HasLastLoginAt returns a boolean if a field has been set.
+func (o *User) HasLastLoginAt() bool {
+	if o != nil && o.LastLoginAt != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetLastLoginAt gets a reference to the given time.Time and assigns it to the LastLoginAt field.
+func (o *User) SetLastLoginAt(v time.Time) {
+	o.LastLoginAt = &v
+}
+
+// GetLastName returns the LastName field value if set, zero value otherwise.
+func (o *User) GetLastName() string {
+	if o == nil || o.LastName == nil {
+		var ret string
+		return ret
+	}
+	return *o.LastName
+}
+
+// GetLastNameOk returns a tuple with the LastName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *User) GetLastNameOk() (*string, bool) {
+	if o == nil || o.LastName == nil {
+		return nil, false
+	}
+	return o.LastName, true
+}
+
+// HasLastName returns a boolean if a field has been set.
+func (o *User) HasLastName() bool {
+	if o != nil && o.LastName != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetLastName gets a reference to the given string and assigns it to the LastName field.
+func (o *User) SetLastName(v string) {
+	o.LastName = &v
+}
+
+// GetMaxOrganizations returns the MaxOrganizations field value if set, zero value otherwise.
+func (o *User) GetMaxOrganizations() int32 {
+	if o == nil || o.MaxOrganizations == nil {
+		var ret int32
+		return ret
+	}
+	return *o.MaxOrganizations
+}
+
+// GetMaxOrganizationsOk returns a tuple with the MaxOrganizations field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *User) GetMaxOrganizationsOk() (*int32, bool) {
+	if o == nil || o.MaxOrganizations == nil {
+		return nil, false
+	}
+	return o.MaxOrganizations, true
+}
+
+// HasMaxOrganizations returns a boolean if a field has been set.
+func (o *User) HasMaxOrganizations() bool {
+	if o != nil && o.MaxOrganizations != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMaxOrganizations gets a reference to the given int32 and assigns it to the MaxOrganizations field.
+func (o *User) SetMaxOrganizations(v int32) {
+	o.MaxOrganizations = &v
+}
+
+// GetMaxProjects returns the MaxProjects field value if set, zero value otherwise.
+func (o *User) GetMaxProjects() int32 {
+	if o == nil || o.MaxProjects == nil {
+		var ret int32
+		return ret
+	}
+	return *o.MaxProjects
+}
+
+// GetMaxProjectsOk returns a tuple with the MaxProjects field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *User) GetMaxProjectsOk() (*int32, bool) {
+	if o == nil || o.MaxProjects == nil {
+		return nil, false
+	}
+	return o.MaxProjects, true
+}
+
+// HasMaxProjects returns a boolean if a field has been set.
+func (o *User) HasMaxProjects() bool {
+	if o != nil && o.MaxProjects != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMaxProjects gets a reference to the given int32 and assigns it to the MaxProjects field.
+func (o *User) SetMaxProjects(v int32) {
+	o.MaxProjects = &v
+}
+
 // GetPhoneNumber returns the PhoneNumber field value if set, zero value otherwise.
 func (o *User) GetPhoneNumber() string {
 	if o == nil || o.PhoneNumber == nil {
@@ -665,99 +569,195 @@ func (o *User) SetPhoneNumber(v string) {
 	o.PhoneNumber = &v
 }
 
-// GetCustomdata returns the Customdata field value if set, zero value otherwise.
-func (o *User) GetCustomdata() map[string]interface{} {
-	if o == nil || o.Customdata == nil {
-		var ret map[string]interface{}
+// GetShortId returns the ShortId field value if set, zero value otherwise.
+func (o *User) GetShortId() string {
+	if o == nil || o.ShortId == nil {
+		var ret string
 		return ret
 	}
-	return o.Customdata
+	return *o.ShortId
 }
 
-// GetCustomdataOk returns a tuple with the Customdata field value if set, nil otherwise
+// GetShortIdOk returns a tuple with the ShortId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *User) GetCustomdataOk() (map[string]interface{}, bool) {
-	if o == nil || o.Customdata == nil {
+func (o *User) GetShortIdOk() (*string, bool) {
+	if o == nil || o.ShortId == nil {
 		return nil, false
 	}
-	return o.Customdata, true
+	return o.ShortId, true
 }
 
-// HasCustomdata returns a boolean if a field has been set.
-func (o *User) HasCustomdata() bool {
-	if o != nil && o.Customdata != nil {
+// HasShortId returns a boolean if a field has been set.
+func (o *User) HasShortId() bool {
+	if o != nil && o.ShortId != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetCustomdata gets a reference to the given map[string]interface{} and assigns it to the Customdata field.
-func (o *User) SetCustomdata(v map[string]interface{}) {
-	o.Customdata = v
+// SetShortId gets a reference to the given string and assigns it to the ShortId field.
+func (o *User) SetShortId(v string) {
+	o.ShortId = &v
+}
+
+// GetTimezone returns the Timezone field value if set, zero value otherwise.
+func (o *User) GetTimezone() string {
+	if o == nil || o.Timezone == nil {
+		var ret string
+		return ret
+	}
+	return *o.Timezone
+}
+
+// GetTimezoneOk returns a tuple with the Timezone field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *User) GetTimezoneOk() (*string, bool) {
+	if o == nil || o.Timezone == nil {
+		return nil, false
+	}
+	return o.Timezone, true
+}
+
+// HasTimezone returns a boolean if a field has been set.
+func (o *User) HasTimezone() bool {
+	if o != nil && o.Timezone != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTimezone gets a reference to the given string and assigns it to the Timezone field.
+func (o *User) SetTimezone(v string) {
+	o.Timezone = &v
+}
+
+// GetTwoFactorAuth returns the TwoFactorAuth field value if set, zero value otherwise.
+func (o *User) GetTwoFactorAuth() string {
+	if o == nil || o.TwoFactorAuth == nil {
+		var ret string
+		return ret
+	}
+	return *o.TwoFactorAuth
+}
+
+// GetTwoFactorAuthOk returns a tuple with the TwoFactorAuth field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *User) GetTwoFactorAuthOk() (*string, bool) {
+	if o == nil || o.TwoFactorAuth == nil {
+		return nil, false
+	}
+	return o.TwoFactorAuth, true
+}
+
+// HasTwoFactorAuth returns a boolean if a field has been set.
+func (o *User) HasTwoFactorAuth() bool {
+	if o != nil && o.TwoFactorAuth != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTwoFactorAuth gets a reference to the given string and assigns it to the TwoFactorAuth field.
+func (o *User) SetTwoFactorAuth(v string) {
+	o.TwoFactorAuth = &v
+}
+
+// GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
+func (o *User) GetUpdatedAt() time.Time {
+	if o == nil || o.UpdatedAt == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.UpdatedAt
+}
+
+// GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *User) GetUpdatedAtOk() (*time.Time, bool) {
+	if o == nil || o.UpdatedAt == nil {
+		return nil, false
+	}
+	return o.UpdatedAt, true
+}
+
+// HasUpdatedAt returns a boolean if a field has been set.
+func (o *User) HasUpdatedAt() bool {
+	if o != nil && o.UpdatedAt != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetUpdatedAt gets a reference to the given time.Time and assigns it to the UpdatedAt field.
+func (o *User) SetUpdatedAt(v time.Time) {
+	o.UpdatedAt = &v
 }
 
 func (o User) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
-	}
-	if o.ShortId != nil {
-		toSerialize["short_id"] = o.ShortId
-	}
-	if o.FirstName != nil {
-		toSerialize["first_name"] = o.FirstName
-	}
-	if o.LastName != nil {
-		toSerialize["last_name"] = o.LastName
-	}
-	if o.FullName != nil {
-		toSerialize["full_name"] = o.FullName
-	}
-	if o.Email != nil {
-		toSerialize["email"] = o.Email
+	if o.AvatarThumbUrl != nil {
+		toSerialize["avatar_thumb_url"] = o.AvatarThumbUrl
 	}
 	if o.AvatarUrl != nil {
 		toSerialize["avatar_url"] = o.AvatarUrl
 	}
-	if o.AvatarThumbUrl != nil {
-		toSerialize["avatar_thumb_url"] = o.AvatarThumbUrl
-	}
-	if o.TwoFactorAuth != nil {
-		toSerialize["two_factor_auth"] = o.TwoFactorAuth
-	}
-	if o.MaxProjects != nil {
-		toSerialize["max_projects"] = o.MaxProjects
-	}
-	if o.MaxOrganizations != nil {
-		toSerialize["max_organizations"] = o.MaxOrganizations
-	}
 	if o.CreatedAt != nil {
 		toSerialize["created_at"] = o.CreatedAt
 	}
-	if o.UpdatedAt != nil {
-		toSerialize["updated_at"] = o.UpdatedAt
+	if o.Customdata != nil {
+		toSerialize["customdata"] = o.Customdata
 	}
-	if o.Timezone != nil {
-		toSerialize["timezone"] = o.Timezone
-	}
-	if o.FraudScore != nil {
-		toSerialize["fraud_score"] = o.FraudScore
-	}
-	if o.LastLoginAt != nil {
-		toSerialize["last_login_at"] = o.LastLoginAt
+	if o.Email != nil {
+		toSerialize["email"] = o.Email
 	}
 	if o.Emails != nil {
 		toSerialize["emails"] = o.Emails
 	}
+	if o.FirstName != nil {
+		toSerialize["first_name"] = o.FirstName
+	}
+	if o.FraudScore != nil {
+		toSerialize["fraud_score"] = o.FraudScore
+	}
+	if o.FullName != nil {
+		toSerialize["full_name"] = o.FullName
+	}
 	if o.Href != nil {
 		toSerialize["href"] = o.Href
+	}
+	if o.Id != nil {
+		toSerialize["id"] = o.Id
+	}
+	if o.LastLoginAt != nil {
+		toSerialize["last_login_at"] = o.LastLoginAt
+	}
+	if o.LastName != nil {
+		toSerialize["last_name"] = o.LastName
+	}
+	if o.MaxOrganizations != nil {
+		toSerialize["max_organizations"] = o.MaxOrganizations
+	}
+	if o.MaxProjects != nil {
+		toSerialize["max_projects"] = o.MaxProjects
 	}
 	if o.PhoneNumber != nil {
 		toSerialize["phone_number"] = o.PhoneNumber
 	}
-	if o.Customdata != nil {
-		toSerialize["customdata"] = o.Customdata
+	if o.ShortId != nil {
+		toSerialize["short_id"] = o.ShortId
+	}
+	if o.Timezone != nil {
+		toSerialize["timezone"] = o.Timezone
+	}
+	if o.TwoFactorAuth != nil {
+		toSerialize["two_factor_auth"] = o.TwoFactorAuth
+	}
+	if o.UpdatedAt != nil {
+		toSerialize["updated_at"] = o.UpdatedAt
 	}
 	return json.Marshal(toSerialize)
 }

@@ -19,33 +19,33 @@ import (
 
 // UserCreateInput struct for UserCreateInput
 type UserCreateInput struct {
-	FirstName      string                 `json:"first_name"`
-	LastName       string                 `json:"last_name"`
-	PhoneNumber    *string                `json:"phone_number,omitempty"`
-	Timezone       *string                `json:"timezone,omitempty"`
-	Password       *string                `json:"password,omitempty"`
-	Level          *string                `json:"level,omitempty"`
-	Title          *string                `json:"title,omitempty"`
-	CompanyName    *string                `json:"company_name,omitempty"`
-	CompanyUrl     *string                `json:"company_url,omitempty"`
-	VerifiedAt     *time.Time             `json:"verified_at,omitempty"`
-	SocialAccounts map[string]interface{} `json:"social_accounts,omitempty"`
-	TwoFactorAuth  *string                `json:"two_factor_auth,omitempty"`
-	Avatar         **os.File              `json:"avatar,omitempty"`
-	Emails         []EmailInput           `json:"emails"`
-	Locked         *bool                  `json:"locked,omitempty"`
-	Customdata     map[string]interface{} `json:"customdata,omitempty"`
+	Avatar         **os.File                      `json:"avatar,omitempty"`
+	CompanyName    *string                        `json:"company_name,omitempty"`
+	CompanyUrl     *string                        `json:"company_url,omitempty"`
+	Customdata     map[string]interface{}         `json:"customdata,omitempty"`
+	Emails         []CreateUserRequestEmailsInner `json:"emails"`
+	FirstName      string                         `json:"first_name"`
+	LastName       string                         `json:"last_name"`
+	Level          *string                        `json:"level,omitempty"`
+	Locked         *bool                          `json:"locked,omitempty"`
+	Password       *string                        `json:"password,omitempty"`
+	PhoneNumber    *string                        `json:"phone_number,omitempty"`
+	SocialAccounts map[string]interface{}         `json:"social_accounts,omitempty"`
+	Timezone       *string                        `json:"timezone,omitempty"`
+	Title          *string                        `json:"title,omitempty"`
+	TwoFactorAuth  *string                        `json:"two_factor_auth,omitempty"`
+	VerifiedAt     *time.Time                     `json:"verified_at,omitempty"`
 }
 
 // NewUserCreateInput instantiates a new UserCreateInput object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUserCreateInput(firstName string, lastName string, emails []EmailInput) *UserCreateInput {
+func NewUserCreateInput(emails []CreateUserRequestEmailsInner, firstName string, lastName string) *UserCreateInput {
 	this := UserCreateInput{}
+	this.Emails = emails
 	this.FirstName = firstName
 	this.LastName = lastName
-	this.Emails = emails
 	return &this
 }
 
@@ -57,212 +57,36 @@ func NewUserCreateInputWithDefaults() *UserCreateInput {
 	return &this
 }
 
-// GetFirstName returns the FirstName field value
-func (o *UserCreateInput) GetFirstName() string {
-	if o == nil {
-		var ret string
+// GetAvatar returns the Avatar field value if set, zero value otherwise.
+func (o *UserCreateInput) GetAvatar() *os.File {
+	if o == nil || o.Avatar == nil {
+		var ret *os.File
 		return ret
 	}
-
-	return o.FirstName
+	return *o.Avatar
 }
 
-// GetFirstNameOk returns a tuple with the FirstName field value
+// GetAvatarOk returns a tuple with the Avatar field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UserCreateInput) GetFirstNameOk() (*string, bool) {
-	if o == nil {
+func (o *UserCreateInput) GetAvatarOk() (**os.File, bool) {
+	if o == nil || o.Avatar == nil {
 		return nil, false
 	}
-	return &o.FirstName, true
+	return o.Avatar, true
 }
 
-// SetFirstName sets field value
-func (o *UserCreateInput) SetFirstName(v string) {
-	o.FirstName = v
-}
-
-// GetLastName returns the LastName field value
-func (o *UserCreateInput) GetLastName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.LastName
-}
-
-// GetLastNameOk returns a tuple with the LastName field value
-// and a boolean to check if the value has been set.
-func (o *UserCreateInput) GetLastNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.LastName, true
-}
-
-// SetLastName sets field value
-func (o *UserCreateInput) SetLastName(v string) {
-	o.LastName = v
-}
-
-// GetPhoneNumber returns the PhoneNumber field value if set, zero value otherwise.
-func (o *UserCreateInput) GetPhoneNumber() string {
-	if o == nil || o.PhoneNumber == nil {
-		var ret string
-		return ret
-	}
-	return *o.PhoneNumber
-}
-
-// GetPhoneNumberOk returns a tuple with the PhoneNumber field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UserCreateInput) GetPhoneNumberOk() (*string, bool) {
-	if o == nil || o.PhoneNumber == nil {
-		return nil, false
-	}
-	return o.PhoneNumber, true
-}
-
-// HasPhoneNumber returns a boolean if a field has been set.
-func (o *UserCreateInput) HasPhoneNumber() bool {
-	if o != nil && o.PhoneNumber != nil {
+// HasAvatar returns a boolean if a field has been set.
+func (o *UserCreateInput) HasAvatar() bool {
+	if o != nil && o.Avatar != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetPhoneNumber gets a reference to the given string and assigns it to the PhoneNumber field.
-func (o *UserCreateInput) SetPhoneNumber(v string) {
-	o.PhoneNumber = &v
-}
-
-// GetTimezone returns the Timezone field value if set, zero value otherwise.
-func (o *UserCreateInput) GetTimezone() string {
-	if o == nil || o.Timezone == nil {
-		var ret string
-		return ret
-	}
-	return *o.Timezone
-}
-
-// GetTimezoneOk returns a tuple with the Timezone field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UserCreateInput) GetTimezoneOk() (*string, bool) {
-	if o == nil || o.Timezone == nil {
-		return nil, false
-	}
-	return o.Timezone, true
-}
-
-// HasTimezone returns a boolean if a field has been set.
-func (o *UserCreateInput) HasTimezone() bool {
-	if o != nil && o.Timezone != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetTimezone gets a reference to the given string and assigns it to the Timezone field.
-func (o *UserCreateInput) SetTimezone(v string) {
-	o.Timezone = &v
-}
-
-// GetPassword returns the Password field value if set, zero value otherwise.
-func (o *UserCreateInput) GetPassword() string {
-	if o == nil || o.Password == nil {
-		var ret string
-		return ret
-	}
-	return *o.Password
-}
-
-// GetPasswordOk returns a tuple with the Password field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UserCreateInput) GetPasswordOk() (*string, bool) {
-	if o == nil || o.Password == nil {
-		return nil, false
-	}
-	return o.Password, true
-}
-
-// HasPassword returns a boolean if a field has been set.
-func (o *UserCreateInput) HasPassword() bool {
-	if o != nil && o.Password != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetPassword gets a reference to the given string and assigns it to the Password field.
-func (o *UserCreateInput) SetPassword(v string) {
-	o.Password = &v
-}
-
-// GetLevel returns the Level field value if set, zero value otherwise.
-func (o *UserCreateInput) GetLevel() string {
-	if o == nil || o.Level == nil {
-		var ret string
-		return ret
-	}
-	return *o.Level
-}
-
-// GetLevelOk returns a tuple with the Level field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UserCreateInput) GetLevelOk() (*string, bool) {
-	if o == nil || o.Level == nil {
-		return nil, false
-	}
-	return o.Level, true
-}
-
-// HasLevel returns a boolean if a field has been set.
-func (o *UserCreateInput) HasLevel() bool {
-	if o != nil && o.Level != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetLevel gets a reference to the given string and assigns it to the Level field.
-func (o *UserCreateInput) SetLevel(v string) {
-	o.Level = &v
-}
-
-// GetTitle returns the Title field value if set, zero value otherwise.
-func (o *UserCreateInput) GetTitle() string {
-	if o == nil || o.Title == nil {
-		var ret string
-		return ret
-	}
-	return *o.Title
-}
-
-// GetTitleOk returns a tuple with the Title field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UserCreateInput) GetTitleOk() (*string, bool) {
-	if o == nil || o.Title == nil {
-		return nil, false
-	}
-	return o.Title, true
-}
-
-// HasTitle returns a boolean if a field has been set.
-func (o *UserCreateInput) HasTitle() bool {
-	if o != nil && o.Title != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetTitle gets a reference to the given string and assigns it to the Title field.
-func (o *UserCreateInput) SetTitle(v string) {
-	o.Title = &v
+// SetAvatar gets a reference to the given *os.File and assigns it to the Avatar field.
+func (o *UserCreateInput) SetAvatar(v *os.File) {
+	o.Avatar = &v
 }
 
 // GetCompanyName returns the CompanyName field value if set, zero value otherwise.
@@ -329,138 +153,42 @@ func (o *UserCreateInput) SetCompanyUrl(v string) {
 	o.CompanyUrl = &v
 }
 
-// GetVerifiedAt returns the VerifiedAt field value if set, zero value otherwise.
-func (o *UserCreateInput) GetVerifiedAt() time.Time {
-	if o == nil || o.VerifiedAt == nil {
-		var ret time.Time
-		return ret
-	}
-	return *o.VerifiedAt
-}
-
-// GetVerifiedAtOk returns a tuple with the VerifiedAt field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UserCreateInput) GetVerifiedAtOk() (*time.Time, bool) {
-	if o == nil || o.VerifiedAt == nil {
-		return nil, false
-	}
-	return o.VerifiedAt, true
-}
-
-// HasVerifiedAt returns a boolean if a field has been set.
-func (o *UserCreateInput) HasVerifiedAt() bool {
-	if o != nil && o.VerifiedAt != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetVerifiedAt gets a reference to the given time.Time and assigns it to the VerifiedAt field.
-func (o *UserCreateInput) SetVerifiedAt(v time.Time) {
-	o.VerifiedAt = &v
-}
-
-// GetSocialAccounts returns the SocialAccounts field value if set, zero value otherwise.
-func (o *UserCreateInput) GetSocialAccounts() map[string]interface{} {
-	if o == nil || o.SocialAccounts == nil {
+// GetCustomdata returns the Customdata field value if set, zero value otherwise.
+func (o *UserCreateInput) GetCustomdata() map[string]interface{} {
+	if o == nil || o.Customdata == nil {
 		var ret map[string]interface{}
 		return ret
 	}
-	return o.SocialAccounts
+	return o.Customdata
 }
 
-// GetSocialAccountsOk returns a tuple with the SocialAccounts field value if set, nil otherwise
+// GetCustomdataOk returns a tuple with the Customdata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UserCreateInput) GetSocialAccountsOk() (map[string]interface{}, bool) {
-	if o == nil || o.SocialAccounts == nil {
+func (o *UserCreateInput) GetCustomdataOk() (map[string]interface{}, bool) {
+	if o == nil || o.Customdata == nil {
 		return nil, false
 	}
-	return o.SocialAccounts, true
+	return o.Customdata, true
 }
 
-// HasSocialAccounts returns a boolean if a field has been set.
-func (o *UserCreateInput) HasSocialAccounts() bool {
-	if o != nil && o.SocialAccounts != nil {
+// HasCustomdata returns a boolean if a field has been set.
+func (o *UserCreateInput) HasCustomdata() bool {
+	if o != nil && o.Customdata != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetSocialAccounts gets a reference to the given map[string]interface{} and assigns it to the SocialAccounts field.
-func (o *UserCreateInput) SetSocialAccounts(v map[string]interface{}) {
-	o.SocialAccounts = v
-}
-
-// GetTwoFactorAuth returns the TwoFactorAuth field value if set, zero value otherwise.
-func (o *UserCreateInput) GetTwoFactorAuth() string {
-	if o == nil || o.TwoFactorAuth == nil {
-		var ret string
-		return ret
-	}
-	return *o.TwoFactorAuth
-}
-
-// GetTwoFactorAuthOk returns a tuple with the TwoFactorAuth field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UserCreateInput) GetTwoFactorAuthOk() (*string, bool) {
-	if o == nil || o.TwoFactorAuth == nil {
-		return nil, false
-	}
-	return o.TwoFactorAuth, true
-}
-
-// HasTwoFactorAuth returns a boolean if a field has been set.
-func (o *UserCreateInput) HasTwoFactorAuth() bool {
-	if o != nil && o.TwoFactorAuth != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetTwoFactorAuth gets a reference to the given string and assigns it to the TwoFactorAuth field.
-func (o *UserCreateInput) SetTwoFactorAuth(v string) {
-	o.TwoFactorAuth = &v
-}
-
-// GetAvatar returns the Avatar field value if set, zero value otherwise.
-func (o *UserCreateInput) GetAvatar() *os.File {
-	if o == nil || o.Avatar == nil {
-		var ret *os.File
-		return ret
-	}
-	return *o.Avatar
-}
-
-// GetAvatarOk returns a tuple with the Avatar field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UserCreateInput) GetAvatarOk() (**os.File, bool) {
-	if o == nil || o.Avatar == nil {
-		return nil, false
-	}
-	return o.Avatar, true
-}
-
-// HasAvatar returns a boolean if a field has been set.
-func (o *UserCreateInput) HasAvatar() bool {
-	if o != nil && o.Avatar != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetAvatar gets a reference to the given *os.File and assigns it to the Avatar field.
-func (o *UserCreateInput) SetAvatar(v *os.File) {
-	o.Avatar = &v
+// SetCustomdata gets a reference to the given map[string]interface{} and assigns it to the Customdata field.
+func (o *UserCreateInput) SetCustomdata(v map[string]interface{}) {
+	o.Customdata = v
 }
 
 // GetEmails returns the Emails field value
-func (o *UserCreateInput) GetEmails() []EmailInput {
+func (o *UserCreateInput) GetEmails() []CreateUserRequestEmailsInner {
 	if o == nil {
-		var ret []EmailInput
+		var ret []CreateUserRequestEmailsInner
 		return ret
 	}
 
@@ -469,7 +197,7 @@ func (o *UserCreateInput) GetEmails() []EmailInput {
 
 // GetEmailsOk returns a tuple with the Emails field value
 // and a boolean to check if the value has been set.
-func (o *UserCreateInput) GetEmailsOk() ([]EmailInput, bool) {
+func (o *UserCreateInput) GetEmailsOk() ([]CreateUserRequestEmailsInner, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -477,8 +205,88 @@ func (o *UserCreateInput) GetEmailsOk() ([]EmailInput, bool) {
 }
 
 // SetEmails sets field value
-func (o *UserCreateInput) SetEmails(v []EmailInput) {
+func (o *UserCreateInput) SetEmails(v []CreateUserRequestEmailsInner) {
 	o.Emails = v
+}
+
+// GetFirstName returns the FirstName field value
+func (o *UserCreateInput) GetFirstName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.FirstName
+}
+
+// GetFirstNameOk returns a tuple with the FirstName field value
+// and a boolean to check if the value has been set.
+func (o *UserCreateInput) GetFirstNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.FirstName, true
+}
+
+// SetFirstName sets field value
+func (o *UserCreateInput) SetFirstName(v string) {
+	o.FirstName = v
+}
+
+// GetLastName returns the LastName field value
+func (o *UserCreateInput) GetLastName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.LastName
+}
+
+// GetLastNameOk returns a tuple with the LastName field value
+// and a boolean to check if the value has been set.
+func (o *UserCreateInput) GetLastNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.LastName, true
+}
+
+// SetLastName sets field value
+func (o *UserCreateInput) SetLastName(v string) {
+	o.LastName = v
+}
+
+// GetLevel returns the Level field value if set, zero value otherwise.
+func (o *UserCreateInput) GetLevel() string {
+	if o == nil || o.Level == nil {
+		var ret string
+		return ret
+	}
+	return *o.Level
+}
+
+// GetLevelOk returns a tuple with the Level field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UserCreateInput) GetLevelOk() (*string, bool) {
+	if o == nil || o.Level == nil {
+		return nil, false
+	}
+	return o.Level, true
+}
+
+// HasLevel returns a boolean if a field has been set.
+func (o *UserCreateInput) HasLevel() bool {
+	if o != nil && o.Level != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetLevel gets a reference to the given string and assigns it to the Level field.
+func (o *UserCreateInput) SetLevel(v string) {
+	o.Level = &v
 }
 
 // GetLocked returns the Locked field value if set, zero value otherwise.
@@ -513,60 +321,234 @@ func (o *UserCreateInput) SetLocked(v bool) {
 	o.Locked = &v
 }
 
-// GetCustomdata returns the Customdata field value if set, zero value otherwise.
-func (o *UserCreateInput) GetCustomdata() map[string]interface{} {
-	if o == nil || o.Customdata == nil {
-		var ret map[string]interface{}
+// GetPassword returns the Password field value if set, zero value otherwise.
+func (o *UserCreateInput) GetPassword() string {
+	if o == nil || o.Password == nil {
+		var ret string
 		return ret
 	}
-	return o.Customdata
+	return *o.Password
 }
 
-// GetCustomdataOk returns a tuple with the Customdata field value if set, nil otherwise
+// GetPasswordOk returns a tuple with the Password field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UserCreateInput) GetCustomdataOk() (map[string]interface{}, bool) {
-	if o == nil || o.Customdata == nil {
+func (o *UserCreateInput) GetPasswordOk() (*string, bool) {
+	if o == nil || o.Password == nil {
 		return nil, false
 	}
-	return o.Customdata, true
+	return o.Password, true
 }
 
-// HasCustomdata returns a boolean if a field has been set.
-func (o *UserCreateInput) HasCustomdata() bool {
-	if o != nil && o.Customdata != nil {
+// HasPassword returns a boolean if a field has been set.
+func (o *UserCreateInput) HasPassword() bool {
+	if o != nil && o.Password != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetCustomdata gets a reference to the given map[string]interface{} and assigns it to the Customdata field.
-func (o *UserCreateInput) SetCustomdata(v map[string]interface{}) {
-	o.Customdata = v
+// SetPassword gets a reference to the given string and assigns it to the Password field.
+func (o *UserCreateInput) SetPassword(v string) {
+	o.Password = &v
+}
+
+// GetPhoneNumber returns the PhoneNumber field value if set, zero value otherwise.
+func (o *UserCreateInput) GetPhoneNumber() string {
+	if o == nil || o.PhoneNumber == nil {
+		var ret string
+		return ret
+	}
+	return *o.PhoneNumber
+}
+
+// GetPhoneNumberOk returns a tuple with the PhoneNumber field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UserCreateInput) GetPhoneNumberOk() (*string, bool) {
+	if o == nil || o.PhoneNumber == nil {
+		return nil, false
+	}
+	return o.PhoneNumber, true
+}
+
+// HasPhoneNumber returns a boolean if a field has been set.
+func (o *UserCreateInput) HasPhoneNumber() bool {
+	if o != nil && o.PhoneNumber != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPhoneNumber gets a reference to the given string and assigns it to the PhoneNumber field.
+func (o *UserCreateInput) SetPhoneNumber(v string) {
+	o.PhoneNumber = &v
+}
+
+// GetSocialAccounts returns the SocialAccounts field value if set, zero value otherwise.
+func (o *UserCreateInput) GetSocialAccounts() map[string]interface{} {
+	if o == nil || o.SocialAccounts == nil {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.SocialAccounts
+}
+
+// GetSocialAccountsOk returns a tuple with the SocialAccounts field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UserCreateInput) GetSocialAccountsOk() (map[string]interface{}, bool) {
+	if o == nil || o.SocialAccounts == nil {
+		return nil, false
+	}
+	return o.SocialAccounts, true
+}
+
+// HasSocialAccounts returns a boolean if a field has been set.
+func (o *UserCreateInput) HasSocialAccounts() bool {
+	if o != nil && o.SocialAccounts != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSocialAccounts gets a reference to the given map[string]interface{} and assigns it to the SocialAccounts field.
+func (o *UserCreateInput) SetSocialAccounts(v map[string]interface{}) {
+	o.SocialAccounts = v
+}
+
+// GetTimezone returns the Timezone field value if set, zero value otherwise.
+func (o *UserCreateInput) GetTimezone() string {
+	if o == nil || o.Timezone == nil {
+		var ret string
+		return ret
+	}
+	return *o.Timezone
+}
+
+// GetTimezoneOk returns a tuple with the Timezone field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UserCreateInput) GetTimezoneOk() (*string, bool) {
+	if o == nil || o.Timezone == nil {
+		return nil, false
+	}
+	return o.Timezone, true
+}
+
+// HasTimezone returns a boolean if a field has been set.
+func (o *UserCreateInput) HasTimezone() bool {
+	if o != nil && o.Timezone != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTimezone gets a reference to the given string and assigns it to the Timezone field.
+func (o *UserCreateInput) SetTimezone(v string) {
+	o.Timezone = &v
+}
+
+// GetTitle returns the Title field value if set, zero value otherwise.
+func (o *UserCreateInput) GetTitle() string {
+	if o == nil || o.Title == nil {
+		var ret string
+		return ret
+	}
+	return *o.Title
+}
+
+// GetTitleOk returns a tuple with the Title field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UserCreateInput) GetTitleOk() (*string, bool) {
+	if o == nil || o.Title == nil {
+		return nil, false
+	}
+	return o.Title, true
+}
+
+// HasTitle returns a boolean if a field has been set.
+func (o *UserCreateInput) HasTitle() bool {
+	if o != nil && o.Title != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTitle gets a reference to the given string and assigns it to the Title field.
+func (o *UserCreateInput) SetTitle(v string) {
+	o.Title = &v
+}
+
+// GetTwoFactorAuth returns the TwoFactorAuth field value if set, zero value otherwise.
+func (o *UserCreateInput) GetTwoFactorAuth() string {
+	if o == nil || o.TwoFactorAuth == nil {
+		var ret string
+		return ret
+	}
+	return *o.TwoFactorAuth
+}
+
+// GetTwoFactorAuthOk returns a tuple with the TwoFactorAuth field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UserCreateInput) GetTwoFactorAuthOk() (*string, bool) {
+	if o == nil || o.TwoFactorAuth == nil {
+		return nil, false
+	}
+	return o.TwoFactorAuth, true
+}
+
+// HasTwoFactorAuth returns a boolean if a field has been set.
+func (o *UserCreateInput) HasTwoFactorAuth() bool {
+	if o != nil && o.TwoFactorAuth != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTwoFactorAuth gets a reference to the given string and assigns it to the TwoFactorAuth field.
+func (o *UserCreateInput) SetTwoFactorAuth(v string) {
+	o.TwoFactorAuth = &v
+}
+
+// GetVerifiedAt returns the VerifiedAt field value if set, zero value otherwise.
+func (o *UserCreateInput) GetVerifiedAt() time.Time {
+	if o == nil || o.VerifiedAt == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.VerifiedAt
+}
+
+// GetVerifiedAtOk returns a tuple with the VerifiedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UserCreateInput) GetVerifiedAtOk() (*time.Time, bool) {
+	if o == nil || o.VerifiedAt == nil {
+		return nil, false
+	}
+	return o.VerifiedAt, true
+}
+
+// HasVerifiedAt returns a boolean if a field has been set.
+func (o *UserCreateInput) HasVerifiedAt() bool {
+	if o != nil && o.VerifiedAt != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetVerifiedAt gets a reference to the given time.Time and assigns it to the VerifiedAt field.
+func (o *UserCreateInput) SetVerifiedAt(v time.Time) {
+	o.VerifiedAt = &v
 }
 
 func (o UserCreateInput) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["first_name"] = o.FirstName
-	}
-	if true {
-		toSerialize["last_name"] = o.LastName
-	}
-	if o.PhoneNumber != nil {
-		toSerialize["phone_number"] = o.PhoneNumber
-	}
-	if o.Timezone != nil {
-		toSerialize["timezone"] = o.Timezone
-	}
-	if o.Password != nil {
-		toSerialize["password"] = o.Password
-	}
-	if o.Level != nil {
-		toSerialize["level"] = o.Level
-	}
-	if o.Title != nil {
-		toSerialize["title"] = o.Title
+	if o.Avatar != nil {
+		toSerialize["avatar"] = o.Avatar
 	}
 	if o.CompanyName != nil {
 		toSerialize["company_name"] = o.CompanyName
@@ -574,26 +556,44 @@ func (o UserCreateInput) MarshalJSON() ([]byte, error) {
 	if o.CompanyUrl != nil {
 		toSerialize["company_url"] = o.CompanyUrl
 	}
-	if o.VerifiedAt != nil {
-		toSerialize["verified_at"] = o.VerifiedAt
-	}
-	if o.SocialAccounts != nil {
-		toSerialize["social_accounts"] = o.SocialAccounts
-	}
-	if o.TwoFactorAuth != nil {
-		toSerialize["two_factor_auth"] = o.TwoFactorAuth
-	}
-	if o.Avatar != nil {
-		toSerialize["avatar"] = o.Avatar
+	if o.Customdata != nil {
+		toSerialize["customdata"] = o.Customdata
 	}
 	if true {
 		toSerialize["emails"] = o.Emails
 	}
+	if true {
+		toSerialize["first_name"] = o.FirstName
+	}
+	if true {
+		toSerialize["last_name"] = o.LastName
+	}
+	if o.Level != nil {
+		toSerialize["level"] = o.Level
+	}
 	if o.Locked != nil {
 		toSerialize["locked"] = o.Locked
 	}
-	if o.Customdata != nil {
-		toSerialize["customdata"] = o.Customdata
+	if o.Password != nil {
+		toSerialize["password"] = o.Password
+	}
+	if o.PhoneNumber != nil {
+		toSerialize["phone_number"] = o.PhoneNumber
+	}
+	if o.SocialAccounts != nil {
+		toSerialize["social_accounts"] = o.SocialAccounts
+	}
+	if o.Timezone != nil {
+		toSerialize["timezone"] = o.Timezone
+	}
+	if o.Title != nil {
+		toSerialize["title"] = o.Title
+	}
+	if o.TwoFactorAuth != nil {
+		toSerialize["two_factor_auth"] = o.TwoFactorAuth
+	}
+	if o.VerifiedAt != nil {
+		toSerialize["verified_at"] = o.VerifiedAt
 	}
 	return json.Marshal(toSerialize)
 }

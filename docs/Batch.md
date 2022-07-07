@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **string** |  | [optional] 
+**CreatedAt** | Pointer to **time.Time** |  | [optional] 
+**Devices** | Pointer to [**[]FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
 **ErrorMessages** | Pointer to **[]string** |  | [optional] 
+**Id** | Pointer to **string** |  | [optional] 
+**Project** | Pointer to [**FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
 **Quantity** | Pointer to **int32** |  | [optional] 
 **State** | Pointer to **string** |  | [optional] 
-**CreatedAt** | Pointer to **time.Time** |  | [optional] 
 **UpdatedAt** | Pointer to **time.Time** |  | [optional] 
-**Devices** | Pointer to [**[]Href**](Href.md) |  | [optional] 
-**Project** | Pointer to [**Href**](Href.md) |  | [optional] 
 
 ## Methods
 
@@ -31,6 +31,81 @@ will change when the set of required properties is changed
 NewBatchWithDefaults instantiates a new Batch object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetCreatedAt
+
+`func (o *Batch) GetCreatedAt() time.Time`
+
+GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
+
+### GetCreatedAtOk
+
+`func (o *Batch) GetCreatedAtOk() (*time.Time, bool)`
+
+GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCreatedAt
+
+`func (o *Batch) SetCreatedAt(v time.Time)`
+
+SetCreatedAt sets CreatedAt field to given value.
+
+### HasCreatedAt
+
+`func (o *Batch) HasCreatedAt() bool`
+
+HasCreatedAt returns a boolean if a field has been set.
+
+### GetDevices
+
+`func (o *Batch) GetDevices() []FindBatchById200ResponseDevicesInner`
+
+GetDevices returns the Devices field if non-nil, zero value otherwise.
+
+### GetDevicesOk
+
+`func (o *Batch) GetDevicesOk() (*[]FindBatchById200ResponseDevicesInner, bool)`
+
+GetDevicesOk returns a tuple with the Devices field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDevices
+
+`func (o *Batch) SetDevices(v []FindBatchById200ResponseDevicesInner)`
+
+SetDevices sets Devices field to given value.
+
+### HasDevices
+
+`func (o *Batch) HasDevices() bool`
+
+HasDevices returns a boolean if a field has been set.
+
+### GetErrorMessages
+
+`func (o *Batch) GetErrorMessages() []string`
+
+GetErrorMessages returns the ErrorMessages field if non-nil, zero value otherwise.
+
+### GetErrorMessagesOk
+
+`func (o *Batch) GetErrorMessagesOk() (*[]string, bool)`
+
+GetErrorMessagesOk returns a tuple with the ErrorMessages field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetErrorMessages
+
+`func (o *Batch) SetErrorMessages(v []string)`
+
+SetErrorMessages sets ErrorMessages field to given value.
+
+### HasErrorMessages
+
+`func (o *Batch) HasErrorMessages() bool`
+
+HasErrorMessages returns a boolean if a field has been set.
 
 ### GetId
 
@@ -57,30 +132,30 @@ SetId sets Id field to given value.
 
 HasId returns a boolean if a field has been set.
 
-### GetErrorMessages
+### GetProject
 
-`func (o *Batch) GetErrorMessages() []string`
+`func (o *Batch) GetProject() FindBatchById200ResponseDevicesInner`
 
-GetErrorMessages returns the ErrorMessages field if non-nil, zero value otherwise.
+GetProject returns the Project field if non-nil, zero value otherwise.
 
-### GetErrorMessagesOk
+### GetProjectOk
 
-`func (o *Batch) GetErrorMessagesOk() (*[]string, bool)`
+`func (o *Batch) GetProjectOk() (*FindBatchById200ResponseDevicesInner, bool)`
 
-GetErrorMessagesOk returns a tuple with the ErrorMessages field if it's non-nil, zero value otherwise
+GetProjectOk returns a tuple with the Project field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetErrorMessages
+### SetProject
 
-`func (o *Batch) SetErrorMessages(v []string)`
+`func (o *Batch) SetProject(v FindBatchById200ResponseDevicesInner)`
 
-SetErrorMessages sets ErrorMessages field to given value.
+SetProject sets Project field to given value.
 
-### HasErrorMessages
+### HasProject
 
-`func (o *Batch) HasErrorMessages() bool`
+`func (o *Batch) HasProject() bool`
 
-HasErrorMessages returns a boolean if a field has been set.
+HasProject returns a boolean if a field has been set.
 
 ### GetQuantity
 
@@ -132,31 +207,6 @@ SetState sets State field to given value.
 
 HasState returns a boolean if a field has been set.
 
-### GetCreatedAt
-
-`func (o *Batch) GetCreatedAt() time.Time`
-
-GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
-
-### GetCreatedAtOk
-
-`func (o *Batch) GetCreatedAtOk() (*time.Time, bool)`
-
-GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCreatedAt
-
-`func (o *Batch) SetCreatedAt(v time.Time)`
-
-SetCreatedAt sets CreatedAt field to given value.
-
-### HasCreatedAt
-
-`func (o *Batch) HasCreatedAt() bool`
-
-HasCreatedAt returns a boolean if a field has been set.
-
 ### GetUpdatedAt
 
 `func (o *Batch) GetUpdatedAt() time.Time`
@@ -181,56 +231,6 @@ SetUpdatedAt sets UpdatedAt field to given value.
 `func (o *Batch) HasUpdatedAt() bool`
 
 HasUpdatedAt returns a boolean if a field has been set.
-
-### GetDevices
-
-`func (o *Batch) GetDevices() []Href`
-
-GetDevices returns the Devices field if non-nil, zero value otherwise.
-
-### GetDevicesOk
-
-`func (o *Batch) GetDevicesOk() (*[]Href, bool)`
-
-GetDevicesOk returns a tuple with the Devices field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDevices
-
-`func (o *Batch) SetDevices(v []Href)`
-
-SetDevices sets Devices field to given value.
-
-### HasDevices
-
-`func (o *Batch) HasDevices() bool`
-
-HasDevices returns a boolean if a field has been set.
-
-### GetProject
-
-`func (o *Batch) GetProject() Href`
-
-GetProject returns the Project field if non-nil, zero value otherwise.
-
-### GetProjectOk
-
-`func (o *Batch) GetProjectOk() (*Href, bool)`
-
-GetProjectOk returns a tuple with the Project field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetProject
-
-`func (o *Batch) SetProject(v Href)`
-
-SetProject sets Project field to given value.
-
-### HasProject
-
-`func (o *Batch) HasProject() bool`
-
-HasProject returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

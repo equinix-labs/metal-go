@@ -24,27 +24,27 @@ import (
 type ConnectionsApiService service
 
 type ApiCreateConnectionPortVirtualCircuitRequest struct {
-	ctx            context.Context
-	ApiService     *ConnectionsApiService
-	connectionId   string
-	portId         string
-	virtualCircuit *VirtualCircuitCreateInput
+	ctx          context.Context
+	ApiService   *ConnectionsApiService
+	connectionId string
+	portId       string
+	body         *map[string]interface{}
 }
 
 // Virtual Circuit details
-func (r ApiCreateConnectionPortVirtualCircuitRequest) VirtualCircuit(virtualCircuit VirtualCircuitCreateInput) ApiCreateConnectionPortVirtualCircuitRequest {
-	r.virtualCircuit = &virtualCircuit
+func (r ApiCreateConnectionPortVirtualCircuitRequest) Body(body map[string]interface{}) ApiCreateConnectionPortVirtualCircuitRequest {
+	r.body = &body
 	return r
 }
 
-func (r ApiCreateConnectionPortVirtualCircuitRequest) Execute() (*VirtualCircuitList, *http.Response, error) {
+func (r ApiCreateConnectionPortVirtualCircuitRequest) Execute() (map[string]interface{}, *http.Response, error) {
 	return r.ApiService.CreateConnectionPortVirtualCircuitExecute(r)
 }
 
 /*
 CreateConnectionPortVirtualCircuit Create a new Virtual Circuit
 
-Create a new Virtual Circuit on a dedicated connection using a Virtual Network record and an NNI VLAN value.
+Create a new Virtual Circuit on a dedicated connection. To create a regular Virtual Circuit, specify a Virtual Network record and an NNI VLAN value. To create a VRF-based Virtual Circuit, specify the VRF ID and subnet, along with the NNI VLAN value.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param connectionId UUID of the connection
@@ -61,13 +61,13 @@ func (a *ConnectionsApiService) CreateConnectionPortVirtualCircuit(ctx context.C
 }
 
 // Execute executes the request
-//  @return VirtualCircuitList
-func (a *ConnectionsApiService) CreateConnectionPortVirtualCircuitExecute(r ApiCreateConnectionPortVirtualCircuitRequest) (*VirtualCircuitList, *http.Response, error) {
+//  @return map[string]interface{}
+func (a *ConnectionsApiService) CreateConnectionPortVirtualCircuitExecute(r ApiCreateConnectionPortVirtualCircuitRequest) (map[string]interface{}, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *VirtualCircuitList
+		localVarReturnValue map[string]interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConnectionsApiService.CreateConnectionPortVirtualCircuit")
@@ -82,8 +82,8 @@ func (a *ConnectionsApiService) CreateConnectionPortVirtualCircuitExecute(r ApiC
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.virtualCircuit == nil {
-		return localVarReturnValue, nil, reportError("virtualCircuit is required and must be specified")
+	if r.body == nil {
+		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -104,7 +104,7 @@ func (a *ConnectionsApiService) CreateConnectionPortVirtualCircuitExecute(r ApiC
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.virtualCircuit
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -142,7 +142,7 @@ func (a *ConnectionsApiService) CreateConnectionPortVirtualCircuitExecute(r ApiC
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -152,7 +152,7 @@ func (a *ConnectionsApiService) CreateConnectionPortVirtualCircuitExecute(r ApiC
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -179,16 +179,16 @@ type ApiCreateOrganizationInterconnectionRequest struct {
 	ctx            context.Context
 	ApiService     *ConnectionsApiService
 	organizationId string
-	connection     *InterconnectionCreateInput
+	body           *CreateOrganizationInterconnectionRequest
 }
 
 // Connection details
-func (r ApiCreateOrganizationInterconnectionRequest) Connection(connection InterconnectionCreateInput) ApiCreateOrganizationInterconnectionRequest {
-	r.connection = &connection
+func (r ApiCreateOrganizationInterconnectionRequest) Body(body CreateOrganizationInterconnectionRequest) ApiCreateOrganizationInterconnectionRequest {
+	r.body = &body
 	return r
 }
 
-func (r ApiCreateOrganizationInterconnectionRequest) Execute() (*Interconnection, *http.Response, error) {
+func (r ApiCreateOrganizationInterconnectionRequest) Execute() (*GetInterconnection200Response, *http.Response, error) {
 	return r.ApiService.CreateOrganizationInterconnectionExecute(r)
 }
 
@@ -210,13 +210,13 @@ func (a *ConnectionsApiService) CreateOrganizationInterconnection(ctx context.Co
 }
 
 // Execute executes the request
-//  @return Interconnection
-func (a *ConnectionsApiService) CreateOrganizationInterconnectionExecute(r ApiCreateOrganizationInterconnectionRequest) (*Interconnection, *http.Response, error) {
+//  @return GetInterconnection200Response
+func (a *ConnectionsApiService) CreateOrganizationInterconnectionExecute(r ApiCreateOrganizationInterconnectionRequest) (*GetInterconnection200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *Interconnection
+		localVarReturnValue *GetInterconnection200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConnectionsApiService.CreateOrganizationInterconnection")
@@ -230,8 +230,8 @@ func (a *ConnectionsApiService) CreateOrganizationInterconnectionExecute(r ApiCr
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.connection == nil {
-		return localVarReturnValue, nil, reportError("connection is required and must be specified")
+	if r.body == nil {
+		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -252,7 +252,7 @@ func (a *ConnectionsApiService) CreateOrganizationInterconnectionExecute(r ApiCr
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.connection
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -290,7 +290,7 @@ func (a *ConnectionsApiService) CreateOrganizationInterconnectionExecute(r ApiCr
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -300,7 +300,7 @@ func (a *ConnectionsApiService) CreateOrganizationInterconnectionExecute(r ApiCr
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -310,7 +310,7 @@ func (a *ConnectionsApiService) CreateOrganizationInterconnectionExecute(r ApiCr
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -337,16 +337,16 @@ type ApiCreateProjectInterconnectionRequest struct {
 	ctx        context.Context
 	ApiService *ConnectionsApiService
 	projectId  string
-	connection *InterconnectionCreateInput
+	body       *CreateOrganizationInterconnectionRequest
 }
 
 // Connection details
-func (r ApiCreateProjectInterconnectionRequest) Connection(connection InterconnectionCreateInput) ApiCreateProjectInterconnectionRequest {
-	r.connection = &connection
+func (r ApiCreateProjectInterconnectionRequest) Body(body CreateOrganizationInterconnectionRequest) ApiCreateProjectInterconnectionRequest {
+	r.body = &body
 	return r
 }
 
-func (r ApiCreateProjectInterconnectionRequest) Execute() (*Interconnection, *http.Response, error) {
+func (r ApiCreateProjectInterconnectionRequest) Execute() (*GetInterconnection200Response, *http.Response, error) {
 	return r.ApiService.CreateProjectInterconnectionExecute(r)
 }
 
@@ -368,13 +368,13 @@ func (a *ConnectionsApiService) CreateProjectInterconnection(ctx context.Context
 }
 
 // Execute executes the request
-//  @return Interconnection
-func (a *ConnectionsApiService) CreateProjectInterconnectionExecute(r ApiCreateProjectInterconnectionRequest) (*Interconnection, *http.Response, error) {
+//  @return GetInterconnection200Response
+func (a *ConnectionsApiService) CreateProjectInterconnectionExecute(r ApiCreateProjectInterconnectionRequest) (*GetInterconnection200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *Interconnection
+		localVarReturnValue *GetInterconnection200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConnectionsApiService.CreateProjectInterconnection")
@@ -388,8 +388,8 @@ func (a *ConnectionsApiService) CreateProjectInterconnectionExecute(r ApiCreateP
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.connection == nil {
-		return localVarReturnValue, nil, reportError("connection is required and must be specified")
+	if r.body == nil {
+		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -410,7 +410,7 @@ func (a *ConnectionsApiService) CreateProjectInterconnectionExecute(r ApiCreateP
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.connection
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -448,7 +448,7 @@ func (a *ConnectionsApiService) CreateProjectInterconnectionExecute(r ApiCreateP
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -458,7 +458,7 @@ func (a *ConnectionsApiService) CreateProjectInterconnectionExecute(r ApiCreateP
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -487,7 +487,7 @@ type ApiDeleteInterconnectionRequest struct {
 	connectionId string
 }
 
-func (r ApiDeleteInterconnectionRequest) Execute() (*Interconnection, *http.Response, error) {
+func (r ApiDeleteInterconnectionRequest) Execute() (*GetInterconnection200Response, *http.Response, error) {
 	return r.ApiService.DeleteInterconnectionExecute(r)
 }
 
@@ -509,13 +509,13 @@ func (a *ConnectionsApiService) DeleteInterconnection(ctx context.Context, conne
 }
 
 // Execute executes the request
-//  @return Interconnection
-func (a *ConnectionsApiService) DeleteInterconnectionExecute(r ApiDeleteInterconnectionRequest) (*Interconnection, *http.Response, error) {
+//  @return GetInterconnection200Response
+func (a *ConnectionsApiService) DeleteInterconnectionExecute(r ApiDeleteInterconnectionRequest) (*GetInterconnection200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodDelete
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *Interconnection
+		localVarReturnValue *GetInterconnection200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConnectionsApiService.DeleteInterconnection")
@@ -584,7 +584,7 @@ func (a *ConnectionsApiService) DeleteInterconnectionExecute(r ApiDeleteIntercon
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -594,7 +594,7 @@ func (a *ConnectionsApiService) DeleteInterconnectionExecute(r ApiDeleteIntercon
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -623,7 +623,7 @@ type ApiDeleteVirtualCircuitRequest struct {
 	id         string
 }
 
-func (r ApiDeleteVirtualCircuitRequest) Execute() (*VirtualCircuit, *http.Response, error) {
+func (r ApiDeleteVirtualCircuitRequest) Execute() (map[string]interface{}, *http.Response, error) {
 	return r.ApiService.DeleteVirtualCircuitExecute(r)
 }
 
@@ -645,13 +645,13 @@ func (a *ConnectionsApiService) DeleteVirtualCircuit(ctx context.Context, id str
 }
 
 // Execute executes the request
-//  @return VirtualCircuit
-func (a *ConnectionsApiService) DeleteVirtualCircuitExecute(r ApiDeleteVirtualCircuitRequest) (*VirtualCircuit, *http.Response, error) {
+//  @return map[string]interface{}
+func (a *ConnectionsApiService) DeleteVirtualCircuitExecute(r ApiDeleteVirtualCircuitRequest) (map[string]interface{}, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodDelete
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *VirtualCircuit
+		localVarReturnValue map[string]interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConnectionsApiService.DeleteVirtualCircuit")
@@ -720,7 +720,7 @@ func (a *ConnectionsApiService) DeleteVirtualCircuitExecute(r ApiDeleteVirtualCi
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -730,7 +730,7 @@ func (a *ConnectionsApiService) DeleteVirtualCircuitExecute(r ApiDeleteVirtualCi
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -760,7 +760,7 @@ type ApiGetConnectionPortRequest struct {
 	id           string
 }
 
-func (r ApiGetConnectionPortRequest) Execute() (*InterconnectionPort, *http.Response, error) {
+func (r ApiGetConnectionPortRequest) Execute() (*GetInterconnection200ResponsePortsInner, *http.Response, error) {
 	return r.ApiService.GetConnectionPortExecute(r)
 }
 
@@ -784,13 +784,13 @@ func (a *ConnectionsApiService) GetConnectionPort(ctx context.Context, connectio
 }
 
 // Execute executes the request
-//  @return InterconnectionPort
-func (a *ConnectionsApiService) GetConnectionPortExecute(r ApiGetConnectionPortRequest) (*InterconnectionPort, *http.Response, error) {
+//  @return GetInterconnection200ResponsePortsInner
+func (a *ConnectionsApiService) GetConnectionPortExecute(r ApiGetConnectionPortRequest) (*GetInterconnection200ResponsePortsInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *InterconnectionPort
+		localVarReturnValue *GetInterconnection200ResponsePortsInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConnectionsApiService.GetConnectionPort")
@@ -860,7 +860,7 @@ func (a *ConnectionsApiService) GetConnectionPortExecute(r ApiGetConnectionPortR
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -870,7 +870,7 @@ func (a *ConnectionsApiService) GetConnectionPortExecute(r ApiGetConnectionPortR
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -899,7 +899,7 @@ type ApiGetInterconnectionRequest struct {
 	connectionId string
 }
 
-func (r ApiGetInterconnectionRequest) Execute() (*Interconnection, *http.Response, error) {
+func (r ApiGetInterconnectionRequest) Execute() (*GetInterconnection200Response, *http.Response, error) {
 	return r.ApiService.GetInterconnectionExecute(r)
 }
 
@@ -921,13 +921,13 @@ func (a *ConnectionsApiService) GetInterconnection(ctx context.Context, connecti
 }
 
 // Execute executes the request
-//  @return Interconnection
-func (a *ConnectionsApiService) GetInterconnectionExecute(r ApiGetInterconnectionRequest) (*Interconnection, *http.Response, error) {
+//  @return GetInterconnection200Response
+func (a *ConnectionsApiService) GetInterconnectionExecute(r ApiGetInterconnectionRequest) (*GetInterconnection200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *Interconnection
+		localVarReturnValue *GetInterconnection200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConnectionsApiService.GetInterconnection")
@@ -996,7 +996,7 @@ func (a *ConnectionsApiService) GetInterconnectionExecute(r ApiGetInterconnectio
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1006,7 +1006,7 @@ func (a *ConnectionsApiService) GetInterconnectionExecute(r ApiGetInterconnectio
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1035,7 +1035,7 @@ type ApiGetVirtualCircuitRequest struct {
 	id         string
 }
 
-func (r ApiGetVirtualCircuitRequest) Execute() (*VirtualCircuit, *http.Response, error) {
+func (r ApiGetVirtualCircuitRequest) Execute() (map[string]interface{}, *http.Response, error) {
 	return r.ApiService.GetVirtualCircuitExecute(r)
 }
 
@@ -1057,13 +1057,13 @@ func (a *ConnectionsApiService) GetVirtualCircuit(ctx context.Context, id string
 }
 
 // Execute executes the request
-//  @return VirtualCircuit
-func (a *ConnectionsApiService) GetVirtualCircuitExecute(r ApiGetVirtualCircuitRequest) (*VirtualCircuit, *http.Response, error) {
+//  @return map[string]interface{}
+func (a *ConnectionsApiService) GetVirtualCircuitExecute(r ApiGetVirtualCircuitRequest) (map[string]interface{}, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *VirtualCircuit
+		localVarReturnValue map[string]interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConnectionsApiService.GetVirtualCircuit")
@@ -1132,7 +1132,7 @@ func (a *ConnectionsApiService) GetVirtualCircuitExecute(r ApiGetVirtualCircuitR
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1142,7 +1142,7 @@ func (a *ConnectionsApiService) GetVirtualCircuitExecute(r ApiGetVirtualCircuitR
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1172,7 +1172,7 @@ type ApiListConnectionPortVirtualCircuitsRequest struct {
 	portId       string
 }
 
-func (r ApiListConnectionPortVirtualCircuitsRequest) Execute() (*VirtualCircuitList, *http.Response, error) {
+func (r ApiListConnectionPortVirtualCircuitsRequest) Execute() (*GetInterconnection200ResponsePortsInnerVirtualCircuits, *http.Response, error) {
 	return r.ApiService.ListConnectionPortVirtualCircuitsExecute(r)
 }
 
@@ -1196,13 +1196,13 @@ func (a *ConnectionsApiService) ListConnectionPortVirtualCircuits(ctx context.Co
 }
 
 // Execute executes the request
-//  @return VirtualCircuitList
-func (a *ConnectionsApiService) ListConnectionPortVirtualCircuitsExecute(r ApiListConnectionPortVirtualCircuitsRequest) (*VirtualCircuitList, *http.Response, error) {
+//  @return GetInterconnection200ResponsePortsInnerVirtualCircuits
+func (a *ConnectionsApiService) ListConnectionPortVirtualCircuitsExecute(r ApiListConnectionPortVirtualCircuitsRequest) (*GetInterconnection200ResponsePortsInnerVirtualCircuits, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *VirtualCircuitList
+		localVarReturnValue *GetInterconnection200ResponsePortsInnerVirtualCircuits
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConnectionsApiService.ListConnectionPortVirtualCircuits")
@@ -1272,7 +1272,7 @@ func (a *ConnectionsApiService) ListConnectionPortVirtualCircuitsExecute(r ApiLi
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1282,7 +1282,7 @@ func (a *ConnectionsApiService) ListConnectionPortVirtualCircuitsExecute(r ApiLi
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1311,7 +1311,7 @@ type ApiListConnectionPortsRequest struct {
 	connectionId string
 }
 
-func (r ApiListConnectionPortsRequest) Execute() (*InterconnectionPortList, *http.Response, error) {
+func (r ApiListConnectionPortsRequest) Execute() (*ListConnectionPorts200Response, *http.Response, error) {
 	return r.ApiService.ListConnectionPortsExecute(r)
 }
 
@@ -1333,13 +1333,13 @@ func (a *ConnectionsApiService) ListConnectionPorts(ctx context.Context, connect
 }
 
 // Execute executes the request
-//  @return InterconnectionPortList
-func (a *ConnectionsApiService) ListConnectionPortsExecute(r ApiListConnectionPortsRequest) (*InterconnectionPortList, *http.Response, error) {
+//  @return ListConnectionPorts200Response
+func (a *ConnectionsApiService) ListConnectionPortsExecute(r ApiListConnectionPortsRequest) (*ListConnectionPorts200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *InterconnectionPortList
+		localVarReturnValue *ListConnectionPorts200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConnectionsApiService.ListConnectionPorts")
@@ -1408,7 +1408,7 @@ func (a *ConnectionsApiService) ListConnectionPortsExecute(r ApiListConnectionPo
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1418,7 +1418,7 @@ func (a *ConnectionsApiService) ListConnectionPortsExecute(r ApiListConnectionPo
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1447,7 +1447,7 @@ type ApiOrganizationListInterconnectionsRequest struct {
 	organizationId string
 }
 
-func (r ApiOrganizationListInterconnectionsRequest) Execute() (*InterconnectionList, *http.Response, error) {
+func (r ApiOrganizationListInterconnectionsRequest) Execute() (*OrganizationListInterconnections200Response, *http.Response, error) {
 	return r.ApiService.OrganizationListInterconnectionsExecute(r)
 }
 
@@ -1469,13 +1469,13 @@ func (a *ConnectionsApiService) OrganizationListInterconnections(ctx context.Con
 }
 
 // Execute executes the request
-//  @return InterconnectionList
-func (a *ConnectionsApiService) OrganizationListInterconnectionsExecute(r ApiOrganizationListInterconnectionsRequest) (*InterconnectionList, *http.Response, error) {
+//  @return OrganizationListInterconnections200Response
+func (a *ConnectionsApiService) OrganizationListInterconnectionsExecute(r ApiOrganizationListInterconnectionsRequest) (*OrganizationListInterconnections200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *InterconnectionList
+		localVarReturnValue *OrganizationListInterconnections200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConnectionsApiService.OrganizationListInterconnections")
@@ -1544,7 +1544,7 @@ func (a *ConnectionsApiService) OrganizationListInterconnectionsExecute(r ApiOrg
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1554,7 +1554,7 @@ func (a *ConnectionsApiService) OrganizationListInterconnectionsExecute(r ApiOrg
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1583,7 +1583,7 @@ type ApiProjectListInterconnectionsRequest struct {
 	projectId  string
 }
 
-func (r ApiProjectListInterconnectionsRequest) Execute() (*InterconnectionList, *http.Response, error) {
+func (r ApiProjectListInterconnectionsRequest) Execute() (*OrganizationListInterconnections200Response, *http.Response, error) {
 	return r.ApiService.ProjectListInterconnectionsExecute(r)
 }
 
@@ -1605,13 +1605,13 @@ func (a *ConnectionsApiService) ProjectListInterconnections(ctx context.Context,
 }
 
 // Execute executes the request
-//  @return InterconnectionList
-func (a *ConnectionsApiService) ProjectListInterconnectionsExecute(r ApiProjectListInterconnectionsRequest) (*InterconnectionList, *http.Response, error) {
+//  @return OrganizationListInterconnections200Response
+func (a *ConnectionsApiService) ProjectListInterconnectionsExecute(r ApiProjectListInterconnectionsRequest) (*OrganizationListInterconnections200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *InterconnectionList
+		localVarReturnValue *OrganizationListInterconnections200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConnectionsApiService.ProjectListInterconnections")
@@ -1680,7 +1680,7 @@ func (a *ConnectionsApiService) ProjectListInterconnectionsExecute(r ApiProjectL
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1690,7 +1690,7 @@ func (a *ConnectionsApiService) ProjectListInterconnectionsExecute(r ApiProjectL
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1717,16 +1717,16 @@ type ApiUpdateInterconnectionRequest struct {
 	ctx          context.Context
 	ApiService   *ConnectionsApiService
 	connectionId string
-	connection   *InterconnectionUpdateInput
+	body         *UpdateInterconnectionRequest
 }
 
 // Updated connection details
-func (r ApiUpdateInterconnectionRequest) Connection(connection InterconnectionUpdateInput) ApiUpdateInterconnectionRequest {
-	r.connection = &connection
+func (r ApiUpdateInterconnectionRequest) Body(body UpdateInterconnectionRequest) ApiUpdateInterconnectionRequest {
+	r.body = &body
 	return r
 }
 
-func (r ApiUpdateInterconnectionRequest) Execute() (*Interconnection, *http.Response, error) {
+func (r ApiUpdateInterconnectionRequest) Execute() (*GetInterconnection200Response, *http.Response, error) {
 	return r.ApiService.UpdateInterconnectionExecute(r)
 }
 
@@ -1748,13 +1748,13 @@ func (a *ConnectionsApiService) UpdateInterconnection(ctx context.Context, conne
 }
 
 // Execute executes the request
-//  @return Interconnection
-func (a *ConnectionsApiService) UpdateInterconnectionExecute(r ApiUpdateInterconnectionRequest) (*Interconnection, *http.Response, error) {
+//  @return GetInterconnection200Response
+func (a *ConnectionsApiService) UpdateInterconnectionExecute(r ApiUpdateInterconnectionRequest) (*GetInterconnection200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *Interconnection
+		localVarReturnValue *GetInterconnection200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConnectionsApiService.UpdateInterconnection")
@@ -1768,8 +1768,8 @@ func (a *ConnectionsApiService) UpdateInterconnectionExecute(r ApiUpdateIntercon
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.connection == nil {
-		return localVarReturnValue, nil, reportError("connection is required and must be specified")
+	if r.body == nil {
+		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -1790,7 +1790,7 @@ func (a *ConnectionsApiService) UpdateInterconnectionExecute(r ApiUpdateIntercon
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.connection
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1828,7 +1828,7 @@ func (a *ConnectionsApiService) UpdateInterconnectionExecute(r ApiUpdateIntercon
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1838,7 +1838,7 @@ func (a *ConnectionsApiService) UpdateInterconnectionExecute(r ApiUpdateIntercon
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1862,19 +1862,19 @@ func (a *ConnectionsApiService) UpdateInterconnectionExecute(r ApiUpdateIntercon
 }
 
 type ApiUpdateVirtualCircuitRequest struct {
-	ctx            context.Context
-	ApiService     *ConnectionsApiService
-	id             string
-	virtualCircuit *VirtualCircuitUpdateInput
+	ctx        context.Context
+	ApiService *ConnectionsApiService
+	id         string
+	body       *map[string]interface{}
 }
 
 // Updated Virtual Circuit details
-func (r ApiUpdateVirtualCircuitRequest) VirtualCircuit(virtualCircuit VirtualCircuitUpdateInput) ApiUpdateVirtualCircuitRequest {
-	r.virtualCircuit = &virtualCircuit
+func (r ApiUpdateVirtualCircuitRequest) Body(body map[string]interface{}) ApiUpdateVirtualCircuitRequest {
+	r.body = &body
 	return r
 }
 
-func (r ApiUpdateVirtualCircuitRequest) Execute() (*VirtualCircuit, *http.Response, error) {
+func (r ApiUpdateVirtualCircuitRequest) Execute() (map[string]interface{}, *http.Response, error) {
 	return r.ApiService.UpdateVirtualCircuitExecute(r)
 }
 
@@ -1896,13 +1896,13 @@ func (a *ConnectionsApiService) UpdateVirtualCircuit(ctx context.Context, id str
 }
 
 // Execute executes the request
-//  @return VirtualCircuit
-func (a *ConnectionsApiService) UpdateVirtualCircuitExecute(r ApiUpdateVirtualCircuitRequest) (*VirtualCircuit, *http.Response, error) {
+//  @return map[string]interface{}
+func (a *ConnectionsApiService) UpdateVirtualCircuitExecute(r ApiUpdateVirtualCircuitRequest) (map[string]interface{}, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *VirtualCircuit
+		localVarReturnValue map[string]interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConnectionsApiService.UpdateVirtualCircuit")
@@ -1916,8 +1916,8 @@ func (a *ConnectionsApiService) UpdateVirtualCircuitExecute(r ApiUpdateVirtualCi
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.virtualCircuit == nil {
-		return localVarReturnValue, nil, reportError("virtualCircuit is required and must be specified")
+	if r.body == nil {
+		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -1938,7 +1938,7 @@ func (a *ConnectionsApiService) UpdateVirtualCircuitExecute(r ApiUpdateVirtualCi
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.virtualCircuit
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1976,7 +1976,7 @@ func (a *ConnectionsApiService) UpdateVirtualCircuitExecute(r ApiUpdateVirtualCi
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1986,7 +1986,7 @@ func (a *ConnectionsApiService) UpdateVirtualCircuitExecute(r ApiUpdateVirtualCi
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

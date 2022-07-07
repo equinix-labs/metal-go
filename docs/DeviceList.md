@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Devices** | Pointer to [**[]Device**](Device.md) |  | [optional] 
-**Meta** | Pointer to [**Meta**](Meta.md) |  | [optional] 
+**Devices** | Pointer to [**[]FindDeviceById200Response**](FindDeviceById200Response.md) |  | [optional] 
+**Meta** | Pointer to [**FindDeviceEvents200ResponseMeta**](FindDeviceEvents200ResponseMeta.md) |  | [optional] 
 
 ## Methods
 
@@ -28,20 +28,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetDevices
 
-`func (o *DeviceList) GetDevices() []Device`
+`func (o *DeviceList) GetDevices() []FindDeviceById200Response`
 
 GetDevices returns the Devices field if non-nil, zero value otherwise.
 
 ### GetDevicesOk
 
-`func (o *DeviceList) GetDevicesOk() (*[]Device, bool)`
+`func (o *DeviceList) GetDevicesOk() (*[]FindDeviceById200Response, bool)`
 
 GetDevicesOk returns a tuple with the Devices field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDevices
 
-`func (o *DeviceList) SetDevices(v []Device)`
+`func (o *DeviceList) SetDevices(v []FindDeviceById200Response)`
 
 SetDevices sets Devices field to given value.
 
@@ -53,20 +53,20 @@ HasDevices returns a boolean if a field has been set.
 
 ### GetMeta
 
-`func (o *DeviceList) GetMeta() Meta`
+`func (o *DeviceList) GetMeta() FindDeviceEvents200ResponseMeta`
 
 GetMeta returns the Meta field if non-nil, zero value otherwise.
 
 ### GetMetaOk
 
-`func (o *DeviceList) GetMetaOk() (*Meta, bool)`
+`func (o *DeviceList) GetMetaOk() (*FindDeviceEvents200ResponseMeta, bool)`
 
 GetMetaOk returns a tuple with the Meta field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMeta
 
-`func (o *DeviceList) SetMeta(v Meta)`
+`func (o *DeviceList) SetMeta(v FindDeviceEvents200ResponseMeta)`
 
 SetMeta sets Meta field to given value.
 

@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Network** | Pointer to **string** |  | [optional] 
-**Netmask** | Pointer to **string** |  | [optional] 
 **Cidr** | Pointer to **int32** |  | [optional] 
 **Href** | Pointer to **string** |  | [optional] 
+**Netmask** | Pointer to **string** |  | [optional] 
+**Network** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -27,56 +27,6 @@ will change when the set of required properties is changed
 NewParentBlockWithDefaults instantiates a new ParentBlock object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetNetwork
-
-`func (o *ParentBlock) GetNetwork() string`
-
-GetNetwork returns the Network field if non-nil, zero value otherwise.
-
-### GetNetworkOk
-
-`func (o *ParentBlock) GetNetworkOk() (*string, bool)`
-
-GetNetworkOk returns a tuple with the Network field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetNetwork
-
-`func (o *ParentBlock) SetNetwork(v string)`
-
-SetNetwork sets Network field to given value.
-
-### HasNetwork
-
-`func (o *ParentBlock) HasNetwork() bool`
-
-HasNetwork returns a boolean if a field has been set.
-
-### GetNetmask
-
-`func (o *ParentBlock) GetNetmask() string`
-
-GetNetmask returns the Netmask field if non-nil, zero value otherwise.
-
-### GetNetmaskOk
-
-`func (o *ParentBlock) GetNetmaskOk() (*string, bool)`
-
-GetNetmaskOk returns a tuple with the Netmask field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetNetmask
-
-`func (o *ParentBlock) SetNetmask(v string)`
-
-SetNetmask sets Netmask field to given value.
-
-### HasNetmask
-
-`func (o *ParentBlock) HasNetmask() bool`
-
-HasNetmask returns a boolean if a field has been set.
 
 ### GetCidr
 
@@ -127,6 +77,56 @@ SetHref sets Href field to given value.
 `func (o *ParentBlock) HasHref() bool`
 
 HasHref returns a boolean if a field has been set.
+
+### GetNetmask
+
+`func (o *ParentBlock) GetNetmask() string`
+
+GetNetmask returns the Netmask field if non-nil, zero value otherwise.
+
+### GetNetmaskOk
+
+`func (o *ParentBlock) GetNetmaskOk() (*string, bool)`
+
+GetNetmaskOk returns a tuple with the Netmask field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNetmask
+
+`func (o *ParentBlock) SetNetmask(v string)`
+
+SetNetmask sets Netmask field to given value.
+
+### HasNetmask
+
+`func (o *ParentBlock) HasNetmask() bool`
+
+HasNetmask returns a boolean if a field has been set.
+
+### GetNetwork
+
+`func (o *ParentBlock) GetNetwork() string`
+
+GetNetwork returns the Network field if non-nil, zero value otherwise.
+
+### GetNetworkOk
+
+`func (o *ParentBlock) GetNetworkOk() (*string, bool)`
+
+GetNetworkOk returns a tuple with the Network field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNetwork
+
+`func (o *ParentBlock) SetNetwork(v string)`
+
+SetNetwork sets Network field to given value.
+
+### HasNetwork
+
+`func (o *ParentBlock) HasNetwork() bool`
+
+HasNetwork returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

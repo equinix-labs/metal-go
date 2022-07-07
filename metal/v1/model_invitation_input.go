@@ -19,8 +19,8 @@ import (
 type InvitationInput struct {
 	Invitee     string   `json:"invitee"`
 	Message     *string  `json:"message,omitempty"`
-	Roles       []string `json:"roles,omitempty"`
 	ProjectsIds []string `json:"projects_ids,omitempty"`
+	Roles       []string `json:"roles,omitempty"`
 }
 
 // NewInvitationInput instantiates a new InvitationInput object
@@ -97,38 +97,6 @@ func (o *InvitationInput) SetMessage(v string) {
 	o.Message = &v
 }
 
-// GetRoles returns the Roles field value if set, zero value otherwise.
-func (o *InvitationInput) GetRoles() []string {
-	if o == nil || o.Roles == nil {
-		var ret []string
-		return ret
-	}
-	return o.Roles
-}
-
-// GetRolesOk returns a tuple with the Roles field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *InvitationInput) GetRolesOk() ([]string, bool) {
-	if o == nil || o.Roles == nil {
-		return nil, false
-	}
-	return o.Roles, true
-}
-
-// HasRoles returns a boolean if a field has been set.
-func (o *InvitationInput) HasRoles() bool {
-	if o != nil && o.Roles != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetRoles gets a reference to the given []string and assigns it to the Roles field.
-func (o *InvitationInput) SetRoles(v []string) {
-	o.Roles = v
-}
-
 // GetProjectsIds returns the ProjectsIds field value if set, zero value otherwise.
 func (o *InvitationInput) GetProjectsIds() []string {
 	if o == nil || o.ProjectsIds == nil {
@@ -161,6 +129,38 @@ func (o *InvitationInput) SetProjectsIds(v []string) {
 	o.ProjectsIds = v
 }
 
+// GetRoles returns the Roles field value if set, zero value otherwise.
+func (o *InvitationInput) GetRoles() []string {
+	if o == nil || o.Roles == nil {
+		var ret []string
+		return ret
+	}
+	return o.Roles
+}
+
+// GetRolesOk returns a tuple with the Roles field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *InvitationInput) GetRolesOk() ([]string, bool) {
+	if o == nil || o.Roles == nil {
+		return nil, false
+	}
+	return o.Roles, true
+}
+
+// HasRoles returns a boolean if a field has been set.
+func (o *InvitationInput) HasRoles() bool {
+	if o != nil && o.Roles != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetRoles gets a reference to the given []string and assigns it to the Roles field.
+func (o *InvitationInput) SetRoles(v []string) {
+	o.Roles = v
+}
+
 func (o InvitationInput) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
@@ -169,11 +169,11 @@ func (o InvitationInput) MarshalJSON() ([]byte, error) {
 	if o.Message != nil {
 		toSerialize["message"] = o.Message
 	}
-	if o.Roles != nil {
-		toSerialize["roles"] = o.Roles
-	}
 	if o.ProjectsIds != nil {
 		toSerialize["projects_ids"] = o.ProjectsIds
+	}
+	if o.Roles != nil {
+		toSerialize["roles"] = o.Roles
 	}
 	return json.Marshal(toSerialize)
 }

@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **string** |  | [optional] 
-**State** | Pointer to **string** |  | [optional] 
-**Type** | Pointer to **string** |  | [optional] 
 **Body** | Pointer to **string** |  | [optional] 
-**Relationships** | Pointer to [**[]Href**](Href.md) |  | [optional] 
-**Interpolated** | Pointer to **string** |  | [optional] 
 **CreatedAt** | Pointer to **time.Time** |  | [optional] 
 **Href** | Pointer to **string** |  | [optional] 
+**Id** | Pointer to **string** |  | [optional] 
+**Interpolated** | Pointer to **string** |  | [optional] 
+**Relationships** | Pointer to [**[]FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
+**State** | Pointer to **string** |  | [optional] 
+**Type** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -31,81 +31,6 @@ will change when the set of required properties is changed
 NewEventWithDefaults instantiates a new Event object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetId
-
-`func (o *Event) GetId() string`
-
-GetId returns the Id field if non-nil, zero value otherwise.
-
-### GetIdOk
-
-`func (o *Event) GetIdOk() (*string, bool)`
-
-GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetId
-
-`func (o *Event) SetId(v string)`
-
-SetId sets Id field to given value.
-
-### HasId
-
-`func (o *Event) HasId() bool`
-
-HasId returns a boolean if a field has been set.
-
-### GetState
-
-`func (o *Event) GetState() string`
-
-GetState returns the State field if non-nil, zero value otherwise.
-
-### GetStateOk
-
-`func (o *Event) GetStateOk() (*string, bool)`
-
-GetStateOk returns a tuple with the State field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetState
-
-`func (o *Event) SetState(v string)`
-
-SetState sets State field to given value.
-
-### HasState
-
-`func (o *Event) HasState() bool`
-
-HasState returns a boolean if a field has been set.
-
-### GetType
-
-`func (o *Event) GetType() string`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *Event) GetTypeOk() (*string, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *Event) SetType(v string)`
-
-SetType sets Type field to given value.
-
-### HasType
-
-`func (o *Event) HasType() bool`
-
-HasType returns a boolean if a field has been set.
 
 ### GetBody
 
@@ -131,56 +56,6 @@ SetBody sets Body field to given value.
 `func (o *Event) HasBody() bool`
 
 HasBody returns a boolean if a field has been set.
-
-### GetRelationships
-
-`func (o *Event) GetRelationships() []Href`
-
-GetRelationships returns the Relationships field if non-nil, zero value otherwise.
-
-### GetRelationshipsOk
-
-`func (o *Event) GetRelationshipsOk() (*[]Href, bool)`
-
-GetRelationshipsOk returns a tuple with the Relationships field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRelationships
-
-`func (o *Event) SetRelationships(v []Href)`
-
-SetRelationships sets Relationships field to given value.
-
-### HasRelationships
-
-`func (o *Event) HasRelationships() bool`
-
-HasRelationships returns a boolean if a field has been set.
-
-### GetInterpolated
-
-`func (o *Event) GetInterpolated() string`
-
-GetInterpolated returns the Interpolated field if non-nil, zero value otherwise.
-
-### GetInterpolatedOk
-
-`func (o *Event) GetInterpolatedOk() (*string, bool)`
-
-GetInterpolatedOk returns a tuple with the Interpolated field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetInterpolated
-
-`func (o *Event) SetInterpolated(v string)`
-
-SetInterpolated sets Interpolated field to given value.
-
-### HasInterpolated
-
-`func (o *Event) HasInterpolated() bool`
-
-HasInterpolated returns a boolean if a field has been set.
 
 ### GetCreatedAt
 
@@ -231,6 +106,131 @@ SetHref sets Href field to given value.
 `func (o *Event) HasHref() bool`
 
 HasHref returns a boolean if a field has been set.
+
+### GetId
+
+`func (o *Event) GetId() string`
+
+GetId returns the Id field if non-nil, zero value otherwise.
+
+### GetIdOk
+
+`func (o *Event) GetIdOk() (*string, bool)`
+
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetId
+
+`func (o *Event) SetId(v string)`
+
+SetId sets Id field to given value.
+
+### HasId
+
+`func (o *Event) HasId() bool`
+
+HasId returns a boolean if a field has been set.
+
+### GetInterpolated
+
+`func (o *Event) GetInterpolated() string`
+
+GetInterpolated returns the Interpolated field if non-nil, zero value otherwise.
+
+### GetInterpolatedOk
+
+`func (o *Event) GetInterpolatedOk() (*string, bool)`
+
+GetInterpolatedOk returns a tuple with the Interpolated field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetInterpolated
+
+`func (o *Event) SetInterpolated(v string)`
+
+SetInterpolated sets Interpolated field to given value.
+
+### HasInterpolated
+
+`func (o *Event) HasInterpolated() bool`
+
+HasInterpolated returns a boolean if a field has been set.
+
+### GetRelationships
+
+`func (o *Event) GetRelationships() []FindBatchById200ResponseDevicesInner`
+
+GetRelationships returns the Relationships field if non-nil, zero value otherwise.
+
+### GetRelationshipsOk
+
+`func (o *Event) GetRelationshipsOk() (*[]FindBatchById200ResponseDevicesInner, bool)`
+
+GetRelationshipsOk returns a tuple with the Relationships field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRelationships
+
+`func (o *Event) SetRelationships(v []FindBatchById200ResponseDevicesInner)`
+
+SetRelationships sets Relationships field to given value.
+
+### HasRelationships
+
+`func (o *Event) HasRelationships() bool`
+
+HasRelationships returns a boolean if a field has been set.
+
+### GetState
+
+`func (o *Event) GetState() string`
+
+GetState returns the State field if non-nil, zero value otherwise.
+
+### GetStateOk
+
+`func (o *Event) GetStateOk() (*string, bool)`
+
+GetStateOk returns a tuple with the State field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetState
+
+`func (o *Event) SetState(v string)`
+
+SetState sets State field to given value.
+
+### HasState
+
+`func (o *Event) HasState() bool`
+
+HasState returns a boolean if a field has been set.
+
+### GetType
+
+`func (o *Event) GetType() string`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *Event) GetTypeOk() (*string, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *Event) SetType(v string)`
+
+SetType sets Type field to given value.
+
+### HasType
+
+`func (o *Event) HasType() bool`
+
+HasType returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

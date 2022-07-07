@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**SshKeys** | Pointer to [**[]SSHKey**](SSHKey.md) |  | [optional] 
+**SshKeys** | Pointer to [**[]FindDeviceSSHKeys200ResponseSshKeysInner**](FindDeviceSSHKeys200ResponseSshKeysInner.md) |  | [optional] 
 
 ## Methods
 
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetSshKeys
 
-`func (o *SSHKeyList) GetSshKeys() []SSHKey`
+`func (o *SSHKeyList) GetSshKeys() []FindDeviceSSHKeys200ResponseSshKeysInner`
 
 GetSshKeys returns the SshKeys field if non-nil, zero value otherwise.
 
 ### GetSshKeysOk
 
-`func (o *SSHKeyList) GetSshKeysOk() (*[]SSHKey, bool)`
+`func (o *SSHKeyList) GetSshKeysOk() (*[]FindDeviceSSHKeys200ResponseSshKeysInner, bool)`
 
 GetSshKeysOk returns a tuple with the SshKeys field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSshKeys
 
-`func (o *SSHKeyList) SetSshKeys(v []SSHKey)`
+`func (o *SSHKeyList) SetSshKeys(v []FindDeviceSSHKeys200ResponseSshKeysInner)`
 
 SetSshKeys sets SshKeys field to given value.
 

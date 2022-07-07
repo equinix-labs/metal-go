@@ -17,10 +17,10 @@ import (
 
 // Metro struct for Metro
 type Metro struct {
-	Id      *string `json:"id,omitempty"`
-	Name    *string `json:"name,omitempty"`
 	Code    *string `json:"code,omitempty"`
 	Country *string `json:"country,omitempty"`
+	Id      *string `json:"id,omitempty"`
+	Name    *string `json:"name,omitempty"`
 }
 
 // NewMetro instantiates a new Metro object
@@ -38,70 +38,6 @@ func NewMetro() *Metro {
 func NewMetroWithDefaults() *Metro {
 	this := Metro{}
 	return &this
-}
-
-// GetId returns the Id field value if set, zero value otherwise.
-func (o *Metro) GetId() string {
-	if o == nil || o.Id == nil {
-		var ret string
-		return ret
-	}
-	return *o.Id
-}
-
-// GetIdOk returns a tuple with the Id field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Metro) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
-		return nil, false
-	}
-	return o.Id, true
-}
-
-// HasId returns a boolean if a field has been set.
-func (o *Metro) HasId() bool {
-	if o != nil && o.Id != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetId gets a reference to the given string and assigns it to the Id field.
-func (o *Metro) SetId(v string) {
-	o.Id = &v
-}
-
-// GetName returns the Name field value if set, zero value otherwise.
-func (o *Metro) GetName() string {
-	if o == nil || o.Name == nil {
-		var ret string
-		return ret
-	}
-	return *o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Metro) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
-		return nil, false
-	}
-	return o.Name, true
-}
-
-// HasName returns a boolean if a field has been set.
-func (o *Metro) HasName() bool {
-	if o != nil && o.Name != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetName gets a reference to the given string and assigns it to the Name field.
-func (o *Metro) SetName(v string) {
-	o.Name = &v
 }
 
 // GetCode returns the Code field value if set, zero value otherwise.
@@ -168,19 +104,83 @@ func (o *Metro) SetCountry(v string) {
 	o.Country = &v
 }
 
+// GetId returns the Id field value if set, zero value otherwise.
+func (o *Metro) GetId() string {
+	if o == nil || o.Id == nil {
+		var ret string
+		return ret
+	}
+	return *o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Metro) GetIdOk() (*string, bool) {
+	if o == nil || o.Id == nil {
+		return nil, false
+	}
+	return o.Id, true
+}
+
+// HasId returns a boolean if a field has been set.
+func (o *Metro) HasId() bool {
+	if o != nil && o.Id != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given string and assigns it to the Id field.
+func (o *Metro) SetId(v string) {
+	o.Id = &v
+}
+
+// GetName returns the Name field value if set, zero value otherwise.
+func (o *Metro) GetName() string {
+	if o == nil || o.Name == nil {
+		var ret string
+		return ret
+	}
+	return *o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Metro) GetNameOk() (*string, bool) {
+	if o == nil || o.Name == nil {
+		return nil, false
+	}
+	return o.Name, true
+}
+
+// HasName returns a boolean if a field has been set.
+func (o *Metro) HasName() bool {
+	if o != nil && o.Name != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetName gets a reference to the given string and assigns it to the Name field.
+func (o *Metro) SetName(v string) {
+	o.Name = &v
+}
+
 func (o Metro) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
-	}
-	if o.Name != nil {
-		toSerialize["name"] = o.Name
-	}
 	if o.Code != nil {
 		toSerialize["code"] = o.Code
 	}
 	if o.Country != nil {
 		toSerialize["country"] = o.Country
+	}
+	if o.Id != nil {
+		toSerialize["id"] = o.Id
+	}
+	if o.Name != nil {
+		toSerialize["name"] = o.Name
 	}
 	return json.Marshal(toSerialize)
 }

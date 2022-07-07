@@ -17,9 +17,9 @@ import (
 
 // PaymentMethodBillingAddress struct for PaymentMethodBillingAddress
 type PaymentMethodBillingAddress struct {
-	StreetAddress     *string `json:"street_address,omitempty"`
-	PostalCode        *string `json:"postal_code,omitempty"`
 	CountryCodeAlpha2 *string `json:"country_code_alpha2,omitempty"`
+	PostalCode        *string `json:"postal_code,omitempty"`
+	StreetAddress     *string `json:"street_address,omitempty"`
 }
 
 // NewPaymentMethodBillingAddress instantiates a new PaymentMethodBillingAddress object
@@ -37,70 +37,6 @@ func NewPaymentMethodBillingAddress() *PaymentMethodBillingAddress {
 func NewPaymentMethodBillingAddressWithDefaults() *PaymentMethodBillingAddress {
 	this := PaymentMethodBillingAddress{}
 	return &this
-}
-
-// GetStreetAddress returns the StreetAddress field value if set, zero value otherwise.
-func (o *PaymentMethodBillingAddress) GetStreetAddress() string {
-	if o == nil || o.StreetAddress == nil {
-		var ret string
-		return ret
-	}
-	return *o.StreetAddress
-}
-
-// GetStreetAddressOk returns a tuple with the StreetAddress field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *PaymentMethodBillingAddress) GetStreetAddressOk() (*string, bool) {
-	if o == nil || o.StreetAddress == nil {
-		return nil, false
-	}
-	return o.StreetAddress, true
-}
-
-// HasStreetAddress returns a boolean if a field has been set.
-func (o *PaymentMethodBillingAddress) HasStreetAddress() bool {
-	if o != nil && o.StreetAddress != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetStreetAddress gets a reference to the given string and assigns it to the StreetAddress field.
-func (o *PaymentMethodBillingAddress) SetStreetAddress(v string) {
-	o.StreetAddress = &v
-}
-
-// GetPostalCode returns the PostalCode field value if set, zero value otherwise.
-func (o *PaymentMethodBillingAddress) GetPostalCode() string {
-	if o == nil || o.PostalCode == nil {
-		var ret string
-		return ret
-	}
-	return *o.PostalCode
-}
-
-// GetPostalCodeOk returns a tuple with the PostalCode field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *PaymentMethodBillingAddress) GetPostalCodeOk() (*string, bool) {
-	if o == nil || o.PostalCode == nil {
-		return nil, false
-	}
-	return o.PostalCode, true
-}
-
-// HasPostalCode returns a boolean if a field has been set.
-func (o *PaymentMethodBillingAddress) HasPostalCode() bool {
-	if o != nil && o.PostalCode != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetPostalCode gets a reference to the given string and assigns it to the PostalCode field.
-func (o *PaymentMethodBillingAddress) SetPostalCode(v string) {
-	o.PostalCode = &v
 }
 
 // GetCountryCodeAlpha2 returns the CountryCodeAlpha2 field value if set, zero value otherwise.
@@ -135,16 +71,80 @@ func (o *PaymentMethodBillingAddress) SetCountryCodeAlpha2(v string) {
 	o.CountryCodeAlpha2 = &v
 }
 
+// GetPostalCode returns the PostalCode field value if set, zero value otherwise.
+func (o *PaymentMethodBillingAddress) GetPostalCode() string {
+	if o == nil || o.PostalCode == nil {
+		var ret string
+		return ret
+	}
+	return *o.PostalCode
+}
+
+// GetPostalCodeOk returns a tuple with the PostalCode field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PaymentMethodBillingAddress) GetPostalCodeOk() (*string, bool) {
+	if o == nil || o.PostalCode == nil {
+		return nil, false
+	}
+	return o.PostalCode, true
+}
+
+// HasPostalCode returns a boolean if a field has been set.
+func (o *PaymentMethodBillingAddress) HasPostalCode() bool {
+	if o != nil && o.PostalCode != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPostalCode gets a reference to the given string and assigns it to the PostalCode field.
+func (o *PaymentMethodBillingAddress) SetPostalCode(v string) {
+	o.PostalCode = &v
+}
+
+// GetStreetAddress returns the StreetAddress field value if set, zero value otherwise.
+func (o *PaymentMethodBillingAddress) GetStreetAddress() string {
+	if o == nil || o.StreetAddress == nil {
+		var ret string
+		return ret
+	}
+	return *o.StreetAddress
+}
+
+// GetStreetAddressOk returns a tuple with the StreetAddress field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PaymentMethodBillingAddress) GetStreetAddressOk() (*string, bool) {
+	if o == nil || o.StreetAddress == nil {
+		return nil, false
+	}
+	return o.StreetAddress, true
+}
+
+// HasStreetAddress returns a boolean if a field has been set.
+func (o *PaymentMethodBillingAddress) HasStreetAddress() bool {
+	if o != nil && o.StreetAddress != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetStreetAddress gets a reference to the given string and assigns it to the StreetAddress field.
+func (o *PaymentMethodBillingAddress) SetStreetAddress(v string) {
+	o.StreetAddress = &v
+}
+
 func (o PaymentMethodBillingAddress) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.StreetAddress != nil {
-		toSerialize["street_address"] = o.StreetAddress
+	if o.CountryCodeAlpha2 != nil {
+		toSerialize["country_code_alpha2"] = o.CountryCodeAlpha2
 	}
 	if o.PostalCode != nil {
 		toSerialize["postal_code"] = o.PostalCode
 	}
-	if o.CountryCodeAlpha2 != nil {
-		toSerialize["country_code_alpha2"] = o.CountryCodeAlpha2
+	if o.StreetAddress != nil {
+		toSerialize["street_address"] = o.StreetAddress
 	}
 	return json.Marshal(toSerialize)
 }

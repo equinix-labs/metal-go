@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**IpAddresses** | Pointer to [**[]IPReservation**](IPReservation.md) |  | [optional] 
+**IpAddresses** | Pointer to **[]map[string]interface{}** |  | [optional] 
 
 ## Methods
 
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetIpAddresses
 
-`func (o *IPReservationList) GetIpAddresses() []IPReservation`
+`func (o *IPReservationList) GetIpAddresses() []map[string]interface{}`
 
 GetIpAddresses returns the IpAddresses field if non-nil, zero value otherwise.
 
 ### GetIpAddressesOk
 
-`func (o *IPReservationList) GetIpAddressesOk() (*[]IPReservation, bool)`
+`func (o *IPReservationList) GetIpAddressesOk() (*[]map[string]interface{}, bool)`
 
 GetIpAddressesOk returns a tuple with the IpAddresses field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIpAddresses
 
-`func (o *IPReservationList) SetIpAddresses(v []IPReservation)`
+`func (o *IPReservationList) SetIpAddresses(v []map[string]interface{})`
 
 SetIpAddresses sets IpAddresses field to given value.
 

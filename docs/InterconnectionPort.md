@@ -5,11 +5,11 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **string** |  | [optional] 
+**Organization** | Pointer to [**FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
 **Role** | Pointer to **string** | Either &#39;primary&#39; or &#39;secondary&#39;. | [optional] 
 **Status** | Pointer to **string** |  | [optional] 
 **SwitchId** | Pointer to **string** | A switch &#39;short ID&#39; | [optional] 
-**VirtualCircuits** | Pointer to [**VirtualCircuitList**](VirtualCircuitList.md) |  | [optional] 
-**Organization** | Pointer to [**Href**](Href.md) |  | [optional] 
+**VirtualCircuits** | Pointer to [**GetInterconnection200ResponsePortsInnerVirtualCircuits**](GetInterconnection200ResponsePortsInnerVirtualCircuits.md) |  | [optional] 
 
 ## Methods
 
@@ -54,6 +54,31 @@ SetId sets Id field to given value.
 `func (o *InterconnectionPort) HasId() bool`
 
 HasId returns a boolean if a field has been set.
+
+### GetOrganization
+
+`func (o *InterconnectionPort) GetOrganization() FindBatchById200ResponseDevicesInner`
+
+GetOrganization returns the Organization field if non-nil, zero value otherwise.
+
+### GetOrganizationOk
+
+`func (o *InterconnectionPort) GetOrganizationOk() (*FindBatchById200ResponseDevicesInner, bool)`
+
+GetOrganizationOk returns a tuple with the Organization field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOrganization
+
+`func (o *InterconnectionPort) SetOrganization(v FindBatchById200ResponseDevicesInner)`
+
+SetOrganization sets Organization field to given value.
+
+### HasOrganization
+
+`func (o *InterconnectionPort) HasOrganization() bool`
+
+HasOrganization returns a boolean if a field has been set.
 
 ### GetRole
 
@@ -132,20 +157,20 @@ HasSwitchId returns a boolean if a field has been set.
 
 ### GetVirtualCircuits
 
-`func (o *InterconnectionPort) GetVirtualCircuits() VirtualCircuitList`
+`func (o *InterconnectionPort) GetVirtualCircuits() GetInterconnection200ResponsePortsInnerVirtualCircuits`
 
 GetVirtualCircuits returns the VirtualCircuits field if non-nil, zero value otherwise.
 
 ### GetVirtualCircuitsOk
 
-`func (o *InterconnectionPort) GetVirtualCircuitsOk() (*VirtualCircuitList, bool)`
+`func (o *InterconnectionPort) GetVirtualCircuitsOk() (*GetInterconnection200ResponsePortsInnerVirtualCircuits, bool)`
 
 GetVirtualCircuitsOk returns a tuple with the VirtualCircuits field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVirtualCircuits
 
-`func (o *InterconnectionPort) SetVirtualCircuits(v VirtualCircuitList)`
+`func (o *InterconnectionPort) SetVirtualCircuits(v GetInterconnection200ResponsePortsInnerVirtualCircuits)`
 
 SetVirtualCircuits sets VirtualCircuits field to given value.
 
@@ -154,31 +179,6 @@ SetVirtualCircuits sets VirtualCircuits field to given value.
 `func (o *InterconnectionPort) HasVirtualCircuits() bool`
 
 HasVirtualCircuits returns a boolean if a field has been set.
-
-### GetOrganization
-
-`func (o *InterconnectionPort) GetOrganization() Href`
-
-GetOrganization returns the Organization field if non-nil, zero value otherwise.
-
-### GetOrganizationOk
-
-`func (o *InterconnectionPort) GetOrganizationOk() (*Href, bool)`
-
-GetOrganizationOk returns a tuple with the Organization field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetOrganization
-
-`func (o *InterconnectionPort) SetOrganization(v Href)`
-
-SetOrganization sets Organization field to given value.
-
-### HasOrganization
-
-`func (o *InterconnectionPort) HasOrganization() bool`
-
-HasOrganization returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

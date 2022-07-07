@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**DeploymentType** | **string** |  | 
 **Asn** | **int32** |  | 
+**DeploymentType** | **string** |  | 
 **Md5** | Pointer to **string** |  | [optional] 
 **UseCase** | Pointer to **string** |  | [optional] 
 
@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 
 ### NewBgpConfigRequestInput
 
-`func NewBgpConfigRequestInput(deploymentType string, asn int32, ) *BgpConfigRequestInput`
+`func NewBgpConfigRequestInput(asn int32, deploymentType string, ) *BgpConfigRequestInput`
 
 NewBgpConfigRequestInput instantiates a new BgpConfigRequestInput object
 This constructor will assign default values to properties that have it defined,
@@ -27,26 +27,6 @@ will change when the set of required properties is changed
 NewBgpConfigRequestInputWithDefaults instantiates a new BgpConfigRequestInput object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetDeploymentType
-
-`func (o *BgpConfigRequestInput) GetDeploymentType() string`
-
-GetDeploymentType returns the DeploymentType field if non-nil, zero value otherwise.
-
-### GetDeploymentTypeOk
-
-`func (o *BgpConfigRequestInput) GetDeploymentTypeOk() (*string, bool)`
-
-GetDeploymentTypeOk returns a tuple with the DeploymentType field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDeploymentType
-
-`func (o *BgpConfigRequestInput) SetDeploymentType(v string)`
-
-SetDeploymentType sets DeploymentType field to given value.
-
 
 ### GetAsn
 
@@ -66,6 +46,26 @@ and a boolean to check if the value has been set.
 `func (o *BgpConfigRequestInput) SetAsn(v int32)`
 
 SetAsn sets Asn field to given value.
+
+
+### GetDeploymentType
+
+`func (o *BgpConfigRequestInput) GetDeploymentType() string`
+
+GetDeploymentType returns the DeploymentType field if non-nil, zero value otherwise.
+
+### GetDeploymentTypeOk
+
+`func (o *BgpConfigRequestInput) GetDeploymentTypeOk() (*string, bool)`
+
+GetDeploymentTypeOk returns a tuple with the DeploymentType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDeploymentType
+
+`func (o *BgpConfigRequestInput) SetDeploymentType(v string)`
+
+SetDeploymentType sets DeploymentType field to given value.
 
 
 ### GetMd5

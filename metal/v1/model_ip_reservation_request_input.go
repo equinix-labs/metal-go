@@ -17,26 +17,26 @@ import (
 
 // IPReservationRequestInput struct for IPReservationRequestInput
 type IPReservationRequestInput struct {
-	Type     string  `json:"type"`
-	Quantity int32   `json:"quantity"`
-	Comments *string `json:"comments,omitempty"`
-	Facility *string `json:"facility,omitempty"`
-	// The code of the metro you are requesting the IP reservation in.
-	Metro                  *string                `json:"metro,omitempty"`
-	Customdata             map[string]interface{} `json:"customdata,omitempty"`
 	Tags                   []string               `json:"tags,omitempty"`
+	Comments               *string                `json:"comments,omitempty"`
+	Customdata             map[string]interface{} `json:"customdata,omitempty"`
 	Details                *string                `json:"details,omitempty"`
+	Facility               *string                `json:"facility,omitempty"`
 	FailOnApprovalRequired *bool                  `json:"fail_on_approval_required,omitempty"`
+	// The code of the metro you are requesting the IP reservation in.
+	Metro    *string `json:"metro,omitempty"`
+	Quantity int32   `json:"quantity"`
+	Type     string  `json:"type"`
 }
 
 // NewIPReservationRequestInput instantiates a new IPReservationRequestInput object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewIPReservationRequestInput(type_ string, quantity int32) *IPReservationRequestInput {
+func NewIPReservationRequestInput(quantity int32, type_ string) *IPReservationRequestInput {
 	this := IPReservationRequestInput{}
-	this.Type = type_
 	this.Quantity = quantity
+	this.Type = type_
 	return &this
 }
 
@@ -46,182 +46,6 @@ func NewIPReservationRequestInput(type_ string, quantity int32) *IPReservationRe
 func NewIPReservationRequestInputWithDefaults() *IPReservationRequestInput {
 	this := IPReservationRequestInput{}
 	return &this
-}
-
-// GetType returns the Type field value
-func (o *IPReservationRequestInput) GetType() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Type
-}
-
-// GetTypeOk returns a tuple with the Type field value
-// and a boolean to check if the value has been set.
-func (o *IPReservationRequestInput) GetTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Type, true
-}
-
-// SetType sets field value
-func (o *IPReservationRequestInput) SetType(v string) {
-	o.Type = v
-}
-
-// GetQuantity returns the Quantity field value
-func (o *IPReservationRequestInput) GetQuantity() int32 {
-	if o == nil {
-		var ret int32
-		return ret
-	}
-
-	return o.Quantity
-}
-
-// GetQuantityOk returns a tuple with the Quantity field value
-// and a boolean to check if the value has been set.
-func (o *IPReservationRequestInput) GetQuantityOk() (*int32, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Quantity, true
-}
-
-// SetQuantity sets field value
-func (o *IPReservationRequestInput) SetQuantity(v int32) {
-	o.Quantity = v
-}
-
-// GetComments returns the Comments field value if set, zero value otherwise.
-func (o *IPReservationRequestInput) GetComments() string {
-	if o == nil || o.Comments == nil {
-		var ret string
-		return ret
-	}
-	return *o.Comments
-}
-
-// GetCommentsOk returns a tuple with the Comments field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *IPReservationRequestInput) GetCommentsOk() (*string, bool) {
-	if o == nil || o.Comments == nil {
-		return nil, false
-	}
-	return o.Comments, true
-}
-
-// HasComments returns a boolean if a field has been set.
-func (o *IPReservationRequestInput) HasComments() bool {
-	if o != nil && o.Comments != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetComments gets a reference to the given string and assigns it to the Comments field.
-func (o *IPReservationRequestInput) SetComments(v string) {
-	o.Comments = &v
-}
-
-// GetFacility returns the Facility field value if set, zero value otherwise.
-func (o *IPReservationRequestInput) GetFacility() string {
-	if o == nil || o.Facility == nil {
-		var ret string
-		return ret
-	}
-	return *o.Facility
-}
-
-// GetFacilityOk returns a tuple with the Facility field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *IPReservationRequestInput) GetFacilityOk() (*string, bool) {
-	if o == nil || o.Facility == nil {
-		return nil, false
-	}
-	return o.Facility, true
-}
-
-// HasFacility returns a boolean if a field has been set.
-func (o *IPReservationRequestInput) HasFacility() bool {
-	if o != nil && o.Facility != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetFacility gets a reference to the given string and assigns it to the Facility field.
-func (o *IPReservationRequestInput) SetFacility(v string) {
-	o.Facility = &v
-}
-
-// GetMetro returns the Metro field value if set, zero value otherwise.
-func (o *IPReservationRequestInput) GetMetro() string {
-	if o == nil || o.Metro == nil {
-		var ret string
-		return ret
-	}
-	return *o.Metro
-}
-
-// GetMetroOk returns a tuple with the Metro field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *IPReservationRequestInput) GetMetroOk() (*string, bool) {
-	if o == nil || o.Metro == nil {
-		return nil, false
-	}
-	return o.Metro, true
-}
-
-// HasMetro returns a boolean if a field has been set.
-func (o *IPReservationRequestInput) HasMetro() bool {
-	if o != nil && o.Metro != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetMetro gets a reference to the given string and assigns it to the Metro field.
-func (o *IPReservationRequestInput) SetMetro(v string) {
-	o.Metro = &v
-}
-
-// GetCustomdata returns the Customdata field value if set, zero value otherwise.
-func (o *IPReservationRequestInput) GetCustomdata() map[string]interface{} {
-	if o == nil || o.Customdata == nil {
-		var ret map[string]interface{}
-		return ret
-	}
-	return o.Customdata
-}
-
-// GetCustomdataOk returns a tuple with the Customdata field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *IPReservationRequestInput) GetCustomdataOk() (map[string]interface{}, bool) {
-	if o == nil || o.Customdata == nil {
-		return nil, false
-	}
-	return o.Customdata, true
-}
-
-// HasCustomdata returns a boolean if a field has been set.
-func (o *IPReservationRequestInput) HasCustomdata() bool {
-	if o != nil && o.Customdata != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetCustomdata gets a reference to the given map[string]interface{} and assigns it to the Customdata field.
-func (o *IPReservationRequestInput) SetCustomdata(v map[string]interface{}) {
-	o.Customdata = v
 }
 
 // GetTags returns the Tags field value if set, zero value otherwise.
@@ -256,6 +80,70 @@ func (o *IPReservationRequestInput) SetTags(v []string) {
 	o.Tags = v
 }
 
+// GetComments returns the Comments field value if set, zero value otherwise.
+func (o *IPReservationRequestInput) GetComments() string {
+	if o == nil || o.Comments == nil {
+		var ret string
+		return ret
+	}
+	return *o.Comments
+}
+
+// GetCommentsOk returns a tuple with the Comments field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IPReservationRequestInput) GetCommentsOk() (*string, bool) {
+	if o == nil || o.Comments == nil {
+		return nil, false
+	}
+	return o.Comments, true
+}
+
+// HasComments returns a boolean if a field has been set.
+func (o *IPReservationRequestInput) HasComments() bool {
+	if o != nil && o.Comments != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetComments gets a reference to the given string and assigns it to the Comments field.
+func (o *IPReservationRequestInput) SetComments(v string) {
+	o.Comments = &v
+}
+
+// GetCustomdata returns the Customdata field value if set, zero value otherwise.
+func (o *IPReservationRequestInput) GetCustomdata() map[string]interface{} {
+	if o == nil || o.Customdata == nil {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.Customdata
+}
+
+// GetCustomdataOk returns a tuple with the Customdata field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IPReservationRequestInput) GetCustomdataOk() (map[string]interface{}, bool) {
+	if o == nil || o.Customdata == nil {
+		return nil, false
+	}
+	return o.Customdata, true
+}
+
+// HasCustomdata returns a boolean if a field has been set.
+func (o *IPReservationRequestInput) HasCustomdata() bool {
+	if o != nil && o.Customdata != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCustomdata gets a reference to the given map[string]interface{} and assigns it to the Customdata field.
+func (o *IPReservationRequestInput) SetCustomdata(v map[string]interface{}) {
+	o.Customdata = v
+}
+
 // GetDetails returns the Details field value if set, zero value otherwise.
 func (o *IPReservationRequestInput) GetDetails() string {
 	if o == nil || o.Details == nil {
@@ -286,6 +174,38 @@ func (o *IPReservationRequestInput) HasDetails() bool {
 // SetDetails gets a reference to the given string and assigns it to the Details field.
 func (o *IPReservationRequestInput) SetDetails(v string) {
 	o.Details = &v
+}
+
+// GetFacility returns the Facility field value if set, zero value otherwise.
+func (o *IPReservationRequestInput) GetFacility() string {
+	if o == nil || o.Facility == nil {
+		var ret string
+		return ret
+	}
+	return *o.Facility
+}
+
+// GetFacilityOk returns a tuple with the Facility field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IPReservationRequestInput) GetFacilityOk() (*string, bool) {
+	if o == nil || o.Facility == nil {
+		return nil, false
+	}
+	return o.Facility, true
+}
+
+// HasFacility returns a boolean if a field has been set.
+func (o *IPReservationRequestInput) HasFacility() bool {
+	if o != nil && o.Facility != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetFacility gets a reference to the given string and assigns it to the Facility field.
+func (o *IPReservationRequestInput) SetFacility(v string) {
+	o.Facility = &v
 }
 
 // GetFailOnApprovalRequired returns the FailOnApprovalRequired field value if set, zero value otherwise.
@@ -320,34 +240,114 @@ func (o *IPReservationRequestInput) SetFailOnApprovalRequired(v bool) {
 	o.FailOnApprovalRequired = &v
 }
 
+// GetMetro returns the Metro field value if set, zero value otherwise.
+func (o *IPReservationRequestInput) GetMetro() string {
+	if o == nil || o.Metro == nil {
+		var ret string
+		return ret
+	}
+	return *o.Metro
+}
+
+// GetMetroOk returns a tuple with the Metro field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IPReservationRequestInput) GetMetroOk() (*string, bool) {
+	if o == nil || o.Metro == nil {
+		return nil, false
+	}
+	return o.Metro, true
+}
+
+// HasMetro returns a boolean if a field has been set.
+func (o *IPReservationRequestInput) HasMetro() bool {
+	if o != nil && o.Metro != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMetro gets a reference to the given string and assigns it to the Metro field.
+func (o *IPReservationRequestInput) SetMetro(v string) {
+	o.Metro = &v
+}
+
+// GetQuantity returns the Quantity field value
+func (o *IPReservationRequestInput) GetQuantity() int32 {
+	if o == nil {
+		var ret int32
+		return ret
+	}
+
+	return o.Quantity
+}
+
+// GetQuantityOk returns a tuple with the Quantity field value
+// and a boolean to check if the value has been set.
+func (o *IPReservationRequestInput) GetQuantityOk() (*int32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Quantity, true
+}
+
+// SetQuantity sets field value
+func (o *IPReservationRequestInput) SetQuantity(v int32) {
+	o.Quantity = v
+}
+
+// GetType returns the Type field value
+func (o *IPReservationRequestInput) GetType() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *IPReservationRequestInput) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
+}
+
+// SetType sets field value
+func (o *IPReservationRequestInput) SetType(v string) {
+	o.Type = v
+}
+
 func (o IPReservationRequestInput) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["type"] = o.Type
-	}
-	if true {
-		toSerialize["quantity"] = o.Quantity
+	if o.Tags != nil {
+		toSerialize["tags"] = o.Tags
 	}
 	if o.Comments != nil {
 		toSerialize["comments"] = o.Comments
 	}
-	if o.Facility != nil {
-		toSerialize["facility"] = o.Facility
-	}
-	if o.Metro != nil {
-		toSerialize["metro"] = o.Metro
-	}
 	if o.Customdata != nil {
 		toSerialize["customdata"] = o.Customdata
-	}
-	if o.Tags != nil {
-		toSerialize["tags"] = o.Tags
 	}
 	if o.Details != nil {
 		toSerialize["details"] = o.Details
 	}
+	if o.Facility != nil {
+		toSerialize["facility"] = o.Facility
+	}
 	if o.FailOnApprovalRequired != nil {
 		toSerialize["fail_on_approval_required"] = o.FailOnApprovalRequired
+	}
+	if o.Metro != nil {
+		toSerialize["metro"] = o.Metro
+	}
+	if true {
+		toSerialize["quantity"] = o.Quantity
+	}
+	if true {
+		toSerialize["type"] = o.Type
 	}
 	return json.Marshal(toSerialize)
 }

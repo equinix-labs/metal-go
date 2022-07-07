@@ -68,8 +68,6 @@ type APIClient struct {
 
 	FacilitiesApi *FacilitiesApiService
 
-	GlobalBgpRangesApi *GlobalBgpRangesApiService
-
 	HardwareReservationsApi *HardwareReservationsApiService
 
 	IPAddressesApi *IPAddressesApiService
@@ -80,15 +78,13 @@ type APIClient struct {
 
 	LicensesApi *LicensesApiService
 
-	MarketApi *MarketApiService
-
 	MembershipsApi *MembershipsApiService
 
 	MetalGatewaysApi *MetalGatewaysApiService
 
 	MetrosApi *MetrosApiService
 
-	OperatingSystemVersionsApi *OperatingSystemVersionsApiService
+	OTPsApi *OTPsApiService
 
 	OperatingSystemsApi *OperatingSystemsApiService
 
@@ -110,13 +106,15 @@ type APIClient struct {
 
 	SelfServiceReservationsApi *SelfServiceReservationsApiService
 
-	SpotMarketRequestApi *SpotMarketRequestApiService
+	SpotMarketApi *SpotMarketApiService
 
 	SupportRequestApi *SupportRequestApiService
 
 	TransferRequestsApi *TransferRequestsApiService
 
 	TwoFactorAuthApi *TwoFactorAuthApiService
+
+	UsagesApi *UsagesApiService
 
 	UserVerificationTokensApi *UserVerificationTokensApiService
 
@@ -125,6 +123,8 @@ type APIClient struct {
 	UsersApi *UsersApiService
 
 	VLANsApi *VLANsApiService
+
+	VRFsApi *VRFsApiService
 }
 
 type service struct {
@@ -152,17 +152,15 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.EmailsApi = (*EmailsApiService)(&c.common)
 	c.EventsApi = (*EventsApiService)(&c.common)
 	c.FacilitiesApi = (*FacilitiesApiService)(&c.common)
-	c.GlobalBgpRangesApi = (*GlobalBgpRangesApiService)(&c.common)
 	c.HardwareReservationsApi = (*HardwareReservationsApiService)(&c.common)
 	c.IPAddressesApi = (*IPAddressesApiService)(&c.common)
 	c.IncidentsApi = (*IncidentsApiService)(&c.common)
 	c.InvitationsApi = (*InvitationsApiService)(&c.common)
 	c.LicensesApi = (*LicensesApiService)(&c.common)
-	c.MarketApi = (*MarketApiService)(&c.common)
 	c.MembershipsApi = (*MembershipsApiService)(&c.common)
 	c.MetalGatewaysApi = (*MetalGatewaysApiService)(&c.common)
 	c.MetrosApi = (*MetrosApiService)(&c.common)
-	c.OperatingSystemVersionsApi = (*OperatingSystemVersionsApiService)(&c.common)
+	c.OTPsApi = (*OTPsApiService)(&c.common)
 	c.OperatingSystemsApi = (*OperatingSystemsApiService)(&c.common)
 	c.OrganizationsApi = (*OrganizationsApiService)(&c.common)
 	c.OtpsApi = (*OtpsApiService)(&c.common)
@@ -173,14 +171,16 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.ProjectsApi = (*ProjectsApiService)(&c.common)
 	c.SSHKeysApi = (*SSHKeysApiService)(&c.common)
 	c.SelfServiceReservationsApi = (*SelfServiceReservationsApiService)(&c.common)
-	c.SpotMarketRequestApi = (*SpotMarketRequestApiService)(&c.common)
+	c.SpotMarketApi = (*SpotMarketApiService)(&c.common)
 	c.SupportRequestApi = (*SupportRequestApiService)(&c.common)
 	c.TransferRequestsApi = (*TransferRequestsApiService)(&c.common)
 	c.TwoFactorAuthApi = (*TwoFactorAuthApiService)(&c.common)
+	c.UsagesApi = (*UsagesApiService)(&c.common)
 	c.UserVerificationTokensApi = (*UserVerificationTokensApiService)(&c.common)
 	c.UserdataApi = (*UserdataApiService)(&c.common)
 	c.UsersApi = (*UsersApiService)(&c.common)
 	c.VLANsApi = (*VLANsApiService)(&c.common)
+	c.VRFsApi = (*VRFsApiService)(&c.common)
 
 	return c
 }

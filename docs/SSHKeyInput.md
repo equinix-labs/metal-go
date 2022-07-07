@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Label** | Pointer to **string** |  | [optional] 
 **Key** | Pointer to **string** |  | [optional] 
+**Label** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -25,31 +25,6 @@ will change when the set of required properties is changed
 NewSSHKeyInputWithDefaults instantiates a new SSHKeyInput object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetLabel
-
-`func (o *SSHKeyInput) GetLabel() string`
-
-GetLabel returns the Label field if non-nil, zero value otherwise.
-
-### GetLabelOk
-
-`func (o *SSHKeyInput) GetLabelOk() (*string, bool)`
-
-GetLabelOk returns a tuple with the Label field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetLabel
-
-`func (o *SSHKeyInput) SetLabel(v string)`
-
-SetLabel sets Label field to given value.
-
-### HasLabel
-
-`func (o *SSHKeyInput) HasLabel() bool`
-
-HasLabel returns a boolean if a field has been set.
 
 ### GetKey
 
@@ -75,6 +50,31 @@ SetKey sets Key field to given value.
 `func (o *SSHKeyInput) HasKey() bool`
 
 HasKey returns a boolean if a field has been set.
+
+### GetLabel
+
+`func (o *SSHKeyInput) GetLabel() string`
+
+GetLabel returns the Label field if non-nil, zero value otherwise.
+
+### GetLabelOk
+
+`func (o *SSHKeyInput) GetLabelOk() (*string, bool)`
+
+GetLabelOk returns a tuple with the Label field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLabel
+
+`func (o *SSHKeyInput) SetLabel(v string)`
+
+SetLabel sets Label field to given value.
+
+### HasLabel
+
+`func (o *SSHKeyInput) HasLabel() bool`
+
+HasLabel returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

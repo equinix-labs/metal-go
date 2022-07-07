@@ -18,14 +18,14 @@ import (
 
 // Event struct for Event
 type Event struct {
-	Id            *string    `json:"id,omitempty"`
-	State         *string    `json:"state,omitempty"`
-	Type          *string    `json:"type,omitempty"`
-	Body          *string    `json:"body,omitempty"`
-	Relationships []Href     `json:"relationships,omitempty"`
-	Interpolated  *string    `json:"interpolated,omitempty"`
-	CreatedAt     *time.Time `json:"created_at,omitempty"`
-	Href          *string    `json:"href,omitempty"`
+	Body          *string                                `json:"body,omitempty"`
+	CreatedAt     *time.Time                             `json:"created_at,omitempty"`
+	Href          *string                                `json:"href,omitempty"`
+	Id            *string                                `json:"id,omitempty"`
+	Interpolated  *string                                `json:"interpolated,omitempty"`
+	Relationships []FindBatchById200ResponseDevicesInner `json:"relationships,omitempty"`
+	State         *string                                `json:"state,omitempty"`
+	Type          *string                                `json:"type,omitempty"`
 }
 
 // NewEvent instantiates a new Event object
@@ -43,102 +43,6 @@ func NewEvent() *Event {
 func NewEventWithDefaults() *Event {
 	this := Event{}
 	return &this
-}
-
-// GetId returns the Id field value if set, zero value otherwise.
-func (o *Event) GetId() string {
-	if o == nil || o.Id == nil {
-		var ret string
-		return ret
-	}
-	return *o.Id
-}
-
-// GetIdOk returns a tuple with the Id field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Event) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
-		return nil, false
-	}
-	return o.Id, true
-}
-
-// HasId returns a boolean if a field has been set.
-func (o *Event) HasId() bool {
-	if o != nil && o.Id != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetId gets a reference to the given string and assigns it to the Id field.
-func (o *Event) SetId(v string) {
-	o.Id = &v
-}
-
-// GetState returns the State field value if set, zero value otherwise.
-func (o *Event) GetState() string {
-	if o == nil || o.State == nil {
-		var ret string
-		return ret
-	}
-	return *o.State
-}
-
-// GetStateOk returns a tuple with the State field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Event) GetStateOk() (*string, bool) {
-	if o == nil || o.State == nil {
-		return nil, false
-	}
-	return o.State, true
-}
-
-// HasState returns a boolean if a field has been set.
-func (o *Event) HasState() bool {
-	if o != nil && o.State != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetState gets a reference to the given string and assigns it to the State field.
-func (o *Event) SetState(v string) {
-	o.State = &v
-}
-
-// GetType returns the Type field value if set, zero value otherwise.
-func (o *Event) GetType() string {
-	if o == nil || o.Type == nil {
-		var ret string
-		return ret
-	}
-	return *o.Type
-}
-
-// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Event) GetTypeOk() (*string, bool) {
-	if o == nil || o.Type == nil {
-		return nil, false
-	}
-	return o.Type, true
-}
-
-// HasType returns a boolean if a field has been set.
-func (o *Event) HasType() bool {
-	if o != nil && o.Type != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetType gets a reference to the given string and assigns it to the Type field.
-func (o *Event) SetType(v string) {
-	o.Type = &v
 }
 
 // GetBody returns the Body field value if set, zero value otherwise.
@@ -171,70 +75,6 @@ func (o *Event) HasBody() bool {
 // SetBody gets a reference to the given string and assigns it to the Body field.
 func (o *Event) SetBody(v string) {
 	o.Body = &v
-}
-
-// GetRelationships returns the Relationships field value if set, zero value otherwise.
-func (o *Event) GetRelationships() []Href {
-	if o == nil || o.Relationships == nil {
-		var ret []Href
-		return ret
-	}
-	return o.Relationships
-}
-
-// GetRelationshipsOk returns a tuple with the Relationships field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Event) GetRelationshipsOk() ([]Href, bool) {
-	if o == nil || o.Relationships == nil {
-		return nil, false
-	}
-	return o.Relationships, true
-}
-
-// HasRelationships returns a boolean if a field has been set.
-func (o *Event) HasRelationships() bool {
-	if o != nil && o.Relationships != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetRelationships gets a reference to the given []Href and assigns it to the Relationships field.
-func (o *Event) SetRelationships(v []Href) {
-	o.Relationships = v
-}
-
-// GetInterpolated returns the Interpolated field value if set, zero value otherwise.
-func (o *Event) GetInterpolated() string {
-	if o == nil || o.Interpolated == nil {
-		var ret string
-		return ret
-	}
-	return *o.Interpolated
-}
-
-// GetInterpolatedOk returns a tuple with the Interpolated field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Event) GetInterpolatedOk() (*string, bool) {
-	if o == nil || o.Interpolated == nil {
-		return nil, false
-	}
-	return o.Interpolated, true
-}
-
-// HasInterpolated returns a boolean if a field has been set.
-func (o *Event) HasInterpolated() bool {
-	if o != nil && o.Interpolated != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetInterpolated gets a reference to the given string and assigns it to the Interpolated field.
-func (o *Event) SetInterpolated(v string) {
-	o.Interpolated = &v
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
@@ -301,31 +141,191 @@ func (o *Event) SetHref(v string) {
 	o.Href = &v
 }
 
+// GetId returns the Id field value if set, zero value otherwise.
+func (o *Event) GetId() string {
+	if o == nil || o.Id == nil {
+		var ret string
+		return ret
+	}
+	return *o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Event) GetIdOk() (*string, bool) {
+	if o == nil || o.Id == nil {
+		return nil, false
+	}
+	return o.Id, true
+}
+
+// HasId returns a boolean if a field has been set.
+func (o *Event) HasId() bool {
+	if o != nil && o.Id != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given string and assigns it to the Id field.
+func (o *Event) SetId(v string) {
+	o.Id = &v
+}
+
+// GetInterpolated returns the Interpolated field value if set, zero value otherwise.
+func (o *Event) GetInterpolated() string {
+	if o == nil || o.Interpolated == nil {
+		var ret string
+		return ret
+	}
+	return *o.Interpolated
+}
+
+// GetInterpolatedOk returns a tuple with the Interpolated field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Event) GetInterpolatedOk() (*string, bool) {
+	if o == nil || o.Interpolated == nil {
+		return nil, false
+	}
+	return o.Interpolated, true
+}
+
+// HasInterpolated returns a boolean if a field has been set.
+func (o *Event) HasInterpolated() bool {
+	if o != nil && o.Interpolated != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetInterpolated gets a reference to the given string and assigns it to the Interpolated field.
+func (o *Event) SetInterpolated(v string) {
+	o.Interpolated = &v
+}
+
+// GetRelationships returns the Relationships field value if set, zero value otherwise.
+func (o *Event) GetRelationships() []FindBatchById200ResponseDevicesInner {
+	if o == nil || o.Relationships == nil {
+		var ret []FindBatchById200ResponseDevicesInner
+		return ret
+	}
+	return o.Relationships
+}
+
+// GetRelationshipsOk returns a tuple with the Relationships field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Event) GetRelationshipsOk() ([]FindBatchById200ResponseDevicesInner, bool) {
+	if o == nil || o.Relationships == nil {
+		return nil, false
+	}
+	return o.Relationships, true
+}
+
+// HasRelationships returns a boolean if a field has been set.
+func (o *Event) HasRelationships() bool {
+	if o != nil && o.Relationships != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetRelationships gets a reference to the given []FindBatchById200ResponseDevicesInner and assigns it to the Relationships field.
+func (o *Event) SetRelationships(v []FindBatchById200ResponseDevicesInner) {
+	o.Relationships = v
+}
+
+// GetState returns the State field value if set, zero value otherwise.
+func (o *Event) GetState() string {
+	if o == nil || o.State == nil {
+		var ret string
+		return ret
+	}
+	return *o.State
+}
+
+// GetStateOk returns a tuple with the State field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Event) GetStateOk() (*string, bool) {
+	if o == nil || o.State == nil {
+		return nil, false
+	}
+	return o.State, true
+}
+
+// HasState returns a boolean if a field has been set.
+func (o *Event) HasState() bool {
+	if o != nil && o.State != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetState gets a reference to the given string and assigns it to the State field.
+func (o *Event) SetState(v string) {
+	o.State = &v
+}
+
+// GetType returns the Type field value if set, zero value otherwise.
+func (o *Event) GetType() string {
+	if o == nil || o.Type == nil {
+		var ret string
+		return ret
+	}
+	return *o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Event) GetTypeOk() (*string, bool) {
+	if o == nil || o.Type == nil {
+		return nil, false
+	}
+	return o.Type, true
+}
+
+// HasType returns a boolean if a field has been set.
+func (o *Event) HasType() bool {
+	if o != nil && o.Type != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetType gets a reference to the given string and assigns it to the Type field.
+func (o *Event) SetType(v string) {
+	o.Type = &v
+}
+
 func (o Event) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
-	}
-	if o.State != nil {
-		toSerialize["state"] = o.State
-	}
-	if o.Type != nil {
-		toSerialize["type"] = o.Type
-	}
 	if o.Body != nil {
 		toSerialize["body"] = o.Body
-	}
-	if o.Relationships != nil {
-		toSerialize["relationships"] = o.Relationships
-	}
-	if o.Interpolated != nil {
-		toSerialize["interpolated"] = o.Interpolated
 	}
 	if o.CreatedAt != nil {
 		toSerialize["created_at"] = o.CreatedAt
 	}
 	if o.Href != nil {
 		toSerialize["href"] = o.Href
+	}
+	if o.Id != nil {
+		toSerialize["id"] = o.Id
+	}
+	if o.Interpolated != nil {
+		toSerialize["interpolated"] = o.Interpolated
+	}
+	if o.Relationships != nil {
+		toSerialize["relationships"] = o.Relationships
+	}
+	if o.State != nil {
+		toSerialize["state"] = o.State
+	}
+	if o.Type != nil {
+		toSerialize["type"] = o.Type
 	}
 	return json.Marshal(toSerialize)
 }

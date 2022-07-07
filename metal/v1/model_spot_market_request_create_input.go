@@ -18,12 +18,12 @@ import (
 
 // SpotMarketRequestCreateInput struct for SpotMarketRequestCreateInput
 type SpotMarketRequestCreateInput struct {
-	InstanceAttributes *SpotMarketRequestCreateInputInstanceAttributes `json:"instance_attributes,omitempty"`
-	DevicesMin         *int32                                          `json:"devices_min,omitempty"`
-	DevicesMax         *int32                                          `json:"devices_max,omitempty"`
-	MaxBidPrice        *float32                                        `json:"max_bid_price,omitempty"`
-	EndAt              *time.Time                                      `json:"end_at,omitempty"`
-	Facilities         []string                                        `json:"facilities,omitempty"`
+	DevicesMax         *int32                                            `json:"devices_max,omitempty"`
+	DevicesMin         *int32                                            `json:"devices_min,omitempty"`
+	EndAt              *time.Time                                        `json:"end_at,omitempty"`
+	Facilities         []string                                          `json:"facilities,omitempty"`
+	InstanceAttributes *CreateSpotMarketRequestRequestInstanceAttributes `json:"instance_attributes,omitempty"`
+	MaxBidPrice        *float32                                          `json:"max_bid_price,omitempty"`
 	// The metro ID or code the spot market request will be created in.
 	Metro *string `json:"metro,omitempty"`
 }
@@ -43,70 +43,6 @@ func NewSpotMarketRequestCreateInput() *SpotMarketRequestCreateInput {
 func NewSpotMarketRequestCreateInputWithDefaults() *SpotMarketRequestCreateInput {
 	this := SpotMarketRequestCreateInput{}
 	return &this
-}
-
-// GetInstanceAttributes returns the InstanceAttributes field value if set, zero value otherwise.
-func (o *SpotMarketRequestCreateInput) GetInstanceAttributes() SpotMarketRequestCreateInputInstanceAttributes {
-	if o == nil || o.InstanceAttributes == nil {
-		var ret SpotMarketRequestCreateInputInstanceAttributes
-		return ret
-	}
-	return *o.InstanceAttributes
-}
-
-// GetInstanceAttributesOk returns a tuple with the InstanceAttributes field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *SpotMarketRequestCreateInput) GetInstanceAttributesOk() (*SpotMarketRequestCreateInputInstanceAttributes, bool) {
-	if o == nil || o.InstanceAttributes == nil {
-		return nil, false
-	}
-	return o.InstanceAttributes, true
-}
-
-// HasInstanceAttributes returns a boolean if a field has been set.
-func (o *SpotMarketRequestCreateInput) HasInstanceAttributes() bool {
-	if o != nil && o.InstanceAttributes != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetInstanceAttributes gets a reference to the given SpotMarketRequestCreateInputInstanceAttributes and assigns it to the InstanceAttributes field.
-func (o *SpotMarketRequestCreateInput) SetInstanceAttributes(v SpotMarketRequestCreateInputInstanceAttributes) {
-	o.InstanceAttributes = &v
-}
-
-// GetDevicesMin returns the DevicesMin field value if set, zero value otherwise.
-func (o *SpotMarketRequestCreateInput) GetDevicesMin() int32 {
-	if o == nil || o.DevicesMin == nil {
-		var ret int32
-		return ret
-	}
-	return *o.DevicesMin
-}
-
-// GetDevicesMinOk returns a tuple with the DevicesMin field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *SpotMarketRequestCreateInput) GetDevicesMinOk() (*int32, bool) {
-	if o == nil || o.DevicesMin == nil {
-		return nil, false
-	}
-	return o.DevicesMin, true
-}
-
-// HasDevicesMin returns a boolean if a field has been set.
-func (o *SpotMarketRequestCreateInput) HasDevicesMin() bool {
-	if o != nil && o.DevicesMin != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetDevicesMin gets a reference to the given int32 and assigns it to the DevicesMin field.
-func (o *SpotMarketRequestCreateInput) SetDevicesMin(v int32) {
-	o.DevicesMin = &v
 }
 
 // GetDevicesMax returns the DevicesMax field value if set, zero value otherwise.
@@ -141,36 +77,36 @@ func (o *SpotMarketRequestCreateInput) SetDevicesMax(v int32) {
 	o.DevicesMax = &v
 }
 
-// GetMaxBidPrice returns the MaxBidPrice field value if set, zero value otherwise.
-func (o *SpotMarketRequestCreateInput) GetMaxBidPrice() float32 {
-	if o == nil || o.MaxBidPrice == nil {
-		var ret float32
+// GetDevicesMin returns the DevicesMin field value if set, zero value otherwise.
+func (o *SpotMarketRequestCreateInput) GetDevicesMin() int32 {
+	if o == nil || o.DevicesMin == nil {
+		var ret int32
 		return ret
 	}
-	return *o.MaxBidPrice
+	return *o.DevicesMin
 }
 
-// GetMaxBidPriceOk returns a tuple with the MaxBidPrice field value if set, nil otherwise
+// GetDevicesMinOk returns a tuple with the DevicesMin field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SpotMarketRequestCreateInput) GetMaxBidPriceOk() (*float32, bool) {
-	if o == nil || o.MaxBidPrice == nil {
+func (o *SpotMarketRequestCreateInput) GetDevicesMinOk() (*int32, bool) {
+	if o == nil || o.DevicesMin == nil {
 		return nil, false
 	}
-	return o.MaxBidPrice, true
+	return o.DevicesMin, true
 }
 
-// HasMaxBidPrice returns a boolean if a field has been set.
-func (o *SpotMarketRequestCreateInput) HasMaxBidPrice() bool {
-	if o != nil && o.MaxBidPrice != nil {
+// HasDevicesMin returns a boolean if a field has been set.
+func (o *SpotMarketRequestCreateInput) HasDevicesMin() bool {
+	if o != nil && o.DevicesMin != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetMaxBidPrice gets a reference to the given float32 and assigns it to the MaxBidPrice field.
-func (o *SpotMarketRequestCreateInput) SetMaxBidPrice(v float32) {
-	o.MaxBidPrice = &v
+// SetDevicesMin gets a reference to the given int32 and assigns it to the DevicesMin field.
+func (o *SpotMarketRequestCreateInput) SetDevicesMin(v int32) {
+	o.DevicesMin = &v
 }
 
 // GetEndAt returns the EndAt field value if set, zero value otherwise.
@@ -237,6 +173,70 @@ func (o *SpotMarketRequestCreateInput) SetFacilities(v []string) {
 	o.Facilities = v
 }
 
+// GetInstanceAttributes returns the InstanceAttributes field value if set, zero value otherwise.
+func (o *SpotMarketRequestCreateInput) GetInstanceAttributes() CreateSpotMarketRequestRequestInstanceAttributes {
+	if o == nil || o.InstanceAttributes == nil {
+		var ret CreateSpotMarketRequestRequestInstanceAttributes
+		return ret
+	}
+	return *o.InstanceAttributes
+}
+
+// GetInstanceAttributesOk returns a tuple with the InstanceAttributes field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SpotMarketRequestCreateInput) GetInstanceAttributesOk() (*CreateSpotMarketRequestRequestInstanceAttributes, bool) {
+	if o == nil || o.InstanceAttributes == nil {
+		return nil, false
+	}
+	return o.InstanceAttributes, true
+}
+
+// HasInstanceAttributes returns a boolean if a field has been set.
+func (o *SpotMarketRequestCreateInput) HasInstanceAttributes() bool {
+	if o != nil && o.InstanceAttributes != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetInstanceAttributes gets a reference to the given CreateSpotMarketRequestRequestInstanceAttributes and assigns it to the InstanceAttributes field.
+func (o *SpotMarketRequestCreateInput) SetInstanceAttributes(v CreateSpotMarketRequestRequestInstanceAttributes) {
+	o.InstanceAttributes = &v
+}
+
+// GetMaxBidPrice returns the MaxBidPrice field value if set, zero value otherwise.
+func (o *SpotMarketRequestCreateInput) GetMaxBidPrice() float32 {
+	if o == nil || o.MaxBidPrice == nil {
+		var ret float32
+		return ret
+	}
+	return *o.MaxBidPrice
+}
+
+// GetMaxBidPriceOk returns a tuple with the MaxBidPrice field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SpotMarketRequestCreateInput) GetMaxBidPriceOk() (*float32, bool) {
+	if o == nil || o.MaxBidPrice == nil {
+		return nil, false
+	}
+	return o.MaxBidPrice, true
+}
+
+// HasMaxBidPrice returns a boolean if a field has been set.
+func (o *SpotMarketRequestCreateInput) HasMaxBidPrice() bool {
+	if o != nil && o.MaxBidPrice != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMaxBidPrice gets a reference to the given float32 and assigns it to the MaxBidPrice field.
+func (o *SpotMarketRequestCreateInput) SetMaxBidPrice(v float32) {
+	o.MaxBidPrice = &v
+}
+
 // GetMetro returns the Metro field value if set, zero value otherwise.
 func (o *SpotMarketRequestCreateInput) GetMetro() string {
 	if o == nil || o.Metro == nil {
@@ -271,23 +271,23 @@ func (o *SpotMarketRequestCreateInput) SetMetro(v string) {
 
 func (o SpotMarketRequestCreateInput) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.InstanceAttributes != nil {
-		toSerialize["instance_attributes"] = o.InstanceAttributes
-	}
-	if o.DevicesMin != nil {
-		toSerialize["devices_min"] = o.DevicesMin
-	}
 	if o.DevicesMax != nil {
 		toSerialize["devices_max"] = o.DevicesMax
 	}
-	if o.MaxBidPrice != nil {
-		toSerialize["max_bid_price"] = o.MaxBidPrice
+	if o.DevicesMin != nil {
+		toSerialize["devices_min"] = o.DevicesMin
 	}
 	if o.EndAt != nil {
 		toSerialize["end_at"] = o.EndAt
 	}
 	if o.Facilities != nil {
 		toSerialize["facilities"] = o.Facilities
+	}
+	if o.InstanceAttributes != nil {
+		toSerialize["instance_attributes"] = o.InstanceAttributes
+	}
+	if o.MaxBidPrice != nil {
+		toSerialize["max_bid_price"] = o.MaxBidPrice
 	}
 	if o.Metro != nil {
 		toSerialize["metro"] = o.Metro

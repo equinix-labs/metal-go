@@ -17,7 +17,7 @@ Method | HTTP request | Description
 
 ## FindConnectionEvents
 
-> Event FindConnectionEvents(ctx, connectionId).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
+> FindConnectionEvents200Response FindConnectionEvents(ctx, connectionId).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
 
 Retrieve connection events
 
@@ -49,7 +49,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `EventsApi.FindConnectionEvents``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindConnectionEvents`: Event
+    // response from `FindConnectionEvents`: FindConnectionEvents200Response
     fmt.Fprintf(os.Stdout, "Response from `EventsApi.FindConnectionEvents`: %v\n", resp)
 }
 ```
@@ -77,7 +77,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Event**](Event.md)
+[**FindConnectionEvents200Response**](FindConnectionEvents200Response.md)
 
 ### Authorization
 
@@ -95,7 +95,7 @@ Name | Type | Description  | Notes
 
 ## FindConnectionPortEvents
 
-> Event FindConnectionPortEvents(ctx, connectionId, id).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
+> FindConnectionEvents200Response FindConnectionPortEvents(ctx, connectionId, id).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
 
 Retrieve connection port events
 
@@ -128,7 +128,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `EventsApi.FindConnectionPortEvents``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindConnectionPortEvents`: Event
+    // response from `FindConnectionPortEvents`: FindConnectionEvents200Response
     fmt.Fprintf(os.Stdout, "Response from `EventsApi.FindConnectionPortEvents`: %v\n", resp)
 }
 ```
@@ -158,7 +158,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Event**](Event.md)
+[**FindConnectionEvents200Response**](FindConnectionEvents200Response.md)
 
 ### Authorization
 
@@ -176,7 +176,7 @@ Name | Type | Description  | Notes
 
 ## FindDeviceEvents
 
-> EventList FindDeviceEvents(ctx, id).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
+> FindDeviceEvents200Response FindDeviceEvents(ctx, id).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
 
 Retrieve device's events
 
@@ -208,7 +208,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `EventsApi.FindDeviceEvents``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindDeviceEvents`: EventList
+    // response from `FindDeviceEvents`: FindDeviceEvents200Response
     fmt.Fprintf(os.Stdout, "Response from `EventsApi.FindDeviceEvents`: %v\n", resp)
 }
 ```
@@ -236,7 +236,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**EventList**](EventList.md)
+[**FindDeviceEvents200Response**](FindDeviceEvents200Response.md)
 
 ### Authorization
 
@@ -254,7 +254,7 @@ Name | Type | Description  | Notes
 
 ## FindEventById
 
-> Event FindEventById(ctx, id).Include(include).Exclude(exclude).Execute()
+> FindConnectionEvents200Response FindEventById(ctx, id).Include(include).Exclude(exclude).Execute()
 
 Retrieve an event
 
@@ -284,7 +284,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `EventsApi.FindEventById``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindEventById`: Event
+    // response from `FindEventById`: FindConnectionEvents200Response
     fmt.Fprintf(os.Stdout, "Response from `EventsApi.FindEventById`: %v\n", resp)
 }
 ```
@@ -310,7 +310,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Event**](Event.md)
+[**FindConnectionEvents200Response**](FindConnectionEvents200Response.md)
 
 ### Authorization
 
@@ -328,7 +328,7 @@ Name | Type | Description  | Notes
 
 ## FindEvents
 
-> EventList FindEvents(ctx).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
+> FindDeviceEvents200Response FindEvents(ctx).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
 
 Retrieve current user's events
 
@@ -359,7 +359,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `EventsApi.FindEvents``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindEvents`: EventList
+    // response from `FindEvents`: FindDeviceEvents200Response
     fmt.Fprintf(os.Stdout, "Response from `EventsApi.FindEvents`: %v\n", resp)
 }
 ```
@@ -382,7 +382,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**EventList**](EventList.md)
+[**FindDeviceEvents200Response**](FindDeviceEvents200Response.md)
 
 ### Authorization
 
@@ -400,7 +400,7 @@ Name | Type | Description  | Notes
 
 ## FindOrganizationEvents
 
-> EventList FindOrganizationEvents(ctx, id).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
+> FindDeviceEvents200Response FindOrganizationEvents(ctx, id).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
 
 Retrieve organization's events
 
@@ -432,7 +432,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `EventsApi.FindOrganizationEvents``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindOrganizationEvents`: EventList
+    // response from `FindOrganizationEvents`: FindDeviceEvents200Response
     fmt.Fprintf(os.Stdout, "Response from `EventsApi.FindOrganizationEvents`: %v\n", resp)
 }
 ```
@@ -460,7 +460,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**EventList**](EventList.md)
+[**FindDeviceEvents200Response**](FindDeviceEvents200Response.md)
 
 ### Authorization
 
@@ -478,7 +478,7 @@ Name | Type | Description  | Notes
 
 ## FindProjectEvents
 
-> EventList FindProjectEvents(ctx, id).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
+> FindDeviceEvents200Response FindProjectEvents(ctx, id).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
 
 Retrieve project's events
 
@@ -510,7 +510,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `EventsApi.FindProjectEvents``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindProjectEvents`: EventList
+    // response from `FindProjectEvents`: FindDeviceEvents200Response
     fmt.Fprintf(os.Stdout, "Response from `EventsApi.FindProjectEvents`: %v\n", resp)
 }
 ```
@@ -538,7 +538,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**EventList**](EventList.md)
+[**FindDeviceEvents200Response**](FindDeviceEvents200Response.md)
 
 ### Authorization
 
@@ -556,7 +556,7 @@ Name | Type | Description  | Notes
 
 ## FindVirtualCircuitEvents
 
-> Event FindVirtualCircuitEvents(ctx, id).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
+> FindConnectionEvents200Response FindVirtualCircuitEvents(ctx, id).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
 
 Retrieve connection events
 
@@ -588,7 +588,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `EventsApi.FindVirtualCircuitEvents``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindVirtualCircuitEvents`: Event
+    // response from `FindVirtualCircuitEvents`: FindConnectionEvents200Response
     fmt.Fprintf(os.Stdout, "Response from `EventsApi.FindVirtualCircuitEvents`: %v\n", resp)
 }
 ```
@@ -616,7 +616,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Event**](Event.md)
+[**FindConnectionEvents200Response**](FindConnectionEvents200Response.md)
 
 ### Authorization
 

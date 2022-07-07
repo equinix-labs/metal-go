@@ -17,7 +17,7 @@ import (
 
 // SpotMarketPricesList struct for SpotMarketPricesList
 type SpotMarketPricesList struct {
-	SpotMarketPrices *SpotPricesReport `json:"spot_market_prices,omitempty"`
+	SpotMarketPrices *FindSpotMarketPrices200ResponseSpotMarketPrices `json:"spot_market_prices,omitempty"`
 }
 
 // NewSpotMarketPricesList instantiates a new SpotMarketPricesList object
@@ -38,9 +38,9 @@ func NewSpotMarketPricesListWithDefaults() *SpotMarketPricesList {
 }
 
 // GetSpotMarketPrices returns the SpotMarketPrices field value if set, zero value otherwise.
-func (o *SpotMarketPricesList) GetSpotMarketPrices() SpotPricesReport {
+func (o *SpotMarketPricesList) GetSpotMarketPrices() FindSpotMarketPrices200ResponseSpotMarketPrices {
 	if o == nil || o.SpotMarketPrices == nil {
-		var ret SpotPricesReport
+		var ret FindSpotMarketPrices200ResponseSpotMarketPrices
 		return ret
 	}
 	return *o.SpotMarketPrices
@@ -48,7 +48,7 @@ func (o *SpotMarketPricesList) GetSpotMarketPrices() SpotPricesReport {
 
 // GetSpotMarketPricesOk returns a tuple with the SpotMarketPrices field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SpotMarketPricesList) GetSpotMarketPricesOk() (*SpotPricesReport, bool) {
+func (o *SpotMarketPricesList) GetSpotMarketPricesOk() (*FindSpotMarketPrices200ResponseSpotMarketPrices, bool) {
 	if o == nil || o.SpotMarketPrices == nil {
 		return nil, false
 	}
@@ -64,8 +64,8 @@ func (o *SpotMarketPricesList) HasSpotMarketPrices() bool {
 	return false
 }
 
-// SetSpotMarketPrices gets a reference to the given SpotPricesReport and assigns it to the SpotMarketPrices field.
-func (o *SpotMarketPricesList) SetSpotMarketPrices(v SpotPricesReport) {
+// SetSpotMarketPrices gets a reference to the given FindSpotMarketPrices200ResponseSpotMarketPrices and assigns it to the SpotMarketPrices field.
+func (o *SpotMarketPricesList) SetSpotMarketPrices(v FindSpotMarketPrices200ResponseSpotMarketPrices) {
 	o.SpotMarketPrices = &v
 }
 

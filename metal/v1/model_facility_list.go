@@ -17,7 +17,7 @@ import (
 
 // FacilityList struct for FacilityList
 type FacilityList struct {
-	Facilities []Facility `json:"facilities,omitempty"`
+	Facilities []FindDeviceById200ResponseFacility `json:"facilities,omitempty"`
 }
 
 // NewFacilityList instantiates a new FacilityList object
@@ -38,9 +38,9 @@ func NewFacilityListWithDefaults() *FacilityList {
 }
 
 // GetFacilities returns the Facilities field value if set, zero value otherwise.
-func (o *FacilityList) GetFacilities() []Facility {
+func (o *FacilityList) GetFacilities() []FindDeviceById200ResponseFacility {
 	if o == nil || o.Facilities == nil {
-		var ret []Facility
+		var ret []FindDeviceById200ResponseFacility
 		return ret
 	}
 	return o.Facilities
@@ -48,7 +48,7 @@ func (o *FacilityList) GetFacilities() []Facility {
 
 // GetFacilitiesOk returns a tuple with the Facilities field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FacilityList) GetFacilitiesOk() ([]Facility, bool) {
+func (o *FacilityList) GetFacilitiesOk() ([]FindDeviceById200ResponseFacility, bool) {
 	if o == nil || o.Facilities == nil {
 		return nil, false
 	}
@@ -64,8 +64,8 @@ func (o *FacilityList) HasFacilities() bool {
 	return false
 }
 
-// SetFacilities gets a reference to the given []Facility and assigns it to the Facilities field.
-func (o *FacilityList) SetFacilities(v []Facility) {
+// SetFacilities gets a reference to the given []FindDeviceById200ResponseFacility and assigns it to the Facilities field.
+func (o *FacilityList) SetFacilities(v []FindDeviceById200ResponseFacility) {
 	o.Facilities = v
 }
 

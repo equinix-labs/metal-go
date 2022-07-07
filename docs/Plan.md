@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **string** |  | [optional] 
-**Slug** | Pointer to **string** |  | [optional] 
-**Name** | Pointer to **string** |  | [optional] 
-**Description** | Pointer to **string** |  | [optional] 
-**Line** | Pointer to **string** |  | [optional] 
-**Specs** | Pointer to **map[string]interface{}** |  | [optional] 
-**Pricing** | Pointer to **map[string]interface{}** |  | [optional] 
-**Legacy** | Pointer to **bool** |  | [optional] 
+**AvailableIn** | Pointer to [**[]FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) | Shows which facilities the plan is available in, and the facility-based price if it is different from the default price. | [optional] 
 **Class** | Pointer to **string** |  | [optional] 
-**AvailableIn** | Pointer to [**[]Href**](Href.md) | Shows which facilities the plan is available in, and the facility-based price if it is different from the default price. | [optional] 
+**Description** | Pointer to **string** |  | [optional] 
+**Id** | Pointer to **string** |  | [optional] 
+**Legacy** | Pointer to **bool** |  | [optional] 
+**Line** | Pointer to **string** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
+**Pricing** | Pointer to **map[string]interface{}** |  | [optional] 
+**Slug** | Pointer to **string** |  | [optional] 
+**Specs** | Pointer to **map[string]interface{}** |  | [optional] 
 
 ## Methods
 
@@ -34,205 +34,30 @@ NewPlanWithDefaults instantiates a new Plan object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetId
+### GetAvailableIn
 
-`func (o *Plan) GetId() string`
+`func (o *Plan) GetAvailableIn() []FindBatchById200ResponseDevicesInner`
 
-GetId returns the Id field if non-nil, zero value otherwise.
+GetAvailableIn returns the AvailableIn field if non-nil, zero value otherwise.
 
-### GetIdOk
+### GetAvailableInOk
 
-`func (o *Plan) GetIdOk() (*string, bool)`
+`func (o *Plan) GetAvailableInOk() (*[]FindBatchById200ResponseDevicesInner, bool)`
 
-GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+GetAvailableInOk returns a tuple with the AvailableIn field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetId
+### SetAvailableIn
 
-`func (o *Plan) SetId(v string)`
+`func (o *Plan) SetAvailableIn(v []FindBatchById200ResponseDevicesInner)`
 
-SetId sets Id field to given value.
+SetAvailableIn sets AvailableIn field to given value.
 
-### HasId
+### HasAvailableIn
 
-`func (o *Plan) HasId() bool`
+`func (o *Plan) HasAvailableIn() bool`
 
-HasId returns a boolean if a field has been set.
-
-### GetSlug
-
-`func (o *Plan) GetSlug() string`
-
-GetSlug returns the Slug field if non-nil, zero value otherwise.
-
-### GetSlugOk
-
-`func (o *Plan) GetSlugOk() (*string, bool)`
-
-GetSlugOk returns a tuple with the Slug field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSlug
-
-`func (o *Plan) SetSlug(v string)`
-
-SetSlug sets Slug field to given value.
-
-### HasSlug
-
-`func (o *Plan) HasSlug() bool`
-
-HasSlug returns a boolean if a field has been set.
-
-### GetName
-
-`func (o *Plan) GetName() string`
-
-GetName returns the Name field if non-nil, zero value otherwise.
-
-### GetNameOk
-
-`func (o *Plan) GetNameOk() (*string, bool)`
-
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetName
-
-`func (o *Plan) SetName(v string)`
-
-SetName sets Name field to given value.
-
-### HasName
-
-`func (o *Plan) HasName() bool`
-
-HasName returns a boolean if a field has been set.
-
-### GetDescription
-
-`func (o *Plan) GetDescription() string`
-
-GetDescription returns the Description field if non-nil, zero value otherwise.
-
-### GetDescriptionOk
-
-`func (o *Plan) GetDescriptionOk() (*string, bool)`
-
-GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDescription
-
-`func (o *Plan) SetDescription(v string)`
-
-SetDescription sets Description field to given value.
-
-### HasDescription
-
-`func (o *Plan) HasDescription() bool`
-
-HasDescription returns a boolean if a field has been set.
-
-### GetLine
-
-`func (o *Plan) GetLine() string`
-
-GetLine returns the Line field if non-nil, zero value otherwise.
-
-### GetLineOk
-
-`func (o *Plan) GetLineOk() (*string, bool)`
-
-GetLineOk returns a tuple with the Line field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetLine
-
-`func (o *Plan) SetLine(v string)`
-
-SetLine sets Line field to given value.
-
-### HasLine
-
-`func (o *Plan) HasLine() bool`
-
-HasLine returns a boolean if a field has been set.
-
-### GetSpecs
-
-`func (o *Plan) GetSpecs() map[string]interface{}`
-
-GetSpecs returns the Specs field if non-nil, zero value otherwise.
-
-### GetSpecsOk
-
-`func (o *Plan) GetSpecsOk() (*map[string]interface{}, bool)`
-
-GetSpecsOk returns a tuple with the Specs field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSpecs
-
-`func (o *Plan) SetSpecs(v map[string]interface{})`
-
-SetSpecs sets Specs field to given value.
-
-### HasSpecs
-
-`func (o *Plan) HasSpecs() bool`
-
-HasSpecs returns a boolean if a field has been set.
-
-### GetPricing
-
-`func (o *Plan) GetPricing() map[string]interface{}`
-
-GetPricing returns the Pricing field if non-nil, zero value otherwise.
-
-### GetPricingOk
-
-`func (o *Plan) GetPricingOk() (*map[string]interface{}, bool)`
-
-GetPricingOk returns a tuple with the Pricing field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPricing
-
-`func (o *Plan) SetPricing(v map[string]interface{})`
-
-SetPricing sets Pricing field to given value.
-
-### HasPricing
-
-`func (o *Plan) HasPricing() bool`
-
-HasPricing returns a boolean if a field has been set.
-
-### GetLegacy
-
-`func (o *Plan) GetLegacy() bool`
-
-GetLegacy returns the Legacy field if non-nil, zero value otherwise.
-
-### GetLegacyOk
-
-`func (o *Plan) GetLegacyOk() (*bool, bool)`
-
-GetLegacyOk returns a tuple with the Legacy field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetLegacy
-
-`func (o *Plan) SetLegacy(v bool)`
-
-SetLegacy sets Legacy field to given value.
-
-### HasLegacy
-
-`func (o *Plan) HasLegacy() bool`
-
-HasLegacy returns a boolean if a field has been set.
+HasAvailableIn returns a boolean if a field has been set.
 
 ### GetClass
 
@@ -259,30 +84,205 @@ SetClass sets Class field to given value.
 
 HasClass returns a boolean if a field has been set.
 
-### GetAvailableIn
+### GetDescription
 
-`func (o *Plan) GetAvailableIn() []Href`
+`func (o *Plan) GetDescription() string`
 
-GetAvailableIn returns the AvailableIn field if non-nil, zero value otherwise.
+GetDescription returns the Description field if non-nil, zero value otherwise.
 
-### GetAvailableInOk
+### GetDescriptionOk
 
-`func (o *Plan) GetAvailableInOk() (*[]Href, bool)`
+`func (o *Plan) GetDescriptionOk() (*string, bool)`
 
-GetAvailableInOk returns a tuple with the AvailableIn field if it's non-nil, zero value otherwise
+GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAvailableIn
+### SetDescription
 
-`func (o *Plan) SetAvailableIn(v []Href)`
+`func (o *Plan) SetDescription(v string)`
 
-SetAvailableIn sets AvailableIn field to given value.
+SetDescription sets Description field to given value.
 
-### HasAvailableIn
+### HasDescription
 
-`func (o *Plan) HasAvailableIn() bool`
+`func (o *Plan) HasDescription() bool`
 
-HasAvailableIn returns a boolean if a field has been set.
+HasDescription returns a boolean if a field has been set.
+
+### GetId
+
+`func (o *Plan) GetId() string`
+
+GetId returns the Id field if non-nil, zero value otherwise.
+
+### GetIdOk
+
+`func (o *Plan) GetIdOk() (*string, bool)`
+
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetId
+
+`func (o *Plan) SetId(v string)`
+
+SetId sets Id field to given value.
+
+### HasId
+
+`func (o *Plan) HasId() bool`
+
+HasId returns a boolean if a field has been set.
+
+### GetLegacy
+
+`func (o *Plan) GetLegacy() bool`
+
+GetLegacy returns the Legacy field if non-nil, zero value otherwise.
+
+### GetLegacyOk
+
+`func (o *Plan) GetLegacyOk() (*bool, bool)`
+
+GetLegacyOk returns a tuple with the Legacy field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLegacy
+
+`func (o *Plan) SetLegacy(v bool)`
+
+SetLegacy sets Legacy field to given value.
+
+### HasLegacy
+
+`func (o *Plan) HasLegacy() bool`
+
+HasLegacy returns a boolean if a field has been set.
+
+### GetLine
+
+`func (o *Plan) GetLine() string`
+
+GetLine returns the Line field if non-nil, zero value otherwise.
+
+### GetLineOk
+
+`func (o *Plan) GetLineOk() (*string, bool)`
+
+GetLineOk returns a tuple with the Line field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLine
+
+`func (o *Plan) SetLine(v string)`
+
+SetLine sets Line field to given value.
+
+### HasLine
+
+`func (o *Plan) HasLine() bool`
+
+HasLine returns a boolean if a field has been set.
+
+### GetName
+
+`func (o *Plan) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *Plan) GetNameOk() (*string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetName
+
+`func (o *Plan) SetName(v string)`
+
+SetName sets Name field to given value.
+
+### HasName
+
+`func (o *Plan) HasName() bool`
+
+HasName returns a boolean if a field has been set.
+
+### GetPricing
+
+`func (o *Plan) GetPricing() map[string]interface{}`
+
+GetPricing returns the Pricing field if non-nil, zero value otherwise.
+
+### GetPricingOk
+
+`func (o *Plan) GetPricingOk() (*map[string]interface{}, bool)`
+
+GetPricingOk returns a tuple with the Pricing field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPricing
+
+`func (o *Plan) SetPricing(v map[string]interface{})`
+
+SetPricing sets Pricing field to given value.
+
+### HasPricing
+
+`func (o *Plan) HasPricing() bool`
+
+HasPricing returns a boolean if a field has been set.
+
+### GetSlug
+
+`func (o *Plan) GetSlug() string`
+
+GetSlug returns the Slug field if non-nil, zero value otherwise.
+
+### GetSlugOk
+
+`func (o *Plan) GetSlugOk() (*string, bool)`
+
+GetSlugOk returns a tuple with the Slug field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSlug
+
+`func (o *Plan) SetSlug(v string)`
+
+SetSlug sets Slug field to given value.
+
+### HasSlug
+
+`func (o *Plan) HasSlug() bool`
+
+HasSlug returns a boolean if a field has been set.
+
+### GetSpecs
+
+`func (o *Plan) GetSpecs() map[string]interface{}`
+
+GetSpecs returns the Specs field if non-nil, zero value otherwise.
+
+### GetSpecsOk
+
+`func (o *Plan) GetSpecsOk() (*map[string]interface{}, bool)`
+
+GetSpecsOk returns a tuple with the Specs field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSpecs
+
+`func (o *Plan) SetSpecs(v map[string]interface{})`
+
+SetSpecs sets Specs field to given value.
+
+### HasSpecs
+
+`func (o *Plan) HasSpecs() bool`
+
+HasSpecs returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

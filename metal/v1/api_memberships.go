@@ -124,7 +124,7 @@ func (a *MembershipsApiService) DeleteMembershipExecute(r ApiDeleteMembershipReq
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -134,7 +134,7 @@ func (a *MembershipsApiService) DeleteMembershipExecute(r ApiDeleteMembershipReq
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -144,7 +144,7 @@ func (a *MembershipsApiService) DeleteMembershipExecute(r ApiDeleteMembershipReq
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -178,7 +178,7 @@ func (r ApiFindMembershipByIdRequest) Exclude(exclude []string) ApiFindMembershi
 	return r
 }
 
-func (r ApiFindMembershipByIdRequest) Execute() (*Membership, *http.Response, error) {
+func (r ApiFindMembershipByIdRequest) Execute() (*FindInvitations200ResponseInvitationsInner, *http.Response, error) {
 	return r.ApiService.FindMembershipByIdExecute(r)
 }
 
@@ -200,13 +200,13 @@ func (a *MembershipsApiService) FindMembershipById(ctx context.Context, id strin
 }
 
 // Execute executes the request
-//  @return Membership
-func (a *MembershipsApiService) FindMembershipByIdExecute(r ApiFindMembershipByIdRequest) (*Membership, *http.Response, error) {
+//  @return FindInvitations200ResponseInvitationsInner
+func (a *MembershipsApiService) FindMembershipByIdExecute(r ApiFindMembershipByIdRequest) (*FindInvitations200ResponseInvitationsInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *Membership
+		localVarReturnValue *FindInvitations200ResponseInvitationsInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MembershipsApiService.FindMembershipById")
@@ -281,7 +281,7 @@ func (a *MembershipsApiService) FindMembershipByIdExecute(r ApiFindMembershipByI
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -291,7 +291,7 @@ func (a *MembershipsApiService) FindMembershipByIdExecute(r ApiFindMembershipByI
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -301,7 +301,7 @@ func (a *MembershipsApiService) FindMembershipByIdExecute(r ApiFindMembershipByI
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -328,16 +328,16 @@ type ApiUpdateMembershipRequest struct {
 	ctx        context.Context
 	ApiService *MembershipsApiService
 	id         string
-	membership *MembershipInput
+	body       *UpdateMembershipRequest
 }
 
 // Membership to update
-func (r ApiUpdateMembershipRequest) Membership(membership MembershipInput) ApiUpdateMembershipRequest {
-	r.membership = &membership
+func (r ApiUpdateMembershipRequest) Body(body UpdateMembershipRequest) ApiUpdateMembershipRequest {
+	r.body = &body
 	return r
 }
 
-func (r ApiUpdateMembershipRequest) Execute() (*Membership, *http.Response, error) {
+func (r ApiUpdateMembershipRequest) Execute() (*FindInvitations200ResponseInvitationsInner, *http.Response, error) {
 	return r.ApiService.UpdateMembershipExecute(r)
 }
 
@@ -359,13 +359,13 @@ func (a *MembershipsApiService) UpdateMembership(ctx context.Context, id string)
 }
 
 // Execute executes the request
-//  @return Membership
-func (a *MembershipsApiService) UpdateMembershipExecute(r ApiUpdateMembershipRequest) (*Membership, *http.Response, error) {
+//  @return FindInvitations200ResponseInvitationsInner
+func (a *MembershipsApiService) UpdateMembershipExecute(r ApiUpdateMembershipRequest) (*FindInvitations200ResponseInvitationsInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *Membership
+		localVarReturnValue *FindInvitations200ResponseInvitationsInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MembershipsApiService.UpdateMembership")
@@ -379,8 +379,8 @@ func (a *MembershipsApiService) UpdateMembershipExecute(r ApiUpdateMembershipReq
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.membership == nil {
-		return localVarReturnValue, nil, reportError("membership is required and must be specified")
+	if r.body == nil {
+		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -401,7 +401,7 @@ func (a *MembershipsApiService) UpdateMembershipExecute(r ApiUpdateMembershipReq
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.membership
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -439,7 +439,7 @@ func (a *MembershipsApiService) UpdateMembershipExecute(r ApiUpdateMembershipReq
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -449,7 +449,7 @@ func (a *MembershipsApiService) UpdateMembershipExecute(r ApiUpdateMembershipReq
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -459,7 +459,7 @@ func (a *MembershipsApiService) UpdateMembershipExecute(r ApiUpdateMembershipReq
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -469,7 +469,7 @@ func (a *MembershipsApiService) UpdateMembershipExecute(r ApiUpdateMembershipReq
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

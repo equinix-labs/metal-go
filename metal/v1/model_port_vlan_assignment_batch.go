@@ -18,14 +18,14 @@ import (
 
 // PortVlanAssignmentBatch struct for PortVlanAssignmentBatch
 type PortVlanAssignmentBatch struct {
-	Id              *string                                       `json:"id,omitempty"`
-	ErrorMessages   []string                                      `json:"error_messages,omitempty"`
-	Quantity        *int32                                        `json:"quantity,omitempty"`
-	State           *string                                       `json:"state,omitempty"`
-	CreatedAt       *time.Time                                    `json:"created_at,omitempty"`
-	UpdatedAt       *time.Time                                    `json:"updated_at,omitempty"`
-	Port            *Port                                         `json:"port,omitempty"`
-	VlanAssignments []PortVlanAssignmentBatchVlanAssignmentsInner `json:"vlan_assignments,omitempty"`
+	CreatedAt       *time.Time                                                                 `json:"created_at,omitempty"`
+	ErrorMessages   []string                                                                   `json:"error_messages,omitempty"`
+	Id              *string                                                                    `json:"id,omitempty"`
+	Port            *FindDeviceById200ResponseNetworkPortsAllOf                                `json:"port,omitempty"`
+	Quantity        *int32                                                                     `json:"quantity,omitempty"`
+	State           *string                                                                    `json:"state,omitempty"`
+	UpdatedAt       *time.Time                                                                 `json:"updated_at,omitempty"`
+	VlanAssignments []FindPortVlanAssignmentBatches200ResponseBatchesInnerVlanAssignmentsInner `json:"vlan_assignments,omitempty"`
 }
 
 // NewPortVlanAssignmentBatch instantiates a new PortVlanAssignmentBatch object
@@ -43,6 +43,70 @@ func NewPortVlanAssignmentBatch() *PortVlanAssignmentBatch {
 func NewPortVlanAssignmentBatchWithDefaults() *PortVlanAssignmentBatch {
 	this := PortVlanAssignmentBatch{}
 	return &this
+}
+
+// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
+func (o *PortVlanAssignmentBatch) GetCreatedAt() time.Time {
+	if o == nil || o.CreatedAt == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.CreatedAt
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PortVlanAssignmentBatch) GetCreatedAtOk() (*time.Time, bool) {
+	if o == nil || o.CreatedAt == nil {
+		return nil, false
+	}
+	return o.CreatedAt, true
+}
+
+// HasCreatedAt returns a boolean if a field has been set.
+func (o *PortVlanAssignmentBatch) HasCreatedAt() bool {
+	if o != nil && o.CreatedAt != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
+func (o *PortVlanAssignmentBatch) SetCreatedAt(v time.Time) {
+	o.CreatedAt = &v
+}
+
+// GetErrorMessages returns the ErrorMessages field value if set, zero value otherwise.
+func (o *PortVlanAssignmentBatch) GetErrorMessages() []string {
+	if o == nil || o.ErrorMessages == nil {
+		var ret []string
+		return ret
+	}
+	return o.ErrorMessages
+}
+
+// GetErrorMessagesOk returns a tuple with the ErrorMessages field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PortVlanAssignmentBatch) GetErrorMessagesOk() ([]string, bool) {
+	if o == nil || o.ErrorMessages == nil {
+		return nil, false
+	}
+	return o.ErrorMessages, true
+}
+
+// HasErrorMessages returns a boolean if a field has been set.
+func (o *PortVlanAssignmentBatch) HasErrorMessages() bool {
+	if o != nil && o.ErrorMessages != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetErrorMessages gets a reference to the given []string and assigns it to the ErrorMessages field.
+func (o *PortVlanAssignmentBatch) SetErrorMessages(v []string) {
+	o.ErrorMessages = v
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
@@ -77,36 +141,36 @@ func (o *PortVlanAssignmentBatch) SetId(v string) {
 	o.Id = &v
 }
 
-// GetErrorMessages returns the ErrorMessages field value if set, zero value otherwise.
-func (o *PortVlanAssignmentBatch) GetErrorMessages() []string {
-	if o == nil || o.ErrorMessages == nil {
-		var ret []string
+// GetPort returns the Port field value if set, zero value otherwise.
+func (o *PortVlanAssignmentBatch) GetPort() FindDeviceById200ResponseNetworkPortsAllOf {
+	if o == nil || o.Port == nil {
+		var ret FindDeviceById200ResponseNetworkPortsAllOf
 		return ret
 	}
-	return o.ErrorMessages
+	return *o.Port
 }
 
-// GetErrorMessagesOk returns a tuple with the ErrorMessages field value if set, nil otherwise
+// GetPortOk returns a tuple with the Port field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PortVlanAssignmentBatch) GetErrorMessagesOk() ([]string, bool) {
-	if o == nil || o.ErrorMessages == nil {
+func (o *PortVlanAssignmentBatch) GetPortOk() (*FindDeviceById200ResponseNetworkPortsAllOf, bool) {
+	if o == nil || o.Port == nil {
 		return nil, false
 	}
-	return o.ErrorMessages, true
+	return o.Port, true
 }
 
-// HasErrorMessages returns a boolean if a field has been set.
-func (o *PortVlanAssignmentBatch) HasErrorMessages() bool {
-	if o != nil && o.ErrorMessages != nil {
+// HasPort returns a boolean if a field has been set.
+func (o *PortVlanAssignmentBatch) HasPort() bool {
+	if o != nil && o.Port != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetErrorMessages gets a reference to the given []string and assigns it to the ErrorMessages field.
-func (o *PortVlanAssignmentBatch) SetErrorMessages(v []string) {
-	o.ErrorMessages = v
+// SetPort gets a reference to the given FindDeviceById200ResponseNetworkPortsAllOf and assigns it to the Port field.
+func (o *PortVlanAssignmentBatch) SetPort(v FindDeviceById200ResponseNetworkPortsAllOf) {
+	o.Port = &v
 }
 
 // GetQuantity returns the Quantity field value if set, zero value otherwise.
@@ -173,38 +237,6 @@ func (o *PortVlanAssignmentBatch) SetState(v string) {
 	o.State = &v
 }
 
-// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
-func (o *PortVlanAssignmentBatch) GetCreatedAt() time.Time {
-	if o == nil || o.CreatedAt == nil {
-		var ret time.Time
-		return ret
-	}
-	return *o.CreatedAt
-}
-
-// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *PortVlanAssignmentBatch) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || o.CreatedAt == nil {
-		return nil, false
-	}
-	return o.CreatedAt, true
-}
-
-// HasCreatedAt returns a boolean if a field has been set.
-func (o *PortVlanAssignmentBatch) HasCreatedAt() bool {
-	if o != nil && o.CreatedAt != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
-func (o *PortVlanAssignmentBatch) SetCreatedAt(v time.Time) {
-	o.CreatedAt = &v
-}
-
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *PortVlanAssignmentBatch) GetUpdatedAt() time.Time {
 	if o == nil || o.UpdatedAt == nil {
@@ -237,42 +269,10 @@ func (o *PortVlanAssignmentBatch) SetUpdatedAt(v time.Time) {
 	o.UpdatedAt = &v
 }
 
-// GetPort returns the Port field value if set, zero value otherwise.
-func (o *PortVlanAssignmentBatch) GetPort() Port {
-	if o == nil || o.Port == nil {
-		var ret Port
-		return ret
-	}
-	return *o.Port
-}
-
-// GetPortOk returns a tuple with the Port field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *PortVlanAssignmentBatch) GetPortOk() (*Port, bool) {
-	if o == nil || o.Port == nil {
-		return nil, false
-	}
-	return o.Port, true
-}
-
-// HasPort returns a boolean if a field has been set.
-func (o *PortVlanAssignmentBatch) HasPort() bool {
-	if o != nil && o.Port != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetPort gets a reference to the given Port and assigns it to the Port field.
-func (o *PortVlanAssignmentBatch) SetPort(v Port) {
-	o.Port = &v
-}
-
 // GetVlanAssignments returns the VlanAssignments field value if set, zero value otherwise.
-func (o *PortVlanAssignmentBatch) GetVlanAssignments() []PortVlanAssignmentBatchVlanAssignmentsInner {
+func (o *PortVlanAssignmentBatch) GetVlanAssignments() []FindPortVlanAssignmentBatches200ResponseBatchesInnerVlanAssignmentsInner {
 	if o == nil || o.VlanAssignments == nil {
-		var ret []PortVlanAssignmentBatchVlanAssignmentsInner
+		var ret []FindPortVlanAssignmentBatches200ResponseBatchesInnerVlanAssignmentsInner
 		return ret
 	}
 	return o.VlanAssignments
@@ -280,7 +280,7 @@ func (o *PortVlanAssignmentBatch) GetVlanAssignments() []PortVlanAssignmentBatch
 
 // GetVlanAssignmentsOk returns a tuple with the VlanAssignments field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PortVlanAssignmentBatch) GetVlanAssignmentsOk() ([]PortVlanAssignmentBatchVlanAssignmentsInner, bool) {
+func (o *PortVlanAssignmentBatch) GetVlanAssignmentsOk() ([]FindPortVlanAssignmentBatches200ResponseBatchesInnerVlanAssignmentsInner, bool) {
 	if o == nil || o.VlanAssignments == nil {
 		return nil, false
 	}
@@ -296,18 +296,24 @@ func (o *PortVlanAssignmentBatch) HasVlanAssignments() bool {
 	return false
 }
 
-// SetVlanAssignments gets a reference to the given []PortVlanAssignmentBatchVlanAssignmentsInner and assigns it to the VlanAssignments field.
-func (o *PortVlanAssignmentBatch) SetVlanAssignments(v []PortVlanAssignmentBatchVlanAssignmentsInner) {
+// SetVlanAssignments gets a reference to the given []FindPortVlanAssignmentBatches200ResponseBatchesInnerVlanAssignmentsInner and assigns it to the VlanAssignments field.
+func (o *PortVlanAssignmentBatch) SetVlanAssignments(v []FindPortVlanAssignmentBatches200ResponseBatchesInnerVlanAssignmentsInner) {
 	o.VlanAssignments = v
 }
 
 func (o PortVlanAssignmentBatch) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
+	if o.CreatedAt != nil {
+		toSerialize["created_at"] = o.CreatedAt
 	}
 	if o.ErrorMessages != nil {
 		toSerialize["error_messages"] = o.ErrorMessages
+	}
+	if o.Id != nil {
+		toSerialize["id"] = o.Id
+	}
+	if o.Port != nil {
+		toSerialize["port"] = o.Port
 	}
 	if o.Quantity != nil {
 		toSerialize["quantity"] = o.Quantity
@@ -315,14 +321,8 @@ func (o PortVlanAssignmentBatch) MarshalJSON() ([]byte, error) {
 	if o.State != nil {
 		toSerialize["state"] = o.State
 	}
-	if o.CreatedAt != nil {
-		toSerialize["created_at"] = o.CreatedAt
-	}
 	if o.UpdatedAt != nil {
 		toSerialize["updated_at"] = o.UpdatedAt
-	}
-	if o.Port != nil {
-		toSerialize["port"] = o.Port
 	}
 	if o.VlanAssignments != nil {
 		toSerialize["vlan_assignments"] = o.VlanAssignments

@@ -17,17 +17,17 @@ import (
 
 // Plan struct for Plan
 type Plan struct {
-	Id          *string                `json:"id,omitempty"`
-	Slug        *string                `json:"slug,omitempty"`
-	Name        *string                `json:"name,omitempty"`
-	Description *string                `json:"description,omitempty"`
-	Line        *string                `json:"line,omitempty"`
-	Specs       map[string]interface{} `json:"specs,omitempty"`
-	Pricing     map[string]interface{} `json:"pricing,omitempty"`
-	Legacy      *bool                  `json:"legacy,omitempty"`
-	Class       *string                `json:"class,omitempty"`
 	// Shows which facilities the plan is available in, and the facility-based price if it is different from the default price.
-	AvailableIn []Href `json:"available_in,omitempty"`
+	AvailableIn []FindBatchById200ResponseDevicesInner `json:"available_in,omitempty"`
+	Class       *string                                `json:"class,omitempty"`
+	Description *string                                `json:"description,omitempty"`
+	Id          *string                                `json:"id,omitempty"`
+	Legacy      *bool                                  `json:"legacy,omitempty"`
+	Line        *string                                `json:"line,omitempty"`
+	Name        *string                                `json:"name,omitempty"`
+	Pricing     map[string]interface{}                 `json:"pricing,omitempty"`
+	Slug        *string                                `json:"slug,omitempty"`
+	Specs       map[string]interface{}                 `json:"specs,omitempty"`
 }
 
 // NewPlan instantiates a new Plan object
@@ -47,260 +47,36 @@ func NewPlanWithDefaults() *Plan {
 	return &this
 }
 
-// GetId returns the Id field value if set, zero value otherwise.
-func (o *Plan) GetId() string {
-	if o == nil || o.Id == nil {
-		var ret string
+// GetAvailableIn returns the AvailableIn field value if set, zero value otherwise.
+func (o *Plan) GetAvailableIn() []FindBatchById200ResponseDevicesInner {
+	if o == nil || o.AvailableIn == nil {
+		var ret []FindBatchById200ResponseDevicesInner
 		return ret
 	}
-	return *o.Id
+	return o.AvailableIn
 }
 
-// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// GetAvailableInOk returns a tuple with the AvailableIn field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Plan) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+func (o *Plan) GetAvailableInOk() ([]FindBatchById200ResponseDevicesInner, bool) {
+	if o == nil || o.AvailableIn == nil {
 		return nil, false
 	}
-	return o.Id, true
+	return o.AvailableIn, true
 }
 
-// HasId returns a boolean if a field has been set.
-func (o *Plan) HasId() bool {
-	if o != nil && o.Id != nil {
+// HasAvailableIn returns a boolean if a field has been set.
+func (o *Plan) HasAvailableIn() bool {
+	if o != nil && o.AvailableIn != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetId gets a reference to the given string and assigns it to the Id field.
-func (o *Plan) SetId(v string) {
-	o.Id = &v
-}
-
-// GetSlug returns the Slug field value if set, zero value otherwise.
-func (o *Plan) GetSlug() string {
-	if o == nil || o.Slug == nil {
-		var ret string
-		return ret
-	}
-	return *o.Slug
-}
-
-// GetSlugOk returns a tuple with the Slug field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Plan) GetSlugOk() (*string, bool) {
-	if o == nil || o.Slug == nil {
-		return nil, false
-	}
-	return o.Slug, true
-}
-
-// HasSlug returns a boolean if a field has been set.
-func (o *Plan) HasSlug() bool {
-	if o != nil && o.Slug != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetSlug gets a reference to the given string and assigns it to the Slug field.
-func (o *Plan) SetSlug(v string) {
-	o.Slug = &v
-}
-
-// GetName returns the Name field value if set, zero value otherwise.
-func (o *Plan) GetName() string {
-	if o == nil || o.Name == nil {
-		var ret string
-		return ret
-	}
-	return *o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Plan) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
-		return nil, false
-	}
-	return o.Name, true
-}
-
-// HasName returns a boolean if a field has been set.
-func (o *Plan) HasName() bool {
-	if o != nil && o.Name != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetName gets a reference to the given string and assigns it to the Name field.
-func (o *Plan) SetName(v string) {
-	o.Name = &v
-}
-
-// GetDescription returns the Description field value if set, zero value otherwise.
-func (o *Plan) GetDescription() string {
-	if o == nil || o.Description == nil {
-		var ret string
-		return ret
-	}
-	return *o.Description
-}
-
-// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Plan) GetDescriptionOk() (*string, bool) {
-	if o == nil || o.Description == nil {
-		return nil, false
-	}
-	return o.Description, true
-}
-
-// HasDescription returns a boolean if a field has been set.
-func (o *Plan) HasDescription() bool {
-	if o != nil && o.Description != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetDescription gets a reference to the given string and assigns it to the Description field.
-func (o *Plan) SetDescription(v string) {
-	o.Description = &v
-}
-
-// GetLine returns the Line field value if set, zero value otherwise.
-func (o *Plan) GetLine() string {
-	if o == nil || o.Line == nil {
-		var ret string
-		return ret
-	}
-	return *o.Line
-}
-
-// GetLineOk returns a tuple with the Line field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Plan) GetLineOk() (*string, bool) {
-	if o == nil || o.Line == nil {
-		return nil, false
-	}
-	return o.Line, true
-}
-
-// HasLine returns a boolean if a field has been set.
-func (o *Plan) HasLine() bool {
-	if o != nil && o.Line != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetLine gets a reference to the given string and assigns it to the Line field.
-func (o *Plan) SetLine(v string) {
-	o.Line = &v
-}
-
-// GetSpecs returns the Specs field value if set, zero value otherwise.
-func (o *Plan) GetSpecs() map[string]interface{} {
-	if o == nil || o.Specs == nil {
-		var ret map[string]interface{}
-		return ret
-	}
-	return o.Specs
-}
-
-// GetSpecsOk returns a tuple with the Specs field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Plan) GetSpecsOk() (map[string]interface{}, bool) {
-	if o == nil || o.Specs == nil {
-		return nil, false
-	}
-	return o.Specs, true
-}
-
-// HasSpecs returns a boolean if a field has been set.
-func (o *Plan) HasSpecs() bool {
-	if o != nil && o.Specs != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetSpecs gets a reference to the given map[string]interface{} and assigns it to the Specs field.
-func (o *Plan) SetSpecs(v map[string]interface{}) {
-	o.Specs = v
-}
-
-// GetPricing returns the Pricing field value if set, zero value otherwise.
-func (o *Plan) GetPricing() map[string]interface{} {
-	if o == nil || o.Pricing == nil {
-		var ret map[string]interface{}
-		return ret
-	}
-	return o.Pricing
-}
-
-// GetPricingOk returns a tuple with the Pricing field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Plan) GetPricingOk() (map[string]interface{}, bool) {
-	if o == nil || o.Pricing == nil {
-		return nil, false
-	}
-	return o.Pricing, true
-}
-
-// HasPricing returns a boolean if a field has been set.
-func (o *Plan) HasPricing() bool {
-	if o != nil && o.Pricing != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetPricing gets a reference to the given map[string]interface{} and assigns it to the Pricing field.
-func (o *Plan) SetPricing(v map[string]interface{}) {
-	o.Pricing = v
-}
-
-// GetLegacy returns the Legacy field value if set, zero value otherwise.
-func (o *Plan) GetLegacy() bool {
-	if o == nil || o.Legacy == nil {
-		var ret bool
-		return ret
-	}
-	return *o.Legacy
-}
-
-// GetLegacyOk returns a tuple with the Legacy field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Plan) GetLegacyOk() (*bool, bool) {
-	if o == nil || o.Legacy == nil {
-		return nil, false
-	}
-	return o.Legacy, true
-}
-
-// HasLegacy returns a boolean if a field has been set.
-func (o *Plan) HasLegacy() bool {
-	if o != nil && o.Legacy != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetLegacy gets a reference to the given bool and assigns it to the Legacy field.
-func (o *Plan) SetLegacy(v bool) {
-	o.Legacy = &v
+// SetAvailableIn gets a reference to the given []FindBatchById200ResponseDevicesInner and assigns it to the AvailableIn field.
+func (o *Plan) SetAvailableIn(v []FindBatchById200ResponseDevicesInner) {
+	o.AvailableIn = v
 }
 
 // GetClass returns the Class field value if set, zero value otherwise.
@@ -335,69 +111,293 @@ func (o *Plan) SetClass(v string) {
 	o.Class = &v
 }
 
-// GetAvailableIn returns the AvailableIn field value if set, zero value otherwise.
-func (o *Plan) GetAvailableIn() []Href {
-	if o == nil || o.AvailableIn == nil {
-		var ret []Href
+// GetDescription returns the Description field value if set, zero value otherwise.
+func (o *Plan) GetDescription() string {
+	if o == nil || o.Description == nil {
+		var ret string
 		return ret
 	}
-	return o.AvailableIn
+	return *o.Description
 }
 
-// GetAvailableInOk returns a tuple with the AvailableIn field value if set, nil otherwise
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Plan) GetAvailableInOk() ([]Href, bool) {
-	if o == nil || o.AvailableIn == nil {
+func (o *Plan) GetDescriptionOk() (*string, bool) {
+	if o == nil || o.Description == nil {
 		return nil, false
 	}
-	return o.AvailableIn, true
+	return o.Description, true
 }
 
-// HasAvailableIn returns a boolean if a field has been set.
-func (o *Plan) HasAvailableIn() bool {
-	if o != nil && o.AvailableIn != nil {
+// HasDescription returns a boolean if a field has been set.
+func (o *Plan) HasDescription() bool {
+	if o != nil && o.Description != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetAvailableIn gets a reference to the given []Href and assigns it to the AvailableIn field.
-func (o *Plan) SetAvailableIn(v []Href) {
-	o.AvailableIn = v
+// SetDescription gets a reference to the given string and assigns it to the Description field.
+func (o *Plan) SetDescription(v string) {
+	o.Description = &v
+}
+
+// GetId returns the Id field value if set, zero value otherwise.
+func (o *Plan) GetId() string {
+	if o == nil || o.Id == nil {
+		var ret string
+		return ret
+	}
+	return *o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Plan) GetIdOk() (*string, bool) {
+	if o == nil || o.Id == nil {
+		return nil, false
+	}
+	return o.Id, true
+}
+
+// HasId returns a boolean if a field has been set.
+func (o *Plan) HasId() bool {
+	if o != nil && o.Id != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given string and assigns it to the Id field.
+func (o *Plan) SetId(v string) {
+	o.Id = &v
+}
+
+// GetLegacy returns the Legacy field value if set, zero value otherwise.
+func (o *Plan) GetLegacy() bool {
+	if o == nil || o.Legacy == nil {
+		var ret bool
+		return ret
+	}
+	return *o.Legacy
+}
+
+// GetLegacyOk returns a tuple with the Legacy field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Plan) GetLegacyOk() (*bool, bool) {
+	if o == nil || o.Legacy == nil {
+		return nil, false
+	}
+	return o.Legacy, true
+}
+
+// HasLegacy returns a boolean if a field has been set.
+func (o *Plan) HasLegacy() bool {
+	if o != nil && o.Legacy != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetLegacy gets a reference to the given bool and assigns it to the Legacy field.
+func (o *Plan) SetLegacy(v bool) {
+	o.Legacy = &v
+}
+
+// GetLine returns the Line field value if set, zero value otherwise.
+func (o *Plan) GetLine() string {
+	if o == nil || o.Line == nil {
+		var ret string
+		return ret
+	}
+	return *o.Line
+}
+
+// GetLineOk returns a tuple with the Line field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Plan) GetLineOk() (*string, bool) {
+	if o == nil || o.Line == nil {
+		return nil, false
+	}
+	return o.Line, true
+}
+
+// HasLine returns a boolean if a field has been set.
+func (o *Plan) HasLine() bool {
+	if o != nil && o.Line != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetLine gets a reference to the given string and assigns it to the Line field.
+func (o *Plan) SetLine(v string) {
+	o.Line = &v
+}
+
+// GetName returns the Name field value if set, zero value otherwise.
+func (o *Plan) GetName() string {
+	if o == nil || o.Name == nil {
+		var ret string
+		return ret
+	}
+	return *o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Plan) GetNameOk() (*string, bool) {
+	if o == nil || o.Name == nil {
+		return nil, false
+	}
+	return o.Name, true
+}
+
+// HasName returns a boolean if a field has been set.
+func (o *Plan) HasName() bool {
+	if o != nil && o.Name != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetName gets a reference to the given string and assigns it to the Name field.
+func (o *Plan) SetName(v string) {
+	o.Name = &v
+}
+
+// GetPricing returns the Pricing field value if set, zero value otherwise.
+func (o *Plan) GetPricing() map[string]interface{} {
+	if o == nil || o.Pricing == nil {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.Pricing
+}
+
+// GetPricingOk returns a tuple with the Pricing field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Plan) GetPricingOk() (map[string]interface{}, bool) {
+	if o == nil || o.Pricing == nil {
+		return nil, false
+	}
+	return o.Pricing, true
+}
+
+// HasPricing returns a boolean if a field has been set.
+func (o *Plan) HasPricing() bool {
+	if o != nil && o.Pricing != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPricing gets a reference to the given map[string]interface{} and assigns it to the Pricing field.
+func (o *Plan) SetPricing(v map[string]interface{}) {
+	o.Pricing = v
+}
+
+// GetSlug returns the Slug field value if set, zero value otherwise.
+func (o *Plan) GetSlug() string {
+	if o == nil || o.Slug == nil {
+		var ret string
+		return ret
+	}
+	return *o.Slug
+}
+
+// GetSlugOk returns a tuple with the Slug field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Plan) GetSlugOk() (*string, bool) {
+	if o == nil || o.Slug == nil {
+		return nil, false
+	}
+	return o.Slug, true
+}
+
+// HasSlug returns a boolean if a field has been set.
+func (o *Plan) HasSlug() bool {
+	if o != nil && o.Slug != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSlug gets a reference to the given string and assigns it to the Slug field.
+func (o *Plan) SetSlug(v string) {
+	o.Slug = &v
+}
+
+// GetSpecs returns the Specs field value if set, zero value otherwise.
+func (o *Plan) GetSpecs() map[string]interface{} {
+	if o == nil || o.Specs == nil {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.Specs
+}
+
+// GetSpecsOk returns a tuple with the Specs field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Plan) GetSpecsOk() (map[string]interface{}, bool) {
+	if o == nil || o.Specs == nil {
+		return nil, false
+	}
+	return o.Specs, true
+}
+
+// HasSpecs returns a boolean if a field has been set.
+func (o *Plan) HasSpecs() bool {
+	if o != nil && o.Specs != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSpecs gets a reference to the given map[string]interface{} and assigns it to the Specs field.
+func (o *Plan) SetSpecs(v map[string]interface{}) {
+	o.Specs = v
 }
 
 func (o Plan) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
-	}
-	if o.Slug != nil {
-		toSerialize["slug"] = o.Slug
-	}
-	if o.Name != nil {
-		toSerialize["name"] = o.Name
-	}
-	if o.Description != nil {
-		toSerialize["description"] = o.Description
-	}
-	if o.Line != nil {
-		toSerialize["line"] = o.Line
-	}
-	if o.Specs != nil {
-		toSerialize["specs"] = o.Specs
-	}
-	if o.Pricing != nil {
-		toSerialize["pricing"] = o.Pricing
-	}
-	if o.Legacy != nil {
-		toSerialize["legacy"] = o.Legacy
+	if o.AvailableIn != nil {
+		toSerialize["available_in"] = o.AvailableIn
 	}
 	if o.Class != nil {
 		toSerialize["class"] = o.Class
 	}
-	if o.AvailableIn != nil {
-		toSerialize["available_in"] = o.AvailableIn
+	if o.Description != nil {
+		toSerialize["description"] = o.Description
+	}
+	if o.Id != nil {
+		toSerialize["id"] = o.Id
+	}
+	if o.Legacy != nil {
+		toSerialize["legacy"] = o.Legacy
+	}
+	if o.Line != nil {
+		toSerialize["line"] = o.Line
+	}
+	if o.Name != nil {
+		toSerialize["name"] = o.Name
+	}
+	if o.Pricing != nil {
+		toSerialize["pricing"] = o.Pricing
+	}
+	if o.Slug != nil {
+		toSerialize["slug"] = o.Slug
+	}
+	if o.Specs != nil {
+		toSerialize["specs"] = o.Specs
 	}
 	return json.Marshal(toSerialize)
 }

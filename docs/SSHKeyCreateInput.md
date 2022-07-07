@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Label** | Pointer to **string** |  | [optional] 
-**Key** | Pointer to **string** |  | [optional] 
 **InstancesIds** | Pointer to **[]string** | List of instance UUIDs to associate SSH key with, when empty array is sent all instances belonging       to entity will be included | [optional] 
+**Key** | Pointer to **string** |  | [optional] 
+**Label** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -27,30 +27,30 @@ NewSSHKeyCreateInputWithDefaults instantiates a new SSHKeyCreateInput object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetLabel
+### GetInstancesIds
 
-`func (o *SSHKeyCreateInput) GetLabel() string`
+`func (o *SSHKeyCreateInput) GetInstancesIds() []string`
 
-GetLabel returns the Label field if non-nil, zero value otherwise.
+GetInstancesIds returns the InstancesIds field if non-nil, zero value otherwise.
 
-### GetLabelOk
+### GetInstancesIdsOk
 
-`func (o *SSHKeyCreateInput) GetLabelOk() (*string, bool)`
+`func (o *SSHKeyCreateInput) GetInstancesIdsOk() (*[]string, bool)`
 
-GetLabelOk returns a tuple with the Label field if it's non-nil, zero value otherwise
+GetInstancesIdsOk returns a tuple with the InstancesIds field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetLabel
+### SetInstancesIds
 
-`func (o *SSHKeyCreateInput) SetLabel(v string)`
+`func (o *SSHKeyCreateInput) SetInstancesIds(v []string)`
 
-SetLabel sets Label field to given value.
+SetInstancesIds sets InstancesIds field to given value.
 
-### HasLabel
+### HasInstancesIds
 
-`func (o *SSHKeyCreateInput) HasLabel() bool`
+`func (o *SSHKeyCreateInput) HasInstancesIds() bool`
 
-HasLabel returns a boolean if a field has been set.
+HasInstancesIds returns a boolean if a field has been set.
 
 ### GetKey
 
@@ -77,30 +77,30 @@ SetKey sets Key field to given value.
 
 HasKey returns a boolean if a field has been set.
 
-### GetInstancesIds
+### GetLabel
 
-`func (o *SSHKeyCreateInput) GetInstancesIds() []string`
+`func (o *SSHKeyCreateInput) GetLabel() string`
 
-GetInstancesIds returns the InstancesIds field if non-nil, zero value otherwise.
+GetLabel returns the Label field if non-nil, zero value otherwise.
 
-### GetInstancesIdsOk
+### GetLabelOk
 
-`func (o *SSHKeyCreateInput) GetInstancesIdsOk() (*[]string, bool)`
+`func (o *SSHKeyCreateInput) GetLabelOk() (*string, bool)`
 
-GetInstancesIdsOk returns a tuple with the InstancesIds field if it's non-nil, zero value otherwise
+GetLabelOk returns a tuple with the Label field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetInstancesIds
+### SetLabel
 
-`func (o *SSHKeyCreateInput) SetInstancesIds(v []string)`
+`func (o *SSHKeyCreateInput) SetLabel(v string)`
 
-SetInstancesIds sets InstancesIds field to given value.
+SetLabel sets Label field to given value.
 
-### HasInstancesIds
+### HasLabel
 
-`func (o *SSHKeyCreateInput) HasInstancesIds() bool`
+`func (o *SSHKeyCreateInput) HasLabel() bool`
 
-HasInstancesIds returns a boolean if a field has been set.
+HasLabel returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

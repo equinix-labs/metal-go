@@ -17,7 +17,7 @@ import (
 
 // PaymentMethodList struct for PaymentMethodList
 type PaymentMethodList struct {
-	PaymentMethods []PaymentMethod `json:"payment_methods,omitempty"`
+	PaymentMethods []FindOrganizationPaymentMethods200ResponsePaymentMethodsInner `json:"payment_methods,omitempty"`
 }
 
 // NewPaymentMethodList instantiates a new PaymentMethodList object
@@ -38,9 +38,9 @@ func NewPaymentMethodListWithDefaults() *PaymentMethodList {
 }
 
 // GetPaymentMethods returns the PaymentMethods field value if set, zero value otherwise.
-func (o *PaymentMethodList) GetPaymentMethods() []PaymentMethod {
+func (o *PaymentMethodList) GetPaymentMethods() []FindOrganizationPaymentMethods200ResponsePaymentMethodsInner {
 	if o == nil || o.PaymentMethods == nil {
-		var ret []PaymentMethod
+		var ret []FindOrganizationPaymentMethods200ResponsePaymentMethodsInner
 		return ret
 	}
 	return o.PaymentMethods
@@ -48,7 +48,7 @@ func (o *PaymentMethodList) GetPaymentMethods() []PaymentMethod {
 
 // GetPaymentMethodsOk returns a tuple with the PaymentMethods field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PaymentMethodList) GetPaymentMethodsOk() ([]PaymentMethod, bool) {
+func (o *PaymentMethodList) GetPaymentMethodsOk() ([]FindOrganizationPaymentMethods200ResponsePaymentMethodsInner, bool) {
 	if o == nil || o.PaymentMethods == nil {
 		return nil, false
 	}
@@ -64,8 +64,8 @@ func (o *PaymentMethodList) HasPaymentMethods() bool {
 	return false
 }
 
-// SetPaymentMethods gets a reference to the given []PaymentMethod and assigns it to the PaymentMethods field.
-func (o *PaymentMethodList) SetPaymentMethods(v []PaymentMethod) {
+// SetPaymentMethods gets a reference to the given []FindOrganizationPaymentMethods200ResponsePaymentMethodsInner and assigns it to the PaymentMethods field.
+func (o *PaymentMethodList) SetPaymentMethods(v []FindOrganizationPaymentMethods200ResponsePaymentMethodsInner) {
 	o.PaymentMethods = v
 }
 

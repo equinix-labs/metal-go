@@ -17,7 +17,7 @@ import (
 
 // SelfServiceReservationList struct for SelfServiceReservationList
 type SelfServiceReservationList struct {
-	Reservations []SelfServiceReservationResponse `json:"reservations,omitempty"`
+	Reservations []FindSelfServiceReservations200ResponseReservationsInner `json:"reservations,omitempty"`
 }
 
 // NewSelfServiceReservationList instantiates a new SelfServiceReservationList object
@@ -38,9 +38,9 @@ func NewSelfServiceReservationListWithDefaults() *SelfServiceReservationList {
 }
 
 // GetReservations returns the Reservations field value if set, zero value otherwise.
-func (o *SelfServiceReservationList) GetReservations() []SelfServiceReservationResponse {
+func (o *SelfServiceReservationList) GetReservations() []FindSelfServiceReservations200ResponseReservationsInner {
 	if o == nil || o.Reservations == nil {
-		var ret []SelfServiceReservationResponse
+		var ret []FindSelfServiceReservations200ResponseReservationsInner
 		return ret
 	}
 	return o.Reservations
@@ -48,7 +48,7 @@ func (o *SelfServiceReservationList) GetReservations() []SelfServiceReservationR
 
 // GetReservationsOk returns a tuple with the Reservations field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SelfServiceReservationList) GetReservationsOk() ([]SelfServiceReservationResponse, bool) {
+func (o *SelfServiceReservationList) GetReservationsOk() ([]FindSelfServiceReservations200ResponseReservationsInner, bool) {
 	if o == nil || o.Reservations == nil {
 		return nil, false
 	}
@@ -64,8 +64,8 @@ func (o *SelfServiceReservationList) HasReservations() bool {
 	return false
 }
 
-// SetReservations gets a reference to the given []SelfServiceReservationResponse and assigns it to the Reservations field.
-func (o *SelfServiceReservationList) SetReservations(v []SelfServiceReservationResponse) {
+// SetReservations gets a reference to the given []FindSelfServiceReservations200ResponseReservationsInner and assigns it to the Reservations field.
+func (o *SelfServiceReservationList) SetReservations(v []FindSelfServiceReservations200ResponseReservationsInner) {
 	o.Reservations = v
 }
 

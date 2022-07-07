@@ -17,8 +17,8 @@ import (
 
 // UserList struct for UserList
 type UserList struct {
-	Users []User `json:"users,omitempty"`
-	Meta  *Meta  `json:"meta,omitempty"`
+	Meta  *FindDeviceEvents200ResponseMeta                     `json:"meta,omitempty"`
+	Users []FindProjectAPIKeys200ResponseApiKeysInnerUserAllOf `json:"users,omitempty"`
 }
 
 // NewUserList instantiates a new UserList object
@@ -38,42 +38,10 @@ func NewUserListWithDefaults() *UserList {
 	return &this
 }
 
-// GetUsers returns the Users field value if set, zero value otherwise.
-func (o *UserList) GetUsers() []User {
-	if o == nil || o.Users == nil {
-		var ret []User
-		return ret
-	}
-	return o.Users
-}
-
-// GetUsersOk returns a tuple with the Users field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UserList) GetUsersOk() ([]User, bool) {
-	if o == nil || o.Users == nil {
-		return nil, false
-	}
-	return o.Users, true
-}
-
-// HasUsers returns a boolean if a field has been set.
-func (o *UserList) HasUsers() bool {
-	if o != nil && o.Users != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetUsers gets a reference to the given []User and assigns it to the Users field.
-func (o *UserList) SetUsers(v []User) {
-	o.Users = v
-}
-
 // GetMeta returns the Meta field value if set, zero value otherwise.
-func (o *UserList) GetMeta() Meta {
+func (o *UserList) GetMeta() FindDeviceEvents200ResponseMeta {
 	if o == nil || o.Meta == nil {
-		var ret Meta
+		var ret FindDeviceEvents200ResponseMeta
 		return ret
 	}
 	return *o.Meta
@@ -81,7 +49,7 @@ func (o *UserList) GetMeta() Meta {
 
 // GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UserList) GetMetaOk() (*Meta, bool) {
+func (o *UserList) GetMetaOk() (*FindDeviceEvents200ResponseMeta, bool) {
 	if o == nil || o.Meta == nil {
 		return nil, false
 	}
@@ -97,18 +65,50 @@ func (o *UserList) HasMeta() bool {
 	return false
 }
 
-// SetMeta gets a reference to the given Meta and assigns it to the Meta field.
-func (o *UserList) SetMeta(v Meta) {
+// SetMeta gets a reference to the given FindDeviceEvents200ResponseMeta and assigns it to the Meta field.
+func (o *UserList) SetMeta(v FindDeviceEvents200ResponseMeta) {
 	o.Meta = &v
+}
+
+// GetUsers returns the Users field value if set, zero value otherwise.
+func (o *UserList) GetUsers() []FindProjectAPIKeys200ResponseApiKeysInnerUserAllOf {
+	if o == nil || o.Users == nil {
+		var ret []FindProjectAPIKeys200ResponseApiKeysInnerUserAllOf
+		return ret
+	}
+	return o.Users
+}
+
+// GetUsersOk returns a tuple with the Users field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UserList) GetUsersOk() ([]FindProjectAPIKeys200ResponseApiKeysInnerUserAllOf, bool) {
+	if o == nil || o.Users == nil {
+		return nil, false
+	}
+	return o.Users, true
+}
+
+// HasUsers returns a boolean if a field has been set.
+func (o *UserList) HasUsers() bool {
+	if o != nil && o.Users != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetUsers gets a reference to the given []FindProjectAPIKeys200ResponseApiKeysInnerUserAllOf and assigns it to the Users field.
+func (o *UserList) SetUsers(v []FindProjectAPIKeys200ResponseApiKeysInnerUserAllOf) {
+	o.Users = v
 }
 
 func (o UserList) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Users != nil {
-		toSerialize["users"] = o.Users
-	}
 	if o.Meta != nil {
 		toSerialize["meta"] = o.Meta
+	}
+	if o.Users != nil {
+		toSerialize["users"] = o.Users
 	}
 	return json.Marshal(toSerialize)
 }

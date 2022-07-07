@@ -18,8 +18,8 @@ import (
 // IPAssignmentInput struct for IPAssignmentInput
 type IPAssignmentInput struct {
 	Address    string                 `json:"address"`
-	Manageable *bool                  `json:"manageable,omitempty"`
 	Customdata map[string]interface{} `json:"customdata,omitempty"`
+	Manageable *bool                  `json:"manageable,omitempty"`
 }
 
 // NewIPAssignmentInput instantiates a new IPAssignmentInput object
@@ -64,38 +64,6 @@ func (o *IPAssignmentInput) SetAddress(v string) {
 	o.Address = v
 }
 
-// GetManageable returns the Manageable field value if set, zero value otherwise.
-func (o *IPAssignmentInput) GetManageable() bool {
-	if o == nil || o.Manageable == nil {
-		var ret bool
-		return ret
-	}
-	return *o.Manageable
-}
-
-// GetManageableOk returns a tuple with the Manageable field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *IPAssignmentInput) GetManageableOk() (*bool, bool) {
-	if o == nil || o.Manageable == nil {
-		return nil, false
-	}
-	return o.Manageable, true
-}
-
-// HasManageable returns a boolean if a field has been set.
-func (o *IPAssignmentInput) HasManageable() bool {
-	if o != nil && o.Manageable != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetManageable gets a reference to the given bool and assigns it to the Manageable field.
-func (o *IPAssignmentInput) SetManageable(v bool) {
-	o.Manageable = &v
-}
-
 // GetCustomdata returns the Customdata field value if set, zero value otherwise.
 func (o *IPAssignmentInput) GetCustomdata() map[string]interface{} {
 	if o == nil || o.Customdata == nil {
@@ -128,16 +96,48 @@ func (o *IPAssignmentInput) SetCustomdata(v map[string]interface{}) {
 	o.Customdata = v
 }
 
+// GetManageable returns the Manageable field value if set, zero value otherwise.
+func (o *IPAssignmentInput) GetManageable() bool {
+	if o == nil || o.Manageable == nil {
+		var ret bool
+		return ret
+	}
+	return *o.Manageable
+}
+
+// GetManageableOk returns a tuple with the Manageable field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IPAssignmentInput) GetManageableOk() (*bool, bool) {
+	if o == nil || o.Manageable == nil {
+		return nil, false
+	}
+	return o.Manageable, true
+}
+
+// HasManageable returns a boolean if a field has been set.
+func (o *IPAssignmentInput) HasManageable() bool {
+	if o != nil && o.Manageable != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetManageable gets a reference to the given bool and assigns it to the Manageable field.
+func (o *IPAssignmentInput) SetManageable(v bool) {
+	o.Manageable = &v
+}
+
 func (o IPAssignmentInput) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["address"] = o.Address
 	}
-	if o.Manageable != nil {
-		toSerialize["manageable"] = o.Manageable
-	}
 	if o.Customdata != nil {
 		toSerialize["customdata"] = o.Customdata
+	}
+	if o.Manageable != nil {
+		toSerialize["manageable"] = o.Manageable
 	}
 	return json.Marshal(toSerialize)
 }

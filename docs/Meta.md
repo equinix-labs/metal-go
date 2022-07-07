@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**First** | Pointer to [**Href**](Href.md) |  | [optional] 
-**Previous** | Pointer to [**Href**](Href.md) |  | [optional] 
-**Self** | Pointer to [**Href**](Href.md) |  | [optional] 
-**Next** | Pointer to [**Href**](Href.md) |  | [optional] 
-**Last** | Pointer to [**Href**](Href.md) |  | [optional] 
+**First** | Pointer to [**FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
+**Last** | Pointer to [**FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
+**Next** | Pointer to [**FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
+**Previous** | Pointer to [**FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
+**Self** | Pointer to [**FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
 **Total** | Pointer to **int32** |  | [optional] 
 
 ## Methods
@@ -32,20 +32,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetFirst
 
-`func (o *Meta) GetFirst() Href`
+`func (o *Meta) GetFirst() FindBatchById200ResponseDevicesInner`
 
 GetFirst returns the First field if non-nil, zero value otherwise.
 
 ### GetFirstOk
 
-`func (o *Meta) GetFirstOk() (*Href, bool)`
+`func (o *Meta) GetFirstOk() (*FindBatchById200ResponseDevicesInner, bool)`
 
 GetFirstOk returns a tuple with the First field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFirst
 
-`func (o *Meta) SetFirst(v Href)`
+`func (o *Meta) SetFirst(v FindBatchById200ResponseDevicesInner)`
 
 SetFirst sets First field to given value.
 
@@ -55,22 +55,72 @@ SetFirst sets First field to given value.
 
 HasFirst returns a boolean if a field has been set.
 
+### GetLast
+
+`func (o *Meta) GetLast() FindBatchById200ResponseDevicesInner`
+
+GetLast returns the Last field if non-nil, zero value otherwise.
+
+### GetLastOk
+
+`func (o *Meta) GetLastOk() (*FindBatchById200ResponseDevicesInner, bool)`
+
+GetLastOk returns a tuple with the Last field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLast
+
+`func (o *Meta) SetLast(v FindBatchById200ResponseDevicesInner)`
+
+SetLast sets Last field to given value.
+
+### HasLast
+
+`func (o *Meta) HasLast() bool`
+
+HasLast returns a boolean if a field has been set.
+
+### GetNext
+
+`func (o *Meta) GetNext() FindBatchById200ResponseDevicesInner`
+
+GetNext returns the Next field if non-nil, zero value otherwise.
+
+### GetNextOk
+
+`func (o *Meta) GetNextOk() (*FindBatchById200ResponseDevicesInner, bool)`
+
+GetNextOk returns a tuple with the Next field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNext
+
+`func (o *Meta) SetNext(v FindBatchById200ResponseDevicesInner)`
+
+SetNext sets Next field to given value.
+
+### HasNext
+
+`func (o *Meta) HasNext() bool`
+
+HasNext returns a boolean if a field has been set.
+
 ### GetPrevious
 
-`func (o *Meta) GetPrevious() Href`
+`func (o *Meta) GetPrevious() FindBatchById200ResponseDevicesInner`
 
 GetPrevious returns the Previous field if non-nil, zero value otherwise.
 
 ### GetPreviousOk
 
-`func (o *Meta) GetPreviousOk() (*Href, bool)`
+`func (o *Meta) GetPreviousOk() (*FindBatchById200ResponseDevicesInner, bool)`
 
 GetPreviousOk returns a tuple with the Previous field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPrevious
 
-`func (o *Meta) SetPrevious(v Href)`
+`func (o *Meta) SetPrevious(v FindBatchById200ResponseDevicesInner)`
 
 SetPrevious sets Previous field to given value.
 
@@ -82,20 +132,20 @@ HasPrevious returns a boolean if a field has been set.
 
 ### GetSelf
 
-`func (o *Meta) GetSelf() Href`
+`func (o *Meta) GetSelf() FindBatchById200ResponseDevicesInner`
 
 GetSelf returns the Self field if non-nil, zero value otherwise.
 
 ### GetSelfOk
 
-`func (o *Meta) GetSelfOk() (*Href, bool)`
+`func (o *Meta) GetSelfOk() (*FindBatchById200ResponseDevicesInner, bool)`
 
 GetSelfOk returns a tuple with the Self field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSelf
 
-`func (o *Meta) SetSelf(v Href)`
+`func (o *Meta) SetSelf(v FindBatchById200ResponseDevicesInner)`
 
 SetSelf sets Self field to given value.
 
@@ -104,56 +154,6 @@ SetSelf sets Self field to given value.
 `func (o *Meta) HasSelf() bool`
 
 HasSelf returns a boolean if a field has been set.
-
-### GetNext
-
-`func (o *Meta) GetNext() Href`
-
-GetNext returns the Next field if non-nil, zero value otherwise.
-
-### GetNextOk
-
-`func (o *Meta) GetNextOk() (*Href, bool)`
-
-GetNextOk returns a tuple with the Next field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetNext
-
-`func (o *Meta) SetNext(v Href)`
-
-SetNext sets Next field to given value.
-
-### HasNext
-
-`func (o *Meta) HasNext() bool`
-
-HasNext returns a boolean if a field has been set.
-
-### GetLast
-
-`func (o *Meta) GetLast() Href`
-
-GetLast returns the Last field if non-nil, zero value otherwise.
-
-### GetLastOk
-
-`func (o *Meta) GetLastOk() (*Href, bool)`
-
-GetLastOk returns a tuple with the Last field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetLast
-
-`func (o *Meta) SetLast(v Href)`
-
-SetLast sets Last field to given value.
-
-### HasLast
-
-`func (o *Meta) HasLast() bool`
-
-HasLast returns a boolean if a field has been set.
 
 ### GetTotal
 

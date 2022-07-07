@@ -26,16 +26,16 @@ type UsersApiService service
 type ApiCreateUserRequest struct {
 	ctx        context.Context
 	ApiService *UsersApiService
-	user       *UserCreateInput
+	body       *CreateUserRequest
 }
 
 // User to create
-func (r ApiCreateUserRequest) User(user UserCreateInput) ApiCreateUserRequest {
-	r.user = &user
+func (r ApiCreateUserRequest) Body(body CreateUserRequest) ApiCreateUserRequest {
+	r.body = &body
 	return r
 }
 
-func (r ApiCreateUserRequest) Execute() (*User, *http.Response, error) {
+func (r ApiCreateUserRequest) Execute() (*FindProjectAPIKeys200ResponseApiKeysInnerUserAllOf, *http.Response, error) {
 	return r.ApiService.CreateUserExecute(r)
 }
 
@@ -55,13 +55,13 @@ func (a *UsersApiService) CreateUser(ctx context.Context) ApiCreateUserRequest {
 }
 
 // Execute executes the request
-//  @return User
-func (a *UsersApiService) CreateUserExecute(r ApiCreateUserRequest) (*User, *http.Response, error) {
+//  @return FindProjectAPIKeys200ResponseApiKeysInnerUserAllOf
+func (a *UsersApiService) CreateUserExecute(r ApiCreateUserRequest) (*FindProjectAPIKeys200ResponseApiKeysInnerUserAllOf, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *User
+		localVarReturnValue *FindProjectAPIKeys200ResponseApiKeysInnerUserAllOf
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsersApiService.CreateUser")
@@ -74,8 +74,8 @@ func (a *UsersApiService) CreateUserExecute(r ApiCreateUserRequest) (*User, *htt
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.user == nil {
-		return localVarReturnValue, nil, reportError("user is required and must be specified")
+	if r.body == nil {
+		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -96,7 +96,7 @@ func (a *UsersApiService) CreateUserExecute(r ApiCreateUserRequest) (*User, *htt
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.user
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -134,7 +134,7 @@ func (a *UsersApiService) CreateUserExecute(r ApiCreateUserRequest) (*User, *htt
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -144,7 +144,7 @@ func (a *UsersApiService) CreateUserExecute(r ApiCreateUserRequest) (*User, *htt
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -186,7 +186,7 @@ func (r ApiFindCurrentUserRequest) Exclude(exclude []string) ApiFindCurrentUserR
 	return r
 }
 
-func (r ApiFindCurrentUserRequest) Execute() (*User, *http.Response, error) {
+func (r ApiFindCurrentUserRequest) Execute() (*FindProjectAPIKeys200ResponseApiKeysInnerUserAllOf, *http.Response, error) {
 	return r.ApiService.FindCurrentUserExecute(r)
 }
 
@@ -206,13 +206,13 @@ func (a *UsersApiService) FindCurrentUser(ctx context.Context) ApiFindCurrentUse
 }
 
 // Execute executes the request
-//  @return User
-func (a *UsersApiService) FindCurrentUserExecute(r ApiFindCurrentUserRequest) (*User, *http.Response, error) {
+//  @return FindProjectAPIKeys200ResponseApiKeysInnerUserAllOf
+func (a *UsersApiService) FindCurrentUserExecute(r ApiFindCurrentUserRequest) (*FindProjectAPIKeys200ResponseApiKeysInnerUserAllOf, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *User
+		localVarReturnValue *FindProjectAPIKeys200ResponseApiKeysInnerUserAllOf
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsersApiService.FindCurrentUser")
@@ -286,7 +286,189 @@ func (a *UsersApiService) FindCurrentUserExecute(r ApiFindCurrentUserRequest) (*
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
+			var v DeleteAPIKey401Response
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiFindInvitationsRequest struct {
+	ctx        context.Context
+	ApiService *UsersApiService
+	include    *[]string
+	exclude    *[]string
+	page       *int32
+	perPage    *int32
+}
+
+// Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+func (r ApiFindInvitationsRequest) Include(include []string) ApiFindInvitationsRequest {
+	r.include = &include
+	return r
+}
+
+// Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
+func (r ApiFindInvitationsRequest) Exclude(exclude []string) ApiFindInvitationsRequest {
+	r.exclude = &exclude
+	return r
+}
+
+// Page to return
+func (r ApiFindInvitationsRequest) Page(page int32) ApiFindInvitationsRequest {
+	r.page = &page
+	return r
+}
+
+// Items returned per page
+func (r ApiFindInvitationsRequest) PerPage(perPage int32) ApiFindInvitationsRequest {
+	r.perPage = &perPage
+	return r
+}
+
+func (r ApiFindInvitationsRequest) Execute() (*FindInvitations200Response, *http.Response, error) {
+	return r.ApiService.FindInvitationsExecute(r)
+}
+
+/*
+FindInvitations Retrieve current user invitations
+
+Returns all invitations in current user.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiFindInvitationsRequest
+*/
+func (a *UsersApiService) FindInvitations(ctx context.Context) ApiFindInvitationsRequest {
+	return ApiFindInvitationsRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+}
+
+// Execute executes the request
+//  @return FindInvitations200Response
+func (a *UsersApiService) FindInvitationsExecute(r ApiFindInvitationsRequest) (*FindInvitations200Response, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *FindInvitations200Response
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsersApiService.FindInvitations")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/invitations"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.include != nil {
+		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
+	}
+	if r.exclude != nil {
+		localVarQueryParams.Add("exclude", parameterToString(*r.exclude, "csv"))
+	}
+	if r.page != nil {
+		localVarQueryParams.Add("page", parameterToString(*r.page, ""))
+	}
+	if r.perPage != nil {
+		localVarQueryParams.Add("per_page", parameterToString(*r.perPage, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["x_auth_token"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["X-Auth-Token"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v DeleteAPIKey401Response
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v DeleteAPIKey401Response
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -329,7 +511,7 @@ func (r ApiFindUserByIdRequest) Exclude(exclude []string) ApiFindUserByIdRequest
 	return r
 }
 
-func (r ApiFindUserByIdRequest) Execute() (*User, *http.Response, error) {
+func (r ApiFindUserByIdRequest) Execute() (*FindProjectAPIKeys200ResponseApiKeysInnerUserAllOf, *http.Response, error) {
 	return r.ApiService.FindUserByIdExecute(r)
 }
 
@@ -351,13 +533,13 @@ func (a *UsersApiService) FindUserById(ctx context.Context, id string) ApiFindUs
 }
 
 // Execute executes the request
-//  @return User
-func (a *UsersApiService) FindUserByIdExecute(r ApiFindUserByIdRequest) (*User, *http.Response, error) {
+//  @return FindProjectAPIKeys200ResponseApiKeysInnerUserAllOf
+func (a *UsersApiService) FindUserByIdExecute(r ApiFindUserByIdRequest) (*FindProjectAPIKeys200ResponseApiKeysInnerUserAllOf, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *User
+		localVarReturnValue *FindProjectAPIKeys200ResponseApiKeysInnerUserAllOf
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsersApiService.FindUserById")
@@ -432,7 +614,7 @@ func (a *UsersApiService) FindUserByIdExecute(r ApiFindUserByIdRequest) (*User, 
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -442,7 +624,7 @@ func (a *UsersApiService) FindUserByIdExecute(r ApiFindUserByIdRequest) (*User, 
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -452,7 +634,7 @@ func (a *UsersApiService) FindUserByIdExecute(r ApiFindUserByIdRequest) (*User, 
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -576,7 +758,7 @@ func (a *UsersApiService) FindUserCustomdataExecute(r ApiFindUserCustomdataReque
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -586,7 +768,7 @@ func (a *UsersApiService) FindUserCustomdataExecute(r ApiFindUserCustomdataReque
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -596,7 +778,7 @@ func (a *UsersApiService) FindUserCustomdataExecute(r ApiFindUserCustomdataReque
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -643,7 +825,7 @@ func (r ApiFindUsersRequest) PerPage(perPage int32) ApiFindUsersRequest {
 	return r
 }
 
-func (r ApiFindUsersRequest) Execute() (*UserList, *http.Response, error) {
+func (r ApiFindUsersRequest) Execute() (*FindUsers200Response, *http.Response, error) {
 	return r.ApiService.FindUsersExecute(r)
 }
 
@@ -663,13 +845,13 @@ func (a *UsersApiService) FindUsers(ctx context.Context) ApiFindUsersRequest {
 }
 
 // Execute executes the request
-//  @return UserList
-func (a *UsersApiService) FindUsersExecute(r ApiFindUsersRequest) (*UserList, *http.Response, error) {
+//  @return FindUsers200Response
+func (a *UsersApiService) FindUsersExecute(r ApiFindUsersRequest) (*FindUsers200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *UserList
+		localVarReturnValue *FindUsers200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsersApiService.FindUsers")
@@ -749,7 +931,7 @@ func (a *UsersApiService) FindUsersExecute(r ApiFindUsersRequest) (*UserList, *h
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -775,16 +957,16 @@ func (a *UsersApiService) FindUsersExecute(r ApiFindUsersRequest) (*UserList, *h
 type ApiUpdateCurrentUserRequest struct {
 	ctx        context.Context
 	ApiService *UsersApiService
-	user       *UserUpdateInput
+	body       *UpdateCurrentUserRequest
 }
 
 // User to update
-func (r ApiUpdateCurrentUserRequest) User(user UserUpdateInput) ApiUpdateCurrentUserRequest {
-	r.user = &user
+func (r ApiUpdateCurrentUserRequest) Body(body UpdateCurrentUserRequest) ApiUpdateCurrentUserRequest {
+	r.body = &body
 	return r
 }
 
-func (r ApiUpdateCurrentUserRequest) Execute() (*User, *http.Response, error) {
+func (r ApiUpdateCurrentUserRequest) Execute() (*FindProjectAPIKeys200ResponseApiKeysInnerUserAllOf, *http.Response, error) {
 	return r.ApiService.UpdateCurrentUserExecute(r)
 }
 
@@ -804,13 +986,13 @@ func (a *UsersApiService) UpdateCurrentUser(ctx context.Context) ApiUpdateCurren
 }
 
 // Execute executes the request
-//  @return User
-func (a *UsersApiService) UpdateCurrentUserExecute(r ApiUpdateCurrentUserRequest) (*User, *http.Response, error) {
+//  @return FindProjectAPIKeys200ResponseApiKeysInnerUserAllOf
+func (a *UsersApiService) UpdateCurrentUserExecute(r ApiUpdateCurrentUserRequest) (*FindProjectAPIKeys200ResponseApiKeysInnerUserAllOf, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *User
+		localVarReturnValue *FindProjectAPIKeys200ResponseApiKeysInnerUserAllOf
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsersApiService.UpdateCurrentUser")
@@ -823,8 +1005,8 @@ func (a *UsersApiService) UpdateCurrentUserExecute(r ApiUpdateCurrentUserRequest
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.user == nil {
-		return localVarReturnValue, nil, reportError("user is required and must be specified")
+	if r.body == nil {
+		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -845,7 +1027,7 @@ func (a *UsersApiService) UpdateCurrentUserExecute(r ApiUpdateCurrentUserRequest
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.user
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -883,7 +1065,7 @@ func (a *UsersApiService) UpdateCurrentUserExecute(r ApiUpdateCurrentUserRequest
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -893,7 +1075,7 @@ func (a *UsersApiService) UpdateCurrentUserExecute(r ApiUpdateCurrentUserRequest
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

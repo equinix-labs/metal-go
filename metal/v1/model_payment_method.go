@@ -18,21 +18,21 @@ import (
 
 // PaymentMethod struct for PaymentMethod
 type PaymentMethod struct {
-	Id              *string                      `json:"id,omitempty"`
-	Name            *string                      `json:"name,omitempty"`
-	Type            *string                      `json:"type,omitempty"`
-	Default         *bool                        `json:"default,omitempty"`
-	CreatedAt       *time.Time                   `json:"created_at,omitempty"`
-	UpdatedAt       *time.Time                   `json:"updated_at,omitempty"`
-	CardType        *string                      `json:"card_type,omitempty"`
-	ExpirationMonth *string                      `json:"expiration_month,omitempty"`
-	ExpirationYear  *string                      `json:"expiration_year,omitempty"`
-	CardholderName  *string                      `json:"cardholder_name,omitempty"`
-	BillingAddress  *PaymentMethodBillingAddress `json:"billing_address,omitempty"`
-	Email           *string                      `json:"email,omitempty"`
-	CreatedByUser   *Href                        `json:"created_by_user,omitempty"`
-	Organization    *Href                        `json:"organization,omitempty"`
-	Projects        []Href                       `json:"projects,omitempty"`
+	BillingAddress  *FindOrganizationPaymentMethods200ResponsePaymentMethodsInnerBillingAddress `json:"billing_address,omitempty"`
+	CardType        *string                                                                     `json:"card_type,omitempty"`
+	CardholderName  *string                                                                     `json:"cardholder_name,omitempty"`
+	CreatedAt       *time.Time                                                                  `json:"created_at,omitempty"`
+	CreatedByUser   *FindBatchById200ResponseDevicesInner                                       `json:"created_by_user,omitempty"`
+	Default         *bool                                                                       `json:"default,omitempty"`
+	Email           *string                                                                     `json:"email,omitempty"`
+	ExpirationMonth *string                                                                     `json:"expiration_month,omitempty"`
+	ExpirationYear  *string                                                                     `json:"expiration_year,omitempty"`
+	Id              *string                                                                     `json:"id,omitempty"`
+	Name            *string                                                                     `json:"name,omitempty"`
+	Organization    *FindBatchById200ResponseDevicesInner                                       `json:"organization,omitempty"`
+	Projects        []FindBatchById200ResponseDevicesInner                                      `json:"projects,omitempty"`
+	Type            *string                                                                     `json:"type,omitempty"`
+	UpdatedAt       *time.Time                                                                  `json:"updated_at,omitempty"`
 }
 
 // NewPaymentMethod instantiates a new PaymentMethod object
@@ -52,132 +52,100 @@ func NewPaymentMethodWithDefaults() *PaymentMethod {
 	return &this
 }
 
-// GetId returns the Id field value if set, zero value otherwise.
-func (o *PaymentMethod) GetId() string {
-	if o == nil || o.Id == nil {
+// GetBillingAddress returns the BillingAddress field value if set, zero value otherwise.
+func (o *PaymentMethod) GetBillingAddress() FindOrganizationPaymentMethods200ResponsePaymentMethodsInnerBillingAddress {
+	if o == nil || o.BillingAddress == nil {
+		var ret FindOrganizationPaymentMethods200ResponsePaymentMethodsInnerBillingAddress
+		return ret
+	}
+	return *o.BillingAddress
+}
+
+// GetBillingAddressOk returns a tuple with the BillingAddress field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PaymentMethod) GetBillingAddressOk() (*FindOrganizationPaymentMethods200ResponsePaymentMethodsInnerBillingAddress, bool) {
+	if o == nil || o.BillingAddress == nil {
+		return nil, false
+	}
+	return o.BillingAddress, true
+}
+
+// HasBillingAddress returns a boolean if a field has been set.
+func (o *PaymentMethod) HasBillingAddress() bool {
+	if o != nil && o.BillingAddress != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetBillingAddress gets a reference to the given FindOrganizationPaymentMethods200ResponsePaymentMethodsInnerBillingAddress and assigns it to the BillingAddress field.
+func (o *PaymentMethod) SetBillingAddress(v FindOrganizationPaymentMethods200ResponsePaymentMethodsInnerBillingAddress) {
+	o.BillingAddress = &v
+}
+
+// GetCardType returns the CardType field value if set, zero value otherwise.
+func (o *PaymentMethod) GetCardType() string {
+	if o == nil || o.CardType == nil {
 		var ret string
 		return ret
 	}
-	return *o.Id
+	return *o.CardType
 }
 
-// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// GetCardTypeOk returns a tuple with the CardType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PaymentMethod) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+func (o *PaymentMethod) GetCardTypeOk() (*string, bool) {
+	if o == nil || o.CardType == nil {
 		return nil, false
 	}
-	return o.Id, true
+	return o.CardType, true
 }
 
-// HasId returns a boolean if a field has been set.
-func (o *PaymentMethod) HasId() bool {
-	if o != nil && o.Id != nil {
+// HasCardType returns a boolean if a field has been set.
+func (o *PaymentMethod) HasCardType() bool {
+	if o != nil && o.CardType != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetId gets a reference to the given string and assigns it to the Id field.
-func (o *PaymentMethod) SetId(v string) {
-	o.Id = &v
+// SetCardType gets a reference to the given string and assigns it to the CardType field.
+func (o *PaymentMethod) SetCardType(v string) {
+	o.CardType = &v
 }
 
-// GetName returns the Name field value if set, zero value otherwise.
-func (o *PaymentMethod) GetName() string {
-	if o == nil || o.Name == nil {
+// GetCardholderName returns the CardholderName field value if set, zero value otherwise.
+func (o *PaymentMethod) GetCardholderName() string {
+	if o == nil || o.CardholderName == nil {
 		var ret string
 		return ret
 	}
-	return *o.Name
+	return *o.CardholderName
 }
 
-// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// GetCardholderNameOk returns a tuple with the CardholderName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PaymentMethod) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
+func (o *PaymentMethod) GetCardholderNameOk() (*string, bool) {
+	if o == nil || o.CardholderName == nil {
 		return nil, false
 	}
-	return o.Name, true
+	return o.CardholderName, true
 }
 
-// HasName returns a boolean if a field has been set.
-func (o *PaymentMethod) HasName() bool {
-	if o != nil && o.Name != nil {
+// HasCardholderName returns a boolean if a field has been set.
+func (o *PaymentMethod) HasCardholderName() bool {
+	if o != nil && o.CardholderName != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetName gets a reference to the given string and assigns it to the Name field.
-func (o *PaymentMethod) SetName(v string) {
-	o.Name = &v
-}
-
-// GetType returns the Type field value if set, zero value otherwise.
-func (o *PaymentMethod) GetType() string {
-	if o == nil || o.Type == nil {
-		var ret string
-		return ret
-	}
-	return *o.Type
-}
-
-// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *PaymentMethod) GetTypeOk() (*string, bool) {
-	if o == nil || o.Type == nil {
-		return nil, false
-	}
-	return o.Type, true
-}
-
-// HasType returns a boolean if a field has been set.
-func (o *PaymentMethod) HasType() bool {
-	if o != nil && o.Type != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetType gets a reference to the given string and assigns it to the Type field.
-func (o *PaymentMethod) SetType(v string) {
-	o.Type = &v
-}
-
-// GetDefault returns the Default field value if set, zero value otherwise.
-func (o *PaymentMethod) GetDefault() bool {
-	if o == nil || o.Default == nil {
-		var ret bool
-		return ret
-	}
-	return *o.Default
-}
-
-// GetDefaultOk returns a tuple with the Default field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *PaymentMethod) GetDefaultOk() (*bool, bool) {
-	if o == nil || o.Default == nil {
-		return nil, false
-	}
-	return o.Default, true
-}
-
-// HasDefault returns a boolean if a field has been set.
-func (o *PaymentMethod) HasDefault() bool {
-	if o != nil && o.Default != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetDefault gets a reference to the given bool and assigns it to the Default field.
-func (o *PaymentMethod) SetDefault(v bool) {
-	o.Default = &v
+// SetCardholderName gets a reference to the given string and assigns it to the CardholderName field.
+func (o *PaymentMethod) SetCardholderName(v string) {
+	o.CardholderName = &v
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
@@ -212,68 +180,100 @@ func (o *PaymentMethod) SetCreatedAt(v time.Time) {
 	o.CreatedAt = &v
 }
 
-// GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
-func (o *PaymentMethod) GetUpdatedAt() time.Time {
-	if o == nil || o.UpdatedAt == nil {
-		var ret time.Time
+// GetCreatedByUser returns the CreatedByUser field value if set, zero value otherwise.
+func (o *PaymentMethod) GetCreatedByUser() FindBatchById200ResponseDevicesInner {
+	if o == nil || o.CreatedByUser == nil {
+		var ret FindBatchById200ResponseDevicesInner
 		return ret
 	}
-	return *o.UpdatedAt
+	return *o.CreatedByUser
 }
 
-// GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
+// GetCreatedByUserOk returns a tuple with the CreatedByUser field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PaymentMethod) GetUpdatedAtOk() (*time.Time, bool) {
-	if o == nil || o.UpdatedAt == nil {
+func (o *PaymentMethod) GetCreatedByUserOk() (*FindBatchById200ResponseDevicesInner, bool) {
+	if o == nil || o.CreatedByUser == nil {
 		return nil, false
 	}
-	return o.UpdatedAt, true
+	return o.CreatedByUser, true
 }
 
-// HasUpdatedAt returns a boolean if a field has been set.
-func (o *PaymentMethod) HasUpdatedAt() bool {
-	if o != nil && o.UpdatedAt != nil {
+// HasCreatedByUser returns a boolean if a field has been set.
+func (o *PaymentMethod) HasCreatedByUser() bool {
+	if o != nil && o.CreatedByUser != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetUpdatedAt gets a reference to the given time.Time and assigns it to the UpdatedAt field.
-func (o *PaymentMethod) SetUpdatedAt(v time.Time) {
-	o.UpdatedAt = &v
+// SetCreatedByUser gets a reference to the given FindBatchById200ResponseDevicesInner and assigns it to the CreatedByUser field.
+func (o *PaymentMethod) SetCreatedByUser(v FindBatchById200ResponseDevicesInner) {
+	o.CreatedByUser = &v
 }
 
-// GetCardType returns the CardType field value if set, zero value otherwise.
-func (o *PaymentMethod) GetCardType() string {
-	if o == nil || o.CardType == nil {
+// GetDefault returns the Default field value if set, zero value otherwise.
+func (o *PaymentMethod) GetDefault() bool {
+	if o == nil || o.Default == nil {
+		var ret bool
+		return ret
+	}
+	return *o.Default
+}
+
+// GetDefaultOk returns a tuple with the Default field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PaymentMethod) GetDefaultOk() (*bool, bool) {
+	if o == nil || o.Default == nil {
+		return nil, false
+	}
+	return o.Default, true
+}
+
+// HasDefault returns a boolean if a field has been set.
+func (o *PaymentMethod) HasDefault() bool {
+	if o != nil && o.Default != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDefault gets a reference to the given bool and assigns it to the Default field.
+func (o *PaymentMethod) SetDefault(v bool) {
+	o.Default = &v
+}
+
+// GetEmail returns the Email field value if set, zero value otherwise.
+func (o *PaymentMethod) GetEmail() string {
+	if o == nil || o.Email == nil {
 		var ret string
 		return ret
 	}
-	return *o.CardType
+	return *o.Email
 }
 
-// GetCardTypeOk returns a tuple with the CardType field value if set, nil otherwise
+// GetEmailOk returns a tuple with the Email field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PaymentMethod) GetCardTypeOk() (*string, bool) {
-	if o == nil || o.CardType == nil {
+func (o *PaymentMethod) GetEmailOk() (*string, bool) {
+	if o == nil || o.Email == nil {
 		return nil, false
 	}
-	return o.CardType, true
+	return o.Email, true
 }
 
-// HasCardType returns a boolean if a field has been set.
-func (o *PaymentMethod) HasCardType() bool {
-	if o != nil && o.CardType != nil {
+// HasEmail returns a boolean if a field has been set.
+func (o *PaymentMethod) HasEmail() bool {
+	if o != nil && o.Email != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetCardType gets a reference to the given string and assigns it to the CardType field.
-func (o *PaymentMethod) SetCardType(v string) {
-	o.CardType = &v
+// SetEmail gets a reference to the given string and assigns it to the Email field.
+func (o *PaymentMethod) SetEmail(v string) {
+	o.Email = &v
 }
 
 // GetExpirationMonth returns the ExpirationMonth field value if set, zero value otherwise.
@@ -340,138 +340,74 @@ func (o *PaymentMethod) SetExpirationYear(v string) {
 	o.ExpirationYear = &v
 }
 
-// GetCardholderName returns the CardholderName field value if set, zero value otherwise.
-func (o *PaymentMethod) GetCardholderName() string {
-	if o == nil || o.CardholderName == nil {
+// GetId returns the Id field value if set, zero value otherwise.
+func (o *PaymentMethod) GetId() string {
+	if o == nil || o.Id == nil {
 		var ret string
 		return ret
 	}
-	return *o.CardholderName
+	return *o.Id
 }
 
-// GetCardholderNameOk returns a tuple with the CardholderName field value if set, nil otherwise
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PaymentMethod) GetCardholderNameOk() (*string, bool) {
-	if o == nil || o.CardholderName == nil {
+func (o *PaymentMethod) GetIdOk() (*string, bool) {
+	if o == nil || o.Id == nil {
 		return nil, false
 	}
-	return o.CardholderName, true
+	return o.Id, true
 }
 
-// HasCardholderName returns a boolean if a field has been set.
-func (o *PaymentMethod) HasCardholderName() bool {
-	if o != nil && o.CardholderName != nil {
+// HasId returns a boolean if a field has been set.
+func (o *PaymentMethod) HasId() bool {
+	if o != nil && o.Id != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetCardholderName gets a reference to the given string and assigns it to the CardholderName field.
-func (o *PaymentMethod) SetCardholderName(v string) {
-	o.CardholderName = &v
+// SetId gets a reference to the given string and assigns it to the Id field.
+func (o *PaymentMethod) SetId(v string) {
+	o.Id = &v
 }
 
-// GetBillingAddress returns the BillingAddress field value if set, zero value otherwise.
-func (o *PaymentMethod) GetBillingAddress() PaymentMethodBillingAddress {
-	if o == nil || o.BillingAddress == nil {
-		var ret PaymentMethodBillingAddress
-		return ret
-	}
-	return *o.BillingAddress
-}
-
-// GetBillingAddressOk returns a tuple with the BillingAddress field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *PaymentMethod) GetBillingAddressOk() (*PaymentMethodBillingAddress, bool) {
-	if o == nil || o.BillingAddress == nil {
-		return nil, false
-	}
-	return o.BillingAddress, true
-}
-
-// HasBillingAddress returns a boolean if a field has been set.
-func (o *PaymentMethod) HasBillingAddress() bool {
-	if o != nil && o.BillingAddress != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetBillingAddress gets a reference to the given PaymentMethodBillingAddress and assigns it to the BillingAddress field.
-func (o *PaymentMethod) SetBillingAddress(v PaymentMethodBillingAddress) {
-	o.BillingAddress = &v
-}
-
-// GetEmail returns the Email field value if set, zero value otherwise.
-func (o *PaymentMethod) GetEmail() string {
-	if o == nil || o.Email == nil {
+// GetName returns the Name field value if set, zero value otherwise.
+func (o *PaymentMethod) GetName() string {
+	if o == nil || o.Name == nil {
 		var ret string
 		return ret
 	}
-	return *o.Email
+	return *o.Name
 }
 
-// GetEmailOk returns a tuple with the Email field value if set, nil otherwise
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PaymentMethod) GetEmailOk() (*string, bool) {
-	if o == nil || o.Email == nil {
+func (o *PaymentMethod) GetNameOk() (*string, bool) {
+	if o == nil || o.Name == nil {
 		return nil, false
 	}
-	return o.Email, true
+	return o.Name, true
 }
 
-// HasEmail returns a boolean if a field has been set.
-func (o *PaymentMethod) HasEmail() bool {
-	if o != nil && o.Email != nil {
+// HasName returns a boolean if a field has been set.
+func (o *PaymentMethod) HasName() bool {
+	if o != nil && o.Name != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetEmail gets a reference to the given string and assigns it to the Email field.
-func (o *PaymentMethod) SetEmail(v string) {
-	o.Email = &v
-}
-
-// GetCreatedByUser returns the CreatedByUser field value if set, zero value otherwise.
-func (o *PaymentMethod) GetCreatedByUser() Href {
-	if o == nil || o.CreatedByUser == nil {
-		var ret Href
-		return ret
-	}
-	return *o.CreatedByUser
-}
-
-// GetCreatedByUserOk returns a tuple with the CreatedByUser field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *PaymentMethod) GetCreatedByUserOk() (*Href, bool) {
-	if o == nil || o.CreatedByUser == nil {
-		return nil, false
-	}
-	return o.CreatedByUser, true
-}
-
-// HasCreatedByUser returns a boolean if a field has been set.
-func (o *PaymentMethod) HasCreatedByUser() bool {
-	if o != nil && o.CreatedByUser != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetCreatedByUser gets a reference to the given Href and assigns it to the CreatedByUser field.
-func (o *PaymentMethod) SetCreatedByUser(v Href) {
-	o.CreatedByUser = &v
+// SetName gets a reference to the given string and assigns it to the Name field.
+func (o *PaymentMethod) SetName(v string) {
+	o.Name = &v
 }
 
 // GetOrganization returns the Organization field value if set, zero value otherwise.
-func (o *PaymentMethod) GetOrganization() Href {
+func (o *PaymentMethod) GetOrganization() FindBatchById200ResponseDevicesInner {
 	if o == nil || o.Organization == nil {
-		var ret Href
+		var ret FindBatchById200ResponseDevicesInner
 		return ret
 	}
 	return *o.Organization
@@ -479,7 +415,7 @@ func (o *PaymentMethod) GetOrganization() Href {
 
 // GetOrganizationOk returns a tuple with the Organization field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PaymentMethod) GetOrganizationOk() (*Href, bool) {
+func (o *PaymentMethod) GetOrganizationOk() (*FindBatchById200ResponseDevicesInner, bool) {
 	if o == nil || o.Organization == nil {
 		return nil, false
 	}
@@ -495,15 +431,15 @@ func (o *PaymentMethod) HasOrganization() bool {
 	return false
 }
 
-// SetOrganization gets a reference to the given Href and assigns it to the Organization field.
-func (o *PaymentMethod) SetOrganization(v Href) {
+// SetOrganization gets a reference to the given FindBatchById200ResponseDevicesInner and assigns it to the Organization field.
+func (o *PaymentMethod) SetOrganization(v FindBatchById200ResponseDevicesInner) {
 	o.Organization = &v
 }
 
 // GetProjects returns the Projects field value if set, zero value otherwise.
-func (o *PaymentMethod) GetProjects() []Href {
+func (o *PaymentMethod) GetProjects() []FindBatchById200ResponseDevicesInner {
 	if o == nil || o.Projects == nil {
-		var ret []Href
+		var ret []FindBatchById200ResponseDevicesInner
 		return ret
 	}
 	return o.Projects
@@ -511,7 +447,7 @@ func (o *PaymentMethod) GetProjects() []Href {
 
 // GetProjectsOk returns a tuple with the Projects field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PaymentMethod) GetProjectsOk() ([]Href, bool) {
+func (o *PaymentMethod) GetProjectsOk() ([]FindBatchById200ResponseDevicesInner, bool) {
 	if o == nil || o.Projects == nil {
 		return nil, false
 	}
@@ -527,33 +463,97 @@ func (o *PaymentMethod) HasProjects() bool {
 	return false
 }
 
-// SetProjects gets a reference to the given []Href and assigns it to the Projects field.
-func (o *PaymentMethod) SetProjects(v []Href) {
+// SetProjects gets a reference to the given []FindBatchById200ResponseDevicesInner and assigns it to the Projects field.
+func (o *PaymentMethod) SetProjects(v []FindBatchById200ResponseDevicesInner) {
 	o.Projects = v
+}
+
+// GetType returns the Type field value if set, zero value otherwise.
+func (o *PaymentMethod) GetType() string {
+	if o == nil || o.Type == nil {
+		var ret string
+		return ret
+	}
+	return *o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PaymentMethod) GetTypeOk() (*string, bool) {
+	if o == nil || o.Type == nil {
+		return nil, false
+	}
+	return o.Type, true
+}
+
+// HasType returns a boolean if a field has been set.
+func (o *PaymentMethod) HasType() bool {
+	if o != nil && o.Type != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetType gets a reference to the given string and assigns it to the Type field.
+func (o *PaymentMethod) SetType(v string) {
+	o.Type = &v
+}
+
+// GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
+func (o *PaymentMethod) GetUpdatedAt() time.Time {
+	if o == nil || o.UpdatedAt == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.UpdatedAt
+}
+
+// GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PaymentMethod) GetUpdatedAtOk() (*time.Time, bool) {
+	if o == nil || o.UpdatedAt == nil {
+		return nil, false
+	}
+	return o.UpdatedAt, true
+}
+
+// HasUpdatedAt returns a boolean if a field has been set.
+func (o *PaymentMethod) HasUpdatedAt() bool {
+	if o != nil && o.UpdatedAt != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetUpdatedAt gets a reference to the given time.Time and assigns it to the UpdatedAt field.
+func (o *PaymentMethod) SetUpdatedAt(v time.Time) {
+	o.UpdatedAt = &v
 }
 
 func (o PaymentMethod) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
+	if o.BillingAddress != nil {
+		toSerialize["billing_address"] = o.BillingAddress
 	}
-	if o.Name != nil {
-		toSerialize["name"] = o.Name
+	if o.CardType != nil {
+		toSerialize["card_type"] = o.CardType
 	}
-	if o.Type != nil {
-		toSerialize["type"] = o.Type
-	}
-	if o.Default != nil {
-		toSerialize["default"] = o.Default
+	if o.CardholderName != nil {
+		toSerialize["cardholder_name"] = o.CardholderName
 	}
 	if o.CreatedAt != nil {
 		toSerialize["created_at"] = o.CreatedAt
 	}
-	if o.UpdatedAt != nil {
-		toSerialize["updated_at"] = o.UpdatedAt
+	if o.CreatedByUser != nil {
+		toSerialize["created_by_user"] = o.CreatedByUser
 	}
-	if o.CardType != nil {
-		toSerialize["card_type"] = o.CardType
+	if o.Default != nil {
+		toSerialize["default"] = o.Default
+	}
+	if o.Email != nil {
+		toSerialize["email"] = o.Email
 	}
 	if o.ExpirationMonth != nil {
 		toSerialize["expiration_month"] = o.ExpirationMonth
@@ -561,23 +561,23 @@ func (o PaymentMethod) MarshalJSON() ([]byte, error) {
 	if o.ExpirationYear != nil {
 		toSerialize["expiration_year"] = o.ExpirationYear
 	}
-	if o.CardholderName != nil {
-		toSerialize["cardholder_name"] = o.CardholderName
+	if o.Id != nil {
+		toSerialize["id"] = o.Id
 	}
-	if o.BillingAddress != nil {
-		toSerialize["billing_address"] = o.BillingAddress
-	}
-	if o.Email != nil {
-		toSerialize["email"] = o.Email
-	}
-	if o.CreatedByUser != nil {
-		toSerialize["created_by_user"] = o.CreatedByUser
+	if o.Name != nil {
+		toSerialize["name"] = o.Name
 	}
 	if o.Organization != nil {
 		toSerialize["organization"] = o.Organization
 	}
 	if o.Projects != nil {
 		toSerialize["projects"] = o.Projects
+	}
+	if o.Type != nil {
+		toSerialize["type"] = o.Type
+	}
+	if o.UpdatedAt != nil {
+		toSerialize["updated_at"] = o.UpdatedAt
 	}
 	return json.Marshal(toSerialize)
 }

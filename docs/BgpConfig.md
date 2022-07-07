@@ -4,19 +4,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **string** |  | [optional] 
-**Status** | Pointer to **string** | Status of the BGP Config. Status \&quot;requested\&quot; is valid only with the \&quot;global\&quot; deployment_type. | [optional] 
-**DeploymentType** | Pointer to **string** | In a Local BGP deployment, a customer uses an internal ASN to control routes within a single Equinix Metal datacenter. This means that the routes are never advertised to the global Internet. Global BGP, on the other hand, requires a customer to have a registered ASN and IP space.  | [optional] 
 **Asn** | Pointer to **int32** | Autonomous System Number. ASN is required with Global BGP. With Local BGP the private ASN, 65000, is assigned. | [optional] 
-**RouteObject** | Pointer to **string** | Specifies AS-MACRO (aka AS-SET) to use when building client route filters | [optional] 
-**Md5** | Pointer to **NullableString** | (Optional) Password for BGP session in plaintext (not a checksum) | [optional] 
-**MaxPrefix** | Pointer to **int32** | The maximum number of route filters allowed per server | [optional] 
-**Project** | Pointer to [**Href**](Href.md) |  | [optional] 
 **CreatedAt** | Pointer to **time.Time** |  | [optional] 
-**RequestedAt** | Pointer to **time.Time** |  | [optional] 
-**Sessions** | Pointer to [**[]BgpSession**](BgpSession.md) | The direct connections between neighboring routers that want to exchange routing information. | [optional] 
-**Ranges** | Pointer to [**[]GlobalBgpRange**](GlobalBgpRange.md) | The IP block ranges associated to the ASN (Populated in Global BGP only) | [optional] 
+**DeploymentType** | Pointer to **string** | In a Local BGP deployment, a customer uses an internal ASN to control routes within a single Equinix Metal datacenter. This means that the routes are never advertised to the global Internet. Global BGP, on the other hand, requires a customer to have a registered ASN and IP space.  | [optional] 
 **Href** | Pointer to **string** |  | [optional] 
+**Id** | Pointer to **string** |  | [optional] 
+**MaxPrefix** | Pointer to **int32** | The maximum number of route filters allowed per server | [optional] 
+**Md5** | Pointer to **NullableString** | (Optional) Password for BGP session in plaintext (not a checksum) | [optional] 
+**Project** | Pointer to [**FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
+**Ranges** | Pointer to [**[]FindBgpConfigByProject200ResponseRangesInner**](FindBgpConfigByProject200ResponseRangesInner.md) | The IP block ranges associated to the ASN (Populated in Global BGP only) | [optional] 
+**RequestedAt** | Pointer to **time.Time** |  | [optional] 
+**RouteObject** | Pointer to **string** | Specifies AS-MACRO (aka AS-SET) to use when building client route filters | [optional] 
+**Sessions** | Pointer to [**[]FindBgpSessionById200Response**](FindBgpSessionById200Response.md) | The direct connections between neighboring routers that want to exchange routing information. | [optional] 
+**Status** | Pointer to **string** | Status of the BGP Config. Status \&quot;requested\&quot; is valid only with the \&quot;global\&quot; deployment_type. | [optional] 
 
 ## Methods
 
@@ -36,81 +36,6 @@ will change when the set of required properties is changed
 NewBgpConfigWithDefaults instantiates a new BgpConfig object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetId
-
-`func (o *BgpConfig) GetId() string`
-
-GetId returns the Id field if non-nil, zero value otherwise.
-
-### GetIdOk
-
-`func (o *BgpConfig) GetIdOk() (*string, bool)`
-
-GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetId
-
-`func (o *BgpConfig) SetId(v string)`
-
-SetId sets Id field to given value.
-
-### HasId
-
-`func (o *BgpConfig) HasId() bool`
-
-HasId returns a boolean if a field has been set.
-
-### GetStatus
-
-`func (o *BgpConfig) GetStatus() string`
-
-GetStatus returns the Status field if non-nil, zero value otherwise.
-
-### GetStatusOk
-
-`func (o *BgpConfig) GetStatusOk() (*string, bool)`
-
-GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetStatus
-
-`func (o *BgpConfig) SetStatus(v string)`
-
-SetStatus sets Status field to given value.
-
-### HasStatus
-
-`func (o *BgpConfig) HasStatus() bool`
-
-HasStatus returns a boolean if a field has been set.
-
-### GetDeploymentType
-
-`func (o *BgpConfig) GetDeploymentType() string`
-
-GetDeploymentType returns the DeploymentType field if non-nil, zero value otherwise.
-
-### GetDeploymentTypeOk
-
-`func (o *BgpConfig) GetDeploymentTypeOk() (*string, bool)`
-
-GetDeploymentTypeOk returns a tuple with the DeploymentType field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDeploymentType
-
-`func (o *BgpConfig) SetDeploymentType(v string)`
-
-SetDeploymentType sets DeploymentType field to given value.
-
-### HasDeploymentType
-
-`func (o *BgpConfig) HasDeploymentType() bool`
-
-HasDeploymentType returns a boolean if a field has been set.
 
 ### GetAsn
 
@@ -137,30 +62,130 @@ SetAsn sets Asn field to given value.
 
 HasAsn returns a boolean if a field has been set.
 
-### GetRouteObject
+### GetCreatedAt
 
-`func (o *BgpConfig) GetRouteObject() string`
+`func (o *BgpConfig) GetCreatedAt() time.Time`
 
-GetRouteObject returns the RouteObject field if non-nil, zero value otherwise.
+GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
 
-### GetRouteObjectOk
+### GetCreatedAtOk
 
-`func (o *BgpConfig) GetRouteObjectOk() (*string, bool)`
+`func (o *BgpConfig) GetCreatedAtOk() (*time.Time, bool)`
 
-GetRouteObjectOk returns a tuple with the RouteObject field if it's non-nil, zero value otherwise
+GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetRouteObject
+### SetCreatedAt
 
-`func (o *BgpConfig) SetRouteObject(v string)`
+`func (o *BgpConfig) SetCreatedAt(v time.Time)`
 
-SetRouteObject sets RouteObject field to given value.
+SetCreatedAt sets CreatedAt field to given value.
 
-### HasRouteObject
+### HasCreatedAt
 
-`func (o *BgpConfig) HasRouteObject() bool`
+`func (o *BgpConfig) HasCreatedAt() bool`
 
-HasRouteObject returns a boolean if a field has been set.
+HasCreatedAt returns a boolean if a field has been set.
+
+### GetDeploymentType
+
+`func (o *BgpConfig) GetDeploymentType() string`
+
+GetDeploymentType returns the DeploymentType field if non-nil, zero value otherwise.
+
+### GetDeploymentTypeOk
+
+`func (o *BgpConfig) GetDeploymentTypeOk() (*string, bool)`
+
+GetDeploymentTypeOk returns a tuple with the DeploymentType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDeploymentType
+
+`func (o *BgpConfig) SetDeploymentType(v string)`
+
+SetDeploymentType sets DeploymentType field to given value.
+
+### HasDeploymentType
+
+`func (o *BgpConfig) HasDeploymentType() bool`
+
+HasDeploymentType returns a boolean if a field has been set.
+
+### GetHref
+
+`func (o *BgpConfig) GetHref() string`
+
+GetHref returns the Href field if non-nil, zero value otherwise.
+
+### GetHrefOk
+
+`func (o *BgpConfig) GetHrefOk() (*string, bool)`
+
+GetHrefOk returns a tuple with the Href field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHref
+
+`func (o *BgpConfig) SetHref(v string)`
+
+SetHref sets Href field to given value.
+
+### HasHref
+
+`func (o *BgpConfig) HasHref() bool`
+
+HasHref returns a boolean if a field has been set.
+
+### GetId
+
+`func (o *BgpConfig) GetId() string`
+
+GetId returns the Id field if non-nil, zero value otherwise.
+
+### GetIdOk
+
+`func (o *BgpConfig) GetIdOk() (*string, bool)`
+
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetId
+
+`func (o *BgpConfig) SetId(v string)`
+
+SetId sets Id field to given value.
+
+### HasId
+
+`func (o *BgpConfig) HasId() bool`
+
+HasId returns a boolean if a field has been set.
+
+### GetMaxPrefix
+
+`func (o *BgpConfig) GetMaxPrefix() int32`
+
+GetMaxPrefix returns the MaxPrefix field if non-nil, zero value otherwise.
+
+### GetMaxPrefixOk
+
+`func (o *BgpConfig) GetMaxPrefixOk() (*int32, bool)`
+
+GetMaxPrefixOk returns a tuple with the MaxPrefix field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMaxPrefix
+
+`func (o *BgpConfig) SetMaxPrefix(v int32)`
+
+SetMaxPrefix sets MaxPrefix field to given value.
+
+### HasMaxPrefix
+
+`func (o *BgpConfig) HasMaxPrefix() bool`
+
+HasMaxPrefix returns a boolean if a field has been set.
 
 ### GetMd5
 
@@ -197,47 +222,22 @@ HasMd5 returns a boolean if a field has been set.
 `func (o *BgpConfig) UnsetMd5()`
 
 UnsetMd5 ensures that no value is present for Md5, not even an explicit nil
-### GetMaxPrefix
-
-`func (o *BgpConfig) GetMaxPrefix() int32`
-
-GetMaxPrefix returns the MaxPrefix field if non-nil, zero value otherwise.
-
-### GetMaxPrefixOk
-
-`func (o *BgpConfig) GetMaxPrefixOk() (*int32, bool)`
-
-GetMaxPrefixOk returns a tuple with the MaxPrefix field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetMaxPrefix
-
-`func (o *BgpConfig) SetMaxPrefix(v int32)`
-
-SetMaxPrefix sets MaxPrefix field to given value.
-
-### HasMaxPrefix
-
-`func (o *BgpConfig) HasMaxPrefix() bool`
-
-HasMaxPrefix returns a boolean if a field has been set.
-
 ### GetProject
 
-`func (o *BgpConfig) GetProject() Href`
+`func (o *BgpConfig) GetProject() FindBatchById200ResponseDevicesInner`
 
 GetProject returns the Project field if non-nil, zero value otherwise.
 
 ### GetProjectOk
 
-`func (o *BgpConfig) GetProjectOk() (*Href, bool)`
+`func (o *BgpConfig) GetProjectOk() (*FindBatchById200ResponseDevicesInner, bool)`
 
 GetProjectOk returns a tuple with the Project field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetProject
 
-`func (o *BgpConfig) SetProject(v Href)`
+`func (o *BgpConfig) SetProject(v FindBatchById200ResponseDevicesInner)`
 
 SetProject sets Project field to given value.
 
@@ -247,30 +247,30 @@ SetProject sets Project field to given value.
 
 HasProject returns a boolean if a field has been set.
 
-### GetCreatedAt
+### GetRanges
 
-`func (o *BgpConfig) GetCreatedAt() time.Time`
+`func (o *BgpConfig) GetRanges() []FindBgpConfigByProject200ResponseRangesInner`
 
-GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
+GetRanges returns the Ranges field if non-nil, zero value otherwise.
 
-### GetCreatedAtOk
+### GetRangesOk
 
-`func (o *BgpConfig) GetCreatedAtOk() (*time.Time, bool)`
+`func (o *BgpConfig) GetRangesOk() (*[]FindBgpConfigByProject200ResponseRangesInner, bool)`
 
-GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
+GetRangesOk returns a tuple with the Ranges field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetCreatedAt
+### SetRanges
 
-`func (o *BgpConfig) SetCreatedAt(v time.Time)`
+`func (o *BgpConfig) SetRanges(v []FindBgpConfigByProject200ResponseRangesInner)`
 
-SetCreatedAt sets CreatedAt field to given value.
+SetRanges sets Ranges field to given value.
 
-### HasCreatedAt
+### HasRanges
 
-`func (o *BgpConfig) HasCreatedAt() bool`
+`func (o *BgpConfig) HasRanges() bool`
 
-HasCreatedAt returns a boolean if a field has been set.
+HasRanges returns a boolean if a field has been set.
 
 ### GetRequestedAt
 
@@ -297,22 +297,47 @@ SetRequestedAt sets RequestedAt field to given value.
 
 HasRequestedAt returns a boolean if a field has been set.
 
+### GetRouteObject
+
+`func (o *BgpConfig) GetRouteObject() string`
+
+GetRouteObject returns the RouteObject field if non-nil, zero value otherwise.
+
+### GetRouteObjectOk
+
+`func (o *BgpConfig) GetRouteObjectOk() (*string, bool)`
+
+GetRouteObjectOk returns a tuple with the RouteObject field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRouteObject
+
+`func (o *BgpConfig) SetRouteObject(v string)`
+
+SetRouteObject sets RouteObject field to given value.
+
+### HasRouteObject
+
+`func (o *BgpConfig) HasRouteObject() bool`
+
+HasRouteObject returns a boolean if a field has been set.
+
 ### GetSessions
 
-`func (o *BgpConfig) GetSessions() []BgpSession`
+`func (o *BgpConfig) GetSessions() []FindBgpSessionById200Response`
 
 GetSessions returns the Sessions field if non-nil, zero value otherwise.
 
 ### GetSessionsOk
 
-`func (o *BgpConfig) GetSessionsOk() (*[]BgpSession, bool)`
+`func (o *BgpConfig) GetSessionsOk() (*[]FindBgpSessionById200Response, bool)`
 
 GetSessionsOk returns a tuple with the Sessions field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSessions
 
-`func (o *BgpConfig) SetSessions(v []BgpSession)`
+`func (o *BgpConfig) SetSessions(v []FindBgpSessionById200Response)`
 
 SetSessions sets Sessions field to given value.
 
@@ -322,55 +347,30 @@ SetSessions sets Sessions field to given value.
 
 HasSessions returns a boolean if a field has been set.
 
-### GetRanges
+### GetStatus
 
-`func (o *BgpConfig) GetRanges() []GlobalBgpRange`
+`func (o *BgpConfig) GetStatus() string`
 
-GetRanges returns the Ranges field if non-nil, zero value otherwise.
+GetStatus returns the Status field if non-nil, zero value otherwise.
 
-### GetRangesOk
+### GetStatusOk
 
-`func (o *BgpConfig) GetRangesOk() (*[]GlobalBgpRange, bool)`
+`func (o *BgpConfig) GetStatusOk() (*string, bool)`
 
-GetRangesOk returns a tuple with the Ranges field if it's non-nil, zero value otherwise
+GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetRanges
+### SetStatus
 
-`func (o *BgpConfig) SetRanges(v []GlobalBgpRange)`
+`func (o *BgpConfig) SetStatus(v string)`
 
-SetRanges sets Ranges field to given value.
+SetStatus sets Status field to given value.
 
-### HasRanges
+### HasStatus
 
-`func (o *BgpConfig) HasRanges() bool`
+`func (o *BgpConfig) HasStatus() bool`
 
-HasRanges returns a boolean if a field has been set.
-
-### GetHref
-
-`func (o *BgpConfig) GetHref() string`
-
-GetHref returns the Href field if non-nil, zero value otherwise.
-
-### GetHrefOk
-
-`func (o *BgpConfig) GetHrefOk() (*string, bool)`
-
-GetHrefOk returns a tuple with the Href field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetHref
-
-`func (o *BgpConfig) SetHref(v string)`
-
-SetHref sets Href field to given value.
-
-### HasHref
-
-`func (o *BgpConfig) HasHref() bool`
-
-HasHref returns a boolean if a field has been set.
+HasStatus returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

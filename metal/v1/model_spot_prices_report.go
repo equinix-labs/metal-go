@@ -17,20 +17,20 @@ import (
 
 // SpotPricesReport struct for SpotPricesReport
 type SpotPricesReport struct {
-	Ams1 *SpotPricesPerFacility    `json:"ams1,omitempty"`
-	Atl1 *SpotPricesPerNewFacility `json:"atl1,omitempty"`
-	Dfw1 *SpotPricesPerNewFacility `json:"dfw1,omitempty"`
-	Ewr1 *SpotPricesPerFacility    `json:"ewr1,omitempty"`
-	Fra1 *SpotPricesPerNewFacility `json:"fra1,omitempty"`
-	Iad1 *SpotPricesPerNewFacility `json:"iad1,omitempty"`
-	Lax1 *SpotPricesPerNewFacility `json:"lax1,omitempty"`
-	Nrt1 *SpotPricesPerFacility    `json:"nrt1,omitempty"`
-	Ord1 *SpotPricesPerNewFacility `json:"ord1,omitempty"`
-	Sea1 *SpotPricesPerNewFacility `json:"sea1,omitempty"`
-	Sin1 *SpotPricesPerNewFacility `json:"sin1,omitempty"`
-	Sjc1 *SpotPricesPerFacility    `json:"sjc1,omitempty"`
-	Syd1 *SpotPricesPerNewFacility `json:"syd1,omitempty"`
-	Yyz1 *SpotPricesPerNewFacility `json:"yyz1,omitempty"`
+	Ams1 *FindSpotMarketPrices200ResponseSpotMarketPricesAms1 `json:"ams1,omitempty"`
+	Atl1 *FindSpotMarketPrices200ResponseSpotMarketPricesAtl1 `json:"atl1,omitempty"`
+	Dfw1 *FindSpotMarketPrices200ResponseSpotMarketPricesAtl1 `json:"dfw1,omitempty"`
+	Ewr1 *FindSpotMarketPrices200ResponseSpotMarketPricesAms1 `json:"ewr1,omitempty"`
+	Fra1 *FindSpotMarketPrices200ResponseSpotMarketPricesAtl1 `json:"fra1,omitempty"`
+	Iad1 *FindSpotMarketPrices200ResponseSpotMarketPricesAtl1 `json:"iad1,omitempty"`
+	Lax1 *FindSpotMarketPrices200ResponseSpotMarketPricesAtl1 `json:"lax1,omitempty"`
+	Nrt1 *FindSpotMarketPrices200ResponseSpotMarketPricesAms1 `json:"nrt1,omitempty"`
+	Ord1 *FindSpotMarketPrices200ResponseSpotMarketPricesAtl1 `json:"ord1,omitempty"`
+	Sea1 *FindSpotMarketPrices200ResponseSpotMarketPricesAtl1 `json:"sea1,omitempty"`
+	Sin1 *FindSpotMarketPrices200ResponseSpotMarketPricesAtl1 `json:"sin1,omitempty"`
+	Sjc1 *FindSpotMarketPrices200ResponseSpotMarketPricesAms1 `json:"sjc1,omitempty"`
+	Syd1 *FindSpotMarketPrices200ResponseSpotMarketPricesAtl1 `json:"syd1,omitempty"`
+	Yyz1 *FindSpotMarketPrices200ResponseSpotMarketPricesAtl1 `json:"yyz1,omitempty"`
 }
 
 // NewSpotPricesReport instantiates a new SpotPricesReport object
@@ -51,9 +51,9 @@ func NewSpotPricesReportWithDefaults() *SpotPricesReport {
 }
 
 // GetAms1 returns the Ams1 field value if set, zero value otherwise.
-func (o *SpotPricesReport) GetAms1() SpotPricesPerFacility {
+func (o *SpotPricesReport) GetAms1() FindSpotMarketPrices200ResponseSpotMarketPricesAms1 {
 	if o == nil || o.Ams1 == nil {
-		var ret SpotPricesPerFacility
+		var ret FindSpotMarketPrices200ResponseSpotMarketPricesAms1
 		return ret
 	}
 	return *o.Ams1
@@ -61,7 +61,7 @@ func (o *SpotPricesReport) GetAms1() SpotPricesPerFacility {
 
 // GetAms1Ok returns a tuple with the Ams1 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SpotPricesReport) GetAms1Ok() (*SpotPricesPerFacility, bool) {
+func (o *SpotPricesReport) GetAms1Ok() (*FindSpotMarketPrices200ResponseSpotMarketPricesAms1, bool) {
 	if o == nil || o.Ams1 == nil {
 		return nil, false
 	}
@@ -77,15 +77,15 @@ func (o *SpotPricesReport) HasAms1() bool {
 	return false
 }
 
-// SetAms1 gets a reference to the given SpotPricesPerFacility and assigns it to the Ams1 field.
-func (o *SpotPricesReport) SetAms1(v SpotPricesPerFacility) {
+// SetAms1 gets a reference to the given FindSpotMarketPrices200ResponseSpotMarketPricesAms1 and assigns it to the Ams1 field.
+func (o *SpotPricesReport) SetAms1(v FindSpotMarketPrices200ResponseSpotMarketPricesAms1) {
 	o.Ams1 = &v
 }
 
 // GetAtl1 returns the Atl1 field value if set, zero value otherwise.
-func (o *SpotPricesReport) GetAtl1() SpotPricesPerNewFacility {
+func (o *SpotPricesReport) GetAtl1() FindSpotMarketPrices200ResponseSpotMarketPricesAtl1 {
 	if o == nil || o.Atl1 == nil {
-		var ret SpotPricesPerNewFacility
+		var ret FindSpotMarketPrices200ResponseSpotMarketPricesAtl1
 		return ret
 	}
 	return *o.Atl1
@@ -93,7 +93,7 @@ func (o *SpotPricesReport) GetAtl1() SpotPricesPerNewFacility {
 
 // GetAtl1Ok returns a tuple with the Atl1 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SpotPricesReport) GetAtl1Ok() (*SpotPricesPerNewFacility, bool) {
+func (o *SpotPricesReport) GetAtl1Ok() (*FindSpotMarketPrices200ResponseSpotMarketPricesAtl1, bool) {
 	if o == nil || o.Atl1 == nil {
 		return nil, false
 	}
@@ -109,15 +109,15 @@ func (o *SpotPricesReport) HasAtl1() bool {
 	return false
 }
 
-// SetAtl1 gets a reference to the given SpotPricesPerNewFacility and assigns it to the Atl1 field.
-func (o *SpotPricesReport) SetAtl1(v SpotPricesPerNewFacility) {
+// SetAtl1 gets a reference to the given FindSpotMarketPrices200ResponseSpotMarketPricesAtl1 and assigns it to the Atl1 field.
+func (o *SpotPricesReport) SetAtl1(v FindSpotMarketPrices200ResponseSpotMarketPricesAtl1) {
 	o.Atl1 = &v
 }
 
 // GetDfw1 returns the Dfw1 field value if set, zero value otherwise.
-func (o *SpotPricesReport) GetDfw1() SpotPricesPerNewFacility {
+func (o *SpotPricesReport) GetDfw1() FindSpotMarketPrices200ResponseSpotMarketPricesAtl1 {
 	if o == nil || o.Dfw1 == nil {
-		var ret SpotPricesPerNewFacility
+		var ret FindSpotMarketPrices200ResponseSpotMarketPricesAtl1
 		return ret
 	}
 	return *o.Dfw1
@@ -125,7 +125,7 @@ func (o *SpotPricesReport) GetDfw1() SpotPricesPerNewFacility {
 
 // GetDfw1Ok returns a tuple with the Dfw1 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SpotPricesReport) GetDfw1Ok() (*SpotPricesPerNewFacility, bool) {
+func (o *SpotPricesReport) GetDfw1Ok() (*FindSpotMarketPrices200ResponseSpotMarketPricesAtl1, bool) {
 	if o == nil || o.Dfw1 == nil {
 		return nil, false
 	}
@@ -141,15 +141,15 @@ func (o *SpotPricesReport) HasDfw1() bool {
 	return false
 }
 
-// SetDfw1 gets a reference to the given SpotPricesPerNewFacility and assigns it to the Dfw1 field.
-func (o *SpotPricesReport) SetDfw1(v SpotPricesPerNewFacility) {
+// SetDfw1 gets a reference to the given FindSpotMarketPrices200ResponseSpotMarketPricesAtl1 and assigns it to the Dfw1 field.
+func (o *SpotPricesReport) SetDfw1(v FindSpotMarketPrices200ResponseSpotMarketPricesAtl1) {
 	o.Dfw1 = &v
 }
 
 // GetEwr1 returns the Ewr1 field value if set, zero value otherwise.
-func (o *SpotPricesReport) GetEwr1() SpotPricesPerFacility {
+func (o *SpotPricesReport) GetEwr1() FindSpotMarketPrices200ResponseSpotMarketPricesAms1 {
 	if o == nil || o.Ewr1 == nil {
-		var ret SpotPricesPerFacility
+		var ret FindSpotMarketPrices200ResponseSpotMarketPricesAms1
 		return ret
 	}
 	return *o.Ewr1
@@ -157,7 +157,7 @@ func (o *SpotPricesReport) GetEwr1() SpotPricesPerFacility {
 
 // GetEwr1Ok returns a tuple with the Ewr1 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SpotPricesReport) GetEwr1Ok() (*SpotPricesPerFacility, bool) {
+func (o *SpotPricesReport) GetEwr1Ok() (*FindSpotMarketPrices200ResponseSpotMarketPricesAms1, bool) {
 	if o == nil || o.Ewr1 == nil {
 		return nil, false
 	}
@@ -173,15 +173,15 @@ func (o *SpotPricesReport) HasEwr1() bool {
 	return false
 }
 
-// SetEwr1 gets a reference to the given SpotPricesPerFacility and assigns it to the Ewr1 field.
-func (o *SpotPricesReport) SetEwr1(v SpotPricesPerFacility) {
+// SetEwr1 gets a reference to the given FindSpotMarketPrices200ResponseSpotMarketPricesAms1 and assigns it to the Ewr1 field.
+func (o *SpotPricesReport) SetEwr1(v FindSpotMarketPrices200ResponseSpotMarketPricesAms1) {
 	o.Ewr1 = &v
 }
 
 // GetFra1 returns the Fra1 field value if set, zero value otherwise.
-func (o *SpotPricesReport) GetFra1() SpotPricesPerNewFacility {
+func (o *SpotPricesReport) GetFra1() FindSpotMarketPrices200ResponseSpotMarketPricesAtl1 {
 	if o == nil || o.Fra1 == nil {
-		var ret SpotPricesPerNewFacility
+		var ret FindSpotMarketPrices200ResponseSpotMarketPricesAtl1
 		return ret
 	}
 	return *o.Fra1
@@ -189,7 +189,7 @@ func (o *SpotPricesReport) GetFra1() SpotPricesPerNewFacility {
 
 // GetFra1Ok returns a tuple with the Fra1 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SpotPricesReport) GetFra1Ok() (*SpotPricesPerNewFacility, bool) {
+func (o *SpotPricesReport) GetFra1Ok() (*FindSpotMarketPrices200ResponseSpotMarketPricesAtl1, bool) {
 	if o == nil || o.Fra1 == nil {
 		return nil, false
 	}
@@ -205,15 +205,15 @@ func (o *SpotPricesReport) HasFra1() bool {
 	return false
 }
 
-// SetFra1 gets a reference to the given SpotPricesPerNewFacility and assigns it to the Fra1 field.
-func (o *SpotPricesReport) SetFra1(v SpotPricesPerNewFacility) {
+// SetFra1 gets a reference to the given FindSpotMarketPrices200ResponseSpotMarketPricesAtl1 and assigns it to the Fra1 field.
+func (o *SpotPricesReport) SetFra1(v FindSpotMarketPrices200ResponseSpotMarketPricesAtl1) {
 	o.Fra1 = &v
 }
 
 // GetIad1 returns the Iad1 field value if set, zero value otherwise.
-func (o *SpotPricesReport) GetIad1() SpotPricesPerNewFacility {
+func (o *SpotPricesReport) GetIad1() FindSpotMarketPrices200ResponseSpotMarketPricesAtl1 {
 	if o == nil || o.Iad1 == nil {
-		var ret SpotPricesPerNewFacility
+		var ret FindSpotMarketPrices200ResponseSpotMarketPricesAtl1
 		return ret
 	}
 	return *o.Iad1
@@ -221,7 +221,7 @@ func (o *SpotPricesReport) GetIad1() SpotPricesPerNewFacility {
 
 // GetIad1Ok returns a tuple with the Iad1 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SpotPricesReport) GetIad1Ok() (*SpotPricesPerNewFacility, bool) {
+func (o *SpotPricesReport) GetIad1Ok() (*FindSpotMarketPrices200ResponseSpotMarketPricesAtl1, bool) {
 	if o == nil || o.Iad1 == nil {
 		return nil, false
 	}
@@ -237,15 +237,15 @@ func (o *SpotPricesReport) HasIad1() bool {
 	return false
 }
 
-// SetIad1 gets a reference to the given SpotPricesPerNewFacility and assigns it to the Iad1 field.
-func (o *SpotPricesReport) SetIad1(v SpotPricesPerNewFacility) {
+// SetIad1 gets a reference to the given FindSpotMarketPrices200ResponseSpotMarketPricesAtl1 and assigns it to the Iad1 field.
+func (o *SpotPricesReport) SetIad1(v FindSpotMarketPrices200ResponseSpotMarketPricesAtl1) {
 	o.Iad1 = &v
 }
 
 // GetLax1 returns the Lax1 field value if set, zero value otherwise.
-func (o *SpotPricesReport) GetLax1() SpotPricesPerNewFacility {
+func (o *SpotPricesReport) GetLax1() FindSpotMarketPrices200ResponseSpotMarketPricesAtl1 {
 	if o == nil || o.Lax1 == nil {
-		var ret SpotPricesPerNewFacility
+		var ret FindSpotMarketPrices200ResponseSpotMarketPricesAtl1
 		return ret
 	}
 	return *o.Lax1
@@ -253,7 +253,7 @@ func (o *SpotPricesReport) GetLax1() SpotPricesPerNewFacility {
 
 // GetLax1Ok returns a tuple with the Lax1 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SpotPricesReport) GetLax1Ok() (*SpotPricesPerNewFacility, bool) {
+func (o *SpotPricesReport) GetLax1Ok() (*FindSpotMarketPrices200ResponseSpotMarketPricesAtl1, bool) {
 	if o == nil || o.Lax1 == nil {
 		return nil, false
 	}
@@ -269,15 +269,15 @@ func (o *SpotPricesReport) HasLax1() bool {
 	return false
 }
 
-// SetLax1 gets a reference to the given SpotPricesPerNewFacility and assigns it to the Lax1 field.
-func (o *SpotPricesReport) SetLax1(v SpotPricesPerNewFacility) {
+// SetLax1 gets a reference to the given FindSpotMarketPrices200ResponseSpotMarketPricesAtl1 and assigns it to the Lax1 field.
+func (o *SpotPricesReport) SetLax1(v FindSpotMarketPrices200ResponseSpotMarketPricesAtl1) {
 	o.Lax1 = &v
 }
 
 // GetNrt1 returns the Nrt1 field value if set, zero value otherwise.
-func (o *SpotPricesReport) GetNrt1() SpotPricesPerFacility {
+func (o *SpotPricesReport) GetNrt1() FindSpotMarketPrices200ResponseSpotMarketPricesAms1 {
 	if o == nil || o.Nrt1 == nil {
-		var ret SpotPricesPerFacility
+		var ret FindSpotMarketPrices200ResponseSpotMarketPricesAms1
 		return ret
 	}
 	return *o.Nrt1
@@ -285,7 +285,7 @@ func (o *SpotPricesReport) GetNrt1() SpotPricesPerFacility {
 
 // GetNrt1Ok returns a tuple with the Nrt1 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SpotPricesReport) GetNrt1Ok() (*SpotPricesPerFacility, bool) {
+func (o *SpotPricesReport) GetNrt1Ok() (*FindSpotMarketPrices200ResponseSpotMarketPricesAms1, bool) {
 	if o == nil || o.Nrt1 == nil {
 		return nil, false
 	}
@@ -301,15 +301,15 @@ func (o *SpotPricesReport) HasNrt1() bool {
 	return false
 }
 
-// SetNrt1 gets a reference to the given SpotPricesPerFacility and assigns it to the Nrt1 field.
-func (o *SpotPricesReport) SetNrt1(v SpotPricesPerFacility) {
+// SetNrt1 gets a reference to the given FindSpotMarketPrices200ResponseSpotMarketPricesAms1 and assigns it to the Nrt1 field.
+func (o *SpotPricesReport) SetNrt1(v FindSpotMarketPrices200ResponseSpotMarketPricesAms1) {
 	o.Nrt1 = &v
 }
 
 // GetOrd1 returns the Ord1 field value if set, zero value otherwise.
-func (o *SpotPricesReport) GetOrd1() SpotPricesPerNewFacility {
+func (o *SpotPricesReport) GetOrd1() FindSpotMarketPrices200ResponseSpotMarketPricesAtl1 {
 	if o == nil || o.Ord1 == nil {
-		var ret SpotPricesPerNewFacility
+		var ret FindSpotMarketPrices200ResponseSpotMarketPricesAtl1
 		return ret
 	}
 	return *o.Ord1
@@ -317,7 +317,7 @@ func (o *SpotPricesReport) GetOrd1() SpotPricesPerNewFacility {
 
 // GetOrd1Ok returns a tuple with the Ord1 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SpotPricesReport) GetOrd1Ok() (*SpotPricesPerNewFacility, bool) {
+func (o *SpotPricesReport) GetOrd1Ok() (*FindSpotMarketPrices200ResponseSpotMarketPricesAtl1, bool) {
 	if o == nil || o.Ord1 == nil {
 		return nil, false
 	}
@@ -333,15 +333,15 @@ func (o *SpotPricesReport) HasOrd1() bool {
 	return false
 }
 
-// SetOrd1 gets a reference to the given SpotPricesPerNewFacility and assigns it to the Ord1 field.
-func (o *SpotPricesReport) SetOrd1(v SpotPricesPerNewFacility) {
+// SetOrd1 gets a reference to the given FindSpotMarketPrices200ResponseSpotMarketPricesAtl1 and assigns it to the Ord1 field.
+func (o *SpotPricesReport) SetOrd1(v FindSpotMarketPrices200ResponseSpotMarketPricesAtl1) {
 	o.Ord1 = &v
 }
 
 // GetSea1 returns the Sea1 field value if set, zero value otherwise.
-func (o *SpotPricesReport) GetSea1() SpotPricesPerNewFacility {
+func (o *SpotPricesReport) GetSea1() FindSpotMarketPrices200ResponseSpotMarketPricesAtl1 {
 	if o == nil || o.Sea1 == nil {
-		var ret SpotPricesPerNewFacility
+		var ret FindSpotMarketPrices200ResponseSpotMarketPricesAtl1
 		return ret
 	}
 	return *o.Sea1
@@ -349,7 +349,7 @@ func (o *SpotPricesReport) GetSea1() SpotPricesPerNewFacility {
 
 // GetSea1Ok returns a tuple with the Sea1 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SpotPricesReport) GetSea1Ok() (*SpotPricesPerNewFacility, bool) {
+func (o *SpotPricesReport) GetSea1Ok() (*FindSpotMarketPrices200ResponseSpotMarketPricesAtl1, bool) {
 	if o == nil || o.Sea1 == nil {
 		return nil, false
 	}
@@ -365,15 +365,15 @@ func (o *SpotPricesReport) HasSea1() bool {
 	return false
 }
 
-// SetSea1 gets a reference to the given SpotPricesPerNewFacility and assigns it to the Sea1 field.
-func (o *SpotPricesReport) SetSea1(v SpotPricesPerNewFacility) {
+// SetSea1 gets a reference to the given FindSpotMarketPrices200ResponseSpotMarketPricesAtl1 and assigns it to the Sea1 field.
+func (o *SpotPricesReport) SetSea1(v FindSpotMarketPrices200ResponseSpotMarketPricesAtl1) {
 	o.Sea1 = &v
 }
 
 // GetSin1 returns the Sin1 field value if set, zero value otherwise.
-func (o *SpotPricesReport) GetSin1() SpotPricesPerNewFacility {
+func (o *SpotPricesReport) GetSin1() FindSpotMarketPrices200ResponseSpotMarketPricesAtl1 {
 	if o == nil || o.Sin1 == nil {
-		var ret SpotPricesPerNewFacility
+		var ret FindSpotMarketPrices200ResponseSpotMarketPricesAtl1
 		return ret
 	}
 	return *o.Sin1
@@ -381,7 +381,7 @@ func (o *SpotPricesReport) GetSin1() SpotPricesPerNewFacility {
 
 // GetSin1Ok returns a tuple with the Sin1 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SpotPricesReport) GetSin1Ok() (*SpotPricesPerNewFacility, bool) {
+func (o *SpotPricesReport) GetSin1Ok() (*FindSpotMarketPrices200ResponseSpotMarketPricesAtl1, bool) {
 	if o == nil || o.Sin1 == nil {
 		return nil, false
 	}
@@ -397,15 +397,15 @@ func (o *SpotPricesReport) HasSin1() bool {
 	return false
 }
 
-// SetSin1 gets a reference to the given SpotPricesPerNewFacility and assigns it to the Sin1 field.
-func (o *SpotPricesReport) SetSin1(v SpotPricesPerNewFacility) {
+// SetSin1 gets a reference to the given FindSpotMarketPrices200ResponseSpotMarketPricesAtl1 and assigns it to the Sin1 field.
+func (o *SpotPricesReport) SetSin1(v FindSpotMarketPrices200ResponseSpotMarketPricesAtl1) {
 	o.Sin1 = &v
 }
 
 // GetSjc1 returns the Sjc1 field value if set, zero value otherwise.
-func (o *SpotPricesReport) GetSjc1() SpotPricesPerFacility {
+func (o *SpotPricesReport) GetSjc1() FindSpotMarketPrices200ResponseSpotMarketPricesAms1 {
 	if o == nil || o.Sjc1 == nil {
-		var ret SpotPricesPerFacility
+		var ret FindSpotMarketPrices200ResponseSpotMarketPricesAms1
 		return ret
 	}
 	return *o.Sjc1
@@ -413,7 +413,7 @@ func (o *SpotPricesReport) GetSjc1() SpotPricesPerFacility {
 
 // GetSjc1Ok returns a tuple with the Sjc1 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SpotPricesReport) GetSjc1Ok() (*SpotPricesPerFacility, bool) {
+func (o *SpotPricesReport) GetSjc1Ok() (*FindSpotMarketPrices200ResponseSpotMarketPricesAms1, bool) {
 	if o == nil || o.Sjc1 == nil {
 		return nil, false
 	}
@@ -429,15 +429,15 @@ func (o *SpotPricesReport) HasSjc1() bool {
 	return false
 }
 
-// SetSjc1 gets a reference to the given SpotPricesPerFacility and assigns it to the Sjc1 field.
-func (o *SpotPricesReport) SetSjc1(v SpotPricesPerFacility) {
+// SetSjc1 gets a reference to the given FindSpotMarketPrices200ResponseSpotMarketPricesAms1 and assigns it to the Sjc1 field.
+func (o *SpotPricesReport) SetSjc1(v FindSpotMarketPrices200ResponseSpotMarketPricesAms1) {
 	o.Sjc1 = &v
 }
 
 // GetSyd1 returns the Syd1 field value if set, zero value otherwise.
-func (o *SpotPricesReport) GetSyd1() SpotPricesPerNewFacility {
+func (o *SpotPricesReport) GetSyd1() FindSpotMarketPrices200ResponseSpotMarketPricesAtl1 {
 	if o == nil || o.Syd1 == nil {
-		var ret SpotPricesPerNewFacility
+		var ret FindSpotMarketPrices200ResponseSpotMarketPricesAtl1
 		return ret
 	}
 	return *o.Syd1
@@ -445,7 +445,7 @@ func (o *SpotPricesReport) GetSyd1() SpotPricesPerNewFacility {
 
 // GetSyd1Ok returns a tuple with the Syd1 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SpotPricesReport) GetSyd1Ok() (*SpotPricesPerNewFacility, bool) {
+func (o *SpotPricesReport) GetSyd1Ok() (*FindSpotMarketPrices200ResponseSpotMarketPricesAtl1, bool) {
 	if o == nil || o.Syd1 == nil {
 		return nil, false
 	}
@@ -461,15 +461,15 @@ func (o *SpotPricesReport) HasSyd1() bool {
 	return false
 }
 
-// SetSyd1 gets a reference to the given SpotPricesPerNewFacility and assigns it to the Syd1 field.
-func (o *SpotPricesReport) SetSyd1(v SpotPricesPerNewFacility) {
+// SetSyd1 gets a reference to the given FindSpotMarketPrices200ResponseSpotMarketPricesAtl1 and assigns it to the Syd1 field.
+func (o *SpotPricesReport) SetSyd1(v FindSpotMarketPrices200ResponseSpotMarketPricesAtl1) {
 	o.Syd1 = &v
 }
 
 // GetYyz1 returns the Yyz1 field value if set, zero value otherwise.
-func (o *SpotPricesReport) GetYyz1() SpotPricesPerNewFacility {
+func (o *SpotPricesReport) GetYyz1() FindSpotMarketPrices200ResponseSpotMarketPricesAtl1 {
 	if o == nil || o.Yyz1 == nil {
-		var ret SpotPricesPerNewFacility
+		var ret FindSpotMarketPrices200ResponseSpotMarketPricesAtl1
 		return ret
 	}
 	return *o.Yyz1
@@ -477,7 +477,7 @@ func (o *SpotPricesReport) GetYyz1() SpotPricesPerNewFacility {
 
 // GetYyz1Ok returns a tuple with the Yyz1 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SpotPricesReport) GetYyz1Ok() (*SpotPricesPerNewFacility, bool) {
+func (o *SpotPricesReport) GetYyz1Ok() (*FindSpotMarketPrices200ResponseSpotMarketPricesAtl1, bool) {
 	if o == nil || o.Yyz1 == nil {
 		return nil, false
 	}
@@ -493,8 +493,8 @@ func (o *SpotPricesReport) HasYyz1() bool {
 	return false
 }
 
-// SetYyz1 gets a reference to the given SpotPricesPerNewFacility and assigns it to the Yyz1 field.
-func (o *SpotPricesReport) SetYyz1(v SpotPricesPerNewFacility) {
+// SetYyz1 gets a reference to the given FindSpotMarketPrices200ResponseSpotMarketPricesAtl1 and assigns it to the Yyz1 field.
+func (o *SpotPricesReport) SetYyz1(v FindSpotMarketPrices200ResponseSpotMarketPricesAtl1) {
 	o.Yyz1 = &v
 }
 

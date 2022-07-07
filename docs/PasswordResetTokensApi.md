@@ -75,7 +75,7 @@ Name | Type | Description  | Notes
 
 ## ResetPassword
 
-> NewPassword ResetPassword(ctx).Execute()
+> ResetPassword201Response ResetPassword(ctx).Execute()
 
 Reset current user password
 
@@ -102,7 +102,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `PasswordResetTokensApi.ResetPassword``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `ResetPassword`: NewPassword
+    // response from `ResetPassword`: ResetPassword201Response
     fmt.Fprintf(os.Stdout, "Response from `PasswordResetTokensApi.ResetPassword`: %v\n", resp)
 }
 ```
@@ -118,7 +118,7 @@ Other parameters are passed through a pointer to a apiResetPasswordRequest struc
 
 ### Return type
 
-[**NewPassword**](NewPassword.md)
+[**ResetPassword201Response**](ResetPassword201Response.md)
 
 ### Authorization
 

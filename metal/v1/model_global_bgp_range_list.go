@@ -17,7 +17,7 @@ import (
 
 // GlobalBgpRangeList struct for GlobalBgpRangeList
 type GlobalBgpRangeList struct {
-	GlobalBgpRanges []GlobalBgpRange `json:"global_bgp_ranges,omitempty"`
+	GlobalBgpRanges []FindBgpConfigByProject200ResponseRangesInner `json:"global_bgp_ranges,omitempty"`
 }
 
 // NewGlobalBgpRangeList instantiates a new GlobalBgpRangeList object
@@ -38,9 +38,9 @@ func NewGlobalBgpRangeListWithDefaults() *GlobalBgpRangeList {
 }
 
 // GetGlobalBgpRanges returns the GlobalBgpRanges field value if set, zero value otherwise.
-func (o *GlobalBgpRangeList) GetGlobalBgpRanges() []GlobalBgpRange {
+func (o *GlobalBgpRangeList) GetGlobalBgpRanges() []FindBgpConfigByProject200ResponseRangesInner {
 	if o == nil || o.GlobalBgpRanges == nil {
-		var ret []GlobalBgpRange
+		var ret []FindBgpConfigByProject200ResponseRangesInner
 		return ret
 	}
 	return o.GlobalBgpRanges
@@ -48,7 +48,7 @@ func (o *GlobalBgpRangeList) GetGlobalBgpRanges() []GlobalBgpRange {
 
 // GetGlobalBgpRangesOk returns a tuple with the GlobalBgpRanges field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GlobalBgpRangeList) GetGlobalBgpRangesOk() ([]GlobalBgpRange, bool) {
+func (o *GlobalBgpRangeList) GetGlobalBgpRangesOk() ([]FindBgpConfigByProject200ResponseRangesInner, bool) {
 	if o == nil || o.GlobalBgpRanges == nil {
 		return nil, false
 	}
@@ -64,8 +64,8 @@ func (o *GlobalBgpRangeList) HasGlobalBgpRanges() bool {
 	return false
 }
 
-// SetGlobalBgpRanges gets a reference to the given []GlobalBgpRange and assigns it to the GlobalBgpRanges field.
-func (o *GlobalBgpRangeList) SetGlobalBgpRanges(v []GlobalBgpRange) {
+// SetGlobalBgpRanges gets a reference to the given []FindBgpConfigByProject200ResponseRangesInner and assigns it to the GlobalBgpRanges field.
+func (o *GlobalBgpRangeList) SetGlobalBgpRanges(v []FindBgpConfigByProject200ResponseRangesInner) {
 	o.GlobalBgpRanges = v
 }
 

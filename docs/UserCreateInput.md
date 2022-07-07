@@ -4,28 +4,28 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**FirstName** | **string** |  | 
-**LastName** | **string** |  | 
-**PhoneNumber** | Pointer to **string** |  | [optional] 
-**Timezone** | Pointer to **string** |  | [optional] 
-**Password** | Pointer to **string** |  | [optional] 
-**Level** | Pointer to **string** |  | [optional] 
-**Title** | Pointer to **string** |  | [optional] 
+**Avatar** | Pointer to ***os.File** |  | [optional] 
 **CompanyName** | Pointer to **string** |  | [optional] 
 **CompanyUrl** | Pointer to **string** |  | [optional] 
-**VerifiedAt** | Pointer to **time.Time** |  | [optional] 
-**SocialAccounts** | Pointer to **map[string]interface{}** |  | [optional] 
-**TwoFactorAuth** | Pointer to **string** |  | [optional] 
-**Avatar** | Pointer to ***os.File** |  | [optional] 
-**Emails** | [**[]EmailInput**](EmailInput.md) |  | 
-**Locked** | Pointer to **bool** |  | [optional] 
 **Customdata** | Pointer to **map[string]interface{}** |  | [optional] 
+**Emails** | [**[]CreateUserRequestEmailsInner**](CreateUserRequestEmailsInner.md) |  | 
+**FirstName** | **string** |  | 
+**LastName** | **string** |  | 
+**Level** | Pointer to **string** |  | [optional] 
+**Locked** | Pointer to **bool** |  | [optional] 
+**Password** | Pointer to **string** |  | [optional] 
+**PhoneNumber** | Pointer to **string** |  | [optional] 
+**SocialAccounts** | Pointer to **map[string]interface{}** |  | [optional] 
+**Timezone** | Pointer to **string** |  | [optional] 
+**Title** | Pointer to **string** |  | [optional] 
+**TwoFactorAuth** | Pointer to **string** |  | [optional] 
+**VerifiedAt** | Pointer to **time.Time** |  | [optional] 
 
 ## Methods
 
 ### NewUserCreateInput
 
-`func NewUserCreateInput(firstName string, lastName string, emails []EmailInput, ) *UserCreateInput`
+`func NewUserCreateInput(emails []CreateUserRequestEmailsInner, firstName string, lastName string, ) *UserCreateInput`
 
 NewUserCreateInput instantiates a new UserCreateInput object
 This constructor will assign default values to properties that have it defined,
@@ -40,170 +40,30 @@ NewUserCreateInputWithDefaults instantiates a new UserCreateInput object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetFirstName
+### GetAvatar
 
-`func (o *UserCreateInput) GetFirstName() string`
+`func (o *UserCreateInput) GetAvatar() *os.File`
 
-GetFirstName returns the FirstName field if non-nil, zero value otherwise.
+GetAvatar returns the Avatar field if non-nil, zero value otherwise.
 
-### GetFirstNameOk
+### GetAvatarOk
 
-`func (o *UserCreateInput) GetFirstNameOk() (*string, bool)`
+`func (o *UserCreateInput) GetAvatarOk() (**os.File, bool)`
 
-GetFirstNameOk returns a tuple with the FirstName field if it's non-nil, zero value otherwise
+GetAvatarOk returns a tuple with the Avatar field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetFirstName
+### SetAvatar
 
-`func (o *UserCreateInput) SetFirstName(v string)`
+`func (o *UserCreateInput) SetAvatar(v *os.File)`
 
-SetFirstName sets FirstName field to given value.
+SetAvatar sets Avatar field to given value.
 
+### HasAvatar
 
-### GetLastName
+`func (o *UserCreateInput) HasAvatar() bool`
 
-`func (o *UserCreateInput) GetLastName() string`
-
-GetLastName returns the LastName field if non-nil, zero value otherwise.
-
-### GetLastNameOk
-
-`func (o *UserCreateInput) GetLastNameOk() (*string, bool)`
-
-GetLastNameOk returns a tuple with the LastName field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetLastName
-
-`func (o *UserCreateInput) SetLastName(v string)`
-
-SetLastName sets LastName field to given value.
-
-
-### GetPhoneNumber
-
-`func (o *UserCreateInput) GetPhoneNumber() string`
-
-GetPhoneNumber returns the PhoneNumber field if non-nil, zero value otherwise.
-
-### GetPhoneNumberOk
-
-`func (o *UserCreateInput) GetPhoneNumberOk() (*string, bool)`
-
-GetPhoneNumberOk returns a tuple with the PhoneNumber field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPhoneNumber
-
-`func (o *UserCreateInput) SetPhoneNumber(v string)`
-
-SetPhoneNumber sets PhoneNumber field to given value.
-
-### HasPhoneNumber
-
-`func (o *UserCreateInput) HasPhoneNumber() bool`
-
-HasPhoneNumber returns a boolean if a field has been set.
-
-### GetTimezone
-
-`func (o *UserCreateInput) GetTimezone() string`
-
-GetTimezone returns the Timezone field if non-nil, zero value otherwise.
-
-### GetTimezoneOk
-
-`func (o *UserCreateInput) GetTimezoneOk() (*string, bool)`
-
-GetTimezoneOk returns a tuple with the Timezone field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTimezone
-
-`func (o *UserCreateInput) SetTimezone(v string)`
-
-SetTimezone sets Timezone field to given value.
-
-### HasTimezone
-
-`func (o *UserCreateInput) HasTimezone() bool`
-
-HasTimezone returns a boolean if a field has been set.
-
-### GetPassword
-
-`func (o *UserCreateInput) GetPassword() string`
-
-GetPassword returns the Password field if non-nil, zero value otherwise.
-
-### GetPasswordOk
-
-`func (o *UserCreateInput) GetPasswordOk() (*string, bool)`
-
-GetPasswordOk returns a tuple with the Password field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPassword
-
-`func (o *UserCreateInput) SetPassword(v string)`
-
-SetPassword sets Password field to given value.
-
-### HasPassword
-
-`func (o *UserCreateInput) HasPassword() bool`
-
-HasPassword returns a boolean if a field has been set.
-
-### GetLevel
-
-`func (o *UserCreateInput) GetLevel() string`
-
-GetLevel returns the Level field if non-nil, zero value otherwise.
-
-### GetLevelOk
-
-`func (o *UserCreateInput) GetLevelOk() (*string, bool)`
-
-GetLevelOk returns a tuple with the Level field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetLevel
-
-`func (o *UserCreateInput) SetLevel(v string)`
-
-SetLevel sets Level field to given value.
-
-### HasLevel
-
-`func (o *UserCreateInput) HasLevel() bool`
-
-HasLevel returns a boolean if a field has been set.
-
-### GetTitle
-
-`func (o *UserCreateInput) GetTitle() string`
-
-GetTitle returns the Title field if non-nil, zero value otherwise.
-
-### GetTitleOk
-
-`func (o *UserCreateInput) GetTitleOk() (*string, bool)`
-
-GetTitleOk returns a tuple with the Title field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTitle
-
-`func (o *UserCreateInput) SetTitle(v string)`
-
-SetTitle sets Title field to given value.
-
-### HasTitle
-
-`func (o *UserCreateInput) HasTitle() bool`
-
-HasTitle returns a boolean if a field has been set.
+HasAvatar returns a boolean if a field has been set.
 
 ### GetCompanyName
 
@@ -255,125 +115,115 @@ SetCompanyUrl sets CompanyUrl field to given value.
 
 HasCompanyUrl returns a boolean if a field has been set.
 
-### GetVerifiedAt
+### GetCustomdata
 
-`func (o *UserCreateInput) GetVerifiedAt() time.Time`
+`func (o *UserCreateInput) GetCustomdata() map[string]interface{}`
 
-GetVerifiedAt returns the VerifiedAt field if non-nil, zero value otherwise.
+GetCustomdata returns the Customdata field if non-nil, zero value otherwise.
 
-### GetVerifiedAtOk
+### GetCustomdataOk
 
-`func (o *UserCreateInput) GetVerifiedAtOk() (*time.Time, bool)`
+`func (o *UserCreateInput) GetCustomdataOk() (*map[string]interface{}, bool)`
 
-GetVerifiedAtOk returns a tuple with the VerifiedAt field if it's non-nil, zero value otherwise
+GetCustomdataOk returns a tuple with the Customdata field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetVerifiedAt
+### SetCustomdata
 
-`func (o *UserCreateInput) SetVerifiedAt(v time.Time)`
+`func (o *UserCreateInput) SetCustomdata(v map[string]interface{})`
 
-SetVerifiedAt sets VerifiedAt field to given value.
+SetCustomdata sets Customdata field to given value.
 
-### HasVerifiedAt
+### HasCustomdata
 
-`func (o *UserCreateInput) HasVerifiedAt() bool`
+`func (o *UserCreateInput) HasCustomdata() bool`
 
-HasVerifiedAt returns a boolean if a field has been set.
-
-### GetSocialAccounts
-
-`func (o *UserCreateInput) GetSocialAccounts() map[string]interface{}`
-
-GetSocialAccounts returns the SocialAccounts field if non-nil, zero value otherwise.
-
-### GetSocialAccountsOk
-
-`func (o *UserCreateInput) GetSocialAccountsOk() (*map[string]interface{}, bool)`
-
-GetSocialAccountsOk returns a tuple with the SocialAccounts field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSocialAccounts
-
-`func (o *UserCreateInput) SetSocialAccounts(v map[string]interface{})`
-
-SetSocialAccounts sets SocialAccounts field to given value.
-
-### HasSocialAccounts
-
-`func (o *UserCreateInput) HasSocialAccounts() bool`
-
-HasSocialAccounts returns a boolean if a field has been set.
-
-### GetTwoFactorAuth
-
-`func (o *UserCreateInput) GetTwoFactorAuth() string`
-
-GetTwoFactorAuth returns the TwoFactorAuth field if non-nil, zero value otherwise.
-
-### GetTwoFactorAuthOk
-
-`func (o *UserCreateInput) GetTwoFactorAuthOk() (*string, bool)`
-
-GetTwoFactorAuthOk returns a tuple with the TwoFactorAuth field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTwoFactorAuth
-
-`func (o *UserCreateInput) SetTwoFactorAuth(v string)`
-
-SetTwoFactorAuth sets TwoFactorAuth field to given value.
-
-### HasTwoFactorAuth
-
-`func (o *UserCreateInput) HasTwoFactorAuth() bool`
-
-HasTwoFactorAuth returns a boolean if a field has been set.
-
-### GetAvatar
-
-`func (o *UserCreateInput) GetAvatar() *os.File`
-
-GetAvatar returns the Avatar field if non-nil, zero value otherwise.
-
-### GetAvatarOk
-
-`func (o *UserCreateInput) GetAvatarOk() (**os.File, bool)`
-
-GetAvatarOk returns a tuple with the Avatar field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAvatar
-
-`func (o *UserCreateInput) SetAvatar(v *os.File)`
-
-SetAvatar sets Avatar field to given value.
-
-### HasAvatar
-
-`func (o *UserCreateInput) HasAvatar() bool`
-
-HasAvatar returns a boolean if a field has been set.
+HasCustomdata returns a boolean if a field has been set.
 
 ### GetEmails
 
-`func (o *UserCreateInput) GetEmails() []EmailInput`
+`func (o *UserCreateInput) GetEmails() []CreateUserRequestEmailsInner`
 
 GetEmails returns the Emails field if non-nil, zero value otherwise.
 
 ### GetEmailsOk
 
-`func (o *UserCreateInput) GetEmailsOk() (*[]EmailInput, bool)`
+`func (o *UserCreateInput) GetEmailsOk() (*[]CreateUserRequestEmailsInner, bool)`
 
 GetEmailsOk returns a tuple with the Emails field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetEmails
 
-`func (o *UserCreateInput) SetEmails(v []EmailInput)`
+`func (o *UserCreateInput) SetEmails(v []CreateUserRequestEmailsInner)`
 
 SetEmails sets Emails field to given value.
 
+
+### GetFirstName
+
+`func (o *UserCreateInput) GetFirstName() string`
+
+GetFirstName returns the FirstName field if non-nil, zero value otherwise.
+
+### GetFirstNameOk
+
+`func (o *UserCreateInput) GetFirstNameOk() (*string, bool)`
+
+GetFirstNameOk returns a tuple with the FirstName field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFirstName
+
+`func (o *UserCreateInput) SetFirstName(v string)`
+
+SetFirstName sets FirstName field to given value.
+
+
+### GetLastName
+
+`func (o *UserCreateInput) GetLastName() string`
+
+GetLastName returns the LastName field if non-nil, zero value otherwise.
+
+### GetLastNameOk
+
+`func (o *UserCreateInput) GetLastNameOk() (*string, bool)`
+
+GetLastNameOk returns a tuple with the LastName field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLastName
+
+`func (o *UserCreateInput) SetLastName(v string)`
+
+SetLastName sets LastName field to given value.
+
+
+### GetLevel
+
+`func (o *UserCreateInput) GetLevel() string`
+
+GetLevel returns the Level field if non-nil, zero value otherwise.
+
+### GetLevelOk
+
+`func (o *UserCreateInput) GetLevelOk() (*string, bool)`
+
+GetLevelOk returns a tuple with the Level field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLevel
+
+`func (o *UserCreateInput) SetLevel(v string)`
+
+SetLevel sets Level field to given value.
+
+### HasLevel
+
+`func (o *UserCreateInput) HasLevel() bool`
+
+HasLevel returns a boolean if a field has been set.
 
 ### GetLocked
 
@@ -400,30 +250,180 @@ SetLocked sets Locked field to given value.
 
 HasLocked returns a boolean if a field has been set.
 
-### GetCustomdata
+### GetPassword
 
-`func (o *UserCreateInput) GetCustomdata() map[string]interface{}`
+`func (o *UserCreateInput) GetPassword() string`
 
-GetCustomdata returns the Customdata field if non-nil, zero value otherwise.
+GetPassword returns the Password field if non-nil, zero value otherwise.
 
-### GetCustomdataOk
+### GetPasswordOk
 
-`func (o *UserCreateInput) GetCustomdataOk() (*map[string]interface{}, bool)`
+`func (o *UserCreateInput) GetPasswordOk() (*string, bool)`
 
-GetCustomdataOk returns a tuple with the Customdata field if it's non-nil, zero value otherwise
+GetPasswordOk returns a tuple with the Password field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetCustomdata
+### SetPassword
 
-`func (o *UserCreateInput) SetCustomdata(v map[string]interface{})`
+`func (o *UserCreateInput) SetPassword(v string)`
 
-SetCustomdata sets Customdata field to given value.
+SetPassword sets Password field to given value.
 
-### HasCustomdata
+### HasPassword
 
-`func (o *UserCreateInput) HasCustomdata() bool`
+`func (o *UserCreateInput) HasPassword() bool`
 
-HasCustomdata returns a boolean if a field has been set.
+HasPassword returns a boolean if a field has been set.
+
+### GetPhoneNumber
+
+`func (o *UserCreateInput) GetPhoneNumber() string`
+
+GetPhoneNumber returns the PhoneNumber field if non-nil, zero value otherwise.
+
+### GetPhoneNumberOk
+
+`func (o *UserCreateInput) GetPhoneNumberOk() (*string, bool)`
+
+GetPhoneNumberOk returns a tuple with the PhoneNumber field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPhoneNumber
+
+`func (o *UserCreateInput) SetPhoneNumber(v string)`
+
+SetPhoneNumber sets PhoneNumber field to given value.
+
+### HasPhoneNumber
+
+`func (o *UserCreateInput) HasPhoneNumber() bool`
+
+HasPhoneNumber returns a boolean if a field has been set.
+
+### GetSocialAccounts
+
+`func (o *UserCreateInput) GetSocialAccounts() map[string]interface{}`
+
+GetSocialAccounts returns the SocialAccounts field if non-nil, zero value otherwise.
+
+### GetSocialAccountsOk
+
+`func (o *UserCreateInput) GetSocialAccountsOk() (*map[string]interface{}, bool)`
+
+GetSocialAccountsOk returns a tuple with the SocialAccounts field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSocialAccounts
+
+`func (o *UserCreateInput) SetSocialAccounts(v map[string]interface{})`
+
+SetSocialAccounts sets SocialAccounts field to given value.
+
+### HasSocialAccounts
+
+`func (o *UserCreateInput) HasSocialAccounts() bool`
+
+HasSocialAccounts returns a boolean if a field has been set.
+
+### GetTimezone
+
+`func (o *UserCreateInput) GetTimezone() string`
+
+GetTimezone returns the Timezone field if non-nil, zero value otherwise.
+
+### GetTimezoneOk
+
+`func (o *UserCreateInput) GetTimezoneOk() (*string, bool)`
+
+GetTimezoneOk returns a tuple with the Timezone field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTimezone
+
+`func (o *UserCreateInput) SetTimezone(v string)`
+
+SetTimezone sets Timezone field to given value.
+
+### HasTimezone
+
+`func (o *UserCreateInput) HasTimezone() bool`
+
+HasTimezone returns a boolean if a field has been set.
+
+### GetTitle
+
+`func (o *UserCreateInput) GetTitle() string`
+
+GetTitle returns the Title field if non-nil, zero value otherwise.
+
+### GetTitleOk
+
+`func (o *UserCreateInput) GetTitleOk() (*string, bool)`
+
+GetTitleOk returns a tuple with the Title field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTitle
+
+`func (o *UserCreateInput) SetTitle(v string)`
+
+SetTitle sets Title field to given value.
+
+### HasTitle
+
+`func (o *UserCreateInput) HasTitle() bool`
+
+HasTitle returns a boolean if a field has been set.
+
+### GetTwoFactorAuth
+
+`func (o *UserCreateInput) GetTwoFactorAuth() string`
+
+GetTwoFactorAuth returns the TwoFactorAuth field if non-nil, zero value otherwise.
+
+### GetTwoFactorAuthOk
+
+`func (o *UserCreateInput) GetTwoFactorAuthOk() (*string, bool)`
+
+GetTwoFactorAuthOk returns a tuple with the TwoFactorAuth field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTwoFactorAuth
+
+`func (o *UserCreateInput) SetTwoFactorAuth(v string)`
+
+SetTwoFactorAuth sets TwoFactorAuth field to given value.
+
+### HasTwoFactorAuth
+
+`func (o *UserCreateInput) HasTwoFactorAuth() bool`
+
+HasTwoFactorAuth returns a boolean if a field has been set.
+
+### GetVerifiedAt
+
+`func (o *UserCreateInput) GetVerifiedAt() time.Time`
+
+GetVerifiedAt returns the VerifiedAt field if non-nil, zero value otherwise.
+
+### GetVerifiedAtOk
+
+`func (o *UserCreateInput) GetVerifiedAtOk() (*time.Time, bool)`
+
+GetVerifiedAtOk returns a tuple with the VerifiedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVerifiedAt
+
+`func (o *UserCreateInput) SetVerifiedAt(v time.Time)`
+
+SetVerifiedAt sets VerifiedAt field to given value.
+
+### HasVerifiedAt
+
+`func (o *UserCreateInput) HasVerifiedAt() bool`
+
+HasVerifiedAt returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **string** |  | [optional] 
 **CreatedAt** | Pointer to **time.Time** |  | [optional] 
-**UpdatedAt** | Pointer to **time.Time** |  | [optional] 
-**TargetOrganization** | Pointer to [**Href**](Href.md) |  | [optional] 
-**Project** | Pointer to [**Href**](Href.md) |  | [optional] 
 **Href** | Pointer to **string** |  | [optional] 
+**Id** | Pointer to **string** |  | [optional] 
+**Project** | Pointer to [**FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
+**TargetOrganization** | Pointer to [**FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
+**UpdatedAt** | Pointer to **time.Time** |  | [optional] 
 
 ## Methods
 
@@ -29,31 +29,6 @@ will change when the set of required properties is changed
 NewTransferRequestWithDefaults instantiates a new TransferRequest object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetId
-
-`func (o *TransferRequest) GetId() string`
-
-GetId returns the Id field if non-nil, zero value otherwise.
-
-### GetIdOk
-
-`func (o *TransferRequest) GetIdOk() (*string, bool)`
-
-GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetId
-
-`func (o *TransferRequest) SetId(v string)`
-
-SetId sets Id field to given value.
-
-### HasId
-
-`func (o *TransferRequest) HasId() bool`
-
-HasId returns a boolean if a field has been set.
 
 ### GetCreatedAt
 
@@ -80,81 +55,6 @@ SetCreatedAt sets CreatedAt field to given value.
 
 HasCreatedAt returns a boolean if a field has been set.
 
-### GetUpdatedAt
-
-`func (o *TransferRequest) GetUpdatedAt() time.Time`
-
-GetUpdatedAt returns the UpdatedAt field if non-nil, zero value otherwise.
-
-### GetUpdatedAtOk
-
-`func (o *TransferRequest) GetUpdatedAtOk() (*time.Time, bool)`
-
-GetUpdatedAtOk returns a tuple with the UpdatedAt field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetUpdatedAt
-
-`func (o *TransferRequest) SetUpdatedAt(v time.Time)`
-
-SetUpdatedAt sets UpdatedAt field to given value.
-
-### HasUpdatedAt
-
-`func (o *TransferRequest) HasUpdatedAt() bool`
-
-HasUpdatedAt returns a boolean if a field has been set.
-
-### GetTargetOrganization
-
-`func (o *TransferRequest) GetTargetOrganization() Href`
-
-GetTargetOrganization returns the TargetOrganization field if non-nil, zero value otherwise.
-
-### GetTargetOrganizationOk
-
-`func (o *TransferRequest) GetTargetOrganizationOk() (*Href, bool)`
-
-GetTargetOrganizationOk returns a tuple with the TargetOrganization field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTargetOrganization
-
-`func (o *TransferRequest) SetTargetOrganization(v Href)`
-
-SetTargetOrganization sets TargetOrganization field to given value.
-
-### HasTargetOrganization
-
-`func (o *TransferRequest) HasTargetOrganization() bool`
-
-HasTargetOrganization returns a boolean if a field has been set.
-
-### GetProject
-
-`func (o *TransferRequest) GetProject() Href`
-
-GetProject returns the Project field if non-nil, zero value otherwise.
-
-### GetProjectOk
-
-`func (o *TransferRequest) GetProjectOk() (*Href, bool)`
-
-GetProjectOk returns a tuple with the Project field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetProject
-
-`func (o *TransferRequest) SetProject(v Href)`
-
-SetProject sets Project field to given value.
-
-### HasProject
-
-`func (o *TransferRequest) HasProject() bool`
-
-HasProject returns a boolean if a field has been set.
-
 ### GetHref
 
 `func (o *TransferRequest) GetHref() string`
@@ -179,6 +79,106 @@ SetHref sets Href field to given value.
 `func (o *TransferRequest) HasHref() bool`
 
 HasHref returns a boolean if a field has been set.
+
+### GetId
+
+`func (o *TransferRequest) GetId() string`
+
+GetId returns the Id field if non-nil, zero value otherwise.
+
+### GetIdOk
+
+`func (o *TransferRequest) GetIdOk() (*string, bool)`
+
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetId
+
+`func (o *TransferRequest) SetId(v string)`
+
+SetId sets Id field to given value.
+
+### HasId
+
+`func (o *TransferRequest) HasId() bool`
+
+HasId returns a boolean if a field has been set.
+
+### GetProject
+
+`func (o *TransferRequest) GetProject() FindBatchById200ResponseDevicesInner`
+
+GetProject returns the Project field if non-nil, zero value otherwise.
+
+### GetProjectOk
+
+`func (o *TransferRequest) GetProjectOk() (*FindBatchById200ResponseDevicesInner, bool)`
+
+GetProjectOk returns a tuple with the Project field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProject
+
+`func (o *TransferRequest) SetProject(v FindBatchById200ResponseDevicesInner)`
+
+SetProject sets Project field to given value.
+
+### HasProject
+
+`func (o *TransferRequest) HasProject() bool`
+
+HasProject returns a boolean if a field has been set.
+
+### GetTargetOrganization
+
+`func (o *TransferRequest) GetTargetOrganization() FindBatchById200ResponseDevicesInner`
+
+GetTargetOrganization returns the TargetOrganization field if non-nil, zero value otherwise.
+
+### GetTargetOrganizationOk
+
+`func (o *TransferRequest) GetTargetOrganizationOk() (*FindBatchById200ResponseDevicesInner, bool)`
+
+GetTargetOrganizationOk returns a tuple with the TargetOrganization field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTargetOrganization
+
+`func (o *TransferRequest) SetTargetOrganization(v FindBatchById200ResponseDevicesInner)`
+
+SetTargetOrganization sets TargetOrganization field to given value.
+
+### HasTargetOrganization
+
+`func (o *TransferRequest) HasTargetOrganization() bool`
+
+HasTargetOrganization returns a boolean if a field has been set.
+
+### GetUpdatedAt
+
+`func (o *TransferRequest) GetUpdatedAt() time.Time`
+
+GetUpdatedAt returns the UpdatedAt field if non-nil, zero value otherwise.
+
+### GetUpdatedAtOk
+
+`func (o *TransferRequest) GetUpdatedAtOk() (*time.Time, bool)`
+
+GetUpdatedAtOk returns a tuple with the UpdatedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUpdatedAt
+
+`func (o *TransferRequest) SetUpdatedAt(v time.Time)`
+
+SetUpdatedAt sets UpdatedAt field to given value.
+
+### HasUpdatedAt
+
+`func (o *TransferRequest) HasUpdatedAt() bool`
+
+HasUpdatedAt returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

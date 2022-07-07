@@ -57,7 +57,7 @@ func (r ApiFindConnectionEventsRequest) PerPage(perPage int32) ApiFindConnection
 	return r
 }
 
-func (r ApiFindConnectionEventsRequest) Execute() (*Event, *http.Response, error) {
+func (r ApiFindConnectionEventsRequest) Execute() (*FindConnectionEvents200Response, *http.Response, error) {
 	return r.ApiService.FindConnectionEventsExecute(r)
 }
 
@@ -79,13 +79,13 @@ func (a *EventsApiService) FindConnectionEvents(ctx context.Context, connectionI
 }
 
 // Execute executes the request
-//  @return Event
-func (a *EventsApiService) FindConnectionEventsExecute(r ApiFindConnectionEventsRequest) (*Event, *http.Response, error) {
+//  @return FindConnectionEvents200Response
+func (a *EventsApiService) FindConnectionEventsExecute(r ApiFindConnectionEventsRequest) (*FindConnectionEvents200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *Event
+		localVarReturnValue *FindConnectionEvents200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EventsApiService.FindConnectionEvents")
@@ -166,7 +166,7 @@ func (a *EventsApiService) FindConnectionEventsExecute(r ApiFindConnectionEvents
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -176,7 +176,7 @@ func (a *EventsApiService) FindConnectionEventsExecute(r ApiFindConnectionEvents
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -186,7 +186,7 @@ func (a *EventsApiService) FindConnectionEventsExecute(r ApiFindConnectionEvents
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -244,7 +244,7 @@ func (r ApiFindConnectionPortEventsRequest) PerPage(perPage int32) ApiFindConnec
 	return r
 }
 
-func (r ApiFindConnectionPortEventsRequest) Execute() (*Event, *http.Response, error) {
+func (r ApiFindConnectionPortEventsRequest) Execute() (*FindConnectionEvents200Response, *http.Response, error) {
 	return r.ApiService.FindConnectionPortEventsExecute(r)
 }
 
@@ -268,13 +268,13 @@ func (a *EventsApiService) FindConnectionPortEvents(ctx context.Context, connect
 }
 
 // Execute executes the request
-//  @return Event
-func (a *EventsApiService) FindConnectionPortEventsExecute(r ApiFindConnectionPortEventsRequest) (*Event, *http.Response, error) {
+//  @return FindConnectionEvents200Response
+func (a *EventsApiService) FindConnectionPortEventsExecute(r ApiFindConnectionPortEventsRequest) (*FindConnectionEvents200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *Event
+		localVarReturnValue *FindConnectionEvents200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EventsApiService.FindConnectionPortEvents")
@@ -356,7 +356,7 @@ func (a *EventsApiService) FindConnectionPortEventsExecute(r ApiFindConnectionPo
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -366,7 +366,7 @@ func (a *EventsApiService) FindConnectionPortEventsExecute(r ApiFindConnectionPo
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -376,7 +376,7 @@ func (a *EventsApiService) FindConnectionPortEventsExecute(r ApiFindConnectionPo
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -433,7 +433,7 @@ func (r ApiFindDeviceEventsRequest) PerPage(perPage int32) ApiFindDeviceEventsRe
 	return r
 }
 
-func (r ApiFindDeviceEventsRequest) Execute() (*EventList, *http.Response, error) {
+func (r ApiFindDeviceEventsRequest) Execute() (*FindDeviceEvents200Response, *http.Response, error) {
 	return r.ApiService.FindDeviceEventsExecute(r)
 }
 
@@ -455,13 +455,13 @@ func (a *EventsApiService) FindDeviceEvents(ctx context.Context, id string) ApiF
 }
 
 // Execute executes the request
-//  @return EventList
-func (a *EventsApiService) FindDeviceEventsExecute(r ApiFindDeviceEventsRequest) (*EventList, *http.Response, error) {
+//  @return FindDeviceEvents200Response
+func (a *EventsApiService) FindDeviceEventsExecute(r ApiFindDeviceEventsRequest) (*FindDeviceEvents200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *EventList
+		localVarReturnValue *FindDeviceEvents200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EventsApiService.FindDeviceEvents")
@@ -542,7 +542,7 @@ func (a *EventsApiService) FindDeviceEventsExecute(r ApiFindDeviceEventsRequest)
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -552,7 +552,7 @@ func (a *EventsApiService) FindDeviceEventsExecute(r ApiFindDeviceEventsRequest)
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -562,7 +562,7 @@ func (a *EventsApiService) FindDeviceEventsExecute(r ApiFindDeviceEventsRequest)
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -605,7 +605,7 @@ func (r ApiFindEventByIdRequest) Exclude(exclude []string) ApiFindEventByIdReque
 	return r
 }
 
-func (r ApiFindEventByIdRequest) Execute() (*Event, *http.Response, error) {
+func (r ApiFindEventByIdRequest) Execute() (*FindConnectionEvents200Response, *http.Response, error) {
 	return r.ApiService.FindEventByIdExecute(r)
 }
 
@@ -627,13 +627,13 @@ func (a *EventsApiService) FindEventById(ctx context.Context, id string) ApiFind
 }
 
 // Execute executes the request
-//  @return Event
-func (a *EventsApiService) FindEventByIdExecute(r ApiFindEventByIdRequest) (*Event, *http.Response, error) {
+//  @return FindConnectionEvents200Response
+func (a *EventsApiService) FindEventByIdExecute(r ApiFindEventByIdRequest) (*FindConnectionEvents200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *Event
+		localVarReturnValue *FindConnectionEvents200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EventsApiService.FindEventById")
@@ -708,7 +708,7 @@ func (a *EventsApiService) FindEventByIdExecute(r ApiFindEventByIdRequest) (*Eve
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -718,7 +718,7 @@ func (a *EventsApiService) FindEventByIdExecute(r ApiFindEventByIdRequest) (*Eve
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -728,7 +728,7 @@ func (a *EventsApiService) FindEventByIdExecute(r ApiFindEventByIdRequest) (*Eve
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -784,7 +784,7 @@ func (r ApiFindEventsRequest) PerPage(perPage int32) ApiFindEventsRequest {
 	return r
 }
 
-func (r ApiFindEventsRequest) Execute() (*EventList, *http.Response, error) {
+func (r ApiFindEventsRequest) Execute() (*FindDeviceEvents200Response, *http.Response, error) {
 	return r.ApiService.FindEventsExecute(r)
 }
 
@@ -804,13 +804,13 @@ func (a *EventsApiService) FindEvents(ctx context.Context) ApiFindEventsRequest 
 }
 
 // Execute executes the request
-//  @return EventList
-func (a *EventsApiService) FindEventsExecute(r ApiFindEventsRequest) (*EventList, *http.Response, error) {
+//  @return FindDeviceEvents200Response
+func (a *EventsApiService) FindEventsExecute(r ApiFindEventsRequest) (*FindDeviceEvents200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *EventList
+		localVarReturnValue *FindDeviceEvents200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EventsApiService.FindEvents")
@@ -890,7 +890,7 @@ func (a *EventsApiService) FindEventsExecute(r ApiFindEventsRequest) (*EventList
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -947,7 +947,7 @@ func (r ApiFindOrganizationEventsRequest) PerPage(perPage int32) ApiFindOrganiza
 	return r
 }
 
-func (r ApiFindOrganizationEventsRequest) Execute() (*EventList, *http.Response, error) {
+func (r ApiFindOrganizationEventsRequest) Execute() (*FindDeviceEvents200Response, *http.Response, error) {
 	return r.ApiService.FindOrganizationEventsExecute(r)
 }
 
@@ -969,13 +969,13 @@ func (a *EventsApiService) FindOrganizationEvents(ctx context.Context, id string
 }
 
 // Execute executes the request
-//  @return EventList
-func (a *EventsApiService) FindOrganizationEventsExecute(r ApiFindOrganizationEventsRequest) (*EventList, *http.Response, error) {
+//  @return FindDeviceEvents200Response
+func (a *EventsApiService) FindOrganizationEventsExecute(r ApiFindOrganizationEventsRequest) (*FindDeviceEvents200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *EventList
+		localVarReturnValue *FindDeviceEvents200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EventsApiService.FindOrganizationEvents")
@@ -1056,7 +1056,7 @@ func (a *EventsApiService) FindOrganizationEventsExecute(r ApiFindOrganizationEv
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1066,7 +1066,7 @@ func (a *EventsApiService) FindOrganizationEventsExecute(r ApiFindOrganizationEv
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1076,7 +1076,7 @@ func (a *EventsApiService) FindOrganizationEventsExecute(r ApiFindOrganizationEv
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1133,7 +1133,7 @@ func (r ApiFindProjectEventsRequest) PerPage(perPage int32) ApiFindProjectEvents
 	return r
 }
 
-func (r ApiFindProjectEventsRequest) Execute() (*EventList, *http.Response, error) {
+func (r ApiFindProjectEventsRequest) Execute() (*FindDeviceEvents200Response, *http.Response, error) {
 	return r.ApiService.FindProjectEventsExecute(r)
 }
 
@@ -1155,13 +1155,13 @@ func (a *EventsApiService) FindProjectEvents(ctx context.Context, id string) Api
 }
 
 // Execute executes the request
-//  @return EventList
-func (a *EventsApiService) FindProjectEventsExecute(r ApiFindProjectEventsRequest) (*EventList, *http.Response, error) {
+//  @return FindDeviceEvents200Response
+func (a *EventsApiService) FindProjectEventsExecute(r ApiFindProjectEventsRequest) (*FindDeviceEvents200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *EventList
+		localVarReturnValue *FindDeviceEvents200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EventsApiService.FindProjectEvents")
@@ -1242,7 +1242,7 @@ func (a *EventsApiService) FindProjectEventsExecute(r ApiFindProjectEventsReques
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1252,7 +1252,7 @@ func (a *EventsApiService) FindProjectEventsExecute(r ApiFindProjectEventsReques
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1262,7 +1262,7 @@ func (a *EventsApiService) FindProjectEventsExecute(r ApiFindProjectEventsReques
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1319,7 +1319,7 @@ func (r ApiFindVirtualCircuitEventsRequest) PerPage(perPage int32) ApiFindVirtua
 	return r
 }
 
-func (r ApiFindVirtualCircuitEventsRequest) Execute() (*Event, *http.Response, error) {
+func (r ApiFindVirtualCircuitEventsRequest) Execute() (*FindConnectionEvents200Response, *http.Response, error) {
 	return r.ApiService.FindVirtualCircuitEventsExecute(r)
 }
 
@@ -1341,13 +1341,13 @@ func (a *EventsApiService) FindVirtualCircuitEvents(ctx context.Context, id stri
 }
 
 // Execute executes the request
-//  @return Event
-func (a *EventsApiService) FindVirtualCircuitEventsExecute(r ApiFindVirtualCircuitEventsRequest) (*Event, *http.Response, error) {
+//  @return FindConnectionEvents200Response
+func (a *EventsApiService) FindVirtualCircuitEventsExecute(r ApiFindVirtualCircuitEventsRequest) (*FindConnectionEvents200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *Event
+		localVarReturnValue *FindConnectionEvents200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EventsApiService.FindVirtualCircuitEvents")
@@ -1428,7 +1428,7 @@ func (a *EventsApiService) FindVirtualCircuitEventsExecute(r ApiFindVirtualCircu
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1438,7 +1438,7 @@ func (a *EventsApiService) FindVirtualCircuitEventsExecute(r ApiFindVirtualCircu
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1448,7 +1448,7 @@ func (a *EventsApiService) FindVirtualCircuitEventsExecute(r ApiFindVirtualCircu
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

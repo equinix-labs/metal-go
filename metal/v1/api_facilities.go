@@ -17,6 +17,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"net/url"
+	"reflect"
 	"strings"
 )
 
@@ -42,7 +43,7 @@ func (r ApiFindFacilitiesRequest) Exclude(exclude []string) ApiFindFacilitiesReq
 	return r
 }
 
-func (r ApiFindFacilitiesRequest) Execute() (*FacilityList, *http.Response, error) {
+func (r ApiFindFacilitiesRequest) Execute() (*FindFacilities200Response, *http.Response, error) {
 	return r.ApiService.FindFacilitiesExecute(r)
 }
 
@@ -62,13 +63,13 @@ func (a *FacilitiesApiService) FindFacilities(ctx context.Context) ApiFindFacili
 }
 
 // Execute executes the request
-//  @return FacilityList
-func (a *FacilitiesApiService) FindFacilitiesExecute(r ApiFindFacilitiesRequest) (*FacilityList, *http.Response, error) {
+//  @return FindFacilities200Response
+func (a *FacilitiesApiService) FindFacilitiesExecute(r ApiFindFacilitiesRequest) (*FindFacilities200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *FacilityList
+		localVarReturnValue *FindFacilities200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FacilitiesApiService.FindFacilities")
@@ -83,10 +84,26 @@ func (a *FacilitiesApiService) FindFacilitiesExecute(r ApiFindFacilitiesRequest)
 	localVarFormParams := url.Values{}
 
 	if r.include != nil {
-		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
+		t := *r.include
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("include", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("include", parameterToString(t, "multi"))
+		}
 	}
 	if r.exclude != nil {
-		localVarQueryParams.Add("exclude", parameterToString(*r.exclude, "csv"))
+		t := *r.exclude
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("exclude", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("exclude", parameterToString(t, "multi"))
+		}
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -142,7 +159,7 @@ func (a *FacilitiesApiService) FindFacilitiesExecute(r ApiFindFacilitiesRequest)
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -185,7 +202,7 @@ func (r ApiFindFacilitiesByOrganizationRequest) Exclude(exclude []string) ApiFin
 	return r
 }
 
-func (r ApiFindFacilitiesByOrganizationRequest) Execute() (*FacilityList, *http.Response, error) {
+func (r ApiFindFacilitiesByOrganizationRequest) Execute() (*FindFacilities200Response, *http.Response, error) {
 	return r.ApiService.FindFacilitiesByOrganizationExecute(r)
 }
 
@@ -207,13 +224,13 @@ func (a *FacilitiesApiService) FindFacilitiesByOrganization(ctx context.Context,
 }
 
 // Execute executes the request
-//  @return FacilityList
-func (a *FacilitiesApiService) FindFacilitiesByOrganizationExecute(r ApiFindFacilitiesByOrganizationRequest) (*FacilityList, *http.Response, error) {
+//  @return FindFacilities200Response
+func (a *FacilitiesApiService) FindFacilitiesByOrganizationExecute(r ApiFindFacilitiesByOrganizationRequest) (*FindFacilities200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *FacilityList
+		localVarReturnValue *FindFacilities200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FacilitiesApiService.FindFacilitiesByOrganization")
@@ -288,7 +305,7 @@ func (a *FacilitiesApiService) FindFacilitiesByOrganizationExecute(r ApiFindFaci
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -298,7 +315,7 @@ func (a *FacilitiesApiService) FindFacilitiesByOrganizationExecute(r ApiFindFaci
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -308,7 +325,7 @@ func (a *FacilitiesApiService) FindFacilitiesByOrganizationExecute(r ApiFindFaci
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -351,7 +368,7 @@ func (r ApiFindFacilitiesByProjectRequest) Exclude(exclude []string) ApiFindFaci
 	return r
 }
 
-func (r ApiFindFacilitiesByProjectRequest) Execute() (*FacilityList, *http.Response, error) {
+func (r ApiFindFacilitiesByProjectRequest) Execute() (*FindFacilities200Response, *http.Response, error) {
 	return r.ApiService.FindFacilitiesByProjectExecute(r)
 }
 
@@ -373,13 +390,13 @@ func (a *FacilitiesApiService) FindFacilitiesByProject(ctx context.Context, id s
 }
 
 // Execute executes the request
-//  @return FacilityList
-func (a *FacilitiesApiService) FindFacilitiesByProjectExecute(r ApiFindFacilitiesByProjectRequest) (*FacilityList, *http.Response, error) {
+//  @return FindFacilities200Response
+func (a *FacilitiesApiService) FindFacilitiesByProjectExecute(r ApiFindFacilitiesByProjectRequest) (*FindFacilities200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *FacilityList
+		localVarReturnValue *FindFacilities200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FacilitiesApiService.FindFacilitiesByProject")
@@ -454,7 +471,7 @@ func (a *FacilitiesApiService) FindFacilitiesByProjectExecute(r ApiFindFacilitie
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -464,7 +481,7 @@ func (a *FacilitiesApiService) FindFacilitiesByProjectExecute(r ApiFindFacilitie
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -474,7 +491,7 @@ func (a *FacilitiesApiService) FindFacilitiesByProjectExecute(r ApiFindFacilitie
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

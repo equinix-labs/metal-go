@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**VirtualNetworkId** | **string** | The UUID of a metro virtual network that belongs to the same project as where the metal gateway will be created in. | 
 **IpReservationId** | Pointer to **string** | The UUID of an IP reservation that belongs to the same project as where the metal gateway will be created in. This field is required unless the private IPv4 subnet size is specified. | [optional] 
 **PrivateIpv4SubnetSize** | Pointer to **int32** | The subnet size (8, 16, 32, 64, or 128) of the private IPv4 reservation that will be created for the metal gateway. This field is required unless a project IP reservation was specified.           Please keep in mind that the number of private metal gateway ranges are limited per project. If you would like to increase the limit per project, please contact support for assistance. | [optional] 
+**VirtualNetworkId** | **string** | The UUID of a metro virtual network that belongs to the same project as where the metal gateway will be created in. | 
 
 ## Methods
 
@@ -26,26 +26,6 @@ will change when the set of required properties is changed
 NewMetalGatewayInputWithDefaults instantiates a new MetalGatewayInput object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetVirtualNetworkId
-
-`func (o *MetalGatewayInput) GetVirtualNetworkId() string`
-
-GetVirtualNetworkId returns the VirtualNetworkId field if non-nil, zero value otherwise.
-
-### GetVirtualNetworkIdOk
-
-`func (o *MetalGatewayInput) GetVirtualNetworkIdOk() (*string, bool)`
-
-GetVirtualNetworkIdOk returns a tuple with the VirtualNetworkId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetVirtualNetworkId
-
-`func (o *MetalGatewayInput) SetVirtualNetworkId(v string)`
-
-SetVirtualNetworkId sets VirtualNetworkId field to given value.
-
 
 ### GetIpReservationId
 
@@ -96,6 +76,26 @@ SetPrivateIpv4SubnetSize sets PrivateIpv4SubnetSize field to given value.
 `func (o *MetalGatewayInput) HasPrivateIpv4SubnetSize() bool`
 
 HasPrivateIpv4SubnetSize returns a boolean if a field has been set.
+
+### GetVirtualNetworkId
+
+`func (o *MetalGatewayInput) GetVirtualNetworkId() string`
+
+GetVirtualNetworkId returns the VirtualNetworkId field if non-nil, zero value otherwise.
+
+### GetVirtualNetworkIdOk
+
+`func (o *MetalGatewayInput) GetVirtualNetworkIdOk() (*string, bool)`
+
+GetVirtualNetworkIdOk returns a tuple with the VirtualNetworkId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVirtualNetworkId
+
+`func (o *MetalGatewayInput) SetVirtualNetworkId(v string)`
+
+SetVirtualNetworkId sets VirtualNetworkId field to given value.
+
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

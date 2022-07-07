@@ -17,7 +17,7 @@ import (
 
 // PortVlanAssignmentList struct for PortVlanAssignmentList
 type PortVlanAssignmentList struct {
-	VlanAssignments []PortVlanAssignment `json:"vlan_assignments,omitempty"`
+	VlanAssignments []FindPortVlanAssignments200ResponseVlanAssignmentsInner `json:"vlan_assignments,omitempty"`
 }
 
 // NewPortVlanAssignmentList instantiates a new PortVlanAssignmentList object
@@ -38,9 +38,9 @@ func NewPortVlanAssignmentListWithDefaults() *PortVlanAssignmentList {
 }
 
 // GetVlanAssignments returns the VlanAssignments field value if set, zero value otherwise.
-func (o *PortVlanAssignmentList) GetVlanAssignments() []PortVlanAssignment {
+func (o *PortVlanAssignmentList) GetVlanAssignments() []FindPortVlanAssignments200ResponseVlanAssignmentsInner {
 	if o == nil || o.VlanAssignments == nil {
-		var ret []PortVlanAssignment
+		var ret []FindPortVlanAssignments200ResponseVlanAssignmentsInner
 		return ret
 	}
 	return o.VlanAssignments
@@ -48,7 +48,7 @@ func (o *PortVlanAssignmentList) GetVlanAssignments() []PortVlanAssignment {
 
 // GetVlanAssignmentsOk returns a tuple with the VlanAssignments field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PortVlanAssignmentList) GetVlanAssignmentsOk() ([]PortVlanAssignment, bool) {
+func (o *PortVlanAssignmentList) GetVlanAssignmentsOk() ([]FindPortVlanAssignments200ResponseVlanAssignmentsInner, bool) {
 	if o == nil || o.VlanAssignments == nil {
 		return nil, false
 	}
@@ -64,8 +64,8 @@ func (o *PortVlanAssignmentList) HasVlanAssignments() bool {
 	return false
 }
 
-// SetVlanAssignments gets a reference to the given []PortVlanAssignment and assigns it to the VlanAssignments field.
-func (o *PortVlanAssignmentList) SetVlanAssignments(v []PortVlanAssignment) {
+// SetVlanAssignments gets a reference to the given []FindPortVlanAssignments200ResponseVlanAssignmentsInner and assigns it to the VlanAssignments field.
+func (o *PortVlanAssignmentList) SetVlanAssignments(v []FindPortVlanAssignments200ResponseVlanAssignmentsInner) {
 	o.VlanAssignments = v
 }
 

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Usages** | Pointer to [**[]ProjectUsage**](ProjectUsage.md) |  | [optional] 
+**Usages** | Pointer to [**[]FindProjectUsage200ResponseUsagesInner**](FindProjectUsage200ResponseUsagesInner.md) |  | [optional] 
 
 ## Methods
 
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetUsages
 
-`func (o *ProjectUsageList) GetUsages() []ProjectUsage`
+`func (o *ProjectUsageList) GetUsages() []FindProjectUsage200ResponseUsagesInner`
 
 GetUsages returns the Usages field if non-nil, zero value otherwise.
 
 ### GetUsagesOk
 
-`func (o *ProjectUsageList) GetUsagesOk() (*[]ProjectUsage, bool)`
+`func (o *ProjectUsageList) GetUsagesOk() (*[]FindProjectUsage200ResponseUsagesInner, bool)`
 
 GetUsagesOk returns a tuple with the Usages field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUsages
 
-`func (o *ProjectUsageList) SetUsages(v []ProjectUsage)`
+`func (o *ProjectUsageList) SetUsages(v []FindProjectUsage200ResponseUsagesInner)`
 
 SetUsages sets Usages field to given value.
 

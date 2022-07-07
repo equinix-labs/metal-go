@@ -17,7 +17,7 @@ import (
 
 // PlanList struct for PlanList
 type PlanList struct {
-	Plans []Plan `json:"plans,omitempty"`
+	Plans []FindDeviceById200ResponsePlan `json:"plans,omitempty"`
 }
 
 // NewPlanList instantiates a new PlanList object
@@ -38,9 +38,9 @@ func NewPlanListWithDefaults() *PlanList {
 }
 
 // GetPlans returns the Plans field value if set, zero value otherwise.
-func (o *PlanList) GetPlans() []Plan {
+func (o *PlanList) GetPlans() []FindDeviceById200ResponsePlan {
 	if o == nil || o.Plans == nil {
-		var ret []Plan
+		var ret []FindDeviceById200ResponsePlan
 		return ret
 	}
 	return o.Plans
@@ -48,7 +48,7 @@ func (o *PlanList) GetPlans() []Plan {
 
 // GetPlansOk returns a tuple with the Plans field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PlanList) GetPlansOk() ([]Plan, bool) {
+func (o *PlanList) GetPlansOk() ([]FindDeviceById200ResponsePlan, bool) {
 	if o == nil || o.Plans == nil {
 		return nil, false
 	}
@@ -64,8 +64,8 @@ func (o *PlanList) HasPlans() bool {
 	return false
 }
 
-// SetPlans gets a reference to the given []Plan and assigns it to the Plans field.
-func (o *PlanList) SetPlans(v []Plan) {
+// SetPlans gets a reference to the given []FindDeviceById200ResponsePlan and assigns it to the Plans field.
+func (o *PlanList) SetPlans(v []FindDeviceById200ResponsePlan) {
 	o.Plans = v
 }
 

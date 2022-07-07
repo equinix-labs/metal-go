@@ -18,18 +18,18 @@ import (
 
 // Timeframe struct for Timeframe
 type Timeframe struct {
-	StartedAt time.Time `json:"started_at"`
 	EndedAt   time.Time `json:"ended_at"`
+	StartedAt time.Time `json:"started_at"`
 }
 
 // NewTimeframe instantiates a new Timeframe object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTimeframe(startedAt time.Time, endedAt time.Time) *Timeframe {
+func NewTimeframe(endedAt time.Time, startedAt time.Time) *Timeframe {
 	this := Timeframe{}
-	this.StartedAt = startedAt
 	this.EndedAt = endedAt
+	this.StartedAt = startedAt
 	return &this
 }
 
@@ -39,30 +39,6 @@ func NewTimeframe(startedAt time.Time, endedAt time.Time) *Timeframe {
 func NewTimeframeWithDefaults() *Timeframe {
 	this := Timeframe{}
 	return &this
-}
-
-// GetStartedAt returns the StartedAt field value
-func (o *Timeframe) GetStartedAt() time.Time {
-	if o == nil {
-		var ret time.Time
-		return ret
-	}
-
-	return o.StartedAt
-}
-
-// GetStartedAtOk returns a tuple with the StartedAt field value
-// and a boolean to check if the value has been set.
-func (o *Timeframe) GetStartedAtOk() (*time.Time, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.StartedAt, true
-}
-
-// SetStartedAt sets field value
-func (o *Timeframe) SetStartedAt(v time.Time) {
-	o.StartedAt = v
 }
 
 // GetEndedAt returns the EndedAt field value
@@ -89,13 +65,37 @@ func (o *Timeframe) SetEndedAt(v time.Time) {
 	o.EndedAt = v
 }
 
+// GetStartedAt returns the StartedAt field value
+func (o *Timeframe) GetStartedAt() time.Time {
+	if o == nil {
+		var ret time.Time
+		return ret
+	}
+
+	return o.StartedAt
+}
+
+// GetStartedAtOk returns a tuple with the StartedAt field value
+// and a boolean to check if the value has been set.
+func (o *Timeframe) GetStartedAtOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.StartedAt, true
+}
+
+// SetStartedAt sets field value
+func (o *Timeframe) SetStartedAt(v time.Time) {
+	o.StartedAt = v
+}
+
 func (o Timeframe) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
-		toSerialize["started_at"] = o.StartedAt
+		toSerialize["ended_at"] = o.EndedAt
 	}
 	if true {
-		toSerialize["ended_at"] = o.EndedAt
+		toSerialize["started_at"] = o.StartedAt
 	}
 	return json.Marshal(toSerialize)
 }

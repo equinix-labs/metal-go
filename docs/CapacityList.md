@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Capacity** | Pointer to [**CapacityReport**](CapacityReport.md) |  | [optional] 
+**Capacity** | Pointer to [**FindCapacityForFacility200ResponseCapacity**](FindCapacityForFacility200ResponseCapacity.md) |  | [optional] 
 
 ## Methods
 
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetCapacity
 
-`func (o *CapacityList) GetCapacity() CapacityReport`
+`func (o *CapacityList) GetCapacity() FindCapacityForFacility200ResponseCapacity`
 
 GetCapacity returns the Capacity field if non-nil, zero value otherwise.
 
 ### GetCapacityOk
 
-`func (o *CapacityList) GetCapacityOk() (*CapacityReport, bool)`
+`func (o *CapacityList) GetCapacityOk() (*FindCapacityForFacility200ResponseCapacity, bool)`
 
 GetCapacityOk returns a tuple with the Capacity field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCapacity
 
-`func (o *CapacityList) SetCapacity(v CapacityReport)`
+`func (o *CapacityList) SetCapacity(v FindCapacityForFacility200ResponseCapacity)`
 
 SetCapacity sets Capacity field to given value.
 

@@ -1,0 +1,186 @@
+# FabricServiceToken
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**ExpiresAt** | Pointer to **time.Time** | The expiration date and time of the Fabric service token. Once a service token is expired, it is no longer redeemable. | [optional] 
+**Id** | Pointer to **string** | The service token UUID that can be used on the Fabric Portal to create an connection from Metal to another Fabric service provider. | [optional] 
+**MaxAllowedSpeed** | Pointer to **string** | The maximum speed that can be selected on the Fabric Portal when configuring a connection with the service token. The speed is recorded in bps, but can be set by using any of the following units: &#39;bps&#39;, &#39;mbps&#39;, or &#39;gbps&#39;. This speed is automatically capped depending on the tier of the organization. If you would like to upgrade to another tier, please contact our Support team. | [optional] 
+**Role** | Pointer to **string** | Either primary or redundant, depending on the role of the connection port the token is associated with. | [optional] 
+**ServiceTokenType** | Pointer to **string** | The type of service token that has been created. Currently, only A-side service tokens are available. | [optional] 
+**State** | Pointer to **string** | The state of the service token that corresponds with the service token state on Fabric. An inactive state refers to a token that has not been redeemed yet on the Fabric side, an active state refers to a token that has already been redeemed, and an expired state refers to a token that has reached its expiry time. | [optional] 
+
+## Methods
+
+### NewFabricServiceToken
+
+`func NewFabricServiceToken() *FabricServiceToken`
+
+NewFabricServiceToken instantiates a new FabricServiceToken object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewFabricServiceTokenWithDefaults
+
+`func NewFabricServiceTokenWithDefaults() *FabricServiceToken`
+
+NewFabricServiceTokenWithDefaults instantiates a new FabricServiceToken object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
+### GetExpiresAt
+
+`func (o *FabricServiceToken) GetExpiresAt() time.Time`
+
+GetExpiresAt returns the ExpiresAt field if non-nil, zero value otherwise.
+
+### GetExpiresAtOk
+
+`func (o *FabricServiceToken) GetExpiresAtOk() (*time.Time, bool)`
+
+GetExpiresAtOk returns a tuple with the ExpiresAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExpiresAt
+
+`func (o *FabricServiceToken) SetExpiresAt(v time.Time)`
+
+SetExpiresAt sets ExpiresAt field to given value.
+
+### HasExpiresAt
+
+`func (o *FabricServiceToken) HasExpiresAt() bool`
+
+HasExpiresAt returns a boolean if a field has been set.
+
+### GetId
+
+`func (o *FabricServiceToken) GetId() string`
+
+GetId returns the Id field if non-nil, zero value otherwise.
+
+### GetIdOk
+
+`func (o *FabricServiceToken) GetIdOk() (*string, bool)`
+
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetId
+
+`func (o *FabricServiceToken) SetId(v string)`
+
+SetId sets Id field to given value.
+
+### HasId
+
+`func (o *FabricServiceToken) HasId() bool`
+
+HasId returns a boolean if a field has been set.
+
+### GetMaxAllowedSpeed
+
+`func (o *FabricServiceToken) GetMaxAllowedSpeed() string`
+
+GetMaxAllowedSpeed returns the MaxAllowedSpeed field if non-nil, zero value otherwise.
+
+### GetMaxAllowedSpeedOk
+
+`func (o *FabricServiceToken) GetMaxAllowedSpeedOk() (*string, bool)`
+
+GetMaxAllowedSpeedOk returns a tuple with the MaxAllowedSpeed field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMaxAllowedSpeed
+
+`func (o *FabricServiceToken) SetMaxAllowedSpeed(v string)`
+
+SetMaxAllowedSpeed sets MaxAllowedSpeed field to given value.
+
+### HasMaxAllowedSpeed
+
+`func (o *FabricServiceToken) HasMaxAllowedSpeed() bool`
+
+HasMaxAllowedSpeed returns a boolean if a field has been set.
+
+### GetRole
+
+`func (o *FabricServiceToken) GetRole() string`
+
+GetRole returns the Role field if non-nil, zero value otherwise.
+
+### GetRoleOk
+
+`func (o *FabricServiceToken) GetRoleOk() (*string, bool)`
+
+GetRoleOk returns a tuple with the Role field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRole
+
+`func (o *FabricServiceToken) SetRole(v string)`
+
+SetRole sets Role field to given value.
+
+### HasRole
+
+`func (o *FabricServiceToken) HasRole() bool`
+
+HasRole returns a boolean if a field has been set.
+
+### GetServiceTokenType
+
+`func (o *FabricServiceToken) GetServiceTokenType() string`
+
+GetServiceTokenType returns the ServiceTokenType field if non-nil, zero value otherwise.
+
+### GetServiceTokenTypeOk
+
+`func (o *FabricServiceToken) GetServiceTokenTypeOk() (*string, bool)`
+
+GetServiceTokenTypeOk returns a tuple with the ServiceTokenType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetServiceTokenType
+
+`func (o *FabricServiceToken) SetServiceTokenType(v string)`
+
+SetServiceTokenType sets ServiceTokenType field to given value.
+
+### HasServiceTokenType
+
+`func (o *FabricServiceToken) HasServiceTokenType() bool`
+
+HasServiceTokenType returns a boolean if a field has been set.
+
+### GetState
+
+`func (o *FabricServiceToken) GetState() string`
+
+GetState returns the State field if non-nil, zero value otherwise.
+
+### GetStateOk
+
+`func (o *FabricServiceToken) GetStateOk() (*string, bool)`
+
+GetStateOk returns a tuple with the State field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetState
+
+`func (o *FabricServiceToken) SetState(v string)`
+
+SetState sets State field to given value.
+
+### HasState
+
+`func (o *FabricServiceToken) HasState() bool`
+
+HasState returns a boolean if a field has been set.
+
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

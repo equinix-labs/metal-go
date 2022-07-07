@@ -17,7 +17,7 @@ import (
 
 // AuthTokenList struct for AuthTokenList
 type AuthTokenList struct {
-	ApiKeys []AuthToken `json:"api_keys,omitempty"`
+	ApiKeys []FindProjectAPIKeys200ResponseApiKeysInner `json:"api_keys,omitempty"`
 }
 
 // NewAuthTokenList instantiates a new AuthTokenList object
@@ -38,9 +38,9 @@ func NewAuthTokenListWithDefaults() *AuthTokenList {
 }
 
 // GetApiKeys returns the ApiKeys field value if set, zero value otherwise.
-func (o *AuthTokenList) GetApiKeys() []AuthToken {
+func (o *AuthTokenList) GetApiKeys() []FindProjectAPIKeys200ResponseApiKeysInner {
 	if o == nil || o.ApiKeys == nil {
-		var ret []AuthToken
+		var ret []FindProjectAPIKeys200ResponseApiKeysInner
 		return ret
 	}
 	return o.ApiKeys
@@ -48,7 +48,7 @@ func (o *AuthTokenList) GetApiKeys() []AuthToken {
 
 // GetApiKeysOk returns a tuple with the ApiKeys field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AuthTokenList) GetApiKeysOk() ([]AuthToken, bool) {
+func (o *AuthTokenList) GetApiKeysOk() ([]FindProjectAPIKeys200ResponseApiKeysInner, bool) {
 	if o == nil || o.ApiKeys == nil {
 		return nil, false
 	}
@@ -64,8 +64,8 @@ func (o *AuthTokenList) HasApiKeys() bool {
 	return false
 }
 
-// SetApiKeys gets a reference to the given []AuthToken and assigns it to the ApiKeys field.
-func (o *AuthTokenList) SetApiKeys(v []AuthToken) {
+// SetApiKeys gets a reference to the given []FindProjectAPIKeys200ResponseApiKeysInner and assigns it to the ApiKeys field.
+func (o *AuthTokenList) SetApiKeys(v []FindProjectAPIKeys200ResponseApiKeysInner) {
 	o.ApiKeys = v
 }
 

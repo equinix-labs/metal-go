@@ -24,17 +24,17 @@ import (
 type MetalGatewaysApiService service
 
 type ApiCreateMetalGatewayRequest struct {
-	ctx          context.Context
-	ApiService   *MetalGatewaysApiService
-	projectId    string
-	metalGateway *MetalGatewayInput
-	page         *int32
-	perPage      *int32
+	ctx        context.Context
+	ApiService *MetalGatewaysApiService
+	projectId  string
+	body       *map[string]interface{}
+	page       *int32
+	perPage    *int32
 }
 
 // Metal Gateway to create
-func (r ApiCreateMetalGatewayRequest) MetalGateway(metalGateway MetalGatewayInput) ApiCreateMetalGatewayRequest {
-	r.metalGateway = &metalGateway
+func (r ApiCreateMetalGatewayRequest) Body(body map[string]interface{}) ApiCreateMetalGatewayRequest {
+	r.body = &body
 	return r
 }
 
@@ -50,7 +50,7 @@ func (r ApiCreateMetalGatewayRequest) PerPage(perPage int32) ApiCreateMetalGatew
 	return r
 }
 
-func (r ApiCreateMetalGatewayRequest) Execute() (*MetalGateway, *http.Response, error) {
+func (r ApiCreateMetalGatewayRequest) Execute() (map[string]interface{}, *http.Response, error) {
 	return r.ApiService.CreateMetalGatewayExecute(r)
 }
 
@@ -72,13 +72,13 @@ func (a *MetalGatewaysApiService) CreateMetalGateway(ctx context.Context, projec
 }
 
 // Execute executes the request
-//  @return MetalGateway
-func (a *MetalGatewaysApiService) CreateMetalGatewayExecute(r ApiCreateMetalGatewayRequest) (*MetalGateway, *http.Response, error) {
+//  @return map[string]interface{}
+func (a *MetalGatewaysApiService) CreateMetalGatewayExecute(r ApiCreateMetalGatewayRequest) (map[string]interface{}, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *MetalGateway
+		localVarReturnValue map[string]interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetalGatewaysApiService.CreateMetalGateway")
@@ -92,8 +92,8 @@ func (a *MetalGatewaysApiService) CreateMetalGatewayExecute(r ApiCreateMetalGate
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.metalGateway == nil {
-		return localVarReturnValue, nil, reportError("metalGateway is required and must be specified")
+	if r.body == nil {
+		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
 
 	if r.page != nil {
@@ -120,7 +120,7 @@ func (a *MetalGatewaysApiService) CreateMetalGatewayExecute(r ApiCreateMetalGate
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.metalGateway
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -158,7 +158,7 @@ func (a *MetalGatewaysApiService) CreateMetalGatewayExecute(r ApiCreateMetalGate
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -168,7 +168,7 @@ func (a *MetalGatewaysApiService) CreateMetalGatewayExecute(r ApiCreateMetalGate
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -178,7 +178,7 @@ func (a *MetalGatewaysApiService) CreateMetalGatewayExecute(r ApiCreateMetalGate
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -302,7 +302,7 @@ func (a *MetalGatewaysApiService) DeleteMetalGatewayExecute(r ApiDeleteMetalGate
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -312,7 +312,7 @@ func (a *MetalGatewaysApiService) DeleteMetalGatewayExecute(r ApiDeleteMetalGate
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -332,7 +332,7 @@ type ApiFindMetalGatewayByIdRequest struct {
 	id         string
 }
 
-func (r ApiFindMetalGatewayByIdRequest) Execute() (*MetalGateway, *http.Response, error) {
+func (r ApiFindMetalGatewayByIdRequest) Execute() (map[string]interface{}, *http.Response, error) {
 	return r.ApiService.FindMetalGatewayByIdExecute(r)
 }
 
@@ -354,13 +354,13 @@ func (a *MetalGatewaysApiService) FindMetalGatewayById(ctx context.Context, id s
 }
 
 // Execute executes the request
-//  @return MetalGateway
-func (a *MetalGatewaysApiService) FindMetalGatewayByIdExecute(r ApiFindMetalGatewayByIdRequest) (*MetalGateway, *http.Response, error) {
+//  @return map[string]interface{}
+func (a *MetalGatewaysApiService) FindMetalGatewayByIdExecute(r ApiFindMetalGatewayByIdRequest) (map[string]interface{}, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *MetalGateway
+		localVarReturnValue map[string]interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetalGatewaysApiService.FindMetalGatewayById")
@@ -429,7 +429,7 @@ func (a *MetalGatewaysApiService) FindMetalGatewayByIdExecute(r ApiFindMetalGate
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -439,7 +439,7 @@ func (a *MetalGatewaysApiService) FindMetalGatewayByIdExecute(r ApiFindMetalGate
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -482,7 +482,7 @@ func (r ApiFindMetalGatewaysByProjectRequest) PerPage(perPage int32) ApiFindMeta
 	return r
 }
 
-func (r ApiFindMetalGatewaysByProjectRequest) Execute() (*MetalGatewayList, *http.Response, error) {
+func (r ApiFindMetalGatewaysByProjectRequest) Execute() (*FindMetalGatewaysByProject200Response, *http.Response, error) {
 	return r.ApiService.FindMetalGatewaysByProjectExecute(r)
 }
 
@@ -504,13 +504,13 @@ func (a *MetalGatewaysApiService) FindMetalGatewaysByProject(ctx context.Context
 }
 
 // Execute executes the request
-//  @return MetalGatewayList
-func (a *MetalGatewaysApiService) FindMetalGatewaysByProjectExecute(r ApiFindMetalGatewaysByProjectRequest) (*MetalGatewayList, *http.Response, error) {
+//  @return FindMetalGatewaysByProject200Response
+func (a *MetalGatewaysApiService) FindMetalGatewaysByProjectExecute(r ApiFindMetalGatewaysByProjectRequest) (*FindMetalGatewaysByProject200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *MetalGatewayList
+		localVarReturnValue *FindMetalGatewaysByProject200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetalGatewaysApiService.FindMetalGatewaysByProject")
@@ -585,7 +585,7 @@ func (a *MetalGatewaysApiService) FindMetalGatewaysByProjectExecute(r ApiFindMet
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -595,7 +595,7 @@ func (a *MetalGatewaysApiService) FindMetalGatewaysByProjectExecute(r ApiFindMet
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

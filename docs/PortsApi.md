@@ -23,7 +23,7 @@ Method | HTTP request | Description
 
 ## AssignNativeVlan
 
-> Port AssignNativeVlan(ctx, id).Vnid(vnid).Execute()
+> FindDeviceById200ResponseNetworkPortsAllOf AssignNativeVlan(ctx, id).Vnid(vnid).Execute()
 
 Assign a native VLAN
 
@@ -52,7 +52,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `PortsApi.AssignNativeVlan``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `AssignNativeVlan`: Port
+    // response from `AssignNativeVlan`: FindDeviceById200ResponseNetworkPortsAllOf
     fmt.Fprintf(os.Stdout, "Response from `PortsApi.AssignNativeVlan`: %v\n", resp)
 }
 ```
@@ -77,7 +77,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Port**](Port.md)
+[**FindDeviceById200ResponseNetworkPortsAllOf**](FindDeviceById200ResponseNetworkPortsAllOf.md)
 
 ### Authorization
 
@@ -95,7 +95,7 @@ Name | Type | Description  | Notes
 
 ## AssignPort
 
-> Port AssignPort(ctx, id).Vnid(vnid).Execute()
+> FindDeviceById200ResponseNetworkPortsAllOf AssignPort(ctx, id).Body(body).Execute()
 
 Assign a port to virtual network
 
@@ -115,16 +115,16 @@ import (
 
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Port UUID
-    vnid := *openapiclient.NewPortAssignInput() // PortAssignInput | Virtual Network ID. May be the UUID of the Virtual Network record, or the VLAN value itself (ex: '1001').
+    body := *openapiclient.NewAssignPortRequest() // AssignPortRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PortsApi.AssignPort(context.Background(), id).Vnid(vnid).Execute()
+    resp, r, err := apiClient.PortsApi.AssignPort(context.Background(), id).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PortsApi.AssignPort``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `AssignPort`: Port
+    // response from `AssignPort`: FindDeviceById200ResponseNetworkPortsAllOf
     fmt.Fprintf(os.Stdout, "Response from `PortsApi.AssignPort`: %v\n", resp)
 }
 ```
@@ -145,11 +145,11 @@ Other parameters are passed through a pointer to a apiAssignPortRequest struct v
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **vnid** | [**PortAssignInput**](PortAssignInput.md) | Virtual Network ID. May be the UUID of the Virtual Network record, or the VLAN value itself (ex: &#39;1001&#39;). | 
+ **body** | [**AssignPortRequest**](AssignPortRequest.md) |  | 
 
 ### Return type
 
-[**Port**](Port.md)
+[**FindDeviceById200ResponseNetworkPortsAllOf**](FindDeviceById200ResponseNetworkPortsAllOf.md)
 
 ### Authorization
 
@@ -167,7 +167,7 @@ Name | Type | Description  | Notes
 
 ## BondPort
 
-> Port BondPort(ctx, id).BulkEnable(bulkEnable).Execute()
+> FindDeviceById200ResponseNetworkPortsAllOf BondPort(ctx, id).BulkEnable(bulkEnable).Execute()
 
 Enabling bonding
 
@@ -196,7 +196,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `PortsApi.BondPort``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `BondPort`: Port
+    // response from `BondPort`: FindDeviceById200ResponseNetworkPortsAllOf
     fmt.Fprintf(os.Stdout, "Response from `PortsApi.BondPort`: %v\n", resp)
 }
 ```
@@ -221,7 +221,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Port**](Port.md)
+[**FindDeviceById200ResponseNetworkPortsAllOf**](FindDeviceById200ResponseNetworkPortsAllOf.md)
 
 ### Authorization
 
@@ -239,7 +239,7 @@ Name | Type | Description  | Notes
 
 ## ConvertLayer2
 
-> Port ConvertLayer2(ctx, id).Vnid(vnid).Execute()
+> FindDeviceById200ResponseNetworkPortsAllOf ConvertLayer2(ctx, id).Body(body).Execute()
 
 Convert to Layer 2
 
@@ -259,16 +259,16 @@ import (
 
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Port UUID
-    vnid := *openapiclient.NewPortAssignInput() // PortAssignInput | Virtual Network ID (optional)
+    body := *openapiclient.NewAssignPortRequest() // AssignPortRequest | Virtual Network ID (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PortsApi.ConvertLayer2(context.Background(), id).Vnid(vnid).Execute()
+    resp, r, err := apiClient.PortsApi.ConvertLayer2(context.Background(), id).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PortsApi.ConvertLayer2``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `ConvertLayer2`: Port
+    // response from `ConvertLayer2`: FindDeviceById200ResponseNetworkPortsAllOf
     fmt.Fprintf(os.Stdout, "Response from `PortsApi.ConvertLayer2`: %v\n", resp)
 }
 ```
@@ -289,11 +289,11 @@ Other parameters are passed through a pointer to a apiConvertLayer2Request struc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **vnid** | [**PortAssignInput**](PortAssignInput.md) | Virtual Network ID | 
+ **body** | [**AssignPortRequest**](AssignPortRequest.md) | Virtual Network ID | 
 
 ### Return type
 
-[**Port**](Port.md)
+[**FindDeviceById200ResponseNetworkPortsAllOf**](FindDeviceById200ResponseNetworkPortsAllOf.md)
 
 ### Authorization
 
@@ -311,7 +311,7 @@ Name | Type | Description  | Notes
 
 ## ConvertLayer3
 
-> Port ConvertLayer3(ctx, id).RequestIps(requestIps).Execute()
+> FindDeviceById200ResponseNetworkPortsAllOf ConvertLayer3(ctx, id).Body(body).Execute()
 
 Convert to Layer 3
 
@@ -331,16 +331,16 @@ import (
 
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Port UUID
-    requestIps := *openapiclient.NewPortConvertLayer3Input() // PortConvertLayer3Input | IPs to request (optional)
+    body := *openapiclient.NewConvertLayer3Request() // ConvertLayer3Request | IPs to request (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PortsApi.ConvertLayer3(context.Background(), id).RequestIps(requestIps).Execute()
+    resp, r, err := apiClient.PortsApi.ConvertLayer3(context.Background(), id).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PortsApi.ConvertLayer3``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `ConvertLayer3`: Port
+    // response from `ConvertLayer3`: FindDeviceById200ResponseNetworkPortsAllOf
     fmt.Fprintf(os.Stdout, "Response from `PortsApi.ConvertLayer3`: %v\n", resp)
 }
 ```
@@ -361,11 +361,11 @@ Other parameters are passed through a pointer to a apiConvertLayer3Request struc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **requestIps** | [**PortConvertLayer3Input**](PortConvertLayer3Input.md) | IPs to request | 
+ **body** | [**ConvertLayer3Request**](ConvertLayer3Request.md) | IPs to request | 
 
 ### Return type
 
-[**Port**](Port.md)
+[**FindDeviceById200ResponseNetworkPortsAllOf**](FindDeviceById200ResponseNetworkPortsAllOf.md)
 
 ### Authorization
 
@@ -383,7 +383,7 @@ Name | Type | Description  | Notes
 
 ## CreatePortVlanAssignmentBatch
 
-> PortVlanAssignmentBatch CreatePortVlanAssignmentBatch(ctx, id).VlanAssignments(vlanAssignments).Execute()
+> FindPortVlanAssignmentBatches200ResponseBatchesInner CreatePortVlanAssignmentBatch(ctx, id).Body(body).Execute()
 
 Create a new Port-VLAN Assignment management batch
 
@@ -403,16 +403,16 @@ import (
 
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Port UUID
-    vlanAssignments := *openapiclient.NewPortVlanAssignmentBatchCreateInput() // PortVlanAssignmentBatchCreateInput | VLAN Assignment batch details
+    body := *openapiclient.NewCreatePortVlanAssignmentBatchRequest() // CreatePortVlanAssignmentBatchRequest | VLAN Assignment batch details
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PortsApi.CreatePortVlanAssignmentBatch(context.Background(), id).VlanAssignments(vlanAssignments).Execute()
+    resp, r, err := apiClient.PortsApi.CreatePortVlanAssignmentBatch(context.Background(), id).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PortsApi.CreatePortVlanAssignmentBatch``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreatePortVlanAssignmentBatch`: PortVlanAssignmentBatch
+    // response from `CreatePortVlanAssignmentBatch`: FindPortVlanAssignmentBatches200ResponseBatchesInner
     fmt.Fprintf(os.Stdout, "Response from `PortsApi.CreatePortVlanAssignmentBatch`: %v\n", resp)
 }
 ```
@@ -433,11 +433,11 @@ Other parameters are passed through a pointer to a apiCreatePortVlanAssignmentBa
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **vlanAssignments** | [**PortVlanAssignmentBatchCreateInput**](PortVlanAssignmentBatchCreateInput.md) | VLAN Assignment batch details | 
+ **body** | [**CreatePortVlanAssignmentBatchRequest**](CreatePortVlanAssignmentBatchRequest.md) | VLAN Assignment batch details | 
 
 ### Return type
 
-[**PortVlanAssignmentBatch**](PortVlanAssignmentBatch.md)
+[**FindPortVlanAssignmentBatches200ResponseBatchesInner**](FindPortVlanAssignmentBatches200ResponseBatchesInner.md)
 
 ### Authorization
 
@@ -455,7 +455,7 @@ Name | Type | Description  | Notes
 
 ## DeleteNativeVlan
 
-> Port DeleteNativeVlan(ctx, id).Execute()
+> FindDeviceById200ResponseNetworkPortsAllOf DeleteNativeVlan(ctx, id).Execute()
 
 Remove native VLAN
 
@@ -483,7 +483,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `PortsApi.DeleteNativeVlan``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `DeleteNativeVlan`: Port
+    // response from `DeleteNativeVlan`: FindDeviceById200ResponseNetworkPortsAllOf
     fmt.Fprintf(os.Stdout, "Response from `PortsApi.DeleteNativeVlan`: %v\n", resp)
 }
 ```
@@ -507,7 +507,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Port**](Port.md)
+[**FindDeviceById200ResponseNetworkPortsAllOf**](FindDeviceById200ResponseNetworkPortsAllOf.md)
 
 ### Authorization
 
@@ -525,7 +525,7 @@ Name | Type | Description  | Notes
 
 ## DisbondPort
 
-> Port DisbondPort(ctx, id).BulkDisable(bulkDisable).Execute()
+> FindDeviceById200ResponseNetworkPortsAllOf DisbondPort(ctx, id).BulkDisable(bulkDisable).Execute()
 
 Disabling bonding
 
@@ -554,7 +554,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `PortsApi.DisbondPort``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `DisbondPort`: Port
+    // response from `DisbondPort`: FindDeviceById200ResponseNetworkPortsAllOf
     fmt.Fprintf(os.Stdout, "Response from `PortsApi.DisbondPort`: %v\n", resp)
 }
 ```
@@ -579,7 +579,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Port**](Port.md)
+[**FindDeviceById200ResponseNetworkPortsAllOf**](FindDeviceById200ResponseNetworkPortsAllOf.md)
 
 ### Authorization
 
@@ -597,7 +597,7 @@ Name | Type | Description  | Notes
 
 ## FindPortById
 
-> Port FindPortById(ctx, id).Include(include).Exclude(exclude).Execute()
+> FindDeviceById200ResponseNetworkPortsAllOf FindPortById(ctx, id).Include(include).Exclude(exclude).Execute()
 
 Retrieve a port
 
@@ -627,7 +627,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `PortsApi.FindPortById``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindPortById`: Port
+    // response from `FindPortById`: FindDeviceById200ResponseNetworkPortsAllOf
     fmt.Fprintf(os.Stdout, "Response from `PortsApi.FindPortById`: %v\n", resp)
 }
 ```
@@ -653,7 +653,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Port**](Port.md)
+[**FindDeviceById200ResponseNetworkPortsAllOf**](FindDeviceById200ResponseNetworkPortsAllOf.md)
 
 ### Authorization
 
@@ -671,7 +671,7 @@ Name | Type | Description  | Notes
 
 ## FindPortVlanAssignmentBatchByPortIdAndBatchId
 
-> PortVlanAssignmentBatch FindPortVlanAssignmentBatchByPortIdAndBatchId(ctx, id, batchId).Execute()
+> FindPortVlanAssignmentBatches200ResponseBatchesInner FindPortVlanAssignmentBatchByPortIdAndBatchId(ctx, id, batchId).Execute()
 
 Retrieve a VLAN Assignment Batch's details
 
@@ -700,7 +700,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `PortsApi.FindPortVlanAssignmentBatchByPortIdAndBatchId``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindPortVlanAssignmentBatchByPortIdAndBatchId`: PortVlanAssignmentBatch
+    // response from `FindPortVlanAssignmentBatchByPortIdAndBatchId`: FindPortVlanAssignmentBatches200ResponseBatchesInner
     fmt.Fprintf(os.Stdout, "Response from `PortsApi.FindPortVlanAssignmentBatchByPortIdAndBatchId`: %v\n", resp)
 }
 ```
@@ -726,7 +726,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PortVlanAssignmentBatch**](PortVlanAssignmentBatch.md)
+[**FindPortVlanAssignmentBatches200ResponseBatchesInner**](FindPortVlanAssignmentBatches200ResponseBatchesInner.md)
 
 ### Authorization
 
@@ -744,7 +744,7 @@ Name | Type | Description  | Notes
 
 ## FindPortVlanAssignmentBatches
 
-> PortVlanAssignmentBatchList FindPortVlanAssignmentBatches(ctx, id).Execute()
+> FindPortVlanAssignmentBatches200Response FindPortVlanAssignmentBatches(ctx, id).Execute()
 
 List the VLAN Assignment Batches for a port
 
@@ -772,7 +772,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `PortsApi.FindPortVlanAssignmentBatches``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindPortVlanAssignmentBatches`: PortVlanAssignmentBatchList
+    // response from `FindPortVlanAssignmentBatches`: FindPortVlanAssignmentBatches200Response
     fmt.Fprintf(os.Stdout, "Response from `PortsApi.FindPortVlanAssignmentBatches`: %v\n", resp)
 }
 ```
@@ -796,7 +796,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PortVlanAssignmentBatchList**](PortVlanAssignmentBatchList.md)
+[**FindPortVlanAssignmentBatches200Response**](FindPortVlanAssignmentBatches200Response.md)
 
 ### Authorization
 
@@ -814,7 +814,7 @@ Name | Type | Description  | Notes
 
 ## FindPortVlanAssignmentByPortIdAndAssignmentId
 
-> PortVlanAssignment FindPortVlanAssignmentByPortIdAndAssignmentId(ctx, id, assignmentId).Include(include).Exclude(exclude).Execute()
+> FindPortVlanAssignments200ResponseVlanAssignmentsInner FindPortVlanAssignmentByPortIdAndAssignmentId(ctx, id, assignmentId).Include(include).Exclude(exclude).Execute()
 
 Show a particular Port VLAN assignment's details
 
@@ -845,7 +845,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `PortsApi.FindPortVlanAssignmentByPortIdAndAssignmentId``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindPortVlanAssignmentByPortIdAndAssignmentId`: PortVlanAssignment
+    // response from `FindPortVlanAssignmentByPortIdAndAssignmentId`: FindPortVlanAssignments200ResponseVlanAssignmentsInner
     fmt.Fprintf(os.Stdout, "Response from `PortsApi.FindPortVlanAssignmentByPortIdAndAssignmentId`: %v\n", resp)
 }
 ```
@@ -873,7 +873,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PortVlanAssignment**](PortVlanAssignment.md)
+[**FindPortVlanAssignments200ResponseVlanAssignmentsInner**](FindPortVlanAssignments200ResponseVlanAssignmentsInner.md)
 
 ### Authorization
 
@@ -891,7 +891,7 @@ Name | Type | Description  | Notes
 
 ## FindPortVlanAssignments
 
-> PortVlanAssignmentList FindPortVlanAssignments(ctx, id).Include(include).Exclude(exclude).Execute()
+> FindPortVlanAssignments200Response FindPortVlanAssignments(ctx, id).Include(include).Exclude(exclude).Execute()
 
 List Current VLAN assignments for a port
 
@@ -921,7 +921,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `PortsApi.FindPortVlanAssignments``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindPortVlanAssignments`: PortVlanAssignmentList
+    // response from `FindPortVlanAssignments`: FindPortVlanAssignments200Response
     fmt.Fprintf(os.Stdout, "Response from `PortsApi.FindPortVlanAssignments`: %v\n", resp)
 }
 ```
@@ -947,7 +947,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PortVlanAssignmentList**](PortVlanAssignmentList.md)
+[**FindPortVlanAssignments200Response**](FindPortVlanAssignments200Response.md)
 
 ### Authorization
 
@@ -965,7 +965,7 @@ Name | Type | Description  | Notes
 
 ## UnassignPort
 
-> Port UnassignPort(ctx, id).Vnid(vnid).Execute()
+> FindDeviceById200ResponseNetworkPortsAllOf UnassignPort(ctx, id).Body(body).Execute()
 
 Unassign a port
 
@@ -985,16 +985,16 @@ import (
 
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Port UUID
-    vnid := *openapiclient.NewPortAssignInput() // PortAssignInput | Virtual Network ID. May be the UUID of the Virtual Network record, or the VLAN value itself (ex: '1001').
+    body := *openapiclient.NewAssignPortRequest() // AssignPortRequest | Virtual Network ID. May be the UUID of the Virtual Network record, or the VLAN value itself (ex: '1001').
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PortsApi.UnassignPort(context.Background(), id).Vnid(vnid).Execute()
+    resp, r, err := apiClient.PortsApi.UnassignPort(context.Background(), id).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PortsApi.UnassignPort``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UnassignPort`: Port
+    // response from `UnassignPort`: FindDeviceById200ResponseNetworkPortsAllOf
     fmt.Fprintf(os.Stdout, "Response from `PortsApi.UnassignPort`: %v\n", resp)
 }
 ```
@@ -1015,11 +1015,11 @@ Other parameters are passed through a pointer to a apiUnassignPortRequest struct
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **vnid** | [**PortAssignInput**](PortAssignInput.md) | Virtual Network ID. May be the UUID of the Virtual Network record, or the VLAN value itself (ex: &#39;1001&#39;). | 
+ **body** | [**AssignPortRequest**](AssignPortRequest.md) | Virtual Network ID. May be the UUID of the Virtual Network record, or the VLAN value itself (ex: &#39;1001&#39;). | 
 
 ### Return type
 
-[**Port**](Port.md)
+[**FindDeviceById200ResponseNetworkPortsAllOf**](FindDeviceById200ResponseNetworkPortsAllOf.md)
 
 ### Authorization
 

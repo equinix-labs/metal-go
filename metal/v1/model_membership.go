@@ -18,13 +18,13 @@ import (
 
 // Membership struct for Membership
 type Membership struct {
-	Id        *string    `json:"id,omitempty"`
-	Roles     []string   `json:"roles,omitempty"`
-	CreatedAt *time.Time `json:"created_at,omitempty"`
-	UpdatedAt *time.Time `json:"updated_at,omitempty"`
-	Project   *Href      `json:"project,omitempty"`
-	User      *Href      `json:"user,omitempty"`
-	Href      *string    `json:"href,omitempty"`
+	CreatedAt *time.Time                            `json:"created_at,omitempty"`
+	Href      *string                               `json:"href,omitempty"`
+	Id        *string                               `json:"id,omitempty"`
+	Project   *FindBatchById200ResponseDevicesInner `json:"project,omitempty"`
+	Roles     []string                              `json:"roles,omitempty"`
+	UpdatedAt *time.Time                            `json:"updated_at,omitempty"`
+	User      *FindBatchById200ResponseDevicesInner `json:"user,omitempty"`
 }
 
 // NewMembership instantiates a new Membership object
@@ -42,70 +42,6 @@ func NewMembership() *Membership {
 func NewMembershipWithDefaults() *Membership {
 	this := Membership{}
 	return &this
-}
-
-// GetId returns the Id field value if set, zero value otherwise.
-func (o *Membership) GetId() string {
-	if o == nil || o.Id == nil {
-		var ret string
-		return ret
-	}
-	return *o.Id
-}
-
-// GetIdOk returns a tuple with the Id field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Membership) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
-		return nil, false
-	}
-	return o.Id, true
-}
-
-// HasId returns a boolean if a field has been set.
-func (o *Membership) HasId() bool {
-	if o != nil && o.Id != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetId gets a reference to the given string and assigns it to the Id field.
-func (o *Membership) SetId(v string) {
-	o.Id = &v
-}
-
-// GetRoles returns the Roles field value if set, zero value otherwise.
-func (o *Membership) GetRoles() []string {
-	if o == nil || o.Roles == nil {
-		var ret []string
-		return ret
-	}
-	return o.Roles
-}
-
-// GetRolesOk returns a tuple with the Roles field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Membership) GetRolesOk() ([]string, bool) {
-	if o == nil || o.Roles == nil {
-		return nil, false
-	}
-	return o.Roles, true
-}
-
-// HasRoles returns a boolean if a field has been set.
-func (o *Membership) HasRoles() bool {
-	if o != nil && o.Roles != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetRoles gets a reference to the given []string and assigns it to the Roles field.
-func (o *Membership) SetRoles(v []string) {
-	o.Roles = v
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
@@ -140,102 +76,6 @@ func (o *Membership) SetCreatedAt(v time.Time) {
 	o.CreatedAt = &v
 }
 
-// GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
-func (o *Membership) GetUpdatedAt() time.Time {
-	if o == nil || o.UpdatedAt == nil {
-		var ret time.Time
-		return ret
-	}
-	return *o.UpdatedAt
-}
-
-// GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Membership) GetUpdatedAtOk() (*time.Time, bool) {
-	if o == nil || o.UpdatedAt == nil {
-		return nil, false
-	}
-	return o.UpdatedAt, true
-}
-
-// HasUpdatedAt returns a boolean if a field has been set.
-func (o *Membership) HasUpdatedAt() bool {
-	if o != nil && o.UpdatedAt != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetUpdatedAt gets a reference to the given time.Time and assigns it to the UpdatedAt field.
-func (o *Membership) SetUpdatedAt(v time.Time) {
-	o.UpdatedAt = &v
-}
-
-// GetProject returns the Project field value if set, zero value otherwise.
-func (o *Membership) GetProject() Href {
-	if o == nil || o.Project == nil {
-		var ret Href
-		return ret
-	}
-	return *o.Project
-}
-
-// GetProjectOk returns a tuple with the Project field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Membership) GetProjectOk() (*Href, bool) {
-	if o == nil || o.Project == nil {
-		return nil, false
-	}
-	return o.Project, true
-}
-
-// HasProject returns a boolean if a field has been set.
-func (o *Membership) HasProject() bool {
-	if o != nil && o.Project != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetProject gets a reference to the given Href and assigns it to the Project field.
-func (o *Membership) SetProject(v Href) {
-	o.Project = &v
-}
-
-// GetUser returns the User field value if set, zero value otherwise.
-func (o *Membership) GetUser() Href {
-	if o == nil || o.User == nil {
-		var ret Href
-		return ret
-	}
-	return *o.User
-}
-
-// GetUserOk returns a tuple with the User field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Membership) GetUserOk() (*Href, bool) {
-	if o == nil || o.User == nil {
-		return nil, false
-	}
-	return o.User, true
-}
-
-// HasUser returns a boolean if a field has been set.
-func (o *Membership) HasUser() bool {
-	if o != nil && o.User != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetUser gets a reference to the given Href and assigns it to the User field.
-func (o *Membership) SetUser(v Href) {
-	o.User = &v
-}
-
 // GetHref returns the Href field value if set, zero value otherwise.
 func (o *Membership) GetHref() string {
 	if o == nil || o.Href == nil {
@@ -268,28 +108,188 @@ func (o *Membership) SetHref(v string) {
 	o.Href = &v
 }
 
+// GetId returns the Id field value if set, zero value otherwise.
+func (o *Membership) GetId() string {
+	if o == nil || o.Id == nil {
+		var ret string
+		return ret
+	}
+	return *o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Membership) GetIdOk() (*string, bool) {
+	if o == nil || o.Id == nil {
+		return nil, false
+	}
+	return o.Id, true
+}
+
+// HasId returns a boolean if a field has been set.
+func (o *Membership) HasId() bool {
+	if o != nil && o.Id != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given string and assigns it to the Id field.
+func (o *Membership) SetId(v string) {
+	o.Id = &v
+}
+
+// GetProject returns the Project field value if set, zero value otherwise.
+func (o *Membership) GetProject() FindBatchById200ResponseDevicesInner {
+	if o == nil || o.Project == nil {
+		var ret FindBatchById200ResponseDevicesInner
+		return ret
+	}
+	return *o.Project
+}
+
+// GetProjectOk returns a tuple with the Project field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Membership) GetProjectOk() (*FindBatchById200ResponseDevicesInner, bool) {
+	if o == nil || o.Project == nil {
+		return nil, false
+	}
+	return o.Project, true
+}
+
+// HasProject returns a boolean if a field has been set.
+func (o *Membership) HasProject() bool {
+	if o != nil && o.Project != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetProject gets a reference to the given FindBatchById200ResponseDevicesInner and assigns it to the Project field.
+func (o *Membership) SetProject(v FindBatchById200ResponseDevicesInner) {
+	o.Project = &v
+}
+
+// GetRoles returns the Roles field value if set, zero value otherwise.
+func (o *Membership) GetRoles() []string {
+	if o == nil || o.Roles == nil {
+		var ret []string
+		return ret
+	}
+	return o.Roles
+}
+
+// GetRolesOk returns a tuple with the Roles field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Membership) GetRolesOk() ([]string, bool) {
+	if o == nil || o.Roles == nil {
+		return nil, false
+	}
+	return o.Roles, true
+}
+
+// HasRoles returns a boolean if a field has been set.
+func (o *Membership) HasRoles() bool {
+	if o != nil && o.Roles != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetRoles gets a reference to the given []string and assigns it to the Roles field.
+func (o *Membership) SetRoles(v []string) {
+	o.Roles = v
+}
+
+// GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
+func (o *Membership) GetUpdatedAt() time.Time {
+	if o == nil || o.UpdatedAt == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.UpdatedAt
+}
+
+// GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Membership) GetUpdatedAtOk() (*time.Time, bool) {
+	if o == nil || o.UpdatedAt == nil {
+		return nil, false
+	}
+	return o.UpdatedAt, true
+}
+
+// HasUpdatedAt returns a boolean if a field has been set.
+func (o *Membership) HasUpdatedAt() bool {
+	if o != nil && o.UpdatedAt != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetUpdatedAt gets a reference to the given time.Time and assigns it to the UpdatedAt field.
+func (o *Membership) SetUpdatedAt(v time.Time) {
+	o.UpdatedAt = &v
+}
+
+// GetUser returns the User field value if set, zero value otherwise.
+func (o *Membership) GetUser() FindBatchById200ResponseDevicesInner {
+	if o == nil || o.User == nil {
+		var ret FindBatchById200ResponseDevicesInner
+		return ret
+	}
+	return *o.User
+}
+
+// GetUserOk returns a tuple with the User field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Membership) GetUserOk() (*FindBatchById200ResponseDevicesInner, bool) {
+	if o == nil || o.User == nil {
+		return nil, false
+	}
+	return o.User, true
+}
+
+// HasUser returns a boolean if a field has been set.
+func (o *Membership) HasUser() bool {
+	if o != nil && o.User != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetUser gets a reference to the given FindBatchById200ResponseDevicesInner and assigns it to the User field.
+func (o *Membership) SetUser(v FindBatchById200ResponseDevicesInner) {
+	o.User = &v
+}
+
 func (o Membership) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
-	}
-	if o.Roles != nil {
-		toSerialize["roles"] = o.Roles
-	}
 	if o.CreatedAt != nil {
 		toSerialize["created_at"] = o.CreatedAt
 	}
-	if o.UpdatedAt != nil {
-		toSerialize["updated_at"] = o.UpdatedAt
+	if o.Href != nil {
+		toSerialize["href"] = o.Href
+	}
+	if o.Id != nil {
+		toSerialize["id"] = o.Id
 	}
 	if o.Project != nil {
 		toSerialize["project"] = o.Project
 	}
+	if o.Roles != nil {
+		toSerialize["roles"] = o.Roles
+	}
+	if o.UpdatedAt != nil {
+		toSerialize["updated_at"] = o.UpdatedAt
+	}
 	if o.User != nil {
 		toSerialize["user"] = o.User
-	}
-	if o.Href != nil {
-		toSerialize["href"] = o.Href
 	}
 	return json.Marshal(toSerialize)
 }

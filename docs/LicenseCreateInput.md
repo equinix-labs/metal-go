@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Description** | Pointer to **string** |  | [optional] 
-**Size** | Pointer to **float32** |  | [optional] 
 **LicenseeProductId** | Pointer to **string** |  | [optional] 
+**Size** | Pointer to **float32** |  | [optional] 
 
 ## Methods
 
@@ -52,31 +52,6 @@ SetDescription sets Description field to given value.
 
 HasDescription returns a boolean if a field has been set.
 
-### GetSize
-
-`func (o *LicenseCreateInput) GetSize() float32`
-
-GetSize returns the Size field if non-nil, zero value otherwise.
-
-### GetSizeOk
-
-`func (o *LicenseCreateInput) GetSizeOk() (*float32, bool)`
-
-GetSizeOk returns a tuple with the Size field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSize
-
-`func (o *LicenseCreateInput) SetSize(v float32)`
-
-SetSize sets Size field to given value.
-
-### HasSize
-
-`func (o *LicenseCreateInput) HasSize() bool`
-
-HasSize returns a boolean if a field has been set.
-
 ### GetLicenseeProductId
 
 `func (o *LicenseCreateInput) GetLicenseeProductId() string`
@@ -101,6 +76,31 @@ SetLicenseeProductId sets LicenseeProductId field to given value.
 `func (o *LicenseCreateInput) HasLicenseeProductId() bool`
 
 HasLicenseeProductId returns a boolean if a field has been set.
+
+### GetSize
+
+`func (o *LicenseCreateInput) GetSize() float32`
+
+GetSize returns the Size field if non-nil, zero value otherwise.
+
+### GetSizeOk
+
+`func (o *LicenseCreateInput) GetSizeOk() (*float32, bool)`
+
+GetSizeOk returns a tuple with the Size field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSize
+
+`func (o *LicenseCreateInput) SetSize(v float32)`
+
+SetSize sets Size field to given value.
+
+### HasSize
+
+`func (o *LicenseCreateInput) HasSize() bool`
+
+HasSize returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

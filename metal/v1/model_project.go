@@ -18,21 +18,21 @@ import (
 
 // Project struct for Project
 type Project struct {
-	Id            *string                `json:"id,omitempty"`
-	Name          *string                `json:"name,omitempty"`
-	CreatedAt     *time.Time             `json:"created_at,omitempty"`
-	UpdatedAt     *time.Time             `json:"updated_at,omitempty"`
-	MaxDevices    map[string]interface{} `json:"max_devices,omitempty"`
-	Members       []Href                 `json:"members,omitempty"`
-	Memberships   []Href                 `json:"memberships,omitempty"`
-	NetworkStatus map[string]interface{} `json:"network_status,omitempty"`
-	Invitations   []Href                 `json:"invitations,omitempty"`
-	PaymentMethod *Href                  `json:"payment_method,omitempty"`
-	Devices       []Href                 `json:"devices,omitempty"`
-	SshKeys       []Href                 `json:"ssh_keys,omitempty"`
-	Volumes       []Href                 `json:"volumes,omitempty"`
-	BgpConfig     *Href                  `json:"bgp_config,omitempty"`
-	Customdata    map[string]interface{} `json:"customdata,omitempty"`
+	BgpConfig     *FindBatchById200ResponseDevicesInner  `json:"bgp_config,omitempty"`
+	CreatedAt     *time.Time                             `json:"created_at,omitempty"`
+	Customdata    map[string]interface{}                 `json:"customdata,omitempty"`
+	Devices       []FindBatchById200ResponseDevicesInner `json:"devices,omitempty"`
+	Id            *string                                `json:"id,omitempty"`
+	Invitations   []FindBatchById200ResponseDevicesInner `json:"invitations,omitempty"`
+	MaxDevices    map[string]interface{}                 `json:"max_devices,omitempty"`
+	Members       []FindBatchById200ResponseDevicesInner `json:"members,omitempty"`
+	Memberships   []FindBatchById200ResponseDevicesInner `json:"memberships,omitempty"`
+	Name          *string                                `json:"name,omitempty"`
+	NetworkStatus map[string]interface{}                 `json:"network_status,omitempty"`
+	PaymentMethod *FindBatchById200ResponseDevicesInner  `json:"payment_method,omitempty"`
+	SshKeys       []FindBatchById200ResponseDevicesInner `json:"ssh_keys,omitempty"`
+	UpdatedAt     *time.Time                             `json:"updated_at,omitempty"`
+	Volumes       []FindBatchById200ResponseDevicesInner `json:"volumes,omitempty"`
 }
 
 // NewProject instantiates a new Project object
@@ -52,68 +52,36 @@ func NewProjectWithDefaults() *Project {
 	return &this
 }
 
-// GetId returns the Id field value if set, zero value otherwise.
-func (o *Project) GetId() string {
-	if o == nil || o.Id == nil {
-		var ret string
+// GetBgpConfig returns the BgpConfig field value if set, zero value otherwise.
+func (o *Project) GetBgpConfig() FindBatchById200ResponseDevicesInner {
+	if o == nil || o.BgpConfig == nil {
+		var ret FindBatchById200ResponseDevicesInner
 		return ret
 	}
-	return *o.Id
+	return *o.BgpConfig
 }
 
-// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// GetBgpConfigOk returns a tuple with the BgpConfig field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Project) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+func (o *Project) GetBgpConfigOk() (*FindBatchById200ResponseDevicesInner, bool) {
+	if o == nil || o.BgpConfig == nil {
 		return nil, false
 	}
-	return o.Id, true
+	return o.BgpConfig, true
 }
 
-// HasId returns a boolean if a field has been set.
-func (o *Project) HasId() bool {
-	if o != nil && o.Id != nil {
+// HasBgpConfig returns a boolean if a field has been set.
+func (o *Project) HasBgpConfig() bool {
+	if o != nil && o.BgpConfig != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetId gets a reference to the given string and assigns it to the Id field.
-func (o *Project) SetId(v string) {
-	o.Id = &v
-}
-
-// GetName returns the Name field value if set, zero value otherwise.
-func (o *Project) GetName() string {
-	if o == nil || o.Name == nil {
-		var ret string
-		return ret
-	}
-	return *o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Project) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
-		return nil, false
-	}
-	return o.Name, true
-}
-
-// HasName returns a boolean if a field has been set.
-func (o *Project) HasName() bool {
-	if o != nil && o.Name != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetName gets a reference to the given string and assigns it to the Name field.
-func (o *Project) SetName(v string) {
-	o.Name = &v
+// SetBgpConfig gets a reference to the given FindBatchById200ResponseDevicesInner and assigns it to the BgpConfig field.
+func (o *Project) SetBgpConfig(v FindBatchById200ResponseDevicesInner) {
+	o.BgpConfig = &v
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
@@ -148,36 +116,132 @@ func (o *Project) SetCreatedAt(v time.Time) {
 	o.CreatedAt = &v
 }
 
-// GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
-func (o *Project) GetUpdatedAt() time.Time {
-	if o == nil || o.UpdatedAt == nil {
-		var ret time.Time
+// GetCustomdata returns the Customdata field value if set, zero value otherwise.
+func (o *Project) GetCustomdata() map[string]interface{} {
+	if o == nil || o.Customdata == nil {
+		var ret map[string]interface{}
 		return ret
 	}
-	return *o.UpdatedAt
+	return o.Customdata
 }
 
-// GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
+// GetCustomdataOk returns a tuple with the Customdata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Project) GetUpdatedAtOk() (*time.Time, bool) {
-	if o == nil || o.UpdatedAt == nil {
+func (o *Project) GetCustomdataOk() (map[string]interface{}, bool) {
+	if o == nil || o.Customdata == nil {
 		return nil, false
 	}
-	return o.UpdatedAt, true
+	return o.Customdata, true
 }
 
-// HasUpdatedAt returns a boolean if a field has been set.
-func (o *Project) HasUpdatedAt() bool {
-	if o != nil && o.UpdatedAt != nil {
+// HasCustomdata returns a boolean if a field has been set.
+func (o *Project) HasCustomdata() bool {
+	if o != nil && o.Customdata != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetUpdatedAt gets a reference to the given time.Time and assigns it to the UpdatedAt field.
-func (o *Project) SetUpdatedAt(v time.Time) {
-	o.UpdatedAt = &v
+// SetCustomdata gets a reference to the given map[string]interface{} and assigns it to the Customdata field.
+func (o *Project) SetCustomdata(v map[string]interface{}) {
+	o.Customdata = v
+}
+
+// GetDevices returns the Devices field value if set, zero value otherwise.
+func (o *Project) GetDevices() []FindBatchById200ResponseDevicesInner {
+	if o == nil || o.Devices == nil {
+		var ret []FindBatchById200ResponseDevicesInner
+		return ret
+	}
+	return o.Devices
+}
+
+// GetDevicesOk returns a tuple with the Devices field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Project) GetDevicesOk() ([]FindBatchById200ResponseDevicesInner, bool) {
+	if o == nil || o.Devices == nil {
+		return nil, false
+	}
+	return o.Devices, true
+}
+
+// HasDevices returns a boolean if a field has been set.
+func (o *Project) HasDevices() bool {
+	if o != nil && o.Devices != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDevices gets a reference to the given []FindBatchById200ResponseDevicesInner and assigns it to the Devices field.
+func (o *Project) SetDevices(v []FindBatchById200ResponseDevicesInner) {
+	o.Devices = v
+}
+
+// GetId returns the Id field value if set, zero value otherwise.
+func (o *Project) GetId() string {
+	if o == nil || o.Id == nil {
+		var ret string
+		return ret
+	}
+	return *o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Project) GetIdOk() (*string, bool) {
+	if o == nil || o.Id == nil {
+		return nil, false
+	}
+	return o.Id, true
+}
+
+// HasId returns a boolean if a field has been set.
+func (o *Project) HasId() bool {
+	if o != nil && o.Id != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given string and assigns it to the Id field.
+func (o *Project) SetId(v string) {
+	o.Id = &v
+}
+
+// GetInvitations returns the Invitations field value if set, zero value otherwise.
+func (o *Project) GetInvitations() []FindBatchById200ResponseDevicesInner {
+	if o == nil || o.Invitations == nil {
+		var ret []FindBatchById200ResponseDevicesInner
+		return ret
+	}
+	return o.Invitations
+}
+
+// GetInvitationsOk returns a tuple with the Invitations field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Project) GetInvitationsOk() ([]FindBatchById200ResponseDevicesInner, bool) {
+	if o == nil || o.Invitations == nil {
+		return nil, false
+	}
+	return o.Invitations, true
+}
+
+// HasInvitations returns a boolean if a field has been set.
+func (o *Project) HasInvitations() bool {
+	if o != nil && o.Invitations != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetInvitations gets a reference to the given []FindBatchById200ResponseDevicesInner and assigns it to the Invitations field.
+func (o *Project) SetInvitations(v []FindBatchById200ResponseDevicesInner) {
+	o.Invitations = v
 }
 
 // GetMaxDevices returns the MaxDevices field value if set, zero value otherwise.
@@ -213,9 +277,9 @@ func (o *Project) SetMaxDevices(v map[string]interface{}) {
 }
 
 // GetMembers returns the Members field value if set, zero value otherwise.
-func (o *Project) GetMembers() []Href {
+func (o *Project) GetMembers() []FindBatchById200ResponseDevicesInner {
 	if o == nil || o.Members == nil {
-		var ret []Href
+		var ret []FindBatchById200ResponseDevicesInner
 		return ret
 	}
 	return o.Members
@@ -223,7 +287,7 @@ func (o *Project) GetMembers() []Href {
 
 // GetMembersOk returns a tuple with the Members field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Project) GetMembersOk() ([]Href, bool) {
+func (o *Project) GetMembersOk() ([]FindBatchById200ResponseDevicesInner, bool) {
 	if o == nil || o.Members == nil {
 		return nil, false
 	}
@@ -239,15 +303,15 @@ func (o *Project) HasMembers() bool {
 	return false
 }
 
-// SetMembers gets a reference to the given []Href and assigns it to the Members field.
-func (o *Project) SetMembers(v []Href) {
+// SetMembers gets a reference to the given []FindBatchById200ResponseDevicesInner and assigns it to the Members field.
+func (o *Project) SetMembers(v []FindBatchById200ResponseDevicesInner) {
 	o.Members = v
 }
 
 // GetMemberships returns the Memberships field value if set, zero value otherwise.
-func (o *Project) GetMemberships() []Href {
+func (o *Project) GetMemberships() []FindBatchById200ResponseDevicesInner {
 	if o == nil || o.Memberships == nil {
-		var ret []Href
+		var ret []FindBatchById200ResponseDevicesInner
 		return ret
 	}
 	return o.Memberships
@@ -255,7 +319,7 @@ func (o *Project) GetMemberships() []Href {
 
 // GetMembershipsOk returns a tuple with the Memberships field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Project) GetMembershipsOk() ([]Href, bool) {
+func (o *Project) GetMembershipsOk() ([]FindBatchById200ResponseDevicesInner, bool) {
 	if o == nil || o.Memberships == nil {
 		return nil, false
 	}
@@ -271,9 +335,41 @@ func (o *Project) HasMemberships() bool {
 	return false
 }
 
-// SetMemberships gets a reference to the given []Href and assigns it to the Memberships field.
-func (o *Project) SetMemberships(v []Href) {
+// SetMemberships gets a reference to the given []FindBatchById200ResponseDevicesInner and assigns it to the Memberships field.
+func (o *Project) SetMemberships(v []FindBatchById200ResponseDevicesInner) {
 	o.Memberships = v
+}
+
+// GetName returns the Name field value if set, zero value otherwise.
+func (o *Project) GetName() string {
+	if o == nil || o.Name == nil {
+		var ret string
+		return ret
+	}
+	return *o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Project) GetNameOk() (*string, bool) {
+	if o == nil || o.Name == nil {
+		return nil, false
+	}
+	return o.Name, true
+}
+
+// HasName returns a boolean if a field has been set.
+func (o *Project) HasName() bool {
+	if o != nil && o.Name != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetName gets a reference to the given string and assigns it to the Name field.
+func (o *Project) SetName(v string) {
+	o.Name = &v
 }
 
 // GetNetworkStatus returns the NetworkStatus field value if set, zero value otherwise.
@@ -308,42 +404,10 @@ func (o *Project) SetNetworkStatus(v map[string]interface{}) {
 	o.NetworkStatus = v
 }
 
-// GetInvitations returns the Invitations field value if set, zero value otherwise.
-func (o *Project) GetInvitations() []Href {
-	if o == nil || o.Invitations == nil {
-		var ret []Href
-		return ret
-	}
-	return o.Invitations
-}
-
-// GetInvitationsOk returns a tuple with the Invitations field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Project) GetInvitationsOk() ([]Href, bool) {
-	if o == nil || o.Invitations == nil {
-		return nil, false
-	}
-	return o.Invitations, true
-}
-
-// HasInvitations returns a boolean if a field has been set.
-func (o *Project) HasInvitations() bool {
-	if o != nil && o.Invitations != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetInvitations gets a reference to the given []Href and assigns it to the Invitations field.
-func (o *Project) SetInvitations(v []Href) {
-	o.Invitations = v
-}
-
 // GetPaymentMethod returns the PaymentMethod field value if set, zero value otherwise.
-func (o *Project) GetPaymentMethod() Href {
+func (o *Project) GetPaymentMethod() FindBatchById200ResponseDevicesInner {
 	if o == nil || o.PaymentMethod == nil {
-		var ret Href
+		var ret FindBatchById200ResponseDevicesInner
 		return ret
 	}
 	return *o.PaymentMethod
@@ -351,7 +415,7 @@ func (o *Project) GetPaymentMethod() Href {
 
 // GetPaymentMethodOk returns a tuple with the PaymentMethod field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Project) GetPaymentMethodOk() (*Href, bool) {
+func (o *Project) GetPaymentMethodOk() (*FindBatchById200ResponseDevicesInner, bool) {
 	if o == nil || o.PaymentMethod == nil {
 		return nil, false
 	}
@@ -367,47 +431,15 @@ func (o *Project) HasPaymentMethod() bool {
 	return false
 }
 
-// SetPaymentMethod gets a reference to the given Href and assigns it to the PaymentMethod field.
-func (o *Project) SetPaymentMethod(v Href) {
+// SetPaymentMethod gets a reference to the given FindBatchById200ResponseDevicesInner and assigns it to the PaymentMethod field.
+func (o *Project) SetPaymentMethod(v FindBatchById200ResponseDevicesInner) {
 	o.PaymentMethod = &v
 }
 
-// GetDevices returns the Devices field value if set, zero value otherwise.
-func (o *Project) GetDevices() []Href {
-	if o == nil || o.Devices == nil {
-		var ret []Href
-		return ret
-	}
-	return o.Devices
-}
-
-// GetDevicesOk returns a tuple with the Devices field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Project) GetDevicesOk() ([]Href, bool) {
-	if o == nil || o.Devices == nil {
-		return nil, false
-	}
-	return o.Devices, true
-}
-
-// HasDevices returns a boolean if a field has been set.
-func (o *Project) HasDevices() bool {
-	if o != nil && o.Devices != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetDevices gets a reference to the given []Href and assigns it to the Devices field.
-func (o *Project) SetDevices(v []Href) {
-	o.Devices = v
-}
-
 // GetSshKeys returns the SshKeys field value if set, zero value otherwise.
-func (o *Project) GetSshKeys() []Href {
+func (o *Project) GetSshKeys() []FindBatchById200ResponseDevicesInner {
 	if o == nil || o.SshKeys == nil {
-		var ret []Href
+		var ret []FindBatchById200ResponseDevicesInner
 		return ret
 	}
 	return o.SshKeys
@@ -415,7 +447,7 @@ func (o *Project) GetSshKeys() []Href {
 
 // GetSshKeysOk returns a tuple with the SshKeys field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Project) GetSshKeysOk() ([]Href, bool) {
+func (o *Project) GetSshKeysOk() ([]FindBatchById200ResponseDevicesInner, bool) {
 	if o == nil || o.SshKeys == nil {
 		return nil, false
 	}
@@ -431,15 +463,47 @@ func (o *Project) HasSshKeys() bool {
 	return false
 }
 
-// SetSshKeys gets a reference to the given []Href and assigns it to the SshKeys field.
-func (o *Project) SetSshKeys(v []Href) {
+// SetSshKeys gets a reference to the given []FindBatchById200ResponseDevicesInner and assigns it to the SshKeys field.
+func (o *Project) SetSshKeys(v []FindBatchById200ResponseDevicesInner) {
 	o.SshKeys = v
 }
 
+// GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
+func (o *Project) GetUpdatedAt() time.Time {
+	if o == nil || o.UpdatedAt == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.UpdatedAt
+}
+
+// GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Project) GetUpdatedAtOk() (*time.Time, bool) {
+	if o == nil || o.UpdatedAt == nil {
+		return nil, false
+	}
+	return o.UpdatedAt, true
+}
+
+// HasUpdatedAt returns a boolean if a field has been set.
+func (o *Project) HasUpdatedAt() bool {
+	if o != nil && o.UpdatedAt != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetUpdatedAt gets a reference to the given time.Time and assigns it to the UpdatedAt field.
+func (o *Project) SetUpdatedAt(v time.Time) {
+	o.UpdatedAt = &v
+}
+
 // GetVolumes returns the Volumes field value if set, zero value otherwise.
-func (o *Project) GetVolumes() []Href {
+func (o *Project) GetVolumes() []FindBatchById200ResponseDevicesInner {
 	if o == nil || o.Volumes == nil {
-		var ret []Href
+		var ret []FindBatchById200ResponseDevicesInner
 		return ret
 	}
 	return o.Volumes
@@ -447,7 +511,7 @@ func (o *Project) GetVolumes() []Href {
 
 // GetVolumesOk returns a tuple with the Volumes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Project) GetVolumesOk() ([]Href, bool) {
+func (o *Project) GetVolumesOk() ([]FindBatchById200ResponseDevicesInner, bool) {
 	if o == nil || o.Volumes == nil {
 		return nil, false
 	}
@@ -463,88 +527,30 @@ func (o *Project) HasVolumes() bool {
 	return false
 }
 
-// SetVolumes gets a reference to the given []Href and assigns it to the Volumes field.
-func (o *Project) SetVolumes(v []Href) {
+// SetVolumes gets a reference to the given []FindBatchById200ResponseDevicesInner and assigns it to the Volumes field.
+func (o *Project) SetVolumes(v []FindBatchById200ResponseDevicesInner) {
 	o.Volumes = v
-}
-
-// GetBgpConfig returns the BgpConfig field value if set, zero value otherwise.
-func (o *Project) GetBgpConfig() Href {
-	if o == nil || o.BgpConfig == nil {
-		var ret Href
-		return ret
-	}
-	return *o.BgpConfig
-}
-
-// GetBgpConfigOk returns a tuple with the BgpConfig field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Project) GetBgpConfigOk() (*Href, bool) {
-	if o == nil || o.BgpConfig == nil {
-		return nil, false
-	}
-	return o.BgpConfig, true
-}
-
-// HasBgpConfig returns a boolean if a field has been set.
-func (o *Project) HasBgpConfig() bool {
-	if o != nil && o.BgpConfig != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetBgpConfig gets a reference to the given Href and assigns it to the BgpConfig field.
-func (o *Project) SetBgpConfig(v Href) {
-	o.BgpConfig = &v
-}
-
-// GetCustomdata returns the Customdata field value if set, zero value otherwise.
-func (o *Project) GetCustomdata() map[string]interface{} {
-	if o == nil || o.Customdata == nil {
-		var ret map[string]interface{}
-		return ret
-	}
-	return o.Customdata
-}
-
-// GetCustomdataOk returns a tuple with the Customdata field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Project) GetCustomdataOk() (map[string]interface{}, bool) {
-	if o == nil || o.Customdata == nil {
-		return nil, false
-	}
-	return o.Customdata, true
-}
-
-// HasCustomdata returns a boolean if a field has been set.
-func (o *Project) HasCustomdata() bool {
-	if o != nil && o.Customdata != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetCustomdata gets a reference to the given map[string]interface{} and assigns it to the Customdata field.
-func (o *Project) SetCustomdata(v map[string]interface{}) {
-	o.Customdata = v
 }
 
 func (o Project) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
-	}
-	if o.Name != nil {
-		toSerialize["name"] = o.Name
+	if o.BgpConfig != nil {
+		toSerialize["bgp_config"] = o.BgpConfig
 	}
 	if o.CreatedAt != nil {
 		toSerialize["created_at"] = o.CreatedAt
 	}
-	if o.UpdatedAt != nil {
-		toSerialize["updated_at"] = o.UpdatedAt
+	if o.Customdata != nil {
+		toSerialize["customdata"] = o.Customdata
+	}
+	if o.Devices != nil {
+		toSerialize["devices"] = o.Devices
+	}
+	if o.Id != nil {
+		toSerialize["id"] = o.Id
+	}
+	if o.Invitations != nil {
+		toSerialize["invitations"] = o.Invitations
 	}
 	if o.MaxDevices != nil {
 		toSerialize["max_devices"] = o.MaxDevices
@@ -555,29 +561,23 @@ func (o Project) MarshalJSON() ([]byte, error) {
 	if o.Memberships != nil {
 		toSerialize["memberships"] = o.Memberships
 	}
+	if o.Name != nil {
+		toSerialize["name"] = o.Name
+	}
 	if o.NetworkStatus != nil {
 		toSerialize["network_status"] = o.NetworkStatus
-	}
-	if o.Invitations != nil {
-		toSerialize["invitations"] = o.Invitations
 	}
 	if o.PaymentMethod != nil {
 		toSerialize["payment_method"] = o.PaymentMethod
 	}
-	if o.Devices != nil {
-		toSerialize["devices"] = o.Devices
-	}
 	if o.SshKeys != nil {
 		toSerialize["ssh_keys"] = o.SshKeys
 	}
+	if o.UpdatedAt != nil {
+		toSerialize["updated_at"] = o.UpdatedAt
+	}
 	if o.Volumes != nil {
 		toSerialize["volumes"] = o.Volumes
-	}
-	if o.BgpConfig != nil {
-		toSerialize["bgp_config"] = o.BgpConfig
-	}
-	if o.Customdata != nil {
-		toSerialize["customdata"] = o.Customdata
 	}
 	return json.Marshal(toSerialize)
 }

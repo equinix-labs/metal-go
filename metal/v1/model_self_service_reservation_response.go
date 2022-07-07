@@ -18,17 +18,17 @@ import (
 
 // SelfServiceReservationResponse struct for SelfServiceReservationResponse
 type SelfServiceReservationResponse struct {
-	Status         *string                                    `json:"status,omitempty"`
-	StartDate      *time.Time                                 `json:"start_date,omitempty"`
-	Period         *CreateSelfServiceReservationRequestPeriod `json:"period,omitempty"`
-	TotalCost      *int32                                     `json:"total_cost,omitempty"`
-	CreatedAt      *time.Time                                 `json:"created_at,omitempty"`
-	Notes          *string                                    `json:"notes,omitempty"`
-	Organization   *string                                    `json:"organization,omitempty"`
-	OrganizationId *string                                    `json:"organization_id,omitempty"`
-	Project        *string                                    `json:"project,omitempty"`
-	ProjectId      *string                                    `json:"project_id,omitempty"`
-	Item           []SelfServiceReservationItemResponse       `json:"item,omitempty"`
+	CreatedAt      *time.Time                                                         `json:"created_at,omitempty"`
+	Item           []FindSelfServiceReservations200ResponseReservationsInnerItemInner `json:"item,omitempty"`
+	Notes          *string                                                            `json:"notes,omitempty"`
+	Organization   *string                                                            `json:"organization,omitempty"`
+	OrganizationId *string                                                            `json:"organization_id,omitempty"`
+	Period         *FindSelfServiceReservations200ResponseReservationsInnerPeriod     `json:"period,omitempty"`
+	Project        *string                                                            `json:"project,omitempty"`
+	ProjectId      *string                                                            `json:"project_id,omitempty"`
+	StartDate      *time.Time                                                         `json:"start_date,omitempty"`
+	Status         *string                                                            `json:"status,omitempty"`
+	TotalCost      *int32                                                             `json:"total_cost,omitempty"`
 }
 
 // NewSelfServiceReservationResponse instantiates a new SelfServiceReservationResponse object
@@ -46,134 +46,6 @@ func NewSelfServiceReservationResponse() *SelfServiceReservationResponse {
 func NewSelfServiceReservationResponseWithDefaults() *SelfServiceReservationResponse {
 	this := SelfServiceReservationResponse{}
 	return &this
-}
-
-// GetStatus returns the Status field value if set, zero value otherwise.
-func (o *SelfServiceReservationResponse) GetStatus() string {
-	if o == nil || o.Status == nil {
-		var ret string
-		return ret
-	}
-	return *o.Status
-}
-
-// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *SelfServiceReservationResponse) GetStatusOk() (*string, bool) {
-	if o == nil || o.Status == nil {
-		return nil, false
-	}
-	return o.Status, true
-}
-
-// HasStatus returns a boolean if a field has been set.
-func (o *SelfServiceReservationResponse) HasStatus() bool {
-	if o != nil && o.Status != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetStatus gets a reference to the given string and assigns it to the Status field.
-func (o *SelfServiceReservationResponse) SetStatus(v string) {
-	o.Status = &v
-}
-
-// GetStartDate returns the StartDate field value if set, zero value otherwise.
-func (o *SelfServiceReservationResponse) GetStartDate() time.Time {
-	if o == nil || o.StartDate == nil {
-		var ret time.Time
-		return ret
-	}
-	return *o.StartDate
-}
-
-// GetStartDateOk returns a tuple with the StartDate field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *SelfServiceReservationResponse) GetStartDateOk() (*time.Time, bool) {
-	if o == nil || o.StartDate == nil {
-		return nil, false
-	}
-	return o.StartDate, true
-}
-
-// HasStartDate returns a boolean if a field has been set.
-func (o *SelfServiceReservationResponse) HasStartDate() bool {
-	if o != nil && o.StartDate != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetStartDate gets a reference to the given time.Time and assigns it to the StartDate field.
-func (o *SelfServiceReservationResponse) SetStartDate(v time.Time) {
-	o.StartDate = &v
-}
-
-// GetPeriod returns the Period field value if set, zero value otherwise.
-func (o *SelfServiceReservationResponse) GetPeriod() CreateSelfServiceReservationRequestPeriod {
-	if o == nil || o.Period == nil {
-		var ret CreateSelfServiceReservationRequestPeriod
-		return ret
-	}
-	return *o.Period
-}
-
-// GetPeriodOk returns a tuple with the Period field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *SelfServiceReservationResponse) GetPeriodOk() (*CreateSelfServiceReservationRequestPeriod, bool) {
-	if o == nil || o.Period == nil {
-		return nil, false
-	}
-	return o.Period, true
-}
-
-// HasPeriod returns a boolean if a field has been set.
-func (o *SelfServiceReservationResponse) HasPeriod() bool {
-	if o != nil && o.Period != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetPeriod gets a reference to the given CreateSelfServiceReservationRequestPeriod and assigns it to the Period field.
-func (o *SelfServiceReservationResponse) SetPeriod(v CreateSelfServiceReservationRequestPeriod) {
-	o.Period = &v
-}
-
-// GetTotalCost returns the TotalCost field value if set, zero value otherwise.
-func (o *SelfServiceReservationResponse) GetTotalCost() int32 {
-	if o == nil || o.TotalCost == nil {
-		var ret int32
-		return ret
-	}
-	return *o.TotalCost
-}
-
-// GetTotalCostOk returns a tuple with the TotalCost field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *SelfServiceReservationResponse) GetTotalCostOk() (*int32, bool) {
-	if o == nil || o.TotalCost == nil {
-		return nil, false
-	}
-	return o.TotalCost, true
-}
-
-// HasTotalCost returns a boolean if a field has been set.
-func (o *SelfServiceReservationResponse) HasTotalCost() bool {
-	if o != nil && o.TotalCost != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetTotalCost gets a reference to the given int32 and assigns it to the TotalCost field.
-func (o *SelfServiceReservationResponse) SetTotalCost(v int32) {
-	o.TotalCost = &v
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
@@ -206,6 +78,38 @@ func (o *SelfServiceReservationResponse) HasCreatedAt() bool {
 // SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
 func (o *SelfServiceReservationResponse) SetCreatedAt(v time.Time) {
 	o.CreatedAt = &v
+}
+
+// GetItem returns the Item field value if set, zero value otherwise.
+func (o *SelfServiceReservationResponse) GetItem() []FindSelfServiceReservations200ResponseReservationsInnerItemInner {
+	if o == nil || o.Item == nil {
+		var ret []FindSelfServiceReservations200ResponseReservationsInnerItemInner
+		return ret
+	}
+	return o.Item
+}
+
+// GetItemOk returns a tuple with the Item field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SelfServiceReservationResponse) GetItemOk() ([]FindSelfServiceReservations200ResponseReservationsInnerItemInner, bool) {
+	if o == nil || o.Item == nil {
+		return nil, false
+	}
+	return o.Item, true
+}
+
+// HasItem returns a boolean if a field has been set.
+func (o *SelfServiceReservationResponse) HasItem() bool {
+	if o != nil && o.Item != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetItem gets a reference to the given []FindSelfServiceReservations200ResponseReservationsInnerItemInner and assigns it to the Item field.
+func (o *SelfServiceReservationResponse) SetItem(v []FindSelfServiceReservations200ResponseReservationsInnerItemInner) {
+	o.Item = v
 }
 
 // GetNotes returns the Notes field value if set, zero value otherwise.
@@ -304,6 +208,38 @@ func (o *SelfServiceReservationResponse) SetOrganizationId(v string) {
 	o.OrganizationId = &v
 }
 
+// GetPeriod returns the Period field value if set, zero value otherwise.
+func (o *SelfServiceReservationResponse) GetPeriod() FindSelfServiceReservations200ResponseReservationsInnerPeriod {
+	if o == nil || o.Period == nil {
+		var ret FindSelfServiceReservations200ResponseReservationsInnerPeriod
+		return ret
+	}
+	return *o.Period
+}
+
+// GetPeriodOk returns a tuple with the Period field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SelfServiceReservationResponse) GetPeriodOk() (*FindSelfServiceReservations200ResponseReservationsInnerPeriod, bool) {
+	if o == nil || o.Period == nil {
+		return nil, false
+	}
+	return o.Period, true
+}
+
+// HasPeriod returns a boolean if a field has been set.
+func (o *SelfServiceReservationResponse) HasPeriod() bool {
+	if o != nil && o.Period != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPeriod gets a reference to the given FindSelfServiceReservations200ResponseReservationsInnerPeriod and assigns it to the Period field.
+func (o *SelfServiceReservationResponse) SetPeriod(v FindSelfServiceReservations200ResponseReservationsInnerPeriod) {
+	o.Period = &v
+}
+
 // GetProject returns the Project field value if set, zero value otherwise.
 func (o *SelfServiceReservationResponse) GetProject() string {
 	if o == nil || o.Project == nil {
@@ -368,54 +304,109 @@ func (o *SelfServiceReservationResponse) SetProjectId(v string) {
 	o.ProjectId = &v
 }
 
-// GetItem returns the Item field value if set, zero value otherwise.
-func (o *SelfServiceReservationResponse) GetItem() []SelfServiceReservationItemResponse {
-	if o == nil || o.Item == nil {
-		var ret []SelfServiceReservationItemResponse
+// GetStartDate returns the StartDate field value if set, zero value otherwise.
+func (o *SelfServiceReservationResponse) GetStartDate() time.Time {
+	if o == nil || o.StartDate == nil {
+		var ret time.Time
 		return ret
 	}
-	return o.Item
+	return *o.StartDate
 }
 
-// GetItemOk returns a tuple with the Item field value if set, nil otherwise
+// GetStartDateOk returns a tuple with the StartDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SelfServiceReservationResponse) GetItemOk() ([]SelfServiceReservationItemResponse, bool) {
-	if o == nil || o.Item == nil {
+func (o *SelfServiceReservationResponse) GetStartDateOk() (*time.Time, bool) {
+	if o == nil || o.StartDate == nil {
 		return nil, false
 	}
-	return o.Item, true
+	return o.StartDate, true
 }
 
-// HasItem returns a boolean if a field has been set.
-func (o *SelfServiceReservationResponse) HasItem() bool {
-	if o != nil && o.Item != nil {
+// HasStartDate returns a boolean if a field has been set.
+func (o *SelfServiceReservationResponse) HasStartDate() bool {
+	if o != nil && o.StartDate != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetItem gets a reference to the given []SelfServiceReservationItemResponse and assigns it to the Item field.
-func (o *SelfServiceReservationResponse) SetItem(v []SelfServiceReservationItemResponse) {
-	o.Item = v
+// SetStartDate gets a reference to the given time.Time and assigns it to the StartDate field.
+func (o *SelfServiceReservationResponse) SetStartDate(v time.Time) {
+	o.StartDate = &v
+}
+
+// GetStatus returns the Status field value if set, zero value otherwise.
+func (o *SelfServiceReservationResponse) GetStatus() string {
+	if o == nil || o.Status == nil {
+		var ret string
+		return ret
+	}
+	return *o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SelfServiceReservationResponse) GetStatusOk() (*string, bool) {
+	if o == nil || o.Status == nil {
+		return nil, false
+	}
+	return o.Status, true
+}
+
+// HasStatus returns a boolean if a field has been set.
+func (o *SelfServiceReservationResponse) HasStatus() bool {
+	if o != nil && o.Status != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetStatus gets a reference to the given string and assigns it to the Status field.
+func (o *SelfServiceReservationResponse) SetStatus(v string) {
+	o.Status = &v
+}
+
+// GetTotalCost returns the TotalCost field value if set, zero value otherwise.
+func (o *SelfServiceReservationResponse) GetTotalCost() int32 {
+	if o == nil || o.TotalCost == nil {
+		var ret int32
+		return ret
+	}
+	return *o.TotalCost
+}
+
+// GetTotalCostOk returns a tuple with the TotalCost field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SelfServiceReservationResponse) GetTotalCostOk() (*int32, bool) {
+	if o == nil || o.TotalCost == nil {
+		return nil, false
+	}
+	return o.TotalCost, true
+}
+
+// HasTotalCost returns a boolean if a field has been set.
+func (o *SelfServiceReservationResponse) HasTotalCost() bool {
+	if o != nil && o.TotalCost != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTotalCost gets a reference to the given int32 and assigns it to the TotalCost field.
+func (o *SelfServiceReservationResponse) SetTotalCost(v int32) {
+	o.TotalCost = &v
 }
 
 func (o SelfServiceReservationResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Status != nil {
-		toSerialize["status"] = o.Status
-	}
-	if o.StartDate != nil {
-		toSerialize["start_date"] = o.StartDate
-	}
-	if o.Period != nil {
-		toSerialize["period"] = o.Period
-	}
-	if o.TotalCost != nil {
-		toSerialize["total_cost"] = o.TotalCost
-	}
 	if o.CreatedAt != nil {
 		toSerialize["created_at"] = o.CreatedAt
+	}
+	if o.Item != nil {
+		toSerialize["item"] = o.Item
 	}
 	if o.Notes != nil {
 		toSerialize["notes"] = o.Notes
@@ -426,14 +417,23 @@ func (o SelfServiceReservationResponse) MarshalJSON() ([]byte, error) {
 	if o.OrganizationId != nil {
 		toSerialize["organization_id"] = o.OrganizationId
 	}
+	if o.Period != nil {
+		toSerialize["period"] = o.Period
+	}
 	if o.Project != nil {
 		toSerialize["project"] = o.Project
 	}
 	if o.ProjectId != nil {
 		toSerialize["project_id"] = o.ProjectId
 	}
-	if o.Item != nil {
-		toSerialize["item"] = o.Item
+	if o.StartDate != nil {
+		toSerialize["start_date"] = o.StartDate
+	}
+	if o.Status != nil {
+		toSerialize["status"] = o.Status
+	}
+	if o.TotalCost != nil {
+		toSerialize["total_cost"] = o.TotalCost
 	}
 	return json.Marshal(toSerialize)
 }

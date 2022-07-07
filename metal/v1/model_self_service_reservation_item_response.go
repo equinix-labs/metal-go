@@ -17,15 +17,15 @@ import (
 
 // SelfServiceReservationItemResponse struct for SelfServiceReservationItemResponse
 type SelfServiceReservationItemResponse struct {
+	Amount    *float32 `json:"amount,omitempty"`
 	Id        *string  `json:"id,omitempty"`
-	MetroId   *string  `json:"metro_id,omitempty"`
 	MetroCode *string  `json:"metro_code,omitempty"`
+	MetroId   *string  `json:"metro_id,omitempty"`
 	MetroName *string  `json:"metro_name,omitempty"`
 	PlanId    *string  `json:"plan_id,omitempty"`
 	PlanName  *string  `json:"plan_name,omitempty"`
 	PlanSlug  *string  `json:"plan_slug,omitempty"`
 	Quantity  *int32   `json:"quantity,omitempty"`
-	Amount    *float32 `json:"amount,omitempty"`
 	Term      *string  `json:"term,omitempty"`
 }
 
@@ -44,6 +44,38 @@ func NewSelfServiceReservationItemResponse() *SelfServiceReservationItemResponse
 func NewSelfServiceReservationItemResponseWithDefaults() *SelfServiceReservationItemResponse {
 	this := SelfServiceReservationItemResponse{}
 	return &this
+}
+
+// GetAmount returns the Amount field value if set, zero value otherwise.
+func (o *SelfServiceReservationItemResponse) GetAmount() float32 {
+	if o == nil || o.Amount == nil {
+		var ret float32
+		return ret
+	}
+	return *o.Amount
+}
+
+// GetAmountOk returns a tuple with the Amount field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SelfServiceReservationItemResponse) GetAmountOk() (*float32, bool) {
+	if o == nil || o.Amount == nil {
+		return nil, false
+	}
+	return o.Amount, true
+}
+
+// HasAmount returns a boolean if a field has been set.
+func (o *SelfServiceReservationItemResponse) HasAmount() bool {
+	if o != nil && o.Amount != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAmount gets a reference to the given float32 and assigns it to the Amount field.
+func (o *SelfServiceReservationItemResponse) SetAmount(v float32) {
+	o.Amount = &v
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
@@ -78,38 +110,6 @@ func (o *SelfServiceReservationItemResponse) SetId(v string) {
 	o.Id = &v
 }
 
-// GetMetroId returns the MetroId field value if set, zero value otherwise.
-func (o *SelfServiceReservationItemResponse) GetMetroId() string {
-	if o == nil || o.MetroId == nil {
-		var ret string
-		return ret
-	}
-	return *o.MetroId
-}
-
-// GetMetroIdOk returns a tuple with the MetroId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *SelfServiceReservationItemResponse) GetMetroIdOk() (*string, bool) {
-	if o == nil || o.MetroId == nil {
-		return nil, false
-	}
-	return o.MetroId, true
-}
-
-// HasMetroId returns a boolean if a field has been set.
-func (o *SelfServiceReservationItemResponse) HasMetroId() bool {
-	if o != nil && o.MetroId != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetMetroId gets a reference to the given string and assigns it to the MetroId field.
-func (o *SelfServiceReservationItemResponse) SetMetroId(v string) {
-	o.MetroId = &v
-}
-
 // GetMetroCode returns the MetroCode field value if set, zero value otherwise.
 func (o *SelfServiceReservationItemResponse) GetMetroCode() string {
 	if o == nil || o.MetroCode == nil {
@@ -140,6 +140,38 @@ func (o *SelfServiceReservationItemResponse) HasMetroCode() bool {
 // SetMetroCode gets a reference to the given string and assigns it to the MetroCode field.
 func (o *SelfServiceReservationItemResponse) SetMetroCode(v string) {
 	o.MetroCode = &v
+}
+
+// GetMetroId returns the MetroId field value if set, zero value otherwise.
+func (o *SelfServiceReservationItemResponse) GetMetroId() string {
+	if o == nil || o.MetroId == nil {
+		var ret string
+		return ret
+	}
+	return *o.MetroId
+}
+
+// GetMetroIdOk returns a tuple with the MetroId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SelfServiceReservationItemResponse) GetMetroIdOk() (*string, bool) {
+	if o == nil || o.MetroId == nil {
+		return nil, false
+	}
+	return o.MetroId, true
+}
+
+// HasMetroId returns a boolean if a field has been set.
+func (o *SelfServiceReservationItemResponse) HasMetroId() bool {
+	if o != nil && o.MetroId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMetroId gets a reference to the given string and assigns it to the MetroId field.
+func (o *SelfServiceReservationItemResponse) SetMetroId(v string) {
+	o.MetroId = &v
 }
 
 // GetMetroName returns the MetroName field value if set, zero value otherwise.
@@ -302,38 +334,6 @@ func (o *SelfServiceReservationItemResponse) SetQuantity(v int32) {
 	o.Quantity = &v
 }
 
-// GetAmount returns the Amount field value if set, zero value otherwise.
-func (o *SelfServiceReservationItemResponse) GetAmount() float32 {
-	if o == nil || o.Amount == nil {
-		var ret float32
-		return ret
-	}
-	return *o.Amount
-}
-
-// GetAmountOk returns a tuple with the Amount field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *SelfServiceReservationItemResponse) GetAmountOk() (*float32, bool) {
-	if o == nil || o.Amount == nil {
-		return nil, false
-	}
-	return o.Amount, true
-}
-
-// HasAmount returns a boolean if a field has been set.
-func (o *SelfServiceReservationItemResponse) HasAmount() bool {
-	if o != nil && o.Amount != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetAmount gets a reference to the given float32 and assigns it to the Amount field.
-func (o *SelfServiceReservationItemResponse) SetAmount(v float32) {
-	o.Amount = &v
-}
-
 // GetTerm returns the Term field value if set, zero value otherwise.
 func (o *SelfServiceReservationItemResponse) GetTerm() string {
 	if o == nil || o.Term == nil {
@@ -368,14 +368,17 @@ func (o *SelfServiceReservationItemResponse) SetTerm(v string) {
 
 func (o SelfServiceReservationItemResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.Amount != nil {
+		toSerialize["amount"] = o.Amount
+	}
 	if o.Id != nil {
 		toSerialize["id"] = o.Id
 	}
-	if o.MetroId != nil {
-		toSerialize["metro_id"] = o.MetroId
-	}
 	if o.MetroCode != nil {
 		toSerialize["metro_code"] = o.MetroCode
+	}
+	if o.MetroId != nil {
+		toSerialize["metro_id"] = o.MetroId
 	}
 	if o.MetroName != nil {
 		toSerialize["metro_name"] = o.MetroName
@@ -391,9 +394,6 @@ func (o SelfServiceReservationItemResponse) MarshalJSON() ([]byte, error) {
 	}
 	if o.Quantity != nil {
 		toSerialize["quantity"] = o.Quantity
-	}
-	if o.Amount != nil {
-		toSerialize["amount"] = o.Amount
 	}
 	if o.Term != nil {
 		toSerialize["term"] = o.Term

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Vnid** | Pointer to **string** | The UUID of the Virtual Network record, or the VLAN value itself (ex: &#39;1001&#39;). | [optional] 
+**Vnid** | Pointer to **string** | Virtual Network ID. May be the UUID of the Virtual Network record, or the VLAN value itself.  | [optional] 
 
 ## Methods
 

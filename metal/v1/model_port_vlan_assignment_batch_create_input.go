@@ -17,7 +17,7 @@ import (
 
 // PortVlanAssignmentBatchCreateInput struct for PortVlanAssignmentBatchCreateInput
 type PortVlanAssignmentBatchCreateInput struct {
-	VlanAssignments []PortVlanAssignmentBatchCreateInputVlanAssignmentsInner `json:"vlan_assignments,omitempty"`
+	VlanAssignments []CreatePortVlanAssignmentBatchRequestVlanAssignmentsInner `json:"vlan_assignments,omitempty"`
 }
 
 // NewPortVlanAssignmentBatchCreateInput instantiates a new PortVlanAssignmentBatchCreateInput object
@@ -38,9 +38,9 @@ func NewPortVlanAssignmentBatchCreateInputWithDefaults() *PortVlanAssignmentBatc
 }
 
 // GetVlanAssignments returns the VlanAssignments field value if set, zero value otherwise.
-func (o *PortVlanAssignmentBatchCreateInput) GetVlanAssignments() []PortVlanAssignmentBatchCreateInputVlanAssignmentsInner {
+func (o *PortVlanAssignmentBatchCreateInput) GetVlanAssignments() []CreatePortVlanAssignmentBatchRequestVlanAssignmentsInner {
 	if o == nil || o.VlanAssignments == nil {
-		var ret []PortVlanAssignmentBatchCreateInputVlanAssignmentsInner
+		var ret []CreatePortVlanAssignmentBatchRequestVlanAssignmentsInner
 		return ret
 	}
 	return o.VlanAssignments
@@ -48,7 +48,7 @@ func (o *PortVlanAssignmentBatchCreateInput) GetVlanAssignments() []PortVlanAssi
 
 // GetVlanAssignmentsOk returns a tuple with the VlanAssignments field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PortVlanAssignmentBatchCreateInput) GetVlanAssignmentsOk() ([]PortVlanAssignmentBatchCreateInputVlanAssignmentsInner, bool) {
+func (o *PortVlanAssignmentBatchCreateInput) GetVlanAssignmentsOk() ([]CreatePortVlanAssignmentBatchRequestVlanAssignmentsInner, bool) {
 	if o == nil || o.VlanAssignments == nil {
 		return nil, false
 	}
@@ -64,8 +64,8 @@ func (o *PortVlanAssignmentBatchCreateInput) HasVlanAssignments() bool {
 	return false
 }
 
-// SetVlanAssignments gets a reference to the given []PortVlanAssignmentBatchCreateInputVlanAssignmentsInner and assigns it to the VlanAssignments field.
-func (o *PortVlanAssignmentBatchCreateInput) SetVlanAssignments(v []PortVlanAssignmentBatchCreateInputVlanAssignmentsInner) {
+// SetVlanAssignments gets a reference to the given []CreatePortVlanAssignmentBatchRequestVlanAssignmentsInner and assigns it to the VlanAssignments field.
+func (o *PortVlanAssignmentBatchCreateInput) SetVlanAssignments(v []CreatePortVlanAssignmentBatchRequestVlanAssignmentsInner) {
 	o.VlanAssignments = v
 }
 

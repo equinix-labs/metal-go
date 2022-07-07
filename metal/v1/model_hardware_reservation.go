@@ -18,23 +18,23 @@ import (
 
 // HardwareReservation struct for HardwareReservation
 type HardwareReservation struct {
-	Id *string `json:"id,omitempty"`
-	// Short version of the ID.
-	ShortId   *string    `json:"short_id,omitempty"`
-	Facility  *Facility  `json:"facility,omitempty"`
-	Plan      *Plan      `json:"plan,omitempty"`
-	Href      *string    `json:"href,omitempty"`
-	Project   *Project   `json:"project,omitempty"`
-	Device    *Device    `json:"device,omitempty"`
 	CreatedAt *time.Time `json:"created_at,omitempty"`
-	// Whether the Hardware Reservation is a spare. Spare Hardware Reservations are used when a Hardware Reservations requires service from Metal Equinix
-	Spare *bool `json:"spare,omitempty"`
+	// Amount that will be charged for every billing_cycle.
+	CustomRate *float32                           `json:"custom_rate,omitempty"`
+	Device     *FindDeviceById200Response         `json:"device,omitempty"`
+	Facility   *FindDeviceById200ResponseFacility `json:"facility,omitempty"`
+	Href       *string                            `json:"href,omitempty"`
+	Id         *string                            `json:"id,omitempty"`
 	// Whether this Device requires assistance from Metal Equinix.
-	NeedOfService *bool `json:"need_of_service,omitempty"`
+	NeedOfService *bool                                      `json:"need_of_service,omitempty"`
+	Plan          *FindDeviceById200ResponsePlan             `json:"plan,omitempty"`
+	Project       *MoveHardwareReservation201ResponseProject `json:"project,omitempty"`
 	// Whether the reserved server is provisionable or not. Spare devices can't be provisioned unless they are activated first.
 	Provisionable *bool `json:"provisionable,omitempty"`
-	// Amount that will be charged for every billing_cycle.
-	CustomRate *float32 `json:"custom_rate,omitempty"`
+	// Short version of the ID.
+	ShortId *string `json:"short_id,omitempty"`
+	// Whether the Hardware Reservation is a spare. Spare Hardware Reservations are used when a Hardware Reservations requires service from Metal Equinix
+	Spare *bool `json:"spare,omitempty"`
 	// Switch short id. This can be used to determine if two devices are connected to the same switch, for example.
 	SwitchUuid *string `json:"switch_uuid,omitempty"`
 }
@@ -54,230 +54,6 @@ func NewHardwareReservation() *HardwareReservation {
 func NewHardwareReservationWithDefaults() *HardwareReservation {
 	this := HardwareReservation{}
 	return &this
-}
-
-// GetId returns the Id field value if set, zero value otherwise.
-func (o *HardwareReservation) GetId() string {
-	if o == nil || o.Id == nil {
-		var ret string
-		return ret
-	}
-	return *o.Id
-}
-
-// GetIdOk returns a tuple with the Id field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *HardwareReservation) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
-		return nil, false
-	}
-	return o.Id, true
-}
-
-// HasId returns a boolean if a field has been set.
-func (o *HardwareReservation) HasId() bool {
-	if o != nil && o.Id != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetId gets a reference to the given string and assigns it to the Id field.
-func (o *HardwareReservation) SetId(v string) {
-	o.Id = &v
-}
-
-// GetShortId returns the ShortId field value if set, zero value otherwise.
-func (o *HardwareReservation) GetShortId() string {
-	if o == nil || o.ShortId == nil {
-		var ret string
-		return ret
-	}
-	return *o.ShortId
-}
-
-// GetShortIdOk returns a tuple with the ShortId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *HardwareReservation) GetShortIdOk() (*string, bool) {
-	if o == nil || o.ShortId == nil {
-		return nil, false
-	}
-	return o.ShortId, true
-}
-
-// HasShortId returns a boolean if a field has been set.
-func (o *HardwareReservation) HasShortId() bool {
-	if o != nil && o.ShortId != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetShortId gets a reference to the given string and assigns it to the ShortId field.
-func (o *HardwareReservation) SetShortId(v string) {
-	o.ShortId = &v
-}
-
-// GetFacility returns the Facility field value if set, zero value otherwise.
-func (o *HardwareReservation) GetFacility() Facility {
-	if o == nil || o.Facility == nil {
-		var ret Facility
-		return ret
-	}
-	return *o.Facility
-}
-
-// GetFacilityOk returns a tuple with the Facility field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *HardwareReservation) GetFacilityOk() (*Facility, bool) {
-	if o == nil || o.Facility == nil {
-		return nil, false
-	}
-	return o.Facility, true
-}
-
-// HasFacility returns a boolean if a field has been set.
-func (o *HardwareReservation) HasFacility() bool {
-	if o != nil && o.Facility != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetFacility gets a reference to the given Facility and assigns it to the Facility field.
-func (o *HardwareReservation) SetFacility(v Facility) {
-	o.Facility = &v
-}
-
-// GetPlan returns the Plan field value if set, zero value otherwise.
-func (o *HardwareReservation) GetPlan() Plan {
-	if o == nil || o.Plan == nil {
-		var ret Plan
-		return ret
-	}
-	return *o.Plan
-}
-
-// GetPlanOk returns a tuple with the Plan field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *HardwareReservation) GetPlanOk() (*Plan, bool) {
-	if o == nil || o.Plan == nil {
-		return nil, false
-	}
-	return o.Plan, true
-}
-
-// HasPlan returns a boolean if a field has been set.
-func (o *HardwareReservation) HasPlan() bool {
-	if o != nil && o.Plan != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetPlan gets a reference to the given Plan and assigns it to the Plan field.
-func (o *HardwareReservation) SetPlan(v Plan) {
-	o.Plan = &v
-}
-
-// GetHref returns the Href field value if set, zero value otherwise.
-func (o *HardwareReservation) GetHref() string {
-	if o == nil || o.Href == nil {
-		var ret string
-		return ret
-	}
-	return *o.Href
-}
-
-// GetHrefOk returns a tuple with the Href field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *HardwareReservation) GetHrefOk() (*string, bool) {
-	if o == nil || o.Href == nil {
-		return nil, false
-	}
-	return o.Href, true
-}
-
-// HasHref returns a boolean if a field has been set.
-func (o *HardwareReservation) HasHref() bool {
-	if o != nil && o.Href != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetHref gets a reference to the given string and assigns it to the Href field.
-func (o *HardwareReservation) SetHref(v string) {
-	o.Href = &v
-}
-
-// GetProject returns the Project field value if set, zero value otherwise.
-func (o *HardwareReservation) GetProject() Project {
-	if o == nil || o.Project == nil {
-		var ret Project
-		return ret
-	}
-	return *o.Project
-}
-
-// GetProjectOk returns a tuple with the Project field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *HardwareReservation) GetProjectOk() (*Project, bool) {
-	if o == nil || o.Project == nil {
-		return nil, false
-	}
-	return o.Project, true
-}
-
-// HasProject returns a boolean if a field has been set.
-func (o *HardwareReservation) HasProject() bool {
-	if o != nil && o.Project != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetProject gets a reference to the given Project and assigns it to the Project field.
-func (o *HardwareReservation) SetProject(v Project) {
-	o.Project = &v
-}
-
-// GetDevice returns the Device field value if set, zero value otherwise.
-func (o *HardwareReservation) GetDevice() Device {
-	if o == nil || o.Device == nil {
-		var ret Device
-		return ret
-	}
-	return *o.Device
-}
-
-// GetDeviceOk returns a tuple with the Device field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *HardwareReservation) GetDeviceOk() (*Device, bool) {
-	if o == nil || o.Device == nil {
-		return nil, false
-	}
-	return o.Device, true
-}
-
-// HasDevice returns a boolean if a field has been set.
-func (o *HardwareReservation) HasDevice() bool {
-	if o != nil && o.Device != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetDevice gets a reference to the given Device and assigns it to the Device field.
-func (o *HardwareReservation) SetDevice(v Device) {
-	o.Device = &v
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
@@ -312,36 +88,164 @@ func (o *HardwareReservation) SetCreatedAt(v time.Time) {
 	o.CreatedAt = &v
 }
 
-// GetSpare returns the Spare field value if set, zero value otherwise.
-func (o *HardwareReservation) GetSpare() bool {
-	if o == nil || o.Spare == nil {
-		var ret bool
+// GetCustomRate returns the CustomRate field value if set, zero value otherwise.
+func (o *HardwareReservation) GetCustomRate() float32 {
+	if o == nil || o.CustomRate == nil {
+		var ret float32
 		return ret
 	}
-	return *o.Spare
+	return *o.CustomRate
 }
 
-// GetSpareOk returns a tuple with the Spare field value if set, nil otherwise
+// GetCustomRateOk returns a tuple with the CustomRate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HardwareReservation) GetSpareOk() (*bool, bool) {
-	if o == nil || o.Spare == nil {
+func (o *HardwareReservation) GetCustomRateOk() (*float32, bool) {
+	if o == nil || o.CustomRate == nil {
 		return nil, false
 	}
-	return o.Spare, true
+	return o.CustomRate, true
 }
 
-// HasSpare returns a boolean if a field has been set.
-func (o *HardwareReservation) HasSpare() bool {
-	if o != nil && o.Spare != nil {
+// HasCustomRate returns a boolean if a field has been set.
+func (o *HardwareReservation) HasCustomRate() bool {
+	if o != nil && o.CustomRate != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetSpare gets a reference to the given bool and assigns it to the Spare field.
-func (o *HardwareReservation) SetSpare(v bool) {
-	o.Spare = &v
+// SetCustomRate gets a reference to the given float32 and assigns it to the CustomRate field.
+func (o *HardwareReservation) SetCustomRate(v float32) {
+	o.CustomRate = &v
+}
+
+// GetDevice returns the Device field value if set, zero value otherwise.
+func (o *HardwareReservation) GetDevice() FindDeviceById200Response {
+	if o == nil || o.Device == nil {
+		var ret FindDeviceById200Response
+		return ret
+	}
+	return *o.Device
+}
+
+// GetDeviceOk returns a tuple with the Device field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *HardwareReservation) GetDeviceOk() (*FindDeviceById200Response, bool) {
+	if o == nil || o.Device == nil {
+		return nil, false
+	}
+	return o.Device, true
+}
+
+// HasDevice returns a boolean if a field has been set.
+func (o *HardwareReservation) HasDevice() bool {
+	if o != nil && o.Device != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDevice gets a reference to the given FindDeviceById200Response and assigns it to the Device field.
+func (o *HardwareReservation) SetDevice(v FindDeviceById200Response) {
+	o.Device = &v
+}
+
+// GetFacility returns the Facility field value if set, zero value otherwise.
+func (o *HardwareReservation) GetFacility() FindDeviceById200ResponseFacility {
+	if o == nil || o.Facility == nil {
+		var ret FindDeviceById200ResponseFacility
+		return ret
+	}
+	return *o.Facility
+}
+
+// GetFacilityOk returns a tuple with the Facility field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *HardwareReservation) GetFacilityOk() (*FindDeviceById200ResponseFacility, bool) {
+	if o == nil || o.Facility == nil {
+		return nil, false
+	}
+	return o.Facility, true
+}
+
+// HasFacility returns a boolean if a field has been set.
+func (o *HardwareReservation) HasFacility() bool {
+	if o != nil && o.Facility != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetFacility gets a reference to the given FindDeviceById200ResponseFacility and assigns it to the Facility field.
+func (o *HardwareReservation) SetFacility(v FindDeviceById200ResponseFacility) {
+	o.Facility = &v
+}
+
+// GetHref returns the Href field value if set, zero value otherwise.
+func (o *HardwareReservation) GetHref() string {
+	if o == nil || o.Href == nil {
+		var ret string
+		return ret
+	}
+	return *o.Href
+}
+
+// GetHrefOk returns a tuple with the Href field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *HardwareReservation) GetHrefOk() (*string, bool) {
+	if o == nil || o.Href == nil {
+		return nil, false
+	}
+	return o.Href, true
+}
+
+// HasHref returns a boolean if a field has been set.
+func (o *HardwareReservation) HasHref() bool {
+	if o != nil && o.Href != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHref gets a reference to the given string and assigns it to the Href field.
+func (o *HardwareReservation) SetHref(v string) {
+	o.Href = &v
+}
+
+// GetId returns the Id field value if set, zero value otherwise.
+func (o *HardwareReservation) GetId() string {
+	if o == nil || o.Id == nil {
+		var ret string
+		return ret
+	}
+	return *o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *HardwareReservation) GetIdOk() (*string, bool) {
+	if o == nil || o.Id == nil {
+		return nil, false
+	}
+	return o.Id, true
+}
+
+// HasId returns a boolean if a field has been set.
+func (o *HardwareReservation) HasId() bool {
+	if o != nil && o.Id != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given string and assigns it to the Id field.
+func (o *HardwareReservation) SetId(v string) {
+	o.Id = &v
 }
 
 // GetNeedOfService returns the NeedOfService field value if set, zero value otherwise.
@@ -376,6 +280,70 @@ func (o *HardwareReservation) SetNeedOfService(v bool) {
 	o.NeedOfService = &v
 }
 
+// GetPlan returns the Plan field value if set, zero value otherwise.
+func (o *HardwareReservation) GetPlan() FindDeviceById200ResponsePlan {
+	if o == nil || o.Plan == nil {
+		var ret FindDeviceById200ResponsePlan
+		return ret
+	}
+	return *o.Plan
+}
+
+// GetPlanOk returns a tuple with the Plan field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *HardwareReservation) GetPlanOk() (*FindDeviceById200ResponsePlan, bool) {
+	if o == nil || o.Plan == nil {
+		return nil, false
+	}
+	return o.Plan, true
+}
+
+// HasPlan returns a boolean if a field has been set.
+func (o *HardwareReservation) HasPlan() bool {
+	if o != nil && o.Plan != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPlan gets a reference to the given FindDeviceById200ResponsePlan and assigns it to the Plan field.
+func (o *HardwareReservation) SetPlan(v FindDeviceById200ResponsePlan) {
+	o.Plan = &v
+}
+
+// GetProject returns the Project field value if set, zero value otherwise.
+func (o *HardwareReservation) GetProject() MoveHardwareReservation201ResponseProject {
+	if o == nil || o.Project == nil {
+		var ret MoveHardwareReservation201ResponseProject
+		return ret
+	}
+	return *o.Project
+}
+
+// GetProjectOk returns a tuple with the Project field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *HardwareReservation) GetProjectOk() (*MoveHardwareReservation201ResponseProject, bool) {
+	if o == nil || o.Project == nil {
+		return nil, false
+	}
+	return o.Project, true
+}
+
+// HasProject returns a boolean if a field has been set.
+func (o *HardwareReservation) HasProject() bool {
+	if o != nil && o.Project != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetProject gets a reference to the given MoveHardwareReservation201ResponseProject and assigns it to the Project field.
+func (o *HardwareReservation) SetProject(v MoveHardwareReservation201ResponseProject) {
+	o.Project = &v
+}
+
 // GetProvisionable returns the Provisionable field value if set, zero value otherwise.
 func (o *HardwareReservation) GetProvisionable() bool {
 	if o == nil || o.Provisionable == nil {
@@ -408,36 +376,68 @@ func (o *HardwareReservation) SetProvisionable(v bool) {
 	o.Provisionable = &v
 }
 
-// GetCustomRate returns the CustomRate field value if set, zero value otherwise.
-func (o *HardwareReservation) GetCustomRate() float32 {
-	if o == nil || o.CustomRate == nil {
-		var ret float32
+// GetShortId returns the ShortId field value if set, zero value otherwise.
+func (o *HardwareReservation) GetShortId() string {
+	if o == nil || o.ShortId == nil {
+		var ret string
 		return ret
 	}
-	return *o.CustomRate
+	return *o.ShortId
 }
 
-// GetCustomRateOk returns a tuple with the CustomRate field value if set, nil otherwise
+// GetShortIdOk returns a tuple with the ShortId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HardwareReservation) GetCustomRateOk() (*float32, bool) {
-	if o == nil || o.CustomRate == nil {
+func (o *HardwareReservation) GetShortIdOk() (*string, bool) {
+	if o == nil || o.ShortId == nil {
 		return nil, false
 	}
-	return o.CustomRate, true
+	return o.ShortId, true
 }
 
-// HasCustomRate returns a boolean if a field has been set.
-func (o *HardwareReservation) HasCustomRate() bool {
-	if o != nil && o.CustomRate != nil {
+// HasShortId returns a boolean if a field has been set.
+func (o *HardwareReservation) HasShortId() bool {
+	if o != nil && o.ShortId != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetCustomRate gets a reference to the given float32 and assigns it to the CustomRate field.
-func (o *HardwareReservation) SetCustomRate(v float32) {
-	o.CustomRate = &v
+// SetShortId gets a reference to the given string and assigns it to the ShortId field.
+func (o *HardwareReservation) SetShortId(v string) {
+	o.ShortId = &v
+}
+
+// GetSpare returns the Spare field value if set, zero value otherwise.
+func (o *HardwareReservation) GetSpare() bool {
+	if o == nil || o.Spare == nil {
+		var ret bool
+		return ret
+	}
+	return *o.Spare
+}
+
+// GetSpareOk returns a tuple with the Spare field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *HardwareReservation) GetSpareOk() (*bool, bool) {
+	if o == nil || o.Spare == nil {
+		return nil, false
+	}
+	return o.Spare, true
+}
+
+// HasSpare returns a boolean if a field has been set.
+func (o *HardwareReservation) HasSpare() bool {
+	if o != nil && o.Spare != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSpare gets a reference to the given bool and assigns it to the Spare field.
+func (o *HardwareReservation) SetSpare(v bool) {
+	o.Spare = &v
 }
 
 // GetSwitchUuid returns the SwitchUuid field value if set, zero value otherwise.
@@ -474,41 +474,41 @@ func (o *HardwareReservation) SetSwitchUuid(v string) {
 
 func (o HardwareReservation) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
+	if o.CreatedAt != nil {
+		toSerialize["created_at"] = o.CreatedAt
 	}
-	if o.ShortId != nil {
-		toSerialize["short_id"] = o.ShortId
-	}
-	if o.Facility != nil {
-		toSerialize["facility"] = o.Facility
-	}
-	if o.Plan != nil {
-		toSerialize["plan"] = o.Plan
-	}
-	if o.Href != nil {
-		toSerialize["href"] = o.Href
-	}
-	if o.Project != nil {
-		toSerialize["project"] = o.Project
+	if o.CustomRate != nil {
+		toSerialize["custom_rate"] = o.CustomRate
 	}
 	if o.Device != nil {
 		toSerialize["device"] = o.Device
 	}
-	if o.CreatedAt != nil {
-		toSerialize["created_at"] = o.CreatedAt
+	if o.Facility != nil {
+		toSerialize["facility"] = o.Facility
 	}
-	if o.Spare != nil {
-		toSerialize["spare"] = o.Spare
+	if o.Href != nil {
+		toSerialize["href"] = o.Href
+	}
+	if o.Id != nil {
+		toSerialize["id"] = o.Id
 	}
 	if o.NeedOfService != nil {
 		toSerialize["need_of_service"] = o.NeedOfService
 	}
+	if o.Plan != nil {
+		toSerialize["plan"] = o.Plan
+	}
+	if o.Project != nil {
+		toSerialize["project"] = o.Project
+	}
 	if o.Provisionable != nil {
 		toSerialize["provisionable"] = o.Provisionable
 	}
-	if o.CustomRate != nil {
-		toSerialize["custom_rate"] = o.CustomRate
+	if o.ShortId != nil {
+		toSerialize["short_id"] = o.ShortId
+	}
+	if o.Spare != nil {
+		toSerialize["spare"] = o.Spare
 	}
 	if o.SwitchUuid != nil {
 		toSerialize["switch_uuid"] = o.SwitchUuid

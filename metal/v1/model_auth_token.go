@@ -18,15 +18,15 @@ import (
 
 // AuthToken struct for AuthToken
 type AuthToken struct {
-	Id        *string    `json:"id,omitempty"`
-	Token     *string    `json:"token,omitempty"`
 	CreatedAt *time.Time `json:"created_at,omitempty"`
-	UpdatedAt *time.Time `json:"updated_at,omitempty"`
 	// Available only for API keys
-	Description *string           `json:"description,omitempty"`
-	ReadOnly    *bool             `json:"read_only,omitempty"`
-	User        *AuthTokenUser    `json:"user,omitempty"`
-	Project     *AuthTokenProject `json:"project,omitempty"`
+	Description *string                                           `json:"description,omitempty"`
+	Id          *string                                           `json:"id,omitempty"`
+	Project     *FindProjectAPIKeys200ResponseApiKeysInnerProject `json:"project,omitempty"`
+	ReadOnly    *bool                                             `json:"read_only,omitempty"`
+	Token       *string                                           `json:"token,omitempty"`
+	UpdatedAt   *time.Time                                        `json:"updated_at,omitempty"`
+	User        *FindProjectAPIKeys200ResponseApiKeysInnerUser    `json:"user,omitempty"`
 }
 
 // NewAuthToken instantiates a new AuthToken object
@@ -44,70 +44,6 @@ func NewAuthToken() *AuthToken {
 func NewAuthTokenWithDefaults() *AuthToken {
 	this := AuthToken{}
 	return &this
-}
-
-// GetId returns the Id field value if set, zero value otherwise.
-func (o *AuthToken) GetId() string {
-	if o == nil || o.Id == nil {
-		var ret string
-		return ret
-	}
-	return *o.Id
-}
-
-// GetIdOk returns a tuple with the Id field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *AuthToken) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
-		return nil, false
-	}
-	return o.Id, true
-}
-
-// HasId returns a boolean if a field has been set.
-func (o *AuthToken) HasId() bool {
-	if o != nil && o.Id != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetId gets a reference to the given string and assigns it to the Id field.
-func (o *AuthToken) SetId(v string) {
-	o.Id = &v
-}
-
-// GetToken returns the Token field value if set, zero value otherwise.
-func (o *AuthToken) GetToken() string {
-	if o == nil || o.Token == nil {
-		var ret string
-		return ret
-	}
-	return *o.Token
-}
-
-// GetTokenOk returns a tuple with the Token field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *AuthToken) GetTokenOk() (*string, bool) {
-	if o == nil || o.Token == nil {
-		return nil, false
-	}
-	return o.Token, true
-}
-
-// HasToken returns a boolean if a field has been set.
-func (o *AuthToken) HasToken() bool {
-	if o != nil && o.Token != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetToken gets a reference to the given string and assigns it to the Token field.
-func (o *AuthToken) SetToken(v string) {
-	o.Token = &v
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
@@ -142,38 +78,6 @@ func (o *AuthToken) SetCreatedAt(v time.Time) {
 	o.CreatedAt = &v
 }
 
-// GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
-func (o *AuthToken) GetUpdatedAt() time.Time {
-	if o == nil || o.UpdatedAt == nil {
-		var ret time.Time
-		return ret
-	}
-	return *o.UpdatedAt
-}
-
-// GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *AuthToken) GetUpdatedAtOk() (*time.Time, bool) {
-	if o == nil || o.UpdatedAt == nil {
-		return nil, false
-	}
-	return o.UpdatedAt, true
-}
-
-// HasUpdatedAt returns a boolean if a field has been set.
-func (o *AuthToken) HasUpdatedAt() bool {
-	if o != nil && o.UpdatedAt != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetUpdatedAt gets a reference to the given time.Time and assigns it to the UpdatedAt field.
-func (o *AuthToken) SetUpdatedAt(v time.Time) {
-	o.UpdatedAt = &v
-}
-
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *AuthToken) GetDescription() string {
 	if o == nil || o.Description == nil {
@@ -204,6 +108,70 @@ func (o *AuthToken) HasDescription() bool {
 // SetDescription gets a reference to the given string and assigns it to the Description field.
 func (o *AuthToken) SetDescription(v string) {
 	o.Description = &v
+}
+
+// GetId returns the Id field value if set, zero value otherwise.
+func (o *AuthToken) GetId() string {
+	if o == nil || o.Id == nil {
+		var ret string
+		return ret
+	}
+	return *o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AuthToken) GetIdOk() (*string, bool) {
+	if o == nil || o.Id == nil {
+		return nil, false
+	}
+	return o.Id, true
+}
+
+// HasId returns a boolean if a field has been set.
+func (o *AuthToken) HasId() bool {
+	if o != nil && o.Id != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given string and assigns it to the Id field.
+func (o *AuthToken) SetId(v string) {
+	o.Id = &v
+}
+
+// GetProject returns the Project field value if set, zero value otherwise.
+func (o *AuthToken) GetProject() FindProjectAPIKeys200ResponseApiKeysInnerProject {
+	if o == nil || o.Project == nil {
+		var ret FindProjectAPIKeys200ResponseApiKeysInnerProject
+		return ret
+	}
+	return *o.Project
+}
+
+// GetProjectOk returns a tuple with the Project field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AuthToken) GetProjectOk() (*FindProjectAPIKeys200ResponseApiKeysInnerProject, bool) {
+	if o == nil || o.Project == nil {
+		return nil, false
+	}
+	return o.Project, true
+}
+
+// HasProject returns a boolean if a field has been set.
+func (o *AuthToken) HasProject() bool {
+	if o != nil && o.Project != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetProject gets a reference to the given FindProjectAPIKeys200ResponseApiKeysInnerProject and assigns it to the Project field.
+func (o *AuthToken) SetProject(v FindProjectAPIKeys200ResponseApiKeysInnerProject) {
+	o.Project = &v
 }
 
 // GetReadOnly returns the ReadOnly field value if set, zero value otherwise.
@@ -238,10 +206,74 @@ func (o *AuthToken) SetReadOnly(v bool) {
 	o.ReadOnly = &v
 }
 
+// GetToken returns the Token field value if set, zero value otherwise.
+func (o *AuthToken) GetToken() string {
+	if o == nil || o.Token == nil {
+		var ret string
+		return ret
+	}
+	return *o.Token
+}
+
+// GetTokenOk returns a tuple with the Token field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AuthToken) GetTokenOk() (*string, bool) {
+	if o == nil || o.Token == nil {
+		return nil, false
+	}
+	return o.Token, true
+}
+
+// HasToken returns a boolean if a field has been set.
+func (o *AuthToken) HasToken() bool {
+	if o != nil && o.Token != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetToken gets a reference to the given string and assigns it to the Token field.
+func (o *AuthToken) SetToken(v string) {
+	o.Token = &v
+}
+
+// GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
+func (o *AuthToken) GetUpdatedAt() time.Time {
+	if o == nil || o.UpdatedAt == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.UpdatedAt
+}
+
+// GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AuthToken) GetUpdatedAtOk() (*time.Time, bool) {
+	if o == nil || o.UpdatedAt == nil {
+		return nil, false
+	}
+	return o.UpdatedAt, true
+}
+
+// HasUpdatedAt returns a boolean if a field has been set.
+func (o *AuthToken) HasUpdatedAt() bool {
+	if o != nil && o.UpdatedAt != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetUpdatedAt gets a reference to the given time.Time and assigns it to the UpdatedAt field.
+func (o *AuthToken) SetUpdatedAt(v time.Time) {
+	o.UpdatedAt = &v
+}
+
 // GetUser returns the User field value if set, zero value otherwise.
-func (o *AuthToken) GetUser() AuthTokenUser {
+func (o *AuthToken) GetUser() FindProjectAPIKeys200ResponseApiKeysInnerUser {
 	if o == nil || o.User == nil {
-		var ret AuthTokenUser
+		var ret FindProjectAPIKeys200ResponseApiKeysInnerUser
 		return ret
 	}
 	return *o.User
@@ -249,7 +281,7 @@ func (o *AuthToken) GetUser() AuthTokenUser {
 
 // GetUserOk returns a tuple with the User field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AuthToken) GetUserOk() (*AuthTokenUser, bool) {
+func (o *AuthToken) GetUserOk() (*FindProjectAPIKeys200ResponseApiKeysInnerUser, bool) {
 	if o == nil || o.User == nil {
 		return nil, false
 	}
@@ -265,68 +297,36 @@ func (o *AuthToken) HasUser() bool {
 	return false
 }
 
-// SetUser gets a reference to the given AuthTokenUser and assigns it to the User field.
-func (o *AuthToken) SetUser(v AuthTokenUser) {
+// SetUser gets a reference to the given FindProjectAPIKeys200ResponseApiKeysInnerUser and assigns it to the User field.
+func (o *AuthToken) SetUser(v FindProjectAPIKeys200ResponseApiKeysInnerUser) {
 	o.User = &v
-}
-
-// GetProject returns the Project field value if set, zero value otherwise.
-func (o *AuthToken) GetProject() AuthTokenProject {
-	if o == nil || o.Project == nil {
-		var ret AuthTokenProject
-		return ret
-	}
-	return *o.Project
-}
-
-// GetProjectOk returns a tuple with the Project field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *AuthToken) GetProjectOk() (*AuthTokenProject, bool) {
-	if o == nil || o.Project == nil {
-		return nil, false
-	}
-	return o.Project, true
-}
-
-// HasProject returns a boolean if a field has been set.
-func (o *AuthToken) HasProject() bool {
-	if o != nil && o.Project != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetProject gets a reference to the given AuthTokenProject and assigns it to the Project field.
-func (o *AuthToken) SetProject(v AuthTokenProject) {
-	o.Project = &v
 }
 
 func (o AuthToken) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
-	}
-	if o.Token != nil {
-		toSerialize["token"] = o.Token
-	}
 	if o.CreatedAt != nil {
 		toSerialize["created_at"] = o.CreatedAt
-	}
-	if o.UpdatedAt != nil {
-		toSerialize["updated_at"] = o.UpdatedAt
 	}
 	if o.Description != nil {
 		toSerialize["description"] = o.Description
 	}
-	if o.ReadOnly != nil {
-		toSerialize["read_only"] = o.ReadOnly
-	}
-	if o.User != nil {
-		toSerialize["user"] = o.User
+	if o.Id != nil {
+		toSerialize["id"] = o.Id
 	}
 	if o.Project != nil {
 		toSerialize["project"] = o.Project
+	}
+	if o.ReadOnly != nil {
+		toSerialize["read_only"] = o.ReadOnly
+	}
+	if o.Token != nil {
+		toSerialize["token"] = o.Token
+	}
+	if o.UpdatedAt != nil {
+		toSerialize["updated_at"] = o.UpdatedAt
+	}
+	if o.User != nil {
+		toSerialize["user"] = o.User
 	}
 	return json.Marshal(toSerialize)
 }

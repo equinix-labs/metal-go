@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Customdata** | Pointer to **map[string]interface{}** |  | [optional] 
 **Name** | **string** |  | 
 **OrganizationId** | Pointer to **string** |  | [optional] 
 **PaymentMethodId** | Pointer to **string** |  | [optional] 
-**Customdata** | Pointer to **map[string]interface{}** |  | [optional] 
 
 ## Methods
 
@@ -27,6 +27,31 @@ will change when the set of required properties is changed
 NewProjectCreateFromRootInputWithDefaults instantiates a new ProjectCreateFromRootInput object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetCustomdata
+
+`func (o *ProjectCreateFromRootInput) GetCustomdata() map[string]interface{}`
+
+GetCustomdata returns the Customdata field if non-nil, zero value otherwise.
+
+### GetCustomdataOk
+
+`func (o *ProjectCreateFromRootInput) GetCustomdataOk() (*map[string]interface{}, bool)`
+
+GetCustomdataOk returns a tuple with the Customdata field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCustomdata
+
+`func (o *ProjectCreateFromRootInput) SetCustomdata(v map[string]interface{})`
+
+SetCustomdata sets Customdata field to given value.
+
+### HasCustomdata
+
+`func (o *ProjectCreateFromRootInput) HasCustomdata() bool`
+
+HasCustomdata returns a boolean if a field has been set.
 
 ### GetName
 
@@ -97,31 +122,6 @@ SetPaymentMethodId sets PaymentMethodId field to given value.
 `func (o *ProjectCreateFromRootInput) HasPaymentMethodId() bool`
 
 HasPaymentMethodId returns a boolean if a field has been set.
-
-### GetCustomdata
-
-`func (o *ProjectCreateFromRootInput) GetCustomdata() map[string]interface{}`
-
-GetCustomdata returns the Customdata field if non-nil, zero value otherwise.
-
-### GetCustomdataOk
-
-`func (o *ProjectCreateFromRootInput) GetCustomdataOk() (*map[string]interface{}, bool)`
-
-GetCustomdataOk returns a tuple with the Customdata field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCustomdata
-
-`func (o *ProjectCreateFromRootInput) SetCustomdata(v map[string]interface{})`
-
-SetCustomdata sets Customdata field to given value.
-
-### HasCustomdata
-
-`func (o *ProjectCreateFromRootInput) HasCustomdata() bool`
-
-HasCustomdata returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

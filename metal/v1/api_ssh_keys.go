@@ -23,59 +23,63 @@ import (
 // SSHKeysApiService SSHKeysApi service
 type SSHKeysApiService service
 
-type ApiCreateSSHKeyRequest struct {
+type ApiCreateProjectSSHKeyRequest struct {
 	ctx        context.Context
 	ApiService *SSHKeysApiService
-	sshKey     *SSHKeyCreateInput
+	id         string
+	body       *CreateProjectSSHKeyRequest
 }
 
 // ssh key to create
-func (r ApiCreateSSHKeyRequest) SshKey(sshKey SSHKeyCreateInput) ApiCreateSSHKeyRequest {
-	r.sshKey = &sshKey
+func (r ApiCreateProjectSSHKeyRequest) Body(body CreateProjectSSHKeyRequest) ApiCreateProjectSSHKeyRequest {
+	r.body = &body
 	return r
 }
 
-func (r ApiCreateSSHKeyRequest) Execute() (*SSHKey, *http.Response, error) {
-	return r.ApiService.CreateSSHKeyExecute(r)
+func (r ApiCreateProjectSSHKeyRequest) Execute() (*FindDeviceSSHKeys200ResponseSshKeysInner, *http.Response, error) {
+	return r.ApiService.CreateProjectSSHKeyExecute(r)
 }
 
 /*
-CreateSSHKey Create a ssh key for the current user
+CreateProjectSSHKey Create a ssh key for the given project
 
 Creates a ssh key.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiCreateSSHKeyRequest
+ @param id Project UUID
+ @return ApiCreateProjectSSHKeyRequest
 */
-func (a *SSHKeysApiService) CreateSSHKey(ctx context.Context) ApiCreateSSHKeyRequest {
-	return ApiCreateSSHKeyRequest{
+func (a *SSHKeysApiService) CreateProjectSSHKey(ctx context.Context, id string) ApiCreateProjectSSHKeyRequest {
+	return ApiCreateProjectSSHKeyRequest{
 		ApiService: a,
 		ctx:        ctx,
+		id:         id,
 	}
 }
 
 // Execute executes the request
-//  @return SSHKey
-func (a *SSHKeysApiService) CreateSSHKeyExecute(r ApiCreateSSHKeyRequest) (*SSHKey, *http.Response, error) {
+//  @return FindDeviceSSHKeys200ResponseSshKeysInner
+func (a *SSHKeysApiService) CreateProjectSSHKeyExecute(r ApiCreateProjectSSHKeyRequest) (*FindDeviceSSHKeys200ResponseSshKeysInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *SSHKey
+		localVarReturnValue *FindDeviceSSHKeys200ResponseSshKeysInner
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SSHKeysApiService.CreateSSHKey")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SSHKeysApiService.CreateProjectSSHKey")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/ssh-keys"
+	localVarPath := localBasePath + "/projects/{id}/ssh-keys"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.sshKey == nil {
-		return localVarReturnValue, nil, reportError("sshKey is required and must be specified")
+	if r.body == nil {
+		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -96,7 +100,7 @@ func (a *SSHKeysApiService) CreateSSHKeyExecute(r ApiCreateSSHKeyRequest) (*SSHK
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.sshKey
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -134,7 +138,7 @@ func (a *SSHKeysApiService) CreateSSHKeyExecute(r ApiCreateSSHKeyRequest) (*SSHK
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -144,7 +148,151 @@ func (a *SSHKeysApiService) CreateSSHKeyExecute(r ApiCreateSSHKeyRequest) (*SSHK
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
-			var v Error
+			var v DeleteAPIKey401Response
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiCreateSSHKeyRequest struct {
+	ctx        context.Context
+	ApiService *SSHKeysApiService
+	body       *CreateProjectSSHKeyRequest
+}
+
+// ssh key to create
+func (r ApiCreateSSHKeyRequest) Body(body CreateProjectSSHKeyRequest) ApiCreateSSHKeyRequest {
+	r.body = &body
+	return r
+}
+
+func (r ApiCreateSSHKeyRequest) Execute() (*FindDeviceSSHKeys200ResponseSshKeysInner, *http.Response, error) {
+	return r.ApiService.CreateSSHKeyExecute(r)
+}
+
+/*
+CreateSSHKey Create a ssh key for the current user
+
+Creates a ssh key.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiCreateSSHKeyRequest
+*/
+func (a *SSHKeysApiService) CreateSSHKey(ctx context.Context) ApiCreateSSHKeyRequest {
+	return ApiCreateSSHKeyRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+}
+
+// Execute executes the request
+//  @return FindDeviceSSHKeys200ResponseSshKeysInner
+func (a *SSHKeysApiService) CreateSSHKeyExecute(r ApiCreateSSHKeyRequest) (*FindDeviceSSHKeys200ResponseSshKeysInner, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *FindDeviceSSHKeys200ResponseSshKeysInner
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SSHKeysApiService.CreateSSHKey")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/ssh-keys"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.body == nil {
+		return localVarReturnValue, nil, reportError("body is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.body
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["x_auth_token"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["X-Auth-Token"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v DeleteAPIKey401Response
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -268,7 +416,7 @@ func (a *SSHKeysApiService) DeleteSSHKeyExecute(r ApiDeleteSSHKeyRequest) (*http
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -278,7 +426,7 @@ func (a *SSHKeysApiService) DeleteSSHKeyExecute(r ApiDeleteSSHKeyRequest) (*http
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -288,7 +436,7 @@ func (a *SSHKeysApiService) DeleteSSHKeyExecute(r ApiDeleteSSHKeyRequest) (*http
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -300,6 +448,318 @@ func (a *SSHKeysApiService) DeleteSSHKeyExecute(r ApiDeleteSSHKeyRequest) (*http
 	}
 
 	return localVarHTTPResponse, nil
+}
+
+type ApiFindDeviceSSHKeysRequest struct {
+	ctx          context.Context
+	ApiService   *SSHKeysApiService
+	id           string
+	searchString *string
+	include      *[]string
+	exclude      *[]string
+}
+
+// Search by key, label, or fingerprint
+func (r ApiFindDeviceSSHKeysRequest) SearchString(searchString string) ApiFindDeviceSSHKeysRequest {
+	r.searchString = &searchString
+	return r
+}
+
+// Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+func (r ApiFindDeviceSSHKeysRequest) Include(include []string) ApiFindDeviceSSHKeysRequest {
+	r.include = &include
+	return r
+}
+
+// Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
+func (r ApiFindDeviceSSHKeysRequest) Exclude(exclude []string) ApiFindDeviceSSHKeysRequest {
+	r.exclude = &exclude
+	return r
+}
+
+func (r ApiFindDeviceSSHKeysRequest) Execute() (*FindDeviceSSHKeys200Response, *http.Response, error) {
+	return r.ApiService.FindDeviceSSHKeysExecute(r)
+}
+
+/*
+FindDeviceSSHKeys Retrieve a device's ssh keys
+
+Returns a collection of the device's ssh keys.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id Project UUID
+ @return ApiFindDeviceSSHKeysRequest
+*/
+func (a *SSHKeysApiService) FindDeviceSSHKeys(ctx context.Context, id string) ApiFindDeviceSSHKeysRequest {
+	return ApiFindDeviceSSHKeysRequest{
+		ApiService: a,
+		ctx:        ctx,
+		id:         id,
+	}
+}
+
+// Execute executes the request
+//  @return FindDeviceSSHKeys200Response
+func (a *SSHKeysApiService) FindDeviceSSHKeysExecute(r ApiFindDeviceSSHKeysRequest) (*FindDeviceSSHKeys200Response, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *FindDeviceSSHKeys200Response
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SSHKeysApiService.FindDeviceSSHKeys")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/devices/{id}/ssh-keys"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.searchString != nil {
+		localVarQueryParams.Add("Search string", parameterToString(*r.searchString, ""))
+	}
+	if r.include != nil {
+		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
+	}
+	if r.exclude != nil {
+		localVarQueryParams.Add("exclude", parameterToString(*r.exclude, "csv"))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["x_auth_token"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["X-Auth-Token"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v DeleteAPIKey401Response
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiFindProjectSSHKeysRequest struct {
+	ctx          context.Context
+	ApiService   *SSHKeysApiService
+	id           string
+	searchString *string
+	include      *[]string
+	exclude      *[]string
+}
+
+// Search by key, label, or fingerprint
+func (r ApiFindProjectSSHKeysRequest) SearchString(searchString string) ApiFindProjectSSHKeysRequest {
+	r.searchString = &searchString
+	return r
+}
+
+// Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+func (r ApiFindProjectSSHKeysRequest) Include(include []string) ApiFindProjectSSHKeysRequest {
+	r.include = &include
+	return r
+}
+
+// Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
+func (r ApiFindProjectSSHKeysRequest) Exclude(exclude []string) ApiFindProjectSSHKeysRequest {
+	r.exclude = &exclude
+	return r
+}
+
+func (r ApiFindProjectSSHKeysRequest) Execute() (*FindDeviceSSHKeys200Response, *http.Response, error) {
+	return r.ApiService.FindProjectSSHKeysExecute(r)
+}
+
+/*
+FindProjectSSHKeys Retrieve a project's ssh keys
+
+Returns a collection of the project's ssh keys.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id Project UUID
+ @return ApiFindProjectSSHKeysRequest
+*/
+func (a *SSHKeysApiService) FindProjectSSHKeys(ctx context.Context, id string) ApiFindProjectSSHKeysRequest {
+	return ApiFindProjectSSHKeysRequest{
+		ApiService: a,
+		ctx:        ctx,
+		id:         id,
+	}
+}
+
+// Execute executes the request
+//  @return FindDeviceSSHKeys200Response
+func (a *SSHKeysApiService) FindProjectSSHKeysExecute(r ApiFindProjectSSHKeysRequest) (*FindDeviceSSHKeys200Response, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *FindDeviceSSHKeys200Response
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SSHKeysApiService.FindProjectSSHKeys")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/projects/{id}/ssh-keys"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.searchString != nil {
+		localVarQueryParams.Add("Search string", parameterToString(*r.searchString, ""))
+	}
+	if r.include != nil {
+		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
+	}
+	if r.exclude != nil {
+		localVarQueryParams.Add("exclude", parameterToString(*r.exclude, "csv"))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["x_auth_token"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["X-Auth-Token"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v DeleteAPIKey401Response
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
 type ApiFindSSHKeyByIdRequest struct {
@@ -322,7 +782,7 @@ func (r ApiFindSSHKeyByIdRequest) Exclude(exclude []string) ApiFindSSHKeyByIdReq
 	return r
 }
 
-func (r ApiFindSSHKeyByIdRequest) Execute() (*SSHKey, *http.Response, error) {
+func (r ApiFindSSHKeyByIdRequest) Execute() (*FindDeviceSSHKeys200ResponseSshKeysInner, *http.Response, error) {
 	return r.ApiService.FindSSHKeyByIdExecute(r)
 }
 
@@ -344,13 +804,13 @@ func (a *SSHKeysApiService) FindSSHKeyById(ctx context.Context, id string) ApiFi
 }
 
 // Execute executes the request
-//  @return SSHKey
-func (a *SSHKeysApiService) FindSSHKeyByIdExecute(r ApiFindSSHKeyByIdRequest) (*SSHKey, *http.Response, error) {
+//  @return FindDeviceSSHKeys200ResponseSshKeysInner
+func (a *SSHKeysApiService) FindSSHKeyByIdExecute(r ApiFindSSHKeyByIdRequest) (*FindDeviceSSHKeys200ResponseSshKeysInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *SSHKey
+		localVarReturnValue *FindDeviceSSHKeys200ResponseSshKeysInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SSHKeysApiService.FindSSHKeyById")
@@ -425,7 +885,7 @@ func (a *SSHKeysApiService) FindSSHKeyByIdExecute(r ApiFindSSHKeyByIdRequest) (*
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -435,7 +895,7 @@ func (a *SSHKeysApiService) FindSSHKeyByIdExecute(r ApiFindSSHKeyByIdRequest) (*
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -445,7 +905,7 @@ func (a *SSHKeysApiService) FindSSHKeyByIdExecute(r ApiFindSSHKeyByIdRequest) (*
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -494,7 +954,7 @@ func (r ApiFindSSHKeysRequest) Exclude(exclude []string) ApiFindSSHKeysRequest {
 	return r
 }
 
-func (r ApiFindSSHKeysRequest) Execute() (*SSHKeyList, *http.Response, error) {
+func (r ApiFindSSHKeysRequest) Execute() (*FindDeviceSSHKeys200Response, *http.Response, error) {
 	return r.ApiService.FindSSHKeysExecute(r)
 }
 
@@ -514,13 +974,13 @@ func (a *SSHKeysApiService) FindSSHKeys(ctx context.Context) ApiFindSSHKeysReque
 }
 
 // Execute executes the request
-//  @return SSHKeyList
-func (a *SSHKeysApiService) FindSSHKeysExecute(r ApiFindSSHKeysRequest) (*SSHKeyList, *http.Response, error) {
+//  @return FindDeviceSSHKeys200Response
+func (a *SSHKeysApiService) FindSSHKeysExecute(r ApiFindSSHKeysRequest) (*FindDeviceSSHKeys200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *SSHKeyList
+		localVarReturnValue *FindDeviceSSHKeys200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SSHKeysApiService.FindSSHKeys")
@@ -597,7 +1057,7 @@ func (a *SSHKeysApiService) FindSSHKeysExecute(r ApiFindSSHKeysRequest) (*SSHKey
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -624,16 +1084,16 @@ type ApiUpdateSSHKeyRequest struct {
 	ctx        context.Context
 	ApiService *SSHKeysApiService
 	id         string
-	sshKey     *SSHKeyInput
+	body       *CreateDeviceRequestAllOfSshKeysInner
 }
 
 // ssh key to update
-func (r ApiUpdateSSHKeyRequest) SshKey(sshKey SSHKeyInput) ApiUpdateSSHKeyRequest {
-	r.sshKey = &sshKey
+func (r ApiUpdateSSHKeyRequest) Body(body CreateDeviceRequestAllOfSshKeysInner) ApiUpdateSSHKeyRequest {
+	r.body = &body
 	return r
 }
 
-func (r ApiUpdateSSHKeyRequest) Execute() (*SSHKey, *http.Response, error) {
+func (r ApiUpdateSSHKeyRequest) Execute() (*FindDeviceSSHKeys200ResponseSshKeysInner, *http.Response, error) {
 	return r.ApiService.UpdateSSHKeyExecute(r)
 }
 
@@ -655,13 +1115,13 @@ func (a *SSHKeysApiService) UpdateSSHKey(ctx context.Context, id string) ApiUpda
 }
 
 // Execute executes the request
-//  @return SSHKey
-func (a *SSHKeysApiService) UpdateSSHKeyExecute(r ApiUpdateSSHKeyRequest) (*SSHKey, *http.Response, error) {
+//  @return FindDeviceSSHKeys200ResponseSshKeysInner
+func (a *SSHKeysApiService) UpdateSSHKeyExecute(r ApiUpdateSSHKeyRequest) (*FindDeviceSSHKeys200ResponseSshKeysInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *SSHKey
+		localVarReturnValue *FindDeviceSSHKeys200ResponseSshKeysInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SSHKeysApiService.UpdateSSHKey")
@@ -675,8 +1135,8 @@ func (a *SSHKeysApiService) UpdateSSHKeyExecute(r ApiUpdateSSHKeyRequest) (*SSHK
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.sshKey == nil {
-		return localVarReturnValue, nil, reportError("sshKey is required and must be specified")
+	if r.body == nil {
+		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -697,7 +1157,7 @@ func (a *SSHKeysApiService) UpdateSSHKeyExecute(r ApiUpdateSSHKeyRequest) (*SSHK
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.sshKey
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -735,7 +1195,7 @@ func (a *SSHKeysApiService) UpdateSSHKeyExecute(r ApiUpdateSSHKeyRequest) (*SSHK
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -745,7 +1205,7 @@ func (a *SSHKeysApiService) UpdateSSHKeyExecute(r ApiUpdateSSHKeyRequest) (*SSHK
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -755,7 +1215,7 @@ func (a *SSHKeysApiService) UpdateSSHKeyExecute(r ApiUpdateSSHKeyRequest) (*SSHK
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -765,7 +1225,7 @@ func (a *SSHKeysApiService) UpdateSSHKeyExecute(r ApiUpdateSSHKeyRequest) (*SSHK
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

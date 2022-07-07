@@ -17,18 +17,139 @@ import (
 	"io/ioutil"
 	"net/http"
 	"net/url"
-	"strings"
 )
 
 // OperatingSystemsApiService OperatingSystemsApi service
 type OperatingSystemsApiService service
+
+type ApiFindOperatingSystemVersionRequest struct {
+	ctx        context.Context
+	ApiService *OperatingSystemsApiService
+}
+
+func (r ApiFindOperatingSystemVersionRequest) Execute() (*FindOperatingSystemVersion200Response, *http.Response, error) {
+	return r.ApiService.FindOperatingSystemVersionExecute(r)
+}
+
+/*
+FindOperatingSystemVersion Retrieve all operating system versions
+
+Provides a listing of available operating system versions.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiFindOperatingSystemVersionRequest
+*/
+func (a *OperatingSystemsApiService) FindOperatingSystemVersion(ctx context.Context) ApiFindOperatingSystemVersionRequest {
+	return ApiFindOperatingSystemVersionRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+}
+
+// Execute executes the request
+//  @return FindOperatingSystemVersion200Response
+func (a *OperatingSystemsApiService) FindOperatingSystemVersionExecute(r ApiFindOperatingSystemVersionRequest) (*FindOperatingSystemVersion200Response, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *FindOperatingSystemVersion200Response
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OperatingSystemsApiService.FindOperatingSystemVersion")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/operating-system-versions"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["x_auth_token"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["X-Auth-Token"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v DeleteAPIKey401Response
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
 
 type ApiFindOperatingSystemsRequest struct {
 	ctx        context.Context
 	ApiService *OperatingSystemsApiService
 }
 
-func (r ApiFindOperatingSystemsRequest) Execute() (*OperatingSystemList, *http.Response, error) {
+func (r ApiFindOperatingSystemsRequest) Execute() (*FindOperatingSystemVersion200Response, *http.Response, error) {
 	return r.ApiService.FindOperatingSystemsExecute(r)
 }
 
@@ -48,13 +169,13 @@ func (a *OperatingSystemsApiService) FindOperatingSystems(ctx context.Context) A
 }
 
 // Execute executes the request
-//  @return OperatingSystemList
-func (a *OperatingSystemsApiService) FindOperatingSystemsExecute(r ApiFindOperatingSystemsRequest) (*OperatingSystemList, *http.Response, error) {
+//  @return FindOperatingSystemVersion200Response
+func (a *OperatingSystemsApiService) FindOperatingSystemsExecute(r ApiFindOperatingSystemsRequest) (*FindOperatingSystemVersion200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *OperatingSystemList
+		localVarReturnValue *FindOperatingSystemVersion200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OperatingSystemsApiService.FindOperatingSystems")
@@ -122,173 +243,7 @@ func (a *OperatingSystemsApiService) FindOperatingSystemsExecute(r ApiFindOperat
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiFindOperatingSystemsByOrganizationRequest struct {
-	ctx        context.Context
-	ApiService *OperatingSystemsApiService
-	id         string
-	include    *[]string
-	exclude    *[]string
-}
-
-// Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
-func (r ApiFindOperatingSystemsByOrganizationRequest) Include(include []string) ApiFindOperatingSystemsByOrganizationRequest {
-	r.include = &include
-	return r
-}
-
-// Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
-func (r ApiFindOperatingSystemsByOrganizationRequest) Exclude(exclude []string) ApiFindOperatingSystemsByOrganizationRequest {
-	r.exclude = &exclude
-	return r
-}
-
-func (r ApiFindOperatingSystemsByOrganizationRequest) Execute() (*OperatingSystemList, *http.Response, error) {
-	return r.ApiService.FindOperatingSystemsByOrganizationExecute(r)
-}
-
-/*
-FindOperatingSystemsByOrganization Retrieve all operating systems visible by the organization
-
-Returns a listing of available operating systems for the given organization
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Organization UUID
- @return ApiFindOperatingSystemsByOrganizationRequest
-*/
-func (a *OperatingSystemsApiService) FindOperatingSystemsByOrganization(ctx context.Context, id string) ApiFindOperatingSystemsByOrganizationRequest {
-	return ApiFindOperatingSystemsByOrganizationRequest{
-		ApiService: a,
-		ctx:        ctx,
-		id:         id,
-	}
-}
-
-// Execute executes the request
-//  @return OperatingSystemList
-func (a *OperatingSystemsApiService) FindOperatingSystemsByOrganizationExecute(r ApiFindOperatingSystemsByOrganizationRequest) (*OperatingSystemList, *http.Response, error) {
-	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *OperatingSystemList
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OperatingSystemsApiService.FindOperatingSystemsByOrganization")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/organizations/{id}/operating-systems"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	if r.include != nil {
-		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
-	}
-	if r.exclude != nil {
-		localVarQueryParams.Add("exclude", parameterToString(*r.exclude, "csv"))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["x_auth_token"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["X-Auth-Token"] = key
-			}
-		}
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

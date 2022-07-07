@@ -23,13 +23,181 @@ import (
 // VLANsApiService VLANsApi service
 type VLANsApiService service
 
+type ApiCreateVirtualNetworkRequest struct {
+	ctx        context.Context
+	ApiService *VLANsApiService
+	id         string
+	body       *CreateVirtualNetworkRequest
+}
+
+// Virtual Network to create
+func (r ApiCreateVirtualNetworkRequest) Body(body CreateVirtualNetworkRequest) ApiCreateVirtualNetworkRequest {
+	r.body = &body
+	return r
+}
+
+func (r ApiCreateVirtualNetworkRequest) Execute() (*FindVirtualNetworks200ResponseVirtualNetworksInner, *http.Response, error) {
+	return r.ApiService.CreateVirtualNetworkExecute(r)
+}
+
+/*
+CreateVirtualNetwork Create a virtual network
+
+Creates an virtual network.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id Project UUID
+ @return ApiCreateVirtualNetworkRequest
+*/
+func (a *VLANsApiService) CreateVirtualNetwork(ctx context.Context, id string) ApiCreateVirtualNetworkRequest {
+	return ApiCreateVirtualNetworkRequest{
+		ApiService: a,
+		ctx:        ctx,
+		id:         id,
+	}
+}
+
+// Execute executes the request
+//  @return FindVirtualNetworks200ResponseVirtualNetworksInner
+func (a *VLANsApiService) CreateVirtualNetworkExecute(r ApiCreateVirtualNetworkRequest) (*FindVirtualNetworks200ResponseVirtualNetworksInner, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *FindVirtualNetworks200ResponseVirtualNetworksInner
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VLANsApiService.CreateVirtualNetwork")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/projects/{id}/virtual-networks"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.body == nil {
+		return localVarReturnValue, nil, reportError("body is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.body
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["x_auth_token"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["X-Auth-Token"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v DeleteAPIKey401Response
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v DeleteAPIKey401Response
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v DeleteAPIKey401Response
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v DeleteAPIKey401Response
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiDeleteVirtualNetworkRequest struct {
 	ctx        context.Context
 	ApiService *VLANsApiService
 	id         string
 }
 
-func (r ApiDeleteVirtualNetworkRequest) Execute() (*VirtualNetwork, *http.Response, error) {
+func (r ApiDeleteVirtualNetworkRequest) Execute() (*FindVirtualNetworks200ResponseVirtualNetworksInner, *http.Response, error) {
 	return r.ApiService.DeleteVirtualNetworkExecute(r)
 }
 
@@ -51,13 +219,13 @@ func (a *VLANsApiService) DeleteVirtualNetwork(ctx context.Context, id string) A
 }
 
 // Execute executes the request
-//  @return VirtualNetwork
-func (a *VLANsApiService) DeleteVirtualNetworkExecute(r ApiDeleteVirtualNetworkRequest) (*VirtualNetwork, *http.Response, error) {
+//  @return FindVirtualNetworks200ResponseVirtualNetworksInner
+func (a *VLANsApiService) DeleteVirtualNetworkExecute(r ApiDeleteVirtualNetworkRequest) (*FindVirtualNetworks200ResponseVirtualNetworksInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodDelete
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *VirtualNetwork
+		localVarReturnValue *FindVirtualNetworks200ResponseVirtualNetworksInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VLANsApiService.DeleteVirtualNetwork")
@@ -126,7 +294,7 @@ func (a *VLANsApiService) DeleteVirtualNetworkExecute(r ApiDeleteVirtualNetworkR
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -136,7 +304,7 @@ func (a *VLANsApiService) DeleteVirtualNetworkExecute(r ApiDeleteVirtualNetworkR
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -146,7 +314,7 @@ func (a *VLANsApiService) DeleteVirtualNetworkExecute(r ApiDeleteVirtualNetworkR
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -156,7 +324,193 @@ func (a *VLANsApiService) DeleteVirtualNetworkExecute(r ApiDeleteVirtualNetworkR
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
-			var v Error
+			var v DeleteAPIKey401Response
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiFindVirtualNetworksRequest struct {
+	ctx        context.Context
+	ApiService *VLANsApiService
+	id         string
+	include    *[]string
+	exclude    *[]string
+	facility   *string
+	metro      *string
+}
+
+// Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+func (r ApiFindVirtualNetworksRequest) Include(include []string) ApiFindVirtualNetworksRequest {
+	r.include = &include
+	return r
+}
+
+// Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
+func (r ApiFindVirtualNetworksRequest) Exclude(exclude []string) ApiFindVirtualNetworksRequest {
+	r.exclude = &exclude
+	return r
+}
+
+// Filter by Facility ID (uuid) or Facility Code
+func (r ApiFindVirtualNetworksRequest) Facility(facility string) ApiFindVirtualNetworksRequest {
+	r.facility = &facility
+	return r
+}
+
+// Filter by Metro ID (uuid) or Metro Code
+func (r ApiFindVirtualNetworksRequest) Metro(metro string) ApiFindVirtualNetworksRequest {
+	r.metro = &metro
+	return r
+}
+
+func (r ApiFindVirtualNetworksRequest) Execute() (*FindVirtualNetworks200Response, *http.Response, error) {
+	return r.ApiService.FindVirtualNetworksExecute(r)
+}
+
+/*
+FindVirtualNetworks Retrieve all virtual networks
+
+Provides a list of virtual networks for a single project.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id Project UUID
+ @return ApiFindVirtualNetworksRequest
+*/
+func (a *VLANsApiService) FindVirtualNetworks(ctx context.Context, id string) ApiFindVirtualNetworksRequest {
+	return ApiFindVirtualNetworksRequest{
+		ApiService: a,
+		ctx:        ctx,
+		id:         id,
+	}
+}
+
+// Execute executes the request
+//  @return FindVirtualNetworks200Response
+func (a *VLANsApiService) FindVirtualNetworksExecute(r ApiFindVirtualNetworksRequest) (*FindVirtualNetworks200Response, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *FindVirtualNetworks200Response
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VLANsApiService.FindVirtualNetworks")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/projects/{id}/virtual-networks"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.include != nil {
+		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
+	}
+	if r.exclude != nil {
+		localVarQueryParams.Add("exclude", parameterToString(*r.exclude, "csv"))
+	}
+	if r.facility != nil {
+		localVarQueryParams.Add("facility", parameterToString(*r.facility, ""))
+	}
+	if r.metro != nil {
+		localVarQueryParams.Add("metro", parameterToString(*r.metro, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["x_auth_token"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["X-Auth-Token"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v DeleteAPIKey401Response
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v DeleteAPIKey401Response
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -185,7 +539,7 @@ type ApiGetVirtualNetworkRequest struct {
 	id         string
 }
 
-func (r ApiGetVirtualNetworkRequest) Execute() (*VirtualNetwork, *http.Response, error) {
+func (r ApiGetVirtualNetworkRequest) Execute() (*FindVirtualNetworks200ResponseVirtualNetworksInner, *http.Response, error) {
 	return r.ApiService.GetVirtualNetworkExecute(r)
 }
 
@@ -207,13 +561,13 @@ func (a *VLANsApiService) GetVirtualNetwork(ctx context.Context, id string) ApiG
 }
 
 // Execute executes the request
-//  @return VirtualNetwork
-func (a *VLANsApiService) GetVirtualNetworkExecute(r ApiGetVirtualNetworkRequest) (*VirtualNetwork, *http.Response, error) {
+//  @return FindVirtualNetworks200ResponseVirtualNetworksInner
+func (a *VLANsApiService) GetVirtualNetworkExecute(r ApiGetVirtualNetworkRequest) (*FindVirtualNetworks200ResponseVirtualNetworksInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *VirtualNetwork
+		localVarReturnValue *FindVirtualNetworks200ResponseVirtualNetworksInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VLANsApiService.GetVirtualNetwork")
@@ -282,7 +636,7 @@ func (a *VLANsApiService) GetVirtualNetworkExecute(r ApiGetVirtualNetworkRequest
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -292,7 +646,7 @@ func (a *VLANsApiService) GetVirtualNetworkExecute(r ApiGetVirtualNetworkRequest
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -302,7 +656,7 @@ func (a *VLANsApiService) GetVirtualNetworkExecute(r ApiGetVirtualNetworkRequest
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -312,7 +666,7 @@ func (a *VLANsApiService) GetVirtualNetworkExecute(r ApiGetVirtualNetworkRequest
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

@@ -17,22 +17,23 @@ import (
 
 // Interconnection struct for Interconnection
 type Interconnection struct {
-	Id           *string `json:"id,omitempty"`
-	Name         *string `json:"name,omitempty"`
-	Description  *string `json:"description,omitempty"`
-	ContactEmail *string `json:"contact_email,omitempty"`
-	Status       *string `json:"status,omitempty"`
-	Type         *string `json:"type,omitempty"`
-	Redundancy   *string `json:"redundancy,omitempty"`
-	// The connection's speed in bps.
-	Speed        *int32                `json:"speed,omitempty"`
-	Tags         []string              `json:"tags,omitempty"`
-	Ports        []InterconnectionPort `json:"ports,omitempty"`
-	Facility     *Href                 `json:"facility,omitempty"`
-	Organization *Href                 `json:"organization,omitempty"`
-	Metro        *InterconnectionMetro `json:"metro,omitempty"`
+	Tags         []string                              `json:"tags,omitempty"`
+	ContactEmail *string                               `json:"contact_email,omitempty"`
+	Description  *string                               `json:"description,omitempty"`
+	Facility     *FindBatchById200ResponseDevicesInner `json:"facility,omitempty"`
+	Id           *string                               `json:"id,omitempty"`
+	Metro        *GetInterconnection200ResponseMetro   `json:"metro,omitempty"`
 	// The mode of the connection (only relevant to dedicated connections). Shared connections won't have this field. Can be either 'standard' or 'tunnel'.   The default mode of a dedicated connection is 'standard'. The mode can only be changed when there are no associated virtual circuits on the connection.   In tunnel mode, an 802.1q tunnel is added to a port to send/receive double tagged packets from server instances.
-	Mode *string `json:"mode,omitempty"`
+	Mode          *string                                           `json:"mode,omitempty"`
+	Name          *string                                           `json:"name,omitempty"`
+	Organization  *FindBatchById200ResponseDevicesInner             `json:"organization,omitempty"`
+	Ports         []GetInterconnection200ResponsePortsInner         `json:"ports,omitempty"`
+	Redundancy    *string                                           `json:"redundancy,omitempty"`
+	ServiceTokens []GetInterconnection200ResponseServiceTokensInner `json:"service_tokens,omitempty"`
+	// The connection's speed in bps.
+	Speed  *int32  `json:"speed,omitempty"`
+	Status *string `json:"status,omitempty"`
+	Type   *string `json:"type,omitempty"`
 }
 
 // NewInterconnection instantiates a new Interconnection object
@@ -52,68 +53,68 @@ func NewInterconnectionWithDefaults() *Interconnection {
 	return &this
 }
 
-// GetId returns the Id field value if set, zero value otherwise.
-func (o *Interconnection) GetId() string {
-	if o == nil || o.Id == nil {
-		var ret string
+// GetTags returns the Tags field value if set, zero value otherwise.
+func (o *Interconnection) GetTags() []string {
+	if o == nil || o.Tags == nil {
+		var ret []string
 		return ret
 	}
-	return *o.Id
+	return o.Tags
 }
 
-// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Interconnection) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+func (o *Interconnection) GetTagsOk() ([]string, bool) {
+	if o == nil || o.Tags == nil {
 		return nil, false
 	}
-	return o.Id, true
+	return o.Tags, true
 }
 
-// HasId returns a boolean if a field has been set.
-func (o *Interconnection) HasId() bool {
-	if o != nil && o.Id != nil {
+// HasTags returns a boolean if a field has been set.
+func (o *Interconnection) HasTags() bool {
+	if o != nil && o.Tags != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetId gets a reference to the given string and assigns it to the Id field.
-func (o *Interconnection) SetId(v string) {
-	o.Id = &v
+// SetTags gets a reference to the given []string and assigns it to the Tags field.
+func (o *Interconnection) SetTags(v []string) {
+	o.Tags = v
 }
 
-// GetName returns the Name field value if set, zero value otherwise.
-func (o *Interconnection) GetName() string {
-	if o == nil || o.Name == nil {
+// GetContactEmail returns the ContactEmail field value if set, zero value otherwise.
+func (o *Interconnection) GetContactEmail() string {
+	if o == nil || o.ContactEmail == nil {
 		var ret string
 		return ret
 	}
-	return *o.Name
+	return *o.ContactEmail
 }
 
-// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// GetContactEmailOk returns a tuple with the ContactEmail field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Interconnection) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
+func (o *Interconnection) GetContactEmailOk() (*string, bool) {
+	if o == nil || o.ContactEmail == nil {
 		return nil, false
 	}
-	return o.Name, true
+	return o.ContactEmail, true
 }
 
-// HasName returns a boolean if a field has been set.
-func (o *Interconnection) HasName() bool {
-	if o != nil && o.Name != nil {
+// HasContactEmail returns a boolean if a field has been set.
+func (o *Interconnection) HasContactEmail() bool {
+	if o != nil && o.ContactEmail != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetName gets a reference to the given string and assigns it to the Name field.
-func (o *Interconnection) SetName(v string) {
-	o.Name = &v
+// SetContactEmail gets a reference to the given string and assigns it to the ContactEmail field.
+func (o *Interconnection) SetContactEmail(v string) {
+	o.ContactEmail = &v
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise.
@@ -148,36 +149,324 @@ func (o *Interconnection) SetDescription(v string) {
 	o.Description = &v
 }
 
-// GetContactEmail returns the ContactEmail field value if set, zero value otherwise.
-func (o *Interconnection) GetContactEmail() string {
-	if o == nil || o.ContactEmail == nil {
-		var ret string
+// GetFacility returns the Facility field value if set, zero value otherwise.
+func (o *Interconnection) GetFacility() FindBatchById200ResponseDevicesInner {
+	if o == nil || o.Facility == nil {
+		var ret FindBatchById200ResponseDevicesInner
 		return ret
 	}
-	return *o.ContactEmail
+	return *o.Facility
 }
 
-// GetContactEmailOk returns a tuple with the ContactEmail field value if set, nil otherwise
+// GetFacilityOk returns a tuple with the Facility field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Interconnection) GetContactEmailOk() (*string, bool) {
-	if o == nil || o.ContactEmail == nil {
+func (o *Interconnection) GetFacilityOk() (*FindBatchById200ResponseDevicesInner, bool) {
+	if o == nil || o.Facility == nil {
 		return nil, false
 	}
-	return o.ContactEmail, true
+	return o.Facility, true
 }
 
-// HasContactEmail returns a boolean if a field has been set.
-func (o *Interconnection) HasContactEmail() bool {
-	if o != nil && o.ContactEmail != nil {
+// HasFacility returns a boolean if a field has been set.
+func (o *Interconnection) HasFacility() bool {
+	if o != nil && o.Facility != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetContactEmail gets a reference to the given string and assigns it to the ContactEmail field.
-func (o *Interconnection) SetContactEmail(v string) {
-	o.ContactEmail = &v
+// SetFacility gets a reference to the given FindBatchById200ResponseDevicesInner and assigns it to the Facility field.
+func (o *Interconnection) SetFacility(v FindBatchById200ResponseDevicesInner) {
+	o.Facility = &v
+}
+
+// GetId returns the Id field value if set, zero value otherwise.
+func (o *Interconnection) GetId() string {
+	if o == nil || o.Id == nil {
+		var ret string
+		return ret
+	}
+	return *o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Interconnection) GetIdOk() (*string, bool) {
+	if o == nil || o.Id == nil {
+		return nil, false
+	}
+	return o.Id, true
+}
+
+// HasId returns a boolean if a field has been set.
+func (o *Interconnection) HasId() bool {
+	if o != nil && o.Id != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given string and assigns it to the Id field.
+func (o *Interconnection) SetId(v string) {
+	o.Id = &v
+}
+
+// GetMetro returns the Metro field value if set, zero value otherwise.
+func (o *Interconnection) GetMetro() GetInterconnection200ResponseMetro {
+	if o == nil || o.Metro == nil {
+		var ret GetInterconnection200ResponseMetro
+		return ret
+	}
+	return *o.Metro
+}
+
+// GetMetroOk returns a tuple with the Metro field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Interconnection) GetMetroOk() (*GetInterconnection200ResponseMetro, bool) {
+	if o == nil || o.Metro == nil {
+		return nil, false
+	}
+	return o.Metro, true
+}
+
+// HasMetro returns a boolean if a field has been set.
+func (o *Interconnection) HasMetro() bool {
+	if o != nil && o.Metro != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMetro gets a reference to the given GetInterconnection200ResponseMetro and assigns it to the Metro field.
+func (o *Interconnection) SetMetro(v GetInterconnection200ResponseMetro) {
+	o.Metro = &v
+}
+
+// GetMode returns the Mode field value if set, zero value otherwise.
+func (o *Interconnection) GetMode() string {
+	if o == nil || o.Mode == nil {
+		var ret string
+		return ret
+	}
+	return *o.Mode
+}
+
+// GetModeOk returns a tuple with the Mode field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Interconnection) GetModeOk() (*string, bool) {
+	if o == nil || o.Mode == nil {
+		return nil, false
+	}
+	return o.Mode, true
+}
+
+// HasMode returns a boolean if a field has been set.
+func (o *Interconnection) HasMode() bool {
+	if o != nil && o.Mode != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMode gets a reference to the given string and assigns it to the Mode field.
+func (o *Interconnection) SetMode(v string) {
+	o.Mode = &v
+}
+
+// GetName returns the Name field value if set, zero value otherwise.
+func (o *Interconnection) GetName() string {
+	if o == nil || o.Name == nil {
+		var ret string
+		return ret
+	}
+	return *o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Interconnection) GetNameOk() (*string, bool) {
+	if o == nil || o.Name == nil {
+		return nil, false
+	}
+	return o.Name, true
+}
+
+// HasName returns a boolean if a field has been set.
+func (o *Interconnection) HasName() bool {
+	if o != nil && o.Name != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetName gets a reference to the given string and assigns it to the Name field.
+func (o *Interconnection) SetName(v string) {
+	o.Name = &v
+}
+
+// GetOrganization returns the Organization field value if set, zero value otherwise.
+func (o *Interconnection) GetOrganization() FindBatchById200ResponseDevicesInner {
+	if o == nil || o.Organization == nil {
+		var ret FindBatchById200ResponseDevicesInner
+		return ret
+	}
+	return *o.Organization
+}
+
+// GetOrganizationOk returns a tuple with the Organization field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Interconnection) GetOrganizationOk() (*FindBatchById200ResponseDevicesInner, bool) {
+	if o == nil || o.Organization == nil {
+		return nil, false
+	}
+	return o.Organization, true
+}
+
+// HasOrganization returns a boolean if a field has been set.
+func (o *Interconnection) HasOrganization() bool {
+	if o != nil && o.Organization != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetOrganization gets a reference to the given FindBatchById200ResponseDevicesInner and assigns it to the Organization field.
+func (o *Interconnection) SetOrganization(v FindBatchById200ResponseDevicesInner) {
+	o.Organization = &v
+}
+
+// GetPorts returns the Ports field value if set, zero value otherwise.
+func (o *Interconnection) GetPorts() []GetInterconnection200ResponsePortsInner {
+	if o == nil || o.Ports == nil {
+		var ret []GetInterconnection200ResponsePortsInner
+		return ret
+	}
+	return o.Ports
+}
+
+// GetPortsOk returns a tuple with the Ports field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Interconnection) GetPortsOk() ([]GetInterconnection200ResponsePortsInner, bool) {
+	if o == nil || o.Ports == nil {
+		return nil, false
+	}
+	return o.Ports, true
+}
+
+// HasPorts returns a boolean if a field has been set.
+func (o *Interconnection) HasPorts() bool {
+	if o != nil && o.Ports != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPorts gets a reference to the given []GetInterconnection200ResponsePortsInner and assigns it to the Ports field.
+func (o *Interconnection) SetPorts(v []GetInterconnection200ResponsePortsInner) {
+	o.Ports = v
+}
+
+// GetRedundancy returns the Redundancy field value if set, zero value otherwise.
+func (o *Interconnection) GetRedundancy() string {
+	if o == nil || o.Redundancy == nil {
+		var ret string
+		return ret
+	}
+	return *o.Redundancy
+}
+
+// GetRedundancyOk returns a tuple with the Redundancy field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Interconnection) GetRedundancyOk() (*string, bool) {
+	if o == nil || o.Redundancy == nil {
+		return nil, false
+	}
+	return o.Redundancy, true
+}
+
+// HasRedundancy returns a boolean if a field has been set.
+func (o *Interconnection) HasRedundancy() bool {
+	if o != nil && o.Redundancy != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetRedundancy gets a reference to the given string and assigns it to the Redundancy field.
+func (o *Interconnection) SetRedundancy(v string) {
+	o.Redundancy = &v
+}
+
+// GetServiceTokens returns the ServiceTokens field value if set, zero value otherwise.
+func (o *Interconnection) GetServiceTokens() []GetInterconnection200ResponseServiceTokensInner {
+	if o == nil || o.ServiceTokens == nil {
+		var ret []GetInterconnection200ResponseServiceTokensInner
+		return ret
+	}
+	return o.ServiceTokens
+}
+
+// GetServiceTokensOk returns a tuple with the ServiceTokens field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Interconnection) GetServiceTokensOk() ([]GetInterconnection200ResponseServiceTokensInner, bool) {
+	if o == nil || o.ServiceTokens == nil {
+		return nil, false
+	}
+	return o.ServiceTokens, true
+}
+
+// HasServiceTokens returns a boolean if a field has been set.
+func (o *Interconnection) HasServiceTokens() bool {
+	if o != nil && o.ServiceTokens != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetServiceTokens gets a reference to the given []GetInterconnection200ResponseServiceTokensInner and assigns it to the ServiceTokens field.
+func (o *Interconnection) SetServiceTokens(v []GetInterconnection200ResponseServiceTokensInner) {
+	o.ServiceTokens = v
+}
+
+// GetSpeed returns the Speed field value if set, zero value otherwise.
+func (o *Interconnection) GetSpeed() int32 {
+	if o == nil || o.Speed == nil {
+		var ret int32
+		return ret
+	}
+	return *o.Speed
+}
+
+// GetSpeedOk returns a tuple with the Speed field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Interconnection) GetSpeedOk() (*int32, bool) {
+	if o == nil || o.Speed == nil {
+		return nil, false
+	}
+	return o.Speed, true
+}
+
+// HasSpeed returns a boolean if a field has been set.
+func (o *Interconnection) HasSpeed() bool {
+	if o != nil && o.Speed != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSpeed gets a reference to the given int32 and assigns it to the Speed field.
+func (o *Interconnection) SetSpeed(v int32) {
+	o.Speed = &v
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
@@ -244,305 +533,52 @@ func (o *Interconnection) SetType(v string) {
 	o.Type = &v
 }
 
-// GetRedundancy returns the Redundancy field value if set, zero value otherwise.
-func (o *Interconnection) GetRedundancy() string {
-	if o == nil || o.Redundancy == nil {
-		var ret string
-		return ret
-	}
-	return *o.Redundancy
-}
-
-// GetRedundancyOk returns a tuple with the Redundancy field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Interconnection) GetRedundancyOk() (*string, bool) {
-	if o == nil || o.Redundancy == nil {
-		return nil, false
-	}
-	return o.Redundancy, true
-}
-
-// HasRedundancy returns a boolean if a field has been set.
-func (o *Interconnection) HasRedundancy() bool {
-	if o != nil && o.Redundancy != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetRedundancy gets a reference to the given string and assigns it to the Redundancy field.
-func (o *Interconnection) SetRedundancy(v string) {
-	o.Redundancy = &v
-}
-
-// GetSpeed returns the Speed field value if set, zero value otherwise.
-func (o *Interconnection) GetSpeed() int32 {
-	if o == nil || o.Speed == nil {
-		var ret int32
-		return ret
-	}
-	return *o.Speed
-}
-
-// GetSpeedOk returns a tuple with the Speed field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Interconnection) GetSpeedOk() (*int32, bool) {
-	if o == nil || o.Speed == nil {
-		return nil, false
-	}
-	return o.Speed, true
-}
-
-// HasSpeed returns a boolean if a field has been set.
-func (o *Interconnection) HasSpeed() bool {
-	if o != nil && o.Speed != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetSpeed gets a reference to the given int32 and assigns it to the Speed field.
-func (o *Interconnection) SetSpeed(v int32) {
-	o.Speed = &v
-}
-
-// GetTags returns the Tags field value if set, zero value otherwise.
-func (o *Interconnection) GetTags() []string {
-	if o == nil || o.Tags == nil {
-		var ret []string
-		return ret
-	}
-	return o.Tags
-}
-
-// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Interconnection) GetTagsOk() ([]string, bool) {
-	if o == nil || o.Tags == nil {
-		return nil, false
-	}
-	return o.Tags, true
-}
-
-// HasTags returns a boolean if a field has been set.
-func (o *Interconnection) HasTags() bool {
-	if o != nil && o.Tags != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetTags gets a reference to the given []string and assigns it to the Tags field.
-func (o *Interconnection) SetTags(v []string) {
-	o.Tags = v
-}
-
-// GetPorts returns the Ports field value if set, zero value otherwise.
-func (o *Interconnection) GetPorts() []InterconnectionPort {
-	if o == nil || o.Ports == nil {
-		var ret []InterconnectionPort
-		return ret
-	}
-	return o.Ports
-}
-
-// GetPortsOk returns a tuple with the Ports field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Interconnection) GetPortsOk() ([]InterconnectionPort, bool) {
-	if o == nil || o.Ports == nil {
-		return nil, false
-	}
-	return o.Ports, true
-}
-
-// HasPorts returns a boolean if a field has been set.
-func (o *Interconnection) HasPorts() bool {
-	if o != nil && o.Ports != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetPorts gets a reference to the given []InterconnectionPort and assigns it to the Ports field.
-func (o *Interconnection) SetPorts(v []InterconnectionPort) {
-	o.Ports = v
-}
-
-// GetFacility returns the Facility field value if set, zero value otherwise.
-func (o *Interconnection) GetFacility() Href {
-	if o == nil || o.Facility == nil {
-		var ret Href
-		return ret
-	}
-	return *o.Facility
-}
-
-// GetFacilityOk returns a tuple with the Facility field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Interconnection) GetFacilityOk() (*Href, bool) {
-	if o == nil || o.Facility == nil {
-		return nil, false
-	}
-	return o.Facility, true
-}
-
-// HasFacility returns a boolean if a field has been set.
-func (o *Interconnection) HasFacility() bool {
-	if o != nil && o.Facility != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetFacility gets a reference to the given Href and assigns it to the Facility field.
-func (o *Interconnection) SetFacility(v Href) {
-	o.Facility = &v
-}
-
-// GetOrganization returns the Organization field value if set, zero value otherwise.
-func (o *Interconnection) GetOrganization() Href {
-	if o == nil || o.Organization == nil {
-		var ret Href
-		return ret
-	}
-	return *o.Organization
-}
-
-// GetOrganizationOk returns a tuple with the Organization field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Interconnection) GetOrganizationOk() (*Href, bool) {
-	if o == nil || o.Organization == nil {
-		return nil, false
-	}
-	return o.Organization, true
-}
-
-// HasOrganization returns a boolean if a field has been set.
-func (o *Interconnection) HasOrganization() bool {
-	if o != nil && o.Organization != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetOrganization gets a reference to the given Href and assigns it to the Organization field.
-func (o *Interconnection) SetOrganization(v Href) {
-	o.Organization = &v
-}
-
-// GetMetro returns the Metro field value if set, zero value otherwise.
-func (o *Interconnection) GetMetro() InterconnectionMetro {
-	if o == nil || o.Metro == nil {
-		var ret InterconnectionMetro
-		return ret
-	}
-	return *o.Metro
-}
-
-// GetMetroOk returns a tuple with the Metro field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Interconnection) GetMetroOk() (*InterconnectionMetro, bool) {
-	if o == nil || o.Metro == nil {
-		return nil, false
-	}
-	return o.Metro, true
-}
-
-// HasMetro returns a boolean if a field has been set.
-func (o *Interconnection) HasMetro() bool {
-	if o != nil && o.Metro != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetMetro gets a reference to the given InterconnectionMetro and assigns it to the Metro field.
-func (o *Interconnection) SetMetro(v InterconnectionMetro) {
-	o.Metro = &v
-}
-
-// GetMode returns the Mode field value if set, zero value otherwise.
-func (o *Interconnection) GetMode() string {
-	if o == nil || o.Mode == nil {
-		var ret string
-		return ret
-	}
-	return *o.Mode
-}
-
-// GetModeOk returns a tuple with the Mode field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Interconnection) GetModeOk() (*string, bool) {
-	if o == nil || o.Mode == nil {
-		return nil, false
-	}
-	return o.Mode, true
-}
-
-// HasMode returns a boolean if a field has been set.
-func (o *Interconnection) HasMode() bool {
-	if o != nil && o.Mode != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetMode gets a reference to the given string and assigns it to the Mode field.
-func (o *Interconnection) SetMode(v string) {
-	o.Mode = &v
-}
-
 func (o Interconnection) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
-	}
-	if o.Name != nil {
-		toSerialize["name"] = o.Name
-	}
-	if o.Description != nil {
-		toSerialize["description"] = o.Description
+	if o.Tags != nil {
+		toSerialize["tags"] = o.Tags
 	}
 	if o.ContactEmail != nil {
 		toSerialize["contact_email"] = o.ContactEmail
 	}
-	if o.Status != nil {
-		toSerialize["status"] = o.Status
-	}
-	if o.Type != nil {
-		toSerialize["type"] = o.Type
-	}
-	if o.Redundancy != nil {
-		toSerialize["redundancy"] = o.Redundancy
-	}
-	if o.Speed != nil {
-		toSerialize["speed"] = o.Speed
-	}
-	if o.Tags != nil {
-		toSerialize["tags"] = o.Tags
-	}
-	if o.Ports != nil {
-		toSerialize["ports"] = o.Ports
+	if o.Description != nil {
+		toSerialize["description"] = o.Description
 	}
 	if o.Facility != nil {
 		toSerialize["facility"] = o.Facility
 	}
-	if o.Organization != nil {
-		toSerialize["organization"] = o.Organization
+	if o.Id != nil {
+		toSerialize["id"] = o.Id
 	}
 	if o.Metro != nil {
 		toSerialize["metro"] = o.Metro
 	}
 	if o.Mode != nil {
 		toSerialize["mode"] = o.Mode
+	}
+	if o.Name != nil {
+		toSerialize["name"] = o.Name
+	}
+	if o.Organization != nil {
+		toSerialize["organization"] = o.Organization
+	}
+	if o.Ports != nil {
+		toSerialize["ports"] = o.Ports
+	}
+	if o.Redundancy != nil {
+		toSerialize["redundancy"] = o.Redundancy
+	}
+	if o.ServiceTokens != nil {
+		toSerialize["service_tokens"] = o.ServiceTokens
+	}
+	if o.Speed != nil {
+		toSerialize["speed"] = o.Speed
+	}
+	if o.Status != nil {
+		toSerialize["status"] = o.Status
+	}
+	if o.Type != nil {
+		toSerialize["type"] = o.Type
 	}
 	return json.Marshal(toSerialize)
 }

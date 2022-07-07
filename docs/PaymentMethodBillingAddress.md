@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**StreetAddress** | Pointer to **string** |  | [optional] 
-**PostalCode** | Pointer to **string** |  | [optional] 
 **CountryCodeAlpha2** | Pointer to **string** |  | [optional] 
+**PostalCode** | Pointer to **string** |  | [optional] 
+**StreetAddress** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -27,30 +27,30 @@ NewPaymentMethodBillingAddressWithDefaults instantiates a new PaymentMethodBilli
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetStreetAddress
+### GetCountryCodeAlpha2
 
-`func (o *PaymentMethodBillingAddress) GetStreetAddress() string`
+`func (o *PaymentMethodBillingAddress) GetCountryCodeAlpha2() string`
 
-GetStreetAddress returns the StreetAddress field if non-nil, zero value otherwise.
+GetCountryCodeAlpha2 returns the CountryCodeAlpha2 field if non-nil, zero value otherwise.
 
-### GetStreetAddressOk
+### GetCountryCodeAlpha2Ok
 
-`func (o *PaymentMethodBillingAddress) GetStreetAddressOk() (*string, bool)`
+`func (o *PaymentMethodBillingAddress) GetCountryCodeAlpha2Ok() (*string, bool)`
 
-GetStreetAddressOk returns a tuple with the StreetAddress field if it's non-nil, zero value otherwise
+GetCountryCodeAlpha2Ok returns a tuple with the CountryCodeAlpha2 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetStreetAddress
+### SetCountryCodeAlpha2
 
-`func (o *PaymentMethodBillingAddress) SetStreetAddress(v string)`
+`func (o *PaymentMethodBillingAddress) SetCountryCodeAlpha2(v string)`
 
-SetStreetAddress sets StreetAddress field to given value.
+SetCountryCodeAlpha2 sets CountryCodeAlpha2 field to given value.
 
-### HasStreetAddress
+### HasCountryCodeAlpha2
 
-`func (o *PaymentMethodBillingAddress) HasStreetAddress() bool`
+`func (o *PaymentMethodBillingAddress) HasCountryCodeAlpha2() bool`
 
-HasStreetAddress returns a boolean if a field has been set.
+HasCountryCodeAlpha2 returns a boolean if a field has been set.
 
 ### GetPostalCode
 
@@ -77,30 +77,30 @@ SetPostalCode sets PostalCode field to given value.
 
 HasPostalCode returns a boolean if a field has been set.
 
-### GetCountryCodeAlpha2
+### GetStreetAddress
 
-`func (o *PaymentMethodBillingAddress) GetCountryCodeAlpha2() string`
+`func (o *PaymentMethodBillingAddress) GetStreetAddress() string`
 
-GetCountryCodeAlpha2 returns the CountryCodeAlpha2 field if non-nil, zero value otherwise.
+GetStreetAddress returns the StreetAddress field if non-nil, zero value otherwise.
 
-### GetCountryCodeAlpha2Ok
+### GetStreetAddressOk
 
-`func (o *PaymentMethodBillingAddress) GetCountryCodeAlpha2Ok() (*string, bool)`
+`func (o *PaymentMethodBillingAddress) GetStreetAddressOk() (*string, bool)`
 
-GetCountryCodeAlpha2Ok returns a tuple with the CountryCodeAlpha2 field if it's non-nil, zero value otherwise
+GetStreetAddressOk returns a tuple with the StreetAddress field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetCountryCodeAlpha2
+### SetStreetAddress
 
-`func (o *PaymentMethodBillingAddress) SetCountryCodeAlpha2(v string)`
+`func (o *PaymentMethodBillingAddress) SetStreetAddress(v string)`
 
-SetCountryCodeAlpha2 sets CountryCodeAlpha2 field to given value.
+SetStreetAddress sets StreetAddress field to given value.
 
-### HasCountryCodeAlpha2
+### HasStreetAddress
 
-`func (o *PaymentMethodBillingAddress) HasCountryCodeAlpha2() bool`
+`func (o *PaymentMethodBillingAddress) HasStreetAddress() bool`
 
-HasCountryCodeAlpha2 returns a boolean if a field has been set.
+HasStreetAddress returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

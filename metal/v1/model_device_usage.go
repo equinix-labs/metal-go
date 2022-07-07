@@ -18,8 +18,8 @@ import (
 // DeviceUsage struct for DeviceUsage
 type DeviceUsage struct {
 	Quantity *string `json:"quantity,omitempty"`
-	Unit     *string `json:"unit,omitempty"`
 	Total    *string `json:"total,omitempty"`
+	Unit     *string `json:"unit,omitempty"`
 }
 
 // NewDeviceUsage instantiates a new DeviceUsage object
@@ -71,38 +71,6 @@ func (o *DeviceUsage) SetQuantity(v string) {
 	o.Quantity = &v
 }
 
-// GetUnit returns the Unit field value if set, zero value otherwise.
-func (o *DeviceUsage) GetUnit() string {
-	if o == nil || o.Unit == nil {
-		var ret string
-		return ret
-	}
-	return *o.Unit
-}
-
-// GetUnitOk returns a tuple with the Unit field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *DeviceUsage) GetUnitOk() (*string, bool) {
-	if o == nil || o.Unit == nil {
-		return nil, false
-	}
-	return o.Unit, true
-}
-
-// HasUnit returns a boolean if a field has been set.
-func (o *DeviceUsage) HasUnit() bool {
-	if o != nil && o.Unit != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetUnit gets a reference to the given string and assigns it to the Unit field.
-func (o *DeviceUsage) SetUnit(v string) {
-	o.Unit = &v
-}
-
 // GetTotal returns the Total field value if set, zero value otherwise.
 func (o *DeviceUsage) GetTotal() string {
 	if o == nil || o.Total == nil {
@@ -135,16 +103,48 @@ func (o *DeviceUsage) SetTotal(v string) {
 	o.Total = &v
 }
 
+// GetUnit returns the Unit field value if set, zero value otherwise.
+func (o *DeviceUsage) GetUnit() string {
+	if o == nil || o.Unit == nil {
+		var ret string
+		return ret
+	}
+	return *o.Unit
+}
+
+// GetUnitOk returns a tuple with the Unit field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DeviceUsage) GetUnitOk() (*string, bool) {
+	if o == nil || o.Unit == nil {
+		return nil, false
+	}
+	return o.Unit, true
+}
+
+// HasUnit returns a boolean if a field has been set.
+func (o *DeviceUsage) HasUnit() bool {
+	if o != nil && o.Unit != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetUnit gets a reference to the given string and assigns it to the Unit field.
+func (o *DeviceUsage) SetUnit(v string) {
+	o.Unit = &v
+}
+
 func (o DeviceUsage) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Quantity != nil {
 		toSerialize["quantity"] = o.Quantity
 	}
-	if o.Unit != nil {
-		toSerialize["unit"] = o.Unit
-	}
 	if o.Total != nil {
 		toSerialize["total"] = o.Total
+	}
+	if o.Unit != nil {
+		toSerialize["unit"] = o.Unit
 	}
 	return json.Marshal(toSerialize)
 }

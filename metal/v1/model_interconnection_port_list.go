@@ -17,7 +17,7 @@ import (
 
 // InterconnectionPortList struct for InterconnectionPortList
 type InterconnectionPortList struct {
-	Ports []InterconnectionPort `json:"ports,omitempty"`
+	Ports []GetInterconnection200ResponsePortsInner `json:"ports,omitempty"`
 }
 
 // NewInterconnectionPortList instantiates a new InterconnectionPortList object
@@ -38,9 +38,9 @@ func NewInterconnectionPortListWithDefaults() *InterconnectionPortList {
 }
 
 // GetPorts returns the Ports field value if set, zero value otherwise.
-func (o *InterconnectionPortList) GetPorts() []InterconnectionPort {
+func (o *InterconnectionPortList) GetPorts() []GetInterconnection200ResponsePortsInner {
 	if o == nil || o.Ports == nil {
-		var ret []InterconnectionPort
+		var ret []GetInterconnection200ResponsePortsInner
 		return ret
 	}
 	return o.Ports
@@ -48,7 +48,7 @@ func (o *InterconnectionPortList) GetPorts() []InterconnectionPort {
 
 // GetPortsOk returns a tuple with the Ports field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InterconnectionPortList) GetPortsOk() ([]InterconnectionPort, bool) {
+func (o *InterconnectionPortList) GetPortsOk() ([]GetInterconnection200ResponsePortsInner, bool) {
 	if o == nil || o.Ports == nil {
 		return nil, false
 	}
@@ -64,8 +64,8 @@ func (o *InterconnectionPortList) HasPorts() bool {
 	return false
 }
 
-// SetPorts gets a reference to the given []InterconnectionPort and assigns it to the Ports field.
-func (o *InterconnectionPortList) SetPorts(v []InterconnectionPort) {
+// SetPorts gets a reference to the given []GetInterconnection200ResponsePortsInner and assigns it to the Ports field.
+func (o *InterconnectionPortList) SetPorts(v []GetInterconnection200ResponsePortsInner) {
 	o.Ports = v
 }
 

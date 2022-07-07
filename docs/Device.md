@@ -4,44 +4,44 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **string** |  | [optional] 
-**ShortId** | Pointer to **string** |  | [optional] 
-**Hostname** | Pointer to **string** |  | [optional] 
-**Description** | Pointer to **string** |  | [optional] 
-**State** | Pointer to **string** |  | [optional] 
 **Tags** | Pointer to **[]string** |  | [optional] 
-**ImageUrl** | Pointer to **string** |  | [optional] 
+**AlwaysPxe** | Pointer to **bool** |  | [optional] 
 **BillingCycle** | Pointer to **string** |  | [optional] 
-**User** | Pointer to **string** |  | [optional] 
-**Iqn** | Pointer to **string** |  | [optional] 
-**Locked** | Pointer to **bool** |  | [optional] 
 **BondingMode** | Pointer to **int32** |  | [optional] 
 **CreatedAt** | Pointer to **time.Time** |  | [optional] 
-**CreatedBy** | Pointer to [**DeviceCreatedBy**](DeviceCreatedBy.md) |  | [optional] 
-**UpdatedAt** | Pointer to **time.Time** |  | [optional] 
+**CreatedBy** | Pointer to [**FindDeviceById200ResponseCreatedBy**](FindDeviceById200ResponseCreatedBy.md) |  | [optional] 
+**Customdata** | Pointer to **map[string]interface{}** |  | [optional] 
+**Description** | Pointer to **string** |  | [optional] 
+**Facility** | Pointer to [**FindDeviceById200ResponseFacility**](FindDeviceById200ResponseFacility.md) |  | [optional] 
+**HardwareReservation** | Pointer to [**FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
+**Hostname** | Pointer to **string** |  | [optional] 
+**Href** | Pointer to **string** |  | [optional] 
+**Id** | Pointer to **string** |  | [optional] 
+**ImageUrl** | Pointer to **string** |  | [optional] 
+**IpAddresses** | Pointer to [**[]FindDeviceById200ResponseIpAddressesInner**](FindDeviceById200ResponseIpAddressesInner.md) |  | [optional] 
+**IpxeScriptUrl** | Pointer to **string** |  | [optional] 
+**Iqn** | Pointer to **string** |  | [optional] 
+**Locked** | Pointer to **bool** |  | [optional] 
+**Metro** | Pointer to [**FindDeviceById200ResponseFacilityMetro**](FindDeviceById200ResponseFacilityMetro.md) |  | [optional] 
+**NetworkPorts** | Pointer to [**FindDeviceById200ResponseNetworkPorts**](FindDeviceById200ResponseNetworkPorts.md) |  | [optional] 
+**OperatingSystem** | Pointer to [**FindDeviceById200ResponseOperatingSystem**](FindDeviceById200ResponseOperatingSystem.md) |  | [optional] 
+**Plan** | Pointer to [**FindDeviceById200ResponsePlan**](FindDeviceById200ResponsePlan.md) |  | [optional] 
+**Project** | Pointer to [**FindDeviceById200ResponseProject**](FindDeviceById200ResponseProject.md) |  | [optional] 
+**ProjectLite** | Pointer to [**FindDeviceById200ResponseProjectLite**](FindDeviceById200ResponseProjectLite.md) |  | [optional] 
+**ProvisioningEvents** | Pointer to [**[]FindConnectionEvents200Response**](FindConnectionEvents200Response.md) |  | [optional] 
+**ProvisioningPercentage** | Pointer to **float32** | Only visible while device provisioning | [optional] 
+**RootPassword** | Pointer to **string** | Root password is automatically generated when server is provisioned and it is removed after 24 hours | [optional] 
+**ShortId** | Pointer to **string** |  | [optional] 
 **SpotInstance** | Pointer to **bool** | Whether or not the device is a spot instance. | [optional] 
 **SpotPriceMax** | Pointer to **float32** | The maximum price per hour you are willing to pay to keep this spot instance.  If you are outbid, the termination will be set allowing two minutes before shutdown. | [optional] 
-**TerminationTime** | Pointer to **time.Time** | When the device will be terminated. This is commonly set in advance for ephemeral spot market instances but this field may also be set with on-demand and reservation instances to automatically delete the resource at a given time. The termination time can also be used to release a hardware reservation instance at a given time, keeping the reservation open for other uses.  On a spot market device, the termination time will be set automatically when outbid. | [optional] 
-**Customdata** | Pointer to **map[string]interface{}** |  | [optional] 
-**ProvisioningPercentage** | Pointer to **float32** | Only visible while device provisioning | [optional] 
-**OperatingSystem** | Pointer to [**OperatingSystem**](OperatingSystem.md) |  | [optional] 
-**AlwaysPxe** | Pointer to **bool** |  | [optional] 
-**IpxeScriptUrl** | Pointer to **string** |  | [optional] 
-**Facility** | Pointer to [**Facility**](Facility.md) |  | [optional] 
-**Metro** | Pointer to [**FacilityMetro**](FacilityMetro.md) |  | [optional] 
-**Plan** | Pointer to [**Plan**](Plan.md) |  | [optional] 
-**Userdata** | Pointer to **string** |  | [optional] 
-**RootPassword** | Pointer to **string** | Root password is automatically generated when server is provisioned and it is removed after 24 hours | [optional] 
+**SshKeys** | Pointer to [**[]FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
+**State** | Pointer to **string** |  | [optional] 
 **SwitchUuid** | Pointer to **string** | Switch short id. This can be used to determine if two devices are connected to the same switch, for example. | [optional] 
-**NetworkPorts** | Pointer to [**DeviceNetworkPorts**](DeviceNetworkPorts.md) |  | [optional] 
-**Href** | Pointer to **string** |  | [optional] 
-**Project** | Pointer to [**DeviceProject**](DeviceProject.md) |  | [optional] 
-**ProjectLite** | Pointer to [**DeviceProjectLite**](DeviceProjectLite.md) |  | [optional] 
-**Volumes** | Pointer to [**[]Href**](Href.md) |  | [optional] 
-**HardwareReservation** | Pointer to [**Href**](Href.md) |  | [optional] 
-**SshKeys** | Pointer to [**[]Href**](Href.md) |  | [optional] 
-**IpAddresses** | Pointer to [**[]IPAssignment**](IPAssignment.md) |  | [optional] 
-**ProvisioningEvents** | Pointer to [**[]Event**](Event.md) |  | [optional] 
+**TerminationTime** | Pointer to **time.Time** | When the device will be terminated. This is commonly set in advance for ephemeral spot market instances but this field may also be set with on-demand and reservation instances to automatically delete the resource at a given time. The termination time can also be used to release a hardware reservation instance at a given time, keeping the reservation open for other uses.  On a spot market device, the termination time will be set automatically when outbid. | [optional] 
+**UpdatedAt** | Pointer to **time.Time** |  | [optional] 
+**User** | Pointer to **string** |  | [optional] 
+**Userdata** | Pointer to **string** |  | [optional] 
+**Volumes** | Pointer to [**[]FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
 
 ## Methods
 
@@ -61,131 +61,6 @@ will change when the set of required properties is changed
 NewDeviceWithDefaults instantiates a new Device object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetId
-
-`func (o *Device) GetId() string`
-
-GetId returns the Id field if non-nil, zero value otherwise.
-
-### GetIdOk
-
-`func (o *Device) GetIdOk() (*string, bool)`
-
-GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetId
-
-`func (o *Device) SetId(v string)`
-
-SetId sets Id field to given value.
-
-### HasId
-
-`func (o *Device) HasId() bool`
-
-HasId returns a boolean if a field has been set.
-
-### GetShortId
-
-`func (o *Device) GetShortId() string`
-
-GetShortId returns the ShortId field if non-nil, zero value otherwise.
-
-### GetShortIdOk
-
-`func (o *Device) GetShortIdOk() (*string, bool)`
-
-GetShortIdOk returns a tuple with the ShortId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetShortId
-
-`func (o *Device) SetShortId(v string)`
-
-SetShortId sets ShortId field to given value.
-
-### HasShortId
-
-`func (o *Device) HasShortId() bool`
-
-HasShortId returns a boolean if a field has been set.
-
-### GetHostname
-
-`func (o *Device) GetHostname() string`
-
-GetHostname returns the Hostname field if non-nil, zero value otherwise.
-
-### GetHostnameOk
-
-`func (o *Device) GetHostnameOk() (*string, bool)`
-
-GetHostnameOk returns a tuple with the Hostname field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetHostname
-
-`func (o *Device) SetHostname(v string)`
-
-SetHostname sets Hostname field to given value.
-
-### HasHostname
-
-`func (o *Device) HasHostname() bool`
-
-HasHostname returns a boolean if a field has been set.
-
-### GetDescription
-
-`func (o *Device) GetDescription() string`
-
-GetDescription returns the Description field if non-nil, zero value otherwise.
-
-### GetDescriptionOk
-
-`func (o *Device) GetDescriptionOk() (*string, bool)`
-
-GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDescription
-
-`func (o *Device) SetDescription(v string)`
-
-SetDescription sets Description field to given value.
-
-### HasDescription
-
-`func (o *Device) HasDescription() bool`
-
-HasDescription returns a boolean if a field has been set.
-
-### GetState
-
-`func (o *Device) GetState() string`
-
-GetState returns the State field if non-nil, zero value otherwise.
-
-### GetStateOk
-
-`func (o *Device) GetStateOk() (*string, bool)`
-
-GetStateOk returns a tuple with the State field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetState
-
-`func (o *Device) SetState(v string)`
-
-SetState sets State field to given value.
-
-### HasState
-
-`func (o *Device) HasState() bool`
-
-HasState returns a boolean if a field has been set.
 
 ### GetTags
 
@@ -212,30 +87,30 @@ SetTags sets Tags field to given value.
 
 HasTags returns a boolean if a field has been set.
 
-### GetImageUrl
+### GetAlwaysPxe
 
-`func (o *Device) GetImageUrl() string`
+`func (o *Device) GetAlwaysPxe() bool`
 
-GetImageUrl returns the ImageUrl field if non-nil, zero value otherwise.
+GetAlwaysPxe returns the AlwaysPxe field if non-nil, zero value otherwise.
 
-### GetImageUrlOk
+### GetAlwaysPxeOk
 
-`func (o *Device) GetImageUrlOk() (*string, bool)`
+`func (o *Device) GetAlwaysPxeOk() (*bool, bool)`
 
-GetImageUrlOk returns a tuple with the ImageUrl field if it's non-nil, zero value otherwise
+GetAlwaysPxeOk returns a tuple with the AlwaysPxe field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetImageUrl
+### SetAlwaysPxe
 
-`func (o *Device) SetImageUrl(v string)`
+`func (o *Device) SetAlwaysPxe(v bool)`
 
-SetImageUrl sets ImageUrl field to given value.
+SetAlwaysPxe sets AlwaysPxe field to given value.
 
-### HasImageUrl
+### HasAlwaysPxe
 
-`func (o *Device) HasImageUrl() bool`
+`func (o *Device) HasAlwaysPxe() bool`
 
-HasImageUrl returns a boolean if a field has been set.
+HasAlwaysPxe returns a boolean if a field has been set.
 
 ### GetBillingCycle
 
@@ -261,81 +136,6 @@ SetBillingCycle sets BillingCycle field to given value.
 `func (o *Device) HasBillingCycle() bool`
 
 HasBillingCycle returns a boolean if a field has been set.
-
-### GetUser
-
-`func (o *Device) GetUser() string`
-
-GetUser returns the User field if non-nil, zero value otherwise.
-
-### GetUserOk
-
-`func (o *Device) GetUserOk() (*string, bool)`
-
-GetUserOk returns a tuple with the User field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetUser
-
-`func (o *Device) SetUser(v string)`
-
-SetUser sets User field to given value.
-
-### HasUser
-
-`func (o *Device) HasUser() bool`
-
-HasUser returns a boolean if a field has been set.
-
-### GetIqn
-
-`func (o *Device) GetIqn() string`
-
-GetIqn returns the Iqn field if non-nil, zero value otherwise.
-
-### GetIqnOk
-
-`func (o *Device) GetIqnOk() (*string, bool)`
-
-GetIqnOk returns a tuple with the Iqn field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetIqn
-
-`func (o *Device) SetIqn(v string)`
-
-SetIqn sets Iqn field to given value.
-
-### HasIqn
-
-`func (o *Device) HasIqn() bool`
-
-HasIqn returns a boolean if a field has been set.
-
-### GetLocked
-
-`func (o *Device) GetLocked() bool`
-
-GetLocked returns the Locked field if non-nil, zero value otherwise.
-
-### GetLockedOk
-
-`func (o *Device) GetLockedOk() (*bool, bool)`
-
-GetLockedOk returns a tuple with the Locked field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetLocked
-
-`func (o *Device) SetLocked(v bool)`
-
-SetLocked sets Locked field to given value.
-
-### HasLocked
-
-`func (o *Device) HasLocked() bool`
-
-HasLocked returns a boolean if a field has been set.
 
 ### GetBondingMode
 
@@ -389,20 +189,20 @@ HasCreatedAt returns a boolean if a field has been set.
 
 ### GetCreatedBy
 
-`func (o *Device) GetCreatedBy() DeviceCreatedBy`
+`func (o *Device) GetCreatedBy() FindDeviceById200ResponseCreatedBy`
 
 GetCreatedBy returns the CreatedBy field if non-nil, zero value otherwise.
 
 ### GetCreatedByOk
 
-`func (o *Device) GetCreatedByOk() (*DeviceCreatedBy, bool)`
+`func (o *Device) GetCreatedByOk() (*FindDeviceById200ResponseCreatedBy, bool)`
 
 GetCreatedByOk returns a tuple with the CreatedBy field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCreatedBy
 
-`func (o *Device) SetCreatedBy(v DeviceCreatedBy)`
+`func (o *Device) SetCreatedBy(v FindDeviceById200ResponseCreatedBy)`
 
 SetCreatedBy sets CreatedBy field to given value.
 
@@ -412,30 +212,555 @@ SetCreatedBy sets CreatedBy field to given value.
 
 HasCreatedBy returns a boolean if a field has been set.
 
-### GetUpdatedAt
+### GetCustomdata
 
-`func (o *Device) GetUpdatedAt() time.Time`
+`func (o *Device) GetCustomdata() map[string]interface{}`
 
-GetUpdatedAt returns the UpdatedAt field if non-nil, zero value otherwise.
+GetCustomdata returns the Customdata field if non-nil, zero value otherwise.
 
-### GetUpdatedAtOk
+### GetCustomdataOk
 
-`func (o *Device) GetUpdatedAtOk() (*time.Time, bool)`
+`func (o *Device) GetCustomdataOk() (*map[string]interface{}, bool)`
 
-GetUpdatedAtOk returns a tuple with the UpdatedAt field if it's non-nil, zero value otherwise
+GetCustomdataOk returns a tuple with the Customdata field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetUpdatedAt
+### SetCustomdata
 
-`func (o *Device) SetUpdatedAt(v time.Time)`
+`func (o *Device) SetCustomdata(v map[string]interface{})`
 
-SetUpdatedAt sets UpdatedAt field to given value.
+SetCustomdata sets Customdata field to given value.
 
-### HasUpdatedAt
+### HasCustomdata
 
-`func (o *Device) HasUpdatedAt() bool`
+`func (o *Device) HasCustomdata() bool`
 
-HasUpdatedAt returns a boolean if a field has been set.
+HasCustomdata returns a boolean if a field has been set.
+
+### GetDescription
+
+`func (o *Device) GetDescription() string`
+
+GetDescription returns the Description field if non-nil, zero value otherwise.
+
+### GetDescriptionOk
+
+`func (o *Device) GetDescriptionOk() (*string, bool)`
+
+GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDescription
+
+`func (o *Device) SetDescription(v string)`
+
+SetDescription sets Description field to given value.
+
+### HasDescription
+
+`func (o *Device) HasDescription() bool`
+
+HasDescription returns a boolean if a field has been set.
+
+### GetFacility
+
+`func (o *Device) GetFacility() FindDeviceById200ResponseFacility`
+
+GetFacility returns the Facility field if non-nil, zero value otherwise.
+
+### GetFacilityOk
+
+`func (o *Device) GetFacilityOk() (*FindDeviceById200ResponseFacility, bool)`
+
+GetFacilityOk returns a tuple with the Facility field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFacility
+
+`func (o *Device) SetFacility(v FindDeviceById200ResponseFacility)`
+
+SetFacility sets Facility field to given value.
+
+### HasFacility
+
+`func (o *Device) HasFacility() bool`
+
+HasFacility returns a boolean if a field has been set.
+
+### GetHardwareReservation
+
+`func (o *Device) GetHardwareReservation() FindBatchById200ResponseDevicesInner`
+
+GetHardwareReservation returns the HardwareReservation field if non-nil, zero value otherwise.
+
+### GetHardwareReservationOk
+
+`func (o *Device) GetHardwareReservationOk() (*FindBatchById200ResponseDevicesInner, bool)`
+
+GetHardwareReservationOk returns a tuple with the HardwareReservation field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHardwareReservation
+
+`func (o *Device) SetHardwareReservation(v FindBatchById200ResponseDevicesInner)`
+
+SetHardwareReservation sets HardwareReservation field to given value.
+
+### HasHardwareReservation
+
+`func (o *Device) HasHardwareReservation() bool`
+
+HasHardwareReservation returns a boolean if a field has been set.
+
+### GetHostname
+
+`func (o *Device) GetHostname() string`
+
+GetHostname returns the Hostname field if non-nil, zero value otherwise.
+
+### GetHostnameOk
+
+`func (o *Device) GetHostnameOk() (*string, bool)`
+
+GetHostnameOk returns a tuple with the Hostname field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHostname
+
+`func (o *Device) SetHostname(v string)`
+
+SetHostname sets Hostname field to given value.
+
+### HasHostname
+
+`func (o *Device) HasHostname() bool`
+
+HasHostname returns a boolean if a field has been set.
+
+### GetHref
+
+`func (o *Device) GetHref() string`
+
+GetHref returns the Href field if non-nil, zero value otherwise.
+
+### GetHrefOk
+
+`func (o *Device) GetHrefOk() (*string, bool)`
+
+GetHrefOk returns a tuple with the Href field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHref
+
+`func (o *Device) SetHref(v string)`
+
+SetHref sets Href field to given value.
+
+### HasHref
+
+`func (o *Device) HasHref() bool`
+
+HasHref returns a boolean if a field has been set.
+
+### GetId
+
+`func (o *Device) GetId() string`
+
+GetId returns the Id field if non-nil, zero value otherwise.
+
+### GetIdOk
+
+`func (o *Device) GetIdOk() (*string, bool)`
+
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetId
+
+`func (o *Device) SetId(v string)`
+
+SetId sets Id field to given value.
+
+### HasId
+
+`func (o *Device) HasId() bool`
+
+HasId returns a boolean if a field has been set.
+
+### GetImageUrl
+
+`func (o *Device) GetImageUrl() string`
+
+GetImageUrl returns the ImageUrl field if non-nil, zero value otherwise.
+
+### GetImageUrlOk
+
+`func (o *Device) GetImageUrlOk() (*string, bool)`
+
+GetImageUrlOk returns a tuple with the ImageUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetImageUrl
+
+`func (o *Device) SetImageUrl(v string)`
+
+SetImageUrl sets ImageUrl field to given value.
+
+### HasImageUrl
+
+`func (o *Device) HasImageUrl() bool`
+
+HasImageUrl returns a boolean if a field has been set.
+
+### GetIpAddresses
+
+`func (o *Device) GetIpAddresses() []FindDeviceById200ResponseIpAddressesInner`
+
+GetIpAddresses returns the IpAddresses field if non-nil, zero value otherwise.
+
+### GetIpAddressesOk
+
+`func (o *Device) GetIpAddressesOk() (*[]FindDeviceById200ResponseIpAddressesInner, bool)`
+
+GetIpAddressesOk returns a tuple with the IpAddresses field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIpAddresses
+
+`func (o *Device) SetIpAddresses(v []FindDeviceById200ResponseIpAddressesInner)`
+
+SetIpAddresses sets IpAddresses field to given value.
+
+### HasIpAddresses
+
+`func (o *Device) HasIpAddresses() bool`
+
+HasIpAddresses returns a boolean if a field has been set.
+
+### GetIpxeScriptUrl
+
+`func (o *Device) GetIpxeScriptUrl() string`
+
+GetIpxeScriptUrl returns the IpxeScriptUrl field if non-nil, zero value otherwise.
+
+### GetIpxeScriptUrlOk
+
+`func (o *Device) GetIpxeScriptUrlOk() (*string, bool)`
+
+GetIpxeScriptUrlOk returns a tuple with the IpxeScriptUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIpxeScriptUrl
+
+`func (o *Device) SetIpxeScriptUrl(v string)`
+
+SetIpxeScriptUrl sets IpxeScriptUrl field to given value.
+
+### HasIpxeScriptUrl
+
+`func (o *Device) HasIpxeScriptUrl() bool`
+
+HasIpxeScriptUrl returns a boolean if a field has been set.
+
+### GetIqn
+
+`func (o *Device) GetIqn() string`
+
+GetIqn returns the Iqn field if non-nil, zero value otherwise.
+
+### GetIqnOk
+
+`func (o *Device) GetIqnOk() (*string, bool)`
+
+GetIqnOk returns a tuple with the Iqn field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIqn
+
+`func (o *Device) SetIqn(v string)`
+
+SetIqn sets Iqn field to given value.
+
+### HasIqn
+
+`func (o *Device) HasIqn() bool`
+
+HasIqn returns a boolean if a field has been set.
+
+### GetLocked
+
+`func (o *Device) GetLocked() bool`
+
+GetLocked returns the Locked field if non-nil, zero value otherwise.
+
+### GetLockedOk
+
+`func (o *Device) GetLockedOk() (*bool, bool)`
+
+GetLockedOk returns a tuple with the Locked field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLocked
+
+`func (o *Device) SetLocked(v bool)`
+
+SetLocked sets Locked field to given value.
+
+### HasLocked
+
+`func (o *Device) HasLocked() bool`
+
+HasLocked returns a boolean if a field has been set.
+
+### GetMetro
+
+`func (o *Device) GetMetro() FindDeviceById200ResponseFacilityMetro`
+
+GetMetro returns the Metro field if non-nil, zero value otherwise.
+
+### GetMetroOk
+
+`func (o *Device) GetMetroOk() (*FindDeviceById200ResponseFacilityMetro, bool)`
+
+GetMetroOk returns a tuple with the Metro field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMetro
+
+`func (o *Device) SetMetro(v FindDeviceById200ResponseFacilityMetro)`
+
+SetMetro sets Metro field to given value.
+
+### HasMetro
+
+`func (o *Device) HasMetro() bool`
+
+HasMetro returns a boolean if a field has been set.
+
+### GetNetworkPorts
+
+`func (o *Device) GetNetworkPorts() FindDeviceById200ResponseNetworkPorts`
+
+GetNetworkPorts returns the NetworkPorts field if non-nil, zero value otherwise.
+
+### GetNetworkPortsOk
+
+`func (o *Device) GetNetworkPortsOk() (*FindDeviceById200ResponseNetworkPorts, bool)`
+
+GetNetworkPortsOk returns a tuple with the NetworkPorts field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNetworkPorts
+
+`func (o *Device) SetNetworkPorts(v FindDeviceById200ResponseNetworkPorts)`
+
+SetNetworkPorts sets NetworkPorts field to given value.
+
+### HasNetworkPorts
+
+`func (o *Device) HasNetworkPorts() bool`
+
+HasNetworkPorts returns a boolean if a field has been set.
+
+### GetOperatingSystem
+
+`func (o *Device) GetOperatingSystem() FindDeviceById200ResponseOperatingSystem`
+
+GetOperatingSystem returns the OperatingSystem field if non-nil, zero value otherwise.
+
+### GetOperatingSystemOk
+
+`func (o *Device) GetOperatingSystemOk() (*FindDeviceById200ResponseOperatingSystem, bool)`
+
+GetOperatingSystemOk returns a tuple with the OperatingSystem field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOperatingSystem
+
+`func (o *Device) SetOperatingSystem(v FindDeviceById200ResponseOperatingSystem)`
+
+SetOperatingSystem sets OperatingSystem field to given value.
+
+### HasOperatingSystem
+
+`func (o *Device) HasOperatingSystem() bool`
+
+HasOperatingSystem returns a boolean if a field has been set.
+
+### GetPlan
+
+`func (o *Device) GetPlan() FindDeviceById200ResponsePlan`
+
+GetPlan returns the Plan field if non-nil, zero value otherwise.
+
+### GetPlanOk
+
+`func (o *Device) GetPlanOk() (*FindDeviceById200ResponsePlan, bool)`
+
+GetPlanOk returns a tuple with the Plan field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPlan
+
+`func (o *Device) SetPlan(v FindDeviceById200ResponsePlan)`
+
+SetPlan sets Plan field to given value.
+
+### HasPlan
+
+`func (o *Device) HasPlan() bool`
+
+HasPlan returns a boolean if a field has been set.
+
+### GetProject
+
+`func (o *Device) GetProject() FindDeviceById200ResponseProject`
+
+GetProject returns the Project field if non-nil, zero value otherwise.
+
+### GetProjectOk
+
+`func (o *Device) GetProjectOk() (*FindDeviceById200ResponseProject, bool)`
+
+GetProjectOk returns a tuple with the Project field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProject
+
+`func (o *Device) SetProject(v FindDeviceById200ResponseProject)`
+
+SetProject sets Project field to given value.
+
+### HasProject
+
+`func (o *Device) HasProject() bool`
+
+HasProject returns a boolean if a field has been set.
+
+### GetProjectLite
+
+`func (o *Device) GetProjectLite() FindDeviceById200ResponseProjectLite`
+
+GetProjectLite returns the ProjectLite field if non-nil, zero value otherwise.
+
+### GetProjectLiteOk
+
+`func (o *Device) GetProjectLiteOk() (*FindDeviceById200ResponseProjectLite, bool)`
+
+GetProjectLiteOk returns a tuple with the ProjectLite field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProjectLite
+
+`func (o *Device) SetProjectLite(v FindDeviceById200ResponseProjectLite)`
+
+SetProjectLite sets ProjectLite field to given value.
+
+### HasProjectLite
+
+`func (o *Device) HasProjectLite() bool`
+
+HasProjectLite returns a boolean if a field has been set.
+
+### GetProvisioningEvents
+
+`func (o *Device) GetProvisioningEvents() []FindConnectionEvents200Response`
+
+GetProvisioningEvents returns the ProvisioningEvents field if non-nil, zero value otherwise.
+
+### GetProvisioningEventsOk
+
+`func (o *Device) GetProvisioningEventsOk() (*[]FindConnectionEvents200Response, bool)`
+
+GetProvisioningEventsOk returns a tuple with the ProvisioningEvents field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProvisioningEvents
+
+`func (o *Device) SetProvisioningEvents(v []FindConnectionEvents200Response)`
+
+SetProvisioningEvents sets ProvisioningEvents field to given value.
+
+### HasProvisioningEvents
+
+`func (o *Device) HasProvisioningEvents() bool`
+
+HasProvisioningEvents returns a boolean if a field has been set.
+
+### GetProvisioningPercentage
+
+`func (o *Device) GetProvisioningPercentage() float32`
+
+GetProvisioningPercentage returns the ProvisioningPercentage field if non-nil, zero value otherwise.
+
+### GetProvisioningPercentageOk
+
+`func (o *Device) GetProvisioningPercentageOk() (*float32, bool)`
+
+GetProvisioningPercentageOk returns a tuple with the ProvisioningPercentage field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProvisioningPercentage
+
+`func (o *Device) SetProvisioningPercentage(v float32)`
+
+SetProvisioningPercentage sets ProvisioningPercentage field to given value.
+
+### HasProvisioningPercentage
+
+`func (o *Device) HasProvisioningPercentage() bool`
+
+HasProvisioningPercentage returns a boolean if a field has been set.
+
+### GetRootPassword
+
+`func (o *Device) GetRootPassword() string`
+
+GetRootPassword returns the RootPassword field if non-nil, zero value otherwise.
+
+### GetRootPasswordOk
+
+`func (o *Device) GetRootPasswordOk() (*string, bool)`
+
+GetRootPasswordOk returns a tuple with the RootPassword field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRootPassword
+
+`func (o *Device) SetRootPassword(v string)`
+
+SetRootPassword sets RootPassword field to given value.
+
+### HasRootPassword
+
+`func (o *Device) HasRootPassword() bool`
+
+HasRootPassword returns a boolean if a field has been set.
+
+### GetShortId
+
+`func (o *Device) GetShortId() string`
+
+GetShortId returns the ShortId field if non-nil, zero value otherwise.
+
+### GetShortIdOk
+
+`func (o *Device) GetShortIdOk() (*string, bool)`
+
+GetShortIdOk returns a tuple with the ShortId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetShortId
+
+`func (o *Device) SetShortId(v string)`
+
+SetShortId sets ShortId field to given value.
+
+### HasShortId
+
+`func (o *Device) HasShortId() bool`
+
+HasShortId returns a boolean if a field has been set.
 
 ### GetSpotInstance
 
@@ -487,280 +812,55 @@ SetSpotPriceMax sets SpotPriceMax field to given value.
 
 HasSpotPriceMax returns a boolean if a field has been set.
 
-### GetTerminationTime
+### GetSshKeys
 
-`func (o *Device) GetTerminationTime() time.Time`
+`func (o *Device) GetSshKeys() []FindBatchById200ResponseDevicesInner`
 
-GetTerminationTime returns the TerminationTime field if non-nil, zero value otherwise.
+GetSshKeys returns the SshKeys field if non-nil, zero value otherwise.
 
-### GetTerminationTimeOk
+### GetSshKeysOk
 
-`func (o *Device) GetTerminationTimeOk() (*time.Time, bool)`
+`func (o *Device) GetSshKeysOk() (*[]FindBatchById200ResponseDevicesInner, bool)`
 
-GetTerminationTimeOk returns a tuple with the TerminationTime field if it's non-nil, zero value otherwise
+GetSshKeysOk returns a tuple with the SshKeys field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetTerminationTime
+### SetSshKeys
 
-`func (o *Device) SetTerminationTime(v time.Time)`
+`func (o *Device) SetSshKeys(v []FindBatchById200ResponseDevicesInner)`
 
-SetTerminationTime sets TerminationTime field to given value.
+SetSshKeys sets SshKeys field to given value.
 
-### HasTerminationTime
+### HasSshKeys
 
-`func (o *Device) HasTerminationTime() bool`
+`func (o *Device) HasSshKeys() bool`
 
-HasTerminationTime returns a boolean if a field has been set.
+HasSshKeys returns a boolean if a field has been set.
 
-### GetCustomdata
+### GetState
 
-`func (o *Device) GetCustomdata() map[string]interface{}`
+`func (o *Device) GetState() string`
 
-GetCustomdata returns the Customdata field if non-nil, zero value otherwise.
+GetState returns the State field if non-nil, zero value otherwise.
 
-### GetCustomdataOk
+### GetStateOk
 
-`func (o *Device) GetCustomdataOk() (*map[string]interface{}, bool)`
+`func (o *Device) GetStateOk() (*string, bool)`
 
-GetCustomdataOk returns a tuple with the Customdata field if it's non-nil, zero value otherwise
+GetStateOk returns a tuple with the State field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetCustomdata
+### SetState
 
-`func (o *Device) SetCustomdata(v map[string]interface{})`
+`func (o *Device) SetState(v string)`
 
-SetCustomdata sets Customdata field to given value.
+SetState sets State field to given value.
 
-### HasCustomdata
+### HasState
 
-`func (o *Device) HasCustomdata() bool`
+`func (o *Device) HasState() bool`
 
-HasCustomdata returns a boolean if a field has been set.
-
-### GetProvisioningPercentage
-
-`func (o *Device) GetProvisioningPercentage() float32`
-
-GetProvisioningPercentage returns the ProvisioningPercentage field if non-nil, zero value otherwise.
-
-### GetProvisioningPercentageOk
-
-`func (o *Device) GetProvisioningPercentageOk() (*float32, bool)`
-
-GetProvisioningPercentageOk returns a tuple with the ProvisioningPercentage field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetProvisioningPercentage
-
-`func (o *Device) SetProvisioningPercentage(v float32)`
-
-SetProvisioningPercentage sets ProvisioningPercentage field to given value.
-
-### HasProvisioningPercentage
-
-`func (o *Device) HasProvisioningPercentage() bool`
-
-HasProvisioningPercentage returns a boolean if a field has been set.
-
-### GetOperatingSystem
-
-`func (o *Device) GetOperatingSystem() OperatingSystem`
-
-GetOperatingSystem returns the OperatingSystem field if non-nil, zero value otherwise.
-
-### GetOperatingSystemOk
-
-`func (o *Device) GetOperatingSystemOk() (*OperatingSystem, bool)`
-
-GetOperatingSystemOk returns a tuple with the OperatingSystem field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetOperatingSystem
-
-`func (o *Device) SetOperatingSystem(v OperatingSystem)`
-
-SetOperatingSystem sets OperatingSystem field to given value.
-
-### HasOperatingSystem
-
-`func (o *Device) HasOperatingSystem() bool`
-
-HasOperatingSystem returns a boolean if a field has been set.
-
-### GetAlwaysPxe
-
-`func (o *Device) GetAlwaysPxe() bool`
-
-GetAlwaysPxe returns the AlwaysPxe field if non-nil, zero value otherwise.
-
-### GetAlwaysPxeOk
-
-`func (o *Device) GetAlwaysPxeOk() (*bool, bool)`
-
-GetAlwaysPxeOk returns a tuple with the AlwaysPxe field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAlwaysPxe
-
-`func (o *Device) SetAlwaysPxe(v bool)`
-
-SetAlwaysPxe sets AlwaysPxe field to given value.
-
-### HasAlwaysPxe
-
-`func (o *Device) HasAlwaysPxe() bool`
-
-HasAlwaysPxe returns a boolean if a field has been set.
-
-### GetIpxeScriptUrl
-
-`func (o *Device) GetIpxeScriptUrl() string`
-
-GetIpxeScriptUrl returns the IpxeScriptUrl field if non-nil, zero value otherwise.
-
-### GetIpxeScriptUrlOk
-
-`func (o *Device) GetIpxeScriptUrlOk() (*string, bool)`
-
-GetIpxeScriptUrlOk returns a tuple with the IpxeScriptUrl field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetIpxeScriptUrl
-
-`func (o *Device) SetIpxeScriptUrl(v string)`
-
-SetIpxeScriptUrl sets IpxeScriptUrl field to given value.
-
-### HasIpxeScriptUrl
-
-`func (o *Device) HasIpxeScriptUrl() bool`
-
-HasIpxeScriptUrl returns a boolean if a field has been set.
-
-### GetFacility
-
-`func (o *Device) GetFacility() Facility`
-
-GetFacility returns the Facility field if non-nil, zero value otherwise.
-
-### GetFacilityOk
-
-`func (o *Device) GetFacilityOk() (*Facility, bool)`
-
-GetFacilityOk returns a tuple with the Facility field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetFacility
-
-`func (o *Device) SetFacility(v Facility)`
-
-SetFacility sets Facility field to given value.
-
-### HasFacility
-
-`func (o *Device) HasFacility() bool`
-
-HasFacility returns a boolean if a field has been set.
-
-### GetMetro
-
-`func (o *Device) GetMetro() FacilityMetro`
-
-GetMetro returns the Metro field if non-nil, zero value otherwise.
-
-### GetMetroOk
-
-`func (o *Device) GetMetroOk() (*FacilityMetro, bool)`
-
-GetMetroOk returns a tuple with the Metro field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetMetro
-
-`func (o *Device) SetMetro(v FacilityMetro)`
-
-SetMetro sets Metro field to given value.
-
-### HasMetro
-
-`func (o *Device) HasMetro() bool`
-
-HasMetro returns a boolean if a field has been set.
-
-### GetPlan
-
-`func (o *Device) GetPlan() Plan`
-
-GetPlan returns the Plan field if non-nil, zero value otherwise.
-
-### GetPlanOk
-
-`func (o *Device) GetPlanOk() (*Plan, bool)`
-
-GetPlanOk returns a tuple with the Plan field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPlan
-
-`func (o *Device) SetPlan(v Plan)`
-
-SetPlan sets Plan field to given value.
-
-### HasPlan
-
-`func (o *Device) HasPlan() bool`
-
-HasPlan returns a boolean if a field has been set.
-
-### GetUserdata
-
-`func (o *Device) GetUserdata() string`
-
-GetUserdata returns the Userdata field if non-nil, zero value otherwise.
-
-### GetUserdataOk
-
-`func (o *Device) GetUserdataOk() (*string, bool)`
-
-GetUserdataOk returns a tuple with the Userdata field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetUserdata
-
-`func (o *Device) SetUserdata(v string)`
-
-SetUserdata sets Userdata field to given value.
-
-### HasUserdata
-
-`func (o *Device) HasUserdata() bool`
-
-HasUserdata returns a boolean if a field has been set.
-
-### GetRootPassword
-
-`func (o *Device) GetRootPassword() string`
-
-GetRootPassword returns the RootPassword field if non-nil, zero value otherwise.
-
-### GetRootPasswordOk
-
-`func (o *Device) GetRootPasswordOk() (*string, bool)`
-
-GetRootPasswordOk returns a tuple with the RootPassword field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRootPassword
-
-`func (o *Device) SetRootPassword(v string)`
-
-SetRootPassword sets RootPassword field to given value.
-
-### HasRootPassword
-
-`func (o *Device) HasRootPassword() bool`
-
-HasRootPassword returns a boolean if a field has been set.
+HasState returns a boolean if a field has been set.
 
 ### GetSwitchUuid
 
@@ -787,122 +887,122 @@ SetSwitchUuid sets SwitchUuid field to given value.
 
 HasSwitchUuid returns a boolean if a field has been set.
 
-### GetNetworkPorts
+### GetTerminationTime
 
-`func (o *Device) GetNetworkPorts() DeviceNetworkPorts`
+`func (o *Device) GetTerminationTime() time.Time`
 
-GetNetworkPorts returns the NetworkPorts field if non-nil, zero value otherwise.
+GetTerminationTime returns the TerminationTime field if non-nil, zero value otherwise.
 
-### GetNetworkPortsOk
+### GetTerminationTimeOk
 
-`func (o *Device) GetNetworkPortsOk() (*DeviceNetworkPorts, bool)`
+`func (o *Device) GetTerminationTimeOk() (*time.Time, bool)`
 
-GetNetworkPortsOk returns a tuple with the NetworkPorts field if it's non-nil, zero value otherwise
+GetTerminationTimeOk returns a tuple with the TerminationTime field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetNetworkPorts
+### SetTerminationTime
 
-`func (o *Device) SetNetworkPorts(v DeviceNetworkPorts)`
+`func (o *Device) SetTerminationTime(v time.Time)`
 
-SetNetworkPorts sets NetworkPorts field to given value.
+SetTerminationTime sets TerminationTime field to given value.
 
-### HasNetworkPorts
+### HasTerminationTime
 
-`func (o *Device) HasNetworkPorts() bool`
+`func (o *Device) HasTerminationTime() bool`
 
-HasNetworkPorts returns a boolean if a field has been set.
+HasTerminationTime returns a boolean if a field has been set.
 
-### GetHref
+### GetUpdatedAt
 
-`func (o *Device) GetHref() string`
+`func (o *Device) GetUpdatedAt() time.Time`
 
-GetHref returns the Href field if non-nil, zero value otherwise.
+GetUpdatedAt returns the UpdatedAt field if non-nil, zero value otherwise.
 
-### GetHrefOk
+### GetUpdatedAtOk
 
-`func (o *Device) GetHrefOk() (*string, bool)`
+`func (o *Device) GetUpdatedAtOk() (*time.Time, bool)`
 
-GetHrefOk returns a tuple with the Href field if it's non-nil, zero value otherwise
+GetUpdatedAtOk returns a tuple with the UpdatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetHref
+### SetUpdatedAt
 
-`func (o *Device) SetHref(v string)`
+`func (o *Device) SetUpdatedAt(v time.Time)`
 
-SetHref sets Href field to given value.
+SetUpdatedAt sets UpdatedAt field to given value.
 
-### HasHref
+### HasUpdatedAt
 
-`func (o *Device) HasHref() bool`
+`func (o *Device) HasUpdatedAt() bool`
 
-HasHref returns a boolean if a field has been set.
+HasUpdatedAt returns a boolean if a field has been set.
 
-### GetProject
+### GetUser
 
-`func (o *Device) GetProject() DeviceProject`
+`func (o *Device) GetUser() string`
 
-GetProject returns the Project field if non-nil, zero value otherwise.
+GetUser returns the User field if non-nil, zero value otherwise.
 
-### GetProjectOk
+### GetUserOk
 
-`func (o *Device) GetProjectOk() (*DeviceProject, bool)`
+`func (o *Device) GetUserOk() (*string, bool)`
 
-GetProjectOk returns a tuple with the Project field if it's non-nil, zero value otherwise
+GetUserOk returns a tuple with the User field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetProject
+### SetUser
 
-`func (o *Device) SetProject(v DeviceProject)`
+`func (o *Device) SetUser(v string)`
 
-SetProject sets Project field to given value.
+SetUser sets User field to given value.
 
-### HasProject
+### HasUser
 
-`func (o *Device) HasProject() bool`
+`func (o *Device) HasUser() bool`
 
-HasProject returns a boolean if a field has been set.
+HasUser returns a boolean if a field has been set.
 
-### GetProjectLite
+### GetUserdata
 
-`func (o *Device) GetProjectLite() DeviceProjectLite`
+`func (o *Device) GetUserdata() string`
 
-GetProjectLite returns the ProjectLite field if non-nil, zero value otherwise.
+GetUserdata returns the Userdata field if non-nil, zero value otherwise.
 
-### GetProjectLiteOk
+### GetUserdataOk
 
-`func (o *Device) GetProjectLiteOk() (*DeviceProjectLite, bool)`
+`func (o *Device) GetUserdataOk() (*string, bool)`
 
-GetProjectLiteOk returns a tuple with the ProjectLite field if it's non-nil, zero value otherwise
+GetUserdataOk returns a tuple with the Userdata field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetProjectLite
+### SetUserdata
 
-`func (o *Device) SetProjectLite(v DeviceProjectLite)`
+`func (o *Device) SetUserdata(v string)`
 
-SetProjectLite sets ProjectLite field to given value.
+SetUserdata sets Userdata field to given value.
 
-### HasProjectLite
+### HasUserdata
 
-`func (o *Device) HasProjectLite() bool`
+`func (o *Device) HasUserdata() bool`
 
-HasProjectLite returns a boolean if a field has been set.
+HasUserdata returns a boolean if a field has been set.
 
 ### GetVolumes
 
-`func (o *Device) GetVolumes() []Href`
+`func (o *Device) GetVolumes() []FindBatchById200ResponseDevicesInner`
 
 GetVolumes returns the Volumes field if non-nil, zero value otherwise.
 
 ### GetVolumesOk
 
-`func (o *Device) GetVolumesOk() (*[]Href, bool)`
+`func (o *Device) GetVolumesOk() (*[]FindBatchById200ResponseDevicesInner, bool)`
 
 GetVolumesOk returns a tuple with the Volumes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVolumes
 
-`func (o *Device) SetVolumes(v []Href)`
+`func (o *Device) SetVolumes(v []FindBatchById200ResponseDevicesInner)`
 
 SetVolumes sets Volumes field to given value.
 
@@ -911,106 +1011,6 @@ SetVolumes sets Volumes field to given value.
 `func (o *Device) HasVolumes() bool`
 
 HasVolumes returns a boolean if a field has been set.
-
-### GetHardwareReservation
-
-`func (o *Device) GetHardwareReservation() Href`
-
-GetHardwareReservation returns the HardwareReservation field if non-nil, zero value otherwise.
-
-### GetHardwareReservationOk
-
-`func (o *Device) GetHardwareReservationOk() (*Href, bool)`
-
-GetHardwareReservationOk returns a tuple with the HardwareReservation field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetHardwareReservation
-
-`func (o *Device) SetHardwareReservation(v Href)`
-
-SetHardwareReservation sets HardwareReservation field to given value.
-
-### HasHardwareReservation
-
-`func (o *Device) HasHardwareReservation() bool`
-
-HasHardwareReservation returns a boolean if a field has been set.
-
-### GetSshKeys
-
-`func (o *Device) GetSshKeys() []Href`
-
-GetSshKeys returns the SshKeys field if non-nil, zero value otherwise.
-
-### GetSshKeysOk
-
-`func (o *Device) GetSshKeysOk() (*[]Href, bool)`
-
-GetSshKeysOk returns a tuple with the SshKeys field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSshKeys
-
-`func (o *Device) SetSshKeys(v []Href)`
-
-SetSshKeys sets SshKeys field to given value.
-
-### HasSshKeys
-
-`func (o *Device) HasSshKeys() bool`
-
-HasSshKeys returns a boolean if a field has been set.
-
-### GetIpAddresses
-
-`func (o *Device) GetIpAddresses() []IPAssignment`
-
-GetIpAddresses returns the IpAddresses field if non-nil, zero value otherwise.
-
-### GetIpAddressesOk
-
-`func (o *Device) GetIpAddressesOk() (*[]IPAssignment, bool)`
-
-GetIpAddressesOk returns a tuple with the IpAddresses field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetIpAddresses
-
-`func (o *Device) SetIpAddresses(v []IPAssignment)`
-
-SetIpAddresses sets IpAddresses field to given value.
-
-### HasIpAddresses
-
-`func (o *Device) HasIpAddresses() bool`
-
-HasIpAddresses returns a boolean if a field has been set.
-
-### GetProvisioningEvents
-
-`func (o *Device) GetProvisioningEvents() []Event`
-
-GetProvisioningEvents returns the ProvisioningEvents field if non-nil, zero value otherwise.
-
-### GetProvisioningEventsOk
-
-`func (o *Device) GetProvisioningEventsOk() (*[]Event, bool)`
-
-GetProvisioningEventsOk returns a tuple with the ProvisioningEvents field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetProvisioningEvents
-
-`func (o *Device) SetProvisioningEvents(v []Event)`
-
-SetProvisioningEvents sets ProvisioningEvents field to given value.
-
-### HasProvisioningEvents
-
-`func (o *Device) HasProvisioningEvents() bool`
-
-HasProvisioningEvents returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

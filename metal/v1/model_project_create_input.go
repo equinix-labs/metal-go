@@ -17,9 +17,9 @@ import (
 
 // ProjectCreateInput struct for ProjectCreateInput
 type ProjectCreateInput struct {
+	Customdata      map[string]interface{} `json:"customdata,omitempty"`
 	Name            string                 `json:"name"`
 	PaymentMethodId *string                `json:"payment_method_id,omitempty"`
-	Customdata      map[string]interface{} `json:"customdata,omitempty"`
 }
 
 // NewProjectCreateInput instantiates a new ProjectCreateInput object
@@ -38,6 +38,38 @@ func NewProjectCreateInput(name string) *ProjectCreateInput {
 func NewProjectCreateInputWithDefaults() *ProjectCreateInput {
 	this := ProjectCreateInput{}
 	return &this
+}
+
+// GetCustomdata returns the Customdata field value if set, zero value otherwise.
+func (o *ProjectCreateInput) GetCustomdata() map[string]interface{} {
+	if o == nil || o.Customdata == nil {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.Customdata
+}
+
+// GetCustomdataOk returns a tuple with the Customdata field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ProjectCreateInput) GetCustomdataOk() (map[string]interface{}, bool) {
+	if o == nil || o.Customdata == nil {
+		return nil, false
+	}
+	return o.Customdata, true
+}
+
+// HasCustomdata returns a boolean if a field has been set.
+func (o *ProjectCreateInput) HasCustomdata() bool {
+	if o != nil && o.Customdata != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCustomdata gets a reference to the given map[string]interface{} and assigns it to the Customdata field.
+func (o *ProjectCreateInput) SetCustomdata(v map[string]interface{}) {
+	o.Customdata = v
 }
 
 // GetName returns the Name field value
@@ -96,48 +128,16 @@ func (o *ProjectCreateInput) SetPaymentMethodId(v string) {
 	o.PaymentMethodId = &v
 }
 
-// GetCustomdata returns the Customdata field value if set, zero value otherwise.
-func (o *ProjectCreateInput) GetCustomdata() map[string]interface{} {
-	if o == nil || o.Customdata == nil {
-		var ret map[string]interface{}
-		return ret
-	}
-	return o.Customdata
-}
-
-// GetCustomdataOk returns a tuple with the Customdata field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ProjectCreateInput) GetCustomdataOk() (map[string]interface{}, bool) {
-	if o == nil || o.Customdata == nil {
-		return nil, false
-	}
-	return o.Customdata, true
-}
-
-// HasCustomdata returns a boolean if a field has been set.
-func (o *ProjectCreateInput) HasCustomdata() bool {
-	if o != nil && o.Customdata != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetCustomdata gets a reference to the given map[string]interface{} and assigns it to the Customdata field.
-func (o *ProjectCreateInput) SetCustomdata(v map[string]interface{}) {
-	o.Customdata = v
-}
-
 func (o ProjectCreateInput) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.Customdata != nil {
+		toSerialize["customdata"] = o.Customdata
+	}
 	if true {
 		toSerialize["name"] = o.Name
 	}
 	if o.PaymentMethodId != nil {
 		toSerialize["payment_method_id"] = o.PaymentMethodId
-	}
-	if o.Customdata != nil {
-		toSerialize["customdata"] = o.Customdata
 	}
 	return json.Marshal(toSerialize)
 }

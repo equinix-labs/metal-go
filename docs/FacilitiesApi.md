@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 ## FindFacilities
 
-> FacilityList FindFacilities(ctx).Include(include).Exclude(exclude).Execute()
+> FindFacilities200Response FindFacilities(ctx).Include(include).Exclude(exclude).Execute()
 
 Retrieve all facilities
 
@@ -41,7 +41,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `FacilitiesApi.FindFacilities``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindFacilities`: FacilityList
+    // response from `FindFacilities`: FindFacilities200Response
     fmt.Fprintf(os.Stdout, "Response from `FacilitiesApi.FindFacilities`: %v\n", resp)
 }
 ```
@@ -62,7 +62,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FacilityList**](FacilityList.md)
+[**FindFacilities200Response**](FindFacilities200Response.md)
 
 ### Authorization
 
@@ -80,7 +80,7 @@ Name | Type | Description  | Notes
 
 ## FindFacilitiesByOrganization
 
-> FacilityList FindFacilitiesByOrganization(ctx, id).Include(include).Exclude(exclude).Execute()
+> FindFacilities200Response FindFacilitiesByOrganization(ctx, id).Include(include).Exclude(exclude).Execute()
 
 Retrieve all facilities visible by the organization
 
@@ -110,7 +110,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `FacilitiesApi.FindFacilitiesByOrganization``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindFacilitiesByOrganization`: FacilityList
+    // response from `FindFacilitiesByOrganization`: FindFacilities200Response
     fmt.Fprintf(os.Stdout, "Response from `FacilitiesApi.FindFacilitiesByOrganization`: %v\n", resp)
 }
 ```
@@ -136,7 +136,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FacilityList**](FacilityList.md)
+[**FindFacilities200Response**](FindFacilities200Response.md)
 
 ### Authorization
 
@@ -154,7 +154,7 @@ Name | Type | Description  | Notes
 
 ## FindFacilitiesByProject
 
-> FacilityList FindFacilitiesByProject(ctx, id).Include(include).Exclude(exclude).Execute()
+> FindFacilities200Response FindFacilitiesByProject(ctx, id).Include(include).Exclude(exclude).Execute()
 
 Retrieve all facilities visible by the project
 
@@ -184,7 +184,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `FacilitiesApi.FindFacilitiesByProject``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindFacilitiesByProject`: FacilityList
+    // response from `FindFacilitiesByProject`: FindFacilities200Response
     fmt.Fprintf(os.Stdout, "Response from `FacilitiesApi.FindFacilitiesByProject`: %v\n", resp)
 }
 ```
@@ -210,7 +210,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FacilityList**](FacilityList.md)
+[**FindFacilities200Response**](FindFacilities200Response.md)
 
 ### Authorization
 

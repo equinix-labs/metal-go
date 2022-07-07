@@ -23,6 +23,210 @@ import (
 // BatchesApiService BatchesApi service
 type BatchesApiService service
 
+type ApiCreateDeviceBatchRequest struct {
+	ctx        context.Context
+	ApiService *BatchesApiService
+	id         string
+	body       *CreateDeviceBatchRequest
+}
+
+// Batches to create
+func (r ApiCreateDeviceBatchRequest) Body(body CreateDeviceBatchRequest) ApiCreateDeviceBatchRequest {
+	r.body = &body
+	return r
+}
+
+func (r ApiCreateDeviceBatchRequest) Execute() (*FindBatchesByProject200Response, *http.Response, error) {
+	return r.ApiService.CreateDeviceBatchExecute(r)
+}
+
+/*
+CreateDeviceBatch Create a devices batch
+
+Creates new devices in batch and provisions them in our datacenter.
+
+Type-specific options (such as operating_system for baremetal devices) should be included in the main data structure alongside hostname and plan.
+
+The features attribute allows you to optionally specify what features your server should have.
+
+For example, if you require a server with a TPM chip, you may specify `{ "features": { "tpm": "required" } }` (or `{ "features": ["tpm"] }` in shorthand).
+
+The request will fail if there are no available servers matching your criteria. Alternatively, if you do not require a certain feature, but would prefer to be assigned a server with that feature if there are any available, you may specify that feature with a preferred value (see the example request below).
+
+The request will not fail if we have no servers with that feature in our inventory.
+
+The facilities attribute specifies in what datacenter you wish to create the device.
+
+You can either specify a single facility `{ "facility": "f1" }` , or you can instruct to create the device in the best available datacenter `{ "facility": "any" }`. Additionally it is possible to set a prioritized location selection.
+
+For example `{ "facility": ["f3", "f2", "any"] }` will try to assign to the facility f3, if there are no available f2, and so on. If "any" is not specified for "facility", the request will fail unless it can assign in the selected locations.
+
+With `{ "facility": "any" }` you have the option to diversify to indicate how many facilities you are willing to be spread across. For this purpose use parameter: `facility_diversity_level = N`.
+
+For example:
+
+`{ "facilities": ["sjc1", "ewr1", "any"] ,  "facility_diversity_level" = 1, "quantity" = 10 }` will assign 10 devices into the same facility, trying first in "sjc1", and if there aren’t available, it will try in  "ewr1", otherwise any other.
+
+The `ip_addresses` attribute will allow you to specify the addresses you want created with your device.
+
+To maintain backwards compatibility, If the attribute is not sent in the request, it will be treated as if `{ "ip_addresses": [{ "address_family": 4, "public": true }, { "address_family": 4, "public": false }, { "address_family": 6, "public": true }] }` was sent.
+
+The private IPv4 address is required and always need to be sent in the array. Not all operating systems support no public IPv4 address, so in those cases you will receive an error message.
+
+For example, to only configure your server with a private IPv4 address, you can send `{ "ip_addresses": [{ "address_family": 4, "public": false }] }`.
+
+Note: when specifying a subnet size larger than a /30, you will need to supply the UUID(s) of existing ip_reservations in your project to assign IPs from.
+
+For example, `{ "ip_addresses": [..., {"address_family": 4, "public": true, "ip_reservations": ["uuid1", "uuid2"]}] }`
+
+To access a server without public IPs, you can use our Out-of-Band console access (SOS) or use another server with public IPs as a proxy.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id Project UUID
+ @return ApiCreateDeviceBatchRequest
+*/
+func (a *BatchesApiService) CreateDeviceBatch(ctx context.Context, id string) ApiCreateDeviceBatchRequest {
+	return ApiCreateDeviceBatchRequest{
+		ApiService: a,
+		ctx:        ctx,
+		id:         id,
+	}
+}
+
+// Execute executes the request
+//  @return FindBatchesByProject200Response
+func (a *BatchesApiService) CreateDeviceBatchExecute(r ApiCreateDeviceBatchRequest) (*FindBatchesByProject200Response, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *FindBatchesByProject200Response
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BatchesApiService.CreateDeviceBatch")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/projects/{id}/devices/batch"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.body == nil {
+		return localVarReturnValue, nil, reportError("body is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.body
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["x_auth_token"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["X-Auth-Token"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v DeleteAPIKey401Response
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v DeleteAPIKey401Response
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v DeleteAPIKey401Response
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v DeleteAPIKey401Response
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiDeleteBatchRequest struct {
 	ctx                       context.Context
 	ApiService                *BatchesApiService
@@ -134,7 +338,7 @@ func (a *BatchesApiService) DeleteBatchExecute(r ApiDeleteBatchRequest) (*http.R
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -144,7 +348,7 @@ func (a *BatchesApiService) DeleteBatchExecute(r ApiDeleteBatchRequest) (*http.R
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -178,7 +382,7 @@ func (r ApiFindBatchByIdRequest) Exclude(exclude []string) ApiFindBatchByIdReque
 	return r
 }
 
-func (r ApiFindBatchByIdRequest) Execute() (*Batch, *http.Response, error) {
+func (r ApiFindBatchByIdRequest) Execute() (*FindBatchById200Response, *http.Response, error) {
 	return r.ApiService.FindBatchByIdExecute(r)
 }
 
@@ -200,13 +404,13 @@ func (a *BatchesApiService) FindBatchById(ctx context.Context, id string) ApiFin
 }
 
 // Execute executes the request
-//  @return Batch
-func (a *BatchesApiService) FindBatchByIdExecute(r ApiFindBatchByIdRequest) (*Batch, *http.Response, error) {
+//  @return FindBatchById200Response
+func (a *BatchesApiService) FindBatchByIdExecute(r ApiFindBatchByIdRequest) (*FindBatchById200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *Batch
+		localVarReturnValue *FindBatchById200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BatchesApiService.FindBatchById")
@@ -281,7 +485,7 @@ func (a *BatchesApiService) FindBatchByIdExecute(r ApiFindBatchByIdRequest) (*Ba
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -291,7 +495,173 @@ func (a *BatchesApiService) FindBatchByIdExecute(r ApiFindBatchByIdRequest) (*Ba
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
+			var v DeleteAPIKey401Response
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiFindBatchesByProjectRequest struct {
+	ctx        context.Context
+	ApiService *BatchesApiService
+	id         string
+	include    *[]string
+	exclude    *[]string
+}
+
+// Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+func (r ApiFindBatchesByProjectRequest) Include(include []string) ApiFindBatchesByProjectRequest {
+	r.include = &include
+	return r
+}
+
+// Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
+func (r ApiFindBatchesByProjectRequest) Exclude(exclude []string) ApiFindBatchesByProjectRequest {
+	r.exclude = &exclude
+	return r
+}
+
+func (r ApiFindBatchesByProjectRequest) Execute() (*FindBatchesByProject200Response, *http.Response, error) {
+	return r.ApiService.FindBatchesByProjectExecute(r)
+}
+
+/*
+FindBatchesByProject Retrieve all batches by project
+
+Returns all batches for the given project
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id Project UUID
+ @return ApiFindBatchesByProjectRequest
+*/
+func (a *BatchesApiService) FindBatchesByProject(ctx context.Context, id string) ApiFindBatchesByProjectRequest {
+	return ApiFindBatchesByProjectRequest{
+		ApiService: a,
+		ctx:        ctx,
+		id:         id,
+	}
+}
+
+// Execute executes the request
+//  @return FindBatchesByProject200Response
+func (a *BatchesApiService) FindBatchesByProjectExecute(r ApiFindBatchesByProjectRequest) (*FindBatchesByProject200Response, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *FindBatchesByProject200Response
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BatchesApiService.FindBatchesByProject")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/projects/{id}/batches"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.include != nil {
+		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
+	}
+	if r.exclude != nil {
+		localVarQueryParams.Add("exclude", parameterToString(*r.exclude, "csv"))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["x_auth_token"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["X-Auth-Token"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v DeleteAPIKey401Response
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v DeleteAPIKey401Response
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

@@ -13,18 +13,16 @@ package v1
 
 import (
 	"encoding/json"
-	"os"
 )
 
 // UserUpdateInput struct for UserUpdateInput
 type UserUpdateInput struct {
+	Customdata  map[string]interface{} `json:"customdata,omitempty"`
 	FirstName   *string                `json:"first_name,omitempty"`
 	LastName    *string                `json:"last_name,omitempty"`
+	Password    *string                `json:"password,omitempty"`
 	PhoneNumber *string                `json:"phone_number,omitempty"`
 	Timezone    *string                `json:"timezone,omitempty"`
-	Password    *string                `json:"password,omitempty"`
-	Avatar      **os.File              `json:"avatar,omitempty"`
-	Customdata  map[string]interface{} `json:"customdata,omitempty"`
 }
 
 // NewUserUpdateInput instantiates a new UserUpdateInput object
@@ -42,6 +40,38 @@ func NewUserUpdateInput() *UserUpdateInput {
 func NewUserUpdateInputWithDefaults() *UserUpdateInput {
 	this := UserUpdateInput{}
 	return &this
+}
+
+// GetCustomdata returns the Customdata field value if set, zero value otherwise.
+func (o *UserUpdateInput) GetCustomdata() map[string]interface{} {
+	if o == nil || o.Customdata == nil {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.Customdata
+}
+
+// GetCustomdataOk returns a tuple with the Customdata field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UserUpdateInput) GetCustomdataOk() (map[string]interface{}, bool) {
+	if o == nil || o.Customdata == nil {
+		return nil, false
+	}
+	return o.Customdata, true
+}
+
+// HasCustomdata returns a boolean if a field has been set.
+func (o *UserUpdateInput) HasCustomdata() bool {
+	if o != nil && o.Customdata != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCustomdata gets a reference to the given map[string]interface{} and assigns it to the Customdata field.
+func (o *UserUpdateInput) SetCustomdata(v map[string]interface{}) {
+	o.Customdata = v
 }
 
 // GetFirstName returns the FirstName field value if set, zero value otherwise.
@@ -108,6 +138,38 @@ func (o *UserUpdateInput) SetLastName(v string) {
 	o.LastName = &v
 }
 
+// GetPassword returns the Password field value if set, zero value otherwise.
+func (o *UserUpdateInput) GetPassword() string {
+	if o == nil || o.Password == nil {
+		var ret string
+		return ret
+	}
+	return *o.Password
+}
+
+// GetPasswordOk returns a tuple with the Password field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UserUpdateInput) GetPasswordOk() (*string, bool) {
+	if o == nil || o.Password == nil {
+		return nil, false
+	}
+	return o.Password, true
+}
+
+// HasPassword returns a boolean if a field has been set.
+func (o *UserUpdateInput) HasPassword() bool {
+	if o != nil && o.Password != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPassword gets a reference to the given string and assigns it to the Password field.
+func (o *UserUpdateInput) SetPassword(v string) {
+	o.Password = &v
+}
+
 // GetPhoneNumber returns the PhoneNumber field value if set, zero value otherwise.
 func (o *UserUpdateInput) GetPhoneNumber() string {
 	if o == nil || o.PhoneNumber == nil {
@@ -172,124 +234,25 @@ func (o *UserUpdateInput) SetTimezone(v string) {
 	o.Timezone = &v
 }
 
-// GetPassword returns the Password field value if set, zero value otherwise.
-func (o *UserUpdateInput) GetPassword() string {
-	if o == nil || o.Password == nil {
-		var ret string
-		return ret
-	}
-	return *o.Password
-}
-
-// GetPasswordOk returns a tuple with the Password field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UserUpdateInput) GetPasswordOk() (*string, bool) {
-	if o == nil || o.Password == nil {
-		return nil, false
-	}
-	return o.Password, true
-}
-
-// HasPassword returns a boolean if a field has been set.
-func (o *UserUpdateInput) HasPassword() bool {
-	if o != nil && o.Password != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetPassword gets a reference to the given string and assigns it to the Password field.
-func (o *UserUpdateInput) SetPassword(v string) {
-	o.Password = &v
-}
-
-// GetAvatar returns the Avatar field value if set, zero value otherwise.
-func (o *UserUpdateInput) GetAvatar() *os.File {
-	if o == nil || o.Avatar == nil {
-		var ret *os.File
-		return ret
-	}
-	return *o.Avatar
-}
-
-// GetAvatarOk returns a tuple with the Avatar field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UserUpdateInput) GetAvatarOk() (**os.File, bool) {
-	if o == nil || o.Avatar == nil {
-		return nil, false
-	}
-	return o.Avatar, true
-}
-
-// HasAvatar returns a boolean if a field has been set.
-func (o *UserUpdateInput) HasAvatar() bool {
-	if o != nil && o.Avatar != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetAvatar gets a reference to the given *os.File and assigns it to the Avatar field.
-func (o *UserUpdateInput) SetAvatar(v *os.File) {
-	o.Avatar = &v
-}
-
-// GetCustomdata returns the Customdata field value if set, zero value otherwise.
-func (o *UserUpdateInput) GetCustomdata() map[string]interface{} {
-	if o == nil || o.Customdata == nil {
-		var ret map[string]interface{}
-		return ret
-	}
-	return o.Customdata
-}
-
-// GetCustomdataOk returns a tuple with the Customdata field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UserUpdateInput) GetCustomdataOk() (map[string]interface{}, bool) {
-	if o == nil || o.Customdata == nil {
-		return nil, false
-	}
-	return o.Customdata, true
-}
-
-// HasCustomdata returns a boolean if a field has been set.
-func (o *UserUpdateInput) HasCustomdata() bool {
-	if o != nil && o.Customdata != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetCustomdata gets a reference to the given map[string]interface{} and assigns it to the Customdata field.
-func (o *UserUpdateInput) SetCustomdata(v map[string]interface{}) {
-	o.Customdata = v
-}
-
 func (o UserUpdateInput) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.Customdata != nil {
+		toSerialize["customdata"] = o.Customdata
+	}
 	if o.FirstName != nil {
 		toSerialize["first_name"] = o.FirstName
 	}
 	if o.LastName != nil {
 		toSerialize["last_name"] = o.LastName
 	}
+	if o.Password != nil {
+		toSerialize["password"] = o.Password
+	}
 	if o.PhoneNumber != nil {
 		toSerialize["phone_number"] = o.PhoneNumber
 	}
 	if o.Timezone != nil {
 		toSerialize["timezone"] = o.Timezone
-	}
-	if o.Password != nil {
-		toSerialize["password"] = o.Password
-	}
-	if o.Avatar != nil {
-		toSerialize["avatar"] = o.Avatar
-	}
-	if o.Customdata != nil {
-		toSerialize["customdata"] = o.Customdata
 	}
 	return json.Marshal(toSerialize)
 }

@@ -17,12 +17,12 @@ import (
 
 // MetalGatewayInput struct for MetalGatewayInput
 type MetalGatewayInput struct {
-	// The UUID of a metro virtual network that belongs to the same project as where the metal gateway will be created in.
-	VirtualNetworkId string `json:"virtual_network_id"`
 	// The UUID of an IP reservation that belongs to the same project as where the metal gateway will be created in. This field is required unless the private IPv4 subnet size is specified.
 	IpReservationId *string `json:"ip_reservation_id,omitempty"`
 	// The subnet size (8, 16, 32, 64, or 128) of the private IPv4 reservation that will be created for the metal gateway. This field is required unless a project IP reservation was specified.           Please keep in mind that the number of private metal gateway ranges are limited per project. If you would like to increase the limit per project, please contact support for assistance.
 	PrivateIpv4SubnetSize *int32 `json:"private_ipv4_subnet_size,omitempty"`
+	// The UUID of a metro virtual network that belongs to the same project as where the metal gateway will be created in.
+	VirtualNetworkId string `json:"virtual_network_id"`
 }
 
 // NewMetalGatewayInput instantiates a new MetalGatewayInput object
@@ -41,30 +41,6 @@ func NewMetalGatewayInput(virtualNetworkId string) *MetalGatewayInput {
 func NewMetalGatewayInputWithDefaults() *MetalGatewayInput {
 	this := MetalGatewayInput{}
 	return &this
-}
-
-// GetVirtualNetworkId returns the VirtualNetworkId field value
-func (o *MetalGatewayInput) GetVirtualNetworkId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.VirtualNetworkId
-}
-
-// GetVirtualNetworkIdOk returns a tuple with the VirtualNetworkId field value
-// and a boolean to check if the value has been set.
-func (o *MetalGatewayInput) GetVirtualNetworkIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.VirtualNetworkId, true
-}
-
-// SetVirtualNetworkId sets field value
-func (o *MetalGatewayInput) SetVirtualNetworkId(v string) {
-	o.VirtualNetworkId = v
 }
 
 // GetIpReservationId returns the IpReservationId field value if set, zero value otherwise.
@@ -131,16 +107,40 @@ func (o *MetalGatewayInput) SetPrivateIpv4SubnetSize(v int32) {
 	o.PrivateIpv4SubnetSize = &v
 }
 
+// GetVirtualNetworkId returns the VirtualNetworkId field value
+func (o *MetalGatewayInput) GetVirtualNetworkId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.VirtualNetworkId
+}
+
+// GetVirtualNetworkIdOk returns a tuple with the VirtualNetworkId field value
+// and a boolean to check if the value has been set.
+func (o *MetalGatewayInput) GetVirtualNetworkIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.VirtualNetworkId, true
+}
+
+// SetVirtualNetworkId sets field value
+func (o *MetalGatewayInput) SetVirtualNetworkId(v string) {
+	o.VirtualNetworkId = v
+}
+
 func (o MetalGatewayInput) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["virtual_network_id"] = o.VirtualNetworkId
-	}
 	if o.IpReservationId != nil {
 		toSerialize["ip_reservation_id"] = o.IpReservationId
 	}
 	if o.PrivateIpv4SubnetSize != nil {
 		toSerialize["private_ipv4_subnet_size"] = o.PrivateIpv4SubnetSize
+	}
+	if true {
+		toSerialize["virtual_network_id"] = o.VirtualNetworkId
 	}
 	return json.Marshal(toSerialize)
 }

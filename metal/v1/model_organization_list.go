@@ -17,8 +17,8 @@ import (
 
 // OrganizationList struct for OrganizationList
 type OrganizationList struct {
-	Organizations []Organization `json:"organizations,omitempty"`
-	Meta          *Meta          `json:"meta,omitempty"`
+	Meta          *FindDeviceEvents200ResponseMeta                 `json:"meta,omitempty"`
+	Organizations []FindOrganizations200ResponseOrganizationsInner `json:"organizations,omitempty"`
 }
 
 // NewOrganizationList instantiates a new OrganizationList object
@@ -38,42 +38,10 @@ func NewOrganizationListWithDefaults() *OrganizationList {
 	return &this
 }
 
-// GetOrganizations returns the Organizations field value if set, zero value otherwise.
-func (o *OrganizationList) GetOrganizations() []Organization {
-	if o == nil || o.Organizations == nil {
-		var ret []Organization
-		return ret
-	}
-	return o.Organizations
-}
-
-// GetOrganizationsOk returns a tuple with the Organizations field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *OrganizationList) GetOrganizationsOk() ([]Organization, bool) {
-	if o == nil || o.Organizations == nil {
-		return nil, false
-	}
-	return o.Organizations, true
-}
-
-// HasOrganizations returns a boolean if a field has been set.
-func (o *OrganizationList) HasOrganizations() bool {
-	if o != nil && o.Organizations != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetOrganizations gets a reference to the given []Organization and assigns it to the Organizations field.
-func (o *OrganizationList) SetOrganizations(v []Organization) {
-	o.Organizations = v
-}
-
 // GetMeta returns the Meta field value if set, zero value otherwise.
-func (o *OrganizationList) GetMeta() Meta {
+func (o *OrganizationList) GetMeta() FindDeviceEvents200ResponseMeta {
 	if o == nil || o.Meta == nil {
-		var ret Meta
+		var ret FindDeviceEvents200ResponseMeta
 		return ret
 	}
 	return *o.Meta
@@ -81,7 +49,7 @@ func (o *OrganizationList) GetMeta() Meta {
 
 // GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OrganizationList) GetMetaOk() (*Meta, bool) {
+func (o *OrganizationList) GetMetaOk() (*FindDeviceEvents200ResponseMeta, bool) {
 	if o == nil || o.Meta == nil {
 		return nil, false
 	}
@@ -97,18 +65,50 @@ func (o *OrganizationList) HasMeta() bool {
 	return false
 }
 
-// SetMeta gets a reference to the given Meta and assigns it to the Meta field.
-func (o *OrganizationList) SetMeta(v Meta) {
+// SetMeta gets a reference to the given FindDeviceEvents200ResponseMeta and assigns it to the Meta field.
+func (o *OrganizationList) SetMeta(v FindDeviceEvents200ResponseMeta) {
 	o.Meta = &v
+}
+
+// GetOrganizations returns the Organizations field value if set, zero value otherwise.
+func (o *OrganizationList) GetOrganizations() []FindOrganizations200ResponseOrganizationsInner {
+	if o == nil || o.Organizations == nil {
+		var ret []FindOrganizations200ResponseOrganizationsInner
+		return ret
+	}
+	return o.Organizations
+}
+
+// GetOrganizationsOk returns a tuple with the Organizations field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OrganizationList) GetOrganizationsOk() ([]FindOrganizations200ResponseOrganizationsInner, bool) {
+	if o == nil || o.Organizations == nil {
+		return nil, false
+	}
+	return o.Organizations, true
+}
+
+// HasOrganizations returns a boolean if a field has been set.
+func (o *OrganizationList) HasOrganizations() bool {
+	if o != nil && o.Organizations != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetOrganizations gets a reference to the given []FindOrganizations200ResponseOrganizationsInner and assigns it to the Organizations field.
+func (o *OrganizationList) SetOrganizations(v []FindOrganizations200ResponseOrganizationsInner) {
+	o.Organizations = v
 }
 
 func (o OrganizationList) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Organizations != nil {
-		toSerialize["organizations"] = o.Organizations
-	}
 	if o.Meta != nil {
 		toSerialize["meta"] = o.Meta
+	}
+	if o.Organizations != nil {
+		toSerialize["organizations"] = o.Organizations
 	}
 	return json.Marshal(toSerialize)
 }

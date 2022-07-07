@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **string** |  | [optional] 
-**Default** | Pointer to **bool** |  | [optional] 
+**BillingAddress** | Pointer to **map[string]interface{}** |  | [optional] 
 **CardholderName** | Pointer to **string** |  | [optional] 
+**Default** | Pointer to **bool** |  | [optional] 
 **ExpirationMonth** | Pointer to **string** |  | [optional] 
 **ExpirationYear** | Pointer to **int32** |  | [optional] 
-**BillingAddress** | Pointer to **map[string]interface{}** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -30,55 +30,30 @@ NewPaymentMethodUpdateInputWithDefaults instantiates a new PaymentMethodUpdateIn
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetName
+### GetBillingAddress
 
-`func (o *PaymentMethodUpdateInput) GetName() string`
+`func (o *PaymentMethodUpdateInput) GetBillingAddress() map[string]interface{}`
 
-GetName returns the Name field if non-nil, zero value otherwise.
+GetBillingAddress returns the BillingAddress field if non-nil, zero value otherwise.
 
-### GetNameOk
+### GetBillingAddressOk
 
-`func (o *PaymentMethodUpdateInput) GetNameOk() (*string, bool)`
+`func (o *PaymentMethodUpdateInput) GetBillingAddressOk() (*map[string]interface{}, bool)`
 
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+GetBillingAddressOk returns a tuple with the BillingAddress field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetName
+### SetBillingAddress
 
-`func (o *PaymentMethodUpdateInput) SetName(v string)`
+`func (o *PaymentMethodUpdateInput) SetBillingAddress(v map[string]interface{})`
 
-SetName sets Name field to given value.
+SetBillingAddress sets BillingAddress field to given value.
 
-### HasName
+### HasBillingAddress
 
-`func (o *PaymentMethodUpdateInput) HasName() bool`
+`func (o *PaymentMethodUpdateInput) HasBillingAddress() bool`
 
-HasName returns a boolean if a field has been set.
-
-### GetDefault
-
-`func (o *PaymentMethodUpdateInput) GetDefault() bool`
-
-GetDefault returns the Default field if non-nil, zero value otherwise.
-
-### GetDefaultOk
-
-`func (o *PaymentMethodUpdateInput) GetDefaultOk() (*bool, bool)`
-
-GetDefaultOk returns a tuple with the Default field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDefault
-
-`func (o *PaymentMethodUpdateInput) SetDefault(v bool)`
-
-SetDefault sets Default field to given value.
-
-### HasDefault
-
-`func (o *PaymentMethodUpdateInput) HasDefault() bool`
-
-HasDefault returns a boolean if a field has been set.
+HasBillingAddress returns a boolean if a field has been set.
 
 ### GetCardholderName
 
@@ -104,6 +79,31 @@ SetCardholderName sets CardholderName field to given value.
 `func (o *PaymentMethodUpdateInput) HasCardholderName() bool`
 
 HasCardholderName returns a boolean if a field has been set.
+
+### GetDefault
+
+`func (o *PaymentMethodUpdateInput) GetDefault() bool`
+
+GetDefault returns the Default field if non-nil, zero value otherwise.
+
+### GetDefaultOk
+
+`func (o *PaymentMethodUpdateInput) GetDefaultOk() (*bool, bool)`
+
+GetDefaultOk returns a tuple with the Default field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDefault
+
+`func (o *PaymentMethodUpdateInput) SetDefault(v bool)`
+
+SetDefault sets Default field to given value.
+
+### HasDefault
+
+`func (o *PaymentMethodUpdateInput) HasDefault() bool`
+
+HasDefault returns a boolean if a field has been set.
 
 ### GetExpirationMonth
 
@@ -155,30 +155,30 @@ SetExpirationYear sets ExpirationYear field to given value.
 
 HasExpirationYear returns a boolean if a field has been set.
 
-### GetBillingAddress
+### GetName
 
-`func (o *PaymentMethodUpdateInput) GetBillingAddress() map[string]interface{}`
+`func (o *PaymentMethodUpdateInput) GetName() string`
 
-GetBillingAddress returns the BillingAddress field if non-nil, zero value otherwise.
+GetName returns the Name field if non-nil, zero value otherwise.
 
-### GetBillingAddressOk
+### GetNameOk
 
-`func (o *PaymentMethodUpdateInput) GetBillingAddressOk() (*map[string]interface{}, bool)`
+`func (o *PaymentMethodUpdateInput) GetNameOk() (*string, bool)`
 
-GetBillingAddressOk returns a tuple with the BillingAddress field if it's non-nil, zero value otherwise
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetBillingAddress
+### SetName
 
-`func (o *PaymentMethodUpdateInput) SetBillingAddress(v map[string]interface{})`
+`func (o *PaymentMethodUpdateInput) SetName(v string)`
 
-SetBillingAddress sets BillingAddress field to given value.
+SetName sets Name field to given value.
 
-### HasBillingAddress
+### HasName
 
-`func (o *PaymentMethodUpdateInput) HasBillingAddress() bool`
+`func (o *PaymentMethodUpdateInput) HasName() bool`
 
-HasBillingAddress returns a boolean if a field has been set.
+HasName returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

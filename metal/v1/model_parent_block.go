@@ -17,10 +17,10 @@ import (
 
 // ParentBlock struct for ParentBlock
 type ParentBlock struct {
-	Network *string `json:"network,omitempty"`
-	Netmask *string `json:"netmask,omitempty"`
 	Cidr    *int32  `json:"cidr,omitempty"`
 	Href    *string `json:"href,omitempty"`
+	Netmask *string `json:"netmask,omitempty"`
+	Network *string `json:"network,omitempty"`
 }
 
 // NewParentBlock instantiates a new ParentBlock object
@@ -38,70 +38,6 @@ func NewParentBlock() *ParentBlock {
 func NewParentBlockWithDefaults() *ParentBlock {
 	this := ParentBlock{}
 	return &this
-}
-
-// GetNetwork returns the Network field value if set, zero value otherwise.
-func (o *ParentBlock) GetNetwork() string {
-	if o == nil || o.Network == nil {
-		var ret string
-		return ret
-	}
-	return *o.Network
-}
-
-// GetNetworkOk returns a tuple with the Network field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ParentBlock) GetNetworkOk() (*string, bool) {
-	if o == nil || o.Network == nil {
-		return nil, false
-	}
-	return o.Network, true
-}
-
-// HasNetwork returns a boolean if a field has been set.
-func (o *ParentBlock) HasNetwork() bool {
-	if o != nil && o.Network != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetNetwork gets a reference to the given string and assigns it to the Network field.
-func (o *ParentBlock) SetNetwork(v string) {
-	o.Network = &v
-}
-
-// GetNetmask returns the Netmask field value if set, zero value otherwise.
-func (o *ParentBlock) GetNetmask() string {
-	if o == nil || o.Netmask == nil {
-		var ret string
-		return ret
-	}
-	return *o.Netmask
-}
-
-// GetNetmaskOk returns a tuple with the Netmask field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ParentBlock) GetNetmaskOk() (*string, bool) {
-	if o == nil || o.Netmask == nil {
-		return nil, false
-	}
-	return o.Netmask, true
-}
-
-// HasNetmask returns a boolean if a field has been set.
-func (o *ParentBlock) HasNetmask() bool {
-	if o != nil && o.Netmask != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetNetmask gets a reference to the given string and assigns it to the Netmask field.
-func (o *ParentBlock) SetNetmask(v string) {
-	o.Netmask = &v
 }
 
 // GetCidr returns the Cidr field value if set, zero value otherwise.
@@ -168,19 +104,83 @@ func (o *ParentBlock) SetHref(v string) {
 	o.Href = &v
 }
 
+// GetNetmask returns the Netmask field value if set, zero value otherwise.
+func (o *ParentBlock) GetNetmask() string {
+	if o == nil || o.Netmask == nil {
+		var ret string
+		return ret
+	}
+	return *o.Netmask
+}
+
+// GetNetmaskOk returns a tuple with the Netmask field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ParentBlock) GetNetmaskOk() (*string, bool) {
+	if o == nil || o.Netmask == nil {
+		return nil, false
+	}
+	return o.Netmask, true
+}
+
+// HasNetmask returns a boolean if a field has been set.
+func (o *ParentBlock) HasNetmask() bool {
+	if o != nil && o.Netmask != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetNetmask gets a reference to the given string and assigns it to the Netmask field.
+func (o *ParentBlock) SetNetmask(v string) {
+	o.Netmask = &v
+}
+
+// GetNetwork returns the Network field value if set, zero value otherwise.
+func (o *ParentBlock) GetNetwork() string {
+	if o == nil || o.Network == nil {
+		var ret string
+		return ret
+	}
+	return *o.Network
+}
+
+// GetNetworkOk returns a tuple with the Network field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ParentBlock) GetNetworkOk() (*string, bool) {
+	if o == nil || o.Network == nil {
+		return nil, false
+	}
+	return o.Network, true
+}
+
+// HasNetwork returns a boolean if a field has been set.
+func (o *ParentBlock) HasNetwork() bool {
+	if o != nil && o.Network != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetNetwork gets a reference to the given string and assigns it to the Network field.
+func (o *ParentBlock) SetNetwork(v string) {
+	o.Network = &v
+}
+
 func (o ParentBlock) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Network != nil {
-		toSerialize["network"] = o.Network
-	}
-	if o.Netmask != nil {
-		toSerialize["netmask"] = o.Netmask
-	}
 	if o.Cidr != nil {
 		toSerialize["cidr"] = o.Cidr
 	}
 	if o.Href != nil {
 		toSerialize["href"] = o.Href
+	}
+	if o.Netmask != nil {
+		toSerialize["netmask"] = o.Netmask
+	}
+	if o.Network != nil {
+		toSerialize["network"] = o.Network
 	}
 	return json.Marshal(toSerialize)
 }

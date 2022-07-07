@@ -17,7 +17,7 @@ import (
 
 // InstancesBatchCreateInput struct for InstancesBatchCreateInput
 type InstancesBatchCreateInput struct {
-	Batches []InstancesBatchCreateInputBatchesInner `json:"batches,omitempty"`
+	Batches []CreateDeviceBatchRequestBatchesInner `json:"batches,omitempty"`
 }
 
 // NewInstancesBatchCreateInput instantiates a new InstancesBatchCreateInput object
@@ -38,9 +38,9 @@ func NewInstancesBatchCreateInputWithDefaults() *InstancesBatchCreateInput {
 }
 
 // GetBatches returns the Batches field value if set, zero value otherwise.
-func (o *InstancesBatchCreateInput) GetBatches() []InstancesBatchCreateInputBatchesInner {
+func (o *InstancesBatchCreateInput) GetBatches() []CreateDeviceBatchRequestBatchesInner {
 	if o == nil || o.Batches == nil {
-		var ret []InstancesBatchCreateInputBatchesInner
+		var ret []CreateDeviceBatchRequestBatchesInner
 		return ret
 	}
 	return o.Batches
@@ -48,7 +48,7 @@ func (o *InstancesBatchCreateInput) GetBatches() []InstancesBatchCreateInputBatc
 
 // GetBatchesOk returns a tuple with the Batches field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InstancesBatchCreateInput) GetBatchesOk() ([]InstancesBatchCreateInputBatchesInner, bool) {
+func (o *InstancesBatchCreateInput) GetBatchesOk() ([]CreateDeviceBatchRequestBatchesInner, bool) {
 	if o == nil || o.Batches == nil {
 		return nil, false
 	}
@@ -64,8 +64,8 @@ func (o *InstancesBatchCreateInput) HasBatches() bool {
 	return false
 }
 
-// SetBatches gets a reference to the given []InstancesBatchCreateInputBatchesInner and assigns it to the Batches field.
-func (o *InstancesBatchCreateInput) SetBatches(v []InstancesBatchCreateInputBatchesInner) {
+// SetBatches gets a reference to the given []CreateDeviceBatchRequestBatchesInner and assigns it to the Batches field.
+func (o *InstancesBatchCreateInput) SetBatches(v []CreateDeviceBatchRequestBatchesInner) {
 	o.Batches = v
 }
 

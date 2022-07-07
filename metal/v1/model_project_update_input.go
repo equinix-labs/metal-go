@@ -17,10 +17,10 @@ import (
 
 // ProjectUpdateInput struct for ProjectUpdateInput
 type ProjectUpdateInput struct {
-	Name                   *string                `json:"name,omitempty"`
-	PaymentMethodId        *string                `json:"payment_method_id,omitempty"`
 	BackendTransferEnabled *bool                  `json:"backend_transfer_enabled,omitempty"`
 	Customdata             map[string]interface{} `json:"customdata,omitempty"`
+	Name                   *string                `json:"name,omitempty"`
+	PaymentMethodId        *string                `json:"payment_method_id,omitempty"`
 }
 
 // NewProjectUpdateInput instantiates a new ProjectUpdateInput object
@@ -38,70 +38,6 @@ func NewProjectUpdateInput() *ProjectUpdateInput {
 func NewProjectUpdateInputWithDefaults() *ProjectUpdateInput {
 	this := ProjectUpdateInput{}
 	return &this
-}
-
-// GetName returns the Name field value if set, zero value otherwise.
-func (o *ProjectUpdateInput) GetName() string {
-	if o == nil || o.Name == nil {
-		var ret string
-		return ret
-	}
-	return *o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ProjectUpdateInput) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
-		return nil, false
-	}
-	return o.Name, true
-}
-
-// HasName returns a boolean if a field has been set.
-func (o *ProjectUpdateInput) HasName() bool {
-	if o != nil && o.Name != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetName gets a reference to the given string and assigns it to the Name field.
-func (o *ProjectUpdateInput) SetName(v string) {
-	o.Name = &v
-}
-
-// GetPaymentMethodId returns the PaymentMethodId field value if set, zero value otherwise.
-func (o *ProjectUpdateInput) GetPaymentMethodId() string {
-	if o == nil || o.PaymentMethodId == nil {
-		var ret string
-		return ret
-	}
-	return *o.PaymentMethodId
-}
-
-// GetPaymentMethodIdOk returns a tuple with the PaymentMethodId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ProjectUpdateInput) GetPaymentMethodIdOk() (*string, bool) {
-	if o == nil || o.PaymentMethodId == nil {
-		return nil, false
-	}
-	return o.PaymentMethodId, true
-}
-
-// HasPaymentMethodId returns a boolean if a field has been set.
-func (o *ProjectUpdateInput) HasPaymentMethodId() bool {
-	if o != nil && o.PaymentMethodId != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetPaymentMethodId gets a reference to the given string and assigns it to the PaymentMethodId field.
-func (o *ProjectUpdateInput) SetPaymentMethodId(v string) {
-	o.PaymentMethodId = &v
 }
 
 // GetBackendTransferEnabled returns the BackendTransferEnabled field value if set, zero value otherwise.
@@ -168,19 +104,83 @@ func (o *ProjectUpdateInput) SetCustomdata(v map[string]interface{}) {
 	o.Customdata = v
 }
 
+// GetName returns the Name field value if set, zero value otherwise.
+func (o *ProjectUpdateInput) GetName() string {
+	if o == nil || o.Name == nil {
+		var ret string
+		return ret
+	}
+	return *o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ProjectUpdateInput) GetNameOk() (*string, bool) {
+	if o == nil || o.Name == nil {
+		return nil, false
+	}
+	return o.Name, true
+}
+
+// HasName returns a boolean if a field has been set.
+func (o *ProjectUpdateInput) HasName() bool {
+	if o != nil && o.Name != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetName gets a reference to the given string and assigns it to the Name field.
+func (o *ProjectUpdateInput) SetName(v string) {
+	o.Name = &v
+}
+
+// GetPaymentMethodId returns the PaymentMethodId field value if set, zero value otherwise.
+func (o *ProjectUpdateInput) GetPaymentMethodId() string {
+	if o == nil || o.PaymentMethodId == nil {
+		var ret string
+		return ret
+	}
+	return *o.PaymentMethodId
+}
+
+// GetPaymentMethodIdOk returns a tuple with the PaymentMethodId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ProjectUpdateInput) GetPaymentMethodIdOk() (*string, bool) {
+	if o == nil || o.PaymentMethodId == nil {
+		return nil, false
+	}
+	return o.PaymentMethodId, true
+}
+
+// HasPaymentMethodId returns a boolean if a field has been set.
+func (o *ProjectUpdateInput) HasPaymentMethodId() bool {
+	if o != nil && o.PaymentMethodId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPaymentMethodId gets a reference to the given string and assigns it to the PaymentMethodId field.
+func (o *ProjectUpdateInput) SetPaymentMethodId(v string) {
+	o.PaymentMethodId = &v
+}
+
 func (o ProjectUpdateInput) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Name != nil {
-		toSerialize["name"] = o.Name
-	}
-	if o.PaymentMethodId != nil {
-		toSerialize["payment_method_id"] = o.PaymentMethodId
-	}
 	if o.BackendTransferEnabled != nil {
 		toSerialize["backend_transfer_enabled"] = o.BackendTransferEnabled
 	}
 	if o.Customdata != nil {
 		toSerialize["customdata"] = o.Customdata
+	}
+	if o.Name != nil {
+		toSerialize["name"] = o.Name
+	}
+	if o.PaymentMethodId != nil {
+		toSerialize["payment_method_id"] = o.PaymentMethodId
 	}
 	return json.Marshal(toSerialize)
 }

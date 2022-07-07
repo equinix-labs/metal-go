@@ -4,17 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Status** | Pointer to **string** |  | [optional] 
-**StartDate** | Pointer to **time.Time** |  | [optional] 
-**Period** | Pointer to [**CreateSelfServiceReservationRequestPeriod**](CreateSelfServiceReservationRequestPeriod.md) |  | [optional] 
-**TotalCost** | Pointer to **int32** |  | [optional] 
 **CreatedAt** | Pointer to **time.Time** |  | [optional] 
+**Item** | Pointer to [**[]FindSelfServiceReservations200ResponseReservationsInnerItemInner**](FindSelfServiceReservations200ResponseReservationsInnerItemInner.md) |  | [optional] 
 **Notes** | Pointer to **string** |  | [optional] 
 **Organization** | Pointer to **string** |  | [optional] 
 **OrganizationId** | Pointer to **string** |  | [optional] 
+**Period** | Pointer to [**FindSelfServiceReservations200ResponseReservationsInnerPeriod**](FindSelfServiceReservations200ResponseReservationsInnerPeriod.md) |  | [optional] 
 **Project** | Pointer to **string** |  | [optional] 
 **ProjectId** | Pointer to **string** |  | [optional] 
-**Item** | Pointer to [**[]SelfServiceReservationItemResponse**](SelfServiceReservationItemResponse.md) |  | [optional] 
+**StartDate** | Pointer to **time.Time** |  | [optional] 
+**Status** | Pointer to **string** |  | [optional] 
+**TotalCost** | Pointer to **int32** |  | [optional] 
 
 ## Methods
 
@@ -34,106 +34,6 @@ will change when the set of required properties is changed
 NewSelfServiceReservationResponseWithDefaults instantiates a new SelfServiceReservationResponse object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetStatus
-
-`func (o *SelfServiceReservationResponse) GetStatus() string`
-
-GetStatus returns the Status field if non-nil, zero value otherwise.
-
-### GetStatusOk
-
-`func (o *SelfServiceReservationResponse) GetStatusOk() (*string, bool)`
-
-GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetStatus
-
-`func (o *SelfServiceReservationResponse) SetStatus(v string)`
-
-SetStatus sets Status field to given value.
-
-### HasStatus
-
-`func (o *SelfServiceReservationResponse) HasStatus() bool`
-
-HasStatus returns a boolean if a field has been set.
-
-### GetStartDate
-
-`func (o *SelfServiceReservationResponse) GetStartDate() time.Time`
-
-GetStartDate returns the StartDate field if non-nil, zero value otherwise.
-
-### GetStartDateOk
-
-`func (o *SelfServiceReservationResponse) GetStartDateOk() (*time.Time, bool)`
-
-GetStartDateOk returns a tuple with the StartDate field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetStartDate
-
-`func (o *SelfServiceReservationResponse) SetStartDate(v time.Time)`
-
-SetStartDate sets StartDate field to given value.
-
-### HasStartDate
-
-`func (o *SelfServiceReservationResponse) HasStartDate() bool`
-
-HasStartDate returns a boolean if a field has been set.
-
-### GetPeriod
-
-`func (o *SelfServiceReservationResponse) GetPeriod() CreateSelfServiceReservationRequestPeriod`
-
-GetPeriod returns the Period field if non-nil, zero value otherwise.
-
-### GetPeriodOk
-
-`func (o *SelfServiceReservationResponse) GetPeriodOk() (*CreateSelfServiceReservationRequestPeriod, bool)`
-
-GetPeriodOk returns a tuple with the Period field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPeriod
-
-`func (o *SelfServiceReservationResponse) SetPeriod(v CreateSelfServiceReservationRequestPeriod)`
-
-SetPeriod sets Period field to given value.
-
-### HasPeriod
-
-`func (o *SelfServiceReservationResponse) HasPeriod() bool`
-
-HasPeriod returns a boolean if a field has been set.
-
-### GetTotalCost
-
-`func (o *SelfServiceReservationResponse) GetTotalCost() int32`
-
-GetTotalCost returns the TotalCost field if non-nil, zero value otherwise.
-
-### GetTotalCostOk
-
-`func (o *SelfServiceReservationResponse) GetTotalCostOk() (*int32, bool)`
-
-GetTotalCostOk returns a tuple with the TotalCost field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTotalCost
-
-`func (o *SelfServiceReservationResponse) SetTotalCost(v int32)`
-
-SetTotalCost sets TotalCost field to given value.
-
-### HasTotalCost
-
-`func (o *SelfServiceReservationResponse) HasTotalCost() bool`
-
-HasTotalCost returns a boolean if a field has been set.
 
 ### GetCreatedAt
 
@@ -159,6 +59,31 @@ SetCreatedAt sets CreatedAt field to given value.
 `func (o *SelfServiceReservationResponse) HasCreatedAt() bool`
 
 HasCreatedAt returns a boolean if a field has been set.
+
+### GetItem
+
+`func (o *SelfServiceReservationResponse) GetItem() []FindSelfServiceReservations200ResponseReservationsInnerItemInner`
+
+GetItem returns the Item field if non-nil, zero value otherwise.
+
+### GetItemOk
+
+`func (o *SelfServiceReservationResponse) GetItemOk() (*[]FindSelfServiceReservations200ResponseReservationsInnerItemInner, bool)`
+
+GetItemOk returns a tuple with the Item field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetItem
+
+`func (o *SelfServiceReservationResponse) SetItem(v []FindSelfServiceReservations200ResponseReservationsInnerItemInner)`
+
+SetItem sets Item field to given value.
+
+### HasItem
+
+`func (o *SelfServiceReservationResponse) HasItem() bool`
+
+HasItem returns a boolean if a field has been set.
 
 ### GetNotes
 
@@ -235,6 +160,31 @@ SetOrganizationId sets OrganizationId field to given value.
 
 HasOrganizationId returns a boolean if a field has been set.
 
+### GetPeriod
+
+`func (o *SelfServiceReservationResponse) GetPeriod() FindSelfServiceReservations200ResponseReservationsInnerPeriod`
+
+GetPeriod returns the Period field if non-nil, zero value otherwise.
+
+### GetPeriodOk
+
+`func (o *SelfServiceReservationResponse) GetPeriodOk() (*FindSelfServiceReservations200ResponseReservationsInnerPeriod, bool)`
+
+GetPeriodOk returns a tuple with the Period field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPeriod
+
+`func (o *SelfServiceReservationResponse) SetPeriod(v FindSelfServiceReservations200ResponseReservationsInnerPeriod)`
+
+SetPeriod sets Period field to given value.
+
+### HasPeriod
+
+`func (o *SelfServiceReservationResponse) HasPeriod() bool`
+
+HasPeriod returns a boolean if a field has been set.
+
 ### GetProject
 
 `func (o *SelfServiceReservationResponse) GetProject() string`
@@ -285,30 +235,80 @@ SetProjectId sets ProjectId field to given value.
 
 HasProjectId returns a boolean if a field has been set.
 
-### GetItem
+### GetStartDate
 
-`func (o *SelfServiceReservationResponse) GetItem() []SelfServiceReservationItemResponse`
+`func (o *SelfServiceReservationResponse) GetStartDate() time.Time`
 
-GetItem returns the Item field if non-nil, zero value otherwise.
+GetStartDate returns the StartDate field if non-nil, zero value otherwise.
 
-### GetItemOk
+### GetStartDateOk
 
-`func (o *SelfServiceReservationResponse) GetItemOk() (*[]SelfServiceReservationItemResponse, bool)`
+`func (o *SelfServiceReservationResponse) GetStartDateOk() (*time.Time, bool)`
 
-GetItemOk returns a tuple with the Item field if it's non-nil, zero value otherwise
+GetStartDateOk returns a tuple with the StartDate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetItem
+### SetStartDate
 
-`func (o *SelfServiceReservationResponse) SetItem(v []SelfServiceReservationItemResponse)`
+`func (o *SelfServiceReservationResponse) SetStartDate(v time.Time)`
 
-SetItem sets Item field to given value.
+SetStartDate sets StartDate field to given value.
 
-### HasItem
+### HasStartDate
 
-`func (o *SelfServiceReservationResponse) HasItem() bool`
+`func (o *SelfServiceReservationResponse) HasStartDate() bool`
 
-HasItem returns a boolean if a field has been set.
+HasStartDate returns a boolean if a field has been set.
+
+### GetStatus
+
+`func (o *SelfServiceReservationResponse) GetStatus() string`
+
+GetStatus returns the Status field if non-nil, zero value otherwise.
+
+### GetStatusOk
+
+`func (o *SelfServiceReservationResponse) GetStatusOk() (*string, bool)`
+
+GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStatus
+
+`func (o *SelfServiceReservationResponse) SetStatus(v string)`
+
+SetStatus sets Status field to given value.
+
+### HasStatus
+
+`func (o *SelfServiceReservationResponse) HasStatus() bool`
+
+HasStatus returns a boolean if a field has been set.
+
+### GetTotalCost
+
+`func (o *SelfServiceReservationResponse) GetTotalCost() int32`
+
+GetTotalCost returns the TotalCost field if non-nil, zero value otherwise.
+
+### GetTotalCostOk
+
+`func (o *SelfServiceReservationResponse) GetTotalCostOk() (*int32, bool)`
+
+GetTotalCostOk returns a tuple with the TotalCost field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTotalCost
+
+`func (o *SelfServiceReservationResponse) SetTotalCost(v int32)`
+
+SetTotalCost sets TotalCost field to given value.
+
+### HasTotalCost
+
+`func (o *SelfServiceReservationResponse) HasTotalCost() bool`
+
+HasTotalCost returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

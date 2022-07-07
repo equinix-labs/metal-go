@@ -23,7 +23,7 @@ Method | HTTP request | Description
 
 ## CreateConnectionPortVirtualCircuit
 
-> VirtualCircuitList CreateConnectionPortVirtualCircuit(ctx, connectionId, portId).VirtualCircuit(virtualCircuit).Execute()
+> map[string]interface{} CreateConnectionPortVirtualCircuit(ctx, connectionId, portId).Body(body).Execute()
 
 Create a new Virtual Circuit
 
@@ -44,16 +44,16 @@ import (
 func main() {
     connectionId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | UUID of the connection
     portId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | UUID of the connection port
-    virtualCircuit := *openapiclient.NewVirtualCircuitCreateInput() // VirtualCircuitCreateInput | Virtual Circuit details
+    body := map[string]interface{}{ ... } // map[string]interface{} | Virtual Circuit details
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConnectionsApi.CreateConnectionPortVirtualCircuit(context.Background(), connectionId, portId).VirtualCircuit(virtualCircuit).Execute()
+    resp, r, err := apiClient.ConnectionsApi.CreateConnectionPortVirtualCircuit(context.Background(), connectionId, portId).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConnectionsApi.CreateConnectionPortVirtualCircuit``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateConnectionPortVirtualCircuit`: VirtualCircuitList
+    // response from `CreateConnectionPortVirtualCircuit`: map[string]interface{}
     fmt.Fprintf(os.Stdout, "Response from `ConnectionsApi.CreateConnectionPortVirtualCircuit`: %v\n", resp)
 }
 ```
@@ -76,11 +76,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **virtualCircuit** | [**VirtualCircuitCreateInput**](VirtualCircuitCreateInput.md) | Virtual Circuit details | 
+ **body** | **map[string]interface{}** | Virtual Circuit details | 
 
 ### Return type
 
-[**VirtualCircuitList**](VirtualCircuitList.md)
+**map[string]interface{}**
 
 ### Authorization
 
@@ -98,7 +98,7 @@ Name | Type | Description  | Notes
 
 ## CreateOrganizationInterconnection
 
-> Interconnection CreateOrganizationInterconnection(ctx, organizationId).Connection(connection).Execute()
+> GetInterconnection200Response CreateOrganizationInterconnection(ctx, organizationId).Body(body).Execute()
 
 Request a new connection for the organization
 
@@ -118,16 +118,16 @@ import (
 
 func main() {
     organizationId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | UUID of the organization
-    connection := *openapiclient.NewInterconnectionCreateInput("Name_example", "Facility_example", "Type_example", "Redundancy_example") // InterconnectionCreateInput | Connection details
+    body := *openapiclient.NewCreateOrganizationInterconnectionRequest("Metro_example", "Name_example", "Redundancy_example", "Type_example") // CreateOrganizationInterconnectionRequest | Connection details
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConnectionsApi.CreateOrganizationInterconnection(context.Background(), organizationId).Connection(connection).Execute()
+    resp, r, err := apiClient.ConnectionsApi.CreateOrganizationInterconnection(context.Background(), organizationId).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConnectionsApi.CreateOrganizationInterconnection``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateOrganizationInterconnection`: Interconnection
+    // response from `CreateOrganizationInterconnection`: GetInterconnection200Response
     fmt.Fprintf(os.Stdout, "Response from `ConnectionsApi.CreateOrganizationInterconnection`: %v\n", resp)
 }
 ```
@@ -148,11 +148,11 @@ Other parameters are passed through a pointer to a apiCreateOrganizationIntercon
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **connection** | [**InterconnectionCreateInput**](InterconnectionCreateInput.md) | Connection details | 
+ **body** | [**CreateOrganizationInterconnectionRequest**](CreateOrganizationInterconnectionRequest.md) | Connection details | 
 
 ### Return type
 
-[**Interconnection**](Interconnection.md)
+[**GetInterconnection200Response**](GetInterconnection200Response.md)
 
 ### Authorization
 
@@ -170,7 +170,7 @@ Name | Type | Description  | Notes
 
 ## CreateProjectInterconnection
 
-> Interconnection CreateProjectInterconnection(ctx, projectId).Connection(connection).Execute()
+> GetInterconnection200Response CreateProjectInterconnection(ctx, projectId).Body(body).Execute()
 
 Request a new connection for the project's organization
 
@@ -190,16 +190,16 @@ import (
 
 func main() {
     projectId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | UUID of the project
-    connection := *openapiclient.NewInterconnectionCreateInput("Name_example", "Facility_example", "Type_example", "Redundancy_example") // InterconnectionCreateInput | Connection details
+    body := *openapiclient.NewCreateOrganizationInterconnectionRequest("Metro_example", "Name_example", "Redundancy_example", "Type_example") // CreateOrganizationInterconnectionRequest | Connection details
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConnectionsApi.CreateProjectInterconnection(context.Background(), projectId).Connection(connection).Execute()
+    resp, r, err := apiClient.ConnectionsApi.CreateProjectInterconnection(context.Background(), projectId).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConnectionsApi.CreateProjectInterconnection``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateProjectInterconnection`: Interconnection
+    // response from `CreateProjectInterconnection`: GetInterconnection200Response
     fmt.Fprintf(os.Stdout, "Response from `ConnectionsApi.CreateProjectInterconnection`: %v\n", resp)
 }
 ```
@@ -220,11 +220,11 @@ Other parameters are passed through a pointer to a apiCreateProjectInterconnecti
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **connection** | [**InterconnectionCreateInput**](InterconnectionCreateInput.md) | Connection details | 
+ **body** | [**CreateOrganizationInterconnectionRequest**](CreateOrganizationInterconnectionRequest.md) | Connection details | 
 
 ### Return type
 
-[**Interconnection**](Interconnection.md)
+[**GetInterconnection200Response**](GetInterconnection200Response.md)
 
 ### Authorization
 
@@ -242,7 +242,7 @@ Name | Type | Description  | Notes
 
 ## DeleteInterconnection
 
-> Interconnection DeleteInterconnection(ctx, connectionId).Execute()
+> GetInterconnection200Response DeleteInterconnection(ctx, connectionId).Execute()
 
 Delete connection
 
@@ -270,7 +270,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConnectionsApi.DeleteInterconnection``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `DeleteInterconnection`: Interconnection
+    // response from `DeleteInterconnection`: GetInterconnection200Response
     fmt.Fprintf(os.Stdout, "Response from `ConnectionsApi.DeleteInterconnection`: %v\n", resp)
 }
 ```
@@ -294,7 +294,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Interconnection**](Interconnection.md)
+[**GetInterconnection200Response**](GetInterconnection200Response.md)
 
 ### Authorization
 
@@ -312,7 +312,7 @@ Name | Type | Description  | Notes
 
 ## DeleteVirtualCircuit
 
-> VirtualCircuit DeleteVirtualCircuit(ctx, id).Execute()
+> map[string]interface{} DeleteVirtualCircuit(ctx, id).Execute()
 
 Delete a virtual circuit
 
@@ -340,7 +340,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConnectionsApi.DeleteVirtualCircuit``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `DeleteVirtualCircuit`: VirtualCircuit
+    // response from `DeleteVirtualCircuit`: map[string]interface{}
     fmt.Fprintf(os.Stdout, "Response from `ConnectionsApi.DeleteVirtualCircuit`: %v\n", resp)
 }
 ```
@@ -364,7 +364,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**VirtualCircuit**](VirtualCircuit.md)
+**map[string]interface{}**
 
 ### Authorization
 
@@ -382,7 +382,7 @@ Name | Type | Description  | Notes
 
 ## GetConnectionPort
 
-> InterconnectionPort GetConnectionPort(ctx, connectionId, id).Execute()
+> GetInterconnection200ResponsePortsInner GetConnectionPort(ctx, connectionId, id).Execute()
 
 Get a connection port
 
@@ -411,7 +411,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConnectionsApi.GetConnectionPort``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetConnectionPort`: InterconnectionPort
+    // response from `GetConnectionPort`: GetInterconnection200ResponsePortsInner
     fmt.Fprintf(os.Stdout, "Response from `ConnectionsApi.GetConnectionPort`: %v\n", resp)
 }
 ```
@@ -437,7 +437,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InterconnectionPort**](InterconnectionPort.md)
+[**GetInterconnection200ResponsePortsInner**](GetInterconnection200ResponsePortsInner.md)
 
 ### Authorization
 
@@ -455,7 +455,7 @@ Name | Type | Description  | Notes
 
 ## GetInterconnection
 
-> Interconnection GetInterconnection(ctx, connectionId).Execute()
+> GetInterconnection200Response GetInterconnection(ctx, connectionId).Execute()
 
 Get connection
 
@@ -483,7 +483,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConnectionsApi.GetInterconnection``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetInterconnection`: Interconnection
+    // response from `GetInterconnection`: GetInterconnection200Response
     fmt.Fprintf(os.Stdout, "Response from `ConnectionsApi.GetInterconnection`: %v\n", resp)
 }
 ```
@@ -507,7 +507,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Interconnection**](Interconnection.md)
+[**GetInterconnection200Response**](GetInterconnection200Response.md)
 
 ### Authorization
 
@@ -525,7 +525,7 @@ Name | Type | Description  | Notes
 
 ## GetVirtualCircuit
 
-> VirtualCircuit GetVirtualCircuit(ctx, id).Execute()
+> map[string]interface{} GetVirtualCircuit(ctx, id).Execute()
 
 Get a virtual circuit
 
@@ -553,7 +553,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConnectionsApi.GetVirtualCircuit``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetVirtualCircuit`: VirtualCircuit
+    // response from `GetVirtualCircuit`: map[string]interface{}
     fmt.Fprintf(os.Stdout, "Response from `ConnectionsApi.GetVirtualCircuit`: %v\n", resp)
 }
 ```
@@ -577,7 +577,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**VirtualCircuit**](VirtualCircuit.md)
+**map[string]interface{}**
 
 ### Authorization
 
@@ -595,7 +595,7 @@ Name | Type | Description  | Notes
 
 ## ListConnectionPortVirtualCircuits
 
-> VirtualCircuitList ListConnectionPortVirtualCircuits(ctx, connectionId, portId).Execute()
+> GetInterconnection200ResponsePortsInnerVirtualCircuits ListConnectionPortVirtualCircuits(ctx, connectionId, portId).Execute()
 
 List a connection port's virtual circuits
 
@@ -624,7 +624,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConnectionsApi.ListConnectionPortVirtualCircuits``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `ListConnectionPortVirtualCircuits`: VirtualCircuitList
+    // response from `ListConnectionPortVirtualCircuits`: GetInterconnection200ResponsePortsInnerVirtualCircuits
     fmt.Fprintf(os.Stdout, "Response from `ConnectionsApi.ListConnectionPortVirtualCircuits`: %v\n", resp)
 }
 ```
@@ -650,7 +650,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**VirtualCircuitList**](VirtualCircuitList.md)
+[**GetInterconnection200ResponsePortsInnerVirtualCircuits**](GetInterconnection200ResponsePortsInnerVirtualCircuits.md)
 
 ### Authorization
 
@@ -668,7 +668,7 @@ Name | Type | Description  | Notes
 
 ## ListConnectionPorts
 
-> InterconnectionPortList ListConnectionPorts(ctx, connectionId).Execute()
+> ListConnectionPorts200Response ListConnectionPorts(ctx, connectionId).Execute()
 
 List a connection's ports
 
@@ -696,7 +696,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConnectionsApi.ListConnectionPorts``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `ListConnectionPorts`: InterconnectionPortList
+    // response from `ListConnectionPorts`: ListConnectionPorts200Response
     fmt.Fprintf(os.Stdout, "Response from `ConnectionsApi.ListConnectionPorts`: %v\n", resp)
 }
 ```
@@ -720,7 +720,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InterconnectionPortList**](InterconnectionPortList.md)
+[**ListConnectionPorts200Response**](ListConnectionPorts200Response.md)
 
 ### Authorization
 
@@ -738,7 +738,7 @@ Name | Type | Description  | Notes
 
 ## OrganizationListInterconnections
 
-> InterconnectionList OrganizationListInterconnections(ctx, organizationId).Execute()
+> OrganizationListInterconnections200Response OrganizationListInterconnections(ctx, organizationId).Execute()
 
 List organization connections
 
@@ -766,7 +766,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConnectionsApi.OrganizationListInterconnections``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `OrganizationListInterconnections`: InterconnectionList
+    // response from `OrganizationListInterconnections`: OrganizationListInterconnections200Response
     fmt.Fprintf(os.Stdout, "Response from `ConnectionsApi.OrganizationListInterconnections`: %v\n", resp)
 }
 ```
@@ -790,7 +790,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InterconnectionList**](InterconnectionList.md)
+[**OrganizationListInterconnections200Response**](OrganizationListInterconnections200Response.md)
 
 ### Authorization
 
@@ -808,7 +808,7 @@ Name | Type | Description  | Notes
 
 ## ProjectListInterconnections
 
-> InterconnectionList ProjectListInterconnections(ctx, projectId).Execute()
+> OrganizationListInterconnections200Response ProjectListInterconnections(ctx, projectId).Execute()
 
 List project connections
 
@@ -836,7 +836,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConnectionsApi.ProjectListInterconnections``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `ProjectListInterconnections`: InterconnectionList
+    // response from `ProjectListInterconnections`: OrganizationListInterconnections200Response
     fmt.Fprintf(os.Stdout, "Response from `ConnectionsApi.ProjectListInterconnections`: %v\n", resp)
 }
 ```
@@ -860,7 +860,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InterconnectionList**](InterconnectionList.md)
+[**OrganizationListInterconnections200Response**](OrganizationListInterconnections200Response.md)
 
 ### Authorization
 
@@ -878,7 +878,7 @@ Name | Type | Description  | Notes
 
 ## UpdateInterconnection
 
-> Interconnection UpdateInterconnection(ctx, connectionId).Connection(connection).Execute()
+> GetInterconnection200Response UpdateInterconnection(ctx, connectionId).Body(body).Execute()
 
 Update connection
 
@@ -898,16 +898,16 @@ import (
 
 func main() {
     connectionId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Connection UUID
-    connection := *openapiclient.NewInterconnectionUpdateInput() // InterconnectionUpdateInput | Updated connection details
+    body := *openapiclient.NewUpdateInterconnectionRequest() // UpdateInterconnectionRequest | Updated connection details
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConnectionsApi.UpdateInterconnection(context.Background(), connectionId).Connection(connection).Execute()
+    resp, r, err := apiClient.ConnectionsApi.UpdateInterconnection(context.Background(), connectionId).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConnectionsApi.UpdateInterconnection``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateInterconnection`: Interconnection
+    // response from `UpdateInterconnection`: GetInterconnection200Response
     fmt.Fprintf(os.Stdout, "Response from `ConnectionsApi.UpdateInterconnection`: %v\n", resp)
 }
 ```
@@ -928,11 +928,11 @@ Other parameters are passed through a pointer to a apiUpdateInterconnectionReque
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **connection** | [**InterconnectionUpdateInput**](InterconnectionUpdateInput.md) | Updated connection details | 
+ **body** | [**UpdateInterconnectionRequest**](UpdateInterconnectionRequest.md) | Updated connection details | 
 
 ### Return type
 
-[**Interconnection**](Interconnection.md)
+[**GetInterconnection200Response**](GetInterconnection200Response.md)
 
 ### Authorization
 
@@ -950,7 +950,7 @@ Name | Type | Description  | Notes
 
 ## UpdateVirtualCircuit
 
-> VirtualCircuit UpdateVirtualCircuit(ctx, id).VirtualCircuit(virtualCircuit).Execute()
+> map[string]interface{} UpdateVirtualCircuit(ctx, id).Body(body).Execute()
 
 Update a virtual circuit
 
@@ -970,16 +970,16 @@ import (
 
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Virtual Circuit UUID
-    virtualCircuit := *openapiclient.NewVirtualCircuitUpdateInput() // VirtualCircuitUpdateInput | Updated Virtual Circuit details
+    body := map[string]interface{}{ ... } // map[string]interface{} | Updated Virtual Circuit details
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConnectionsApi.UpdateVirtualCircuit(context.Background(), id).VirtualCircuit(virtualCircuit).Execute()
+    resp, r, err := apiClient.ConnectionsApi.UpdateVirtualCircuit(context.Background(), id).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConnectionsApi.UpdateVirtualCircuit``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateVirtualCircuit`: VirtualCircuit
+    // response from `UpdateVirtualCircuit`: map[string]interface{}
     fmt.Fprintf(os.Stdout, "Response from `ConnectionsApi.UpdateVirtualCircuit`: %v\n", resp)
 }
 ```
@@ -1000,11 +1000,11 @@ Other parameters are passed through a pointer to a apiUpdateVirtualCircuitReques
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **virtualCircuit** | [**VirtualCircuitUpdateInput**](VirtualCircuitUpdateInput.md) | Updated Virtual Circuit details | 
+ **body** | **map[string]interface{}** | Updated Virtual Circuit details | 
 
 ### Return type
 
-[**VirtualCircuit**](VirtualCircuit.md)
+**map[string]interface{}**
 
 ### Authorization
 

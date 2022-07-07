@@ -17,9 +17,9 @@ import (
 
 // PaymentMethodCreateInput struct for PaymentMethodCreateInput
 type PaymentMethodCreateInput struct {
+	Default *bool  `json:"default,omitempty"`
 	Name    string `json:"name"`
 	Nonce   string `json:"nonce"`
-	Default *bool  `json:"default,omitempty"`
 }
 
 // NewPaymentMethodCreateInput instantiates a new PaymentMethodCreateInput object
@@ -39,6 +39,38 @@ func NewPaymentMethodCreateInput(name string, nonce string) *PaymentMethodCreate
 func NewPaymentMethodCreateInputWithDefaults() *PaymentMethodCreateInput {
 	this := PaymentMethodCreateInput{}
 	return &this
+}
+
+// GetDefault returns the Default field value if set, zero value otherwise.
+func (o *PaymentMethodCreateInput) GetDefault() bool {
+	if o == nil || o.Default == nil {
+		var ret bool
+		return ret
+	}
+	return *o.Default
+}
+
+// GetDefaultOk returns a tuple with the Default field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PaymentMethodCreateInput) GetDefaultOk() (*bool, bool) {
+	if o == nil || o.Default == nil {
+		return nil, false
+	}
+	return o.Default, true
+}
+
+// HasDefault returns a boolean if a field has been set.
+func (o *PaymentMethodCreateInput) HasDefault() bool {
+	if o != nil && o.Default != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDefault gets a reference to the given bool and assigns it to the Default field.
+func (o *PaymentMethodCreateInput) SetDefault(v bool) {
+	o.Default = &v
 }
 
 // GetName returns the Name field value
@@ -89,48 +121,16 @@ func (o *PaymentMethodCreateInput) SetNonce(v string) {
 	o.Nonce = v
 }
 
-// GetDefault returns the Default field value if set, zero value otherwise.
-func (o *PaymentMethodCreateInput) GetDefault() bool {
-	if o == nil || o.Default == nil {
-		var ret bool
-		return ret
-	}
-	return *o.Default
-}
-
-// GetDefaultOk returns a tuple with the Default field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *PaymentMethodCreateInput) GetDefaultOk() (*bool, bool) {
-	if o == nil || o.Default == nil {
-		return nil, false
-	}
-	return o.Default, true
-}
-
-// HasDefault returns a boolean if a field has been set.
-func (o *PaymentMethodCreateInput) HasDefault() bool {
-	if o != nil && o.Default != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetDefault gets a reference to the given bool and assigns it to the Default field.
-func (o *PaymentMethodCreateInput) SetDefault(v bool) {
-	o.Default = &v
-}
-
 func (o PaymentMethodCreateInput) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.Default != nil {
+		toSerialize["default"] = o.Default
+	}
 	if true {
 		toSerialize["name"] = o.Name
 	}
 	if true {
 		toSerialize["nonce"] = o.Nonce
-	}
-	if o.Default != nil {
-		toSerialize["default"] = o.Default
 	}
 	return json.Marshal(toSerialize)
 }

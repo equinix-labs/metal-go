@@ -17,14 +17,14 @@ import (
 
 // IPReservationFacility struct for IPReservationFacility
 type IPReservationFacility struct {
-	Id       *string  `json:"id,omitempty"`
-	Name     *string  `json:"name,omitempty"`
-	Code     *string  `json:"code,omitempty"`
-	Features []string `json:"features,omitempty"`
+	Address  *FindDeviceById200ResponseFacilityAddress `json:"address,omitempty"`
+	Code     *string                                   `json:"code,omitempty"`
+	Features []string                                  `json:"features,omitempty"`
+	Id       *string                                   `json:"id,omitempty"`
 	// IP ranges registered in facility. Can be used for GeoIP location
-	IpRanges []string       `json:"ip_ranges,omitempty"`
-	Address  *Address       `json:"address,omitempty"`
-	Metro    *FacilityMetro `json:"metro,omitempty"`
+	IpRanges []string                                `json:"ip_ranges,omitempty"`
+	Metro    *FindDeviceById200ResponseFacilityMetro `json:"metro,omitempty"`
+	Name     *string                                 `json:"name,omitempty"`
 }
 
 // NewIPReservationFacility instantiates a new IPReservationFacility object
@@ -44,68 +44,36 @@ func NewIPReservationFacilityWithDefaults() *IPReservationFacility {
 	return &this
 }
 
-// GetId returns the Id field value if set, zero value otherwise.
-func (o *IPReservationFacility) GetId() string {
-	if o == nil || o.Id == nil {
-		var ret string
+// GetAddress returns the Address field value if set, zero value otherwise.
+func (o *IPReservationFacility) GetAddress() FindDeviceById200ResponseFacilityAddress {
+	if o == nil || o.Address == nil {
+		var ret FindDeviceById200ResponseFacilityAddress
 		return ret
 	}
-	return *o.Id
+	return *o.Address
 }
 
-// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// GetAddressOk returns a tuple with the Address field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IPReservationFacility) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+func (o *IPReservationFacility) GetAddressOk() (*FindDeviceById200ResponseFacilityAddress, bool) {
+	if o == nil || o.Address == nil {
 		return nil, false
 	}
-	return o.Id, true
+	return o.Address, true
 }
 
-// HasId returns a boolean if a field has been set.
-func (o *IPReservationFacility) HasId() bool {
-	if o != nil && o.Id != nil {
+// HasAddress returns a boolean if a field has been set.
+func (o *IPReservationFacility) HasAddress() bool {
+	if o != nil && o.Address != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetId gets a reference to the given string and assigns it to the Id field.
-func (o *IPReservationFacility) SetId(v string) {
-	o.Id = &v
-}
-
-// GetName returns the Name field value if set, zero value otherwise.
-func (o *IPReservationFacility) GetName() string {
-	if o == nil || o.Name == nil {
-		var ret string
-		return ret
-	}
-	return *o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *IPReservationFacility) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
-		return nil, false
-	}
-	return o.Name, true
-}
-
-// HasName returns a boolean if a field has been set.
-func (o *IPReservationFacility) HasName() bool {
-	if o != nil && o.Name != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetName gets a reference to the given string and assigns it to the Name field.
-func (o *IPReservationFacility) SetName(v string) {
-	o.Name = &v
+// SetAddress gets a reference to the given FindDeviceById200ResponseFacilityAddress and assigns it to the Address field.
+func (o *IPReservationFacility) SetAddress(v FindDeviceById200ResponseFacilityAddress) {
+	o.Address = &v
 }
 
 // GetCode returns the Code field value if set, zero value otherwise.
@@ -172,6 +140,38 @@ func (o *IPReservationFacility) SetFeatures(v []string) {
 	o.Features = v
 }
 
+// GetId returns the Id field value if set, zero value otherwise.
+func (o *IPReservationFacility) GetId() string {
+	if o == nil || o.Id == nil {
+		var ret string
+		return ret
+	}
+	return *o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IPReservationFacility) GetIdOk() (*string, bool) {
+	if o == nil || o.Id == nil {
+		return nil, false
+	}
+	return o.Id, true
+}
+
+// HasId returns a boolean if a field has been set.
+func (o *IPReservationFacility) HasId() bool {
+	if o != nil && o.Id != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given string and assigns it to the Id field.
+func (o *IPReservationFacility) SetId(v string) {
+	o.Id = &v
+}
+
 // GetIpRanges returns the IpRanges field value if set, zero value otherwise.
 func (o *IPReservationFacility) GetIpRanges() []string {
 	if o == nil || o.IpRanges == nil {
@@ -204,42 +204,10 @@ func (o *IPReservationFacility) SetIpRanges(v []string) {
 	o.IpRanges = v
 }
 
-// GetAddress returns the Address field value if set, zero value otherwise.
-func (o *IPReservationFacility) GetAddress() Address {
-	if o == nil || o.Address == nil {
-		var ret Address
-		return ret
-	}
-	return *o.Address
-}
-
-// GetAddressOk returns a tuple with the Address field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *IPReservationFacility) GetAddressOk() (*Address, bool) {
-	if o == nil || o.Address == nil {
-		return nil, false
-	}
-	return o.Address, true
-}
-
-// HasAddress returns a boolean if a field has been set.
-func (o *IPReservationFacility) HasAddress() bool {
-	if o != nil && o.Address != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetAddress gets a reference to the given Address and assigns it to the Address field.
-func (o *IPReservationFacility) SetAddress(v Address) {
-	o.Address = &v
-}
-
 // GetMetro returns the Metro field value if set, zero value otherwise.
-func (o *IPReservationFacility) GetMetro() FacilityMetro {
+func (o *IPReservationFacility) GetMetro() FindDeviceById200ResponseFacilityMetro {
 	if o == nil || o.Metro == nil {
-		var ret FacilityMetro
+		var ret FindDeviceById200ResponseFacilityMetro
 		return ret
 	}
 	return *o.Metro
@@ -247,7 +215,7 @@ func (o *IPReservationFacility) GetMetro() FacilityMetro {
 
 // GetMetroOk returns a tuple with the Metro field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IPReservationFacility) GetMetroOk() (*FacilityMetro, bool) {
+func (o *IPReservationFacility) GetMetroOk() (*FindDeviceById200ResponseFacilityMetro, bool) {
 	if o == nil || o.Metro == nil {
 		return nil, false
 	}
@@ -263,18 +231,47 @@ func (o *IPReservationFacility) HasMetro() bool {
 	return false
 }
 
-// SetMetro gets a reference to the given FacilityMetro and assigns it to the Metro field.
-func (o *IPReservationFacility) SetMetro(v FacilityMetro) {
+// SetMetro gets a reference to the given FindDeviceById200ResponseFacilityMetro and assigns it to the Metro field.
+func (o *IPReservationFacility) SetMetro(v FindDeviceById200ResponseFacilityMetro) {
 	o.Metro = &v
+}
+
+// GetName returns the Name field value if set, zero value otherwise.
+func (o *IPReservationFacility) GetName() string {
+	if o == nil || o.Name == nil {
+		var ret string
+		return ret
+	}
+	return *o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IPReservationFacility) GetNameOk() (*string, bool) {
+	if o == nil || o.Name == nil {
+		return nil, false
+	}
+	return o.Name, true
+}
+
+// HasName returns a boolean if a field has been set.
+func (o *IPReservationFacility) HasName() bool {
+	if o != nil && o.Name != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetName gets a reference to the given string and assigns it to the Name field.
+func (o *IPReservationFacility) SetName(v string) {
+	o.Name = &v
 }
 
 func (o IPReservationFacility) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
-	}
-	if o.Name != nil {
-		toSerialize["name"] = o.Name
+	if o.Address != nil {
+		toSerialize["address"] = o.Address
 	}
 	if o.Code != nil {
 		toSerialize["code"] = o.Code
@@ -282,14 +279,17 @@ func (o IPReservationFacility) MarshalJSON() ([]byte, error) {
 	if o.Features != nil {
 		toSerialize["features"] = o.Features
 	}
+	if o.Id != nil {
+		toSerialize["id"] = o.Id
+	}
 	if o.IpRanges != nil {
 		toSerialize["ip_ranges"] = o.IpRanges
 	}
-	if o.Address != nil {
-		toSerialize["address"] = o.Address
-	}
 	if o.Metro != nil {
 		toSerialize["metro"] = o.Metro
+	}
+	if o.Name != nil {
+		toSerialize["name"] = o.Name
 	}
 	return json.Marshal(toSerialize)
 }

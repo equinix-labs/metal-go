@@ -17,20 +17,20 @@ import (
 
 // CapacityReport struct for CapacityReport
 type CapacityReport struct {
-	Ams1 *CapacityPerFacility    `json:"ams1,omitempty"`
-	Atl1 *CapacityPerNewFacility `json:"atl1,omitempty"`
-	Dfw1 *CapacityPerNewFacility `json:"dfw1,omitempty"`
-	Ewr1 *CapacityPerFacility    `json:"ewr1,omitempty"`
-	Fra1 *CapacityPerNewFacility `json:"fra1,omitempty"`
-	Iad1 *CapacityPerNewFacility `json:"iad1,omitempty"`
-	Lax1 *CapacityPerNewFacility `json:"lax1,omitempty"`
-	Nrt1 *CapacityPerFacility    `json:"nrt1,omitempty"`
-	Ord1 *CapacityPerNewFacility `json:"ord1,omitempty"`
-	Sea1 *CapacityPerNewFacility `json:"sea1,omitempty"`
-	Sin1 *CapacityPerNewFacility `json:"sin1,omitempty"`
-	Sjc1 *CapacityPerFacility    `json:"sjc1,omitempty"`
-	Syd1 *CapacityPerNewFacility `json:"syd1,omitempty"`
-	Yyz1 *CapacityPerNewFacility `json:"yyz1,omitempty"`
+	Ams1 *FindCapacityForFacility200ResponseCapacityAms1 `json:"ams1,omitempty"`
+	Atl1 *FindCapacityForFacility200ResponseCapacityAtl1 `json:"atl1,omitempty"`
+	Dfw1 *FindCapacityForFacility200ResponseCapacityAtl1 `json:"dfw1,omitempty"`
+	Ewr1 *FindCapacityForFacility200ResponseCapacityAms1 `json:"ewr1,omitempty"`
+	Fra1 *FindCapacityForFacility200ResponseCapacityAtl1 `json:"fra1,omitempty"`
+	Iad1 *FindCapacityForFacility200ResponseCapacityAtl1 `json:"iad1,omitempty"`
+	Lax1 *FindCapacityForFacility200ResponseCapacityAtl1 `json:"lax1,omitempty"`
+	Nrt1 *FindCapacityForFacility200ResponseCapacityAms1 `json:"nrt1,omitempty"`
+	Ord1 *FindCapacityForFacility200ResponseCapacityAtl1 `json:"ord1,omitempty"`
+	Sea1 *FindCapacityForFacility200ResponseCapacityAtl1 `json:"sea1,omitempty"`
+	Sin1 *FindCapacityForFacility200ResponseCapacityAtl1 `json:"sin1,omitempty"`
+	Sjc1 *FindCapacityForFacility200ResponseCapacityAms1 `json:"sjc1,omitempty"`
+	Syd1 *FindCapacityForFacility200ResponseCapacityAtl1 `json:"syd1,omitempty"`
+	Yyz1 *FindCapacityForFacility200ResponseCapacityAtl1 `json:"yyz1,omitempty"`
 }
 
 // NewCapacityReport instantiates a new CapacityReport object
@@ -51,9 +51,9 @@ func NewCapacityReportWithDefaults() *CapacityReport {
 }
 
 // GetAms1 returns the Ams1 field value if set, zero value otherwise.
-func (o *CapacityReport) GetAms1() CapacityPerFacility {
+func (o *CapacityReport) GetAms1() FindCapacityForFacility200ResponseCapacityAms1 {
 	if o == nil || o.Ams1 == nil {
-		var ret CapacityPerFacility
+		var ret FindCapacityForFacility200ResponseCapacityAms1
 		return ret
 	}
 	return *o.Ams1
@@ -61,7 +61,7 @@ func (o *CapacityReport) GetAms1() CapacityPerFacility {
 
 // GetAms1Ok returns a tuple with the Ams1 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CapacityReport) GetAms1Ok() (*CapacityPerFacility, bool) {
+func (o *CapacityReport) GetAms1Ok() (*FindCapacityForFacility200ResponseCapacityAms1, bool) {
 	if o == nil || o.Ams1 == nil {
 		return nil, false
 	}
@@ -77,15 +77,15 @@ func (o *CapacityReport) HasAms1() bool {
 	return false
 }
 
-// SetAms1 gets a reference to the given CapacityPerFacility and assigns it to the Ams1 field.
-func (o *CapacityReport) SetAms1(v CapacityPerFacility) {
+// SetAms1 gets a reference to the given FindCapacityForFacility200ResponseCapacityAms1 and assigns it to the Ams1 field.
+func (o *CapacityReport) SetAms1(v FindCapacityForFacility200ResponseCapacityAms1) {
 	o.Ams1 = &v
 }
 
 // GetAtl1 returns the Atl1 field value if set, zero value otherwise.
-func (o *CapacityReport) GetAtl1() CapacityPerNewFacility {
+func (o *CapacityReport) GetAtl1() FindCapacityForFacility200ResponseCapacityAtl1 {
 	if o == nil || o.Atl1 == nil {
-		var ret CapacityPerNewFacility
+		var ret FindCapacityForFacility200ResponseCapacityAtl1
 		return ret
 	}
 	return *o.Atl1
@@ -93,7 +93,7 @@ func (o *CapacityReport) GetAtl1() CapacityPerNewFacility {
 
 // GetAtl1Ok returns a tuple with the Atl1 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CapacityReport) GetAtl1Ok() (*CapacityPerNewFacility, bool) {
+func (o *CapacityReport) GetAtl1Ok() (*FindCapacityForFacility200ResponseCapacityAtl1, bool) {
 	if o == nil || o.Atl1 == nil {
 		return nil, false
 	}
@@ -109,15 +109,15 @@ func (o *CapacityReport) HasAtl1() bool {
 	return false
 }
 
-// SetAtl1 gets a reference to the given CapacityPerNewFacility and assigns it to the Atl1 field.
-func (o *CapacityReport) SetAtl1(v CapacityPerNewFacility) {
+// SetAtl1 gets a reference to the given FindCapacityForFacility200ResponseCapacityAtl1 and assigns it to the Atl1 field.
+func (o *CapacityReport) SetAtl1(v FindCapacityForFacility200ResponseCapacityAtl1) {
 	o.Atl1 = &v
 }
 
 // GetDfw1 returns the Dfw1 field value if set, zero value otherwise.
-func (o *CapacityReport) GetDfw1() CapacityPerNewFacility {
+func (o *CapacityReport) GetDfw1() FindCapacityForFacility200ResponseCapacityAtl1 {
 	if o == nil || o.Dfw1 == nil {
-		var ret CapacityPerNewFacility
+		var ret FindCapacityForFacility200ResponseCapacityAtl1
 		return ret
 	}
 	return *o.Dfw1
@@ -125,7 +125,7 @@ func (o *CapacityReport) GetDfw1() CapacityPerNewFacility {
 
 // GetDfw1Ok returns a tuple with the Dfw1 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CapacityReport) GetDfw1Ok() (*CapacityPerNewFacility, bool) {
+func (o *CapacityReport) GetDfw1Ok() (*FindCapacityForFacility200ResponseCapacityAtl1, bool) {
 	if o == nil || o.Dfw1 == nil {
 		return nil, false
 	}
@@ -141,15 +141,15 @@ func (o *CapacityReport) HasDfw1() bool {
 	return false
 }
 
-// SetDfw1 gets a reference to the given CapacityPerNewFacility and assigns it to the Dfw1 field.
-func (o *CapacityReport) SetDfw1(v CapacityPerNewFacility) {
+// SetDfw1 gets a reference to the given FindCapacityForFacility200ResponseCapacityAtl1 and assigns it to the Dfw1 field.
+func (o *CapacityReport) SetDfw1(v FindCapacityForFacility200ResponseCapacityAtl1) {
 	o.Dfw1 = &v
 }
 
 // GetEwr1 returns the Ewr1 field value if set, zero value otherwise.
-func (o *CapacityReport) GetEwr1() CapacityPerFacility {
+func (o *CapacityReport) GetEwr1() FindCapacityForFacility200ResponseCapacityAms1 {
 	if o == nil || o.Ewr1 == nil {
-		var ret CapacityPerFacility
+		var ret FindCapacityForFacility200ResponseCapacityAms1
 		return ret
 	}
 	return *o.Ewr1
@@ -157,7 +157,7 @@ func (o *CapacityReport) GetEwr1() CapacityPerFacility {
 
 // GetEwr1Ok returns a tuple with the Ewr1 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CapacityReport) GetEwr1Ok() (*CapacityPerFacility, bool) {
+func (o *CapacityReport) GetEwr1Ok() (*FindCapacityForFacility200ResponseCapacityAms1, bool) {
 	if o == nil || o.Ewr1 == nil {
 		return nil, false
 	}
@@ -173,15 +173,15 @@ func (o *CapacityReport) HasEwr1() bool {
 	return false
 }
 
-// SetEwr1 gets a reference to the given CapacityPerFacility and assigns it to the Ewr1 field.
-func (o *CapacityReport) SetEwr1(v CapacityPerFacility) {
+// SetEwr1 gets a reference to the given FindCapacityForFacility200ResponseCapacityAms1 and assigns it to the Ewr1 field.
+func (o *CapacityReport) SetEwr1(v FindCapacityForFacility200ResponseCapacityAms1) {
 	o.Ewr1 = &v
 }
 
 // GetFra1 returns the Fra1 field value if set, zero value otherwise.
-func (o *CapacityReport) GetFra1() CapacityPerNewFacility {
+func (o *CapacityReport) GetFra1() FindCapacityForFacility200ResponseCapacityAtl1 {
 	if o == nil || o.Fra1 == nil {
-		var ret CapacityPerNewFacility
+		var ret FindCapacityForFacility200ResponseCapacityAtl1
 		return ret
 	}
 	return *o.Fra1
@@ -189,7 +189,7 @@ func (o *CapacityReport) GetFra1() CapacityPerNewFacility {
 
 // GetFra1Ok returns a tuple with the Fra1 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CapacityReport) GetFra1Ok() (*CapacityPerNewFacility, bool) {
+func (o *CapacityReport) GetFra1Ok() (*FindCapacityForFacility200ResponseCapacityAtl1, bool) {
 	if o == nil || o.Fra1 == nil {
 		return nil, false
 	}
@@ -205,15 +205,15 @@ func (o *CapacityReport) HasFra1() bool {
 	return false
 }
 
-// SetFra1 gets a reference to the given CapacityPerNewFacility and assigns it to the Fra1 field.
-func (o *CapacityReport) SetFra1(v CapacityPerNewFacility) {
+// SetFra1 gets a reference to the given FindCapacityForFacility200ResponseCapacityAtl1 and assigns it to the Fra1 field.
+func (o *CapacityReport) SetFra1(v FindCapacityForFacility200ResponseCapacityAtl1) {
 	o.Fra1 = &v
 }
 
 // GetIad1 returns the Iad1 field value if set, zero value otherwise.
-func (o *CapacityReport) GetIad1() CapacityPerNewFacility {
+func (o *CapacityReport) GetIad1() FindCapacityForFacility200ResponseCapacityAtl1 {
 	if o == nil || o.Iad1 == nil {
-		var ret CapacityPerNewFacility
+		var ret FindCapacityForFacility200ResponseCapacityAtl1
 		return ret
 	}
 	return *o.Iad1
@@ -221,7 +221,7 @@ func (o *CapacityReport) GetIad1() CapacityPerNewFacility {
 
 // GetIad1Ok returns a tuple with the Iad1 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CapacityReport) GetIad1Ok() (*CapacityPerNewFacility, bool) {
+func (o *CapacityReport) GetIad1Ok() (*FindCapacityForFacility200ResponseCapacityAtl1, bool) {
 	if o == nil || o.Iad1 == nil {
 		return nil, false
 	}
@@ -237,15 +237,15 @@ func (o *CapacityReport) HasIad1() bool {
 	return false
 }
 
-// SetIad1 gets a reference to the given CapacityPerNewFacility and assigns it to the Iad1 field.
-func (o *CapacityReport) SetIad1(v CapacityPerNewFacility) {
+// SetIad1 gets a reference to the given FindCapacityForFacility200ResponseCapacityAtl1 and assigns it to the Iad1 field.
+func (o *CapacityReport) SetIad1(v FindCapacityForFacility200ResponseCapacityAtl1) {
 	o.Iad1 = &v
 }
 
 // GetLax1 returns the Lax1 field value if set, zero value otherwise.
-func (o *CapacityReport) GetLax1() CapacityPerNewFacility {
+func (o *CapacityReport) GetLax1() FindCapacityForFacility200ResponseCapacityAtl1 {
 	if o == nil || o.Lax1 == nil {
-		var ret CapacityPerNewFacility
+		var ret FindCapacityForFacility200ResponseCapacityAtl1
 		return ret
 	}
 	return *o.Lax1
@@ -253,7 +253,7 @@ func (o *CapacityReport) GetLax1() CapacityPerNewFacility {
 
 // GetLax1Ok returns a tuple with the Lax1 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CapacityReport) GetLax1Ok() (*CapacityPerNewFacility, bool) {
+func (o *CapacityReport) GetLax1Ok() (*FindCapacityForFacility200ResponseCapacityAtl1, bool) {
 	if o == nil || o.Lax1 == nil {
 		return nil, false
 	}
@@ -269,15 +269,15 @@ func (o *CapacityReport) HasLax1() bool {
 	return false
 }
 
-// SetLax1 gets a reference to the given CapacityPerNewFacility and assigns it to the Lax1 field.
-func (o *CapacityReport) SetLax1(v CapacityPerNewFacility) {
+// SetLax1 gets a reference to the given FindCapacityForFacility200ResponseCapacityAtl1 and assigns it to the Lax1 field.
+func (o *CapacityReport) SetLax1(v FindCapacityForFacility200ResponseCapacityAtl1) {
 	o.Lax1 = &v
 }
 
 // GetNrt1 returns the Nrt1 field value if set, zero value otherwise.
-func (o *CapacityReport) GetNrt1() CapacityPerFacility {
+func (o *CapacityReport) GetNrt1() FindCapacityForFacility200ResponseCapacityAms1 {
 	if o == nil || o.Nrt1 == nil {
-		var ret CapacityPerFacility
+		var ret FindCapacityForFacility200ResponseCapacityAms1
 		return ret
 	}
 	return *o.Nrt1
@@ -285,7 +285,7 @@ func (o *CapacityReport) GetNrt1() CapacityPerFacility {
 
 // GetNrt1Ok returns a tuple with the Nrt1 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CapacityReport) GetNrt1Ok() (*CapacityPerFacility, bool) {
+func (o *CapacityReport) GetNrt1Ok() (*FindCapacityForFacility200ResponseCapacityAms1, bool) {
 	if o == nil || o.Nrt1 == nil {
 		return nil, false
 	}
@@ -301,15 +301,15 @@ func (o *CapacityReport) HasNrt1() bool {
 	return false
 }
 
-// SetNrt1 gets a reference to the given CapacityPerFacility and assigns it to the Nrt1 field.
-func (o *CapacityReport) SetNrt1(v CapacityPerFacility) {
+// SetNrt1 gets a reference to the given FindCapacityForFacility200ResponseCapacityAms1 and assigns it to the Nrt1 field.
+func (o *CapacityReport) SetNrt1(v FindCapacityForFacility200ResponseCapacityAms1) {
 	o.Nrt1 = &v
 }
 
 // GetOrd1 returns the Ord1 field value if set, zero value otherwise.
-func (o *CapacityReport) GetOrd1() CapacityPerNewFacility {
+func (o *CapacityReport) GetOrd1() FindCapacityForFacility200ResponseCapacityAtl1 {
 	if o == nil || o.Ord1 == nil {
-		var ret CapacityPerNewFacility
+		var ret FindCapacityForFacility200ResponseCapacityAtl1
 		return ret
 	}
 	return *o.Ord1
@@ -317,7 +317,7 @@ func (o *CapacityReport) GetOrd1() CapacityPerNewFacility {
 
 // GetOrd1Ok returns a tuple with the Ord1 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CapacityReport) GetOrd1Ok() (*CapacityPerNewFacility, bool) {
+func (o *CapacityReport) GetOrd1Ok() (*FindCapacityForFacility200ResponseCapacityAtl1, bool) {
 	if o == nil || o.Ord1 == nil {
 		return nil, false
 	}
@@ -333,15 +333,15 @@ func (o *CapacityReport) HasOrd1() bool {
 	return false
 }
 
-// SetOrd1 gets a reference to the given CapacityPerNewFacility and assigns it to the Ord1 field.
-func (o *CapacityReport) SetOrd1(v CapacityPerNewFacility) {
+// SetOrd1 gets a reference to the given FindCapacityForFacility200ResponseCapacityAtl1 and assigns it to the Ord1 field.
+func (o *CapacityReport) SetOrd1(v FindCapacityForFacility200ResponseCapacityAtl1) {
 	o.Ord1 = &v
 }
 
 // GetSea1 returns the Sea1 field value if set, zero value otherwise.
-func (o *CapacityReport) GetSea1() CapacityPerNewFacility {
+func (o *CapacityReport) GetSea1() FindCapacityForFacility200ResponseCapacityAtl1 {
 	if o == nil || o.Sea1 == nil {
-		var ret CapacityPerNewFacility
+		var ret FindCapacityForFacility200ResponseCapacityAtl1
 		return ret
 	}
 	return *o.Sea1
@@ -349,7 +349,7 @@ func (o *CapacityReport) GetSea1() CapacityPerNewFacility {
 
 // GetSea1Ok returns a tuple with the Sea1 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CapacityReport) GetSea1Ok() (*CapacityPerNewFacility, bool) {
+func (o *CapacityReport) GetSea1Ok() (*FindCapacityForFacility200ResponseCapacityAtl1, bool) {
 	if o == nil || o.Sea1 == nil {
 		return nil, false
 	}
@@ -365,15 +365,15 @@ func (o *CapacityReport) HasSea1() bool {
 	return false
 }
 
-// SetSea1 gets a reference to the given CapacityPerNewFacility and assigns it to the Sea1 field.
-func (o *CapacityReport) SetSea1(v CapacityPerNewFacility) {
+// SetSea1 gets a reference to the given FindCapacityForFacility200ResponseCapacityAtl1 and assigns it to the Sea1 field.
+func (o *CapacityReport) SetSea1(v FindCapacityForFacility200ResponseCapacityAtl1) {
 	o.Sea1 = &v
 }
 
 // GetSin1 returns the Sin1 field value if set, zero value otherwise.
-func (o *CapacityReport) GetSin1() CapacityPerNewFacility {
+func (o *CapacityReport) GetSin1() FindCapacityForFacility200ResponseCapacityAtl1 {
 	if o == nil || o.Sin1 == nil {
-		var ret CapacityPerNewFacility
+		var ret FindCapacityForFacility200ResponseCapacityAtl1
 		return ret
 	}
 	return *o.Sin1
@@ -381,7 +381,7 @@ func (o *CapacityReport) GetSin1() CapacityPerNewFacility {
 
 // GetSin1Ok returns a tuple with the Sin1 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CapacityReport) GetSin1Ok() (*CapacityPerNewFacility, bool) {
+func (o *CapacityReport) GetSin1Ok() (*FindCapacityForFacility200ResponseCapacityAtl1, bool) {
 	if o == nil || o.Sin1 == nil {
 		return nil, false
 	}
@@ -397,15 +397,15 @@ func (o *CapacityReport) HasSin1() bool {
 	return false
 }
 
-// SetSin1 gets a reference to the given CapacityPerNewFacility and assigns it to the Sin1 field.
-func (o *CapacityReport) SetSin1(v CapacityPerNewFacility) {
+// SetSin1 gets a reference to the given FindCapacityForFacility200ResponseCapacityAtl1 and assigns it to the Sin1 field.
+func (o *CapacityReport) SetSin1(v FindCapacityForFacility200ResponseCapacityAtl1) {
 	o.Sin1 = &v
 }
 
 // GetSjc1 returns the Sjc1 field value if set, zero value otherwise.
-func (o *CapacityReport) GetSjc1() CapacityPerFacility {
+func (o *CapacityReport) GetSjc1() FindCapacityForFacility200ResponseCapacityAms1 {
 	if o == nil || o.Sjc1 == nil {
-		var ret CapacityPerFacility
+		var ret FindCapacityForFacility200ResponseCapacityAms1
 		return ret
 	}
 	return *o.Sjc1
@@ -413,7 +413,7 @@ func (o *CapacityReport) GetSjc1() CapacityPerFacility {
 
 // GetSjc1Ok returns a tuple with the Sjc1 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CapacityReport) GetSjc1Ok() (*CapacityPerFacility, bool) {
+func (o *CapacityReport) GetSjc1Ok() (*FindCapacityForFacility200ResponseCapacityAms1, bool) {
 	if o == nil || o.Sjc1 == nil {
 		return nil, false
 	}
@@ -429,15 +429,15 @@ func (o *CapacityReport) HasSjc1() bool {
 	return false
 }
 
-// SetSjc1 gets a reference to the given CapacityPerFacility and assigns it to the Sjc1 field.
-func (o *CapacityReport) SetSjc1(v CapacityPerFacility) {
+// SetSjc1 gets a reference to the given FindCapacityForFacility200ResponseCapacityAms1 and assigns it to the Sjc1 field.
+func (o *CapacityReport) SetSjc1(v FindCapacityForFacility200ResponseCapacityAms1) {
 	o.Sjc1 = &v
 }
 
 // GetSyd1 returns the Syd1 field value if set, zero value otherwise.
-func (o *CapacityReport) GetSyd1() CapacityPerNewFacility {
+func (o *CapacityReport) GetSyd1() FindCapacityForFacility200ResponseCapacityAtl1 {
 	if o == nil || o.Syd1 == nil {
-		var ret CapacityPerNewFacility
+		var ret FindCapacityForFacility200ResponseCapacityAtl1
 		return ret
 	}
 	return *o.Syd1
@@ -445,7 +445,7 @@ func (o *CapacityReport) GetSyd1() CapacityPerNewFacility {
 
 // GetSyd1Ok returns a tuple with the Syd1 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CapacityReport) GetSyd1Ok() (*CapacityPerNewFacility, bool) {
+func (o *CapacityReport) GetSyd1Ok() (*FindCapacityForFacility200ResponseCapacityAtl1, bool) {
 	if o == nil || o.Syd1 == nil {
 		return nil, false
 	}
@@ -461,15 +461,15 @@ func (o *CapacityReport) HasSyd1() bool {
 	return false
 }
 
-// SetSyd1 gets a reference to the given CapacityPerNewFacility and assigns it to the Syd1 field.
-func (o *CapacityReport) SetSyd1(v CapacityPerNewFacility) {
+// SetSyd1 gets a reference to the given FindCapacityForFacility200ResponseCapacityAtl1 and assigns it to the Syd1 field.
+func (o *CapacityReport) SetSyd1(v FindCapacityForFacility200ResponseCapacityAtl1) {
 	o.Syd1 = &v
 }
 
 // GetYyz1 returns the Yyz1 field value if set, zero value otherwise.
-func (o *CapacityReport) GetYyz1() CapacityPerNewFacility {
+func (o *CapacityReport) GetYyz1() FindCapacityForFacility200ResponseCapacityAtl1 {
 	if o == nil || o.Yyz1 == nil {
-		var ret CapacityPerNewFacility
+		var ret FindCapacityForFacility200ResponseCapacityAtl1
 		return ret
 	}
 	return *o.Yyz1
@@ -477,7 +477,7 @@ func (o *CapacityReport) GetYyz1() CapacityPerNewFacility {
 
 // GetYyz1Ok returns a tuple with the Yyz1 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CapacityReport) GetYyz1Ok() (*CapacityPerNewFacility, bool) {
+func (o *CapacityReport) GetYyz1Ok() (*FindCapacityForFacility200ResponseCapacityAtl1, bool) {
 	if o == nil || o.Yyz1 == nil {
 		return nil, false
 	}
@@ -493,8 +493,8 @@ func (o *CapacityReport) HasYyz1() bool {
 	return false
 }
 
-// SetYyz1 gets a reference to the given CapacityPerNewFacility and assigns it to the Yyz1 field.
-func (o *CapacityReport) SetYyz1(v CapacityPerNewFacility) {
+// SetYyz1 gets a reference to the given FindCapacityForFacility200ResponseCapacityAtl1 and assigns it to the Yyz1 field.
+func (o *CapacityReport) SetYyz1(v FindCapacityForFacility200ResponseCapacityAtl1) {
 	o.Yyz1 = &v
 }
 

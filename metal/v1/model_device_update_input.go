@@ -17,18 +17,18 @@ import (
 
 // DeviceUpdateInput struct for DeviceUpdateInput
 type DeviceUpdateInput struct {
-	Hostname      *string                `json:"hostname,omitempty"`
-	Description   *string                `json:"description,omitempty"`
-	BillingCycle  *string                `json:"billing_cycle,omitempty"`
-	Userdata      *string                `json:"userdata,omitempty"`
-	Locked        *bool                  `json:"locked,omitempty"`
 	Tags          []string               `json:"tags,omitempty"`
 	AlwaysPxe     *bool                  `json:"always_pxe,omitempty"`
-	IpxeScriptUrl *string                `json:"ipxe_script_url,omitempty"`
-	SpotInstance  *bool                  `json:"spot_instance,omitempty"`
+	BillingCycle  *string                `json:"billing_cycle,omitempty"`
 	Customdata    map[string]interface{} `json:"customdata,omitempty"`
+	Description   *string                `json:"description,omitempty"`
+	Hostname      *string                `json:"hostname,omitempty"`
+	IpxeScriptUrl *string                `json:"ipxe_script_url,omitempty"`
+	Locked        *bool                  `json:"locked,omitempty"`
 	// If true, this instance can not be converted to a different network type.
-	NetworkFrozen *bool `json:"network_frozen,omitempty"`
+	NetworkFrozen *bool   `json:"network_frozen,omitempty"`
+	SpotInstance  *bool   `json:"spot_instance,omitempty"`
+	Userdata      *string `json:"userdata,omitempty"`
 }
 
 // NewDeviceUpdateInput instantiates a new DeviceUpdateInput object
@@ -46,166 +46,6 @@ func NewDeviceUpdateInput() *DeviceUpdateInput {
 func NewDeviceUpdateInputWithDefaults() *DeviceUpdateInput {
 	this := DeviceUpdateInput{}
 	return &this
-}
-
-// GetHostname returns the Hostname field value if set, zero value otherwise.
-func (o *DeviceUpdateInput) GetHostname() string {
-	if o == nil || o.Hostname == nil {
-		var ret string
-		return ret
-	}
-	return *o.Hostname
-}
-
-// GetHostnameOk returns a tuple with the Hostname field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *DeviceUpdateInput) GetHostnameOk() (*string, bool) {
-	if o == nil || o.Hostname == nil {
-		return nil, false
-	}
-	return o.Hostname, true
-}
-
-// HasHostname returns a boolean if a field has been set.
-func (o *DeviceUpdateInput) HasHostname() bool {
-	if o != nil && o.Hostname != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetHostname gets a reference to the given string and assigns it to the Hostname field.
-func (o *DeviceUpdateInput) SetHostname(v string) {
-	o.Hostname = &v
-}
-
-// GetDescription returns the Description field value if set, zero value otherwise.
-func (o *DeviceUpdateInput) GetDescription() string {
-	if o == nil || o.Description == nil {
-		var ret string
-		return ret
-	}
-	return *o.Description
-}
-
-// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *DeviceUpdateInput) GetDescriptionOk() (*string, bool) {
-	if o == nil || o.Description == nil {
-		return nil, false
-	}
-	return o.Description, true
-}
-
-// HasDescription returns a boolean if a field has been set.
-func (o *DeviceUpdateInput) HasDescription() bool {
-	if o != nil && o.Description != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetDescription gets a reference to the given string and assigns it to the Description field.
-func (o *DeviceUpdateInput) SetDescription(v string) {
-	o.Description = &v
-}
-
-// GetBillingCycle returns the BillingCycle field value if set, zero value otherwise.
-func (o *DeviceUpdateInput) GetBillingCycle() string {
-	if o == nil || o.BillingCycle == nil {
-		var ret string
-		return ret
-	}
-	return *o.BillingCycle
-}
-
-// GetBillingCycleOk returns a tuple with the BillingCycle field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *DeviceUpdateInput) GetBillingCycleOk() (*string, bool) {
-	if o == nil || o.BillingCycle == nil {
-		return nil, false
-	}
-	return o.BillingCycle, true
-}
-
-// HasBillingCycle returns a boolean if a field has been set.
-func (o *DeviceUpdateInput) HasBillingCycle() bool {
-	if o != nil && o.BillingCycle != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetBillingCycle gets a reference to the given string and assigns it to the BillingCycle field.
-func (o *DeviceUpdateInput) SetBillingCycle(v string) {
-	o.BillingCycle = &v
-}
-
-// GetUserdata returns the Userdata field value if set, zero value otherwise.
-func (o *DeviceUpdateInput) GetUserdata() string {
-	if o == nil || o.Userdata == nil {
-		var ret string
-		return ret
-	}
-	return *o.Userdata
-}
-
-// GetUserdataOk returns a tuple with the Userdata field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *DeviceUpdateInput) GetUserdataOk() (*string, bool) {
-	if o == nil || o.Userdata == nil {
-		return nil, false
-	}
-	return o.Userdata, true
-}
-
-// HasUserdata returns a boolean if a field has been set.
-func (o *DeviceUpdateInput) HasUserdata() bool {
-	if o != nil && o.Userdata != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetUserdata gets a reference to the given string and assigns it to the Userdata field.
-func (o *DeviceUpdateInput) SetUserdata(v string) {
-	o.Userdata = &v
-}
-
-// GetLocked returns the Locked field value if set, zero value otherwise.
-func (o *DeviceUpdateInput) GetLocked() bool {
-	if o == nil || o.Locked == nil {
-		var ret bool
-		return ret
-	}
-	return *o.Locked
-}
-
-// GetLockedOk returns a tuple with the Locked field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *DeviceUpdateInput) GetLockedOk() (*bool, bool) {
-	if o == nil || o.Locked == nil {
-		return nil, false
-	}
-	return o.Locked, true
-}
-
-// HasLocked returns a boolean if a field has been set.
-func (o *DeviceUpdateInput) HasLocked() bool {
-	if o != nil && o.Locked != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetLocked gets a reference to the given bool and assigns it to the Locked field.
-func (o *DeviceUpdateInput) SetLocked(v bool) {
-	o.Locked = &v
 }
 
 // GetTags returns the Tags field value if set, zero value otherwise.
@@ -272,68 +112,36 @@ func (o *DeviceUpdateInput) SetAlwaysPxe(v bool) {
 	o.AlwaysPxe = &v
 }
 
-// GetIpxeScriptUrl returns the IpxeScriptUrl field value if set, zero value otherwise.
-func (o *DeviceUpdateInput) GetIpxeScriptUrl() string {
-	if o == nil || o.IpxeScriptUrl == nil {
+// GetBillingCycle returns the BillingCycle field value if set, zero value otherwise.
+func (o *DeviceUpdateInput) GetBillingCycle() string {
+	if o == nil || o.BillingCycle == nil {
 		var ret string
 		return ret
 	}
-	return *o.IpxeScriptUrl
+	return *o.BillingCycle
 }
 
-// GetIpxeScriptUrlOk returns a tuple with the IpxeScriptUrl field value if set, nil otherwise
+// GetBillingCycleOk returns a tuple with the BillingCycle field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DeviceUpdateInput) GetIpxeScriptUrlOk() (*string, bool) {
-	if o == nil || o.IpxeScriptUrl == nil {
+func (o *DeviceUpdateInput) GetBillingCycleOk() (*string, bool) {
+	if o == nil || o.BillingCycle == nil {
 		return nil, false
 	}
-	return o.IpxeScriptUrl, true
+	return o.BillingCycle, true
 }
 
-// HasIpxeScriptUrl returns a boolean if a field has been set.
-func (o *DeviceUpdateInput) HasIpxeScriptUrl() bool {
-	if o != nil && o.IpxeScriptUrl != nil {
+// HasBillingCycle returns a boolean if a field has been set.
+func (o *DeviceUpdateInput) HasBillingCycle() bool {
+	if o != nil && o.BillingCycle != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetIpxeScriptUrl gets a reference to the given string and assigns it to the IpxeScriptUrl field.
-func (o *DeviceUpdateInput) SetIpxeScriptUrl(v string) {
-	o.IpxeScriptUrl = &v
-}
-
-// GetSpotInstance returns the SpotInstance field value if set, zero value otherwise.
-func (o *DeviceUpdateInput) GetSpotInstance() bool {
-	if o == nil || o.SpotInstance == nil {
-		var ret bool
-		return ret
-	}
-	return *o.SpotInstance
-}
-
-// GetSpotInstanceOk returns a tuple with the SpotInstance field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *DeviceUpdateInput) GetSpotInstanceOk() (*bool, bool) {
-	if o == nil || o.SpotInstance == nil {
-		return nil, false
-	}
-	return o.SpotInstance, true
-}
-
-// HasSpotInstance returns a boolean if a field has been set.
-func (o *DeviceUpdateInput) HasSpotInstance() bool {
-	if o != nil && o.SpotInstance != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetSpotInstance gets a reference to the given bool and assigns it to the SpotInstance field.
-func (o *DeviceUpdateInput) SetSpotInstance(v bool) {
-	o.SpotInstance = &v
+// SetBillingCycle gets a reference to the given string and assigns it to the BillingCycle field.
+func (o *DeviceUpdateInput) SetBillingCycle(v string) {
+	o.BillingCycle = &v
 }
 
 // GetCustomdata returns the Customdata field value if set, zero value otherwise.
@@ -368,6 +176,134 @@ func (o *DeviceUpdateInput) SetCustomdata(v map[string]interface{}) {
 	o.Customdata = v
 }
 
+// GetDescription returns the Description field value if set, zero value otherwise.
+func (o *DeviceUpdateInput) GetDescription() string {
+	if o == nil || o.Description == nil {
+		var ret string
+		return ret
+	}
+	return *o.Description
+}
+
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DeviceUpdateInput) GetDescriptionOk() (*string, bool) {
+	if o == nil || o.Description == nil {
+		return nil, false
+	}
+	return o.Description, true
+}
+
+// HasDescription returns a boolean if a field has been set.
+func (o *DeviceUpdateInput) HasDescription() bool {
+	if o != nil && o.Description != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDescription gets a reference to the given string and assigns it to the Description field.
+func (o *DeviceUpdateInput) SetDescription(v string) {
+	o.Description = &v
+}
+
+// GetHostname returns the Hostname field value if set, zero value otherwise.
+func (o *DeviceUpdateInput) GetHostname() string {
+	if o == nil || o.Hostname == nil {
+		var ret string
+		return ret
+	}
+	return *o.Hostname
+}
+
+// GetHostnameOk returns a tuple with the Hostname field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DeviceUpdateInput) GetHostnameOk() (*string, bool) {
+	if o == nil || o.Hostname == nil {
+		return nil, false
+	}
+	return o.Hostname, true
+}
+
+// HasHostname returns a boolean if a field has been set.
+func (o *DeviceUpdateInput) HasHostname() bool {
+	if o != nil && o.Hostname != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHostname gets a reference to the given string and assigns it to the Hostname field.
+func (o *DeviceUpdateInput) SetHostname(v string) {
+	o.Hostname = &v
+}
+
+// GetIpxeScriptUrl returns the IpxeScriptUrl field value if set, zero value otherwise.
+func (o *DeviceUpdateInput) GetIpxeScriptUrl() string {
+	if o == nil || o.IpxeScriptUrl == nil {
+		var ret string
+		return ret
+	}
+	return *o.IpxeScriptUrl
+}
+
+// GetIpxeScriptUrlOk returns a tuple with the IpxeScriptUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DeviceUpdateInput) GetIpxeScriptUrlOk() (*string, bool) {
+	if o == nil || o.IpxeScriptUrl == nil {
+		return nil, false
+	}
+	return o.IpxeScriptUrl, true
+}
+
+// HasIpxeScriptUrl returns a boolean if a field has been set.
+func (o *DeviceUpdateInput) HasIpxeScriptUrl() bool {
+	if o != nil && o.IpxeScriptUrl != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetIpxeScriptUrl gets a reference to the given string and assigns it to the IpxeScriptUrl field.
+func (o *DeviceUpdateInput) SetIpxeScriptUrl(v string) {
+	o.IpxeScriptUrl = &v
+}
+
+// GetLocked returns the Locked field value if set, zero value otherwise.
+func (o *DeviceUpdateInput) GetLocked() bool {
+	if o == nil || o.Locked == nil {
+		var ret bool
+		return ret
+	}
+	return *o.Locked
+}
+
+// GetLockedOk returns a tuple with the Locked field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DeviceUpdateInput) GetLockedOk() (*bool, bool) {
+	if o == nil || o.Locked == nil {
+		return nil, false
+	}
+	return o.Locked, true
+}
+
+// HasLocked returns a boolean if a field has been set.
+func (o *DeviceUpdateInput) HasLocked() bool {
+	if o != nil && o.Locked != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetLocked gets a reference to the given bool and assigns it to the Locked field.
+func (o *DeviceUpdateInput) SetLocked(v bool) {
+	o.Locked = &v
+}
+
 // GetNetworkFrozen returns the NetworkFrozen field value if set, zero value otherwise.
 func (o *DeviceUpdateInput) GetNetworkFrozen() bool {
 	if o == nil || o.NetworkFrozen == nil {
@@ -400,40 +336,104 @@ func (o *DeviceUpdateInput) SetNetworkFrozen(v bool) {
 	o.NetworkFrozen = &v
 }
 
+// GetSpotInstance returns the SpotInstance field value if set, zero value otherwise.
+func (o *DeviceUpdateInput) GetSpotInstance() bool {
+	if o == nil || o.SpotInstance == nil {
+		var ret bool
+		return ret
+	}
+	return *o.SpotInstance
+}
+
+// GetSpotInstanceOk returns a tuple with the SpotInstance field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DeviceUpdateInput) GetSpotInstanceOk() (*bool, bool) {
+	if o == nil || o.SpotInstance == nil {
+		return nil, false
+	}
+	return o.SpotInstance, true
+}
+
+// HasSpotInstance returns a boolean if a field has been set.
+func (o *DeviceUpdateInput) HasSpotInstance() bool {
+	if o != nil && o.SpotInstance != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSpotInstance gets a reference to the given bool and assigns it to the SpotInstance field.
+func (o *DeviceUpdateInput) SetSpotInstance(v bool) {
+	o.SpotInstance = &v
+}
+
+// GetUserdata returns the Userdata field value if set, zero value otherwise.
+func (o *DeviceUpdateInput) GetUserdata() string {
+	if o == nil || o.Userdata == nil {
+		var ret string
+		return ret
+	}
+	return *o.Userdata
+}
+
+// GetUserdataOk returns a tuple with the Userdata field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DeviceUpdateInput) GetUserdataOk() (*string, bool) {
+	if o == nil || o.Userdata == nil {
+		return nil, false
+	}
+	return o.Userdata, true
+}
+
+// HasUserdata returns a boolean if a field has been set.
+func (o *DeviceUpdateInput) HasUserdata() bool {
+	if o != nil && o.Userdata != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetUserdata gets a reference to the given string and assigns it to the Userdata field.
+func (o *DeviceUpdateInput) SetUserdata(v string) {
+	o.Userdata = &v
+}
+
 func (o DeviceUpdateInput) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Hostname != nil {
-		toSerialize["hostname"] = o.Hostname
-	}
-	if o.Description != nil {
-		toSerialize["description"] = o.Description
-	}
-	if o.BillingCycle != nil {
-		toSerialize["billing_cycle"] = o.BillingCycle
-	}
-	if o.Userdata != nil {
-		toSerialize["userdata"] = o.Userdata
-	}
-	if o.Locked != nil {
-		toSerialize["locked"] = o.Locked
-	}
 	if o.Tags != nil {
 		toSerialize["tags"] = o.Tags
 	}
 	if o.AlwaysPxe != nil {
 		toSerialize["always_pxe"] = o.AlwaysPxe
 	}
-	if o.IpxeScriptUrl != nil {
-		toSerialize["ipxe_script_url"] = o.IpxeScriptUrl
-	}
-	if o.SpotInstance != nil {
-		toSerialize["spot_instance"] = o.SpotInstance
+	if o.BillingCycle != nil {
+		toSerialize["billing_cycle"] = o.BillingCycle
 	}
 	if o.Customdata != nil {
 		toSerialize["customdata"] = o.Customdata
 	}
+	if o.Description != nil {
+		toSerialize["description"] = o.Description
+	}
+	if o.Hostname != nil {
+		toSerialize["hostname"] = o.Hostname
+	}
+	if o.IpxeScriptUrl != nil {
+		toSerialize["ipxe_script_url"] = o.IpxeScriptUrl
+	}
+	if o.Locked != nil {
+		toSerialize["locked"] = o.Locked
+	}
 	if o.NetworkFrozen != nil {
 		toSerialize["network_frozen"] = o.NetworkFrozen
+	}
+	if o.SpotInstance != nil {
+		toSerialize["spot_instance"] = o.SpotInstance
+	}
+	if o.Userdata != nil {
+		toSerialize["userdata"] = o.Userdata
 	}
 	return json.Marshal(toSerialize)
 }

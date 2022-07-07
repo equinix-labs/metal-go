@@ -17,11 +17,11 @@ import (
 
 // GlobalBgpRange struct for GlobalBgpRange
 type GlobalBgpRange struct {
-	Id            *string `json:"id,omitempty"`
-	AddressFamily *int32  `json:"address_family,omitempty"`
-	Range         *string `json:"range,omitempty"`
-	Href          *string `json:"href,omitempty"`
-	Project       *Href   `json:"project,omitempty"`
+	AddressFamily *int32                                `json:"address_family,omitempty"`
+	Href          *string                               `json:"href,omitempty"`
+	Id            *string                               `json:"id,omitempty"`
+	Project       *FindBatchById200ResponseDevicesInner `json:"project,omitempty"`
+	Range         *string                               `json:"range,omitempty"`
 }
 
 // NewGlobalBgpRange instantiates a new GlobalBgpRange object
@@ -39,38 +39,6 @@ func NewGlobalBgpRange() *GlobalBgpRange {
 func NewGlobalBgpRangeWithDefaults() *GlobalBgpRange {
 	this := GlobalBgpRange{}
 	return &this
-}
-
-// GetId returns the Id field value if set, zero value otherwise.
-func (o *GlobalBgpRange) GetId() string {
-	if o == nil || o.Id == nil {
-		var ret string
-		return ret
-	}
-	return *o.Id
-}
-
-// GetIdOk returns a tuple with the Id field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *GlobalBgpRange) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
-		return nil, false
-	}
-	return o.Id, true
-}
-
-// HasId returns a boolean if a field has been set.
-func (o *GlobalBgpRange) HasId() bool {
-	if o != nil && o.Id != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetId gets a reference to the given string and assigns it to the Id field.
-func (o *GlobalBgpRange) SetId(v string) {
-	o.Id = &v
 }
 
 // GetAddressFamily returns the AddressFamily field value if set, zero value otherwise.
@@ -105,38 +73,6 @@ func (o *GlobalBgpRange) SetAddressFamily(v int32) {
 	o.AddressFamily = &v
 }
 
-// GetRange returns the Range field value if set, zero value otherwise.
-func (o *GlobalBgpRange) GetRange() string {
-	if o == nil || o.Range == nil {
-		var ret string
-		return ret
-	}
-	return *o.Range
-}
-
-// GetRangeOk returns a tuple with the Range field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *GlobalBgpRange) GetRangeOk() (*string, bool) {
-	if o == nil || o.Range == nil {
-		return nil, false
-	}
-	return o.Range, true
-}
-
-// HasRange returns a boolean if a field has been set.
-func (o *GlobalBgpRange) HasRange() bool {
-	if o != nil && o.Range != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetRange gets a reference to the given string and assigns it to the Range field.
-func (o *GlobalBgpRange) SetRange(v string) {
-	o.Range = &v
-}
-
 // GetHref returns the Href field value if set, zero value otherwise.
 func (o *GlobalBgpRange) GetHref() string {
 	if o == nil || o.Href == nil {
@@ -169,10 +105,42 @@ func (o *GlobalBgpRange) SetHref(v string) {
 	o.Href = &v
 }
 
+// GetId returns the Id field value if set, zero value otherwise.
+func (o *GlobalBgpRange) GetId() string {
+	if o == nil || o.Id == nil {
+		var ret string
+		return ret
+	}
+	return *o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GlobalBgpRange) GetIdOk() (*string, bool) {
+	if o == nil || o.Id == nil {
+		return nil, false
+	}
+	return o.Id, true
+}
+
+// HasId returns a boolean if a field has been set.
+func (o *GlobalBgpRange) HasId() bool {
+	if o != nil && o.Id != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given string and assigns it to the Id field.
+func (o *GlobalBgpRange) SetId(v string) {
+	o.Id = &v
+}
+
 // GetProject returns the Project field value if set, zero value otherwise.
-func (o *GlobalBgpRange) GetProject() Href {
+func (o *GlobalBgpRange) GetProject() FindBatchById200ResponseDevicesInner {
 	if o == nil || o.Project == nil {
-		var ret Href
+		var ret FindBatchById200ResponseDevicesInner
 		return ret
 	}
 	return *o.Project
@@ -180,7 +148,7 @@ func (o *GlobalBgpRange) GetProject() Href {
 
 // GetProjectOk returns a tuple with the Project field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GlobalBgpRange) GetProjectOk() (*Href, bool) {
+func (o *GlobalBgpRange) GetProjectOk() (*FindBatchById200ResponseDevicesInner, bool) {
 	if o == nil || o.Project == nil {
 		return nil, false
 	}
@@ -196,27 +164,59 @@ func (o *GlobalBgpRange) HasProject() bool {
 	return false
 }
 
-// SetProject gets a reference to the given Href and assigns it to the Project field.
-func (o *GlobalBgpRange) SetProject(v Href) {
+// SetProject gets a reference to the given FindBatchById200ResponseDevicesInner and assigns it to the Project field.
+func (o *GlobalBgpRange) SetProject(v FindBatchById200ResponseDevicesInner) {
 	o.Project = &v
+}
+
+// GetRange returns the Range field value if set, zero value otherwise.
+func (o *GlobalBgpRange) GetRange() string {
+	if o == nil || o.Range == nil {
+		var ret string
+		return ret
+	}
+	return *o.Range
+}
+
+// GetRangeOk returns a tuple with the Range field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GlobalBgpRange) GetRangeOk() (*string, bool) {
+	if o == nil || o.Range == nil {
+		return nil, false
+	}
+	return o.Range, true
+}
+
+// HasRange returns a boolean if a field has been set.
+func (o *GlobalBgpRange) HasRange() bool {
+	if o != nil && o.Range != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetRange gets a reference to the given string and assigns it to the Range field.
+func (o *GlobalBgpRange) SetRange(v string) {
+	o.Range = &v
 }
 
 func (o GlobalBgpRange) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
-	}
 	if o.AddressFamily != nil {
 		toSerialize["address_family"] = o.AddressFamily
-	}
-	if o.Range != nil {
-		toSerialize["range"] = o.Range
 	}
 	if o.Href != nil {
 		toSerialize["href"] = o.Href
 	}
+	if o.Id != nil {
+		toSerialize["id"] = o.Id
+	}
 	if o.Project != nil {
 		toSerialize["project"] = o.Project
+	}
+	if o.Range != nil {
+		toSerialize["range"] = o.Range
 	}
 	return json.Marshal(toSerialize)
 }

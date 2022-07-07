@@ -23,357 +23,19 @@ import (
 // ProjectsApiService ProjectsApi service
 type ProjectsApiService service
 
-type ApiCreateDeviceRequest struct {
-	ctx        context.Context
-	ApiService *ProjectsApiService
-	id         string
-	device     *DeviceCreateInput
-}
-
-// Device to create
-func (r ApiCreateDeviceRequest) Device(device DeviceCreateInput) ApiCreateDeviceRequest {
-	r.device = &device
-	return r
-}
-
-func (r ApiCreateDeviceRequest) Execute() (*Device, *http.Response, error) {
-	return r.ApiService.CreateDeviceExecute(r)
-}
-
-/*
-CreateDevice Create a device
-
-Creates a new device and provisions it in the specified location.
-
-      Device type-specific options are accepted.  For example, `baremetal` devices accept `operating_system`, `hostname`, and `plan`. These parameters may not be accepted for other device types. The default device type is `baremetal`.
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Project UUID
- @return ApiCreateDeviceRequest
-*/
-func (a *ProjectsApiService) CreateDevice(ctx context.Context, id string) ApiCreateDeviceRequest {
-	return ApiCreateDeviceRequest{
-		ApiService: a,
-		ctx:        ctx,
-		id:         id,
-	}
-}
-
-// Execute executes the request
-//  @return Device
-func (a *ProjectsApiService) CreateDeviceExecute(r ApiCreateDeviceRequest) (*Device, *http.Response, error) {
-	var (
-		localVarHTTPMethod  = http.MethodPost
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *Device
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.CreateDevice")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/projects/{id}/devices"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if r.device == nil {
-		return localVarReturnValue, nil, reportError("device is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	// body params
-	localVarPostBody = r.device
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["x_auth_token"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["X-Auth-Token"] = key
-			}
-		}
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 422 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiCreateLicenseRequest struct {
-	ctx        context.Context
-	ApiService *ProjectsApiService
-	id         string
-	license    *LicenseCreateInput
-}
-
-// License to create
-func (r ApiCreateLicenseRequest) License(license LicenseCreateInput) ApiCreateLicenseRequest {
-	r.license = &license
-	return r
-}
-
-func (r ApiCreateLicenseRequest) Execute() (*License, *http.Response, error) {
-	return r.ApiService.CreateLicenseExecute(r)
-}
-
-/*
-CreateLicense Create a License
-
-Creates a new license for the given project
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Project UUID
- @return ApiCreateLicenseRequest
-*/
-func (a *ProjectsApiService) CreateLicense(ctx context.Context, id string) ApiCreateLicenseRequest {
-	return ApiCreateLicenseRequest{
-		ApiService: a,
-		ctx:        ctx,
-		id:         id,
-	}
-}
-
-// Execute executes the request
-//  @return License
-func (a *ProjectsApiService) CreateLicenseExecute(r ApiCreateLicenseRequest) (*License, *http.Response, error) {
-	var (
-		localVarHTTPMethod  = http.MethodPost
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *License
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.CreateLicense")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/projects/{id}/licenses"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if r.license == nil {
-		return localVarReturnValue, nil, reportError("license is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	// body params
-	localVarPostBody = r.license
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["x_auth_token"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["X-Auth-Token"] = key
-			}
-		}
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 422 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
 type ApiCreateProjectRequest struct {
 	ctx        context.Context
 	ApiService *ProjectsApiService
-	project    *ProjectCreateFromRootInput
+	body       *CreateProjectRequest
 }
 
 // Project to create
-func (r ApiCreateProjectRequest) Project(project ProjectCreateFromRootInput) ApiCreateProjectRequest {
-	r.project = &project
+func (r ApiCreateProjectRequest) Body(body CreateProjectRequest) ApiCreateProjectRequest {
+	r.body = &body
 	return r
 }
 
-func (r ApiCreateProjectRequest) Execute() (*Project, *http.Response, error) {
+func (r ApiCreateProjectRequest) Execute() (*MoveHardwareReservation201ResponseProject, *http.Response, error) {
 	return r.ApiService.CreateProjectExecute(r)
 }
 
@@ -393,13 +55,13 @@ func (a *ProjectsApiService) CreateProject(ctx context.Context) ApiCreateProject
 }
 
 // Execute executes the request
-//  @return Project
-func (a *ProjectsApiService) CreateProjectExecute(r ApiCreateProjectRequest) (*Project, *http.Response, error) {
+//  @return MoveHardwareReservation201ResponseProject
+func (a *ProjectsApiService) CreateProjectExecute(r ApiCreateProjectRequest) (*MoveHardwareReservation201ResponseProject, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *Project
+		localVarReturnValue *MoveHardwareReservation201ResponseProject
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.CreateProject")
@@ -412,8 +74,8 @@ func (a *ProjectsApiService) CreateProjectExecute(r ApiCreateProjectRequest) (*P
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.project == nil {
-		return localVarReturnValue, nil, reportError("project is required and must be specified")
+	if r.body == nil {
+		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -434,7 +96,7 @@ func (a *ProjectsApiService) CreateProjectExecute(r ApiCreateProjectRequest) (*P
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.project
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -472,7 +134,7 @@ func (a *ProjectsApiService) CreateProjectExecute(r ApiCreateProjectRequest) (*P
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -482,7 +144,7 @@ func (a *ProjectsApiService) CreateProjectExecute(r ApiCreateProjectRequest) (*P
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -505,63 +167,63 @@ func (a *ProjectsApiService) CreateProjectExecute(r ApiCreateProjectRequest) (*P
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiCreateProjectSSHKeyRequest struct {
+type ApiCreateProjectInvitationRequest struct {
 	ctx        context.Context
 	ApiService *ProjectsApiService
-	id         string
-	sshKey     *SSHKeyCreateInput
+	projectId  string
+	body       *CreateOrganizationInvitationRequest
 }
 
-// ssh key to create
-func (r ApiCreateProjectSSHKeyRequest) SshKey(sshKey SSHKeyCreateInput) ApiCreateProjectSSHKeyRequest {
-	r.sshKey = &sshKey
+// Invitation to create
+func (r ApiCreateProjectInvitationRequest) Body(body CreateOrganizationInvitationRequest) ApiCreateProjectInvitationRequest {
+	r.body = &body
 	return r
 }
 
-func (r ApiCreateProjectSSHKeyRequest) Execute() (*SSHKey, *http.Response, error) {
-	return r.ApiService.CreateProjectSSHKeyExecute(r)
+func (r ApiCreateProjectInvitationRequest) Execute() (*FindInvitationById200Response, *http.Response, error) {
+	return r.ApiService.CreateProjectInvitationExecute(r)
 }
 
 /*
-CreateProjectSSHKey Create a ssh key for the given project
+CreateProjectInvitation Create an invitation for a project
 
-Creates a ssh key.
+In order to add a user to a project, they must first be invited.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Project UUID
- @return ApiCreateProjectSSHKeyRequest
+ @param projectId Project UUID
+ @return ApiCreateProjectInvitationRequest
 */
-func (a *ProjectsApiService) CreateProjectSSHKey(ctx context.Context, id string) ApiCreateProjectSSHKeyRequest {
-	return ApiCreateProjectSSHKeyRequest{
+func (a *ProjectsApiService) CreateProjectInvitation(ctx context.Context, projectId string) ApiCreateProjectInvitationRequest {
+	return ApiCreateProjectInvitationRequest{
 		ApiService: a,
 		ctx:        ctx,
-		id:         id,
+		projectId:  projectId,
 	}
 }
 
 // Execute executes the request
-//  @return SSHKey
-func (a *ProjectsApiService) CreateProjectSSHKeyExecute(r ApiCreateProjectSSHKeyRequest) (*SSHKey, *http.Response, error) {
+//  @return FindInvitationById200Response
+func (a *ProjectsApiService) CreateProjectInvitationExecute(r ApiCreateProjectInvitationRequest) (*FindInvitationById200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *SSHKey
+		localVarReturnValue *FindInvitationById200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.CreateProjectSSHKey")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.CreateProjectInvitation")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/projects/{id}/ssh-keys"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath := localBasePath + "/projects/{project_id}/invitations"
+	localVarPath = strings.Replace(localVarPath, "{"+"project_id"+"}", url.PathEscape(parameterToString(r.projectId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.sshKey == nil {
-		return localVarReturnValue, nil, reportError("sshKey is required and must be specified")
+	if r.body == nil {
+		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -582,7 +244,7 @@ func (a *ProjectsApiService) CreateProjectSSHKeyExecute(r ApiCreateProjectSSHKey
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.sshKey
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -620,7 +282,7 @@ func (a *ProjectsApiService) CreateProjectSSHKeyExecute(r ApiCreateProjectSSHKey
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -629,164 +291,8 @@ func (a *ProjectsApiService) CreateProjectSSHKeyExecute(r ApiCreateProjectSSHKey
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 422 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiCreateSpotMarketRequestRequest struct {
-	ctx               context.Context
-	ApiService        *ProjectsApiService
-	id                string
-	spotMarketRequest *SpotMarketRequestCreateInput
-}
-
-// Spot Market Request to create
-func (r ApiCreateSpotMarketRequestRequest) SpotMarketRequest(spotMarketRequest SpotMarketRequestCreateInput) ApiCreateSpotMarketRequestRequest {
-	r.spotMarketRequest = &spotMarketRequest
-	return r
-}
-
-func (r ApiCreateSpotMarketRequestRequest) Execute() (*SpotMarketRequest, *http.Response, error) {
-	return r.ApiService.CreateSpotMarketRequestExecute(r)
-}
-
-/*
-CreateSpotMarketRequest Create a spot market request
-
-Creates a new spot market request.
-
-Type-specific options (such as operating_system for baremetal devices) should be included in the main data structure alongside hostname and plan.
-
-The features attribute allows you to optionally specify what features your server should have. For example, if you require a server with a TPM chip, you may specify `{ "features": { "tpm": "required" } }` (or `{ "features": ["tpm"] }` in shorthand).
-
-The request will fail if there are no available servers matching your criteria. Alternatively, if you do not require a certain feature, but would prefer to be assigned a server with that feature if there are any available, you may specify that feature with a preferred value (see the example request below).
-
-The request will not fail if we have no servers with that feature in our inventory.
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Project UUID
- @return ApiCreateSpotMarketRequestRequest
-*/
-func (a *ProjectsApiService) CreateSpotMarketRequest(ctx context.Context, id string) ApiCreateSpotMarketRequestRequest {
-	return ApiCreateSpotMarketRequestRequest{
-		ApiService: a,
-		ctx:        ctx,
-		id:         id,
-	}
-}
-
-// Execute executes the request
-//  @return SpotMarketRequest
-func (a *ProjectsApiService) CreateSpotMarketRequestExecute(r ApiCreateSpotMarketRequestRequest) (*SpotMarketRequest, *http.Response, error) {
-	var (
-		localVarHTTPMethod  = http.MethodPost
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *SpotMarketRequest
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.CreateSpotMarketRequest")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/projects/{id}/spot-market-requests"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if r.spotMarketRequest == nil {
-		return localVarReturnValue, nil, reportError("spotMarketRequest is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	// body params
-	localVarPostBody = r.spotMarketRequest
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["x_auth_token"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["X-Auth-Token"] = key
-			}
-		}
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 422 {
-			var v Error
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -796,7 +302,17 @@ func (a *ProjectsApiService) CreateSpotMarketRequestExecute(r ApiCreateSpotMarke
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
+			var v DeleteAPIKey401Response
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -820,19 +336,19 @@ func (a *ProjectsApiService) CreateSpotMarketRequestExecute(r ApiCreateSpotMarke
 }
 
 type ApiCreateTransferRequestRequest struct {
-	ctx             context.Context
-	ApiService      *ProjectsApiService
-	id              string
-	transferRequest *TransferRequestInput
+	ctx        context.Context
+	ApiService *ProjectsApiService
+	id         string
+	body       *CreateTransferRequestRequest
 }
 
 // Transfer Request to create
-func (r ApiCreateTransferRequestRequest) TransferRequest(transferRequest TransferRequestInput) ApiCreateTransferRequestRequest {
-	r.transferRequest = &transferRequest
+func (r ApiCreateTransferRequestRequest) Body(body CreateTransferRequestRequest) ApiCreateTransferRequestRequest {
+	r.body = &body
 	return r
 }
 
-func (r ApiCreateTransferRequestRequest) Execute() (*TransferRequest, *http.Response, error) {
+func (r ApiCreateTransferRequestRequest) Execute() (*FindOrganizationTransfers200ResponseTransfersInner, *http.Response, error) {
 	return r.ApiService.CreateTransferRequestExecute(r)
 }
 
@@ -854,13 +370,13 @@ func (a *ProjectsApiService) CreateTransferRequest(ctx context.Context, id strin
 }
 
 // Execute executes the request
-//  @return TransferRequest
-func (a *ProjectsApiService) CreateTransferRequestExecute(r ApiCreateTransferRequestRequest) (*TransferRequest, *http.Response, error) {
+//  @return FindOrganizationTransfers200ResponseTransfersInner
+func (a *ProjectsApiService) CreateTransferRequestExecute(r ApiCreateTransferRequestRequest) (*FindOrganizationTransfers200ResponseTransfersInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *TransferRequest
+		localVarReturnValue *FindOrganizationTransfers200ResponseTransfersInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.CreateTransferRequest")
@@ -874,8 +390,8 @@ func (a *ProjectsApiService) CreateTransferRequestExecute(r ApiCreateTransferReq
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.transferRequest == nil {
-		return localVarReturnValue, nil, reportError("transferRequest is required and must be specified")
+	if r.body == nil {
+		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -896,7 +412,7 @@ func (a *ProjectsApiService) CreateTransferRequestExecute(r ApiCreateTransferReq
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.transferRequest
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -934,7 +450,7 @@ func (a *ProjectsApiService) CreateTransferRequestExecute(r ApiCreateTransferReq
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -944,7 +460,7 @@ func (a *ProjectsApiService) CreateTransferRequestExecute(r ApiCreateTransferReq
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -954,7 +470,7 @@ func (a *ProjectsApiService) CreateTransferRequestExecute(r ApiCreateTransferReq
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -964,175 +480,7 @@ func (a *ProjectsApiService) CreateTransferRequestExecute(r ApiCreateTransferReq
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiCreateVirtualNetworkRequest struct {
-	ctx            context.Context
-	ApiService     *ProjectsApiService
-	id             string
-	virtualNetwork *VirtualNetworkCreateInput
-}
-
-// Virtual Network to create
-func (r ApiCreateVirtualNetworkRequest) VirtualNetwork(virtualNetwork VirtualNetworkCreateInput) ApiCreateVirtualNetworkRequest {
-	r.virtualNetwork = &virtualNetwork
-	return r
-}
-
-func (r ApiCreateVirtualNetworkRequest) Execute() (*VirtualNetwork, *http.Response, error) {
-	return r.ApiService.CreateVirtualNetworkExecute(r)
-}
-
-/*
-CreateVirtualNetwork Create a virtual network
-
-Creates an virtual network.
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Project UUID
- @return ApiCreateVirtualNetworkRequest
-*/
-func (a *ProjectsApiService) CreateVirtualNetwork(ctx context.Context, id string) ApiCreateVirtualNetworkRequest {
-	return ApiCreateVirtualNetworkRequest{
-		ApiService: a,
-		ctx:        ctx,
-		id:         id,
-	}
-}
-
-// Execute executes the request
-//  @return VirtualNetwork
-func (a *ProjectsApiService) CreateVirtualNetworkExecute(r ApiCreateVirtualNetworkRequest) (*VirtualNetwork, *http.Response, error) {
-	var (
-		localVarHTTPMethod  = http.MethodPost
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *VirtualNetwork
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.CreateVirtualNetwork")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/projects/{id}/virtual-networks"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if r.virtualNetwork == nil {
-		return localVarReturnValue, nil, reportError("virtualNetwork is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	// body params
-	localVarPostBody = r.virtualNetwork
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["x_auth_token"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["X-Auth-Token"] = key
-			}
-		}
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 422 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1256,7 +604,7 @@ func (a *ProjectsApiService) DeleteProjectExecute(r ApiDeleteProjectRequest) (*h
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1266,7 +614,7 @@ func (a *ProjectsApiService) DeleteProjectExecute(r ApiDeleteProjectRequest) (*h
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1276,7 +624,7 @@ func (a *ProjectsApiService) DeleteProjectExecute(r ApiDeleteProjectRequest) (*h
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1288,494 +636,6 @@ func (a *ProjectsApiService) DeleteProjectExecute(r ApiDeleteProjectRequest) (*h
 	}
 
 	return localVarHTTPResponse, nil
-}
-
-type ApiFindBatchesByProjectRequest struct {
-	ctx        context.Context
-	ApiService *ProjectsApiService
-	id         string
-	include    *[]string
-	exclude    *[]string
-}
-
-// Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
-func (r ApiFindBatchesByProjectRequest) Include(include []string) ApiFindBatchesByProjectRequest {
-	r.include = &include
-	return r
-}
-
-// Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
-func (r ApiFindBatchesByProjectRequest) Exclude(exclude []string) ApiFindBatchesByProjectRequest {
-	r.exclude = &exclude
-	return r
-}
-
-func (r ApiFindBatchesByProjectRequest) Execute() (*BatchesList, *http.Response, error) {
-	return r.ApiService.FindBatchesByProjectExecute(r)
-}
-
-/*
-FindBatchesByProject Retrieve all batches by project
-
-Returns all batches for the given project
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Project UUID
- @return ApiFindBatchesByProjectRequest
-*/
-func (a *ProjectsApiService) FindBatchesByProject(ctx context.Context, id string) ApiFindBatchesByProjectRequest {
-	return ApiFindBatchesByProjectRequest{
-		ApiService: a,
-		ctx:        ctx,
-		id:         id,
-	}
-}
-
-// Execute executes the request
-//  @return BatchesList
-func (a *ProjectsApiService) FindBatchesByProjectExecute(r ApiFindBatchesByProjectRequest) (*BatchesList, *http.Response, error) {
-	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *BatchesList
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.FindBatchesByProject")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/projects/{id}/batches"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	if r.include != nil {
-		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
-	}
-	if r.exclude != nil {
-		localVarQueryParams.Add("exclude", parameterToString(*r.exclude, "csv"))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["x_auth_token"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["X-Auth-Token"] = key
-			}
-		}
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiFindBgpConfigByProjectRequest struct {
-	ctx        context.Context
-	ApiService *ProjectsApiService
-	id         string
-	include    *[]string
-	exclude    *[]string
-}
-
-// Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
-func (r ApiFindBgpConfigByProjectRequest) Include(include []string) ApiFindBgpConfigByProjectRequest {
-	r.include = &include
-	return r
-}
-
-// Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
-func (r ApiFindBgpConfigByProjectRequest) Exclude(exclude []string) ApiFindBgpConfigByProjectRequest {
-	r.exclude = &exclude
-	return r
-}
-
-func (r ApiFindBgpConfigByProjectRequest) Execute() (*BgpConfig, *http.Response, error) {
-	return r.ApiService.FindBgpConfigByProjectExecute(r)
-}
-
-/*
-FindBgpConfigByProject Retrieve a bgp config
-
-Returns a bgp config
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Project UUID
- @return ApiFindBgpConfigByProjectRequest
-*/
-func (a *ProjectsApiService) FindBgpConfigByProject(ctx context.Context, id string) ApiFindBgpConfigByProjectRequest {
-	return ApiFindBgpConfigByProjectRequest{
-		ApiService: a,
-		ctx:        ctx,
-		id:         id,
-	}
-}
-
-// Execute executes the request
-//  @return BgpConfig
-func (a *ProjectsApiService) FindBgpConfigByProjectExecute(r ApiFindBgpConfigByProjectRequest) (*BgpConfig, *http.Response, error) {
-	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *BgpConfig
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.FindBgpConfigByProject")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/projects/{id}/bgp-config"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	if r.include != nil {
-		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
-	}
-	if r.exclude != nil {
-		localVarQueryParams.Add("exclude", parameterToString(*r.exclude, "csv"))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["x_auth_token"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["X-Auth-Token"] = key
-			}
-		}
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiFindDeviceSSHKeysRequest struct {
-	ctx          context.Context
-	ApiService   *ProjectsApiService
-	id           string
-	searchString *string
-	include      *[]string
-	exclude      *[]string
-}
-
-// Search by key, label, or fingerprint
-func (r ApiFindDeviceSSHKeysRequest) SearchString(searchString string) ApiFindDeviceSSHKeysRequest {
-	r.searchString = &searchString
-	return r
-}
-
-// Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
-func (r ApiFindDeviceSSHKeysRequest) Include(include []string) ApiFindDeviceSSHKeysRequest {
-	r.include = &include
-	return r
-}
-
-// Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
-func (r ApiFindDeviceSSHKeysRequest) Exclude(exclude []string) ApiFindDeviceSSHKeysRequest {
-	r.exclude = &exclude
-	return r
-}
-
-func (r ApiFindDeviceSSHKeysRequest) Execute() (*SSHKeyList, *http.Response, error) {
-	return r.ApiService.FindDeviceSSHKeysExecute(r)
-}
-
-/*
-FindDeviceSSHKeys Retrieve a device's ssh keys
-
-Returns a collection of the device's ssh keys.
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Project UUID
- @return ApiFindDeviceSSHKeysRequest
-*/
-func (a *ProjectsApiService) FindDeviceSSHKeys(ctx context.Context, id string) ApiFindDeviceSSHKeysRequest {
-	return ApiFindDeviceSSHKeysRequest{
-		ApiService: a,
-		ctx:        ctx,
-		id:         id,
-	}
-}
-
-// Execute executes the request
-//  @return SSHKeyList
-func (a *ProjectsApiService) FindDeviceSSHKeysExecute(r ApiFindDeviceSSHKeysRequest) (*SSHKeyList, *http.Response, error) {
-	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *SSHKeyList
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.FindDeviceSSHKeys")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/devices/{id}/ssh-keys"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	if r.searchString != nil {
-		localVarQueryParams.Add("Search string", parameterToString(*r.searchString, ""))
-	}
-	if r.include != nil {
-		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
-	}
-	if r.exclude != nil {
-		localVarQueryParams.Add("exclude", parameterToString(*r.exclude, "csv"))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["x_auth_token"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["X-Auth-Token"] = key
-			}
-		}
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
 type ApiFindIPReservationCustomdataRequest struct {
@@ -1883,7 +743,7 @@ func (a *ProjectsApiService) FindIPReservationCustomdataExecute(r ApiFindIPReser
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1893,7 +753,7 @@ func (a *ProjectsApiService) FindIPReservationCustomdataExecute(r ApiFindIPReser
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1903,7 +763,7 @@ func (a *ProjectsApiService) FindIPReservationCustomdataExecute(r ApiFindIPReser
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1915,308 +775,6 @@ func (a *ProjectsApiService) FindIPReservationCustomdataExecute(r ApiFindIPReser
 	}
 
 	return localVarHTTPResponse, nil
-}
-
-type ApiFindIPReservationsRequest struct {
-	ctx        context.Context
-	ApiService *ProjectsApiService
-	id         string
-	include    *[]string
-	exclude    *[]string
-}
-
-// Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
-func (r ApiFindIPReservationsRequest) Include(include []string) ApiFindIPReservationsRequest {
-	r.include = &include
-	return r
-}
-
-// Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
-func (r ApiFindIPReservationsRequest) Exclude(exclude []string) ApiFindIPReservationsRequest {
-	r.exclude = &exclude
-	return r
-}
-
-func (r ApiFindIPReservationsRequest) Execute() (*IPReservationList, *http.Response, error) {
-	return r.ApiService.FindIPReservationsExecute(r)
-}
-
-/*
-FindIPReservations Retrieve all ip reservations
-
-Provides a list of IP resevations for a single project.
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Project UUID
- @return ApiFindIPReservationsRequest
-*/
-func (a *ProjectsApiService) FindIPReservations(ctx context.Context, id string) ApiFindIPReservationsRequest {
-	return ApiFindIPReservationsRequest{
-		ApiService: a,
-		ctx:        ctx,
-		id:         id,
-	}
-}
-
-// Execute executes the request
-//  @return IPReservationList
-func (a *ProjectsApiService) FindIPReservationsExecute(r ApiFindIPReservationsRequest) (*IPReservationList, *http.Response, error) {
-	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *IPReservationList
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.FindIPReservations")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/projects/{id}/ips"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	if r.include != nil {
-		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
-	}
-	if r.exclude != nil {
-		localVarQueryParams.Add("exclude", parameterToString(*r.exclude, "csv"))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["x_auth_token"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["X-Auth-Token"] = key
-			}
-		}
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiFindProjectBgpSessionsRequest struct {
-	ctx        context.Context
-	ApiService *ProjectsApiService
-	id         string
-}
-
-func (r ApiFindProjectBgpSessionsRequest) Execute() (*BgpSessionList, *http.Response, error) {
-	return r.ApiService.FindProjectBgpSessionsExecute(r)
-}
-
-/*
-FindProjectBgpSessions Retrieve all BGP sessions for project
-
-Provides a listing of available BGP sessions for the project.
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Project UUID
- @return ApiFindProjectBgpSessionsRequest
-*/
-func (a *ProjectsApiService) FindProjectBgpSessions(ctx context.Context, id string) ApiFindProjectBgpSessionsRequest {
-	return ApiFindProjectBgpSessionsRequest{
-		ApiService: a,
-		ctx:        ctx,
-		id:         id,
-	}
-}
-
-// Execute executes the request
-//  @return BgpSessionList
-func (a *ProjectsApiService) FindProjectBgpSessionsExecute(r ApiFindProjectBgpSessionsRequest) (*BgpSessionList, *http.Response, error) {
-	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *BgpSessionList
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.FindProjectBgpSessions")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/projects/{id}/bgp/sessions"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["x_auth_token"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["X-Auth-Token"] = key
-			}
-		}
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
 type ApiFindProjectByIdRequest struct {
@@ -2239,7 +797,7 @@ func (r ApiFindProjectByIdRequest) Exclude(exclude []string) ApiFindProjectByIdR
 	return r
 }
 
-func (r ApiFindProjectByIdRequest) Execute() (*Project, *http.Response, error) {
+func (r ApiFindProjectByIdRequest) Execute() (*MoveHardwareReservation201ResponseProject, *http.Response, error) {
 	return r.ApiService.FindProjectByIdExecute(r)
 }
 
@@ -2261,13 +819,13 @@ func (a *ProjectsApiService) FindProjectById(ctx context.Context, id string) Api
 }
 
 // Execute executes the request
-//  @return Project
-func (a *ProjectsApiService) FindProjectByIdExecute(r ApiFindProjectByIdRequest) (*Project, *http.Response, error) {
+//  @return MoveHardwareReservation201ResponseProject
+func (a *ProjectsApiService) FindProjectByIdExecute(r ApiFindProjectByIdRequest) (*MoveHardwareReservation201ResponseProject, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *Project
+		localVarReturnValue *MoveHardwareReservation201ResponseProject
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.FindProjectById")
@@ -2342,7 +900,7 @@ func (a *ProjectsApiService) FindProjectByIdExecute(r ApiFindProjectByIdRequest)
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2352,7 +910,7 @@ func (a *ProjectsApiService) FindProjectByIdExecute(r ApiFindProjectByIdRequest)
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2362,7 +920,7 @@ func (a *ProjectsApiService) FindProjectByIdExecute(r ApiFindProjectByIdRequest)
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2486,7 +1044,7 @@ func (a *ProjectsApiService) FindProjectCustomdataExecute(r ApiFindProjectCustom
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2496,7 +1054,7 @@ func (a *ProjectsApiService) FindProjectCustomdataExecute(r ApiFindProjectCustom
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2506,7 +1064,7 @@ func (a *ProjectsApiService) FindProjectCustomdataExecute(r ApiFindProjectCustom
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2520,246 +1078,10 @@ func (a *ProjectsApiService) FindProjectCustomdataExecute(r ApiFindProjectCustom
 	return localVarHTTPResponse, nil
 }
 
-type ApiFindProjectDevicesRequest struct {
+type ApiFindProjectInvitationsRequest struct {
 	ctx        context.Context
 	ApiService *ProjectsApiService
-	id         string
-	facility   *string
-	hostname   *string
-	reserved   *bool
-	tag        *string
-	type_      *string
-	include    *[]string
-	exclude    *[]string
-	page       *int32
-	perPage    *int32
-}
-
-// Filter by device facility
-func (r ApiFindProjectDevicesRequest) Facility(facility string) ApiFindProjectDevicesRequest {
-	r.facility = &facility
-	return r
-}
-
-// Filter by partial hostname
-func (r ApiFindProjectDevicesRequest) Hostname(hostname string) ApiFindProjectDevicesRequest {
-	r.hostname = &hostname
-	return r
-}
-
-// Filter only reserved instances
-func (r ApiFindProjectDevicesRequest) Reserved(reserved bool) ApiFindProjectDevicesRequest {
-	r.reserved = &reserved
-	return r
-}
-
-// Filter by device tag
-func (r ApiFindProjectDevicesRequest) Tag(tag string) ApiFindProjectDevicesRequest {
-	r.tag = &tag
-	return r
-}
-
-// Filter by instance type (ondemand,spot,reserved)
-func (r ApiFindProjectDevicesRequest) Type_(type_ string) ApiFindProjectDevicesRequest {
-	r.type_ = &type_
-	return r
-}
-
-// Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
-func (r ApiFindProjectDevicesRequest) Include(include []string) ApiFindProjectDevicesRequest {
-	r.include = &include
-	return r
-}
-
-// Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
-func (r ApiFindProjectDevicesRequest) Exclude(exclude []string) ApiFindProjectDevicesRequest {
-	r.exclude = &exclude
-	return r
-}
-
-// Page to return
-func (r ApiFindProjectDevicesRequest) Page(page int32) ApiFindProjectDevicesRequest {
-	r.page = &page
-	return r
-}
-
-// Items returned per page
-func (r ApiFindProjectDevicesRequest) PerPage(perPage int32) ApiFindProjectDevicesRequest {
-	r.perPage = &perPage
-	return r
-}
-
-func (r ApiFindProjectDevicesRequest) Execute() (*DeviceList, *http.Response, error) {
-	return r.ApiService.FindProjectDevicesExecute(r)
-}
-
-/*
-FindProjectDevices Retrieve all devices of a project
-
-Provides a collection of devices for a given project.
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Project UUID
- @return ApiFindProjectDevicesRequest
-*/
-func (a *ProjectsApiService) FindProjectDevices(ctx context.Context, id string) ApiFindProjectDevicesRequest {
-	return ApiFindProjectDevicesRequest{
-		ApiService: a,
-		ctx:        ctx,
-		id:         id,
-	}
-}
-
-// Execute executes the request
-//  @return DeviceList
-func (a *ProjectsApiService) FindProjectDevicesExecute(r ApiFindProjectDevicesRequest) (*DeviceList, *http.Response, error) {
-	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *DeviceList
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.FindProjectDevices")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/projects/{id}/devices"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	if r.facility != nil {
-		localVarQueryParams.Add("facility", parameterToString(*r.facility, ""))
-	}
-	if r.hostname != nil {
-		localVarQueryParams.Add("hostname", parameterToString(*r.hostname, ""))
-	}
-	if r.reserved != nil {
-		localVarQueryParams.Add("reserved", parameterToString(*r.reserved, ""))
-	}
-	if r.tag != nil {
-		localVarQueryParams.Add("tag", parameterToString(*r.tag, ""))
-	}
-	if r.type_ != nil {
-		localVarQueryParams.Add("type", parameterToString(*r.type_, ""))
-	}
-	if r.include != nil {
-		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
-	}
-	if r.exclude != nil {
-		localVarQueryParams.Add("exclude", parameterToString(*r.exclude, "csv"))
-	}
-	if r.page != nil {
-		localVarQueryParams.Add("page", parameterToString(*r.page, ""))
-	}
-	if r.perPage != nil {
-		localVarQueryParams.Add("per_page", parameterToString(*r.perPage, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["x_auth_token"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["X-Auth-Token"] = key
-			}
-		}
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiFindProjectHardwareReservationsRequest struct {
-	ctx        context.Context
-	ApiService *ProjectsApiService
-	id         string
+	projectId  string
 	include    *[]string
 	exclude    *[]string
 	page       *int32
@@ -2767,67 +1089,67 @@ type ApiFindProjectHardwareReservationsRequest struct {
 }
 
 // Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
-func (r ApiFindProjectHardwareReservationsRequest) Include(include []string) ApiFindProjectHardwareReservationsRequest {
+func (r ApiFindProjectInvitationsRequest) Include(include []string) ApiFindProjectInvitationsRequest {
 	r.include = &include
 	return r
 }
 
 // Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
-func (r ApiFindProjectHardwareReservationsRequest) Exclude(exclude []string) ApiFindProjectHardwareReservationsRequest {
+func (r ApiFindProjectInvitationsRequest) Exclude(exclude []string) ApiFindProjectInvitationsRequest {
 	r.exclude = &exclude
 	return r
 }
 
 // Page to return
-func (r ApiFindProjectHardwareReservationsRequest) Page(page int32) ApiFindProjectHardwareReservationsRequest {
+func (r ApiFindProjectInvitationsRequest) Page(page int32) ApiFindProjectInvitationsRequest {
 	r.page = &page
 	return r
 }
 
 // Items returned per page
-func (r ApiFindProjectHardwareReservationsRequest) PerPage(perPage int32) ApiFindProjectHardwareReservationsRequest {
+func (r ApiFindProjectInvitationsRequest) PerPage(perPage int32) ApiFindProjectInvitationsRequest {
 	r.perPage = &perPage
 	return r
 }
 
-func (r ApiFindProjectHardwareReservationsRequest) Execute() (*HardwareReservationList, *http.Response, error) {
-	return r.ApiService.FindProjectHardwareReservationsExecute(r)
+func (r ApiFindProjectInvitationsRequest) Execute() (*FindInvitations200Response, *http.Response, error) {
+	return r.ApiService.FindProjectInvitationsExecute(r)
 }
 
 /*
-FindProjectHardwareReservations Retrieve all hardware reservations for a given project
+FindProjectInvitations Retrieve project invitations
 
-Provides a collection of hardware reservations for a given project.
+Returns all invitations in a project.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Project UUID
- @return ApiFindProjectHardwareReservationsRequest
+ @param projectId Project UUID
+ @return ApiFindProjectInvitationsRequest
 */
-func (a *ProjectsApiService) FindProjectHardwareReservations(ctx context.Context, id string) ApiFindProjectHardwareReservationsRequest {
-	return ApiFindProjectHardwareReservationsRequest{
+func (a *ProjectsApiService) FindProjectInvitations(ctx context.Context, projectId string) ApiFindProjectInvitationsRequest {
+	return ApiFindProjectInvitationsRequest{
 		ApiService: a,
 		ctx:        ctx,
-		id:         id,
+		projectId:  projectId,
 	}
 }
 
 // Execute executes the request
-//  @return HardwareReservationList
-func (a *ProjectsApiService) FindProjectHardwareReservationsExecute(r ApiFindProjectHardwareReservationsRequest) (*HardwareReservationList, *http.Response, error) {
+//  @return FindInvitations200Response
+func (a *ProjectsApiService) FindProjectInvitationsExecute(r ApiFindProjectInvitationsRequest) (*FindInvitations200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *HardwareReservationList
+		localVarReturnValue *FindInvitations200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.FindProjectHardwareReservations")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.FindProjectInvitations")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/projects/{id}/hardware-reservations"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath := localBasePath + "/projects/{project_id}/invitations"
+	localVarPath = strings.Replace(localVarPath, "{"+"project_id"+"}", url.PathEscape(parameterToString(r.projectId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -2899,7 +1221,7 @@ func (a *ProjectsApiService) FindProjectHardwareReservationsExecute(r ApiFindPro
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2909,7 +1231,7 @@ func (a *ProjectsApiService) FindProjectHardwareReservationsExecute(r ApiFindPro
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2919,193 +1241,7 @@ func (a *ProjectsApiService) FindProjectHardwareReservationsExecute(r ApiFindPro
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiFindProjectLicensesRequest struct {
-	ctx        context.Context
-	ApiService *ProjectsApiService
-	id         string
-	include    *[]string
-	exclude    *[]string
-	page       *int32
-	perPage    *int32
-}
-
-// Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
-func (r ApiFindProjectLicensesRequest) Include(include []string) ApiFindProjectLicensesRequest {
-	r.include = &include
-	return r
-}
-
-// Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
-func (r ApiFindProjectLicensesRequest) Exclude(exclude []string) ApiFindProjectLicensesRequest {
-	r.exclude = &exclude
-	return r
-}
-
-// Page to return
-func (r ApiFindProjectLicensesRequest) Page(page int32) ApiFindProjectLicensesRequest {
-	r.page = &page
-	return r
-}
-
-// Items returned per page
-func (r ApiFindProjectLicensesRequest) PerPage(perPage int32) ApiFindProjectLicensesRequest {
-	r.perPage = &perPage
-	return r
-}
-
-func (r ApiFindProjectLicensesRequest) Execute() (*LicenseList, *http.Response, error) {
-	return r.ApiService.FindProjectLicensesExecute(r)
-}
-
-/*
-FindProjectLicenses Retrieve all licenses
-
-Provides a collection of licenses for a given project.
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Project UUID
- @return ApiFindProjectLicensesRequest
-*/
-func (a *ProjectsApiService) FindProjectLicenses(ctx context.Context, id string) ApiFindProjectLicensesRequest {
-	return ApiFindProjectLicensesRequest{
-		ApiService: a,
-		ctx:        ctx,
-		id:         id,
-	}
-}
-
-// Execute executes the request
-//  @return LicenseList
-func (a *ProjectsApiService) FindProjectLicensesExecute(r ApiFindProjectLicensesRequest) (*LicenseList, *http.Response, error) {
-	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *LicenseList
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.FindProjectLicenses")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/projects/{id}/licenses"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	if r.include != nil {
-		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
-	}
-	if r.exclude != nil {
-		localVarQueryParams.Add("exclude", parameterToString(*r.exclude, "csv"))
-	}
-	if r.page != nil {
-		localVarQueryParams.Add("page", parameterToString(*r.page, ""))
-	}
-	if r.perPage != nil {
-		localVarQueryParams.Add("per_page", parameterToString(*r.perPage, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["x_auth_token"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["X-Auth-Token"] = key
-			}
-		}
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -3162,7 +1298,7 @@ func (r ApiFindProjectMembershipsRequest) PerPage(perPage int32) ApiFindProjectM
 	return r
 }
 
-func (r ApiFindProjectMembershipsRequest) Execute() (*MembershipList, *http.Response, error) {
+func (r ApiFindProjectMembershipsRequest) Execute() (*FindProjectMemberships200Response, *http.Response, error) {
 	return r.ApiService.FindProjectMembershipsExecute(r)
 }
 
@@ -3184,13 +1320,13 @@ func (a *ProjectsApiService) FindProjectMemberships(ctx context.Context, project
 }
 
 // Execute executes the request
-//  @return MembershipList
-func (a *ProjectsApiService) FindProjectMembershipsExecute(r ApiFindProjectMembershipsRequest) (*MembershipList, *http.Response, error) {
+//  @return FindProjectMemberships200Response
+func (a *ProjectsApiService) FindProjectMembershipsExecute(r ApiFindProjectMembershipsRequest) (*FindProjectMemberships200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *MembershipList
+		localVarReturnValue *FindProjectMemberships200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.FindProjectMemberships")
@@ -3271,7 +1407,7 @@ func (a *ProjectsApiService) FindProjectMembershipsExecute(r ApiFindProjectMembe
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -3281,7 +1417,7 @@ func (a *ProjectsApiService) FindProjectMembershipsExecute(r ApiFindProjectMembe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -3291,163 +1427,7 @@ func (a *ProjectsApiService) FindProjectMembershipsExecute(r ApiFindProjectMembe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiFindProjectSSHKeysRequest struct {
-	ctx          context.Context
-	ApiService   *ProjectsApiService
-	id           string
-	searchString *string
-	include      *[]string
-	exclude      *[]string
-}
-
-// Search by key, label, or fingerprint
-func (r ApiFindProjectSSHKeysRequest) SearchString(searchString string) ApiFindProjectSSHKeysRequest {
-	r.searchString = &searchString
-	return r
-}
-
-// Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
-func (r ApiFindProjectSSHKeysRequest) Include(include []string) ApiFindProjectSSHKeysRequest {
-	r.include = &include
-	return r
-}
-
-// Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
-func (r ApiFindProjectSSHKeysRequest) Exclude(exclude []string) ApiFindProjectSSHKeysRequest {
-	r.exclude = &exclude
-	return r
-}
-
-func (r ApiFindProjectSSHKeysRequest) Execute() (*SSHKeyList, *http.Response, error) {
-	return r.ApiService.FindProjectSSHKeysExecute(r)
-}
-
-/*
-FindProjectSSHKeys Retrieve a project's ssh keys
-
-Returns a collection of the project's ssh keys.
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Project UUID
- @return ApiFindProjectSSHKeysRequest
-*/
-func (a *ProjectsApiService) FindProjectSSHKeys(ctx context.Context, id string) ApiFindProjectSSHKeysRequest {
-	return ApiFindProjectSSHKeysRequest{
-		ApiService: a,
-		ctx:        ctx,
-		id:         id,
-	}
-}
-
-// Execute executes the request
-//  @return SSHKeyList
-func (a *ProjectsApiService) FindProjectSSHKeysExecute(r ApiFindProjectSSHKeysRequest) (*SSHKeyList, *http.Response, error) {
-	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *SSHKeyList
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.FindProjectSSHKeys")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/projects/{id}/ssh-keys"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	if r.searchString != nil {
-		localVarQueryParams.Add("Search string", parameterToString(*r.searchString, ""))
-	}
-	if r.include != nil {
-		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
-	}
-	if r.exclude != nil {
-		localVarQueryParams.Add("exclude", parameterToString(*r.exclude, "csv"))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["x_auth_token"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["X-Auth-Token"] = key
-			}
-		}
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -3503,7 +1483,7 @@ func (r ApiFindProjectsRequest) PerPage(perPage int32) ApiFindProjectsRequest {
 	return r
 }
 
-func (r ApiFindProjectsRequest) Execute() (*ProjectList, *http.Response, error) {
+func (r ApiFindProjectsRequest) Execute() (*FindOrganizationProjects200Response, *http.Response, error) {
 	return r.ApiService.FindProjectsExecute(r)
 }
 
@@ -3523,13 +1503,13 @@ func (a *ProjectsApiService) FindProjects(ctx context.Context) ApiFindProjectsRe
 }
 
 // Execute executes the request
-//  @return ProjectList
-func (a *ProjectsApiService) FindProjectsExecute(r ApiFindProjectsRequest) (*ProjectList, *http.Response, error) {
+//  @return FindOrganizationProjects200Response
+func (a *ProjectsApiService) FindProjectsExecute(r ApiFindProjectsRequest) (*FindOrganizationProjects200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *ProjectList
+		localVarReturnValue *FindOrganizationProjects200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.FindProjects")
@@ -3609,654 +1589,7 @@ func (a *ProjectsApiService) FindProjectsExecute(r ApiFindProjectsRequest) (*Pro
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiFindVirtualNetworksRequest struct {
-	ctx        context.Context
-	ApiService *ProjectsApiService
-	id         string
-	include    *[]string
-	exclude    *[]string
-	facility   *string
-	metro      *string
-}
-
-// Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
-func (r ApiFindVirtualNetworksRequest) Include(include []string) ApiFindVirtualNetworksRequest {
-	r.include = &include
-	return r
-}
-
-// Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
-func (r ApiFindVirtualNetworksRequest) Exclude(exclude []string) ApiFindVirtualNetworksRequest {
-	r.exclude = &exclude
-	return r
-}
-
-// Filter by Facility ID (uuid) or Facility Code
-func (r ApiFindVirtualNetworksRequest) Facility(facility string) ApiFindVirtualNetworksRequest {
-	r.facility = &facility
-	return r
-}
-
-// Filter by Metro ID (uuid) or Metro Code
-func (r ApiFindVirtualNetworksRequest) Metro(metro string) ApiFindVirtualNetworksRequest {
-	r.metro = &metro
-	return r
-}
-
-func (r ApiFindVirtualNetworksRequest) Execute() (*VirtualNetworkList, *http.Response, error) {
-	return r.ApiService.FindVirtualNetworksExecute(r)
-}
-
-/*
-FindVirtualNetworks Retrieve all virtual networks
-
-Provides a list of virtual networks for a single project.
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Project UUID
- @return ApiFindVirtualNetworksRequest
-*/
-func (a *ProjectsApiService) FindVirtualNetworks(ctx context.Context, id string) ApiFindVirtualNetworksRequest {
-	return ApiFindVirtualNetworksRequest{
-		ApiService: a,
-		ctx:        ctx,
-		id:         id,
-	}
-}
-
-// Execute executes the request
-//  @return VirtualNetworkList
-func (a *ProjectsApiService) FindVirtualNetworksExecute(r ApiFindVirtualNetworksRequest) (*VirtualNetworkList, *http.Response, error) {
-	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *VirtualNetworkList
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.FindVirtualNetworks")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/projects/{id}/virtual-networks"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	if r.include != nil {
-		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
-	}
-	if r.exclude != nil {
-		localVarQueryParams.Add("exclude", parameterToString(*r.exclude, "csv"))
-	}
-	if r.facility != nil {
-		localVarQueryParams.Add("facility", parameterToString(*r.facility, ""))
-	}
-	if r.metro != nil {
-		localVarQueryParams.Add("metro", parameterToString(*r.metro, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["x_auth_token"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["X-Auth-Token"] = key
-			}
-		}
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiListSpotMarketRequestsRequest struct {
-	ctx        context.Context
-	ApiService *ProjectsApiService
-	id         string
-}
-
-func (r ApiListSpotMarketRequestsRequest) Execute() (*SpotMarketRequestList, *http.Response, error) {
-	return r.ApiService.ListSpotMarketRequestsExecute(r)
-}
-
-/*
-ListSpotMarketRequests List spot market requests
-
-View all spot market requests for a given project.
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Project UUID
- @return ApiListSpotMarketRequestsRequest
-*/
-func (a *ProjectsApiService) ListSpotMarketRequests(ctx context.Context, id string) ApiListSpotMarketRequestsRequest {
-	return ApiListSpotMarketRequestsRequest{
-		ApiService: a,
-		ctx:        ctx,
-		id:         id,
-	}
-}
-
-// Execute executes the request
-//  @return SpotMarketRequestList
-func (a *ProjectsApiService) ListSpotMarketRequestsExecute(r ApiListSpotMarketRequestsRequest) (*SpotMarketRequestList, *http.Response, error) {
-	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *SpotMarketRequestList
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.ListSpotMarketRequests")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/projects/{id}/spot-market-requests"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["x_auth_token"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["X-Auth-Token"] = key
-			}
-		}
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiRequestBgpConfigRequest struct {
-	ctx              context.Context
-	ApiService       *ProjectsApiService
-	id               string
-	bgpConfigRequest *BgpConfigRequestInput
-}
-
-// BGP config Request to create
-func (r ApiRequestBgpConfigRequest) BgpConfigRequest(bgpConfigRequest BgpConfigRequestInput) ApiRequestBgpConfigRequest {
-	r.bgpConfigRequest = &bgpConfigRequest
-	return r
-}
-
-func (r ApiRequestBgpConfigRequest) Execute() (*http.Response, error) {
-	return r.ApiService.RequestBgpConfigExecute(r)
-}
-
-/*
-RequestBgpConfig Requesting bgp config
-
-Requests to enable bgp configuration for a project.
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Project UUID
- @return ApiRequestBgpConfigRequest
-*/
-func (a *ProjectsApiService) RequestBgpConfig(ctx context.Context, id string) ApiRequestBgpConfigRequest {
-	return ApiRequestBgpConfigRequest{
-		ApiService: a,
-		ctx:        ctx,
-		id:         id,
-	}
-}
-
-// Execute executes the request
-func (a *ProjectsApiService) RequestBgpConfigExecute(r ApiRequestBgpConfigRequest) (*http.Response, error) {
-	var (
-		localVarHTTPMethod = http.MethodPost
-		localVarPostBody   interface{}
-		formFiles          []formFile
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.RequestBgpConfig")
-	if err != nil {
-		return nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/projects/{id}/bgp-configs"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if r.bgpConfigRequest == nil {
-		return nil, reportError("bgpConfigRequest is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	// body params
-	localVarPostBody = r.bgpConfigRequest
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["x_auth_token"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["X-Auth-Token"] = key
-			}
-		}
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
-	}
-
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 422 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-		}
-		return localVarHTTPResponse, newErr
-	}
-
-	return localVarHTTPResponse, nil
-}
-
-type ApiRequestIPReservationRequest struct {
-	ctx                  context.Context
-	ApiService           *ProjectsApiService
-	id                   string
-	ipReservationRequest *IPReservationRequestInput
-}
-
-// IP Reservation Request to create
-func (r ApiRequestIPReservationRequest) IpReservationRequest(ipReservationRequest IPReservationRequestInput) ApiRequestIPReservationRequest {
-	r.ipReservationRequest = &ipReservationRequest
-	return r
-}
-
-func (r ApiRequestIPReservationRequest) Execute() (*IPReservation, *http.Response, error) {
-	return r.ApiService.RequestIPReservationExecute(r)
-}
-
-/*
-RequestIPReservation Requesting IP reservations
-
-Request more IP space for a project in order to have additional IP addresses to assign to devices.  If the request is within the max quota, an IP reservation will be created. If the project will exceed its IP quota, a request will be submitted for review, and will return an IP Reservation with a `state` of `pending`. You can automatically have the request fail with HTTP status 422 instead of triggering the review process by providing the `fail_on_approval_required` parameter set to `true` in the request.
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Project UUID
- @return ApiRequestIPReservationRequest
-*/
-func (a *ProjectsApiService) RequestIPReservation(ctx context.Context, id string) ApiRequestIPReservationRequest {
-	return ApiRequestIPReservationRequest{
-		ApiService: a,
-		ctx:        ctx,
-		id:         id,
-	}
-}
-
-// Execute executes the request
-//  @return IPReservation
-func (a *ProjectsApiService) RequestIPReservationExecute(r ApiRequestIPReservationRequest) (*IPReservation, *http.Response, error) {
-	var (
-		localVarHTTPMethod  = http.MethodPost
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *IPReservation
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.RequestIPReservation")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/projects/{id}/ips"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if r.ipReservationRequest == nil {
-		return localVarReturnValue, nil, reportError("ipReservationRequest is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	// body params
-	localVarPostBody = r.ipReservationRequest
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["x_auth_token"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["X-Auth-Token"] = key
-			}
-		}
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 422 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -4283,16 +1616,16 @@ type ApiUpdateProjectRequest struct {
 	ctx        context.Context
 	ApiService *ProjectsApiService
 	id         string
-	project    *ProjectUpdateInput
+	body       *UpdateProjectRequest
 }
 
 // Project to update
-func (r ApiUpdateProjectRequest) Project(project ProjectUpdateInput) ApiUpdateProjectRequest {
-	r.project = &project
+func (r ApiUpdateProjectRequest) Body(body UpdateProjectRequest) ApiUpdateProjectRequest {
+	r.body = &body
 	return r
 }
 
-func (r ApiUpdateProjectRequest) Execute() (*Project, *http.Response, error) {
+func (r ApiUpdateProjectRequest) Execute() (*MoveHardwareReservation201ResponseProject, *http.Response, error) {
 	return r.ApiService.UpdateProjectExecute(r)
 }
 
@@ -4314,13 +1647,13 @@ func (a *ProjectsApiService) UpdateProject(ctx context.Context, id string) ApiUp
 }
 
 // Execute executes the request
-//  @return Project
-func (a *ProjectsApiService) UpdateProjectExecute(r ApiUpdateProjectRequest) (*Project, *http.Response, error) {
+//  @return MoveHardwareReservation201ResponseProject
+func (a *ProjectsApiService) UpdateProjectExecute(r ApiUpdateProjectRequest) (*MoveHardwareReservation201ResponseProject, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *Project
+		localVarReturnValue *MoveHardwareReservation201ResponseProject
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.UpdateProject")
@@ -4334,8 +1667,8 @@ func (a *ProjectsApiService) UpdateProjectExecute(r ApiUpdateProjectRequest) (*P
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.project == nil {
-		return localVarReturnValue, nil, reportError("project is required and must be specified")
+	if r.body == nil {
+		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -4356,7 +1689,7 @@ func (a *ProjectsApiService) UpdateProjectExecute(r ApiUpdateProjectRequest) (*P
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.project
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -4394,7 +1727,7 @@ func (a *ProjectsApiService) UpdateProjectExecute(r ApiUpdateProjectRequest) (*P
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -4404,7 +1737,7 @@ func (a *ProjectsApiService) UpdateProjectExecute(r ApiUpdateProjectRequest) (*P
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -4414,7 +1747,7 @@ func (a *ProjectsApiService) UpdateProjectExecute(r ApiUpdateProjectRequest) (*P
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -4424,7 +1757,7 @@ func (a *ProjectsApiService) UpdateProjectExecute(r ApiUpdateProjectRequest) (*P
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

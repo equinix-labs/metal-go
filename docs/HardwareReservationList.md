@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**HardwareReservations** | Pointer to [**[]HardwareReservation**](HardwareReservation.md) |  | [optional] 
-**Meta** | Pointer to [**Meta**](Meta.md) |  | [optional] 
+**HardwareReservations** | Pointer to [**[]MoveHardwareReservation201Response**](MoveHardwareReservation201Response.md) |  | [optional] 
+**Meta** | Pointer to [**FindDeviceEvents200ResponseMeta**](FindDeviceEvents200ResponseMeta.md) |  | [optional] 
 
 ## Methods
 
@@ -28,20 +28,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetHardwareReservations
 
-`func (o *HardwareReservationList) GetHardwareReservations() []HardwareReservation`
+`func (o *HardwareReservationList) GetHardwareReservations() []MoveHardwareReservation201Response`
 
 GetHardwareReservations returns the HardwareReservations field if non-nil, zero value otherwise.
 
 ### GetHardwareReservationsOk
 
-`func (o *HardwareReservationList) GetHardwareReservationsOk() (*[]HardwareReservation, bool)`
+`func (o *HardwareReservationList) GetHardwareReservationsOk() (*[]MoveHardwareReservation201Response, bool)`
 
 GetHardwareReservationsOk returns a tuple with the HardwareReservations field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetHardwareReservations
 
-`func (o *HardwareReservationList) SetHardwareReservations(v []HardwareReservation)`
+`func (o *HardwareReservationList) SetHardwareReservations(v []MoveHardwareReservation201Response)`
 
 SetHardwareReservations sets HardwareReservations field to given value.
 
@@ -53,20 +53,20 @@ HasHardwareReservations returns a boolean if a field has been set.
 
 ### GetMeta
 
-`func (o *HardwareReservationList) GetMeta() Meta`
+`func (o *HardwareReservationList) GetMeta() FindDeviceEvents200ResponseMeta`
 
 GetMeta returns the Meta field if non-nil, zero value otherwise.
 
 ### GetMetaOk
 
-`func (o *HardwareReservationList) GetMetaOk() (*Meta, bool)`
+`func (o *HardwareReservationList) GetMetaOk() (*FindDeviceEvents200ResponseMeta, bool)`
 
 GetMetaOk returns a tuple with the Meta field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMeta
 
-`func (o *HardwareReservationList) SetMeta(v Meta)`
+`func (o *HardwareReservationList) SetMeta(v FindDeviceEvents200ResponseMeta)`
 
 SetMeta sets Meta field to given value.
 

@@ -17,7 +17,7 @@ import (
 
 // MetalGatewayList struct for MetalGatewayList
 type MetalGatewayList struct {
-	MetalGateways []MetalGateway `json:"MetalGateways,omitempty"`
+	MetalGateways []map[string]interface{} `json:"MetalGateways,omitempty"`
 }
 
 // NewMetalGatewayList instantiates a new MetalGatewayList object
@@ -38,9 +38,9 @@ func NewMetalGatewayListWithDefaults() *MetalGatewayList {
 }
 
 // GetMetalGateways returns the MetalGateways field value if set, zero value otherwise.
-func (o *MetalGatewayList) GetMetalGateways() []MetalGateway {
+func (o *MetalGatewayList) GetMetalGateways() []map[string]interface{} {
 	if o == nil || o.MetalGateways == nil {
-		var ret []MetalGateway
+		var ret []map[string]interface{}
 		return ret
 	}
 	return o.MetalGateways
@@ -48,7 +48,7 @@ func (o *MetalGatewayList) GetMetalGateways() []MetalGateway {
 
 // GetMetalGatewaysOk returns a tuple with the MetalGateways field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetalGatewayList) GetMetalGatewaysOk() ([]MetalGateway, bool) {
+func (o *MetalGatewayList) GetMetalGatewaysOk() ([]map[string]interface{}, bool) {
 	if o == nil || o.MetalGateways == nil {
 		return nil, false
 	}
@@ -64,8 +64,8 @@ func (o *MetalGatewayList) HasMetalGateways() bool {
 	return false
 }
 
-// SetMetalGateways gets a reference to the given []MetalGateway and assigns it to the MetalGateways field.
-func (o *MetalGatewayList) SetMetalGateways(v []MetalGateway) {
+// SetMetalGateways gets a reference to the given []map[string]interface{} and assigns it to the MetalGateways field.
+func (o *MetalGatewayList) SetMetalGateways(v []map[string]interface{}) {
 	o.MetalGateways = v
 }
 

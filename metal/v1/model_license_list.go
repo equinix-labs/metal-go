@@ -17,7 +17,7 @@ import (
 
 // LicenseList struct for LicenseList
 type LicenseList struct {
-	Licenses []License `json:"licenses,omitempty"`
+	Licenses []FindLicenseById200Response `json:"licenses,omitempty"`
 }
 
 // NewLicenseList instantiates a new LicenseList object
@@ -38,9 +38,9 @@ func NewLicenseListWithDefaults() *LicenseList {
 }
 
 // GetLicenses returns the Licenses field value if set, zero value otherwise.
-func (o *LicenseList) GetLicenses() []License {
+func (o *LicenseList) GetLicenses() []FindLicenseById200Response {
 	if o == nil || o.Licenses == nil {
-		var ret []License
+		var ret []FindLicenseById200Response
 		return ret
 	}
 	return o.Licenses
@@ -48,7 +48,7 @@ func (o *LicenseList) GetLicenses() []License {
 
 // GetLicensesOk returns a tuple with the Licenses field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LicenseList) GetLicensesOk() ([]License, bool) {
+func (o *LicenseList) GetLicensesOk() ([]FindLicenseById200Response, bool) {
 	if o == nil || o.Licenses == nil {
 		return nil, false
 	}
@@ -64,8 +64,8 @@ func (o *LicenseList) HasLicenses() bool {
 	return false
 }
 
-// SetLicenses gets a reference to the given []License and assigns it to the Licenses field.
-func (o *LicenseList) SetLicenses(v []License) {
+// SetLicenses gets a reference to the given []FindLicenseById200Response and assigns it to the Licenses field.
+func (o *LicenseList) SetLicenses(v []FindLicenseById200Response) {
 	o.Licenses = v
 }
 

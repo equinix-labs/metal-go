@@ -17,7 +17,7 @@ import (
 
 // DeviceUsageList struct for DeviceUsageList
 type DeviceUsageList struct {
-	Usages []DeviceUsage `json:"usages,omitempty"`
+	Usages []FindDeviceUsages200ResponseUsagesInner `json:"usages,omitempty"`
 }
 
 // NewDeviceUsageList instantiates a new DeviceUsageList object
@@ -38,9 +38,9 @@ func NewDeviceUsageListWithDefaults() *DeviceUsageList {
 }
 
 // GetUsages returns the Usages field value if set, zero value otherwise.
-func (o *DeviceUsageList) GetUsages() []DeviceUsage {
+func (o *DeviceUsageList) GetUsages() []FindDeviceUsages200ResponseUsagesInner {
 	if o == nil || o.Usages == nil {
-		var ret []DeviceUsage
+		var ret []FindDeviceUsages200ResponseUsagesInner
 		return ret
 	}
 	return o.Usages
@@ -48,7 +48,7 @@ func (o *DeviceUsageList) GetUsages() []DeviceUsage {
 
 // GetUsagesOk returns a tuple with the Usages field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DeviceUsageList) GetUsagesOk() ([]DeviceUsage, bool) {
+func (o *DeviceUsageList) GetUsagesOk() ([]FindDeviceUsages200ResponseUsagesInner, bool) {
 	if o == nil || o.Usages == nil {
 		return nil, false
 	}
@@ -64,8 +64,8 @@ func (o *DeviceUsageList) HasUsages() bool {
 	return false
 }
 
-// SetUsages gets a reference to the given []DeviceUsage and assigns it to the Usages field.
-func (o *DeviceUsageList) SetUsages(v []DeviceUsage) {
+// SetUsages gets a reference to the given []FindDeviceUsages200ResponseUsagesInner and assigns it to the Usages field.
+func (o *DeviceUsageList) SetUsages(v []FindDeviceUsages200ResponseUsagesInner) {
 	o.Usages = v
 }
 

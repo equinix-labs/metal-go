@@ -5,14 +5,14 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Facility** | Pointer to **string** |  | [optional] 
-**Type** | Pointer to **string** |  | [optional] 
 **Name** | Pointer to **string** |  | [optional] 
 **Plan** | Pointer to **string** |  | [optional] 
 **PlanVersion** | Pointer to **string** |  | [optional] 
-**Quantity** | Pointer to **string** |  | [optional] 
-**Unit** | Pointer to **string** |  | [optional] 
 **Price** | Pointer to **string** |  | [optional] 
+**Quantity** | Pointer to **string** |  | [optional] 
 **Total** | Pointer to **string** |  | [optional] 
+**Type** | Pointer to **string** |  | [optional] 
+**Unit** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -57,31 +57,6 @@ SetFacility sets Facility field to given value.
 `func (o *ProjectUsage) HasFacility() bool`
 
 HasFacility returns a boolean if a field has been set.
-
-### GetType
-
-`func (o *ProjectUsage) GetType() string`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *ProjectUsage) GetTypeOk() (*string, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *ProjectUsage) SetType(v string)`
-
-SetType sets Type field to given value.
-
-### HasType
-
-`func (o *ProjectUsage) HasType() bool`
-
-HasType returns a boolean if a field has been set.
 
 ### GetName
 
@@ -158,56 +133,6 @@ SetPlanVersion sets PlanVersion field to given value.
 
 HasPlanVersion returns a boolean if a field has been set.
 
-### GetQuantity
-
-`func (o *ProjectUsage) GetQuantity() string`
-
-GetQuantity returns the Quantity field if non-nil, zero value otherwise.
-
-### GetQuantityOk
-
-`func (o *ProjectUsage) GetQuantityOk() (*string, bool)`
-
-GetQuantityOk returns a tuple with the Quantity field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetQuantity
-
-`func (o *ProjectUsage) SetQuantity(v string)`
-
-SetQuantity sets Quantity field to given value.
-
-### HasQuantity
-
-`func (o *ProjectUsage) HasQuantity() bool`
-
-HasQuantity returns a boolean if a field has been set.
-
-### GetUnit
-
-`func (o *ProjectUsage) GetUnit() string`
-
-GetUnit returns the Unit field if non-nil, zero value otherwise.
-
-### GetUnitOk
-
-`func (o *ProjectUsage) GetUnitOk() (*string, bool)`
-
-GetUnitOk returns a tuple with the Unit field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetUnit
-
-`func (o *ProjectUsage) SetUnit(v string)`
-
-SetUnit sets Unit field to given value.
-
-### HasUnit
-
-`func (o *ProjectUsage) HasUnit() bool`
-
-HasUnit returns a boolean if a field has been set.
-
 ### GetPrice
 
 `func (o *ProjectUsage) GetPrice() string`
@@ -233,6 +158,31 @@ SetPrice sets Price field to given value.
 
 HasPrice returns a boolean if a field has been set.
 
+### GetQuantity
+
+`func (o *ProjectUsage) GetQuantity() string`
+
+GetQuantity returns the Quantity field if non-nil, zero value otherwise.
+
+### GetQuantityOk
+
+`func (o *ProjectUsage) GetQuantityOk() (*string, bool)`
+
+GetQuantityOk returns a tuple with the Quantity field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetQuantity
+
+`func (o *ProjectUsage) SetQuantity(v string)`
+
+SetQuantity sets Quantity field to given value.
+
+### HasQuantity
+
+`func (o *ProjectUsage) HasQuantity() bool`
+
+HasQuantity returns a boolean if a field has been set.
+
 ### GetTotal
 
 `func (o *ProjectUsage) GetTotal() string`
@@ -257,6 +207,56 @@ SetTotal sets Total field to given value.
 `func (o *ProjectUsage) HasTotal() bool`
 
 HasTotal returns a boolean if a field has been set.
+
+### GetType
+
+`func (o *ProjectUsage) GetType() string`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *ProjectUsage) GetTypeOk() (*string, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *ProjectUsage) SetType(v string)`
+
+SetType sets Type field to given value.
+
+### HasType
+
+`func (o *ProjectUsage) HasType() bool`
+
+HasType returns a boolean if a field has been set.
+
+### GetUnit
+
+`func (o *ProjectUsage) GetUnit() string`
+
+GetUnit returns the Unit field if non-nil, zero value otherwise.
+
+### GetUnitOk
+
+`func (o *ProjectUsage) GetUnitOk() (*string, bool)`
+
+GetUnitOk returns a tuple with the Unit field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUnit
+
+`func (o *ProjectUsage) SetUnit(v string)`
+
+SetUnit sets Unit field to given value.
+
+### HasUnit
+
+`func (o *ProjectUsage) HasUnit() bool`
+
+HasUnit returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -17,8 +17,8 @@ import (
 
 // HardwareReservationList struct for HardwareReservationList
 type HardwareReservationList struct {
-	HardwareReservations []HardwareReservation `json:"hardware_reservations,omitempty"`
-	Meta                 *Meta                 `json:"meta,omitempty"`
+	HardwareReservations []MoveHardwareReservation201Response `json:"hardware_reservations,omitempty"`
+	Meta                 *FindDeviceEvents200ResponseMeta     `json:"meta,omitempty"`
 }
 
 // NewHardwareReservationList instantiates a new HardwareReservationList object
@@ -39,9 +39,9 @@ func NewHardwareReservationListWithDefaults() *HardwareReservationList {
 }
 
 // GetHardwareReservations returns the HardwareReservations field value if set, zero value otherwise.
-func (o *HardwareReservationList) GetHardwareReservations() []HardwareReservation {
+func (o *HardwareReservationList) GetHardwareReservations() []MoveHardwareReservation201Response {
 	if o == nil || o.HardwareReservations == nil {
-		var ret []HardwareReservation
+		var ret []MoveHardwareReservation201Response
 		return ret
 	}
 	return o.HardwareReservations
@@ -49,7 +49,7 @@ func (o *HardwareReservationList) GetHardwareReservations() []HardwareReservatio
 
 // GetHardwareReservationsOk returns a tuple with the HardwareReservations field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HardwareReservationList) GetHardwareReservationsOk() ([]HardwareReservation, bool) {
+func (o *HardwareReservationList) GetHardwareReservationsOk() ([]MoveHardwareReservation201Response, bool) {
 	if o == nil || o.HardwareReservations == nil {
 		return nil, false
 	}
@@ -65,15 +65,15 @@ func (o *HardwareReservationList) HasHardwareReservations() bool {
 	return false
 }
 
-// SetHardwareReservations gets a reference to the given []HardwareReservation and assigns it to the HardwareReservations field.
-func (o *HardwareReservationList) SetHardwareReservations(v []HardwareReservation) {
+// SetHardwareReservations gets a reference to the given []MoveHardwareReservation201Response and assigns it to the HardwareReservations field.
+func (o *HardwareReservationList) SetHardwareReservations(v []MoveHardwareReservation201Response) {
 	o.HardwareReservations = v
 }
 
 // GetMeta returns the Meta field value if set, zero value otherwise.
-func (o *HardwareReservationList) GetMeta() Meta {
+func (o *HardwareReservationList) GetMeta() FindDeviceEvents200ResponseMeta {
 	if o == nil || o.Meta == nil {
-		var ret Meta
+		var ret FindDeviceEvents200ResponseMeta
 		return ret
 	}
 	return *o.Meta
@@ -81,7 +81,7 @@ func (o *HardwareReservationList) GetMeta() Meta {
 
 // GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HardwareReservationList) GetMetaOk() (*Meta, bool) {
+func (o *HardwareReservationList) GetMetaOk() (*FindDeviceEvents200ResponseMeta, bool) {
 	if o == nil || o.Meta == nil {
 		return nil, false
 	}
@@ -97,8 +97,8 @@ func (o *HardwareReservationList) HasMeta() bool {
 	return false
 }
 
-// SetMeta gets a reference to the given Meta and assigns it to the Meta field.
-func (o *HardwareReservationList) SetMeta(v Meta) {
+// SetMeta gets a reference to the given FindDeviceEvents200ResponseMeta and assigns it to the Meta field.
+func (o *HardwareReservationList) SetMeta(v FindDeviceEvents200ResponseMeta) {
 	o.Meta = &v
 }
 

@@ -7,16 +7,16 @@ Name | Type | Description | Notes
 **Address** | **string** |  | 
 **Address2** | Pointer to **string** |  | [optional] 
 **City** | Pointer to **string** |  | [optional] 
+**Coordinates** | Pointer to [**FindDeviceById200ResponseFacilityAddressCoordinates**](FindDeviceById200ResponseFacilityAddressCoordinates.md) |  | [optional] 
+**Country** | **string** |  | 
 **State** | Pointer to **string** |  | [optional] 
 **ZipCode** | **string** |  | 
-**Country** | **string** |  | 
-**Coordinates** | Pointer to [**Coordinates**](Coordinates.md) |  | [optional] 
 
 ## Methods
 
 ### NewAddress
 
-`func NewAddress(address string, zipCode string, country string, ) *Address`
+`func NewAddress(address string, country string, zipCode string, ) *Address`
 
 NewAddress instantiates a new Address object
 This constructor will assign default values to properties that have it defined,
@@ -101,6 +101,51 @@ SetCity sets City field to given value.
 
 HasCity returns a boolean if a field has been set.
 
+### GetCoordinates
+
+`func (o *Address) GetCoordinates() FindDeviceById200ResponseFacilityAddressCoordinates`
+
+GetCoordinates returns the Coordinates field if non-nil, zero value otherwise.
+
+### GetCoordinatesOk
+
+`func (o *Address) GetCoordinatesOk() (*FindDeviceById200ResponseFacilityAddressCoordinates, bool)`
+
+GetCoordinatesOk returns a tuple with the Coordinates field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCoordinates
+
+`func (o *Address) SetCoordinates(v FindDeviceById200ResponseFacilityAddressCoordinates)`
+
+SetCoordinates sets Coordinates field to given value.
+
+### HasCoordinates
+
+`func (o *Address) HasCoordinates() bool`
+
+HasCoordinates returns a boolean if a field has been set.
+
+### GetCountry
+
+`func (o *Address) GetCountry() string`
+
+GetCountry returns the Country field if non-nil, zero value otherwise.
+
+### GetCountryOk
+
+`func (o *Address) GetCountryOk() (*string, bool)`
+
+GetCountryOk returns a tuple with the Country field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCountry
+
+`func (o *Address) SetCountry(v string)`
+
+SetCountry sets Country field to given value.
+
+
 ### GetState
 
 `func (o *Address) GetState() string`
@@ -145,51 +190,6 @@ and a boolean to check if the value has been set.
 
 SetZipCode sets ZipCode field to given value.
 
-
-### GetCountry
-
-`func (o *Address) GetCountry() string`
-
-GetCountry returns the Country field if non-nil, zero value otherwise.
-
-### GetCountryOk
-
-`func (o *Address) GetCountryOk() (*string, bool)`
-
-GetCountryOk returns a tuple with the Country field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCountry
-
-`func (o *Address) SetCountry(v string)`
-
-SetCountry sets Country field to given value.
-
-
-### GetCoordinates
-
-`func (o *Address) GetCoordinates() Coordinates`
-
-GetCoordinates returns the Coordinates field if non-nil, zero value otherwise.
-
-### GetCoordinatesOk
-
-`func (o *Address) GetCoordinatesOk() (*Coordinates, bool)`
-
-GetCoordinatesOk returns a tuple with the Coordinates field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCoordinates
-
-`func (o *Address) SetCoordinates(v Coordinates)`
-
-SetCoordinates sets Coordinates field to given value.
-
-### HasCoordinates
-
-`func (o *Address) HasCoordinates() bool`
-
-HasCoordinates returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

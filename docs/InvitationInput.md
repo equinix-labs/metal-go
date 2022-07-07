@@ -6,8 +6,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Invitee** | **string** |  | 
 **Message** | Pointer to **string** |  | [optional] 
-**Roles** | Pointer to **[]string** |  | [optional] 
 **ProjectsIds** | Pointer to **[]string** |  | [optional] 
+**Roles** | Pointer to **[]string** |  | [optional] 
 
 ## Methods
 
@@ -73,31 +73,6 @@ SetMessage sets Message field to given value.
 
 HasMessage returns a boolean if a field has been set.
 
-### GetRoles
-
-`func (o *InvitationInput) GetRoles() []string`
-
-GetRoles returns the Roles field if non-nil, zero value otherwise.
-
-### GetRolesOk
-
-`func (o *InvitationInput) GetRolesOk() (*[]string, bool)`
-
-GetRolesOk returns a tuple with the Roles field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRoles
-
-`func (o *InvitationInput) SetRoles(v []string)`
-
-SetRoles sets Roles field to given value.
-
-### HasRoles
-
-`func (o *InvitationInput) HasRoles() bool`
-
-HasRoles returns a boolean if a field has been set.
-
 ### GetProjectsIds
 
 `func (o *InvitationInput) GetProjectsIds() []string`
@@ -122,6 +97,31 @@ SetProjectsIds sets ProjectsIds field to given value.
 `func (o *InvitationInput) HasProjectsIds() bool`
 
 HasProjectsIds returns a boolean if a field has been set.
+
+### GetRoles
+
+`func (o *InvitationInput) GetRoles() []string`
+
+GetRoles returns the Roles field if non-nil, zero value otherwise.
+
+### GetRolesOk
+
+`func (o *InvitationInput) GetRolesOk() (*[]string, bool)`
+
+GetRolesOk returns a tuple with the Roles field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRoles
+
+`func (o *InvitationInput) SetRoles(v []string)`
+
+SetRoles sets Roles field to given value.
+
+### HasRoles
+
+`func (o *InvitationInput) HasRoles() bool`
+
+HasRoles returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

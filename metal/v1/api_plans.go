@@ -42,7 +42,7 @@ func (r ApiFindPlansRequest) Exclude(exclude []string) ApiFindPlansRequest {
 	return r
 }
 
-func (r ApiFindPlansRequest) Execute() (*PlanList, *http.Response, error) {
+func (r ApiFindPlansRequest) Execute() (*FindPlansByOrganization200Response, *http.Response, error) {
 	return r.ApiService.FindPlansExecute(r)
 }
 
@@ -62,13 +62,13 @@ func (a *PlansApiService) FindPlans(ctx context.Context) ApiFindPlansRequest {
 }
 
 // Execute executes the request
-//  @return PlanList
-func (a *PlansApiService) FindPlansExecute(r ApiFindPlansRequest) (*PlanList, *http.Response, error) {
+//  @return FindPlansByOrganization200Response
+func (a *PlansApiService) FindPlansExecute(r ApiFindPlansRequest) (*FindPlansByOrganization200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *PlanList
+		localVarReturnValue *FindPlansByOrganization200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PlansApiService.FindPlans")
@@ -142,173 +142,7 @@ func (a *PlansApiService) FindPlansExecute(r ApiFindPlansRequest) (*PlanList, *h
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiFindPlansByOrganizationRequest struct {
-	ctx        context.Context
-	ApiService *PlansApiService
-	id         string
-	include    *[]string
-	exclude    *[]string
-}
-
-// Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
-func (r ApiFindPlansByOrganizationRequest) Include(include []string) ApiFindPlansByOrganizationRequest {
-	r.include = &include
-	return r
-}
-
-// Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
-func (r ApiFindPlansByOrganizationRequest) Exclude(exclude []string) ApiFindPlansByOrganizationRequest {
-	r.exclude = &exclude
-	return r
-}
-
-func (r ApiFindPlansByOrganizationRequest) Execute() (*PlanList, *http.Response, error) {
-	return r.ApiService.FindPlansByOrganizationExecute(r)
-}
-
-/*
-FindPlansByOrganization Retrieve all plans visible by the organization
-
-Returns a listing of available plans for the given organization
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Organization UUID
- @return ApiFindPlansByOrganizationRequest
-*/
-func (a *PlansApiService) FindPlansByOrganization(ctx context.Context, id string) ApiFindPlansByOrganizationRequest {
-	return ApiFindPlansByOrganizationRequest{
-		ApiService: a,
-		ctx:        ctx,
-		id:         id,
-	}
-}
-
-// Execute executes the request
-//  @return PlanList
-func (a *PlansApiService) FindPlansByOrganizationExecute(r ApiFindPlansByOrganizationRequest) (*PlanList, *http.Response, error) {
-	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *PlanList
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PlansApiService.FindPlansByOrganization")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/organizations/{id}/plans"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	if r.include != nil {
-		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
-	}
-	if r.exclude != nil {
-		localVarQueryParams.Add("exclude", parameterToString(*r.exclude, "csv"))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["x_auth_token"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["X-Auth-Token"] = key
-			}
-		}
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -351,7 +185,7 @@ func (r ApiFindPlansByProjectRequest) Exclude(exclude []string) ApiFindPlansByPr
 	return r
 }
 
-func (r ApiFindPlansByProjectRequest) Execute() (*PlanList, *http.Response, error) {
+func (r ApiFindPlansByProjectRequest) Execute() (*FindPlansByOrganization200Response, *http.Response, error) {
 	return r.ApiService.FindPlansByProjectExecute(r)
 }
 
@@ -373,13 +207,13 @@ func (a *PlansApiService) FindPlansByProject(ctx context.Context, id string) Api
 }
 
 // Execute executes the request
-//  @return PlanList
-func (a *PlansApiService) FindPlansByProjectExecute(r ApiFindPlansByProjectRequest) (*PlanList, *http.Response, error) {
+//  @return FindPlansByOrganization200Response
+func (a *PlansApiService) FindPlansByProjectExecute(r ApiFindPlansByProjectRequest) (*FindPlansByOrganization200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *PlanList
+		localVarReturnValue *FindPlansByOrganization200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PlansApiService.FindPlansByProject")
@@ -454,7 +288,7 @@ func (a *PlansApiService) FindPlansByProjectExecute(r ApiFindPlansByProjectReque
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -464,7 +298,7 @@ func (a *PlansApiService) FindPlansByProjectExecute(r ApiFindPlansByProjectReque
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -474,7 +308,7 @@ func (a *PlansApiService) FindPlansByProjectExecute(r ApiFindPlansByProjectReque
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

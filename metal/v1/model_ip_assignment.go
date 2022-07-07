@@ -18,23 +18,23 @@ import (
 
 // IPAssignment struct for IPAssignment
 type IPAssignment struct {
-	Id            *string            `json:"id,omitempty"`
-	AddressFamily *int32             `json:"address_family,omitempty"`
-	Netmask       *string            `json:"netmask,omitempty"`
-	Public        *bool              `json:"public,omitempty"`
-	Enabled       *bool              `json:"enabled,omitempty"`
-	Cidr          *int32             `json:"cidr,omitempty"`
-	Management    *bool              `json:"management,omitempty"`
-	Manageable    *bool              `json:"manageable,omitempty"`
-	GlobalIp      *bool              `json:"global_ip,omitempty"`
-	AssignedTo    *Href              `json:"assigned_to,omitempty"`
-	Network       *string            `json:"network,omitempty"`
-	Address       *string            `json:"address,omitempty"`
-	Gateway       *string            `json:"gateway,omitempty"`
-	Href          *string            `json:"href,omitempty"`
-	CreatedAt     *time.Time         `json:"created_at,omitempty"`
-	Metro         *IPAssignmentMetro `json:"metro,omitempty"`
-	ParentBlock   *ParentBlock       `json:"parent_block,omitempty"`
+	Address       *string                                               `json:"address,omitempty"`
+	AddressFamily *int32                                                `json:"address_family,omitempty"`
+	AssignedTo    *FindBatchById200ResponseDevicesInner                 `json:"assigned_to,omitempty"`
+	Cidr          *int32                                                `json:"cidr,omitempty"`
+	CreatedAt     *time.Time                                            `json:"created_at,omitempty"`
+	Enabled       *bool                                                 `json:"enabled,omitempty"`
+	Gateway       *string                                               `json:"gateway,omitempty"`
+	GlobalIp      *bool                                                 `json:"global_ip,omitempty"`
+	Href          *string                                               `json:"href,omitempty"`
+	Id            *string                                               `json:"id,omitempty"`
+	Manageable    *bool                                                 `json:"manageable,omitempty"`
+	Management    *bool                                                 `json:"management,omitempty"`
+	Metro         *FindDeviceById200ResponseIpAddressesInnerMetro       `json:"metro,omitempty"`
+	Netmask       *string                                               `json:"netmask,omitempty"`
+	Network       *string                                               `json:"network,omitempty"`
+	ParentBlock   *FindDeviceById200ResponseIpAddressesInnerParentBlock `json:"parent_block,omitempty"`
+	Public        *bool                                                 `json:"public,omitempty"`
 }
 
 // NewIPAssignment instantiates a new IPAssignment object
@@ -52,358 +52,6 @@ func NewIPAssignment() *IPAssignment {
 func NewIPAssignmentWithDefaults() *IPAssignment {
 	this := IPAssignment{}
 	return &this
-}
-
-// GetId returns the Id field value if set, zero value otherwise.
-func (o *IPAssignment) GetId() string {
-	if o == nil || o.Id == nil {
-		var ret string
-		return ret
-	}
-	return *o.Id
-}
-
-// GetIdOk returns a tuple with the Id field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *IPAssignment) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
-		return nil, false
-	}
-	return o.Id, true
-}
-
-// HasId returns a boolean if a field has been set.
-func (o *IPAssignment) HasId() bool {
-	if o != nil && o.Id != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetId gets a reference to the given string and assigns it to the Id field.
-func (o *IPAssignment) SetId(v string) {
-	o.Id = &v
-}
-
-// GetAddressFamily returns the AddressFamily field value if set, zero value otherwise.
-func (o *IPAssignment) GetAddressFamily() int32 {
-	if o == nil || o.AddressFamily == nil {
-		var ret int32
-		return ret
-	}
-	return *o.AddressFamily
-}
-
-// GetAddressFamilyOk returns a tuple with the AddressFamily field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *IPAssignment) GetAddressFamilyOk() (*int32, bool) {
-	if o == nil || o.AddressFamily == nil {
-		return nil, false
-	}
-	return o.AddressFamily, true
-}
-
-// HasAddressFamily returns a boolean if a field has been set.
-func (o *IPAssignment) HasAddressFamily() bool {
-	if o != nil && o.AddressFamily != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetAddressFamily gets a reference to the given int32 and assigns it to the AddressFamily field.
-func (o *IPAssignment) SetAddressFamily(v int32) {
-	o.AddressFamily = &v
-}
-
-// GetNetmask returns the Netmask field value if set, zero value otherwise.
-func (o *IPAssignment) GetNetmask() string {
-	if o == nil || o.Netmask == nil {
-		var ret string
-		return ret
-	}
-	return *o.Netmask
-}
-
-// GetNetmaskOk returns a tuple with the Netmask field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *IPAssignment) GetNetmaskOk() (*string, bool) {
-	if o == nil || o.Netmask == nil {
-		return nil, false
-	}
-	return o.Netmask, true
-}
-
-// HasNetmask returns a boolean if a field has been set.
-func (o *IPAssignment) HasNetmask() bool {
-	if o != nil && o.Netmask != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetNetmask gets a reference to the given string and assigns it to the Netmask field.
-func (o *IPAssignment) SetNetmask(v string) {
-	o.Netmask = &v
-}
-
-// GetPublic returns the Public field value if set, zero value otherwise.
-func (o *IPAssignment) GetPublic() bool {
-	if o == nil || o.Public == nil {
-		var ret bool
-		return ret
-	}
-	return *o.Public
-}
-
-// GetPublicOk returns a tuple with the Public field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *IPAssignment) GetPublicOk() (*bool, bool) {
-	if o == nil || o.Public == nil {
-		return nil, false
-	}
-	return o.Public, true
-}
-
-// HasPublic returns a boolean if a field has been set.
-func (o *IPAssignment) HasPublic() bool {
-	if o != nil && o.Public != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetPublic gets a reference to the given bool and assigns it to the Public field.
-func (o *IPAssignment) SetPublic(v bool) {
-	o.Public = &v
-}
-
-// GetEnabled returns the Enabled field value if set, zero value otherwise.
-func (o *IPAssignment) GetEnabled() bool {
-	if o == nil || o.Enabled == nil {
-		var ret bool
-		return ret
-	}
-	return *o.Enabled
-}
-
-// GetEnabledOk returns a tuple with the Enabled field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *IPAssignment) GetEnabledOk() (*bool, bool) {
-	if o == nil || o.Enabled == nil {
-		return nil, false
-	}
-	return o.Enabled, true
-}
-
-// HasEnabled returns a boolean if a field has been set.
-func (o *IPAssignment) HasEnabled() bool {
-	if o != nil && o.Enabled != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetEnabled gets a reference to the given bool and assigns it to the Enabled field.
-func (o *IPAssignment) SetEnabled(v bool) {
-	o.Enabled = &v
-}
-
-// GetCidr returns the Cidr field value if set, zero value otherwise.
-func (o *IPAssignment) GetCidr() int32 {
-	if o == nil || o.Cidr == nil {
-		var ret int32
-		return ret
-	}
-	return *o.Cidr
-}
-
-// GetCidrOk returns a tuple with the Cidr field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *IPAssignment) GetCidrOk() (*int32, bool) {
-	if o == nil || o.Cidr == nil {
-		return nil, false
-	}
-	return o.Cidr, true
-}
-
-// HasCidr returns a boolean if a field has been set.
-func (o *IPAssignment) HasCidr() bool {
-	if o != nil && o.Cidr != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetCidr gets a reference to the given int32 and assigns it to the Cidr field.
-func (o *IPAssignment) SetCidr(v int32) {
-	o.Cidr = &v
-}
-
-// GetManagement returns the Management field value if set, zero value otherwise.
-func (o *IPAssignment) GetManagement() bool {
-	if o == nil || o.Management == nil {
-		var ret bool
-		return ret
-	}
-	return *o.Management
-}
-
-// GetManagementOk returns a tuple with the Management field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *IPAssignment) GetManagementOk() (*bool, bool) {
-	if o == nil || o.Management == nil {
-		return nil, false
-	}
-	return o.Management, true
-}
-
-// HasManagement returns a boolean if a field has been set.
-func (o *IPAssignment) HasManagement() bool {
-	if o != nil && o.Management != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetManagement gets a reference to the given bool and assigns it to the Management field.
-func (o *IPAssignment) SetManagement(v bool) {
-	o.Management = &v
-}
-
-// GetManageable returns the Manageable field value if set, zero value otherwise.
-func (o *IPAssignment) GetManageable() bool {
-	if o == nil || o.Manageable == nil {
-		var ret bool
-		return ret
-	}
-	return *o.Manageable
-}
-
-// GetManageableOk returns a tuple with the Manageable field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *IPAssignment) GetManageableOk() (*bool, bool) {
-	if o == nil || o.Manageable == nil {
-		return nil, false
-	}
-	return o.Manageable, true
-}
-
-// HasManageable returns a boolean if a field has been set.
-func (o *IPAssignment) HasManageable() bool {
-	if o != nil && o.Manageable != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetManageable gets a reference to the given bool and assigns it to the Manageable field.
-func (o *IPAssignment) SetManageable(v bool) {
-	o.Manageable = &v
-}
-
-// GetGlobalIp returns the GlobalIp field value if set, zero value otherwise.
-func (o *IPAssignment) GetGlobalIp() bool {
-	if o == nil || o.GlobalIp == nil {
-		var ret bool
-		return ret
-	}
-	return *o.GlobalIp
-}
-
-// GetGlobalIpOk returns a tuple with the GlobalIp field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *IPAssignment) GetGlobalIpOk() (*bool, bool) {
-	if o == nil || o.GlobalIp == nil {
-		return nil, false
-	}
-	return o.GlobalIp, true
-}
-
-// HasGlobalIp returns a boolean if a field has been set.
-func (o *IPAssignment) HasGlobalIp() bool {
-	if o != nil && o.GlobalIp != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetGlobalIp gets a reference to the given bool and assigns it to the GlobalIp field.
-func (o *IPAssignment) SetGlobalIp(v bool) {
-	o.GlobalIp = &v
-}
-
-// GetAssignedTo returns the AssignedTo field value if set, zero value otherwise.
-func (o *IPAssignment) GetAssignedTo() Href {
-	if o == nil || o.AssignedTo == nil {
-		var ret Href
-		return ret
-	}
-	return *o.AssignedTo
-}
-
-// GetAssignedToOk returns a tuple with the AssignedTo field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *IPAssignment) GetAssignedToOk() (*Href, bool) {
-	if o == nil || o.AssignedTo == nil {
-		return nil, false
-	}
-	return o.AssignedTo, true
-}
-
-// HasAssignedTo returns a boolean if a field has been set.
-func (o *IPAssignment) HasAssignedTo() bool {
-	if o != nil && o.AssignedTo != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetAssignedTo gets a reference to the given Href and assigns it to the AssignedTo field.
-func (o *IPAssignment) SetAssignedTo(v Href) {
-	o.AssignedTo = &v
-}
-
-// GetNetwork returns the Network field value if set, zero value otherwise.
-func (o *IPAssignment) GetNetwork() string {
-	if o == nil || o.Network == nil {
-		var ret string
-		return ret
-	}
-	return *o.Network
-}
-
-// GetNetworkOk returns a tuple with the Network field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *IPAssignment) GetNetworkOk() (*string, bool) {
-	if o == nil || o.Network == nil {
-		return nil, false
-	}
-	return o.Network, true
-}
-
-// HasNetwork returns a boolean if a field has been set.
-func (o *IPAssignment) HasNetwork() bool {
-	if o != nil && o.Network != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetNetwork gets a reference to the given string and assigns it to the Network field.
-func (o *IPAssignment) SetNetwork(v string) {
-	o.Network = &v
 }
 
 // GetAddress returns the Address field value if set, zero value otherwise.
@@ -438,68 +86,100 @@ func (o *IPAssignment) SetAddress(v string) {
 	o.Address = &v
 }
 
-// GetGateway returns the Gateway field value if set, zero value otherwise.
-func (o *IPAssignment) GetGateway() string {
-	if o == nil || o.Gateway == nil {
-		var ret string
+// GetAddressFamily returns the AddressFamily field value if set, zero value otherwise.
+func (o *IPAssignment) GetAddressFamily() int32 {
+	if o == nil || o.AddressFamily == nil {
+		var ret int32
 		return ret
 	}
-	return *o.Gateway
+	return *o.AddressFamily
 }
 
-// GetGatewayOk returns a tuple with the Gateway field value if set, nil otherwise
+// GetAddressFamilyOk returns a tuple with the AddressFamily field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IPAssignment) GetGatewayOk() (*string, bool) {
-	if o == nil || o.Gateway == nil {
+func (o *IPAssignment) GetAddressFamilyOk() (*int32, bool) {
+	if o == nil || o.AddressFamily == nil {
 		return nil, false
 	}
-	return o.Gateway, true
+	return o.AddressFamily, true
 }
 
-// HasGateway returns a boolean if a field has been set.
-func (o *IPAssignment) HasGateway() bool {
-	if o != nil && o.Gateway != nil {
+// HasAddressFamily returns a boolean if a field has been set.
+func (o *IPAssignment) HasAddressFamily() bool {
+	if o != nil && o.AddressFamily != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetGateway gets a reference to the given string and assigns it to the Gateway field.
-func (o *IPAssignment) SetGateway(v string) {
-	o.Gateway = &v
+// SetAddressFamily gets a reference to the given int32 and assigns it to the AddressFamily field.
+func (o *IPAssignment) SetAddressFamily(v int32) {
+	o.AddressFamily = &v
 }
 
-// GetHref returns the Href field value if set, zero value otherwise.
-func (o *IPAssignment) GetHref() string {
-	if o == nil || o.Href == nil {
-		var ret string
+// GetAssignedTo returns the AssignedTo field value if set, zero value otherwise.
+func (o *IPAssignment) GetAssignedTo() FindBatchById200ResponseDevicesInner {
+	if o == nil || o.AssignedTo == nil {
+		var ret FindBatchById200ResponseDevicesInner
 		return ret
 	}
-	return *o.Href
+	return *o.AssignedTo
 }
 
-// GetHrefOk returns a tuple with the Href field value if set, nil otherwise
+// GetAssignedToOk returns a tuple with the AssignedTo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IPAssignment) GetHrefOk() (*string, bool) {
-	if o == nil || o.Href == nil {
+func (o *IPAssignment) GetAssignedToOk() (*FindBatchById200ResponseDevicesInner, bool) {
+	if o == nil || o.AssignedTo == nil {
 		return nil, false
 	}
-	return o.Href, true
+	return o.AssignedTo, true
 }
 
-// HasHref returns a boolean if a field has been set.
-func (o *IPAssignment) HasHref() bool {
-	if o != nil && o.Href != nil {
+// HasAssignedTo returns a boolean if a field has been set.
+func (o *IPAssignment) HasAssignedTo() bool {
+	if o != nil && o.AssignedTo != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetHref gets a reference to the given string and assigns it to the Href field.
-func (o *IPAssignment) SetHref(v string) {
-	o.Href = &v
+// SetAssignedTo gets a reference to the given FindBatchById200ResponseDevicesInner and assigns it to the AssignedTo field.
+func (o *IPAssignment) SetAssignedTo(v FindBatchById200ResponseDevicesInner) {
+	o.AssignedTo = &v
+}
+
+// GetCidr returns the Cidr field value if set, zero value otherwise.
+func (o *IPAssignment) GetCidr() int32 {
+	if o == nil || o.Cidr == nil {
+		var ret int32
+		return ret
+	}
+	return *o.Cidr
+}
+
+// GetCidrOk returns a tuple with the Cidr field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IPAssignment) GetCidrOk() (*int32, bool) {
+	if o == nil || o.Cidr == nil {
+		return nil, false
+	}
+	return o.Cidr, true
+}
+
+// HasCidr returns a boolean if a field has been set.
+func (o *IPAssignment) HasCidr() bool {
+	if o != nil && o.Cidr != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCidr gets a reference to the given int32 and assigns it to the Cidr field.
+func (o *IPAssignment) SetCidr(v int32) {
+	o.Cidr = &v
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
@@ -534,10 +214,234 @@ func (o *IPAssignment) SetCreatedAt(v time.Time) {
 	o.CreatedAt = &v
 }
 
+// GetEnabled returns the Enabled field value if set, zero value otherwise.
+func (o *IPAssignment) GetEnabled() bool {
+	if o == nil || o.Enabled == nil {
+		var ret bool
+		return ret
+	}
+	return *o.Enabled
+}
+
+// GetEnabledOk returns a tuple with the Enabled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IPAssignment) GetEnabledOk() (*bool, bool) {
+	if o == nil || o.Enabled == nil {
+		return nil, false
+	}
+	return o.Enabled, true
+}
+
+// HasEnabled returns a boolean if a field has been set.
+func (o *IPAssignment) HasEnabled() bool {
+	if o != nil && o.Enabled != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetEnabled gets a reference to the given bool and assigns it to the Enabled field.
+func (o *IPAssignment) SetEnabled(v bool) {
+	o.Enabled = &v
+}
+
+// GetGateway returns the Gateway field value if set, zero value otherwise.
+func (o *IPAssignment) GetGateway() string {
+	if o == nil || o.Gateway == nil {
+		var ret string
+		return ret
+	}
+	return *o.Gateway
+}
+
+// GetGatewayOk returns a tuple with the Gateway field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IPAssignment) GetGatewayOk() (*string, bool) {
+	if o == nil || o.Gateway == nil {
+		return nil, false
+	}
+	return o.Gateway, true
+}
+
+// HasGateway returns a boolean if a field has been set.
+func (o *IPAssignment) HasGateway() bool {
+	if o != nil && o.Gateway != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetGateway gets a reference to the given string and assigns it to the Gateway field.
+func (o *IPAssignment) SetGateway(v string) {
+	o.Gateway = &v
+}
+
+// GetGlobalIp returns the GlobalIp field value if set, zero value otherwise.
+func (o *IPAssignment) GetGlobalIp() bool {
+	if o == nil || o.GlobalIp == nil {
+		var ret bool
+		return ret
+	}
+	return *o.GlobalIp
+}
+
+// GetGlobalIpOk returns a tuple with the GlobalIp field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IPAssignment) GetGlobalIpOk() (*bool, bool) {
+	if o == nil || o.GlobalIp == nil {
+		return nil, false
+	}
+	return o.GlobalIp, true
+}
+
+// HasGlobalIp returns a boolean if a field has been set.
+func (o *IPAssignment) HasGlobalIp() bool {
+	if o != nil && o.GlobalIp != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetGlobalIp gets a reference to the given bool and assigns it to the GlobalIp field.
+func (o *IPAssignment) SetGlobalIp(v bool) {
+	o.GlobalIp = &v
+}
+
+// GetHref returns the Href field value if set, zero value otherwise.
+func (o *IPAssignment) GetHref() string {
+	if o == nil || o.Href == nil {
+		var ret string
+		return ret
+	}
+	return *o.Href
+}
+
+// GetHrefOk returns a tuple with the Href field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IPAssignment) GetHrefOk() (*string, bool) {
+	if o == nil || o.Href == nil {
+		return nil, false
+	}
+	return o.Href, true
+}
+
+// HasHref returns a boolean if a field has been set.
+func (o *IPAssignment) HasHref() bool {
+	if o != nil && o.Href != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHref gets a reference to the given string and assigns it to the Href field.
+func (o *IPAssignment) SetHref(v string) {
+	o.Href = &v
+}
+
+// GetId returns the Id field value if set, zero value otherwise.
+func (o *IPAssignment) GetId() string {
+	if o == nil || o.Id == nil {
+		var ret string
+		return ret
+	}
+	return *o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IPAssignment) GetIdOk() (*string, bool) {
+	if o == nil || o.Id == nil {
+		return nil, false
+	}
+	return o.Id, true
+}
+
+// HasId returns a boolean if a field has been set.
+func (o *IPAssignment) HasId() bool {
+	if o != nil && o.Id != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given string and assigns it to the Id field.
+func (o *IPAssignment) SetId(v string) {
+	o.Id = &v
+}
+
+// GetManageable returns the Manageable field value if set, zero value otherwise.
+func (o *IPAssignment) GetManageable() bool {
+	if o == nil || o.Manageable == nil {
+		var ret bool
+		return ret
+	}
+	return *o.Manageable
+}
+
+// GetManageableOk returns a tuple with the Manageable field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IPAssignment) GetManageableOk() (*bool, bool) {
+	if o == nil || o.Manageable == nil {
+		return nil, false
+	}
+	return o.Manageable, true
+}
+
+// HasManageable returns a boolean if a field has been set.
+func (o *IPAssignment) HasManageable() bool {
+	if o != nil && o.Manageable != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetManageable gets a reference to the given bool and assigns it to the Manageable field.
+func (o *IPAssignment) SetManageable(v bool) {
+	o.Manageable = &v
+}
+
+// GetManagement returns the Management field value if set, zero value otherwise.
+func (o *IPAssignment) GetManagement() bool {
+	if o == nil || o.Management == nil {
+		var ret bool
+		return ret
+	}
+	return *o.Management
+}
+
+// GetManagementOk returns a tuple with the Management field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IPAssignment) GetManagementOk() (*bool, bool) {
+	if o == nil || o.Management == nil {
+		return nil, false
+	}
+	return o.Management, true
+}
+
+// HasManagement returns a boolean if a field has been set.
+func (o *IPAssignment) HasManagement() bool {
+	if o != nil && o.Management != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetManagement gets a reference to the given bool and assigns it to the Management field.
+func (o *IPAssignment) SetManagement(v bool) {
+	o.Management = &v
+}
+
 // GetMetro returns the Metro field value if set, zero value otherwise.
-func (o *IPAssignment) GetMetro() IPAssignmentMetro {
+func (o *IPAssignment) GetMetro() FindDeviceById200ResponseIpAddressesInnerMetro {
 	if o == nil || o.Metro == nil {
-		var ret IPAssignmentMetro
+		var ret FindDeviceById200ResponseIpAddressesInnerMetro
 		return ret
 	}
 	return *o.Metro
@@ -545,7 +449,7 @@ func (o *IPAssignment) GetMetro() IPAssignmentMetro {
 
 // GetMetroOk returns a tuple with the Metro field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IPAssignment) GetMetroOk() (*IPAssignmentMetro, bool) {
+func (o *IPAssignment) GetMetroOk() (*FindDeviceById200ResponseIpAddressesInnerMetro, bool) {
 	if o == nil || o.Metro == nil {
 		return nil, false
 	}
@@ -561,15 +465,79 @@ func (o *IPAssignment) HasMetro() bool {
 	return false
 }
 
-// SetMetro gets a reference to the given IPAssignmentMetro and assigns it to the Metro field.
-func (o *IPAssignment) SetMetro(v IPAssignmentMetro) {
+// SetMetro gets a reference to the given FindDeviceById200ResponseIpAddressesInnerMetro and assigns it to the Metro field.
+func (o *IPAssignment) SetMetro(v FindDeviceById200ResponseIpAddressesInnerMetro) {
 	o.Metro = &v
 }
 
+// GetNetmask returns the Netmask field value if set, zero value otherwise.
+func (o *IPAssignment) GetNetmask() string {
+	if o == nil || o.Netmask == nil {
+		var ret string
+		return ret
+	}
+	return *o.Netmask
+}
+
+// GetNetmaskOk returns a tuple with the Netmask field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IPAssignment) GetNetmaskOk() (*string, bool) {
+	if o == nil || o.Netmask == nil {
+		return nil, false
+	}
+	return o.Netmask, true
+}
+
+// HasNetmask returns a boolean if a field has been set.
+func (o *IPAssignment) HasNetmask() bool {
+	if o != nil && o.Netmask != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetNetmask gets a reference to the given string and assigns it to the Netmask field.
+func (o *IPAssignment) SetNetmask(v string) {
+	o.Netmask = &v
+}
+
+// GetNetwork returns the Network field value if set, zero value otherwise.
+func (o *IPAssignment) GetNetwork() string {
+	if o == nil || o.Network == nil {
+		var ret string
+		return ret
+	}
+	return *o.Network
+}
+
+// GetNetworkOk returns a tuple with the Network field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IPAssignment) GetNetworkOk() (*string, bool) {
+	if o == nil || o.Network == nil {
+		return nil, false
+	}
+	return o.Network, true
+}
+
+// HasNetwork returns a boolean if a field has been set.
+func (o *IPAssignment) HasNetwork() bool {
+	if o != nil && o.Network != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetNetwork gets a reference to the given string and assigns it to the Network field.
+func (o *IPAssignment) SetNetwork(v string) {
+	o.Network = &v
+}
+
 // GetParentBlock returns the ParentBlock field value if set, zero value otherwise.
-func (o *IPAssignment) GetParentBlock() ParentBlock {
+func (o *IPAssignment) GetParentBlock() FindDeviceById200ResponseIpAddressesInnerParentBlock {
 	if o == nil || o.ParentBlock == nil {
-		var ret ParentBlock
+		var ret FindDeviceById200ResponseIpAddressesInnerParentBlock
 		return ret
 	}
 	return *o.ParentBlock
@@ -577,7 +545,7 @@ func (o *IPAssignment) GetParentBlock() ParentBlock {
 
 // GetParentBlockOk returns a tuple with the ParentBlock field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IPAssignment) GetParentBlockOk() (*ParentBlock, bool) {
+func (o *IPAssignment) GetParentBlockOk() (*FindDeviceById200ResponseIpAddressesInnerParentBlock, bool) {
 	if o == nil || o.ParentBlock == nil {
 		return nil, false
 	}
@@ -593,63 +561,95 @@ func (o *IPAssignment) HasParentBlock() bool {
 	return false
 }
 
-// SetParentBlock gets a reference to the given ParentBlock and assigns it to the ParentBlock field.
-func (o *IPAssignment) SetParentBlock(v ParentBlock) {
+// SetParentBlock gets a reference to the given FindDeviceById200ResponseIpAddressesInnerParentBlock and assigns it to the ParentBlock field.
+func (o *IPAssignment) SetParentBlock(v FindDeviceById200ResponseIpAddressesInnerParentBlock) {
 	o.ParentBlock = &v
+}
+
+// GetPublic returns the Public field value if set, zero value otherwise.
+func (o *IPAssignment) GetPublic() bool {
+	if o == nil || o.Public == nil {
+		var ret bool
+		return ret
+	}
+	return *o.Public
+}
+
+// GetPublicOk returns a tuple with the Public field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IPAssignment) GetPublicOk() (*bool, bool) {
+	if o == nil || o.Public == nil {
+		return nil, false
+	}
+	return o.Public, true
+}
+
+// HasPublic returns a boolean if a field has been set.
+func (o *IPAssignment) HasPublic() bool {
+	if o != nil && o.Public != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPublic gets a reference to the given bool and assigns it to the Public field.
+func (o *IPAssignment) SetPublic(v bool) {
+	o.Public = &v
 }
 
 func (o IPAssignment) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
+	if o.Address != nil {
+		toSerialize["address"] = o.Address
 	}
 	if o.AddressFamily != nil {
 		toSerialize["address_family"] = o.AddressFamily
 	}
-	if o.Netmask != nil {
-		toSerialize["netmask"] = o.Netmask
-	}
-	if o.Public != nil {
-		toSerialize["public"] = o.Public
-	}
-	if o.Enabled != nil {
-		toSerialize["enabled"] = o.Enabled
+	if o.AssignedTo != nil {
+		toSerialize["assigned_to"] = o.AssignedTo
 	}
 	if o.Cidr != nil {
 		toSerialize["cidr"] = o.Cidr
 	}
-	if o.Management != nil {
-		toSerialize["management"] = o.Management
+	if o.CreatedAt != nil {
+		toSerialize["created_at"] = o.CreatedAt
 	}
-	if o.Manageable != nil {
-		toSerialize["manageable"] = o.Manageable
-	}
-	if o.GlobalIp != nil {
-		toSerialize["global_ip"] = o.GlobalIp
-	}
-	if o.AssignedTo != nil {
-		toSerialize["assigned_to"] = o.AssignedTo
-	}
-	if o.Network != nil {
-		toSerialize["network"] = o.Network
-	}
-	if o.Address != nil {
-		toSerialize["address"] = o.Address
+	if o.Enabled != nil {
+		toSerialize["enabled"] = o.Enabled
 	}
 	if o.Gateway != nil {
 		toSerialize["gateway"] = o.Gateway
 	}
+	if o.GlobalIp != nil {
+		toSerialize["global_ip"] = o.GlobalIp
+	}
 	if o.Href != nil {
 		toSerialize["href"] = o.Href
 	}
-	if o.CreatedAt != nil {
-		toSerialize["created_at"] = o.CreatedAt
+	if o.Id != nil {
+		toSerialize["id"] = o.Id
+	}
+	if o.Manageable != nil {
+		toSerialize["manageable"] = o.Manageable
+	}
+	if o.Management != nil {
+		toSerialize["management"] = o.Management
 	}
 	if o.Metro != nil {
 		toSerialize["metro"] = o.Metro
 	}
+	if o.Netmask != nil {
+		toSerialize["netmask"] = o.Netmask
+	}
+	if o.Network != nil {
+		toSerialize["network"] = o.Network
+	}
 	if o.ParentBlock != nil {
 		toSerialize["parent_block"] = o.ParentBlock
+	}
+	if o.Public != nil {
+		toSerialize["public"] = o.Public
 	}
 	return json.Marshal(toSerialize)
 }

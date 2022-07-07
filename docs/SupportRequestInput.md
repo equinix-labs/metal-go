@@ -4,17 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Subject** | **string** |  | 
-**Message** | **string** |  | 
-**ProjectId** | Pointer to **string** |  | [optional] 
 **DeviceId** | Pointer to **string** |  | [optional] 
+**Message** | **string** |  | 
 **Priority** | Pointer to **string** |  | [optional] 
+**ProjectId** | Pointer to **string** |  | [optional] 
+**Subject** | **string** |  | 
 
 ## Methods
 
 ### NewSupportRequestInput
 
-`func NewSupportRequestInput(subject string, message string, ) *SupportRequestInput`
+`func NewSupportRequestInput(message string, subject string, ) *SupportRequestInput`
 
 NewSupportRequestInput instantiates a new SupportRequestInput object
 This constructor will assign default values to properties that have it defined,
@@ -28,71 +28,6 @@ will change when the set of required properties is changed
 NewSupportRequestInputWithDefaults instantiates a new SupportRequestInput object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetSubject
-
-`func (o *SupportRequestInput) GetSubject() string`
-
-GetSubject returns the Subject field if non-nil, zero value otherwise.
-
-### GetSubjectOk
-
-`func (o *SupportRequestInput) GetSubjectOk() (*string, bool)`
-
-GetSubjectOk returns a tuple with the Subject field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSubject
-
-`func (o *SupportRequestInput) SetSubject(v string)`
-
-SetSubject sets Subject field to given value.
-
-
-### GetMessage
-
-`func (o *SupportRequestInput) GetMessage() string`
-
-GetMessage returns the Message field if non-nil, zero value otherwise.
-
-### GetMessageOk
-
-`func (o *SupportRequestInput) GetMessageOk() (*string, bool)`
-
-GetMessageOk returns a tuple with the Message field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetMessage
-
-`func (o *SupportRequestInput) SetMessage(v string)`
-
-SetMessage sets Message field to given value.
-
-
-### GetProjectId
-
-`func (o *SupportRequestInput) GetProjectId() string`
-
-GetProjectId returns the ProjectId field if non-nil, zero value otherwise.
-
-### GetProjectIdOk
-
-`func (o *SupportRequestInput) GetProjectIdOk() (*string, bool)`
-
-GetProjectIdOk returns a tuple with the ProjectId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetProjectId
-
-`func (o *SupportRequestInput) SetProjectId(v string)`
-
-SetProjectId sets ProjectId field to given value.
-
-### HasProjectId
-
-`func (o *SupportRequestInput) HasProjectId() bool`
-
-HasProjectId returns a boolean if a field has been set.
 
 ### GetDeviceId
 
@@ -119,6 +54,26 @@ SetDeviceId sets DeviceId field to given value.
 
 HasDeviceId returns a boolean if a field has been set.
 
+### GetMessage
+
+`func (o *SupportRequestInput) GetMessage() string`
+
+GetMessage returns the Message field if non-nil, zero value otherwise.
+
+### GetMessageOk
+
+`func (o *SupportRequestInput) GetMessageOk() (*string, bool)`
+
+GetMessageOk returns a tuple with the Message field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMessage
+
+`func (o *SupportRequestInput) SetMessage(v string)`
+
+SetMessage sets Message field to given value.
+
+
 ### GetPriority
 
 `func (o *SupportRequestInput) GetPriority() string`
@@ -143,6 +98,51 @@ SetPriority sets Priority field to given value.
 `func (o *SupportRequestInput) HasPriority() bool`
 
 HasPriority returns a boolean if a field has been set.
+
+### GetProjectId
+
+`func (o *SupportRequestInput) GetProjectId() string`
+
+GetProjectId returns the ProjectId field if non-nil, zero value otherwise.
+
+### GetProjectIdOk
+
+`func (o *SupportRequestInput) GetProjectIdOk() (*string, bool)`
+
+GetProjectIdOk returns a tuple with the ProjectId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProjectId
+
+`func (o *SupportRequestInput) SetProjectId(v string)`
+
+SetProjectId sets ProjectId field to given value.
+
+### HasProjectId
+
+`func (o *SupportRequestInput) HasProjectId() bool`
+
+HasProjectId returns a boolean if a field has been set.
+
+### GetSubject
+
+`func (o *SupportRequestInput) GetSubject() string`
+
+GetSubject returns the Subject field if non-nil, zero value otherwise.
+
+### GetSubjectOk
+
+`func (o *SupportRequestInput) GetSubjectOk() (*string, bool)`
+
+GetSubjectOk returns a tuple with the Subject field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSubject
+
+`func (o *SupportRequestInput) SetSubject(v string)`
+
+SetSubject sets Subject field to given value.
+
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

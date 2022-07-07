@@ -17,7 +17,7 @@ import (
 
 // VirtualNetworkList struct for VirtualNetworkList
 type VirtualNetworkList struct {
-	VirtualNetworks []VirtualNetwork `json:"virtual_networks,omitempty"`
+	VirtualNetworks []FindVirtualNetworks200ResponseVirtualNetworksInner `json:"virtual_networks,omitempty"`
 }
 
 // NewVirtualNetworkList instantiates a new VirtualNetworkList object
@@ -38,9 +38,9 @@ func NewVirtualNetworkListWithDefaults() *VirtualNetworkList {
 }
 
 // GetVirtualNetworks returns the VirtualNetworks field value if set, zero value otherwise.
-func (o *VirtualNetworkList) GetVirtualNetworks() []VirtualNetwork {
+func (o *VirtualNetworkList) GetVirtualNetworks() []FindVirtualNetworks200ResponseVirtualNetworksInner {
 	if o == nil || o.VirtualNetworks == nil {
-		var ret []VirtualNetwork
+		var ret []FindVirtualNetworks200ResponseVirtualNetworksInner
 		return ret
 	}
 	return o.VirtualNetworks
@@ -48,7 +48,7 @@ func (o *VirtualNetworkList) GetVirtualNetworks() []VirtualNetwork {
 
 // GetVirtualNetworksOk returns a tuple with the VirtualNetworks field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VirtualNetworkList) GetVirtualNetworksOk() ([]VirtualNetwork, bool) {
+func (o *VirtualNetworkList) GetVirtualNetworksOk() ([]FindVirtualNetworks200ResponseVirtualNetworksInner, bool) {
 	if o == nil || o.VirtualNetworks == nil {
 		return nil, false
 	}
@@ -64,8 +64,8 @@ func (o *VirtualNetworkList) HasVirtualNetworks() bool {
 	return false
 }
 
-// SetVirtualNetworks gets a reference to the given []VirtualNetwork and assigns it to the VirtualNetworks field.
-func (o *VirtualNetworkList) SetVirtualNetworks(v []VirtualNetwork) {
+// SetVirtualNetworks gets a reference to the given []FindVirtualNetworks200ResponseVirtualNetworksInner and assigns it to the VirtualNetworks field.
+func (o *VirtualNetworkList) SetVirtualNetworks(v []FindVirtualNetworks200ResponseVirtualNetworksInner) {
 	o.VirtualNetworks = v
 }
 

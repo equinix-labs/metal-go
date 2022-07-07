@@ -17,7 +17,7 @@ import (
 
 // PortAssignInput struct for PortAssignInput
 type PortAssignInput struct {
-	// The UUID of the Virtual Network record, or the VLAN value itself (ex: '1001').
+	// Virtual Network ID. May be the UUID of the Virtual Network record, or the VLAN value itself.
 	Vnid *string `json:"vnid,omitempty"`
 }
 

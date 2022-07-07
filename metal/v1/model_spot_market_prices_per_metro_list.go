@@ -17,7 +17,7 @@ import (
 
 // SpotMarketPricesPerMetroList struct for SpotMarketPricesPerMetroList
 type SpotMarketPricesPerMetroList struct {
-	SpotMarketPrices *SpotMarketPricesPerMetroReport `json:"spot_market_prices,omitempty"`
+	SpotMarketPrices *FindMetroSpotMarketPrices200ResponseSpotMarketPrices `json:"spot_market_prices,omitempty"`
 }
 
 // NewSpotMarketPricesPerMetroList instantiates a new SpotMarketPricesPerMetroList object
@@ -38,9 +38,9 @@ func NewSpotMarketPricesPerMetroListWithDefaults() *SpotMarketPricesPerMetroList
 }
 
 // GetSpotMarketPrices returns the SpotMarketPrices field value if set, zero value otherwise.
-func (o *SpotMarketPricesPerMetroList) GetSpotMarketPrices() SpotMarketPricesPerMetroReport {
+func (o *SpotMarketPricesPerMetroList) GetSpotMarketPrices() FindMetroSpotMarketPrices200ResponseSpotMarketPrices {
 	if o == nil || o.SpotMarketPrices == nil {
-		var ret SpotMarketPricesPerMetroReport
+		var ret FindMetroSpotMarketPrices200ResponseSpotMarketPrices
 		return ret
 	}
 	return *o.SpotMarketPrices
@@ -48,7 +48,7 @@ func (o *SpotMarketPricesPerMetroList) GetSpotMarketPrices() SpotMarketPricesPer
 
 // GetSpotMarketPricesOk returns a tuple with the SpotMarketPrices field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SpotMarketPricesPerMetroList) GetSpotMarketPricesOk() (*SpotMarketPricesPerMetroReport, bool) {
+func (o *SpotMarketPricesPerMetroList) GetSpotMarketPricesOk() (*FindMetroSpotMarketPrices200ResponseSpotMarketPrices, bool) {
 	if o == nil || o.SpotMarketPrices == nil {
 		return nil, false
 	}
@@ -64,8 +64,8 @@ func (o *SpotMarketPricesPerMetroList) HasSpotMarketPrices() bool {
 	return false
 }
 
-// SetSpotMarketPrices gets a reference to the given SpotMarketPricesPerMetroReport and assigns it to the SpotMarketPrices field.
-func (o *SpotMarketPricesPerMetroList) SetSpotMarketPrices(v SpotMarketPricesPerMetroReport) {
+// SetSpotMarketPrices gets a reference to the given FindMetroSpotMarketPrices200ResponseSpotMarketPrices and assigns it to the SpotMarketPrices field.
+func (o *SpotMarketPricesPerMetroList) SetSpotMarketPrices(v FindMetroSpotMarketPrices200ResponseSpotMarketPrices) {
 	o.SpotMarketPrices = &v
 }
 

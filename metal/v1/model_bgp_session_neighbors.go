@@ -18,7 +18,7 @@ import (
 // BgpSessionNeighbors struct for BgpSessionNeighbors
 type BgpSessionNeighbors struct {
 	// A list of BGP session neighbor data
-	BgpNeighbors []BgpNeighborData `json:"bgp_neighbors,omitempty"`
+	BgpNeighbors []GetBgpNeighborData200ResponseBgpNeighborsInner `json:"bgp_neighbors,omitempty"`
 }
 
 // NewBgpSessionNeighbors instantiates a new BgpSessionNeighbors object
@@ -39,9 +39,9 @@ func NewBgpSessionNeighborsWithDefaults() *BgpSessionNeighbors {
 }
 
 // GetBgpNeighbors returns the BgpNeighbors field value if set, zero value otherwise.
-func (o *BgpSessionNeighbors) GetBgpNeighbors() []BgpNeighborData {
+func (o *BgpSessionNeighbors) GetBgpNeighbors() []GetBgpNeighborData200ResponseBgpNeighborsInner {
 	if o == nil || o.BgpNeighbors == nil {
-		var ret []BgpNeighborData
+		var ret []GetBgpNeighborData200ResponseBgpNeighborsInner
 		return ret
 	}
 	return o.BgpNeighbors
@@ -49,7 +49,7 @@ func (o *BgpSessionNeighbors) GetBgpNeighbors() []BgpNeighborData {
 
 // GetBgpNeighborsOk returns a tuple with the BgpNeighbors field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BgpSessionNeighbors) GetBgpNeighborsOk() ([]BgpNeighborData, bool) {
+func (o *BgpSessionNeighbors) GetBgpNeighborsOk() ([]GetBgpNeighborData200ResponseBgpNeighborsInner, bool) {
 	if o == nil || o.BgpNeighbors == nil {
 		return nil, false
 	}
@@ -65,8 +65,8 @@ func (o *BgpSessionNeighbors) HasBgpNeighbors() bool {
 	return false
 }
 
-// SetBgpNeighbors gets a reference to the given []BgpNeighborData and assigns it to the BgpNeighbors field.
-func (o *BgpSessionNeighbors) SetBgpNeighbors(v []BgpNeighborData) {
+// SetBgpNeighbors gets a reference to the given []GetBgpNeighborData200ResponseBgpNeighborsInner and assigns it to the BgpNeighbors field.
+func (o *BgpSessionNeighbors) SetBgpNeighbors(v []GetBgpNeighborData200ResponseBgpNeighborsInner) {
 	o.BgpNeighbors = v
 }
 

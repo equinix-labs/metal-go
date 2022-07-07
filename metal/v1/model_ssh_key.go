@@ -18,14 +18,14 @@ import (
 
 // SSHKey struct for SSHKey
 type SSHKey struct {
-	Id          *string    `json:"id,omitempty"`
-	Label       *string    `json:"label,omitempty"`
-	Key         *string    `json:"key,omitempty"`
-	Fingerprint *string    `json:"fingerprint,omitempty"`
-	CreatedAt   *time.Time `json:"created_at,omitempty"`
-	UpdatedAt   *time.Time `json:"updated_at,omitempty"`
-	Entity      *Href      `json:"entity,omitempty"`
-	Href        *string    `json:"href,omitempty"`
+	CreatedAt   *time.Time                            `json:"created_at,omitempty"`
+	Entity      *FindBatchById200ResponseDevicesInner `json:"entity,omitempty"`
+	Fingerprint *string                               `json:"fingerprint,omitempty"`
+	Href        *string                               `json:"href,omitempty"`
+	Id          *string                               `json:"id,omitempty"`
+	Key         *string                               `json:"key,omitempty"`
+	Label       *string                               `json:"label,omitempty"`
+	UpdatedAt   *time.Time                            `json:"updated_at,omitempty"`
 }
 
 // NewSSHKey instantiates a new SSHKey object
@@ -43,134 +43,6 @@ func NewSSHKey() *SSHKey {
 func NewSSHKeyWithDefaults() *SSHKey {
 	this := SSHKey{}
 	return &this
-}
-
-// GetId returns the Id field value if set, zero value otherwise.
-func (o *SSHKey) GetId() string {
-	if o == nil || o.Id == nil {
-		var ret string
-		return ret
-	}
-	return *o.Id
-}
-
-// GetIdOk returns a tuple with the Id field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *SSHKey) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
-		return nil, false
-	}
-	return o.Id, true
-}
-
-// HasId returns a boolean if a field has been set.
-func (o *SSHKey) HasId() bool {
-	if o != nil && o.Id != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetId gets a reference to the given string and assigns it to the Id field.
-func (o *SSHKey) SetId(v string) {
-	o.Id = &v
-}
-
-// GetLabel returns the Label field value if set, zero value otherwise.
-func (o *SSHKey) GetLabel() string {
-	if o == nil || o.Label == nil {
-		var ret string
-		return ret
-	}
-	return *o.Label
-}
-
-// GetLabelOk returns a tuple with the Label field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *SSHKey) GetLabelOk() (*string, bool) {
-	if o == nil || o.Label == nil {
-		return nil, false
-	}
-	return o.Label, true
-}
-
-// HasLabel returns a boolean if a field has been set.
-func (o *SSHKey) HasLabel() bool {
-	if o != nil && o.Label != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetLabel gets a reference to the given string and assigns it to the Label field.
-func (o *SSHKey) SetLabel(v string) {
-	o.Label = &v
-}
-
-// GetKey returns the Key field value if set, zero value otherwise.
-func (o *SSHKey) GetKey() string {
-	if o == nil || o.Key == nil {
-		var ret string
-		return ret
-	}
-	return *o.Key
-}
-
-// GetKeyOk returns a tuple with the Key field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *SSHKey) GetKeyOk() (*string, bool) {
-	if o == nil || o.Key == nil {
-		return nil, false
-	}
-	return o.Key, true
-}
-
-// HasKey returns a boolean if a field has been set.
-func (o *SSHKey) HasKey() bool {
-	if o != nil && o.Key != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetKey gets a reference to the given string and assigns it to the Key field.
-func (o *SSHKey) SetKey(v string) {
-	o.Key = &v
-}
-
-// GetFingerprint returns the Fingerprint field value if set, zero value otherwise.
-func (o *SSHKey) GetFingerprint() string {
-	if o == nil || o.Fingerprint == nil {
-		var ret string
-		return ret
-	}
-	return *o.Fingerprint
-}
-
-// GetFingerprintOk returns a tuple with the Fingerprint field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *SSHKey) GetFingerprintOk() (*string, bool) {
-	if o == nil || o.Fingerprint == nil {
-		return nil, false
-	}
-	return o.Fingerprint, true
-}
-
-// HasFingerprint returns a boolean if a field has been set.
-func (o *SSHKey) HasFingerprint() bool {
-	if o != nil && o.Fingerprint != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetFingerprint gets a reference to the given string and assigns it to the Fingerprint field.
-func (o *SSHKey) SetFingerprint(v string) {
-	o.Fingerprint = &v
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
@@ -205,42 +77,10 @@ func (o *SSHKey) SetCreatedAt(v time.Time) {
 	o.CreatedAt = &v
 }
 
-// GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
-func (o *SSHKey) GetUpdatedAt() time.Time {
-	if o == nil || o.UpdatedAt == nil {
-		var ret time.Time
-		return ret
-	}
-	return *o.UpdatedAt
-}
-
-// GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *SSHKey) GetUpdatedAtOk() (*time.Time, bool) {
-	if o == nil || o.UpdatedAt == nil {
-		return nil, false
-	}
-	return o.UpdatedAt, true
-}
-
-// HasUpdatedAt returns a boolean if a field has been set.
-func (o *SSHKey) HasUpdatedAt() bool {
-	if o != nil && o.UpdatedAt != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetUpdatedAt gets a reference to the given time.Time and assigns it to the UpdatedAt field.
-func (o *SSHKey) SetUpdatedAt(v time.Time) {
-	o.UpdatedAt = &v
-}
-
 // GetEntity returns the Entity field value if set, zero value otherwise.
-func (o *SSHKey) GetEntity() Href {
+func (o *SSHKey) GetEntity() FindBatchById200ResponseDevicesInner {
 	if o == nil || o.Entity == nil {
-		var ret Href
+		var ret FindBatchById200ResponseDevicesInner
 		return ret
 	}
 	return *o.Entity
@@ -248,7 +88,7 @@ func (o *SSHKey) GetEntity() Href {
 
 // GetEntityOk returns a tuple with the Entity field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SSHKey) GetEntityOk() (*Href, bool) {
+func (o *SSHKey) GetEntityOk() (*FindBatchById200ResponseDevicesInner, bool) {
 	if o == nil || o.Entity == nil {
 		return nil, false
 	}
@@ -264,9 +104,41 @@ func (o *SSHKey) HasEntity() bool {
 	return false
 }
 
-// SetEntity gets a reference to the given Href and assigns it to the Entity field.
-func (o *SSHKey) SetEntity(v Href) {
+// SetEntity gets a reference to the given FindBatchById200ResponseDevicesInner and assigns it to the Entity field.
+func (o *SSHKey) SetEntity(v FindBatchById200ResponseDevicesInner) {
 	o.Entity = &v
+}
+
+// GetFingerprint returns the Fingerprint field value if set, zero value otherwise.
+func (o *SSHKey) GetFingerprint() string {
+	if o == nil || o.Fingerprint == nil {
+		var ret string
+		return ret
+	}
+	return *o.Fingerprint
+}
+
+// GetFingerprintOk returns a tuple with the Fingerprint field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SSHKey) GetFingerprintOk() (*string, bool) {
+	if o == nil || o.Fingerprint == nil {
+		return nil, false
+	}
+	return o.Fingerprint, true
+}
+
+// HasFingerprint returns a boolean if a field has been set.
+func (o *SSHKey) HasFingerprint() bool {
+	if o != nil && o.Fingerprint != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetFingerprint gets a reference to the given string and assigns it to the Fingerprint field.
+func (o *SSHKey) SetFingerprint(v string) {
+	o.Fingerprint = &v
 }
 
 // GetHref returns the Href field value if set, zero value otherwise.
@@ -301,31 +173,159 @@ func (o *SSHKey) SetHref(v string) {
 	o.Href = &v
 }
 
+// GetId returns the Id field value if set, zero value otherwise.
+func (o *SSHKey) GetId() string {
+	if o == nil || o.Id == nil {
+		var ret string
+		return ret
+	}
+	return *o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SSHKey) GetIdOk() (*string, bool) {
+	if o == nil || o.Id == nil {
+		return nil, false
+	}
+	return o.Id, true
+}
+
+// HasId returns a boolean if a field has been set.
+func (o *SSHKey) HasId() bool {
+	if o != nil && o.Id != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given string and assigns it to the Id field.
+func (o *SSHKey) SetId(v string) {
+	o.Id = &v
+}
+
+// GetKey returns the Key field value if set, zero value otherwise.
+func (o *SSHKey) GetKey() string {
+	if o == nil || o.Key == nil {
+		var ret string
+		return ret
+	}
+	return *o.Key
+}
+
+// GetKeyOk returns a tuple with the Key field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SSHKey) GetKeyOk() (*string, bool) {
+	if o == nil || o.Key == nil {
+		return nil, false
+	}
+	return o.Key, true
+}
+
+// HasKey returns a boolean if a field has been set.
+func (o *SSHKey) HasKey() bool {
+	if o != nil && o.Key != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetKey gets a reference to the given string and assigns it to the Key field.
+func (o *SSHKey) SetKey(v string) {
+	o.Key = &v
+}
+
+// GetLabel returns the Label field value if set, zero value otherwise.
+func (o *SSHKey) GetLabel() string {
+	if o == nil || o.Label == nil {
+		var ret string
+		return ret
+	}
+	return *o.Label
+}
+
+// GetLabelOk returns a tuple with the Label field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SSHKey) GetLabelOk() (*string, bool) {
+	if o == nil || o.Label == nil {
+		return nil, false
+	}
+	return o.Label, true
+}
+
+// HasLabel returns a boolean if a field has been set.
+func (o *SSHKey) HasLabel() bool {
+	if o != nil && o.Label != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetLabel gets a reference to the given string and assigns it to the Label field.
+func (o *SSHKey) SetLabel(v string) {
+	o.Label = &v
+}
+
+// GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
+func (o *SSHKey) GetUpdatedAt() time.Time {
+	if o == nil || o.UpdatedAt == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.UpdatedAt
+}
+
+// GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SSHKey) GetUpdatedAtOk() (*time.Time, bool) {
+	if o == nil || o.UpdatedAt == nil {
+		return nil, false
+	}
+	return o.UpdatedAt, true
+}
+
+// HasUpdatedAt returns a boolean if a field has been set.
+func (o *SSHKey) HasUpdatedAt() bool {
+	if o != nil && o.UpdatedAt != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetUpdatedAt gets a reference to the given time.Time and assigns it to the UpdatedAt field.
+func (o *SSHKey) SetUpdatedAt(v time.Time) {
+	o.UpdatedAt = &v
+}
+
 func (o SSHKey) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
-	}
-	if o.Label != nil {
-		toSerialize["label"] = o.Label
-	}
-	if o.Key != nil {
-		toSerialize["key"] = o.Key
-	}
-	if o.Fingerprint != nil {
-		toSerialize["fingerprint"] = o.Fingerprint
-	}
 	if o.CreatedAt != nil {
 		toSerialize["created_at"] = o.CreatedAt
-	}
-	if o.UpdatedAt != nil {
-		toSerialize["updated_at"] = o.UpdatedAt
 	}
 	if o.Entity != nil {
 		toSerialize["entity"] = o.Entity
 	}
+	if o.Fingerprint != nil {
+		toSerialize["fingerprint"] = o.Fingerprint
+	}
 	if o.Href != nil {
 		toSerialize["href"] = o.Href
+	}
+	if o.Id != nil {
+		toSerialize["id"] = o.Id
+	}
+	if o.Key != nil {
+		toSerialize["key"] = o.Key
+	}
+	if o.Label != nil {
+		toSerialize["label"] = o.Label
+	}
+	if o.UpdatedAt != nil {
+		toSerialize["updated_at"] = o.UpdatedAt
 	}
 	return json.Marshal(toSerialize)
 }

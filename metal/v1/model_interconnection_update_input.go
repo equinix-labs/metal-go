@@ -17,14 +17,14 @@ import (
 
 // InterconnectionUpdateInput struct for InterconnectionUpdateInput
 type InterconnectionUpdateInput struct {
-	Name *string `json:"name,omitempty"`
-	// Updating from 'redundant' to 'primary' will remove a secondary port, while updating from 'primary' to 'redundant' will add one.
-	Redundancy   *string  `json:"redundancy,omitempty"`
-	Description  *string  `json:"description,omitempty"`
-	ContactEmail *string  `json:"contact_email,omitempty"`
 	Tags         []string `json:"tags,omitempty"`
+	ContactEmail *string  `json:"contact_email,omitempty"`
+	Description  *string  `json:"description,omitempty"`
 	// The mode of the connection (only relevant to dedicated connections). Shared connections won't have this field. Can be either 'standard' or 'tunnel'.   The default mode of a dedicated connection is 'standard'. The mode can only be changed when there are no associated virtual circuits on the connection.   In tunnel mode, an 802.1q tunnel is added to a port to send/receive double tagged packets from server instances.
 	Mode *string `json:"mode,omitempty"`
+	Name *string `json:"name,omitempty"`
+	// Updating from 'redundant' to 'primary' will remove a secondary port, while updating from 'primary' to 'redundant' will add one.
+	Redundancy *string `json:"redundancy,omitempty"`
 }
 
 // NewInterconnectionUpdateInput instantiates a new InterconnectionUpdateInput object
@@ -42,6 +42,134 @@ func NewInterconnectionUpdateInput() *InterconnectionUpdateInput {
 func NewInterconnectionUpdateInputWithDefaults() *InterconnectionUpdateInput {
 	this := InterconnectionUpdateInput{}
 	return &this
+}
+
+// GetTags returns the Tags field value if set, zero value otherwise.
+func (o *InterconnectionUpdateInput) GetTags() []string {
+	if o == nil || o.Tags == nil {
+		var ret []string
+		return ret
+	}
+	return o.Tags
+}
+
+// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *InterconnectionUpdateInput) GetTagsOk() ([]string, bool) {
+	if o == nil || o.Tags == nil {
+		return nil, false
+	}
+	return o.Tags, true
+}
+
+// HasTags returns a boolean if a field has been set.
+func (o *InterconnectionUpdateInput) HasTags() bool {
+	if o != nil && o.Tags != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTags gets a reference to the given []string and assigns it to the Tags field.
+func (o *InterconnectionUpdateInput) SetTags(v []string) {
+	o.Tags = v
+}
+
+// GetContactEmail returns the ContactEmail field value if set, zero value otherwise.
+func (o *InterconnectionUpdateInput) GetContactEmail() string {
+	if o == nil || o.ContactEmail == nil {
+		var ret string
+		return ret
+	}
+	return *o.ContactEmail
+}
+
+// GetContactEmailOk returns a tuple with the ContactEmail field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *InterconnectionUpdateInput) GetContactEmailOk() (*string, bool) {
+	if o == nil || o.ContactEmail == nil {
+		return nil, false
+	}
+	return o.ContactEmail, true
+}
+
+// HasContactEmail returns a boolean if a field has been set.
+func (o *InterconnectionUpdateInput) HasContactEmail() bool {
+	if o != nil && o.ContactEmail != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetContactEmail gets a reference to the given string and assigns it to the ContactEmail field.
+func (o *InterconnectionUpdateInput) SetContactEmail(v string) {
+	o.ContactEmail = &v
+}
+
+// GetDescription returns the Description field value if set, zero value otherwise.
+func (o *InterconnectionUpdateInput) GetDescription() string {
+	if o == nil || o.Description == nil {
+		var ret string
+		return ret
+	}
+	return *o.Description
+}
+
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *InterconnectionUpdateInput) GetDescriptionOk() (*string, bool) {
+	if o == nil || o.Description == nil {
+		return nil, false
+	}
+	return o.Description, true
+}
+
+// HasDescription returns a boolean if a field has been set.
+func (o *InterconnectionUpdateInput) HasDescription() bool {
+	if o != nil && o.Description != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDescription gets a reference to the given string and assigns it to the Description field.
+func (o *InterconnectionUpdateInput) SetDescription(v string) {
+	o.Description = &v
+}
+
+// GetMode returns the Mode field value if set, zero value otherwise.
+func (o *InterconnectionUpdateInput) GetMode() string {
+	if o == nil || o.Mode == nil {
+		var ret string
+		return ret
+	}
+	return *o.Mode
+}
+
+// GetModeOk returns a tuple with the Mode field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *InterconnectionUpdateInput) GetModeOk() (*string, bool) {
+	if o == nil || o.Mode == nil {
+		return nil, false
+	}
+	return o.Mode, true
+}
+
+// HasMode returns a boolean if a field has been set.
+func (o *InterconnectionUpdateInput) HasMode() bool {
+	if o != nil && o.Mode != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMode gets a reference to the given string and assigns it to the Mode field.
+func (o *InterconnectionUpdateInput) SetMode(v string) {
+	o.Mode = &v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
@@ -108,153 +236,25 @@ func (o *InterconnectionUpdateInput) SetRedundancy(v string) {
 	o.Redundancy = &v
 }
 
-// GetDescription returns the Description field value if set, zero value otherwise.
-func (o *InterconnectionUpdateInput) GetDescription() string {
-	if o == nil || o.Description == nil {
-		var ret string
-		return ret
-	}
-	return *o.Description
-}
-
-// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *InterconnectionUpdateInput) GetDescriptionOk() (*string, bool) {
-	if o == nil || o.Description == nil {
-		return nil, false
-	}
-	return o.Description, true
-}
-
-// HasDescription returns a boolean if a field has been set.
-func (o *InterconnectionUpdateInput) HasDescription() bool {
-	if o != nil && o.Description != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetDescription gets a reference to the given string and assigns it to the Description field.
-func (o *InterconnectionUpdateInput) SetDescription(v string) {
-	o.Description = &v
-}
-
-// GetContactEmail returns the ContactEmail field value if set, zero value otherwise.
-func (o *InterconnectionUpdateInput) GetContactEmail() string {
-	if o == nil || o.ContactEmail == nil {
-		var ret string
-		return ret
-	}
-	return *o.ContactEmail
-}
-
-// GetContactEmailOk returns a tuple with the ContactEmail field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *InterconnectionUpdateInput) GetContactEmailOk() (*string, bool) {
-	if o == nil || o.ContactEmail == nil {
-		return nil, false
-	}
-	return o.ContactEmail, true
-}
-
-// HasContactEmail returns a boolean if a field has been set.
-func (o *InterconnectionUpdateInput) HasContactEmail() bool {
-	if o != nil && o.ContactEmail != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetContactEmail gets a reference to the given string and assigns it to the ContactEmail field.
-func (o *InterconnectionUpdateInput) SetContactEmail(v string) {
-	o.ContactEmail = &v
-}
-
-// GetTags returns the Tags field value if set, zero value otherwise.
-func (o *InterconnectionUpdateInput) GetTags() []string {
-	if o == nil || o.Tags == nil {
-		var ret []string
-		return ret
-	}
-	return o.Tags
-}
-
-// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *InterconnectionUpdateInput) GetTagsOk() ([]string, bool) {
-	if o == nil || o.Tags == nil {
-		return nil, false
-	}
-	return o.Tags, true
-}
-
-// HasTags returns a boolean if a field has been set.
-func (o *InterconnectionUpdateInput) HasTags() bool {
-	if o != nil && o.Tags != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetTags gets a reference to the given []string and assigns it to the Tags field.
-func (o *InterconnectionUpdateInput) SetTags(v []string) {
-	o.Tags = v
-}
-
-// GetMode returns the Mode field value if set, zero value otherwise.
-func (o *InterconnectionUpdateInput) GetMode() string {
-	if o == nil || o.Mode == nil {
-		var ret string
-		return ret
-	}
-	return *o.Mode
-}
-
-// GetModeOk returns a tuple with the Mode field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *InterconnectionUpdateInput) GetModeOk() (*string, bool) {
-	if o == nil || o.Mode == nil {
-		return nil, false
-	}
-	return o.Mode, true
-}
-
-// HasMode returns a boolean if a field has been set.
-func (o *InterconnectionUpdateInput) HasMode() bool {
-	if o != nil && o.Mode != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetMode gets a reference to the given string and assigns it to the Mode field.
-func (o *InterconnectionUpdateInput) SetMode(v string) {
-	o.Mode = &v
-}
-
 func (o InterconnectionUpdateInput) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.Tags != nil {
+		toSerialize["tags"] = o.Tags
+	}
+	if o.ContactEmail != nil {
+		toSerialize["contact_email"] = o.ContactEmail
+	}
+	if o.Description != nil {
+		toSerialize["description"] = o.Description
+	}
+	if o.Mode != nil {
+		toSerialize["mode"] = o.Mode
+	}
 	if o.Name != nil {
 		toSerialize["name"] = o.Name
 	}
 	if o.Redundancy != nil {
 		toSerialize["redundancy"] = o.Redundancy
-	}
-	if o.Description != nil {
-		toSerialize["description"] = o.Description
-	}
-	if o.ContactEmail != nil {
-		toSerialize["contact_email"] = o.ContactEmail
-	}
-	if o.Tags != nil {
-		toSerialize["tags"] = o.Tags
-	}
-	if o.Mode != nil {
-		toSerialize["mode"] = o.Mode
 	}
 	return json.Marshal(toSerialize)
 }

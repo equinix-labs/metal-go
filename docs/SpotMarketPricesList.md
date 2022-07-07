@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**SpotMarketPrices** | Pointer to [**SpotPricesReport**](SpotPricesReport.md) |  | [optional] 
+**SpotMarketPrices** | Pointer to [**FindSpotMarketPrices200ResponseSpotMarketPrices**](FindSpotMarketPrices200ResponseSpotMarketPrices.md) |  | [optional] 
 
 ## Methods
 
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetSpotMarketPrices
 
-`func (o *SpotMarketPricesList) GetSpotMarketPrices() SpotPricesReport`
+`func (o *SpotMarketPricesList) GetSpotMarketPrices() FindSpotMarketPrices200ResponseSpotMarketPrices`
 
 GetSpotMarketPrices returns the SpotMarketPrices field if non-nil, zero value otherwise.
 
 ### GetSpotMarketPricesOk
 
-`func (o *SpotMarketPricesList) GetSpotMarketPricesOk() (*SpotPricesReport, bool)`
+`func (o *SpotMarketPricesList) GetSpotMarketPricesOk() (*FindSpotMarketPrices200ResponseSpotMarketPrices, bool)`
 
 GetSpotMarketPricesOk returns a tuple with the SpotMarketPrices field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSpotMarketPrices
 
-`func (o *SpotMarketPricesList) SetSpotMarketPrices(v SpotPricesReport)`
+`func (o *SpotMarketPricesList) SetSpotMarketPrices(v FindSpotMarketPrices200ResponseSpotMarketPrices)`
 
 SetSpotMarketPrices sets SpotMarketPrices field to given value.
 

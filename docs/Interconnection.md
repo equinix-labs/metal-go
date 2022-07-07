@@ -4,20 +4,21 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **string** |  | [optional] 
-**Name** | Pointer to **string** |  | [optional] 
-**Description** | Pointer to **string** |  | [optional] 
+**Tags** | Pointer to **[]string** |  | [optional] 
 **ContactEmail** | Pointer to **string** |  | [optional] 
+**Description** | Pointer to **string** |  | [optional] 
+**Facility** | Pointer to [**FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
+**Id** | Pointer to **string** |  | [optional] 
+**Metro** | Pointer to [**GetInterconnection200ResponseMetro**](GetInterconnection200ResponseMetro.md) |  | [optional] 
+**Mode** | Pointer to **string** | The mode of the connection (only relevant to dedicated connections). Shared connections won&#39;t have this field. Can be either &#39;standard&#39; or &#39;tunnel&#39;.   The default mode of a dedicated connection is &#39;standard&#39;. The mode can only be changed when there are no associated virtual circuits on the connection.   In tunnel mode, an 802.1q tunnel is added to a port to send/receive double tagged packets from server instances. | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
+**Organization** | Pointer to [**FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
+**Ports** | Pointer to [**[]GetInterconnection200ResponsePortsInner**](GetInterconnection200ResponsePortsInner.md) |  | [optional] 
+**Redundancy** | Pointer to **string** |  | [optional] 
+**ServiceTokens** | Pointer to [**[]GetInterconnection200ResponseServiceTokensInner**](GetInterconnection200ResponseServiceTokensInner.md) |  | [optional] 
+**Speed** | Pointer to **int32** | The connection&#39;s speed in bps. | [optional] 
 **Status** | Pointer to **string** |  | [optional] 
 **Type** | Pointer to **string** |  | [optional] 
-**Redundancy** | Pointer to **string** |  | [optional] 
-**Speed** | Pointer to **int32** | The connection&#39;s speed in bps. | [optional] 
-**Tags** | Pointer to **[]string** |  | [optional] 
-**Ports** | Pointer to [**[]InterconnectionPort**](InterconnectionPort.md) |  | [optional] 
-**Facility** | Pointer to [**Href**](Href.md) |  | [optional] 
-**Organization** | Pointer to [**Href**](Href.md) |  | [optional] 
-**Metro** | Pointer to [**InterconnectionMetro**](InterconnectionMetro.md) |  | [optional] 
-**Mode** | Pointer to **string** | The mode of the connection (only relevant to dedicated connections). Shared connections won&#39;t have this field. Can be either &#39;standard&#39; or &#39;tunnel&#39;.   The default mode of a dedicated connection is &#39;standard&#39;. The mode can only be changed when there are no associated virtual circuits on the connection.   In tunnel mode, an 802.1q tunnel is added to a port to send/receive double tagged packets from server instances. | [optional] 
 
 ## Methods
 
@@ -38,55 +39,55 @@ NewInterconnectionWithDefaults instantiates a new Interconnection object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetId
+### GetTags
 
-`func (o *Interconnection) GetId() string`
+`func (o *Interconnection) GetTags() []string`
 
-GetId returns the Id field if non-nil, zero value otherwise.
+GetTags returns the Tags field if non-nil, zero value otherwise.
 
-### GetIdOk
+### GetTagsOk
 
-`func (o *Interconnection) GetIdOk() (*string, bool)`
+`func (o *Interconnection) GetTagsOk() (*[]string, bool)`
 
-GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+GetTagsOk returns a tuple with the Tags field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetId
+### SetTags
 
-`func (o *Interconnection) SetId(v string)`
+`func (o *Interconnection) SetTags(v []string)`
 
-SetId sets Id field to given value.
+SetTags sets Tags field to given value.
 
-### HasId
+### HasTags
 
-`func (o *Interconnection) HasId() bool`
+`func (o *Interconnection) HasTags() bool`
 
-HasId returns a boolean if a field has been set.
+HasTags returns a boolean if a field has been set.
 
-### GetName
+### GetContactEmail
 
-`func (o *Interconnection) GetName() string`
+`func (o *Interconnection) GetContactEmail() string`
 
-GetName returns the Name field if non-nil, zero value otherwise.
+GetContactEmail returns the ContactEmail field if non-nil, zero value otherwise.
 
-### GetNameOk
+### GetContactEmailOk
 
-`func (o *Interconnection) GetNameOk() (*string, bool)`
+`func (o *Interconnection) GetContactEmailOk() (*string, bool)`
 
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+GetContactEmailOk returns a tuple with the ContactEmail field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetName
+### SetContactEmail
 
-`func (o *Interconnection) SetName(v string)`
+`func (o *Interconnection) SetContactEmail(v string)`
 
-SetName sets Name field to given value.
+SetContactEmail sets ContactEmail field to given value.
 
-### HasName
+### HasContactEmail
 
-`func (o *Interconnection) HasName() bool`
+`func (o *Interconnection) HasContactEmail() bool`
 
-HasName returns a boolean if a field has been set.
+HasContactEmail returns a boolean if a field has been set.
 
 ### GetDescription
 
@@ -113,30 +114,255 @@ SetDescription sets Description field to given value.
 
 HasDescription returns a boolean if a field has been set.
 
-### GetContactEmail
+### GetFacility
 
-`func (o *Interconnection) GetContactEmail() string`
+`func (o *Interconnection) GetFacility() FindBatchById200ResponseDevicesInner`
 
-GetContactEmail returns the ContactEmail field if non-nil, zero value otherwise.
+GetFacility returns the Facility field if non-nil, zero value otherwise.
 
-### GetContactEmailOk
+### GetFacilityOk
 
-`func (o *Interconnection) GetContactEmailOk() (*string, bool)`
+`func (o *Interconnection) GetFacilityOk() (*FindBatchById200ResponseDevicesInner, bool)`
 
-GetContactEmailOk returns a tuple with the ContactEmail field if it's non-nil, zero value otherwise
+GetFacilityOk returns a tuple with the Facility field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetContactEmail
+### SetFacility
 
-`func (o *Interconnection) SetContactEmail(v string)`
+`func (o *Interconnection) SetFacility(v FindBatchById200ResponseDevicesInner)`
 
-SetContactEmail sets ContactEmail field to given value.
+SetFacility sets Facility field to given value.
 
-### HasContactEmail
+### HasFacility
 
-`func (o *Interconnection) HasContactEmail() bool`
+`func (o *Interconnection) HasFacility() bool`
 
-HasContactEmail returns a boolean if a field has been set.
+HasFacility returns a boolean if a field has been set.
+
+### GetId
+
+`func (o *Interconnection) GetId() string`
+
+GetId returns the Id field if non-nil, zero value otherwise.
+
+### GetIdOk
+
+`func (o *Interconnection) GetIdOk() (*string, bool)`
+
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetId
+
+`func (o *Interconnection) SetId(v string)`
+
+SetId sets Id field to given value.
+
+### HasId
+
+`func (o *Interconnection) HasId() bool`
+
+HasId returns a boolean if a field has been set.
+
+### GetMetro
+
+`func (o *Interconnection) GetMetro() GetInterconnection200ResponseMetro`
+
+GetMetro returns the Metro field if non-nil, zero value otherwise.
+
+### GetMetroOk
+
+`func (o *Interconnection) GetMetroOk() (*GetInterconnection200ResponseMetro, bool)`
+
+GetMetroOk returns a tuple with the Metro field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMetro
+
+`func (o *Interconnection) SetMetro(v GetInterconnection200ResponseMetro)`
+
+SetMetro sets Metro field to given value.
+
+### HasMetro
+
+`func (o *Interconnection) HasMetro() bool`
+
+HasMetro returns a boolean if a field has been set.
+
+### GetMode
+
+`func (o *Interconnection) GetMode() string`
+
+GetMode returns the Mode field if non-nil, zero value otherwise.
+
+### GetModeOk
+
+`func (o *Interconnection) GetModeOk() (*string, bool)`
+
+GetModeOk returns a tuple with the Mode field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMode
+
+`func (o *Interconnection) SetMode(v string)`
+
+SetMode sets Mode field to given value.
+
+### HasMode
+
+`func (o *Interconnection) HasMode() bool`
+
+HasMode returns a boolean if a field has been set.
+
+### GetName
+
+`func (o *Interconnection) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *Interconnection) GetNameOk() (*string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetName
+
+`func (o *Interconnection) SetName(v string)`
+
+SetName sets Name field to given value.
+
+### HasName
+
+`func (o *Interconnection) HasName() bool`
+
+HasName returns a boolean if a field has been set.
+
+### GetOrganization
+
+`func (o *Interconnection) GetOrganization() FindBatchById200ResponseDevicesInner`
+
+GetOrganization returns the Organization field if non-nil, zero value otherwise.
+
+### GetOrganizationOk
+
+`func (o *Interconnection) GetOrganizationOk() (*FindBatchById200ResponseDevicesInner, bool)`
+
+GetOrganizationOk returns a tuple with the Organization field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOrganization
+
+`func (o *Interconnection) SetOrganization(v FindBatchById200ResponseDevicesInner)`
+
+SetOrganization sets Organization field to given value.
+
+### HasOrganization
+
+`func (o *Interconnection) HasOrganization() bool`
+
+HasOrganization returns a boolean if a field has been set.
+
+### GetPorts
+
+`func (o *Interconnection) GetPorts() []GetInterconnection200ResponsePortsInner`
+
+GetPorts returns the Ports field if non-nil, zero value otherwise.
+
+### GetPortsOk
+
+`func (o *Interconnection) GetPortsOk() (*[]GetInterconnection200ResponsePortsInner, bool)`
+
+GetPortsOk returns a tuple with the Ports field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPorts
+
+`func (o *Interconnection) SetPorts(v []GetInterconnection200ResponsePortsInner)`
+
+SetPorts sets Ports field to given value.
+
+### HasPorts
+
+`func (o *Interconnection) HasPorts() bool`
+
+HasPorts returns a boolean if a field has been set.
+
+### GetRedundancy
+
+`func (o *Interconnection) GetRedundancy() string`
+
+GetRedundancy returns the Redundancy field if non-nil, zero value otherwise.
+
+### GetRedundancyOk
+
+`func (o *Interconnection) GetRedundancyOk() (*string, bool)`
+
+GetRedundancyOk returns a tuple with the Redundancy field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRedundancy
+
+`func (o *Interconnection) SetRedundancy(v string)`
+
+SetRedundancy sets Redundancy field to given value.
+
+### HasRedundancy
+
+`func (o *Interconnection) HasRedundancy() bool`
+
+HasRedundancy returns a boolean if a field has been set.
+
+### GetServiceTokens
+
+`func (o *Interconnection) GetServiceTokens() []GetInterconnection200ResponseServiceTokensInner`
+
+GetServiceTokens returns the ServiceTokens field if non-nil, zero value otherwise.
+
+### GetServiceTokensOk
+
+`func (o *Interconnection) GetServiceTokensOk() (*[]GetInterconnection200ResponseServiceTokensInner, bool)`
+
+GetServiceTokensOk returns a tuple with the ServiceTokens field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetServiceTokens
+
+`func (o *Interconnection) SetServiceTokens(v []GetInterconnection200ResponseServiceTokensInner)`
+
+SetServiceTokens sets ServiceTokens field to given value.
+
+### HasServiceTokens
+
+`func (o *Interconnection) HasServiceTokens() bool`
+
+HasServiceTokens returns a boolean if a field has been set.
+
+### GetSpeed
+
+`func (o *Interconnection) GetSpeed() int32`
+
+GetSpeed returns the Speed field if non-nil, zero value otherwise.
+
+### GetSpeedOk
+
+`func (o *Interconnection) GetSpeedOk() (*int32, bool)`
+
+GetSpeedOk returns a tuple with the Speed field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSpeed
+
+`func (o *Interconnection) SetSpeed(v int32)`
+
+SetSpeed sets Speed field to given value.
+
+### HasSpeed
+
+`func (o *Interconnection) HasSpeed() bool`
+
+HasSpeed returns a boolean if a field has been set.
 
 ### GetStatus
 
@@ -187,206 +413,6 @@ SetType sets Type field to given value.
 `func (o *Interconnection) HasType() bool`
 
 HasType returns a boolean if a field has been set.
-
-### GetRedundancy
-
-`func (o *Interconnection) GetRedundancy() string`
-
-GetRedundancy returns the Redundancy field if non-nil, zero value otherwise.
-
-### GetRedundancyOk
-
-`func (o *Interconnection) GetRedundancyOk() (*string, bool)`
-
-GetRedundancyOk returns a tuple with the Redundancy field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRedundancy
-
-`func (o *Interconnection) SetRedundancy(v string)`
-
-SetRedundancy sets Redundancy field to given value.
-
-### HasRedundancy
-
-`func (o *Interconnection) HasRedundancy() bool`
-
-HasRedundancy returns a boolean if a field has been set.
-
-### GetSpeed
-
-`func (o *Interconnection) GetSpeed() int32`
-
-GetSpeed returns the Speed field if non-nil, zero value otherwise.
-
-### GetSpeedOk
-
-`func (o *Interconnection) GetSpeedOk() (*int32, bool)`
-
-GetSpeedOk returns a tuple with the Speed field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSpeed
-
-`func (o *Interconnection) SetSpeed(v int32)`
-
-SetSpeed sets Speed field to given value.
-
-### HasSpeed
-
-`func (o *Interconnection) HasSpeed() bool`
-
-HasSpeed returns a boolean if a field has been set.
-
-### GetTags
-
-`func (o *Interconnection) GetTags() []string`
-
-GetTags returns the Tags field if non-nil, zero value otherwise.
-
-### GetTagsOk
-
-`func (o *Interconnection) GetTagsOk() (*[]string, bool)`
-
-GetTagsOk returns a tuple with the Tags field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTags
-
-`func (o *Interconnection) SetTags(v []string)`
-
-SetTags sets Tags field to given value.
-
-### HasTags
-
-`func (o *Interconnection) HasTags() bool`
-
-HasTags returns a boolean if a field has been set.
-
-### GetPorts
-
-`func (o *Interconnection) GetPorts() []InterconnectionPort`
-
-GetPorts returns the Ports field if non-nil, zero value otherwise.
-
-### GetPortsOk
-
-`func (o *Interconnection) GetPortsOk() (*[]InterconnectionPort, bool)`
-
-GetPortsOk returns a tuple with the Ports field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPorts
-
-`func (o *Interconnection) SetPorts(v []InterconnectionPort)`
-
-SetPorts sets Ports field to given value.
-
-### HasPorts
-
-`func (o *Interconnection) HasPorts() bool`
-
-HasPorts returns a boolean if a field has been set.
-
-### GetFacility
-
-`func (o *Interconnection) GetFacility() Href`
-
-GetFacility returns the Facility field if non-nil, zero value otherwise.
-
-### GetFacilityOk
-
-`func (o *Interconnection) GetFacilityOk() (*Href, bool)`
-
-GetFacilityOk returns a tuple with the Facility field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetFacility
-
-`func (o *Interconnection) SetFacility(v Href)`
-
-SetFacility sets Facility field to given value.
-
-### HasFacility
-
-`func (o *Interconnection) HasFacility() bool`
-
-HasFacility returns a boolean if a field has been set.
-
-### GetOrganization
-
-`func (o *Interconnection) GetOrganization() Href`
-
-GetOrganization returns the Organization field if non-nil, zero value otherwise.
-
-### GetOrganizationOk
-
-`func (o *Interconnection) GetOrganizationOk() (*Href, bool)`
-
-GetOrganizationOk returns a tuple with the Organization field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetOrganization
-
-`func (o *Interconnection) SetOrganization(v Href)`
-
-SetOrganization sets Organization field to given value.
-
-### HasOrganization
-
-`func (o *Interconnection) HasOrganization() bool`
-
-HasOrganization returns a boolean if a field has been set.
-
-### GetMetro
-
-`func (o *Interconnection) GetMetro() InterconnectionMetro`
-
-GetMetro returns the Metro field if non-nil, zero value otherwise.
-
-### GetMetroOk
-
-`func (o *Interconnection) GetMetroOk() (*InterconnectionMetro, bool)`
-
-GetMetroOk returns a tuple with the Metro field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetMetro
-
-`func (o *Interconnection) SetMetro(v InterconnectionMetro)`
-
-SetMetro sets Metro field to given value.
-
-### HasMetro
-
-`func (o *Interconnection) HasMetro() bool`
-
-HasMetro returns a boolean if a field has been set.
-
-### GetMode
-
-`func (o *Interconnection) GetMode() string`
-
-GetMode returns the Mode field if non-nil, zero value otherwise.
-
-### GetModeOk
-
-`func (o *Interconnection) GetModeOk() (*string, bool)`
-
-GetModeOk returns a tuple with the Mode field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetMode
-
-`func (o *Interconnection) SetMode(v string)`
-
-SetMode sets Mode field to given value.
-
-### HasMode
-
-`func (o *Interconnection) HasMode() bool`
-
-HasMode returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

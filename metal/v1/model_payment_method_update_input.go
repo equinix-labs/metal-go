@@ -17,12 +17,12 @@ import (
 
 // PaymentMethodUpdateInput struct for PaymentMethodUpdateInput
 type PaymentMethodUpdateInput struct {
-	Name            *string                `json:"name,omitempty"`
-	Default         *bool                  `json:"default,omitempty"`
+	BillingAddress  map[string]interface{} `json:"billing_address,omitempty"`
 	CardholderName  *string                `json:"cardholder_name,omitempty"`
+	Default         *bool                  `json:"default,omitempty"`
 	ExpirationMonth *string                `json:"expiration_month,omitempty"`
 	ExpirationYear  *int32                 `json:"expiration_year,omitempty"`
-	BillingAddress  map[string]interface{} `json:"billing_address,omitempty"`
+	Name            *string                `json:"name,omitempty"`
 }
 
 // NewPaymentMethodUpdateInput instantiates a new PaymentMethodUpdateInput object
@@ -42,68 +42,36 @@ func NewPaymentMethodUpdateInputWithDefaults() *PaymentMethodUpdateInput {
 	return &this
 }
 
-// GetName returns the Name field value if set, zero value otherwise.
-func (o *PaymentMethodUpdateInput) GetName() string {
-	if o == nil || o.Name == nil {
-		var ret string
+// GetBillingAddress returns the BillingAddress field value if set, zero value otherwise.
+func (o *PaymentMethodUpdateInput) GetBillingAddress() map[string]interface{} {
+	if o == nil || o.BillingAddress == nil {
+		var ret map[string]interface{}
 		return ret
 	}
-	return *o.Name
+	return o.BillingAddress
 }
 
-// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// GetBillingAddressOk returns a tuple with the BillingAddress field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PaymentMethodUpdateInput) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
+func (o *PaymentMethodUpdateInput) GetBillingAddressOk() (map[string]interface{}, bool) {
+	if o == nil || o.BillingAddress == nil {
 		return nil, false
 	}
-	return o.Name, true
+	return o.BillingAddress, true
 }
 
-// HasName returns a boolean if a field has been set.
-func (o *PaymentMethodUpdateInput) HasName() bool {
-	if o != nil && o.Name != nil {
+// HasBillingAddress returns a boolean if a field has been set.
+func (o *PaymentMethodUpdateInput) HasBillingAddress() bool {
+	if o != nil && o.BillingAddress != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetName gets a reference to the given string and assigns it to the Name field.
-func (o *PaymentMethodUpdateInput) SetName(v string) {
-	o.Name = &v
-}
-
-// GetDefault returns the Default field value if set, zero value otherwise.
-func (o *PaymentMethodUpdateInput) GetDefault() bool {
-	if o == nil || o.Default == nil {
-		var ret bool
-		return ret
-	}
-	return *o.Default
-}
-
-// GetDefaultOk returns a tuple with the Default field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *PaymentMethodUpdateInput) GetDefaultOk() (*bool, bool) {
-	if o == nil || o.Default == nil {
-		return nil, false
-	}
-	return o.Default, true
-}
-
-// HasDefault returns a boolean if a field has been set.
-func (o *PaymentMethodUpdateInput) HasDefault() bool {
-	if o != nil && o.Default != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetDefault gets a reference to the given bool and assigns it to the Default field.
-func (o *PaymentMethodUpdateInput) SetDefault(v bool) {
-	o.Default = &v
+// SetBillingAddress gets a reference to the given map[string]interface{} and assigns it to the BillingAddress field.
+func (o *PaymentMethodUpdateInput) SetBillingAddress(v map[string]interface{}) {
+	o.BillingAddress = v
 }
 
 // GetCardholderName returns the CardholderName field value if set, zero value otherwise.
@@ -136,6 +104,38 @@ func (o *PaymentMethodUpdateInput) HasCardholderName() bool {
 // SetCardholderName gets a reference to the given string and assigns it to the CardholderName field.
 func (o *PaymentMethodUpdateInput) SetCardholderName(v string) {
 	o.CardholderName = &v
+}
+
+// GetDefault returns the Default field value if set, zero value otherwise.
+func (o *PaymentMethodUpdateInput) GetDefault() bool {
+	if o == nil || o.Default == nil {
+		var ret bool
+		return ret
+	}
+	return *o.Default
+}
+
+// GetDefaultOk returns a tuple with the Default field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PaymentMethodUpdateInput) GetDefaultOk() (*bool, bool) {
+	if o == nil || o.Default == nil {
+		return nil, false
+	}
+	return o.Default, true
+}
+
+// HasDefault returns a boolean if a field has been set.
+func (o *PaymentMethodUpdateInput) HasDefault() bool {
+	if o != nil && o.Default != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDefault gets a reference to the given bool and assigns it to the Default field.
+func (o *PaymentMethodUpdateInput) SetDefault(v bool) {
+	o.Default = &v
 }
 
 // GetExpirationMonth returns the ExpirationMonth field value if set, zero value otherwise.
@@ -202,48 +202,48 @@ func (o *PaymentMethodUpdateInput) SetExpirationYear(v int32) {
 	o.ExpirationYear = &v
 }
 
-// GetBillingAddress returns the BillingAddress field value if set, zero value otherwise.
-func (o *PaymentMethodUpdateInput) GetBillingAddress() map[string]interface{} {
-	if o == nil || o.BillingAddress == nil {
-		var ret map[string]interface{}
+// GetName returns the Name field value if set, zero value otherwise.
+func (o *PaymentMethodUpdateInput) GetName() string {
+	if o == nil || o.Name == nil {
+		var ret string
 		return ret
 	}
-	return o.BillingAddress
+	return *o.Name
 }
 
-// GetBillingAddressOk returns a tuple with the BillingAddress field value if set, nil otherwise
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PaymentMethodUpdateInput) GetBillingAddressOk() (map[string]interface{}, bool) {
-	if o == nil || o.BillingAddress == nil {
+func (o *PaymentMethodUpdateInput) GetNameOk() (*string, bool) {
+	if o == nil || o.Name == nil {
 		return nil, false
 	}
-	return o.BillingAddress, true
+	return o.Name, true
 }
 
-// HasBillingAddress returns a boolean if a field has been set.
-func (o *PaymentMethodUpdateInput) HasBillingAddress() bool {
-	if o != nil && o.BillingAddress != nil {
+// HasName returns a boolean if a field has been set.
+func (o *PaymentMethodUpdateInput) HasName() bool {
+	if o != nil && o.Name != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetBillingAddress gets a reference to the given map[string]interface{} and assigns it to the BillingAddress field.
-func (o *PaymentMethodUpdateInput) SetBillingAddress(v map[string]interface{}) {
-	o.BillingAddress = v
+// SetName gets a reference to the given string and assigns it to the Name field.
+func (o *PaymentMethodUpdateInput) SetName(v string) {
+	o.Name = &v
 }
 
 func (o PaymentMethodUpdateInput) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Name != nil {
-		toSerialize["name"] = o.Name
-	}
-	if o.Default != nil {
-		toSerialize["default"] = o.Default
+	if o.BillingAddress != nil {
+		toSerialize["billing_address"] = o.BillingAddress
 	}
 	if o.CardholderName != nil {
 		toSerialize["cardholder_name"] = o.CardholderName
+	}
+	if o.Default != nil {
+		toSerialize["default"] = o.Default
 	}
 	if o.ExpirationMonth != nil {
 		toSerialize["expiration_month"] = o.ExpirationMonth
@@ -251,8 +251,8 @@ func (o PaymentMethodUpdateInput) MarshalJSON() ([]byte, error) {
 	if o.ExpirationYear != nil {
 		toSerialize["expiration_year"] = o.ExpirationYear
 	}
-	if o.BillingAddress != nil {
-		toSerialize["billing_address"] = o.BillingAddress
+	if o.Name != nil {
+		toSerialize["name"] = o.Name
 	}
 	return json.Marshal(toSerialize)
 }

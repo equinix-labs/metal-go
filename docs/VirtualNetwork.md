@@ -4,17 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **string** |  | [optional] 
-**Description** | Pointer to **string** |  | [optional] 
-**Vxlan** | Pointer to **int32** |  | [optional] 
-**Facility** | Pointer to [**Href**](Href.md) |  | [optional] 
-**Instances** | Pointer to [**[]Href**](Href.md) | A list of instances with ports currently associated to this Virtual Network. | [optional] 
-**MetroCode** | Pointer to **string** | The Metro code of the metro in which this Virtual Network is defined. | [optional] 
-**Metro** | Pointer to [**Href**](Href.md) |  | [optional] 
+**AssignedTo** | Pointer to [**FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
 **AssignedToVirtualCircuit** | Pointer to **bool** | True if the virtual network is attached to a virtual circuit. False if not. | [optional] 
-**MetalGateway** | Pointer to [**MetalGatewayLite**](MetalGatewayLite.md) |  | [optional] 
-**AssignedTo** | Pointer to [**Href**](Href.md) |  | [optional] 
+**Description** | Pointer to **string** |  | [optional] 
+**Facility** | Pointer to [**FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
 **Href** | Pointer to **string** |  | [optional] 
+**Id** | Pointer to **string** |  | [optional] 
+**Instances** | Pointer to [**[]FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) | A list of instances with ports currently associated to this Virtual Network. | [optional] 
+**MetalGateway** | Pointer to [**FindVirtualNetworks200ResponseVirtualNetworksInnerMetalGateway**](FindVirtualNetworks200ResponseVirtualNetworksInnerMetalGateway.md) |  | [optional] 
+**Metro** | Pointer to [**FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
+**MetroCode** | Pointer to **string** | The Metro code of the metro in which this Virtual Network is defined. | [optional] 
+**Vxlan** | Pointer to **int32** |  | [optional] 
 
 ## Methods
 
@@ -35,180 +35,30 @@ NewVirtualNetworkWithDefaults instantiates a new VirtualNetwork object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetId
+### GetAssignedTo
 
-`func (o *VirtualNetwork) GetId() string`
+`func (o *VirtualNetwork) GetAssignedTo() FindBatchById200ResponseDevicesInner`
 
-GetId returns the Id field if non-nil, zero value otherwise.
+GetAssignedTo returns the AssignedTo field if non-nil, zero value otherwise.
 
-### GetIdOk
+### GetAssignedToOk
 
-`func (o *VirtualNetwork) GetIdOk() (*string, bool)`
+`func (o *VirtualNetwork) GetAssignedToOk() (*FindBatchById200ResponseDevicesInner, bool)`
 
-GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+GetAssignedToOk returns a tuple with the AssignedTo field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetId
+### SetAssignedTo
 
-`func (o *VirtualNetwork) SetId(v string)`
+`func (o *VirtualNetwork) SetAssignedTo(v FindBatchById200ResponseDevicesInner)`
 
-SetId sets Id field to given value.
+SetAssignedTo sets AssignedTo field to given value.
 
-### HasId
+### HasAssignedTo
 
-`func (o *VirtualNetwork) HasId() bool`
+`func (o *VirtualNetwork) HasAssignedTo() bool`
 
-HasId returns a boolean if a field has been set.
-
-### GetDescription
-
-`func (o *VirtualNetwork) GetDescription() string`
-
-GetDescription returns the Description field if non-nil, zero value otherwise.
-
-### GetDescriptionOk
-
-`func (o *VirtualNetwork) GetDescriptionOk() (*string, bool)`
-
-GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDescription
-
-`func (o *VirtualNetwork) SetDescription(v string)`
-
-SetDescription sets Description field to given value.
-
-### HasDescription
-
-`func (o *VirtualNetwork) HasDescription() bool`
-
-HasDescription returns a boolean if a field has been set.
-
-### GetVxlan
-
-`func (o *VirtualNetwork) GetVxlan() int32`
-
-GetVxlan returns the Vxlan field if non-nil, zero value otherwise.
-
-### GetVxlanOk
-
-`func (o *VirtualNetwork) GetVxlanOk() (*int32, bool)`
-
-GetVxlanOk returns a tuple with the Vxlan field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetVxlan
-
-`func (o *VirtualNetwork) SetVxlan(v int32)`
-
-SetVxlan sets Vxlan field to given value.
-
-### HasVxlan
-
-`func (o *VirtualNetwork) HasVxlan() bool`
-
-HasVxlan returns a boolean if a field has been set.
-
-### GetFacility
-
-`func (o *VirtualNetwork) GetFacility() Href`
-
-GetFacility returns the Facility field if non-nil, zero value otherwise.
-
-### GetFacilityOk
-
-`func (o *VirtualNetwork) GetFacilityOk() (*Href, bool)`
-
-GetFacilityOk returns a tuple with the Facility field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetFacility
-
-`func (o *VirtualNetwork) SetFacility(v Href)`
-
-SetFacility sets Facility field to given value.
-
-### HasFacility
-
-`func (o *VirtualNetwork) HasFacility() bool`
-
-HasFacility returns a boolean if a field has been set.
-
-### GetInstances
-
-`func (o *VirtualNetwork) GetInstances() []Href`
-
-GetInstances returns the Instances field if non-nil, zero value otherwise.
-
-### GetInstancesOk
-
-`func (o *VirtualNetwork) GetInstancesOk() (*[]Href, bool)`
-
-GetInstancesOk returns a tuple with the Instances field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetInstances
-
-`func (o *VirtualNetwork) SetInstances(v []Href)`
-
-SetInstances sets Instances field to given value.
-
-### HasInstances
-
-`func (o *VirtualNetwork) HasInstances() bool`
-
-HasInstances returns a boolean if a field has been set.
-
-### GetMetroCode
-
-`func (o *VirtualNetwork) GetMetroCode() string`
-
-GetMetroCode returns the MetroCode field if non-nil, zero value otherwise.
-
-### GetMetroCodeOk
-
-`func (o *VirtualNetwork) GetMetroCodeOk() (*string, bool)`
-
-GetMetroCodeOk returns a tuple with the MetroCode field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetMetroCode
-
-`func (o *VirtualNetwork) SetMetroCode(v string)`
-
-SetMetroCode sets MetroCode field to given value.
-
-### HasMetroCode
-
-`func (o *VirtualNetwork) HasMetroCode() bool`
-
-HasMetroCode returns a boolean if a field has been set.
-
-### GetMetro
-
-`func (o *VirtualNetwork) GetMetro() Href`
-
-GetMetro returns the Metro field if non-nil, zero value otherwise.
-
-### GetMetroOk
-
-`func (o *VirtualNetwork) GetMetroOk() (*Href, bool)`
-
-GetMetroOk returns a tuple with the Metro field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetMetro
-
-`func (o *VirtualNetwork) SetMetro(v Href)`
-
-SetMetro sets Metro field to given value.
-
-### HasMetro
-
-`func (o *VirtualNetwork) HasMetro() bool`
-
-HasMetro returns a boolean if a field has been set.
+HasAssignedTo returns a boolean if a field has been set.
 
 ### GetAssignedToVirtualCircuit
 
@@ -235,55 +85,55 @@ SetAssignedToVirtualCircuit sets AssignedToVirtualCircuit field to given value.
 
 HasAssignedToVirtualCircuit returns a boolean if a field has been set.
 
-### GetMetalGateway
+### GetDescription
 
-`func (o *VirtualNetwork) GetMetalGateway() MetalGatewayLite`
+`func (o *VirtualNetwork) GetDescription() string`
 
-GetMetalGateway returns the MetalGateway field if non-nil, zero value otherwise.
+GetDescription returns the Description field if non-nil, zero value otherwise.
 
-### GetMetalGatewayOk
+### GetDescriptionOk
 
-`func (o *VirtualNetwork) GetMetalGatewayOk() (*MetalGatewayLite, bool)`
+`func (o *VirtualNetwork) GetDescriptionOk() (*string, bool)`
 
-GetMetalGatewayOk returns a tuple with the MetalGateway field if it's non-nil, zero value otherwise
+GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetMetalGateway
+### SetDescription
 
-`func (o *VirtualNetwork) SetMetalGateway(v MetalGatewayLite)`
+`func (o *VirtualNetwork) SetDescription(v string)`
 
-SetMetalGateway sets MetalGateway field to given value.
+SetDescription sets Description field to given value.
 
-### HasMetalGateway
+### HasDescription
 
-`func (o *VirtualNetwork) HasMetalGateway() bool`
+`func (o *VirtualNetwork) HasDescription() bool`
 
-HasMetalGateway returns a boolean if a field has been set.
+HasDescription returns a boolean if a field has been set.
 
-### GetAssignedTo
+### GetFacility
 
-`func (o *VirtualNetwork) GetAssignedTo() Href`
+`func (o *VirtualNetwork) GetFacility() FindBatchById200ResponseDevicesInner`
 
-GetAssignedTo returns the AssignedTo field if non-nil, zero value otherwise.
+GetFacility returns the Facility field if non-nil, zero value otherwise.
 
-### GetAssignedToOk
+### GetFacilityOk
 
-`func (o *VirtualNetwork) GetAssignedToOk() (*Href, bool)`
+`func (o *VirtualNetwork) GetFacilityOk() (*FindBatchById200ResponseDevicesInner, bool)`
 
-GetAssignedToOk returns a tuple with the AssignedTo field if it's non-nil, zero value otherwise
+GetFacilityOk returns a tuple with the Facility field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAssignedTo
+### SetFacility
 
-`func (o *VirtualNetwork) SetAssignedTo(v Href)`
+`func (o *VirtualNetwork) SetFacility(v FindBatchById200ResponseDevicesInner)`
 
-SetAssignedTo sets AssignedTo field to given value.
+SetFacility sets Facility field to given value.
 
-### HasAssignedTo
+### HasFacility
 
-`func (o *VirtualNetwork) HasAssignedTo() bool`
+`func (o *VirtualNetwork) HasFacility() bool`
 
-HasAssignedTo returns a boolean if a field has been set.
+HasFacility returns a boolean if a field has been set.
 
 ### GetHref
 
@@ -309,6 +159,156 @@ SetHref sets Href field to given value.
 `func (o *VirtualNetwork) HasHref() bool`
 
 HasHref returns a boolean if a field has been set.
+
+### GetId
+
+`func (o *VirtualNetwork) GetId() string`
+
+GetId returns the Id field if non-nil, zero value otherwise.
+
+### GetIdOk
+
+`func (o *VirtualNetwork) GetIdOk() (*string, bool)`
+
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetId
+
+`func (o *VirtualNetwork) SetId(v string)`
+
+SetId sets Id field to given value.
+
+### HasId
+
+`func (o *VirtualNetwork) HasId() bool`
+
+HasId returns a boolean if a field has been set.
+
+### GetInstances
+
+`func (o *VirtualNetwork) GetInstances() []FindBatchById200ResponseDevicesInner`
+
+GetInstances returns the Instances field if non-nil, zero value otherwise.
+
+### GetInstancesOk
+
+`func (o *VirtualNetwork) GetInstancesOk() (*[]FindBatchById200ResponseDevicesInner, bool)`
+
+GetInstancesOk returns a tuple with the Instances field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetInstances
+
+`func (o *VirtualNetwork) SetInstances(v []FindBatchById200ResponseDevicesInner)`
+
+SetInstances sets Instances field to given value.
+
+### HasInstances
+
+`func (o *VirtualNetwork) HasInstances() bool`
+
+HasInstances returns a boolean if a field has been set.
+
+### GetMetalGateway
+
+`func (o *VirtualNetwork) GetMetalGateway() FindVirtualNetworks200ResponseVirtualNetworksInnerMetalGateway`
+
+GetMetalGateway returns the MetalGateway field if non-nil, zero value otherwise.
+
+### GetMetalGatewayOk
+
+`func (o *VirtualNetwork) GetMetalGatewayOk() (*FindVirtualNetworks200ResponseVirtualNetworksInnerMetalGateway, bool)`
+
+GetMetalGatewayOk returns a tuple with the MetalGateway field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMetalGateway
+
+`func (o *VirtualNetwork) SetMetalGateway(v FindVirtualNetworks200ResponseVirtualNetworksInnerMetalGateway)`
+
+SetMetalGateway sets MetalGateway field to given value.
+
+### HasMetalGateway
+
+`func (o *VirtualNetwork) HasMetalGateway() bool`
+
+HasMetalGateway returns a boolean if a field has been set.
+
+### GetMetro
+
+`func (o *VirtualNetwork) GetMetro() FindBatchById200ResponseDevicesInner`
+
+GetMetro returns the Metro field if non-nil, zero value otherwise.
+
+### GetMetroOk
+
+`func (o *VirtualNetwork) GetMetroOk() (*FindBatchById200ResponseDevicesInner, bool)`
+
+GetMetroOk returns a tuple with the Metro field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMetro
+
+`func (o *VirtualNetwork) SetMetro(v FindBatchById200ResponseDevicesInner)`
+
+SetMetro sets Metro field to given value.
+
+### HasMetro
+
+`func (o *VirtualNetwork) HasMetro() bool`
+
+HasMetro returns a boolean if a field has been set.
+
+### GetMetroCode
+
+`func (o *VirtualNetwork) GetMetroCode() string`
+
+GetMetroCode returns the MetroCode field if non-nil, zero value otherwise.
+
+### GetMetroCodeOk
+
+`func (o *VirtualNetwork) GetMetroCodeOk() (*string, bool)`
+
+GetMetroCodeOk returns a tuple with the MetroCode field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMetroCode
+
+`func (o *VirtualNetwork) SetMetroCode(v string)`
+
+SetMetroCode sets MetroCode field to given value.
+
+### HasMetroCode
+
+`func (o *VirtualNetwork) HasMetroCode() bool`
+
+HasMetroCode returns a boolean if a field has been set.
+
+### GetVxlan
+
+`func (o *VirtualNetwork) GetVxlan() int32`
+
+GetVxlan returns the Vxlan field if non-nil, zero value otherwise.
+
+### GetVxlanOk
+
+`func (o *VirtualNetwork) GetVxlanOk() (*int32, bool)`
+
+GetVxlanOk returns a tuple with the Vxlan field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVxlan
+
+`func (o *VirtualNetwork) SetVxlan(v int32)`
+
+SetVxlan sets Vxlan field to given value.
+
+### HasVxlan
+
+`func (o *VirtualNetwork) HasVxlan() bool`
+
+HasVxlan returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

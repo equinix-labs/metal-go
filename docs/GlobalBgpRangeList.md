@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**GlobalBgpRanges** | Pointer to [**[]GlobalBgpRange**](GlobalBgpRange.md) |  | [optional] 
+**GlobalBgpRanges** | Pointer to [**[]FindBgpConfigByProject200ResponseRangesInner**](FindBgpConfigByProject200ResponseRangesInner.md) |  | [optional] 
 
 ## Methods
 
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetGlobalBgpRanges
 
-`func (o *GlobalBgpRangeList) GetGlobalBgpRanges() []GlobalBgpRange`
+`func (o *GlobalBgpRangeList) GetGlobalBgpRanges() []FindBgpConfigByProject200ResponseRangesInner`
 
 GetGlobalBgpRanges returns the GlobalBgpRanges field if non-nil, zero value otherwise.
 
 ### GetGlobalBgpRangesOk
 
-`func (o *GlobalBgpRangeList) GetGlobalBgpRangesOk() (*[]GlobalBgpRange, bool)`
+`func (o *GlobalBgpRangeList) GetGlobalBgpRangesOk() (*[]FindBgpConfigByProject200ResponseRangesInner, bool)`
 
 GetGlobalBgpRangesOk returns a tuple with the GlobalBgpRanges field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetGlobalBgpRanges
 
-`func (o *GlobalBgpRangeList) SetGlobalBgpRanges(v []GlobalBgpRange)`
+`func (o *GlobalBgpRangeList) SetGlobalBgpRanges(v []FindBgpConfigByProject200ResponseRangesInner)`
 
 SetGlobalBgpRanges sets GlobalBgpRanges field to given value.
 

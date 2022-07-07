@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**VlanAssignments** | Pointer to [**[]PortVlanAssignment**](PortVlanAssignment.md) |  | [optional] 
+**VlanAssignments** | Pointer to [**[]FindPortVlanAssignments200ResponseVlanAssignmentsInner**](FindPortVlanAssignments200ResponseVlanAssignmentsInner.md) |  | [optional] 
 
 ## Methods
 
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetVlanAssignments
 
-`func (o *PortVlanAssignmentList) GetVlanAssignments() []PortVlanAssignment`
+`func (o *PortVlanAssignmentList) GetVlanAssignments() []FindPortVlanAssignments200ResponseVlanAssignmentsInner`
 
 GetVlanAssignments returns the VlanAssignments field if non-nil, zero value otherwise.
 
 ### GetVlanAssignmentsOk
 
-`func (o *PortVlanAssignmentList) GetVlanAssignmentsOk() (*[]PortVlanAssignment, bool)`
+`func (o *PortVlanAssignmentList) GetVlanAssignmentsOk() (*[]FindPortVlanAssignments200ResponseVlanAssignmentsInner, bool)`
 
 GetVlanAssignmentsOk returns a tuple with the VlanAssignments field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVlanAssignments
 
-`func (o *PortVlanAssignmentList) SetVlanAssignments(v []PortVlanAssignment)`
+`func (o *PortVlanAssignmentList) SetVlanAssignments(v []FindPortVlanAssignments200ResponseVlanAssignmentsInner)`
 
 SetVlanAssignments sets VlanAssignments field to given value.
 

@@ -17,14 +17,14 @@ import (
 
 // Port struct for Port
 type Port struct {
-	Id   *string                `json:"id,omitempty"`
-	Type *string                `json:"type,omitempty"`
-	Name *string                `json:"name,omitempty"`
 	Data map[string]interface{} `json:"data,omitempty"`
 	// Indicates whether or not the bond can be broken on the port (when applicable).
-	DisbondOperationSupported *bool   `json:"disbond_operation_supported,omitempty"`
-	VirtualNetworks           []Href  `json:"virtual_networks,omitempty"`
-	Href                      *string `json:"href,omitempty"`
+	DisbondOperationSupported *bool                                  `json:"disbond_operation_supported,omitempty"`
+	Href                      *string                                `json:"href,omitempty"`
+	Id                        *string                                `json:"id,omitempty"`
+	Name                      *string                                `json:"name,omitempty"`
+	Type                      *string                                `json:"type,omitempty"`
+	VirtualNetworks           []FindBatchById200ResponseDevicesInner `json:"virtual_networks,omitempty"`
 }
 
 // NewPort instantiates a new Port object
@@ -42,102 +42,6 @@ func NewPort() *Port {
 func NewPortWithDefaults() *Port {
 	this := Port{}
 	return &this
-}
-
-// GetId returns the Id field value if set, zero value otherwise.
-func (o *Port) GetId() string {
-	if o == nil || o.Id == nil {
-		var ret string
-		return ret
-	}
-	return *o.Id
-}
-
-// GetIdOk returns a tuple with the Id field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Port) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
-		return nil, false
-	}
-	return o.Id, true
-}
-
-// HasId returns a boolean if a field has been set.
-func (o *Port) HasId() bool {
-	if o != nil && o.Id != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetId gets a reference to the given string and assigns it to the Id field.
-func (o *Port) SetId(v string) {
-	o.Id = &v
-}
-
-// GetType returns the Type field value if set, zero value otherwise.
-func (o *Port) GetType() string {
-	if o == nil || o.Type == nil {
-		var ret string
-		return ret
-	}
-	return *o.Type
-}
-
-// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Port) GetTypeOk() (*string, bool) {
-	if o == nil || o.Type == nil {
-		return nil, false
-	}
-	return o.Type, true
-}
-
-// HasType returns a boolean if a field has been set.
-func (o *Port) HasType() bool {
-	if o != nil && o.Type != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetType gets a reference to the given string and assigns it to the Type field.
-func (o *Port) SetType(v string) {
-	o.Type = &v
-}
-
-// GetName returns the Name field value if set, zero value otherwise.
-func (o *Port) GetName() string {
-	if o == nil || o.Name == nil {
-		var ret string
-		return ret
-	}
-	return *o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Port) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
-		return nil, false
-	}
-	return o.Name, true
-}
-
-// HasName returns a boolean if a field has been set.
-func (o *Port) HasName() bool {
-	if o != nil && o.Name != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetName gets a reference to the given string and assigns it to the Name field.
-func (o *Port) SetName(v string) {
-	o.Name = &v
 }
 
 // GetData returns the Data field value if set, zero value otherwise.
@@ -204,38 +108,6 @@ func (o *Port) SetDisbondOperationSupported(v bool) {
 	o.DisbondOperationSupported = &v
 }
 
-// GetVirtualNetworks returns the VirtualNetworks field value if set, zero value otherwise.
-func (o *Port) GetVirtualNetworks() []Href {
-	if o == nil || o.VirtualNetworks == nil {
-		var ret []Href
-		return ret
-	}
-	return o.VirtualNetworks
-}
-
-// GetVirtualNetworksOk returns a tuple with the VirtualNetworks field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Port) GetVirtualNetworksOk() ([]Href, bool) {
-	if o == nil || o.VirtualNetworks == nil {
-		return nil, false
-	}
-	return o.VirtualNetworks, true
-}
-
-// HasVirtualNetworks returns a boolean if a field has been set.
-func (o *Port) HasVirtualNetworks() bool {
-	if o != nil && o.VirtualNetworks != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetVirtualNetworks gets a reference to the given []Href and assigns it to the VirtualNetworks field.
-func (o *Port) SetVirtualNetworks(v []Href) {
-	o.VirtualNetworks = v
-}
-
 // GetHref returns the Href field value if set, zero value otherwise.
 func (o *Port) GetHref() string {
 	if o == nil || o.Href == nil {
@@ -268,28 +140,156 @@ func (o *Port) SetHref(v string) {
 	o.Href = &v
 }
 
+// GetId returns the Id field value if set, zero value otherwise.
+func (o *Port) GetId() string {
+	if o == nil || o.Id == nil {
+		var ret string
+		return ret
+	}
+	return *o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Port) GetIdOk() (*string, bool) {
+	if o == nil || o.Id == nil {
+		return nil, false
+	}
+	return o.Id, true
+}
+
+// HasId returns a boolean if a field has been set.
+func (o *Port) HasId() bool {
+	if o != nil && o.Id != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given string and assigns it to the Id field.
+func (o *Port) SetId(v string) {
+	o.Id = &v
+}
+
+// GetName returns the Name field value if set, zero value otherwise.
+func (o *Port) GetName() string {
+	if o == nil || o.Name == nil {
+		var ret string
+		return ret
+	}
+	return *o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Port) GetNameOk() (*string, bool) {
+	if o == nil || o.Name == nil {
+		return nil, false
+	}
+	return o.Name, true
+}
+
+// HasName returns a boolean if a field has been set.
+func (o *Port) HasName() bool {
+	if o != nil && o.Name != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetName gets a reference to the given string and assigns it to the Name field.
+func (o *Port) SetName(v string) {
+	o.Name = &v
+}
+
+// GetType returns the Type field value if set, zero value otherwise.
+func (o *Port) GetType() string {
+	if o == nil || o.Type == nil {
+		var ret string
+		return ret
+	}
+	return *o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Port) GetTypeOk() (*string, bool) {
+	if o == nil || o.Type == nil {
+		return nil, false
+	}
+	return o.Type, true
+}
+
+// HasType returns a boolean if a field has been set.
+func (o *Port) HasType() bool {
+	if o != nil && o.Type != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetType gets a reference to the given string and assigns it to the Type field.
+func (o *Port) SetType(v string) {
+	o.Type = &v
+}
+
+// GetVirtualNetworks returns the VirtualNetworks field value if set, zero value otherwise.
+func (o *Port) GetVirtualNetworks() []FindBatchById200ResponseDevicesInner {
+	if o == nil || o.VirtualNetworks == nil {
+		var ret []FindBatchById200ResponseDevicesInner
+		return ret
+	}
+	return o.VirtualNetworks
+}
+
+// GetVirtualNetworksOk returns a tuple with the VirtualNetworks field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Port) GetVirtualNetworksOk() ([]FindBatchById200ResponseDevicesInner, bool) {
+	if o == nil || o.VirtualNetworks == nil {
+		return nil, false
+	}
+	return o.VirtualNetworks, true
+}
+
+// HasVirtualNetworks returns a boolean if a field has been set.
+func (o *Port) HasVirtualNetworks() bool {
+	if o != nil && o.VirtualNetworks != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetVirtualNetworks gets a reference to the given []FindBatchById200ResponseDevicesInner and assigns it to the VirtualNetworks field.
+func (o *Port) SetVirtualNetworks(v []FindBatchById200ResponseDevicesInner) {
+	o.VirtualNetworks = v
+}
+
 func (o Port) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
-	}
-	if o.Type != nil {
-		toSerialize["type"] = o.Type
-	}
-	if o.Name != nil {
-		toSerialize["name"] = o.Name
-	}
 	if o.Data != nil {
 		toSerialize["data"] = o.Data
 	}
 	if o.DisbondOperationSupported != nil {
 		toSerialize["disbond_operation_supported"] = o.DisbondOperationSupported
 	}
-	if o.VirtualNetworks != nil {
-		toSerialize["virtual_networks"] = o.VirtualNetworks
-	}
 	if o.Href != nil {
 		toSerialize["href"] = o.Href
+	}
+	if o.Id != nil {
+		toSerialize["id"] = o.Id
+	}
+	if o.Name != nil {
+		toSerialize["name"] = o.Name
+	}
+	if o.Type != nil {
+		toSerialize["type"] = o.Type
+	}
+	if o.VirtualNetworks != nil {
+		toSerialize["virtual_networks"] = o.VirtualNetworks
 	}
 	return json.Marshal(toSerialize)
 }

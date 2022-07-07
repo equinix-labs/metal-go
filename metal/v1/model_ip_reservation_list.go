@@ -17,7 +17,7 @@ import (
 
 // IPReservationList struct for IPReservationList
 type IPReservationList struct {
-	IpAddresses []IPReservation `json:"ip_addresses,omitempty"`
+	IpAddresses []map[string]interface{} `json:"ip_addresses,omitempty"`
 }
 
 // NewIPReservationList instantiates a new IPReservationList object
@@ -38,9 +38,9 @@ func NewIPReservationListWithDefaults() *IPReservationList {
 }
 
 // GetIpAddresses returns the IpAddresses field value if set, zero value otherwise.
-func (o *IPReservationList) GetIpAddresses() []IPReservation {
+func (o *IPReservationList) GetIpAddresses() []map[string]interface{} {
 	if o == nil || o.IpAddresses == nil {
-		var ret []IPReservation
+		var ret []map[string]interface{}
 		return ret
 	}
 	return o.IpAddresses
@@ -48,7 +48,7 @@ func (o *IPReservationList) GetIpAddresses() []IPReservation {
 
 // GetIpAddressesOk returns a tuple with the IpAddresses field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IPReservationList) GetIpAddressesOk() ([]IPReservation, bool) {
+func (o *IPReservationList) GetIpAddressesOk() ([]map[string]interface{}, bool) {
 	if o == nil || o.IpAddresses == nil {
 		return nil, false
 	}
@@ -64,8 +64,8 @@ func (o *IPReservationList) HasIpAddresses() bool {
 	return false
 }
 
-// SetIpAddresses gets a reference to the given []IPReservation and assigns it to the IpAddresses field.
-func (o *IPReservationList) SetIpAddresses(v []IPReservation) {
+// SetIpAddresses gets a reference to the given []map[string]interface{} and assigns it to the IpAddresses field.
+func (o *IPReservationList) SetIpAddresses(v []map[string]interface{}) {
 	o.IpAddresses = v
 }
 

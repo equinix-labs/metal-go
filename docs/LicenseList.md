@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Licenses** | Pointer to [**[]License**](License.md) |  | [optional] 
+**Licenses** | Pointer to [**[]FindLicenseById200Response**](FindLicenseById200Response.md) |  | [optional] 
 
 ## Methods
 
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetLicenses
 
-`func (o *LicenseList) GetLicenses() []License`
+`func (o *LicenseList) GetLicenses() []FindLicenseById200Response`
 
 GetLicenses returns the Licenses field if non-nil, zero value otherwise.
 
 ### GetLicensesOk
 
-`func (o *LicenseList) GetLicensesOk() (*[]License, bool)`
+`func (o *LicenseList) GetLicensesOk() (*[]FindLicenseById200Response, bool)`
 
 GetLicensesOk returns a tuple with the Licenses field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLicenses
 
-`func (o *LicenseList) SetLicenses(v []License)`
+`func (o *LicenseList) SetLicenses(v []FindLicenseById200Response)`
 
 SetLicenses sets Licenses field to given value.
 

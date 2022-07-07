@@ -17,8 +17,8 @@ import (
 
 // ProjectList struct for ProjectList
 type ProjectList struct {
-	Projects []Project `json:"projects,omitempty"`
-	Meta     *Meta     `json:"meta,omitempty"`
+	Meta     *FindDeviceEvents200ResponseMeta            `json:"meta,omitempty"`
+	Projects []MoveHardwareReservation201ResponseProject `json:"projects,omitempty"`
 }
 
 // NewProjectList instantiates a new ProjectList object
@@ -38,42 +38,10 @@ func NewProjectListWithDefaults() *ProjectList {
 	return &this
 }
 
-// GetProjects returns the Projects field value if set, zero value otherwise.
-func (o *ProjectList) GetProjects() []Project {
-	if o == nil || o.Projects == nil {
-		var ret []Project
-		return ret
-	}
-	return o.Projects
-}
-
-// GetProjectsOk returns a tuple with the Projects field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ProjectList) GetProjectsOk() ([]Project, bool) {
-	if o == nil || o.Projects == nil {
-		return nil, false
-	}
-	return o.Projects, true
-}
-
-// HasProjects returns a boolean if a field has been set.
-func (o *ProjectList) HasProjects() bool {
-	if o != nil && o.Projects != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetProjects gets a reference to the given []Project and assigns it to the Projects field.
-func (o *ProjectList) SetProjects(v []Project) {
-	o.Projects = v
-}
-
 // GetMeta returns the Meta field value if set, zero value otherwise.
-func (o *ProjectList) GetMeta() Meta {
+func (o *ProjectList) GetMeta() FindDeviceEvents200ResponseMeta {
 	if o == nil || o.Meta == nil {
-		var ret Meta
+		var ret FindDeviceEvents200ResponseMeta
 		return ret
 	}
 	return *o.Meta
@@ -81,7 +49,7 @@ func (o *ProjectList) GetMeta() Meta {
 
 // GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectList) GetMetaOk() (*Meta, bool) {
+func (o *ProjectList) GetMetaOk() (*FindDeviceEvents200ResponseMeta, bool) {
 	if o == nil || o.Meta == nil {
 		return nil, false
 	}
@@ -97,18 +65,50 @@ func (o *ProjectList) HasMeta() bool {
 	return false
 }
 
-// SetMeta gets a reference to the given Meta and assigns it to the Meta field.
-func (o *ProjectList) SetMeta(v Meta) {
+// SetMeta gets a reference to the given FindDeviceEvents200ResponseMeta and assigns it to the Meta field.
+func (o *ProjectList) SetMeta(v FindDeviceEvents200ResponseMeta) {
 	o.Meta = &v
+}
+
+// GetProjects returns the Projects field value if set, zero value otherwise.
+func (o *ProjectList) GetProjects() []MoveHardwareReservation201ResponseProject {
+	if o == nil || o.Projects == nil {
+		var ret []MoveHardwareReservation201ResponseProject
+		return ret
+	}
+	return o.Projects
+}
+
+// GetProjectsOk returns a tuple with the Projects field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ProjectList) GetProjectsOk() ([]MoveHardwareReservation201ResponseProject, bool) {
+	if o == nil || o.Projects == nil {
+		return nil, false
+	}
+	return o.Projects, true
+}
+
+// HasProjects returns a boolean if a field has been set.
+func (o *ProjectList) HasProjects() bool {
+	if o != nil && o.Projects != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetProjects gets a reference to the given []MoveHardwareReservation201ResponseProject and assigns it to the Projects field.
+func (o *ProjectList) SetProjects(v []MoveHardwareReservation201ResponseProject) {
+	o.Projects = v
 }
 
 func (o ProjectList) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Projects != nil {
-		toSerialize["projects"] = o.Projects
-	}
 	if o.Meta != nil {
 		toSerialize["meta"] = o.Meta
+	}
+	if o.Projects != nil {
+		toSerialize["projects"] = o.Projects
 	}
 	return json.Marshal(toSerialize)
 }

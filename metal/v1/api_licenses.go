@@ -23,6 +23,174 @@ import (
 // LicensesApiService LicensesApi service
 type LicensesApiService service
 
+type ApiCreateLicenseRequest struct {
+	ctx        context.Context
+	ApiService *LicensesApiService
+	id         string
+	body       *CreateLicenseRequest
+}
+
+// License to create
+func (r ApiCreateLicenseRequest) Body(body CreateLicenseRequest) ApiCreateLicenseRequest {
+	r.body = &body
+	return r
+}
+
+func (r ApiCreateLicenseRequest) Execute() (*FindLicenseById200Response, *http.Response, error) {
+	return r.ApiService.CreateLicenseExecute(r)
+}
+
+/*
+CreateLicense Create a License
+
+Creates a new license for the given project
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id Project UUID
+ @return ApiCreateLicenseRequest
+*/
+func (a *LicensesApiService) CreateLicense(ctx context.Context, id string) ApiCreateLicenseRequest {
+	return ApiCreateLicenseRequest{
+		ApiService: a,
+		ctx:        ctx,
+		id:         id,
+	}
+}
+
+// Execute executes the request
+//  @return FindLicenseById200Response
+func (a *LicensesApiService) CreateLicenseExecute(r ApiCreateLicenseRequest) (*FindLicenseById200Response, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *FindLicenseById200Response
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LicensesApiService.CreateLicense")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/projects/{id}/licenses"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.body == nil {
+		return localVarReturnValue, nil, reportError("body is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.body
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["x_auth_token"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["X-Auth-Token"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v DeleteAPIKey401Response
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v DeleteAPIKey401Response
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v DeleteAPIKey401Response
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v DeleteAPIKey401Response
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiDeleteLicenseRequest struct {
 	ctx        context.Context
 	ApiService *LicensesApiService
@@ -124,7 +292,7 @@ func (a *LicensesApiService) DeleteLicenseExecute(r ApiDeleteLicenseRequest) (*h
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -134,7 +302,7 @@ func (a *LicensesApiService) DeleteLicenseExecute(r ApiDeleteLicenseRequest) (*h
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -144,7 +312,7 @@ func (a *LicensesApiService) DeleteLicenseExecute(r ApiDeleteLicenseRequest) (*h
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -178,7 +346,7 @@ func (r ApiFindLicenseByIdRequest) Exclude(exclude []string) ApiFindLicenseByIdR
 	return r
 }
 
-func (r ApiFindLicenseByIdRequest) Execute() (*License, *http.Response, error) {
+func (r ApiFindLicenseByIdRequest) Execute() (*FindLicenseById200Response, *http.Response, error) {
 	return r.ApiService.FindLicenseByIdExecute(r)
 }
 
@@ -200,13 +368,13 @@ func (a *LicensesApiService) FindLicenseById(ctx context.Context, id string) Api
 }
 
 // Execute executes the request
-//  @return License
-func (a *LicensesApiService) FindLicenseByIdExecute(r ApiFindLicenseByIdRequest) (*License, *http.Response, error) {
+//  @return FindLicenseById200Response
+func (a *LicensesApiService) FindLicenseByIdExecute(r ApiFindLicenseByIdRequest) (*FindLicenseById200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *License
+		localVarReturnValue *FindLicenseById200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LicensesApiService.FindLicenseById")
@@ -281,7 +449,7 @@ func (a *LicensesApiService) FindLicenseByIdExecute(r ApiFindLicenseByIdRequest)
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -291,7 +459,7 @@ func (a *LicensesApiService) FindLicenseByIdExecute(r ApiFindLicenseByIdRequest)
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -301,7 +469,7 @@ func (a *LicensesApiService) FindLicenseByIdExecute(r ApiFindLicenseByIdRequest)
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -324,34 +492,55 @@ func (a *LicensesApiService) FindLicenseByIdExecute(r ApiFindLicenseByIdRequest)
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiUpdateLicenseRequest struct {
+type ApiFindProjectLicensesRequest struct {
 	ctx        context.Context
 	ApiService *LicensesApiService
 	id         string
-	license    *LicenseUpdateInput
+	include    *[]string
+	exclude    *[]string
+	page       *int32
+	perPage    *int32
 }
 
-// License to update
-func (r ApiUpdateLicenseRequest) License(license LicenseUpdateInput) ApiUpdateLicenseRequest {
-	r.license = &license
+// Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+func (r ApiFindProjectLicensesRequest) Include(include []string) ApiFindProjectLicensesRequest {
+	r.include = &include
 	return r
 }
 
-func (r ApiUpdateLicenseRequest) Execute() (*License, *http.Response, error) {
-	return r.ApiService.UpdateLicenseExecute(r)
+// Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
+func (r ApiFindProjectLicensesRequest) Exclude(exclude []string) ApiFindProjectLicensesRequest {
+	r.exclude = &exclude
+	return r
+}
+
+// Page to return
+func (r ApiFindProjectLicensesRequest) Page(page int32) ApiFindProjectLicensesRequest {
+	r.page = &page
+	return r
+}
+
+// Items returned per page
+func (r ApiFindProjectLicensesRequest) PerPage(perPage int32) ApiFindProjectLicensesRequest {
+	r.perPage = &perPage
+	return r
+}
+
+func (r ApiFindProjectLicensesRequest) Execute() (*FindProjectLicenses200Response, *http.Response, error) {
+	return r.ApiService.FindProjectLicensesExecute(r)
 }
 
 /*
-UpdateLicense Update the license
+FindProjectLicenses Retrieve all licenses
 
-Updates the license.
+Provides a collection of licenses for a given project.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id License UUID
- @return ApiUpdateLicenseRequest
+ @param id Project UUID
+ @return ApiFindProjectLicensesRequest
 */
-func (a *LicensesApiService) UpdateLicense(ctx context.Context, id string) ApiUpdateLicenseRequest {
-	return ApiUpdateLicenseRequest{
+func (a *LicensesApiService) FindProjectLicenses(ctx context.Context, id string) ApiFindProjectLicensesRequest {
+	return ApiFindProjectLicensesRequest{
 		ApiService: a,
 		ctx:        ctx,
 		id:         id,
@@ -359,32 +548,41 @@ func (a *LicensesApiService) UpdateLicense(ctx context.Context, id string) ApiUp
 }
 
 // Execute executes the request
-//  @return License
-func (a *LicensesApiService) UpdateLicenseExecute(r ApiUpdateLicenseRequest) (*License, *http.Response, error) {
+//  @return FindProjectLicenses200Response
+func (a *LicensesApiService) FindProjectLicensesExecute(r ApiFindProjectLicensesRequest) (*FindProjectLicenses200Response, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodPut
+		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *License
+		localVarReturnValue *FindProjectLicenses200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LicensesApiService.UpdateLicense")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LicensesApiService.FindProjectLicenses")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/licenses/{id}"
+	localVarPath := localBasePath + "/projects/{id}/licenses"
 	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.license == nil {
-		return localVarReturnValue, nil, reportError("license is required and must be specified")
-	}
 
+	if r.include != nil {
+		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
+	}
+	if r.exclude != nil {
+		localVarQueryParams.Add("exclude", parameterToString(*r.exclude, "csv"))
+	}
+	if r.page != nil {
+		localVarQueryParams.Add("page", parameterToString(*r.page, ""))
+	}
+	if r.perPage != nil {
+		localVarQueryParams.Add("per_page", parameterToString(*r.perPage, ""))
+	}
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -400,8 +598,6 @@ func (a *LicensesApiService) UpdateLicenseExecute(r ApiUpdateLicenseRequest) (*L
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	// body params
-	localVarPostBody = r.license
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -439,7 +635,7 @@ func (a *LicensesApiService) UpdateLicenseExecute(r ApiUpdateLicenseRequest) (*L
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -449,7 +645,7 @@ func (a *LicensesApiService) UpdateLicenseExecute(r ApiUpdateLicenseRequest) (*L
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -459,7 +655,165 @@ func (a *LicensesApiService) UpdateLicenseExecute(r ApiUpdateLicenseRequest) (*L
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
+			var v DeleteAPIKey401Response
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiUpdateLicenseRequest struct {
+	ctx        context.Context
+	ApiService *LicensesApiService
+	id         string
+	body       *UpdateLicenseRequest
+}
+
+// License to update
+func (r ApiUpdateLicenseRequest) Body(body UpdateLicenseRequest) ApiUpdateLicenseRequest {
+	r.body = &body
+	return r
+}
+
+func (r ApiUpdateLicenseRequest) Execute() (*FindLicenseById200Response, *http.Response, error) {
+	return r.ApiService.UpdateLicenseExecute(r)
+}
+
+/*
+UpdateLicense Update the license
+
+Updates the license.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id License UUID
+ @return ApiUpdateLicenseRequest
+*/
+func (a *LicensesApiService) UpdateLicense(ctx context.Context, id string) ApiUpdateLicenseRequest {
+	return ApiUpdateLicenseRequest{
+		ApiService: a,
+		ctx:        ctx,
+		id:         id,
+	}
+}
+
+// Execute executes the request
+//  @return FindLicenseById200Response
+func (a *LicensesApiService) UpdateLicenseExecute(r ApiUpdateLicenseRequest) (*FindLicenseById200Response, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPut
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *FindLicenseById200Response
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LicensesApiService.UpdateLicense")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/licenses/{id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.body == nil {
+		return localVarReturnValue, nil, reportError("body is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.body
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["x_auth_token"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["X-Auth-Token"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v DeleteAPIKey401Response
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v DeleteAPIKey401Response
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -469,7 +823,7 @@ func (a *LicensesApiService) UpdateLicenseExecute(r ApiUpdateLicenseRequest) (*L
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
-			var v Error
+			var v DeleteAPIKey401Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

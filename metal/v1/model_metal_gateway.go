@@ -18,16 +18,16 @@ import (
 
 // MetalGateway struct for MetalGateway
 type MetalGateway struct {
-	Id *string `json:"id,omitempty"`
+	CreatedAt     *time.Time                            `json:"created_at,omitempty"`
+	CreatedBy     *FindBatchById200ResponseDevicesInner `json:"created_by,omitempty"`
+	Href          *string                               `json:"href,omitempty"`
+	Id            *string                               `json:"id,omitempty"`
+	IpReservation *FindBatchById200ResponseDevicesInner `json:"ip_reservation,omitempty"`
+	Project       *FindBatchById200ResponseDevicesInner `json:"project,omitempty"`
 	// The current state of the Metal Gateway. 'Ready' indicates the gateway record has been configured, but is currently not active on the network. 'Active' indicates the gateway has been configured on the network. 'Deleting' is a temporary state used to indicate that the gateway is in the process of being un-configured from the network, after which the gateway record will be deleted.
-	State          *string    `json:"state,omitempty"`
-	Project        *Href      `json:"project,omitempty"`
-	VirtualNetwork *Href      `json:"virtual_network,omitempty"`
-	IpReservation  *Href      `json:"ip_reservation,omitempty"`
-	Href           *string    `json:"href,omitempty"`
-	CreatedAt      *time.Time `json:"created_at,omitempty"`
-	UpdatedAt      *time.Time `json:"updated_at,omitempty"`
-	CreatedBy      *Href      `json:"created_by,omitempty"`
+	State          *string                               `json:"state,omitempty"`
+	UpdatedAt      *time.Time                            `json:"updated_at,omitempty"`
+	VirtualNetwork *FindBatchById200ResponseDevicesInner `json:"virtual_network,omitempty"`
 }
 
 // NewMetalGateway instantiates a new MetalGateway object
@@ -45,198 +45,6 @@ func NewMetalGateway() *MetalGateway {
 func NewMetalGatewayWithDefaults() *MetalGateway {
 	this := MetalGateway{}
 	return &this
-}
-
-// GetId returns the Id field value if set, zero value otherwise.
-func (o *MetalGateway) GetId() string {
-	if o == nil || o.Id == nil {
-		var ret string
-		return ret
-	}
-	return *o.Id
-}
-
-// GetIdOk returns a tuple with the Id field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *MetalGateway) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
-		return nil, false
-	}
-	return o.Id, true
-}
-
-// HasId returns a boolean if a field has been set.
-func (o *MetalGateway) HasId() bool {
-	if o != nil && o.Id != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetId gets a reference to the given string and assigns it to the Id field.
-func (o *MetalGateway) SetId(v string) {
-	o.Id = &v
-}
-
-// GetState returns the State field value if set, zero value otherwise.
-func (o *MetalGateway) GetState() string {
-	if o == nil || o.State == nil {
-		var ret string
-		return ret
-	}
-	return *o.State
-}
-
-// GetStateOk returns a tuple with the State field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *MetalGateway) GetStateOk() (*string, bool) {
-	if o == nil || o.State == nil {
-		return nil, false
-	}
-	return o.State, true
-}
-
-// HasState returns a boolean if a field has been set.
-func (o *MetalGateway) HasState() bool {
-	if o != nil && o.State != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetState gets a reference to the given string and assigns it to the State field.
-func (o *MetalGateway) SetState(v string) {
-	o.State = &v
-}
-
-// GetProject returns the Project field value if set, zero value otherwise.
-func (o *MetalGateway) GetProject() Href {
-	if o == nil || o.Project == nil {
-		var ret Href
-		return ret
-	}
-	return *o.Project
-}
-
-// GetProjectOk returns a tuple with the Project field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *MetalGateway) GetProjectOk() (*Href, bool) {
-	if o == nil || o.Project == nil {
-		return nil, false
-	}
-	return o.Project, true
-}
-
-// HasProject returns a boolean if a field has been set.
-func (o *MetalGateway) HasProject() bool {
-	if o != nil && o.Project != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetProject gets a reference to the given Href and assigns it to the Project field.
-func (o *MetalGateway) SetProject(v Href) {
-	o.Project = &v
-}
-
-// GetVirtualNetwork returns the VirtualNetwork field value if set, zero value otherwise.
-func (o *MetalGateway) GetVirtualNetwork() Href {
-	if o == nil || o.VirtualNetwork == nil {
-		var ret Href
-		return ret
-	}
-	return *o.VirtualNetwork
-}
-
-// GetVirtualNetworkOk returns a tuple with the VirtualNetwork field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *MetalGateway) GetVirtualNetworkOk() (*Href, bool) {
-	if o == nil || o.VirtualNetwork == nil {
-		return nil, false
-	}
-	return o.VirtualNetwork, true
-}
-
-// HasVirtualNetwork returns a boolean if a field has been set.
-func (o *MetalGateway) HasVirtualNetwork() bool {
-	if o != nil && o.VirtualNetwork != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetVirtualNetwork gets a reference to the given Href and assigns it to the VirtualNetwork field.
-func (o *MetalGateway) SetVirtualNetwork(v Href) {
-	o.VirtualNetwork = &v
-}
-
-// GetIpReservation returns the IpReservation field value if set, zero value otherwise.
-func (o *MetalGateway) GetIpReservation() Href {
-	if o == nil || o.IpReservation == nil {
-		var ret Href
-		return ret
-	}
-	return *o.IpReservation
-}
-
-// GetIpReservationOk returns a tuple with the IpReservation field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *MetalGateway) GetIpReservationOk() (*Href, bool) {
-	if o == nil || o.IpReservation == nil {
-		return nil, false
-	}
-	return o.IpReservation, true
-}
-
-// HasIpReservation returns a boolean if a field has been set.
-func (o *MetalGateway) HasIpReservation() bool {
-	if o != nil && o.IpReservation != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetIpReservation gets a reference to the given Href and assigns it to the IpReservation field.
-func (o *MetalGateway) SetIpReservation(v Href) {
-	o.IpReservation = &v
-}
-
-// GetHref returns the Href field value if set, zero value otherwise.
-func (o *MetalGateway) GetHref() string {
-	if o == nil || o.Href == nil {
-		var ret string
-		return ret
-	}
-	return *o.Href
-}
-
-// GetHrefOk returns a tuple with the Href field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *MetalGateway) GetHrefOk() (*string, bool) {
-	if o == nil || o.Href == nil {
-		return nil, false
-	}
-	return o.Href, true
-}
-
-// HasHref returns a boolean if a field has been set.
-func (o *MetalGateway) HasHref() bool {
-	if o != nil && o.Href != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetHref gets a reference to the given string and assigns it to the Href field.
-func (o *MetalGateway) SetHref(v string) {
-	o.Href = &v
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
@@ -271,6 +79,198 @@ func (o *MetalGateway) SetCreatedAt(v time.Time) {
 	o.CreatedAt = &v
 }
 
+// GetCreatedBy returns the CreatedBy field value if set, zero value otherwise.
+func (o *MetalGateway) GetCreatedBy() FindBatchById200ResponseDevicesInner {
+	if o == nil || o.CreatedBy == nil {
+		var ret FindBatchById200ResponseDevicesInner
+		return ret
+	}
+	return *o.CreatedBy
+}
+
+// GetCreatedByOk returns a tuple with the CreatedBy field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MetalGateway) GetCreatedByOk() (*FindBatchById200ResponseDevicesInner, bool) {
+	if o == nil || o.CreatedBy == nil {
+		return nil, false
+	}
+	return o.CreatedBy, true
+}
+
+// HasCreatedBy returns a boolean if a field has been set.
+func (o *MetalGateway) HasCreatedBy() bool {
+	if o != nil && o.CreatedBy != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCreatedBy gets a reference to the given FindBatchById200ResponseDevicesInner and assigns it to the CreatedBy field.
+func (o *MetalGateway) SetCreatedBy(v FindBatchById200ResponseDevicesInner) {
+	o.CreatedBy = &v
+}
+
+// GetHref returns the Href field value if set, zero value otherwise.
+func (o *MetalGateway) GetHref() string {
+	if o == nil || o.Href == nil {
+		var ret string
+		return ret
+	}
+	return *o.Href
+}
+
+// GetHrefOk returns a tuple with the Href field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MetalGateway) GetHrefOk() (*string, bool) {
+	if o == nil || o.Href == nil {
+		return nil, false
+	}
+	return o.Href, true
+}
+
+// HasHref returns a boolean if a field has been set.
+func (o *MetalGateway) HasHref() bool {
+	if o != nil && o.Href != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHref gets a reference to the given string and assigns it to the Href field.
+func (o *MetalGateway) SetHref(v string) {
+	o.Href = &v
+}
+
+// GetId returns the Id field value if set, zero value otherwise.
+func (o *MetalGateway) GetId() string {
+	if o == nil || o.Id == nil {
+		var ret string
+		return ret
+	}
+	return *o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MetalGateway) GetIdOk() (*string, bool) {
+	if o == nil || o.Id == nil {
+		return nil, false
+	}
+	return o.Id, true
+}
+
+// HasId returns a boolean if a field has been set.
+func (o *MetalGateway) HasId() bool {
+	if o != nil && o.Id != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given string and assigns it to the Id field.
+func (o *MetalGateway) SetId(v string) {
+	o.Id = &v
+}
+
+// GetIpReservation returns the IpReservation field value if set, zero value otherwise.
+func (o *MetalGateway) GetIpReservation() FindBatchById200ResponseDevicesInner {
+	if o == nil || o.IpReservation == nil {
+		var ret FindBatchById200ResponseDevicesInner
+		return ret
+	}
+	return *o.IpReservation
+}
+
+// GetIpReservationOk returns a tuple with the IpReservation field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MetalGateway) GetIpReservationOk() (*FindBatchById200ResponseDevicesInner, bool) {
+	if o == nil || o.IpReservation == nil {
+		return nil, false
+	}
+	return o.IpReservation, true
+}
+
+// HasIpReservation returns a boolean if a field has been set.
+func (o *MetalGateway) HasIpReservation() bool {
+	if o != nil && o.IpReservation != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetIpReservation gets a reference to the given FindBatchById200ResponseDevicesInner and assigns it to the IpReservation field.
+func (o *MetalGateway) SetIpReservation(v FindBatchById200ResponseDevicesInner) {
+	o.IpReservation = &v
+}
+
+// GetProject returns the Project field value if set, zero value otherwise.
+func (o *MetalGateway) GetProject() FindBatchById200ResponseDevicesInner {
+	if o == nil || o.Project == nil {
+		var ret FindBatchById200ResponseDevicesInner
+		return ret
+	}
+	return *o.Project
+}
+
+// GetProjectOk returns a tuple with the Project field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MetalGateway) GetProjectOk() (*FindBatchById200ResponseDevicesInner, bool) {
+	if o == nil || o.Project == nil {
+		return nil, false
+	}
+	return o.Project, true
+}
+
+// HasProject returns a boolean if a field has been set.
+func (o *MetalGateway) HasProject() bool {
+	if o != nil && o.Project != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetProject gets a reference to the given FindBatchById200ResponseDevicesInner and assigns it to the Project field.
+func (o *MetalGateway) SetProject(v FindBatchById200ResponseDevicesInner) {
+	o.Project = &v
+}
+
+// GetState returns the State field value if set, zero value otherwise.
+func (o *MetalGateway) GetState() string {
+	if o == nil || o.State == nil {
+		var ret string
+		return ret
+	}
+	return *o.State
+}
+
+// GetStateOk returns a tuple with the State field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MetalGateway) GetStateOk() (*string, bool) {
+	if o == nil || o.State == nil {
+		return nil, false
+	}
+	return o.State, true
+}
+
+// HasState returns a boolean if a field has been set.
+func (o *MetalGateway) HasState() bool {
+	if o != nil && o.State != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetState gets a reference to the given string and assigns it to the State field.
+func (o *MetalGateway) SetState(v string) {
+	o.State = &v
+}
+
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *MetalGateway) GetUpdatedAt() time.Time {
 	if o == nil || o.UpdatedAt == nil {
@@ -303,66 +303,66 @@ func (o *MetalGateway) SetUpdatedAt(v time.Time) {
 	o.UpdatedAt = &v
 }
 
-// GetCreatedBy returns the CreatedBy field value if set, zero value otherwise.
-func (o *MetalGateway) GetCreatedBy() Href {
-	if o == nil || o.CreatedBy == nil {
-		var ret Href
+// GetVirtualNetwork returns the VirtualNetwork field value if set, zero value otherwise.
+func (o *MetalGateway) GetVirtualNetwork() FindBatchById200ResponseDevicesInner {
+	if o == nil || o.VirtualNetwork == nil {
+		var ret FindBatchById200ResponseDevicesInner
 		return ret
 	}
-	return *o.CreatedBy
+	return *o.VirtualNetwork
 }
 
-// GetCreatedByOk returns a tuple with the CreatedBy field value if set, nil otherwise
+// GetVirtualNetworkOk returns a tuple with the VirtualNetwork field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetalGateway) GetCreatedByOk() (*Href, bool) {
-	if o == nil || o.CreatedBy == nil {
+func (o *MetalGateway) GetVirtualNetworkOk() (*FindBatchById200ResponseDevicesInner, bool) {
+	if o == nil || o.VirtualNetwork == nil {
 		return nil, false
 	}
-	return o.CreatedBy, true
+	return o.VirtualNetwork, true
 }
 
-// HasCreatedBy returns a boolean if a field has been set.
-func (o *MetalGateway) HasCreatedBy() bool {
-	if o != nil && o.CreatedBy != nil {
+// HasVirtualNetwork returns a boolean if a field has been set.
+func (o *MetalGateway) HasVirtualNetwork() bool {
+	if o != nil && o.VirtualNetwork != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetCreatedBy gets a reference to the given Href and assigns it to the CreatedBy field.
-func (o *MetalGateway) SetCreatedBy(v Href) {
-	o.CreatedBy = &v
+// SetVirtualNetwork gets a reference to the given FindBatchById200ResponseDevicesInner and assigns it to the VirtualNetwork field.
+func (o *MetalGateway) SetVirtualNetwork(v FindBatchById200ResponseDevicesInner) {
+	o.VirtualNetwork = &v
 }
 
 func (o MetalGateway) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
+	if o.CreatedAt != nil {
+		toSerialize["created_at"] = o.CreatedAt
 	}
-	if o.State != nil {
-		toSerialize["state"] = o.State
-	}
-	if o.Project != nil {
-		toSerialize["project"] = o.Project
-	}
-	if o.VirtualNetwork != nil {
-		toSerialize["virtual_network"] = o.VirtualNetwork
-	}
-	if o.IpReservation != nil {
-		toSerialize["ip_reservation"] = o.IpReservation
+	if o.CreatedBy != nil {
+		toSerialize["created_by"] = o.CreatedBy
 	}
 	if o.Href != nil {
 		toSerialize["href"] = o.Href
 	}
-	if o.CreatedAt != nil {
-		toSerialize["created_at"] = o.CreatedAt
+	if o.Id != nil {
+		toSerialize["id"] = o.Id
+	}
+	if o.IpReservation != nil {
+		toSerialize["ip_reservation"] = o.IpReservation
+	}
+	if o.Project != nil {
+		toSerialize["project"] = o.Project
+	}
+	if o.State != nil {
+		toSerialize["state"] = o.State
 	}
 	if o.UpdatedAt != nil {
 		toSerialize["updated_at"] = o.UpdatedAt
 	}
-	if o.CreatedBy != nil {
-		toSerialize["created_by"] = o.CreatedBy
+	if o.VirtualNetwork != nil {
+		toSerialize["virtual_network"] = o.VirtualNetwork
 	}
 	return json.Marshal(toSerialize)
 }
