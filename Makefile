@@ -32,12 +32,12 @@ fix-tags:
 patch:
 	# patch is idempotent, always starting with the fetched
 	# fetched file to create the patched file.
+	cp ${SPEC_FETCHED_FILE} ${SPEC_PATCHED_FILE}
 	ARGS="-o ${SPEC_PATCHED_FILE} ${SPEC_FETCHED_FILE}"; \
 	for diff in $(shell find patches/${SPEC_FETCHED_FILE} -name \*.patch | sort -n); do \
 		patch --no-backup-if-mismatch -N -t $$ARGS $$diff; \
 		ARGS=${SPEC_PATCHED_FILE}; \
 	done
-	find ${SPEC_PATCHED_FILE} -empty -exec cp ${SPEC_FETCHED_FILE} ${SPEC_PATCHED_FILE} \;
 
 patch-post:
 	# patch is idempotent, always starting with the generated files
@@ -47,7 +47,7 @@ patch-post:
 
 
 clean:
-	rm -rf v1/
+	rm -rf $(PACKAGE_PREFIX)
 
 gen:
 	${SWAGGER} generate -g go \
@@ -76,7 +76,7 @@ clean-docs:
 	rm -rf docs API.md
 
 move-docs:
-	mv ${PACKAGE_PREFIX}/${PACKAGE_MAJOR}/API.md .
+	mv ${PACKAGE_PREFIX}/${PACKAGE_MAJOR}/README.md API.md
 	mv ${PACKAGE_PREFIX}/${PACKAGE_MAJOR}/docs .
 
 docs: clean-docs move-docs
@@ -89,8 +89,8 @@ move-other:
 
 # https://github.com/OpenAPITools/openapi-generator/issues/741#issuecomment-569791780
 remove-dupe-requests: ## Removes duplicate Request structs from the generated code
-	@for struct in $$(grep -h 'type .\{1,\} struct' $(PACKAGE_MAJOR)/*.go | grep Request  | sort | uniq -c | grep -v '^      1' | awk '{print $$3}'); do \
-	  for f in $$(/bin/ls $(PACKAGE_MAJOR)/*.go); do \
+	@for struct in $$(grep -h 'type .\{1,\} struct' $(PACKAGE_PREFIX)/$(PACKAGE_MAJOR)/*.go | grep Request  | sort | uniq -c | grep -v '^      1' | awk '{print $$3}'); do \
+	  for f in $$(/bin/ls $(PACKAGE_PREFIX)/$(PACKAGE_MAJOR)/*.go); do \
 	    if grep -qF "type $${struct} struct" "$${f}"; then \
 	      if eval "test -z \$${$${struct}}"; then \
 	        echo "skipping first appearance of $${struct} in file $${f}"; \
@@ -110,4 +110,4 @@ fmt:
 	go run mvdan.cc/gofumpt@v0.3.1 -l -w $(PACKAGE_PREFIX)
 
 stage:
-	test -d .git && git add --intent-to-add README.md docs ${PACKAGE_PREFIX} go.mod go.sum
+	test -d .git && git add --intent-to-add API.md docs ${PACKAGE_PREFIX} go.mod go.sum

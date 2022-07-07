@@ -1,10 +1,8 @@
-module github.com/t0mk/gometal/examples/plans
+module github.com/equinix-labs/metal-go/examples/plans
 
 go 1.16
 
-replace github.com/t0mk/gometal => ../../v1
-
 require (
-	github.com/t0mk/gometal v0.0.0-20210319183606-a8ca079df213
+	github.com/equinix-labs/metal-go v0.0.0-20210319183606-a8ca079df213
 	sigs.k8s.io/yaml v1.2.0
 )

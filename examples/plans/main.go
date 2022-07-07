@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"os"
 
-	gometal "github.com/t0mk/gometal"
+	metal "github.com/equinix-labs/metal-go/metal/v1"
 	"sigs.k8s.io/yaml"
 )
 
@@ -16,10 +16,10 @@ func main() {
 	// - href: ""
 	include := []string{}
 	exclude := []string{"available_in"}
-	configuration := gometal.NewConfiguration()
+	configuration := metal.NewConfiguration()
 	configuration.Debug = true
 	configuration.AddDefaultHeader("X-Auth-Token", os.Getenv("METAL_AUTH_TOKEN"))
-	api_client := gometal.NewAPIClient(configuration)
+	api_client := metal.NewAPIClient(configuration)
 	resp, r, err := api_client.PlansApi.FindPlans(context.Background()).Include(include).Exclude(exclude).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PlansApi.FindPlans``: %v\n", err)
