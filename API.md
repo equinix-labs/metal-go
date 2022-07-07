@@ -90,10 +90,16 @@ Class | Method | HTTP request | Description
 *AuthenticationApi* | [**FindAPIKeys**](docs/AuthenticationApi.md#findapikeys) | **Get** /user/api-keys | Retrieve all user API keys
 *AuthenticationApi* | [**FindProjectAPIKeys**](docs/AuthenticationApi.md#findprojectapikeys) | **Get** /projects/{id}/api-keys | Retrieve all API keys for the project.
 *BGPApi* | [**DeleteBgpSession**](docs/BGPApi.md#deletebgpsession) | **Delete** /bgp/sessions/{id} | Delete the BGP session
+*BGPApi* | [**FindBgpConfigByProject**](docs/BGPApi.md#findbgpconfigbyproject) | **Get** /projects/{id}/bgp-config | Retrieve a bgp config
 *BGPApi* | [**FindBgpSessionById**](docs/BGPApi.md#findbgpsessionbyid) | **Get** /bgp/sessions/{id} | Retrieve a BGP session
+*BGPApi* | [**FindGlobalBgpRanges**](docs/BGPApi.md#findglobalbgpranges) | **Get** /projects/{id}/global-bgp-ranges | Retrieve all global bgp ranges
+*BGPApi* | [**FindProjectBgpSessions**](docs/BGPApi.md#findprojectbgpsessions) | **Get** /projects/{id}/bgp/sessions | Retrieve all BGP sessions for project
+*BGPApi* | [**RequestBgpConfig**](docs/BGPApi.md#requestbgpconfig) | **Post** /projects/{id}/bgp-configs | Requesting bgp config
 *BGPApi* | [**UpdateBgpSession**](docs/BGPApi.md#updatebgpsession) | **Put** /bgp/sessions/{id} | Update the BGP session
+*BatchesApi* | [**CreateDeviceBatch**](docs/BatchesApi.md#createdevicebatch) | **Post** /projects/{id}/devices/batch | Create a devices batch
 *BatchesApi* | [**DeleteBatch**](docs/BatchesApi.md#deletebatch) | **Delete** /batches/{id} | Delete the Batch
 *BatchesApi* | [**FindBatchById**](docs/BatchesApi.md#findbatchbyid) | **Get** /batches/{id} | Retrieve a Batch
+*BatchesApi* | [**FindBatchesByProject**](docs/BatchesApi.md#findbatchesbyproject) | **Get** /projects/{id}/batches | Retrieve all batches by project
 *CapacityApi* | [**CheckCapacityForFacility**](docs/CapacityApi.md#checkcapacityforfacility) | **Post** /capacity | Check capacity
 *CapacityApi* | [**CheckCapacityForMetro**](docs/CapacityApi.md#checkcapacityformetro) | **Post** /capacity/metros | Check capacity for a metro
 *CapacityApi* | [**FindCapacityForFacility**](docs/CapacityApi.md#findcapacityforfacility) | **Get** /capacity | View capacity
@@ -115,17 +121,17 @@ Class | Method | HTTP request | Description
 *ConnectionsApi* | [**UpdateInterconnection**](docs/ConnectionsApi.md#updateinterconnection) | **Put** /connections/{connection_id} | Update connection
 *ConnectionsApi* | [**UpdateVirtualCircuit**](docs/ConnectionsApi.md#updatevirtualcircuit) | **Put** /virtual-circuits/{id} | Update a virtual circuit
 *DevicesApi* | [**CreateBgpSession**](docs/DevicesApi.md#createbgpsession) | **Post** /devices/{id}/bgp/sessions | Create a BGP session
-*DevicesApi* | [**CreateDeviceBatch**](docs/DevicesApi.md#createdevicebatch) | **Post** /projects/{id}/devices/batch | Create a devices batch
+*DevicesApi* | [**CreateDevice**](docs/DevicesApi.md#createdevice) | **Post** /projects/{id}/devices | Create a device
 *DevicesApi* | [**CreateIPAssignment**](docs/DevicesApi.md#createipassignment) | **Post** /devices/{id}/ips | Create an ip assignment
 *DevicesApi* | [**DeleteDevice**](docs/DevicesApi.md#deletedevice) | **Delete** /devices/{id} | Delete the device
 *DevicesApi* | [**FindBgpSessions**](docs/DevicesApi.md#findbgpsessions) | **Get** /devices/{id}/bgp/sessions | Retrieve all BGP sessions
 *DevicesApi* | [**FindDeviceById**](docs/DevicesApi.md#finddevicebyid) | **Get** /devices/{id} | Retrieve a device
 *DevicesApi* | [**FindDeviceCustomdata**](docs/DevicesApi.md#finddevicecustomdata) | **Get** /devices/{id}/customdata | Retrieve the custom metadata of an instance
-*DevicesApi* | [**FindDeviceUsages**](docs/DevicesApi.md#finddeviceusages) | **Get** /devices/{id}/usages | Retrieve all usages for device
 *DevicesApi* | [**FindIPAssignmentCustomdata**](docs/DevicesApi.md#findipassignmentcustomdata) | **Get** /devices/{instance_id}/ips/{id}/customdata | Retrieve the custom metadata of an IP Assignment
 *DevicesApi* | [**FindIPAssignments**](docs/DevicesApi.md#findipassignments) | **Get** /devices/{id}/ips | Retrieve all ip assignments
 *DevicesApi* | [**FindInstanceBandwidth**](docs/DevicesApi.md#findinstancebandwidth) | **Get** /devices/{id}/bandwidth | Retrieve an instance bandwidth
-*DevicesApi* | [**FindProjectUsage**](docs/DevicesApi.md#findprojectusage) | **Get** /projects/{id}/usages | Retrieve all usages for project
+*DevicesApi* | [**FindOrganizationDevices**](docs/DevicesApi.md#findorganizationdevices) | **Get** /organizations/{id}/devices | Retrieve all devices of an organization
+*DevicesApi* | [**FindProjectDevices**](docs/DevicesApi.md#findprojectdevices) | **Get** /projects/{id}/devices | Retrieve all devices of a project
 *DevicesApi* | [**FindTraffic**](docs/DevicesApi.md#findtraffic) | **Get** /devices/{id}/traffic | Retrieve device traffic
 *DevicesApi* | [**GetBgpNeighborData**](docs/DevicesApi.md#getbgpneighbordata) | **Get** /devices/{id}/bgp/neighbors | Retrieve BGP neighbor data for this device
 *DevicesApi* | [**PerformAction**](docs/DevicesApi.md#performaction) | **Post** /devices/{id}/actions | Perform an action
@@ -145,29 +151,25 @@ Class | Method | HTTP request | Description
 *FacilitiesApi* | [**FindFacilities**](docs/FacilitiesApi.md#findfacilities) | **Get** /facilities | Retrieve all facilities
 *FacilitiesApi* | [**FindFacilitiesByOrganization**](docs/FacilitiesApi.md#findfacilitiesbyorganization) | **Get** /organizations/{id}/facilities | Retrieve all facilities visible by the organization
 *FacilitiesApi* | [**FindFacilitiesByProject**](docs/FacilitiesApi.md#findfacilitiesbyproject) | **Get** /projects/{id}/facilities | Retrieve all facilities visible by the project
-*GlobalBgpRangesApi* | [**FindGlobalBgpRanges**](docs/GlobalBgpRangesApi.md#findglobalbgpranges) | **Get** /projects/{id}/global-bgp-ranges | Retrieve all global bgp ranges
 *HardwareReservationsApi* | [**FindHardwareReservationById**](docs/HardwareReservationsApi.md#findhardwarereservationbyid) | **Get** /hardware-reservations/{id} | Retrieve a hardware reservation
+*HardwareReservationsApi* | [**FindProjectHardwareReservations**](docs/HardwareReservationsApi.md#findprojecthardwarereservations) | **Get** /projects/{id}/hardware-reservations | Retrieve all hardware reservations for a given project
 *HardwareReservationsApi* | [**MoveHardwareReservation**](docs/HardwareReservationsApi.md#movehardwarereservation) | **Post** /hardware-reservations/{id}/move | Move a hardware reservation
 *IPAddressesApi* | [**DeleteIPAddress**](docs/IPAddressesApi.md#deleteipaddress) | **Delete** /ips/{id} | Unassign an ip address
 *IPAddressesApi* | [**FindIPAddressById**](docs/IPAddressesApi.md#findipaddressbyid) | **Get** /ips/{id} | Retrieve an ip address
 *IPAddressesApi* | [**FindIPAddressCustomdata**](docs/IPAddressesApi.md#findipaddresscustomdata) | **Get** /ips/{id}/customdata | Retrieve the custom metadata of an IP Reservation or IP Assignment
 *IPAddressesApi* | [**FindIPAvailabilities**](docs/IPAddressesApi.md#findipavailabilities) | **Get** /ips/{id}/available | Retrieve all available subnets of a particular reservation
+*IPAddressesApi* | [**FindIPReservations**](docs/IPAddressesApi.md#findipreservations) | **Get** /projects/{id}/ips | Retrieve all ip reservations
+*IPAddressesApi* | [**RequestIPReservation**](docs/IPAddressesApi.md#requestipreservation) | **Post** /projects/{id}/ips | Requesting IP reservations
 *IPAddressesApi* | [**UpdateIPAddress**](docs/IPAddressesApi.md#updateipaddress) | **Patch** /ips/{id} | Update an ip address
 *IncidentsApi* | [**FindIncidents**](docs/IncidentsApi.md#findincidents) | **Get** /incidents | Retrieve the number of incidents
 *InvitationsApi* | [**AcceptInvitation**](docs/InvitationsApi.md#acceptinvitation) | **Put** /invitations/{id} | Accept an invitation
-*InvitationsApi* | [**CreateOrganizationInvitation**](docs/InvitationsApi.md#createorganizationinvitation) | **Post** /organizations/{id}/invitations | Create an invitation for an organization
-*InvitationsApi* | [**CreateProjectInvitation**](docs/InvitationsApi.md#createprojectinvitation) | **Post** /projects/{project_id}/invitations | Create an invitation for a project
 *InvitationsApi* | [**DeclineInvitation**](docs/InvitationsApi.md#declineinvitation) | **Delete** /invitations/{id} | Decline an invitation
 *InvitationsApi* | [**FindInvitationById**](docs/InvitationsApi.md#findinvitationbyid) | **Get** /invitations/{id} | View an invitation
-*InvitationsApi* | [**FindInvitations**](docs/InvitationsApi.md#findinvitations) | **Get** /invitations | Retrieve current user invitations
-*InvitationsApi* | [**FindOrganizationInvitations**](docs/InvitationsApi.md#findorganizationinvitations) | **Get** /organizations/{id}/invitations | Retrieve organization invitations
-*InvitationsApi* | [**FindProjectInvitations**](docs/InvitationsApi.md#findprojectinvitations) | **Get** /projects/{project_id}/invitations | Retrieve project invitations
+*LicensesApi* | [**CreateLicense**](docs/LicensesApi.md#createlicense) | **Post** /projects/{id}/licenses | Create a License
 *LicensesApi* | [**DeleteLicense**](docs/LicensesApi.md#deletelicense) | **Delete** /licenses/{id} | Delete the license
 *LicensesApi* | [**FindLicenseById**](docs/LicensesApi.md#findlicensebyid) | **Get** /licenses/{id} | Retrieve a license
+*LicensesApi* | [**FindProjectLicenses**](docs/LicensesApi.md#findprojectlicenses) | **Get** /projects/{id}/licenses | Retrieve all licenses
 *LicensesApi* | [**UpdateLicense**](docs/LicensesApi.md#updatelicense) | **Put** /licenses/{id} | Update the license
-*MarketApi* | [**FindMetroSpotMarketPrices**](docs/MarketApi.md#findmetrospotmarketprices) | **Get** /market/spot/prices/metros | Get current spot market prices for metros
-*MarketApi* | [**FindSpotMarketPrices**](docs/MarketApi.md#findspotmarketprices) | **Get** /market/spot/prices | Get current spot market prices
-*MarketApi* | [**FindSpotMarketPricesHistory**](docs/MarketApi.md#findspotmarketpriceshistory) | **Get** /market/spot/prices/history | Get spot market prices for a given period of time
 *MembershipsApi* | [**DeleteMembership**](docs/MembershipsApi.md#deletemembership) | **Delete** /memberships/{id} | Delete the membership
 *MembershipsApi* | [**FindMembershipById**](docs/MembershipsApi.md#findmembershipbyid) | **Get** /memberships/{id} | Retrieve a membership
 *MembershipsApi* | [**UpdateMembership**](docs/MembershipsApi.md#updatemembership) | **Put** /memberships/{id} | Update the membership
@@ -177,32 +179,33 @@ Class | Method | HTTP request | Description
 *MetalGatewaysApi* | [**FindMetalGatewaysByProject**](docs/MetalGatewaysApi.md#findmetalgatewaysbyproject) | **Get** /projects/{project_id}/metal-gateways | Returns all metal gateways for a project
 *MetrosApi* | [**FindMetros**](docs/MetrosApi.md#findmetros) | **Get** /locations/metros | Retrieve all metros
 *MetrosApi* | [**GetMetro**](docs/MetrosApi.md#getmetro) | **Get** /locations/metros/{id} | Retrieve a specific Metro&#39;s details
-*OperatingSystemVersionsApi* | [**FindOperatingSystemVersion**](docs/OperatingSystemVersionsApi.md#findoperatingsystemversion) | **Get** /operating-system-versions | Retrieve all operating system versions
+*OTPsApi* | [**FindEnsureOtp**](docs/OTPsApi.md#findensureotp) | **Post** /user/otp/verify/{otp} | Verify user by providing an OTP
+*OTPsApi* | [**FindRecoveryCodes**](docs/OTPsApi.md#findrecoverycodes) | **Get** /user/otp/recovery-codes | Retrieve my recovery codes
+*OTPsApi* | [**RegenerateCodes**](docs/OTPsApi.md#regeneratecodes) | **Post** /user/otp/recovery-codes | Generate new recovery codes
+*OperatingSystemsApi* | [**FindOperatingSystemVersion**](docs/OperatingSystemsApi.md#findoperatingsystemversion) | **Get** /operating-system-versions | Retrieve all operating system versions
 *OperatingSystemsApi* | [**FindOperatingSystems**](docs/OperatingSystemsApi.md#findoperatingsystems) | **Get** /operating-systems | Retrieve all operating systems
-*OperatingSystemsApi* | [**FindOperatingSystemsByOrganization**](docs/OperatingSystemsApi.md#findoperatingsystemsbyorganization) | **Get** /organizations/{id}/operating-systems | Retrieve all operating systems visible by the organization
 *OrganizationsApi* | [**CreateOrganization**](docs/OrganizationsApi.md#createorganization) | **Post** /organizations | Create an organization
+*OrganizationsApi* | [**CreateOrganizationInvitation**](docs/OrganizationsApi.md#createorganizationinvitation) | **Post** /organizations/{id}/invitations | Create an invitation for an organization
 *OrganizationsApi* | [**CreateOrganizationProject**](docs/OrganizationsApi.md#createorganizationproject) | **Post** /organizations/{id}/projects | Create a project for the organization
 *OrganizationsApi* | [**CreatePaymentMethod**](docs/OrganizationsApi.md#createpaymentmethod) | **Post** /organizations/{id}/payment-methods | Create a payment method for the given organization
 *OrganizationsApi* | [**DeleteOrganization**](docs/OrganizationsApi.md#deleteorganization) | **Delete** /organizations/{id} | Delete the organization
+*OrganizationsApi* | [**FindOperatingSystemsByOrganization**](docs/OrganizationsApi.md#findoperatingsystemsbyorganization) | **Get** /organizations/{id}/operating-systems | Retrieve all operating systems visible by the organization
 *OrganizationsApi* | [**FindOrganizationById**](docs/OrganizationsApi.md#findorganizationbyid) | **Get** /organizations/{id} | Retrieve an organization&#39;s details
 *OrganizationsApi* | [**FindOrganizationCustomdata**](docs/OrganizationsApi.md#findorganizationcustomdata) | **Get** /organizations/{id}/customdata | Retrieve the custom metadata of an organization
-*OrganizationsApi* | [**FindOrganizationDevices**](docs/OrganizationsApi.md#findorganizationdevices) | **Get** /organizations/{id}/devices | Retrieve all devices of an organization
+*OrganizationsApi* | [**FindOrganizationInvitations**](docs/OrganizationsApi.md#findorganizationinvitations) | **Get** /organizations/{id}/invitations | Retrieve organization invitations
 *OrganizationsApi* | [**FindOrganizationPaymentMethods**](docs/OrganizationsApi.md#findorganizationpaymentmethods) | **Get** /organizations/{id}/payment-methods | Retrieve all payment methods of an organization
 *OrganizationsApi* | [**FindOrganizationProjects**](docs/OrganizationsApi.md#findorganizationprojects) | **Get** /organizations/{id}/projects | Retrieve all projects of an organization
 *OrganizationsApi* | [**FindOrganizationTransfers**](docs/OrganizationsApi.md#findorganizationtransfers) | **Get** /organizations/{id}/transfers | Retrieve all project transfer requests from or to an organization
 *OrganizationsApi* | [**FindOrganizations**](docs/OrganizationsApi.md#findorganizations) | **Get** /organizations | Retrieve all organizations
+*OrganizationsApi* | [**FindPlansByOrganization**](docs/OrganizationsApi.md#findplansbyorganization) | **Get** /organizations/{id}/plans | Retrieve all plans visible by the organization
 *OrganizationsApi* | [**UpdateOrganization**](docs/OrganizationsApi.md#updateorganization) | **Put** /organizations/{id} | Update the organization
-*OtpsApi* | [**FindEnsureOtp**](docs/OtpsApi.md#findensureotp) | **Post** /user/otp/verify/{otp} | Verify user by providing an OTP
-*OtpsApi* | [**FindRecoveryCodes**](docs/OtpsApi.md#findrecoverycodes) | **Get** /user/otp/recovery-codes | Retrieve my recovery codes
 *OtpsApi* | [**ReceiveCodes**](docs/OtpsApi.md#receivecodes) | **Post** /user/otp/sms/receive | Receive an OTP per sms
-*OtpsApi* | [**RegenerateCodes**](docs/OtpsApi.md#regeneratecodes) | **Post** /user/otp/recovery-codes | Generate new recovery codes
 *PasswordResetTokensApi* | [**CreatePasswordResetToken**](docs/PasswordResetTokensApi.md#createpasswordresettoken) | **Post** /reset-password | Create a password reset token
 *PasswordResetTokensApi* | [**ResetPassword**](docs/PasswordResetTokensApi.md#resetpassword) | **Delete** /reset-password | Reset current user password
 *PaymentMethodsApi* | [**DeletePaymentMethod**](docs/PaymentMethodsApi.md#deletepaymentmethod) | **Delete** /payment-methods/{id} | Delete the payment method
 *PaymentMethodsApi* | [**FindPaymentMethodById**](docs/PaymentMethodsApi.md#findpaymentmethodbyid) | **Get** /payment-methods/{id} | Retrieve a payment method
 *PaymentMethodsApi* | [**UpdatePaymentMethod**](docs/PaymentMethodsApi.md#updatepaymentmethod) | **Put** /payment-methods/{id} | Update the payment method
 *PlansApi* | [**FindPlans**](docs/PlansApi.md#findplans) | **Get** /plans | Retrieve all plans
-*PlansApi* | [**FindPlansByOrganization**](docs/PlansApi.md#findplansbyorganization) | **Get** /organizations/{id}/plans | Retrieve all plans visible by the organization
 *PlansApi* | [**FindPlansByProject**](docs/PlansApi.md#findplansbyproject) | **Get** /projects/{id}/plans | Retrieve all plans visible by the project
 *PortsApi* | [**AssignNativeVlan**](docs/PortsApi.md#assignnativevlan) | **Post** /ports/{id}/native-vlan | Assign a native VLAN
 *PortsApi* | [**AssignPort**](docs/PortsApi.md#assignport) | **Post** /ports/{id}/assign | Assign a port to virtual network
@@ -218,43 +221,35 @@ Class | Method | HTTP request | Description
 *PortsApi* | [**FindPortVlanAssignmentByPortIdAndAssignmentId**](docs/PortsApi.md#findportvlanassignmentbyportidandassignmentid) | **Get** /ports/{id}/vlan-assignments/{assignment_id} | Show a particular Port VLAN assignment&#39;s details
 *PortsApi* | [**FindPortVlanAssignments**](docs/PortsApi.md#findportvlanassignments) | **Get** /ports/{id}/vlan-assignments | List Current VLAN assignments for a port
 *PortsApi* | [**UnassignPort**](docs/PortsApi.md#unassignport) | **Post** /ports/{id}/unassign | Unassign a port
-*ProjectsApi* | [**CreateDevice**](docs/ProjectsApi.md#createdevice) | **Post** /projects/{id}/devices | Create a device
-*ProjectsApi* | [**CreateLicense**](docs/ProjectsApi.md#createlicense) | **Post** /projects/{id}/licenses | Create a License
 *ProjectsApi* | [**CreateProject**](docs/ProjectsApi.md#createproject) | **Post** /projects | Create a project
-*ProjectsApi* | [**CreateProjectSSHKey**](docs/ProjectsApi.md#createprojectsshkey) | **Post** /projects/{id}/ssh-keys | Create a ssh key for the given project
-*ProjectsApi* | [**CreateSpotMarketRequest**](docs/ProjectsApi.md#createspotmarketrequest) | **Post** /projects/{id}/spot-market-requests | Create a spot market request
+*ProjectsApi* | [**CreateProjectInvitation**](docs/ProjectsApi.md#createprojectinvitation) | **Post** /projects/{project_id}/invitations | Create an invitation for a project
 *ProjectsApi* | [**CreateTransferRequest**](docs/ProjectsApi.md#createtransferrequest) | **Post** /projects/{id}/transfers | Create a transfer request
-*ProjectsApi* | [**CreateVirtualNetwork**](docs/ProjectsApi.md#createvirtualnetwork) | **Post** /projects/{id}/virtual-networks | Create a virtual network
 *ProjectsApi* | [**DeleteProject**](docs/ProjectsApi.md#deleteproject) | **Delete** /projects/{id} | Delete the project
-*ProjectsApi* | [**FindBatchesByProject**](docs/ProjectsApi.md#findbatchesbyproject) | **Get** /projects/{id}/batches | Retrieve all batches by project
-*ProjectsApi* | [**FindBgpConfigByProject**](docs/ProjectsApi.md#findbgpconfigbyproject) | **Get** /projects/{id}/bgp-config | Retrieve a bgp config
-*ProjectsApi* | [**FindDeviceSSHKeys**](docs/ProjectsApi.md#finddevicesshkeys) | **Get** /devices/{id}/ssh-keys | Retrieve a device&#39;s ssh keys
 *ProjectsApi* | [**FindIPReservationCustomdata**](docs/ProjectsApi.md#findipreservationcustomdata) | **Get** /projects/{project_id}/ips/{id}/customdata | Retrieve the custom metadata of an IP Reservation
-*ProjectsApi* | [**FindIPReservations**](docs/ProjectsApi.md#findipreservations) | **Get** /projects/{id}/ips | Retrieve all ip reservations
-*ProjectsApi* | [**FindProjectBgpSessions**](docs/ProjectsApi.md#findprojectbgpsessions) | **Get** /projects/{id}/bgp/sessions | Retrieve all BGP sessions for project
 *ProjectsApi* | [**FindProjectById**](docs/ProjectsApi.md#findprojectbyid) | **Get** /projects/{id} | Retrieve a project
 *ProjectsApi* | [**FindProjectCustomdata**](docs/ProjectsApi.md#findprojectcustomdata) | **Get** /projects/{id}/customdata | Retrieve the custom metadata of a project
-*ProjectsApi* | [**FindProjectDevices**](docs/ProjectsApi.md#findprojectdevices) | **Get** /projects/{id}/devices | Retrieve all devices of a project
-*ProjectsApi* | [**FindProjectHardwareReservations**](docs/ProjectsApi.md#findprojecthardwarereservations) | **Get** /projects/{id}/hardware-reservations | Retrieve all hardware reservations for a given project
-*ProjectsApi* | [**FindProjectLicenses**](docs/ProjectsApi.md#findprojectlicenses) | **Get** /projects/{id}/licenses | Retrieve all licenses
+*ProjectsApi* | [**FindProjectInvitations**](docs/ProjectsApi.md#findprojectinvitations) | **Get** /projects/{project_id}/invitations | Retrieve project invitations
 *ProjectsApi* | [**FindProjectMemberships**](docs/ProjectsApi.md#findprojectmemberships) | **Get** /projects/{project_id}/memberships | Retrieve project memberships
-*ProjectsApi* | [**FindProjectSSHKeys**](docs/ProjectsApi.md#findprojectsshkeys) | **Get** /projects/{id}/ssh-keys | Retrieve a project&#39;s ssh keys
 *ProjectsApi* | [**FindProjects**](docs/ProjectsApi.md#findprojects) | **Get** /projects | Retrieve all projects
-*ProjectsApi* | [**FindVirtualNetworks**](docs/ProjectsApi.md#findvirtualnetworks) | **Get** /projects/{id}/virtual-networks | Retrieve all virtual networks
-*ProjectsApi* | [**ListSpotMarketRequests**](docs/ProjectsApi.md#listspotmarketrequests) | **Get** /projects/{id}/spot-market-requests | List spot market requests
-*ProjectsApi* | [**RequestBgpConfig**](docs/ProjectsApi.md#requestbgpconfig) | **Post** /projects/{id}/bgp-configs | Requesting bgp config
-*ProjectsApi* | [**RequestIPReservation**](docs/ProjectsApi.md#requestipreservation) | **Post** /projects/{id}/ips | Requesting IP reservations
 *ProjectsApi* | [**UpdateProject**](docs/ProjectsApi.md#updateproject) | **Put** /projects/{id} | Update the project
+*SSHKeysApi* | [**CreateProjectSSHKey**](docs/SSHKeysApi.md#createprojectsshkey) | **Post** /projects/{id}/ssh-keys | Create a ssh key for the given project
 *SSHKeysApi* | [**CreateSSHKey**](docs/SSHKeysApi.md#createsshkey) | **Post** /ssh-keys | Create a ssh key for the current user
 *SSHKeysApi* | [**DeleteSSHKey**](docs/SSHKeysApi.md#deletesshkey) | **Delete** /ssh-keys/{id} | Delete the ssh key
+*SSHKeysApi* | [**FindDeviceSSHKeys**](docs/SSHKeysApi.md#finddevicesshkeys) | **Get** /devices/{id}/ssh-keys | Retrieve a device&#39;s ssh keys
+*SSHKeysApi* | [**FindProjectSSHKeys**](docs/SSHKeysApi.md#findprojectsshkeys) | **Get** /projects/{id}/ssh-keys | Retrieve a project&#39;s ssh keys
 *SSHKeysApi* | [**FindSSHKeyById**](docs/SSHKeysApi.md#findsshkeybyid) | **Get** /ssh-keys/{id} | Retrieve a ssh key
 *SSHKeysApi* | [**FindSSHKeys**](docs/SSHKeysApi.md#findsshkeys) | **Get** /ssh-keys | Retrieve all ssh keys
 *SSHKeysApi* | [**UpdateSSHKey**](docs/SSHKeysApi.md#updatesshkey) | **Put** /ssh-keys/{id} | Update the ssh key
 *SelfServiceReservationsApi* | [**CreateSelfServiceReservation**](docs/SelfServiceReservationsApi.md#createselfservicereservation) | **Post** /projects/{project_id}/self-service/reservations | Create a reservation
 *SelfServiceReservationsApi* | [**FindSelfServiceReservation**](docs/SelfServiceReservationsApi.md#findselfservicereservation) | **Get** /projects/{project_id}/self-service/reservations/{id} | Retrieve a reservation
 *SelfServiceReservationsApi* | [**FindSelfServiceReservations**](docs/SelfServiceReservationsApi.md#findselfservicereservations) | **Get** /projects/{project_id}/self-service/reservations | Retrieve all reservations
-*SpotMarketRequestApi* | [**DeleteSpotMarketRequest**](docs/SpotMarketRequestApi.md#deletespotmarketrequest) | **Delete** /spot-market-requests/{id} | Delete the spot market request
-*SpotMarketRequestApi* | [**FindSpotMarketRequestById**](docs/SpotMarketRequestApi.md#findspotmarketrequestbyid) | **Get** /spot-market-requests/{id} | Retrieve a spot market request
+*SpotMarketApi* | [**CreateSpotMarketRequest**](docs/SpotMarketApi.md#createspotmarketrequest) | **Post** /projects/{id}/spot-market-requests | Create a spot market request
+*SpotMarketApi* | [**DeleteSpotMarketRequest**](docs/SpotMarketApi.md#deletespotmarketrequest) | **Delete** /spot-market-requests/{id} | Delete the spot market request
+*SpotMarketApi* | [**FindMetroSpotMarketPrices**](docs/SpotMarketApi.md#findmetrospotmarketprices) | **Get** /market/spot/prices/metros | Get current spot market prices for metros
+*SpotMarketApi* | [**FindSpotMarketPrices**](docs/SpotMarketApi.md#findspotmarketprices) | **Get** /market/spot/prices | Get current spot market prices
+*SpotMarketApi* | [**FindSpotMarketPricesHistory**](docs/SpotMarketApi.md#findspotmarketpriceshistory) | **Get** /market/spot/prices/history | Get spot market prices for a given period of time
+*SpotMarketApi* | [**FindSpotMarketRequestById**](docs/SpotMarketApi.md#findspotmarketrequestbyid) | **Get** /spot-market-requests/{id} | Retrieve a spot market request
+*SpotMarketApi* | [**ListSpotMarketRequests**](docs/SpotMarketApi.md#listspotmarketrequests) | **Get** /projects/{id}/spot-market-requests | List spot market requests
 *SupportRequestApi* | [**RequestSuppert**](docs/SupportRequestApi.md#requestsuppert) | **Post** /support-requests | Create a support ticket
 *TransferRequestsApi* | [**AcceptTransferRequest**](docs/TransferRequestsApi.md#accepttransferrequest) | **Put** /transfers/{id} | Accept a transfer request
 *TransferRequestsApi* | [**DeclineTransferRequest**](docs/TransferRequestsApi.md#declinetransferrequest) | **Delete** /transfers/{id} | Decline a transfer request
@@ -263,35 +258,43 @@ Class | Method | HTTP request | Description
 *TwoFactorAuthApi* | [**DisableTfaSms**](docs/TwoFactorAuthApi.md#disabletfasms) | **Delete** /user/otp/sms | Disable two factor authentication
 *TwoFactorAuthApi* | [**EnableTfaApp**](docs/TwoFactorAuthApi.md#enabletfaapp) | **Post** /user/otp/app | Enable two factor auth using app
 *TwoFactorAuthApi* | [**EnableTfaSms**](docs/TwoFactorAuthApi.md#enabletfasms) | **Post** /user/otp/sms | Enable two factor auth using sms
+*UsagesApi* | [**FindDeviceUsages**](docs/UsagesApi.md#finddeviceusages) | **Get** /devices/{id}/usages | Retrieve all usages for device
+*UsagesApi* | [**FindProjectUsage**](docs/UsagesApi.md#findprojectusage) | **Get** /projects/{id}/usages | Retrieve all usages for project
 *UserVerificationTokensApi* | [**ConsumeVerificationRequest**](docs/UserVerificationTokensApi.md#consumeverificationrequest) | **Put** /verify-email | Verify a user using an email verification token
 *UserVerificationTokensApi* | [**CreateValidationRequest**](docs/UserVerificationTokensApi.md#createvalidationrequest) | **Post** /verify-email | Create an email verification request
 *UserdataApi* | [**ValidateUserdata**](docs/UserdataApi.md#validateuserdata) | **Post** /userdata/validate | Validate user data
 *UsersApi* | [**CreateUser**](docs/UsersApi.md#createuser) | **Post** /users | Create a user
 *UsersApi* | [**FindCurrentUser**](docs/UsersApi.md#findcurrentuser) | **Get** /user | Retrieve the current user
+*UsersApi* | [**FindInvitations**](docs/UsersApi.md#findinvitations) | **Get** /invitations | Retrieve current user invitations
 *UsersApi* | [**FindUserById**](docs/UsersApi.md#finduserbyid) | **Get** /users/{id} | Retrieve a user
 *UsersApi* | [**FindUserCustomdata**](docs/UsersApi.md#findusercustomdata) | **Get** /users/{id}/customdata | Retrieve the custom metadata of a user
 *UsersApi* | [**FindUsers**](docs/UsersApi.md#findusers) | **Get** /users | Retrieve all users
 *UsersApi* | [**UpdateCurrentUser**](docs/UsersApi.md#updatecurrentuser) | **Put** /user | Update the current user
+*VLANsApi* | [**CreateVirtualNetwork**](docs/VLANsApi.md#createvirtualnetwork) | **Post** /projects/{id}/virtual-networks | Create a virtual network
 *VLANsApi* | [**DeleteVirtualNetwork**](docs/VLANsApi.md#deletevirtualnetwork) | **Delete** /virtual-networks/{id} | Delete a virtual network
+*VLANsApi* | [**FindVirtualNetworks**](docs/VLANsApi.md#findvirtualnetworks) | **Get** /projects/{id}/virtual-networks | Retrieve all virtual networks
 *VLANsApi* | [**GetVirtualNetwork**](docs/VLANsApi.md#getvirtualnetwork) | **Get** /virtual-networks/{id} | Get a virtual network
+*VRFsApi* | [**CreateVrf**](docs/VRFsApi.md#createvrf) | **Post** /projects/{id}/vrfs | Create a new VRF in the specified project
+*VRFsApi* | [**DeleteVrf**](docs/VRFsApi.md#deletevrf) | **Delete** /vrfs/{id} | Delete the VRF
+*VRFsApi* | [**FindVrfById**](docs/VRFsApi.md#findvrfbyid) | **Get** /vrfs/{id} | Retrieve a VRF
+*VRFsApi* | [**FindVrfIpReservations**](docs/VRFsApi.md#findvrfipreservations) | **Get** /vrfs/{id}/ips | Retrieve all VRF IP Reservations in the VRF
+*VRFsApi* | [**FindVrfs**](docs/VRFsApi.md#findvrfs) | **Get** /projects/{id}/vrfs | Retrieve all VRFs in the project
+*VRFsApi* | [**UpdateVrf**](docs/VRFsApi.md#updatevrf) | **Put** /vrfs/{id} | Update the VRF
 
 
 ## Documentation For Models
 
  - [Address](docs/Address.md)
+ - [AssignPortRequest](docs/AssignPortRequest.md)
  - [AuthToken](docs/AuthToken.md)
  - [AuthTokenInput](docs/AuthTokenInput.md)
  - [AuthTokenList](docs/AuthTokenList.md)
- - [AuthTokenProject](docs/AuthTokenProject.md)
- - [AuthTokenUser](docs/AuthTokenUser.md)
  - [BGPSessionInput](docs/BGPSessionInput.md)
  - [Batch](docs/Batch.md)
  - [BatchesList](docs/BatchesList.md)
  - [BgpConfig](docs/BgpConfig.md)
  - [BgpConfigRequestInput](docs/BgpConfigRequestInput.md)
  - [BgpNeighborData](docs/BgpNeighborData.md)
- - [BgpNeighborDataRoutesInInner](docs/BgpNeighborDataRoutesInInner.md)
- - [BgpNeighborDataRoutesOutInner](docs/BgpNeighborDataRoutesOutInner.md)
  - [BgpSession](docs/BgpSession.md)
  - [BgpSessionList](docs/BgpSessionList.md)
  - [BgpSessionNeighbors](docs/BgpSessionNeighbors.md)
@@ -306,18 +309,53 @@ Class | Method | HTTP request | Description
  - [CapacityPerMetroInput](docs/CapacityPerMetroInput.md)
  - [CapacityPerNewFacility](docs/CapacityPerNewFacility.md)
  - [CapacityReport](docs/CapacityReport.md)
+ - [CheckCapacityForFacility200Response](docs/CheckCapacityForFacility200Response.md)
+ - [CheckCapacityForFacility200ResponseServersInner](docs/CheckCapacityForFacility200ResponseServersInner.md)
+ - [CheckCapacityForFacilityRequest](docs/CheckCapacityForFacilityRequest.md)
+ - [CheckCapacityForFacilityRequestServersInner](docs/CheckCapacityForFacilityRequestServersInner.md)
+ - [CheckCapacityForMetro200Response](docs/CheckCapacityForMetro200Response.md)
+ - [CheckCapacityForMetro200ResponseServersInner](docs/CheckCapacityForMetro200ResponseServersInner.md)
+ - [CheckCapacityForMetroRequest](docs/CheckCapacityForMetroRequest.md)
+ - [CheckCapacityForMetroRequestServersInner](docs/CheckCapacityForMetroRequestServersInner.md)
+ - [ConvertLayer3Request](docs/ConvertLayer3Request.md)
+ - [ConvertLayer3RequestRequestIpsInner](docs/ConvertLayer3RequestRequestIpsInner.md)
  - [Coordinates](docs/Coordinates.md)
+ - [CreateBgpSessionRequest](docs/CreateBgpSessionRequest.md)
+ - [CreateDeviceBatchRequest](docs/CreateDeviceBatchRequest.md)
+ - [CreateDeviceBatchRequestBatchesInner](docs/CreateDeviceBatchRequestBatchesInner.md)
+ - [CreateDeviceBatchRequestBatchesInnerIpAddressesInner](docs/CreateDeviceBatchRequestBatchesInnerIpAddressesInner.md)
+ - [CreateDeviceRequest](docs/CreateDeviceRequest.md)
+ - [CreateDeviceRequestAllOf](docs/CreateDeviceRequestAllOf.md)
+ - [CreateDeviceRequestAllOfIpAddressesInner](docs/CreateDeviceRequestAllOfIpAddressesInner.md)
+ - [CreateDeviceRequestAllOfSshKeysInner](docs/CreateDeviceRequestAllOfSshKeysInner.md)
+ - [CreateEmail201Response](docs/CreateEmail201Response.md)
  - [CreateEmailInput](docs/CreateEmailInput.md)
+ - [CreateEmailRequest](docs/CreateEmailRequest.md)
+ - [CreateIPAssignmentRequest](docs/CreateIPAssignmentRequest.md)
+ - [CreateLicenseRequest](docs/CreateLicenseRequest.md)
+ - [CreateOrganizationInterconnectionRequest](docs/CreateOrganizationInterconnectionRequest.md)
+ - [CreateOrganizationInvitationRequest](docs/CreateOrganizationInvitationRequest.md)
+ - [CreateOrganizationProjectRequest](docs/CreateOrganizationProjectRequest.md)
+ - [CreateOrganizationRequest](docs/CreateOrganizationRequest.md)
+ - [CreatePaymentMethodRequest](docs/CreatePaymentMethodRequest.md)
+ - [CreatePortVlanAssignmentBatchRequest](docs/CreatePortVlanAssignmentBatchRequest.md)
+ - [CreatePortVlanAssignmentBatchRequestVlanAssignmentsInner](docs/CreatePortVlanAssignmentBatchRequestVlanAssignmentsInner.md)
+ - [CreateProjectAPIKeyRequest](docs/CreateProjectAPIKeyRequest.md)
+ - [CreateProjectRequest](docs/CreateProjectRequest.md)
+ - [CreateProjectSSHKeyRequest](docs/CreateProjectSSHKeyRequest.md)
  - [CreateSelfServiceReservationRequest](docs/CreateSelfServiceReservationRequest.md)
- - [CreateSelfServiceReservationRequestPeriod](docs/CreateSelfServiceReservationRequestPeriod.md)
+ - [CreateSelfServiceReservationRequestItemInner](docs/CreateSelfServiceReservationRequestItemInner.md)
+ - [CreateSpotMarketRequestRequest](docs/CreateSpotMarketRequestRequest.md)
+ - [CreateSpotMarketRequestRequestInstanceAttributes](docs/CreateSpotMarketRequestRequestInstanceAttributes.md)
+ - [CreateTransferRequestRequest](docs/CreateTransferRequestRequest.md)
+ - [CreateUserRequest](docs/CreateUserRequest.md)
+ - [CreateUserRequestEmailsInner](docs/CreateUserRequestEmailsInner.md)
+ - [CreateVirtualNetworkRequest](docs/CreateVirtualNetworkRequest.md)
+ - [CreateVrfRequest](docs/CreateVrfRequest.md)
+ - [DeleteAPIKey401Response](docs/DeleteAPIKey401Response.md)
  - [Device](docs/Device.md)
  - [DeviceCreateInput](docs/DeviceCreateInput.md)
- - [DeviceCreateInputIpAddressesInner](docs/DeviceCreateInputIpAddressesInner.md)
- - [DeviceCreatedBy](docs/DeviceCreatedBy.md)
  - [DeviceList](docs/DeviceList.md)
- - [DeviceNetworkPorts](docs/DeviceNetworkPorts.md)
- - [DeviceProject](docs/DeviceProject.md)
- - [DeviceProjectLite](docs/DeviceProjectLite.md)
  - [DeviceUpdateInput](docs/DeviceUpdateInput.md)
  - [DeviceUsage](docs/DeviceUsage.md)
  - [DeviceUsageList](docs/DeviceUsageList.md)
@@ -327,9 +365,116 @@ Class | Method | HTTP request | Description
  - [Error](docs/Error.md)
  - [Event](docs/Event.md)
  - [EventList](docs/EventList.md)
+ - [FabricServiceToken](docs/FabricServiceToken.md)
  - [Facility](docs/Facility.md)
  - [FacilityList](docs/FacilityList.md)
- - [FacilityMetro](docs/FacilityMetro.md)
+ - [FindBatchById200Response](docs/FindBatchById200Response.md)
+ - [FindBatchById200ResponseDevicesInner](docs/FindBatchById200ResponseDevicesInner.md)
+ - [FindBatchesByProject200Response](docs/FindBatchesByProject200Response.md)
+ - [FindBgpConfigByProject200Response](docs/FindBgpConfigByProject200Response.md)
+ - [FindBgpConfigByProject200ResponseRangesInner](docs/FindBgpConfigByProject200ResponseRangesInner.md)
+ - [FindBgpSessionById200Response](docs/FindBgpSessionById200Response.md)
+ - [FindBgpSessions200Response](docs/FindBgpSessions200Response.md)
+ - [FindCapacityForFacility200Response](docs/FindCapacityForFacility200Response.md)
+ - [FindCapacityForFacility200ResponseCapacity](docs/FindCapacityForFacility200ResponseCapacity.md)
+ - [FindCapacityForFacility200ResponseCapacityAms1](docs/FindCapacityForFacility200ResponseCapacityAms1.md)
+ - [FindCapacityForFacility200ResponseCapacityAms1Baremetal0](docs/FindCapacityForFacility200ResponseCapacityAms1Baremetal0.md)
+ - [FindCapacityForFacility200ResponseCapacityAtl1](docs/FindCapacityForFacility200ResponseCapacityAtl1.md)
+ - [FindCapacityForMetro200Response](docs/FindCapacityForMetro200Response.md)
+ - [FindCapacityForMetro200ResponseCapacity](docs/FindCapacityForMetro200ResponseCapacity.md)
+ - [FindConnectionEvents200Response](docs/FindConnectionEvents200Response.md)
+ - [FindDeviceById200Response](docs/FindDeviceById200Response.md)
+ - [FindDeviceById200ResponseCreatedBy](docs/FindDeviceById200ResponseCreatedBy.md)
+ - [FindDeviceById200ResponseCreatedByAllOf](docs/FindDeviceById200ResponseCreatedByAllOf.md)
+ - [FindDeviceById200ResponseFacility](docs/FindDeviceById200ResponseFacility.md)
+ - [FindDeviceById200ResponseFacilityAddress](docs/FindDeviceById200ResponseFacilityAddress.md)
+ - [FindDeviceById200ResponseFacilityAddressCoordinates](docs/FindDeviceById200ResponseFacilityAddressCoordinates.md)
+ - [FindDeviceById200ResponseFacilityMetro](docs/FindDeviceById200ResponseFacilityMetro.md)
+ - [FindDeviceById200ResponseIpAddressesInner](docs/FindDeviceById200ResponseIpAddressesInner.md)
+ - [FindDeviceById200ResponseIpAddressesInnerMetro](docs/FindDeviceById200ResponseIpAddressesInnerMetro.md)
+ - [FindDeviceById200ResponseIpAddressesInnerParentBlock](docs/FindDeviceById200ResponseIpAddressesInnerParentBlock.md)
+ - [FindDeviceById200ResponseNetworkPorts](docs/FindDeviceById200ResponseNetworkPorts.md)
+ - [FindDeviceById200ResponseNetworkPortsAllOf](docs/FindDeviceById200ResponseNetworkPortsAllOf.md)
+ - [FindDeviceById200ResponseOperatingSystem](docs/FindDeviceById200ResponseOperatingSystem.md)
+ - [FindDeviceById200ResponsePlan](docs/FindDeviceById200ResponsePlan.md)
+ - [FindDeviceById200ResponseProject](docs/FindDeviceById200ResponseProject.md)
+ - [FindDeviceById200ResponseProjectLite](docs/FindDeviceById200ResponseProjectLite.md)
+ - [FindDeviceEvents200Response](docs/FindDeviceEvents200Response.md)
+ - [FindDeviceEvents200ResponseMeta](docs/FindDeviceEvents200ResponseMeta.md)
+ - [FindDeviceSSHKeys200Response](docs/FindDeviceSSHKeys200Response.md)
+ - [FindDeviceSSHKeys200ResponseSshKeysInner](docs/FindDeviceSSHKeys200ResponseSshKeysInner.md)
+ - [FindDeviceUsages200Response](docs/FindDeviceUsages200Response.md)
+ - [FindDeviceUsages200ResponseUsagesInner](docs/FindDeviceUsages200ResponseUsagesInner.md)
+ - [FindFacilities200Response](docs/FindFacilities200Response.md)
+ - [FindGlobalBgpRanges200Response](docs/FindGlobalBgpRanges200Response.md)
+ - [FindIPAssignments200Response](docs/FindIPAssignments200Response.md)
+ - [FindIPAvailabilities200Response](docs/FindIPAvailabilities200Response.md)
+ - [FindIPReservations200Response](docs/FindIPReservations200Response.md)
+ - [FindInvitationById200Response](docs/FindInvitationById200Response.md)
+ - [FindInvitations200Response](docs/FindInvitations200Response.md)
+ - [FindInvitations200ResponseInvitationsInner](docs/FindInvitations200ResponseInvitationsInner.md)
+ - [FindLicenseById200Response](docs/FindLicenseById200Response.md)
+ - [FindMetalGatewaysByProject200Response](docs/FindMetalGatewaysByProject200Response.md)
+ - [FindMetroSpotMarketPrices200Response](docs/FindMetroSpotMarketPrices200Response.md)
+ - [FindMetroSpotMarketPrices200ResponseSpotMarketPrices](docs/FindMetroSpotMarketPrices200ResponseSpotMarketPrices.md)
+ - [FindMetros200Response](docs/FindMetros200Response.md)
+ - [FindOperatingSystemVersion200Response](docs/FindOperatingSystemVersion200Response.md)
+ - [FindOrganizationDevices200Response](docs/FindOrganizationDevices200Response.md)
+ - [FindOrganizationPaymentMethods200Response](docs/FindOrganizationPaymentMethods200Response.md)
+ - [FindOrganizationPaymentMethods200ResponsePaymentMethodsInner](docs/FindOrganizationPaymentMethods200ResponsePaymentMethodsInner.md)
+ - [FindOrganizationPaymentMethods200ResponsePaymentMethodsInnerBillingAddress](docs/FindOrganizationPaymentMethods200ResponsePaymentMethodsInnerBillingAddress.md)
+ - [FindOrganizationProjects200Response](docs/FindOrganizationProjects200Response.md)
+ - [FindOrganizationTransfers200Response](docs/FindOrganizationTransfers200Response.md)
+ - [FindOrganizationTransfers200ResponseTransfersInner](docs/FindOrganizationTransfers200ResponseTransfersInner.md)
+ - [FindOrganizations200Response](docs/FindOrganizations200Response.md)
+ - [FindOrganizations200ResponseOrganizationsInner](docs/FindOrganizations200ResponseOrganizationsInner.md)
+ - [FindPlansByOrganization200Response](docs/FindPlansByOrganization200Response.md)
+ - [FindPortVlanAssignmentBatches200Response](docs/FindPortVlanAssignmentBatches200Response.md)
+ - [FindPortVlanAssignmentBatches200ResponseBatchesInner](docs/FindPortVlanAssignmentBatches200ResponseBatchesInner.md)
+ - [FindPortVlanAssignmentBatches200ResponseBatchesInnerVlanAssignmentsInner](docs/FindPortVlanAssignmentBatches200ResponseBatchesInnerVlanAssignmentsInner.md)
+ - [FindPortVlanAssignments200Response](docs/FindPortVlanAssignments200Response.md)
+ - [FindPortVlanAssignments200ResponseVlanAssignmentsInner](docs/FindPortVlanAssignments200ResponseVlanAssignmentsInner.md)
+ - [FindProjectAPIKeys200Response](docs/FindProjectAPIKeys200Response.md)
+ - [FindProjectAPIKeys200ResponseApiKeysInner](docs/FindProjectAPIKeys200ResponseApiKeysInner.md)
+ - [FindProjectAPIKeys200ResponseApiKeysInnerProject](docs/FindProjectAPIKeys200ResponseApiKeysInnerProject.md)
+ - [FindProjectAPIKeys200ResponseApiKeysInnerUser](docs/FindProjectAPIKeys200ResponseApiKeysInnerUser.md)
+ - [FindProjectAPIKeys200ResponseApiKeysInnerUserAllOf](docs/FindProjectAPIKeys200ResponseApiKeysInnerUserAllOf.md)
+ - [FindProjectHardwareReservations200Response](docs/FindProjectHardwareReservations200Response.md)
+ - [FindProjectLicenses200Response](docs/FindProjectLicenses200Response.md)
+ - [FindProjectMemberships200Response](docs/FindProjectMemberships200Response.md)
+ - [FindProjectUsage200Response](docs/FindProjectUsage200Response.md)
+ - [FindProjectUsage200ResponseUsagesInner](docs/FindProjectUsage200ResponseUsagesInner.md)
+ - [FindRecoveryCodes200Response](docs/FindRecoveryCodes200Response.md)
+ - [FindSelfServiceReservations200Response](docs/FindSelfServiceReservations200Response.md)
+ - [FindSelfServiceReservations200ResponseReservationsInner](docs/FindSelfServiceReservations200ResponseReservationsInner.md)
+ - [FindSelfServiceReservations200ResponseReservationsInnerItemInner](docs/FindSelfServiceReservations200ResponseReservationsInnerItemInner.md)
+ - [FindSelfServiceReservations200ResponseReservationsInnerPeriod](docs/FindSelfServiceReservations200ResponseReservationsInnerPeriod.md)
+ - [FindSpotMarketPrices200Response](docs/FindSpotMarketPrices200Response.md)
+ - [FindSpotMarketPrices200ResponseSpotMarketPrices](docs/FindSpotMarketPrices200ResponseSpotMarketPrices.md)
+ - [FindSpotMarketPrices200ResponseSpotMarketPricesAms1](docs/FindSpotMarketPrices200ResponseSpotMarketPricesAms1.md)
+ - [FindSpotMarketPrices200ResponseSpotMarketPricesAms1Baremetal0](docs/FindSpotMarketPrices200ResponseSpotMarketPricesAms1Baremetal0.md)
+ - [FindSpotMarketPrices200ResponseSpotMarketPricesAtl1](docs/FindSpotMarketPrices200ResponseSpotMarketPricesAtl1.md)
+ - [FindSpotMarketPricesHistory200Response](docs/FindSpotMarketPricesHistory200Response.md)
+ - [FindSpotMarketPricesHistory200ResponsePricesHistory](docs/FindSpotMarketPricesHistory200ResponsePricesHistory.md)
+ - [FindTrafficRequest](docs/FindTrafficRequest.md)
+ - [FindUsers200Response](docs/FindUsers200Response.md)
+ - [FindVirtualNetworks200Response](docs/FindVirtualNetworks200Response.md)
+ - [FindVirtualNetworks200ResponseVirtualNetworksInner](docs/FindVirtualNetworks200ResponseVirtualNetworksInner.md)
+ - [FindVirtualNetworks200ResponseVirtualNetworksInnerMetalGateway](docs/FindVirtualNetworks200ResponseVirtualNetworksInnerMetalGateway.md)
+ - [FindVrfIpReservations200Response](docs/FindVrfIpReservations200Response.md)
+ - [FindVrfIpReservations200ResponseIpAddressesInner](docs/FindVrfIpReservations200ResponseIpAddressesInner.md)
+ - [FindVrfs200Response](docs/FindVrfs200Response.md)
+ - [FindVrfs200ResponseVrfsInner](docs/FindVrfs200ResponseVrfsInner.md)
+ - [GetBgpNeighborData200Response](docs/GetBgpNeighborData200Response.md)
+ - [GetBgpNeighborData200ResponseBgpNeighborsInner](docs/GetBgpNeighborData200ResponseBgpNeighborsInner.md)
+ - [GetBgpNeighborData200ResponseBgpNeighborsInnerRoutesInInner](docs/GetBgpNeighborData200ResponseBgpNeighborsInnerRoutesInInner.md)
+ - [GetBgpNeighborData200ResponseBgpNeighborsInnerRoutesOutInner](docs/GetBgpNeighborData200ResponseBgpNeighborsInnerRoutesOutInner.md)
+ - [GetInterconnection200Response](docs/GetInterconnection200Response.md)
+ - [GetInterconnection200ResponseMetro](docs/GetInterconnection200ResponseMetro.md)
+ - [GetInterconnection200ResponseMetroAllOf](docs/GetInterconnection200ResponseMetroAllOf.md)
+ - [GetInterconnection200ResponsePortsInner](docs/GetInterconnection200ResponsePortsInner.md)
+ - [GetInterconnection200ResponsePortsInnerVirtualCircuits](docs/GetInterconnection200ResponsePortsInnerVirtualCircuits.md)
+ - [GetInterconnection200ResponseServiceTokensInner](docs/GetInterconnection200ResponseServiceTokensInner.md)
  - [GlobalBgpRange](docs/GlobalBgpRange.md)
  - [GlobalBgpRangeList](docs/GlobalBgpRangeList.md)
  - [HardwareReservation](docs/HardwareReservation.md)
@@ -338,7 +483,6 @@ Class | Method | HTTP request | Description
  - [IPAssignment](docs/IPAssignment.md)
  - [IPAssignmentInput](docs/IPAssignmentInput.md)
  - [IPAssignmentList](docs/IPAssignmentList.md)
- - [IPAssignmentMetro](docs/IPAssignmentMetro.md)
  - [IPAvailabilitiesList](docs/IPAvailabilitiesList.md)
  - [IPReservation](docs/IPReservation.md)
  - [IPReservationFacility](docs/IPReservationFacility.md)
@@ -346,12 +490,9 @@ Class | Method | HTTP request | Description
  - [IPReservationMetro](docs/IPReservationMetro.md)
  - [IPReservationRequestInput](docs/IPReservationRequestInput.md)
  - [InstancesBatchCreateInput](docs/InstancesBatchCreateInput.md)
- - [InstancesBatchCreateInputBatchesInner](docs/InstancesBatchCreateInputBatchesInner.md)
- - [InstancesBatchCreateInputBatchesInnerIpAddressesInner](docs/InstancesBatchCreateInputBatchesInnerIpAddressesInner.md)
  - [Interconnection](docs/Interconnection.md)
  - [InterconnectionCreateInput](docs/InterconnectionCreateInput.md)
  - [InterconnectionList](docs/InterconnectionList.md)
- - [InterconnectionMetro](docs/InterconnectionMetro.md)
  - [InterconnectionPort](docs/InterconnectionPort.md)
  - [InterconnectionPortList](docs/InterconnectionPortList.md)
  - [InterconnectionUpdateInput](docs/InterconnectionUpdateInput.md)
@@ -362,6 +503,10 @@ Class | Method | HTTP request | Description
  - [LicenseCreateInput](docs/LicenseCreateInput.md)
  - [LicenseList](docs/LicenseList.md)
  - [LicenseUpdateInput](docs/LicenseUpdateInput.md)
+ - [ListConnectionPorts200Response](docs/ListConnectionPorts200Response.md)
+ - [ListSpotMarketRequests200Response](docs/ListSpotMarketRequests200Response.md)
+ - [ListSpotMarketRequests200ResponseSpotMarketRequestsInner](docs/ListSpotMarketRequests200ResponseSpotMarketRequestsInner.md)
+ - [ListSpotMarketRequests200ResponseSpotMarketRequestsInnerMetro](docs/ListSpotMarketRequests200ResponseSpotMarketRequestsInnerMetro.md)
  - [Membership](docs/Membership.md)
  - [MembershipInput](docs/MembershipInput.md)
  - [MembershipList](docs/MembershipList.md)
@@ -375,12 +520,15 @@ Class | Method | HTTP request | Description
  - [MetroCapacityReport](docs/MetroCapacityReport.md)
  - [MetroList](docs/MetroList.md)
  - [MetroServerInfo](docs/MetroServerInfo.md)
+ - [MoveHardwareReservation201Response](docs/MoveHardwareReservation201Response.md)
+ - [MoveHardwareReservation201ResponseProject](docs/MoveHardwareReservation201ResponseProject.md)
  - [NewPassword](docs/NewPassword.md)
  - [OperatingSystem](docs/OperatingSystem.md)
  - [OperatingSystemList](docs/OperatingSystemList.md)
  - [Organization](docs/Organization.md)
  - [OrganizationInput](docs/OrganizationInput.md)
  - [OrganizationList](docs/OrganizationList.md)
+ - [OrganizationListInterconnections200Response](docs/OrganizationListInterconnections200Response.md)
  - [ParentBlock](docs/ParentBlock.md)
  - [PaymentMethod](docs/PaymentMethod.md)
  - [PaymentMethodBillingAddress](docs/PaymentMethodBillingAddress.md)
@@ -392,13 +540,10 @@ Class | Method | HTTP request | Description
  - [Port](docs/Port.md)
  - [PortAssignInput](docs/PortAssignInput.md)
  - [PortConvertLayer3Input](docs/PortConvertLayer3Input.md)
- - [PortConvertLayer3InputRequestIpsInner](docs/PortConvertLayer3InputRequestIpsInner.md)
  - [PortVlanAssignment](docs/PortVlanAssignment.md)
  - [PortVlanAssignmentBatch](docs/PortVlanAssignmentBatch.md)
  - [PortVlanAssignmentBatchCreateInput](docs/PortVlanAssignmentBatchCreateInput.md)
- - [PortVlanAssignmentBatchCreateInputVlanAssignmentsInner](docs/PortVlanAssignmentBatchCreateInputVlanAssignmentsInner.md)
  - [PortVlanAssignmentBatchList](docs/PortVlanAssignmentBatchList.md)
- - [PortVlanAssignmentBatchVlanAssignmentsInner](docs/PortVlanAssignmentBatchVlanAssignmentsInner.md)
  - [PortVlanAssignmentList](docs/PortVlanAssignmentList.md)
  - [Project](docs/Project.md)
  - [ProjectCreateFromRootInput](docs/ProjectCreateFromRootInput.md)
@@ -408,6 +553,9 @@ Class | Method | HTTP request | Description
  - [ProjectUsage](docs/ProjectUsage.md)
  - [ProjectUsageList](docs/ProjectUsageList.md)
  - [RecoveryCodeList](docs/RecoveryCodeList.md)
+ - [RequestBgpConfigRequest](docs/RequestBgpConfigRequest.md)
+ - [RequestSuppertRequest](docs/RequestSuppertRequest.md)
+ - [ResetPassword201Response](docs/ResetPassword201Response.md)
  - [SSHKey](docs/SSHKey.md)
  - [SSHKeyCreateInput](docs/SSHKeyCreateInput.md)
  - [SSHKeyInput](docs/SSHKeyInput.md)
@@ -422,9 +570,7 @@ Class | Method | HTTP request | Description
  - [SpotMarketPricesPerMetroReport](docs/SpotMarketPricesPerMetroReport.md)
  - [SpotMarketRequest](docs/SpotMarketRequest.md)
  - [SpotMarketRequestCreateInput](docs/SpotMarketRequestCreateInput.md)
- - [SpotMarketRequestCreateInputInstanceAttributes](docs/SpotMarketRequestCreateInputInstanceAttributes.md)
  - [SpotMarketRequestList](docs/SpotMarketRequestList.md)
- - [SpotMarketRequestMetro](docs/SpotMarketRequestMetro.md)
  - [SpotPricesDatapoints](docs/SpotPricesDatapoints.md)
  - [SpotPricesHistoryReport](docs/SpotPricesHistoryReport.md)
  - [SpotPricesPerBaremetal](docs/SpotPricesPerBaremetal.md)
@@ -436,7 +582,16 @@ Class | Method | HTTP request | Description
  - [TransferRequest](docs/TransferRequest.md)
  - [TransferRequestInput](docs/TransferRequestInput.md)
  - [TransferRequestList](docs/TransferRequestList.md)
+ - [UpdateCurrentUserRequest](docs/UpdateCurrentUserRequest.md)
+ - [UpdateDeviceRequest](docs/UpdateDeviceRequest.md)
  - [UpdateEmailInput](docs/UpdateEmailInput.md)
+ - [UpdateEmailRequest](docs/UpdateEmailRequest.md)
+ - [UpdateInterconnectionRequest](docs/UpdateInterconnectionRequest.md)
+ - [UpdateLicenseRequest](docs/UpdateLicenseRequest.md)
+ - [UpdateMembershipRequest](docs/UpdateMembershipRequest.md)
+ - [UpdatePaymentMethodRequest](docs/UpdatePaymentMethodRequest.md)
+ - [UpdateProjectRequest](docs/UpdateProjectRequest.md)
+ - [UpdateVrfRequest](docs/UpdateVrfRequest.md)
  - [User](docs/User.md)
  - [UserCreateInput](docs/UserCreateInput.md)
  - [UserList](docs/UserList.md)
@@ -449,6 +604,18 @@ Class | Method | HTTP request | Description
  - [VirtualNetwork](docs/VirtualNetwork.md)
  - [VirtualNetworkCreateInput](docs/VirtualNetworkCreateInput.md)
  - [VirtualNetworkList](docs/VirtualNetworkList.md)
+ - [Vrf](docs/Vrf.md)
+ - [VrfCreateInput](docs/VrfCreateInput.md)
+ - [VrfIpReservation](docs/VrfIpReservation.md)
+ - [VrfIpReservationCreateInput](docs/VrfIpReservationCreateInput.md)
+ - [VrfIpReservationList](docs/VrfIpReservationList.md)
+ - [VrfList](docs/VrfList.md)
+ - [VrfMetalGateway](docs/VrfMetalGateway.md)
+ - [VrfMetalGatewayCreateInput](docs/VrfMetalGatewayCreateInput.md)
+ - [VrfUpdateInput](docs/VrfUpdateInput.md)
+ - [VrfVirtualCircuit](docs/VrfVirtualCircuit.md)
+ - [VrfVirtualCircuitCreateInput](docs/VrfVirtualCircuitCreateInput.md)
+ - [VrfVirtualCircuitUpdateInput](docs/VrfVirtualCircuitUpdateInput.md)
 
 
 ## Documentation For Authorization
