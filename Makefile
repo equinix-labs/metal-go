@@ -24,7 +24,7 @@ pull:
 	docker pull ${IMAGE}
 
 fetch:
-	curl -o ${SPEC_FETCHED_FILE} ${SPEC_URL}
+	curl ${SPEC_URL} | jq . > ${SPEC_FETCHED_FILE}
 
 fix-tags:
 	- jq '. | select(((.paths[][].tags| type=="array"), length) > 1).paths[][].tags |= [.[0]]' ${SPEC_FETCHED_FILE} | diff -d -U6 ${SPEC_FETCHED_FILE} - >  patches/01-tag-from-last-in-path.patch
