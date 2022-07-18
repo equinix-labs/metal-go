@@ -4,7 +4,7 @@ jobs:
   sync:
     strategy:
       matrix:
-        go-version: [1.16.x]
+        go-version: [1.18.x]
         os: [ubuntu-latest]
     runs-on: ${{ matrix.os }}
     steps:
@@ -26,7 +26,7 @@ jobs:
       run: |
         make # pull fetch patch gen mod test
         git commit -m 'sync: fetch ${{ steps.date.outputs.date }} spec and apply patches' *.json
-        git commit -m 'sync: generate client with ${{ steps.date.outputs.date }} spec' v1
+        git commit -m 'sync: generate client with ${{ steps.date.outputs.date }} spec' metal api docs README.md
     - name: Create Pull Request
       uses: peter-evans/create-pull-request@v3
       with:
@@ -34,7 +34,7 @@ jobs:
         branch-suffix: timestamp
         title: API Sync by GitHub Action (${{ steps.date.outputs.date }})
         body: |
-          This API Sync PR was automated through [GitHub Actions workflow_displatch](https://github.com/t0mk/gometal/actions?query=event%3Aworkflow_dispatch)
+          This API Sync PR was automated through [GitHub Actions workflow_displatch](https://github.com/equinix-labs/metal-go/actions?query=event%3Aworkflow_dispatch)
           on ${{ steps.date.outputs.date }}.
 
           * latest Swagger is fetched

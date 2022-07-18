@@ -1,0 +1,13 @@
+diff --git a/spec.fetched.json b/spec.fetched.json
+index 0522619..ed25c2b 100644
+--- a/spec.fetched.json
++++ b/spec.fetched.json
+@@ -40185,7 +40185,7 @@
+           }
+         },
+         "tags": [
+-          "Otps"
++          "OTPs"
+         ],
+         "description": "Sends an OTP to the user's mobile phone.",
+         "operationId": "receiveCodes",

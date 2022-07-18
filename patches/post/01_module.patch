@@ -1,0 +1,13 @@
+diff --git a/API.md b/API.md
+index 2568dc5..bf71fbb 100644
+--- a/API.md
++++ b/API.md
+@@ -27,7 +27,7 @@ go get golang.org/x/net/context
+ Put the package under your project folder and add the following in import:
+ 
+ ```golang
+-import v1 "github.com/equinix-labs/metal-go"
++import v1 "github.com/equinix-labs/metal-go/metal/v1"
+ ```
+ 
+ To use a proxy, set the environment variable `HTTP_PROXY`:
