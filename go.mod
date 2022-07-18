@@ -2,7 +2,7 @@ module github.com/equinix-labs/metal-go
 
 go 1.18
 
-require golang.org/x/oauth2 v0.0.0-20220630143837-2104d58473e0
+require golang.org/x/oauth2 v0.0.0-20220718184931-c8730f7fcb92
 
 require (
 	github.com/golang/protobuf v1.5.2 // indirect

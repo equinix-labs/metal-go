@@ -9321,7 +9321,7 @@ paths:
           description: internal server error
       summary: Receive an OTP per sms
       tags:
-      - Otps
+      - OTPs
   /user/otp/verify/{otp}:
     post:
       description: "It verifies the user once a valid OTP is provided. It gives back\

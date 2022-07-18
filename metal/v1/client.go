@@ -90,8 +90,6 @@ type APIClient struct {
 
 	OrganizationsApi *OrganizationsApiService
 
-	OtpsApi *OtpsApiService
-
 	PasswordResetTokensApi *PasswordResetTokensApiService
 
 	PaymentMethodsApi *PaymentMethodsApiService
@@ -163,7 +161,6 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.OTPsApi = (*OTPsApiService)(&c.common)
 	c.OperatingSystemsApi = (*OperatingSystemsApiService)(&c.common)
 	c.OrganizationsApi = (*OrganizationsApiService)(&c.common)
-	c.OtpsApi = (*OtpsApiService)(&c.common)
 	c.PasswordResetTokensApi = (*PasswordResetTokensApiService)(&c.common)
 	c.PaymentMethodsApi = (*PaymentMethodsApiService)(&c.common)
 	c.PlansApi = (*PlansApiService)(&c.common)

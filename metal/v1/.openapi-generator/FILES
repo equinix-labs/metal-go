@@ -23,7 +23,6 @@ api_metros.go
 api_operating_systems.go
 api_organizations.go
 api_otps.go
-api_otps.go
 api_password_reset_tokens.go
 api_payment_methods.go
 api_plans.go
@@ -308,7 +307,6 @@ docs/OrganizationInput.md
 docs/OrganizationList.md
 docs/OrganizationListInterconnections200Response.md
 docs/OrganizationsApi.md
-docs/OtpsApi.md
 docs/ParentBlock.md
 docs/PasswordResetTokensApi.md
 docs/PaymentMethod.md

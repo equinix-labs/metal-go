@@ -181,6 +181,7 @@ Class | Method | HTTP request | Description
 *MetrosApi* | [**GetMetro**](docs/MetrosApi.md#getmetro) | **Get** /locations/metros/{id} | Retrieve a specific Metro&#39;s details
 *OTPsApi* | [**FindEnsureOtp**](docs/OTPsApi.md#findensureotp) | **Post** /user/otp/verify/{otp} | Verify user by providing an OTP
 *OTPsApi* | [**FindRecoveryCodes**](docs/OTPsApi.md#findrecoverycodes) | **Get** /user/otp/recovery-codes | Retrieve my recovery codes
+*OTPsApi* | [**ReceiveCodes**](docs/OTPsApi.md#receivecodes) | **Post** /user/otp/sms/receive | Receive an OTP per sms
 *OTPsApi* | [**RegenerateCodes**](docs/OTPsApi.md#regeneratecodes) | **Post** /user/otp/recovery-codes | Generate new recovery codes
 *OperatingSystemsApi* | [**FindOperatingSystemVersion**](docs/OperatingSystemsApi.md#findoperatingsystemversion) | **Get** /operating-system-versions | Retrieve all operating system versions
 *OperatingSystemsApi* | [**FindOperatingSystems**](docs/OperatingSystemsApi.md#findoperatingsystems) | **Get** /operating-systems | Retrieve all operating systems
@@ -199,7 +200,6 @@ Class | Method | HTTP request | Description
 *OrganizationsApi* | [**FindOrganizations**](docs/OrganizationsApi.md#findorganizations) | **Get** /organizations | Retrieve all organizations
 *OrganizationsApi* | [**FindPlansByOrganization**](docs/OrganizationsApi.md#findplansbyorganization) | **Get** /organizations/{id}/plans | Retrieve all plans visible by the organization
 *OrganizationsApi* | [**UpdateOrganization**](docs/OrganizationsApi.md#updateorganization) | **Put** /organizations/{id} | Update the organization
-*OtpsApi* | [**ReceiveCodes**](docs/OtpsApi.md#receivecodes) | **Post** /user/otp/sms/receive | Receive an OTP per sms
 *PasswordResetTokensApi* | [**CreatePasswordResetToken**](docs/PasswordResetTokensApi.md#createpasswordresettoken) | **Post** /reset-password | Create a password reset token
 *PasswordResetTokensApi* | [**ResetPassword**](docs/PasswordResetTokensApi.md#resetpassword) | **Delete** /reset-password | Reset current user password
 *PaymentMethodsApi* | [**DeletePaymentMethod**](docs/PaymentMethodsApi.md#deletepaymentmethod) | **Delete** /payment-methods/{id} | Delete the payment method
