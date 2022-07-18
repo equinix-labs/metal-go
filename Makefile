@@ -85,7 +85,7 @@ move-other:
 	rm -rf api .travis.yml git_push.sh
 	rm -f ${PACKAGE_PREFIX}/${PACKAGE_MAJOR}/.travis.yml
 	mv ${PACKAGE_PREFIX}/${PACKAGE_MAJOR}/api .
-	mv ${PACKAGE_PREFIX}/${PACKAGE_MAJOR}/git_push.sh .
+	rm ${PACKAGE_PREFIX}/${PACKAGE_MAJOR}/git_push.sh
 
 # https://github.com/OpenAPITools/openapi-generator/issues/741#issuecomment-569791780
 remove-dupe-requests: ## Removes duplicate Request structs from the generated code
