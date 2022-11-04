@@ -9,7 +9,7 @@ SPEC_URL:=https://api.equinix.com/metal/v1/api-docs
 
 SPEC_FETCHED_FILE:=spec.fetched.json
 SPEC_PATCHED_FILE:=spec.patched.json
-IMAGE=openapitools/openapi-generator-cli
+IMAGE=openapitools/openapi-generator-cli:v6.2.1
 GIT_ORG=equinix-labs
 GIT_REPO=metal-go
 PACKAGE_PREFIX=metal
@@ -58,6 +58,8 @@ gen:
 		--git-repo-id ${GIT_REPO} \
 		-o /local/${PACKAGE_PREFIX}/${PACKAGE_MAJOR} \
 		-i /local/${SPEC_PATCHED_FILE}
+	# generated tests have a broken import
+	find ${PACKAGE_PREFIX}/${PACKAGE_MAJOR}/test -type f -exec sed -i"" 's_"./openapi"_"github.com/equinix-labs/metal-go/metal/v1"_g' {} \;
 
 validate:
 	${SWAGGER} validate \
