@@ -1,7 +1,7 @@
 /*
 Metal API
 
-This is the API for Equinix Metal. The API allows you to programmatically interact with all of your Equinix Metal resources, including devices, networks, addresses, organizations, projects, and your user account.  The official API docs are hosted at <https://metal.equinix.com/developers/api>.
+# Introduction Equinix Metal provides a RESTful HTTP API which can be reached at <https://api.equinix.com/metal/v1>. This document describes the API and how to use it.  The API allows you to programmatically interact with all of your Equinix Metal resources, including devices, networks, addresses, organizations, projects, and your user account. Every feature of the Equinix Metal web interface is accessible through the API.  The API docs are generated from the Equinix Metal OpenAPI specification and are officially hosted at <https://metal.equinix.com/developers/api>.  # Common Parameters  The Equinix Metal API uses a few methods to minimize network traffic and improve throughput. These parameters are not used in all API calls, but are used often enough to warrant their own section. Look for these parameters in the documentation for the API calls that support them.  ## Pagination  Pagination is used to limit the number of results returned in a single request. The API will return a maximum of 100 results per page. To retrieve additional results, you can use the `page` and `per_page` query parameters.  The `page` parameter is used to specify the page number. The first page is `1`. The `per_page` parameter is used to specify the number of results per page. The maximum number of results differs by resource type.  ## Sorting  Where offered, the API allows you to sort results by a specific field. To sort results use the `sort_by` query parameter with the root level field name as the value. The `sort_direction` parameter is used to specify the sort direction, either either `asc` (ascending) or `desc` (descending).  ## Filtering  Filtering is used to limit the results returned in a single request. The API supports filtering by certain fields in the response. To filter results, you can use the field as a query parameter.  For example, to filter the IP list to only return public IPv4 addresses, you can filter by the `type` field, as in the following request:  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/projects/id/ips?type=public_ipv4 ```  Only IP addresses with the `type` field set to `public_ipv4` will be returned.  ## Searching  Searching is used to find matching resources using multiple field comparissons. The API supports searching in resources that define this behavior. The fields available for search differ by resource, as does the search strategy.  To search resources you can use the `search` query parameter.  ## Include and Exclude  For resources that contain references to other resources, sucha as a Device that refers to the Project it resides in, the Equinix Metal API will returns `href` values (API links) to the associated resource.  ```json {   ...   \"project\": {     \"href\": \"/metal/v1/projects/f3f131c8-f302-49ef-8c44-9405022dc6dd\"   } } ```  If you're going need the project details, you can avoid a second API request.  Specify the contained `href` resources and collections that you'd like to have included in the response using the `include` query parameter.  For example:    ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=projects ```  The `include` parameter is generally accepted in `GET`, `POST`, `PUT`, and `PATCH` requests where `href` resources are presented.  To have multiple resources include, use a comma-separated list (e.g. `?include=emails,projects,memberships`).  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=emails,projects,memberships ```  You may also include nested associations up to three levels deep using dot notation (`?include=memberships.projects`):  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=memberships.projects ```  To exclude resources, and optimize response delivery, use the `exclude` query parameter. The `exclude` parameter is generally accepted in `GET`, `POST`, `PUT`, and `PATCH` requests for fields with nested object responses. When excluded, these fields will be replaced with an object that contains only an `href` field.
 
 API version: 1.0.0
 Contact: support@equinixmetal.com
@@ -50,7 +50,7 @@ func NewCreateOrganizationRequestWithDefaults() *CreateOrganizationRequest {
 
 // GetAddress returns the Address field value if set, zero value otherwise.
 func (o *CreateOrganizationRequest) GetAddress() FindDeviceById200ResponseFacilityAddress {
-	if o == nil || o.Address == nil {
+	if o == nil || isNil(o.Address) {
 		var ret FindDeviceById200ResponseFacilityAddress
 		return ret
 	}
@@ -60,7 +60,7 @@ func (o *CreateOrganizationRequest) GetAddress() FindDeviceById200ResponseFacili
 // GetAddressOk returns a tuple with the Address field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationRequest) GetAddressOk() (*FindDeviceById200ResponseFacilityAddress, bool) {
-	if o == nil || o.Address == nil {
+	if o == nil || isNil(o.Address) {
 		return nil, false
 	}
 	return o.Address, true
@@ -68,7 +68,7 @@ func (o *CreateOrganizationRequest) GetAddressOk() (*FindDeviceById200ResponseFa
 
 // HasAddress returns a boolean if a field has been set.
 func (o *CreateOrganizationRequest) HasAddress() bool {
-	if o != nil && o.Address != nil {
+	if o != nil && !isNil(o.Address) {
 		return true
 	}
 
@@ -82,7 +82,7 @@ func (o *CreateOrganizationRequest) SetAddress(v FindDeviceById200ResponseFacili
 
 // GetBillingAddress returns the BillingAddress field value if set, zero value otherwise.
 func (o *CreateOrganizationRequest) GetBillingAddress() FindDeviceById200ResponseFacilityAddress {
-	if o == nil || o.BillingAddress == nil {
+	if o == nil || isNil(o.BillingAddress) {
 		var ret FindDeviceById200ResponseFacilityAddress
 		return ret
 	}
@@ -92,7 +92,7 @@ func (o *CreateOrganizationRequest) GetBillingAddress() FindDeviceById200Respons
 // GetBillingAddressOk returns a tuple with the BillingAddress field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationRequest) GetBillingAddressOk() (*FindDeviceById200ResponseFacilityAddress, bool) {
-	if o == nil || o.BillingAddress == nil {
+	if o == nil || isNil(o.BillingAddress) {
 		return nil, false
 	}
 	return o.BillingAddress, true
@@ -100,7 +100,7 @@ func (o *CreateOrganizationRequest) GetBillingAddressOk() (*FindDeviceById200Res
 
 // HasBillingAddress returns a boolean if a field has been set.
 func (o *CreateOrganizationRequest) HasBillingAddress() bool {
-	if o != nil && o.BillingAddress != nil {
+	if o != nil && !isNil(o.BillingAddress) {
 		return true
 	}
 
@@ -114,7 +114,7 @@ func (o *CreateOrganizationRequest) SetBillingAddress(v FindDeviceById200Respons
 
 // GetCustomdata returns the Customdata field value if set, zero value otherwise.
 func (o *CreateOrganizationRequest) GetCustomdata() map[string]interface{} {
-	if o == nil || o.Customdata == nil {
+	if o == nil || isNil(o.Customdata) {
 		var ret map[string]interface{}
 		return ret
 	}
@@ -124,15 +124,15 @@ func (o *CreateOrganizationRequest) GetCustomdata() map[string]interface{} {
 // GetCustomdataOk returns a tuple with the Customdata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationRequest) GetCustomdataOk() (map[string]interface{}, bool) {
-	if o == nil || o.Customdata == nil {
-		return nil, false
+	if o == nil || isNil(o.Customdata) {
+		return map[string]interface{}{}, false
 	}
 	return o.Customdata, true
 }
 
 // HasCustomdata returns a boolean if a field has been set.
 func (o *CreateOrganizationRequest) HasCustomdata() bool {
-	if o != nil && o.Customdata != nil {
+	if o != nil && !isNil(o.Customdata) {
 		return true
 	}
 
@@ -146,7 +146,7 @@ func (o *CreateOrganizationRequest) SetCustomdata(v map[string]interface{}) {
 
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *CreateOrganizationRequest) GetDescription() string {
-	if o == nil || o.Description == nil {
+	if o == nil || isNil(o.Description) {
 		var ret string
 		return ret
 	}
@@ -156,7 +156,7 @@ func (o *CreateOrganizationRequest) GetDescription() string {
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationRequest) GetDescriptionOk() (*string, bool) {
-	if o == nil || o.Description == nil {
+	if o == nil || isNil(o.Description) {
 		return nil, false
 	}
 	return o.Description, true
@@ -164,7 +164,7 @@ func (o *CreateOrganizationRequest) GetDescriptionOk() (*string, bool) {
 
 // HasDescription returns a boolean if a field has been set.
 func (o *CreateOrganizationRequest) HasDescription() bool {
-	if o != nil && o.Description != nil {
+	if o != nil && !isNil(o.Description) {
 		return true
 	}
 
@@ -178,7 +178,7 @@ func (o *CreateOrganizationRequest) SetDescription(v string) {
 
 // GetEnforce2faAt returns the Enforce2faAt field value if set, zero value otherwise.
 func (o *CreateOrganizationRequest) GetEnforce2faAt() time.Time {
-	if o == nil || o.Enforce2faAt == nil {
+	if o == nil || isNil(o.Enforce2faAt) {
 		var ret time.Time
 		return ret
 	}
@@ -188,7 +188,7 @@ func (o *CreateOrganizationRequest) GetEnforce2faAt() time.Time {
 // GetEnforce2faAtOk returns a tuple with the Enforce2faAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationRequest) GetEnforce2faAtOk() (*time.Time, bool) {
-	if o == nil || o.Enforce2faAt == nil {
+	if o == nil || isNil(o.Enforce2faAt) {
 		return nil, false
 	}
 	return o.Enforce2faAt, true
@@ -196,7 +196,7 @@ func (o *CreateOrganizationRequest) GetEnforce2faAtOk() (*time.Time, bool) {
 
 // HasEnforce2faAt returns a boolean if a field has been set.
 func (o *CreateOrganizationRequest) HasEnforce2faAt() bool {
-	if o != nil && o.Enforce2faAt != nil {
+	if o != nil && !isNil(o.Enforce2faAt) {
 		return true
 	}
 
@@ -210,7 +210,7 @@ func (o *CreateOrganizationRequest) SetEnforce2faAt(v time.Time) {
 
 // GetLogo returns the Logo field value if set, zero value otherwise.
 func (o *CreateOrganizationRequest) GetLogo() *os.File {
-	if o == nil || o.Logo == nil {
+	if o == nil || isNil(o.Logo) {
 		var ret *os.File
 		return ret
 	}
@@ -220,7 +220,7 @@ func (o *CreateOrganizationRequest) GetLogo() *os.File {
 // GetLogoOk returns a tuple with the Logo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationRequest) GetLogoOk() (**os.File, bool) {
-	if o == nil || o.Logo == nil {
+	if o == nil || isNil(o.Logo) {
 		return nil, false
 	}
 	return o.Logo, true
@@ -228,7 +228,7 @@ func (o *CreateOrganizationRequest) GetLogoOk() (**os.File, bool) {
 
 // HasLogo returns a boolean if a field has been set.
 func (o *CreateOrganizationRequest) HasLogo() bool {
-	if o != nil && o.Logo != nil {
+	if o != nil && !isNil(o.Logo) {
 		return true
 	}
 
@@ -242,7 +242,7 @@ func (o *CreateOrganizationRequest) SetLogo(v *os.File) {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *CreateOrganizationRequest) GetName() string {
-	if o == nil || o.Name == nil {
+	if o == nil || isNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -252,7 +252,7 @@ func (o *CreateOrganizationRequest) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationRequest) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
+	if o == nil || isNil(o.Name) {
 		return nil, false
 	}
 	return o.Name, true
@@ -260,7 +260,7 @@ func (o *CreateOrganizationRequest) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *CreateOrganizationRequest) HasName() bool {
-	if o != nil && o.Name != nil {
+	if o != nil && !isNil(o.Name) {
 		return true
 	}
 
@@ -274,7 +274,7 @@ func (o *CreateOrganizationRequest) SetName(v string) {
 
 // GetTwitter returns the Twitter field value if set, zero value otherwise.
 func (o *CreateOrganizationRequest) GetTwitter() string {
-	if o == nil || o.Twitter == nil {
+	if o == nil || isNil(o.Twitter) {
 		var ret string
 		return ret
 	}
@@ -284,7 +284,7 @@ func (o *CreateOrganizationRequest) GetTwitter() string {
 // GetTwitterOk returns a tuple with the Twitter field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationRequest) GetTwitterOk() (*string, bool) {
-	if o == nil || o.Twitter == nil {
+	if o == nil || isNil(o.Twitter) {
 		return nil, false
 	}
 	return o.Twitter, true
@@ -292,7 +292,7 @@ func (o *CreateOrganizationRequest) GetTwitterOk() (*string, bool) {
 
 // HasTwitter returns a boolean if a field has been set.
 func (o *CreateOrganizationRequest) HasTwitter() bool {
-	if o != nil && o.Twitter != nil {
+	if o != nil && !isNil(o.Twitter) {
 		return true
 	}
 
@@ -306,7 +306,7 @@ func (o *CreateOrganizationRequest) SetTwitter(v string) {
 
 // GetWebsite returns the Website field value if set, zero value otherwise.
 func (o *CreateOrganizationRequest) GetWebsite() string {
-	if o == nil || o.Website == nil {
+	if o == nil || isNil(o.Website) {
 		var ret string
 		return ret
 	}
@@ -316,7 +316,7 @@ func (o *CreateOrganizationRequest) GetWebsite() string {
 // GetWebsiteOk returns a tuple with the Website field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationRequest) GetWebsiteOk() (*string, bool) {
-	if o == nil || o.Website == nil {
+	if o == nil || isNil(o.Website) {
 		return nil, false
 	}
 	return o.Website, true
@@ -324,7 +324,7 @@ func (o *CreateOrganizationRequest) GetWebsiteOk() (*string, bool) {
 
 // HasWebsite returns a boolean if a field has been set.
 func (o *CreateOrganizationRequest) HasWebsite() bool {
-	if o != nil && o.Website != nil {
+	if o != nil && !isNil(o.Website) {
 		return true
 	}
 
@@ -338,31 +338,31 @@ func (o *CreateOrganizationRequest) SetWebsite(v string) {
 
 func (o CreateOrganizationRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Address != nil {
+	if !isNil(o.Address) {
 		toSerialize["address"] = o.Address
 	}
-	if o.BillingAddress != nil {
+	if !isNil(o.BillingAddress) {
 		toSerialize["billing_address"] = o.BillingAddress
 	}
-	if o.Customdata != nil {
+	if !isNil(o.Customdata) {
 		toSerialize["customdata"] = o.Customdata
 	}
-	if o.Description != nil {
+	if !isNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
-	if o.Enforce2faAt != nil {
+	if !isNil(o.Enforce2faAt) {
 		toSerialize["enforce_2fa_at"] = o.Enforce2faAt
 	}
-	if o.Logo != nil {
+	if !isNil(o.Logo) {
 		toSerialize["logo"] = o.Logo
 	}
-	if o.Name != nil {
+	if !isNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
-	if o.Twitter != nil {
+	if !isNil(o.Twitter) {
 		toSerialize["twitter"] = o.Twitter
 	}
-	if o.Website != nil {
+	if !isNil(o.Website) {
 		toSerialize["website"] = o.Website
 	}
 	return json.Marshal(toSerialize)

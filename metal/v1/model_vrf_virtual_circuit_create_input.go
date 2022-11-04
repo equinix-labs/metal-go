@@ -1,7 +1,7 @@
 /*
 Metal API
 
-This is the API for Equinix Metal. The API allows you to programmatically interact with all of your Equinix Metal resources, including devices, networks, addresses, organizations, projects, and your user account.  The official API docs are hosted at <https://metal.equinix.com/developers/api>.
+# Introduction Equinix Metal provides a RESTful HTTP API which can be reached at <https://api.equinix.com/metal/v1>. This document describes the API and how to use it.  The API allows you to programmatically interact with all of your Equinix Metal resources, including devices, networks, addresses, organizations, projects, and your user account. Every feature of the Equinix Metal web interface is accessible through the API.  The API docs are generated from the Equinix Metal OpenAPI specification and are officially hosted at <https://metal.equinix.com/developers/api>.  # Common Parameters  The Equinix Metal API uses a few methods to minimize network traffic and improve throughput. These parameters are not used in all API calls, but are used often enough to warrant their own section. Look for these parameters in the documentation for the API calls that support them.  ## Pagination  Pagination is used to limit the number of results returned in a single request. The API will return a maximum of 100 results per page. To retrieve additional results, you can use the `page` and `per_page` query parameters.  The `page` parameter is used to specify the page number. The first page is `1`. The `per_page` parameter is used to specify the number of results per page. The maximum number of results differs by resource type.  ## Sorting  Where offered, the API allows you to sort results by a specific field. To sort results use the `sort_by` query parameter with the root level field name as the value. The `sort_direction` parameter is used to specify the sort direction, either either `asc` (ascending) or `desc` (descending).  ## Filtering  Filtering is used to limit the results returned in a single request. The API supports filtering by certain fields in the response. To filter results, you can use the field as a query parameter.  For example, to filter the IP list to only return public IPv4 addresses, you can filter by the `type` field, as in the following request:  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/projects/id/ips?type=public_ipv4 ```  Only IP addresses with the `type` field set to `public_ipv4` will be returned.  ## Searching  Searching is used to find matching resources using multiple field comparissons. The API supports searching in resources that define this behavior. The fields available for search differ by resource, as does the search strategy.  To search resources you can use the `search` query parameter.  ## Include and Exclude  For resources that contain references to other resources, sucha as a Device that refers to the Project it resides in, the Equinix Metal API will returns `href` values (API links) to the associated resource.  ```json {   ...   \"project\": {     \"href\": \"/metal/v1/projects/f3f131c8-f302-49ef-8c44-9405022dc6dd\"   } } ```  If you're going need the project details, you can avoid a second API request.  Specify the contained `href` resources and collections that you'd like to have included in the response using the `include` query parameter.  For example:    ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=projects ```  The `include` parameter is generally accepted in `GET`, `POST`, `PUT`, and `PATCH` requests where `href` resources are presented.  To have multiple resources include, use a comma-separated list (e.g. `?include=emails,projects,memberships`).  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=emails,projects,memberships ```  You may also include nested associations up to three levels deep using dot notation (`?include=memberships.projects`):  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=memberships.projects ```  To exclude resources, and optimize response delivery, use the `exclude` query parameter. The `exclude` parameter is generally accepted in `GET`, `POST`, `PUT`, and `PATCH` requests for fields with nested object responses. When excluded, these fields will be replaced with an object that contains only an `href` field.
 
 API version: 1.0.0
 Contact: support@equinixmetal.com
@@ -17,7 +17,6 @@ import (
 
 // VrfVirtualCircuitCreateInput struct for VrfVirtualCircuitCreateInput
 type VrfVirtualCircuitCreateInput struct {
-	Tags []string `json:"tags,omitempty"`
 	// An IP address from the subnet that will be used on the Customer side. This parameter is optional, but if supplied, we will use the other usable IP address in the subnet as the Metal IP. By default, the last usable IP address in the subnet will be used.
 	CustomerIp  *string `json:"customer_ip,omitempty"`
 	Description *string `json:"description,omitempty"`
@@ -33,7 +32,8 @@ type VrfVirtualCircuitCreateInput struct {
 	// speed can be passed as integer number representing bps speed or string (e.g. '52m' or '100g' or '4 gbps')
 	Speed *int32 `json:"speed,omitempty"`
 	// The /30 or /31 subnet of one of the VRF IP Blocks that will be used with the VRF for the Virtual Circuit. This subnet does not have to be an existing VRF IP reservation, as we will create the VRF IP reservation on creation if it does not exist. The Metal IP and Customer IP must be IPs from this subnet. For /30 subnets, the network and broadcast IPs cannot be used as the Metal or Customer IP. The subnet specified must be contained within an already-defined IP Range for the VRF.
-	Subnet string `json:"subnet"`
+	Subnet string   `json:"subnet"`
+	Tags   []string `json:"tags,omitempty"`
 	// The UUID of the VRF that will be associated with the Virtual Circuit.
 	Vrf string `json:"vrf"`
 }
@@ -60,41 +60,9 @@ func NewVrfVirtualCircuitCreateInputWithDefaults() *VrfVirtualCircuitCreateInput
 	return &this
 }
 
-// GetTags returns the Tags field value if set, zero value otherwise.
-func (o *VrfVirtualCircuitCreateInput) GetTags() []string {
-	if o == nil || o.Tags == nil {
-		var ret []string
-		return ret
-	}
-	return o.Tags
-}
-
-// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *VrfVirtualCircuitCreateInput) GetTagsOk() ([]string, bool) {
-	if o == nil || o.Tags == nil {
-		return nil, false
-	}
-	return o.Tags, true
-}
-
-// HasTags returns a boolean if a field has been set.
-func (o *VrfVirtualCircuitCreateInput) HasTags() bool {
-	if o != nil && o.Tags != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetTags gets a reference to the given []string and assigns it to the Tags field.
-func (o *VrfVirtualCircuitCreateInput) SetTags(v []string) {
-	o.Tags = v
-}
-
 // GetCustomerIp returns the CustomerIp field value if set, zero value otherwise.
 func (o *VrfVirtualCircuitCreateInput) GetCustomerIp() string {
-	if o == nil || o.CustomerIp == nil {
+	if o == nil || isNil(o.CustomerIp) {
 		var ret string
 		return ret
 	}
@@ -104,7 +72,7 @@ func (o *VrfVirtualCircuitCreateInput) GetCustomerIp() string {
 // GetCustomerIpOk returns a tuple with the CustomerIp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VrfVirtualCircuitCreateInput) GetCustomerIpOk() (*string, bool) {
-	if o == nil || o.CustomerIp == nil {
+	if o == nil || isNil(o.CustomerIp) {
 		return nil, false
 	}
 	return o.CustomerIp, true
@@ -112,7 +80,7 @@ func (o *VrfVirtualCircuitCreateInput) GetCustomerIpOk() (*string, bool) {
 
 // HasCustomerIp returns a boolean if a field has been set.
 func (o *VrfVirtualCircuitCreateInput) HasCustomerIp() bool {
-	if o != nil && o.CustomerIp != nil {
+	if o != nil && !isNil(o.CustomerIp) {
 		return true
 	}
 
@@ -126,7 +94,7 @@ func (o *VrfVirtualCircuitCreateInput) SetCustomerIp(v string) {
 
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *VrfVirtualCircuitCreateInput) GetDescription() string {
-	if o == nil || o.Description == nil {
+	if o == nil || isNil(o.Description) {
 		var ret string
 		return ret
 	}
@@ -136,7 +104,7 @@ func (o *VrfVirtualCircuitCreateInput) GetDescription() string {
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VrfVirtualCircuitCreateInput) GetDescriptionOk() (*string, bool) {
-	if o == nil || o.Description == nil {
+	if o == nil || isNil(o.Description) {
 		return nil, false
 	}
 	return o.Description, true
@@ -144,7 +112,7 @@ func (o *VrfVirtualCircuitCreateInput) GetDescriptionOk() (*string, bool) {
 
 // HasDescription returns a boolean if a field has been set.
 func (o *VrfVirtualCircuitCreateInput) HasDescription() bool {
-	if o != nil && o.Description != nil {
+	if o != nil && !isNil(o.Description) {
 		return true
 	}
 
@@ -158,7 +126,7 @@ func (o *VrfVirtualCircuitCreateInput) SetDescription(v string) {
 
 // GetMd5 returns the Md5 field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *VrfVirtualCircuitCreateInput) GetMd5() string {
-	if o == nil || o.Md5.Get() == nil {
+	if o == nil || isNil(o.Md5.Get()) {
 		var ret string
 		return ret
 	}
@@ -201,7 +169,7 @@ func (o *VrfVirtualCircuitCreateInput) UnsetMd5() {
 
 // GetMetalIp returns the MetalIp field value if set, zero value otherwise.
 func (o *VrfVirtualCircuitCreateInput) GetMetalIp() string {
-	if o == nil || o.MetalIp == nil {
+	if o == nil || isNil(o.MetalIp) {
 		var ret string
 		return ret
 	}
@@ -211,7 +179,7 @@ func (o *VrfVirtualCircuitCreateInput) GetMetalIp() string {
 // GetMetalIpOk returns a tuple with the MetalIp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VrfVirtualCircuitCreateInput) GetMetalIpOk() (*string, bool) {
-	if o == nil || o.MetalIp == nil {
+	if o == nil || isNil(o.MetalIp) {
 		return nil, false
 	}
 	return o.MetalIp, true
@@ -219,7 +187,7 @@ func (o *VrfVirtualCircuitCreateInput) GetMetalIpOk() (*string, bool) {
 
 // HasMetalIp returns a boolean if a field has been set.
 func (o *VrfVirtualCircuitCreateInput) HasMetalIp() bool {
-	if o != nil && o.MetalIp != nil {
+	if o != nil && !isNil(o.MetalIp) {
 		return true
 	}
 
@@ -233,7 +201,7 @@ func (o *VrfVirtualCircuitCreateInput) SetMetalIp(v string) {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *VrfVirtualCircuitCreateInput) GetName() string {
-	if o == nil || o.Name == nil {
+	if o == nil || isNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -243,7 +211,7 @@ func (o *VrfVirtualCircuitCreateInput) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VrfVirtualCircuitCreateInput) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
+	if o == nil || isNil(o.Name) {
 		return nil, false
 	}
 	return o.Name, true
@@ -251,7 +219,7 @@ func (o *VrfVirtualCircuitCreateInput) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *VrfVirtualCircuitCreateInput) HasName() bool {
-	if o != nil && o.Name != nil {
+	if o != nil && !isNil(o.Name) {
 		return true
 	}
 
@@ -337,7 +305,7 @@ func (o *VrfVirtualCircuitCreateInput) SetProject(v string) {
 
 // GetSpeed returns the Speed field value if set, zero value otherwise.
 func (o *VrfVirtualCircuitCreateInput) GetSpeed() int32 {
-	if o == nil || o.Speed == nil {
+	if o == nil || isNil(o.Speed) {
 		var ret int32
 		return ret
 	}
@@ -347,7 +315,7 @@ func (o *VrfVirtualCircuitCreateInput) GetSpeed() int32 {
 // GetSpeedOk returns a tuple with the Speed field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VrfVirtualCircuitCreateInput) GetSpeedOk() (*int32, bool) {
-	if o == nil || o.Speed == nil {
+	if o == nil || isNil(o.Speed) {
 		return nil, false
 	}
 	return o.Speed, true
@@ -355,7 +323,7 @@ func (o *VrfVirtualCircuitCreateInput) GetSpeedOk() (*int32, bool) {
 
 // HasSpeed returns a boolean if a field has been set.
 func (o *VrfVirtualCircuitCreateInput) HasSpeed() bool {
-	if o != nil && o.Speed != nil {
+	if o != nil && !isNil(o.Speed) {
 		return true
 	}
 
@@ -391,6 +359,38 @@ func (o *VrfVirtualCircuitCreateInput) SetSubnet(v string) {
 	o.Subnet = v
 }
 
+// GetTags returns the Tags field value if set, zero value otherwise.
+func (o *VrfVirtualCircuitCreateInput) GetTags() []string {
+	if o == nil || isNil(o.Tags) {
+		var ret []string
+		return ret
+	}
+	return o.Tags
+}
+
+// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VrfVirtualCircuitCreateInput) GetTagsOk() ([]string, bool) {
+	if o == nil || isNil(o.Tags) {
+		return nil, false
+	}
+	return o.Tags, true
+}
+
+// HasTags returns a boolean if a field has been set.
+func (o *VrfVirtualCircuitCreateInput) HasTags() bool {
+	if o != nil && !isNil(o.Tags) {
+		return true
+	}
+
+	return false
+}
+
+// SetTags gets a reference to the given []string and assigns it to the Tags field.
+func (o *VrfVirtualCircuitCreateInput) SetTags(v []string) {
+	o.Tags = v
+}
+
 // GetVrf returns the Vrf field value
 func (o *VrfVirtualCircuitCreateInput) GetVrf() string {
 	if o == nil {
@@ -417,22 +417,19 @@ func (o *VrfVirtualCircuitCreateInput) SetVrf(v string) {
 
 func (o VrfVirtualCircuitCreateInput) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Tags != nil {
-		toSerialize["tags"] = o.Tags
-	}
-	if o.CustomerIp != nil {
+	if !isNil(o.CustomerIp) {
 		toSerialize["customer_ip"] = o.CustomerIp
 	}
-	if o.Description != nil {
+	if !isNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
 	if o.Md5.IsSet() {
 		toSerialize["md5"] = o.Md5.Get()
 	}
-	if o.MetalIp != nil {
+	if !isNil(o.MetalIp) {
 		toSerialize["metal_ip"] = o.MetalIp
 	}
-	if o.Name != nil {
+	if !isNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
 	if true {
@@ -444,11 +441,14 @@ func (o VrfVirtualCircuitCreateInput) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["project"] = o.Project
 	}
-	if o.Speed != nil {
+	if !isNil(o.Speed) {
 		toSerialize["speed"] = o.Speed
 	}
 	if true {
 		toSerialize["subnet"] = o.Subnet
+	}
+	if !isNil(o.Tags) {
+		toSerialize["tags"] = o.Tags
 	}
 	if true {
 		toSerialize["vrf"] = o.Vrf

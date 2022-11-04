@@ -1,7 +1,7 @@
 /*
 Metal API
 
-This is the API for Equinix Metal. The API allows you to programmatically interact with all of your Equinix Metal resources, including devices, networks, addresses, organizations, projects, and your user account.  The official API docs are hosted at <https://metal.equinix.com/developers/api>.
+# Introduction Equinix Metal provides a RESTful HTTP API which can be reached at <https://api.equinix.com/metal/v1>. This document describes the API and how to use it.  The API allows you to programmatically interact with all of your Equinix Metal resources, including devices, networks, addresses, organizations, projects, and your user account. Every feature of the Equinix Metal web interface is accessible through the API.  The API docs are generated from the Equinix Metal OpenAPI specification and are officially hosted at <https://metal.equinix.com/developers/api>.  # Common Parameters  The Equinix Metal API uses a few methods to minimize network traffic and improve throughput. These parameters are not used in all API calls, but are used often enough to warrant their own section. Look for these parameters in the documentation for the API calls that support them.  ## Pagination  Pagination is used to limit the number of results returned in a single request. The API will return a maximum of 100 results per page. To retrieve additional results, you can use the `page` and `per_page` query parameters.  The `page` parameter is used to specify the page number. The first page is `1`. The `per_page` parameter is used to specify the number of results per page. The maximum number of results differs by resource type.  ## Sorting  Where offered, the API allows you to sort results by a specific field. To sort results use the `sort_by` query parameter with the root level field name as the value. The `sort_direction` parameter is used to specify the sort direction, either either `asc` (ascending) or `desc` (descending).  ## Filtering  Filtering is used to limit the results returned in a single request. The API supports filtering by certain fields in the response. To filter results, you can use the field as a query parameter.  For example, to filter the IP list to only return public IPv4 addresses, you can filter by the `type` field, as in the following request:  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/projects/id/ips?type=public_ipv4 ```  Only IP addresses with the `type` field set to `public_ipv4` will be returned.  ## Searching  Searching is used to find matching resources using multiple field comparissons. The API supports searching in resources that define this behavior. The fields available for search differ by resource, as does the search strategy.  To search resources you can use the `search` query parameter.  ## Include and Exclude  For resources that contain references to other resources, sucha as a Device that refers to the Project it resides in, the Equinix Metal API will returns `href` values (API links) to the associated resource.  ```json {   ...   \"project\": {     \"href\": \"/metal/v1/projects/f3f131c8-f302-49ef-8c44-9405022dc6dd\"   } } ```  If you're going need the project details, you can avoid a second API request.  Specify the contained `href` resources and collections that you'd like to have included in the response using the `include` query parameter.  For example:    ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=projects ```  The `include` parameter is generally accepted in `GET`, `POST`, `PUT`, and `PATCH` requests where `href` resources are presented.  To have multiple resources include, use a comma-separated list (e.g. `?include=emails,projects,memberships`).  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=emails,projects,memberships ```  You may also include nested associations up to three levels deep using dot notation (`?include=memberships.projects`):  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=memberships.projects ```  To exclude resources, and optimize response delivery, use the `exclude` query parameter. The `exclude` parameter is generally accepted in `GET`, `POST`, `PUT`, and `PATCH` requests for fields with nested object responses. When excluded, these fields will be replaced with an object that contains only an `href` field.
 
 API version: 1.0.0
 Contact: support@equinixmetal.com
@@ -13,7 +13,6 @@ package v1
 
 import (
 	"encoding/json"
-	"time"
 )
 
 // FindProjectAPIKeys200ResponseApiKeysInnerProject struct for FindProjectAPIKeys200ResponseApiKeysInnerProject
@@ -54,7 +53,7 @@ func NewFindProjectAPIKeys200ResponseApiKeysInnerProjectWithDefaults() *FindProj
 
 // GetBgpConfig returns the BgpConfig field value if set, zero value otherwise.
 func (o *FindProjectAPIKeys200ResponseApiKeysInnerProject) GetBgpConfig() FindBatchById200ResponseDevicesInner {
-	if o == nil || o.BgpConfig == nil {
+	if o == nil || isNil(o.BgpConfig) {
 		var ret FindBatchById200ResponseDevicesInner
 		return ret
 	}
@@ -64,7 +63,7 @@ func (o *FindProjectAPIKeys200ResponseApiKeysInnerProject) GetBgpConfig() FindBa
 // GetBgpConfigOk returns a tuple with the BgpConfig field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FindProjectAPIKeys200ResponseApiKeysInnerProject) GetBgpConfigOk() (*FindBatchById200ResponseDevicesInner, bool) {
-	if o == nil || o.BgpConfig == nil {
+	if o == nil || isNil(o.BgpConfig) {
 		return nil, false
 	}
 	return o.BgpConfig, true
@@ -72,7 +71,7 @@ func (o *FindProjectAPIKeys200ResponseApiKeysInnerProject) GetBgpConfigOk() (*Fi
 
 // HasBgpConfig returns a boolean if a field has been set.
 func (o *FindProjectAPIKeys200ResponseApiKeysInnerProject) HasBgpConfig() bool {
-	if o != nil && o.BgpConfig != nil {
+	if o != nil && !isNil(o.BgpConfig) {
 		return true
 	}
 
@@ -86,7 +85,7 @@ func (o *FindProjectAPIKeys200ResponseApiKeysInnerProject) SetBgpConfig(v FindBa
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *FindProjectAPIKeys200ResponseApiKeysInnerProject) GetCreatedAt() time.Time {
-	if o == nil || o.CreatedAt == nil {
+	if o == nil || isNil(o.CreatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -96,7 +95,7 @@ func (o *FindProjectAPIKeys200ResponseApiKeysInnerProject) GetCreatedAt() time.T
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FindProjectAPIKeys200ResponseApiKeysInnerProject) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || o.CreatedAt == nil {
+	if o == nil || isNil(o.CreatedAt) {
 		return nil, false
 	}
 	return o.CreatedAt, true
@@ -104,7 +103,7 @@ func (o *FindProjectAPIKeys200ResponseApiKeysInnerProject) GetCreatedAtOk() (*ti
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *FindProjectAPIKeys200ResponseApiKeysInnerProject) HasCreatedAt() bool {
-	if o != nil && o.CreatedAt != nil {
+	if o != nil && !isNil(o.CreatedAt) {
 		return true
 	}
 
@@ -118,7 +117,7 @@ func (o *FindProjectAPIKeys200ResponseApiKeysInnerProject) SetCreatedAt(v time.T
 
 // GetCustomdata returns the Customdata field value if set, zero value otherwise.
 func (o *FindProjectAPIKeys200ResponseApiKeysInnerProject) GetCustomdata() map[string]interface{} {
-	if o == nil || o.Customdata == nil {
+	if o == nil || isNil(o.Customdata) {
 		var ret map[string]interface{}
 		return ret
 	}
@@ -128,15 +127,15 @@ func (o *FindProjectAPIKeys200ResponseApiKeysInnerProject) GetCustomdata() map[s
 // GetCustomdataOk returns a tuple with the Customdata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FindProjectAPIKeys200ResponseApiKeysInnerProject) GetCustomdataOk() (map[string]interface{}, bool) {
-	if o == nil || o.Customdata == nil {
-		return nil, false
+	if o == nil || isNil(o.Customdata) {
+		return map[string]interface{}{}, false
 	}
 	return o.Customdata, true
 }
 
 // HasCustomdata returns a boolean if a field has been set.
 func (o *FindProjectAPIKeys200ResponseApiKeysInnerProject) HasCustomdata() bool {
-	if o != nil && o.Customdata != nil {
+	if o != nil && !isNil(o.Customdata) {
 		return true
 	}
 
@@ -150,7 +149,7 @@ func (o *FindProjectAPIKeys200ResponseApiKeysInnerProject) SetCustomdata(v map[s
 
 // GetDevices returns the Devices field value if set, zero value otherwise.
 func (o *FindProjectAPIKeys200ResponseApiKeysInnerProject) GetDevices() []FindBatchById200ResponseDevicesInner {
-	if o == nil || o.Devices == nil {
+	if o == nil || isNil(o.Devices) {
 		var ret []FindBatchById200ResponseDevicesInner
 		return ret
 	}
@@ -160,7 +159,7 @@ func (o *FindProjectAPIKeys200ResponseApiKeysInnerProject) GetDevices() []FindBa
 // GetDevicesOk returns a tuple with the Devices field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FindProjectAPIKeys200ResponseApiKeysInnerProject) GetDevicesOk() ([]FindBatchById200ResponseDevicesInner, bool) {
-	if o == nil || o.Devices == nil {
+	if o == nil || isNil(o.Devices) {
 		return nil, false
 	}
 	return o.Devices, true
@@ -168,7 +167,7 @@ func (o *FindProjectAPIKeys200ResponseApiKeysInnerProject) GetDevicesOk() ([]Fin
 
 // HasDevices returns a boolean if a field has been set.
 func (o *FindProjectAPIKeys200ResponseApiKeysInnerProject) HasDevices() bool {
-	if o != nil && o.Devices != nil {
+	if o != nil && !isNil(o.Devices) {
 		return true
 	}
 
@@ -182,7 +181,7 @@ func (o *FindProjectAPIKeys200ResponseApiKeysInnerProject) SetDevices(v []FindBa
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *FindProjectAPIKeys200ResponseApiKeysInnerProject) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || isNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -192,7 +191,7 @@ func (o *FindProjectAPIKeys200ResponseApiKeysInnerProject) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FindProjectAPIKeys200ResponseApiKeysInnerProject) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || isNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -200,7 +199,7 @@ func (o *FindProjectAPIKeys200ResponseApiKeysInnerProject) GetIdOk() (*string, b
 
 // HasId returns a boolean if a field has been set.
 func (o *FindProjectAPIKeys200ResponseApiKeysInnerProject) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !isNil(o.Id) {
 		return true
 	}
 
@@ -214,7 +213,7 @@ func (o *FindProjectAPIKeys200ResponseApiKeysInnerProject) SetId(v string) {
 
 // GetInvitations returns the Invitations field value if set, zero value otherwise.
 func (o *FindProjectAPIKeys200ResponseApiKeysInnerProject) GetInvitations() []FindBatchById200ResponseDevicesInner {
-	if o == nil || o.Invitations == nil {
+	if o == nil || isNil(o.Invitations) {
 		var ret []FindBatchById200ResponseDevicesInner
 		return ret
 	}
@@ -224,7 +223,7 @@ func (o *FindProjectAPIKeys200ResponseApiKeysInnerProject) GetInvitations() []Fi
 // GetInvitationsOk returns a tuple with the Invitations field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FindProjectAPIKeys200ResponseApiKeysInnerProject) GetInvitationsOk() ([]FindBatchById200ResponseDevicesInner, bool) {
-	if o == nil || o.Invitations == nil {
+	if o == nil || isNil(o.Invitations) {
 		return nil, false
 	}
 	return o.Invitations, true
@@ -232,7 +231,7 @@ func (o *FindProjectAPIKeys200ResponseApiKeysInnerProject) GetInvitationsOk() ([
 
 // HasInvitations returns a boolean if a field has been set.
 func (o *FindProjectAPIKeys200ResponseApiKeysInnerProject) HasInvitations() bool {
-	if o != nil && o.Invitations != nil {
+	if o != nil && !isNil(o.Invitations) {
 		return true
 	}
 
@@ -246,7 +245,7 @@ func (o *FindProjectAPIKeys200ResponseApiKeysInnerProject) SetInvitations(v []Fi
 
 // GetMaxDevices returns the MaxDevices field value if set, zero value otherwise.
 func (o *FindProjectAPIKeys200ResponseApiKeysInnerProject) GetMaxDevices() map[string]interface{} {
-	if o == nil || o.MaxDevices == nil {
+	if o == nil || isNil(o.MaxDevices) {
 		var ret map[string]interface{}
 		return ret
 	}
@@ -256,15 +255,15 @@ func (o *FindProjectAPIKeys200ResponseApiKeysInnerProject) GetMaxDevices() map[s
 // GetMaxDevicesOk returns a tuple with the MaxDevices field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FindProjectAPIKeys200ResponseApiKeysInnerProject) GetMaxDevicesOk() (map[string]interface{}, bool) {
-	if o == nil || o.MaxDevices == nil {
-		return nil, false
+	if o == nil || isNil(o.MaxDevices) {
+		return map[string]interface{}{}, false
 	}
 	return o.MaxDevices, true
 }
 
 // HasMaxDevices returns a boolean if a field has been set.
 func (o *FindProjectAPIKeys200ResponseApiKeysInnerProject) HasMaxDevices() bool {
-	if o != nil && o.MaxDevices != nil {
+	if o != nil && !isNil(o.MaxDevices) {
 		return true
 	}
 
@@ -278,7 +277,7 @@ func (o *FindProjectAPIKeys200ResponseApiKeysInnerProject) SetMaxDevices(v map[s
 
 // GetMembers returns the Members field value if set, zero value otherwise.
 func (o *FindProjectAPIKeys200ResponseApiKeysInnerProject) GetMembers() []FindBatchById200ResponseDevicesInner {
-	if o == nil || o.Members == nil {
+	if o == nil || isNil(o.Members) {
 		var ret []FindBatchById200ResponseDevicesInner
 		return ret
 	}
@@ -288,7 +287,7 @@ func (o *FindProjectAPIKeys200ResponseApiKeysInnerProject) GetMembers() []FindBa
 // GetMembersOk returns a tuple with the Members field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FindProjectAPIKeys200ResponseApiKeysInnerProject) GetMembersOk() ([]FindBatchById200ResponseDevicesInner, bool) {
-	if o == nil || o.Members == nil {
+	if o == nil || isNil(o.Members) {
 		return nil, false
 	}
 	return o.Members, true
@@ -296,7 +295,7 @@ func (o *FindProjectAPIKeys200ResponseApiKeysInnerProject) GetMembersOk() ([]Fin
 
 // HasMembers returns a boolean if a field has been set.
 func (o *FindProjectAPIKeys200ResponseApiKeysInnerProject) HasMembers() bool {
-	if o != nil && o.Members != nil {
+	if o != nil && !isNil(o.Members) {
 		return true
 	}
 
@@ -310,7 +309,7 @@ func (o *FindProjectAPIKeys200ResponseApiKeysInnerProject) SetMembers(v []FindBa
 
 // GetMemberships returns the Memberships field value if set, zero value otherwise.
 func (o *FindProjectAPIKeys200ResponseApiKeysInnerProject) GetMemberships() []FindBatchById200ResponseDevicesInner {
-	if o == nil || o.Memberships == nil {
+	if o == nil || isNil(o.Memberships) {
 		var ret []FindBatchById200ResponseDevicesInner
 		return ret
 	}
@@ -320,7 +319,7 @@ func (o *FindProjectAPIKeys200ResponseApiKeysInnerProject) GetMemberships() []Fi
 // GetMembershipsOk returns a tuple with the Memberships field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FindProjectAPIKeys200ResponseApiKeysInnerProject) GetMembershipsOk() ([]FindBatchById200ResponseDevicesInner, bool) {
-	if o == nil || o.Memberships == nil {
+	if o == nil || isNil(o.Memberships) {
 		return nil, false
 	}
 	return o.Memberships, true
@@ -328,7 +327,7 @@ func (o *FindProjectAPIKeys200ResponseApiKeysInnerProject) GetMembershipsOk() ([
 
 // HasMemberships returns a boolean if a field has been set.
 func (o *FindProjectAPIKeys200ResponseApiKeysInnerProject) HasMemberships() bool {
-	if o != nil && o.Memberships != nil {
+	if o != nil && !isNil(o.Memberships) {
 		return true
 	}
 
@@ -342,7 +341,7 @@ func (o *FindProjectAPIKeys200ResponseApiKeysInnerProject) SetMemberships(v []Fi
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *FindProjectAPIKeys200ResponseApiKeysInnerProject) GetName() string {
-	if o == nil || o.Name == nil {
+	if o == nil || isNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -352,7 +351,7 @@ func (o *FindProjectAPIKeys200ResponseApiKeysInnerProject) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FindProjectAPIKeys200ResponseApiKeysInnerProject) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
+	if o == nil || isNil(o.Name) {
 		return nil, false
 	}
 	return o.Name, true
@@ -360,7 +359,7 @@ func (o *FindProjectAPIKeys200ResponseApiKeysInnerProject) GetNameOk() (*string,
 
 // HasName returns a boolean if a field has been set.
 func (o *FindProjectAPIKeys200ResponseApiKeysInnerProject) HasName() bool {
-	if o != nil && o.Name != nil {
+	if o != nil && !isNil(o.Name) {
 		return true
 	}
 
@@ -374,7 +373,7 @@ func (o *FindProjectAPIKeys200ResponseApiKeysInnerProject) SetName(v string) {
 
 // GetNetworkStatus returns the NetworkStatus field value if set, zero value otherwise.
 func (o *FindProjectAPIKeys200ResponseApiKeysInnerProject) GetNetworkStatus() map[string]interface{} {
-	if o == nil || o.NetworkStatus == nil {
+	if o == nil || isNil(o.NetworkStatus) {
 		var ret map[string]interface{}
 		return ret
 	}
@@ -384,15 +383,15 @@ func (o *FindProjectAPIKeys200ResponseApiKeysInnerProject) GetNetworkStatus() ma
 // GetNetworkStatusOk returns a tuple with the NetworkStatus field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FindProjectAPIKeys200ResponseApiKeysInnerProject) GetNetworkStatusOk() (map[string]interface{}, bool) {
-	if o == nil || o.NetworkStatus == nil {
-		return nil, false
+	if o == nil || isNil(o.NetworkStatus) {
+		return map[string]interface{}{}, false
 	}
 	return o.NetworkStatus, true
 }
 
 // HasNetworkStatus returns a boolean if a field has been set.
 func (o *FindProjectAPIKeys200ResponseApiKeysInnerProject) HasNetworkStatus() bool {
-	if o != nil && o.NetworkStatus != nil {
+	if o != nil && !isNil(o.NetworkStatus) {
 		return true
 	}
 
@@ -406,7 +405,7 @@ func (o *FindProjectAPIKeys200ResponseApiKeysInnerProject) SetNetworkStatus(v ma
 
 // GetPaymentMethod returns the PaymentMethod field value if set, zero value otherwise.
 func (o *FindProjectAPIKeys200ResponseApiKeysInnerProject) GetPaymentMethod() FindBatchById200ResponseDevicesInner {
-	if o == nil || o.PaymentMethod == nil {
+	if o == nil || isNil(o.PaymentMethod) {
 		var ret FindBatchById200ResponseDevicesInner
 		return ret
 	}
@@ -416,7 +415,7 @@ func (o *FindProjectAPIKeys200ResponseApiKeysInnerProject) GetPaymentMethod() Fi
 // GetPaymentMethodOk returns a tuple with the PaymentMethod field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FindProjectAPIKeys200ResponseApiKeysInnerProject) GetPaymentMethodOk() (*FindBatchById200ResponseDevicesInner, bool) {
-	if o == nil || o.PaymentMethod == nil {
+	if o == nil || isNil(o.PaymentMethod) {
 		return nil, false
 	}
 	return o.PaymentMethod, true
@@ -424,7 +423,7 @@ func (o *FindProjectAPIKeys200ResponseApiKeysInnerProject) GetPaymentMethodOk() 
 
 // HasPaymentMethod returns a boolean if a field has been set.
 func (o *FindProjectAPIKeys200ResponseApiKeysInnerProject) HasPaymentMethod() bool {
-	if o != nil && o.PaymentMethod != nil {
+	if o != nil && !isNil(o.PaymentMethod) {
 		return true
 	}
 
@@ -438,7 +437,7 @@ func (o *FindProjectAPIKeys200ResponseApiKeysInnerProject) SetPaymentMethod(v Fi
 
 // GetSshKeys returns the SshKeys field value if set, zero value otherwise.
 func (o *FindProjectAPIKeys200ResponseApiKeysInnerProject) GetSshKeys() []FindBatchById200ResponseDevicesInner {
-	if o == nil || o.SshKeys == nil {
+	if o == nil || isNil(o.SshKeys) {
 		var ret []FindBatchById200ResponseDevicesInner
 		return ret
 	}
@@ -448,7 +447,7 @@ func (o *FindProjectAPIKeys200ResponseApiKeysInnerProject) GetSshKeys() []FindBa
 // GetSshKeysOk returns a tuple with the SshKeys field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FindProjectAPIKeys200ResponseApiKeysInnerProject) GetSshKeysOk() ([]FindBatchById200ResponseDevicesInner, bool) {
-	if o == nil || o.SshKeys == nil {
+	if o == nil || isNil(o.SshKeys) {
 		return nil, false
 	}
 	return o.SshKeys, true
@@ -456,7 +455,7 @@ func (o *FindProjectAPIKeys200ResponseApiKeysInnerProject) GetSshKeysOk() ([]Fin
 
 // HasSshKeys returns a boolean if a field has been set.
 func (o *FindProjectAPIKeys200ResponseApiKeysInnerProject) HasSshKeys() bool {
-	if o != nil && o.SshKeys != nil {
+	if o != nil && !isNil(o.SshKeys) {
 		return true
 	}
 
@@ -470,7 +469,7 @@ func (o *FindProjectAPIKeys200ResponseApiKeysInnerProject) SetSshKeys(v []FindBa
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *FindProjectAPIKeys200ResponseApiKeysInnerProject) GetUpdatedAt() time.Time {
-	if o == nil || o.UpdatedAt == nil {
+	if o == nil || isNil(o.UpdatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -480,7 +479,7 @@ func (o *FindProjectAPIKeys200ResponseApiKeysInnerProject) GetUpdatedAt() time.T
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FindProjectAPIKeys200ResponseApiKeysInnerProject) GetUpdatedAtOk() (*time.Time, bool) {
-	if o == nil || o.UpdatedAt == nil {
+	if o == nil || isNil(o.UpdatedAt) {
 		return nil, false
 	}
 	return o.UpdatedAt, true
@@ -488,7 +487,7 @@ func (o *FindProjectAPIKeys200ResponseApiKeysInnerProject) GetUpdatedAtOk() (*ti
 
 // HasUpdatedAt returns a boolean if a field has been set.
 func (o *FindProjectAPIKeys200ResponseApiKeysInnerProject) HasUpdatedAt() bool {
-	if o != nil && o.UpdatedAt != nil {
+	if o != nil && !isNil(o.UpdatedAt) {
 		return true
 	}
 
@@ -502,7 +501,7 @@ func (o *FindProjectAPIKeys200ResponseApiKeysInnerProject) SetUpdatedAt(v time.T
 
 // GetVolumes returns the Volumes field value if set, zero value otherwise.
 func (o *FindProjectAPIKeys200ResponseApiKeysInnerProject) GetVolumes() []FindBatchById200ResponseDevicesInner {
-	if o == nil || o.Volumes == nil {
+	if o == nil || isNil(o.Volumes) {
 		var ret []FindBatchById200ResponseDevicesInner
 		return ret
 	}
@@ -512,7 +511,7 @@ func (o *FindProjectAPIKeys200ResponseApiKeysInnerProject) GetVolumes() []FindBa
 // GetVolumesOk returns a tuple with the Volumes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FindProjectAPIKeys200ResponseApiKeysInnerProject) GetVolumesOk() ([]FindBatchById200ResponseDevicesInner, bool) {
-	if o == nil || o.Volumes == nil {
+	if o == nil || isNil(o.Volumes) {
 		return nil, false
 	}
 	return o.Volumes, true
@@ -520,7 +519,7 @@ func (o *FindProjectAPIKeys200ResponseApiKeysInnerProject) GetVolumesOk() ([]Fin
 
 // HasVolumes returns a boolean if a field has been set.
 func (o *FindProjectAPIKeys200ResponseApiKeysInnerProject) HasVolumes() bool {
-	if o != nil && o.Volumes != nil {
+	if o != nil && !isNil(o.Volumes) {
 		return true
 	}
 
@@ -534,49 +533,49 @@ func (o *FindProjectAPIKeys200ResponseApiKeysInnerProject) SetVolumes(v []FindBa
 
 func (o FindProjectAPIKeys200ResponseApiKeysInnerProject) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.BgpConfig != nil {
+	if !isNil(o.BgpConfig) {
 		toSerialize["bgp_config"] = o.BgpConfig
 	}
-	if o.CreatedAt != nil {
+	if !isNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt
 	}
-	if o.Customdata != nil {
+	if !isNil(o.Customdata) {
 		toSerialize["customdata"] = o.Customdata
 	}
-	if o.Devices != nil {
+	if !isNil(o.Devices) {
 		toSerialize["devices"] = o.Devices
 	}
-	if o.Id != nil {
+	if !isNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
-	if o.Invitations != nil {
+	if !isNil(o.Invitations) {
 		toSerialize["invitations"] = o.Invitations
 	}
-	if o.MaxDevices != nil {
+	if !isNil(o.MaxDevices) {
 		toSerialize["max_devices"] = o.MaxDevices
 	}
-	if o.Members != nil {
+	if !isNil(o.Members) {
 		toSerialize["members"] = o.Members
 	}
-	if o.Memberships != nil {
+	if !isNil(o.Memberships) {
 		toSerialize["memberships"] = o.Memberships
 	}
-	if o.Name != nil {
+	if !isNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
-	if o.NetworkStatus != nil {
+	if !isNil(o.NetworkStatus) {
 		toSerialize["network_status"] = o.NetworkStatus
 	}
-	if o.PaymentMethod != nil {
+	if !isNil(o.PaymentMethod) {
 		toSerialize["payment_method"] = o.PaymentMethod
 	}
-	if o.SshKeys != nil {
+	if !isNil(o.SshKeys) {
 		toSerialize["ssh_keys"] = o.SshKeys
 	}
-	if o.UpdatedAt != nil {
+	if !isNil(o.UpdatedAt) {
 		toSerialize["updated_at"] = o.UpdatedAt
 	}
-	if o.Volumes != nil {
+	if !isNil(o.Volumes) {
 		toSerialize["volumes"] = o.Volumes
 	}
 	return json.Marshal(toSerialize)

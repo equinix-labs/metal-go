@@ -1,7 +1,7 @@
 /*
 Metal API
 
-This is the API for Equinix Metal. The API allows you to programmatically interact with all of your Equinix Metal resources, including devices, networks, addresses, organizations, projects, and your user account.  The official API docs are hosted at <https://metal.equinix.com/developers/api>.
+# Introduction Equinix Metal provides a RESTful HTTP API which can be reached at <https://api.equinix.com/metal/v1>. This document describes the API and how to use it.  The API allows you to programmatically interact with all of your Equinix Metal resources, including devices, networks, addresses, organizations, projects, and your user account. Every feature of the Equinix Metal web interface is accessible through the API.  The API docs are generated from the Equinix Metal OpenAPI specification and are officially hosted at <https://metal.equinix.com/developers/api>.  # Common Parameters  The Equinix Metal API uses a few methods to minimize network traffic and improve throughput. These parameters are not used in all API calls, but are used often enough to warrant their own section. Look for these parameters in the documentation for the API calls that support them.  ## Pagination  Pagination is used to limit the number of results returned in a single request. The API will return a maximum of 100 results per page. To retrieve additional results, you can use the `page` and `per_page` query parameters.  The `page` parameter is used to specify the page number. The first page is `1`. The `per_page` parameter is used to specify the number of results per page. The maximum number of results differs by resource type.  ## Sorting  Where offered, the API allows you to sort results by a specific field. To sort results use the `sort_by` query parameter with the root level field name as the value. The `sort_direction` parameter is used to specify the sort direction, either either `asc` (ascending) or `desc` (descending).  ## Filtering  Filtering is used to limit the results returned in a single request. The API supports filtering by certain fields in the response. To filter results, you can use the field as a query parameter.  For example, to filter the IP list to only return public IPv4 addresses, you can filter by the `type` field, as in the following request:  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/projects/id/ips?type=public_ipv4 ```  Only IP addresses with the `type` field set to `public_ipv4` will be returned.  ## Searching  Searching is used to find matching resources using multiple field comparissons. The API supports searching in resources that define this behavior. The fields available for search differ by resource, as does the search strategy.  To search resources you can use the `search` query parameter.  ## Include and Exclude  For resources that contain references to other resources, sucha as a Device that refers to the Project it resides in, the Equinix Metal API will returns `href` values (API links) to the associated resource.  ```json {   ...   \"project\": {     \"href\": \"/metal/v1/projects/f3f131c8-f302-49ef-8c44-9405022dc6dd\"   } } ```  If you're going need the project details, you can avoid a second API request.  Specify the contained `href` resources and collections that you'd like to have included in the response using the `include` query parameter.  For example:    ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=projects ```  The `include` parameter is generally accepted in `GET`, `POST`, `PUT`, and `PATCH` requests where `href` resources are presented.  To have multiple resources include, use a comma-separated list (e.g. `?include=emails,projects,memberships`).  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=emails,projects,memberships ```  You may also include nested associations up to three levels deep using dot notation (`?include=memberships.projects`):  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=memberships.projects ```  To exclude resources, and optimize response delivery, use the `exclude` query parameter. The `exclude` parameter is generally accepted in `GET`, `POST`, `PUT`, and `PATCH` requests for fields with nested object responses. When excluded, these fields will be replaced with an object that contains only an `href` field.
 
 API version: 1.0.0
 Contact: support@equinixmetal.com
@@ -26,8 +26,8 @@ type MetalGatewayLite struct {
 	// The current state of the Metal Gateway. 'Ready' indicates the gateway record has been configured, but is currently not active on the network. 'Active' indicates the gateway has been configured on the network. 'Deleting' is a temporary state used to indicate that the gateway is in the process of being un-configured from the network, after which the gateway record will be deleted.
 	State     *string    `json:"state,omitempty"`
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
-	// The VLAN id of the Virtual Network record associated to this Metal Gateway. Example: 1001.
-	Vlan *float32 `json:"vlan,omitempty"`
+	// The VLAN id of the Virtual Network record associated to this Metal Gateway.
+	Vlan *int32 `json:"vlan,omitempty"`
 }
 
 // NewMetalGatewayLite instantiates a new MetalGatewayLite object
@@ -49,7 +49,7 @@ func NewMetalGatewayLiteWithDefaults() *MetalGatewayLite {
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *MetalGatewayLite) GetCreatedAt() time.Time {
-	if o == nil || o.CreatedAt == nil {
+	if o == nil || isNil(o.CreatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -59,7 +59,7 @@ func (o *MetalGatewayLite) GetCreatedAt() time.Time {
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MetalGatewayLite) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || o.CreatedAt == nil {
+	if o == nil || isNil(o.CreatedAt) {
 		return nil, false
 	}
 	return o.CreatedAt, true
@@ -67,7 +67,7 @@ func (o *MetalGatewayLite) GetCreatedAtOk() (*time.Time, bool) {
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *MetalGatewayLite) HasCreatedAt() bool {
-	if o != nil && o.CreatedAt != nil {
+	if o != nil && !isNil(o.CreatedAt) {
 		return true
 	}
 
@@ -81,7 +81,7 @@ func (o *MetalGatewayLite) SetCreatedAt(v time.Time) {
 
 // GetGatewayAddress returns the GatewayAddress field value if set, zero value otherwise.
 func (o *MetalGatewayLite) GetGatewayAddress() string {
-	if o == nil || o.GatewayAddress == nil {
+	if o == nil || isNil(o.GatewayAddress) {
 		var ret string
 		return ret
 	}
@@ -91,7 +91,7 @@ func (o *MetalGatewayLite) GetGatewayAddress() string {
 // GetGatewayAddressOk returns a tuple with the GatewayAddress field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MetalGatewayLite) GetGatewayAddressOk() (*string, bool) {
-	if o == nil || o.GatewayAddress == nil {
+	if o == nil || isNil(o.GatewayAddress) {
 		return nil, false
 	}
 	return o.GatewayAddress, true
@@ -99,7 +99,7 @@ func (o *MetalGatewayLite) GetGatewayAddressOk() (*string, bool) {
 
 // HasGatewayAddress returns a boolean if a field has been set.
 func (o *MetalGatewayLite) HasGatewayAddress() bool {
-	if o != nil && o.GatewayAddress != nil {
+	if o != nil && !isNil(o.GatewayAddress) {
 		return true
 	}
 
@@ -113,7 +113,7 @@ func (o *MetalGatewayLite) SetGatewayAddress(v string) {
 
 // GetHref returns the Href field value if set, zero value otherwise.
 func (o *MetalGatewayLite) GetHref() string {
-	if o == nil || o.Href == nil {
+	if o == nil || isNil(o.Href) {
 		var ret string
 		return ret
 	}
@@ -123,7 +123,7 @@ func (o *MetalGatewayLite) GetHref() string {
 // GetHrefOk returns a tuple with the Href field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MetalGatewayLite) GetHrefOk() (*string, bool) {
-	if o == nil || o.Href == nil {
+	if o == nil || isNil(o.Href) {
 		return nil, false
 	}
 	return o.Href, true
@@ -131,7 +131,7 @@ func (o *MetalGatewayLite) GetHrefOk() (*string, bool) {
 
 // HasHref returns a boolean if a field has been set.
 func (o *MetalGatewayLite) HasHref() bool {
-	if o != nil && o.Href != nil {
+	if o != nil && !isNil(o.Href) {
 		return true
 	}
 
@@ -145,7 +145,7 @@ func (o *MetalGatewayLite) SetHref(v string) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *MetalGatewayLite) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || isNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -155,7 +155,7 @@ func (o *MetalGatewayLite) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MetalGatewayLite) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || isNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -163,7 +163,7 @@ func (o *MetalGatewayLite) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *MetalGatewayLite) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !isNil(o.Id) {
 		return true
 	}
 
@@ -177,7 +177,7 @@ func (o *MetalGatewayLite) SetId(v string) {
 
 // GetState returns the State field value if set, zero value otherwise.
 func (o *MetalGatewayLite) GetState() string {
-	if o == nil || o.State == nil {
+	if o == nil || isNil(o.State) {
 		var ret string
 		return ret
 	}
@@ -187,7 +187,7 @@ func (o *MetalGatewayLite) GetState() string {
 // GetStateOk returns a tuple with the State field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MetalGatewayLite) GetStateOk() (*string, bool) {
-	if o == nil || o.State == nil {
+	if o == nil || isNil(o.State) {
 		return nil, false
 	}
 	return o.State, true
@@ -195,7 +195,7 @@ func (o *MetalGatewayLite) GetStateOk() (*string, bool) {
 
 // HasState returns a boolean if a field has been set.
 func (o *MetalGatewayLite) HasState() bool {
-	if o != nil && o.State != nil {
+	if o != nil && !isNil(o.State) {
 		return true
 	}
 
@@ -209,7 +209,7 @@ func (o *MetalGatewayLite) SetState(v string) {
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *MetalGatewayLite) GetUpdatedAt() time.Time {
-	if o == nil || o.UpdatedAt == nil {
+	if o == nil || isNil(o.UpdatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -219,7 +219,7 @@ func (o *MetalGatewayLite) GetUpdatedAt() time.Time {
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MetalGatewayLite) GetUpdatedAtOk() (*time.Time, bool) {
-	if o == nil || o.UpdatedAt == nil {
+	if o == nil || isNil(o.UpdatedAt) {
 		return nil, false
 	}
 	return o.UpdatedAt, true
@@ -227,7 +227,7 @@ func (o *MetalGatewayLite) GetUpdatedAtOk() (*time.Time, bool) {
 
 // HasUpdatedAt returns a boolean if a field has been set.
 func (o *MetalGatewayLite) HasUpdatedAt() bool {
-	if o != nil && o.UpdatedAt != nil {
+	if o != nil && !isNil(o.UpdatedAt) {
 		return true
 	}
 
@@ -240,9 +240,9 @@ func (o *MetalGatewayLite) SetUpdatedAt(v time.Time) {
 }
 
 // GetVlan returns the Vlan field value if set, zero value otherwise.
-func (o *MetalGatewayLite) GetVlan() float32 {
-	if o == nil || o.Vlan == nil {
-		var ret float32
+func (o *MetalGatewayLite) GetVlan() int32 {
+	if o == nil || isNil(o.Vlan) {
+		var ret int32
 		return ret
 	}
 	return *o.Vlan
@@ -250,8 +250,8 @@ func (o *MetalGatewayLite) GetVlan() float32 {
 
 // GetVlanOk returns a tuple with the Vlan field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetalGatewayLite) GetVlanOk() (*float32, bool) {
-	if o == nil || o.Vlan == nil {
+func (o *MetalGatewayLite) GetVlanOk() (*int32, bool) {
+	if o == nil || isNil(o.Vlan) {
 		return nil, false
 	}
 	return o.Vlan, true
@@ -259,39 +259,39 @@ func (o *MetalGatewayLite) GetVlanOk() (*float32, bool) {
 
 // HasVlan returns a boolean if a field has been set.
 func (o *MetalGatewayLite) HasVlan() bool {
-	if o != nil && o.Vlan != nil {
+	if o != nil && !isNil(o.Vlan) {
 		return true
 	}
 
 	return false
 }
 
-// SetVlan gets a reference to the given float32 and assigns it to the Vlan field.
-func (o *MetalGatewayLite) SetVlan(v float32) {
+// SetVlan gets a reference to the given int32 and assigns it to the Vlan field.
+func (o *MetalGatewayLite) SetVlan(v int32) {
 	o.Vlan = &v
 }
 
 func (o MetalGatewayLite) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.CreatedAt != nil {
+	if !isNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt
 	}
-	if o.GatewayAddress != nil {
+	if !isNil(o.GatewayAddress) {
 		toSerialize["gateway_address"] = o.GatewayAddress
 	}
-	if o.Href != nil {
+	if !isNil(o.Href) {
 		toSerialize["href"] = o.Href
 	}
-	if o.Id != nil {
+	if !isNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
-	if o.State != nil {
+	if !isNil(o.State) {
 		toSerialize["state"] = o.State
 	}
-	if o.UpdatedAt != nil {
+	if !isNil(o.UpdatedAt) {
 		toSerialize["updated_at"] = o.UpdatedAt
 	}
-	if o.Vlan != nil {
+	if !isNil(o.Vlan) {
 		toSerialize["vlan"] = o.Vlan
 	}
 	return json.Marshal(toSerialize)

@@ -1,7 +1,7 @@
 /*
 Metal API
 
-This is the API for Equinix Metal. The API allows you to programmatically interact with all of your Equinix Metal resources, including devices, networks, addresses, organizations, projects, and your user account.  The official API docs are hosted at <https://metal.equinix.com/developers/api>.
+# Introduction Equinix Metal provides a RESTful HTTP API which can be reached at <https://api.equinix.com/metal/v1>. This document describes the API and how to use it.  The API allows you to programmatically interact with all of your Equinix Metal resources, including devices, networks, addresses, organizations, projects, and your user account. Every feature of the Equinix Metal web interface is accessible through the API.  The API docs are generated from the Equinix Metal OpenAPI specification and are officially hosted at <https://metal.equinix.com/developers/api>.  # Common Parameters  The Equinix Metal API uses a few methods to minimize network traffic and improve throughput. These parameters are not used in all API calls, but are used often enough to warrant their own section. Look for these parameters in the documentation for the API calls that support them.  ## Pagination  Pagination is used to limit the number of results returned in a single request. The API will return a maximum of 100 results per page. To retrieve additional results, you can use the `page` and `per_page` query parameters.  The `page` parameter is used to specify the page number. The first page is `1`. The `per_page` parameter is used to specify the number of results per page. The maximum number of results differs by resource type.  ## Sorting  Where offered, the API allows you to sort results by a specific field. To sort results use the `sort_by` query parameter with the root level field name as the value. The `sort_direction` parameter is used to specify the sort direction, either either `asc` (ascending) or `desc` (descending).  ## Filtering  Filtering is used to limit the results returned in a single request. The API supports filtering by certain fields in the response. To filter results, you can use the field as a query parameter.  For example, to filter the IP list to only return public IPv4 addresses, you can filter by the `type` field, as in the following request:  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/projects/id/ips?type=public_ipv4 ```  Only IP addresses with the `type` field set to `public_ipv4` will be returned.  ## Searching  Searching is used to find matching resources using multiple field comparissons. The API supports searching in resources that define this behavior. The fields available for search differ by resource, as does the search strategy.  To search resources you can use the `search` query parameter.  ## Include and Exclude  For resources that contain references to other resources, sucha as a Device that refers to the Project it resides in, the Equinix Metal API will returns `href` values (API links) to the associated resource.  ```json {   ...   \"project\": {     \"href\": \"/metal/v1/projects/f3f131c8-f302-49ef-8c44-9405022dc6dd\"   } } ```  If you're going need the project details, you can avoid a second API request.  Specify the contained `href` resources and collections that you'd like to have included in the response using the `include` query parameter.  For example:    ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=projects ```  The `include` parameter is generally accepted in `GET`, `POST`, `PUT`, and `PATCH` requests where `href` resources are presented.  To have multiple resources include, use a comma-separated list (e.g. `?include=emails,projects,memberships`).  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=emails,projects,memberships ```  You may also include nested associations up to three levels deep using dot notation (`?include=memberships.projects`):  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=memberships.projects ```  To exclude resources, and optimize response delivery, use the `exclude` query parameter. The `exclude` parameter is generally accepted in `GET`, `POST`, `PUT`, and `PATCH` requests for fields with nested object responses. When excluded, these fields will be replaced with an object that contains only an `href` field.
 
 API version: 1.0.0
 Contact: support@equinixmetal.com
@@ -35,6 +35,8 @@ type CreateUserRequest struct {
 	Title          *string                        `json:"title,omitempty"`
 	TwoFactorAuth  *string                        `json:"two_factor_auth,omitempty"`
 	VerifiedAt     *time.Time                     `json:"verified_at,omitempty"`
+	InvitationId   *string                        `json:"invitation_id,omitempty"`
+	Nonce          *string                        `json:"nonce,omitempty"`
 }
 
 // NewCreateUserRequest instantiates a new CreateUserRequest object
@@ -59,7 +61,7 @@ func NewCreateUserRequestWithDefaults() *CreateUserRequest {
 
 // GetAvatar returns the Avatar field value if set, zero value otherwise.
 func (o *CreateUserRequest) GetAvatar() *os.File {
-	if o == nil || o.Avatar == nil {
+	if o == nil || isNil(o.Avatar) {
 		var ret *os.File
 		return ret
 	}
@@ -69,7 +71,7 @@ func (o *CreateUserRequest) GetAvatar() *os.File {
 // GetAvatarOk returns a tuple with the Avatar field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateUserRequest) GetAvatarOk() (**os.File, bool) {
-	if o == nil || o.Avatar == nil {
+	if o == nil || isNil(o.Avatar) {
 		return nil, false
 	}
 	return o.Avatar, true
@@ -77,7 +79,7 @@ func (o *CreateUserRequest) GetAvatarOk() (**os.File, bool) {
 
 // HasAvatar returns a boolean if a field has been set.
 func (o *CreateUserRequest) HasAvatar() bool {
-	if o != nil && o.Avatar != nil {
+	if o != nil && !isNil(o.Avatar) {
 		return true
 	}
 
@@ -91,7 +93,7 @@ func (o *CreateUserRequest) SetAvatar(v *os.File) {
 
 // GetCompanyName returns the CompanyName field value if set, zero value otherwise.
 func (o *CreateUserRequest) GetCompanyName() string {
-	if o == nil || o.CompanyName == nil {
+	if o == nil || isNil(o.CompanyName) {
 		var ret string
 		return ret
 	}
@@ -101,7 +103,7 @@ func (o *CreateUserRequest) GetCompanyName() string {
 // GetCompanyNameOk returns a tuple with the CompanyName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateUserRequest) GetCompanyNameOk() (*string, bool) {
-	if o == nil || o.CompanyName == nil {
+	if o == nil || isNil(o.CompanyName) {
 		return nil, false
 	}
 	return o.CompanyName, true
@@ -109,7 +111,7 @@ func (o *CreateUserRequest) GetCompanyNameOk() (*string, bool) {
 
 // HasCompanyName returns a boolean if a field has been set.
 func (o *CreateUserRequest) HasCompanyName() bool {
-	if o != nil && o.CompanyName != nil {
+	if o != nil && !isNil(o.CompanyName) {
 		return true
 	}
 
@@ -123,7 +125,7 @@ func (o *CreateUserRequest) SetCompanyName(v string) {
 
 // GetCompanyUrl returns the CompanyUrl field value if set, zero value otherwise.
 func (o *CreateUserRequest) GetCompanyUrl() string {
-	if o == nil || o.CompanyUrl == nil {
+	if o == nil || isNil(o.CompanyUrl) {
 		var ret string
 		return ret
 	}
@@ -133,7 +135,7 @@ func (o *CreateUserRequest) GetCompanyUrl() string {
 // GetCompanyUrlOk returns a tuple with the CompanyUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateUserRequest) GetCompanyUrlOk() (*string, bool) {
-	if o == nil || o.CompanyUrl == nil {
+	if o == nil || isNil(o.CompanyUrl) {
 		return nil, false
 	}
 	return o.CompanyUrl, true
@@ -141,7 +143,7 @@ func (o *CreateUserRequest) GetCompanyUrlOk() (*string, bool) {
 
 // HasCompanyUrl returns a boolean if a field has been set.
 func (o *CreateUserRequest) HasCompanyUrl() bool {
-	if o != nil && o.CompanyUrl != nil {
+	if o != nil && !isNil(o.CompanyUrl) {
 		return true
 	}
 
@@ -155,7 +157,7 @@ func (o *CreateUserRequest) SetCompanyUrl(v string) {
 
 // GetCustomdata returns the Customdata field value if set, zero value otherwise.
 func (o *CreateUserRequest) GetCustomdata() map[string]interface{} {
-	if o == nil || o.Customdata == nil {
+	if o == nil || isNil(o.Customdata) {
 		var ret map[string]interface{}
 		return ret
 	}
@@ -165,15 +167,15 @@ func (o *CreateUserRequest) GetCustomdata() map[string]interface{} {
 // GetCustomdataOk returns a tuple with the Customdata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateUserRequest) GetCustomdataOk() (map[string]interface{}, bool) {
-	if o == nil || o.Customdata == nil {
-		return nil, false
+	if o == nil || isNil(o.Customdata) {
+		return map[string]interface{}{}, false
 	}
 	return o.Customdata, true
 }
 
 // HasCustomdata returns a boolean if a field has been set.
 func (o *CreateUserRequest) HasCustomdata() bool {
-	if o != nil && o.Customdata != nil {
+	if o != nil && !isNil(o.Customdata) {
 		return true
 	}
 
@@ -259,7 +261,7 @@ func (o *CreateUserRequest) SetLastName(v string) {
 
 // GetLevel returns the Level field value if set, zero value otherwise.
 func (o *CreateUserRequest) GetLevel() string {
-	if o == nil || o.Level == nil {
+	if o == nil || isNil(o.Level) {
 		var ret string
 		return ret
 	}
@@ -269,7 +271,7 @@ func (o *CreateUserRequest) GetLevel() string {
 // GetLevelOk returns a tuple with the Level field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateUserRequest) GetLevelOk() (*string, bool) {
-	if o == nil || o.Level == nil {
+	if o == nil || isNil(o.Level) {
 		return nil, false
 	}
 	return o.Level, true
@@ -277,7 +279,7 @@ func (o *CreateUserRequest) GetLevelOk() (*string, bool) {
 
 // HasLevel returns a boolean if a field has been set.
 func (o *CreateUserRequest) HasLevel() bool {
-	if o != nil && o.Level != nil {
+	if o != nil && !isNil(o.Level) {
 		return true
 	}
 
@@ -291,7 +293,7 @@ func (o *CreateUserRequest) SetLevel(v string) {
 
 // GetLocked returns the Locked field value if set, zero value otherwise.
 func (o *CreateUserRequest) GetLocked() bool {
-	if o == nil || o.Locked == nil {
+	if o == nil || isNil(o.Locked) {
 		var ret bool
 		return ret
 	}
@@ -301,7 +303,7 @@ func (o *CreateUserRequest) GetLocked() bool {
 // GetLockedOk returns a tuple with the Locked field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateUserRequest) GetLockedOk() (*bool, bool) {
-	if o == nil || o.Locked == nil {
+	if o == nil || isNil(o.Locked) {
 		return nil, false
 	}
 	return o.Locked, true
@@ -309,7 +311,7 @@ func (o *CreateUserRequest) GetLockedOk() (*bool, bool) {
 
 // HasLocked returns a boolean if a field has been set.
 func (o *CreateUserRequest) HasLocked() bool {
-	if o != nil && o.Locked != nil {
+	if o != nil && !isNil(o.Locked) {
 		return true
 	}
 
@@ -323,7 +325,7 @@ func (o *CreateUserRequest) SetLocked(v bool) {
 
 // GetPassword returns the Password field value if set, zero value otherwise.
 func (o *CreateUserRequest) GetPassword() string {
-	if o == nil || o.Password == nil {
+	if o == nil || isNil(o.Password) {
 		var ret string
 		return ret
 	}
@@ -333,7 +335,7 @@ func (o *CreateUserRequest) GetPassword() string {
 // GetPasswordOk returns a tuple with the Password field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateUserRequest) GetPasswordOk() (*string, bool) {
-	if o == nil || o.Password == nil {
+	if o == nil || isNil(o.Password) {
 		return nil, false
 	}
 	return o.Password, true
@@ -341,7 +343,7 @@ func (o *CreateUserRequest) GetPasswordOk() (*string, bool) {
 
 // HasPassword returns a boolean if a field has been set.
 func (o *CreateUserRequest) HasPassword() bool {
-	if o != nil && o.Password != nil {
+	if o != nil && !isNil(o.Password) {
 		return true
 	}
 
@@ -355,7 +357,7 @@ func (o *CreateUserRequest) SetPassword(v string) {
 
 // GetPhoneNumber returns the PhoneNumber field value if set, zero value otherwise.
 func (o *CreateUserRequest) GetPhoneNumber() string {
-	if o == nil || o.PhoneNumber == nil {
+	if o == nil || isNil(o.PhoneNumber) {
 		var ret string
 		return ret
 	}
@@ -365,7 +367,7 @@ func (o *CreateUserRequest) GetPhoneNumber() string {
 // GetPhoneNumberOk returns a tuple with the PhoneNumber field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateUserRequest) GetPhoneNumberOk() (*string, bool) {
-	if o == nil || o.PhoneNumber == nil {
+	if o == nil || isNil(o.PhoneNumber) {
 		return nil, false
 	}
 	return o.PhoneNumber, true
@@ -373,7 +375,7 @@ func (o *CreateUserRequest) GetPhoneNumberOk() (*string, bool) {
 
 // HasPhoneNumber returns a boolean if a field has been set.
 func (o *CreateUserRequest) HasPhoneNumber() bool {
-	if o != nil && o.PhoneNumber != nil {
+	if o != nil && !isNil(o.PhoneNumber) {
 		return true
 	}
 
@@ -387,7 +389,7 @@ func (o *CreateUserRequest) SetPhoneNumber(v string) {
 
 // GetSocialAccounts returns the SocialAccounts field value if set, zero value otherwise.
 func (o *CreateUserRequest) GetSocialAccounts() map[string]interface{} {
-	if o == nil || o.SocialAccounts == nil {
+	if o == nil || isNil(o.SocialAccounts) {
 		var ret map[string]interface{}
 		return ret
 	}
@@ -397,15 +399,15 @@ func (o *CreateUserRequest) GetSocialAccounts() map[string]interface{} {
 // GetSocialAccountsOk returns a tuple with the SocialAccounts field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateUserRequest) GetSocialAccountsOk() (map[string]interface{}, bool) {
-	if o == nil || o.SocialAccounts == nil {
-		return nil, false
+	if o == nil || isNil(o.SocialAccounts) {
+		return map[string]interface{}{}, false
 	}
 	return o.SocialAccounts, true
 }
 
 // HasSocialAccounts returns a boolean if a field has been set.
 func (o *CreateUserRequest) HasSocialAccounts() bool {
-	if o != nil && o.SocialAccounts != nil {
+	if o != nil && !isNil(o.SocialAccounts) {
 		return true
 	}
 
@@ -419,7 +421,7 @@ func (o *CreateUserRequest) SetSocialAccounts(v map[string]interface{}) {
 
 // GetTimezone returns the Timezone field value if set, zero value otherwise.
 func (o *CreateUserRequest) GetTimezone() string {
-	if o == nil || o.Timezone == nil {
+	if o == nil || isNil(o.Timezone) {
 		var ret string
 		return ret
 	}
@@ -429,7 +431,7 @@ func (o *CreateUserRequest) GetTimezone() string {
 // GetTimezoneOk returns a tuple with the Timezone field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateUserRequest) GetTimezoneOk() (*string, bool) {
-	if o == nil || o.Timezone == nil {
+	if o == nil || isNil(o.Timezone) {
 		return nil, false
 	}
 	return o.Timezone, true
@@ -437,7 +439,7 @@ func (o *CreateUserRequest) GetTimezoneOk() (*string, bool) {
 
 // HasTimezone returns a boolean if a field has been set.
 func (o *CreateUserRequest) HasTimezone() bool {
-	if o != nil && o.Timezone != nil {
+	if o != nil && !isNil(o.Timezone) {
 		return true
 	}
 
@@ -451,7 +453,7 @@ func (o *CreateUserRequest) SetTimezone(v string) {
 
 // GetTitle returns the Title field value if set, zero value otherwise.
 func (o *CreateUserRequest) GetTitle() string {
-	if o == nil || o.Title == nil {
+	if o == nil || isNil(o.Title) {
 		var ret string
 		return ret
 	}
@@ -461,7 +463,7 @@ func (o *CreateUserRequest) GetTitle() string {
 // GetTitleOk returns a tuple with the Title field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateUserRequest) GetTitleOk() (*string, bool) {
-	if o == nil || o.Title == nil {
+	if o == nil || isNil(o.Title) {
 		return nil, false
 	}
 	return o.Title, true
@@ -469,7 +471,7 @@ func (o *CreateUserRequest) GetTitleOk() (*string, bool) {
 
 // HasTitle returns a boolean if a field has been set.
 func (o *CreateUserRequest) HasTitle() bool {
-	if o != nil && o.Title != nil {
+	if o != nil && !isNil(o.Title) {
 		return true
 	}
 
@@ -483,7 +485,7 @@ func (o *CreateUserRequest) SetTitle(v string) {
 
 // GetTwoFactorAuth returns the TwoFactorAuth field value if set, zero value otherwise.
 func (o *CreateUserRequest) GetTwoFactorAuth() string {
-	if o == nil || o.TwoFactorAuth == nil {
+	if o == nil || isNil(o.TwoFactorAuth) {
 		var ret string
 		return ret
 	}
@@ -493,7 +495,7 @@ func (o *CreateUserRequest) GetTwoFactorAuth() string {
 // GetTwoFactorAuthOk returns a tuple with the TwoFactorAuth field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateUserRequest) GetTwoFactorAuthOk() (*string, bool) {
-	if o == nil || o.TwoFactorAuth == nil {
+	if o == nil || isNil(o.TwoFactorAuth) {
 		return nil, false
 	}
 	return o.TwoFactorAuth, true
@@ -501,7 +503,7 @@ func (o *CreateUserRequest) GetTwoFactorAuthOk() (*string, bool) {
 
 // HasTwoFactorAuth returns a boolean if a field has been set.
 func (o *CreateUserRequest) HasTwoFactorAuth() bool {
-	if o != nil && o.TwoFactorAuth != nil {
+	if o != nil && !isNil(o.TwoFactorAuth) {
 		return true
 	}
 
@@ -515,7 +517,7 @@ func (o *CreateUserRequest) SetTwoFactorAuth(v string) {
 
 // GetVerifiedAt returns the VerifiedAt field value if set, zero value otherwise.
 func (o *CreateUserRequest) GetVerifiedAt() time.Time {
-	if o == nil || o.VerifiedAt == nil {
+	if o == nil || isNil(o.VerifiedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -525,7 +527,7 @@ func (o *CreateUserRequest) GetVerifiedAt() time.Time {
 // GetVerifiedAtOk returns a tuple with the VerifiedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateUserRequest) GetVerifiedAtOk() (*time.Time, bool) {
-	if o == nil || o.VerifiedAt == nil {
+	if o == nil || isNil(o.VerifiedAt) {
 		return nil, false
 	}
 	return o.VerifiedAt, true
@@ -533,7 +535,7 @@ func (o *CreateUserRequest) GetVerifiedAtOk() (*time.Time, bool) {
 
 // HasVerifiedAt returns a boolean if a field has been set.
 func (o *CreateUserRequest) HasVerifiedAt() bool {
-	if o != nil && o.VerifiedAt != nil {
+	if o != nil && !isNil(o.VerifiedAt) {
 		return true
 	}
 
@@ -545,18 +547,82 @@ func (o *CreateUserRequest) SetVerifiedAt(v time.Time) {
 	o.VerifiedAt = &v
 }
 
+// GetInvitationId returns the InvitationId field value if set, zero value otherwise.
+func (o *CreateUserRequest) GetInvitationId() string {
+	if o == nil || isNil(o.InvitationId) {
+		var ret string
+		return ret
+	}
+	return *o.InvitationId
+}
+
+// GetInvitationIdOk returns a tuple with the InvitationId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateUserRequest) GetInvitationIdOk() (*string, bool) {
+	if o == nil || isNil(o.InvitationId) {
+		return nil, false
+	}
+	return o.InvitationId, true
+}
+
+// HasInvitationId returns a boolean if a field has been set.
+func (o *CreateUserRequest) HasInvitationId() bool {
+	if o != nil && !isNil(o.InvitationId) {
+		return true
+	}
+
+	return false
+}
+
+// SetInvitationId gets a reference to the given string and assigns it to the InvitationId field.
+func (o *CreateUserRequest) SetInvitationId(v string) {
+	o.InvitationId = &v
+}
+
+// GetNonce returns the Nonce field value if set, zero value otherwise.
+func (o *CreateUserRequest) GetNonce() string {
+	if o == nil || isNil(o.Nonce) {
+		var ret string
+		return ret
+	}
+	return *o.Nonce
+}
+
+// GetNonceOk returns a tuple with the Nonce field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateUserRequest) GetNonceOk() (*string, bool) {
+	if o == nil || isNil(o.Nonce) {
+		return nil, false
+	}
+	return o.Nonce, true
+}
+
+// HasNonce returns a boolean if a field has been set.
+func (o *CreateUserRequest) HasNonce() bool {
+	if o != nil && !isNil(o.Nonce) {
+		return true
+	}
+
+	return false
+}
+
+// SetNonce gets a reference to the given string and assigns it to the Nonce field.
+func (o *CreateUserRequest) SetNonce(v string) {
+	o.Nonce = &v
+}
+
 func (o CreateUserRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Avatar != nil {
+	if !isNil(o.Avatar) {
 		toSerialize["avatar"] = o.Avatar
 	}
-	if o.CompanyName != nil {
+	if !isNil(o.CompanyName) {
 		toSerialize["company_name"] = o.CompanyName
 	}
-	if o.CompanyUrl != nil {
+	if !isNil(o.CompanyUrl) {
 		toSerialize["company_url"] = o.CompanyUrl
 	}
-	if o.Customdata != nil {
+	if !isNil(o.Customdata) {
 		toSerialize["customdata"] = o.Customdata
 	}
 	if true {
@@ -568,32 +634,38 @@ func (o CreateUserRequest) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["last_name"] = o.LastName
 	}
-	if o.Level != nil {
+	if !isNil(o.Level) {
 		toSerialize["level"] = o.Level
 	}
-	if o.Locked != nil {
+	if !isNil(o.Locked) {
 		toSerialize["locked"] = o.Locked
 	}
-	if o.Password != nil {
+	if !isNil(o.Password) {
 		toSerialize["password"] = o.Password
 	}
-	if o.PhoneNumber != nil {
+	if !isNil(o.PhoneNumber) {
 		toSerialize["phone_number"] = o.PhoneNumber
 	}
-	if o.SocialAccounts != nil {
+	if !isNil(o.SocialAccounts) {
 		toSerialize["social_accounts"] = o.SocialAccounts
 	}
-	if o.Timezone != nil {
+	if !isNil(o.Timezone) {
 		toSerialize["timezone"] = o.Timezone
 	}
-	if o.Title != nil {
+	if !isNil(o.Title) {
 		toSerialize["title"] = o.Title
 	}
-	if o.TwoFactorAuth != nil {
+	if !isNil(o.TwoFactorAuth) {
 		toSerialize["two_factor_auth"] = o.TwoFactorAuth
 	}
-	if o.VerifiedAt != nil {
+	if !isNil(o.VerifiedAt) {
 		toSerialize["verified_at"] = o.VerifiedAt
+	}
+	if !isNil(o.InvitationId) {
+		toSerialize["invitation_id"] = o.InvitationId
+	}
+	if !isNil(o.Nonce) {
+		toSerialize["nonce"] = o.Nonce
 	}
 	return json.Marshal(toSerialize)
 }

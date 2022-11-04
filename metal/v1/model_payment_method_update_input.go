@@ -1,7 +1,7 @@
 /*
 Metal API
 
-This is the API for Equinix Metal. The API allows you to programmatically interact with all of your Equinix Metal resources, including devices, networks, addresses, organizations, projects, and your user account.  The official API docs are hosted at <https://metal.equinix.com/developers/api>.
+# Introduction Equinix Metal provides a RESTful HTTP API which can be reached at <https://api.equinix.com/metal/v1>. This document describes the API and how to use it.  The API allows you to programmatically interact with all of your Equinix Metal resources, including devices, networks, addresses, organizations, projects, and your user account. Every feature of the Equinix Metal web interface is accessible through the API.  The API docs are generated from the Equinix Metal OpenAPI specification and are officially hosted at <https://metal.equinix.com/developers/api>.  # Common Parameters  The Equinix Metal API uses a few methods to minimize network traffic and improve throughput. These parameters are not used in all API calls, but are used often enough to warrant their own section. Look for these parameters in the documentation for the API calls that support them.  ## Pagination  Pagination is used to limit the number of results returned in a single request. The API will return a maximum of 100 results per page. To retrieve additional results, you can use the `page` and `per_page` query parameters.  The `page` parameter is used to specify the page number. The first page is `1`. The `per_page` parameter is used to specify the number of results per page. The maximum number of results differs by resource type.  ## Sorting  Where offered, the API allows you to sort results by a specific field. To sort results use the `sort_by` query parameter with the root level field name as the value. The `sort_direction` parameter is used to specify the sort direction, either either `asc` (ascending) or `desc` (descending).  ## Filtering  Filtering is used to limit the results returned in a single request. The API supports filtering by certain fields in the response. To filter results, you can use the field as a query parameter.  For example, to filter the IP list to only return public IPv4 addresses, you can filter by the `type` field, as in the following request:  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/projects/id/ips?type=public_ipv4 ```  Only IP addresses with the `type` field set to `public_ipv4` will be returned.  ## Searching  Searching is used to find matching resources using multiple field comparissons. The API supports searching in resources that define this behavior. The fields available for search differ by resource, as does the search strategy.  To search resources you can use the `search` query parameter.  ## Include and Exclude  For resources that contain references to other resources, sucha as a Device that refers to the Project it resides in, the Equinix Metal API will returns `href` values (API links) to the associated resource.  ```json {   ...   \"project\": {     \"href\": \"/metal/v1/projects/f3f131c8-f302-49ef-8c44-9405022dc6dd\"   } } ```  If you're going need the project details, you can avoid a second API request.  Specify the contained `href` resources and collections that you'd like to have included in the response using the `include` query parameter.  For example:    ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=projects ```  The `include` parameter is generally accepted in `GET`, `POST`, `PUT`, and `PATCH` requests where `href` resources are presented.  To have multiple resources include, use a comma-separated list (e.g. `?include=emails,projects,memberships`).  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=emails,projects,memberships ```  You may also include nested associations up to three levels deep using dot notation (`?include=memberships.projects`):  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=memberships.projects ```  To exclude resources, and optimize response delivery, use the `exclude` query parameter. The `exclude` parameter is generally accepted in `GET`, `POST`, `PUT`, and `PATCH` requests for fields with nested object responses. When excluded, these fields will be replaced with an object that contains only an `href` field.
 
 API version: 1.0.0
 Contact: support@equinixmetal.com
@@ -44,7 +44,7 @@ func NewPaymentMethodUpdateInputWithDefaults() *PaymentMethodUpdateInput {
 
 // GetBillingAddress returns the BillingAddress field value if set, zero value otherwise.
 func (o *PaymentMethodUpdateInput) GetBillingAddress() map[string]interface{} {
-	if o == nil || o.BillingAddress == nil {
+	if o == nil || isNil(o.BillingAddress) {
 		var ret map[string]interface{}
 		return ret
 	}
@@ -54,15 +54,15 @@ func (o *PaymentMethodUpdateInput) GetBillingAddress() map[string]interface{} {
 // GetBillingAddressOk returns a tuple with the BillingAddress field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PaymentMethodUpdateInput) GetBillingAddressOk() (map[string]interface{}, bool) {
-	if o == nil || o.BillingAddress == nil {
-		return nil, false
+	if o == nil || isNil(o.BillingAddress) {
+		return map[string]interface{}{}, false
 	}
 	return o.BillingAddress, true
 }
 
 // HasBillingAddress returns a boolean if a field has been set.
 func (o *PaymentMethodUpdateInput) HasBillingAddress() bool {
-	if o != nil && o.BillingAddress != nil {
+	if o != nil && !isNil(o.BillingAddress) {
 		return true
 	}
 
@@ -76,7 +76,7 @@ func (o *PaymentMethodUpdateInput) SetBillingAddress(v map[string]interface{}) {
 
 // GetCardholderName returns the CardholderName field value if set, zero value otherwise.
 func (o *PaymentMethodUpdateInput) GetCardholderName() string {
-	if o == nil || o.CardholderName == nil {
+	if o == nil || isNil(o.CardholderName) {
 		var ret string
 		return ret
 	}
@@ -86,7 +86,7 @@ func (o *PaymentMethodUpdateInput) GetCardholderName() string {
 // GetCardholderNameOk returns a tuple with the CardholderName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PaymentMethodUpdateInput) GetCardholderNameOk() (*string, bool) {
-	if o == nil || o.CardholderName == nil {
+	if o == nil || isNil(o.CardholderName) {
 		return nil, false
 	}
 	return o.CardholderName, true
@@ -94,7 +94,7 @@ func (o *PaymentMethodUpdateInput) GetCardholderNameOk() (*string, bool) {
 
 // HasCardholderName returns a boolean if a field has been set.
 func (o *PaymentMethodUpdateInput) HasCardholderName() bool {
-	if o != nil && o.CardholderName != nil {
+	if o != nil && !isNil(o.CardholderName) {
 		return true
 	}
 
@@ -108,7 +108,7 @@ func (o *PaymentMethodUpdateInput) SetCardholderName(v string) {
 
 // GetDefault returns the Default field value if set, zero value otherwise.
 func (o *PaymentMethodUpdateInput) GetDefault() bool {
-	if o == nil || o.Default == nil {
+	if o == nil || isNil(o.Default) {
 		var ret bool
 		return ret
 	}
@@ -118,7 +118,7 @@ func (o *PaymentMethodUpdateInput) GetDefault() bool {
 // GetDefaultOk returns a tuple with the Default field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PaymentMethodUpdateInput) GetDefaultOk() (*bool, bool) {
-	if o == nil || o.Default == nil {
+	if o == nil || isNil(o.Default) {
 		return nil, false
 	}
 	return o.Default, true
@@ -126,7 +126,7 @@ func (o *PaymentMethodUpdateInput) GetDefaultOk() (*bool, bool) {
 
 // HasDefault returns a boolean if a field has been set.
 func (o *PaymentMethodUpdateInput) HasDefault() bool {
-	if o != nil && o.Default != nil {
+	if o != nil && !isNil(o.Default) {
 		return true
 	}
 
@@ -140,7 +140,7 @@ func (o *PaymentMethodUpdateInput) SetDefault(v bool) {
 
 // GetExpirationMonth returns the ExpirationMonth field value if set, zero value otherwise.
 func (o *PaymentMethodUpdateInput) GetExpirationMonth() string {
-	if o == nil || o.ExpirationMonth == nil {
+	if o == nil || isNil(o.ExpirationMonth) {
 		var ret string
 		return ret
 	}
@@ -150,7 +150,7 @@ func (o *PaymentMethodUpdateInput) GetExpirationMonth() string {
 // GetExpirationMonthOk returns a tuple with the ExpirationMonth field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PaymentMethodUpdateInput) GetExpirationMonthOk() (*string, bool) {
-	if o == nil || o.ExpirationMonth == nil {
+	if o == nil || isNil(o.ExpirationMonth) {
 		return nil, false
 	}
 	return o.ExpirationMonth, true
@@ -158,7 +158,7 @@ func (o *PaymentMethodUpdateInput) GetExpirationMonthOk() (*string, bool) {
 
 // HasExpirationMonth returns a boolean if a field has been set.
 func (o *PaymentMethodUpdateInput) HasExpirationMonth() bool {
-	if o != nil && o.ExpirationMonth != nil {
+	if o != nil && !isNil(o.ExpirationMonth) {
 		return true
 	}
 
@@ -172,7 +172,7 @@ func (o *PaymentMethodUpdateInput) SetExpirationMonth(v string) {
 
 // GetExpirationYear returns the ExpirationYear field value if set, zero value otherwise.
 func (o *PaymentMethodUpdateInput) GetExpirationYear() int32 {
-	if o == nil || o.ExpirationYear == nil {
+	if o == nil || isNil(o.ExpirationYear) {
 		var ret int32
 		return ret
 	}
@@ -182,7 +182,7 @@ func (o *PaymentMethodUpdateInput) GetExpirationYear() int32 {
 // GetExpirationYearOk returns a tuple with the ExpirationYear field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PaymentMethodUpdateInput) GetExpirationYearOk() (*int32, bool) {
-	if o == nil || o.ExpirationYear == nil {
+	if o == nil || isNil(o.ExpirationYear) {
 		return nil, false
 	}
 	return o.ExpirationYear, true
@@ -190,7 +190,7 @@ func (o *PaymentMethodUpdateInput) GetExpirationYearOk() (*int32, bool) {
 
 // HasExpirationYear returns a boolean if a field has been set.
 func (o *PaymentMethodUpdateInput) HasExpirationYear() bool {
-	if o != nil && o.ExpirationYear != nil {
+	if o != nil && !isNil(o.ExpirationYear) {
 		return true
 	}
 
@@ -204,7 +204,7 @@ func (o *PaymentMethodUpdateInput) SetExpirationYear(v int32) {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *PaymentMethodUpdateInput) GetName() string {
-	if o == nil || o.Name == nil {
+	if o == nil || isNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -214,7 +214,7 @@ func (o *PaymentMethodUpdateInput) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PaymentMethodUpdateInput) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
+	if o == nil || isNil(o.Name) {
 		return nil, false
 	}
 	return o.Name, true
@@ -222,7 +222,7 @@ func (o *PaymentMethodUpdateInput) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *PaymentMethodUpdateInput) HasName() bool {
-	if o != nil && o.Name != nil {
+	if o != nil && !isNil(o.Name) {
 		return true
 	}
 
@@ -236,22 +236,22 @@ func (o *PaymentMethodUpdateInput) SetName(v string) {
 
 func (o PaymentMethodUpdateInput) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.BillingAddress != nil {
+	if !isNil(o.BillingAddress) {
 		toSerialize["billing_address"] = o.BillingAddress
 	}
-	if o.CardholderName != nil {
+	if !isNil(o.CardholderName) {
 		toSerialize["cardholder_name"] = o.CardholderName
 	}
-	if o.Default != nil {
+	if !isNil(o.Default) {
 		toSerialize["default"] = o.Default
 	}
-	if o.ExpirationMonth != nil {
+	if !isNil(o.ExpirationMonth) {
 		toSerialize["expiration_month"] = o.ExpirationMonth
 	}
-	if o.ExpirationYear != nil {
+	if !isNil(o.ExpirationYear) {
 		toSerialize["expiration_year"] = o.ExpirationYear
 	}
-	if o.Name != nil {
+	if !isNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
 	return json.Marshal(toSerialize)

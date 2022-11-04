@@ -1,7 +1,7 @@
 /*
 Metal API
 
-This is the API for Equinix Metal. The API allows you to programmatically interact with all of your Equinix Metal resources, including devices, networks, addresses, organizations, projects, and your user account.  The official API docs are hosted at <https://metal.equinix.com/developers/api>.
+# Introduction Equinix Metal provides a RESTful HTTP API which can be reached at <https://api.equinix.com/metal/v1>. This document describes the API and how to use it.  The API allows you to programmatically interact with all of your Equinix Metal resources, including devices, networks, addresses, organizations, projects, and your user account. Every feature of the Equinix Metal web interface is accessible through the API.  The API docs are generated from the Equinix Metal OpenAPI specification and are officially hosted at <https://metal.equinix.com/developers/api>.  # Common Parameters  The Equinix Metal API uses a few methods to minimize network traffic and improve throughput. These parameters are not used in all API calls, but are used often enough to warrant their own section. Look for these parameters in the documentation for the API calls that support them.  ## Pagination  Pagination is used to limit the number of results returned in a single request. The API will return a maximum of 100 results per page. To retrieve additional results, you can use the `page` and `per_page` query parameters.  The `page` parameter is used to specify the page number. The first page is `1`. The `per_page` parameter is used to specify the number of results per page. The maximum number of results differs by resource type.  ## Sorting  Where offered, the API allows you to sort results by a specific field. To sort results use the `sort_by` query parameter with the root level field name as the value. The `sort_direction` parameter is used to specify the sort direction, either either `asc` (ascending) or `desc` (descending).  ## Filtering  Filtering is used to limit the results returned in a single request. The API supports filtering by certain fields in the response. To filter results, you can use the field as a query parameter.  For example, to filter the IP list to only return public IPv4 addresses, you can filter by the `type` field, as in the following request:  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/projects/id/ips?type=public_ipv4 ```  Only IP addresses with the `type` field set to `public_ipv4` will be returned.  ## Searching  Searching is used to find matching resources using multiple field comparissons. The API supports searching in resources that define this behavior. The fields available for search differ by resource, as does the search strategy.  To search resources you can use the `search` query parameter.  ## Include and Exclude  For resources that contain references to other resources, sucha as a Device that refers to the Project it resides in, the Equinix Metal API will returns `href` values (API links) to the associated resource.  ```json {   ...   \"project\": {     \"href\": \"/metal/v1/projects/f3f131c8-f302-49ef-8c44-9405022dc6dd\"   } } ```  If you're going need the project details, you can avoid a second API request.  Specify the contained `href` resources and collections that you'd like to have included in the response using the `include` query parameter.  For example:    ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=projects ```  The `include` parameter is generally accepted in `GET`, `POST`, `PUT`, and `PATCH` requests where `href` resources are presented.  To have multiple resources include, use a comma-separated list (e.g. `?include=emails,projects,memberships`).  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=emails,projects,memberships ```  You may also include nested associations up to three levels deep using dot notation (`?include=memberships.projects`):  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=memberships.projects ```  To exclude resources, and optimize response delivery, use the `exclude` query parameter. The `exclude` parameter is generally accepted in `GET`, `POST`, `PUT`, and `PATCH` requests for fields with nested object responses. When excluded, these fields will be replaced with an object that contains only an `href` field.
 
 API version: 1.0.0
 Contact: support@equinixmetal.com
@@ -25,9 +25,10 @@ type VirtualNetwork struct {
 	Href                     *string                               `json:"href,omitempty"`
 	Id                       *string                               `json:"id,omitempty"`
 	// A list of instances with ports currently associated to this Virtual Network.
-	Instances    []FindBatchById200ResponseDevicesInner                          `json:"instances,omitempty"`
-	MetalGateway *FindVirtualNetworks200ResponseVirtualNetworksInnerMetalGateway `json:"metal_gateway,omitempty"`
-	Metro        *FindBatchById200ResponseDevicesInner                           `json:"metro,omitempty"`
+	Instances []FindBatchById200ResponseDevicesInner `json:"instances,omitempty"`
+	// A list of metal gateways currently associated to this Virtual Network.
+	MetalGateways []FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetworkMetalGatewaysInner `json:"metal_gateways,omitempty"`
+	Metro         *FindBatchById200ResponseDevicesInner                                              `json:"metro,omitempty"`
 	// The Metro code of the metro in which this Virtual Network is defined.
 	MetroCode *string `json:"metro_code,omitempty"`
 	Vxlan     *int32  `json:"vxlan,omitempty"`
@@ -52,7 +53,7 @@ func NewVirtualNetworkWithDefaults() *VirtualNetwork {
 
 // GetAssignedTo returns the AssignedTo field value if set, zero value otherwise.
 func (o *VirtualNetwork) GetAssignedTo() FindBatchById200ResponseDevicesInner {
-	if o == nil || o.AssignedTo == nil {
+	if o == nil || isNil(o.AssignedTo) {
 		var ret FindBatchById200ResponseDevicesInner
 		return ret
 	}
@@ -62,7 +63,7 @@ func (o *VirtualNetwork) GetAssignedTo() FindBatchById200ResponseDevicesInner {
 // GetAssignedToOk returns a tuple with the AssignedTo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VirtualNetwork) GetAssignedToOk() (*FindBatchById200ResponseDevicesInner, bool) {
-	if o == nil || o.AssignedTo == nil {
+	if o == nil || isNil(o.AssignedTo) {
 		return nil, false
 	}
 	return o.AssignedTo, true
@@ -70,7 +71,7 @@ func (o *VirtualNetwork) GetAssignedToOk() (*FindBatchById200ResponseDevicesInne
 
 // HasAssignedTo returns a boolean if a field has been set.
 func (o *VirtualNetwork) HasAssignedTo() bool {
-	if o != nil && o.AssignedTo != nil {
+	if o != nil && !isNil(o.AssignedTo) {
 		return true
 	}
 
@@ -84,7 +85,7 @@ func (o *VirtualNetwork) SetAssignedTo(v FindBatchById200ResponseDevicesInner) {
 
 // GetAssignedToVirtualCircuit returns the AssignedToVirtualCircuit field value if set, zero value otherwise.
 func (o *VirtualNetwork) GetAssignedToVirtualCircuit() bool {
-	if o == nil || o.AssignedToVirtualCircuit == nil {
+	if o == nil || isNil(o.AssignedToVirtualCircuit) {
 		var ret bool
 		return ret
 	}
@@ -94,7 +95,7 @@ func (o *VirtualNetwork) GetAssignedToVirtualCircuit() bool {
 // GetAssignedToVirtualCircuitOk returns a tuple with the AssignedToVirtualCircuit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VirtualNetwork) GetAssignedToVirtualCircuitOk() (*bool, bool) {
-	if o == nil || o.AssignedToVirtualCircuit == nil {
+	if o == nil || isNil(o.AssignedToVirtualCircuit) {
 		return nil, false
 	}
 	return o.AssignedToVirtualCircuit, true
@@ -102,7 +103,7 @@ func (o *VirtualNetwork) GetAssignedToVirtualCircuitOk() (*bool, bool) {
 
 // HasAssignedToVirtualCircuit returns a boolean if a field has been set.
 func (o *VirtualNetwork) HasAssignedToVirtualCircuit() bool {
-	if o != nil && o.AssignedToVirtualCircuit != nil {
+	if o != nil && !isNil(o.AssignedToVirtualCircuit) {
 		return true
 	}
 
@@ -116,7 +117,7 @@ func (o *VirtualNetwork) SetAssignedToVirtualCircuit(v bool) {
 
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *VirtualNetwork) GetDescription() string {
-	if o == nil || o.Description == nil {
+	if o == nil || isNil(o.Description) {
 		var ret string
 		return ret
 	}
@@ -126,7 +127,7 @@ func (o *VirtualNetwork) GetDescription() string {
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VirtualNetwork) GetDescriptionOk() (*string, bool) {
-	if o == nil || o.Description == nil {
+	if o == nil || isNil(o.Description) {
 		return nil, false
 	}
 	return o.Description, true
@@ -134,7 +135,7 @@ func (o *VirtualNetwork) GetDescriptionOk() (*string, bool) {
 
 // HasDescription returns a boolean if a field has been set.
 func (o *VirtualNetwork) HasDescription() bool {
-	if o != nil && o.Description != nil {
+	if o != nil && !isNil(o.Description) {
 		return true
 	}
 
@@ -148,7 +149,7 @@ func (o *VirtualNetwork) SetDescription(v string) {
 
 // GetFacility returns the Facility field value if set, zero value otherwise.
 func (o *VirtualNetwork) GetFacility() FindBatchById200ResponseDevicesInner {
-	if o == nil || o.Facility == nil {
+	if o == nil || isNil(o.Facility) {
 		var ret FindBatchById200ResponseDevicesInner
 		return ret
 	}
@@ -158,7 +159,7 @@ func (o *VirtualNetwork) GetFacility() FindBatchById200ResponseDevicesInner {
 // GetFacilityOk returns a tuple with the Facility field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VirtualNetwork) GetFacilityOk() (*FindBatchById200ResponseDevicesInner, bool) {
-	if o == nil || o.Facility == nil {
+	if o == nil || isNil(o.Facility) {
 		return nil, false
 	}
 	return o.Facility, true
@@ -166,7 +167,7 @@ func (o *VirtualNetwork) GetFacilityOk() (*FindBatchById200ResponseDevicesInner,
 
 // HasFacility returns a boolean if a field has been set.
 func (o *VirtualNetwork) HasFacility() bool {
-	if o != nil && o.Facility != nil {
+	if o != nil && !isNil(o.Facility) {
 		return true
 	}
 
@@ -180,7 +181,7 @@ func (o *VirtualNetwork) SetFacility(v FindBatchById200ResponseDevicesInner) {
 
 // GetHref returns the Href field value if set, zero value otherwise.
 func (o *VirtualNetwork) GetHref() string {
-	if o == nil || o.Href == nil {
+	if o == nil || isNil(o.Href) {
 		var ret string
 		return ret
 	}
@@ -190,7 +191,7 @@ func (o *VirtualNetwork) GetHref() string {
 // GetHrefOk returns a tuple with the Href field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VirtualNetwork) GetHrefOk() (*string, bool) {
-	if o == nil || o.Href == nil {
+	if o == nil || isNil(o.Href) {
 		return nil, false
 	}
 	return o.Href, true
@@ -198,7 +199,7 @@ func (o *VirtualNetwork) GetHrefOk() (*string, bool) {
 
 // HasHref returns a boolean if a field has been set.
 func (o *VirtualNetwork) HasHref() bool {
-	if o != nil && o.Href != nil {
+	if o != nil && !isNil(o.Href) {
 		return true
 	}
 
@@ -212,7 +213,7 @@ func (o *VirtualNetwork) SetHref(v string) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *VirtualNetwork) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || isNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -222,7 +223,7 @@ func (o *VirtualNetwork) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VirtualNetwork) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || isNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -230,7 +231,7 @@ func (o *VirtualNetwork) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *VirtualNetwork) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !isNil(o.Id) {
 		return true
 	}
 
@@ -244,7 +245,7 @@ func (o *VirtualNetwork) SetId(v string) {
 
 // GetInstances returns the Instances field value if set, zero value otherwise.
 func (o *VirtualNetwork) GetInstances() []FindBatchById200ResponseDevicesInner {
-	if o == nil || o.Instances == nil {
+	if o == nil || isNil(o.Instances) {
 		var ret []FindBatchById200ResponseDevicesInner
 		return ret
 	}
@@ -254,7 +255,7 @@ func (o *VirtualNetwork) GetInstances() []FindBatchById200ResponseDevicesInner {
 // GetInstancesOk returns a tuple with the Instances field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VirtualNetwork) GetInstancesOk() ([]FindBatchById200ResponseDevicesInner, bool) {
-	if o == nil || o.Instances == nil {
+	if o == nil || isNil(o.Instances) {
 		return nil, false
 	}
 	return o.Instances, true
@@ -262,7 +263,7 @@ func (o *VirtualNetwork) GetInstancesOk() ([]FindBatchById200ResponseDevicesInne
 
 // HasInstances returns a boolean if a field has been set.
 func (o *VirtualNetwork) HasInstances() bool {
-	if o != nil && o.Instances != nil {
+	if o != nil && !isNil(o.Instances) {
 		return true
 	}
 
@@ -274,41 +275,41 @@ func (o *VirtualNetwork) SetInstances(v []FindBatchById200ResponseDevicesInner) 
 	o.Instances = v
 }
 
-// GetMetalGateway returns the MetalGateway field value if set, zero value otherwise.
-func (o *VirtualNetwork) GetMetalGateway() FindVirtualNetworks200ResponseVirtualNetworksInnerMetalGateway {
-	if o == nil || o.MetalGateway == nil {
-		var ret FindVirtualNetworks200ResponseVirtualNetworksInnerMetalGateway
+// GetMetalGateways returns the MetalGateways field value if set, zero value otherwise.
+func (o *VirtualNetwork) GetMetalGateways() []FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetworkMetalGatewaysInner {
+	if o == nil || isNil(o.MetalGateways) {
+		var ret []FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetworkMetalGatewaysInner
 		return ret
 	}
-	return *o.MetalGateway
+	return o.MetalGateways
 }
 
-// GetMetalGatewayOk returns a tuple with the MetalGateway field value if set, nil otherwise
+// GetMetalGatewaysOk returns a tuple with the MetalGateways field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VirtualNetwork) GetMetalGatewayOk() (*FindVirtualNetworks200ResponseVirtualNetworksInnerMetalGateway, bool) {
-	if o == nil || o.MetalGateway == nil {
+func (o *VirtualNetwork) GetMetalGatewaysOk() ([]FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetworkMetalGatewaysInner, bool) {
+	if o == nil || isNil(o.MetalGateways) {
 		return nil, false
 	}
-	return o.MetalGateway, true
+	return o.MetalGateways, true
 }
 
-// HasMetalGateway returns a boolean if a field has been set.
-func (o *VirtualNetwork) HasMetalGateway() bool {
-	if o != nil && o.MetalGateway != nil {
+// HasMetalGateways returns a boolean if a field has been set.
+func (o *VirtualNetwork) HasMetalGateways() bool {
+	if o != nil && !isNil(o.MetalGateways) {
 		return true
 	}
 
 	return false
 }
 
-// SetMetalGateway gets a reference to the given FindVirtualNetworks200ResponseVirtualNetworksInnerMetalGateway and assigns it to the MetalGateway field.
-func (o *VirtualNetwork) SetMetalGateway(v FindVirtualNetworks200ResponseVirtualNetworksInnerMetalGateway) {
-	o.MetalGateway = &v
+// SetMetalGateways gets a reference to the given []FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetworkMetalGatewaysInner and assigns it to the MetalGateways field.
+func (o *VirtualNetwork) SetMetalGateways(v []FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetworkMetalGatewaysInner) {
+	o.MetalGateways = v
 }
 
 // GetMetro returns the Metro field value if set, zero value otherwise.
 func (o *VirtualNetwork) GetMetro() FindBatchById200ResponseDevicesInner {
-	if o == nil || o.Metro == nil {
+	if o == nil || isNil(o.Metro) {
 		var ret FindBatchById200ResponseDevicesInner
 		return ret
 	}
@@ -318,7 +319,7 @@ func (o *VirtualNetwork) GetMetro() FindBatchById200ResponseDevicesInner {
 // GetMetroOk returns a tuple with the Metro field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VirtualNetwork) GetMetroOk() (*FindBatchById200ResponseDevicesInner, bool) {
-	if o == nil || o.Metro == nil {
+	if o == nil || isNil(o.Metro) {
 		return nil, false
 	}
 	return o.Metro, true
@@ -326,7 +327,7 @@ func (o *VirtualNetwork) GetMetroOk() (*FindBatchById200ResponseDevicesInner, bo
 
 // HasMetro returns a boolean if a field has been set.
 func (o *VirtualNetwork) HasMetro() bool {
-	if o != nil && o.Metro != nil {
+	if o != nil && !isNil(o.Metro) {
 		return true
 	}
 
@@ -340,7 +341,7 @@ func (o *VirtualNetwork) SetMetro(v FindBatchById200ResponseDevicesInner) {
 
 // GetMetroCode returns the MetroCode field value if set, zero value otherwise.
 func (o *VirtualNetwork) GetMetroCode() string {
-	if o == nil || o.MetroCode == nil {
+	if o == nil || isNil(o.MetroCode) {
 		var ret string
 		return ret
 	}
@@ -350,7 +351,7 @@ func (o *VirtualNetwork) GetMetroCode() string {
 // GetMetroCodeOk returns a tuple with the MetroCode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VirtualNetwork) GetMetroCodeOk() (*string, bool) {
-	if o == nil || o.MetroCode == nil {
+	if o == nil || isNil(o.MetroCode) {
 		return nil, false
 	}
 	return o.MetroCode, true
@@ -358,7 +359,7 @@ func (o *VirtualNetwork) GetMetroCodeOk() (*string, bool) {
 
 // HasMetroCode returns a boolean if a field has been set.
 func (o *VirtualNetwork) HasMetroCode() bool {
-	if o != nil && o.MetroCode != nil {
+	if o != nil && !isNil(o.MetroCode) {
 		return true
 	}
 
@@ -372,7 +373,7 @@ func (o *VirtualNetwork) SetMetroCode(v string) {
 
 // GetVxlan returns the Vxlan field value if set, zero value otherwise.
 func (o *VirtualNetwork) GetVxlan() int32 {
-	if o == nil || o.Vxlan == nil {
+	if o == nil || isNil(o.Vxlan) {
 		var ret int32
 		return ret
 	}
@@ -382,7 +383,7 @@ func (o *VirtualNetwork) GetVxlan() int32 {
 // GetVxlanOk returns a tuple with the Vxlan field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VirtualNetwork) GetVxlanOk() (*int32, bool) {
-	if o == nil || o.Vxlan == nil {
+	if o == nil || isNil(o.Vxlan) {
 		return nil, false
 	}
 	return o.Vxlan, true
@@ -390,7 +391,7 @@ func (o *VirtualNetwork) GetVxlanOk() (*int32, bool) {
 
 // HasVxlan returns a boolean if a field has been set.
 func (o *VirtualNetwork) HasVxlan() bool {
-	if o != nil && o.Vxlan != nil {
+	if o != nil && !isNil(o.Vxlan) {
 		return true
 	}
 
@@ -404,37 +405,37 @@ func (o *VirtualNetwork) SetVxlan(v int32) {
 
 func (o VirtualNetwork) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.AssignedTo != nil {
+	if !isNil(o.AssignedTo) {
 		toSerialize["assigned_to"] = o.AssignedTo
 	}
-	if o.AssignedToVirtualCircuit != nil {
+	if !isNil(o.AssignedToVirtualCircuit) {
 		toSerialize["assigned_to_virtual_circuit"] = o.AssignedToVirtualCircuit
 	}
-	if o.Description != nil {
+	if !isNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
-	if o.Facility != nil {
+	if !isNil(o.Facility) {
 		toSerialize["facility"] = o.Facility
 	}
-	if o.Href != nil {
+	if !isNil(o.Href) {
 		toSerialize["href"] = o.Href
 	}
-	if o.Id != nil {
+	if !isNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
-	if o.Instances != nil {
+	if !isNil(o.Instances) {
 		toSerialize["instances"] = o.Instances
 	}
-	if o.MetalGateway != nil {
-		toSerialize["metal_gateway"] = o.MetalGateway
+	if !isNil(o.MetalGateways) {
+		toSerialize["metal_gateways"] = o.MetalGateways
 	}
-	if o.Metro != nil {
+	if !isNil(o.Metro) {
 		toSerialize["metro"] = o.Metro
 	}
-	if o.MetroCode != nil {
+	if !isNil(o.MetroCode) {
 		toSerialize["metro_code"] = o.MetroCode
 	}
-	if o.Vxlan != nil {
+	if !isNil(o.Vxlan) {
 		toSerialize["vxlan"] = o.Vxlan
 	}
 	return json.Marshal(toSerialize)

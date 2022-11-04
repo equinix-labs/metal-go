@@ -1,7 +1,7 @@
 /*
 Metal API
 
-This is the API for Equinix Metal. The API allows you to programmatically interact with all of your Equinix Metal resources, including devices, networks, addresses, organizations, projects, and your user account.  The official API docs are hosted at <https://metal.equinix.com/developers/api>.
+# Introduction Equinix Metal provides a RESTful HTTP API which can be reached at <https://api.equinix.com/metal/v1>. This document describes the API and how to use it.  The API allows you to programmatically interact with all of your Equinix Metal resources, including devices, networks, addresses, organizations, projects, and your user account. Every feature of the Equinix Metal web interface is accessible through the API.  The API docs are generated from the Equinix Metal OpenAPI specification and are officially hosted at <https://metal.equinix.com/developers/api>.  # Common Parameters  The Equinix Metal API uses a few methods to minimize network traffic and improve throughput. These parameters are not used in all API calls, but are used often enough to warrant their own section. Look for these parameters in the documentation for the API calls that support them.  ## Pagination  Pagination is used to limit the number of results returned in a single request. The API will return a maximum of 100 results per page. To retrieve additional results, you can use the `page` and `per_page` query parameters.  The `page` parameter is used to specify the page number. The first page is `1`. The `per_page` parameter is used to specify the number of results per page. The maximum number of results differs by resource type.  ## Sorting  Where offered, the API allows you to sort results by a specific field. To sort results use the `sort_by` query parameter with the root level field name as the value. The `sort_direction` parameter is used to specify the sort direction, either either `asc` (ascending) or `desc` (descending).  ## Filtering  Filtering is used to limit the results returned in a single request. The API supports filtering by certain fields in the response. To filter results, you can use the field as a query parameter.  For example, to filter the IP list to only return public IPv4 addresses, you can filter by the `type` field, as in the following request:  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/projects/id/ips?type=public_ipv4 ```  Only IP addresses with the `type` field set to `public_ipv4` will be returned.  ## Searching  Searching is used to find matching resources using multiple field comparissons. The API supports searching in resources that define this behavior. The fields available for search differ by resource, as does the search strategy.  To search resources you can use the `search` query parameter.  ## Include and Exclude  For resources that contain references to other resources, sucha as a Device that refers to the Project it resides in, the Equinix Metal API will returns `href` values (API links) to the associated resource.  ```json {   ...   \"project\": {     \"href\": \"/metal/v1/projects/f3f131c8-f302-49ef-8c44-9405022dc6dd\"   } } ```  If you're going need the project details, you can avoid a second API request.  Specify the contained `href` resources and collections that you'd like to have included in the response using the `include` query parameter.  For example:    ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=projects ```  The `include` parameter is generally accepted in `GET`, `POST`, `PUT`, and `PATCH` requests where `href` resources are presented.  To have multiple resources include, use a comma-separated list (e.g. `?include=emails,projects,memberships`).  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=emails,projects,memberships ```  You may also include nested associations up to three levels deep using dot notation (`?include=memberships.projects`):  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=memberships.projects ```  To exclude resources, and optimize response delivery, use the `exclude` query parameter. The `exclude` parameter is generally accepted in `GET`, `POST`, `PUT`, and `PATCH` requests for fields with nested object responses. When excluded, these fields will be replaced with an object that contains only an `href` field.
 
 API version: 1.0.0
 Contact: support@equinixmetal.com
@@ -47,6 +47,8 @@ type FindBgpConfigByProject200Response struct {
 // will change when the set of required properties is changed
 func NewFindBgpConfigByProject200Response() *FindBgpConfigByProject200Response {
 	this := FindBgpConfigByProject200Response{}
+	var maxPrefix int32 = 10
+	this.MaxPrefix = &maxPrefix
 	return &this
 }
 
@@ -55,12 +57,14 @@ func NewFindBgpConfigByProject200Response() *FindBgpConfigByProject200Response {
 // but it doesn't guarantee that properties required by API are set
 func NewFindBgpConfigByProject200ResponseWithDefaults() *FindBgpConfigByProject200Response {
 	this := FindBgpConfigByProject200Response{}
+	var maxPrefix int32 = 10
+	this.MaxPrefix = &maxPrefix
 	return &this
 }
 
 // GetAsn returns the Asn field value if set, zero value otherwise.
 func (o *FindBgpConfigByProject200Response) GetAsn() int32 {
-	if o == nil || o.Asn == nil {
+	if o == nil || isNil(o.Asn) {
 		var ret int32
 		return ret
 	}
@@ -70,7 +74,7 @@ func (o *FindBgpConfigByProject200Response) GetAsn() int32 {
 // GetAsnOk returns a tuple with the Asn field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FindBgpConfigByProject200Response) GetAsnOk() (*int32, bool) {
-	if o == nil || o.Asn == nil {
+	if o == nil || isNil(o.Asn) {
 		return nil, false
 	}
 	return o.Asn, true
@@ -78,7 +82,7 @@ func (o *FindBgpConfigByProject200Response) GetAsnOk() (*int32, bool) {
 
 // HasAsn returns a boolean if a field has been set.
 func (o *FindBgpConfigByProject200Response) HasAsn() bool {
-	if o != nil && o.Asn != nil {
+	if o != nil && !isNil(o.Asn) {
 		return true
 	}
 
@@ -92,7 +96,7 @@ func (o *FindBgpConfigByProject200Response) SetAsn(v int32) {
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *FindBgpConfigByProject200Response) GetCreatedAt() time.Time {
-	if o == nil || o.CreatedAt == nil {
+	if o == nil || isNil(o.CreatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -102,7 +106,7 @@ func (o *FindBgpConfigByProject200Response) GetCreatedAt() time.Time {
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FindBgpConfigByProject200Response) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || o.CreatedAt == nil {
+	if o == nil || isNil(o.CreatedAt) {
 		return nil, false
 	}
 	return o.CreatedAt, true
@@ -110,7 +114,7 @@ func (o *FindBgpConfigByProject200Response) GetCreatedAtOk() (*time.Time, bool) 
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *FindBgpConfigByProject200Response) HasCreatedAt() bool {
-	if o != nil && o.CreatedAt != nil {
+	if o != nil && !isNil(o.CreatedAt) {
 		return true
 	}
 
@@ -124,7 +128,7 @@ func (o *FindBgpConfigByProject200Response) SetCreatedAt(v time.Time) {
 
 // GetDeploymentType returns the DeploymentType field value if set, zero value otherwise.
 func (o *FindBgpConfigByProject200Response) GetDeploymentType() string {
-	if o == nil || o.DeploymentType == nil {
+	if o == nil || isNil(o.DeploymentType) {
 		var ret string
 		return ret
 	}
@@ -134,7 +138,7 @@ func (o *FindBgpConfigByProject200Response) GetDeploymentType() string {
 // GetDeploymentTypeOk returns a tuple with the DeploymentType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FindBgpConfigByProject200Response) GetDeploymentTypeOk() (*string, bool) {
-	if o == nil || o.DeploymentType == nil {
+	if o == nil || isNil(o.DeploymentType) {
 		return nil, false
 	}
 	return o.DeploymentType, true
@@ -142,7 +146,7 @@ func (o *FindBgpConfigByProject200Response) GetDeploymentTypeOk() (*string, bool
 
 // HasDeploymentType returns a boolean if a field has been set.
 func (o *FindBgpConfigByProject200Response) HasDeploymentType() bool {
-	if o != nil && o.DeploymentType != nil {
+	if o != nil && !isNil(o.DeploymentType) {
 		return true
 	}
 
@@ -156,7 +160,7 @@ func (o *FindBgpConfigByProject200Response) SetDeploymentType(v string) {
 
 // GetHref returns the Href field value if set, zero value otherwise.
 func (o *FindBgpConfigByProject200Response) GetHref() string {
-	if o == nil || o.Href == nil {
+	if o == nil || isNil(o.Href) {
 		var ret string
 		return ret
 	}
@@ -166,7 +170,7 @@ func (o *FindBgpConfigByProject200Response) GetHref() string {
 // GetHrefOk returns a tuple with the Href field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FindBgpConfigByProject200Response) GetHrefOk() (*string, bool) {
-	if o == nil || o.Href == nil {
+	if o == nil || isNil(o.Href) {
 		return nil, false
 	}
 	return o.Href, true
@@ -174,7 +178,7 @@ func (o *FindBgpConfigByProject200Response) GetHrefOk() (*string, bool) {
 
 // HasHref returns a boolean if a field has been set.
 func (o *FindBgpConfigByProject200Response) HasHref() bool {
-	if o != nil && o.Href != nil {
+	if o != nil && !isNil(o.Href) {
 		return true
 	}
 
@@ -188,7 +192,7 @@ func (o *FindBgpConfigByProject200Response) SetHref(v string) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *FindBgpConfigByProject200Response) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || isNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -198,7 +202,7 @@ func (o *FindBgpConfigByProject200Response) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FindBgpConfigByProject200Response) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || isNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -206,7 +210,7 @@ func (o *FindBgpConfigByProject200Response) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *FindBgpConfigByProject200Response) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !isNil(o.Id) {
 		return true
 	}
 
@@ -220,7 +224,7 @@ func (o *FindBgpConfigByProject200Response) SetId(v string) {
 
 // GetMaxPrefix returns the MaxPrefix field value if set, zero value otherwise.
 func (o *FindBgpConfigByProject200Response) GetMaxPrefix() int32 {
-	if o == nil || o.MaxPrefix == nil {
+	if o == nil || isNil(o.MaxPrefix) {
 		var ret int32
 		return ret
 	}
@@ -230,7 +234,7 @@ func (o *FindBgpConfigByProject200Response) GetMaxPrefix() int32 {
 // GetMaxPrefixOk returns a tuple with the MaxPrefix field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FindBgpConfigByProject200Response) GetMaxPrefixOk() (*int32, bool) {
-	if o == nil || o.MaxPrefix == nil {
+	if o == nil || isNil(o.MaxPrefix) {
 		return nil, false
 	}
 	return o.MaxPrefix, true
@@ -238,7 +242,7 @@ func (o *FindBgpConfigByProject200Response) GetMaxPrefixOk() (*int32, bool) {
 
 // HasMaxPrefix returns a boolean if a field has been set.
 func (o *FindBgpConfigByProject200Response) HasMaxPrefix() bool {
-	if o != nil && o.MaxPrefix != nil {
+	if o != nil && !isNil(o.MaxPrefix) {
 		return true
 	}
 
@@ -252,7 +256,7 @@ func (o *FindBgpConfigByProject200Response) SetMaxPrefix(v int32) {
 
 // GetMd5 returns the Md5 field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *FindBgpConfigByProject200Response) GetMd5() string {
-	if o == nil || o.Md5.Get() == nil {
+	if o == nil || isNil(o.Md5.Get()) {
 		var ret string
 		return ret
 	}
@@ -295,7 +299,7 @@ func (o *FindBgpConfigByProject200Response) UnsetMd5() {
 
 // GetProject returns the Project field value if set, zero value otherwise.
 func (o *FindBgpConfigByProject200Response) GetProject() FindBatchById200ResponseDevicesInner {
-	if o == nil || o.Project == nil {
+	if o == nil || isNil(o.Project) {
 		var ret FindBatchById200ResponseDevicesInner
 		return ret
 	}
@@ -305,7 +309,7 @@ func (o *FindBgpConfigByProject200Response) GetProject() FindBatchById200Respons
 // GetProjectOk returns a tuple with the Project field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FindBgpConfigByProject200Response) GetProjectOk() (*FindBatchById200ResponseDevicesInner, bool) {
-	if o == nil || o.Project == nil {
+	if o == nil || isNil(o.Project) {
 		return nil, false
 	}
 	return o.Project, true
@@ -313,7 +317,7 @@ func (o *FindBgpConfigByProject200Response) GetProjectOk() (*FindBatchById200Res
 
 // HasProject returns a boolean if a field has been set.
 func (o *FindBgpConfigByProject200Response) HasProject() bool {
-	if o != nil && o.Project != nil {
+	if o != nil && !isNil(o.Project) {
 		return true
 	}
 
@@ -327,7 +331,7 @@ func (o *FindBgpConfigByProject200Response) SetProject(v FindBatchById200Respons
 
 // GetRanges returns the Ranges field value if set, zero value otherwise.
 func (o *FindBgpConfigByProject200Response) GetRanges() []FindBgpConfigByProject200ResponseRangesInner {
-	if o == nil || o.Ranges == nil {
+	if o == nil || isNil(o.Ranges) {
 		var ret []FindBgpConfigByProject200ResponseRangesInner
 		return ret
 	}
@@ -337,7 +341,7 @@ func (o *FindBgpConfigByProject200Response) GetRanges() []FindBgpConfigByProject
 // GetRangesOk returns a tuple with the Ranges field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FindBgpConfigByProject200Response) GetRangesOk() ([]FindBgpConfigByProject200ResponseRangesInner, bool) {
-	if o == nil || o.Ranges == nil {
+	if o == nil || isNil(o.Ranges) {
 		return nil, false
 	}
 	return o.Ranges, true
@@ -345,7 +349,7 @@ func (o *FindBgpConfigByProject200Response) GetRangesOk() ([]FindBgpConfigByProj
 
 // HasRanges returns a boolean if a field has been set.
 func (o *FindBgpConfigByProject200Response) HasRanges() bool {
-	if o != nil && o.Ranges != nil {
+	if o != nil && !isNil(o.Ranges) {
 		return true
 	}
 
@@ -359,7 +363,7 @@ func (o *FindBgpConfigByProject200Response) SetRanges(v []FindBgpConfigByProject
 
 // GetRequestedAt returns the RequestedAt field value if set, zero value otherwise.
 func (o *FindBgpConfigByProject200Response) GetRequestedAt() time.Time {
-	if o == nil || o.RequestedAt == nil {
+	if o == nil || isNil(o.RequestedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -369,7 +373,7 @@ func (o *FindBgpConfigByProject200Response) GetRequestedAt() time.Time {
 // GetRequestedAtOk returns a tuple with the RequestedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FindBgpConfigByProject200Response) GetRequestedAtOk() (*time.Time, bool) {
-	if o == nil || o.RequestedAt == nil {
+	if o == nil || isNil(o.RequestedAt) {
 		return nil, false
 	}
 	return o.RequestedAt, true
@@ -377,7 +381,7 @@ func (o *FindBgpConfigByProject200Response) GetRequestedAtOk() (*time.Time, bool
 
 // HasRequestedAt returns a boolean if a field has been set.
 func (o *FindBgpConfigByProject200Response) HasRequestedAt() bool {
-	if o != nil && o.RequestedAt != nil {
+	if o != nil && !isNil(o.RequestedAt) {
 		return true
 	}
 
@@ -391,7 +395,7 @@ func (o *FindBgpConfigByProject200Response) SetRequestedAt(v time.Time) {
 
 // GetRouteObject returns the RouteObject field value if set, zero value otherwise.
 func (o *FindBgpConfigByProject200Response) GetRouteObject() string {
-	if o == nil || o.RouteObject == nil {
+	if o == nil || isNil(o.RouteObject) {
 		var ret string
 		return ret
 	}
@@ -401,7 +405,7 @@ func (o *FindBgpConfigByProject200Response) GetRouteObject() string {
 // GetRouteObjectOk returns a tuple with the RouteObject field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FindBgpConfigByProject200Response) GetRouteObjectOk() (*string, bool) {
-	if o == nil || o.RouteObject == nil {
+	if o == nil || isNil(o.RouteObject) {
 		return nil, false
 	}
 	return o.RouteObject, true
@@ -409,7 +413,7 @@ func (o *FindBgpConfigByProject200Response) GetRouteObjectOk() (*string, bool) {
 
 // HasRouteObject returns a boolean if a field has been set.
 func (o *FindBgpConfigByProject200Response) HasRouteObject() bool {
-	if o != nil && o.RouteObject != nil {
+	if o != nil && !isNil(o.RouteObject) {
 		return true
 	}
 
@@ -423,7 +427,7 @@ func (o *FindBgpConfigByProject200Response) SetRouteObject(v string) {
 
 // GetSessions returns the Sessions field value if set, zero value otherwise.
 func (o *FindBgpConfigByProject200Response) GetSessions() []FindBgpSessionById200Response {
-	if o == nil || o.Sessions == nil {
+	if o == nil || isNil(o.Sessions) {
 		var ret []FindBgpSessionById200Response
 		return ret
 	}
@@ -433,7 +437,7 @@ func (o *FindBgpConfigByProject200Response) GetSessions() []FindBgpSessionById20
 // GetSessionsOk returns a tuple with the Sessions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FindBgpConfigByProject200Response) GetSessionsOk() ([]FindBgpSessionById200Response, bool) {
-	if o == nil || o.Sessions == nil {
+	if o == nil || isNil(o.Sessions) {
 		return nil, false
 	}
 	return o.Sessions, true
@@ -441,7 +445,7 @@ func (o *FindBgpConfigByProject200Response) GetSessionsOk() ([]FindBgpSessionByI
 
 // HasSessions returns a boolean if a field has been set.
 func (o *FindBgpConfigByProject200Response) HasSessions() bool {
-	if o != nil && o.Sessions != nil {
+	if o != nil && !isNil(o.Sessions) {
 		return true
 	}
 
@@ -455,7 +459,7 @@ func (o *FindBgpConfigByProject200Response) SetSessions(v []FindBgpSessionById20
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *FindBgpConfigByProject200Response) GetStatus() string {
-	if o == nil || o.Status == nil {
+	if o == nil || isNil(o.Status) {
 		var ret string
 		return ret
 	}
@@ -465,7 +469,7 @@ func (o *FindBgpConfigByProject200Response) GetStatus() string {
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FindBgpConfigByProject200Response) GetStatusOk() (*string, bool) {
-	if o == nil || o.Status == nil {
+	if o == nil || isNil(o.Status) {
 		return nil, false
 	}
 	return o.Status, true
@@ -473,7 +477,7 @@ func (o *FindBgpConfigByProject200Response) GetStatusOk() (*string, bool) {
 
 // HasStatus returns a boolean if a field has been set.
 func (o *FindBgpConfigByProject200Response) HasStatus() bool {
-	if o != nil && o.Status != nil {
+	if o != nil && !isNil(o.Status) {
 		return true
 	}
 
@@ -487,43 +491,43 @@ func (o *FindBgpConfigByProject200Response) SetStatus(v string) {
 
 func (o FindBgpConfigByProject200Response) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Asn != nil {
+	if !isNil(o.Asn) {
 		toSerialize["asn"] = o.Asn
 	}
-	if o.CreatedAt != nil {
+	if !isNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt
 	}
-	if o.DeploymentType != nil {
+	if !isNil(o.DeploymentType) {
 		toSerialize["deployment_type"] = o.DeploymentType
 	}
-	if o.Href != nil {
+	if !isNil(o.Href) {
 		toSerialize["href"] = o.Href
 	}
-	if o.Id != nil {
+	if !isNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
-	if o.MaxPrefix != nil {
+	if !isNil(o.MaxPrefix) {
 		toSerialize["max_prefix"] = o.MaxPrefix
 	}
 	if o.Md5.IsSet() {
 		toSerialize["md5"] = o.Md5.Get()
 	}
-	if o.Project != nil {
+	if !isNil(o.Project) {
 		toSerialize["project"] = o.Project
 	}
-	if o.Ranges != nil {
+	if !isNil(o.Ranges) {
 		toSerialize["ranges"] = o.Ranges
 	}
-	if o.RequestedAt != nil {
+	if !isNil(o.RequestedAt) {
 		toSerialize["requested_at"] = o.RequestedAt
 	}
-	if o.RouteObject != nil {
+	if !isNil(o.RouteObject) {
 		toSerialize["route_object"] = o.RouteObject
 	}
-	if o.Sessions != nil {
+	if !isNil(o.Sessions) {
 		toSerialize["sessions"] = o.Sessions
 	}
-	if o.Status != nil {
+	if !isNil(o.Status) {
 		toSerialize["status"] = o.Status
 	}
 	return json.Marshal(toSerialize)

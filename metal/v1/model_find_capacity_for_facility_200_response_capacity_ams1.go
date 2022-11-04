@@ -1,7 +1,7 @@
 /*
 Metal API
 
-This is the API for Equinix Metal. The API allows you to programmatically interact with all of your Equinix Metal resources, including devices, networks, addresses, organizations, projects, and your user account.  The official API docs are hosted at <https://metal.equinix.com/developers/api>.
+# Introduction Equinix Metal provides a RESTful HTTP API which can be reached at <https://api.equinix.com/metal/v1>. This document describes the API and how to use it.  The API allows you to programmatically interact with all of your Equinix Metal resources, including devices, networks, addresses, organizations, projects, and your user account. Every feature of the Equinix Metal web interface is accessible through the API.  The API docs are generated from the Equinix Metal OpenAPI specification and are officially hosted at <https://metal.equinix.com/developers/api>.  # Common Parameters  The Equinix Metal API uses a few methods to minimize network traffic and improve throughput. These parameters are not used in all API calls, but are used often enough to warrant their own section. Look for these parameters in the documentation for the API calls that support them.  ## Pagination  Pagination is used to limit the number of results returned in a single request. The API will return a maximum of 100 results per page. To retrieve additional results, you can use the `page` and `per_page` query parameters.  The `page` parameter is used to specify the page number. The first page is `1`. The `per_page` parameter is used to specify the number of results per page. The maximum number of results differs by resource type.  ## Sorting  Where offered, the API allows you to sort results by a specific field. To sort results use the `sort_by` query parameter with the root level field name as the value. The `sort_direction` parameter is used to specify the sort direction, either either `asc` (ascending) or `desc` (descending).  ## Filtering  Filtering is used to limit the results returned in a single request. The API supports filtering by certain fields in the response. To filter results, you can use the field as a query parameter.  For example, to filter the IP list to only return public IPv4 addresses, you can filter by the `type` field, as in the following request:  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/projects/id/ips?type=public_ipv4 ```  Only IP addresses with the `type` field set to `public_ipv4` will be returned.  ## Searching  Searching is used to find matching resources using multiple field comparissons. The API supports searching in resources that define this behavior. The fields available for search differ by resource, as does the search strategy.  To search resources you can use the `search` query parameter.  ## Include and Exclude  For resources that contain references to other resources, sucha as a Device that refers to the Project it resides in, the Equinix Metal API will returns `href` values (API links) to the associated resource.  ```json {   ...   \"project\": {     \"href\": \"/metal/v1/projects/f3f131c8-f302-49ef-8c44-9405022dc6dd\"   } } ```  If you're going need the project details, you can avoid a second API request.  Specify the contained `href` resources and collections that you'd like to have included in the response using the `include` query parameter.  For example:    ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=projects ```  The `include` parameter is generally accepted in `GET`, `POST`, `PUT`, and `PATCH` requests where `href` resources are presented.  To have multiple resources include, use a comma-separated list (e.g. `?include=emails,projects,memberships`).  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=emails,projects,memberships ```  You may also include nested associations up to three levels deep using dot notation (`?include=memberships.projects`):  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=memberships.projects ```  To exclude resources, and optimize response delivery, use the `exclude` query parameter. The `exclude` parameter is generally accepted in `GET`, `POST`, `PUT`, and `PATCH` requests for fields with nested object responses. When excluded, these fields will be replaced with an object that contains only an `href` field.
 
 API version: 1.0.0
 Contact: support@equinixmetal.com
@@ -47,7 +47,7 @@ func NewFindCapacityForFacility200ResponseCapacityAms1WithDefaults() *FindCapaci
 
 // GetBaremetal0 returns the Baremetal0 field value if set, zero value otherwise.
 func (o *FindCapacityForFacility200ResponseCapacityAms1) GetBaremetal0() FindCapacityForFacility200ResponseCapacityAms1Baremetal0 {
-	if o == nil || o.Baremetal0 == nil {
+	if o == nil || isNil(o.Baremetal0) {
 		var ret FindCapacityForFacility200ResponseCapacityAms1Baremetal0
 		return ret
 	}
@@ -57,7 +57,7 @@ func (o *FindCapacityForFacility200ResponseCapacityAms1) GetBaremetal0() FindCap
 // GetBaremetal0Ok returns a tuple with the Baremetal0 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FindCapacityForFacility200ResponseCapacityAms1) GetBaremetal0Ok() (*FindCapacityForFacility200ResponseCapacityAms1Baremetal0, bool) {
-	if o == nil || o.Baremetal0 == nil {
+	if o == nil || isNil(o.Baremetal0) {
 		return nil, false
 	}
 	return o.Baremetal0, true
@@ -65,7 +65,7 @@ func (o *FindCapacityForFacility200ResponseCapacityAms1) GetBaremetal0Ok() (*Fin
 
 // HasBaremetal0 returns a boolean if a field has been set.
 func (o *FindCapacityForFacility200ResponseCapacityAms1) HasBaremetal0() bool {
-	if o != nil && o.Baremetal0 != nil {
+	if o != nil && !isNil(o.Baremetal0) {
 		return true
 	}
 
@@ -79,7 +79,7 @@ func (o *FindCapacityForFacility200ResponseCapacityAms1) SetBaremetal0(v FindCap
 
 // GetBaremetal1 returns the Baremetal1 field value if set, zero value otherwise.
 func (o *FindCapacityForFacility200ResponseCapacityAms1) GetBaremetal1() FindCapacityForFacility200ResponseCapacityAms1Baremetal0 {
-	if o == nil || o.Baremetal1 == nil {
+	if o == nil || isNil(o.Baremetal1) {
 		var ret FindCapacityForFacility200ResponseCapacityAms1Baremetal0
 		return ret
 	}
@@ -89,7 +89,7 @@ func (o *FindCapacityForFacility200ResponseCapacityAms1) GetBaremetal1() FindCap
 // GetBaremetal1Ok returns a tuple with the Baremetal1 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FindCapacityForFacility200ResponseCapacityAms1) GetBaremetal1Ok() (*FindCapacityForFacility200ResponseCapacityAms1Baremetal0, bool) {
-	if o == nil || o.Baremetal1 == nil {
+	if o == nil || isNil(o.Baremetal1) {
 		return nil, false
 	}
 	return o.Baremetal1, true
@@ -97,7 +97,7 @@ func (o *FindCapacityForFacility200ResponseCapacityAms1) GetBaremetal1Ok() (*Fin
 
 // HasBaremetal1 returns a boolean if a field has been set.
 func (o *FindCapacityForFacility200ResponseCapacityAms1) HasBaremetal1() bool {
-	if o != nil && o.Baremetal1 != nil {
+	if o != nil && !isNil(o.Baremetal1) {
 		return true
 	}
 
@@ -111,7 +111,7 @@ func (o *FindCapacityForFacility200ResponseCapacityAms1) SetBaremetal1(v FindCap
 
 // GetBaremetal2 returns the Baremetal2 field value if set, zero value otherwise.
 func (o *FindCapacityForFacility200ResponseCapacityAms1) GetBaremetal2() FindCapacityForFacility200ResponseCapacityAms1Baremetal0 {
-	if o == nil || o.Baremetal2 == nil {
+	if o == nil || isNil(o.Baremetal2) {
 		var ret FindCapacityForFacility200ResponseCapacityAms1Baremetal0
 		return ret
 	}
@@ -121,7 +121,7 @@ func (o *FindCapacityForFacility200ResponseCapacityAms1) GetBaremetal2() FindCap
 // GetBaremetal2Ok returns a tuple with the Baremetal2 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FindCapacityForFacility200ResponseCapacityAms1) GetBaremetal2Ok() (*FindCapacityForFacility200ResponseCapacityAms1Baremetal0, bool) {
-	if o == nil || o.Baremetal2 == nil {
+	if o == nil || isNil(o.Baremetal2) {
 		return nil, false
 	}
 	return o.Baremetal2, true
@@ -129,7 +129,7 @@ func (o *FindCapacityForFacility200ResponseCapacityAms1) GetBaremetal2Ok() (*Fin
 
 // HasBaremetal2 returns a boolean if a field has been set.
 func (o *FindCapacityForFacility200ResponseCapacityAms1) HasBaremetal2() bool {
-	if o != nil && o.Baremetal2 != nil {
+	if o != nil && !isNil(o.Baremetal2) {
 		return true
 	}
 
@@ -143,7 +143,7 @@ func (o *FindCapacityForFacility200ResponseCapacityAms1) SetBaremetal2(v FindCap
 
 // GetBaremetal2a returns the Baremetal2a field value if set, zero value otherwise.
 func (o *FindCapacityForFacility200ResponseCapacityAms1) GetBaremetal2a() FindCapacityForFacility200ResponseCapacityAms1Baremetal0 {
-	if o == nil || o.Baremetal2a == nil {
+	if o == nil || isNil(o.Baremetal2a) {
 		var ret FindCapacityForFacility200ResponseCapacityAms1Baremetal0
 		return ret
 	}
@@ -153,7 +153,7 @@ func (o *FindCapacityForFacility200ResponseCapacityAms1) GetBaremetal2a() FindCa
 // GetBaremetal2aOk returns a tuple with the Baremetal2a field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FindCapacityForFacility200ResponseCapacityAms1) GetBaremetal2aOk() (*FindCapacityForFacility200ResponseCapacityAms1Baremetal0, bool) {
-	if o == nil || o.Baremetal2a == nil {
+	if o == nil || isNil(o.Baremetal2a) {
 		return nil, false
 	}
 	return o.Baremetal2a, true
@@ -161,7 +161,7 @@ func (o *FindCapacityForFacility200ResponseCapacityAms1) GetBaremetal2aOk() (*Fi
 
 // HasBaremetal2a returns a boolean if a field has been set.
 func (o *FindCapacityForFacility200ResponseCapacityAms1) HasBaremetal2a() bool {
-	if o != nil && o.Baremetal2a != nil {
+	if o != nil && !isNil(o.Baremetal2a) {
 		return true
 	}
 
@@ -175,7 +175,7 @@ func (o *FindCapacityForFacility200ResponseCapacityAms1) SetBaremetal2a(v FindCa
 
 // GetBaremetal2a2 returns the Baremetal2a2 field value if set, zero value otherwise.
 func (o *FindCapacityForFacility200ResponseCapacityAms1) GetBaremetal2a2() FindCapacityForFacility200ResponseCapacityAms1Baremetal0 {
-	if o == nil || o.Baremetal2a2 == nil {
+	if o == nil || isNil(o.Baremetal2a2) {
 		var ret FindCapacityForFacility200ResponseCapacityAms1Baremetal0
 		return ret
 	}
@@ -185,7 +185,7 @@ func (o *FindCapacityForFacility200ResponseCapacityAms1) GetBaremetal2a2() FindC
 // GetBaremetal2a2Ok returns a tuple with the Baremetal2a2 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FindCapacityForFacility200ResponseCapacityAms1) GetBaremetal2a2Ok() (*FindCapacityForFacility200ResponseCapacityAms1Baremetal0, bool) {
-	if o == nil || o.Baremetal2a2 == nil {
+	if o == nil || isNil(o.Baremetal2a2) {
 		return nil, false
 	}
 	return o.Baremetal2a2, true
@@ -193,7 +193,7 @@ func (o *FindCapacityForFacility200ResponseCapacityAms1) GetBaremetal2a2Ok() (*F
 
 // HasBaremetal2a2 returns a boolean if a field has been set.
 func (o *FindCapacityForFacility200ResponseCapacityAms1) HasBaremetal2a2() bool {
-	if o != nil && o.Baremetal2a2 != nil {
+	if o != nil && !isNil(o.Baremetal2a2) {
 		return true
 	}
 
@@ -207,7 +207,7 @@ func (o *FindCapacityForFacility200ResponseCapacityAms1) SetBaremetal2a2(v FindC
 
 // GetBaremetal3 returns the Baremetal3 field value if set, zero value otherwise.
 func (o *FindCapacityForFacility200ResponseCapacityAms1) GetBaremetal3() FindCapacityForFacility200ResponseCapacityAms1Baremetal0 {
-	if o == nil || o.Baremetal3 == nil {
+	if o == nil || isNil(o.Baremetal3) {
 		var ret FindCapacityForFacility200ResponseCapacityAms1Baremetal0
 		return ret
 	}
@@ -217,7 +217,7 @@ func (o *FindCapacityForFacility200ResponseCapacityAms1) GetBaremetal3() FindCap
 // GetBaremetal3Ok returns a tuple with the Baremetal3 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FindCapacityForFacility200ResponseCapacityAms1) GetBaremetal3Ok() (*FindCapacityForFacility200ResponseCapacityAms1Baremetal0, bool) {
-	if o == nil || o.Baremetal3 == nil {
+	if o == nil || isNil(o.Baremetal3) {
 		return nil, false
 	}
 	return o.Baremetal3, true
@@ -225,7 +225,7 @@ func (o *FindCapacityForFacility200ResponseCapacityAms1) GetBaremetal3Ok() (*Fin
 
 // HasBaremetal3 returns a boolean if a field has been set.
 func (o *FindCapacityForFacility200ResponseCapacityAms1) HasBaremetal3() bool {
-	if o != nil && o.Baremetal3 != nil {
+	if o != nil && !isNil(o.Baremetal3) {
 		return true
 	}
 
@@ -239,7 +239,7 @@ func (o *FindCapacityForFacility200ResponseCapacityAms1) SetBaremetal3(v FindCap
 
 // GetBaremetalS returns the BaremetalS field value if set, zero value otherwise.
 func (o *FindCapacityForFacility200ResponseCapacityAms1) GetBaremetalS() FindCapacityForFacility200ResponseCapacityAms1Baremetal0 {
-	if o == nil || o.BaremetalS == nil {
+	if o == nil || isNil(o.BaremetalS) {
 		var ret FindCapacityForFacility200ResponseCapacityAms1Baremetal0
 		return ret
 	}
@@ -249,7 +249,7 @@ func (o *FindCapacityForFacility200ResponseCapacityAms1) GetBaremetalS() FindCap
 // GetBaremetalSOk returns a tuple with the BaremetalS field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FindCapacityForFacility200ResponseCapacityAms1) GetBaremetalSOk() (*FindCapacityForFacility200ResponseCapacityAms1Baremetal0, bool) {
-	if o == nil || o.BaremetalS == nil {
+	if o == nil || isNil(o.BaremetalS) {
 		return nil, false
 	}
 	return o.BaremetalS, true
@@ -257,7 +257,7 @@ func (o *FindCapacityForFacility200ResponseCapacityAms1) GetBaremetalSOk() (*Fin
 
 // HasBaremetalS returns a boolean if a field has been set.
 func (o *FindCapacityForFacility200ResponseCapacityAms1) HasBaremetalS() bool {
-	if o != nil && o.BaremetalS != nil {
+	if o != nil && !isNil(o.BaremetalS) {
 		return true
 	}
 
@@ -271,7 +271,7 @@ func (o *FindCapacityForFacility200ResponseCapacityAms1) SetBaremetalS(v FindCap
 
 // GetC2MediumX86 returns the C2MediumX86 field value if set, zero value otherwise.
 func (o *FindCapacityForFacility200ResponseCapacityAms1) GetC2MediumX86() FindCapacityForFacility200ResponseCapacityAms1Baremetal0 {
-	if o == nil || o.C2MediumX86 == nil {
+	if o == nil || isNil(o.C2MediumX86) {
 		var ret FindCapacityForFacility200ResponseCapacityAms1Baremetal0
 		return ret
 	}
@@ -281,7 +281,7 @@ func (o *FindCapacityForFacility200ResponseCapacityAms1) GetC2MediumX86() FindCa
 // GetC2MediumX86Ok returns a tuple with the C2MediumX86 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FindCapacityForFacility200ResponseCapacityAms1) GetC2MediumX86Ok() (*FindCapacityForFacility200ResponseCapacityAms1Baremetal0, bool) {
-	if o == nil || o.C2MediumX86 == nil {
+	if o == nil || isNil(o.C2MediumX86) {
 		return nil, false
 	}
 	return o.C2MediumX86, true
@@ -289,7 +289,7 @@ func (o *FindCapacityForFacility200ResponseCapacityAms1) GetC2MediumX86Ok() (*Fi
 
 // HasC2MediumX86 returns a boolean if a field has been set.
 func (o *FindCapacityForFacility200ResponseCapacityAms1) HasC2MediumX86() bool {
-	if o != nil && o.C2MediumX86 != nil {
+	if o != nil && !isNil(o.C2MediumX86) {
 		return true
 	}
 
@@ -303,7 +303,7 @@ func (o *FindCapacityForFacility200ResponseCapacityAms1) SetC2MediumX86(v FindCa
 
 // GetM2XlargeX86 returns the M2XlargeX86 field value if set, zero value otherwise.
 func (o *FindCapacityForFacility200ResponseCapacityAms1) GetM2XlargeX86() FindCapacityForFacility200ResponseCapacityAms1Baremetal0 {
-	if o == nil || o.M2XlargeX86 == nil {
+	if o == nil || isNil(o.M2XlargeX86) {
 		var ret FindCapacityForFacility200ResponseCapacityAms1Baremetal0
 		return ret
 	}
@@ -313,7 +313,7 @@ func (o *FindCapacityForFacility200ResponseCapacityAms1) GetM2XlargeX86() FindCa
 // GetM2XlargeX86Ok returns a tuple with the M2XlargeX86 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FindCapacityForFacility200ResponseCapacityAms1) GetM2XlargeX86Ok() (*FindCapacityForFacility200ResponseCapacityAms1Baremetal0, bool) {
-	if o == nil || o.M2XlargeX86 == nil {
+	if o == nil || isNil(o.M2XlargeX86) {
 		return nil, false
 	}
 	return o.M2XlargeX86, true
@@ -321,7 +321,7 @@ func (o *FindCapacityForFacility200ResponseCapacityAms1) GetM2XlargeX86Ok() (*Fi
 
 // HasM2XlargeX86 returns a boolean if a field has been set.
 func (o *FindCapacityForFacility200ResponseCapacityAms1) HasM2XlargeX86() bool {
-	if o != nil && o.M2XlargeX86 != nil {
+	if o != nil && !isNil(o.M2XlargeX86) {
 		return true
 	}
 
@@ -335,31 +335,31 @@ func (o *FindCapacityForFacility200ResponseCapacityAms1) SetM2XlargeX86(v FindCa
 
 func (o FindCapacityForFacility200ResponseCapacityAms1) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Baremetal0 != nil {
+	if !isNil(o.Baremetal0) {
 		toSerialize["baremetal_0"] = o.Baremetal0
 	}
-	if o.Baremetal1 != nil {
+	if !isNil(o.Baremetal1) {
 		toSerialize["baremetal_1"] = o.Baremetal1
 	}
-	if o.Baremetal2 != nil {
+	if !isNil(o.Baremetal2) {
 		toSerialize["baremetal_2"] = o.Baremetal2
 	}
-	if o.Baremetal2a != nil {
+	if !isNil(o.Baremetal2a) {
 		toSerialize["baremetal_2a"] = o.Baremetal2a
 	}
-	if o.Baremetal2a2 != nil {
+	if !isNil(o.Baremetal2a2) {
 		toSerialize["baremetal_2a2"] = o.Baremetal2a2
 	}
-	if o.Baremetal3 != nil {
+	if !isNil(o.Baremetal3) {
 		toSerialize["baremetal_3"] = o.Baremetal3
 	}
-	if o.BaremetalS != nil {
+	if !isNil(o.BaremetalS) {
 		toSerialize["baremetal_s"] = o.BaremetalS
 	}
-	if o.C2MediumX86 != nil {
+	if !isNil(o.C2MediumX86) {
 		toSerialize["c2.medium.x86"] = o.C2MediumX86
 	}
-	if o.M2XlargeX86 != nil {
+	if !isNil(o.M2XlargeX86) {
 		toSerialize["m2.xlarge.x86"] = o.M2XlargeX86
 	}
 	return json.Marshal(toSerialize)

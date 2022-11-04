@@ -1,7 +1,7 @@
 /*
 Metal API
 
-This is the API for Equinix Metal. The API allows you to programmatically interact with all of your Equinix Metal resources, including devices, networks, addresses, organizations, projects, and your user account.  The official API docs are hosted at <https://metal.equinix.com/developers/api>.
+# Introduction Equinix Metal provides a RESTful HTTP API which can be reached at <https://api.equinix.com/metal/v1>. This document describes the API and how to use it.  The API allows you to programmatically interact with all of your Equinix Metal resources, including devices, networks, addresses, organizations, projects, and your user account. Every feature of the Equinix Metal web interface is accessible through the API.  The API docs are generated from the Equinix Metal OpenAPI specification and are officially hosted at <https://metal.equinix.com/developers/api>.  # Common Parameters  The Equinix Metal API uses a few methods to minimize network traffic and improve throughput. These parameters are not used in all API calls, but are used often enough to warrant their own section. Look for these parameters in the documentation for the API calls that support them.  ## Pagination  Pagination is used to limit the number of results returned in a single request. The API will return a maximum of 100 results per page. To retrieve additional results, you can use the `page` and `per_page` query parameters.  The `page` parameter is used to specify the page number. The first page is `1`. The `per_page` parameter is used to specify the number of results per page. The maximum number of results differs by resource type.  ## Sorting  Where offered, the API allows you to sort results by a specific field. To sort results use the `sort_by` query parameter with the root level field name as the value. The `sort_direction` parameter is used to specify the sort direction, either either `asc` (ascending) or `desc` (descending).  ## Filtering  Filtering is used to limit the results returned in a single request. The API supports filtering by certain fields in the response. To filter results, you can use the field as a query parameter.  For example, to filter the IP list to only return public IPv4 addresses, you can filter by the `type` field, as in the following request:  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/projects/id/ips?type=public_ipv4 ```  Only IP addresses with the `type` field set to `public_ipv4` will be returned.  ## Searching  Searching is used to find matching resources using multiple field comparissons. The API supports searching in resources that define this behavior. The fields available for search differ by resource, as does the search strategy.  To search resources you can use the `search` query parameter.  ## Include and Exclude  For resources that contain references to other resources, sucha as a Device that refers to the Project it resides in, the Equinix Metal API will returns `href` values (API links) to the associated resource.  ```json {   ...   \"project\": {     \"href\": \"/metal/v1/projects/f3f131c8-f302-49ef-8c44-9405022dc6dd\"   } } ```  If you're going need the project details, you can avoid a second API request.  Specify the contained `href` resources and collections that you'd like to have included in the response using the `include` query parameter.  For example:    ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=projects ```  The `include` parameter is generally accepted in `GET`, `POST`, `PUT`, and `PATCH` requests where `href` resources are presented.  To have multiple resources include, use a comma-separated list (e.g. `?include=emails,projects,memberships`).  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=emails,projects,memberships ```  You may also include nested associations up to three levels deep using dot notation (`?include=memberships.projects`):  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=memberships.projects ```  To exclude resources, and optimize response delivery, use the `exclude` query parameter. The `exclude` parameter is generally accepted in `GET`, `POST`, `PUT`, and `PATCH` requests for fields with nested object responses. When excluded, these fields will be replaced with an object that contains only an `href` field.
 
 API version: 1.0.0
 Contact: support@equinixmetal.com
@@ -59,7 +59,7 @@ func NewUserWithDefaults() *User {
 
 // GetAvatarThumbUrl returns the AvatarThumbUrl field value if set, zero value otherwise.
 func (o *User) GetAvatarThumbUrl() string {
-	if o == nil || o.AvatarThumbUrl == nil {
+	if o == nil || isNil(o.AvatarThumbUrl) {
 		var ret string
 		return ret
 	}
@@ -69,7 +69,7 @@ func (o *User) GetAvatarThumbUrl() string {
 // GetAvatarThumbUrlOk returns a tuple with the AvatarThumbUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *User) GetAvatarThumbUrlOk() (*string, bool) {
-	if o == nil || o.AvatarThumbUrl == nil {
+	if o == nil || isNil(o.AvatarThumbUrl) {
 		return nil, false
 	}
 	return o.AvatarThumbUrl, true
@@ -77,7 +77,7 @@ func (o *User) GetAvatarThumbUrlOk() (*string, bool) {
 
 // HasAvatarThumbUrl returns a boolean if a field has been set.
 func (o *User) HasAvatarThumbUrl() bool {
-	if o != nil && o.AvatarThumbUrl != nil {
+	if o != nil && !isNil(o.AvatarThumbUrl) {
 		return true
 	}
 
@@ -91,7 +91,7 @@ func (o *User) SetAvatarThumbUrl(v string) {
 
 // GetAvatarUrl returns the AvatarUrl field value if set, zero value otherwise.
 func (o *User) GetAvatarUrl() string {
-	if o == nil || o.AvatarUrl == nil {
+	if o == nil || isNil(o.AvatarUrl) {
 		var ret string
 		return ret
 	}
@@ -101,7 +101,7 @@ func (o *User) GetAvatarUrl() string {
 // GetAvatarUrlOk returns a tuple with the AvatarUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *User) GetAvatarUrlOk() (*string, bool) {
-	if o == nil || o.AvatarUrl == nil {
+	if o == nil || isNil(o.AvatarUrl) {
 		return nil, false
 	}
 	return o.AvatarUrl, true
@@ -109,7 +109,7 @@ func (o *User) GetAvatarUrlOk() (*string, bool) {
 
 // HasAvatarUrl returns a boolean if a field has been set.
 func (o *User) HasAvatarUrl() bool {
-	if o != nil && o.AvatarUrl != nil {
+	if o != nil && !isNil(o.AvatarUrl) {
 		return true
 	}
 
@@ -123,7 +123,7 @@ func (o *User) SetAvatarUrl(v string) {
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *User) GetCreatedAt() time.Time {
-	if o == nil || o.CreatedAt == nil {
+	if o == nil || isNil(o.CreatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -133,7 +133,7 @@ func (o *User) GetCreatedAt() time.Time {
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *User) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || o.CreatedAt == nil {
+	if o == nil || isNil(o.CreatedAt) {
 		return nil, false
 	}
 	return o.CreatedAt, true
@@ -141,7 +141,7 @@ func (o *User) GetCreatedAtOk() (*time.Time, bool) {
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *User) HasCreatedAt() bool {
-	if o != nil && o.CreatedAt != nil {
+	if o != nil && !isNil(o.CreatedAt) {
 		return true
 	}
 
@@ -155,7 +155,7 @@ func (o *User) SetCreatedAt(v time.Time) {
 
 // GetCustomdata returns the Customdata field value if set, zero value otherwise.
 func (o *User) GetCustomdata() map[string]interface{} {
-	if o == nil || o.Customdata == nil {
+	if o == nil || isNil(o.Customdata) {
 		var ret map[string]interface{}
 		return ret
 	}
@@ -165,15 +165,15 @@ func (o *User) GetCustomdata() map[string]interface{} {
 // GetCustomdataOk returns a tuple with the Customdata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *User) GetCustomdataOk() (map[string]interface{}, bool) {
-	if o == nil || o.Customdata == nil {
-		return nil, false
+	if o == nil || isNil(o.Customdata) {
+		return map[string]interface{}{}, false
 	}
 	return o.Customdata, true
 }
 
 // HasCustomdata returns a boolean if a field has been set.
 func (o *User) HasCustomdata() bool {
-	if o != nil && o.Customdata != nil {
+	if o != nil && !isNil(o.Customdata) {
 		return true
 	}
 
@@ -187,7 +187,7 @@ func (o *User) SetCustomdata(v map[string]interface{}) {
 
 // GetEmail returns the Email field value if set, zero value otherwise.
 func (o *User) GetEmail() string {
-	if o == nil || o.Email == nil {
+	if o == nil || isNil(o.Email) {
 		var ret string
 		return ret
 	}
@@ -197,7 +197,7 @@ func (o *User) GetEmail() string {
 // GetEmailOk returns a tuple with the Email field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *User) GetEmailOk() (*string, bool) {
-	if o == nil || o.Email == nil {
+	if o == nil || isNil(o.Email) {
 		return nil, false
 	}
 	return o.Email, true
@@ -205,7 +205,7 @@ func (o *User) GetEmailOk() (*string, bool) {
 
 // HasEmail returns a boolean if a field has been set.
 func (o *User) HasEmail() bool {
-	if o != nil && o.Email != nil {
+	if o != nil && !isNil(o.Email) {
 		return true
 	}
 
@@ -219,7 +219,7 @@ func (o *User) SetEmail(v string) {
 
 // GetEmails returns the Emails field value if set, zero value otherwise.
 func (o *User) GetEmails() []FindBatchById200ResponseDevicesInner {
-	if o == nil || o.Emails == nil {
+	if o == nil || isNil(o.Emails) {
 		var ret []FindBatchById200ResponseDevicesInner
 		return ret
 	}
@@ -229,7 +229,7 @@ func (o *User) GetEmails() []FindBatchById200ResponseDevicesInner {
 // GetEmailsOk returns a tuple with the Emails field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *User) GetEmailsOk() ([]FindBatchById200ResponseDevicesInner, bool) {
-	if o == nil || o.Emails == nil {
+	if o == nil || isNil(o.Emails) {
 		return nil, false
 	}
 	return o.Emails, true
@@ -237,7 +237,7 @@ func (o *User) GetEmailsOk() ([]FindBatchById200ResponseDevicesInner, bool) {
 
 // HasEmails returns a boolean if a field has been set.
 func (o *User) HasEmails() bool {
-	if o != nil && o.Emails != nil {
+	if o != nil && !isNil(o.Emails) {
 		return true
 	}
 
@@ -251,7 +251,7 @@ func (o *User) SetEmails(v []FindBatchById200ResponseDevicesInner) {
 
 // GetFirstName returns the FirstName field value if set, zero value otherwise.
 func (o *User) GetFirstName() string {
-	if o == nil || o.FirstName == nil {
+	if o == nil || isNil(o.FirstName) {
 		var ret string
 		return ret
 	}
@@ -261,7 +261,7 @@ func (o *User) GetFirstName() string {
 // GetFirstNameOk returns a tuple with the FirstName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *User) GetFirstNameOk() (*string, bool) {
-	if o == nil || o.FirstName == nil {
+	if o == nil || isNil(o.FirstName) {
 		return nil, false
 	}
 	return o.FirstName, true
@@ -269,7 +269,7 @@ func (o *User) GetFirstNameOk() (*string, bool) {
 
 // HasFirstName returns a boolean if a field has been set.
 func (o *User) HasFirstName() bool {
-	if o != nil && o.FirstName != nil {
+	if o != nil && !isNil(o.FirstName) {
 		return true
 	}
 
@@ -283,7 +283,7 @@ func (o *User) SetFirstName(v string) {
 
 // GetFraudScore returns the FraudScore field value if set, zero value otherwise.
 func (o *User) GetFraudScore() string {
-	if o == nil || o.FraudScore == nil {
+	if o == nil || isNil(o.FraudScore) {
 		var ret string
 		return ret
 	}
@@ -293,7 +293,7 @@ func (o *User) GetFraudScore() string {
 // GetFraudScoreOk returns a tuple with the FraudScore field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *User) GetFraudScoreOk() (*string, bool) {
-	if o == nil || o.FraudScore == nil {
+	if o == nil || isNil(o.FraudScore) {
 		return nil, false
 	}
 	return o.FraudScore, true
@@ -301,7 +301,7 @@ func (o *User) GetFraudScoreOk() (*string, bool) {
 
 // HasFraudScore returns a boolean if a field has been set.
 func (o *User) HasFraudScore() bool {
-	if o != nil && o.FraudScore != nil {
+	if o != nil && !isNil(o.FraudScore) {
 		return true
 	}
 
@@ -315,7 +315,7 @@ func (o *User) SetFraudScore(v string) {
 
 // GetFullName returns the FullName field value if set, zero value otherwise.
 func (o *User) GetFullName() string {
-	if o == nil || o.FullName == nil {
+	if o == nil || isNil(o.FullName) {
 		var ret string
 		return ret
 	}
@@ -325,7 +325,7 @@ func (o *User) GetFullName() string {
 // GetFullNameOk returns a tuple with the FullName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *User) GetFullNameOk() (*string, bool) {
-	if o == nil || o.FullName == nil {
+	if o == nil || isNil(o.FullName) {
 		return nil, false
 	}
 	return o.FullName, true
@@ -333,7 +333,7 @@ func (o *User) GetFullNameOk() (*string, bool) {
 
 // HasFullName returns a boolean if a field has been set.
 func (o *User) HasFullName() bool {
-	if o != nil && o.FullName != nil {
+	if o != nil && !isNil(o.FullName) {
 		return true
 	}
 
@@ -347,7 +347,7 @@ func (o *User) SetFullName(v string) {
 
 // GetHref returns the Href field value if set, zero value otherwise.
 func (o *User) GetHref() string {
-	if o == nil || o.Href == nil {
+	if o == nil || isNil(o.Href) {
 		var ret string
 		return ret
 	}
@@ -357,7 +357,7 @@ func (o *User) GetHref() string {
 // GetHrefOk returns a tuple with the Href field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *User) GetHrefOk() (*string, bool) {
-	if o == nil || o.Href == nil {
+	if o == nil || isNil(o.Href) {
 		return nil, false
 	}
 	return o.Href, true
@@ -365,7 +365,7 @@ func (o *User) GetHrefOk() (*string, bool) {
 
 // HasHref returns a boolean if a field has been set.
 func (o *User) HasHref() bool {
-	if o != nil && o.Href != nil {
+	if o != nil && !isNil(o.Href) {
 		return true
 	}
 
@@ -379,7 +379,7 @@ func (o *User) SetHref(v string) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *User) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || isNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -389,7 +389,7 @@ func (o *User) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *User) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || isNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -397,7 +397,7 @@ func (o *User) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *User) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !isNil(o.Id) {
 		return true
 	}
 
@@ -411,7 +411,7 @@ func (o *User) SetId(v string) {
 
 // GetLastLoginAt returns the LastLoginAt field value if set, zero value otherwise.
 func (o *User) GetLastLoginAt() time.Time {
-	if o == nil || o.LastLoginAt == nil {
+	if o == nil || isNil(o.LastLoginAt) {
 		var ret time.Time
 		return ret
 	}
@@ -421,7 +421,7 @@ func (o *User) GetLastLoginAt() time.Time {
 // GetLastLoginAtOk returns a tuple with the LastLoginAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *User) GetLastLoginAtOk() (*time.Time, bool) {
-	if o == nil || o.LastLoginAt == nil {
+	if o == nil || isNil(o.LastLoginAt) {
 		return nil, false
 	}
 	return o.LastLoginAt, true
@@ -429,7 +429,7 @@ func (o *User) GetLastLoginAtOk() (*time.Time, bool) {
 
 // HasLastLoginAt returns a boolean if a field has been set.
 func (o *User) HasLastLoginAt() bool {
-	if o != nil && o.LastLoginAt != nil {
+	if o != nil && !isNil(o.LastLoginAt) {
 		return true
 	}
 
@@ -443,7 +443,7 @@ func (o *User) SetLastLoginAt(v time.Time) {
 
 // GetLastName returns the LastName field value if set, zero value otherwise.
 func (o *User) GetLastName() string {
-	if o == nil || o.LastName == nil {
+	if o == nil || isNil(o.LastName) {
 		var ret string
 		return ret
 	}
@@ -453,7 +453,7 @@ func (o *User) GetLastName() string {
 // GetLastNameOk returns a tuple with the LastName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *User) GetLastNameOk() (*string, bool) {
-	if o == nil || o.LastName == nil {
+	if o == nil || isNil(o.LastName) {
 		return nil, false
 	}
 	return o.LastName, true
@@ -461,7 +461,7 @@ func (o *User) GetLastNameOk() (*string, bool) {
 
 // HasLastName returns a boolean if a field has been set.
 func (o *User) HasLastName() bool {
-	if o != nil && o.LastName != nil {
+	if o != nil && !isNil(o.LastName) {
 		return true
 	}
 
@@ -475,7 +475,7 @@ func (o *User) SetLastName(v string) {
 
 // GetMaxOrganizations returns the MaxOrganizations field value if set, zero value otherwise.
 func (o *User) GetMaxOrganizations() int32 {
-	if o == nil || o.MaxOrganizations == nil {
+	if o == nil || isNil(o.MaxOrganizations) {
 		var ret int32
 		return ret
 	}
@@ -485,7 +485,7 @@ func (o *User) GetMaxOrganizations() int32 {
 // GetMaxOrganizationsOk returns a tuple with the MaxOrganizations field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *User) GetMaxOrganizationsOk() (*int32, bool) {
-	if o == nil || o.MaxOrganizations == nil {
+	if o == nil || isNil(o.MaxOrganizations) {
 		return nil, false
 	}
 	return o.MaxOrganizations, true
@@ -493,7 +493,7 @@ func (o *User) GetMaxOrganizationsOk() (*int32, bool) {
 
 // HasMaxOrganizations returns a boolean if a field has been set.
 func (o *User) HasMaxOrganizations() bool {
-	if o != nil && o.MaxOrganizations != nil {
+	if o != nil && !isNil(o.MaxOrganizations) {
 		return true
 	}
 
@@ -507,7 +507,7 @@ func (o *User) SetMaxOrganizations(v int32) {
 
 // GetMaxProjects returns the MaxProjects field value if set, zero value otherwise.
 func (o *User) GetMaxProjects() int32 {
-	if o == nil || o.MaxProjects == nil {
+	if o == nil || isNil(o.MaxProjects) {
 		var ret int32
 		return ret
 	}
@@ -517,7 +517,7 @@ func (o *User) GetMaxProjects() int32 {
 // GetMaxProjectsOk returns a tuple with the MaxProjects field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *User) GetMaxProjectsOk() (*int32, bool) {
-	if o == nil || o.MaxProjects == nil {
+	if o == nil || isNil(o.MaxProjects) {
 		return nil, false
 	}
 	return o.MaxProjects, true
@@ -525,7 +525,7 @@ func (o *User) GetMaxProjectsOk() (*int32, bool) {
 
 // HasMaxProjects returns a boolean if a field has been set.
 func (o *User) HasMaxProjects() bool {
-	if o != nil && o.MaxProjects != nil {
+	if o != nil && !isNil(o.MaxProjects) {
 		return true
 	}
 
@@ -539,7 +539,7 @@ func (o *User) SetMaxProjects(v int32) {
 
 // GetPhoneNumber returns the PhoneNumber field value if set, zero value otherwise.
 func (o *User) GetPhoneNumber() string {
-	if o == nil || o.PhoneNumber == nil {
+	if o == nil || isNil(o.PhoneNumber) {
 		var ret string
 		return ret
 	}
@@ -549,7 +549,7 @@ func (o *User) GetPhoneNumber() string {
 // GetPhoneNumberOk returns a tuple with the PhoneNumber field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *User) GetPhoneNumberOk() (*string, bool) {
-	if o == nil || o.PhoneNumber == nil {
+	if o == nil || isNil(o.PhoneNumber) {
 		return nil, false
 	}
 	return o.PhoneNumber, true
@@ -557,7 +557,7 @@ func (o *User) GetPhoneNumberOk() (*string, bool) {
 
 // HasPhoneNumber returns a boolean if a field has been set.
 func (o *User) HasPhoneNumber() bool {
-	if o != nil && o.PhoneNumber != nil {
+	if o != nil && !isNil(o.PhoneNumber) {
 		return true
 	}
 
@@ -571,7 +571,7 @@ func (o *User) SetPhoneNumber(v string) {
 
 // GetShortId returns the ShortId field value if set, zero value otherwise.
 func (o *User) GetShortId() string {
-	if o == nil || o.ShortId == nil {
+	if o == nil || isNil(o.ShortId) {
 		var ret string
 		return ret
 	}
@@ -581,7 +581,7 @@ func (o *User) GetShortId() string {
 // GetShortIdOk returns a tuple with the ShortId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *User) GetShortIdOk() (*string, bool) {
-	if o == nil || o.ShortId == nil {
+	if o == nil || isNil(o.ShortId) {
 		return nil, false
 	}
 	return o.ShortId, true
@@ -589,7 +589,7 @@ func (o *User) GetShortIdOk() (*string, bool) {
 
 // HasShortId returns a boolean if a field has been set.
 func (o *User) HasShortId() bool {
-	if o != nil && o.ShortId != nil {
+	if o != nil && !isNil(o.ShortId) {
 		return true
 	}
 
@@ -603,7 +603,7 @@ func (o *User) SetShortId(v string) {
 
 // GetTimezone returns the Timezone field value if set, zero value otherwise.
 func (o *User) GetTimezone() string {
-	if o == nil || o.Timezone == nil {
+	if o == nil || isNil(o.Timezone) {
 		var ret string
 		return ret
 	}
@@ -613,7 +613,7 @@ func (o *User) GetTimezone() string {
 // GetTimezoneOk returns a tuple with the Timezone field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *User) GetTimezoneOk() (*string, bool) {
-	if o == nil || o.Timezone == nil {
+	if o == nil || isNil(o.Timezone) {
 		return nil, false
 	}
 	return o.Timezone, true
@@ -621,7 +621,7 @@ func (o *User) GetTimezoneOk() (*string, bool) {
 
 // HasTimezone returns a boolean if a field has been set.
 func (o *User) HasTimezone() bool {
-	if o != nil && o.Timezone != nil {
+	if o != nil && !isNil(o.Timezone) {
 		return true
 	}
 
@@ -635,7 +635,7 @@ func (o *User) SetTimezone(v string) {
 
 // GetTwoFactorAuth returns the TwoFactorAuth field value if set, zero value otherwise.
 func (o *User) GetTwoFactorAuth() string {
-	if o == nil || o.TwoFactorAuth == nil {
+	if o == nil || isNil(o.TwoFactorAuth) {
 		var ret string
 		return ret
 	}
@@ -645,7 +645,7 @@ func (o *User) GetTwoFactorAuth() string {
 // GetTwoFactorAuthOk returns a tuple with the TwoFactorAuth field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *User) GetTwoFactorAuthOk() (*string, bool) {
-	if o == nil || o.TwoFactorAuth == nil {
+	if o == nil || isNil(o.TwoFactorAuth) {
 		return nil, false
 	}
 	return o.TwoFactorAuth, true
@@ -653,7 +653,7 @@ func (o *User) GetTwoFactorAuthOk() (*string, bool) {
 
 // HasTwoFactorAuth returns a boolean if a field has been set.
 func (o *User) HasTwoFactorAuth() bool {
-	if o != nil && o.TwoFactorAuth != nil {
+	if o != nil && !isNil(o.TwoFactorAuth) {
 		return true
 	}
 
@@ -667,7 +667,7 @@ func (o *User) SetTwoFactorAuth(v string) {
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *User) GetUpdatedAt() time.Time {
-	if o == nil || o.UpdatedAt == nil {
+	if o == nil || isNil(o.UpdatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -677,7 +677,7 @@ func (o *User) GetUpdatedAt() time.Time {
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *User) GetUpdatedAtOk() (*time.Time, bool) {
-	if o == nil || o.UpdatedAt == nil {
+	if o == nil || isNil(o.UpdatedAt) {
 		return nil, false
 	}
 	return o.UpdatedAt, true
@@ -685,7 +685,7 @@ func (o *User) GetUpdatedAtOk() (*time.Time, bool) {
 
 // HasUpdatedAt returns a boolean if a field has been set.
 func (o *User) HasUpdatedAt() bool {
-	if o != nil && o.UpdatedAt != nil {
+	if o != nil && !isNil(o.UpdatedAt) {
 		return true
 	}
 
@@ -699,64 +699,64 @@ func (o *User) SetUpdatedAt(v time.Time) {
 
 func (o User) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.AvatarThumbUrl != nil {
+	if !isNil(o.AvatarThumbUrl) {
 		toSerialize["avatar_thumb_url"] = o.AvatarThumbUrl
 	}
-	if o.AvatarUrl != nil {
+	if !isNil(o.AvatarUrl) {
 		toSerialize["avatar_url"] = o.AvatarUrl
 	}
-	if o.CreatedAt != nil {
+	if !isNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt
 	}
-	if o.Customdata != nil {
+	if !isNil(o.Customdata) {
 		toSerialize["customdata"] = o.Customdata
 	}
-	if o.Email != nil {
+	if !isNil(o.Email) {
 		toSerialize["email"] = o.Email
 	}
-	if o.Emails != nil {
+	if !isNil(o.Emails) {
 		toSerialize["emails"] = o.Emails
 	}
-	if o.FirstName != nil {
+	if !isNil(o.FirstName) {
 		toSerialize["first_name"] = o.FirstName
 	}
-	if o.FraudScore != nil {
+	if !isNil(o.FraudScore) {
 		toSerialize["fraud_score"] = o.FraudScore
 	}
-	if o.FullName != nil {
+	if !isNil(o.FullName) {
 		toSerialize["full_name"] = o.FullName
 	}
-	if o.Href != nil {
+	if !isNil(o.Href) {
 		toSerialize["href"] = o.Href
 	}
-	if o.Id != nil {
+	if !isNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
-	if o.LastLoginAt != nil {
+	if !isNil(o.LastLoginAt) {
 		toSerialize["last_login_at"] = o.LastLoginAt
 	}
-	if o.LastName != nil {
+	if !isNil(o.LastName) {
 		toSerialize["last_name"] = o.LastName
 	}
-	if o.MaxOrganizations != nil {
+	if !isNil(o.MaxOrganizations) {
 		toSerialize["max_organizations"] = o.MaxOrganizations
 	}
-	if o.MaxProjects != nil {
+	if !isNil(o.MaxProjects) {
 		toSerialize["max_projects"] = o.MaxProjects
 	}
-	if o.PhoneNumber != nil {
+	if !isNil(o.PhoneNumber) {
 		toSerialize["phone_number"] = o.PhoneNumber
 	}
-	if o.ShortId != nil {
+	if !isNil(o.ShortId) {
 		toSerialize["short_id"] = o.ShortId
 	}
-	if o.Timezone != nil {
+	if !isNil(o.Timezone) {
 		toSerialize["timezone"] = o.Timezone
 	}
-	if o.TwoFactorAuth != nil {
+	if !isNil(o.TwoFactorAuth) {
 		toSerialize["two_factor_auth"] = o.TwoFactorAuth
 	}
-	if o.UpdatedAt != nil {
+	if !isNil(o.UpdatedAt) {
 		toSerialize["updated_at"] = o.UpdatedAt
 	}
 	return json.Marshal(toSerialize)

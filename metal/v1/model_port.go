@@ -1,7 +1,7 @@
 /*
 Metal API
 
-This is the API for Equinix Metal. The API allows you to programmatically interact with all of your Equinix Metal resources, including devices, networks, addresses, organizations, projects, and your user account.  The official API docs are hosted at <https://metal.equinix.com/developers/api>.
+# Introduction Equinix Metal provides a RESTful HTTP API which can be reached at <https://api.equinix.com/metal/v1>. This document describes the API and how to use it.  The API allows you to programmatically interact with all of your Equinix Metal resources, including devices, networks, addresses, organizations, projects, and your user account. Every feature of the Equinix Metal web interface is accessible through the API.  The API docs are generated from the Equinix Metal OpenAPI specification and are officially hosted at <https://metal.equinix.com/developers/api>.  # Common Parameters  The Equinix Metal API uses a few methods to minimize network traffic and improve throughput. These parameters are not used in all API calls, but are used often enough to warrant their own section. Look for these parameters in the documentation for the API calls that support them.  ## Pagination  Pagination is used to limit the number of results returned in a single request. The API will return a maximum of 100 results per page. To retrieve additional results, you can use the `page` and `per_page` query parameters.  The `page` parameter is used to specify the page number. The first page is `1`. The `per_page` parameter is used to specify the number of results per page. The maximum number of results differs by resource type.  ## Sorting  Where offered, the API allows you to sort results by a specific field. To sort results use the `sort_by` query parameter with the root level field name as the value. The `sort_direction` parameter is used to specify the sort direction, either either `asc` (ascending) or `desc` (descending).  ## Filtering  Filtering is used to limit the results returned in a single request. The API supports filtering by certain fields in the response. To filter results, you can use the field as a query parameter.  For example, to filter the IP list to only return public IPv4 addresses, you can filter by the `type` field, as in the following request:  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/projects/id/ips?type=public_ipv4 ```  Only IP addresses with the `type` field set to `public_ipv4` will be returned.  ## Searching  Searching is used to find matching resources using multiple field comparissons. The API supports searching in resources that define this behavior. The fields available for search differ by resource, as does the search strategy.  To search resources you can use the `search` query parameter.  ## Include and Exclude  For resources that contain references to other resources, sucha as a Device that refers to the Project it resides in, the Equinix Metal API will returns `href` values (API links) to the associated resource.  ```json {   ...   \"project\": {     \"href\": \"/metal/v1/projects/f3f131c8-f302-49ef-8c44-9405022dc6dd\"   } } ```  If you're going need the project details, you can avoid a second API request.  Specify the contained `href` resources and collections that you'd like to have included in the response using the `include` query parameter.  For example:    ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=projects ```  The `include` parameter is generally accepted in `GET`, `POST`, `PUT`, and `PATCH` requests where `href` resources are presented.  To have multiple resources include, use a comma-separated list (e.g. `?include=emails,projects,memberships`).  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=emails,projects,memberships ```  You may also include nested associations up to three levels deep using dot notation (`?include=memberships.projects`):  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=memberships.projects ```  To exclude resources, and optimize response delivery, use the `exclude` query parameter. The `exclude` parameter is generally accepted in `GET`, `POST`, `PUT`, and `PATCH` requests for fields with nested object responses. When excluded, these fields will be replaced with an object that contains only an `href` field.
 
 API version: 1.0.0
 Contact: support@equinixmetal.com
@@ -15,16 +15,21 @@ import (
 	"encoding/json"
 )
 
-// Port struct for Port
+// Port Port is a hardware port associated with a reserved or instantiated hardware device.
 type Port struct {
-	Data map[string]interface{} `json:"data,omitempty"`
+	Bond *FindDeviceById200ResponseNetworkPortsInnerBond `json:"bond,omitempty"`
+	Data *FindDeviceById200ResponseNetworkPortsInnerData `json:"data,omitempty"`
 	// Indicates whether or not the bond can be broken on the port (when applicable).
-	DisbondOperationSupported *bool                                  `json:"disbond_operation_supported,omitempty"`
-	Href                      *string                                `json:"href,omitempty"`
-	Id                        *string                                `json:"id,omitempty"`
-	Name                      *string                                `json:"name,omitempty"`
-	Type                      *string                                `json:"type,omitempty"`
-	VirtualNetworks           []FindBatchById200ResponseDevicesInner `json:"virtual_networks,omitempty"`
+	DisbondOperationSupported *bool   `json:"disbond_operation_supported,omitempty"`
+	Href                      *string `json:"href,omitempty"`
+	Id                        *string `json:"id,omitempty"`
+	Name                      *string `json:"name,omitempty"`
+	// Type is either \"NetworkBondPort\" for bond ports or \"NetworkPort\" for bondable ethernet ports
+	Type *string `json:"type,omitempty"`
+	// Composite network type of the bond
+	NetworkType          *string                                                         `json:"network_type,omitempty"`
+	NativeVirtualNetwork *FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetwork `json:"native_virtual_network,omitempty"`
+	VirtualNetworks      []FindBatchById200ResponseDevicesInner                          `json:"virtual_networks,omitempty"`
 }
 
 // NewPort instantiates a new Port object
@@ -44,19 +49,51 @@ func NewPortWithDefaults() *Port {
 	return &this
 }
 
-// GetData returns the Data field value if set, zero value otherwise.
-func (o *Port) GetData() map[string]interface{} {
-	if o == nil || o.Data == nil {
-		var ret map[string]interface{}
+// GetBond returns the Bond field value if set, zero value otherwise.
+func (o *Port) GetBond() FindDeviceById200ResponseNetworkPortsInnerBond {
+	if o == nil || isNil(o.Bond) {
+		var ret FindDeviceById200ResponseNetworkPortsInnerBond
 		return ret
 	}
-	return o.Data
+	return *o.Bond
+}
+
+// GetBondOk returns a tuple with the Bond field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Port) GetBondOk() (*FindDeviceById200ResponseNetworkPortsInnerBond, bool) {
+	if o == nil || isNil(o.Bond) {
+		return nil, false
+	}
+	return o.Bond, true
+}
+
+// HasBond returns a boolean if a field has been set.
+func (o *Port) HasBond() bool {
+	if o != nil && !isNil(o.Bond) {
+		return true
+	}
+
+	return false
+}
+
+// SetBond gets a reference to the given FindDeviceById200ResponseNetworkPortsInnerBond and assigns it to the Bond field.
+func (o *Port) SetBond(v FindDeviceById200ResponseNetworkPortsInnerBond) {
+	o.Bond = &v
+}
+
+// GetData returns the Data field value if set, zero value otherwise.
+func (o *Port) GetData() FindDeviceById200ResponseNetworkPortsInnerData {
+	if o == nil || isNil(o.Data) {
+		var ret FindDeviceById200ResponseNetworkPortsInnerData
+		return ret
+	}
+	return *o.Data
 }
 
 // GetDataOk returns a tuple with the Data field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Port) GetDataOk() (map[string]interface{}, bool) {
-	if o == nil || o.Data == nil {
+func (o *Port) GetDataOk() (*FindDeviceById200ResponseNetworkPortsInnerData, bool) {
+	if o == nil || isNil(o.Data) {
 		return nil, false
 	}
 	return o.Data, true
@@ -64,21 +101,21 @@ func (o *Port) GetDataOk() (map[string]interface{}, bool) {
 
 // HasData returns a boolean if a field has been set.
 func (o *Port) HasData() bool {
-	if o != nil && o.Data != nil {
+	if o != nil && !isNil(o.Data) {
 		return true
 	}
 
 	return false
 }
 
-// SetData gets a reference to the given map[string]interface{} and assigns it to the Data field.
-func (o *Port) SetData(v map[string]interface{}) {
-	o.Data = v
+// SetData gets a reference to the given FindDeviceById200ResponseNetworkPortsInnerData and assigns it to the Data field.
+func (o *Port) SetData(v FindDeviceById200ResponseNetworkPortsInnerData) {
+	o.Data = &v
 }
 
 // GetDisbondOperationSupported returns the DisbondOperationSupported field value if set, zero value otherwise.
 func (o *Port) GetDisbondOperationSupported() bool {
-	if o == nil || o.DisbondOperationSupported == nil {
+	if o == nil || isNil(o.DisbondOperationSupported) {
 		var ret bool
 		return ret
 	}
@@ -88,7 +125,7 @@ func (o *Port) GetDisbondOperationSupported() bool {
 // GetDisbondOperationSupportedOk returns a tuple with the DisbondOperationSupported field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Port) GetDisbondOperationSupportedOk() (*bool, bool) {
-	if o == nil || o.DisbondOperationSupported == nil {
+	if o == nil || isNil(o.DisbondOperationSupported) {
 		return nil, false
 	}
 	return o.DisbondOperationSupported, true
@@ -96,7 +133,7 @@ func (o *Port) GetDisbondOperationSupportedOk() (*bool, bool) {
 
 // HasDisbondOperationSupported returns a boolean if a field has been set.
 func (o *Port) HasDisbondOperationSupported() bool {
-	if o != nil && o.DisbondOperationSupported != nil {
+	if o != nil && !isNil(o.DisbondOperationSupported) {
 		return true
 	}
 
@@ -110,7 +147,7 @@ func (o *Port) SetDisbondOperationSupported(v bool) {
 
 // GetHref returns the Href field value if set, zero value otherwise.
 func (o *Port) GetHref() string {
-	if o == nil || o.Href == nil {
+	if o == nil || isNil(o.Href) {
 		var ret string
 		return ret
 	}
@@ -120,7 +157,7 @@ func (o *Port) GetHref() string {
 // GetHrefOk returns a tuple with the Href field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Port) GetHrefOk() (*string, bool) {
-	if o == nil || o.Href == nil {
+	if o == nil || isNil(o.Href) {
 		return nil, false
 	}
 	return o.Href, true
@@ -128,7 +165,7 @@ func (o *Port) GetHrefOk() (*string, bool) {
 
 // HasHref returns a boolean if a field has been set.
 func (o *Port) HasHref() bool {
-	if o != nil && o.Href != nil {
+	if o != nil && !isNil(o.Href) {
 		return true
 	}
 
@@ -142,7 +179,7 @@ func (o *Port) SetHref(v string) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *Port) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || isNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -152,7 +189,7 @@ func (o *Port) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Port) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || isNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -160,7 +197,7 @@ func (o *Port) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *Port) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !isNil(o.Id) {
 		return true
 	}
 
@@ -174,7 +211,7 @@ func (o *Port) SetId(v string) {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *Port) GetName() string {
-	if o == nil || o.Name == nil {
+	if o == nil || isNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -184,7 +221,7 @@ func (o *Port) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Port) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
+	if o == nil || isNil(o.Name) {
 		return nil, false
 	}
 	return o.Name, true
@@ -192,7 +229,7 @@ func (o *Port) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *Port) HasName() bool {
-	if o != nil && o.Name != nil {
+	if o != nil && !isNil(o.Name) {
 		return true
 	}
 
@@ -206,7 +243,7 @@ func (o *Port) SetName(v string) {
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *Port) GetType() string {
-	if o == nil || o.Type == nil {
+	if o == nil || isNil(o.Type) {
 		var ret string
 		return ret
 	}
@@ -216,7 +253,7 @@ func (o *Port) GetType() string {
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Port) GetTypeOk() (*string, bool) {
-	if o == nil || o.Type == nil {
+	if o == nil || isNil(o.Type) {
 		return nil, false
 	}
 	return o.Type, true
@@ -224,7 +261,7 @@ func (o *Port) GetTypeOk() (*string, bool) {
 
 // HasType returns a boolean if a field has been set.
 func (o *Port) HasType() bool {
-	if o != nil && o.Type != nil {
+	if o != nil && !isNil(o.Type) {
 		return true
 	}
 
@@ -236,9 +273,73 @@ func (o *Port) SetType(v string) {
 	o.Type = &v
 }
 
+// GetNetworkType returns the NetworkType field value if set, zero value otherwise.
+func (o *Port) GetNetworkType() string {
+	if o == nil || isNil(o.NetworkType) {
+		var ret string
+		return ret
+	}
+	return *o.NetworkType
+}
+
+// GetNetworkTypeOk returns a tuple with the NetworkType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Port) GetNetworkTypeOk() (*string, bool) {
+	if o == nil || isNil(o.NetworkType) {
+		return nil, false
+	}
+	return o.NetworkType, true
+}
+
+// HasNetworkType returns a boolean if a field has been set.
+func (o *Port) HasNetworkType() bool {
+	if o != nil && !isNil(o.NetworkType) {
+		return true
+	}
+
+	return false
+}
+
+// SetNetworkType gets a reference to the given string and assigns it to the NetworkType field.
+func (o *Port) SetNetworkType(v string) {
+	o.NetworkType = &v
+}
+
+// GetNativeVirtualNetwork returns the NativeVirtualNetwork field value if set, zero value otherwise.
+func (o *Port) GetNativeVirtualNetwork() FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetwork {
+	if o == nil || isNil(o.NativeVirtualNetwork) {
+		var ret FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetwork
+		return ret
+	}
+	return *o.NativeVirtualNetwork
+}
+
+// GetNativeVirtualNetworkOk returns a tuple with the NativeVirtualNetwork field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Port) GetNativeVirtualNetworkOk() (*FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetwork, bool) {
+	if o == nil || isNil(o.NativeVirtualNetwork) {
+		return nil, false
+	}
+	return o.NativeVirtualNetwork, true
+}
+
+// HasNativeVirtualNetwork returns a boolean if a field has been set.
+func (o *Port) HasNativeVirtualNetwork() bool {
+	if o != nil && !isNil(o.NativeVirtualNetwork) {
+		return true
+	}
+
+	return false
+}
+
+// SetNativeVirtualNetwork gets a reference to the given FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetwork and assigns it to the NativeVirtualNetwork field.
+func (o *Port) SetNativeVirtualNetwork(v FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetwork) {
+	o.NativeVirtualNetwork = &v
+}
+
 // GetVirtualNetworks returns the VirtualNetworks field value if set, zero value otherwise.
 func (o *Port) GetVirtualNetworks() []FindBatchById200ResponseDevicesInner {
-	if o == nil || o.VirtualNetworks == nil {
+	if o == nil || isNil(o.VirtualNetworks) {
 		var ret []FindBatchById200ResponseDevicesInner
 		return ret
 	}
@@ -248,7 +349,7 @@ func (o *Port) GetVirtualNetworks() []FindBatchById200ResponseDevicesInner {
 // GetVirtualNetworksOk returns a tuple with the VirtualNetworks field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Port) GetVirtualNetworksOk() ([]FindBatchById200ResponseDevicesInner, bool) {
-	if o == nil || o.VirtualNetworks == nil {
+	if o == nil || isNil(o.VirtualNetworks) {
 		return nil, false
 	}
 	return o.VirtualNetworks, true
@@ -256,7 +357,7 @@ func (o *Port) GetVirtualNetworksOk() ([]FindBatchById200ResponseDevicesInner, b
 
 // HasVirtualNetworks returns a boolean if a field has been set.
 func (o *Port) HasVirtualNetworks() bool {
-	if o != nil && o.VirtualNetworks != nil {
+	if o != nil && !isNil(o.VirtualNetworks) {
 		return true
 	}
 
@@ -270,25 +371,34 @@ func (o *Port) SetVirtualNetworks(v []FindBatchById200ResponseDevicesInner) {
 
 func (o Port) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Data != nil {
+	if !isNil(o.Bond) {
+		toSerialize["bond"] = o.Bond
+	}
+	if !isNil(o.Data) {
 		toSerialize["data"] = o.Data
 	}
-	if o.DisbondOperationSupported != nil {
+	if !isNil(o.DisbondOperationSupported) {
 		toSerialize["disbond_operation_supported"] = o.DisbondOperationSupported
 	}
-	if o.Href != nil {
+	if !isNil(o.Href) {
 		toSerialize["href"] = o.Href
 	}
-	if o.Id != nil {
+	if !isNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
-	if o.Name != nil {
+	if !isNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
-	if o.Type != nil {
+	if !isNil(o.Type) {
 		toSerialize["type"] = o.Type
 	}
-	if o.VirtualNetworks != nil {
+	if !isNil(o.NetworkType) {
+		toSerialize["network_type"] = o.NetworkType
+	}
+	if !isNil(o.NativeVirtualNetwork) {
+		toSerialize["native_virtual_network"] = o.NativeVirtualNetwork
+	}
+	if !isNil(o.VirtualNetworks) {
 		toSerialize["virtual_networks"] = o.VirtualNetworks
 	}
 	return json.Marshal(toSerialize)

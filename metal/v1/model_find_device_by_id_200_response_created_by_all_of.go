@@ -1,7 +1,7 @@
 /*
 Metal API
 
-This is the API for Equinix Metal. The API allows you to programmatically interact with all of your Equinix Metal resources, including devices, networks, addresses, organizations, projects, and your user account.  The official API docs are hosted at <https://metal.equinix.com/developers/api>.
+# Introduction Equinix Metal provides a RESTful HTTP API which can be reached at <https://api.equinix.com/metal/v1>. This document describes the API and how to use it.  The API allows you to programmatically interact with all of your Equinix Metal resources, including devices, networks, addresses, organizations, projects, and your user account. Every feature of the Equinix Metal web interface is accessible through the API.  The API docs are generated from the Equinix Metal OpenAPI specification and are officially hosted at <https://metal.equinix.com/developers/api>.  # Common Parameters  The Equinix Metal API uses a few methods to minimize network traffic and improve throughput. These parameters are not used in all API calls, but are used often enough to warrant their own section. Look for these parameters in the documentation for the API calls that support them.  ## Pagination  Pagination is used to limit the number of results returned in a single request. The API will return a maximum of 100 results per page. To retrieve additional results, you can use the `page` and `per_page` query parameters.  The `page` parameter is used to specify the page number. The first page is `1`. The `per_page` parameter is used to specify the number of results per page. The maximum number of results differs by resource type.  ## Sorting  Where offered, the API allows you to sort results by a specific field. To sort results use the `sort_by` query parameter with the root level field name as the value. The `sort_direction` parameter is used to specify the sort direction, either either `asc` (ascending) or `desc` (descending).  ## Filtering  Filtering is used to limit the results returned in a single request. The API supports filtering by certain fields in the response. To filter results, you can use the field as a query parameter.  For example, to filter the IP list to only return public IPv4 addresses, you can filter by the `type` field, as in the following request:  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/projects/id/ips?type=public_ipv4 ```  Only IP addresses with the `type` field set to `public_ipv4` will be returned.  ## Searching  Searching is used to find matching resources using multiple field comparissons. The API supports searching in resources that define this behavior. The fields available for search differ by resource, as does the search strategy.  To search resources you can use the `search` query parameter.  ## Include and Exclude  For resources that contain references to other resources, sucha as a Device that refers to the Project it resides in, the Equinix Metal API will returns `href` values (API links) to the associated resource.  ```json {   ...   \"project\": {     \"href\": \"/metal/v1/projects/f3f131c8-f302-49ef-8c44-9405022dc6dd\"   } } ```  If you're going need the project details, you can avoid a second API request.  Specify the contained `href` resources and collections that you'd like to have included in the response using the `include` query parameter.  For example:    ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=projects ```  The `include` parameter is generally accepted in `GET`, `POST`, `PUT`, and `PATCH` requests where `href` resources are presented.  To have multiple resources include, use a comma-separated list (e.g. `?include=emails,projects,memberships`).  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=emails,projects,memberships ```  You may also include nested associations up to three levels deep using dot notation (`?include=memberships.projects`):  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=memberships.projects ```  To exclude resources, and optimize response delivery, use the `exclude` query parameter. The `exclude` parameter is generally accepted in `GET`, `POST`, `PUT`, and `PATCH` requests for fields with nested object responses. When excluded, these fields will be replaced with an object that contains only an `href` field.
 
 API version: 1.0.0
 Contact: support@equinixmetal.com
@@ -61,7 +61,7 @@ func NewFindDeviceById200ResponseCreatedByAllOfWithDefaults() *FindDeviceById200
 
 // GetAvatarThumbUrl returns the AvatarThumbUrl field value if set, zero value otherwise.
 func (o *FindDeviceById200ResponseCreatedByAllOf) GetAvatarThumbUrl() string {
-	if o == nil || o.AvatarThumbUrl == nil {
+	if o == nil || isNil(o.AvatarThumbUrl) {
 		var ret string
 		return ret
 	}
@@ -71,7 +71,7 @@ func (o *FindDeviceById200ResponseCreatedByAllOf) GetAvatarThumbUrl() string {
 // GetAvatarThumbUrlOk returns a tuple with the AvatarThumbUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FindDeviceById200ResponseCreatedByAllOf) GetAvatarThumbUrlOk() (*string, bool) {
-	if o == nil || o.AvatarThumbUrl == nil {
+	if o == nil || isNil(o.AvatarThumbUrl) {
 		return nil, false
 	}
 	return o.AvatarThumbUrl, true
@@ -79,7 +79,7 @@ func (o *FindDeviceById200ResponseCreatedByAllOf) GetAvatarThumbUrlOk() (*string
 
 // HasAvatarThumbUrl returns a boolean if a field has been set.
 func (o *FindDeviceById200ResponseCreatedByAllOf) HasAvatarThumbUrl() bool {
-	if o != nil && o.AvatarThumbUrl != nil {
+	if o != nil && !isNil(o.AvatarThumbUrl) {
 		return true
 	}
 
@@ -93,7 +93,7 @@ func (o *FindDeviceById200ResponseCreatedByAllOf) SetAvatarThumbUrl(v string) {
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *FindDeviceById200ResponseCreatedByAllOf) GetCreatedAt() time.Time {
-	if o == nil || o.CreatedAt == nil {
+	if o == nil || isNil(o.CreatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -103,7 +103,7 @@ func (o *FindDeviceById200ResponseCreatedByAllOf) GetCreatedAt() time.Time {
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FindDeviceById200ResponseCreatedByAllOf) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || o.CreatedAt == nil {
+	if o == nil || isNil(o.CreatedAt) {
 		return nil, false
 	}
 	return o.CreatedAt, true
@@ -111,7 +111,7 @@ func (o *FindDeviceById200ResponseCreatedByAllOf) GetCreatedAtOk() (*time.Time, 
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *FindDeviceById200ResponseCreatedByAllOf) HasCreatedAt() bool {
-	if o != nil && o.CreatedAt != nil {
+	if o != nil && !isNil(o.CreatedAt) {
 		return true
 	}
 
@@ -125,7 +125,7 @@ func (o *FindDeviceById200ResponseCreatedByAllOf) SetCreatedAt(v time.Time) {
 
 // GetEmail returns the Email field value if set, zero value otherwise.
 func (o *FindDeviceById200ResponseCreatedByAllOf) GetEmail() string {
-	if o == nil || o.Email == nil {
+	if o == nil || isNil(o.Email) {
 		var ret string
 		return ret
 	}
@@ -135,7 +135,7 @@ func (o *FindDeviceById200ResponseCreatedByAllOf) GetEmail() string {
 // GetEmailOk returns a tuple with the Email field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FindDeviceById200ResponseCreatedByAllOf) GetEmailOk() (*string, bool) {
-	if o == nil || o.Email == nil {
+	if o == nil || isNil(o.Email) {
 		return nil, false
 	}
 	return o.Email, true
@@ -143,7 +143,7 @@ func (o *FindDeviceById200ResponseCreatedByAllOf) GetEmailOk() (*string, bool) {
 
 // HasEmail returns a boolean if a field has been set.
 func (o *FindDeviceById200ResponseCreatedByAllOf) HasEmail() bool {
-	if o != nil && o.Email != nil {
+	if o != nil && !isNil(o.Email) {
 		return true
 	}
 
@@ -157,7 +157,7 @@ func (o *FindDeviceById200ResponseCreatedByAllOf) SetEmail(v string) {
 
 // GetFirstName returns the FirstName field value if set, zero value otherwise.
 func (o *FindDeviceById200ResponseCreatedByAllOf) GetFirstName() string {
-	if o == nil || o.FirstName == nil {
+	if o == nil || isNil(o.FirstName) {
 		var ret string
 		return ret
 	}
@@ -167,7 +167,7 @@ func (o *FindDeviceById200ResponseCreatedByAllOf) GetFirstName() string {
 // GetFirstNameOk returns a tuple with the FirstName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FindDeviceById200ResponseCreatedByAllOf) GetFirstNameOk() (*string, bool) {
-	if o == nil || o.FirstName == nil {
+	if o == nil || isNil(o.FirstName) {
 		return nil, false
 	}
 	return o.FirstName, true
@@ -175,7 +175,7 @@ func (o *FindDeviceById200ResponseCreatedByAllOf) GetFirstNameOk() (*string, boo
 
 // HasFirstName returns a boolean if a field has been set.
 func (o *FindDeviceById200ResponseCreatedByAllOf) HasFirstName() bool {
-	if o != nil && o.FirstName != nil {
+	if o != nil && !isNil(o.FirstName) {
 		return true
 	}
 
@@ -189,7 +189,7 @@ func (o *FindDeviceById200ResponseCreatedByAllOf) SetFirstName(v string) {
 
 // GetFullName returns the FullName field value if set, zero value otherwise.
 func (o *FindDeviceById200ResponseCreatedByAllOf) GetFullName() string {
-	if o == nil || o.FullName == nil {
+	if o == nil || isNil(o.FullName) {
 		var ret string
 		return ret
 	}
@@ -199,7 +199,7 @@ func (o *FindDeviceById200ResponseCreatedByAllOf) GetFullName() string {
 // GetFullNameOk returns a tuple with the FullName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FindDeviceById200ResponseCreatedByAllOf) GetFullNameOk() (*string, bool) {
-	if o == nil || o.FullName == nil {
+	if o == nil || isNil(o.FullName) {
 		return nil, false
 	}
 	return o.FullName, true
@@ -207,7 +207,7 @@ func (o *FindDeviceById200ResponseCreatedByAllOf) GetFullNameOk() (*string, bool
 
 // HasFullName returns a boolean if a field has been set.
 func (o *FindDeviceById200ResponseCreatedByAllOf) HasFullName() bool {
-	if o != nil && o.FullName != nil {
+	if o != nil && !isNil(o.FullName) {
 		return true
 	}
 
@@ -221,7 +221,7 @@ func (o *FindDeviceById200ResponseCreatedByAllOf) SetFullName(v string) {
 
 // GetHref returns the Href field value if set, zero value otherwise.
 func (o *FindDeviceById200ResponseCreatedByAllOf) GetHref() string {
-	if o == nil || o.Href == nil {
+	if o == nil || isNil(o.Href) {
 		var ret string
 		return ret
 	}
@@ -231,7 +231,7 @@ func (o *FindDeviceById200ResponseCreatedByAllOf) GetHref() string {
 // GetHrefOk returns a tuple with the Href field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FindDeviceById200ResponseCreatedByAllOf) GetHrefOk() (*string, bool) {
-	if o == nil || o.Href == nil {
+	if o == nil || isNil(o.Href) {
 		return nil, false
 	}
 	return o.Href, true
@@ -239,7 +239,7 @@ func (o *FindDeviceById200ResponseCreatedByAllOf) GetHrefOk() (*string, bool) {
 
 // HasHref returns a boolean if a field has been set.
 func (o *FindDeviceById200ResponseCreatedByAllOf) HasHref() bool {
-	if o != nil && o.Href != nil {
+	if o != nil && !isNil(o.Href) {
 		return true
 	}
 
@@ -277,7 +277,7 @@ func (o *FindDeviceById200ResponseCreatedByAllOf) SetId(v string) {
 
 // GetLastName returns the LastName field value if set, zero value otherwise.
 func (o *FindDeviceById200ResponseCreatedByAllOf) GetLastName() string {
-	if o == nil || o.LastName == nil {
+	if o == nil || isNil(o.LastName) {
 		var ret string
 		return ret
 	}
@@ -287,7 +287,7 @@ func (o *FindDeviceById200ResponseCreatedByAllOf) GetLastName() string {
 // GetLastNameOk returns a tuple with the LastName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FindDeviceById200ResponseCreatedByAllOf) GetLastNameOk() (*string, bool) {
-	if o == nil || o.LastName == nil {
+	if o == nil || isNil(o.LastName) {
 		return nil, false
 	}
 	return o.LastName, true
@@ -295,7 +295,7 @@ func (o *FindDeviceById200ResponseCreatedByAllOf) GetLastNameOk() (*string, bool
 
 // HasLastName returns a boolean if a field has been set.
 func (o *FindDeviceById200ResponseCreatedByAllOf) HasLastName() bool {
-	if o != nil && o.LastName != nil {
+	if o != nil && !isNil(o.LastName) {
 		return true
 	}
 
@@ -333,7 +333,7 @@ func (o *FindDeviceById200ResponseCreatedByAllOf) SetShortId(v string) {
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *FindDeviceById200ResponseCreatedByAllOf) GetUpdatedAt() time.Time {
-	if o == nil || o.UpdatedAt == nil {
+	if o == nil || isNil(o.UpdatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -343,7 +343,7 @@ func (o *FindDeviceById200ResponseCreatedByAllOf) GetUpdatedAt() time.Time {
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FindDeviceById200ResponseCreatedByAllOf) GetUpdatedAtOk() (*time.Time, bool) {
-	if o == nil || o.UpdatedAt == nil {
+	if o == nil || isNil(o.UpdatedAt) {
 		return nil, false
 	}
 	return o.UpdatedAt, true
@@ -351,7 +351,7 @@ func (o *FindDeviceById200ResponseCreatedByAllOf) GetUpdatedAtOk() (*time.Time, 
 
 // HasUpdatedAt returns a boolean if a field has been set.
 func (o *FindDeviceById200ResponseCreatedByAllOf) HasUpdatedAt() bool {
-	if o != nil && o.UpdatedAt != nil {
+	if o != nil && !isNil(o.UpdatedAt) {
 		return true
 	}
 
@@ -365,34 +365,34 @@ func (o *FindDeviceById200ResponseCreatedByAllOf) SetUpdatedAt(v time.Time) {
 
 func (o FindDeviceById200ResponseCreatedByAllOf) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.AvatarThumbUrl != nil {
+	if !isNil(o.AvatarThumbUrl) {
 		toSerialize["avatar_thumb_url"] = o.AvatarThumbUrl
 	}
-	if o.CreatedAt != nil {
+	if !isNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt
 	}
-	if o.Email != nil {
+	if !isNil(o.Email) {
 		toSerialize["email"] = o.Email
 	}
-	if o.FirstName != nil {
+	if !isNil(o.FirstName) {
 		toSerialize["first_name"] = o.FirstName
 	}
-	if o.FullName != nil {
+	if !isNil(o.FullName) {
 		toSerialize["full_name"] = o.FullName
 	}
-	if o.Href != nil {
+	if !isNil(o.Href) {
 		toSerialize["href"] = o.Href
 	}
 	if true {
 		toSerialize["id"] = o.Id
 	}
-	if o.LastName != nil {
+	if !isNil(o.LastName) {
 		toSerialize["last_name"] = o.LastName
 	}
 	if true {
 		toSerialize["short_id"] = o.ShortId
 	}
-	if o.UpdatedAt != nil {
+	if !isNil(o.UpdatedAt) {
 		toSerialize["updated_at"] = o.UpdatedAt
 	}
 	return json.Marshal(toSerialize)
