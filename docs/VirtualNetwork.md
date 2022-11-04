@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **Href** | Pointer to **string** |  | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
 **Instances** | Pointer to [**[]FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) | A list of instances with ports currently associated to this Virtual Network. | [optional] 
-**MetalGateway** | Pointer to [**FindVirtualNetworks200ResponseVirtualNetworksInnerMetalGateway**](FindVirtualNetworks200ResponseVirtualNetworksInnerMetalGateway.md) |  | [optional] 
+**MetalGateways** | Pointer to [**[]FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetworkMetalGatewaysInner**](FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetworkMetalGatewaysInner.md) | A list of metal gateways currently associated to this Virtual Network. | [optional] 
 **Metro** | Pointer to [**FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
 **MetroCode** | Pointer to **string** | The Metro code of the metro in which this Virtual Network is defined. | [optional] 
 **Vxlan** | Pointer to **int32** |  | [optional] 
@@ -210,30 +210,30 @@ SetInstances sets Instances field to given value.
 
 HasInstances returns a boolean if a field has been set.
 
-### GetMetalGateway
+### GetMetalGateways
 
-`func (o *VirtualNetwork) GetMetalGateway() FindVirtualNetworks200ResponseVirtualNetworksInnerMetalGateway`
+`func (o *VirtualNetwork) GetMetalGateways() []FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetworkMetalGatewaysInner`
 
-GetMetalGateway returns the MetalGateway field if non-nil, zero value otherwise.
+GetMetalGateways returns the MetalGateways field if non-nil, zero value otherwise.
 
-### GetMetalGatewayOk
+### GetMetalGatewaysOk
 
-`func (o *VirtualNetwork) GetMetalGatewayOk() (*FindVirtualNetworks200ResponseVirtualNetworksInnerMetalGateway, bool)`
+`func (o *VirtualNetwork) GetMetalGatewaysOk() (*[]FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetworkMetalGatewaysInner, bool)`
 
-GetMetalGatewayOk returns a tuple with the MetalGateway field if it's non-nil, zero value otherwise
+GetMetalGatewaysOk returns a tuple with the MetalGateways field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetMetalGateway
+### SetMetalGateways
 
-`func (o *VirtualNetwork) SetMetalGateway(v FindVirtualNetworks200ResponseVirtualNetworksInnerMetalGateway)`
+`func (o *VirtualNetwork) SetMetalGateways(v []FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetworkMetalGatewaysInner)`
 
-SetMetalGateway sets MetalGateway field to given value.
+SetMetalGateways sets MetalGateways field to given value.
 
-### HasMetalGateway
+### HasMetalGateways
 
-`func (o *VirtualNetwork) HasMetalGateway() bool`
+`func (o *VirtualNetwork) HasMetalGateways() bool`
 
-HasMetalGateway returns a boolean if a field has been set.
+HasMetalGateways returns a boolean if a field has been set.
 
 ### GetMetro
 

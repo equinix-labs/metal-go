@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 ## CreateSelfServiceReservation
 
-> FindSelfServiceReservations200ResponseReservationsInner CreateSelfServiceReservation(ctx, projectId).Body(body).Execute()
+> FindSelfServiceReservations200ResponseReservationsInner CreateSelfServiceReservation(ctx, projectId).CreateSelfServiceReservationRequest(createSelfServiceReservationRequest).Execute()
 
 Create a reservation
 
@@ -32,11 +32,11 @@ import (
 
 func main() {
     projectId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Project UUID
-    body := *openapiclient.NewCreateSelfServiceReservationRequest() // CreateSelfServiceReservationRequest | reservation to create
+    createSelfServiceReservationRequest := *openapiclient.NewCreateSelfServiceReservationRequest() // CreateSelfServiceReservationRequest | reservation to create
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.SelfServiceReservationsApi.CreateSelfServiceReservation(context.Background(), projectId).Body(body).Execute()
+    resp, r, err := apiClient.SelfServiceReservationsApi.CreateSelfServiceReservation(context.Background(), projectId).CreateSelfServiceReservationRequest(createSelfServiceReservationRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SelfServiceReservationsApi.CreateSelfServiceReservation``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -62,7 +62,7 @@ Other parameters are passed through a pointer to a apiCreateSelfServiceReservati
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**CreateSelfServiceReservationRequest**](CreateSelfServiceReservationRequest.md) | reservation to create | 
+ **createSelfServiceReservationRequest** | [**CreateSelfServiceReservationRequest**](CreateSelfServiceReservationRequest.md) | reservation to create | 
 
 ### Return type
 

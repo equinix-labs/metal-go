@@ -4,12 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Data** | Pointer to **map[string]interface{}** |  | [optional] 
+**Bond** | Pointer to [**FindDeviceById200ResponseNetworkPortsInnerBond**](FindDeviceById200ResponseNetworkPortsInnerBond.md) |  | [optional] 
+**Data** | Pointer to [**FindDeviceById200ResponseNetworkPortsInnerData**](FindDeviceById200ResponseNetworkPortsInnerData.md) |  | [optional] 
 **DisbondOperationSupported** | Pointer to **bool** | Indicates whether or not the bond can be broken on the port (when applicable). | [optional] 
 **Href** | Pointer to **string** |  | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
 **Name** | Pointer to **string** |  | [optional] 
-**Type** | Pointer to **string** |  | [optional] 
+**Type** | Pointer to **string** | Type is either \&quot;NetworkBondPort\&quot; for bond ports or \&quot;NetworkPort\&quot; for bondable ethernet ports | [optional] 
+**NetworkType** | Pointer to **string** | Composite network type of the bond | [optional] 
+**NativeVirtualNetwork** | Pointer to [**FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetwork**](FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetwork.md) |  | [optional] 
 **VirtualNetworks** | Pointer to [**[]FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
 
 ## Methods
@@ -31,22 +34,47 @@ NewPortWithDefaults instantiates a new Port object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
+### GetBond
+
+`func (o *Port) GetBond() FindDeviceById200ResponseNetworkPortsInnerBond`
+
+GetBond returns the Bond field if non-nil, zero value otherwise.
+
+### GetBondOk
+
+`func (o *Port) GetBondOk() (*FindDeviceById200ResponseNetworkPortsInnerBond, bool)`
+
+GetBondOk returns a tuple with the Bond field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBond
+
+`func (o *Port) SetBond(v FindDeviceById200ResponseNetworkPortsInnerBond)`
+
+SetBond sets Bond field to given value.
+
+### HasBond
+
+`func (o *Port) HasBond() bool`
+
+HasBond returns a boolean if a field has been set.
+
 ### GetData
 
-`func (o *Port) GetData() map[string]interface{}`
+`func (o *Port) GetData() FindDeviceById200ResponseNetworkPortsInnerData`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *Port) GetDataOk() (*map[string]interface{}, bool)`
+`func (o *Port) GetDataOk() (*FindDeviceById200ResponseNetworkPortsInnerData, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetData
 
-`func (o *Port) SetData(v map[string]interface{})`
+`func (o *Port) SetData(v FindDeviceById200ResponseNetworkPortsInnerData)`
 
 SetData sets Data field to given value.
 
@@ -180,6 +208,56 @@ SetType sets Type field to given value.
 `func (o *Port) HasType() bool`
 
 HasType returns a boolean if a field has been set.
+
+### GetNetworkType
+
+`func (o *Port) GetNetworkType() string`
+
+GetNetworkType returns the NetworkType field if non-nil, zero value otherwise.
+
+### GetNetworkTypeOk
+
+`func (o *Port) GetNetworkTypeOk() (*string, bool)`
+
+GetNetworkTypeOk returns a tuple with the NetworkType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNetworkType
+
+`func (o *Port) SetNetworkType(v string)`
+
+SetNetworkType sets NetworkType field to given value.
+
+### HasNetworkType
+
+`func (o *Port) HasNetworkType() bool`
+
+HasNetworkType returns a boolean if a field has been set.
+
+### GetNativeVirtualNetwork
+
+`func (o *Port) GetNativeVirtualNetwork() FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetwork`
+
+GetNativeVirtualNetwork returns the NativeVirtualNetwork field if non-nil, zero value otherwise.
+
+### GetNativeVirtualNetworkOk
+
+`func (o *Port) GetNativeVirtualNetworkOk() (*FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetwork, bool)`
+
+GetNativeVirtualNetworkOk returns a tuple with the NativeVirtualNetwork field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNativeVirtualNetwork
+
+`func (o *Port) SetNativeVirtualNetwork(v FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetwork)`
+
+SetNativeVirtualNetwork sets NativeVirtualNetwork field to given value.
+
+### HasNativeVirtualNetwork
+
+`func (o *Port) HasNativeVirtualNetwork() bool`
+
+HasNativeVirtualNetwork returns a boolean if a field has been set.
 
 ### GetVirtualNetworks
 

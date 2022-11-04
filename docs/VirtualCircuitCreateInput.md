@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Tags** | Pointer to **[]string** |  | [optional] 
 **Description** | Pointer to **string** |  | [optional] 
 **Name** | Pointer to **string** |  | [optional] 
 **NniVlan** | Pointer to **int32** |  | [optional] 
 **Project** | Pointer to **string** |  | [optional] 
 **Speed** | Pointer to **int32** | speed can be passed as integer number representing bps speed or string (e.g. &#39;52m&#39; or &#39;100g&#39; or &#39;4 gbps&#39;) | [optional] 
+**Tags** | Pointer to **[]string** |  | [optional] 
 **Vnid** | Pointer to **string** | A Virtual Network record UUID or the VNID of a Virtual Network in your project (sent as integer). | [optional] 
 
 ## Methods
@@ -30,31 +30,6 @@ will change when the set of required properties is changed
 NewVirtualCircuitCreateInputWithDefaults instantiates a new VirtualCircuitCreateInput object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetTags
-
-`func (o *VirtualCircuitCreateInput) GetTags() []string`
-
-GetTags returns the Tags field if non-nil, zero value otherwise.
-
-### GetTagsOk
-
-`func (o *VirtualCircuitCreateInput) GetTagsOk() (*[]string, bool)`
-
-GetTagsOk returns a tuple with the Tags field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTags
-
-`func (o *VirtualCircuitCreateInput) SetTags(v []string)`
-
-SetTags sets Tags field to given value.
-
-### HasTags
-
-`func (o *VirtualCircuitCreateInput) HasTags() bool`
-
-HasTags returns a boolean if a field has been set.
 
 ### GetDescription
 
@@ -180,6 +155,31 @@ SetSpeed sets Speed field to given value.
 `func (o *VirtualCircuitCreateInput) HasSpeed() bool`
 
 HasSpeed returns a boolean if a field has been set.
+
+### GetTags
+
+`func (o *VirtualCircuitCreateInput) GetTags() []string`
+
+GetTags returns the Tags field if non-nil, zero value otherwise.
+
+### GetTagsOk
+
+`func (o *VirtualCircuitCreateInput) GetTagsOk() (*[]string, bool)`
+
+GetTagsOk returns a tuple with the Tags field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTags
+
+`func (o *VirtualCircuitCreateInput) SetTags(v []string)`
+
+SetTags sets Tags field to given value.
+
+### HasTags
+
+`func (o *VirtualCircuitCreateInput) HasTags() bool`
+
+HasTags returns a boolean if a field has been set.
 
 ### GetVnid
 

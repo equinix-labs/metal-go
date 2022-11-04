@@ -20,6 +20,8 @@ Name | Type | Description | Notes
 **Title** | Pointer to **string** |  | [optional] 
 **TwoFactorAuth** | Pointer to **string** |  | [optional] 
 **VerifiedAt** | Pointer to **time.Time** |  | [optional] 
+**InvitationId** | Pointer to **string** |  | [optional] 
+**Nonce** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -424,6 +426,56 @@ SetVerifiedAt sets VerifiedAt field to given value.
 `func (o *CreateUserRequest) HasVerifiedAt() bool`
 
 HasVerifiedAt returns a boolean if a field has been set.
+
+### GetInvitationId
+
+`func (o *CreateUserRequest) GetInvitationId() string`
+
+GetInvitationId returns the InvitationId field if non-nil, zero value otherwise.
+
+### GetInvitationIdOk
+
+`func (o *CreateUserRequest) GetInvitationIdOk() (*string, bool)`
+
+GetInvitationIdOk returns a tuple with the InvitationId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetInvitationId
+
+`func (o *CreateUserRequest) SetInvitationId(v string)`
+
+SetInvitationId sets InvitationId field to given value.
+
+### HasInvitationId
+
+`func (o *CreateUserRequest) HasInvitationId() bool`
+
+HasInvitationId returns a boolean if a field has been set.
+
+### GetNonce
+
+`func (o *CreateUserRequest) GetNonce() string`
+
+GetNonce returns the Nonce field if non-nil, zero value otherwise.
+
+### GetNonceOk
+
+`func (o *CreateUserRequest) GetNonceOk() (*string, bool)`
+
+GetNonceOk returns a tuple with the Nonce field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNonce
+
+`func (o *CreateUserRequest) SetNonce(v string)`
+
+SetNonce sets Nonce field to given value.
+
+### HasNonce
+
+`func (o *CreateUserRequest) HasNonce() bool`
+
+HasNonce returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

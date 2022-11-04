@@ -4,7 +4,6 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Tags** | Pointer to **[]string** |  | [optional] 
 **AlwaysPxe** | Pointer to **bool** |  | [optional] 
 **BillingCycle** | Pointer to **string** |  | [optional] 
 **Customdata** | Pointer to **map[string]interface{}** |  | [optional] 
@@ -19,6 +18,7 @@ Name | Type | Description | Notes
 **PrivateIpv4SubnetSize** | Pointer to **int32** |  | [optional] 
 **ProjectSshKeys** | Pointer to **[]string** |  | [optional] 
 **PublicIpv4SubnetSize** | Pointer to **int32** |  | [optional] 
+**Tags** | Pointer to **[]string** |  | [optional] 
 **TerminationTime** | Pointer to **time.Time** |  | [optional] 
 **UserSshKeys** | Pointer to **[]string** | The UUIDs of users whose SSH keys should be included on the provisioned device. | [optional] 
 **Userdata** | Pointer to **string** |  | [optional] 
@@ -41,31 +41,6 @@ will change when the set of required properties is changed
 NewCreateSpotMarketRequestRequestInstanceAttributesWithDefaults instantiates a new CreateSpotMarketRequestRequestInstanceAttributes object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetTags
-
-`func (o *CreateSpotMarketRequestRequestInstanceAttributes) GetTags() []string`
-
-GetTags returns the Tags field if non-nil, zero value otherwise.
-
-### GetTagsOk
-
-`func (o *CreateSpotMarketRequestRequestInstanceAttributes) GetTagsOk() (*[]string, bool)`
-
-GetTagsOk returns a tuple with the Tags field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTags
-
-`func (o *CreateSpotMarketRequestRequestInstanceAttributes) SetTags(v []string)`
-
-SetTags sets Tags field to given value.
-
-### HasTags
-
-`func (o *CreateSpotMarketRequestRequestInstanceAttributes) HasTags() bool`
-
-HasTags returns a boolean if a field has been set.
 
 ### GetAlwaysPxe
 
@@ -416,6 +391,31 @@ SetPublicIpv4SubnetSize sets PublicIpv4SubnetSize field to given value.
 `func (o *CreateSpotMarketRequestRequestInstanceAttributes) HasPublicIpv4SubnetSize() bool`
 
 HasPublicIpv4SubnetSize returns a boolean if a field has been set.
+
+### GetTags
+
+`func (o *CreateSpotMarketRequestRequestInstanceAttributes) GetTags() []string`
+
+GetTags returns the Tags field if non-nil, zero value otherwise.
+
+### GetTagsOk
+
+`func (o *CreateSpotMarketRequestRequestInstanceAttributes) GetTagsOk() (*[]string, bool)`
+
+GetTagsOk returns a tuple with the Tags field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTags
+
+`func (o *CreateSpotMarketRequestRequestInstanceAttributes) SetTags(v []string)`
+
+SetTags sets Tags field to given value.
+
+### HasTags
+
+`func (o *CreateSpotMarketRequestRequestInstanceAttributes) HasTags() bool`
+
+HasTags returns a boolean if a field has been set.
 
 ### GetTerminationTime
 

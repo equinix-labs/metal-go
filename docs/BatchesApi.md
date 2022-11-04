@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 ## CreateDeviceBatch
 
-> FindBatchesByProject200Response CreateDeviceBatch(ctx, id).Body(body).Execute()
+> FindBatchesByProject200Response CreateDeviceBatch(ctx, id).CreateDeviceBatchRequest(createDeviceBatchRequest).Execute()
 
 Create a devices batch
 
@@ -33,11 +33,11 @@ import (
 
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Project UUID
-    body := *openapiclient.NewCreateDeviceBatchRequest() // CreateDeviceBatchRequest | Batches to create
+    createDeviceBatchRequest := *openapiclient.NewCreateDeviceBatchRequest() // CreateDeviceBatchRequest | Batches to create
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BatchesApi.CreateDeviceBatch(context.Background(), id).Body(body).Execute()
+    resp, r, err := apiClient.BatchesApi.CreateDeviceBatch(context.Background(), id).CreateDeviceBatchRequest(createDeviceBatchRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `BatchesApi.CreateDeviceBatch``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -63,7 +63,7 @@ Other parameters are passed through a pointer to a apiCreateDeviceBatchRequest s
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**CreateDeviceBatchRequest**](CreateDeviceBatchRequest.md) | Batches to create | 
+ **createDeviceBatchRequest** | [**CreateDeviceBatchRequest**](CreateDeviceBatchRequest.md) | Batches to create | 
 
 ### Return type
 

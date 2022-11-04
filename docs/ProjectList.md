@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Meta** | Pointer to [**FindDeviceEvents200ResponseMeta**](FindDeviceEvents200ResponseMeta.md) |  | [optional] 
-**Projects** | Pointer to [**[]MoveHardwareReservation201ResponseProject**](MoveHardwareReservation201ResponseProject.md) |  | [optional] 
+**Projects** | Pointer to [**[]GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject**](GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject.md) |  | [optional] 
 
 ## Methods
 
@@ -53,20 +53,20 @@ HasMeta returns a boolean if a field has been set.
 
 ### GetProjects
 
-`func (o *ProjectList) GetProjects() []MoveHardwareReservation201ResponseProject`
+`func (o *ProjectList) GetProjects() []GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject`
 
 GetProjects returns the Projects field if non-nil, zero value otherwise.
 
 ### GetProjectsOk
 
-`func (o *ProjectList) GetProjectsOk() (*[]MoveHardwareReservation201ResponseProject, bool)`
+`func (o *ProjectList) GetProjectsOk() (*[]GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject, bool)`
 
 GetProjectsOk returns a tuple with the Projects field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetProjects
 
-`func (o *ProjectList) SetProjects(v []MoveHardwareReservation201ResponseProject)`
+`func (o *ProjectList) SetProjects(v []GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject)`
 
 SetProjects sets Projects field to given value.
 

@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Tags** | Pointer to **[]string** |  | [optional] 
 **Cidr** | **int32** | The size of the VRF IP Reservation&#39;s subnet | 
 **Customdata** | Pointer to **map[string]interface{}** |  | [optional] 
 **Details** | Pointer to **string** |  | [optional] 
 **Network** | **string** | The starting address for this VRF IP Reservation&#39;s subnet | 
+**Tags** | Pointer to **[]string** |  | [optional] 
 **Type** | **string** | Must be set to &#39;vrf&#39; | 
 **VrfId** | **string** | The ID of the VRF in which this VRF IP Reservation is created. The VRF must have an existing IP Range that contains the requested subnet. This field may be aliased as just &#39;vrf&#39;. | 
 
@@ -30,31 +30,6 @@ will change when the set of required properties is changed
 NewVrfIpReservationCreateInputWithDefaults instantiates a new VrfIpReservationCreateInput object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetTags
-
-`func (o *VrfIpReservationCreateInput) GetTags() []string`
-
-GetTags returns the Tags field if non-nil, zero value otherwise.
-
-### GetTagsOk
-
-`func (o *VrfIpReservationCreateInput) GetTagsOk() (*[]string, bool)`
-
-GetTagsOk returns a tuple with the Tags field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTags
-
-`func (o *VrfIpReservationCreateInput) SetTags(v []string)`
-
-SetTags sets Tags field to given value.
-
-### HasTags
-
-`func (o *VrfIpReservationCreateInput) HasTags() bool`
-
-HasTags returns a boolean if a field has been set.
 
 ### GetCidr
 
@@ -145,6 +120,31 @@ and a boolean to check if the value has been set.
 
 SetNetwork sets Network field to given value.
 
+
+### GetTags
+
+`func (o *VrfIpReservationCreateInput) GetTags() []string`
+
+GetTags returns the Tags field if non-nil, zero value otherwise.
+
+### GetTagsOk
+
+`func (o *VrfIpReservationCreateInput) GetTagsOk() (*[]string, bool)`
+
+GetTagsOk returns a tuple with the Tags field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTags
+
+`func (o *VrfIpReservationCreateInput) SetTags(v []string)`
+
+SetTags sets Tags field to given value.
+
+### HasTags
+
+`func (o *VrfIpReservationCreateInput) HasTags() bool`
+
+HasTags returns a boolean if a field has been set.
 
 ### GetType
 

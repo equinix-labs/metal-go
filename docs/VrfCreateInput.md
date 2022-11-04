@@ -9,13 +9,12 @@ Name | Type | Description | Notes
 **LocalAsn** | Pointer to **int32** |  | [optional] 
 **Metro** | **string** | The UUID (or metro code) for the Metro in which to create this VRF. | 
 **Name** | **string** |  | 
-**ProjectId** | **string** |  | 
 
 ## Methods
 
 ### NewVrfCreateInput
 
-`func NewVrfCreateInput(metro string, name string, projectId string, ) *VrfCreateInput`
+`func NewVrfCreateInput(metro string, name string, ) *VrfCreateInput`
 
 NewVrfCreateInput instantiates a new VrfCreateInput object
 This constructor will assign default values to properties that have it defined,
@@ -143,26 +142,6 @@ and a boolean to check if the value has been set.
 `func (o *VrfCreateInput) SetName(v string)`
 
 SetName sets Name field to given value.
-
-
-### GetProjectId
-
-`func (o *VrfCreateInput) GetProjectId() string`
-
-GetProjectId returns the ProjectId field if non-nil, zero value otherwise.
-
-### GetProjectIdOk
-
-`func (o *VrfCreateInput) GetProjectIdOk() (*string, bool)`
-
-GetProjectIdOk returns a tuple with the ProjectId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetProjectId
-
-`func (o *VrfCreateInput) SetProjectId(v string)`
-
-SetProjectId sets ProjectId field to given value.
 
 
 

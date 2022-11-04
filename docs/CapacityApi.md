@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 ## CheckCapacityForFacility
 
-> CheckCapacityForFacility200Response CheckCapacityForFacility(ctx).Body(body).Execute()
+> CheckCapacityForFacility200Response CheckCapacityForFacility(ctx).CheckCapacityForFacilityRequest(checkCapacityForFacilityRequest).Execute()
 
 Check capacity
 
@@ -34,11 +34,11 @@ import (
 )
 
 func main() {
-    body := *openapiclient.NewCheckCapacityForFacilityRequest() // CheckCapacityForFacilityRequest | Facility to check capacity in
+    checkCapacityForFacilityRequest := *openapiclient.NewCheckCapacityForFacilityRequest() // CheckCapacityForFacilityRequest | Facility to check capacity in
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.CapacityApi.CheckCapacityForFacility(context.Background()).Body(body).Execute()
+    resp, r, err := apiClient.CapacityApi.CheckCapacityForFacility(context.Background()).CheckCapacityForFacilityRequest(checkCapacityForFacilityRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `CapacityApi.CheckCapacityForFacility``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -59,7 +59,7 @@ Other parameters are passed through a pointer to a apiCheckCapacityForFacilityRe
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**CheckCapacityForFacilityRequest**](CheckCapacityForFacilityRequest.md) | Facility to check capacity in | 
+ **checkCapacityForFacilityRequest** | [**CheckCapacityForFacilityRequest**](CheckCapacityForFacilityRequest.md) | Facility to check capacity in | 
 
 ### Return type
 
@@ -81,7 +81,7 @@ Name | Type | Description  | Notes
 
 ## CheckCapacityForMetro
 
-> CheckCapacityForMetro200Response CheckCapacityForMetro(ctx).Body(body).Execute()
+> CheckCapacityForMetro200Response CheckCapacityForMetro(ctx).CheckCapacityForMetroRequest(checkCapacityForMetroRequest).Execute()
 
 Check capacity for a metro
 
@@ -100,11 +100,11 @@ import (
 )
 
 func main() {
-    body := *openapiclient.NewCheckCapacityForMetroRequest() // CheckCapacityForMetroRequest | Metro to check capacity in
+    checkCapacityForMetroRequest := *openapiclient.NewCheckCapacityForMetroRequest() // CheckCapacityForMetroRequest | Metro to check capacity in
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.CapacityApi.CheckCapacityForMetro(context.Background()).Body(body).Execute()
+    resp, r, err := apiClient.CapacityApi.CheckCapacityForMetro(context.Background()).CheckCapacityForMetroRequest(checkCapacityForMetroRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `CapacityApi.CheckCapacityForMetro``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -125,7 +125,7 @@ Other parameters are passed through a pointer to a apiCheckCapacityForMetroReque
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**CheckCapacityForMetroRequest**](CheckCapacityForMetroRequest.md) | Metro to check capacity in | 
+ **checkCapacityForMetroRequest** | [**CheckCapacityForMetroRequest**](CheckCapacityForMetroRequest.md) | Metro to check capacity in | 
 
 ### Return type
 

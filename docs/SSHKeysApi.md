@@ -17,7 +17,7 @@ Method | HTTP request | Description
 
 ## CreateProjectSSHKey
 
-> FindDeviceSSHKeys200ResponseSshKeysInner CreateProjectSSHKey(ctx, id).Body(body).Execute()
+> FindDeviceSSHKeys200ResponseSshKeysInner CreateProjectSSHKey(ctx, id).CreateProjectSSHKeyRequest(createProjectSSHKeyRequest).Execute()
 
 Create a ssh key for the given project
 
@@ -37,11 +37,11 @@ import (
 
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Project UUID
-    body := *openapiclient.NewCreateProjectSSHKeyRequest() // CreateProjectSSHKeyRequest | ssh key to create
+    createProjectSSHKeyRequest := *openapiclient.NewCreateProjectSSHKeyRequest() // CreateProjectSSHKeyRequest | ssh key to create
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.SSHKeysApi.CreateProjectSSHKey(context.Background(), id).Body(body).Execute()
+    resp, r, err := apiClient.SSHKeysApi.CreateProjectSSHKey(context.Background(), id).CreateProjectSSHKeyRequest(createProjectSSHKeyRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SSHKeysApi.CreateProjectSSHKey``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -67,7 +67,7 @@ Other parameters are passed through a pointer to a apiCreateProjectSSHKeyRequest
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**CreateProjectSSHKeyRequest**](CreateProjectSSHKeyRequest.md) | ssh key to create | 
+ **createProjectSSHKeyRequest** | [**CreateProjectSSHKeyRequest**](CreateProjectSSHKeyRequest.md) | ssh key to create | 
 
 ### Return type
 
@@ -89,7 +89,7 @@ Name | Type | Description  | Notes
 
 ## CreateSSHKey
 
-> FindDeviceSSHKeys200ResponseSshKeysInner CreateSSHKey(ctx).Body(body).Execute()
+> FindDeviceSSHKeys200ResponseSshKeysInner CreateSSHKey(ctx).CreateProjectSSHKeyRequest(createProjectSSHKeyRequest).Execute()
 
 Create a ssh key for the current user
 
@@ -108,11 +108,11 @@ import (
 )
 
 func main() {
-    body := *openapiclient.NewCreateProjectSSHKeyRequest() // CreateProjectSSHKeyRequest | ssh key to create
+    createProjectSSHKeyRequest := *openapiclient.NewCreateProjectSSHKeyRequest() // CreateProjectSSHKeyRequest | ssh key to create
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.SSHKeysApi.CreateSSHKey(context.Background()).Body(body).Execute()
+    resp, r, err := apiClient.SSHKeysApi.CreateSSHKey(context.Background()).CreateProjectSSHKeyRequest(createProjectSSHKeyRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SSHKeysApi.CreateSSHKey``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -133,7 +133,7 @@ Other parameters are passed through a pointer to a apiCreateSSHKeyRequest struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**CreateProjectSSHKeyRequest**](CreateProjectSSHKeyRequest.md) | ssh key to create | 
+ **createProjectSSHKeyRequest** | [**CreateProjectSSHKeyRequest**](CreateProjectSSHKeyRequest.md) | ssh key to create | 
 
 ### Return type
 
@@ -519,7 +519,7 @@ Name | Type | Description  | Notes
 
 ## UpdateSSHKey
 
-> FindDeviceSSHKeys200ResponseSshKeysInner UpdateSSHKey(ctx, id).Body(body).Execute()
+> FindDeviceSSHKeys200ResponseSshKeysInner UpdateSSHKey(ctx, id).CreateDeviceRequestOneOfAllOf1SshKeysInner(createDeviceRequestOneOfAllOf1SshKeysInner).Execute()
 
 Update the ssh key
 
@@ -539,11 +539,11 @@ import (
 
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | SSH Key UUID
-    body := *openapiclient.NewCreateDeviceRequestAllOfSshKeysInner() // CreateDeviceRequestAllOfSshKeysInner | ssh key to update
+    createDeviceRequestOneOfAllOf1SshKeysInner := *openapiclient.NewCreateDeviceRequestOneOfAllOf1SshKeysInner() // CreateDeviceRequestOneOfAllOf1SshKeysInner | ssh key to update
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.SSHKeysApi.UpdateSSHKey(context.Background(), id).Body(body).Execute()
+    resp, r, err := apiClient.SSHKeysApi.UpdateSSHKey(context.Background(), id).CreateDeviceRequestOneOfAllOf1SshKeysInner(createDeviceRequestOneOfAllOf1SshKeysInner).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SSHKeysApi.UpdateSSHKey``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -569,7 +569,7 @@ Other parameters are passed through a pointer to a apiUpdateSSHKeyRequest struct
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**CreateDeviceRequestAllOfSshKeysInner**](CreateDeviceRequestAllOfSshKeysInner.md) | ssh key to update | 
+ **createDeviceRequestOneOfAllOf1SshKeysInner** | [**CreateDeviceRequestOneOfAllOf1SshKeysInner**](CreateDeviceRequestOneOfAllOf1SshKeysInner.md) | ssh key to update | 
 
 ### Return type
 

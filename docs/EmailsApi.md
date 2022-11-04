@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 ## CreateEmail
 
-> CreateEmail201Response CreateEmail(ctx).Body(body).Execute()
+> CreateEmail201Response CreateEmail(ctx).CreateEmailRequest(createEmailRequest).Execute()
 
 Create an email
 
@@ -32,11 +32,11 @@ import (
 )
 
 func main() {
-    body := *openapiclient.NewCreateEmailRequest("Address_example") // CreateEmailRequest | Email to create
+    createEmailRequest := *openapiclient.NewCreateEmailRequest("Address_example") // CreateEmailRequest | Email to create
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.EmailsApi.CreateEmail(context.Background()).Body(body).Execute()
+    resp, r, err := apiClient.EmailsApi.CreateEmail(context.Background()).CreateEmailRequest(createEmailRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `EmailsApi.CreateEmail``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -57,7 +57,7 @@ Other parameters are passed through a pointer to a apiCreateEmailRequest struct 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**CreateEmailRequest**](CreateEmailRequest.md) | Email to create | 
+ **createEmailRequest** | [**CreateEmailRequest**](CreateEmailRequest.md) | Email to create | 
 
 ### Return type
 
@@ -221,7 +221,7 @@ Name | Type | Description  | Notes
 
 ## UpdateEmail
 
-> CreateEmail201Response UpdateEmail(ctx, id).Body(body).Execute()
+> CreateEmail201Response UpdateEmail(ctx, id).UpdateEmailRequest(updateEmailRequest).Execute()
 
 Update the email
 
@@ -241,11 +241,11 @@ import (
 
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Email UUID
-    body := *openapiclient.NewUpdateEmailRequest() // UpdateEmailRequest | email to update
+    updateEmailRequest := *openapiclient.NewUpdateEmailRequest() // UpdateEmailRequest | email to update
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.EmailsApi.UpdateEmail(context.Background(), id).Body(body).Execute()
+    resp, r, err := apiClient.EmailsApi.UpdateEmail(context.Background(), id).UpdateEmailRequest(updateEmailRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `EmailsApi.UpdateEmail``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -271,7 +271,7 @@ Other parameters are passed through a pointer to a apiUpdateEmailRequest struct 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**UpdateEmailRequest**](UpdateEmailRequest.md) | email to update | 
+ **updateEmailRequest** | [**UpdateEmailRequest**](UpdateEmailRequest.md) | email to update | 
 
 ### Return type
 

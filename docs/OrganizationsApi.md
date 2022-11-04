@@ -24,7 +24,7 @@ Method | HTTP request | Description
 
 ## CreateOrganization
 
-> FindOrganizations200ResponseOrganizationsInner CreateOrganization(ctx).Body(body).Execute()
+> FindOrganizations200ResponseOrganizationsInner CreateOrganization(ctx).CreateOrganizationRequest(createOrganizationRequest).Execute()
 
 Create an organization
 
@@ -43,11 +43,11 @@ import (
 )
 
 func main() {
-    body := *openapiclient.NewCreateOrganizationRequest() // CreateOrganizationRequest | Organization to create
+    createOrganizationRequest := *openapiclient.NewCreateOrganizationRequest() // CreateOrganizationRequest | Organization to create
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.OrganizationsApi.CreateOrganization(context.Background()).Body(body).Execute()
+    resp, r, err := apiClient.OrganizationsApi.CreateOrganization(context.Background()).CreateOrganizationRequest(createOrganizationRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.CreateOrganization``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -68,7 +68,7 @@ Other parameters are passed through a pointer to a apiCreateOrganizationRequest 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**CreateOrganizationRequest**](CreateOrganizationRequest.md) | Organization to create | 
+ **createOrganizationRequest** | [**CreateOrganizationRequest**](CreateOrganizationRequest.md) | Organization to create | 
 
 ### Return type
 
@@ -90,7 +90,7 @@ Name | Type | Description  | Notes
 
 ## CreateOrganizationInvitation
 
-> FindInvitationById200Response CreateOrganizationInvitation(ctx, id).Body(body).Execute()
+> FindInvitationById200Response CreateOrganizationInvitation(ctx, id).CreateOrganizationInvitationRequest(createOrganizationInvitationRequest).Execute()
 
 Create an invitation for an organization
 
@@ -110,11 +110,11 @@ import (
 
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Organization UUID
-    body := *openapiclient.NewCreateOrganizationInvitationRequest("Invitee_example") // CreateOrganizationInvitationRequest | Invitation to create
+    createOrganizationInvitationRequest := *openapiclient.NewCreateOrganizationInvitationRequest("Invitee_example") // CreateOrganizationInvitationRequest | Invitation to create
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.OrganizationsApi.CreateOrganizationInvitation(context.Background(), id).Body(body).Execute()
+    resp, r, err := apiClient.OrganizationsApi.CreateOrganizationInvitation(context.Background(), id).CreateOrganizationInvitationRequest(createOrganizationInvitationRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.CreateOrganizationInvitation``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -140,7 +140,7 @@ Other parameters are passed through a pointer to a apiCreateOrganizationInvitati
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**CreateOrganizationInvitationRequest**](CreateOrganizationInvitationRequest.md) | Invitation to create | 
+ **createOrganizationInvitationRequest** | [**CreateOrganizationInvitationRequest**](CreateOrganizationInvitationRequest.md) | Invitation to create | 
 
 ### Return type
 
@@ -162,7 +162,7 @@ Name | Type | Description  | Notes
 
 ## CreateOrganizationProject
 
-> MoveHardwareReservation201ResponseProject CreateOrganizationProject(ctx, id).Body(body).Execute()
+> GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject CreateOrganizationProject(ctx, id).CreateOrganizationProjectRequest(createOrganizationProjectRequest).Execute()
 
 Create a project for the organization
 
@@ -182,16 +182,16 @@ import (
 
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Organization UUID
-    body := *openapiclient.NewCreateOrganizationProjectRequest("Name_example") // CreateOrganizationProjectRequest | Project to create
+    createOrganizationProjectRequest := *openapiclient.NewCreateOrganizationProjectRequest("Name_example") // CreateOrganizationProjectRequest | Project to create
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.OrganizationsApi.CreateOrganizationProject(context.Background(), id).Body(body).Execute()
+    resp, r, err := apiClient.OrganizationsApi.CreateOrganizationProject(context.Background(), id).CreateOrganizationProjectRequest(createOrganizationProjectRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.CreateOrganizationProject``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateOrganizationProject`: MoveHardwareReservation201ResponseProject
+    // response from `CreateOrganizationProject`: GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject
     fmt.Fprintf(os.Stdout, "Response from `OrganizationsApi.CreateOrganizationProject`: %v\n", resp)
 }
 ```
@@ -212,11 +212,11 @@ Other parameters are passed through a pointer to a apiCreateOrganizationProjectR
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**CreateOrganizationProjectRequest**](CreateOrganizationProjectRequest.md) | Project to create | 
+ **createOrganizationProjectRequest** | [**CreateOrganizationProjectRequest**](CreateOrganizationProjectRequest.md) | Project to create | 
 
 ### Return type
 
-[**MoveHardwareReservation201ResponseProject**](MoveHardwareReservation201ResponseProject.md)
+[**GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject**](GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject.md)
 
 ### Authorization
 
@@ -234,7 +234,7 @@ Name | Type | Description  | Notes
 
 ## CreatePaymentMethod
 
-> FindOrganizationPaymentMethods200ResponsePaymentMethodsInner CreatePaymentMethod(ctx, id).Body(body).Execute()
+> FindOrganizationPaymentMethods200ResponsePaymentMethodsInner CreatePaymentMethod(ctx, id).CreatePaymentMethodRequest(createPaymentMethodRequest).Execute()
 
 Create a payment method for the given organization
 
@@ -254,11 +254,11 @@ import (
 
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Organization UUID
-    body := *openapiclient.NewCreatePaymentMethodRequest("Name_example", "Nonce_example") // CreatePaymentMethodRequest | Payment Method to create
+    createPaymentMethodRequest := *openapiclient.NewCreatePaymentMethodRequest("Name_example", "Nonce_example") // CreatePaymentMethodRequest | Payment Method to create
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.OrganizationsApi.CreatePaymentMethod(context.Background(), id).Body(body).Execute()
+    resp, r, err := apiClient.OrganizationsApi.CreatePaymentMethod(context.Background(), id).CreatePaymentMethodRequest(createPaymentMethodRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.CreatePaymentMethod``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -284,7 +284,7 @@ Other parameters are passed through a pointer to a apiCreatePaymentMethodRequest
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**CreatePaymentMethodRequest**](CreatePaymentMethodRequest.md) | Payment Method to create | 
+ **createPaymentMethodRequest** | [**CreatePaymentMethodRequest**](CreatePaymentMethodRequest.md) | Payment Method to create | 
 
 ### Return type
 
@@ -1048,7 +1048,7 @@ Name | Type | Description  | Notes
 
 ## UpdateOrganization
 
-> FindOrganizations200ResponseOrganizationsInner UpdateOrganization(ctx, id).Body(body).Execute()
+> FindOrganizations200ResponseOrganizationsInner UpdateOrganization(ctx, id).CreateOrganizationRequest(createOrganizationRequest).Execute()
 
 Update the organization
 
@@ -1068,11 +1068,11 @@ import (
 
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Organization UUID
-    body := *openapiclient.NewCreateOrganizationRequest() // CreateOrganizationRequest | Organization to update
+    createOrganizationRequest := *openapiclient.NewCreateOrganizationRequest() // CreateOrganizationRequest | Organization to update
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.OrganizationsApi.UpdateOrganization(context.Background(), id).Body(body).Execute()
+    resp, r, err := apiClient.OrganizationsApi.UpdateOrganization(context.Background(), id).CreateOrganizationRequest(createOrganizationRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.UpdateOrganization``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1098,7 +1098,7 @@ Other parameters are passed through a pointer to a apiUpdateOrganizationRequest 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**CreateOrganizationRequest**](CreateOrganizationRequest.md) | Organization to update | 
+ **createOrganizationRequest** | [**CreateOrganizationRequest**](CreateOrganizationRequest.md) | Organization to update | 
 
 ### Return type
 

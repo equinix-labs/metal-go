@@ -20,7 +20,7 @@ Method | HTTP request | Description
 
 ## CreateProject
 
-> MoveHardwareReservation201ResponseProject CreateProject(ctx).Body(body).Execute()
+> GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject CreateProject(ctx).CreateProjectRequest(createProjectRequest).Execute()
 
 Create a project
 
@@ -39,16 +39,16 @@ import (
 )
 
 func main() {
-    body := *openapiclient.NewCreateProjectRequest("Name_example") // CreateProjectRequest | Project to create
+    createProjectRequest := *openapiclient.NewCreateProjectRequest("Name_example") // CreateProjectRequest | Project to create
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ProjectsApi.CreateProject(context.Background()).Body(body).Execute()
+    resp, r, err := apiClient.ProjectsApi.CreateProject(context.Background()).CreateProjectRequest(createProjectRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ProjectsApi.CreateProject``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateProject`: MoveHardwareReservation201ResponseProject
+    // response from `CreateProject`: GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject
     fmt.Fprintf(os.Stdout, "Response from `ProjectsApi.CreateProject`: %v\n", resp)
 }
 ```
@@ -64,11 +64,11 @@ Other parameters are passed through a pointer to a apiCreateProjectRequest struc
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**CreateProjectRequest**](CreateProjectRequest.md) | Project to create | 
+ **createProjectRequest** | [**CreateProjectRequest**](CreateProjectRequest.md) | Project to create | 
 
 ### Return type
 
-[**MoveHardwareReservation201ResponseProject**](MoveHardwareReservation201ResponseProject.md)
+[**GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject**](GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject.md)
 
 ### Authorization
 
@@ -86,7 +86,7 @@ Name | Type | Description  | Notes
 
 ## CreateProjectInvitation
 
-> FindInvitationById200Response CreateProjectInvitation(ctx, projectId).Body(body).Execute()
+> FindInvitationById200Response CreateProjectInvitation(ctx, projectId).CreateOrganizationInvitationRequest(createOrganizationInvitationRequest).Execute()
 
 Create an invitation for a project
 
@@ -106,11 +106,11 @@ import (
 
 func main() {
     projectId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Project UUID
-    body := *openapiclient.NewCreateOrganizationInvitationRequest("Invitee_example") // CreateOrganizationInvitationRequest | Invitation to create
+    createOrganizationInvitationRequest := *openapiclient.NewCreateOrganizationInvitationRequest("Invitee_example") // CreateOrganizationInvitationRequest | Invitation to create
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ProjectsApi.CreateProjectInvitation(context.Background(), projectId).Body(body).Execute()
+    resp, r, err := apiClient.ProjectsApi.CreateProjectInvitation(context.Background(), projectId).CreateOrganizationInvitationRequest(createOrganizationInvitationRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ProjectsApi.CreateProjectInvitation``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -136,7 +136,7 @@ Other parameters are passed through a pointer to a apiCreateProjectInvitationReq
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**CreateOrganizationInvitationRequest**](CreateOrganizationInvitationRequest.md) | Invitation to create | 
+ **createOrganizationInvitationRequest** | [**CreateOrganizationInvitationRequest**](CreateOrganizationInvitationRequest.md) | Invitation to create | 
 
 ### Return type
 
@@ -158,7 +158,7 @@ Name | Type | Description  | Notes
 
 ## CreateTransferRequest
 
-> FindOrganizationTransfers200ResponseTransfersInner CreateTransferRequest(ctx, id).Body(body).Execute()
+> FindOrganizationTransfers200ResponseTransfersInner CreateTransferRequest(ctx, id).CreateTransferRequestRequest(createTransferRequestRequest).Execute()
 
 Create a transfer request
 
@@ -178,11 +178,11 @@ import (
 
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | UUID of the project to be transferred
-    body := *openapiclient.NewCreateTransferRequestRequest() // CreateTransferRequestRequest | Transfer Request to create
+    createTransferRequestRequest := *openapiclient.NewCreateTransferRequestRequest() // CreateTransferRequestRequest | Transfer Request to create
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ProjectsApi.CreateTransferRequest(context.Background(), id).Body(body).Execute()
+    resp, r, err := apiClient.ProjectsApi.CreateTransferRequest(context.Background(), id).CreateTransferRequestRequest(createTransferRequestRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ProjectsApi.CreateTransferRequest``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -208,7 +208,7 @@ Other parameters are passed through a pointer to a apiCreateTransferRequestReque
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**CreateTransferRequestRequest**](CreateTransferRequestRequest.md) | Transfer Request to create | 
+ **createTransferRequestRequest** | [**CreateTransferRequestRequest**](CreateTransferRequestRequest.md) | Transfer Request to create | 
 
 ### Return type
 
@@ -369,7 +369,7 @@ Name | Type | Description  | Notes
 
 ## FindProjectById
 
-> MoveHardwareReservation201ResponseProject FindProjectById(ctx, id).Include(include).Exclude(exclude).Execute()
+> GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject FindProjectById(ctx, id).Include(include).Exclude(exclude).Execute()
 
 Retrieve a project
 
@@ -399,7 +399,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ProjectsApi.FindProjectById``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindProjectById`: MoveHardwareReservation201ResponseProject
+    // response from `FindProjectById`: GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject
     fmt.Fprintf(os.Stdout, "Response from `ProjectsApi.FindProjectById`: %v\n", resp)
 }
 ```
@@ -425,7 +425,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**MoveHardwareReservation201ResponseProject**](MoveHardwareReservation201ResponseProject.md)
+[**GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject**](GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject.md)
 
 ### Authorization
 
@@ -739,7 +739,7 @@ Name | Type | Description  | Notes
 
 ## UpdateProject
 
-> MoveHardwareReservation201ResponseProject UpdateProject(ctx, id).Body(body).Execute()
+> GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject UpdateProject(ctx, id).UpdateProjectRequest(updateProjectRequest).Execute()
 
 Update the project
 
@@ -759,16 +759,16 @@ import (
 
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Project UUID
-    body := *openapiclient.NewUpdateProjectRequest() // UpdateProjectRequest | Project to update
+    updateProjectRequest := *openapiclient.NewUpdateProjectRequest() // UpdateProjectRequest | Project to update
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ProjectsApi.UpdateProject(context.Background(), id).Body(body).Execute()
+    resp, r, err := apiClient.ProjectsApi.UpdateProject(context.Background(), id).UpdateProjectRequest(updateProjectRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ProjectsApi.UpdateProject``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateProject`: MoveHardwareReservation201ResponseProject
+    // response from `UpdateProject`: GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject
     fmt.Fprintf(os.Stdout, "Response from `ProjectsApi.UpdateProject`: %v\n", resp)
 }
 ```
@@ -789,11 +789,11 @@ Other parameters are passed through a pointer to a apiUpdateProjectRequest struc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**UpdateProjectRequest**](UpdateProjectRequest.md) | Project to update | 
+ **updateProjectRequest** | [**UpdateProjectRequest**](UpdateProjectRequest.md) | Project to update | 
 
 ### Return type
 
-[**MoveHardwareReservation201ResponseProject**](MoveHardwareReservation201ResponseProject.md)
+[**GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject**](GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject.md)
 
 ### Authorization
 

@@ -4,7 +4,6 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Tags** | Pointer to **[]string** |  | [optional] 
 **AlwaysPxe** | Pointer to **bool** |  | [optional] 
 **BillingCycle** | Pointer to **string** |  | [optional] 
 **BondingMode** | Pointer to **int32** |  | [optional] 
@@ -23,12 +22,13 @@ Name | Type | Description | Notes
 **Iqn** | Pointer to **string** |  | [optional] 
 **Locked** | Pointer to **bool** |  | [optional] 
 **Metro** | Pointer to [**FindDeviceById200ResponseFacilityMetro**](FindDeviceById200ResponseFacilityMetro.md) |  | [optional] 
-**NetworkPorts** | Pointer to [**FindDeviceById200ResponseNetworkPorts**](FindDeviceById200ResponseNetworkPorts.md) |  | [optional] 
+**NetworkPorts** | Pointer to [**[]FindDeviceById200ResponseNetworkPortsInner**](FindDeviceById200ResponseNetworkPortsInner.md) | By default, servers at Equinix Metal are configured in a “bonded” mode using LACP (Link Aggregation Control Protocol). Each 2-NIC server is configured with a single bond (namely bond0) with both interfaces eth0 and eth1 as members of the bond in a default Layer 3 mode. Some device plans may have a different number of ports and bonds available. | [optional] 
 **OperatingSystem** | Pointer to [**FindDeviceById200ResponseOperatingSystem**](FindDeviceById200ResponseOperatingSystem.md) |  | [optional] 
+**Actions** | Pointer to [**[]FindDeviceById200ResponseActionsInner**](FindDeviceById200ResponseActionsInner.md) | Actions supported by the device instance. | [optional] 
 **Plan** | Pointer to [**FindDeviceById200ResponsePlan**](FindDeviceById200ResponsePlan.md) |  | [optional] 
 **Project** | Pointer to [**FindDeviceById200ResponseProject**](FindDeviceById200ResponseProject.md) |  | [optional] 
 **ProjectLite** | Pointer to [**FindDeviceById200ResponseProjectLite**](FindDeviceById200ResponseProjectLite.md) |  | [optional] 
-**ProvisioningEvents** | Pointer to [**[]FindConnectionEvents200Response**](FindConnectionEvents200Response.md) |  | [optional] 
+**ProvisioningEvents** | Pointer to [**[]FindInterconnectionEvents200Response**](FindInterconnectionEvents200Response.md) |  | [optional] 
 **ProvisioningPercentage** | Pointer to **float32** | Only visible while device provisioning | [optional] 
 **RootPassword** | Pointer to **string** | Root password is automatically generated when server is provisioned and it is removed after 24 hours | [optional] 
 **ShortId** | Pointer to **string** |  | [optional] 
@@ -37,6 +37,7 @@ Name | Type | Description | Notes
 **SshKeys** | Pointer to [**[]FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
 **State** | Pointer to **string** |  | [optional] 
 **SwitchUuid** | Pointer to **string** | Switch short id. This can be used to determine if two devices are connected to the same switch, for example. | [optional] 
+**Tags** | Pointer to **[]string** |  | [optional] 
 **TerminationTime** | Pointer to **time.Time** | When the device will be terminated. This is commonly set in advance for ephemeral spot market instances but this field may also be set with on-demand and reservation instances to automatically delete the resource at a given time. The termination time can also be used to release a hardware reservation instance at a given time, keeping the reservation open for other uses.  On a spot market device, the termination time will be set automatically when outbid. | [optional] 
 **UpdatedAt** | Pointer to **time.Time** |  | [optional] 
 **User** | Pointer to **string** |  | [optional] 
@@ -61,31 +62,6 @@ will change when the set of required properties is changed
 NewDeviceWithDefaults instantiates a new Device object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetTags
-
-`func (o *Device) GetTags() []string`
-
-GetTags returns the Tags field if non-nil, zero value otherwise.
-
-### GetTagsOk
-
-`func (o *Device) GetTagsOk() (*[]string, bool)`
-
-GetTagsOk returns a tuple with the Tags field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTags
-
-`func (o *Device) SetTags(v []string)`
-
-SetTags sets Tags field to given value.
-
-### HasTags
-
-`func (o *Device) HasTags() bool`
-
-HasTags returns a boolean if a field has been set.
 
 ### GetAlwaysPxe
 
@@ -539,20 +515,20 @@ HasMetro returns a boolean if a field has been set.
 
 ### GetNetworkPorts
 
-`func (o *Device) GetNetworkPorts() FindDeviceById200ResponseNetworkPorts`
+`func (o *Device) GetNetworkPorts() []FindDeviceById200ResponseNetworkPortsInner`
 
 GetNetworkPorts returns the NetworkPorts field if non-nil, zero value otherwise.
 
 ### GetNetworkPortsOk
 
-`func (o *Device) GetNetworkPortsOk() (*FindDeviceById200ResponseNetworkPorts, bool)`
+`func (o *Device) GetNetworkPortsOk() (*[]FindDeviceById200ResponseNetworkPortsInner, bool)`
 
 GetNetworkPortsOk returns a tuple with the NetworkPorts field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNetworkPorts
 
-`func (o *Device) SetNetworkPorts(v FindDeviceById200ResponseNetworkPorts)`
+`func (o *Device) SetNetworkPorts(v []FindDeviceById200ResponseNetworkPortsInner)`
 
 SetNetworkPorts sets NetworkPorts field to given value.
 
@@ -586,6 +562,31 @@ SetOperatingSystem sets OperatingSystem field to given value.
 `func (o *Device) HasOperatingSystem() bool`
 
 HasOperatingSystem returns a boolean if a field has been set.
+
+### GetActions
+
+`func (o *Device) GetActions() []FindDeviceById200ResponseActionsInner`
+
+GetActions returns the Actions field if non-nil, zero value otherwise.
+
+### GetActionsOk
+
+`func (o *Device) GetActionsOk() (*[]FindDeviceById200ResponseActionsInner, bool)`
+
+GetActionsOk returns a tuple with the Actions field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetActions
+
+`func (o *Device) SetActions(v []FindDeviceById200ResponseActionsInner)`
+
+SetActions sets Actions field to given value.
+
+### HasActions
+
+`func (o *Device) HasActions() bool`
+
+HasActions returns a boolean if a field has been set.
 
 ### GetPlan
 
@@ -664,20 +665,20 @@ HasProjectLite returns a boolean if a field has been set.
 
 ### GetProvisioningEvents
 
-`func (o *Device) GetProvisioningEvents() []FindConnectionEvents200Response`
+`func (o *Device) GetProvisioningEvents() []FindInterconnectionEvents200Response`
 
 GetProvisioningEvents returns the ProvisioningEvents field if non-nil, zero value otherwise.
 
 ### GetProvisioningEventsOk
 
-`func (o *Device) GetProvisioningEventsOk() (*[]FindConnectionEvents200Response, bool)`
+`func (o *Device) GetProvisioningEventsOk() (*[]FindInterconnectionEvents200Response, bool)`
 
 GetProvisioningEventsOk returns a tuple with the ProvisioningEvents field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetProvisioningEvents
 
-`func (o *Device) SetProvisioningEvents(v []FindConnectionEvents200Response)`
+`func (o *Device) SetProvisioningEvents(v []FindInterconnectionEvents200Response)`
 
 SetProvisioningEvents sets ProvisioningEvents field to given value.
 
@@ -886,6 +887,31 @@ SetSwitchUuid sets SwitchUuid field to given value.
 `func (o *Device) HasSwitchUuid() bool`
 
 HasSwitchUuid returns a boolean if a field has been set.
+
+### GetTags
+
+`func (o *Device) GetTags() []string`
+
+GetTags returns the Tags field if non-nil, zero value otherwise.
+
+### GetTagsOk
+
+`func (o *Device) GetTagsOk() (*[]string, bool)`
+
+GetTagsOk returns a tuple with the Tags field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTags
+
+`func (o *Device) SetTags(v []string)`
+
+SetTags sets Tags field to given value.
+
+### HasTags
+
+`func (o *Device) HasTags() bool`
+
+HasTags returns a boolean if a field has been set.
 
 ### GetTerminationTime
 

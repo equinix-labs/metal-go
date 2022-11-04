@@ -8,12 +8,12 @@ Name | Type | Description | Notes
 **CreatedBy** | Pointer to [**FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
 **Href** | Pointer to **string** |  | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
-**IpReservation** | Pointer to [**FindVrfIpReservations200ResponseIpAddressesInner**](FindVrfIpReservations200ResponseIpAddressesInner.md) |  | [optional] 
-**Project** | Pointer to [**MoveHardwareReservation201ResponseProject**](MoveHardwareReservation201ResponseProject.md) |  | [optional] 
+**IpReservation** | Pointer to [**FindIPAddressById200ResponseOneOf1**](FindIPAddressById200ResponseOneOf1.md) |  | [optional] 
+**Project** | Pointer to [**GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject**](GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject.md) |  | [optional] 
 **State** | Pointer to **string** | The current state of the Metal Gateway. &#39;Ready&#39; indicates the gateway record has been configured, but is currently not active on the network. &#39;Active&#39; indicates the gateway has been configured on the network. &#39;Deleting&#39; is a temporary state used to indicate that the gateway is in the process of being un-configured from the network, after which the gateway record will be deleted. | [optional] 
 **UpdatedAt** | Pointer to **time.Time** |  | [optional] 
-**VirtualNetwork** | Pointer to [**FindVirtualNetworks200ResponseVirtualNetworksInner**](FindVirtualNetworks200ResponseVirtualNetworksInner.md) |  | [optional] 
-**Vrf** | Pointer to [**FindVrfs200ResponseVrfsInner**](FindVrfs200ResponseVrfsInner.md) |  | [optional] 
+**VirtualNetwork** | Pointer to [**FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetwork**](FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetwork.md) |  | [optional] 
+**Vrf** | Pointer to [**GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1Vrf**](GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1Vrf.md) |  | [optional] 
 
 ## Methods
 
@@ -136,20 +136,20 @@ HasId returns a boolean if a field has been set.
 
 ### GetIpReservation
 
-`func (o *VrfMetalGateway) GetIpReservation() FindVrfIpReservations200ResponseIpAddressesInner`
+`func (o *VrfMetalGateway) GetIpReservation() FindIPAddressById200ResponseOneOf1`
 
 GetIpReservation returns the IpReservation field if non-nil, zero value otherwise.
 
 ### GetIpReservationOk
 
-`func (o *VrfMetalGateway) GetIpReservationOk() (*FindVrfIpReservations200ResponseIpAddressesInner, bool)`
+`func (o *VrfMetalGateway) GetIpReservationOk() (*FindIPAddressById200ResponseOneOf1, bool)`
 
 GetIpReservationOk returns a tuple with the IpReservation field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIpReservation
 
-`func (o *VrfMetalGateway) SetIpReservation(v FindVrfIpReservations200ResponseIpAddressesInner)`
+`func (o *VrfMetalGateway) SetIpReservation(v FindIPAddressById200ResponseOneOf1)`
 
 SetIpReservation sets IpReservation field to given value.
 
@@ -161,20 +161,20 @@ HasIpReservation returns a boolean if a field has been set.
 
 ### GetProject
 
-`func (o *VrfMetalGateway) GetProject() MoveHardwareReservation201ResponseProject`
+`func (o *VrfMetalGateway) GetProject() GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject`
 
 GetProject returns the Project field if non-nil, zero value otherwise.
 
 ### GetProjectOk
 
-`func (o *VrfMetalGateway) GetProjectOk() (*MoveHardwareReservation201ResponseProject, bool)`
+`func (o *VrfMetalGateway) GetProjectOk() (*GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject, bool)`
 
 GetProjectOk returns a tuple with the Project field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetProject
 
-`func (o *VrfMetalGateway) SetProject(v MoveHardwareReservation201ResponseProject)`
+`func (o *VrfMetalGateway) SetProject(v GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject)`
 
 SetProject sets Project field to given value.
 
@@ -236,20 +236,20 @@ HasUpdatedAt returns a boolean if a field has been set.
 
 ### GetVirtualNetwork
 
-`func (o *VrfMetalGateway) GetVirtualNetwork() FindVirtualNetworks200ResponseVirtualNetworksInner`
+`func (o *VrfMetalGateway) GetVirtualNetwork() FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetwork`
 
 GetVirtualNetwork returns the VirtualNetwork field if non-nil, zero value otherwise.
 
 ### GetVirtualNetworkOk
 
-`func (o *VrfMetalGateway) GetVirtualNetworkOk() (*FindVirtualNetworks200ResponseVirtualNetworksInner, bool)`
+`func (o *VrfMetalGateway) GetVirtualNetworkOk() (*FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetwork, bool)`
 
 GetVirtualNetworkOk returns a tuple with the VirtualNetwork field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVirtualNetwork
 
-`func (o *VrfMetalGateway) SetVirtualNetwork(v FindVirtualNetworks200ResponseVirtualNetworksInner)`
+`func (o *VrfMetalGateway) SetVirtualNetwork(v FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetwork)`
 
 SetVirtualNetwork sets VirtualNetwork field to given value.
 
@@ -261,20 +261,20 @@ HasVirtualNetwork returns a boolean if a field has been set.
 
 ### GetVrf
 
-`func (o *VrfMetalGateway) GetVrf() FindVrfs200ResponseVrfsInner`
+`func (o *VrfMetalGateway) GetVrf() GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1Vrf`
 
 GetVrf returns the Vrf field if non-nil, zero value otherwise.
 
 ### GetVrfOk
 
-`func (o *VrfMetalGateway) GetVrfOk() (*FindVrfs200ResponseVrfsInner, bool)`
+`func (o *VrfMetalGateway) GetVrfOk() (*GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1Vrf, bool)`
 
 GetVrfOk returns a tuple with the Vrf field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVrf
 
-`func (o *VrfMetalGateway) SetVrf(v FindVrfs200ResponseVrfsInner)`
+`func (o *VrfMetalGateway) SetVrf(v GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1Vrf)`
 
 SetVrf sets Vrf field to given value.
 

@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 ## FindPlans
 
-> FindPlansByOrganization200Response FindPlans(ctx).Include(include).Exclude(exclude).Execute()
+> FindPlansByOrganization200Response FindPlans(ctx).Type_(type_).Include(include).Exclude(exclude).Execute()
 
 Retrieve all plans
 
@@ -30,12 +30,13 @@ import (
 )
 
 func main() {
+    type_ := "standard" // string | Filter plans by its plan type (optional)
     include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
     exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PlansApi.FindPlans(context.Background()).Include(include).Exclude(exclude).Execute()
+    resp, r, err := apiClient.PlansApi.FindPlans(context.Background()).Type_(type_).Include(include).Exclude(exclude).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PlansApi.FindPlans``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -56,6 +57,7 @@ Other parameters are passed through a pointer to a apiFindPlansRequest struct vi
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **type_** | **string** | Filter plans by its plan type | 
  **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
  **exclude** | **[]string** | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | 
 

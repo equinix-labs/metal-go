@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Meta** | Pointer to [**FindDeviceEvents200ResponseMeta**](FindDeviceEvents200ResponseMeta.md) |  | [optional] 
-**Users** | Pointer to [**[]FindProjectAPIKeys200ResponseApiKeysInnerUserAllOf**](FindProjectAPIKeys200ResponseApiKeysInnerUserAllOf.md) |  | [optional] 
+**Users** | Pointer to [**[]GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfCreatedBy**](GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfCreatedBy.md) |  | [optional] 
 
 ## Methods
 
@@ -53,20 +53,20 @@ HasMeta returns a boolean if a field has been set.
 
 ### GetUsers
 
-`func (o *FindUsers200Response) GetUsers() []FindProjectAPIKeys200ResponseApiKeysInnerUserAllOf`
+`func (o *FindUsers200Response) GetUsers() []GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfCreatedBy`
 
 GetUsers returns the Users field if non-nil, zero value otherwise.
 
 ### GetUsersOk
 
-`func (o *FindUsers200Response) GetUsersOk() (*[]FindProjectAPIKeys200ResponseApiKeysInnerUserAllOf, bool)`
+`func (o *FindUsers200Response) GetUsersOk() (*[]GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfCreatedBy, bool)`
 
 GetUsersOk returns a tuple with the Users field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUsers
 
-`func (o *FindUsers200Response) SetUsers(v []FindProjectAPIKeys200ResponseApiKeysInnerUserAllOf)`
+`func (o *FindUsers200Response) SetUsers(v []GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfCreatedBy)`
 
 SetUsers sets Users field to given value.
 

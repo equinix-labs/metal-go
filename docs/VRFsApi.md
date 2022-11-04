@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 ## CreateVrf
 
-> FindVrfs200ResponseVrfsInner CreateVrf(ctx, id).Body(body).Execute()
+> GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1Vrf CreateVrf(ctx, id).CreateVrfRequest(createVrfRequest).Execute()
 
 Create a new VRF in the specified project
 
@@ -35,16 +35,16 @@ import (
 
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Project UUID
-    body := *openapiclient.NewCreateVrfRequest("Metro_example", "Name_example", "ProjectId_example") // CreateVrfRequest | VRF to create
+    createVrfRequest := *openapiclient.NewCreateVrfRequest("Metro_example", "Name_example") // CreateVrfRequest | VRF to create
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.VRFsApi.CreateVrf(context.Background(), id).Body(body).Execute()
+    resp, r, err := apiClient.VRFsApi.CreateVrf(context.Background(), id).CreateVrfRequest(createVrfRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `VRFsApi.CreateVrf``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateVrf`: FindVrfs200ResponseVrfsInner
+    // response from `CreateVrf`: GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1Vrf
     fmt.Fprintf(os.Stdout, "Response from `VRFsApi.CreateVrf`: %v\n", resp)
 }
 ```
@@ -65,11 +65,11 @@ Other parameters are passed through a pointer to a apiCreateVrfRequest struct vi
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**CreateVrfRequest**](CreateVrfRequest.md) | VRF to create | 
+ **createVrfRequest** | [**CreateVrfRequest**](CreateVrfRequest.md) | VRF to create | 
 
 ### Return type
 
-[**FindVrfs200ResponseVrfsInner**](FindVrfs200ResponseVrfsInner.md)
+[**GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1Vrf**](GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1Vrf.md)
 
 ### Authorization
 
@@ -155,7 +155,7 @@ Name | Type | Description  | Notes
 
 ## FindVrfById
 
-> FindVrfs200ResponseVrfsInner FindVrfById(ctx, id).Include(include).Exclude(exclude).Execute()
+> GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1Vrf FindVrfById(ctx, id).Include(include).Exclude(exclude).Execute()
 
 Retrieve a VRF
 
@@ -185,7 +185,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `VRFsApi.FindVrfById``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindVrfById`: FindVrfs200ResponseVrfsInner
+    // response from `FindVrfById`: GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1Vrf
     fmt.Fprintf(os.Stdout, "Response from `VRFsApi.FindVrfById`: %v\n", resp)
 }
 ```
@@ -211,7 +211,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FindVrfs200ResponseVrfsInner**](FindVrfs200ResponseVrfsInner.md)
+[**GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1Vrf**](GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1Vrf.md)
 
 ### Authorization
 
@@ -379,7 +379,7 @@ Name | Type | Description  | Notes
 
 ## UpdateVrf
 
-> FindVrfs200ResponseVrfsInner UpdateVrf(ctx, id).Body(body).Execute()
+> GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1Vrf UpdateVrf(ctx, id).UpdateVrfRequest(updateVrfRequest).Execute()
 
 Update the VRF
 
@@ -399,16 +399,16 @@ import (
 
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | VRF UUID
-    body := *openapiclient.NewUpdateVrfRequest() // UpdateVrfRequest | VRF to update
+    updateVrfRequest := *openapiclient.NewUpdateVrfRequest() // UpdateVrfRequest | VRF to update
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.VRFsApi.UpdateVrf(context.Background(), id).Body(body).Execute()
+    resp, r, err := apiClient.VRFsApi.UpdateVrf(context.Background(), id).UpdateVrfRequest(updateVrfRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `VRFsApi.UpdateVrf``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateVrf`: FindVrfs200ResponseVrfsInner
+    // response from `UpdateVrf`: GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1Vrf
     fmt.Fprintf(os.Stdout, "Response from `VRFsApi.UpdateVrf`: %v\n", resp)
 }
 ```
@@ -429,11 +429,11 @@ Other parameters are passed through a pointer to a apiUpdateVrfRequest struct vi
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**UpdateVrfRequest**](UpdateVrfRequest.md) | VRF to update | 
+ **updateVrfRequest** | [**UpdateVrfRequest**](UpdateVrfRequest.md) | VRF to update | 
 
 ### Return type
 
-[**FindVrfs200ResponseVrfsInner**](FindVrfs200ResponseVrfsInner.md)
+[**GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1Vrf**](GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1Vrf.md)
 
 ### Authorization
 

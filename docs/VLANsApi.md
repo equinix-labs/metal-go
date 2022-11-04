@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 ## CreateVirtualNetwork
 
-> FindVirtualNetworks200ResponseVirtualNetworksInner CreateVirtualNetwork(ctx, id).Body(body).Execute()
+> FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetwork CreateVirtualNetwork(ctx, id).CreateVirtualNetworkRequest(createVirtualNetworkRequest).Execute()
 
 Create a virtual network
 
@@ -33,16 +33,16 @@ import (
 
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Project UUID
-    body := *openapiclient.NewCreateVirtualNetworkRequest("ProjectId_example") // CreateVirtualNetworkRequest | Virtual Network to create
+    createVirtualNetworkRequest := *openapiclient.NewCreateVirtualNetworkRequest() // CreateVirtualNetworkRequest | Virtual Network to create
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.VLANsApi.CreateVirtualNetwork(context.Background(), id).Body(body).Execute()
+    resp, r, err := apiClient.VLANsApi.CreateVirtualNetwork(context.Background(), id).CreateVirtualNetworkRequest(createVirtualNetworkRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `VLANsApi.CreateVirtualNetwork``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateVirtualNetwork`: FindVirtualNetworks200ResponseVirtualNetworksInner
+    // response from `CreateVirtualNetwork`: FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetwork
     fmt.Fprintf(os.Stdout, "Response from `VLANsApi.CreateVirtualNetwork`: %v\n", resp)
 }
 ```
@@ -63,11 +63,11 @@ Other parameters are passed through a pointer to a apiCreateVirtualNetworkReques
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**CreateVirtualNetworkRequest**](CreateVirtualNetworkRequest.md) | Virtual Network to create | 
+ **createVirtualNetworkRequest** | [**CreateVirtualNetworkRequest**](CreateVirtualNetworkRequest.md) | Virtual Network to create | 
 
 ### Return type
 
-[**FindVirtualNetworks200ResponseVirtualNetworksInner**](FindVirtualNetworks200ResponseVirtualNetworksInner.md)
+[**FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetwork**](FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetwork.md)
 
 ### Authorization
 
@@ -85,7 +85,7 @@ Name | Type | Description  | Notes
 
 ## DeleteVirtualNetwork
 
-> FindVirtualNetworks200ResponseVirtualNetworksInner DeleteVirtualNetwork(ctx, id).Execute()
+> FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetwork DeleteVirtualNetwork(ctx, id).Execute()
 
 Delete a virtual network
 
@@ -113,7 +113,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `VLANsApi.DeleteVirtualNetwork``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `DeleteVirtualNetwork`: FindVirtualNetworks200ResponseVirtualNetworksInner
+    // response from `DeleteVirtualNetwork`: FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetwork
     fmt.Fprintf(os.Stdout, "Response from `VLANsApi.DeleteVirtualNetwork`: %v\n", resp)
 }
 ```
@@ -137,7 +137,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FindVirtualNetworks200ResponseVirtualNetworksInner**](FindVirtualNetworks200ResponseVirtualNetworksInner.md)
+[**FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetwork**](FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetwork.md)
 
 ### Authorization
 
@@ -233,7 +233,7 @@ Name | Type | Description  | Notes
 
 ## GetVirtualNetwork
 
-> FindVirtualNetworks200ResponseVirtualNetworksInner GetVirtualNetwork(ctx, id).Execute()
+> FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetwork GetVirtualNetwork(ctx, id).Execute()
 
 Get a virtual network
 
@@ -261,7 +261,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `VLANsApi.GetVirtualNetwork``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetVirtualNetwork`: FindVirtualNetworks200ResponseVirtualNetworksInner
+    // response from `GetVirtualNetwork`: FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetwork
     fmt.Fprintf(os.Stdout, "Response from `VLANsApi.GetVirtualNetwork`: %v\n", resp)
 }
 ```
@@ -285,7 +285,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FindVirtualNetworks200ResponseVirtualNetworksInner**](FindVirtualNetworks200ResponseVirtualNetworksInner.md)
+[**FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetwork**](FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetwork.md)
 
 ### Authorization
 

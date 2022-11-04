@@ -4,7 +4,6 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Tags** | Pointer to **[]string** |  | [optional] 
 **CustomerIp** | Pointer to **string** | An IP address from the subnet that will be used on the Customer side. This parameter is optional, but if supplied, we will use the other usable IP address in the subnet as the Metal IP. By default, the last usable IP address in the subnet will be used. | [optional] 
 **Description** | Pointer to **string** |  | [optional] 
 **Md5** | Pointer to **NullableString** | The MD5 password for the BGP peering in plaintext (not a checksum). | [optional] 
@@ -15,6 +14,7 @@ Name | Type | Description | Notes
 **Project** | **string** |  | 
 **Speed** | Pointer to **int32** | speed can be passed as integer number representing bps speed or string (e.g. &#39;52m&#39; or &#39;100g&#39; or &#39;4 gbps&#39;) | [optional] 
 **Subnet** | **string** | The /30 or /31 subnet of one of the VRF IP Blocks that will be used with the VRF for the Virtual Circuit. This subnet does not have to be an existing VRF IP reservation, as we will create the VRF IP reservation on creation if it does not exist. The Metal IP and Customer IP must be IPs from this subnet. For /30 subnets, the network and broadcast IPs cannot be used as the Metal or Customer IP. The subnet specified must be contained within an already-defined IP Range for the VRF. | 
+**Tags** | Pointer to **[]string** |  | [optional] 
 **Vrf** | **string** | The UUID of the VRF that will be associated with the Virtual Circuit. | 
 
 ## Methods
@@ -35,31 +35,6 @@ will change when the set of required properties is changed
 NewVrfVirtualCircuitCreateInputWithDefaults instantiates a new VrfVirtualCircuitCreateInput object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetTags
-
-`func (o *VrfVirtualCircuitCreateInput) GetTags() []string`
-
-GetTags returns the Tags field if non-nil, zero value otherwise.
-
-### GetTagsOk
-
-`func (o *VrfVirtualCircuitCreateInput) GetTagsOk() (*[]string, bool)`
-
-GetTagsOk returns a tuple with the Tags field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTags
-
-`func (o *VrfVirtualCircuitCreateInput) SetTags(v []string)`
-
-SetTags sets Tags field to given value.
-
-### HasTags
-
-`func (o *VrfVirtualCircuitCreateInput) HasTags() bool`
-
-HasTags returns a boolean if a field has been set.
 
 ### GetCustomerIp
 
@@ -300,6 +275,31 @@ and a boolean to check if the value has been set.
 
 SetSubnet sets Subnet field to given value.
 
+
+### GetTags
+
+`func (o *VrfVirtualCircuitCreateInput) GetTags() []string`
+
+GetTags returns the Tags field if non-nil, zero value otherwise.
+
+### GetTagsOk
+
+`func (o *VrfVirtualCircuitCreateInput) GetTagsOk() (*[]string, bool)`
+
+GetTagsOk returns a tuple with the Tags field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTags
+
+`func (o *VrfVirtualCircuitCreateInput) SetTags(v []string)`
+
+SetTags sets Tags field to given value.
+
+### HasTags
+
+`func (o *VrfVirtualCircuitCreateInput) HasTags() bool`
+
+HasTags returns a boolean if a field has been set.
 
 ### GetVrf
 

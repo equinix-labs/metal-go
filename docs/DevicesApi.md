@@ -11,6 +11,8 @@ Method | HTTP request | Description
 [**FindBgpSessions**](DevicesApi.md#FindBgpSessions) | **Get** /devices/{id}/bgp/sessions | Retrieve all BGP sessions
 [**FindDeviceById**](DevicesApi.md#FindDeviceById) | **Get** /devices/{id} | Retrieve a device
 [**FindDeviceCustomdata**](DevicesApi.md#FindDeviceCustomdata) | **Get** /devices/{id}/customdata | Retrieve the custom metadata of an instance
+[**FindDeviceMetadataByID**](DevicesApi.md#FindDeviceMetadataByID) | **Get** /devices/{id}/metadata | Retrieve metadata
+[**FindDeviceUserdataByID**](DevicesApi.md#FindDeviceUserdataByID) | **Get** /devices/{id}/userdata | Retrieve userdata
 [**FindIPAssignmentCustomdata**](DevicesApi.md#FindIPAssignmentCustomdata) | **Get** /devices/{instance_id}/ips/{id}/customdata | Retrieve the custom metadata of an IP Assignment
 [**FindIPAssignments**](DevicesApi.md#FindIPAssignments) | **Get** /devices/{id}/ips | Retrieve all ip assignments
 [**FindInstanceBandwidth**](DevicesApi.md#FindInstanceBandwidth) | **Get** /devices/{id}/bandwidth | Retrieve an instance bandwidth
@@ -25,7 +27,7 @@ Method | HTTP request | Description
 
 ## CreateBgpSession
 
-> FindBgpSessionById200Response CreateBgpSession(ctx, id).Body(body).Execute()
+> FindBgpSessionById200Response CreateBgpSession(ctx, id).CreateBgpSessionRequest(createBgpSessionRequest).Execute()
 
 Create a BGP session
 
@@ -45,11 +47,11 @@ import (
 
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Device UUID
-    body := *openapiclient.NewCreateBgpSessionRequest() // CreateBgpSessionRequest | BGP session to create
+    createBgpSessionRequest := *openapiclient.NewCreateBgpSessionRequest() // CreateBgpSessionRequest | BGP session to create
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DevicesApi.CreateBgpSession(context.Background(), id).Body(body).Execute()
+    resp, r, err := apiClient.DevicesApi.CreateBgpSession(context.Background(), id).CreateBgpSessionRequest(createBgpSessionRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DevicesApi.CreateBgpSession``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -75,7 +77,7 @@ Other parameters are passed through a pointer to a apiCreateBgpSessionRequest st
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**CreateBgpSessionRequest**](CreateBgpSessionRequest.md) | BGP session to create | 
+ **createBgpSessionRequest** | [**CreateBgpSessionRequest**](CreateBgpSessionRequest.md) | BGP session to create | 
 
 ### Return type
 
@@ -97,7 +99,7 @@ Name | Type | Description  | Notes
 
 ## CreateDevice
 
-> FindDeviceById200Response CreateDevice(ctx, id).Body(body).Execute()
+> FindDeviceById200Response CreateDevice(ctx, id).CreateDeviceRequest(createDeviceRequest).Execute()
 
 Create a device
 
@@ -117,11 +119,11 @@ import (
 
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Project UUID
-    body := *openapiclient.NewCreateDeviceRequest("OperatingSystem_example", "c3.large.x86") // CreateDeviceRequest | Device to create
+    createDeviceRequest := openapiclient.createDevice_request{CreateDeviceRequestOneOf: openapiclient.NewCreateDeviceRequestOneOf("sv", "OperatingSystem_example", "c3.large.x86")} // CreateDeviceRequest | Device to create
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DevicesApi.CreateDevice(context.Background(), id).Body(body).Execute()
+    resp, r, err := apiClient.DevicesApi.CreateDevice(context.Background(), id).CreateDeviceRequest(createDeviceRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DevicesApi.CreateDevice``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -147,7 +149,7 @@ Other parameters are passed through a pointer to a apiCreateDeviceRequest struct
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**CreateDeviceRequest**](CreateDeviceRequest.md) | Device to create | 
+ **createDeviceRequest** | [**CreateDeviceRequest**](CreateDeviceRequest.md) | Device to create | 
 
 ### Return type
 
@@ -169,7 +171,7 @@ Name | Type | Description  | Notes
 
 ## CreateIPAssignment
 
-> FindDeviceById200ResponseIpAddressesInner CreateIPAssignment(ctx, id).Body(body).Execute()
+> FindDeviceById200ResponseIpAddressesInner CreateIPAssignment(ctx, id).CreateIPAssignmentRequest(createIPAssignmentRequest).Execute()
 
 Create an ip assignment
 
@@ -189,11 +191,11 @@ import (
 
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Device UUID
-    body := *openapiclient.NewCreateIPAssignmentRequest("Address_example") // CreateIPAssignmentRequest | IPAssignment to create
+    createIPAssignmentRequest := *openapiclient.NewCreateIPAssignmentRequest("Address_example") // CreateIPAssignmentRequest | IPAssignment to create
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DevicesApi.CreateIPAssignment(context.Background(), id).Body(body).Execute()
+    resp, r, err := apiClient.DevicesApi.CreateIPAssignment(context.Background(), id).CreateIPAssignmentRequest(createIPAssignmentRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DevicesApi.CreateIPAssignment``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -219,7 +221,7 @@ Other parameters are passed through a pointer to a apiCreateIPAssignmentRequest 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**CreateIPAssignmentRequest**](CreateIPAssignmentRequest.md) | IPAssignment to create | 
+ **createIPAssignmentRequest** | [**CreateIPAssignmentRequest**](CreateIPAssignmentRequest.md) | IPAssignment to create | 
 
 ### Return type
 
@@ -506,6 +508,146 @@ Name | Type | Description  | Notes
 ### Return type
 
  (empty response body)
+
+### Authorization
+
+[x_auth_token](../README.md#x_auth_token)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## FindDeviceMetadataByID
+
+> FindDeviceMetadataByID200Response FindDeviceMetadataByID(ctx, id).Execute()
+
+Retrieve metadata
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Device UUID
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DevicesApi.FindDeviceMetadataByID(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DevicesApi.FindDeviceMetadataByID``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `FindDeviceMetadataByID`: FindDeviceMetadataByID200Response
+    fmt.Fprintf(os.Stdout, "Response from `DevicesApi.FindDeviceMetadataByID`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** | Device UUID | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiFindDeviceMetadataByIDRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**FindDeviceMetadataByID200Response**](FindDeviceMetadataByID200Response.md)
+
+### Authorization
+
+[x_auth_token](../README.md#x_auth_token)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## FindDeviceUserdataByID
+
+> FindDeviceUserdataByID200Response FindDeviceUserdataByID(ctx, id).Execute()
+
+Retrieve userdata
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Device UUID
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DevicesApi.FindDeviceUserdataByID(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DevicesApi.FindDeviceUserdataByID``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `FindDeviceUserdataByID`: FindDeviceUserdataByID200Response
+    fmt.Fprintf(os.Stdout, "Response from `DevicesApi.FindDeviceUserdataByID`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** | Device UUID | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiFindDeviceUserdataByIDRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**FindDeviceUserdataByID200Response**](FindDeviceUserdataByID200Response.md)
 
 ### Authorization
 
@@ -916,7 +1058,7 @@ Name | Type | Description  | Notes
 
 ## FindTraffic
 
-> FindTraffic(ctx, id).Direction(direction).Body(body).Interval(interval).Bucket(bucket).Execute()
+> FindTraffic(ctx, id).Direction(direction).Interval(interval).Bucket(bucket).Timeframe(timeframe).Execute()
 
 Retrieve device traffic
 
@@ -931,20 +1073,19 @@ import (
     "context"
     "fmt"
     "os"
-    "time"
     openapiclient "./openapi"
 )
 
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Device UUID
     direction := "direction_example" // string | Traffic direction
-    body := *openapiclient.NewFindTrafficRequest(time.Now(), time.Now()) // FindTrafficRequest | Traffic timeframe
     interval := "interval_example" // string | Traffic interval (optional)
     bucket := "bucket_example" // string | Traffic bucket (optional)
+    timeframe := map[string][]openapiclient.FindTrafficTimeframeParameter{"key": map[string]interface{}{ ... }} // FindTrafficTimeframeParameter |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DevicesApi.FindTraffic(context.Background(), id).Direction(direction).Body(body).Interval(interval).Bucket(bucket).Execute()
+    resp, r, err := apiClient.DevicesApi.FindTraffic(context.Background(), id).Direction(direction).Interval(interval).Bucket(bucket).Timeframe(timeframe).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DevicesApi.FindTraffic``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -969,9 +1110,9 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **direction** | **string** | Traffic direction | 
- **body** | [**FindTrafficRequest**](FindTrafficRequest.md) | Traffic timeframe | 
  **interval** | **string** | Traffic interval | 
  **bucket** | **string** | Traffic bucket | 
+ **timeframe** | [**FindTrafficTimeframeParameter**](FindTrafficTimeframeParameter.md) |  | 
 
 ### Return type
 
@@ -983,7 +1124,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -1063,7 +1204,7 @@ Name | Type | Description  | Notes
 
 ## PerformAction
 
-> PerformAction(ctx, id).Type_(type_).Execute()
+> PerformAction(ctx, id).PerformActionRequest(performActionRequest).Execute()
 
 Perform an action
 
@@ -1083,11 +1224,11 @@ import (
 
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Device UUID
-    type_ := "type__example" // string | Action to perform
+    performActionRequest := *openapiclient.NewPerformActionRequest("Type_example") // PerformActionRequest | Action to perform
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DevicesApi.PerformAction(context.Background(), id).Type_(type_).Execute()
+    resp, r, err := apiClient.DevicesApi.PerformAction(context.Background(), id).PerformActionRequest(performActionRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DevicesApi.PerformAction``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1111,7 +1252,7 @@ Other parameters are passed through a pointer to a apiPerformActionRequest struc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **type_** | **string** | Action to perform | 
+ **performActionRequest** | [**PerformActionRequest**](PerformActionRequest.md) | Action to perform | 
 
 ### Return type
 
@@ -1123,7 +1264,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -1133,7 +1274,7 @@ Name | Type | Description  | Notes
 
 ## UpdateDevice
 
-> FindDeviceById200Response UpdateDevice(ctx, id).Body(body).Execute()
+> FindDeviceById200Response UpdateDevice(ctx, id).UpdateDeviceRequest(updateDeviceRequest).Execute()
 
 Update the device
 
@@ -1153,11 +1294,11 @@ import (
 
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Device UUID
-    body := *openapiclient.NewUpdateDeviceRequest() // UpdateDeviceRequest | Facility to update
+    updateDeviceRequest := *openapiclient.NewUpdateDeviceRequest() // UpdateDeviceRequest | Facility to update
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DevicesApi.UpdateDevice(context.Background(), id).Body(body).Execute()
+    resp, r, err := apiClient.DevicesApi.UpdateDevice(context.Background(), id).UpdateDeviceRequest(updateDeviceRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DevicesApi.UpdateDevice``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1183,7 +1324,7 @@ Other parameters are passed through a pointer to a apiUpdateDeviceRequest struct
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**UpdateDeviceRequest**](UpdateDeviceRequest.md) | Facility to update | 
+ **updateDeviceRequest** | [**UpdateDeviceRequest**](UpdateDeviceRequest.md) | Facility to update | 
 
 ### Return type
 

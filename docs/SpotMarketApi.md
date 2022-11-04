@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 ## CreateSpotMarketRequest
 
-> ListSpotMarketRequests200ResponseSpotMarketRequestsInner CreateSpotMarketRequest(ctx, id).Body(body).Execute()
+> ListSpotMarketRequests200ResponseSpotMarketRequestsInner CreateSpotMarketRequest(ctx, id).CreateSpotMarketRequestRequest(createSpotMarketRequestRequest).Execute()
 
 Create a spot market request
 
@@ -36,11 +36,11 @@ import (
 
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Project UUID
-    body := *openapiclient.NewCreateSpotMarketRequestRequest() // CreateSpotMarketRequestRequest | Spot Market Request to create
+    createSpotMarketRequestRequest := *openapiclient.NewCreateSpotMarketRequestRequest() // CreateSpotMarketRequestRequest | Spot Market Request to create
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.SpotMarketApi.CreateSpotMarketRequest(context.Background(), id).Body(body).Execute()
+    resp, r, err := apiClient.SpotMarketApi.CreateSpotMarketRequest(context.Background(), id).CreateSpotMarketRequestRequest(createSpotMarketRequestRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SpotMarketApi.CreateSpotMarketRequest``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -66,7 +66,7 @@ Other parameters are passed through a pointer to a apiCreateSpotMarketRequestReq
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**CreateSpotMarketRequestRequest**](CreateSpotMarketRequestRequest.md) | Spot Market Request to create | 
+ **createSpotMarketRequestRequest** | [**CreateSpotMarketRequestRequest**](CreateSpotMarketRequestRequest.md) | Spot Market Request to create | 
 
 ### Return type
 

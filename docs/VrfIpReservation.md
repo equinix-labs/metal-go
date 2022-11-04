@@ -4,7 +4,6 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Tags** | Pointer to **[]string** |  | [optional] 
 **AddressFamily** | Pointer to **int32** |  | [optional] 
 **Cidr** | Pointer to **int32** |  | [optional] 
 **CreatedAt** | Pointer to **time.Time** |  | [optional] 
@@ -12,19 +11,20 @@ Name | Type | Description | Notes
 **Details** | Pointer to **string** |  | [optional] 
 **Href** | Pointer to **string** |  | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
-**MetalGateway** | Pointer to [**FindVirtualNetworks200ResponseVirtualNetworksInnerMetalGateway**](FindVirtualNetworks200ResponseVirtualNetworksInnerMetalGateway.md) |  | [optional] 
+**MetalGateway** | Pointer to [**FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetworkMetalGatewaysInner**](FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetworkMetalGatewaysInner.md) |  | [optional] 
 **Netmask** | Pointer to **string** |  | [optional] 
 **Network** | Pointer to **string** |  | [optional] 
-**Project** | Pointer to [**MoveHardwareReservation201ResponseProject**](MoveHardwareReservation201ResponseProject.md) |  | [optional] 
+**Project** | Pointer to [**GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject**](GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject.md) |  | [optional] 
 **State** | Pointer to **string** |  | [optional] 
-**Type** | Pointer to **string** |  | [optional] 
-**Vrf** | Pointer to [**FindVrfs200ResponseVrfsInner**](FindVrfs200ResponseVrfsInner.md) |  | [optional] 
+**Tags** | Pointer to **[]string** |  | [optional] 
+**Type** | **string** |  | 
+**Vrf** | [**GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1Vrf**](GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1Vrf.md) |  | 
 
 ## Methods
 
 ### NewVrfIpReservation
 
-`func NewVrfIpReservation() *VrfIpReservation`
+`func NewVrfIpReservation(type_ string, vrf GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1Vrf, ) *VrfIpReservation`
 
 NewVrfIpReservation instantiates a new VrfIpReservation object
 This constructor will assign default values to properties that have it defined,
@@ -38,31 +38,6 @@ will change when the set of required properties is changed
 NewVrfIpReservationWithDefaults instantiates a new VrfIpReservation object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetTags
-
-`func (o *VrfIpReservation) GetTags() []string`
-
-GetTags returns the Tags field if non-nil, zero value otherwise.
-
-### GetTagsOk
-
-`func (o *VrfIpReservation) GetTagsOk() (*[]string, bool)`
-
-GetTagsOk returns a tuple with the Tags field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTags
-
-`func (o *VrfIpReservation) SetTags(v []string)`
-
-SetTags sets Tags field to given value.
-
-### HasTags
-
-`func (o *VrfIpReservation) HasTags() bool`
-
-HasTags returns a boolean if a field has been set.
 
 ### GetAddressFamily
 
@@ -241,20 +216,20 @@ HasId returns a boolean if a field has been set.
 
 ### GetMetalGateway
 
-`func (o *VrfIpReservation) GetMetalGateway() FindVirtualNetworks200ResponseVirtualNetworksInnerMetalGateway`
+`func (o *VrfIpReservation) GetMetalGateway() FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetworkMetalGatewaysInner`
 
 GetMetalGateway returns the MetalGateway field if non-nil, zero value otherwise.
 
 ### GetMetalGatewayOk
 
-`func (o *VrfIpReservation) GetMetalGatewayOk() (*FindVirtualNetworks200ResponseVirtualNetworksInnerMetalGateway, bool)`
+`func (o *VrfIpReservation) GetMetalGatewayOk() (*FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetworkMetalGatewaysInner, bool)`
 
 GetMetalGatewayOk returns a tuple with the MetalGateway field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMetalGateway
 
-`func (o *VrfIpReservation) SetMetalGateway(v FindVirtualNetworks200ResponseVirtualNetworksInnerMetalGateway)`
+`func (o *VrfIpReservation) SetMetalGateway(v FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetworkMetalGatewaysInner)`
 
 SetMetalGateway sets MetalGateway field to given value.
 
@@ -316,20 +291,20 @@ HasNetwork returns a boolean if a field has been set.
 
 ### GetProject
 
-`func (o *VrfIpReservation) GetProject() MoveHardwareReservation201ResponseProject`
+`func (o *VrfIpReservation) GetProject() GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject`
 
 GetProject returns the Project field if non-nil, zero value otherwise.
 
 ### GetProjectOk
 
-`func (o *VrfIpReservation) GetProjectOk() (*MoveHardwareReservation201ResponseProject, bool)`
+`func (o *VrfIpReservation) GetProjectOk() (*GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject, bool)`
 
 GetProjectOk returns a tuple with the Project field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetProject
 
-`func (o *VrfIpReservation) SetProject(v MoveHardwareReservation201ResponseProject)`
+`func (o *VrfIpReservation) SetProject(v GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject)`
 
 SetProject sets Project field to given value.
 
@@ -364,6 +339,31 @@ SetState sets State field to given value.
 
 HasState returns a boolean if a field has been set.
 
+### GetTags
+
+`func (o *VrfIpReservation) GetTags() []string`
+
+GetTags returns the Tags field if non-nil, zero value otherwise.
+
+### GetTagsOk
+
+`func (o *VrfIpReservation) GetTagsOk() (*[]string, bool)`
+
+GetTagsOk returns a tuple with the Tags field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTags
+
+`func (o *VrfIpReservation) SetTags(v []string)`
+
+SetTags sets Tags field to given value.
+
+### HasTags
+
+`func (o *VrfIpReservation) HasTags() bool`
+
+HasTags returns a boolean if a field has been set.
+
 ### GetType
 
 `func (o *VrfIpReservation) GetType() string`
@@ -383,36 +383,26 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
-### HasType
-
-`func (o *VrfIpReservation) HasType() bool`
-
-HasType returns a boolean if a field has been set.
 
 ### GetVrf
 
-`func (o *VrfIpReservation) GetVrf() FindVrfs200ResponseVrfsInner`
+`func (o *VrfIpReservation) GetVrf() GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1Vrf`
 
 GetVrf returns the Vrf field if non-nil, zero value otherwise.
 
 ### GetVrfOk
 
-`func (o *VrfIpReservation) GetVrfOk() (*FindVrfs200ResponseVrfsInner, bool)`
+`func (o *VrfIpReservation) GetVrfOk() (*GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1Vrf, bool)`
 
 GetVrfOk returns a tuple with the Vrf field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVrf
 
-`func (o *VrfIpReservation) SetVrf(v FindVrfs200ResponseVrfsInner)`
+`func (o *VrfIpReservation) SetVrf(v GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1Vrf)`
 
 SetVrf sets Vrf field to given value.
 
-### HasVrf
-
-`func (o *VrfIpReservation) HasVrf() bool`
-
-HasVrf returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

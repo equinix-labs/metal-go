@@ -154,7 +154,7 @@ Name | Type | Description  | Notes
 
 ## UpdateMembership
 
-> FindInvitations200ResponseInvitationsInner UpdateMembership(ctx, id).Body(body).Execute()
+> FindInvitations200ResponseInvitationsInner UpdateMembership(ctx, id).UpdateMembershipRequest(updateMembershipRequest).Execute()
 
 Update the membership
 
@@ -174,11 +174,11 @@ import (
 
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Membership UUID
-    body := *openapiclient.NewUpdateMembershipRequest() // UpdateMembershipRequest | Membership to update
+    updateMembershipRequest := *openapiclient.NewUpdateMembershipRequest() // UpdateMembershipRequest | Membership to update
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.MembershipsApi.UpdateMembership(context.Background(), id).Body(body).Execute()
+    resp, r, err := apiClient.MembershipsApi.UpdateMembership(context.Background(), id).UpdateMembershipRequest(updateMembershipRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MembershipsApi.UpdateMembership``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -204,7 +204,7 @@ Other parameters are passed through a pointer to a apiUpdateMembershipRequest st
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**UpdateMembershipRequest**](UpdateMembershipRequest.md) | Membership to update | 
+ **updateMembershipRequest** | [**UpdateMembershipRequest**](UpdateMembershipRequest.md) | Membership to update | 
 
 ### Return type
 

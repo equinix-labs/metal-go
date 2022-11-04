@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 ## CreateLicense
 
-> FindLicenseById200Response CreateLicense(ctx, id).Body(body).Execute()
+> FindLicenseById200Response CreateLicense(ctx, id).CreateLicenseRequest(createLicenseRequest).Execute()
 
 Create a License
 
@@ -34,11 +34,11 @@ import (
 
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Project UUID
-    body := *openapiclient.NewCreateLicenseRequest() // CreateLicenseRequest | License to create
+    createLicenseRequest := *openapiclient.NewCreateLicenseRequest() // CreateLicenseRequest | License to create
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.LicensesApi.CreateLicense(context.Background(), id).Body(body).Execute()
+    resp, r, err := apiClient.LicensesApi.CreateLicense(context.Background(), id).CreateLicenseRequest(createLicenseRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LicensesApi.CreateLicense``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -64,7 +64,7 @@ Other parameters are passed through a pointer to a apiCreateLicenseRequest struc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**CreateLicenseRequest**](CreateLicenseRequest.md) | License to create | 
+ **createLicenseRequest** | [**CreateLicenseRequest**](CreateLicenseRequest.md) | License to create | 
 
 ### Return type
 
@@ -306,7 +306,7 @@ Name | Type | Description  | Notes
 
 ## UpdateLicense
 
-> FindLicenseById200Response UpdateLicense(ctx, id).Body(body).Execute()
+> FindLicenseById200Response UpdateLicense(ctx, id).UpdateLicenseRequest(updateLicenseRequest).Execute()
 
 Update the license
 
@@ -326,11 +326,11 @@ import (
 
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | License UUID
-    body := *openapiclient.NewUpdateLicenseRequest() // UpdateLicenseRequest | License to update
+    updateLicenseRequest := *openapiclient.NewUpdateLicenseRequest() // UpdateLicenseRequest | License to update
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.LicensesApi.UpdateLicense(context.Background(), id).Body(body).Execute()
+    resp, r, err := apiClient.LicensesApi.UpdateLicense(context.Background(), id).UpdateLicenseRequest(updateLicenseRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LicensesApi.UpdateLicense``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -356,7 +356,7 @@ Other parameters are passed through a pointer to a apiUpdateLicenseRequest struc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**UpdateLicenseRequest**](UpdateLicenseRequest.md) | License to update | 
+ **updateLicenseRequest** | [**UpdateLicenseRequest**](UpdateLicenseRequest.md) | License to update | 
 
 ### Return type
 

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**VirtualNetworks** | Pointer to [**[]FindVirtualNetworks200ResponseVirtualNetworksInner**](FindVirtualNetworks200ResponseVirtualNetworksInner.md) |  | [optional] 
+**VirtualNetworks** | Pointer to [**[]FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetwork**](FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetwork.md) |  | [optional] 
 
 ## Methods
 
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetVirtualNetworks
 
-`func (o *VirtualNetworkList) GetVirtualNetworks() []FindVirtualNetworks200ResponseVirtualNetworksInner`
+`func (o *VirtualNetworkList) GetVirtualNetworks() []FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetwork`
 
 GetVirtualNetworks returns the VirtualNetworks field if non-nil, zero value otherwise.
 
 ### GetVirtualNetworksOk
 
-`func (o *VirtualNetworkList) GetVirtualNetworksOk() (*[]FindVirtualNetworks200ResponseVirtualNetworksInner, bool)`
+`func (o *VirtualNetworkList) GetVirtualNetworksOk() (*[]FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetwork, bool)`
 
 GetVirtualNetworksOk returns a tuple with the VirtualNetworks field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVirtualNetworks
 
-`func (o *VirtualNetworkList) SetVirtualNetworks(v []FindVirtualNetworks200ResponseVirtualNetworksInner)`
+`func (o *VirtualNetworkList) SetVirtualNetworks(v []FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetwork)`
 
 SetVirtualNetworks sets VirtualNetworks field to given value.
 
