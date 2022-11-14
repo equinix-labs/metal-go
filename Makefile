@@ -60,6 +60,8 @@ gen:
 		-i /local/${SPEC_PATCHED_FILE}
 	# generated tests have a broken import
 	find ${PACKAGE_PREFIX}/${PACKAGE_MAJOR}/test -type f -exec sed -i '' 's_"github.com\/equinix-labs\/metal-go"_"github.com\/equinix-labs\/metal-go\/metal\/v1"_g' {} \;
+    # generated code is missing some types; hack 'em in
+	cat missing_types.go.part >> metal/v1/utils.go
 
 validate:
 	${SWAGGER} validate \
