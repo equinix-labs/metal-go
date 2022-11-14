@@ -15,7 +15,9 @@ GIT_REPO=metal-go
 PACKAGE_PREFIX=metal
 PACKAGE_MAJOR=v1
 
-SWAGGER=docker run --rm -u ${CURRENT_UID}:${CURRENT_GID} -v $(CURDIR):/local ${IMAGE}
+# Pull in custom generator jar so I can use unmerged bugfixes
+OPENAPI_GENERATOR=/Users/ctreatman/Documents/code/openapi-generator/modules/openapi-generator-cli/target/openapi-generator-cli.jar
+SWAGGER=docker run --rm -u ${CURRENT_UID}:${CURRENT_GID} -v $(CURDIR):/local -v $(OPENAPI_GENERATOR):/opt/openapi-generator/modules/openapi-generator-cli/target/openapi-generator-cli.jar ${IMAGE}
 GOLANGCI_LINT=golangci-lint
 
 all: pull fetch patch clean gen mod docs move-other patch-post fmt test stage
