@@ -54,14 +54,13 @@ clean:
 gen:
 	${SWAGGER} generate -g go \
 		--package-name ${PACKAGE_MAJOR} \
+		-p isGoSubmodule=true \
 		--model-package types \
 		--api-package models \
 		--git-user-id ${GIT_ORG} \
-		--git-repo-id ${GIT_REPO} \
+		--git-repo-id ${GIT_REPO}/${PACKAGE_PREFIX} \
 		-o /local/${PACKAGE_PREFIX}/${PACKAGE_MAJOR} \
 		-i /local/${SPEC_PATCHED_FILE}
-	# generated tests have a broken import
-	find ${PACKAGE_PREFIX}/${PACKAGE_MAJOR}/test -type f -exec sed -i '' 's_"github.com\/equinix-labs\/metal-go"_"github.com\/equinix-labs\/metal-go\/metal\/v1"_g' {} \;
     # generated code is missing some types; hack 'em in
 	cat missing_types.go.part >> metal/v1/utils.go
 
