@@ -13,6 +13,7 @@ package v1
 
 import (
 	"encoding/json"
+	"time"
 )
 
 // DeviceCreateInFacilityInput struct for DeviceCreateInFacilityInput

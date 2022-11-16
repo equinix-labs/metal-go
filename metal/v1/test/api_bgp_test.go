@@ -27,10 +27,9 @@ func Test_v1_BGPApiService(t *testing.T) {
 
 		var id string
 
-		resp, httpRes, err := apiClient.BGPApi.DeleteBgpSession(context.Background(), id).Execute()
+		httpRes, err := apiClient.BGPApi.DeleteBgpSession(context.Background(), id).Execute()
 
 		require.Nil(t, err)
-		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 	})
 
@@ -87,10 +86,9 @@ func Test_v1_BGPApiService(t *testing.T) {
 
 		var id string
 
-		resp, httpRes, err := apiClient.BGPApi.RequestBgpConfig(context.Background(), id).Execute()
+		httpRes, err := apiClient.BGPApi.RequestBgpConfig(context.Background(), id).Execute()
 
 		require.Nil(t, err)
-		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 	})
 
@@ -99,10 +97,9 @@ func Test_v1_BGPApiService(t *testing.T) {
 
 		var id string
 
-		resp, httpRes, err := apiClient.BGPApi.UpdateBgpSession(context.Background(), id).Execute()
+		httpRes, err := apiClient.BGPApi.UpdateBgpSession(context.Background(), id).Execute()
 
 		require.Nil(t, err)
-		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 	})
 }

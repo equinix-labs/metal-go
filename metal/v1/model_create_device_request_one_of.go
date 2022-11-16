@@ -13,6 +13,7 @@ package v1
 
 import (
 	"encoding/json"
+	"time"
 )
 
 // CreateDeviceRequestOneOf struct for CreateDeviceRequestOneOf

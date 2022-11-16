@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **Name** | Pointer to **string** |  | [optional] 
 **Speed** | Pointer to **string** | Speed can be changed only if it is an interconnection on a Dedicated Port | [optional] 
 **Tags** | Pointer to **[]string** |  | [optional] 
-**Vnid** | Pointer to **string** | A Virtual Network record UUID or the VNID of a Virtual Network in your project. | [optional] 
+**Vnid** | Pointer to **string** | A Virtual Network record UUID or the VNID of a Metro Virtual Network in your project. | [optional] 
 
 ## Methods
 

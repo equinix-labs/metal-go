@@ -13,6 +13,7 @@ package v1
 
 import (
 	"encoding/json"
+	"time"
 )
 
 // FindDeviceById200ResponseCreatedBy struct for FindDeviceById200ResponseCreatedBy

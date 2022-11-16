@@ -39,10 +39,9 @@ func Test_v1_LicensesApiService(t *testing.T) {
 
 		var id string
 
-		resp, httpRes, err := apiClient.LicensesApi.DeleteLicense(context.Background(), id).Execute()
+		httpRes, err := apiClient.LicensesApi.DeleteLicense(context.Background(), id).Execute()
 
 		require.Nil(t, err)
-		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 	})
 

@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **Project** | **string** |  | 
 **Speed** | Pointer to **int32** | speed can be passed as integer number representing bps speed or string (e.g. &#39;52m&#39; or &#39;100g&#39; or &#39;4 gbps&#39;) | [optional] 
 **Tags** | Pointer to **[]string** |  | [optional] 
-**Vnid** | Pointer to **string** | A Virtual Network record UUID or the VNID of a Virtual Network in your project (sent as integer). | [optional] 
+**Vnid** | Pointer to **string** | A Virtual Network record UUID or the VNID of a Metro Virtual Network in your project (sent as integer). | [optional] 
 **CustomerIp** | Pointer to **string** | An IP address from the subnet that will be used on the Customer side. This parameter is optional, but if supplied, we will use the other usable IP address in the subnet as the Metal IP. By default, the last usable IP address in the subnet will be used. | [optional] 
 **Md5** | Pointer to **NullableString** | The MD5 password for the BGP peering in plaintext (not a checksum). | [optional] 
 **MetalIp** | Pointer to **string** | An IP address from the subnet that will be used on the Metal side. This parameter is optional, but if supplied, we will use the other usable IP address in the subnet as the Customer IP. By default, the first usable IP address in the subnet will be used. | [optional] 

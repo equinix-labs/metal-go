@@ -63,10 +63,9 @@ func Test_v1_DevicesApiService(t *testing.T) {
 
 		var id string
 
-		resp, httpRes, err := apiClient.DevicesApi.DeleteDevice(context.Background(), id).Execute()
+		httpRes, err := apiClient.DevicesApi.DeleteDevice(context.Background(), id).Execute()
 
 		require.Nil(t, err)
-		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 	})
 
@@ -99,10 +98,9 @@ func Test_v1_DevicesApiService(t *testing.T) {
 
 		var id string
 
-		resp, httpRes, err := apiClient.DevicesApi.FindDeviceCustomdata(context.Background(), id).Execute()
+		httpRes, err := apiClient.DevicesApi.FindDeviceCustomdata(context.Background(), id).Execute()
 
 		require.Nil(t, err)
-		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 	})
 
@@ -136,10 +134,9 @@ func Test_v1_DevicesApiService(t *testing.T) {
 		var instanceId string
 		var id string
 
-		resp, httpRes, err := apiClient.DevicesApi.FindIPAssignmentCustomdata(context.Background(), instanceId, id).Execute()
+		httpRes, err := apiClient.DevicesApi.FindIPAssignmentCustomdata(context.Background(), instanceId, id).Execute()
 
 		require.Nil(t, err)
-		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 	})
 
@@ -160,10 +157,9 @@ func Test_v1_DevicesApiService(t *testing.T) {
 
 		var id string
 
-		resp, httpRes, err := apiClient.DevicesApi.FindInstanceBandwidth(context.Background(), id).Execute()
+		httpRes, err := apiClient.DevicesApi.FindInstanceBandwidth(context.Background(), id).Execute()
 
 		require.Nil(t, err)
-		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 	})
 
@@ -196,10 +192,9 @@ func Test_v1_DevicesApiService(t *testing.T) {
 
 		var id string
 
-		resp, httpRes, err := apiClient.DevicesApi.FindTraffic(context.Background(), id).Execute()
+		httpRes, err := apiClient.DevicesApi.FindTraffic(context.Background(), id).Execute()
 
 		require.Nil(t, err)
-		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 	})
 
@@ -220,10 +215,9 @@ func Test_v1_DevicesApiService(t *testing.T) {
 
 		var id string
 
-		resp, httpRes, err := apiClient.DevicesApi.PerformAction(context.Background(), id).Execute()
+		httpRes, err := apiClient.DevicesApi.PerformAction(context.Background(), id).Execute()
 
 		require.Nil(t, err)
-		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 	})
 

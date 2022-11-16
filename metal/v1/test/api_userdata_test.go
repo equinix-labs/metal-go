@@ -25,10 +25,9 @@ func Test_v1_UserdataApiService(t *testing.T) {
 	t.Run("Test UserdataApiService ValidateUserdata", func(t *testing.T) {
 		t.Skip("skip test") // remove to run test
 
-		resp, httpRes, err := apiClient.UserdataApi.ValidateUserdata(context.Background()).Execute()
+		httpRes, err := apiClient.UserdataApi.ValidateUserdata(context.Background()).Execute()
 
 		require.Nil(t, err)
-		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 	})
 }

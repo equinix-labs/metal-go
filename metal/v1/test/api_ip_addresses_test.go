@@ -27,10 +27,9 @@ func Test_v1_IPAddressesApiService(t *testing.T) {
 
 		var id string
 
-		resp, httpRes, err := apiClient.IPAddressesApi.DeleteIPAddress(context.Background(), id).Execute()
+		httpRes, err := apiClient.IPAddressesApi.DeleteIPAddress(context.Background(), id).Execute()
 
 		require.Nil(t, err)
-		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 	})
 
@@ -51,10 +50,9 @@ func Test_v1_IPAddressesApiService(t *testing.T) {
 
 		var id string
 
-		resp, httpRes, err := apiClient.IPAddressesApi.FindIPAddressCustomdata(context.Background(), id).Execute()
+		httpRes, err := apiClient.IPAddressesApi.FindIPAddressCustomdata(context.Background(), id).Execute()
 
 		require.Nil(t, err)
-		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 	})
 

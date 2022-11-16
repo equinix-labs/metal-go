@@ -25,10 +25,9 @@ func Test_v1_SupportRequestApiService(t *testing.T) {
 	t.Run("Test SupportRequestApiService RequestSuppert", func(t *testing.T) {
 		t.Skip("skip test") // remove to run test
 
-		resp, httpRes, err := apiClient.SupportRequestApi.RequestSuppert(context.Background()).Execute()
+		httpRes, err := apiClient.SupportRequestApi.RequestSuppert(context.Background()).Execute()
 
 		require.Nil(t, err)
-		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 	})
 }

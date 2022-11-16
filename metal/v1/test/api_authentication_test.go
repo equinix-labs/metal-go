@@ -49,10 +49,9 @@ func Test_v1_AuthenticationApiService(t *testing.T) {
 
 		var id string
 
-		resp, httpRes, err := apiClient.AuthenticationApi.DeleteAPIKey(context.Background(), id).Execute()
+		httpRes, err := apiClient.AuthenticationApi.DeleteAPIKey(context.Background(), id).Execute()
 
 		require.Nil(t, err)
-		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 	})
 
@@ -61,10 +60,9 @@ func Test_v1_AuthenticationApiService(t *testing.T) {
 
 		var id string
 
-		resp, httpRes, err := apiClient.AuthenticationApi.DeleteUserAPIKey(context.Background(), id).Execute()
+		httpRes, err := apiClient.AuthenticationApi.DeleteUserAPIKey(context.Background(), id).Execute()
 
 		require.Nil(t, err)
-		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 	})
 

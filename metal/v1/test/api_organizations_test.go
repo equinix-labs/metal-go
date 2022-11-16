@@ -73,10 +73,9 @@ func Test_v1_OrganizationsApiService(t *testing.T) {
 
 		var id string
 
-		resp, httpRes, err := apiClient.OrganizationsApi.DeleteOrganization(context.Background(), id).Execute()
+		httpRes, err := apiClient.OrganizationsApi.DeleteOrganization(context.Background(), id).Execute()
 
 		require.Nil(t, err)
-		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 	})
 
@@ -109,10 +108,9 @@ func Test_v1_OrganizationsApiService(t *testing.T) {
 
 		var id string
 
-		resp, httpRes, err := apiClient.OrganizationsApi.FindOrganizationCustomdata(context.Background(), id).Execute()
+		httpRes, err := apiClient.OrganizationsApi.FindOrganizationCustomdata(context.Background(), id).Execute()
 
 		require.Nil(t, err)
-		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 	})
 

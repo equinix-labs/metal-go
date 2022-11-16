@@ -25,40 +25,36 @@ func Test_v1_TwoFactorAuthApiService(t *testing.T) {
 	t.Run("Test TwoFactorAuthApiService DisableTfaApp", func(t *testing.T) {
 		t.Skip("skip test") // remove to run test
 
-		resp, httpRes, err := apiClient.TwoFactorAuthApi.DisableTfaApp(context.Background()).Execute()
+		httpRes, err := apiClient.TwoFactorAuthApi.DisableTfaApp(context.Background()).Execute()
 
 		require.Nil(t, err)
-		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 	})
 
 	t.Run("Test TwoFactorAuthApiService DisableTfaSms", func(t *testing.T) {
 		t.Skip("skip test") // remove to run test
 
-		resp, httpRes, err := apiClient.TwoFactorAuthApi.DisableTfaSms(context.Background()).Execute()
+		httpRes, err := apiClient.TwoFactorAuthApi.DisableTfaSms(context.Background()).Execute()
 
 		require.Nil(t, err)
-		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 	})
 
 	t.Run("Test TwoFactorAuthApiService EnableTfaApp", func(t *testing.T) {
 		t.Skip("skip test") // remove to run test
 
-		resp, httpRes, err := apiClient.TwoFactorAuthApi.EnableTfaApp(context.Background()).Execute()
+		httpRes, err := apiClient.TwoFactorAuthApi.EnableTfaApp(context.Background()).Execute()
 
 		require.Nil(t, err)
-		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 	})
 
 	t.Run("Test TwoFactorAuthApiService EnableTfaSms", func(t *testing.T) {
 		t.Skip("skip test") // remove to run test
 
-		resp, httpRes, err := apiClient.TwoFactorAuthApi.EnableTfaSms(context.Background()).Execute()
+		httpRes, err := apiClient.TwoFactorAuthApi.EnableTfaSms(context.Background()).Execute()
 
 		require.Nil(t, err)
-		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 	})
 }

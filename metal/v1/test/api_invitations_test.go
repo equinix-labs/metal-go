@@ -39,10 +39,9 @@ func Test_v1_InvitationsApiService(t *testing.T) {
 
 		var id string
 
-		resp, httpRes, err := apiClient.InvitationsApi.DeclineInvitation(context.Background(), id).Execute()
+		httpRes, err := apiClient.InvitationsApi.DeclineInvitation(context.Background(), id).Execute()
 
 		require.Nil(t, err)
-		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 	})
 

@@ -61,10 +61,9 @@ func Test_v1_ProjectsApiService(t *testing.T) {
 
 		var id string
 
-		resp, httpRes, err := apiClient.ProjectsApi.DeleteProject(context.Background(), id).Execute()
+		httpRes, err := apiClient.ProjectsApi.DeleteProject(context.Background(), id).Execute()
 
 		require.Nil(t, err)
-		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 	})
 
@@ -74,10 +73,9 @@ func Test_v1_ProjectsApiService(t *testing.T) {
 		var projectId string
 		var id string
 
-		resp, httpRes, err := apiClient.ProjectsApi.FindIPReservationCustomdata(context.Background(), projectId, id).Execute()
+		httpRes, err := apiClient.ProjectsApi.FindIPReservationCustomdata(context.Background(), projectId, id).Execute()
 
 		require.Nil(t, err)
-		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 	})
 
@@ -98,10 +96,9 @@ func Test_v1_ProjectsApiService(t *testing.T) {
 
 		var id string
 
-		resp, httpRes, err := apiClient.ProjectsApi.FindProjectCustomdata(context.Background(), id).Execute()
+		httpRes, err := apiClient.ProjectsApi.FindProjectCustomdata(context.Background(), id).Execute()
 
 		require.Nil(t, err)
-		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 	})
 

@@ -24,7 +24,7 @@ type VirtualCircuitCreateInput struct {
 	// speed can be passed as integer number representing bps speed or string (e.g. '52m' or '100g' or '4 gbps')
 	Speed *int32   `json:"speed,omitempty"`
 	Tags  []string `json:"tags,omitempty"`
-	// A Virtual Network record UUID or the VNID of a Virtual Network in your project (sent as integer).
+	// A Virtual Network record UUID or the VNID of a Metro Virtual Network in your project (sent as integer).
 	Vnid *string `json:"vnid,omitempty"`
 }
 

@@ -39,10 +39,9 @@ func Test_v1_BatchesApiService(t *testing.T) {
 
 		var id string
 
-		resp, httpRes, err := apiClient.BatchesApi.DeleteBatch(context.Background(), id).Execute()
+		httpRes, err := apiClient.BatchesApi.DeleteBatch(context.Background(), id).Execute()
 
 		require.Nil(t, err)
-		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 	})
 

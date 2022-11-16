@@ -27,10 +27,9 @@ func Test_v1_OTPsApiService(t *testing.T) {
 
 		var otp string
 
-		resp, httpRes, err := apiClient.OTPsApi.FindEnsureOtp(context.Background(), otp).Execute()
+		httpRes, err := apiClient.OTPsApi.FindEnsureOtp(context.Background(), otp).Execute()
 
 		require.Nil(t, err)
-		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 	})
 
@@ -47,10 +46,9 @@ func Test_v1_OTPsApiService(t *testing.T) {
 	t.Run("Test OTPsApiService ReceiveCodes", func(t *testing.T) {
 		t.Skip("skip test") // remove to run test
 
-		resp, httpRes, err := apiClient.OTPsApi.ReceiveCodes(context.Background()).Execute()
+		httpRes, err := apiClient.OTPsApi.ReceiveCodes(context.Background()).Execute()
 
 		require.Nil(t, err)
-		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 	})
 

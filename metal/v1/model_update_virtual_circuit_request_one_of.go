@@ -22,7 +22,7 @@ type UpdateVirtualCircuitRequestOneOf struct {
 	// Speed can be changed only if it is an interconnection on a Dedicated Port
 	Speed *string  `json:"speed,omitempty"`
 	Tags  []string `json:"tags,omitempty"`
-	// A Virtual Network record UUID or the VNID of a Virtual Network in your project.
+	// A Virtual Network record UUID or the VNID of a Metro Virtual Network in your project.
 	Vnid *string `json:"vnid,omitempty"`
 }
 

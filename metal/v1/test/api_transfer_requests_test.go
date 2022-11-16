@@ -27,10 +27,9 @@ func Test_v1_TransferRequestsApiService(t *testing.T) {
 
 		var id string
 
-		resp, httpRes, err := apiClient.TransferRequestsApi.AcceptTransferRequest(context.Background(), id).Execute()
+		httpRes, err := apiClient.TransferRequestsApi.AcceptTransferRequest(context.Background(), id).Execute()
 
 		require.Nil(t, err)
-		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 	})
 
@@ -39,10 +38,9 @@ func Test_v1_TransferRequestsApiService(t *testing.T) {
 
 		var id string
 
-		resp, httpRes, err := apiClient.TransferRequestsApi.DeclineTransferRequest(context.Background(), id).Execute()
+		httpRes, err := apiClient.TransferRequestsApi.DeclineTransferRequest(context.Background(), id).Execute()
 
 		require.Nil(t, err)
-		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 	})
 
