@@ -52,8 +52,8 @@ FindFacilities Retrieve all facilities
 
 Provides a listing of available datacenters where you can provision Packet devices.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiFindFacilitiesRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiFindFacilitiesRequest
 */
 func (a *FacilitiesApiService) FindFacilities(ctx context.Context) ApiFindFacilitiesRequest {
 	return ApiFindFacilitiesRequest{
@@ -63,8 +63,7 @@ func (a *FacilitiesApiService) FindFacilities(ctx context.Context) ApiFindFacili
 }
 
 // Execute executes the request
-//
-//	@return FindFacilities200Response
+//  @return FindFacilities200Response
 func (a *FacilitiesApiService) FindFacilitiesExecute(r ApiFindFacilitiesRequest) (*FindFacilities200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -213,9 +212,9 @@ FindFacilitiesByOrganization Retrieve all facilities visible by the organization
 
 Returns a listing of available datacenters for the given organization
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id Organization UUID
-	@return ApiFindFacilitiesByOrganizationRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id Organization UUID
+ @return ApiFindFacilitiesByOrganizationRequest
 */
 func (a *FacilitiesApiService) FindFacilitiesByOrganization(ctx context.Context, id string) ApiFindFacilitiesByOrganizationRequest {
 	return ApiFindFacilitiesByOrganizationRequest{
@@ -226,8 +225,7 @@ func (a *FacilitiesApiService) FindFacilitiesByOrganization(ctx context.Context,
 }
 
 // Execute executes the request
-//
-//	@return FindFacilities200Response
+//  @return FindFacilities200Response
 func (a *FacilitiesApiService) FindFacilitiesByOrganizationExecute(r ApiFindFacilitiesByOrganizationRequest) (*FindFacilities200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -383,9 +381,9 @@ FindFacilitiesByProject Retrieve all facilities visible by the project
 
 Returns a listing of available datacenters for the given project
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id Project UUID
-	@return ApiFindFacilitiesByProjectRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id Project UUID
+ @return ApiFindFacilitiesByProjectRequest
 */
 func (a *FacilitiesApiService) FindFacilitiesByProject(ctx context.Context, id string) ApiFindFacilitiesByProjectRequest {
 	return ApiFindFacilitiesByProjectRequest{
@@ -396,8 +394,7 @@ func (a *FacilitiesApiService) FindFacilitiesByProject(ctx context.Context, id s
 }
 
 // Execute executes the request
-//
-//	@return FindFacilities200Response
+//  @return FindFacilities200Response
 func (a *FacilitiesApiService) FindFacilitiesByProjectExecute(r ApiFindFacilitiesByProjectRequest) (*FindFacilities200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet

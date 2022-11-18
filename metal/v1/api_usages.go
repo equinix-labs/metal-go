@@ -52,9 +52,9 @@ FindDeviceUsages Retrieve all usages for device
 
 Returns all usages for a device.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id Device UUID
-	@return ApiFindDeviceUsagesRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id Device UUID
+ @return ApiFindDeviceUsagesRequest
 */
 func (a *UsagesApiService) FindDeviceUsages(ctx context.Context, id string) ApiFindDeviceUsagesRequest {
 	return ApiFindDeviceUsagesRequest{
@@ -65,8 +65,7 @@ func (a *UsagesApiService) FindDeviceUsages(ctx context.Context, id string) ApiF
 }
 
 // Execute executes the request
-//
-//	@return FindDeviceUsages200Response
+//  @return FindDeviceUsages200Response
 func (a *UsagesApiService) FindDeviceUsagesExecute(r ApiFindDeviceUsagesRequest) (*FindDeviceUsages200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -211,9 +210,9 @@ FindProjectUsage Retrieve all usages for project
 
 Returns all usages for a project.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id Project UUID
-	@return ApiFindProjectUsageRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id Project UUID
+ @return ApiFindProjectUsageRequest
 */
 func (a *UsagesApiService) FindProjectUsage(ctx context.Context, id string) ApiFindProjectUsageRequest {
 	return ApiFindProjectUsageRequest{
@@ -224,8 +223,7 @@ func (a *UsagesApiService) FindProjectUsage(ctx context.Context, id string) ApiF
 }
 
 // Execute executes the request
-//
-//	@return FindProjectUsage200Response
+//  @return FindProjectUsage200Response
 func (a *UsagesApiService) FindProjectUsageExecute(r ApiFindProjectUsageRequest) (*FindProjectUsage200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet

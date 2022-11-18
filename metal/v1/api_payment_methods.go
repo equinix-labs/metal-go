@@ -38,9 +38,9 @@ DeletePaymentMethod Delete the payment method
 
 Deletes the payment method.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id Payment Method UUID
-	@return ApiDeletePaymentMethodRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id Payment Method UUID
+ @return ApiDeletePaymentMethodRequest
 */
 func (a *PaymentMethodsApiService) DeletePaymentMethod(ctx context.Context, id string) ApiDeletePaymentMethodRequest {
 	return ApiDeletePaymentMethodRequest{
@@ -179,9 +179,9 @@ FindPaymentMethodById Retrieve a payment method
 
 Returns a payment method
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id Payment Method UUID
-	@return ApiFindPaymentMethodByIdRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id Payment Method UUID
+ @return ApiFindPaymentMethodByIdRequest
 */
 func (a *PaymentMethodsApiService) FindPaymentMethodById(ctx context.Context, id string) ApiFindPaymentMethodByIdRequest {
 	return ApiFindPaymentMethodByIdRequest{
@@ -192,8 +192,7 @@ func (a *PaymentMethodsApiService) FindPaymentMethodById(ctx context.Context, id
 }
 
 // Execute executes the request
-//
-//	@return FindOrganizationPaymentMethods200ResponsePaymentMethodsInner
+//  @return FindOrganizationPaymentMethods200ResponsePaymentMethodsInner
 func (a *PaymentMethodsApiService) FindPaymentMethodByIdExecute(r ApiFindPaymentMethodByIdRequest) (*FindOrganizationPaymentMethods200ResponsePaymentMethodsInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -331,9 +330,9 @@ UpdatePaymentMethod Update the payment method
 
 Updates the payment method.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id Payment Method UUID
-	@return ApiUpdatePaymentMethodRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id Payment Method UUID
+ @return ApiUpdatePaymentMethodRequest
 */
 func (a *PaymentMethodsApiService) UpdatePaymentMethod(ctx context.Context, id string) ApiUpdatePaymentMethodRequest {
 	return ApiUpdatePaymentMethodRequest{
@@ -344,8 +343,7 @@ func (a *PaymentMethodsApiService) UpdatePaymentMethod(ctx context.Context, id s
 }
 
 // Execute executes the request
-//
-//	@return FindOrganizationPaymentMethods200ResponsePaymentMethodsInner
+//  @return FindOrganizationPaymentMethods200ResponsePaymentMethodsInner
 func (a *PaymentMethodsApiService) UpdatePaymentMethodExecute(r ApiUpdatePaymentMethodRequest) (*FindOrganizationPaymentMethods200ResponsePaymentMethodsInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut

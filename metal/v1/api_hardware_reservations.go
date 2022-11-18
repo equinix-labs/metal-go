@@ -52,9 +52,9 @@ FindHardwareReservationById Retrieve a hardware reservation
 
 Returns a single hardware reservation
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id HardwareReservation UUID
-	@return ApiFindHardwareReservationByIdRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id HardwareReservation UUID
+ @return ApiFindHardwareReservationByIdRequest
 */
 func (a *HardwareReservationsApiService) FindHardwareReservationById(ctx context.Context, id string) ApiFindHardwareReservationByIdRequest {
 	return ApiFindHardwareReservationByIdRequest{
@@ -65,8 +65,7 @@ func (a *HardwareReservationsApiService) FindHardwareReservationById(ctx context
 }
 
 // Execute executes the request
-//
-//	@return FindDeviceById200Response
+//  @return FindDeviceById200Response
 func (a *HardwareReservationsApiService) FindHardwareReservationByIdExecute(r ApiFindHardwareReservationByIdRequest) (*FindDeviceById200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -236,9 +235,9 @@ FindProjectHardwareReservations Retrieve all hardware reservations for a given p
 
 Provides a collection of hardware reservations for a given project.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id Project UUID
-	@return ApiFindProjectHardwareReservationsRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id Project UUID
+ @return ApiFindProjectHardwareReservationsRequest
 */
 func (a *HardwareReservationsApiService) FindProjectHardwareReservations(ctx context.Context, id string) ApiFindProjectHardwareReservationsRequest {
 	return ApiFindProjectHardwareReservationsRequest{
@@ -249,8 +248,7 @@ func (a *HardwareReservationsApiService) FindProjectHardwareReservations(ctx con
 }
 
 // Execute executes the request
-//
-//	@return FindProjectHardwareReservations200Response
+//  @return FindProjectHardwareReservations200Response
 func (a *HardwareReservationsApiService) FindProjectHardwareReservationsExecute(r ApiFindProjectHardwareReservationsRequest) (*FindProjectHardwareReservations200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -405,9 +403,9 @@ MoveHardwareReservation Move a hardware reservation
 
 Move a hardware reservation to another project
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id Hardware Reservation UUID
-	@return ApiMoveHardwareReservationRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id Hardware Reservation UUID
+ @return ApiMoveHardwareReservationRequest
 */
 func (a *HardwareReservationsApiService) MoveHardwareReservation(ctx context.Context, id string) ApiMoveHardwareReservationRequest {
 	return ApiMoveHardwareReservationRequest{
@@ -418,8 +416,7 @@ func (a *HardwareReservationsApiService) MoveHardwareReservation(ctx context.Con
 }
 
 // Execute executes the request
-//
-//	@return MoveHardwareReservation201Response
+//  @return MoveHardwareReservation201Response
 func (a *HardwareReservationsApiService) MoveHardwareReservationExecute(r ApiMoveHardwareReservationRequest) (*MoveHardwareReservation201Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost

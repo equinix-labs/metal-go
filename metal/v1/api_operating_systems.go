@@ -36,8 +36,8 @@ FindOperatingSystemVersion Retrieve all operating system versions
 
 Provides a listing of available operating system versions.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiFindOperatingSystemVersionRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiFindOperatingSystemVersionRequest
 */
 func (a *OperatingSystemsApiService) FindOperatingSystemVersion(ctx context.Context) ApiFindOperatingSystemVersionRequest {
 	return ApiFindOperatingSystemVersionRequest{
@@ -47,8 +47,7 @@ func (a *OperatingSystemsApiService) FindOperatingSystemVersion(ctx context.Cont
 }
 
 // Execute executes the request
-//
-//	@return FindOperatingSystemVersion200Response
+//  @return FindOperatingSystemVersion200Response
 func (a *OperatingSystemsApiService) FindOperatingSystemVersionExecute(r ApiFindOperatingSystemVersionRequest) (*FindOperatingSystemVersion200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -160,8 +159,8 @@ FindOperatingSystems Retrieve all operating systems
 
 Provides a listing of available operating systems to provision your new device with.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiFindOperatingSystemsRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiFindOperatingSystemsRequest
 */
 func (a *OperatingSystemsApiService) FindOperatingSystems(ctx context.Context) ApiFindOperatingSystemsRequest {
 	return ApiFindOperatingSystemsRequest{
@@ -171,8 +170,7 @@ func (a *OperatingSystemsApiService) FindOperatingSystems(ctx context.Context) A
 }
 
 // Execute executes the request
-//
-//	@return FindOperatingSystemVersion200Response
+//  @return FindOperatingSystemVersion200Response
 func (a *OperatingSystemsApiService) FindOperatingSystemsExecute(r ApiFindOperatingSystemsRequest) (*FindOperatingSystemVersion200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet

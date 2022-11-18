@@ -45,9 +45,9 @@ CreateProjectSSHKey Create a ssh key for the given project
 
 Creates a ssh key.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id Project UUID
-	@return ApiCreateProjectSSHKeyRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id Project UUID
+ @return ApiCreateProjectSSHKeyRequest
 */
 func (a *SSHKeysApiService) CreateProjectSSHKey(ctx context.Context, id string) ApiCreateProjectSSHKeyRequest {
 	return ApiCreateProjectSSHKeyRequest{
@@ -58,8 +58,7 @@ func (a *SSHKeysApiService) CreateProjectSSHKey(ctx context.Context, id string) 
 }
 
 // Execute executes the request
-//
-//	@return FindDeviceSSHKeys200ResponseSshKeysInner
+//  @return FindDeviceSSHKeys200ResponseSshKeysInner
 func (a *SSHKeysApiService) CreateProjectSSHKeyExecute(r ApiCreateProjectSSHKeyRequest) (*FindDeviceSSHKeys200ResponseSshKeysInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -195,8 +194,8 @@ CreateSSHKey Create a ssh key for the current user
 
 Creates a ssh key.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiCreateSSHKeyRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiCreateSSHKeyRequest
 */
 func (a *SSHKeysApiService) CreateSSHKey(ctx context.Context) ApiCreateSSHKeyRequest {
 	return ApiCreateSSHKeyRequest{
@@ -206,8 +205,7 @@ func (a *SSHKeysApiService) CreateSSHKey(ctx context.Context) ApiCreateSSHKeyReq
 }
 
 // Execute executes the request
-//
-//	@return FindDeviceSSHKeys200ResponseSshKeysInner
+//  @return FindDeviceSSHKeys200ResponseSshKeysInner
 func (a *SSHKeysApiService) CreateSSHKeyExecute(r ApiCreateSSHKeyRequest) (*FindDeviceSSHKeys200ResponseSshKeysInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -336,9 +334,9 @@ DeleteSSHKey Delete the ssh key
 
 Deletes the ssh key.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id ssh key UUID
-	@return ApiDeleteSSHKeyRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id ssh key UUID
+ @return ApiDeleteSSHKeyRequest
 */
 func (a *SSHKeysApiService) DeleteSSHKey(ctx context.Context, id string) ApiDeleteSSHKeyRequest {
 	return ApiDeleteSSHKeyRequest{
@@ -495,9 +493,9 @@ FindDeviceSSHKeys Retrieve a device's ssh keys
 
 Returns a collection of the device's ssh keys.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id Project UUID
-	@return ApiFindDeviceSSHKeysRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id Project UUID
+ @return ApiFindDeviceSSHKeysRequest
 */
 func (a *SSHKeysApiService) FindDeviceSSHKeys(ctx context.Context, id string) ApiFindDeviceSSHKeysRequest {
 	return ApiFindDeviceSSHKeysRequest{
@@ -508,8 +506,7 @@ func (a *SSHKeysApiService) FindDeviceSSHKeys(ctx context.Context, id string) Ap
 }
 
 // Execute executes the request
-//
-//	@return FindDeviceSSHKeys200Response
+//  @return FindDeviceSSHKeys200Response
 func (a *SSHKeysApiService) FindDeviceSSHKeysExecute(r ApiFindDeviceSSHKeysRequest) (*FindDeviceSSHKeys200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -653,9 +650,9 @@ FindProjectSSHKeys Retrieve a project's ssh keys
 
 Returns a collection of the project's ssh keys.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id Project UUID
-	@return ApiFindProjectSSHKeysRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id Project UUID
+ @return ApiFindProjectSSHKeysRequest
 */
 func (a *SSHKeysApiService) FindProjectSSHKeys(ctx context.Context, id string) ApiFindProjectSSHKeysRequest {
 	return ApiFindProjectSSHKeysRequest{
@@ -666,8 +663,7 @@ func (a *SSHKeysApiService) FindProjectSSHKeys(ctx context.Context, id string) A
 }
 
 // Execute executes the request
-//
-//	@return FindDeviceSSHKeys200Response
+//  @return FindDeviceSSHKeys200Response
 func (a *SSHKeysApiService) FindProjectSSHKeysExecute(r ApiFindProjectSSHKeysRequest) (*FindDeviceSSHKeys200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -804,9 +800,9 @@ FindSSHKeyById Retrieve a ssh key
 
 Returns a single ssh key if the user has access
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id SSH Key UUID
-	@return ApiFindSSHKeyByIdRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id SSH Key UUID
+ @return ApiFindSSHKeyByIdRequest
 */
 func (a *SSHKeysApiService) FindSSHKeyById(ctx context.Context, id string) ApiFindSSHKeyByIdRequest {
 	return ApiFindSSHKeyByIdRequest{
@@ -817,8 +813,7 @@ func (a *SSHKeysApiService) FindSSHKeyById(ctx context.Context, id string) ApiFi
 }
 
 // Execute executes the request
-//
-//	@return FindDeviceSSHKeys200ResponseSshKeysInner
+//  @return FindDeviceSSHKeys200ResponseSshKeysInner
 func (a *SSHKeysApiService) FindSSHKeyByIdExecute(r ApiFindSSHKeyByIdRequest) (*FindDeviceSSHKeys200ResponseSshKeysInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -980,8 +975,8 @@ FindSSHKeys Retrieve all ssh keys
 
 Returns a collection of the user’s ssh keys.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiFindSSHKeysRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiFindSSHKeysRequest
 */
 func (a *SSHKeysApiService) FindSSHKeys(ctx context.Context) ApiFindSSHKeysRequest {
 	return ApiFindSSHKeysRequest{
@@ -991,8 +986,7 @@ func (a *SSHKeysApiService) FindSSHKeys(ctx context.Context) ApiFindSSHKeysReque
 }
 
 // Execute executes the request
-//
-//	@return FindDeviceSSHKeys200Response
+//  @return FindDeviceSSHKeys200Response
 func (a *SSHKeysApiService) FindSSHKeysExecute(r ApiFindSSHKeysRequest) (*FindDeviceSSHKeys200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -1121,9 +1115,9 @@ UpdateSSHKey Update the ssh key
 
 Updates the ssh key.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id SSH Key UUID
-	@return ApiUpdateSSHKeyRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id SSH Key UUID
+ @return ApiUpdateSSHKeyRequest
 */
 func (a *SSHKeysApiService) UpdateSSHKey(ctx context.Context, id string) ApiUpdateSSHKeyRequest {
 	return ApiUpdateSSHKeyRequest{
@@ -1134,8 +1128,7 @@ func (a *SSHKeysApiService) UpdateSSHKey(ctx context.Context, id string) ApiUpda
 }
 
 // Execute executes the request
-//
-//	@return FindDeviceSSHKeys200ResponseSshKeysInner
+//  @return FindDeviceSSHKeys200ResponseSshKeysInner
 func (a *SSHKeysApiService) UpdateSSHKeyExecute(r ApiUpdateSSHKeyRequest) (*FindDeviceSSHKeys200ResponseSshKeysInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut

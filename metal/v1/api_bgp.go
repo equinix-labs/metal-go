@@ -38,9 +38,9 @@ DeleteBgpSession Delete the BGP session
 
 Deletes the BGP session.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id BGP session UUID
-	@return ApiDeleteBgpSessionRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id BGP session UUID
+ @return ApiDeleteBgpSessionRequest
 */
 func (a *BGPApiService) DeleteBgpSession(ctx context.Context, id string) ApiDeleteBgpSessionRequest {
 	return ApiDeleteBgpSessionRequest{
@@ -190,9 +190,9 @@ FindBgpConfigByProject Retrieve a bgp config
 
 Returns a bgp config
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id Project UUID
-	@return ApiFindBgpConfigByProjectRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id Project UUID
+ @return ApiFindBgpConfigByProjectRequest
 */
 func (a *BGPApiService) FindBgpConfigByProject(ctx context.Context, id string) ApiFindBgpConfigByProjectRequest {
 	return ApiFindBgpConfigByProjectRequest{
@@ -203,8 +203,7 @@ func (a *BGPApiService) FindBgpConfigByProject(ctx context.Context, id string) A
 }
 
 // Execute executes the request
-//
-//	@return FindBgpConfigByProject200Response
+//  @return FindBgpConfigByProject200Response
 func (a *BGPApiService) FindBgpConfigByProjectExecute(r ApiFindBgpConfigByProjectRequest) (*FindBgpConfigByProject200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -360,9 +359,9 @@ FindBgpSessionById Retrieve a BGP session
 
 Returns a BGP session
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id BGP session UUID
-	@return ApiFindBgpSessionByIdRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id BGP session UUID
+ @return ApiFindBgpSessionByIdRequest
 */
 func (a *BGPApiService) FindBgpSessionById(ctx context.Context, id string) ApiFindBgpSessionByIdRequest {
 	return ApiFindBgpSessionByIdRequest{
@@ -373,8 +372,7 @@ func (a *BGPApiService) FindBgpSessionById(ctx context.Context, id string) ApiFi
 }
 
 // Execute executes the request
-//
-//	@return FindBgpSessionById200Response
+//  @return FindBgpSessionById200Response
 func (a *BGPApiService) FindBgpSessionByIdExecute(r ApiFindBgpSessionByIdRequest) (*FindBgpSessionById200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -516,9 +514,9 @@ FindGlobalBgpRanges Retrieve all global bgp ranges
 
 Returns all global bgp ranges for a project
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id Project UUID
-	@return ApiFindGlobalBgpRangesRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id Project UUID
+ @return ApiFindGlobalBgpRangesRequest
 */
 func (a *BGPApiService) FindGlobalBgpRanges(ctx context.Context, id string) ApiFindGlobalBgpRangesRequest {
 	return ApiFindGlobalBgpRangesRequest{
@@ -529,8 +527,7 @@ func (a *BGPApiService) FindGlobalBgpRanges(ctx context.Context, id string) ApiF
 }
 
 // Execute executes the request
-//
-//	@return FindGlobalBgpRanges200Response
+//  @return FindGlobalBgpRanges200Response
 func (a *BGPApiService) FindGlobalBgpRangesExecute(r ApiFindGlobalBgpRangesRequest) (*FindGlobalBgpRanges200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -666,9 +663,9 @@ FindProjectBgpSessions Retrieve all BGP sessions for project
 
 Provides a listing of available BGP sessions for the project.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id Project UUID
-	@return ApiFindProjectBgpSessionsRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id Project UUID
+ @return ApiFindProjectBgpSessionsRequest
 */
 func (a *BGPApiService) FindProjectBgpSessions(ctx context.Context, id string) ApiFindProjectBgpSessionsRequest {
 	return ApiFindProjectBgpSessionsRequest{
@@ -679,8 +676,7 @@ func (a *BGPApiService) FindProjectBgpSessions(ctx context.Context, id string) A
 }
 
 // Execute executes the request
-//
-//	@return FindBgpSessions200Response
+//  @return FindBgpSessions200Response
 func (a *BGPApiService) FindProjectBgpSessionsExecute(r ApiFindProjectBgpSessionsRequest) (*FindBgpSessions200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -812,9 +808,9 @@ RequestBgpConfig Requesting bgp config
 
 Requests to enable bgp configuration for a project.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id Project UUID
-	@return ApiRequestBgpConfigRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id Project UUID
+ @return ApiRequestBgpConfigRequest
 */
 func (a *BGPApiService) RequestBgpConfig(ctx context.Context, id string) ApiRequestBgpConfigRequest {
 	return ApiRequestBgpConfigRequest{
@@ -973,9 +969,9 @@ UpdateBgpSession Update the BGP session
 
 Updates the BGP session by either enabling or disabling the default route functionality.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id BGP session UUID
-	@return ApiUpdateBgpSessionRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id BGP session UUID
+ @return ApiUpdateBgpSessionRequest
 */
 func (a *BGPApiService) UpdateBgpSession(ctx context.Context, id string) ApiUpdateBgpSessionRequest {
 	return ApiUpdateBgpSessionRequest{

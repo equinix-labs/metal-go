@@ -46,9 +46,9 @@ AssignNativeVlan Assign a native VLAN
 
 Sets a virtual network on this port as a "native VLAN". The VLAN must have already been assigned using the using the "Assign a port to a virtual network" operation.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id Port UUID
-	@return ApiAssignNativeVlanRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id Port UUID
+ @return ApiAssignNativeVlanRequest
 */
 func (a *PortsApiService) AssignNativeVlan(ctx context.Context, id string) ApiAssignNativeVlanRequest {
 	return ApiAssignNativeVlanRequest{
@@ -59,8 +59,7 @@ func (a *PortsApiService) AssignNativeVlan(ctx context.Context, id string) ApiAs
 }
 
 // Execute executes the request
-//
-//	@return FindDeviceById200ResponseNetworkPortsInner
+//  @return FindDeviceById200ResponseNetworkPortsInner
 func (a *PortsApiService) AssignNativeVlanExecute(r ApiAssignNativeVlanRequest) (*FindDeviceById200ResponseNetworkPortsInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -206,9 +205,9 @@ AssignPort Assign a port to virtual network
 
 Assign a hardware port to a virtual network.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id Port UUID
-	@return ApiAssignPortRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id Port UUID
+ @return ApiAssignPortRequest
 */
 func (a *PortsApiService) AssignPort(ctx context.Context, id string) ApiAssignPortRequest {
 	return ApiAssignPortRequest{
@@ -219,8 +218,7 @@ func (a *PortsApiService) AssignPort(ctx context.Context, id string) ApiAssignPo
 }
 
 // Execute executes the request
-//
-//	@return FindDeviceById200ResponseNetworkPortsInner
+//  @return FindDeviceById200ResponseNetworkPortsInner
 func (a *PortsApiService) AssignPortExecute(r ApiAssignPortRequest) (*FindDeviceById200ResponseNetworkPortsInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -379,9 +377,9 @@ BondPort Enabling bonding
 
 Enabling bonding for one or all ports
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id Port UUID
-	@return ApiBondPortRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id Port UUID
+ @return ApiBondPortRequest
 */
 func (a *PortsApiService) BondPort(ctx context.Context, id string) ApiBondPortRequest {
 	return ApiBondPortRequest{
@@ -392,8 +390,7 @@ func (a *PortsApiService) BondPort(ctx context.Context, id string) ApiBondPortRe
 }
 
 // Execute executes the request
-//
-//	@return FindDeviceById200ResponseNetworkPortsInner
+//  @return FindDeviceById200ResponseNetworkPortsInner
 func (a *PortsApiService) BondPortExecute(r ApiBondPortRequest) (*FindDeviceById200ResponseNetworkPortsInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -550,9 +547,9 @@ ConvertLayer2 Convert to Layer 2
 
 Converts a bond port to Layer 2. IP assignments of the port will be removed.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id Port UUID
-	@return ApiConvertLayer2Request
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id Port UUID
+ @return ApiConvertLayer2Request
 */
 func (a *PortsApiService) ConvertLayer2(ctx context.Context, id string) ApiConvertLayer2Request {
 	return ApiConvertLayer2Request{
@@ -563,8 +560,7 @@ func (a *PortsApiService) ConvertLayer2(ctx context.Context, id string) ApiConve
 }
 
 // Execute executes the request
-//
-//	@return FindDeviceById200ResponseNetworkPortsInner
+//  @return FindDeviceById200ResponseNetworkPortsInner
 func (a *PortsApiService) ConvertLayer2Execute(r ApiConvertLayer2Request) (*FindDeviceById200ResponseNetworkPortsInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -720,9 +716,9 @@ ConvertLayer3 Convert to Layer 3
 
 Converts a bond port to Layer 3. VLANs must first be unassigned.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id Port UUID
-	@return ApiConvertLayer3Request
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id Port UUID
+ @return ApiConvertLayer3Request
 */
 func (a *PortsApiService) ConvertLayer3(ctx context.Context, id string) ApiConvertLayer3Request {
 	return ApiConvertLayer3Request{
@@ -733,8 +729,7 @@ func (a *PortsApiService) ConvertLayer3(ctx context.Context, id string) ApiConve
 }
 
 // Execute executes the request
-//
-//	@return FindDeviceById200ResponseNetworkPortsInner
+//  @return FindDeviceById200ResponseNetworkPortsInner
 func (a *PortsApiService) ConvertLayer3Execute(r ApiConvertLayer3Request) (*FindDeviceById200ResponseNetworkPortsInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -890,9 +885,9 @@ CreatePortVlanAssignmentBatch Create a new Port-VLAN Assignment management batch
 
 Create a new asynchronous batch request which handles adding and/or removing the VLANs to which the port is assigned.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id Port UUID
-	@return ApiCreatePortVlanAssignmentBatchRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id Port UUID
+ @return ApiCreatePortVlanAssignmentBatchRequest
 */
 func (a *PortsApiService) CreatePortVlanAssignmentBatch(ctx context.Context, id string) ApiCreatePortVlanAssignmentBatchRequest {
 	return ApiCreatePortVlanAssignmentBatchRequest{
@@ -903,8 +898,7 @@ func (a *PortsApiService) CreatePortVlanAssignmentBatch(ctx context.Context, id 
 }
 
 // Execute executes the request
-//
-//	@return FindPortVlanAssignmentBatches200ResponseBatchesInner
+//  @return FindPortVlanAssignmentBatches200ResponseBatchesInner
 func (a *PortsApiService) CreatePortVlanAssignmentBatchExecute(r ApiCreatePortVlanAssignmentBatchRequest) (*FindPortVlanAssignmentBatches200ResponseBatchesInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -1056,9 +1050,9 @@ DeleteNativeVlan Remove native VLAN
 
 Removes the native VLAN from this port
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id Port UUID
-	@return ApiDeleteNativeVlanRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id Port UUID
+ @return ApiDeleteNativeVlanRequest
 */
 func (a *PortsApiService) DeleteNativeVlan(ctx context.Context, id string) ApiDeleteNativeVlanRequest {
 	return ApiDeleteNativeVlanRequest{
@@ -1069,8 +1063,7 @@ func (a *PortsApiService) DeleteNativeVlan(ctx context.Context, id string) ApiDe
 }
 
 // Execute executes the request
-//
-//	@return FindDeviceById200ResponseNetworkPortsInner
+//  @return FindDeviceById200ResponseNetworkPortsInner
 func (a *PortsApiService) DeleteNativeVlanExecute(r ApiDeleteNativeVlanRequest) (*FindDeviceById200ResponseNetworkPortsInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodDelete
@@ -1213,9 +1206,9 @@ DisbondPort Disabling bonding
 
 Disabling bonding for one or all ports
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id Port UUID
-	@return ApiDisbondPortRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id Port UUID
+ @return ApiDisbondPortRequest
 */
 func (a *PortsApiService) DisbondPort(ctx context.Context, id string) ApiDisbondPortRequest {
 	return ApiDisbondPortRequest{
@@ -1226,8 +1219,7 @@ func (a *PortsApiService) DisbondPort(ctx context.Context, id string) ApiDisbond
 }
 
 // Execute executes the request
-//
-//	@return FindDeviceById200ResponseNetworkPortsInner
+//  @return FindDeviceById200ResponseNetworkPortsInner
 func (a *PortsApiService) DisbondPortExecute(r ApiDisbondPortRequest) (*FindDeviceById200ResponseNetworkPortsInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -1391,9 +1383,9 @@ FindPortById Retrieve a port
 
 Returns a port
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id Port UUID
-	@return ApiFindPortByIdRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id Port UUID
+ @return ApiFindPortByIdRequest
 */
 func (a *PortsApiService) FindPortById(ctx context.Context, id string) ApiFindPortByIdRequest {
 	return ApiFindPortByIdRequest{
@@ -1404,8 +1396,7 @@ func (a *PortsApiService) FindPortById(ctx context.Context, id string) ApiFindPo
 }
 
 // Execute executes the request
-//
-//	@return FindDeviceById200ResponseNetworkPortsInner
+//  @return FindDeviceById200ResponseNetworkPortsInner
 func (a *PortsApiService) FindPortByIdExecute(r ApiFindPortByIdRequest) (*FindDeviceById200ResponseNetworkPortsInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -1537,10 +1528,10 @@ FindPortVlanAssignmentBatchByPortIdAndBatchId Retrieve a VLAN Assignment Batch's
 
 Returns the details of an existing Port-VLAN Assignment batch, including the list of VLANs to assign or unassign, and the current state of the batch.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id Port UUID
-	@param batchId Batch ID
-	@return ApiFindPortVlanAssignmentBatchByPortIdAndBatchIdRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id Port UUID
+ @param batchId Batch ID
+ @return ApiFindPortVlanAssignmentBatchByPortIdAndBatchIdRequest
 */
 func (a *PortsApiService) FindPortVlanAssignmentBatchByPortIdAndBatchId(ctx context.Context, id string, batchId string) ApiFindPortVlanAssignmentBatchByPortIdAndBatchIdRequest {
 	return ApiFindPortVlanAssignmentBatchByPortIdAndBatchIdRequest{
@@ -1552,8 +1543,7 @@ func (a *PortsApiService) FindPortVlanAssignmentBatchByPortIdAndBatchId(ctx cont
 }
 
 // Execute executes the request
-//
-//	@return FindPortVlanAssignmentBatches200ResponseBatchesInner
+//  @return FindPortVlanAssignmentBatches200ResponseBatchesInner
 func (a *PortsApiService) FindPortVlanAssignmentBatchByPortIdAndBatchIdExecute(r ApiFindPortVlanAssignmentBatchByPortIdAndBatchIdRequest) (*FindPortVlanAssignmentBatches200ResponseBatchesInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -1690,9 +1680,9 @@ FindPortVlanAssignmentBatches List the VLAN Assignment Batches for a port
 
 Show all the VLAN assignment batches that have been created for managing this port's VLAN assignments
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id Port UUID
-	@return ApiFindPortVlanAssignmentBatchesRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id Port UUID
+ @return ApiFindPortVlanAssignmentBatchesRequest
 */
 func (a *PortsApiService) FindPortVlanAssignmentBatches(ctx context.Context, id string) ApiFindPortVlanAssignmentBatchesRequest {
 	return ApiFindPortVlanAssignmentBatchesRequest{
@@ -1703,8 +1693,7 @@ func (a *PortsApiService) FindPortVlanAssignmentBatches(ctx context.Context, id 
 }
 
 // Execute executes the request
-//
-//	@return FindPortVlanAssignmentBatches200Response
+//  @return FindPortVlanAssignmentBatches200Response
 func (a *PortsApiService) FindPortVlanAssignmentBatchesExecute(r ApiFindPortVlanAssignmentBatchesRequest) (*FindPortVlanAssignmentBatches200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -1855,10 +1844,10 @@ FindPortVlanAssignmentByPortIdAndAssignmentId Show a particular Port VLAN assign
 
 Show the details of a specific Port-VLAN assignment, including the current state and if the VLAN is set as native.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id Port UUID
-	@param assignmentId Assignment ID
-	@return ApiFindPortVlanAssignmentByPortIdAndAssignmentIdRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id Port UUID
+ @param assignmentId Assignment ID
+ @return ApiFindPortVlanAssignmentByPortIdAndAssignmentIdRequest
 */
 func (a *PortsApiService) FindPortVlanAssignmentByPortIdAndAssignmentId(ctx context.Context, id string, assignmentId string) ApiFindPortVlanAssignmentByPortIdAndAssignmentIdRequest {
 	return ApiFindPortVlanAssignmentByPortIdAndAssignmentIdRequest{
@@ -1870,8 +1859,7 @@ func (a *PortsApiService) FindPortVlanAssignmentByPortIdAndAssignmentId(ctx cont
 }
 
 // Execute executes the request
-//
-//	@return FindPortVlanAssignments200ResponseVlanAssignmentsInner
+//  @return FindPortVlanAssignments200ResponseVlanAssignmentsInner
 func (a *PortsApiService) FindPortVlanAssignmentByPortIdAndAssignmentIdExecute(r ApiFindPortVlanAssignmentByPortIdAndAssignmentIdRequest) (*FindPortVlanAssignments200ResponseVlanAssignmentsInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -2044,9 +2032,9 @@ FindPortVlanAssignments List Current VLAN assignments for a port
 
 Show the port's current VLAN assignments, including if this VLAN is set as native, and the current state of the assignment (ex. 'assigned' or 'unassigning')
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id Port UUID
-	@return ApiFindPortVlanAssignmentsRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id Port UUID
+ @return ApiFindPortVlanAssignmentsRequest
 */
 func (a *PortsApiService) FindPortVlanAssignments(ctx context.Context, id string) ApiFindPortVlanAssignmentsRequest {
 	return ApiFindPortVlanAssignmentsRequest{
@@ -2057,8 +2045,7 @@ func (a *PortsApiService) FindPortVlanAssignments(ctx context.Context, id string
 }
 
 // Execute executes the request
-//
-//	@return FindPortVlanAssignments200Response
+//  @return FindPortVlanAssignments200Response
 func (a *PortsApiService) FindPortVlanAssignmentsExecute(r ApiFindPortVlanAssignmentsRequest) (*FindPortVlanAssignments200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -2223,9 +2210,9 @@ UnassignPort Unassign a port
 
 Unassign a port for a hardware.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id Port UUID
-	@return ApiUnassignPortRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id Port UUID
+ @return ApiUnassignPortRequest
 */
 func (a *PortsApiService) UnassignPort(ctx context.Context, id string) ApiUnassignPortRequest {
 	return ApiUnassignPortRequest{
@@ -2236,8 +2223,7 @@ func (a *PortsApiService) UnassignPort(ctx context.Context, id string) ApiUnassi
 }
 
 // Execute executes the request
-//
-//	@return FindDeviceById200ResponseNetworkPortsInner
+//  @return FindDeviceById200ResponseNetworkPortsInner
 func (a *PortsApiService) UnassignPortExecute(r ApiUnassignPortRequest) (*FindDeviceById200ResponseNetworkPortsInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost

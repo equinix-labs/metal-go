@@ -37,8 +37,8 @@ FindMetros Retrieve all metros
 
 Provides a listing of available metros
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiFindMetrosRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiFindMetrosRequest
 */
 func (a *MetrosApiService) FindMetros(ctx context.Context) ApiFindMetrosRequest {
 	return ApiFindMetrosRequest{
@@ -48,8 +48,7 @@ func (a *MetrosApiService) FindMetros(ctx context.Context) ApiFindMetrosRequest 
 }
 
 // Execute executes the request
-//
-//	@return FindMetros200Response
+//  @return FindMetros200Response
 func (a *MetrosApiService) FindMetrosExecute(r ApiFindMetrosRequest) (*FindMetros200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -162,9 +161,9 @@ GetMetro Retrieve a specific Metro's details
 
 Show the details for a metro, including name, code, and country.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id Metro UUID
-	@return ApiGetMetroRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id Metro UUID
+ @return ApiGetMetroRequest
 */
 func (a *MetrosApiService) GetMetro(ctx context.Context, id string) ApiGetMetroRequest {
 	return ApiGetMetroRequest{
@@ -175,8 +174,7 @@ func (a *MetrosApiService) GetMetro(ctx context.Context, id string) ApiGetMetroR
 }
 
 // Execute executes the request
-//
-//	@return GetInterconnection200ResponseMetroAllOf
+//  @return GetInterconnection200ResponseMetroAllOf
 func (a *MetrosApiService) GetMetroExecute(r ApiGetMetroRequest) (*GetInterconnection200ResponseMetroAllOf, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet

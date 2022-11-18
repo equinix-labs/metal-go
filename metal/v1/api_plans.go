@@ -58,8 +58,8 @@ FindPlans Retrieve all plans
 
 Provides a listing of available plans to provision your device on.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiFindPlansRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiFindPlansRequest
 */
 func (a *PlansApiService) FindPlans(ctx context.Context) ApiFindPlansRequest {
 	return ApiFindPlansRequest{
@@ -69,8 +69,7 @@ func (a *PlansApiService) FindPlans(ctx context.Context) ApiFindPlansRequest {
 }
 
 // Execute executes the request
-//
-//	@return FindPlansByOrganization200Response
+//  @return FindPlansByOrganization200Response
 func (a *PlansApiService) FindPlansExecute(r ApiFindPlansRequest) (*FindPlansByOrganization200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -206,9 +205,9 @@ FindPlansByProject Retrieve all plans visible by the project
 
 Returns a listing of available plans for the given project
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id Project UUID
-	@return ApiFindPlansByProjectRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id Project UUID
+ @return ApiFindPlansByProjectRequest
 */
 func (a *PlansApiService) FindPlansByProject(ctx context.Context, id string) ApiFindPlansByProjectRequest {
 	return ApiFindPlansByProjectRequest{
@@ -219,8 +218,7 @@ func (a *PlansApiService) FindPlansByProject(ctx context.Context, id string) Api
 }
 
 // Execute executes the request
-//
-//	@return FindPlansByOrganization200Response
+//  @return FindPlansByOrganization200Response
 func (a *PlansApiService) FindPlansByProjectExecute(r ApiFindPlansByProjectRequest) (*FindPlansByOrganization200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
