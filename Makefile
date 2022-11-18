@@ -16,6 +16,7 @@ PACKAGE_PREFIX=metal
 PACKAGE_MAJOR=v1
 
 # Pull in custom-built generator jar so we can use unmerged bugfixes
+# Custom generator is built from https://github.com/ctreatma/openapi-generator/tree/local-generator-testing
 SWAGGER=docker run --rm -u ${CURRENT_UID}:${CURRENT_GID} -v $(CURDIR):/local -v $(CURDIR)/lib/openapi-generator-cli.jar:/opt/openapi-generator/modules/openapi-generator-cli/target/openapi-generator-cli.jar ${IMAGE}
 GOLANGCI_LINT=golangci-lint
 
