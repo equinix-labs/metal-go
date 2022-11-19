@@ -1,7 +1,7 @@
 /*
 Metal API
 
-This is the API for Equinix Metal. The API allows you to programmatically interact with all of your Equinix Metal resources, including devices, networks, addresses, organizations, projects, and your user account.  The official API docs are hosted at <https://metal.equinix.com/developers/api>.
+# Introduction Equinix Metal provides a RESTful HTTP API which can be reached at <https://api.equinix.com/metal/v1>. This document describes the API and how to use it.  The API allows you to programmatically interact with all of your Equinix Metal resources, including devices, networks, addresses, organizations, projects, and your user account. Every feature of the Equinix Metal web interface is accessible through the API.  The API docs are generated from the Equinix Metal OpenAPI specification and are officially hosted at <https://metal.equinix.com/developers/api>.  # Common Parameters  The Equinix Metal API uses a few methods to minimize network traffic and improve throughput. These parameters are not used in all API calls, but are used often enough to warrant their own section. Look for these parameters in the documentation for the API calls that support them.  ## Pagination  Pagination is used to limit the number of results returned in a single request. The API will return a maximum of 100 results per page. To retrieve additional results, you can use the `page` and `per_page` query parameters.  The `page` parameter is used to specify the page number. The first page is `1`. The `per_page` parameter is used to specify the number of results per page. The maximum number of results differs by resource type.  ## Sorting  Where offered, the API allows you to sort results by a specific field. To sort results use the `sort_by` query parameter with the root level field name as the value. The `sort_direction` parameter is used to specify the sort direction, either either `asc` (ascending) or `desc` (descending).  ## Filtering  Filtering is used to limit the results returned in a single request. The API supports filtering by certain fields in the response. To filter results, you can use the field as a query parameter.  For example, to filter the IP list to only return public IPv4 addresses, you can filter by the `type` field, as in the following request:  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/projects/id/ips?type=public_ipv4 ```  Only IP addresses with the `type` field set to `public_ipv4` will be returned.  ## Searching  Searching is used to find matching resources using multiple field comparissons. The API supports searching in resources that define this behavior. The fields available for search differ by resource, as does the search strategy.  To search resources you can use the `search` query parameter.  ## Include and Exclude  For resources that contain references to other resources, sucha as a Device that refers to the Project it resides in, the Equinix Metal API will returns `href` values (API links) to the associated resource.  ```json {   ...   \"project\": {     \"href\": \"/metal/v1/projects/f3f131c8-f302-49ef-8c44-9405022dc6dd\"   } } ```  If you're going need the project details, you can avoid a second API request.  Specify the contained `href` resources and collections that you'd like to have included in the response using the `include` query parameter.  For example:    ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=projects ```  The `include` parameter is generally accepted in `GET`, `POST`, `PUT`, and `PATCH` requests where `href` resources are presented.  To have multiple resources include, use a comma-separated list (e.g. `?include=emails,projects,memberships`).  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=emails,projects,memberships ```  You may also include nested associations up to three levels deep using dot notation (`?include=memberships.projects`):  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=memberships.projects ```  To exclude resources, and optimize response delivery, use the `exclude` query parameter. The `exclude` parameter is generally accepted in `GET`, `POST`, `PUT`, and `PATCH` requests for fields with nested object responses. When excluded, these fields will be replaced with an object that contains only an `href` field.
 
 API version: 1.0.0
 Contact: support@equinixmetal.com
@@ -17,16 +17,16 @@ import (
 
 // IPReservationRequestInput struct for IPReservationRequestInput
 type IPReservationRequestInput struct {
-	Tags                   []string               `json:"tags,omitempty"`
 	Comments               *string                `json:"comments,omitempty"`
 	Customdata             map[string]interface{} `json:"customdata,omitempty"`
 	Details                *string                `json:"details,omitempty"`
 	Facility               *string                `json:"facility,omitempty"`
 	FailOnApprovalRequired *bool                  `json:"fail_on_approval_required,omitempty"`
 	// The code of the metro you are requesting the IP reservation in.
-	Metro    *string `json:"metro,omitempty"`
-	Quantity int32   `json:"quantity"`
-	Type     string  `json:"type"`
+	Metro    *string  `json:"metro,omitempty"`
+	Quantity int32    `json:"quantity"`
+	Tags     []string `json:"tags,omitempty"`
+	Type     string   `json:"type"`
 }
 
 // NewIPReservationRequestInput instantiates a new IPReservationRequestInput object
@@ -48,41 +48,9 @@ func NewIPReservationRequestInputWithDefaults() *IPReservationRequestInput {
 	return &this
 }
 
-// GetTags returns the Tags field value if set, zero value otherwise.
-func (o *IPReservationRequestInput) GetTags() []string {
-	if o == nil || o.Tags == nil {
-		var ret []string
-		return ret
-	}
-	return o.Tags
-}
-
-// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *IPReservationRequestInput) GetTagsOk() ([]string, bool) {
-	if o == nil || o.Tags == nil {
-		return nil, false
-	}
-	return o.Tags, true
-}
-
-// HasTags returns a boolean if a field has been set.
-func (o *IPReservationRequestInput) HasTags() bool {
-	if o != nil && o.Tags != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetTags gets a reference to the given []string and assigns it to the Tags field.
-func (o *IPReservationRequestInput) SetTags(v []string) {
-	o.Tags = v
-}
-
 // GetComments returns the Comments field value if set, zero value otherwise.
 func (o *IPReservationRequestInput) GetComments() string {
-	if o == nil || o.Comments == nil {
+	if o == nil || isNil(o.Comments) {
 		var ret string
 		return ret
 	}
@@ -92,7 +60,7 @@ func (o *IPReservationRequestInput) GetComments() string {
 // GetCommentsOk returns a tuple with the Comments field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IPReservationRequestInput) GetCommentsOk() (*string, bool) {
-	if o == nil || o.Comments == nil {
+	if o == nil || isNil(o.Comments) {
 		return nil, false
 	}
 	return o.Comments, true
@@ -100,7 +68,7 @@ func (o *IPReservationRequestInput) GetCommentsOk() (*string, bool) {
 
 // HasComments returns a boolean if a field has been set.
 func (o *IPReservationRequestInput) HasComments() bool {
-	if o != nil && o.Comments != nil {
+	if o != nil && !isNil(o.Comments) {
 		return true
 	}
 
@@ -114,7 +82,7 @@ func (o *IPReservationRequestInput) SetComments(v string) {
 
 // GetCustomdata returns the Customdata field value if set, zero value otherwise.
 func (o *IPReservationRequestInput) GetCustomdata() map[string]interface{} {
-	if o == nil || o.Customdata == nil {
+	if o == nil || isNil(o.Customdata) {
 		var ret map[string]interface{}
 		return ret
 	}
@@ -124,15 +92,15 @@ func (o *IPReservationRequestInput) GetCustomdata() map[string]interface{} {
 // GetCustomdataOk returns a tuple with the Customdata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IPReservationRequestInput) GetCustomdataOk() (map[string]interface{}, bool) {
-	if o == nil || o.Customdata == nil {
-		return nil, false
+	if o == nil || isNil(o.Customdata) {
+		return map[string]interface{}{}, false
 	}
 	return o.Customdata, true
 }
 
 // HasCustomdata returns a boolean if a field has been set.
 func (o *IPReservationRequestInput) HasCustomdata() bool {
-	if o != nil && o.Customdata != nil {
+	if o != nil && !isNil(o.Customdata) {
 		return true
 	}
 
@@ -146,7 +114,7 @@ func (o *IPReservationRequestInput) SetCustomdata(v map[string]interface{}) {
 
 // GetDetails returns the Details field value if set, zero value otherwise.
 func (o *IPReservationRequestInput) GetDetails() string {
-	if o == nil || o.Details == nil {
+	if o == nil || isNil(o.Details) {
 		var ret string
 		return ret
 	}
@@ -156,7 +124,7 @@ func (o *IPReservationRequestInput) GetDetails() string {
 // GetDetailsOk returns a tuple with the Details field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IPReservationRequestInput) GetDetailsOk() (*string, bool) {
-	if o == nil || o.Details == nil {
+	if o == nil || isNil(o.Details) {
 		return nil, false
 	}
 	return o.Details, true
@@ -164,7 +132,7 @@ func (o *IPReservationRequestInput) GetDetailsOk() (*string, bool) {
 
 // HasDetails returns a boolean if a field has been set.
 func (o *IPReservationRequestInput) HasDetails() bool {
-	if o != nil && o.Details != nil {
+	if o != nil && !isNil(o.Details) {
 		return true
 	}
 
@@ -178,7 +146,7 @@ func (o *IPReservationRequestInput) SetDetails(v string) {
 
 // GetFacility returns the Facility field value if set, zero value otherwise.
 func (o *IPReservationRequestInput) GetFacility() string {
-	if o == nil || o.Facility == nil {
+	if o == nil || isNil(o.Facility) {
 		var ret string
 		return ret
 	}
@@ -188,7 +156,7 @@ func (o *IPReservationRequestInput) GetFacility() string {
 // GetFacilityOk returns a tuple with the Facility field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IPReservationRequestInput) GetFacilityOk() (*string, bool) {
-	if o == nil || o.Facility == nil {
+	if o == nil || isNil(o.Facility) {
 		return nil, false
 	}
 	return o.Facility, true
@@ -196,7 +164,7 @@ func (o *IPReservationRequestInput) GetFacilityOk() (*string, bool) {
 
 // HasFacility returns a boolean if a field has been set.
 func (o *IPReservationRequestInput) HasFacility() bool {
-	if o != nil && o.Facility != nil {
+	if o != nil && !isNil(o.Facility) {
 		return true
 	}
 
@@ -210,7 +178,7 @@ func (o *IPReservationRequestInput) SetFacility(v string) {
 
 // GetFailOnApprovalRequired returns the FailOnApprovalRequired field value if set, zero value otherwise.
 func (o *IPReservationRequestInput) GetFailOnApprovalRequired() bool {
-	if o == nil || o.FailOnApprovalRequired == nil {
+	if o == nil || isNil(o.FailOnApprovalRequired) {
 		var ret bool
 		return ret
 	}
@@ -220,7 +188,7 @@ func (o *IPReservationRequestInput) GetFailOnApprovalRequired() bool {
 // GetFailOnApprovalRequiredOk returns a tuple with the FailOnApprovalRequired field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IPReservationRequestInput) GetFailOnApprovalRequiredOk() (*bool, bool) {
-	if o == nil || o.FailOnApprovalRequired == nil {
+	if o == nil || isNil(o.FailOnApprovalRequired) {
 		return nil, false
 	}
 	return o.FailOnApprovalRequired, true
@@ -228,7 +196,7 @@ func (o *IPReservationRequestInput) GetFailOnApprovalRequiredOk() (*bool, bool) 
 
 // HasFailOnApprovalRequired returns a boolean if a field has been set.
 func (o *IPReservationRequestInput) HasFailOnApprovalRequired() bool {
-	if o != nil && o.FailOnApprovalRequired != nil {
+	if o != nil && !isNil(o.FailOnApprovalRequired) {
 		return true
 	}
 
@@ -242,7 +210,7 @@ func (o *IPReservationRequestInput) SetFailOnApprovalRequired(v bool) {
 
 // GetMetro returns the Metro field value if set, zero value otherwise.
 func (o *IPReservationRequestInput) GetMetro() string {
-	if o == nil || o.Metro == nil {
+	if o == nil || isNil(o.Metro) {
 		var ret string
 		return ret
 	}
@@ -252,7 +220,7 @@ func (o *IPReservationRequestInput) GetMetro() string {
 // GetMetroOk returns a tuple with the Metro field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IPReservationRequestInput) GetMetroOk() (*string, bool) {
-	if o == nil || o.Metro == nil {
+	if o == nil || isNil(o.Metro) {
 		return nil, false
 	}
 	return o.Metro, true
@@ -260,7 +228,7 @@ func (o *IPReservationRequestInput) GetMetroOk() (*string, bool) {
 
 // HasMetro returns a boolean if a field has been set.
 func (o *IPReservationRequestInput) HasMetro() bool {
-	if o != nil && o.Metro != nil {
+	if o != nil && !isNil(o.Metro) {
 		return true
 	}
 
@@ -296,6 +264,38 @@ func (o *IPReservationRequestInput) SetQuantity(v int32) {
 	o.Quantity = v
 }
 
+// GetTags returns the Tags field value if set, zero value otherwise.
+func (o *IPReservationRequestInput) GetTags() []string {
+	if o == nil || isNil(o.Tags) {
+		var ret []string
+		return ret
+	}
+	return o.Tags
+}
+
+// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IPReservationRequestInput) GetTagsOk() ([]string, bool) {
+	if o == nil || isNil(o.Tags) {
+		return nil, false
+	}
+	return o.Tags, true
+}
+
+// HasTags returns a boolean if a field has been set.
+func (o *IPReservationRequestInput) HasTags() bool {
+	if o != nil && !isNil(o.Tags) {
+		return true
+	}
+
+	return false
+}
+
+// SetTags gets a reference to the given []string and assigns it to the Tags field.
+func (o *IPReservationRequestInput) SetTags(v []string) {
+	o.Tags = v
+}
+
 // GetType returns the Type field value
 func (o *IPReservationRequestInput) GetType() string {
 	if o == nil {
@@ -322,29 +322,29 @@ func (o *IPReservationRequestInput) SetType(v string) {
 
 func (o IPReservationRequestInput) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Tags != nil {
-		toSerialize["tags"] = o.Tags
-	}
-	if o.Comments != nil {
+	if !isNil(o.Comments) {
 		toSerialize["comments"] = o.Comments
 	}
-	if o.Customdata != nil {
+	if !isNil(o.Customdata) {
 		toSerialize["customdata"] = o.Customdata
 	}
-	if o.Details != nil {
+	if !isNil(o.Details) {
 		toSerialize["details"] = o.Details
 	}
-	if o.Facility != nil {
+	if !isNil(o.Facility) {
 		toSerialize["facility"] = o.Facility
 	}
-	if o.FailOnApprovalRequired != nil {
+	if !isNil(o.FailOnApprovalRequired) {
 		toSerialize["fail_on_approval_required"] = o.FailOnApprovalRequired
 	}
-	if o.Metro != nil {
+	if !isNil(o.Metro) {
 		toSerialize["metro"] = o.Metro
 	}
 	if true {
 		toSerialize["quantity"] = o.Quantity
+	}
+	if !isNil(o.Tags) {
+		toSerialize["tags"] = o.Tags
 	}
 	if true {
 		toSerialize["type"] = o.Type

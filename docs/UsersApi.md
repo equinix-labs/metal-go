@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 ## CreateUser
 
-> FindProjectAPIKeys200ResponseApiKeysInnerUserAllOf CreateUser(ctx).Body(body).Execute()
+> GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfCreatedBy CreateUser(ctx).CreateUserRequest(createUserRequest).Execute()
 
 Create a user
 
@@ -35,16 +35,16 @@ import (
 )
 
 func main() {
-    body := *openapiclient.NewCreateUserRequest([]openapiclient.CreateUserRequestEmailsInner{*openapiclient.NewCreateUserRequestEmailsInner("Address_example")}, "FirstName_example", "LastName_example") // CreateUserRequest | User to create
+    createUserRequest := *openapiclient.NewCreateUserRequest([]openapiclient.CreateUserRequestEmailsInner{*openapiclient.NewCreateUserRequestEmailsInner("Address_example")}, "FirstName_example", "LastName_example") // CreateUserRequest | User to create
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.UsersApi.CreateUser(context.Background()).Body(body).Execute()
+    resp, r, err := apiClient.UsersApi.CreateUser(context.Background()).CreateUserRequest(createUserRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.CreateUser``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateUser`: FindProjectAPIKeys200ResponseApiKeysInnerUserAllOf
+    // response from `CreateUser`: GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfCreatedBy
     fmt.Fprintf(os.Stdout, "Response from `UsersApi.CreateUser`: %v\n", resp)
 }
 ```
@@ -60,11 +60,11 @@ Other parameters are passed through a pointer to a apiCreateUserRequest struct v
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**CreateUserRequest**](CreateUserRequest.md) | User to create | 
+ **createUserRequest** | [**CreateUserRequest**](CreateUserRequest.md) | User to create | 
 
 ### Return type
 
-[**FindProjectAPIKeys200ResponseApiKeysInnerUserAllOf**](FindProjectAPIKeys200ResponseApiKeysInnerUserAllOf.md)
+[**GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfCreatedBy**](GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfCreatedBy.md)
 
 ### Authorization
 
@@ -82,7 +82,7 @@ Name | Type | Description  | Notes
 
 ## FindCurrentUser
 
-> FindProjectAPIKeys200ResponseApiKeysInnerUserAllOf FindCurrentUser(ctx).Include(include).Exclude(exclude).Execute()
+> GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfCreatedBy FindCurrentUser(ctx).Include(include).Exclude(exclude).Execute()
 
 Retrieve the current user
 
@@ -111,7 +111,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.FindCurrentUser``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindCurrentUser`: FindProjectAPIKeys200ResponseApiKeysInnerUserAllOf
+    // response from `FindCurrentUser`: GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfCreatedBy
     fmt.Fprintf(os.Stdout, "Response from `UsersApi.FindCurrentUser`: %v\n", resp)
 }
 ```
@@ -132,7 +132,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FindProjectAPIKeys200ResponseApiKeysInnerUserAllOf**](FindProjectAPIKeys200ResponseApiKeysInnerUserAllOf.md)
+[**GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfCreatedBy**](GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfCreatedBy.md)
 
 ### Authorization
 
@@ -222,7 +222,7 @@ Name | Type | Description  | Notes
 
 ## FindUserById
 
-> FindProjectAPIKeys200ResponseApiKeysInnerUserAllOf FindUserById(ctx, id).Include(include).Exclude(exclude).Execute()
+> GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfCreatedBy FindUserById(ctx, id).Include(include).Exclude(exclude).Execute()
 
 Retrieve a user
 
@@ -252,7 +252,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.FindUserById``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindUserById`: FindProjectAPIKeys200ResponseApiKeysInnerUserAllOf
+    // response from `FindUserById`: GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfCreatedBy
     fmt.Fprintf(os.Stdout, "Response from `UsersApi.FindUserById`: %v\n", resp)
 }
 ```
@@ -278,7 +278,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FindProjectAPIKeys200ResponseApiKeysInnerUserAllOf**](FindProjectAPIKeys200ResponseApiKeysInnerUserAllOf.md)
+[**GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfCreatedBy**](GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfCreatedBy.md)
 
 ### Authorization
 
@@ -436,7 +436,7 @@ Name | Type | Description  | Notes
 
 ## UpdateCurrentUser
 
-> FindProjectAPIKeys200ResponseApiKeysInnerUserAllOf UpdateCurrentUser(ctx).Body(body).Execute()
+> GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfCreatedBy UpdateCurrentUser(ctx).UpdateCurrentUserRequest(updateCurrentUserRequest).Execute()
 
 Update the current user
 
@@ -455,16 +455,16 @@ import (
 )
 
 func main() {
-    body := *openapiclient.NewUpdateCurrentUserRequest() // UpdateCurrentUserRequest | User to update
+    updateCurrentUserRequest := *openapiclient.NewUpdateCurrentUserRequest() // UpdateCurrentUserRequest | User to update
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.UsersApi.UpdateCurrentUser(context.Background()).Body(body).Execute()
+    resp, r, err := apiClient.UsersApi.UpdateCurrentUser(context.Background()).UpdateCurrentUserRequest(updateCurrentUserRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.UpdateCurrentUser``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateCurrentUser`: FindProjectAPIKeys200ResponseApiKeysInnerUserAllOf
+    // response from `UpdateCurrentUser`: GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfCreatedBy
     fmt.Fprintf(os.Stdout, "Response from `UsersApi.UpdateCurrentUser`: %v\n", resp)
 }
 ```
@@ -480,11 +480,11 @@ Other parameters are passed through a pointer to a apiUpdateCurrentUserRequest s
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**UpdateCurrentUserRequest**](UpdateCurrentUserRequest.md) | User to update | 
+ **updateCurrentUserRequest** | [**UpdateCurrentUserRequest**](UpdateCurrentUserRequest.md) | User to update | 
 
 ### Return type
 
-[**FindProjectAPIKeys200ResponseApiKeysInnerUserAllOf**](FindProjectAPIKeys200ResponseApiKeysInnerUserAllOf.md)
+[**GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfCreatedBy**](GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfCreatedBy.md)
 
 ### Authorization
 

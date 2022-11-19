@@ -1,7 +1,7 @@
 /*
 Metal API
 
-This is the API for Equinix Metal. The API allows you to programmatically interact with all of your Equinix Metal resources, including devices, networks, addresses, organizations, projects, and your user account.  The official API docs are hosted at <https://metal.equinix.com/developers/api>.
+# Introduction Equinix Metal provides a RESTful HTTP API which can be reached at <https://api.equinix.com/metal/v1>. This document describes the API and how to use it.  The API allows you to programmatically interact with all of your Equinix Metal resources, including devices, networks, addresses, organizations, projects, and your user account. Every feature of the Equinix Metal web interface is accessible through the API.  The API docs are generated from the Equinix Metal OpenAPI specification and are officially hosted at <https://metal.equinix.com/developers/api>.  # Common Parameters  The Equinix Metal API uses a few methods to minimize network traffic and improve throughput. These parameters are not used in all API calls, but are used often enough to warrant their own section. Look for these parameters in the documentation for the API calls that support them.  ## Pagination  Pagination is used to limit the number of results returned in a single request. The API will return a maximum of 100 results per page. To retrieve additional results, you can use the `page` and `per_page` query parameters.  The `page` parameter is used to specify the page number. The first page is `1`. The `per_page` parameter is used to specify the number of results per page. The maximum number of results differs by resource type.  ## Sorting  Where offered, the API allows you to sort results by a specific field. To sort results use the `sort_by` query parameter with the root level field name as the value. The `sort_direction` parameter is used to specify the sort direction, either either `asc` (ascending) or `desc` (descending).  ## Filtering  Filtering is used to limit the results returned in a single request. The API supports filtering by certain fields in the response. To filter results, you can use the field as a query parameter.  For example, to filter the IP list to only return public IPv4 addresses, you can filter by the `type` field, as in the following request:  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/projects/id/ips?type=public_ipv4 ```  Only IP addresses with the `type` field set to `public_ipv4` will be returned.  ## Searching  Searching is used to find matching resources using multiple field comparissons. The API supports searching in resources that define this behavior. The fields available for search differ by resource, as does the search strategy.  To search resources you can use the `search` query parameter.  ## Include and Exclude  For resources that contain references to other resources, sucha as a Device that refers to the Project it resides in, the Equinix Metal API will returns `href` values (API links) to the associated resource.  ```json {   ...   \"project\": {     \"href\": \"/metal/v1/projects/f3f131c8-f302-49ef-8c44-9405022dc6dd\"   } } ```  If you're going need the project details, you can avoid a second API request.  Specify the contained `href` resources and collections that you'd like to have included in the response using the `include` query parameter.  For example:    ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=projects ```  The `include` parameter is generally accepted in `GET`, `POST`, `PUT`, and `PATCH` requests where `href` resources are presented.  To have multiple resources include, use a comma-separated list (e.g. `?include=emails,projects,memberships`).  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=emails,projects,memberships ```  You may also include nested associations up to three levels deep using dot notation (`?include=memberships.projects`):  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=memberships.projects ```  To exclude resources, and optimize response delivery, use the `exclude` query parameter. The `exclude` parameter is generally accepted in `GET`, `POST`, `PUT`, and `PATCH` requests for fields with nested object responses. When excluded, these fields will be replaced with an object that contains only an `href` field.
 
 API version: 1.0.0
 Contact: support@equinixmetal.com
@@ -48,7 +48,7 @@ func NewAuthTokenWithDefaults() *AuthToken {
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *AuthToken) GetCreatedAt() time.Time {
-	if o == nil || o.CreatedAt == nil {
+	if o == nil || isNil(o.CreatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -58,7 +58,7 @@ func (o *AuthToken) GetCreatedAt() time.Time {
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AuthToken) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || o.CreatedAt == nil {
+	if o == nil || isNil(o.CreatedAt) {
 		return nil, false
 	}
 	return o.CreatedAt, true
@@ -66,7 +66,7 @@ func (o *AuthToken) GetCreatedAtOk() (*time.Time, bool) {
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *AuthToken) HasCreatedAt() bool {
-	if o != nil && o.CreatedAt != nil {
+	if o != nil && !isNil(o.CreatedAt) {
 		return true
 	}
 
@@ -80,7 +80,7 @@ func (o *AuthToken) SetCreatedAt(v time.Time) {
 
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *AuthToken) GetDescription() string {
-	if o == nil || o.Description == nil {
+	if o == nil || isNil(o.Description) {
 		var ret string
 		return ret
 	}
@@ -90,7 +90,7 @@ func (o *AuthToken) GetDescription() string {
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AuthToken) GetDescriptionOk() (*string, bool) {
-	if o == nil || o.Description == nil {
+	if o == nil || isNil(o.Description) {
 		return nil, false
 	}
 	return o.Description, true
@@ -98,7 +98,7 @@ func (o *AuthToken) GetDescriptionOk() (*string, bool) {
 
 // HasDescription returns a boolean if a field has been set.
 func (o *AuthToken) HasDescription() bool {
-	if o != nil && o.Description != nil {
+	if o != nil && !isNil(o.Description) {
 		return true
 	}
 
@@ -112,7 +112,7 @@ func (o *AuthToken) SetDescription(v string) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *AuthToken) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || isNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -122,7 +122,7 @@ func (o *AuthToken) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AuthToken) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || isNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -130,7 +130,7 @@ func (o *AuthToken) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *AuthToken) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !isNil(o.Id) {
 		return true
 	}
 
@@ -144,7 +144,7 @@ func (o *AuthToken) SetId(v string) {
 
 // GetProject returns the Project field value if set, zero value otherwise.
 func (o *AuthToken) GetProject() FindProjectAPIKeys200ResponseApiKeysInnerProject {
-	if o == nil || o.Project == nil {
+	if o == nil || isNil(o.Project) {
 		var ret FindProjectAPIKeys200ResponseApiKeysInnerProject
 		return ret
 	}
@@ -154,7 +154,7 @@ func (o *AuthToken) GetProject() FindProjectAPIKeys200ResponseApiKeysInnerProjec
 // GetProjectOk returns a tuple with the Project field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AuthToken) GetProjectOk() (*FindProjectAPIKeys200ResponseApiKeysInnerProject, bool) {
-	if o == nil || o.Project == nil {
+	if o == nil || isNil(o.Project) {
 		return nil, false
 	}
 	return o.Project, true
@@ -162,7 +162,7 @@ func (o *AuthToken) GetProjectOk() (*FindProjectAPIKeys200ResponseApiKeysInnerPr
 
 // HasProject returns a boolean if a field has been set.
 func (o *AuthToken) HasProject() bool {
-	if o != nil && o.Project != nil {
+	if o != nil && !isNil(o.Project) {
 		return true
 	}
 
@@ -176,7 +176,7 @@ func (o *AuthToken) SetProject(v FindProjectAPIKeys200ResponseApiKeysInnerProjec
 
 // GetReadOnly returns the ReadOnly field value if set, zero value otherwise.
 func (o *AuthToken) GetReadOnly() bool {
-	if o == nil || o.ReadOnly == nil {
+	if o == nil || isNil(o.ReadOnly) {
 		var ret bool
 		return ret
 	}
@@ -186,7 +186,7 @@ func (o *AuthToken) GetReadOnly() bool {
 // GetReadOnlyOk returns a tuple with the ReadOnly field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AuthToken) GetReadOnlyOk() (*bool, bool) {
-	if o == nil || o.ReadOnly == nil {
+	if o == nil || isNil(o.ReadOnly) {
 		return nil, false
 	}
 	return o.ReadOnly, true
@@ -194,7 +194,7 @@ func (o *AuthToken) GetReadOnlyOk() (*bool, bool) {
 
 // HasReadOnly returns a boolean if a field has been set.
 func (o *AuthToken) HasReadOnly() bool {
-	if o != nil && o.ReadOnly != nil {
+	if o != nil && !isNil(o.ReadOnly) {
 		return true
 	}
 
@@ -208,7 +208,7 @@ func (o *AuthToken) SetReadOnly(v bool) {
 
 // GetToken returns the Token field value if set, zero value otherwise.
 func (o *AuthToken) GetToken() string {
-	if o == nil || o.Token == nil {
+	if o == nil || isNil(o.Token) {
 		var ret string
 		return ret
 	}
@@ -218,7 +218,7 @@ func (o *AuthToken) GetToken() string {
 // GetTokenOk returns a tuple with the Token field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AuthToken) GetTokenOk() (*string, bool) {
-	if o == nil || o.Token == nil {
+	if o == nil || isNil(o.Token) {
 		return nil, false
 	}
 	return o.Token, true
@@ -226,7 +226,7 @@ func (o *AuthToken) GetTokenOk() (*string, bool) {
 
 // HasToken returns a boolean if a field has been set.
 func (o *AuthToken) HasToken() bool {
-	if o != nil && o.Token != nil {
+	if o != nil && !isNil(o.Token) {
 		return true
 	}
 
@@ -240,7 +240,7 @@ func (o *AuthToken) SetToken(v string) {
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *AuthToken) GetUpdatedAt() time.Time {
-	if o == nil || o.UpdatedAt == nil {
+	if o == nil || isNil(o.UpdatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -250,7 +250,7 @@ func (o *AuthToken) GetUpdatedAt() time.Time {
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AuthToken) GetUpdatedAtOk() (*time.Time, bool) {
-	if o == nil || o.UpdatedAt == nil {
+	if o == nil || isNil(o.UpdatedAt) {
 		return nil, false
 	}
 	return o.UpdatedAt, true
@@ -258,7 +258,7 @@ func (o *AuthToken) GetUpdatedAtOk() (*time.Time, bool) {
 
 // HasUpdatedAt returns a boolean if a field has been set.
 func (o *AuthToken) HasUpdatedAt() bool {
-	if o != nil && o.UpdatedAt != nil {
+	if o != nil && !isNil(o.UpdatedAt) {
 		return true
 	}
 
@@ -272,7 +272,7 @@ func (o *AuthToken) SetUpdatedAt(v time.Time) {
 
 // GetUser returns the User field value if set, zero value otherwise.
 func (o *AuthToken) GetUser() FindProjectAPIKeys200ResponseApiKeysInnerUser {
-	if o == nil || o.User == nil {
+	if o == nil || isNil(o.User) {
 		var ret FindProjectAPIKeys200ResponseApiKeysInnerUser
 		return ret
 	}
@@ -282,7 +282,7 @@ func (o *AuthToken) GetUser() FindProjectAPIKeys200ResponseApiKeysInnerUser {
 // GetUserOk returns a tuple with the User field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AuthToken) GetUserOk() (*FindProjectAPIKeys200ResponseApiKeysInnerUser, bool) {
-	if o == nil || o.User == nil {
+	if o == nil || isNil(o.User) {
 		return nil, false
 	}
 	return o.User, true
@@ -290,7 +290,7 @@ func (o *AuthToken) GetUserOk() (*FindProjectAPIKeys200ResponseApiKeysInnerUser,
 
 // HasUser returns a boolean if a field has been set.
 func (o *AuthToken) HasUser() bool {
-	if o != nil && o.User != nil {
+	if o != nil && !isNil(o.User) {
 		return true
 	}
 
@@ -304,28 +304,28 @@ func (o *AuthToken) SetUser(v FindProjectAPIKeys200ResponseApiKeysInnerUser) {
 
 func (o AuthToken) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.CreatedAt != nil {
+	if !isNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt
 	}
-	if o.Description != nil {
+	if !isNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
-	if o.Id != nil {
+	if !isNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
-	if o.Project != nil {
+	if !isNil(o.Project) {
 		toSerialize["project"] = o.Project
 	}
-	if o.ReadOnly != nil {
+	if !isNil(o.ReadOnly) {
 		toSerialize["read_only"] = o.ReadOnly
 	}
-	if o.Token != nil {
+	if !isNil(o.Token) {
 		toSerialize["token"] = o.Token
 	}
-	if o.UpdatedAt != nil {
+	if !isNil(o.UpdatedAt) {
 		toSerialize["updated_at"] = o.UpdatedAt
 	}
-	if o.User != nil {
+	if !isNil(o.User) {
 		toSerialize["user"] = o.User
 	}
 	return json.Marshal(toSerialize)

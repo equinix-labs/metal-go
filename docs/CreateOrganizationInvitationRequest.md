@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Invitee** | **string** |  | 
 **Message** | Pointer to **string** |  | [optional] 
+**OrganizationId** | Pointer to **string** |  | [optional] 
 **ProjectsIds** | Pointer to **[]string** |  | [optional] 
 **Roles** | Pointer to **[]string** |  | [optional] 
 
@@ -72,6 +73,31 @@ SetMessage sets Message field to given value.
 `func (o *CreateOrganizationInvitationRequest) HasMessage() bool`
 
 HasMessage returns a boolean if a field has been set.
+
+### GetOrganizationId
+
+`func (o *CreateOrganizationInvitationRequest) GetOrganizationId() string`
+
+GetOrganizationId returns the OrganizationId field if non-nil, zero value otherwise.
+
+### GetOrganizationIdOk
+
+`func (o *CreateOrganizationInvitationRequest) GetOrganizationIdOk() (*string, bool)`
+
+GetOrganizationIdOk returns a tuple with the OrganizationId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOrganizationId
+
+`func (o *CreateOrganizationInvitationRequest) SetOrganizationId(v string)`
+
+SetOrganizationId sets OrganizationId field to given value.
+
+### HasOrganizationId
+
+`func (o *CreateOrganizationInvitationRequest) HasOrganizationId() bool`
+
+HasOrganizationId returns a boolean if a field has been set.
 
 ### GetProjectsIds
 

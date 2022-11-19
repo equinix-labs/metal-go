@@ -7,14 +7,13 @@ Name | Type | Description | Notes
 **Description** | Pointer to **string** |  | [optional] 
 **Facility** | Pointer to **string** | The UUID (or facility code) for the Facility in which to create this Virtual network. | [optional] 
 **Metro** | Pointer to **string** | The UUID (or metro code) for the Metro in which to create this Virtual Network. | [optional] 
-**ProjectId** | **string** |  | 
 **Vxlan** | Pointer to **int32** | VLAN ID between 2-3999. Must be unique for the project within the Metro in which this Virtual Network is being created. If no value is specified, the next-available VLAN ID in the range 1000-1999 will be automatically selected. | [optional] 
 
 ## Methods
 
 ### NewVirtualNetworkCreateInput
 
-`func NewVirtualNetworkCreateInput(projectId string, ) *VirtualNetworkCreateInput`
+`func NewVirtualNetworkCreateInput() *VirtualNetworkCreateInput`
 
 NewVirtualNetworkCreateInput instantiates a new VirtualNetworkCreateInput object
 This constructor will assign default values to properties that have it defined,
@@ -103,26 +102,6 @@ SetMetro sets Metro field to given value.
 `func (o *VirtualNetworkCreateInput) HasMetro() bool`
 
 HasMetro returns a boolean if a field has been set.
-
-### GetProjectId
-
-`func (o *VirtualNetworkCreateInput) GetProjectId() string`
-
-GetProjectId returns the ProjectId field if non-nil, zero value otherwise.
-
-### GetProjectIdOk
-
-`func (o *VirtualNetworkCreateInput) GetProjectIdOk() (*string, bool)`
-
-GetProjectIdOk returns a tuple with the ProjectId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetProjectId
-
-`func (o *VirtualNetworkCreateInput) SetProjectId(v string)`
-
-SetProjectId sets ProjectId field to given value.
-
 
 ### GetVxlan
 

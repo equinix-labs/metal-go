@@ -1,7 +1,7 @@
 /*
 Metal API
 
-This is the API for Equinix Metal. The API allows you to programmatically interact with all of your Equinix Metal resources, including devices, networks, addresses, organizations, projects, and your user account.  The official API docs are hosted at <https://metal.equinix.com/developers/api>.
+# Introduction Equinix Metal provides a RESTful HTTP API which can be reached at <https://api.equinix.com/metal/v1>. This document describes the API and how to use it.  The API allows you to programmatically interact with all of your Equinix Metal resources, including devices, networks, addresses, organizations, projects, and your user account. Every feature of the Equinix Metal web interface is accessible through the API.  The API docs are generated from the Equinix Metal OpenAPI specification and are officially hosted at <https://metal.equinix.com/developers/api>.  # Common Parameters  The Equinix Metal API uses a few methods to minimize network traffic and improve throughput. These parameters are not used in all API calls, but are used often enough to warrant their own section. Look for these parameters in the documentation for the API calls that support them.  ## Pagination  Pagination is used to limit the number of results returned in a single request. The API will return a maximum of 100 results per page. To retrieve additional results, you can use the `page` and `per_page` query parameters.  The `page` parameter is used to specify the page number. The first page is `1`. The `per_page` parameter is used to specify the number of results per page. The maximum number of results differs by resource type.  ## Sorting  Where offered, the API allows you to sort results by a specific field. To sort results use the `sort_by` query parameter with the root level field name as the value. The `sort_direction` parameter is used to specify the sort direction, either either `asc` (ascending) or `desc` (descending).  ## Filtering  Filtering is used to limit the results returned in a single request. The API supports filtering by certain fields in the response. To filter results, you can use the field as a query parameter.  For example, to filter the IP list to only return public IPv4 addresses, you can filter by the `type` field, as in the following request:  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/projects/id/ips?type=public_ipv4 ```  Only IP addresses with the `type` field set to `public_ipv4` will be returned.  ## Searching  Searching is used to find matching resources using multiple field comparissons. The API supports searching in resources that define this behavior. The fields available for search differ by resource, as does the search strategy.  To search resources you can use the `search` query parameter.  ## Include and Exclude  For resources that contain references to other resources, sucha as a Device that refers to the Project it resides in, the Equinix Metal API will returns `href` values (API links) to the associated resource.  ```json {   ...   \"project\": {     \"href\": \"/metal/v1/projects/f3f131c8-f302-49ef-8c44-9405022dc6dd\"   } } ```  If you're going need the project details, you can avoid a second API request.  Specify the contained `href` resources and collections that you'd like to have included in the response using the `include` query parameter.  For example:    ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=projects ```  The `include` parameter is generally accepted in `GET`, `POST`, `PUT`, and `PATCH` requests where `href` resources are presented.  To have multiple resources include, use a comma-separated list (e.g. `?include=emails,projects,memberships`).  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=emails,projects,memberships ```  You may also include nested associations up to three levels deep using dot notation (`?include=memberships.projects`):  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=memberships.projects ```  To exclude resources, and optimize response delivery, use the `exclude` query parameter. The `exclude` parameter is generally accepted in `GET`, `POST`, `PUT`, and `PATCH` requests for fields with nested object responses. When excluded, these fields will be replaced with an object that contains only an `href` field.
 
 API version: 1.0.0
 Contact: support@equinixmetal.com
@@ -18,7 +18,6 @@ import (
 
 // Device struct for Device
 type Device struct {
-	Tags                []string                                    `json:"tags,omitempty"`
 	AlwaysPxe           *bool                                       `json:"always_pxe,omitempty"`
 	BillingCycle        *string                                     `json:"billing_cycle,omitempty"`
 	BondingMode         *int32                                      `json:"bonding_mode,omitempty"`
@@ -37,12 +36,15 @@ type Device struct {
 	Iqn                 *string                                     `json:"iqn,omitempty"`
 	Locked              *bool                                       `json:"locked,omitempty"`
 	Metro               *FindDeviceById200ResponseFacilityMetro     `json:"metro,omitempty"`
-	NetworkPorts        *FindDeviceById200ResponseNetworkPorts      `json:"network_ports,omitempty"`
-	OperatingSystem     *FindDeviceById200ResponseOperatingSystem   `json:"operating_system,omitempty"`
-	Plan                *FindDeviceById200ResponsePlan              `json:"plan,omitempty"`
-	Project             *FindDeviceById200ResponseProject           `json:"project,omitempty"`
-	ProjectLite         *FindDeviceById200ResponseProjectLite       `json:"project_lite,omitempty"`
-	ProvisioningEvents  []FindConnectionEvents200Response           `json:"provisioning_events,omitempty"`
+	// By default, servers at Equinix Metal are configured in a “bonded” mode using LACP (Link Aggregation Control Protocol). Each 2-NIC server is configured with a single bond (namely bond0) with both interfaces eth0 and eth1 as members of the bond in a default Layer 3 mode. Some device plans may have a different number of ports and bonds available.
+	NetworkPorts    []FindDeviceById200ResponseNetworkPortsInner `json:"network_ports,omitempty"`
+	OperatingSystem *FindDeviceById200ResponseOperatingSystem    `json:"operating_system,omitempty"`
+	// Actions supported by the device instance.
+	Actions            []FindDeviceById200ResponseActionsInner `json:"actions,omitempty"`
+	Plan               *FindDeviceById200ResponsePlan          `json:"plan,omitempty"`
+	Project            *FindDeviceById200ResponseProject       `json:"project,omitempty"`
+	ProjectLite        *FindDeviceById200ResponseProjectLite   `json:"project_lite,omitempty"`
+	ProvisioningEvents []FindInterconnectionEvents200Response  `json:"provisioning_events,omitempty"`
 	// Only visible while device provisioning
 	ProvisioningPercentage *float32 `json:"provisioning_percentage,omitempty"`
 	// Root password is automatically generated when server is provisioned and it is removed after 24 hours
@@ -55,7 +57,8 @@ type Device struct {
 	SshKeys      []FindBatchById200ResponseDevicesInner `json:"ssh_keys,omitempty"`
 	State        *string                                `json:"state,omitempty"`
 	// Switch short id. This can be used to determine if two devices are connected to the same switch, for example.
-	SwitchUuid *string `json:"switch_uuid,omitempty"`
+	SwitchUuid *string  `json:"switch_uuid,omitempty"`
+	Tags       []string `json:"tags,omitempty"`
 	// When the device will be terminated. This is commonly set in advance for ephemeral spot market instances but this field may also be set with on-demand and reservation instances to automatically delete the resource at a given time. The termination time can also be used to release a hardware reservation instance at a given time, keeping the reservation open for other uses.  On a spot market device, the termination time will be set automatically when outbid.
 	TerminationTime *time.Time                             `json:"termination_time,omitempty"`
 	UpdatedAt       *time.Time                             `json:"updated_at,omitempty"`
@@ -81,41 +84,9 @@ func NewDeviceWithDefaults() *Device {
 	return &this
 }
 
-// GetTags returns the Tags field value if set, zero value otherwise.
-func (o *Device) GetTags() []string {
-	if o == nil || o.Tags == nil {
-		var ret []string
-		return ret
-	}
-	return o.Tags
-}
-
-// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Device) GetTagsOk() ([]string, bool) {
-	if o == nil || o.Tags == nil {
-		return nil, false
-	}
-	return o.Tags, true
-}
-
-// HasTags returns a boolean if a field has been set.
-func (o *Device) HasTags() bool {
-	if o != nil && o.Tags != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetTags gets a reference to the given []string and assigns it to the Tags field.
-func (o *Device) SetTags(v []string) {
-	o.Tags = v
-}
-
 // GetAlwaysPxe returns the AlwaysPxe field value if set, zero value otherwise.
 func (o *Device) GetAlwaysPxe() bool {
-	if o == nil || o.AlwaysPxe == nil {
+	if o == nil || isNil(o.AlwaysPxe) {
 		var ret bool
 		return ret
 	}
@@ -125,7 +96,7 @@ func (o *Device) GetAlwaysPxe() bool {
 // GetAlwaysPxeOk returns a tuple with the AlwaysPxe field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Device) GetAlwaysPxeOk() (*bool, bool) {
-	if o == nil || o.AlwaysPxe == nil {
+	if o == nil || isNil(o.AlwaysPxe) {
 		return nil, false
 	}
 	return o.AlwaysPxe, true
@@ -133,7 +104,7 @@ func (o *Device) GetAlwaysPxeOk() (*bool, bool) {
 
 // HasAlwaysPxe returns a boolean if a field has been set.
 func (o *Device) HasAlwaysPxe() bool {
-	if o != nil && o.AlwaysPxe != nil {
+	if o != nil && !isNil(o.AlwaysPxe) {
 		return true
 	}
 
@@ -147,7 +118,7 @@ func (o *Device) SetAlwaysPxe(v bool) {
 
 // GetBillingCycle returns the BillingCycle field value if set, zero value otherwise.
 func (o *Device) GetBillingCycle() string {
-	if o == nil || o.BillingCycle == nil {
+	if o == nil || isNil(o.BillingCycle) {
 		var ret string
 		return ret
 	}
@@ -157,7 +128,7 @@ func (o *Device) GetBillingCycle() string {
 // GetBillingCycleOk returns a tuple with the BillingCycle field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Device) GetBillingCycleOk() (*string, bool) {
-	if o == nil || o.BillingCycle == nil {
+	if o == nil || isNil(o.BillingCycle) {
 		return nil, false
 	}
 	return o.BillingCycle, true
@@ -165,7 +136,7 @@ func (o *Device) GetBillingCycleOk() (*string, bool) {
 
 // HasBillingCycle returns a boolean if a field has been set.
 func (o *Device) HasBillingCycle() bool {
-	if o != nil && o.BillingCycle != nil {
+	if o != nil && !isNil(o.BillingCycle) {
 		return true
 	}
 
@@ -179,7 +150,7 @@ func (o *Device) SetBillingCycle(v string) {
 
 // GetBondingMode returns the BondingMode field value if set, zero value otherwise.
 func (o *Device) GetBondingMode() int32 {
-	if o == nil || o.BondingMode == nil {
+	if o == nil || isNil(o.BondingMode) {
 		var ret int32
 		return ret
 	}
@@ -189,7 +160,7 @@ func (o *Device) GetBondingMode() int32 {
 // GetBondingModeOk returns a tuple with the BondingMode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Device) GetBondingModeOk() (*int32, bool) {
-	if o == nil || o.BondingMode == nil {
+	if o == nil || isNil(o.BondingMode) {
 		return nil, false
 	}
 	return o.BondingMode, true
@@ -197,7 +168,7 @@ func (o *Device) GetBondingModeOk() (*int32, bool) {
 
 // HasBondingMode returns a boolean if a field has been set.
 func (o *Device) HasBondingMode() bool {
-	if o != nil && o.BondingMode != nil {
+	if o != nil && !isNil(o.BondingMode) {
 		return true
 	}
 
@@ -211,7 +182,7 @@ func (o *Device) SetBondingMode(v int32) {
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *Device) GetCreatedAt() time.Time {
-	if o == nil || o.CreatedAt == nil {
+	if o == nil || isNil(o.CreatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -221,7 +192,7 @@ func (o *Device) GetCreatedAt() time.Time {
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Device) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || o.CreatedAt == nil {
+	if o == nil || isNil(o.CreatedAt) {
 		return nil, false
 	}
 	return o.CreatedAt, true
@@ -229,7 +200,7 @@ func (o *Device) GetCreatedAtOk() (*time.Time, bool) {
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *Device) HasCreatedAt() bool {
-	if o != nil && o.CreatedAt != nil {
+	if o != nil && !isNil(o.CreatedAt) {
 		return true
 	}
 
@@ -243,7 +214,7 @@ func (o *Device) SetCreatedAt(v time.Time) {
 
 // GetCreatedBy returns the CreatedBy field value if set, zero value otherwise.
 func (o *Device) GetCreatedBy() FindDeviceById200ResponseCreatedBy {
-	if o == nil || o.CreatedBy == nil {
+	if o == nil || isNil(o.CreatedBy) {
 		var ret FindDeviceById200ResponseCreatedBy
 		return ret
 	}
@@ -253,7 +224,7 @@ func (o *Device) GetCreatedBy() FindDeviceById200ResponseCreatedBy {
 // GetCreatedByOk returns a tuple with the CreatedBy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Device) GetCreatedByOk() (*FindDeviceById200ResponseCreatedBy, bool) {
-	if o == nil || o.CreatedBy == nil {
+	if o == nil || isNil(o.CreatedBy) {
 		return nil, false
 	}
 	return o.CreatedBy, true
@@ -261,7 +232,7 @@ func (o *Device) GetCreatedByOk() (*FindDeviceById200ResponseCreatedBy, bool) {
 
 // HasCreatedBy returns a boolean if a field has been set.
 func (o *Device) HasCreatedBy() bool {
-	if o != nil && o.CreatedBy != nil {
+	if o != nil && !isNil(o.CreatedBy) {
 		return true
 	}
 
@@ -275,7 +246,7 @@ func (o *Device) SetCreatedBy(v FindDeviceById200ResponseCreatedBy) {
 
 // GetCustomdata returns the Customdata field value if set, zero value otherwise.
 func (o *Device) GetCustomdata() map[string]interface{} {
-	if o == nil || o.Customdata == nil {
+	if o == nil || isNil(o.Customdata) {
 		var ret map[string]interface{}
 		return ret
 	}
@@ -285,15 +256,15 @@ func (o *Device) GetCustomdata() map[string]interface{} {
 // GetCustomdataOk returns a tuple with the Customdata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Device) GetCustomdataOk() (map[string]interface{}, bool) {
-	if o == nil || o.Customdata == nil {
-		return nil, false
+	if o == nil || isNil(o.Customdata) {
+		return map[string]interface{}{}, false
 	}
 	return o.Customdata, true
 }
 
 // HasCustomdata returns a boolean if a field has been set.
 func (o *Device) HasCustomdata() bool {
-	if o != nil && o.Customdata != nil {
+	if o != nil && !isNil(o.Customdata) {
 		return true
 	}
 
@@ -307,7 +278,7 @@ func (o *Device) SetCustomdata(v map[string]interface{}) {
 
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *Device) GetDescription() string {
-	if o == nil || o.Description == nil {
+	if o == nil || isNil(o.Description) {
 		var ret string
 		return ret
 	}
@@ -317,7 +288,7 @@ func (o *Device) GetDescription() string {
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Device) GetDescriptionOk() (*string, bool) {
-	if o == nil || o.Description == nil {
+	if o == nil || isNil(o.Description) {
 		return nil, false
 	}
 	return o.Description, true
@@ -325,7 +296,7 @@ func (o *Device) GetDescriptionOk() (*string, bool) {
 
 // HasDescription returns a boolean if a field has been set.
 func (o *Device) HasDescription() bool {
-	if o != nil && o.Description != nil {
+	if o != nil && !isNil(o.Description) {
 		return true
 	}
 
@@ -339,7 +310,7 @@ func (o *Device) SetDescription(v string) {
 
 // GetFacility returns the Facility field value if set, zero value otherwise.
 func (o *Device) GetFacility() FindDeviceById200ResponseFacility {
-	if o == nil || o.Facility == nil {
+	if o == nil || isNil(o.Facility) {
 		var ret FindDeviceById200ResponseFacility
 		return ret
 	}
@@ -349,7 +320,7 @@ func (o *Device) GetFacility() FindDeviceById200ResponseFacility {
 // GetFacilityOk returns a tuple with the Facility field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Device) GetFacilityOk() (*FindDeviceById200ResponseFacility, bool) {
-	if o == nil || o.Facility == nil {
+	if o == nil || isNil(o.Facility) {
 		return nil, false
 	}
 	return o.Facility, true
@@ -357,7 +328,7 @@ func (o *Device) GetFacilityOk() (*FindDeviceById200ResponseFacility, bool) {
 
 // HasFacility returns a boolean if a field has been set.
 func (o *Device) HasFacility() bool {
-	if o != nil && o.Facility != nil {
+	if o != nil && !isNil(o.Facility) {
 		return true
 	}
 
@@ -371,7 +342,7 @@ func (o *Device) SetFacility(v FindDeviceById200ResponseFacility) {
 
 // GetHardwareReservation returns the HardwareReservation field value if set, zero value otherwise.
 func (o *Device) GetHardwareReservation() FindBatchById200ResponseDevicesInner {
-	if o == nil || o.HardwareReservation == nil {
+	if o == nil || isNil(o.HardwareReservation) {
 		var ret FindBatchById200ResponseDevicesInner
 		return ret
 	}
@@ -381,7 +352,7 @@ func (o *Device) GetHardwareReservation() FindBatchById200ResponseDevicesInner {
 // GetHardwareReservationOk returns a tuple with the HardwareReservation field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Device) GetHardwareReservationOk() (*FindBatchById200ResponseDevicesInner, bool) {
-	if o == nil || o.HardwareReservation == nil {
+	if o == nil || isNil(o.HardwareReservation) {
 		return nil, false
 	}
 	return o.HardwareReservation, true
@@ -389,7 +360,7 @@ func (o *Device) GetHardwareReservationOk() (*FindBatchById200ResponseDevicesInn
 
 // HasHardwareReservation returns a boolean if a field has been set.
 func (o *Device) HasHardwareReservation() bool {
-	if o != nil && o.HardwareReservation != nil {
+	if o != nil && !isNil(o.HardwareReservation) {
 		return true
 	}
 
@@ -403,7 +374,7 @@ func (o *Device) SetHardwareReservation(v FindBatchById200ResponseDevicesInner) 
 
 // GetHostname returns the Hostname field value if set, zero value otherwise.
 func (o *Device) GetHostname() string {
-	if o == nil || o.Hostname == nil {
+	if o == nil || isNil(o.Hostname) {
 		var ret string
 		return ret
 	}
@@ -413,7 +384,7 @@ func (o *Device) GetHostname() string {
 // GetHostnameOk returns a tuple with the Hostname field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Device) GetHostnameOk() (*string, bool) {
-	if o == nil || o.Hostname == nil {
+	if o == nil || isNil(o.Hostname) {
 		return nil, false
 	}
 	return o.Hostname, true
@@ -421,7 +392,7 @@ func (o *Device) GetHostnameOk() (*string, bool) {
 
 // HasHostname returns a boolean if a field has been set.
 func (o *Device) HasHostname() bool {
-	if o != nil && o.Hostname != nil {
+	if o != nil && !isNil(o.Hostname) {
 		return true
 	}
 
@@ -435,7 +406,7 @@ func (o *Device) SetHostname(v string) {
 
 // GetHref returns the Href field value if set, zero value otherwise.
 func (o *Device) GetHref() string {
-	if o == nil || o.Href == nil {
+	if o == nil || isNil(o.Href) {
 		var ret string
 		return ret
 	}
@@ -445,7 +416,7 @@ func (o *Device) GetHref() string {
 // GetHrefOk returns a tuple with the Href field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Device) GetHrefOk() (*string, bool) {
-	if o == nil || o.Href == nil {
+	if o == nil || isNil(o.Href) {
 		return nil, false
 	}
 	return o.Href, true
@@ -453,7 +424,7 @@ func (o *Device) GetHrefOk() (*string, bool) {
 
 // HasHref returns a boolean if a field has been set.
 func (o *Device) HasHref() bool {
-	if o != nil && o.Href != nil {
+	if o != nil && !isNil(o.Href) {
 		return true
 	}
 
@@ -467,7 +438,7 @@ func (o *Device) SetHref(v string) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *Device) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || isNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -477,7 +448,7 @@ func (o *Device) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Device) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || isNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -485,7 +456,7 @@ func (o *Device) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *Device) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !isNil(o.Id) {
 		return true
 	}
 
@@ -499,7 +470,7 @@ func (o *Device) SetId(v string) {
 
 // GetImageUrl returns the ImageUrl field value if set, zero value otherwise.
 func (o *Device) GetImageUrl() string {
-	if o == nil || o.ImageUrl == nil {
+	if o == nil || isNil(o.ImageUrl) {
 		var ret string
 		return ret
 	}
@@ -509,7 +480,7 @@ func (o *Device) GetImageUrl() string {
 // GetImageUrlOk returns a tuple with the ImageUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Device) GetImageUrlOk() (*string, bool) {
-	if o == nil || o.ImageUrl == nil {
+	if o == nil || isNil(o.ImageUrl) {
 		return nil, false
 	}
 	return o.ImageUrl, true
@@ -517,7 +488,7 @@ func (o *Device) GetImageUrlOk() (*string, bool) {
 
 // HasImageUrl returns a boolean if a field has been set.
 func (o *Device) HasImageUrl() bool {
-	if o != nil && o.ImageUrl != nil {
+	if o != nil && !isNil(o.ImageUrl) {
 		return true
 	}
 
@@ -531,7 +502,7 @@ func (o *Device) SetImageUrl(v string) {
 
 // GetIpAddresses returns the IpAddresses field value if set, zero value otherwise.
 func (o *Device) GetIpAddresses() []FindDeviceById200ResponseIpAddressesInner {
-	if o == nil || o.IpAddresses == nil {
+	if o == nil || isNil(o.IpAddresses) {
 		var ret []FindDeviceById200ResponseIpAddressesInner
 		return ret
 	}
@@ -541,7 +512,7 @@ func (o *Device) GetIpAddresses() []FindDeviceById200ResponseIpAddressesInner {
 // GetIpAddressesOk returns a tuple with the IpAddresses field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Device) GetIpAddressesOk() ([]FindDeviceById200ResponseIpAddressesInner, bool) {
-	if o == nil || o.IpAddresses == nil {
+	if o == nil || isNil(o.IpAddresses) {
 		return nil, false
 	}
 	return o.IpAddresses, true
@@ -549,7 +520,7 @@ func (o *Device) GetIpAddressesOk() ([]FindDeviceById200ResponseIpAddressesInner
 
 // HasIpAddresses returns a boolean if a field has been set.
 func (o *Device) HasIpAddresses() bool {
-	if o != nil && o.IpAddresses != nil {
+	if o != nil && !isNil(o.IpAddresses) {
 		return true
 	}
 
@@ -563,7 +534,7 @@ func (o *Device) SetIpAddresses(v []FindDeviceById200ResponseIpAddressesInner) {
 
 // GetIpxeScriptUrl returns the IpxeScriptUrl field value if set, zero value otherwise.
 func (o *Device) GetIpxeScriptUrl() string {
-	if o == nil || o.IpxeScriptUrl == nil {
+	if o == nil || isNil(o.IpxeScriptUrl) {
 		var ret string
 		return ret
 	}
@@ -573,7 +544,7 @@ func (o *Device) GetIpxeScriptUrl() string {
 // GetIpxeScriptUrlOk returns a tuple with the IpxeScriptUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Device) GetIpxeScriptUrlOk() (*string, bool) {
-	if o == nil || o.IpxeScriptUrl == nil {
+	if o == nil || isNil(o.IpxeScriptUrl) {
 		return nil, false
 	}
 	return o.IpxeScriptUrl, true
@@ -581,7 +552,7 @@ func (o *Device) GetIpxeScriptUrlOk() (*string, bool) {
 
 // HasIpxeScriptUrl returns a boolean if a field has been set.
 func (o *Device) HasIpxeScriptUrl() bool {
-	if o != nil && o.IpxeScriptUrl != nil {
+	if o != nil && !isNil(o.IpxeScriptUrl) {
 		return true
 	}
 
@@ -595,7 +566,7 @@ func (o *Device) SetIpxeScriptUrl(v string) {
 
 // GetIqn returns the Iqn field value if set, zero value otherwise.
 func (o *Device) GetIqn() string {
-	if o == nil || o.Iqn == nil {
+	if o == nil || isNil(o.Iqn) {
 		var ret string
 		return ret
 	}
@@ -605,7 +576,7 @@ func (o *Device) GetIqn() string {
 // GetIqnOk returns a tuple with the Iqn field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Device) GetIqnOk() (*string, bool) {
-	if o == nil || o.Iqn == nil {
+	if o == nil || isNil(o.Iqn) {
 		return nil, false
 	}
 	return o.Iqn, true
@@ -613,7 +584,7 @@ func (o *Device) GetIqnOk() (*string, bool) {
 
 // HasIqn returns a boolean if a field has been set.
 func (o *Device) HasIqn() bool {
-	if o != nil && o.Iqn != nil {
+	if o != nil && !isNil(o.Iqn) {
 		return true
 	}
 
@@ -627,7 +598,7 @@ func (o *Device) SetIqn(v string) {
 
 // GetLocked returns the Locked field value if set, zero value otherwise.
 func (o *Device) GetLocked() bool {
-	if o == nil || o.Locked == nil {
+	if o == nil || isNil(o.Locked) {
 		var ret bool
 		return ret
 	}
@@ -637,7 +608,7 @@ func (o *Device) GetLocked() bool {
 // GetLockedOk returns a tuple with the Locked field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Device) GetLockedOk() (*bool, bool) {
-	if o == nil || o.Locked == nil {
+	if o == nil || isNil(o.Locked) {
 		return nil, false
 	}
 	return o.Locked, true
@@ -645,7 +616,7 @@ func (o *Device) GetLockedOk() (*bool, bool) {
 
 // HasLocked returns a boolean if a field has been set.
 func (o *Device) HasLocked() bool {
-	if o != nil && o.Locked != nil {
+	if o != nil && !isNil(o.Locked) {
 		return true
 	}
 
@@ -659,7 +630,7 @@ func (o *Device) SetLocked(v bool) {
 
 // GetMetro returns the Metro field value if set, zero value otherwise.
 func (o *Device) GetMetro() FindDeviceById200ResponseFacilityMetro {
-	if o == nil || o.Metro == nil {
+	if o == nil || isNil(o.Metro) {
 		var ret FindDeviceById200ResponseFacilityMetro
 		return ret
 	}
@@ -669,7 +640,7 @@ func (o *Device) GetMetro() FindDeviceById200ResponseFacilityMetro {
 // GetMetroOk returns a tuple with the Metro field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Device) GetMetroOk() (*FindDeviceById200ResponseFacilityMetro, bool) {
-	if o == nil || o.Metro == nil {
+	if o == nil || isNil(o.Metro) {
 		return nil, false
 	}
 	return o.Metro, true
@@ -677,7 +648,7 @@ func (o *Device) GetMetroOk() (*FindDeviceById200ResponseFacilityMetro, bool) {
 
 // HasMetro returns a boolean if a field has been set.
 func (o *Device) HasMetro() bool {
-	if o != nil && o.Metro != nil {
+	if o != nil && !isNil(o.Metro) {
 		return true
 	}
 
@@ -690,18 +661,18 @@ func (o *Device) SetMetro(v FindDeviceById200ResponseFacilityMetro) {
 }
 
 // GetNetworkPorts returns the NetworkPorts field value if set, zero value otherwise.
-func (o *Device) GetNetworkPorts() FindDeviceById200ResponseNetworkPorts {
-	if o == nil || o.NetworkPorts == nil {
-		var ret FindDeviceById200ResponseNetworkPorts
+func (o *Device) GetNetworkPorts() []FindDeviceById200ResponseNetworkPortsInner {
+	if o == nil || isNil(o.NetworkPorts) {
+		var ret []FindDeviceById200ResponseNetworkPortsInner
 		return ret
 	}
-	return *o.NetworkPorts
+	return o.NetworkPorts
 }
 
 // GetNetworkPortsOk returns a tuple with the NetworkPorts field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Device) GetNetworkPortsOk() (*FindDeviceById200ResponseNetworkPorts, bool) {
-	if o == nil || o.NetworkPorts == nil {
+func (o *Device) GetNetworkPortsOk() ([]FindDeviceById200ResponseNetworkPortsInner, bool) {
+	if o == nil || isNil(o.NetworkPorts) {
 		return nil, false
 	}
 	return o.NetworkPorts, true
@@ -709,21 +680,21 @@ func (o *Device) GetNetworkPortsOk() (*FindDeviceById200ResponseNetworkPorts, bo
 
 // HasNetworkPorts returns a boolean if a field has been set.
 func (o *Device) HasNetworkPorts() bool {
-	if o != nil && o.NetworkPorts != nil {
+	if o != nil && !isNil(o.NetworkPorts) {
 		return true
 	}
 
 	return false
 }
 
-// SetNetworkPorts gets a reference to the given FindDeviceById200ResponseNetworkPorts and assigns it to the NetworkPorts field.
-func (o *Device) SetNetworkPorts(v FindDeviceById200ResponseNetworkPorts) {
-	o.NetworkPorts = &v
+// SetNetworkPorts gets a reference to the given []FindDeviceById200ResponseNetworkPortsInner and assigns it to the NetworkPorts field.
+func (o *Device) SetNetworkPorts(v []FindDeviceById200ResponseNetworkPortsInner) {
+	o.NetworkPorts = v
 }
 
 // GetOperatingSystem returns the OperatingSystem field value if set, zero value otherwise.
 func (o *Device) GetOperatingSystem() FindDeviceById200ResponseOperatingSystem {
-	if o == nil || o.OperatingSystem == nil {
+	if o == nil || isNil(o.OperatingSystem) {
 		var ret FindDeviceById200ResponseOperatingSystem
 		return ret
 	}
@@ -733,7 +704,7 @@ func (o *Device) GetOperatingSystem() FindDeviceById200ResponseOperatingSystem {
 // GetOperatingSystemOk returns a tuple with the OperatingSystem field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Device) GetOperatingSystemOk() (*FindDeviceById200ResponseOperatingSystem, bool) {
-	if o == nil || o.OperatingSystem == nil {
+	if o == nil || isNil(o.OperatingSystem) {
 		return nil, false
 	}
 	return o.OperatingSystem, true
@@ -741,7 +712,7 @@ func (o *Device) GetOperatingSystemOk() (*FindDeviceById200ResponseOperatingSyst
 
 // HasOperatingSystem returns a boolean if a field has been set.
 func (o *Device) HasOperatingSystem() bool {
-	if o != nil && o.OperatingSystem != nil {
+	if o != nil && !isNil(o.OperatingSystem) {
 		return true
 	}
 
@@ -753,9 +724,41 @@ func (o *Device) SetOperatingSystem(v FindDeviceById200ResponseOperatingSystem) 
 	o.OperatingSystem = &v
 }
 
+// GetActions returns the Actions field value if set, zero value otherwise.
+func (o *Device) GetActions() []FindDeviceById200ResponseActionsInner {
+	if o == nil || isNil(o.Actions) {
+		var ret []FindDeviceById200ResponseActionsInner
+		return ret
+	}
+	return o.Actions
+}
+
+// GetActionsOk returns a tuple with the Actions field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Device) GetActionsOk() ([]FindDeviceById200ResponseActionsInner, bool) {
+	if o == nil || isNil(o.Actions) {
+		return nil, false
+	}
+	return o.Actions, true
+}
+
+// HasActions returns a boolean if a field has been set.
+func (o *Device) HasActions() bool {
+	if o != nil && !isNil(o.Actions) {
+		return true
+	}
+
+	return false
+}
+
+// SetActions gets a reference to the given []FindDeviceById200ResponseActionsInner and assigns it to the Actions field.
+func (o *Device) SetActions(v []FindDeviceById200ResponseActionsInner) {
+	o.Actions = v
+}
+
 // GetPlan returns the Plan field value if set, zero value otherwise.
 func (o *Device) GetPlan() FindDeviceById200ResponsePlan {
-	if o == nil || o.Plan == nil {
+	if o == nil || isNil(o.Plan) {
 		var ret FindDeviceById200ResponsePlan
 		return ret
 	}
@@ -765,7 +768,7 @@ func (o *Device) GetPlan() FindDeviceById200ResponsePlan {
 // GetPlanOk returns a tuple with the Plan field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Device) GetPlanOk() (*FindDeviceById200ResponsePlan, bool) {
-	if o == nil || o.Plan == nil {
+	if o == nil || isNil(o.Plan) {
 		return nil, false
 	}
 	return o.Plan, true
@@ -773,7 +776,7 @@ func (o *Device) GetPlanOk() (*FindDeviceById200ResponsePlan, bool) {
 
 // HasPlan returns a boolean if a field has been set.
 func (o *Device) HasPlan() bool {
-	if o != nil && o.Plan != nil {
+	if o != nil && !isNil(o.Plan) {
 		return true
 	}
 
@@ -787,7 +790,7 @@ func (o *Device) SetPlan(v FindDeviceById200ResponsePlan) {
 
 // GetProject returns the Project field value if set, zero value otherwise.
 func (o *Device) GetProject() FindDeviceById200ResponseProject {
-	if o == nil || o.Project == nil {
+	if o == nil || isNil(o.Project) {
 		var ret FindDeviceById200ResponseProject
 		return ret
 	}
@@ -797,7 +800,7 @@ func (o *Device) GetProject() FindDeviceById200ResponseProject {
 // GetProjectOk returns a tuple with the Project field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Device) GetProjectOk() (*FindDeviceById200ResponseProject, bool) {
-	if o == nil || o.Project == nil {
+	if o == nil || isNil(o.Project) {
 		return nil, false
 	}
 	return o.Project, true
@@ -805,7 +808,7 @@ func (o *Device) GetProjectOk() (*FindDeviceById200ResponseProject, bool) {
 
 // HasProject returns a boolean if a field has been set.
 func (o *Device) HasProject() bool {
-	if o != nil && o.Project != nil {
+	if o != nil && !isNil(o.Project) {
 		return true
 	}
 
@@ -819,7 +822,7 @@ func (o *Device) SetProject(v FindDeviceById200ResponseProject) {
 
 // GetProjectLite returns the ProjectLite field value if set, zero value otherwise.
 func (o *Device) GetProjectLite() FindDeviceById200ResponseProjectLite {
-	if o == nil || o.ProjectLite == nil {
+	if o == nil || isNil(o.ProjectLite) {
 		var ret FindDeviceById200ResponseProjectLite
 		return ret
 	}
@@ -829,7 +832,7 @@ func (o *Device) GetProjectLite() FindDeviceById200ResponseProjectLite {
 // GetProjectLiteOk returns a tuple with the ProjectLite field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Device) GetProjectLiteOk() (*FindDeviceById200ResponseProjectLite, bool) {
-	if o == nil || o.ProjectLite == nil {
+	if o == nil || isNil(o.ProjectLite) {
 		return nil, false
 	}
 	return o.ProjectLite, true
@@ -837,7 +840,7 @@ func (o *Device) GetProjectLiteOk() (*FindDeviceById200ResponseProjectLite, bool
 
 // HasProjectLite returns a boolean if a field has been set.
 func (o *Device) HasProjectLite() bool {
-	if o != nil && o.ProjectLite != nil {
+	if o != nil && !isNil(o.ProjectLite) {
 		return true
 	}
 
@@ -850,9 +853,9 @@ func (o *Device) SetProjectLite(v FindDeviceById200ResponseProjectLite) {
 }
 
 // GetProvisioningEvents returns the ProvisioningEvents field value if set, zero value otherwise.
-func (o *Device) GetProvisioningEvents() []FindConnectionEvents200Response {
-	if o == nil || o.ProvisioningEvents == nil {
-		var ret []FindConnectionEvents200Response
+func (o *Device) GetProvisioningEvents() []FindInterconnectionEvents200Response {
+	if o == nil || isNil(o.ProvisioningEvents) {
+		var ret []FindInterconnectionEvents200Response
 		return ret
 	}
 	return o.ProvisioningEvents
@@ -860,8 +863,8 @@ func (o *Device) GetProvisioningEvents() []FindConnectionEvents200Response {
 
 // GetProvisioningEventsOk returns a tuple with the ProvisioningEvents field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Device) GetProvisioningEventsOk() ([]FindConnectionEvents200Response, bool) {
-	if o == nil || o.ProvisioningEvents == nil {
+func (o *Device) GetProvisioningEventsOk() ([]FindInterconnectionEvents200Response, bool) {
+	if o == nil || isNil(o.ProvisioningEvents) {
 		return nil, false
 	}
 	return o.ProvisioningEvents, true
@@ -869,21 +872,21 @@ func (o *Device) GetProvisioningEventsOk() ([]FindConnectionEvents200Response, b
 
 // HasProvisioningEvents returns a boolean if a field has been set.
 func (o *Device) HasProvisioningEvents() bool {
-	if o != nil && o.ProvisioningEvents != nil {
+	if o != nil && !isNil(o.ProvisioningEvents) {
 		return true
 	}
 
 	return false
 }
 
-// SetProvisioningEvents gets a reference to the given []FindConnectionEvents200Response and assigns it to the ProvisioningEvents field.
-func (o *Device) SetProvisioningEvents(v []FindConnectionEvents200Response) {
+// SetProvisioningEvents gets a reference to the given []FindInterconnectionEvents200Response and assigns it to the ProvisioningEvents field.
+func (o *Device) SetProvisioningEvents(v []FindInterconnectionEvents200Response) {
 	o.ProvisioningEvents = v
 }
 
 // GetProvisioningPercentage returns the ProvisioningPercentage field value if set, zero value otherwise.
 func (o *Device) GetProvisioningPercentage() float32 {
-	if o == nil || o.ProvisioningPercentage == nil {
+	if o == nil || isNil(o.ProvisioningPercentage) {
 		var ret float32
 		return ret
 	}
@@ -893,7 +896,7 @@ func (o *Device) GetProvisioningPercentage() float32 {
 // GetProvisioningPercentageOk returns a tuple with the ProvisioningPercentage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Device) GetProvisioningPercentageOk() (*float32, bool) {
-	if o == nil || o.ProvisioningPercentage == nil {
+	if o == nil || isNil(o.ProvisioningPercentage) {
 		return nil, false
 	}
 	return o.ProvisioningPercentage, true
@@ -901,7 +904,7 @@ func (o *Device) GetProvisioningPercentageOk() (*float32, bool) {
 
 // HasProvisioningPercentage returns a boolean if a field has been set.
 func (o *Device) HasProvisioningPercentage() bool {
-	if o != nil && o.ProvisioningPercentage != nil {
+	if o != nil && !isNil(o.ProvisioningPercentage) {
 		return true
 	}
 
@@ -915,7 +918,7 @@ func (o *Device) SetProvisioningPercentage(v float32) {
 
 // GetRootPassword returns the RootPassword field value if set, zero value otherwise.
 func (o *Device) GetRootPassword() string {
-	if o == nil || o.RootPassword == nil {
+	if o == nil || isNil(o.RootPassword) {
 		var ret string
 		return ret
 	}
@@ -925,7 +928,7 @@ func (o *Device) GetRootPassword() string {
 // GetRootPasswordOk returns a tuple with the RootPassword field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Device) GetRootPasswordOk() (*string, bool) {
-	if o == nil || o.RootPassword == nil {
+	if o == nil || isNil(o.RootPassword) {
 		return nil, false
 	}
 	return o.RootPassword, true
@@ -933,7 +936,7 @@ func (o *Device) GetRootPasswordOk() (*string, bool) {
 
 // HasRootPassword returns a boolean if a field has been set.
 func (o *Device) HasRootPassword() bool {
-	if o != nil && o.RootPassword != nil {
+	if o != nil && !isNil(o.RootPassword) {
 		return true
 	}
 
@@ -947,7 +950,7 @@ func (o *Device) SetRootPassword(v string) {
 
 // GetShortId returns the ShortId field value if set, zero value otherwise.
 func (o *Device) GetShortId() string {
-	if o == nil || o.ShortId == nil {
+	if o == nil || isNil(o.ShortId) {
 		var ret string
 		return ret
 	}
@@ -957,7 +960,7 @@ func (o *Device) GetShortId() string {
 // GetShortIdOk returns a tuple with the ShortId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Device) GetShortIdOk() (*string, bool) {
-	if o == nil || o.ShortId == nil {
+	if o == nil || isNil(o.ShortId) {
 		return nil, false
 	}
 	return o.ShortId, true
@@ -965,7 +968,7 @@ func (o *Device) GetShortIdOk() (*string, bool) {
 
 // HasShortId returns a boolean if a field has been set.
 func (o *Device) HasShortId() bool {
-	if o != nil && o.ShortId != nil {
+	if o != nil && !isNil(o.ShortId) {
 		return true
 	}
 
@@ -979,7 +982,7 @@ func (o *Device) SetShortId(v string) {
 
 // GetSpotInstance returns the SpotInstance field value if set, zero value otherwise.
 func (o *Device) GetSpotInstance() bool {
-	if o == nil || o.SpotInstance == nil {
+	if o == nil || isNil(o.SpotInstance) {
 		var ret bool
 		return ret
 	}
@@ -989,7 +992,7 @@ func (o *Device) GetSpotInstance() bool {
 // GetSpotInstanceOk returns a tuple with the SpotInstance field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Device) GetSpotInstanceOk() (*bool, bool) {
-	if o == nil || o.SpotInstance == nil {
+	if o == nil || isNil(o.SpotInstance) {
 		return nil, false
 	}
 	return o.SpotInstance, true
@@ -997,7 +1000,7 @@ func (o *Device) GetSpotInstanceOk() (*bool, bool) {
 
 // HasSpotInstance returns a boolean if a field has been set.
 func (o *Device) HasSpotInstance() bool {
-	if o != nil && o.SpotInstance != nil {
+	if o != nil && !isNil(o.SpotInstance) {
 		return true
 	}
 
@@ -1011,7 +1014,7 @@ func (o *Device) SetSpotInstance(v bool) {
 
 // GetSpotPriceMax returns the SpotPriceMax field value if set, zero value otherwise.
 func (o *Device) GetSpotPriceMax() float32 {
-	if o == nil || o.SpotPriceMax == nil {
+	if o == nil || isNil(o.SpotPriceMax) {
 		var ret float32
 		return ret
 	}
@@ -1021,7 +1024,7 @@ func (o *Device) GetSpotPriceMax() float32 {
 // GetSpotPriceMaxOk returns a tuple with the SpotPriceMax field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Device) GetSpotPriceMaxOk() (*float32, bool) {
-	if o == nil || o.SpotPriceMax == nil {
+	if o == nil || isNil(o.SpotPriceMax) {
 		return nil, false
 	}
 	return o.SpotPriceMax, true
@@ -1029,7 +1032,7 @@ func (o *Device) GetSpotPriceMaxOk() (*float32, bool) {
 
 // HasSpotPriceMax returns a boolean if a field has been set.
 func (o *Device) HasSpotPriceMax() bool {
-	if o != nil && o.SpotPriceMax != nil {
+	if o != nil && !isNil(o.SpotPriceMax) {
 		return true
 	}
 
@@ -1043,7 +1046,7 @@ func (o *Device) SetSpotPriceMax(v float32) {
 
 // GetSshKeys returns the SshKeys field value if set, zero value otherwise.
 func (o *Device) GetSshKeys() []FindBatchById200ResponseDevicesInner {
-	if o == nil || o.SshKeys == nil {
+	if o == nil || isNil(o.SshKeys) {
 		var ret []FindBatchById200ResponseDevicesInner
 		return ret
 	}
@@ -1053,7 +1056,7 @@ func (o *Device) GetSshKeys() []FindBatchById200ResponseDevicesInner {
 // GetSshKeysOk returns a tuple with the SshKeys field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Device) GetSshKeysOk() ([]FindBatchById200ResponseDevicesInner, bool) {
-	if o == nil || o.SshKeys == nil {
+	if o == nil || isNil(o.SshKeys) {
 		return nil, false
 	}
 	return o.SshKeys, true
@@ -1061,7 +1064,7 @@ func (o *Device) GetSshKeysOk() ([]FindBatchById200ResponseDevicesInner, bool) {
 
 // HasSshKeys returns a boolean if a field has been set.
 func (o *Device) HasSshKeys() bool {
-	if o != nil && o.SshKeys != nil {
+	if o != nil && !isNil(o.SshKeys) {
 		return true
 	}
 
@@ -1075,7 +1078,7 @@ func (o *Device) SetSshKeys(v []FindBatchById200ResponseDevicesInner) {
 
 // GetState returns the State field value if set, zero value otherwise.
 func (o *Device) GetState() string {
-	if o == nil || o.State == nil {
+	if o == nil || isNil(o.State) {
 		var ret string
 		return ret
 	}
@@ -1085,7 +1088,7 @@ func (o *Device) GetState() string {
 // GetStateOk returns a tuple with the State field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Device) GetStateOk() (*string, bool) {
-	if o == nil || o.State == nil {
+	if o == nil || isNil(o.State) {
 		return nil, false
 	}
 	return o.State, true
@@ -1093,7 +1096,7 @@ func (o *Device) GetStateOk() (*string, bool) {
 
 // HasState returns a boolean if a field has been set.
 func (o *Device) HasState() bool {
-	if o != nil && o.State != nil {
+	if o != nil && !isNil(o.State) {
 		return true
 	}
 
@@ -1107,7 +1110,7 @@ func (o *Device) SetState(v string) {
 
 // GetSwitchUuid returns the SwitchUuid field value if set, zero value otherwise.
 func (o *Device) GetSwitchUuid() string {
-	if o == nil || o.SwitchUuid == nil {
+	if o == nil || isNil(o.SwitchUuid) {
 		var ret string
 		return ret
 	}
@@ -1117,7 +1120,7 @@ func (o *Device) GetSwitchUuid() string {
 // GetSwitchUuidOk returns a tuple with the SwitchUuid field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Device) GetSwitchUuidOk() (*string, bool) {
-	if o == nil || o.SwitchUuid == nil {
+	if o == nil || isNil(o.SwitchUuid) {
 		return nil, false
 	}
 	return o.SwitchUuid, true
@@ -1125,7 +1128,7 @@ func (o *Device) GetSwitchUuidOk() (*string, bool) {
 
 // HasSwitchUuid returns a boolean if a field has been set.
 func (o *Device) HasSwitchUuid() bool {
-	if o != nil && o.SwitchUuid != nil {
+	if o != nil && !isNil(o.SwitchUuid) {
 		return true
 	}
 
@@ -1137,9 +1140,41 @@ func (o *Device) SetSwitchUuid(v string) {
 	o.SwitchUuid = &v
 }
 
+// GetTags returns the Tags field value if set, zero value otherwise.
+func (o *Device) GetTags() []string {
+	if o == nil || isNil(o.Tags) {
+		var ret []string
+		return ret
+	}
+	return o.Tags
+}
+
+// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Device) GetTagsOk() ([]string, bool) {
+	if o == nil || isNil(o.Tags) {
+		return nil, false
+	}
+	return o.Tags, true
+}
+
+// HasTags returns a boolean if a field has been set.
+func (o *Device) HasTags() bool {
+	if o != nil && !isNil(o.Tags) {
+		return true
+	}
+
+	return false
+}
+
+// SetTags gets a reference to the given []string and assigns it to the Tags field.
+func (o *Device) SetTags(v []string) {
+	o.Tags = v
+}
+
 // GetTerminationTime returns the TerminationTime field value if set, zero value otherwise.
 func (o *Device) GetTerminationTime() time.Time {
-	if o == nil || o.TerminationTime == nil {
+	if o == nil || isNil(o.TerminationTime) {
 		var ret time.Time
 		return ret
 	}
@@ -1149,7 +1184,7 @@ func (o *Device) GetTerminationTime() time.Time {
 // GetTerminationTimeOk returns a tuple with the TerminationTime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Device) GetTerminationTimeOk() (*time.Time, bool) {
-	if o == nil || o.TerminationTime == nil {
+	if o == nil || isNil(o.TerminationTime) {
 		return nil, false
 	}
 	return o.TerminationTime, true
@@ -1157,7 +1192,7 @@ func (o *Device) GetTerminationTimeOk() (*time.Time, bool) {
 
 // HasTerminationTime returns a boolean if a field has been set.
 func (o *Device) HasTerminationTime() bool {
-	if o != nil && o.TerminationTime != nil {
+	if o != nil && !isNil(o.TerminationTime) {
 		return true
 	}
 
@@ -1171,7 +1206,7 @@ func (o *Device) SetTerminationTime(v time.Time) {
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *Device) GetUpdatedAt() time.Time {
-	if o == nil || o.UpdatedAt == nil {
+	if o == nil || isNil(o.UpdatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -1181,7 +1216,7 @@ func (o *Device) GetUpdatedAt() time.Time {
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Device) GetUpdatedAtOk() (*time.Time, bool) {
-	if o == nil || o.UpdatedAt == nil {
+	if o == nil || isNil(o.UpdatedAt) {
 		return nil, false
 	}
 	return o.UpdatedAt, true
@@ -1189,7 +1224,7 @@ func (o *Device) GetUpdatedAtOk() (*time.Time, bool) {
 
 // HasUpdatedAt returns a boolean if a field has been set.
 func (o *Device) HasUpdatedAt() bool {
-	if o != nil && o.UpdatedAt != nil {
+	if o != nil && !isNil(o.UpdatedAt) {
 		return true
 	}
 
@@ -1203,7 +1238,7 @@ func (o *Device) SetUpdatedAt(v time.Time) {
 
 // GetUser returns the User field value if set, zero value otherwise.
 func (o *Device) GetUser() string {
-	if o == nil || o.User == nil {
+	if o == nil || isNil(o.User) {
 		var ret string
 		return ret
 	}
@@ -1213,7 +1248,7 @@ func (o *Device) GetUser() string {
 // GetUserOk returns a tuple with the User field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Device) GetUserOk() (*string, bool) {
-	if o == nil || o.User == nil {
+	if o == nil || isNil(o.User) {
 		return nil, false
 	}
 	return o.User, true
@@ -1221,7 +1256,7 @@ func (o *Device) GetUserOk() (*string, bool) {
 
 // HasUser returns a boolean if a field has been set.
 func (o *Device) HasUser() bool {
-	if o != nil && o.User != nil {
+	if o != nil && !isNil(o.User) {
 		return true
 	}
 
@@ -1235,7 +1270,7 @@ func (o *Device) SetUser(v string) {
 
 // GetUserdata returns the Userdata field value if set, zero value otherwise.
 func (o *Device) GetUserdata() string {
-	if o == nil || o.Userdata == nil {
+	if o == nil || isNil(o.Userdata) {
 		var ret string
 		return ret
 	}
@@ -1245,7 +1280,7 @@ func (o *Device) GetUserdata() string {
 // GetUserdataOk returns a tuple with the Userdata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Device) GetUserdataOk() (*string, bool) {
-	if o == nil || o.Userdata == nil {
+	if o == nil || isNil(o.Userdata) {
 		return nil, false
 	}
 	return o.Userdata, true
@@ -1253,7 +1288,7 @@ func (o *Device) GetUserdataOk() (*string, bool) {
 
 // HasUserdata returns a boolean if a field has been set.
 func (o *Device) HasUserdata() bool {
-	if o != nil && o.Userdata != nil {
+	if o != nil && !isNil(o.Userdata) {
 		return true
 	}
 
@@ -1267,7 +1302,7 @@ func (o *Device) SetUserdata(v string) {
 
 // GetVolumes returns the Volumes field value if set, zero value otherwise.
 func (o *Device) GetVolumes() []FindBatchById200ResponseDevicesInner {
-	if o == nil || o.Volumes == nil {
+	if o == nil || isNil(o.Volumes) {
 		var ret []FindBatchById200ResponseDevicesInner
 		return ret
 	}
@@ -1277,7 +1312,7 @@ func (o *Device) GetVolumes() []FindBatchById200ResponseDevicesInner {
 // GetVolumesOk returns a tuple with the Volumes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Device) GetVolumesOk() ([]FindBatchById200ResponseDevicesInner, bool) {
-	if o == nil || o.Volumes == nil {
+	if o == nil || isNil(o.Volumes) {
 		return nil, false
 	}
 	return o.Volumes, true
@@ -1285,7 +1320,7 @@ func (o *Device) GetVolumesOk() ([]FindBatchById200ResponseDevicesInner, bool) {
 
 // HasVolumes returns a boolean if a field has been set.
 func (o *Device) HasVolumes() bool {
-	if o != nil && o.Volumes != nil {
+	if o != nil && !isNil(o.Volumes) {
 		return true
 	}
 
@@ -1299,118 +1334,121 @@ func (o *Device) SetVolumes(v []FindBatchById200ResponseDevicesInner) {
 
 func (o Device) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Tags != nil {
-		toSerialize["tags"] = o.Tags
-	}
-	if o.AlwaysPxe != nil {
+	if !isNil(o.AlwaysPxe) {
 		toSerialize["always_pxe"] = o.AlwaysPxe
 	}
-	if o.BillingCycle != nil {
+	if !isNil(o.BillingCycle) {
 		toSerialize["billing_cycle"] = o.BillingCycle
 	}
-	if o.BondingMode != nil {
+	if !isNil(o.BondingMode) {
 		toSerialize["bonding_mode"] = o.BondingMode
 	}
-	if o.CreatedAt != nil {
+	if !isNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt
 	}
-	if o.CreatedBy != nil {
+	if !isNil(o.CreatedBy) {
 		toSerialize["created_by"] = o.CreatedBy
 	}
-	if o.Customdata != nil {
+	if !isNil(o.Customdata) {
 		toSerialize["customdata"] = o.Customdata
 	}
-	if o.Description != nil {
+	if !isNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
-	if o.Facility != nil {
+	if !isNil(o.Facility) {
 		toSerialize["facility"] = o.Facility
 	}
-	if o.HardwareReservation != nil {
+	if !isNil(o.HardwareReservation) {
 		toSerialize["hardware_reservation"] = o.HardwareReservation
 	}
-	if o.Hostname != nil {
+	if !isNil(o.Hostname) {
 		toSerialize["hostname"] = o.Hostname
 	}
-	if o.Href != nil {
+	if !isNil(o.Href) {
 		toSerialize["href"] = o.Href
 	}
-	if o.Id != nil {
+	if !isNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
-	if o.ImageUrl != nil {
+	if !isNil(o.ImageUrl) {
 		toSerialize["image_url"] = o.ImageUrl
 	}
-	if o.IpAddresses != nil {
+	if !isNil(o.IpAddresses) {
 		toSerialize["ip_addresses"] = o.IpAddresses
 	}
-	if o.IpxeScriptUrl != nil {
+	if !isNil(o.IpxeScriptUrl) {
 		toSerialize["ipxe_script_url"] = o.IpxeScriptUrl
 	}
-	if o.Iqn != nil {
+	if !isNil(o.Iqn) {
 		toSerialize["iqn"] = o.Iqn
 	}
-	if o.Locked != nil {
+	if !isNil(o.Locked) {
 		toSerialize["locked"] = o.Locked
 	}
-	if o.Metro != nil {
+	if !isNil(o.Metro) {
 		toSerialize["metro"] = o.Metro
 	}
-	if o.NetworkPorts != nil {
+	if !isNil(o.NetworkPorts) {
 		toSerialize["network_ports"] = o.NetworkPorts
 	}
-	if o.OperatingSystem != nil {
+	if !isNil(o.OperatingSystem) {
 		toSerialize["operating_system"] = o.OperatingSystem
 	}
-	if o.Plan != nil {
+	if !isNil(o.Actions) {
+		toSerialize["actions"] = o.Actions
+	}
+	if !isNil(o.Plan) {
 		toSerialize["plan"] = o.Plan
 	}
-	if o.Project != nil {
+	if !isNil(o.Project) {
 		toSerialize["project"] = o.Project
 	}
-	if o.ProjectLite != nil {
+	if !isNil(o.ProjectLite) {
 		toSerialize["project_lite"] = o.ProjectLite
 	}
-	if o.ProvisioningEvents != nil {
+	if !isNil(o.ProvisioningEvents) {
 		toSerialize["provisioning_events"] = o.ProvisioningEvents
 	}
-	if o.ProvisioningPercentage != nil {
+	if !isNil(o.ProvisioningPercentage) {
 		toSerialize["provisioning_percentage"] = o.ProvisioningPercentage
 	}
-	if o.RootPassword != nil {
+	if !isNil(o.RootPassword) {
 		toSerialize["root_password"] = o.RootPassword
 	}
-	if o.ShortId != nil {
+	if !isNil(o.ShortId) {
 		toSerialize["short_id"] = o.ShortId
 	}
-	if o.SpotInstance != nil {
+	if !isNil(o.SpotInstance) {
 		toSerialize["spot_instance"] = o.SpotInstance
 	}
-	if o.SpotPriceMax != nil {
+	if !isNil(o.SpotPriceMax) {
 		toSerialize["spot_price_max"] = o.SpotPriceMax
 	}
-	if o.SshKeys != nil {
+	if !isNil(o.SshKeys) {
 		toSerialize["ssh_keys"] = o.SshKeys
 	}
-	if o.State != nil {
+	if !isNil(o.State) {
 		toSerialize["state"] = o.State
 	}
-	if o.SwitchUuid != nil {
+	if !isNil(o.SwitchUuid) {
 		toSerialize["switch_uuid"] = o.SwitchUuid
 	}
-	if o.TerminationTime != nil {
+	if !isNil(o.Tags) {
+		toSerialize["tags"] = o.Tags
+	}
+	if !isNil(o.TerminationTime) {
 		toSerialize["termination_time"] = o.TerminationTime
 	}
-	if o.UpdatedAt != nil {
+	if !isNil(o.UpdatedAt) {
 		toSerialize["updated_at"] = o.UpdatedAt
 	}
-	if o.User != nil {
+	if !isNil(o.User) {
 		toSerialize["user"] = o.User
 	}
-	if o.Userdata != nil {
+	if !isNil(o.Userdata) {
 		toSerialize["userdata"] = o.Userdata
 	}
-	if o.Volumes != nil {
+	if !isNil(o.Volumes) {
 		toSerialize["volumes"] = o.Volumes
 	}
 	return json.Marshal(toSerialize)

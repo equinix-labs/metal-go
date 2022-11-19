@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**VirtualCircuits** | Pointer to **[]map[string]interface{}** |  | [optional] 
+**VirtualCircuits** | Pointer to [**[]GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInner**](GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInner.md) |  | [optional] 
 
 ## Methods
 
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetVirtualCircuits
 
-`func (o *VirtualCircuitList) GetVirtualCircuits() []map[string]interface{}`
+`func (o *VirtualCircuitList) GetVirtualCircuits() []GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInner`
 
 GetVirtualCircuits returns the VirtualCircuits field if non-nil, zero value otherwise.
 
 ### GetVirtualCircuitsOk
 
-`func (o *VirtualCircuitList) GetVirtualCircuitsOk() (*[]map[string]interface{}, bool)`
+`func (o *VirtualCircuitList) GetVirtualCircuitsOk() (*[]GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInner, bool)`
 
 GetVirtualCircuitsOk returns a tuple with the VirtualCircuits field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVirtualCircuits
 
-`func (o *VirtualCircuitList) SetVirtualCircuits(v []map[string]interface{})`
+`func (o *VirtualCircuitList) SetVirtualCircuits(v []GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInner)`
 
 SetVirtualCircuits sets VirtualCircuits field to given value.
 

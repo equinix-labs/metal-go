@@ -1,7 +1,7 @@
 /*
 Metal API
 
-This is the API for Equinix Metal. The API allows you to programmatically interact with all of your Equinix Metal resources, including devices, networks, addresses, organizations, projects, and your user account.  The official API docs are hosted at <https://metal.equinix.com/developers/api>.
+# Introduction Equinix Metal provides a RESTful HTTP API which can be reached at <https://api.equinix.com/metal/v1>. This document describes the API and how to use it.  The API allows you to programmatically interact with all of your Equinix Metal resources, including devices, networks, addresses, organizations, projects, and your user account. Every feature of the Equinix Metal web interface is accessible through the API.  The API docs are generated from the Equinix Metal OpenAPI specification and are officially hosted at <https://metal.equinix.com/developers/api>.  # Common Parameters  The Equinix Metal API uses a few methods to minimize network traffic and improve throughput. These parameters are not used in all API calls, but are used often enough to warrant their own section. Look for these parameters in the documentation for the API calls that support them.  ## Pagination  Pagination is used to limit the number of results returned in a single request. The API will return a maximum of 100 results per page. To retrieve additional results, you can use the `page` and `per_page` query parameters.  The `page` parameter is used to specify the page number. The first page is `1`. The `per_page` parameter is used to specify the number of results per page. The maximum number of results differs by resource type.  ## Sorting  Where offered, the API allows you to sort results by a specific field. To sort results use the `sort_by` query parameter with the root level field name as the value. The `sort_direction` parameter is used to specify the sort direction, either either `asc` (ascending) or `desc` (descending).  ## Filtering  Filtering is used to limit the results returned in a single request. The API supports filtering by certain fields in the response. To filter results, you can use the field as a query parameter.  For example, to filter the IP list to only return public IPv4 addresses, you can filter by the `type` field, as in the following request:  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/projects/id/ips?type=public_ipv4 ```  Only IP addresses with the `type` field set to `public_ipv4` will be returned.  ## Searching  Searching is used to find matching resources using multiple field comparissons. The API supports searching in resources that define this behavior. The fields available for search differ by resource, as does the search strategy.  To search resources you can use the `search` query parameter.  ## Include and Exclude  For resources that contain references to other resources, sucha as a Device that refers to the Project it resides in, the Equinix Metal API will returns `href` values (API links) to the associated resource.  ```json {   ...   \"project\": {     \"href\": \"/metal/v1/projects/f3f131c8-f302-49ef-8c44-9405022dc6dd\"   } } ```  If you're going need the project details, you can avoid a second API request.  Specify the contained `href` resources and collections that you'd like to have included in the response using the `include` query parameter.  For example:    ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=projects ```  The `include` parameter is generally accepted in `GET`, `POST`, `PUT`, and `PATCH` requests where `href` resources are presented.  To have multiple resources include, use a comma-separated list (e.g. `?include=emails,projects,memberships`).  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=emails,projects,memberships ```  You may also include nested associations up to three levels deep using dot notation (`?include=memberships.projects`):  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=memberships.projects ```  To exclude resources, and optimize response delivery, use the `exclude` query parameter. The `exclude` parameter is generally accepted in `GET`, `POST`, `PUT`, and `PATCH` requests for fields with nested object responses. When excluded, these fields will be replaced with an object that contains only an `href` field.
 
 API version: 1.0.0
 Contact: support@equinixmetal.com
@@ -17,24 +17,24 @@ import (
 
 // InterconnectionCreateInput struct for InterconnectionCreateInput
 type InterconnectionCreateInput struct {
-	Tags         []string `json:"tags,omitempty"`
-	ContactEmail *string  `json:"contact_email,omitempty"`
-	Description  *string  `json:"description,omitempty"`
-	// A Metro ID or code.
+	ContactEmail *string `json:"contact_email,omitempty"`
+	Description  *string `json:"description,omitempty"`
+	// A Metro ID or code. For interconnections with Dedicated Ports, this will be the location of the issued Dedicated Ports. When creating Fabric VCs (Metal Billed), this is where interconnection will be originating from, as we pre-authorize the use of one of our shared ports as the origin of the interconnection using A-Side service tokens. We only allow local connections for Fabric VCs (Metal Billed), so the destination location must be the same as the origin. For Fabric VCs (Fabric Billed), or shared connections, this will be the destination of the interconnection. We allow remote connections for Fabric VCs (Fabric Billed), so the origin of the interconnection can be a different metro set here.
 	Metro string `json:"metro"`
-	// The mode of the connection (only relevant to dedicated connections). Shared connections won't have this field. Can be either 'standard' or 'tunnel'.   The default mode of a dedicated connection is 'standard'. The mode can only be changed when there are no associated virtual circuits on the connection.   In tunnel mode, an 802.1q tunnel is added to a port to send/receive double tagged packets from server instances.
+	// The mode of the interconnection (only relevant to Dedicated Ports). Fabric VCs won't have this field. Can be either 'standard' or 'tunnel'.   The default mode of an interconnection on a Dedicated Port is 'standard'. The mode can only be changed when there are no associated virtual circuits on the interconnection.   In tunnel mode, an 802.1q tunnel is added to a port to send/receive double tagged packets from server instances.
 	Mode    *string `json:"mode,omitempty"`
 	Name    string  `json:"name"`
 	Project *string `json:"project,omitempty"`
 	// Either 'primary' or 'redundant'.
 	Redundancy string `json:"redundancy"`
-	// Can only be set to 'a_side' to create a shared connection with an A-side Fabric service token. This parameter is included in the specification as a developer preview and is generally unavailable. Please contact our Support team for more details.
+	// Either 'a_side' or 'z_side'. Setting this field to 'a_side' will create an interconnection with Fabric VCs (Metal Billed). Setting this field to 'z_side' will create an interconnection with Fabric VCs (Fabric Billed). This is required when the 'type' is 'shared', but this is not applicable when the 'type' is 'dedicated'. This parameter is included in the specification as a developer preview and is generally unavailable. Please contact our Support team for more details.
 	ServiceTokenType *string `json:"service_token_type,omitempty"`
-	// A connection speed, in bps, mbps, or gbps. Ex: '100000000' or '100 mbps'.
-	Speed *string `json:"speed,omitempty"`
-	// Either 'shared' or 'dedicated'.
+	// A interconnection speed, in bps, mbps, or gbps. For Dedicated Ports, this can be 10Gbps or 100Gbps. For Fabric VCs, this represents the maximum speed of the interconnection. For Fabric VCs (Metal Billed), this can only be one of the following:  ''50mbps'', ''200mbps'', ''500mbps'', ''1gbps'', ''2gbps'', ''5gbps'' or ''10gbps'', and is required for creation. For Fabric VCs (Fabric Billed), this field will always default to ''10gbps'' even if it is not provided. For example, ''500000000'', ''50m'', or' ''500mbps'' will all work as valid inputs.
+	Speed *int32   `json:"speed,omitempty"`
+	Tags  []string `json:"tags,omitempty"`
+	// Either 'shared' or 'dedicated'. The 'shared' type represents shared interconnections, or also known as Fabric VCs. The 'dedicated' type represents dedicated interconnections, or also known as Dedicated Ports.
 	Type string `json:"type"`
-	// A list of one or two metro-based VLANs that will be set on the primary and/or secondary (if redundant) virtual circuits respectively when creating a shared connection. VLANs can also be set after the connection is created, but are required to activate the connection. This parameter is included in the specification as a developer preview and is generally unavailable. Please contact our Support team for more details.
+	// A list of one or two metro-based VLANs that will be set on the virtual circuits of primary and/or secondary (if redundant) interconnections respectively when creating Fabric VCs. VLANs can also be set after the interconnection is created, but are required to fully activate the interconnection. This parameter is included in the specification as a developer preview and is generally unavailable. Please contact our Support team for more details.
 	Vlans []int32 `json:"vlans,omitempty"`
 }
 
@@ -59,41 +59,9 @@ func NewInterconnectionCreateInputWithDefaults() *InterconnectionCreateInput {
 	return &this
 }
 
-// GetTags returns the Tags field value if set, zero value otherwise.
-func (o *InterconnectionCreateInput) GetTags() []string {
-	if o == nil || o.Tags == nil {
-		var ret []string
-		return ret
-	}
-	return o.Tags
-}
-
-// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *InterconnectionCreateInput) GetTagsOk() ([]string, bool) {
-	if o == nil || o.Tags == nil {
-		return nil, false
-	}
-	return o.Tags, true
-}
-
-// HasTags returns a boolean if a field has been set.
-func (o *InterconnectionCreateInput) HasTags() bool {
-	if o != nil && o.Tags != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetTags gets a reference to the given []string and assigns it to the Tags field.
-func (o *InterconnectionCreateInput) SetTags(v []string) {
-	o.Tags = v
-}
-
 // GetContactEmail returns the ContactEmail field value if set, zero value otherwise.
 func (o *InterconnectionCreateInput) GetContactEmail() string {
-	if o == nil || o.ContactEmail == nil {
+	if o == nil || isNil(o.ContactEmail) {
 		var ret string
 		return ret
 	}
@@ -103,7 +71,7 @@ func (o *InterconnectionCreateInput) GetContactEmail() string {
 // GetContactEmailOk returns a tuple with the ContactEmail field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InterconnectionCreateInput) GetContactEmailOk() (*string, bool) {
-	if o == nil || o.ContactEmail == nil {
+	if o == nil || isNil(o.ContactEmail) {
 		return nil, false
 	}
 	return o.ContactEmail, true
@@ -111,7 +79,7 @@ func (o *InterconnectionCreateInput) GetContactEmailOk() (*string, bool) {
 
 // HasContactEmail returns a boolean if a field has been set.
 func (o *InterconnectionCreateInput) HasContactEmail() bool {
-	if o != nil && o.ContactEmail != nil {
+	if o != nil && !isNil(o.ContactEmail) {
 		return true
 	}
 
@@ -125,7 +93,7 @@ func (o *InterconnectionCreateInput) SetContactEmail(v string) {
 
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *InterconnectionCreateInput) GetDescription() string {
-	if o == nil || o.Description == nil {
+	if o == nil || isNil(o.Description) {
 		var ret string
 		return ret
 	}
@@ -135,7 +103,7 @@ func (o *InterconnectionCreateInput) GetDescription() string {
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InterconnectionCreateInput) GetDescriptionOk() (*string, bool) {
-	if o == nil || o.Description == nil {
+	if o == nil || isNil(o.Description) {
 		return nil, false
 	}
 	return o.Description, true
@@ -143,7 +111,7 @@ func (o *InterconnectionCreateInput) GetDescriptionOk() (*string, bool) {
 
 // HasDescription returns a boolean if a field has been set.
 func (o *InterconnectionCreateInput) HasDescription() bool {
-	if o != nil && o.Description != nil {
+	if o != nil && !isNil(o.Description) {
 		return true
 	}
 
@@ -181,7 +149,7 @@ func (o *InterconnectionCreateInput) SetMetro(v string) {
 
 // GetMode returns the Mode field value if set, zero value otherwise.
 func (o *InterconnectionCreateInput) GetMode() string {
-	if o == nil || o.Mode == nil {
+	if o == nil || isNil(o.Mode) {
 		var ret string
 		return ret
 	}
@@ -191,7 +159,7 @@ func (o *InterconnectionCreateInput) GetMode() string {
 // GetModeOk returns a tuple with the Mode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InterconnectionCreateInput) GetModeOk() (*string, bool) {
-	if o == nil || o.Mode == nil {
+	if o == nil || isNil(o.Mode) {
 		return nil, false
 	}
 	return o.Mode, true
@@ -199,7 +167,7 @@ func (o *InterconnectionCreateInput) GetModeOk() (*string, bool) {
 
 // HasMode returns a boolean if a field has been set.
 func (o *InterconnectionCreateInput) HasMode() bool {
-	if o != nil && o.Mode != nil {
+	if o != nil && !isNil(o.Mode) {
 		return true
 	}
 
@@ -237,7 +205,7 @@ func (o *InterconnectionCreateInput) SetName(v string) {
 
 // GetProject returns the Project field value if set, zero value otherwise.
 func (o *InterconnectionCreateInput) GetProject() string {
-	if o == nil || o.Project == nil {
+	if o == nil || isNil(o.Project) {
 		var ret string
 		return ret
 	}
@@ -247,7 +215,7 @@ func (o *InterconnectionCreateInput) GetProject() string {
 // GetProjectOk returns a tuple with the Project field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InterconnectionCreateInput) GetProjectOk() (*string, bool) {
-	if o == nil || o.Project == nil {
+	if o == nil || isNil(o.Project) {
 		return nil, false
 	}
 	return o.Project, true
@@ -255,7 +223,7 @@ func (o *InterconnectionCreateInput) GetProjectOk() (*string, bool) {
 
 // HasProject returns a boolean if a field has been set.
 func (o *InterconnectionCreateInput) HasProject() bool {
-	if o != nil && o.Project != nil {
+	if o != nil && !isNil(o.Project) {
 		return true
 	}
 
@@ -293,7 +261,7 @@ func (o *InterconnectionCreateInput) SetRedundancy(v string) {
 
 // GetServiceTokenType returns the ServiceTokenType field value if set, zero value otherwise.
 func (o *InterconnectionCreateInput) GetServiceTokenType() string {
-	if o == nil || o.ServiceTokenType == nil {
+	if o == nil || isNil(o.ServiceTokenType) {
 		var ret string
 		return ret
 	}
@@ -303,7 +271,7 @@ func (o *InterconnectionCreateInput) GetServiceTokenType() string {
 // GetServiceTokenTypeOk returns a tuple with the ServiceTokenType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InterconnectionCreateInput) GetServiceTokenTypeOk() (*string, bool) {
-	if o == nil || o.ServiceTokenType == nil {
+	if o == nil || isNil(o.ServiceTokenType) {
 		return nil, false
 	}
 	return o.ServiceTokenType, true
@@ -311,7 +279,7 @@ func (o *InterconnectionCreateInput) GetServiceTokenTypeOk() (*string, bool) {
 
 // HasServiceTokenType returns a boolean if a field has been set.
 func (o *InterconnectionCreateInput) HasServiceTokenType() bool {
-	if o != nil && o.ServiceTokenType != nil {
+	if o != nil && !isNil(o.ServiceTokenType) {
 		return true
 	}
 
@@ -324,9 +292,9 @@ func (o *InterconnectionCreateInput) SetServiceTokenType(v string) {
 }
 
 // GetSpeed returns the Speed field value if set, zero value otherwise.
-func (o *InterconnectionCreateInput) GetSpeed() string {
-	if o == nil || o.Speed == nil {
-		var ret string
+func (o *InterconnectionCreateInput) GetSpeed() int32 {
+	if o == nil || isNil(o.Speed) {
+		var ret int32
 		return ret
 	}
 	return *o.Speed
@@ -334,8 +302,8 @@ func (o *InterconnectionCreateInput) GetSpeed() string {
 
 // GetSpeedOk returns a tuple with the Speed field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InterconnectionCreateInput) GetSpeedOk() (*string, bool) {
-	if o == nil || o.Speed == nil {
+func (o *InterconnectionCreateInput) GetSpeedOk() (*int32, bool) {
+	if o == nil || isNil(o.Speed) {
 		return nil, false
 	}
 	return o.Speed, true
@@ -343,16 +311,48 @@ func (o *InterconnectionCreateInput) GetSpeedOk() (*string, bool) {
 
 // HasSpeed returns a boolean if a field has been set.
 func (o *InterconnectionCreateInput) HasSpeed() bool {
-	if o != nil && o.Speed != nil {
+	if o != nil && !isNil(o.Speed) {
 		return true
 	}
 
 	return false
 }
 
-// SetSpeed gets a reference to the given string and assigns it to the Speed field.
-func (o *InterconnectionCreateInput) SetSpeed(v string) {
+// SetSpeed gets a reference to the given int32 and assigns it to the Speed field.
+func (o *InterconnectionCreateInput) SetSpeed(v int32) {
 	o.Speed = &v
+}
+
+// GetTags returns the Tags field value if set, zero value otherwise.
+func (o *InterconnectionCreateInput) GetTags() []string {
+	if o == nil || isNil(o.Tags) {
+		var ret []string
+		return ret
+	}
+	return o.Tags
+}
+
+// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *InterconnectionCreateInput) GetTagsOk() ([]string, bool) {
+	if o == nil || isNil(o.Tags) {
+		return nil, false
+	}
+	return o.Tags, true
+}
+
+// HasTags returns a boolean if a field has been set.
+func (o *InterconnectionCreateInput) HasTags() bool {
+	if o != nil && !isNil(o.Tags) {
+		return true
+	}
+
+	return false
+}
+
+// SetTags gets a reference to the given []string and assigns it to the Tags field.
+func (o *InterconnectionCreateInput) SetTags(v []string) {
+	o.Tags = v
 }
 
 // GetType returns the Type field value
@@ -381,7 +381,7 @@ func (o *InterconnectionCreateInput) SetType(v string) {
 
 // GetVlans returns the Vlans field value if set, zero value otherwise.
 func (o *InterconnectionCreateInput) GetVlans() []int32 {
-	if o == nil || o.Vlans == nil {
+	if o == nil || isNil(o.Vlans) {
 		var ret []int32
 		return ret
 	}
@@ -391,7 +391,7 @@ func (o *InterconnectionCreateInput) GetVlans() []int32 {
 // GetVlansOk returns a tuple with the Vlans field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InterconnectionCreateInput) GetVlansOk() ([]int32, bool) {
-	if o == nil || o.Vlans == nil {
+	if o == nil || isNil(o.Vlans) {
 		return nil, false
 	}
 	return o.Vlans, true
@@ -399,7 +399,7 @@ func (o *InterconnectionCreateInput) GetVlansOk() ([]int32, bool) {
 
 // HasVlans returns a boolean if a field has been set.
 func (o *InterconnectionCreateInput) HasVlans() bool {
-	if o != nil && o.Vlans != nil {
+	if o != nil && !isNil(o.Vlans) {
 		return true
 	}
 
@@ -413,40 +413,40 @@ func (o *InterconnectionCreateInput) SetVlans(v []int32) {
 
 func (o InterconnectionCreateInput) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Tags != nil {
-		toSerialize["tags"] = o.Tags
-	}
-	if o.ContactEmail != nil {
+	if !isNil(o.ContactEmail) {
 		toSerialize["contact_email"] = o.ContactEmail
 	}
-	if o.Description != nil {
+	if !isNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
 	if true {
 		toSerialize["metro"] = o.Metro
 	}
-	if o.Mode != nil {
+	if !isNil(o.Mode) {
 		toSerialize["mode"] = o.Mode
 	}
 	if true {
 		toSerialize["name"] = o.Name
 	}
-	if o.Project != nil {
+	if !isNil(o.Project) {
 		toSerialize["project"] = o.Project
 	}
 	if true {
 		toSerialize["redundancy"] = o.Redundancy
 	}
-	if o.ServiceTokenType != nil {
+	if !isNil(o.ServiceTokenType) {
 		toSerialize["service_token_type"] = o.ServiceTokenType
 	}
-	if o.Speed != nil {
+	if !isNil(o.Speed) {
 		toSerialize["speed"] = o.Speed
+	}
+	if !isNil(o.Tags) {
+		toSerialize["tags"] = o.Tags
 	}
 	if true {
 		toSerialize["type"] = o.Type
 	}
-	if o.Vlans != nil {
+	if !isNil(o.Vlans) {
 		toSerialize["vlans"] = o.Vlans
 	}
 	return json.Marshal(toSerialize)

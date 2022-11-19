@@ -1,7 +1,7 @@
 /*
 Metal API
 
-This is the API for Equinix Metal. The API allows you to programmatically interact with all of your Equinix Metal resources, including devices, networks, addresses, organizations, projects, and your user account.  The official API docs are hosted at <https://metal.equinix.com/developers/api>.
+# Introduction Equinix Metal provides a RESTful HTTP API which can be reached at <https://api.equinix.com/metal/v1>. This document describes the API and how to use it.  The API allows you to programmatically interact with all of your Equinix Metal resources, including devices, networks, addresses, organizations, projects, and your user account. Every feature of the Equinix Metal web interface is accessible through the API.  The API docs are generated from the Equinix Metal OpenAPI specification and are officially hosted at <https://metal.equinix.com/developers/api>.  # Common Parameters  The Equinix Metal API uses a few methods to minimize network traffic and improve throughput. These parameters are not used in all API calls, but are used often enough to warrant their own section. Look for these parameters in the documentation for the API calls that support them.  ## Pagination  Pagination is used to limit the number of results returned in a single request. The API will return a maximum of 100 results per page. To retrieve additional results, you can use the `page` and `per_page` query parameters.  The `page` parameter is used to specify the page number. The first page is `1`. The `per_page` parameter is used to specify the number of results per page. The maximum number of results differs by resource type.  ## Sorting  Where offered, the API allows you to sort results by a specific field. To sort results use the `sort_by` query parameter with the root level field name as the value. The `sort_direction` parameter is used to specify the sort direction, either either `asc` (ascending) or `desc` (descending).  ## Filtering  Filtering is used to limit the results returned in a single request. The API supports filtering by certain fields in the response. To filter results, you can use the field as a query parameter.  For example, to filter the IP list to only return public IPv4 addresses, you can filter by the `type` field, as in the following request:  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/projects/id/ips?type=public_ipv4 ```  Only IP addresses with the `type` field set to `public_ipv4` will be returned.  ## Searching  Searching is used to find matching resources using multiple field comparissons. The API supports searching in resources that define this behavior. The fields available for search differ by resource, as does the search strategy.  To search resources you can use the `search` query parameter.  ## Include and Exclude  For resources that contain references to other resources, sucha as a Device that refers to the Project it resides in, the Equinix Metal API will returns `href` values (API links) to the associated resource.  ```json {   ...   \"project\": {     \"href\": \"/metal/v1/projects/f3f131c8-f302-49ef-8c44-9405022dc6dd\"   } } ```  If you're going need the project details, you can avoid a second API request.  Specify the contained `href` resources and collections that you'd like to have included in the response using the `include` query parameter.  For example:    ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=projects ```  The `include` parameter is generally accepted in `GET`, `POST`, `PUT`, and `PATCH` requests where `href` resources are presented.  To have multiple resources include, use a comma-separated list (e.g. `?include=emails,projects,memberships`).  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=emails,projects,memberships ```  You may also include nested associations up to three levels deep using dot notation (`?include=memberships.projects`):  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=memberships.projects ```  To exclude resources, and optimize response delivery, use the `exclude` query parameter. The `exclude` parameter is generally accepted in `GET`, `POST`, `PUT`, and `PATCH` requests for fields with nested object responses. When excluded, these fields will be replaced with an object that contains only an `href` field.
 
 API version: 1.0.0
 Contact: support@equinixmetal.com
@@ -20,15 +20,15 @@ import (
 type GetInterconnection200ResponseServiceTokensInner struct {
 	// The expiration date and time of the Fabric service token. Once a service token is expired, it is no longer redeemable.
 	ExpiresAt *time.Time `json:"expires_at,omitempty"`
-	// The service token UUID that can be used on the Fabric Portal to create an connection from Metal to another Fabric service provider.
+	// The UUID that can be used on the Fabric Portal to redeem either an A-Side or Z-Side Service Token. For Fabric VCs (Metal Billed), this UUID will represent an A-Side Service Token, which will allow interconnections to be made from Equinix Metal to other Service Providers on Fabric. For Fabric VCs (Fabric Billed), this UUID will represent a Z-Side Service Token, which will allow interconnections to be made to connect an owned Fabric Port or  Virtual Device to Equinix Metal.
 	Id *string `json:"id,omitempty"`
-	// The maximum speed that can be selected on the Fabric Portal when configuring a connection with the service token. The speed is recorded in bps, but can be set by using any of the following units: 'bps', 'mbps', or 'gbps'. This speed is automatically capped depending on the tier of the organization. If you would like to upgrade to another tier, please contact our Support team.
-	MaxAllowedSpeed *string `json:"max_allowed_speed,omitempty"`
-	// Either primary or redundant, depending on the role of the connection port the token is associated with.
+	// The maximum speed that can be selected on the Fabric Portal when configuring a interconnection with either  an A-Side or Z-Side Service Token. For Fabric VCs (Metal Billed), this is what the billing is based off of, and can be one of the following options, '50mbps', '200mbps', '500mbps', '1gbps', '2gbps', '5gbps' or '10gbps'. For Fabric VCs (Fabric Billed), this will default to 10Gbps.
+	MaxAllowedSpeed *int32 `json:"max_allowed_speed,omitempty"`
+	// Either primary or secondary, depending on which interconnection the service token is associated to.
 	Role *string `json:"role,omitempty"`
-	// The type of service token that has been created. Currently, only A-side service tokens are available.
+	// Either 'a_side' or 'z_side', depending on which type of Fabric VC was requested.
 	ServiceTokenType *string `json:"service_token_type,omitempty"`
-	// The state of the service token that corresponds with the service token state on Fabric. An inactive state refers to a token that has not been redeemed yet on the Fabric side, an active state refers to a token that has already been redeemed, and an expired state refers to a token that has reached its expiry time.
+	// The state of the service token that corresponds with the service token state on Fabric. An 'inactive' state refers to a token that has not been redeemed yet on the Fabric side, an 'active' state refers to a token that has already been redeemed, and an 'expired' state refers to a token that has reached its expiry time.
 	State *string `json:"state,omitempty"`
 }
 
@@ -51,7 +51,7 @@ func NewGetInterconnection200ResponseServiceTokensInnerWithDefaults() *GetInterc
 
 // GetExpiresAt returns the ExpiresAt field value if set, zero value otherwise.
 func (o *GetInterconnection200ResponseServiceTokensInner) GetExpiresAt() time.Time {
-	if o == nil || o.ExpiresAt == nil {
+	if o == nil || isNil(o.ExpiresAt) {
 		var ret time.Time
 		return ret
 	}
@@ -61,7 +61,7 @@ func (o *GetInterconnection200ResponseServiceTokensInner) GetExpiresAt() time.Ti
 // GetExpiresAtOk returns a tuple with the ExpiresAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetInterconnection200ResponseServiceTokensInner) GetExpiresAtOk() (*time.Time, bool) {
-	if o == nil || o.ExpiresAt == nil {
+	if o == nil || isNil(o.ExpiresAt) {
 		return nil, false
 	}
 	return o.ExpiresAt, true
@@ -69,7 +69,7 @@ func (o *GetInterconnection200ResponseServiceTokensInner) GetExpiresAtOk() (*tim
 
 // HasExpiresAt returns a boolean if a field has been set.
 func (o *GetInterconnection200ResponseServiceTokensInner) HasExpiresAt() bool {
-	if o != nil && o.ExpiresAt != nil {
+	if o != nil && !isNil(o.ExpiresAt) {
 		return true
 	}
 
@@ -83,7 +83,7 @@ func (o *GetInterconnection200ResponseServiceTokensInner) SetExpiresAt(v time.Ti
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *GetInterconnection200ResponseServiceTokensInner) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || isNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -93,7 +93,7 @@ func (o *GetInterconnection200ResponseServiceTokensInner) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetInterconnection200ResponseServiceTokensInner) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || isNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -101,7 +101,7 @@ func (o *GetInterconnection200ResponseServiceTokensInner) GetIdOk() (*string, bo
 
 // HasId returns a boolean if a field has been set.
 func (o *GetInterconnection200ResponseServiceTokensInner) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !isNil(o.Id) {
 		return true
 	}
 
@@ -114,9 +114,9 @@ func (o *GetInterconnection200ResponseServiceTokensInner) SetId(v string) {
 }
 
 // GetMaxAllowedSpeed returns the MaxAllowedSpeed field value if set, zero value otherwise.
-func (o *GetInterconnection200ResponseServiceTokensInner) GetMaxAllowedSpeed() string {
-	if o == nil || o.MaxAllowedSpeed == nil {
-		var ret string
+func (o *GetInterconnection200ResponseServiceTokensInner) GetMaxAllowedSpeed() int32 {
+	if o == nil || isNil(o.MaxAllowedSpeed) {
+		var ret int32
 		return ret
 	}
 	return *o.MaxAllowedSpeed
@@ -124,8 +124,8 @@ func (o *GetInterconnection200ResponseServiceTokensInner) GetMaxAllowedSpeed() s
 
 // GetMaxAllowedSpeedOk returns a tuple with the MaxAllowedSpeed field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetInterconnection200ResponseServiceTokensInner) GetMaxAllowedSpeedOk() (*string, bool) {
-	if o == nil || o.MaxAllowedSpeed == nil {
+func (o *GetInterconnection200ResponseServiceTokensInner) GetMaxAllowedSpeedOk() (*int32, bool) {
+	if o == nil || isNil(o.MaxAllowedSpeed) {
 		return nil, false
 	}
 	return o.MaxAllowedSpeed, true
@@ -133,21 +133,21 @@ func (o *GetInterconnection200ResponseServiceTokensInner) GetMaxAllowedSpeedOk()
 
 // HasMaxAllowedSpeed returns a boolean if a field has been set.
 func (o *GetInterconnection200ResponseServiceTokensInner) HasMaxAllowedSpeed() bool {
-	if o != nil && o.MaxAllowedSpeed != nil {
+	if o != nil && !isNil(o.MaxAllowedSpeed) {
 		return true
 	}
 
 	return false
 }
 
-// SetMaxAllowedSpeed gets a reference to the given string and assigns it to the MaxAllowedSpeed field.
-func (o *GetInterconnection200ResponseServiceTokensInner) SetMaxAllowedSpeed(v string) {
+// SetMaxAllowedSpeed gets a reference to the given int32 and assigns it to the MaxAllowedSpeed field.
+func (o *GetInterconnection200ResponseServiceTokensInner) SetMaxAllowedSpeed(v int32) {
 	o.MaxAllowedSpeed = &v
 }
 
 // GetRole returns the Role field value if set, zero value otherwise.
 func (o *GetInterconnection200ResponseServiceTokensInner) GetRole() string {
-	if o == nil || o.Role == nil {
+	if o == nil || isNil(o.Role) {
 		var ret string
 		return ret
 	}
@@ -157,7 +157,7 @@ func (o *GetInterconnection200ResponseServiceTokensInner) GetRole() string {
 // GetRoleOk returns a tuple with the Role field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetInterconnection200ResponseServiceTokensInner) GetRoleOk() (*string, bool) {
-	if o == nil || o.Role == nil {
+	if o == nil || isNil(o.Role) {
 		return nil, false
 	}
 	return o.Role, true
@@ -165,7 +165,7 @@ func (o *GetInterconnection200ResponseServiceTokensInner) GetRoleOk() (*string, 
 
 // HasRole returns a boolean if a field has been set.
 func (o *GetInterconnection200ResponseServiceTokensInner) HasRole() bool {
-	if o != nil && o.Role != nil {
+	if o != nil && !isNil(o.Role) {
 		return true
 	}
 
@@ -179,7 +179,7 @@ func (o *GetInterconnection200ResponseServiceTokensInner) SetRole(v string) {
 
 // GetServiceTokenType returns the ServiceTokenType field value if set, zero value otherwise.
 func (o *GetInterconnection200ResponseServiceTokensInner) GetServiceTokenType() string {
-	if o == nil || o.ServiceTokenType == nil {
+	if o == nil || isNil(o.ServiceTokenType) {
 		var ret string
 		return ret
 	}
@@ -189,7 +189,7 @@ func (o *GetInterconnection200ResponseServiceTokensInner) GetServiceTokenType() 
 // GetServiceTokenTypeOk returns a tuple with the ServiceTokenType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetInterconnection200ResponseServiceTokensInner) GetServiceTokenTypeOk() (*string, bool) {
-	if o == nil || o.ServiceTokenType == nil {
+	if o == nil || isNil(o.ServiceTokenType) {
 		return nil, false
 	}
 	return o.ServiceTokenType, true
@@ -197,7 +197,7 @@ func (o *GetInterconnection200ResponseServiceTokensInner) GetServiceTokenTypeOk(
 
 // HasServiceTokenType returns a boolean if a field has been set.
 func (o *GetInterconnection200ResponseServiceTokensInner) HasServiceTokenType() bool {
-	if o != nil && o.ServiceTokenType != nil {
+	if o != nil && !isNil(o.ServiceTokenType) {
 		return true
 	}
 
@@ -211,7 +211,7 @@ func (o *GetInterconnection200ResponseServiceTokensInner) SetServiceTokenType(v 
 
 // GetState returns the State field value if set, zero value otherwise.
 func (o *GetInterconnection200ResponseServiceTokensInner) GetState() string {
-	if o == nil || o.State == nil {
+	if o == nil || isNil(o.State) {
 		var ret string
 		return ret
 	}
@@ -221,7 +221,7 @@ func (o *GetInterconnection200ResponseServiceTokensInner) GetState() string {
 // GetStateOk returns a tuple with the State field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetInterconnection200ResponseServiceTokensInner) GetStateOk() (*string, bool) {
-	if o == nil || o.State == nil {
+	if o == nil || isNil(o.State) {
 		return nil, false
 	}
 	return o.State, true
@@ -229,7 +229,7 @@ func (o *GetInterconnection200ResponseServiceTokensInner) GetStateOk() (*string,
 
 // HasState returns a boolean if a field has been set.
 func (o *GetInterconnection200ResponseServiceTokensInner) HasState() bool {
-	if o != nil && o.State != nil {
+	if o != nil && !isNil(o.State) {
 		return true
 	}
 
@@ -243,22 +243,22 @@ func (o *GetInterconnection200ResponseServiceTokensInner) SetState(v string) {
 
 func (o GetInterconnection200ResponseServiceTokensInner) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.ExpiresAt != nil {
+	if !isNil(o.ExpiresAt) {
 		toSerialize["expires_at"] = o.ExpiresAt
 	}
-	if o.Id != nil {
+	if !isNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
-	if o.MaxAllowedSpeed != nil {
+	if !isNil(o.MaxAllowedSpeed) {
 		toSerialize["max_allowed_speed"] = o.MaxAllowedSpeed
 	}
-	if o.Role != nil {
+	if !isNil(o.Role) {
 		toSerialize["role"] = o.Role
 	}
-	if o.ServiceTokenType != nil {
+	if !isNil(o.ServiceTokenType) {
 		toSerialize["service_token_type"] = o.ServiceTokenType
 	}
-	if o.State != nil {
+	if !isNil(o.State) {
 		toSerialize["state"] = o.State
 	}
 	return json.Marshal(toSerialize)

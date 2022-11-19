@@ -1,7 +1,7 @@
 /*
 Metal API
 
-This is the API for Equinix Metal. The API allows you to programmatically interact with all of your Equinix Metal resources, including devices, networks, addresses, organizations, projects, and your user account.  The official API docs are hosted at <https://metal.equinix.com/developers/api>.
+# Introduction Equinix Metal provides a RESTful HTTP API which can be reached at <https://api.equinix.com/metal/v1>. This document describes the API and how to use it.  The API allows you to programmatically interact with all of your Equinix Metal resources, including devices, networks, addresses, organizations, projects, and your user account. Every feature of the Equinix Metal web interface is accessible through the API.  The API docs are generated from the Equinix Metal OpenAPI specification and are officially hosted at <https://metal.equinix.com/developers/api>.  # Common Parameters  The Equinix Metal API uses a few methods to minimize network traffic and improve throughput. These parameters are not used in all API calls, but are used often enough to warrant their own section. Look for these parameters in the documentation for the API calls that support them.  ## Pagination  Pagination is used to limit the number of results returned in a single request. The API will return a maximum of 100 results per page. To retrieve additional results, you can use the `page` and `per_page` query parameters.  The `page` parameter is used to specify the page number. The first page is `1`. The `per_page` parameter is used to specify the number of results per page. The maximum number of results differs by resource type.  ## Sorting  Where offered, the API allows you to sort results by a specific field. To sort results use the `sort_by` query parameter with the root level field name as the value. The `sort_direction` parameter is used to specify the sort direction, either either `asc` (ascending) or `desc` (descending).  ## Filtering  Filtering is used to limit the results returned in a single request. The API supports filtering by certain fields in the response. To filter results, you can use the field as a query parameter.  For example, to filter the IP list to only return public IPv4 addresses, you can filter by the `type` field, as in the following request:  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/projects/id/ips?type=public_ipv4 ```  Only IP addresses with the `type` field set to `public_ipv4` will be returned.  ## Searching  Searching is used to find matching resources using multiple field comparissons. The API supports searching in resources that define this behavior. The fields available for search differ by resource, as does the search strategy.  To search resources you can use the `search` query parameter.  ## Include and Exclude  For resources that contain references to other resources, sucha as a Device that refers to the Project it resides in, the Equinix Metal API will returns `href` values (API links) to the associated resource.  ```json {   ...   \"project\": {     \"href\": \"/metal/v1/projects/f3f131c8-f302-49ef-8c44-9405022dc6dd\"   } } ```  If you're going need the project details, you can avoid a second API request.  Specify the contained `href` resources and collections that you'd like to have included in the response using the `include` query parameter.  For example:    ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=projects ```  The `include` parameter is generally accepted in `GET`, `POST`, `PUT`, and `PATCH` requests where `href` resources are presented.  To have multiple resources include, use a comma-separated list (e.g. `?include=emails,projects,memberships`).  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=emails,projects,memberships ```  You may also include nested associations up to three levels deep using dot notation (`?include=memberships.projects`):  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=memberships.projects ```  To exclude resources, and optimize response delivery, use the `exclude` query parameter. The `exclude` parameter is generally accepted in `GET`, `POST`, `PUT`, and `PATCH` requests for fields with nested object responses. When excluded, these fields will be replaced with an object that contains only an `href` field.
 
 API version: 1.0.0
 Contact: support@equinixmetal.com
@@ -50,7 +50,7 @@ func NewSelfServiceReservationResponseWithDefaults() *SelfServiceReservationResp
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *SelfServiceReservationResponse) GetCreatedAt() time.Time {
-	if o == nil || o.CreatedAt == nil {
+	if o == nil || isNil(o.CreatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -60,7 +60,7 @@ func (o *SelfServiceReservationResponse) GetCreatedAt() time.Time {
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SelfServiceReservationResponse) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || o.CreatedAt == nil {
+	if o == nil || isNil(o.CreatedAt) {
 		return nil, false
 	}
 	return o.CreatedAt, true
@@ -68,7 +68,7 @@ func (o *SelfServiceReservationResponse) GetCreatedAtOk() (*time.Time, bool) {
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *SelfServiceReservationResponse) HasCreatedAt() bool {
-	if o != nil && o.CreatedAt != nil {
+	if o != nil && !isNil(o.CreatedAt) {
 		return true
 	}
 
@@ -82,7 +82,7 @@ func (o *SelfServiceReservationResponse) SetCreatedAt(v time.Time) {
 
 // GetItem returns the Item field value if set, zero value otherwise.
 func (o *SelfServiceReservationResponse) GetItem() []FindSelfServiceReservations200ResponseReservationsInnerItemInner {
-	if o == nil || o.Item == nil {
+	if o == nil || isNil(o.Item) {
 		var ret []FindSelfServiceReservations200ResponseReservationsInnerItemInner
 		return ret
 	}
@@ -92,7 +92,7 @@ func (o *SelfServiceReservationResponse) GetItem() []FindSelfServiceReservations
 // GetItemOk returns a tuple with the Item field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SelfServiceReservationResponse) GetItemOk() ([]FindSelfServiceReservations200ResponseReservationsInnerItemInner, bool) {
-	if o == nil || o.Item == nil {
+	if o == nil || isNil(o.Item) {
 		return nil, false
 	}
 	return o.Item, true
@@ -100,7 +100,7 @@ func (o *SelfServiceReservationResponse) GetItemOk() ([]FindSelfServiceReservati
 
 // HasItem returns a boolean if a field has been set.
 func (o *SelfServiceReservationResponse) HasItem() bool {
-	if o != nil && o.Item != nil {
+	if o != nil && !isNil(o.Item) {
 		return true
 	}
 
@@ -114,7 +114,7 @@ func (o *SelfServiceReservationResponse) SetItem(v []FindSelfServiceReservations
 
 // GetNotes returns the Notes field value if set, zero value otherwise.
 func (o *SelfServiceReservationResponse) GetNotes() string {
-	if o == nil || o.Notes == nil {
+	if o == nil || isNil(o.Notes) {
 		var ret string
 		return ret
 	}
@@ -124,7 +124,7 @@ func (o *SelfServiceReservationResponse) GetNotes() string {
 // GetNotesOk returns a tuple with the Notes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SelfServiceReservationResponse) GetNotesOk() (*string, bool) {
-	if o == nil || o.Notes == nil {
+	if o == nil || isNil(o.Notes) {
 		return nil, false
 	}
 	return o.Notes, true
@@ -132,7 +132,7 @@ func (o *SelfServiceReservationResponse) GetNotesOk() (*string, bool) {
 
 // HasNotes returns a boolean if a field has been set.
 func (o *SelfServiceReservationResponse) HasNotes() bool {
-	if o != nil && o.Notes != nil {
+	if o != nil && !isNil(o.Notes) {
 		return true
 	}
 
@@ -146,7 +146,7 @@ func (o *SelfServiceReservationResponse) SetNotes(v string) {
 
 // GetOrganization returns the Organization field value if set, zero value otherwise.
 func (o *SelfServiceReservationResponse) GetOrganization() string {
-	if o == nil || o.Organization == nil {
+	if o == nil || isNil(o.Organization) {
 		var ret string
 		return ret
 	}
@@ -156,7 +156,7 @@ func (o *SelfServiceReservationResponse) GetOrganization() string {
 // GetOrganizationOk returns a tuple with the Organization field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SelfServiceReservationResponse) GetOrganizationOk() (*string, bool) {
-	if o == nil || o.Organization == nil {
+	if o == nil || isNil(o.Organization) {
 		return nil, false
 	}
 	return o.Organization, true
@@ -164,7 +164,7 @@ func (o *SelfServiceReservationResponse) GetOrganizationOk() (*string, bool) {
 
 // HasOrganization returns a boolean if a field has been set.
 func (o *SelfServiceReservationResponse) HasOrganization() bool {
-	if o != nil && o.Organization != nil {
+	if o != nil && !isNil(o.Organization) {
 		return true
 	}
 
@@ -178,7 +178,7 @@ func (o *SelfServiceReservationResponse) SetOrganization(v string) {
 
 // GetOrganizationId returns the OrganizationId field value if set, zero value otherwise.
 func (o *SelfServiceReservationResponse) GetOrganizationId() string {
-	if o == nil || o.OrganizationId == nil {
+	if o == nil || isNil(o.OrganizationId) {
 		var ret string
 		return ret
 	}
@@ -188,7 +188,7 @@ func (o *SelfServiceReservationResponse) GetOrganizationId() string {
 // GetOrganizationIdOk returns a tuple with the OrganizationId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SelfServiceReservationResponse) GetOrganizationIdOk() (*string, bool) {
-	if o == nil || o.OrganizationId == nil {
+	if o == nil || isNil(o.OrganizationId) {
 		return nil, false
 	}
 	return o.OrganizationId, true
@@ -196,7 +196,7 @@ func (o *SelfServiceReservationResponse) GetOrganizationIdOk() (*string, bool) {
 
 // HasOrganizationId returns a boolean if a field has been set.
 func (o *SelfServiceReservationResponse) HasOrganizationId() bool {
-	if o != nil && o.OrganizationId != nil {
+	if o != nil && !isNil(o.OrganizationId) {
 		return true
 	}
 
@@ -210,7 +210,7 @@ func (o *SelfServiceReservationResponse) SetOrganizationId(v string) {
 
 // GetPeriod returns the Period field value if set, zero value otherwise.
 func (o *SelfServiceReservationResponse) GetPeriod() FindSelfServiceReservations200ResponseReservationsInnerPeriod {
-	if o == nil || o.Period == nil {
+	if o == nil || isNil(o.Period) {
 		var ret FindSelfServiceReservations200ResponseReservationsInnerPeriod
 		return ret
 	}
@@ -220,7 +220,7 @@ func (o *SelfServiceReservationResponse) GetPeriod() FindSelfServiceReservations
 // GetPeriodOk returns a tuple with the Period field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SelfServiceReservationResponse) GetPeriodOk() (*FindSelfServiceReservations200ResponseReservationsInnerPeriod, bool) {
-	if o == nil || o.Period == nil {
+	if o == nil || isNil(o.Period) {
 		return nil, false
 	}
 	return o.Period, true
@@ -228,7 +228,7 @@ func (o *SelfServiceReservationResponse) GetPeriodOk() (*FindSelfServiceReservat
 
 // HasPeriod returns a boolean if a field has been set.
 func (o *SelfServiceReservationResponse) HasPeriod() bool {
-	if o != nil && o.Period != nil {
+	if o != nil && !isNil(o.Period) {
 		return true
 	}
 
@@ -242,7 +242,7 @@ func (o *SelfServiceReservationResponse) SetPeriod(v FindSelfServiceReservations
 
 // GetProject returns the Project field value if set, zero value otherwise.
 func (o *SelfServiceReservationResponse) GetProject() string {
-	if o == nil || o.Project == nil {
+	if o == nil || isNil(o.Project) {
 		var ret string
 		return ret
 	}
@@ -252,7 +252,7 @@ func (o *SelfServiceReservationResponse) GetProject() string {
 // GetProjectOk returns a tuple with the Project field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SelfServiceReservationResponse) GetProjectOk() (*string, bool) {
-	if o == nil || o.Project == nil {
+	if o == nil || isNil(o.Project) {
 		return nil, false
 	}
 	return o.Project, true
@@ -260,7 +260,7 @@ func (o *SelfServiceReservationResponse) GetProjectOk() (*string, bool) {
 
 // HasProject returns a boolean if a field has been set.
 func (o *SelfServiceReservationResponse) HasProject() bool {
-	if o != nil && o.Project != nil {
+	if o != nil && !isNil(o.Project) {
 		return true
 	}
 
@@ -274,7 +274,7 @@ func (o *SelfServiceReservationResponse) SetProject(v string) {
 
 // GetProjectId returns the ProjectId field value if set, zero value otherwise.
 func (o *SelfServiceReservationResponse) GetProjectId() string {
-	if o == nil || o.ProjectId == nil {
+	if o == nil || isNil(o.ProjectId) {
 		var ret string
 		return ret
 	}
@@ -284,7 +284,7 @@ func (o *SelfServiceReservationResponse) GetProjectId() string {
 // GetProjectIdOk returns a tuple with the ProjectId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SelfServiceReservationResponse) GetProjectIdOk() (*string, bool) {
-	if o == nil || o.ProjectId == nil {
+	if o == nil || isNil(o.ProjectId) {
 		return nil, false
 	}
 	return o.ProjectId, true
@@ -292,7 +292,7 @@ func (o *SelfServiceReservationResponse) GetProjectIdOk() (*string, bool) {
 
 // HasProjectId returns a boolean if a field has been set.
 func (o *SelfServiceReservationResponse) HasProjectId() bool {
-	if o != nil && o.ProjectId != nil {
+	if o != nil && !isNil(o.ProjectId) {
 		return true
 	}
 
@@ -306,7 +306,7 @@ func (o *SelfServiceReservationResponse) SetProjectId(v string) {
 
 // GetStartDate returns the StartDate field value if set, zero value otherwise.
 func (o *SelfServiceReservationResponse) GetStartDate() time.Time {
-	if o == nil || o.StartDate == nil {
+	if o == nil || isNil(o.StartDate) {
 		var ret time.Time
 		return ret
 	}
@@ -316,7 +316,7 @@ func (o *SelfServiceReservationResponse) GetStartDate() time.Time {
 // GetStartDateOk returns a tuple with the StartDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SelfServiceReservationResponse) GetStartDateOk() (*time.Time, bool) {
-	if o == nil || o.StartDate == nil {
+	if o == nil || isNil(o.StartDate) {
 		return nil, false
 	}
 	return o.StartDate, true
@@ -324,7 +324,7 @@ func (o *SelfServiceReservationResponse) GetStartDateOk() (*time.Time, bool) {
 
 // HasStartDate returns a boolean if a field has been set.
 func (o *SelfServiceReservationResponse) HasStartDate() bool {
-	if o != nil && o.StartDate != nil {
+	if o != nil && !isNil(o.StartDate) {
 		return true
 	}
 
@@ -338,7 +338,7 @@ func (o *SelfServiceReservationResponse) SetStartDate(v time.Time) {
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *SelfServiceReservationResponse) GetStatus() string {
-	if o == nil || o.Status == nil {
+	if o == nil || isNil(o.Status) {
 		var ret string
 		return ret
 	}
@@ -348,7 +348,7 @@ func (o *SelfServiceReservationResponse) GetStatus() string {
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SelfServiceReservationResponse) GetStatusOk() (*string, bool) {
-	if o == nil || o.Status == nil {
+	if o == nil || isNil(o.Status) {
 		return nil, false
 	}
 	return o.Status, true
@@ -356,7 +356,7 @@ func (o *SelfServiceReservationResponse) GetStatusOk() (*string, bool) {
 
 // HasStatus returns a boolean if a field has been set.
 func (o *SelfServiceReservationResponse) HasStatus() bool {
-	if o != nil && o.Status != nil {
+	if o != nil && !isNil(o.Status) {
 		return true
 	}
 
@@ -370,7 +370,7 @@ func (o *SelfServiceReservationResponse) SetStatus(v string) {
 
 // GetTotalCost returns the TotalCost field value if set, zero value otherwise.
 func (o *SelfServiceReservationResponse) GetTotalCost() int32 {
-	if o == nil || o.TotalCost == nil {
+	if o == nil || isNil(o.TotalCost) {
 		var ret int32
 		return ret
 	}
@@ -380,7 +380,7 @@ func (o *SelfServiceReservationResponse) GetTotalCost() int32 {
 // GetTotalCostOk returns a tuple with the TotalCost field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SelfServiceReservationResponse) GetTotalCostOk() (*int32, bool) {
-	if o == nil || o.TotalCost == nil {
+	if o == nil || isNil(o.TotalCost) {
 		return nil, false
 	}
 	return o.TotalCost, true
@@ -388,7 +388,7 @@ func (o *SelfServiceReservationResponse) GetTotalCostOk() (*int32, bool) {
 
 // HasTotalCost returns a boolean if a field has been set.
 func (o *SelfServiceReservationResponse) HasTotalCost() bool {
-	if o != nil && o.TotalCost != nil {
+	if o != nil && !isNil(o.TotalCost) {
 		return true
 	}
 
@@ -402,37 +402,37 @@ func (o *SelfServiceReservationResponse) SetTotalCost(v int32) {
 
 func (o SelfServiceReservationResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.CreatedAt != nil {
+	if !isNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt
 	}
-	if o.Item != nil {
+	if !isNil(o.Item) {
 		toSerialize["item"] = o.Item
 	}
-	if o.Notes != nil {
+	if !isNil(o.Notes) {
 		toSerialize["notes"] = o.Notes
 	}
-	if o.Organization != nil {
+	if !isNil(o.Organization) {
 		toSerialize["organization"] = o.Organization
 	}
-	if o.OrganizationId != nil {
+	if !isNil(o.OrganizationId) {
 		toSerialize["organization_id"] = o.OrganizationId
 	}
-	if o.Period != nil {
+	if !isNil(o.Period) {
 		toSerialize["period"] = o.Period
 	}
-	if o.Project != nil {
+	if !isNil(o.Project) {
 		toSerialize["project"] = o.Project
 	}
-	if o.ProjectId != nil {
+	if !isNil(o.ProjectId) {
 		toSerialize["project_id"] = o.ProjectId
 	}
-	if o.StartDate != nil {
+	if !isNil(o.StartDate) {
 		toSerialize["start_date"] = o.StartDate
 	}
-	if o.Status != nil {
+	if !isNil(o.Status) {
 		toSerialize["status"] = o.Status
 	}
-	if o.TotalCost != nil {
+	if !isNil(o.TotalCost) {
 		toSerialize["total_cost"] = o.TotalCost
 	}
 	return json.Marshal(toSerialize)

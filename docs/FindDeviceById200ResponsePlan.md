@@ -4,16 +4,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AvailableIn** | Pointer to [**[]FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) | Shows which facilities the plan is available in, and the facility-based price if it is different from the default price. | [optional] 
+**AvailableIn** | Pointer to [**[]FindDeviceById200ResponsePlanAvailableInInner**](FindDeviceById200ResponsePlanAvailableInInner.md) | Shows which facilities the plan is available in, and the facility-based price if it is different from the default price. | [optional] 
+**AvailableInMetros** | Pointer to [**[]FindDeviceById200ResponsePlanAvailableInMetrosInner**](FindDeviceById200ResponsePlanAvailableInMetrosInner.md) | Shows which metros the plan is available in, and the metro-based price if it is different from the default price. | [optional] 
 **Class** | Pointer to **string** |  | [optional] 
 **Description** | Pointer to **string** |  | [optional] 
+**DeploymentTypes** | Pointer to **[]string** |  | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
 **Legacy** | Pointer to **bool** |  | [optional] 
 **Line** | Pointer to **string** |  | [optional] 
 **Name** | Pointer to **string** |  | [optional] 
 **Pricing** | Pointer to **map[string]interface{}** |  | [optional] 
 **Slug** | Pointer to **string** |  | [optional] 
-**Specs** | Pointer to **map[string]interface{}** |  | [optional] 
+**Specs** | Pointer to [**FindDeviceById200ResponsePlanSpecs**](FindDeviceById200ResponsePlanSpecs.md) |  | [optional] 
+**Type** | Pointer to **string** | The plan type | [optional] 
 
 ## Methods
 
@@ -36,20 +39,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetAvailableIn
 
-`func (o *FindDeviceById200ResponsePlan) GetAvailableIn() []FindBatchById200ResponseDevicesInner`
+`func (o *FindDeviceById200ResponsePlan) GetAvailableIn() []FindDeviceById200ResponsePlanAvailableInInner`
 
 GetAvailableIn returns the AvailableIn field if non-nil, zero value otherwise.
 
 ### GetAvailableInOk
 
-`func (o *FindDeviceById200ResponsePlan) GetAvailableInOk() (*[]FindBatchById200ResponseDevicesInner, bool)`
+`func (o *FindDeviceById200ResponsePlan) GetAvailableInOk() (*[]FindDeviceById200ResponsePlanAvailableInInner, bool)`
 
 GetAvailableInOk returns a tuple with the AvailableIn field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAvailableIn
 
-`func (o *FindDeviceById200ResponsePlan) SetAvailableIn(v []FindBatchById200ResponseDevicesInner)`
+`func (o *FindDeviceById200ResponsePlan) SetAvailableIn(v []FindDeviceById200ResponsePlanAvailableInInner)`
 
 SetAvailableIn sets AvailableIn field to given value.
 
@@ -58,6 +61,31 @@ SetAvailableIn sets AvailableIn field to given value.
 `func (o *FindDeviceById200ResponsePlan) HasAvailableIn() bool`
 
 HasAvailableIn returns a boolean if a field has been set.
+
+### GetAvailableInMetros
+
+`func (o *FindDeviceById200ResponsePlan) GetAvailableInMetros() []FindDeviceById200ResponsePlanAvailableInMetrosInner`
+
+GetAvailableInMetros returns the AvailableInMetros field if non-nil, zero value otherwise.
+
+### GetAvailableInMetrosOk
+
+`func (o *FindDeviceById200ResponsePlan) GetAvailableInMetrosOk() (*[]FindDeviceById200ResponsePlanAvailableInMetrosInner, bool)`
+
+GetAvailableInMetrosOk returns a tuple with the AvailableInMetros field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAvailableInMetros
+
+`func (o *FindDeviceById200ResponsePlan) SetAvailableInMetros(v []FindDeviceById200ResponsePlanAvailableInMetrosInner)`
+
+SetAvailableInMetros sets AvailableInMetros field to given value.
+
+### HasAvailableInMetros
+
+`func (o *FindDeviceById200ResponsePlan) HasAvailableInMetros() bool`
+
+HasAvailableInMetros returns a boolean if a field has been set.
 
 ### GetClass
 
@@ -108,6 +136,31 @@ SetDescription sets Description field to given value.
 `func (o *FindDeviceById200ResponsePlan) HasDescription() bool`
 
 HasDescription returns a boolean if a field has been set.
+
+### GetDeploymentTypes
+
+`func (o *FindDeviceById200ResponsePlan) GetDeploymentTypes() []string`
+
+GetDeploymentTypes returns the DeploymentTypes field if non-nil, zero value otherwise.
+
+### GetDeploymentTypesOk
+
+`func (o *FindDeviceById200ResponsePlan) GetDeploymentTypesOk() (*[]string, bool)`
+
+GetDeploymentTypesOk returns a tuple with the DeploymentTypes field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDeploymentTypes
+
+`func (o *FindDeviceById200ResponsePlan) SetDeploymentTypes(v []string)`
+
+SetDeploymentTypes sets DeploymentTypes field to given value.
+
+### HasDeploymentTypes
+
+`func (o *FindDeviceById200ResponsePlan) HasDeploymentTypes() bool`
+
+HasDeploymentTypes returns a boolean if a field has been set.
 
 ### GetId
 
@@ -261,20 +314,20 @@ HasSlug returns a boolean if a field has been set.
 
 ### GetSpecs
 
-`func (o *FindDeviceById200ResponsePlan) GetSpecs() map[string]interface{}`
+`func (o *FindDeviceById200ResponsePlan) GetSpecs() FindDeviceById200ResponsePlanSpecs`
 
 GetSpecs returns the Specs field if non-nil, zero value otherwise.
 
 ### GetSpecsOk
 
-`func (o *FindDeviceById200ResponsePlan) GetSpecsOk() (*map[string]interface{}, bool)`
+`func (o *FindDeviceById200ResponsePlan) GetSpecsOk() (*FindDeviceById200ResponsePlanSpecs, bool)`
 
 GetSpecsOk returns a tuple with the Specs field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSpecs
 
-`func (o *FindDeviceById200ResponsePlan) SetSpecs(v map[string]interface{})`
+`func (o *FindDeviceById200ResponsePlan) SetSpecs(v FindDeviceById200ResponsePlanSpecs)`
 
 SetSpecs sets Specs field to given value.
 
@@ -283,6 +336,31 @@ SetSpecs sets Specs field to given value.
 `func (o *FindDeviceById200ResponsePlan) HasSpecs() bool`
 
 HasSpecs returns a boolean if a field has been set.
+
+### GetType
+
+`func (o *FindDeviceById200ResponsePlan) GetType() string`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *FindDeviceById200ResponsePlan) GetTypeOk() (*string, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *FindDeviceById200ResponsePlan) SetType(v string)`
+
+SetType sets Type field to given value.
+
+### HasType
+
+`func (o *FindDeviceById200ResponsePlan) HasType() bool`
+
+HasType returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

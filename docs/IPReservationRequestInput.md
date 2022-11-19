@@ -4,7 +4,6 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Tags** | Pointer to **[]string** |  | [optional] 
 **Comments** | Pointer to **string** |  | [optional] 
 **Customdata** | Pointer to **map[string]interface{}** |  | [optional] 
 **Details** | Pointer to **string** |  | [optional] 
@@ -12,6 +11,7 @@ Name | Type | Description | Notes
 **FailOnApprovalRequired** | Pointer to **bool** |  | [optional] 
 **Metro** | Pointer to **string** | The code of the metro you are requesting the IP reservation in. | [optional] 
 **Quantity** | **int32** |  | 
+**Tags** | Pointer to **[]string** |  | [optional] 
 **Type** | **string** |  | 
 
 ## Methods
@@ -32,31 +32,6 @@ will change when the set of required properties is changed
 NewIPReservationRequestInputWithDefaults instantiates a new IPReservationRequestInput object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetTags
-
-`func (o *IPReservationRequestInput) GetTags() []string`
-
-GetTags returns the Tags field if non-nil, zero value otherwise.
-
-### GetTagsOk
-
-`func (o *IPReservationRequestInput) GetTagsOk() (*[]string, bool)`
-
-GetTagsOk returns a tuple with the Tags field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTags
-
-`func (o *IPReservationRequestInput) SetTags(v []string)`
-
-SetTags sets Tags field to given value.
-
-### HasTags
-
-`func (o *IPReservationRequestInput) HasTags() bool`
-
-HasTags returns a boolean if a field has been set.
 
 ### GetComments
 
@@ -227,6 +202,31 @@ and a boolean to check if the value has been set.
 
 SetQuantity sets Quantity field to given value.
 
+
+### GetTags
+
+`func (o *IPReservationRequestInput) GetTags() []string`
+
+GetTags returns the Tags field if non-nil, zero value otherwise.
+
+### GetTagsOk
+
+`func (o *IPReservationRequestInput) GetTagsOk() (*[]string, bool)`
+
+GetTagsOk returns a tuple with the Tags field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTags
+
+`func (o *IPReservationRequestInput) SetTags(v []string)`
+
+SetTags sets Tags field to given value.
+
+### HasTags
+
+`func (o *IPReservationRequestInput) HasTags() bool`
+
+HasTags returns a boolean if a field has been set.
 
 ### GetType
 

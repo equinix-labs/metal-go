@@ -372,7 +372,7 @@ Name | Type | Description  | Notes
 
 ## RequestBgpConfig
 
-> RequestBgpConfig(ctx, id).Body(body).Execute()
+> RequestBgpConfig(ctx, id).RequestBgpConfigRequest(requestBgpConfigRequest).Execute()
 
 Requesting bgp config
 
@@ -392,11 +392,11 @@ import (
 
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Project UUID
-    body := *openapiclient.NewRequestBgpConfigRequest(int32(123), "DeploymentType_example") // RequestBgpConfigRequest | BGP config Request to create
+    requestBgpConfigRequest := *openapiclient.NewRequestBgpConfigRequest(int32(123), "DeploymentType_example") // RequestBgpConfigRequest | BGP config Request to create
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BGPApi.RequestBgpConfig(context.Background(), id).Body(body).Execute()
+    resp, r, err := apiClient.BGPApi.RequestBgpConfig(context.Background(), id).RequestBgpConfigRequest(requestBgpConfigRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `BGPApi.RequestBgpConfig``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -420,7 +420,7 @@ Other parameters are passed through a pointer to a apiRequestBgpConfigRequest st
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**RequestBgpConfigRequest**](RequestBgpConfigRequest.md) | BGP config Request to create | 
+ **requestBgpConfigRequest** | [**RequestBgpConfigRequest**](RequestBgpConfigRequest.md) | BGP config Request to create | 
 
 ### Return type
 

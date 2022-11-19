@@ -1,7 +1,7 @@
 /*
 Metal API
 
-This is the API for Equinix Metal. The API allows you to programmatically interact with all of your Equinix Metal resources, including devices, networks, addresses, organizations, projects, and your user account.  The official API docs are hosted at <https://metal.equinix.com/developers/api>.
+# Introduction Equinix Metal provides a RESTful HTTP API which can be reached at <https://api.equinix.com/metal/v1>. This document describes the API and how to use it.  The API allows you to programmatically interact with all of your Equinix Metal resources, including devices, networks, addresses, organizations, projects, and your user account. Every feature of the Equinix Metal web interface is accessible through the API.  The API docs are generated from the Equinix Metal OpenAPI specification and are officially hosted at <https://metal.equinix.com/developers/api>.  # Common Parameters  The Equinix Metal API uses a few methods to minimize network traffic and improve throughput. These parameters are not used in all API calls, but are used often enough to warrant their own section. Look for these parameters in the documentation for the API calls that support them.  ## Pagination  Pagination is used to limit the number of results returned in a single request. The API will return a maximum of 100 results per page. To retrieve additional results, you can use the `page` and `per_page` query parameters.  The `page` parameter is used to specify the page number. The first page is `1`. The `per_page` parameter is used to specify the number of results per page. The maximum number of results differs by resource type.  ## Sorting  Where offered, the API allows you to sort results by a specific field. To sort results use the `sort_by` query parameter with the root level field name as the value. The `sort_direction` parameter is used to specify the sort direction, either either `asc` (ascending) or `desc` (descending).  ## Filtering  Filtering is used to limit the results returned in a single request. The API supports filtering by certain fields in the response. To filter results, you can use the field as a query parameter.  For example, to filter the IP list to only return public IPv4 addresses, you can filter by the `type` field, as in the following request:  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/projects/id/ips?type=public_ipv4 ```  Only IP addresses with the `type` field set to `public_ipv4` will be returned.  ## Searching  Searching is used to find matching resources using multiple field comparissons. The API supports searching in resources that define this behavior. The fields available for search differ by resource, as does the search strategy.  To search resources you can use the `search` query parameter.  ## Include and Exclude  For resources that contain references to other resources, sucha as a Device that refers to the Project it resides in, the Equinix Metal API will returns `href` values (API links) to the associated resource.  ```json {   ...   \"project\": {     \"href\": \"/metal/v1/projects/f3f131c8-f302-49ef-8c44-9405022dc6dd\"   } } ```  If you're going need the project details, you can avoid a second API request.  Specify the contained `href` resources and collections that you'd like to have included in the response using the `include` query parameter.  For example:    ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=projects ```  The `include` parameter is generally accepted in `GET`, `POST`, `PUT`, and `PATCH` requests where `href` resources are presented.  To have multiple resources include, use a comma-separated list (e.g. `?include=emails,projects,memberships`).  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=emails,projects,memberships ```  You may also include nested associations up to three levels deep using dot notation (`?include=memberships.projects`):  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=memberships.projects ```  To exclude resources, and optimize response delivery, use the `exclude` query parameter. The `exclude` parameter is generally accepted in `GET`, `POST`, `PUT`, and `PATCH` requests for fields with nested object responses. When excluded, these fields will be replaced with an object that contains only an `href` field.
 
 API version: 1.0.0
 Contact: support@equinixmetal.com
@@ -47,7 +47,7 @@ func NewSpotMarketRequestCreateInputWithDefaults() *SpotMarketRequestCreateInput
 
 // GetDevicesMax returns the DevicesMax field value if set, zero value otherwise.
 func (o *SpotMarketRequestCreateInput) GetDevicesMax() int32 {
-	if o == nil || o.DevicesMax == nil {
+	if o == nil || isNil(o.DevicesMax) {
 		var ret int32
 		return ret
 	}
@@ -57,7 +57,7 @@ func (o *SpotMarketRequestCreateInput) GetDevicesMax() int32 {
 // GetDevicesMaxOk returns a tuple with the DevicesMax field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SpotMarketRequestCreateInput) GetDevicesMaxOk() (*int32, bool) {
-	if o == nil || o.DevicesMax == nil {
+	if o == nil || isNil(o.DevicesMax) {
 		return nil, false
 	}
 	return o.DevicesMax, true
@@ -65,7 +65,7 @@ func (o *SpotMarketRequestCreateInput) GetDevicesMaxOk() (*int32, bool) {
 
 // HasDevicesMax returns a boolean if a field has been set.
 func (o *SpotMarketRequestCreateInput) HasDevicesMax() bool {
-	if o != nil && o.DevicesMax != nil {
+	if o != nil && !isNil(o.DevicesMax) {
 		return true
 	}
 
@@ -79,7 +79,7 @@ func (o *SpotMarketRequestCreateInput) SetDevicesMax(v int32) {
 
 // GetDevicesMin returns the DevicesMin field value if set, zero value otherwise.
 func (o *SpotMarketRequestCreateInput) GetDevicesMin() int32 {
-	if o == nil || o.DevicesMin == nil {
+	if o == nil || isNil(o.DevicesMin) {
 		var ret int32
 		return ret
 	}
@@ -89,7 +89,7 @@ func (o *SpotMarketRequestCreateInput) GetDevicesMin() int32 {
 // GetDevicesMinOk returns a tuple with the DevicesMin field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SpotMarketRequestCreateInput) GetDevicesMinOk() (*int32, bool) {
-	if o == nil || o.DevicesMin == nil {
+	if o == nil || isNil(o.DevicesMin) {
 		return nil, false
 	}
 	return o.DevicesMin, true
@@ -97,7 +97,7 @@ func (o *SpotMarketRequestCreateInput) GetDevicesMinOk() (*int32, bool) {
 
 // HasDevicesMin returns a boolean if a field has been set.
 func (o *SpotMarketRequestCreateInput) HasDevicesMin() bool {
-	if o != nil && o.DevicesMin != nil {
+	if o != nil && !isNil(o.DevicesMin) {
 		return true
 	}
 
@@ -111,7 +111,7 @@ func (o *SpotMarketRequestCreateInput) SetDevicesMin(v int32) {
 
 // GetEndAt returns the EndAt field value if set, zero value otherwise.
 func (o *SpotMarketRequestCreateInput) GetEndAt() time.Time {
-	if o == nil || o.EndAt == nil {
+	if o == nil || isNil(o.EndAt) {
 		var ret time.Time
 		return ret
 	}
@@ -121,7 +121,7 @@ func (o *SpotMarketRequestCreateInput) GetEndAt() time.Time {
 // GetEndAtOk returns a tuple with the EndAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SpotMarketRequestCreateInput) GetEndAtOk() (*time.Time, bool) {
-	if o == nil || o.EndAt == nil {
+	if o == nil || isNil(o.EndAt) {
 		return nil, false
 	}
 	return o.EndAt, true
@@ -129,7 +129,7 @@ func (o *SpotMarketRequestCreateInput) GetEndAtOk() (*time.Time, bool) {
 
 // HasEndAt returns a boolean if a field has been set.
 func (o *SpotMarketRequestCreateInput) HasEndAt() bool {
-	if o != nil && o.EndAt != nil {
+	if o != nil && !isNil(o.EndAt) {
 		return true
 	}
 
@@ -143,7 +143,7 @@ func (o *SpotMarketRequestCreateInput) SetEndAt(v time.Time) {
 
 // GetFacilities returns the Facilities field value if set, zero value otherwise.
 func (o *SpotMarketRequestCreateInput) GetFacilities() []string {
-	if o == nil || o.Facilities == nil {
+	if o == nil || isNil(o.Facilities) {
 		var ret []string
 		return ret
 	}
@@ -153,7 +153,7 @@ func (o *SpotMarketRequestCreateInput) GetFacilities() []string {
 // GetFacilitiesOk returns a tuple with the Facilities field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SpotMarketRequestCreateInput) GetFacilitiesOk() ([]string, bool) {
-	if o == nil || o.Facilities == nil {
+	if o == nil || isNil(o.Facilities) {
 		return nil, false
 	}
 	return o.Facilities, true
@@ -161,7 +161,7 @@ func (o *SpotMarketRequestCreateInput) GetFacilitiesOk() ([]string, bool) {
 
 // HasFacilities returns a boolean if a field has been set.
 func (o *SpotMarketRequestCreateInput) HasFacilities() bool {
-	if o != nil && o.Facilities != nil {
+	if o != nil && !isNil(o.Facilities) {
 		return true
 	}
 
@@ -175,7 +175,7 @@ func (o *SpotMarketRequestCreateInput) SetFacilities(v []string) {
 
 // GetInstanceAttributes returns the InstanceAttributes field value if set, zero value otherwise.
 func (o *SpotMarketRequestCreateInput) GetInstanceAttributes() CreateSpotMarketRequestRequestInstanceAttributes {
-	if o == nil || o.InstanceAttributes == nil {
+	if o == nil || isNil(o.InstanceAttributes) {
 		var ret CreateSpotMarketRequestRequestInstanceAttributes
 		return ret
 	}
@@ -185,7 +185,7 @@ func (o *SpotMarketRequestCreateInput) GetInstanceAttributes() CreateSpotMarketR
 // GetInstanceAttributesOk returns a tuple with the InstanceAttributes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SpotMarketRequestCreateInput) GetInstanceAttributesOk() (*CreateSpotMarketRequestRequestInstanceAttributes, bool) {
-	if o == nil || o.InstanceAttributes == nil {
+	if o == nil || isNil(o.InstanceAttributes) {
 		return nil, false
 	}
 	return o.InstanceAttributes, true
@@ -193,7 +193,7 @@ func (o *SpotMarketRequestCreateInput) GetInstanceAttributesOk() (*CreateSpotMar
 
 // HasInstanceAttributes returns a boolean if a field has been set.
 func (o *SpotMarketRequestCreateInput) HasInstanceAttributes() bool {
-	if o != nil && o.InstanceAttributes != nil {
+	if o != nil && !isNil(o.InstanceAttributes) {
 		return true
 	}
 
@@ -207,7 +207,7 @@ func (o *SpotMarketRequestCreateInput) SetInstanceAttributes(v CreateSpotMarketR
 
 // GetMaxBidPrice returns the MaxBidPrice field value if set, zero value otherwise.
 func (o *SpotMarketRequestCreateInput) GetMaxBidPrice() float32 {
-	if o == nil || o.MaxBidPrice == nil {
+	if o == nil || isNil(o.MaxBidPrice) {
 		var ret float32
 		return ret
 	}
@@ -217,7 +217,7 @@ func (o *SpotMarketRequestCreateInput) GetMaxBidPrice() float32 {
 // GetMaxBidPriceOk returns a tuple with the MaxBidPrice field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SpotMarketRequestCreateInput) GetMaxBidPriceOk() (*float32, bool) {
-	if o == nil || o.MaxBidPrice == nil {
+	if o == nil || isNil(o.MaxBidPrice) {
 		return nil, false
 	}
 	return o.MaxBidPrice, true
@@ -225,7 +225,7 @@ func (o *SpotMarketRequestCreateInput) GetMaxBidPriceOk() (*float32, bool) {
 
 // HasMaxBidPrice returns a boolean if a field has been set.
 func (o *SpotMarketRequestCreateInput) HasMaxBidPrice() bool {
-	if o != nil && o.MaxBidPrice != nil {
+	if o != nil && !isNil(o.MaxBidPrice) {
 		return true
 	}
 
@@ -239,7 +239,7 @@ func (o *SpotMarketRequestCreateInput) SetMaxBidPrice(v float32) {
 
 // GetMetro returns the Metro field value if set, zero value otherwise.
 func (o *SpotMarketRequestCreateInput) GetMetro() string {
-	if o == nil || o.Metro == nil {
+	if o == nil || isNil(o.Metro) {
 		var ret string
 		return ret
 	}
@@ -249,7 +249,7 @@ func (o *SpotMarketRequestCreateInput) GetMetro() string {
 // GetMetroOk returns a tuple with the Metro field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SpotMarketRequestCreateInput) GetMetroOk() (*string, bool) {
-	if o == nil || o.Metro == nil {
+	if o == nil || isNil(o.Metro) {
 		return nil, false
 	}
 	return o.Metro, true
@@ -257,7 +257,7 @@ func (o *SpotMarketRequestCreateInput) GetMetroOk() (*string, bool) {
 
 // HasMetro returns a boolean if a field has been set.
 func (o *SpotMarketRequestCreateInput) HasMetro() bool {
-	if o != nil && o.Metro != nil {
+	if o != nil && !isNil(o.Metro) {
 		return true
 	}
 
@@ -271,25 +271,25 @@ func (o *SpotMarketRequestCreateInput) SetMetro(v string) {
 
 func (o SpotMarketRequestCreateInput) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.DevicesMax != nil {
+	if !isNil(o.DevicesMax) {
 		toSerialize["devices_max"] = o.DevicesMax
 	}
-	if o.DevicesMin != nil {
+	if !isNil(o.DevicesMin) {
 		toSerialize["devices_min"] = o.DevicesMin
 	}
-	if o.EndAt != nil {
+	if !isNil(o.EndAt) {
 		toSerialize["end_at"] = o.EndAt
 	}
-	if o.Facilities != nil {
+	if !isNil(o.Facilities) {
 		toSerialize["facilities"] = o.Facilities
 	}
-	if o.InstanceAttributes != nil {
+	if !isNil(o.InstanceAttributes) {
 		toSerialize["instance_attributes"] = o.InstanceAttributes
 	}
-	if o.MaxBidPrice != nil {
+	if !isNil(o.MaxBidPrice) {
 		toSerialize["max_bid_price"] = o.MaxBidPrice
 	}
-	if o.Metro != nil {
+	if !isNil(o.Metro) {
 		toSerialize["metro"] = o.Metro
 	}
 	return json.Marshal(toSerialize)

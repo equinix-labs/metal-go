@@ -1,7 +1,7 @@
 /*
 Metal API
 
-This is the API for Equinix Metal. The API allows you to programmatically interact with all of your Equinix Metal resources, including devices, networks, addresses, organizations, projects, and your user account.  The official API docs are hosted at <https://metal.equinix.com/developers/api>.
+# Introduction Equinix Metal provides a RESTful HTTP API which can be reached at <https://api.equinix.com/metal/v1>. This document describes the API and how to use it.  The API allows you to programmatically interact with all of your Equinix Metal resources, including devices, networks, addresses, organizations, projects, and your user account. Every feature of the Equinix Metal web interface is accessible through the API.  The API docs are generated from the Equinix Metal OpenAPI specification and are officially hosted at <https://metal.equinix.com/developers/api>.  # Common Parameters  The Equinix Metal API uses a few methods to minimize network traffic and improve throughput. These parameters are not used in all API calls, but are used often enough to warrant their own section. Look for these parameters in the documentation for the API calls that support them.  ## Pagination  Pagination is used to limit the number of results returned in a single request. The API will return a maximum of 100 results per page. To retrieve additional results, you can use the `page` and `per_page` query parameters.  The `page` parameter is used to specify the page number. The first page is `1`. The `per_page` parameter is used to specify the number of results per page. The maximum number of results differs by resource type.  ## Sorting  Where offered, the API allows you to sort results by a specific field. To sort results use the `sort_by` query parameter with the root level field name as the value. The `sort_direction` parameter is used to specify the sort direction, either either `asc` (ascending) or `desc` (descending).  ## Filtering  Filtering is used to limit the results returned in a single request. The API supports filtering by certain fields in the response. To filter results, you can use the field as a query parameter.  For example, to filter the IP list to only return public IPv4 addresses, you can filter by the `type` field, as in the following request:  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/projects/id/ips?type=public_ipv4 ```  Only IP addresses with the `type` field set to `public_ipv4` will be returned.  ## Searching  Searching is used to find matching resources using multiple field comparissons. The API supports searching in resources that define this behavior. The fields available for search differ by resource, as does the search strategy.  To search resources you can use the `search` query parameter.  ## Include and Exclude  For resources that contain references to other resources, sucha as a Device that refers to the Project it resides in, the Equinix Metal API will returns `href` values (API links) to the associated resource.  ```json {   ...   \"project\": {     \"href\": \"/metal/v1/projects/f3f131c8-f302-49ef-8c44-9405022dc6dd\"   } } ```  If you're going need the project details, you can avoid a second API request.  Specify the contained `href` resources and collections that you'd like to have included in the response using the `include` query parameter.  For example:    ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=projects ```  The `include` parameter is generally accepted in `GET`, `POST`, `PUT`, and `PATCH` requests where `href` resources are presented.  To have multiple resources include, use a comma-separated list (e.g. `?include=emails,projects,memberships`).  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=emails,projects,memberships ```  You may also include nested associations up to three levels deep using dot notation (`?include=memberships.projects`):  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=memberships.projects ```  To exclude resources, and optimize response delivery, use the `exclude` query parameter. The `exclude` parameter is generally accepted in `GET`, `POST`, `PUT`, and `PATCH` requests for fields with nested object responses. When excluded, these fields will be replaced with an object that contains only an `href` field.
 
 API version: 1.0.0
 Contact: support@equinixmetal.com
@@ -58,7 +58,7 @@ func NewFindOrganizations200ResponseOrganizationsInnerWithDefaults() *FindOrgani
 
 // GetAddress returns the Address field value if set, zero value otherwise.
 func (o *FindOrganizations200ResponseOrganizationsInner) GetAddress() FindDeviceById200ResponseFacilityAddress {
-	if o == nil || o.Address == nil {
+	if o == nil || isNil(o.Address) {
 		var ret FindDeviceById200ResponseFacilityAddress
 		return ret
 	}
@@ -68,7 +68,7 @@ func (o *FindOrganizations200ResponseOrganizationsInner) GetAddress() FindDevice
 // GetAddressOk returns a tuple with the Address field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FindOrganizations200ResponseOrganizationsInner) GetAddressOk() (*FindDeviceById200ResponseFacilityAddress, bool) {
-	if o == nil || o.Address == nil {
+	if o == nil || isNil(o.Address) {
 		return nil, false
 	}
 	return o.Address, true
@@ -76,7 +76,7 @@ func (o *FindOrganizations200ResponseOrganizationsInner) GetAddressOk() (*FindDe
 
 // HasAddress returns a boolean if a field has been set.
 func (o *FindOrganizations200ResponseOrganizationsInner) HasAddress() bool {
-	if o != nil && o.Address != nil {
+	if o != nil && !isNil(o.Address) {
 		return true
 	}
 
@@ -90,7 +90,7 @@ func (o *FindOrganizations200ResponseOrganizationsInner) SetAddress(v FindDevice
 
 // GetBillingAddress returns the BillingAddress field value if set, zero value otherwise.
 func (o *FindOrganizations200ResponseOrganizationsInner) GetBillingAddress() FindDeviceById200ResponseFacilityAddress {
-	if o == nil || o.BillingAddress == nil {
+	if o == nil || isNil(o.BillingAddress) {
 		var ret FindDeviceById200ResponseFacilityAddress
 		return ret
 	}
@@ -100,7 +100,7 @@ func (o *FindOrganizations200ResponseOrganizationsInner) GetBillingAddress() Fin
 // GetBillingAddressOk returns a tuple with the BillingAddress field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FindOrganizations200ResponseOrganizationsInner) GetBillingAddressOk() (*FindDeviceById200ResponseFacilityAddress, bool) {
-	if o == nil || o.BillingAddress == nil {
+	if o == nil || isNil(o.BillingAddress) {
 		return nil, false
 	}
 	return o.BillingAddress, true
@@ -108,7 +108,7 @@ func (o *FindOrganizations200ResponseOrganizationsInner) GetBillingAddressOk() (
 
 // HasBillingAddress returns a boolean if a field has been set.
 func (o *FindOrganizations200ResponseOrganizationsInner) HasBillingAddress() bool {
-	if o != nil && o.BillingAddress != nil {
+	if o != nil && !isNil(o.BillingAddress) {
 		return true
 	}
 
@@ -122,7 +122,7 @@ func (o *FindOrganizations200ResponseOrganizationsInner) SetBillingAddress(v Fin
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *FindOrganizations200ResponseOrganizationsInner) GetCreatedAt() time.Time {
-	if o == nil || o.CreatedAt == nil {
+	if o == nil || isNil(o.CreatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -132,7 +132,7 @@ func (o *FindOrganizations200ResponseOrganizationsInner) GetCreatedAt() time.Tim
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FindOrganizations200ResponseOrganizationsInner) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || o.CreatedAt == nil {
+	if o == nil || isNil(o.CreatedAt) {
 		return nil, false
 	}
 	return o.CreatedAt, true
@@ -140,7 +140,7 @@ func (o *FindOrganizations200ResponseOrganizationsInner) GetCreatedAtOk() (*time
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *FindOrganizations200ResponseOrganizationsInner) HasCreatedAt() bool {
-	if o != nil && o.CreatedAt != nil {
+	if o != nil && !isNil(o.CreatedAt) {
 		return true
 	}
 
@@ -154,7 +154,7 @@ func (o *FindOrganizations200ResponseOrganizationsInner) SetCreatedAt(v time.Tim
 
 // GetCreditAmount returns the CreditAmount field value if set, zero value otherwise.
 func (o *FindOrganizations200ResponseOrganizationsInner) GetCreditAmount() float32 {
-	if o == nil || o.CreditAmount == nil {
+	if o == nil || isNil(o.CreditAmount) {
 		var ret float32
 		return ret
 	}
@@ -164,7 +164,7 @@ func (o *FindOrganizations200ResponseOrganizationsInner) GetCreditAmount() float
 // GetCreditAmountOk returns a tuple with the CreditAmount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FindOrganizations200ResponseOrganizationsInner) GetCreditAmountOk() (*float32, bool) {
-	if o == nil || o.CreditAmount == nil {
+	if o == nil || isNil(o.CreditAmount) {
 		return nil, false
 	}
 	return o.CreditAmount, true
@@ -172,7 +172,7 @@ func (o *FindOrganizations200ResponseOrganizationsInner) GetCreditAmountOk() (*f
 
 // HasCreditAmount returns a boolean if a field has been set.
 func (o *FindOrganizations200ResponseOrganizationsInner) HasCreditAmount() bool {
-	if o != nil && o.CreditAmount != nil {
+	if o != nil && !isNil(o.CreditAmount) {
 		return true
 	}
 
@@ -186,7 +186,7 @@ func (o *FindOrganizations200ResponseOrganizationsInner) SetCreditAmount(v float
 
 // GetCustomdata returns the Customdata field value if set, zero value otherwise.
 func (o *FindOrganizations200ResponseOrganizationsInner) GetCustomdata() map[string]interface{} {
-	if o == nil || o.Customdata == nil {
+	if o == nil || isNil(o.Customdata) {
 		var ret map[string]interface{}
 		return ret
 	}
@@ -196,15 +196,15 @@ func (o *FindOrganizations200ResponseOrganizationsInner) GetCustomdata() map[str
 // GetCustomdataOk returns a tuple with the Customdata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FindOrganizations200ResponseOrganizationsInner) GetCustomdataOk() (map[string]interface{}, bool) {
-	if o == nil || o.Customdata == nil {
-		return nil, false
+	if o == nil || isNil(o.Customdata) {
+		return map[string]interface{}{}, false
 	}
 	return o.Customdata, true
 }
 
 // HasCustomdata returns a boolean if a field has been set.
 func (o *FindOrganizations200ResponseOrganizationsInner) HasCustomdata() bool {
-	if o != nil && o.Customdata != nil {
+	if o != nil && !isNil(o.Customdata) {
 		return true
 	}
 
@@ -218,7 +218,7 @@ func (o *FindOrganizations200ResponseOrganizationsInner) SetCustomdata(v map[str
 
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *FindOrganizations200ResponseOrganizationsInner) GetDescription() string {
-	if o == nil || o.Description == nil {
+	if o == nil || isNil(o.Description) {
 		var ret string
 		return ret
 	}
@@ -228,7 +228,7 @@ func (o *FindOrganizations200ResponseOrganizationsInner) GetDescription() string
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FindOrganizations200ResponseOrganizationsInner) GetDescriptionOk() (*string, bool) {
-	if o == nil || o.Description == nil {
+	if o == nil || isNil(o.Description) {
 		return nil, false
 	}
 	return o.Description, true
@@ -236,7 +236,7 @@ func (o *FindOrganizations200ResponseOrganizationsInner) GetDescriptionOk() (*st
 
 // HasDescription returns a boolean if a field has been set.
 func (o *FindOrganizations200ResponseOrganizationsInner) HasDescription() bool {
-	if o != nil && o.Description != nil {
+	if o != nil && !isNil(o.Description) {
 		return true
 	}
 
@@ -250,7 +250,7 @@ func (o *FindOrganizations200ResponseOrganizationsInner) SetDescription(v string
 
 // GetEnforce2faAt returns the Enforce2faAt field value if set, zero value otherwise.
 func (o *FindOrganizations200ResponseOrganizationsInner) GetEnforce2faAt() time.Time {
-	if o == nil || o.Enforce2faAt == nil {
+	if o == nil || isNil(o.Enforce2faAt) {
 		var ret time.Time
 		return ret
 	}
@@ -260,7 +260,7 @@ func (o *FindOrganizations200ResponseOrganizationsInner) GetEnforce2faAt() time.
 // GetEnforce2faAtOk returns a tuple with the Enforce2faAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FindOrganizations200ResponseOrganizationsInner) GetEnforce2faAtOk() (*time.Time, bool) {
-	if o == nil || o.Enforce2faAt == nil {
+	if o == nil || isNil(o.Enforce2faAt) {
 		return nil, false
 	}
 	return o.Enforce2faAt, true
@@ -268,7 +268,7 @@ func (o *FindOrganizations200ResponseOrganizationsInner) GetEnforce2faAtOk() (*t
 
 // HasEnforce2faAt returns a boolean if a field has been set.
 func (o *FindOrganizations200ResponseOrganizationsInner) HasEnforce2faAt() bool {
-	if o != nil && o.Enforce2faAt != nil {
+	if o != nil && !isNil(o.Enforce2faAt) {
 		return true
 	}
 
@@ -282,7 +282,7 @@ func (o *FindOrganizations200ResponseOrganizationsInner) SetEnforce2faAt(v time.
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *FindOrganizations200ResponseOrganizationsInner) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || isNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -292,7 +292,7 @@ func (o *FindOrganizations200ResponseOrganizationsInner) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FindOrganizations200ResponseOrganizationsInner) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || isNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -300,7 +300,7 @@ func (o *FindOrganizations200ResponseOrganizationsInner) GetIdOk() (*string, boo
 
 // HasId returns a boolean if a field has been set.
 func (o *FindOrganizations200ResponseOrganizationsInner) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !isNil(o.Id) {
 		return true
 	}
 
@@ -314,7 +314,7 @@ func (o *FindOrganizations200ResponseOrganizationsInner) SetId(v string) {
 
 // GetLogo returns the Logo field value if set, zero value otherwise.
 func (o *FindOrganizations200ResponseOrganizationsInner) GetLogo() *os.File {
-	if o == nil || o.Logo == nil {
+	if o == nil || isNil(o.Logo) {
 		var ret *os.File
 		return ret
 	}
@@ -324,7 +324,7 @@ func (o *FindOrganizations200ResponseOrganizationsInner) GetLogo() *os.File {
 // GetLogoOk returns a tuple with the Logo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FindOrganizations200ResponseOrganizationsInner) GetLogoOk() (**os.File, bool) {
-	if o == nil || o.Logo == nil {
+	if o == nil || isNil(o.Logo) {
 		return nil, false
 	}
 	return o.Logo, true
@@ -332,7 +332,7 @@ func (o *FindOrganizations200ResponseOrganizationsInner) GetLogoOk() (**os.File,
 
 // HasLogo returns a boolean if a field has been set.
 func (o *FindOrganizations200ResponseOrganizationsInner) HasLogo() bool {
-	if o != nil && o.Logo != nil {
+	if o != nil && !isNil(o.Logo) {
 		return true
 	}
 
@@ -346,7 +346,7 @@ func (o *FindOrganizations200ResponseOrganizationsInner) SetLogo(v *os.File) {
 
 // GetMembers returns the Members field value if set, zero value otherwise.
 func (o *FindOrganizations200ResponseOrganizationsInner) GetMembers() []FindBatchById200ResponseDevicesInner {
-	if o == nil || o.Members == nil {
+	if o == nil || isNil(o.Members) {
 		var ret []FindBatchById200ResponseDevicesInner
 		return ret
 	}
@@ -356,7 +356,7 @@ func (o *FindOrganizations200ResponseOrganizationsInner) GetMembers() []FindBatc
 // GetMembersOk returns a tuple with the Members field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FindOrganizations200ResponseOrganizationsInner) GetMembersOk() ([]FindBatchById200ResponseDevicesInner, bool) {
-	if o == nil || o.Members == nil {
+	if o == nil || isNil(o.Members) {
 		return nil, false
 	}
 	return o.Members, true
@@ -364,7 +364,7 @@ func (o *FindOrganizations200ResponseOrganizationsInner) GetMembersOk() ([]FindB
 
 // HasMembers returns a boolean if a field has been set.
 func (o *FindOrganizations200ResponseOrganizationsInner) HasMembers() bool {
-	if o != nil && o.Members != nil {
+	if o != nil && !isNil(o.Members) {
 		return true
 	}
 
@@ -378,7 +378,7 @@ func (o *FindOrganizations200ResponseOrganizationsInner) SetMembers(v []FindBatc
 
 // GetMemberships returns the Memberships field value if set, zero value otherwise.
 func (o *FindOrganizations200ResponseOrganizationsInner) GetMemberships() []FindBatchById200ResponseDevicesInner {
-	if o == nil || o.Memberships == nil {
+	if o == nil || isNil(o.Memberships) {
 		var ret []FindBatchById200ResponseDevicesInner
 		return ret
 	}
@@ -388,7 +388,7 @@ func (o *FindOrganizations200ResponseOrganizationsInner) GetMemberships() []Find
 // GetMembershipsOk returns a tuple with the Memberships field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FindOrganizations200ResponseOrganizationsInner) GetMembershipsOk() ([]FindBatchById200ResponseDevicesInner, bool) {
-	if o == nil || o.Memberships == nil {
+	if o == nil || isNil(o.Memberships) {
 		return nil, false
 	}
 	return o.Memberships, true
@@ -396,7 +396,7 @@ func (o *FindOrganizations200ResponseOrganizationsInner) GetMembershipsOk() ([]F
 
 // HasMemberships returns a boolean if a field has been set.
 func (o *FindOrganizations200ResponseOrganizationsInner) HasMemberships() bool {
-	if o != nil && o.Memberships != nil {
+	if o != nil && !isNil(o.Memberships) {
 		return true
 	}
 
@@ -410,7 +410,7 @@ func (o *FindOrganizations200ResponseOrganizationsInner) SetMemberships(v []Find
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *FindOrganizations200ResponseOrganizationsInner) GetName() string {
-	if o == nil || o.Name == nil {
+	if o == nil || isNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -420,7 +420,7 @@ func (o *FindOrganizations200ResponseOrganizationsInner) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FindOrganizations200ResponseOrganizationsInner) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
+	if o == nil || isNil(o.Name) {
 		return nil, false
 	}
 	return o.Name, true
@@ -428,7 +428,7 @@ func (o *FindOrganizations200ResponseOrganizationsInner) GetNameOk() (*string, b
 
 // HasName returns a boolean if a field has been set.
 func (o *FindOrganizations200ResponseOrganizationsInner) HasName() bool {
-	if o != nil && o.Name != nil {
+	if o != nil && !isNil(o.Name) {
 		return true
 	}
 
@@ -442,7 +442,7 @@ func (o *FindOrganizations200ResponseOrganizationsInner) SetName(v string) {
 
 // GetProjects returns the Projects field value if set, zero value otherwise.
 func (o *FindOrganizations200ResponseOrganizationsInner) GetProjects() []FindBatchById200ResponseDevicesInner {
-	if o == nil || o.Projects == nil {
+	if o == nil || isNil(o.Projects) {
 		var ret []FindBatchById200ResponseDevicesInner
 		return ret
 	}
@@ -452,7 +452,7 @@ func (o *FindOrganizations200ResponseOrganizationsInner) GetProjects() []FindBat
 // GetProjectsOk returns a tuple with the Projects field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FindOrganizations200ResponseOrganizationsInner) GetProjectsOk() ([]FindBatchById200ResponseDevicesInner, bool) {
-	if o == nil || o.Projects == nil {
+	if o == nil || isNil(o.Projects) {
 		return nil, false
 	}
 	return o.Projects, true
@@ -460,7 +460,7 @@ func (o *FindOrganizations200ResponseOrganizationsInner) GetProjectsOk() ([]Find
 
 // HasProjects returns a boolean if a field has been set.
 func (o *FindOrganizations200ResponseOrganizationsInner) HasProjects() bool {
-	if o != nil && o.Projects != nil {
+	if o != nil && !isNil(o.Projects) {
 		return true
 	}
 
@@ -474,7 +474,7 @@ func (o *FindOrganizations200ResponseOrganizationsInner) SetProjects(v []FindBat
 
 // GetTerms returns the Terms field value if set, zero value otherwise.
 func (o *FindOrganizations200ResponseOrganizationsInner) GetTerms() int32 {
-	if o == nil || o.Terms == nil {
+	if o == nil || isNil(o.Terms) {
 		var ret int32
 		return ret
 	}
@@ -484,7 +484,7 @@ func (o *FindOrganizations200ResponseOrganizationsInner) GetTerms() int32 {
 // GetTermsOk returns a tuple with the Terms field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FindOrganizations200ResponseOrganizationsInner) GetTermsOk() (*int32, bool) {
-	if o == nil || o.Terms == nil {
+	if o == nil || isNil(o.Terms) {
 		return nil, false
 	}
 	return o.Terms, true
@@ -492,7 +492,7 @@ func (o *FindOrganizations200ResponseOrganizationsInner) GetTermsOk() (*int32, b
 
 // HasTerms returns a boolean if a field has been set.
 func (o *FindOrganizations200ResponseOrganizationsInner) HasTerms() bool {
-	if o != nil && o.Terms != nil {
+	if o != nil && !isNil(o.Terms) {
 		return true
 	}
 
@@ -506,7 +506,7 @@ func (o *FindOrganizations200ResponseOrganizationsInner) SetTerms(v int32) {
 
 // GetTwitter returns the Twitter field value if set, zero value otherwise.
 func (o *FindOrganizations200ResponseOrganizationsInner) GetTwitter() string {
-	if o == nil || o.Twitter == nil {
+	if o == nil || isNil(o.Twitter) {
 		var ret string
 		return ret
 	}
@@ -516,7 +516,7 @@ func (o *FindOrganizations200ResponseOrganizationsInner) GetTwitter() string {
 // GetTwitterOk returns a tuple with the Twitter field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FindOrganizations200ResponseOrganizationsInner) GetTwitterOk() (*string, bool) {
-	if o == nil || o.Twitter == nil {
+	if o == nil || isNil(o.Twitter) {
 		return nil, false
 	}
 	return o.Twitter, true
@@ -524,7 +524,7 @@ func (o *FindOrganizations200ResponseOrganizationsInner) GetTwitterOk() (*string
 
 // HasTwitter returns a boolean if a field has been set.
 func (o *FindOrganizations200ResponseOrganizationsInner) HasTwitter() bool {
-	if o != nil && o.Twitter != nil {
+	if o != nil && !isNil(o.Twitter) {
 		return true
 	}
 
@@ -538,7 +538,7 @@ func (o *FindOrganizations200ResponseOrganizationsInner) SetTwitter(v string) {
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *FindOrganizations200ResponseOrganizationsInner) GetUpdatedAt() time.Time {
-	if o == nil || o.UpdatedAt == nil {
+	if o == nil || isNil(o.UpdatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -548,7 +548,7 @@ func (o *FindOrganizations200ResponseOrganizationsInner) GetUpdatedAt() time.Tim
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FindOrganizations200ResponseOrganizationsInner) GetUpdatedAtOk() (*time.Time, bool) {
-	if o == nil || o.UpdatedAt == nil {
+	if o == nil || isNil(o.UpdatedAt) {
 		return nil, false
 	}
 	return o.UpdatedAt, true
@@ -556,7 +556,7 @@ func (o *FindOrganizations200ResponseOrganizationsInner) GetUpdatedAtOk() (*time
 
 // HasUpdatedAt returns a boolean if a field has been set.
 func (o *FindOrganizations200ResponseOrganizationsInner) HasUpdatedAt() bool {
-	if o != nil && o.UpdatedAt != nil {
+	if o != nil && !isNil(o.UpdatedAt) {
 		return true
 	}
 
@@ -570,7 +570,7 @@ func (o *FindOrganizations200ResponseOrganizationsInner) SetUpdatedAt(v time.Tim
 
 // GetWebsite returns the Website field value if set, zero value otherwise.
 func (o *FindOrganizations200ResponseOrganizationsInner) GetWebsite() string {
-	if o == nil || o.Website == nil {
+	if o == nil || isNil(o.Website) {
 		var ret string
 		return ret
 	}
@@ -580,7 +580,7 @@ func (o *FindOrganizations200ResponseOrganizationsInner) GetWebsite() string {
 // GetWebsiteOk returns a tuple with the Website field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FindOrganizations200ResponseOrganizationsInner) GetWebsiteOk() (*string, bool) {
-	if o == nil || o.Website == nil {
+	if o == nil || isNil(o.Website) {
 		return nil, false
 	}
 	return o.Website, true
@@ -588,7 +588,7 @@ func (o *FindOrganizations200ResponseOrganizationsInner) GetWebsiteOk() (*string
 
 // HasWebsite returns a boolean if a field has been set.
 func (o *FindOrganizations200ResponseOrganizationsInner) HasWebsite() bool {
-	if o != nil && o.Website != nil {
+	if o != nil && !isNil(o.Website) {
 		return true
 	}
 
@@ -602,55 +602,55 @@ func (o *FindOrganizations200ResponseOrganizationsInner) SetWebsite(v string) {
 
 func (o FindOrganizations200ResponseOrganizationsInner) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Address != nil {
+	if !isNil(o.Address) {
 		toSerialize["address"] = o.Address
 	}
-	if o.BillingAddress != nil {
+	if !isNil(o.BillingAddress) {
 		toSerialize["billing_address"] = o.BillingAddress
 	}
-	if o.CreatedAt != nil {
+	if !isNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt
 	}
-	if o.CreditAmount != nil {
+	if !isNil(o.CreditAmount) {
 		toSerialize["credit_amount"] = o.CreditAmount
 	}
-	if o.Customdata != nil {
+	if !isNil(o.Customdata) {
 		toSerialize["customdata"] = o.Customdata
 	}
-	if o.Description != nil {
+	if !isNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
-	if o.Enforce2faAt != nil {
+	if !isNil(o.Enforce2faAt) {
 		toSerialize["enforce_2fa_at"] = o.Enforce2faAt
 	}
-	if o.Id != nil {
+	if !isNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
-	if o.Logo != nil {
+	if !isNil(o.Logo) {
 		toSerialize["logo"] = o.Logo
 	}
-	if o.Members != nil {
+	if !isNil(o.Members) {
 		toSerialize["members"] = o.Members
 	}
-	if o.Memberships != nil {
+	if !isNil(o.Memberships) {
 		toSerialize["memberships"] = o.Memberships
 	}
-	if o.Name != nil {
+	if !isNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
-	if o.Projects != nil {
+	if !isNil(o.Projects) {
 		toSerialize["projects"] = o.Projects
 	}
-	if o.Terms != nil {
+	if !isNil(o.Terms) {
 		toSerialize["terms"] = o.Terms
 	}
-	if o.Twitter != nil {
+	if !isNil(o.Twitter) {
 		toSerialize["twitter"] = o.Twitter
 	}
-	if o.UpdatedAt != nil {
+	if !isNil(o.UpdatedAt) {
 		toSerialize["updated_at"] = o.UpdatedAt
 	}
-	if o.Website != nil {
+	if !isNil(o.Website) {
 		toSerialize["website"] = o.Website
 	}
 	return json.Marshal(toSerialize)

@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **CreatedAt** | Pointer to **time.Time** |  | [optional] 
 **ErrorMessages** | Pointer to **[]string** |  | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
-**Port** | Pointer to [**FindDeviceById200ResponseNetworkPortsAllOf**](FindDeviceById200ResponseNetworkPortsAllOf.md) |  | [optional] 
+**Port** | Pointer to [**FindDeviceById200ResponseNetworkPortsInner**](FindDeviceById200ResponseNetworkPortsInner.md) |  | [optional] 
 **Quantity** | Pointer to **int32** |  | [optional] 
 **State** | Pointer to **string** |  | [optional] 
 **UpdatedAt** | Pointer to **time.Time** |  | [optional] 
@@ -109,20 +109,20 @@ HasId returns a boolean if a field has been set.
 
 ### GetPort
 
-`func (o *FindPortVlanAssignmentBatches200ResponseBatchesInner) GetPort() FindDeviceById200ResponseNetworkPortsAllOf`
+`func (o *FindPortVlanAssignmentBatches200ResponseBatchesInner) GetPort() FindDeviceById200ResponseNetworkPortsInner`
 
 GetPort returns the Port field if non-nil, zero value otherwise.
 
 ### GetPortOk
 
-`func (o *FindPortVlanAssignmentBatches200ResponseBatchesInner) GetPortOk() (*FindDeviceById200ResponseNetworkPortsAllOf, bool)`
+`func (o *FindPortVlanAssignmentBatches200ResponseBatchesInner) GetPortOk() (*FindDeviceById200ResponseNetworkPortsInner, bool)`
 
 GetPortOk returns a tuple with the Port field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPort
 
-`func (o *FindPortVlanAssignmentBatches200ResponseBatchesInner) SetPort(v FindDeviceById200ResponseNetworkPortsAllOf)`
+`func (o *FindPortVlanAssignmentBatches200ResponseBatchesInner) SetPort(v FindDeviceById200ResponseNetworkPortsInner)`
 
 SetPort sets Port field to given value.
 

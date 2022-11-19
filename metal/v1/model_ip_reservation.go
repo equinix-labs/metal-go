@@ -1,7 +1,7 @@
 /*
 Metal API
 
-This is the API for Equinix Metal. The API allows you to programmatically interact with all of your Equinix Metal resources, including devices, networks, addresses, organizations, projects, and your user account.  The official API docs are hosted at <https://metal.equinix.com/developers/api>.
+# Introduction Equinix Metal provides a RESTful HTTP API which can be reached at <https://api.equinix.com/metal/v1>. This document describes the API and how to use it.  The API allows you to programmatically interact with all of your Equinix Metal resources, including devices, networks, addresses, organizations, projects, and your user account. Every feature of the Equinix Metal web interface is accessible through the API.  The API docs are generated from the Equinix Metal OpenAPI specification and are officially hosted at <https://metal.equinix.com/developers/api>.  # Common Parameters  The Equinix Metal API uses a few methods to minimize network traffic and improve throughput. These parameters are not used in all API calls, but are used often enough to warrant their own section. Look for these parameters in the documentation for the API calls that support them.  ## Pagination  Pagination is used to limit the number of results returned in a single request. The API will return a maximum of 100 results per page. To retrieve additional results, you can use the `page` and `per_page` query parameters.  The `page` parameter is used to specify the page number. The first page is `1`. The `per_page` parameter is used to specify the number of results per page. The maximum number of results differs by resource type.  ## Sorting  Where offered, the API allows you to sort results by a specific field. To sort results use the `sort_by` query parameter with the root level field name as the value. The `sort_direction` parameter is used to specify the sort direction, either either `asc` (ascending) or `desc` (descending).  ## Filtering  Filtering is used to limit the results returned in a single request. The API supports filtering by certain fields in the response. To filter results, you can use the field as a query parameter.  For example, to filter the IP list to only return public IPv4 addresses, you can filter by the `type` field, as in the following request:  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/projects/id/ips?type=public_ipv4 ```  Only IP addresses with the `type` field set to `public_ipv4` will be returned.  ## Searching  Searching is used to find matching resources using multiple field comparissons. The API supports searching in resources that define this behavior. The fields available for search differ by resource, as does the search strategy.  To search resources you can use the `search` query parameter.  ## Include and Exclude  For resources that contain references to other resources, sucha as a Device that refers to the Project it resides in, the Equinix Metal API will returns `href` values (API links) to the associated resource.  ```json {   ...   \"project\": {     \"href\": \"/metal/v1/projects/f3f131c8-f302-49ef-8c44-9405022dc6dd\"   } } ```  If you're going need the project details, you can avoid a second API request.  Specify the contained `href` resources and collections that you'd like to have included in the response using the `include` query parameter.  For example:    ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=projects ```  The `include` parameter is generally accepted in `GET`, `POST`, `PUT`, and `PATCH` requests where `href` resources are presented.  To have multiple resources include, use a comma-separated list (e.g. `?include=emails,projects,memberships`).  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=emails,projects,memberships ```  You may also include nested associations up to three levels deep using dot notation (`?include=memberships.projects`):  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=memberships.projects ```  To exclude resources, and optimize response delivery, use the `exclude` query parameter. The `exclude` parameter is generally accepted in `GET`, `POST`, `PUT`, and `PATCH` requests for fields with nested object responses. When excluded, these fields will be replaced with an object that contains only an `href` field.
 
 API version: 1.0.0
 Contact: support@equinixmetal.com
@@ -18,34 +18,44 @@ import (
 
 // IPReservation struct for IPReservation
 type IPReservation struct {
-	Tags          []string                                                        `json:"tags,omitempty"`
-	Addon         *bool                                                           `json:"addon,omitempty"`
-	AddressFamily *int32                                                          `json:"address_family,omitempty"`
-	Assignments   []FindDeviceById200ResponseIpAddressesInner                     `json:"assignments,omitempty"`
-	Bill          *bool                                                           `json:"bill,omitempty"`
-	Cidr          *int32                                                          `json:"cidr,omitempty"`
-	CreatedAt     *time.Time                                                      `json:"created_at,omitempty"`
-	Enabled       *bool                                                           `json:"enabled,omitempty"`
-	Facility      *IPReservationFacility                                          `json:"facility,omitempty"`
-	GlobalIp      *bool                                                           `json:"global_ip,omitempty"`
-	Href          *string                                                         `json:"href,omitempty"`
-	Id            *string                                                         `json:"id,omitempty"`
-	Manageable    *bool                                                           `json:"manageable,omitempty"`
-	Management    *bool                                                           `json:"management,omitempty"`
-	MetalGateway  *FindVirtualNetworks200ResponseVirtualNetworksInnerMetalGateway `json:"metal_gateway,omitempty"`
-	Metro         *IPReservationMetro                                             `json:"metro,omitempty"`
-	Netmask       *string                                                         `json:"netmask,omitempty"`
-	Network       *string                                                         `json:"network,omitempty"`
-	Public        *bool                                                           `json:"public,omitempty"`
-	State         *string                                                         `json:"state,omitempty"`
+	Addon         *bool                                                                                       `json:"addon,omitempty"`
+	Address       *string                                                                                     `json:"address,omitempty"`
+	AddressFamily *int32                                                                                      `json:"address_family,omitempty"`
+	Assignments   []FindDeviceById200ResponseIpAddressesInner                                                 `json:"assignments,omitempty"`
+	Available     *string                                                                                     `json:"available,omitempty"`
+	Bill          *bool                                                                                       `json:"bill,omitempty"`
+	Cidr          *int32                                                                                      `json:"cidr,omitempty"`
+	CreatedAt     *time.Time                                                                                  `json:"created_at,omitempty"`
+	Customdata    map[string]interface{}                                                                      `json:"customdata,omitempty"`
+	Enabled       *bool                                                                                       `json:"enabled,omitempty"`
+	Details       *string                                                                                     `json:"details,omitempty"`
+	Facility      *FindIPAddressById200ResponseOneOfFacility                                                  `json:"facility,omitempty"`
+	Gateway       *string                                                                                     `json:"gateway,omitempty"`
+	GlobalIp      *bool                                                                                       `json:"global_ip,omitempty"`
+	Href          *string                                                                                     `json:"href,omitempty"`
+	Id            *string                                                                                     `json:"id,omitempty"`
+	Manageable    *bool                                                                                       `json:"manageable,omitempty"`
+	Management    *bool                                                                                       `json:"management,omitempty"`
+	MetalGateway  *FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetworkMetalGatewaysInner           `json:"metal_gateway,omitempty"`
+	Metro         *FindIPAddressById200ResponseOneOfMetro                                                     `json:"metro,omitempty"`
+	Netmask       *string                                                                                     `json:"netmask,omitempty"`
+	Network       *string                                                                                     `json:"network,omitempty"`
+	Project       *GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject `json:"project,omitempty"`
+	ProjectLite   *FindBatchById200ResponseDevicesInner                                                       `json:"project_lite,omitempty"`
+	RequestedBy   *FindBatchById200ResponseDevicesInner                                                       `json:"requested_by,omitempty"`
+	Public        *bool                                                                                       `json:"public,omitempty"`
+	State         *string                                                                                     `json:"state,omitempty"`
+	Tags          []string                                                                                    `json:"tags,omitempty"`
+	Type          string                                                                                      `json:"type"`
 }
 
 // NewIPReservation instantiates a new IPReservation object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewIPReservation() *IPReservation {
+func NewIPReservation(type_ string) *IPReservation {
 	this := IPReservation{}
+	this.Type = type_
 	return &this
 }
 
@@ -57,41 +67,9 @@ func NewIPReservationWithDefaults() *IPReservation {
 	return &this
 }
 
-// GetTags returns the Tags field value if set, zero value otherwise.
-func (o *IPReservation) GetTags() []string {
-	if o == nil || o.Tags == nil {
-		var ret []string
-		return ret
-	}
-	return o.Tags
-}
-
-// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *IPReservation) GetTagsOk() ([]string, bool) {
-	if o == nil || o.Tags == nil {
-		return nil, false
-	}
-	return o.Tags, true
-}
-
-// HasTags returns a boolean if a field has been set.
-func (o *IPReservation) HasTags() bool {
-	if o != nil && o.Tags != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetTags gets a reference to the given []string and assigns it to the Tags field.
-func (o *IPReservation) SetTags(v []string) {
-	o.Tags = v
-}
-
 // GetAddon returns the Addon field value if set, zero value otherwise.
 func (o *IPReservation) GetAddon() bool {
-	if o == nil || o.Addon == nil {
+	if o == nil || isNil(o.Addon) {
 		var ret bool
 		return ret
 	}
@@ -101,7 +79,7 @@ func (o *IPReservation) GetAddon() bool {
 // GetAddonOk returns a tuple with the Addon field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IPReservation) GetAddonOk() (*bool, bool) {
-	if o == nil || o.Addon == nil {
+	if o == nil || isNil(o.Addon) {
 		return nil, false
 	}
 	return o.Addon, true
@@ -109,7 +87,7 @@ func (o *IPReservation) GetAddonOk() (*bool, bool) {
 
 // HasAddon returns a boolean if a field has been set.
 func (o *IPReservation) HasAddon() bool {
-	if o != nil && o.Addon != nil {
+	if o != nil && !isNil(o.Addon) {
 		return true
 	}
 
@@ -121,9 +99,41 @@ func (o *IPReservation) SetAddon(v bool) {
 	o.Addon = &v
 }
 
+// GetAddress returns the Address field value if set, zero value otherwise.
+func (o *IPReservation) GetAddress() string {
+	if o == nil || isNil(o.Address) {
+		var ret string
+		return ret
+	}
+	return *o.Address
+}
+
+// GetAddressOk returns a tuple with the Address field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IPReservation) GetAddressOk() (*string, bool) {
+	if o == nil || isNil(o.Address) {
+		return nil, false
+	}
+	return o.Address, true
+}
+
+// HasAddress returns a boolean if a field has been set.
+func (o *IPReservation) HasAddress() bool {
+	if o != nil && !isNil(o.Address) {
+		return true
+	}
+
+	return false
+}
+
+// SetAddress gets a reference to the given string and assigns it to the Address field.
+func (o *IPReservation) SetAddress(v string) {
+	o.Address = &v
+}
+
 // GetAddressFamily returns the AddressFamily field value if set, zero value otherwise.
 func (o *IPReservation) GetAddressFamily() int32 {
-	if o == nil || o.AddressFamily == nil {
+	if o == nil || isNil(o.AddressFamily) {
 		var ret int32
 		return ret
 	}
@@ -133,7 +143,7 @@ func (o *IPReservation) GetAddressFamily() int32 {
 // GetAddressFamilyOk returns a tuple with the AddressFamily field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IPReservation) GetAddressFamilyOk() (*int32, bool) {
-	if o == nil || o.AddressFamily == nil {
+	if o == nil || isNil(o.AddressFamily) {
 		return nil, false
 	}
 	return o.AddressFamily, true
@@ -141,7 +151,7 @@ func (o *IPReservation) GetAddressFamilyOk() (*int32, bool) {
 
 // HasAddressFamily returns a boolean if a field has been set.
 func (o *IPReservation) HasAddressFamily() bool {
-	if o != nil && o.AddressFamily != nil {
+	if o != nil && !isNil(o.AddressFamily) {
 		return true
 	}
 
@@ -155,7 +165,7 @@ func (o *IPReservation) SetAddressFamily(v int32) {
 
 // GetAssignments returns the Assignments field value if set, zero value otherwise.
 func (o *IPReservation) GetAssignments() []FindDeviceById200ResponseIpAddressesInner {
-	if o == nil || o.Assignments == nil {
+	if o == nil || isNil(o.Assignments) {
 		var ret []FindDeviceById200ResponseIpAddressesInner
 		return ret
 	}
@@ -165,7 +175,7 @@ func (o *IPReservation) GetAssignments() []FindDeviceById200ResponseIpAddressesI
 // GetAssignmentsOk returns a tuple with the Assignments field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IPReservation) GetAssignmentsOk() ([]FindDeviceById200ResponseIpAddressesInner, bool) {
-	if o == nil || o.Assignments == nil {
+	if o == nil || isNil(o.Assignments) {
 		return nil, false
 	}
 	return o.Assignments, true
@@ -173,7 +183,7 @@ func (o *IPReservation) GetAssignmentsOk() ([]FindDeviceById200ResponseIpAddress
 
 // HasAssignments returns a boolean if a field has been set.
 func (o *IPReservation) HasAssignments() bool {
-	if o != nil && o.Assignments != nil {
+	if o != nil && !isNil(o.Assignments) {
 		return true
 	}
 
@@ -185,9 +195,41 @@ func (o *IPReservation) SetAssignments(v []FindDeviceById200ResponseIpAddressesI
 	o.Assignments = v
 }
 
+// GetAvailable returns the Available field value if set, zero value otherwise.
+func (o *IPReservation) GetAvailable() string {
+	if o == nil || isNil(o.Available) {
+		var ret string
+		return ret
+	}
+	return *o.Available
+}
+
+// GetAvailableOk returns a tuple with the Available field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IPReservation) GetAvailableOk() (*string, bool) {
+	if o == nil || isNil(o.Available) {
+		return nil, false
+	}
+	return o.Available, true
+}
+
+// HasAvailable returns a boolean if a field has been set.
+func (o *IPReservation) HasAvailable() bool {
+	if o != nil && !isNil(o.Available) {
+		return true
+	}
+
+	return false
+}
+
+// SetAvailable gets a reference to the given string and assigns it to the Available field.
+func (o *IPReservation) SetAvailable(v string) {
+	o.Available = &v
+}
+
 // GetBill returns the Bill field value if set, zero value otherwise.
 func (o *IPReservation) GetBill() bool {
-	if o == nil || o.Bill == nil {
+	if o == nil || isNil(o.Bill) {
 		var ret bool
 		return ret
 	}
@@ -197,7 +239,7 @@ func (o *IPReservation) GetBill() bool {
 // GetBillOk returns a tuple with the Bill field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IPReservation) GetBillOk() (*bool, bool) {
-	if o == nil || o.Bill == nil {
+	if o == nil || isNil(o.Bill) {
 		return nil, false
 	}
 	return o.Bill, true
@@ -205,7 +247,7 @@ func (o *IPReservation) GetBillOk() (*bool, bool) {
 
 // HasBill returns a boolean if a field has been set.
 func (o *IPReservation) HasBill() bool {
-	if o != nil && o.Bill != nil {
+	if o != nil && !isNil(o.Bill) {
 		return true
 	}
 
@@ -219,7 +261,7 @@ func (o *IPReservation) SetBill(v bool) {
 
 // GetCidr returns the Cidr field value if set, zero value otherwise.
 func (o *IPReservation) GetCidr() int32 {
-	if o == nil || o.Cidr == nil {
+	if o == nil || isNil(o.Cidr) {
 		var ret int32
 		return ret
 	}
@@ -229,7 +271,7 @@ func (o *IPReservation) GetCidr() int32 {
 // GetCidrOk returns a tuple with the Cidr field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IPReservation) GetCidrOk() (*int32, bool) {
-	if o == nil || o.Cidr == nil {
+	if o == nil || isNil(o.Cidr) {
 		return nil, false
 	}
 	return o.Cidr, true
@@ -237,7 +279,7 @@ func (o *IPReservation) GetCidrOk() (*int32, bool) {
 
 // HasCidr returns a boolean if a field has been set.
 func (o *IPReservation) HasCidr() bool {
-	if o != nil && o.Cidr != nil {
+	if o != nil && !isNil(o.Cidr) {
 		return true
 	}
 
@@ -251,7 +293,7 @@ func (o *IPReservation) SetCidr(v int32) {
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *IPReservation) GetCreatedAt() time.Time {
-	if o == nil || o.CreatedAt == nil {
+	if o == nil || isNil(o.CreatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -261,7 +303,7 @@ func (o *IPReservation) GetCreatedAt() time.Time {
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IPReservation) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || o.CreatedAt == nil {
+	if o == nil || isNil(o.CreatedAt) {
 		return nil, false
 	}
 	return o.CreatedAt, true
@@ -269,7 +311,7 @@ func (o *IPReservation) GetCreatedAtOk() (*time.Time, bool) {
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *IPReservation) HasCreatedAt() bool {
-	if o != nil && o.CreatedAt != nil {
+	if o != nil && !isNil(o.CreatedAt) {
 		return true
 	}
 
@@ -281,9 +323,41 @@ func (o *IPReservation) SetCreatedAt(v time.Time) {
 	o.CreatedAt = &v
 }
 
+// GetCustomdata returns the Customdata field value if set, zero value otherwise.
+func (o *IPReservation) GetCustomdata() map[string]interface{} {
+	if o == nil || isNil(o.Customdata) {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.Customdata
+}
+
+// GetCustomdataOk returns a tuple with the Customdata field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IPReservation) GetCustomdataOk() (map[string]interface{}, bool) {
+	if o == nil || isNil(o.Customdata) {
+		return map[string]interface{}{}, false
+	}
+	return o.Customdata, true
+}
+
+// HasCustomdata returns a boolean if a field has been set.
+func (o *IPReservation) HasCustomdata() bool {
+	if o != nil && !isNil(o.Customdata) {
+		return true
+	}
+
+	return false
+}
+
+// SetCustomdata gets a reference to the given map[string]interface{} and assigns it to the Customdata field.
+func (o *IPReservation) SetCustomdata(v map[string]interface{}) {
+	o.Customdata = v
+}
+
 // GetEnabled returns the Enabled field value if set, zero value otherwise.
 func (o *IPReservation) GetEnabled() bool {
-	if o == nil || o.Enabled == nil {
+	if o == nil || isNil(o.Enabled) {
 		var ret bool
 		return ret
 	}
@@ -293,7 +367,7 @@ func (o *IPReservation) GetEnabled() bool {
 // GetEnabledOk returns a tuple with the Enabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IPReservation) GetEnabledOk() (*bool, bool) {
-	if o == nil || o.Enabled == nil {
+	if o == nil || isNil(o.Enabled) {
 		return nil, false
 	}
 	return o.Enabled, true
@@ -301,7 +375,7 @@ func (o *IPReservation) GetEnabledOk() (*bool, bool) {
 
 // HasEnabled returns a boolean if a field has been set.
 func (o *IPReservation) HasEnabled() bool {
-	if o != nil && o.Enabled != nil {
+	if o != nil && !isNil(o.Enabled) {
 		return true
 	}
 
@@ -313,10 +387,42 @@ func (o *IPReservation) SetEnabled(v bool) {
 	o.Enabled = &v
 }
 
+// GetDetails returns the Details field value if set, zero value otherwise.
+func (o *IPReservation) GetDetails() string {
+	if o == nil || isNil(o.Details) {
+		var ret string
+		return ret
+	}
+	return *o.Details
+}
+
+// GetDetailsOk returns a tuple with the Details field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IPReservation) GetDetailsOk() (*string, bool) {
+	if o == nil || isNil(o.Details) {
+		return nil, false
+	}
+	return o.Details, true
+}
+
+// HasDetails returns a boolean if a field has been set.
+func (o *IPReservation) HasDetails() bool {
+	if o != nil && !isNil(o.Details) {
+		return true
+	}
+
+	return false
+}
+
+// SetDetails gets a reference to the given string and assigns it to the Details field.
+func (o *IPReservation) SetDetails(v string) {
+	o.Details = &v
+}
+
 // GetFacility returns the Facility field value if set, zero value otherwise.
-func (o *IPReservation) GetFacility() IPReservationFacility {
-	if o == nil || o.Facility == nil {
-		var ret IPReservationFacility
+func (o *IPReservation) GetFacility() FindIPAddressById200ResponseOneOfFacility {
+	if o == nil || isNil(o.Facility) {
+		var ret FindIPAddressById200ResponseOneOfFacility
 		return ret
 	}
 	return *o.Facility
@@ -324,8 +430,8 @@ func (o *IPReservation) GetFacility() IPReservationFacility {
 
 // GetFacilityOk returns a tuple with the Facility field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IPReservation) GetFacilityOk() (*IPReservationFacility, bool) {
-	if o == nil || o.Facility == nil {
+func (o *IPReservation) GetFacilityOk() (*FindIPAddressById200ResponseOneOfFacility, bool) {
+	if o == nil || isNil(o.Facility) {
 		return nil, false
 	}
 	return o.Facility, true
@@ -333,21 +439,53 @@ func (o *IPReservation) GetFacilityOk() (*IPReservationFacility, bool) {
 
 // HasFacility returns a boolean if a field has been set.
 func (o *IPReservation) HasFacility() bool {
-	if o != nil && o.Facility != nil {
+	if o != nil && !isNil(o.Facility) {
 		return true
 	}
 
 	return false
 }
 
-// SetFacility gets a reference to the given IPReservationFacility and assigns it to the Facility field.
-func (o *IPReservation) SetFacility(v IPReservationFacility) {
+// SetFacility gets a reference to the given FindIPAddressById200ResponseOneOfFacility and assigns it to the Facility field.
+func (o *IPReservation) SetFacility(v FindIPAddressById200ResponseOneOfFacility) {
 	o.Facility = &v
+}
+
+// GetGateway returns the Gateway field value if set, zero value otherwise.
+func (o *IPReservation) GetGateway() string {
+	if o == nil || isNil(o.Gateway) {
+		var ret string
+		return ret
+	}
+	return *o.Gateway
+}
+
+// GetGatewayOk returns a tuple with the Gateway field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IPReservation) GetGatewayOk() (*string, bool) {
+	if o == nil || isNil(o.Gateway) {
+		return nil, false
+	}
+	return o.Gateway, true
+}
+
+// HasGateway returns a boolean if a field has been set.
+func (o *IPReservation) HasGateway() bool {
+	if o != nil && !isNil(o.Gateway) {
+		return true
+	}
+
+	return false
+}
+
+// SetGateway gets a reference to the given string and assigns it to the Gateway field.
+func (o *IPReservation) SetGateway(v string) {
+	o.Gateway = &v
 }
 
 // GetGlobalIp returns the GlobalIp field value if set, zero value otherwise.
 func (o *IPReservation) GetGlobalIp() bool {
-	if o == nil || o.GlobalIp == nil {
+	if o == nil || isNil(o.GlobalIp) {
 		var ret bool
 		return ret
 	}
@@ -357,7 +495,7 @@ func (o *IPReservation) GetGlobalIp() bool {
 // GetGlobalIpOk returns a tuple with the GlobalIp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IPReservation) GetGlobalIpOk() (*bool, bool) {
-	if o == nil || o.GlobalIp == nil {
+	if o == nil || isNil(o.GlobalIp) {
 		return nil, false
 	}
 	return o.GlobalIp, true
@@ -365,7 +503,7 @@ func (o *IPReservation) GetGlobalIpOk() (*bool, bool) {
 
 // HasGlobalIp returns a boolean if a field has been set.
 func (o *IPReservation) HasGlobalIp() bool {
-	if o != nil && o.GlobalIp != nil {
+	if o != nil && !isNil(o.GlobalIp) {
 		return true
 	}
 
@@ -379,7 +517,7 @@ func (o *IPReservation) SetGlobalIp(v bool) {
 
 // GetHref returns the Href field value if set, zero value otherwise.
 func (o *IPReservation) GetHref() string {
-	if o == nil || o.Href == nil {
+	if o == nil || isNil(o.Href) {
 		var ret string
 		return ret
 	}
@@ -389,7 +527,7 @@ func (o *IPReservation) GetHref() string {
 // GetHrefOk returns a tuple with the Href field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IPReservation) GetHrefOk() (*string, bool) {
-	if o == nil || o.Href == nil {
+	if o == nil || isNil(o.Href) {
 		return nil, false
 	}
 	return o.Href, true
@@ -397,7 +535,7 @@ func (o *IPReservation) GetHrefOk() (*string, bool) {
 
 // HasHref returns a boolean if a field has been set.
 func (o *IPReservation) HasHref() bool {
-	if o != nil && o.Href != nil {
+	if o != nil && !isNil(o.Href) {
 		return true
 	}
 
@@ -411,7 +549,7 @@ func (o *IPReservation) SetHref(v string) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *IPReservation) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || isNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -421,7 +559,7 @@ func (o *IPReservation) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IPReservation) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || isNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -429,7 +567,7 @@ func (o *IPReservation) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *IPReservation) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !isNil(o.Id) {
 		return true
 	}
 
@@ -443,7 +581,7 @@ func (o *IPReservation) SetId(v string) {
 
 // GetManageable returns the Manageable field value if set, zero value otherwise.
 func (o *IPReservation) GetManageable() bool {
-	if o == nil || o.Manageable == nil {
+	if o == nil || isNil(o.Manageable) {
 		var ret bool
 		return ret
 	}
@@ -453,7 +591,7 @@ func (o *IPReservation) GetManageable() bool {
 // GetManageableOk returns a tuple with the Manageable field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IPReservation) GetManageableOk() (*bool, bool) {
-	if o == nil || o.Manageable == nil {
+	if o == nil || isNil(o.Manageable) {
 		return nil, false
 	}
 	return o.Manageable, true
@@ -461,7 +599,7 @@ func (o *IPReservation) GetManageableOk() (*bool, bool) {
 
 // HasManageable returns a boolean if a field has been set.
 func (o *IPReservation) HasManageable() bool {
-	if o != nil && o.Manageable != nil {
+	if o != nil && !isNil(o.Manageable) {
 		return true
 	}
 
@@ -475,7 +613,7 @@ func (o *IPReservation) SetManageable(v bool) {
 
 // GetManagement returns the Management field value if set, zero value otherwise.
 func (o *IPReservation) GetManagement() bool {
-	if o == nil || o.Management == nil {
+	if o == nil || isNil(o.Management) {
 		var ret bool
 		return ret
 	}
@@ -485,7 +623,7 @@ func (o *IPReservation) GetManagement() bool {
 // GetManagementOk returns a tuple with the Management field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IPReservation) GetManagementOk() (*bool, bool) {
-	if o == nil || o.Management == nil {
+	if o == nil || isNil(o.Management) {
 		return nil, false
 	}
 	return o.Management, true
@@ -493,7 +631,7 @@ func (o *IPReservation) GetManagementOk() (*bool, bool) {
 
 // HasManagement returns a boolean if a field has been set.
 func (o *IPReservation) HasManagement() bool {
-	if o != nil && o.Management != nil {
+	if o != nil && !isNil(o.Management) {
 		return true
 	}
 
@@ -506,9 +644,9 @@ func (o *IPReservation) SetManagement(v bool) {
 }
 
 // GetMetalGateway returns the MetalGateway field value if set, zero value otherwise.
-func (o *IPReservation) GetMetalGateway() FindVirtualNetworks200ResponseVirtualNetworksInnerMetalGateway {
-	if o == nil || o.MetalGateway == nil {
-		var ret FindVirtualNetworks200ResponseVirtualNetworksInnerMetalGateway
+func (o *IPReservation) GetMetalGateway() FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetworkMetalGatewaysInner {
+	if o == nil || isNil(o.MetalGateway) {
+		var ret FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetworkMetalGatewaysInner
 		return ret
 	}
 	return *o.MetalGateway
@@ -516,8 +654,8 @@ func (o *IPReservation) GetMetalGateway() FindVirtualNetworks200ResponseVirtualN
 
 // GetMetalGatewayOk returns a tuple with the MetalGateway field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IPReservation) GetMetalGatewayOk() (*FindVirtualNetworks200ResponseVirtualNetworksInnerMetalGateway, bool) {
-	if o == nil || o.MetalGateway == nil {
+func (o *IPReservation) GetMetalGatewayOk() (*FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetworkMetalGatewaysInner, bool) {
+	if o == nil || isNil(o.MetalGateway) {
 		return nil, false
 	}
 	return o.MetalGateway, true
@@ -525,22 +663,22 @@ func (o *IPReservation) GetMetalGatewayOk() (*FindVirtualNetworks200ResponseVirt
 
 // HasMetalGateway returns a boolean if a field has been set.
 func (o *IPReservation) HasMetalGateway() bool {
-	if o != nil && o.MetalGateway != nil {
+	if o != nil && !isNil(o.MetalGateway) {
 		return true
 	}
 
 	return false
 }
 
-// SetMetalGateway gets a reference to the given FindVirtualNetworks200ResponseVirtualNetworksInnerMetalGateway and assigns it to the MetalGateway field.
-func (o *IPReservation) SetMetalGateway(v FindVirtualNetworks200ResponseVirtualNetworksInnerMetalGateway) {
+// SetMetalGateway gets a reference to the given FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetworkMetalGatewaysInner and assigns it to the MetalGateway field.
+func (o *IPReservation) SetMetalGateway(v FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetworkMetalGatewaysInner) {
 	o.MetalGateway = &v
 }
 
 // GetMetro returns the Metro field value if set, zero value otherwise.
-func (o *IPReservation) GetMetro() IPReservationMetro {
-	if o == nil || o.Metro == nil {
-		var ret IPReservationMetro
+func (o *IPReservation) GetMetro() FindIPAddressById200ResponseOneOfMetro {
+	if o == nil || isNil(o.Metro) {
+		var ret FindIPAddressById200ResponseOneOfMetro
 		return ret
 	}
 	return *o.Metro
@@ -548,8 +686,8 @@ func (o *IPReservation) GetMetro() IPReservationMetro {
 
 // GetMetroOk returns a tuple with the Metro field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IPReservation) GetMetroOk() (*IPReservationMetro, bool) {
-	if o == nil || o.Metro == nil {
+func (o *IPReservation) GetMetroOk() (*FindIPAddressById200ResponseOneOfMetro, bool) {
+	if o == nil || isNil(o.Metro) {
 		return nil, false
 	}
 	return o.Metro, true
@@ -557,21 +695,21 @@ func (o *IPReservation) GetMetroOk() (*IPReservationMetro, bool) {
 
 // HasMetro returns a boolean if a field has been set.
 func (o *IPReservation) HasMetro() bool {
-	if o != nil && o.Metro != nil {
+	if o != nil && !isNil(o.Metro) {
 		return true
 	}
 
 	return false
 }
 
-// SetMetro gets a reference to the given IPReservationMetro and assigns it to the Metro field.
-func (o *IPReservation) SetMetro(v IPReservationMetro) {
+// SetMetro gets a reference to the given FindIPAddressById200ResponseOneOfMetro and assigns it to the Metro field.
+func (o *IPReservation) SetMetro(v FindIPAddressById200ResponseOneOfMetro) {
 	o.Metro = &v
 }
 
 // GetNetmask returns the Netmask field value if set, zero value otherwise.
 func (o *IPReservation) GetNetmask() string {
-	if o == nil || o.Netmask == nil {
+	if o == nil || isNil(o.Netmask) {
 		var ret string
 		return ret
 	}
@@ -581,7 +719,7 @@ func (o *IPReservation) GetNetmask() string {
 // GetNetmaskOk returns a tuple with the Netmask field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IPReservation) GetNetmaskOk() (*string, bool) {
-	if o == nil || o.Netmask == nil {
+	if o == nil || isNil(o.Netmask) {
 		return nil, false
 	}
 	return o.Netmask, true
@@ -589,7 +727,7 @@ func (o *IPReservation) GetNetmaskOk() (*string, bool) {
 
 // HasNetmask returns a boolean if a field has been set.
 func (o *IPReservation) HasNetmask() bool {
-	if o != nil && o.Netmask != nil {
+	if o != nil && !isNil(o.Netmask) {
 		return true
 	}
 
@@ -603,7 +741,7 @@ func (o *IPReservation) SetNetmask(v string) {
 
 // GetNetwork returns the Network field value if set, zero value otherwise.
 func (o *IPReservation) GetNetwork() string {
-	if o == nil || o.Network == nil {
+	if o == nil || isNil(o.Network) {
 		var ret string
 		return ret
 	}
@@ -613,7 +751,7 @@ func (o *IPReservation) GetNetwork() string {
 // GetNetworkOk returns a tuple with the Network field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IPReservation) GetNetworkOk() (*string, bool) {
-	if o == nil || o.Network == nil {
+	if o == nil || isNil(o.Network) {
 		return nil, false
 	}
 	return o.Network, true
@@ -621,7 +759,7 @@ func (o *IPReservation) GetNetworkOk() (*string, bool) {
 
 // HasNetwork returns a boolean if a field has been set.
 func (o *IPReservation) HasNetwork() bool {
-	if o != nil && o.Network != nil {
+	if o != nil && !isNil(o.Network) {
 		return true
 	}
 
@@ -633,9 +771,105 @@ func (o *IPReservation) SetNetwork(v string) {
 	o.Network = &v
 }
 
+// GetProject returns the Project field value if set, zero value otherwise.
+func (o *IPReservation) GetProject() GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject {
+	if o == nil || isNil(o.Project) {
+		var ret GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject
+		return ret
+	}
+	return *o.Project
+}
+
+// GetProjectOk returns a tuple with the Project field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IPReservation) GetProjectOk() (*GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject, bool) {
+	if o == nil || isNil(o.Project) {
+		return nil, false
+	}
+	return o.Project, true
+}
+
+// HasProject returns a boolean if a field has been set.
+func (o *IPReservation) HasProject() bool {
+	if o != nil && !isNil(o.Project) {
+		return true
+	}
+
+	return false
+}
+
+// SetProject gets a reference to the given GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject and assigns it to the Project field.
+func (o *IPReservation) SetProject(v GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject) {
+	o.Project = &v
+}
+
+// GetProjectLite returns the ProjectLite field value if set, zero value otherwise.
+func (o *IPReservation) GetProjectLite() FindBatchById200ResponseDevicesInner {
+	if o == nil || isNil(o.ProjectLite) {
+		var ret FindBatchById200ResponseDevicesInner
+		return ret
+	}
+	return *o.ProjectLite
+}
+
+// GetProjectLiteOk returns a tuple with the ProjectLite field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IPReservation) GetProjectLiteOk() (*FindBatchById200ResponseDevicesInner, bool) {
+	if o == nil || isNil(o.ProjectLite) {
+		return nil, false
+	}
+	return o.ProjectLite, true
+}
+
+// HasProjectLite returns a boolean if a field has been set.
+func (o *IPReservation) HasProjectLite() bool {
+	if o != nil && !isNil(o.ProjectLite) {
+		return true
+	}
+
+	return false
+}
+
+// SetProjectLite gets a reference to the given FindBatchById200ResponseDevicesInner and assigns it to the ProjectLite field.
+func (o *IPReservation) SetProjectLite(v FindBatchById200ResponseDevicesInner) {
+	o.ProjectLite = &v
+}
+
+// GetRequestedBy returns the RequestedBy field value if set, zero value otherwise.
+func (o *IPReservation) GetRequestedBy() FindBatchById200ResponseDevicesInner {
+	if o == nil || isNil(o.RequestedBy) {
+		var ret FindBatchById200ResponseDevicesInner
+		return ret
+	}
+	return *o.RequestedBy
+}
+
+// GetRequestedByOk returns a tuple with the RequestedBy field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IPReservation) GetRequestedByOk() (*FindBatchById200ResponseDevicesInner, bool) {
+	if o == nil || isNil(o.RequestedBy) {
+		return nil, false
+	}
+	return o.RequestedBy, true
+}
+
+// HasRequestedBy returns a boolean if a field has been set.
+func (o *IPReservation) HasRequestedBy() bool {
+	if o != nil && !isNil(o.RequestedBy) {
+		return true
+	}
+
+	return false
+}
+
+// SetRequestedBy gets a reference to the given FindBatchById200ResponseDevicesInner and assigns it to the RequestedBy field.
+func (o *IPReservation) SetRequestedBy(v FindBatchById200ResponseDevicesInner) {
+	o.RequestedBy = &v
+}
+
 // GetPublic returns the Public field value if set, zero value otherwise.
 func (o *IPReservation) GetPublic() bool {
-	if o == nil || o.Public == nil {
+	if o == nil || isNil(o.Public) {
 		var ret bool
 		return ret
 	}
@@ -645,7 +879,7 @@ func (o *IPReservation) GetPublic() bool {
 // GetPublicOk returns a tuple with the Public field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IPReservation) GetPublicOk() (*bool, bool) {
-	if o == nil || o.Public == nil {
+	if o == nil || isNil(o.Public) {
 		return nil, false
 	}
 	return o.Public, true
@@ -653,7 +887,7 @@ func (o *IPReservation) GetPublicOk() (*bool, bool) {
 
 // HasPublic returns a boolean if a field has been set.
 func (o *IPReservation) HasPublic() bool {
-	if o != nil && o.Public != nil {
+	if o != nil && !isNil(o.Public) {
 		return true
 	}
 
@@ -667,7 +901,7 @@ func (o *IPReservation) SetPublic(v bool) {
 
 // GetState returns the State field value if set, zero value otherwise.
 func (o *IPReservation) GetState() string {
-	if o == nil || o.State == nil {
+	if o == nil || isNil(o.State) {
 		var ret string
 		return ret
 	}
@@ -677,7 +911,7 @@ func (o *IPReservation) GetState() string {
 // GetStateOk returns a tuple with the State field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IPReservation) GetStateOk() (*string, bool) {
-	if o == nil || o.State == nil {
+	if o == nil || isNil(o.State) {
 		return nil, false
 	}
 	return o.State, true
@@ -685,7 +919,7 @@ func (o *IPReservation) GetStateOk() (*string, bool) {
 
 // HasState returns a boolean if a field has been set.
 func (o *IPReservation) HasState() bool {
-	if o != nil && o.State != nil {
+	if o != nil && !isNil(o.State) {
 		return true
 	}
 
@@ -697,67 +931,150 @@ func (o *IPReservation) SetState(v string) {
 	o.State = &v
 }
 
+// GetTags returns the Tags field value if set, zero value otherwise.
+func (o *IPReservation) GetTags() []string {
+	if o == nil || isNil(o.Tags) {
+		var ret []string
+		return ret
+	}
+	return o.Tags
+}
+
+// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IPReservation) GetTagsOk() ([]string, bool) {
+	if o == nil || isNil(o.Tags) {
+		return nil, false
+	}
+	return o.Tags, true
+}
+
+// HasTags returns a boolean if a field has been set.
+func (o *IPReservation) HasTags() bool {
+	if o != nil && !isNil(o.Tags) {
+		return true
+	}
+
+	return false
+}
+
+// SetTags gets a reference to the given []string and assigns it to the Tags field.
+func (o *IPReservation) SetTags(v []string) {
+	o.Tags = v
+}
+
+// GetType returns the Type field value
+func (o *IPReservation) GetType() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *IPReservation) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
+}
+
+// SetType sets field value
+func (o *IPReservation) SetType(v string) {
+	o.Type = v
+}
+
 func (o IPReservation) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Tags != nil {
-		toSerialize["tags"] = o.Tags
-	}
-	if o.Addon != nil {
+	if !isNil(o.Addon) {
 		toSerialize["addon"] = o.Addon
 	}
-	if o.AddressFamily != nil {
+	if !isNil(o.Address) {
+		toSerialize["address"] = o.Address
+	}
+	if !isNil(o.AddressFamily) {
 		toSerialize["address_family"] = o.AddressFamily
 	}
-	if o.Assignments != nil {
+	if !isNil(o.Assignments) {
 		toSerialize["assignments"] = o.Assignments
 	}
-	if o.Bill != nil {
+	if !isNil(o.Available) {
+		toSerialize["available"] = o.Available
+	}
+	if !isNil(o.Bill) {
 		toSerialize["bill"] = o.Bill
 	}
-	if o.Cidr != nil {
+	if !isNil(o.Cidr) {
 		toSerialize["cidr"] = o.Cidr
 	}
-	if o.CreatedAt != nil {
+	if !isNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt
 	}
-	if o.Enabled != nil {
+	if !isNil(o.Customdata) {
+		toSerialize["customdata"] = o.Customdata
+	}
+	if !isNil(o.Enabled) {
 		toSerialize["enabled"] = o.Enabled
 	}
-	if o.Facility != nil {
+	if !isNil(o.Details) {
+		toSerialize["details"] = o.Details
+	}
+	if !isNil(o.Facility) {
 		toSerialize["facility"] = o.Facility
 	}
-	if o.GlobalIp != nil {
+	if !isNil(o.Gateway) {
+		toSerialize["gateway"] = o.Gateway
+	}
+	if !isNil(o.GlobalIp) {
 		toSerialize["global_ip"] = o.GlobalIp
 	}
-	if o.Href != nil {
+	if !isNil(o.Href) {
 		toSerialize["href"] = o.Href
 	}
-	if o.Id != nil {
+	if !isNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
-	if o.Manageable != nil {
+	if !isNil(o.Manageable) {
 		toSerialize["manageable"] = o.Manageable
 	}
-	if o.Management != nil {
+	if !isNil(o.Management) {
 		toSerialize["management"] = o.Management
 	}
-	if o.MetalGateway != nil {
+	if !isNil(o.MetalGateway) {
 		toSerialize["metal_gateway"] = o.MetalGateway
 	}
-	if o.Metro != nil {
+	if !isNil(o.Metro) {
 		toSerialize["metro"] = o.Metro
 	}
-	if o.Netmask != nil {
+	if !isNil(o.Netmask) {
 		toSerialize["netmask"] = o.Netmask
 	}
-	if o.Network != nil {
+	if !isNil(o.Network) {
 		toSerialize["network"] = o.Network
 	}
-	if o.Public != nil {
+	if !isNil(o.Project) {
+		toSerialize["project"] = o.Project
+	}
+	if !isNil(o.ProjectLite) {
+		toSerialize["project_lite"] = o.ProjectLite
+	}
+	if !isNil(o.RequestedBy) {
+		toSerialize["requested_by"] = o.RequestedBy
+	}
+	if !isNil(o.Public) {
 		toSerialize["public"] = o.Public
 	}
-	if o.State != nil {
+	if !isNil(o.State) {
 		toSerialize["state"] = o.State
+	}
+	if !isNil(o.Tags) {
+		toSerialize["tags"] = o.Tags
+	}
+	if true {
+		toSerialize["type"] = o.Type
 	}
 	return json.Marshal(toSerialize)
 }

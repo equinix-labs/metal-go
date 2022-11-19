@@ -4,7 +4,6 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Tags** | Pointer to **[]string** |  | [optional] 
 **AlwaysPxe** | Pointer to **bool** |  | [optional] 
 **BillingCycle** | Pointer to **string** |  | [optional] 
 **Customdata** | Pointer to **map[string]interface{}** |  | [optional] 
@@ -13,7 +12,8 @@ Name | Type | Description | Notes
 **IpxeScriptUrl** | Pointer to **string** |  | [optional] 
 **Locked** | Pointer to **bool** |  | [optional] 
 **NetworkFrozen** | Pointer to **bool** | If true, this instance can not be converted to a different network type. | [optional] 
-**SpotInstance** | Pointer to **bool** |  | [optional] 
+**SpotInstance** | Pointer to **bool** | Can be set to false to convert a spot-market instance to on-demand. | [optional] 
+**Tags** | Pointer to **[]string** |  | [optional] 
 **Userdata** | Pointer to **string** |  | [optional] 
 
 ## Methods
@@ -34,31 +34,6 @@ will change when the set of required properties is changed
 NewDeviceUpdateInputWithDefaults instantiates a new DeviceUpdateInput object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetTags
-
-`func (o *DeviceUpdateInput) GetTags() []string`
-
-GetTags returns the Tags field if non-nil, zero value otherwise.
-
-### GetTagsOk
-
-`func (o *DeviceUpdateInput) GetTagsOk() (*[]string, bool)`
-
-GetTagsOk returns a tuple with the Tags field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTags
-
-`func (o *DeviceUpdateInput) SetTags(v []string)`
-
-SetTags sets Tags field to given value.
-
-### HasTags
-
-`func (o *DeviceUpdateInput) HasTags() bool`
-
-HasTags returns a boolean if a field has been set.
 
 ### GetAlwaysPxe
 
@@ -284,6 +259,31 @@ SetSpotInstance sets SpotInstance field to given value.
 `func (o *DeviceUpdateInput) HasSpotInstance() bool`
 
 HasSpotInstance returns a boolean if a field has been set.
+
+### GetTags
+
+`func (o *DeviceUpdateInput) GetTags() []string`
+
+GetTags returns the Tags field if non-nil, zero value otherwise.
+
+### GetTagsOk
+
+`func (o *DeviceUpdateInput) GetTagsOk() (*[]string, bool)`
+
+GetTagsOk returns a tuple with the Tags field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTags
+
+`func (o *DeviceUpdateInput) SetTags(v []string)`
+
+SetTags sets Tags field to given value.
+
+### HasTags
+
+`func (o *DeviceUpdateInput) HasTags() bool`
+
+HasTags returns a boolean if a field has been set.
 
 ### GetUserdata
 

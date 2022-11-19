@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **DeploymentType** | Pointer to **string** | In a Local BGP deployment, a customer uses an internal ASN to control routes within a single Equinix Metal datacenter. This means that the routes are never advertised to the global Internet. Global BGP, on the other hand, requires a customer to have a registered ASN and IP space.  | [optional] 
 **Href** | Pointer to **string** |  | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
-**MaxPrefix** | Pointer to **int32** | The maximum number of route filters allowed per server | [optional] 
+**MaxPrefix** | Pointer to **int32** | The maximum number of route filters allowed per server | [optional] [default to 10]
 **Md5** | Pointer to **NullableString** | (Optional) Password for BGP session in plaintext (not a checksum) | [optional] 
 **Project** | Pointer to [**FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
 **Ranges** | Pointer to [**[]FindBgpConfigByProject200ResponseRangesInner**](FindBgpConfigByProject200ResponseRangesInner.md) | The IP block ranges associated to the ASN (Populated in Global BGP only) | [optional] 

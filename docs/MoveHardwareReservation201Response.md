@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **Id** | Pointer to **string** |  | [optional] 
 **NeedOfService** | Pointer to **bool** | Whether this Device requires assistance from Metal Equinix. | [optional] 
 **Plan** | Pointer to [**FindDeviceById200ResponsePlan**](FindDeviceById200ResponsePlan.md) |  | [optional] 
-**Project** | Pointer to [**MoveHardwareReservation201ResponseProject**](MoveHardwareReservation201ResponseProject.md) |  | [optional] 
+**Project** | Pointer to [**GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject**](GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject.md) |  | [optional] 
 **Provisionable** | Pointer to **bool** | Whether the reserved server is provisionable or not. Spare devices can&#39;t be provisioned unless they are activated first. | [optional] 
 **ShortId** | Pointer to **string** | Short version of the ID. | [optional] 
 **Spare** | Pointer to **bool** | Whether the Hardware Reservation is a spare. Spare Hardware Reservations are used when a Hardware Reservations requires service from Metal Equinix | [optional] 
@@ -239,20 +239,20 @@ HasPlan returns a boolean if a field has been set.
 
 ### GetProject
 
-`func (o *MoveHardwareReservation201Response) GetProject() MoveHardwareReservation201ResponseProject`
+`func (o *MoveHardwareReservation201Response) GetProject() GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject`
 
 GetProject returns the Project field if non-nil, zero value otherwise.
 
 ### GetProjectOk
 
-`func (o *MoveHardwareReservation201Response) GetProjectOk() (*MoveHardwareReservation201ResponseProject, bool)`
+`func (o *MoveHardwareReservation201Response) GetProjectOk() (*GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject, bool)`
 
 GetProjectOk returns a tuple with the Project field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetProject
 
-`func (o *MoveHardwareReservation201Response) SetProject(v MoveHardwareReservation201ResponseProject)`
+`func (o *MoveHardwareReservation201Response) SetProject(v GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject)`
 
 SetProject sets Project field to given value.
 

@@ -4,7 +4,7 @@ All URIs are relative to *https://api.equinix.com/metal/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateAPIKey**](AuthenticationApi.md#CreateAPIKey) | **Post** /user/api-keys | Create a API key
+[**CreateAPIKey**](AuthenticationApi.md#CreateAPIKey) | **Post** /user/api-keys | Create an API key
 [**CreateProjectAPIKey**](AuthenticationApi.md#CreateProjectAPIKey) | **Post** /projects/{id}/api-keys | Create an API key for a project.
 [**DeleteAPIKey**](AuthenticationApi.md#DeleteAPIKey) | **Delete** /api-keys/{id} | Delete the API key
 [**DeleteUserAPIKey**](AuthenticationApi.md#DeleteUserAPIKey) | **Delete** /user/api-keys/{id} | Delete the API key
@@ -15,9 +15,9 @@ Method | HTTP request | Description
 
 ## CreateAPIKey
 
-> FindProjectAPIKeys200ResponseApiKeysInner CreateAPIKey(ctx).Body(body).Execute()
+> FindProjectAPIKeys200ResponseApiKeysInner CreateAPIKey(ctx).CreateProjectAPIKeyRequest(createProjectAPIKeyRequest).Execute()
 
-Create a API key
+Create an API key
 
 
 
@@ -34,11 +34,11 @@ import (
 )
 
 func main() {
-    body := *openapiclient.NewCreateProjectAPIKeyRequest() // CreateProjectAPIKeyRequest | API key to create
+    createProjectAPIKeyRequest := *openapiclient.NewCreateProjectAPIKeyRequest() // CreateProjectAPIKeyRequest | API key to create
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AuthenticationApi.CreateAPIKey(context.Background()).Body(body).Execute()
+    resp, r, err := apiClient.AuthenticationApi.CreateAPIKey(context.Background()).CreateProjectAPIKeyRequest(createProjectAPIKeyRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AuthenticationApi.CreateAPIKey``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -59,7 +59,7 @@ Other parameters are passed through a pointer to a apiCreateAPIKeyRequest struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**CreateProjectAPIKeyRequest**](CreateProjectAPIKeyRequest.md) | API key to create | 
+ **createProjectAPIKeyRequest** | [**CreateProjectAPIKeyRequest**](CreateProjectAPIKeyRequest.md) | API key to create | 
 
 ### Return type
 
@@ -81,7 +81,7 @@ Name | Type | Description  | Notes
 
 ## CreateProjectAPIKey
 
-> FindProjectAPIKeys200ResponseApiKeysInner CreateProjectAPIKey(ctx, id).Body(body).Execute()
+> FindProjectAPIKeys200ResponseApiKeysInner CreateProjectAPIKey(ctx, id).CreateProjectAPIKeyRequest(createProjectAPIKeyRequest).Execute()
 
 Create an API key for a project.
 
@@ -101,11 +101,11 @@ import (
 
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Project UUID
-    body := *openapiclient.NewCreateProjectAPIKeyRequest() // CreateProjectAPIKeyRequest | API Key to create
+    createProjectAPIKeyRequest := *openapiclient.NewCreateProjectAPIKeyRequest() // CreateProjectAPIKeyRequest | API Key to create
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AuthenticationApi.CreateProjectAPIKey(context.Background(), id).Body(body).Execute()
+    resp, r, err := apiClient.AuthenticationApi.CreateProjectAPIKey(context.Background(), id).CreateProjectAPIKeyRequest(createProjectAPIKeyRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AuthenticationApi.CreateProjectAPIKey``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -131,7 +131,7 @@ Other parameters are passed through a pointer to a apiCreateProjectAPIKeyRequest
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**CreateProjectAPIKeyRequest**](CreateProjectAPIKeyRequest.md) | API Key to create | 
+ **createProjectAPIKeyRequest** | [**CreateProjectAPIKeyRequest**](CreateProjectAPIKeyRequest.md) | API Key to create | 
 
 ### Return type
 

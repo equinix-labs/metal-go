@@ -4,21 +4,21 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Tags** | Pointer to **[]string** |  | [optional] 
 **CustomerIp** | Pointer to **string** | An IP address from the subnet that will be used on the Customer side. This parameter is optional, but if supplied, we will use the other usable IP address in the subnet as the Metal IP. By default, the last usable IP address in the subnet will be used. | [optional] 
 **Description** | Pointer to **string** |  | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
 **Md5** | Pointer to **string** | The MD5 password for the BGP peering in plaintext (not a checksum). | [optional] 
 **MetalIp** | Pointer to **string** | An IP address from the subnet that will be used on the Metal side. This parameter is optional, but if supplied, we will use the other usable IP address in the subnet as the Customer IP. By default, the first usable IP address in the subnet will be used. | [optional] 
 **Name** | Pointer to **string** |  | [optional] 
+**Port** | Pointer to [**FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
 **NniVlan** | Pointer to **int32** |  | [optional] 
 **PeerAsn** | Pointer to **int32** | The peer ASN that will be used with the VRF on the Virtual Circuit. | [optional] 
-**Port** | Pointer to [**FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
 **Project** | Pointer to [**FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
 **Speed** | Pointer to **int32** | integer representing bps speed | [optional] 
 **Status** | Pointer to **string** |  | [optional] 
 **Subnet** | Pointer to **string** | The /30 or /31 subnet of one of the VRF IP Blocks that will be used with the VRF for the Virtual Circuit. This subnet does not have to be an existing VRF IP reservation, as we will create the VRF IP reservation on creation if it does not exist. The Metal IP and Customer IP must be IPs from this subnet. For /30 subnets, the network and broadcast IPs cannot be used as the Metal or Customer IP. | [optional] 
-**Vrf** | Pointer to [**FindVrfs200ResponseVrfsInner**](FindVrfs200ResponseVrfsInner.md) |  | [optional] 
+**Tags** | Pointer to **[]string** |  | [optional] 
+**Vrf** | Pointer to [**GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1Vrf**](GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1Vrf.md) |  | [optional] 
 
 ## Methods
 
@@ -38,31 +38,6 @@ will change when the set of required properties is changed
 NewVrfVirtualCircuitWithDefaults instantiates a new VrfVirtualCircuit object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetTags
-
-`func (o *VrfVirtualCircuit) GetTags() []string`
-
-GetTags returns the Tags field if non-nil, zero value otherwise.
-
-### GetTagsOk
-
-`func (o *VrfVirtualCircuit) GetTagsOk() (*[]string, bool)`
-
-GetTagsOk returns a tuple with the Tags field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTags
-
-`func (o *VrfVirtualCircuit) SetTags(v []string)`
-
-SetTags sets Tags field to given value.
-
-### HasTags
-
-`func (o *VrfVirtualCircuit) HasTags() bool`
-
-HasTags returns a boolean if a field has been set.
 
 ### GetCustomerIp
 
@@ -214,6 +189,31 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
+### GetPort
+
+`func (o *VrfVirtualCircuit) GetPort() FindBatchById200ResponseDevicesInner`
+
+GetPort returns the Port field if non-nil, zero value otherwise.
+
+### GetPortOk
+
+`func (o *VrfVirtualCircuit) GetPortOk() (*FindBatchById200ResponseDevicesInner, bool)`
+
+GetPortOk returns a tuple with the Port field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPort
+
+`func (o *VrfVirtualCircuit) SetPort(v FindBatchById200ResponseDevicesInner)`
+
+SetPort sets Port field to given value.
+
+### HasPort
+
+`func (o *VrfVirtualCircuit) HasPort() bool`
+
+HasPort returns a boolean if a field has been set.
+
 ### GetNniVlan
 
 `func (o *VrfVirtualCircuit) GetNniVlan() int32`
@@ -263,31 +263,6 @@ SetPeerAsn sets PeerAsn field to given value.
 `func (o *VrfVirtualCircuit) HasPeerAsn() bool`
 
 HasPeerAsn returns a boolean if a field has been set.
-
-### GetPort
-
-`func (o *VrfVirtualCircuit) GetPort() FindBatchById200ResponseDevicesInner`
-
-GetPort returns the Port field if non-nil, zero value otherwise.
-
-### GetPortOk
-
-`func (o *VrfVirtualCircuit) GetPortOk() (*FindBatchById200ResponseDevicesInner, bool)`
-
-GetPortOk returns a tuple with the Port field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPort
-
-`func (o *VrfVirtualCircuit) SetPort(v FindBatchById200ResponseDevicesInner)`
-
-SetPort sets Port field to given value.
-
-### HasPort
-
-`func (o *VrfVirtualCircuit) HasPort() bool`
-
-HasPort returns a boolean if a field has been set.
 
 ### GetProject
 
@@ -389,22 +364,47 @@ SetSubnet sets Subnet field to given value.
 
 HasSubnet returns a boolean if a field has been set.
 
+### GetTags
+
+`func (o *VrfVirtualCircuit) GetTags() []string`
+
+GetTags returns the Tags field if non-nil, zero value otherwise.
+
+### GetTagsOk
+
+`func (o *VrfVirtualCircuit) GetTagsOk() (*[]string, bool)`
+
+GetTagsOk returns a tuple with the Tags field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTags
+
+`func (o *VrfVirtualCircuit) SetTags(v []string)`
+
+SetTags sets Tags field to given value.
+
+### HasTags
+
+`func (o *VrfVirtualCircuit) HasTags() bool`
+
+HasTags returns a boolean if a field has been set.
+
 ### GetVrf
 
-`func (o *VrfVirtualCircuit) GetVrf() FindVrfs200ResponseVrfsInner`
+`func (o *VrfVirtualCircuit) GetVrf() GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1Vrf`
 
 GetVrf returns the Vrf field if non-nil, zero value otherwise.
 
 ### GetVrfOk
 
-`func (o *VrfVirtualCircuit) GetVrfOk() (*FindVrfs200ResponseVrfsInner, bool)`
+`func (o *VrfVirtualCircuit) GetVrfOk() (*GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1Vrf, bool)`
 
 GetVrfOk returns a tuple with the Vrf field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVrf
 
-`func (o *VrfVirtualCircuit) SetVrf(v FindVrfs200ResponseVrfsInner)`
+`func (o *VrfVirtualCircuit) SetVrf(v GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1Vrf)`
 
 SetVrf sets Vrf field to given value.
 

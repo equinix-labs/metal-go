@@ -1,7 +1,7 @@
 /*
 Metal API
 
-This is the API for Equinix Metal. The API allows you to programmatically interact with all of your Equinix Metal resources, including devices, networks, addresses, organizations, projects, and your user account.  The official API docs are hosted at <https://metal.equinix.com/developers/api>.
+# Introduction Equinix Metal provides a RESTful HTTP API which can be reached at <https://api.equinix.com/metal/v1>. This document describes the API and how to use it.  The API allows you to programmatically interact with all of your Equinix Metal resources, including devices, networks, addresses, organizations, projects, and your user account. Every feature of the Equinix Metal web interface is accessible through the API.  The API docs are generated from the Equinix Metal OpenAPI specification and are officially hosted at <https://metal.equinix.com/developers/api>.  # Common Parameters  The Equinix Metal API uses a few methods to minimize network traffic and improve throughput. These parameters are not used in all API calls, but are used often enough to warrant their own section. Look for these parameters in the documentation for the API calls that support them.  ## Pagination  Pagination is used to limit the number of results returned in a single request. The API will return a maximum of 100 results per page. To retrieve additional results, you can use the `page` and `per_page` query parameters.  The `page` parameter is used to specify the page number. The first page is `1`. The `per_page` parameter is used to specify the number of results per page. The maximum number of results differs by resource type.  ## Sorting  Where offered, the API allows you to sort results by a specific field. To sort results use the `sort_by` query parameter with the root level field name as the value. The `sort_direction` parameter is used to specify the sort direction, either either `asc` (ascending) or `desc` (descending).  ## Filtering  Filtering is used to limit the results returned in a single request. The API supports filtering by certain fields in the response. To filter results, you can use the field as a query parameter.  For example, to filter the IP list to only return public IPv4 addresses, you can filter by the `type` field, as in the following request:  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/projects/id/ips?type=public_ipv4 ```  Only IP addresses with the `type` field set to `public_ipv4` will be returned.  ## Searching  Searching is used to find matching resources using multiple field comparissons. The API supports searching in resources that define this behavior. The fields available for search differ by resource, as does the search strategy.  To search resources you can use the `search` query parameter.  ## Include and Exclude  For resources that contain references to other resources, sucha as a Device that refers to the Project it resides in, the Equinix Metal API will returns `href` values (API links) to the associated resource.  ```json {   ...   \"project\": {     \"href\": \"/metal/v1/projects/f3f131c8-f302-49ef-8c44-9405022dc6dd\"   } } ```  If you're going need the project details, you can avoid a second API request.  Specify the contained `href` resources and collections that you'd like to have included in the response using the `include` query parameter.  For example:    ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=projects ```  The `include` parameter is generally accepted in `GET`, `POST`, `PUT`, and `PATCH` requests where `href` resources are presented.  To have multiple resources include, use a comma-separated list (e.g. `?include=emails,projects,memberships`).  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=emails,projects,memberships ```  You may also include nested associations up to three levels deep using dot notation (`?include=memberships.projects`):  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=memberships.projects ```  To exclude resources, and optimize response delivery, use the `exclude` query parameter. The `exclude` parameter is generally accepted in `GET`, `POST`, `PUT`, and `PATCH` requests for fields with nested object responses. When excluded, these fields will be replaced with an object that contains only an `href` field.
 
 API version: 1.0.0
 Contact: support@equinixmetal.com
@@ -17,7 +17,6 @@ import (
 
 // VrfVirtualCircuit struct for VrfVirtualCircuit
 type VrfVirtualCircuit struct {
-	Tags []string `json:"tags,omitempty"`
 	// An IP address from the subnet that will be used on the Customer side. This parameter is optional, but if supplied, we will use the other usable IP address in the subnet as the Metal IP. By default, the last usable IP address in the subnet will be used.
 	CustomerIp  *string `json:"customer_ip,omitempty"`
 	Description *string `json:"description,omitempty"`
@@ -25,19 +24,20 @@ type VrfVirtualCircuit struct {
 	// The MD5 password for the BGP peering in plaintext (not a checksum).
 	Md5 *string `json:"md5,omitempty"`
 	// An IP address from the subnet that will be used on the Metal side. This parameter is optional, but if supplied, we will use the other usable IP address in the subnet as the Customer IP. By default, the first usable IP address in the subnet will be used.
-	MetalIp *string `json:"metal_ip,omitempty"`
-	Name    *string `json:"name,omitempty"`
-	NniVlan *int32  `json:"nni_vlan,omitempty"`
+	MetalIp *string                               `json:"metal_ip,omitempty"`
+	Name    *string                               `json:"name,omitempty"`
+	Port    *FindBatchById200ResponseDevicesInner `json:"port,omitempty"`
+	NniVlan *int32                                `json:"nni_vlan,omitempty"`
 	// The peer ASN that will be used with the VRF on the Virtual Circuit.
 	PeerAsn *int32                                `json:"peer_asn,omitempty"`
-	Port    *FindBatchById200ResponseDevicesInner `json:"port,omitempty"`
 	Project *FindBatchById200ResponseDevicesInner `json:"project,omitempty"`
 	// integer representing bps speed
 	Speed  *int32  `json:"speed,omitempty"`
 	Status *string `json:"status,omitempty"`
 	// The /30 or /31 subnet of one of the VRF IP Blocks that will be used with the VRF for the Virtual Circuit. This subnet does not have to be an existing VRF IP reservation, as we will create the VRF IP reservation on creation if it does not exist. The Metal IP and Customer IP must be IPs from this subnet. For /30 subnets, the network and broadcast IPs cannot be used as the Metal or Customer IP.
-	Subnet *string                       `json:"subnet,omitempty"`
-	Vrf    *FindVrfs200ResponseVrfsInner `json:"vrf,omitempty"`
+	Subnet *string                                                                              `json:"subnet,omitempty"`
+	Tags   []string                                                                             `json:"tags,omitempty"`
+	Vrf    *GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1Vrf `json:"vrf,omitempty"`
 }
 
 // NewVrfVirtualCircuit instantiates a new VrfVirtualCircuit object
@@ -57,41 +57,9 @@ func NewVrfVirtualCircuitWithDefaults() *VrfVirtualCircuit {
 	return &this
 }
 
-// GetTags returns the Tags field value if set, zero value otherwise.
-func (o *VrfVirtualCircuit) GetTags() []string {
-	if o == nil || o.Tags == nil {
-		var ret []string
-		return ret
-	}
-	return o.Tags
-}
-
-// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *VrfVirtualCircuit) GetTagsOk() ([]string, bool) {
-	if o == nil || o.Tags == nil {
-		return nil, false
-	}
-	return o.Tags, true
-}
-
-// HasTags returns a boolean if a field has been set.
-func (o *VrfVirtualCircuit) HasTags() bool {
-	if o != nil && o.Tags != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetTags gets a reference to the given []string and assigns it to the Tags field.
-func (o *VrfVirtualCircuit) SetTags(v []string) {
-	o.Tags = v
-}
-
 // GetCustomerIp returns the CustomerIp field value if set, zero value otherwise.
 func (o *VrfVirtualCircuit) GetCustomerIp() string {
-	if o == nil || o.CustomerIp == nil {
+	if o == nil || isNil(o.CustomerIp) {
 		var ret string
 		return ret
 	}
@@ -101,7 +69,7 @@ func (o *VrfVirtualCircuit) GetCustomerIp() string {
 // GetCustomerIpOk returns a tuple with the CustomerIp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VrfVirtualCircuit) GetCustomerIpOk() (*string, bool) {
-	if o == nil || o.CustomerIp == nil {
+	if o == nil || isNil(o.CustomerIp) {
 		return nil, false
 	}
 	return o.CustomerIp, true
@@ -109,7 +77,7 @@ func (o *VrfVirtualCircuit) GetCustomerIpOk() (*string, bool) {
 
 // HasCustomerIp returns a boolean if a field has been set.
 func (o *VrfVirtualCircuit) HasCustomerIp() bool {
-	if o != nil && o.CustomerIp != nil {
+	if o != nil && !isNil(o.CustomerIp) {
 		return true
 	}
 
@@ -123,7 +91,7 @@ func (o *VrfVirtualCircuit) SetCustomerIp(v string) {
 
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *VrfVirtualCircuit) GetDescription() string {
-	if o == nil || o.Description == nil {
+	if o == nil || isNil(o.Description) {
 		var ret string
 		return ret
 	}
@@ -133,7 +101,7 @@ func (o *VrfVirtualCircuit) GetDescription() string {
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VrfVirtualCircuit) GetDescriptionOk() (*string, bool) {
-	if o == nil || o.Description == nil {
+	if o == nil || isNil(o.Description) {
 		return nil, false
 	}
 	return o.Description, true
@@ -141,7 +109,7 @@ func (o *VrfVirtualCircuit) GetDescriptionOk() (*string, bool) {
 
 // HasDescription returns a boolean if a field has been set.
 func (o *VrfVirtualCircuit) HasDescription() bool {
-	if o != nil && o.Description != nil {
+	if o != nil && !isNil(o.Description) {
 		return true
 	}
 
@@ -155,7 +123,7 @@ func (o *VrfVirtualCircuit) SetDescription(v string) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *VrfVirtualCircuit) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || isNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -165,7 +133,7 @@ func (o *VrfVirtualCircuit) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VrfVirtualCircuit) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || isNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -173,7 +141,7 @@ func (o *VrfVirtualCircuit) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *VrfVirtualCircuit) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !isNil(o.Id) {
 		return true
 	}
 
@@ -187,7 +155,7 @@ func (o *VrfVirtualCircuit) SetId(v string) {
 
 // GetMd5 returns the Md5 field value if set, zero value otherwise.
 func (o *VrfVirtualCircuit) GetMd5() string {
-	if o == nil || o.Md5 == nil {
+	if o == nil || isNil(o.Md5) {
 		var ret string
 		return ret
 	}
@@ -197,7 +165,7 @@ func (o *VrfVirtualCircuit) GetMd5() string {
 // GetMd5Ok returns a tuple with the Md5 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VrfVirtualCircuit) GetMd5Ok() (*string, bool) {
-	if o == nil || o.Md5 == nil {
+	if o == nil || isNil(o.Md5) {
 		return nil, false
 	}
 	return o.Md5, true
@@ -205,7 +173,7 @@ func (o *VrfVirtualCircuit) GetMd5Ok() (*string, bool) {
 
 // HasMd5 returns a boolean if a field has been set.
 func (o *VrfVirtualCircuit) HasMd5() bool {
-	if o != nil && o.Md5 != nil {
+	if o != nil && !isNil(o.Md5) {
 		return true
 	}
 
@@ -219,7 +187,7 @@ func (o *VrfVirtualCircuit) SetMd5(v string) {
 
 // GetMetalIp returns the MetalIp field value if set, zero value otherwise.
 func (o *VrfVirtualCircuit) GetMetalIp() string {
-	if o == nil || o.MetalIp == nil {
+	if o == nil || isNil(o.MetalIp) {
 		var ret string
 		return ret
 	}
@@ -229,7 +197,7 @@ func (o *VrfVirtualCircuit) GetMetalIp() string {
 // GetMetalIpOk returns a tuple with the MetalIp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VrfVirtualCircuit) GetMetalIpOk() (*string, bool) {
-	if o == nil || o.MetalIp == nil {
+	if o == nil || isNil(o.MetalIp) {
 		return nil, false
 	}
 	return o.MetalIp, true
@@ -237,7 +205,7 @@ func (o *VrfVirtualCircuit) GetMetalIpOk() (*string, bool) {
 
 // HasMetalIp returns a boolean if a field has been set.
 func (o *VrfVirtualCircuit) HasMetalIp() bool {
-	if o != nil && o.MetalIp != nil {
+	if o != nil && !isNil(o.MetalIp) {
 		return true
 	}
 
@@ -251,7 +219,7 @@ func (o *VrfVirtualCircuit) SetMetalIp(v string) {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *VrfVirtualCircuit) GetName() string {
-	if o == nil || o.Name == nil {
+	if o == nil || isNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -261,7 +229,7 @@ func (o *VrfVirtualCircuit) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VrfVirtualCircuit) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
+	if o == nil || isNil(o.Name) {
 		return nil, false
 	}
 	return o.Name, true
@@ -269,7 +237,7 @@ func (o *VrfVirtualCircuit) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *VrfVirtualCircuit) HasName() bool {
-	if o != nil && o.Name != nil {
+	if o != nil && !isNil(o.Name) {
 		return true
 	}
 
@@ -281,9 +249,41 @@ func (o *VrfVirtualCircuit) SetName(v string) {
 	o.Name = &v
 }
 
+// GetPort returns the Port field value if set, zero value otherwise.
+func (o *VrfVirtualCircuit) GetPort() FindBatchById200ResponseDevicesInner {
+	if o == nil || isNil(o.Port) {
+		var ret FindBatchById200ResponseDevicesInner
+		return ret
+	}
+	return *o.Port
+}
+
+// GetPortOk returns a tuple with the Port field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VrfVirtualCircuit) GetPortOk() (*FindBatchById200ResponseDevicesInner, bool) {
+	if o == nil || isNil(o.Port) {
+		return nil, false
+	}
+	return o.Port, true
+}
+
+// HasPort returns a boolean if a field has been set.
+func (o *VrfVirtualCircuit) HasPort() bool {
+	if o != nil && !isNil(o.Port) {
+		return true
+	}
+
+	return false
+}
+
+// SetPort gets a reference to the given FindBatchById200ResponseDevicesInner and assigns it to the Port field.
+func (o *VrfVirtualCircuit) SetPort(v FindBatchById200ResponseDevicesInner) {
+	o.Port = &v
+}
+
 // GetNniVlan returns the NniVlan field value if set, zero value otherwise.
 func (o *VrfVirtualCircuit) GetNniVlan() int32 {
-	if o == nil || o.NniVlan == nil {
+	if o == nil || isNil(o.NniVlan) {
 		var ret int32
 		return ret
 	}
@@ -293,7 +293,7 @@ func (o *VrfVirtualCircuit) GetNniVlan() int32 {
 // GetNniVlanOk returns a tuple with the NniVlan field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VrfVirtualCircuit) GetNniVlanOk() (*int32, bool) {
-	if o == nil || o.NniVlan == nil {
+	if o == nil || isNil(o.NniVlan) {
 		return nil, false
 	}
 	return o.NniVlan, true
@@ -301,7 +301,7 @@ func (o *VrfVirtualCircuit) GetNniVlanOk() (*int32, bool) {
 
 // HasNniVlan returns a boolean if a field has been set.
 func (o *VrfVirtualCircuit) HasNniVlan() bool {
-	if o != nil && o.NniVlan != nil {
+	if o != nil && !isNil(o.NniVlan) {
 		return true
 	}
 
@@ -315,7 +315,7 @@ func (o *VrfVirtualCircuit) SetNniVlan(v int32) {
 
 // GetPeerAsn returns the PeerAsn field value if set, zero value otherwise.
 func (o *VrfVirtualCircuit) GetPeerAsn() int32 {
-	if o == nil || o.PeerAsn == nil {
+	if o == nil || isNil(o.PeerAsn) {
 		var ret int32
 		return ret
 	}
@@ -325,7 +325,7 @@ func (o *VrfVirtualCircuit) GetPeerAsn() int32 {
 // GetPeerAsnOk returns a tuple with the PeerAsn field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VrfVirtualCircuit) GetPeerAsnOk() (*int32, bool) {
-	if o == nil || o.PeerAsn == nil {
+	if o == nil || isNil(o.PeerAsn) {
 		return nil, false
 	}
 	return o.PeerAsn, true
@@ -333,7 +333,7 @@ func (o *VrfVirtualCircuit) GetPeerAsnOk() (*int32, bool) {
 
 // HasPeerAsn returns a boolean if a field has been set.
 func (o *VrfVirtualCircuit) HasPeerAsn() bool {
-	if o != nil && o.PeerAsn != nil {
+	if o != nil && !isNil(o.PeerAsn) {
 		return true
 	}
 
@@ -345,41 +345,9 @@ func (o *VrfVirtualCircuit) SetPeerAsn(v int32) {
 	o.PeerAsn = &v
 }
 
-// GetPort returns the Port field value if set, zero value otherwise.
-func (o *VrfVirtualCircuit) GetPort() FindBatchById200ResponseDevicesInner {
-	if o == nil || o.Port == nil {
-		var ret FindBatchById200ResponseDevicesInner
-		return ret
-	}
-	return *o.Port
-}
-
-// GetPortOk returns a tuple with the Port field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *VrfVirtualCircuit) GetPortOk() (*FindBatchById200ResponseDevicesInner, bool) {
-	if o == nil || o.Port == nil {
-		return nil, false
-	}
-	return o.Port, true
-}
-
-// HasPort returns a boolean if a field has been set.
-func (o *VrfVirtualCircuit) HasPort() bool {
-	if o != nil && o.Port != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetPort gets a reference to the given FindBatchById200ResponseDevicesInner and assigns it to the Port field.
-func (o *VrfVirtualCircuit) SetPort(v FindBatchById200ResponseDevicesInner) {
-	o.Port = &v
-}
-
 // GetProject returns the Project field value if set, zero value otherwise.
 func (o *VrfVirtualCircuit) GetProject() FindBatchById200ResponseDevicesInner {
-	if o == nil || o.Project == nil {
+	if o == nil || isNil(o.Project) {
 		var ret FindBatchById200ResponseDevicesInner
 		return ret
 	}
@@ -389,7 +357,7 @@ func (o *VrfVirtualCircuit) GetProject() FindBatchById200ResponseDevicesInner {
 // GetProjectOk returns a tuple with the Project field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VrfVirtualCircuit) GetProjectOk() (*FindBatchById200ResponseDevicesInner, bool) {
-	if o == nil || o.Project == nil {
+	if o == nil || isNil(o.Project) {
 		return nil, false
 	}
 	return o.Project, true
@@ -397,7 +365,7 @@ func (o *VrfVirtualCircuit) GetProjectOk() (*FindBatchById200ResponseDevicesInne
 
 // HasProject returns a boolean if a field has been set.
 func (o *VrfVirtualCircuit) HasProject() bool {
-	if o != nil && o.Project != nil {
+	if o != nil && !isNil(o.Project) {
 		return true
 	}
 
@@ -411,7 +379,7 @@ func (o *VrfVirtualCircuit) SetProject(v FindBatchById200ResponseDevicesInner) {
 
 // GetSpeed returns the Speed field value if set, zero value otherwise.
 func (o *VrfVirtualCircuit) GetSpeed() int32 {
-	if o == nil || o.Speed == nil {
+	if o == nil || isNil(o.Speed) {
 		var ret int32
 		return ret
 	}
@@ -421,7 +389,7 @@ func (o *VrfVirtualCircuit) GetSpeed() int32 {
 // GetSpeedOk returns a tuple with the Speed field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VrfVirtualCircuit) GetSpeedOk() (*int32, bool) {
-	if o == nil || o.Speed == nil {
+	if o == nil || isNil(o.Speed) {
 		return nil, false
 	}
 	return o.Speed, true
@@ -429,7 +397,7 @@ func (o *VrfVirtualCircuit) GetSpeedOk() (*int32, bool) {
 
 // HasSpeed returns a boolean if a field has been set.
 func (o *VrfVirtualCircuit) HasSpeed() bool {
-	if o != nil && o.Speed != nil {
+	if o != nil && !isNil(o.Speed) {
 		return true
 	}
 
@@ -443,7 +411,7 @@ func (o *VrfVirtualCircuit) SetSpeed(v int32) {
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *VrfVirtualCircuit) GetStatus() string {
-	if o == nil || o.Status == nil {
+	if o == nil || isNil(o.Status) {
 		var ret string
 		return ret
 	}
@@ -453,7 +421,7 @@ func (o *VrfVirtualCircuit) GetStatus() string {
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VrfVirtualCircuit) GetStatusOk() (*string, bool) {
-	if o == nil || o.Status == nil {
+	if o == nil || isNil(o.Status) {
 		return nil, false
 	}
 	return o.Status, true
@@ -461,7 +429,7 @@ func (o *VrfVirtualCircuit) GetStatusOk() (*string, bool) {
 
 // HasStatus returns a boolean if a field has been set.
 func (o *VrfVirtualCircuit) HasStatus() bool {
-	if o != nil && o.Status != nil {
+	if o != nil && !isNil(o.Status) {
 		return true
 	}
 
@@ -475,7 +443,7 @@ func (o *VrfVirtualCircuit) SetStatus(v string) {
 
 // GetSubnet returns the Subnet field value if set, zero value otherwise.
 func (o *VrfVirtualCircuit) GetSubnet() string {
-	if o == nil || o.Subnet == nil {
+	if o == nil || isNil(o.Subnet) {
 		var ret string
 		return ret
 	}
@@ -485,7 +453,7 @@ func (o *VrfVirtualCircuit) GetSubnet() string {
 // GetSubnetOk returns a tuple with the Subnet field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VrfVirtualCircuit) GetSubnetOk() (*string, bool) {
-	if o == nil || o.Subnet == nil {
+	if o == nil || isNil(o.Subnet) {
 		return nil, false
 	}
 	return o.Subnet, true
@@ -493,7 +461,7 @@ func (o *VrfVirtualCircuit) GetSubnetOk() (*string, bool) {
 
 // HasSubnet returns a boolean if a field has been set.
 func (o *VrfVirtualCircuit) HasSubnet() bool {
-	if o != nil && o.Subnet != nil {
+	if o != nil && !isNil(o.Subnet) {
 		return true
 	}
 
@@ -505,10 +473,42 @@ func (o *VrfVirtualCircuit) SetSubnet(v string) {
 	o.Subnet = &v
 }
 
+// GetTags returns the Tags field value if set, zero value otherwise.
+func (o *VrfVirtualCircuit) GetTags() []string {
+	if o == nil || isNil(o.Tags) {
+		var ret []string
+		return ret
+	}
+	return o.Tags
+}
+
+// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VrfVirtualCircuit) GetTagsOk() ([]string, bool) {
+	if o == nil || isNil(o.Tags) {
+		return nil, false
+	}
+	return o.Tags, true
+}
+
+// HasTags returns a boolean if a field has been set.
+func (o *VrfVirtualCircuit) HasTags() bool {
+	if o != nil && !isNil(o.Tags) {
+		return true
+	}
+
+	return false
+}
+
+// SetTags gets a reference to the given []string and assigns it to the Tags field.
+func (o *VrfVirtualCircuit) SetTags(v []string) {
+	o.Tags = v
+}
+
 // GetVrf returns the Vrf field value if set, zero value otherwise.
-func (o *VrfVirtualCircuit) GetVrf() FindVrfs200ResponseVrfsInner {
-	if o == nil || o.Vrf == nil {
-		var ret FindVrfs200ResponseVrfsInner
+func (o *VrfVirtualCircuit) GetVrf() GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1Vrf {
+	if o == nil || isNil(o.Vrf) {
+		var ret GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1Vrf
 		return ret
 	}
 	return *o.Vrf
@@ -516,8 +516,8 @@ func (o *VrfVirtualCircuit) GetVrf() FindVrfs200ResponseVrfsInner {
 
 // GetVrfOk returns a tuple with the Vrf field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VrfVirtualCircuit) GetVrfOk() (*FindVrfs200ResponseVrfsInner, bool) {
-	if o == nil || o.Vrf == nil {
+func (o *VrfVirtualCircuit) GetVrfOk() (*GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1Vrf, bool) {
+	if o == nil || isNil(o.Vrf) {
 		return nil, false
 	}
 	return o.Vrf, true
@@ -525,63 +525,63 @@ func (o *VrfVirtualCircuit) GetVrfOk() (*FindVrfs200ResponseVrfsInner, bool) {
 
 // HasVrf returns a boolean if a field has been set.
 func (o *VrfVirtualCircuit) HasVrf() bool {
-	if o != nil && o.Vrf != nil {
+	if o != nil && !isNil(o.Vrf) {
 		return true
 	}
 
 	return false
 }
 
-// SetVrf gets a reference to the given FindVrfs200ResponseVrfsInner and assigns it to the Vrf field.
-func (o *VrfVirtualCircuit) SetVrf(v FindVrfs200ResponseVrfsInner) {
+// SetVrf gets a reference to the given GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1Vrf and assigns it to the Vrf field.
+func (o *VrfVirtualCircuit) SetVrf(v GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1Vrf) {
 	o.Vrf = &v
 }
 
 func (o VrfVirtualCircuit) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Tags != nil {
-		toSerialize["tags"] = o.Tags
-	}
-	if o.CustomerIp != nil {
+	if !isNil(o.CustomerIp) {
 		toSerialize["customer_ip"] = o.CustomerIp
 	}
-	if o.Description != nil {
+	if !isNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
-	if o.Id != nil {
+	if !isNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
-	if o.Md5 != nil {
+	if !isNil(o.Md5) {
 		toSerialize["md5"] = o.Md5
 	}
-	if o.MetalIp != nil {
+	if !isNil(o.MetalIp) {
 		toSerialize["metal_ip"] = o.MetalIp
 	}
-	if o.Name != nil {
+	if !isNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
-	if o.NniVlan != nil {
-		toSerialize["nni_vlan"] = o.NniVlan
-	}
-	if o.PeerAsn != nil {
-		toSerialize["peer_asn"] = o.PeerAsn
-	}
-	if o.Port != nil {
+	if !isNil(o.Port) {
 		toSerialize["port"] = o.Port
 	}
-	if o.Project != nil {
+	if !isNil(o.NniVlan) {
+		toSerialize["nni_vlan"] = o.NniVlan
+	}
+	if !isNil(o.PeerAsn) {
+		toSerialize["peer_asn"] = o.PeerAsn
+	}
+	if !isNil(o.Project) {
 		toSerialize["project"] = o.Project
 	}
-	if o.Speed != nil {
+	if !isNil(o.Speed) {
 		toSerialize["speed"] = o.Speed
 	}
-	if o.Status != nil {
+	if !isNil(o.Status) {
 		toSerialize["status"] = o.Status
 	}
-	if o.Subnet != nil {
+	if !isNil(o.Subnet) {
 		toSerialize["subnet"] = o.Subnet
 	}
-	if o.Vrf != nil {
+	if !isNil(o.Tags) {
+		toSerialize["tags"] = o.Tags
+	}
+	if !isNil(o.Vrf) {
 		toSerialize["vrf"] = o.Vrf
 	}
 	return json.Marshal(toSerialize)

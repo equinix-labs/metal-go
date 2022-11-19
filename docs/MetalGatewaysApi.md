@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 ## CreateMetalGateway
 
-> map[string]interface{} CreateMetalGateway(ctx, projectId).Body(body).Page(page).PerPage(perPage).Execute()
+> FindMetalGatewayById200Response CreateMetalGateway(ctx, projectId).CreateMetalGatewayRequest(createMetalGatewayRequest).Page(page).PerPage(perPage).Execute()
 
 Create a metal gateway
 
@@ -33,18 +33,18 @@ import (
 
 func main() {
     projectId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Project UUID
-    body := map[string]interface{}{ ... } // map[string]interface{} | Metal Gateway to create
+    createMetalGatewayRequest := openapiclient.createMetalGateway_request{CreateMetalGatewayRequestOneOf: openapiclient.NewCreateMetalGatewayRequestOneOf("VirtualNetworkId_example")} // CreateMetalGatewayRequest | Metal Gateway to create
     page := int32(56) // int32 | Page to return (optional) (default to 1)
     perPage := int32(56) // int32 | Items returned per page (optional) (default to 10)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.MetalGatewaysApi.CreateMetalGateway(context.Background(), projectId).Body(body).Page(page).PerPage(perPage).Execute()
+    resp, r, err := apiClient.MetalGatewaysApi.CreateMetalGateway(context.Background(), projectId).CreateMetalGatewayRequest(createMetalGatewayRequest).Page(page).PerPage(perPage).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MetalGatewaysApi.CreateMetalGateway``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateMetalGateway`: map[string]interface{}
+    // response from `CreateMetalGateway`: FindMetalGatewayById200Response
     fmt.Fprintf(os.Stdout, "Response from `MetalGatewaysApi.CreateMetalGateway`: %v\n", resp)
 }
 ```
@@ -65,13 +65,13 @@ Other parameters are passed through a pointer to a apiCreateMetalGatewayRequest 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | **map[string]interface{}** | Metal Gateway to create | 
+ **createMetalGatewayRequest** | [**CreateMetalGatewayRequest**](CreateMetalGatewayRequest.md) | Metal Gateway to create | 
  **page** | **int32** | Page to return | [default to 1]
  **perPage** | **int32** | Items returned per page | [default to 10]
 
 ### Return type
 
-**map[string]interface{}**
+[**FindMetalGatewayById200Response**](FindMetalGatewayById200Response.md)
 
 ### Authorization
 
@@ -89,7 +89,7 @@ Name | Type | Description  | Notes
 
 ## DeleteMetalGateway
 
-> DeleteMetalGateway(ctx, id).Execute()
+> DeleteMetalGateway(ctx, id).Include(include).Exclude(exclude).Execute()
 
 Deletes the metal gateway
 
@@ -109,10 +109,12 @@ import (
 
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Metal Gateway UUID
+    include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
+    exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.MetalGatewaysApi.DeleteMetalGateway(context.Background(), id).Execute()
+    resp, r, err := apiClient.MetalGatewaysApi.DeleteMetalGateway(context.Background(), id).Include(include).Exclude(exclude).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MetalGatewaysApi.DeleteMetalGateway``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -136,6 +138,8 @@ Other parameters are passed through a pointer to a apiDeleteMetalGatewayRequest 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
+ **exclude** | **[]string** | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | 
 
 ### Return type
 
@@ -157,7 +161,7 @@ Name | Type | Description  | Notes
 
 ## FindMetalGatewayById
 
-> map[string]interface{} FindMetalGatewayById(ctx, id).Execute()
+> FindMetalGatewayById200Response FindMetalGatewayById(ctx, id).Execute()
 
 Returns the metal gateway
 
@@ -185,7 +189,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `MetalGatewaysApi.FindMetalGatewayById``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindMetalGatewayById`: map[string]interface{}
+    // response from `FindMetalGatewayById`: FindMetalGatewayById200Response
     fmt.Fprintf(os.Stdout, "Response from `MetalGatewaysApi.FindMetalGatewayById`: %v\n", resp)
 }
 ```
@@ -209,7 +213,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**map[string]interface{}**
+[**FindMetalGatewayById200Response**](FindMetalGatewayById200Response.md)
 
 ### Authorization
 

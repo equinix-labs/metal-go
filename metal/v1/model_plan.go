@@ -1,7 +1,7 @@
 /*
 Metal API
 
-This is the API for Equinix Metal. The API allows you to programmatically interact with all of your Equinix Metal resources, including devices, networks, addresses, organizations, projects, and your user account.  The official API docs are hosted at <https://metal.equinix.com/developers/api>.
+# Introduction Equinix Metal provides a RESTful HTTP API which can be reached at <https://api.equinix.com/metal/v1>. This document describes the API and how to use it.  The API allows you to programmatically interact with all of your Equinix Metal resources, including devices, networks, addresses, organizations, projects, and your user account. Every feature of the Equinix Metal web interface is accessible through the API.  The API docs are generated from the Equinix Metal OpenAPI specification and are officially hosted at <https://metal.equinix.com/developers/api>.  # Common Parameters  The Equinix Metal API uses a few methods to minimize network traffic and improve throughput. These parameters are not used in all API calls, but are used often enough to warrant their own section. Look for these parameters in the documentation for the API calls that support them.  ## Pagination  Pagination is used to limit the number of results returned in a single request. The API will return a maximum of 100 results per page. To retrieve additional results, you can use the `page` and `per_page` query parameters.  The `page` parameter is used to specify the page number. The first page is `1`. The `per_page` parameter is used to specify the number of results per page. The maximum number of results differs by resource type.  ## Sorting  Where offered, the API allows you to sort results by a specific field. To sort results use the `sort_by` query parameter with the root level field name as the value. The `sort_direction` parameter is used to specify the sort direction, either either `asc` (ascending) or `desc` (descending).  ## Filtering  Filtering is used to limit the results returned in a single request. The API supports filtering by certain fields in the response. To filter results, you can use the field as a query parameter.  For example, to filter the IP list to only return public IPv4 addresses, you can filter by the `type` field, as in the following request:  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/projects/id/ips?type=public_ipv4 ```  Only IP addresses with the `type` field set to `public_ipv4` will be returned.  ## Searching  Searching is used to find matching resources using multiple field comparissons. The API supports searching in resources that define this behavior. The fields available for search differ by resource, as does the search strategy.  To search resources you can use the `search` query parameter.  ## Include and Exclude  For resources that contain references to other resources, sucha as a Device that refers to the Project it resides in, the Equinix Metal API will returns `href` values (API links) to the associated resource.  ```json {   ...   \"project\": {     \"href\": \"/metal/v1/projects/f3f131c8-f302-49ef-8c44-9405022dc6dd\"   } } ```  If you're going need the project details, you can avoid a second API request.  Specify the contained `href` resources and collections that you'd like to have included in the response using the `include` query parameter.  For example:    ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=projects ```  The `include` parameter is generally accepted in `GET`, `POST`, `PUT`, and `PATCH` requests where `href` resources are presented.  To have multiple resources include, use a comma-separated list (e.g. `?include=emails,projects,memberships`).  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=emails,projects,memberships ```  You may also include nested associations up to three levels deep using dot notation (`?include=memberships.projects`):  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=memberships.projects ```  To exclude resources, and optimize response delivery, use the `exclude` query parameter. The `exclude` parameter is generally accepted in `GET`, `POST`, `PUT`, and `PATCH` requests for fields with nested object responses. When excluded, these fields will be replaced with an object that contains only an `href` field.
 
 API version: 1.0.0
 Contact: support@equinixmetal.com
@@ -18,16 +18,21 @@ import (
 // Plan struct for Plan
 type Plan struct {
 	// Shows which facilities the plan is available in, and the facility-based price if it is different from the default price.
-	AvailableIn []FindBatchById200ResponseDevicesInner `json:"available_in,omitempty"`
-	Class       *string                                `json:"class,omitempty"`
-	Description *string                                `json:"description,omitempty"`
-	Id          *string                                `json:"id,omitempty"`
-	Legacy      *bool                                  `json:"legacy,omitempty"`
-	Line        *string                                `json:"line,omitempty"`
-	Name        *string                                `json:"name,omitempty"`
-	Pricing     map[string]interface{}                 `json:"pricing,omitempty"`
-	Slug        *string                                `json:"slug,omitempty"`
-	Specs       map[string]interface{}                 `json:"specs,omitempty"`
+	AvailableIn []FindDeviceById200ResponsePlanAvailableInInner `json:"available_in,omitempty"`
+	// Shows which metros the plan is available in, and the metro-based price if it is different from the default price.
+	AvailableInMetros []FindDeviceById200ResponsePlanAvailableInMetrosInner `json:"available_in_metros,omitempty"`
+	Class             *string                                               `json:"class,omitempty"`
+	Description       *string                                               `json:"description,omitempty"`
+	DeploymentTypes   []string                                              `json:"deployment_types,omitempty"`
+	Id                *string                                               `json:"id,omitempty"`
+	Legacy            *bool                                                 `json:"legacy,omitempty"`
+	Line              *string                                               `json:"line,omitempty"`
+	Name              *string                                               `json:"name,omitempty"`
+	Pricing           map[string]interface{}                                `json:"pricing,omitempty"`
+	Slug              *string                                               `json:"slug,omitempty"`
+	Specs             *FindDeviceById200ResponsePlanSpecs                   `json:"specs,omitempty"`
+	// The plan type
+	Type *string `json:"type,omitempty"`
 }
 
 // NewPlan instantiates a new Plan object
@@ -48,9 +53,9 @@ func NewPlanWithDefaults() *Plan {
 }
 
 // GetAvailableIn returns the AvailableIn field value if set, zero value otherwise.
-func (o *Plan) GetAvailableIn() []FindBatchById200ResponseDevicesInner {
-	if o == nil || o.AvailableIn == nil {
-		var ret []FindBatchById200ResponseDevicesInner
+func (o *Plan) GetAvailableIn() []FindDeviceById200ResponsePlanAvailableInInner {
+	if o == nil || isNil(o.AvailableIn) {
+		var ret []FindDeviceById200ResponsePlanAvailableInInner
 		return ret
 	}
 	return o.AvailableIn
@@ -58,8 +63,8 @@ func (o *Plan) GetAvailableIn() []FindBatchById200ResponseDevicesInner {
 
 // GetAvailableInOk returns a tuple with the AvailableIn field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Plan) GetAvailableInOk() ([]FindBatchById200ResponseDevicesInner, bool) {
-	if o == nil || o.AvailableIn == nil {
+func (o *Plan) GetAvailableInOk() ([]FindDeviceById200ResponsePlanAvailableInInner, bool) {
+	if o == nil || isNil(o.AvailableIn) {
 		return nil, false
 	}
 	return o.AvailableIn, true
@@ -67,21 +72,53 @@ func (o *Plan) GetAvailableInOk() ([]FindBatchById200ResponseDevicesInner, bool)
 
 // HasAvailableIn returns a boolean if a field has been set.
 func (o *Plan) HasAvailableIn() bool {
-	if o != nil && o.AvailableIn != nil {
+	if o != nil && !isNil(o.AvailableIn) {
 		return true
 	}
 
 	return false
 }
 
-// SetAvailableIn gets a reference to the given []FindBatchById200ResponseDevicesInner and assigns it to the AvailableIn field.
-func (o *Plan) SetAvailableIn(v []FindBatchById200ResponseDevicesInner) {
+// SetAvailableIn gets a reference to the given []FindDeviceById200ResponsePlanAvailableInInner and assigns it to the AvailableIn field.
+func (o *Plan) SetAvailableIn(v []FindDeviceById200ResponsePlanAvailableInInner) {
 	o.AvailableIn = v
+}
+
+// GetAvailableInMetros returns the AvailableInMetros field value if set, zero value otherwise.
+func (o *Plan) GetAvailableInMetros() []FindDeviceById200ResponsePlanAvailableInMetrosInner {
+	if o == nil || isNil(o.AvailableInMetros) {
+		var ret []FindDeviceById200ResponsePlanAvailableInMetrosInner
+		return ret
+	}
+	return o.AvailableInMetros
+}
+
+// GetAvailableInMetrosOk returns a tuple with the AvailableInMetros field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Plan) GetAvailableInMetrosOk() ([]FindDeviceById200ResponsePlanAvailableInMetrosInner, bool) {
+	if o == nil || isNil(o.AvailableInMetros) {
+		return nil, false
+	}
+	return o.AvailableInMetros, true
+}
+
+// HasAvailableInMetros returns a boolean if a field has been set.
+func (o *Plan) HasAvailableInMetros() bool {
+	if o != nil && !isNil(o.AvailableInMetros) {
+		return true
+	}
+
+	return false
+}
+
+// SetAvailableInMetros gets a reference to the given []FindDeviceById200ResponsePlanAvailableInMetrosInner and assigns it to the AvailableInMetros field.
+func (o *Plan) SetAvailableInMetros(v []FindDeviceById200ResponsePlanAvailableInMetrosInner) {
+	o.AvailableInMetros = v
 }
 
 // GetClass returns the Class field value if set, zero value otherwise.
 func (o *Plan) GetClass() string {
-	if o == nil || o.Class == nil {
+	if o == nil || isNil(o.Class) {
 		var ret string
 		return ret
 	}
@@ -91,7 +128,7 @@ func (o *Plan) GetClass() string {
 // GetClassOk returns a tuple with the Class field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Plan) GetClassOk() (*string, bool) {
-	if o == nil || o.Class == nil {
+	if o == nil || isNil(o.Class) {
 		return nil, false
 	}
 	return o.Class, true
@@ -99,7 +136,7 @@ func (o *Plan) GetClassOk() (*string, bool) {
 
 // HasClass returns a boolean if a field has been set.
 func (o *Plan) HasClass() bool {
-	if o != nil && o.Class != nil {
+	if o != nil && !isNil(o.Class) {
 		return true
 	}
 
@@ -113,7 +150,7 @@ func (o *Plan) SetClass(v string) {
 
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *Plan) GetDescription() string {
-	if o == nil || o.Description == nil {
+	if o == nil || isNil(o.Description) {
 		var ret string
 		return ret
 	}
@@ -123,7 +160,7 @@ func (o *Plan) GetDescription() string {
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Plan) GetDescriptionOk() (*string, bool) {
-	if o == nil || o.Description == nil {
+	if o == nil || isNil(o.Description) {
 		return nil, false
 	}
 	return o.Description, true
@@ -131,7 +168,7 @@ func (o *Plan) GetDescriptionOk() (*string, bool) {
 
 // HasDescription returns a boolean if a field has been set.
 func (o *Plan) HasDescription() bool {
-	if o != nil && o.Description != nil {
+	if o != nil && !isNil(o.Description) {
 		return true
 	}
 
@@ -143,9 +180,41 @@ func (o *Plan) SetDescription(v string) {
 	o.Description = &v
 }
 
+// GetDeploymentTypes returns the DeploymentTypes field value if set, zero value otherwise.
+func (o *Plan) GetDeploymentTypes() []string {
+	if o == nil || isNil(o.DeploymentTypes) {
+		var ret []string
+		return ret
+	}
+	return o.DeploymentTypes
+}
+
+// GetDeploymentTypesOk returns a tuple with the DeploymentTypes field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Plan) GetDeploymentTypesOk() ([]string, bool) {
+	if o == nil || isNil(o.DeploymentTypes) {
+		return nil, false
+	}
+	return o.DeploymentTypes, true
+}
+
+// HasDeploymentTypes returns a boolean if a field has been set.
+func (o *Plan) HasDeploymentTypes() bool {
+	if o != nil && !isNil(o.DeploymentTypes) {
+		return true
+	}
+
+	return false
+}
+
+// SetDeploymentTypes gets a reference to the given []string and assigns it to the DeploymentTypes field.
+func (o *Plan) SetDeploymentTypes(v []string) {
+	o.DeploymentTypes = v
+}
+
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *Plan) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || isNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -155,7 +224,7 @@ func (o *Plan) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Plan) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || isNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -163,7 +232,7 @@ func (o *Plan) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *Plan) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !isNil(o.Id) {
 		return true
 	}
 
@@ -177,7 +246,7 @@ func (o *Plan) SetId(v string) {
 
 // GetLegacy returns the Legacy field value if set, zero value otherwise.
 func (o *Plan) GetLegacy() bool {
-	if o == nil || o.Legacy == nil {
+	if o == nil || isNil(o.Legacy) {
 		var ret bool
 		return ret
 	}
@@ -187,7 +256,7 @@ func (o *Plan) GetLegacy() bool {
 // GetLegacyOk returns a tuple with the Legacy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Plan) GetLegacyOk() (*bool, bool) {
-	if o == nil || o.Legacy == nil {
+	if o == nil || isNil(o.Legacy) {
 		return nil, false
 	}
 	return o.Legacy, true
@@ -195,7 +264,7 @@ func (o *Plan) GetLegacyOk() (*bool, bool) {
 
 // HasLegacy returns a boolean if a field has been set.
 func (o *Plan) HasLegacy() bool {
-	if o != nil && o.Legacy != nil {
+	if o != nil && !isNil(o.Legacy) {
 		return true
 	}
 
@@ -209,7 +278,7 @@ func (o *Plan) SetLegacy(v bool) {
 
 // GetLine returns the Line field value if set, zero value otherwise.
 func (o *Plan) GetLine() string {
-	if o == nil || o.Line == nil {
+	if o == nil || isNil(o.Line) {
 		var ret string
 		return ret
 	}
@@ -219,7 +288,7 @@ func (o *Plan) GetLine() string {
 // GetLineOk returns a tuple with the Line field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Plan) GetLineOk() (*string, bool) {
-	if o == nil || o.Line == nil {
+	if o == nil || isNil(o.Line) {
 		return nil, false
 	}
 	return o.Line, true
@@ -227,7 +296,7 @@ func (o *Plan) GetLineOk() (*string, bool) {
 
 // HasLine returns a boolean if a field has been set.
 func (o *Plan) HasLine() bool {
-	if o != nil && o.Line != nil {
+	if o != nil && !isNil(o.Line) {
 		return true
 	}
 
@@ -241,7 +310,7 @@ func (o *Plan) SetLine(v string) {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *Plan) GetName() string {
-	if o == nil || o.Name == nil {
+	if o == nil || isNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -251,7 +320,7 @@ func (o *Plan) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Plan) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
+	if o == nil || isNil(o.Name) {
 		return nil, false
 	}
 	return o.Name, true
@@ -259,7 +328,7 @@ func (o *Plan) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *Plan) HasName() bool {
-	if o != nil && o.Name != nil {
+	if o != nil && !isNil(o.Name) {
 		return true
 	}
 
@@ -273,7 +342,7 @@ func (o *Plan) SetName(v string) {
 
 // GetPricing returns the Pricing field value if set, zero value otherwise.
 func (o *Plan) GetPricing() map[string]interface{} {
-	if o == nil || o.Pricing == nil {
+	if o == nil || isNil(o.Pricing) {
 		var ret map[string]interface{}
 		return ret
 	}
@@ -283,15 +352,15 @@ func (o *Plan) GetPricing() map[string]interface{} {
 // GetPricingOk returns a tuple with the Pricing field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Plan) GetPricingOk() (map[string]interface{}, bool) {
-	if o == nil || o.Pricing == nil {
-		return nil, false
+	if o == nil || isNil(o.Pricing) {
+		return map[string]interface{}{}, false
 	}
 	return o.Pricing, true
 }
 
 // HasPricing returns a boolean if a field has been set.
 func (o *Plan) HasPricing() bool {
-	if o != nil && o.Pricing != nil {
+	if o != nil && !isNil(o.Pricing) {
 		return true
 	}
 
@@ -305,7 +374,7 @@ func (o *Plan) SetPricing(v map[string]interface{}) {
 
 // GetSlug returns the Slug field value if set, zero value otherwise.
 func (o *Plan) GetSlug() string {
-	if o == nil || o.Slug == nil {
+	if o == nil || isNil(o.Slug) {
 		var ret string
 		return ret
 	}
@@ -315,7 +384,7 @@ func (o *Plan) GetSlug() string {
 // GetSlugOk returns a tuple with the Slug field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Plan) GetSlugOk() (*string, bool) {
-	if o == nil || o.Slug == nil {
+	if o == nil || isNil(o.Slug) {
 		return nil, false
 	}
 	return o.Slug, true
@@ -323,7 +392,7 @@ func (o *Plan) GetSlugOk() (*string, bool) {
 
 // HasSlug returns a boolean if a field has been set.
 func (o *Plan) HasSlug() bool {
-	if o != nil && o.Slug != nil {
+	if o != nil && !isNil(o.Slug) {
 		return true
 	}
 
@@ -336,18 +405,18 @@ func (o *Plan) SetSlug(v string) {
 }
 
 // GetSpecs returns the Specs field value if set, zero value otherwise.
-func (o *Plan) GetSpecs() map[string]interface{} {
-	if o == nil || o.Specs == nil {
-		var ret map[string]interface{}
+func (o *Plan) GetSpecs() FindDeviceById200ResponsePlanSpecs {
+	if o == nil || isNil(o.Specs) {
+		var ret FindDeviceById200ResponsePlanSpecs
 		return ret
 	}
-	return o.Specs
+	return *o.Specs
 }
 
 // GetSpecsOk returns a tuple with the Specs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Plan) GetSpecsOk() (map[string]interface{}, bool) {
-	if o == nil || o.Specs == nil {
+func (o *Plan) GetSpecsOk() (*FindDeviceById200ResponsePlanSpecs, bool) {
+	if o == nil || isNil(o.Specs) {
 		return nil, false
 	}
 	return o.Specs, true
@@ -355,49 +424,90 @@ func (o *Plan) GetSpecsOk() (map[string]interface{}, bool) {
 
 // HasSpecs returns a boolean if a field has been set.
 func (o *Plan) HasSpecs() bool {
-	if o != nil && o.Specs != nil {
+	if o != nil && !isNil(o.Specs) {
 		return true
 	}
 
 	return false
 }
 
-// SetSpecs gets a reference to the given map[string]interface{} and assigns it to the Specs field.
-func (o *Plan) SetSpecs(v map[string]interface{}) {
-	o.Specs = v
+// SetSpecs gets a reference to the given FindDeviceById200ResponsePlanSpecs and assigns it to the Specs field.
+func (o *Plan) SetSpecs(v FindDeviceById200ResponsePlanSpecs) {
+	o.Specs = &v
+}
+
+// GetType returns the Type field value if set, zero value otherwise.
+func (o *Plan) GetType() string {
+	if o == nil || isNil(o.Type) {
+		var ret string
+		return ret
+	}
+	return *o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Plan) GetTypeOk() (*string, bool) {
+	if o == nil || isNil(o.Type) {
+		return nil, false
+	}
+	return o.Type, true
+}
+
+// HasType returns a boolean if a field has been set.
+func (o *Plan) HasType() bool {
+	if o != nil && !isNil(o.Type) {
+		return true
+	}
+
+	return false
+}
+
+// SetType gets a reference to the given string and assigns it to the Type field.
+func (o *Plan) SetType(v string) {
+	o.Type = &v
 }
 
 func (o Plan) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.AvailableIn != nil {
+	if !isNil(o.AvailableIn) {
 		toSerialize["available_in"] = o.AvailableIn
 	}
-	if o.Class != nil {
+	if !isNil(o.AvailableInMetros) {
+		toSerialize["available_in_metros"] = o.AvailableInMetros
+	}
+	if !isNil(o.Class) {
 		toSerialize["class"] = o.Class
 	}
-	if o.Description != nil {
+	if !isNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
-	if o.Id != nil {
+	if !isNil(o.DeploymentTypes) {
+		toSerialize["deployment_types"] = o.DeploymentTypes
+	}
+	if !isNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
-	if o.Legacy != nil {
+	if !isNil(o.Legacy) {
 		toSerialize["legacy"] = o.Legacy
 	}
-	if o.Line != nil {
+	if !isNil(o.Line) {
 		toSerialize["line"] = o.Line
 	}
-	if o.Name != nil {
+	if !isNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
-	if o.Pricing != nil {
+	if !isNil(o.Pricing) {
 		toSerialize["pricing"] = o.Pricing
 	}
-	if o.Slug != nil {
+	if !isNil(o.Slug) {
 		toSerialize["slug"] = o.Slug
 	}
-	if o.Specs != nil {
+	if !isNil(o.Specs) {
 		toSerialize["specs"] = o.Specs
+	}
+	if !isNil(o.Type) {
+		toSerialize["type"] = o.Type
 	}
 	return json.Marshal(toSerialize)
 }

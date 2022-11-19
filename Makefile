@@ -15,7 +15,9 @@ GIT_REPO=metal-go
 PACKAGE_PREFIX=metal
 PACKAGE_MAJOR=v1
 
-SWAGGER=docker run --rm -u ${CURRENT_UID}:${CURRENT_GID} -v $(CURDIR):/local ${IMAGE}
+# Pull in custom-built generator jar so we can use unmerged bugfixes
+# Custom generator is built from https://github.com/ctreatma/openapi-generator/tree/local-generator-testing
+SWAGGER=docker run --rm -u ${CURRENT_UID}:${CURRENT_GID} -v $(CURDIR):/local -v $(CURDIR)/lib/openapi-generator-cli.jar:/opt/openapi-generator/modules/openapi-generator-cli/target/openapi-generator-cli.jar ${IMAGE}
 GOLANGCI_LINT=golangci-lint
 
 all: pull fetch patch clean gen mod docs move-other patch-post fmt test stage
@@ -52,12 +54,15 @@ clean:
 gen:
 	${SWAGGER} generate -g go \
 		--package-name ${PACKAGE_MAJOR} \
+		-p isGoSubmodule=true \
 		--model-package types \
 		--api-package models \
 		--git-user-id ${GIT_ORG} \
-		--git-repo-id ${GIT_REPO} \
+		--git-repo-id ${GIT_REPO}/${PACKAGE_PREFIX} \
 		-o /local/${PACKAGE_PREFIX}/${PACKAGE_MAJOR} \
 		-i /local/${SPEC_PATCHED_FILE}
+    # generated code is missing some types; hack 'em in
+	cat missing_types.go.part >> metal/v1/utils.go
 
 validate:
 	${SWAGGER} validate \

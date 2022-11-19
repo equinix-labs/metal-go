@@ -4,21 +4,22 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Tags** | Pointer to **[]string** |  | [optional] 
 **ContactEmail** | Pointer to **string** |  | [optional] 
 **Description** | Pointer to **string** |  | [optional] 
 **Facility** | Pointer to [**FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
 **Metro** | Pointer to [**GetInterconnection200ResponseMetro**](GetInterconnection200ResponseMetro.md) |  | [optional] 
-**Mode** | Pointer to **string** | The mode of the connection (only relevant to dedicated connections). Shared connections won&#39;t have this field. Can be either &#39;standard&#39; or &#39;tunnel&#39;.   The default mode of a dedicated connection is &#39;standard&#39;. The mode can only be changed when there are no associated virtual circuits on the connection.   In tunnel mode, an 802.1q tunnel is added to a port to send/receive double tagged packets from server instances. | [optional] 
+**Mode** | Pointer to **string** | The mode of the interconnection (only relevant to Dedicated Ports). Shared connections won&#39;t have this field. Can be either &#39;standard&#39; or &#39;tunnel&#39;.   The default mode of an interconnection on a Dedicated Port is &#39;standard&#39;. The mode can only be changed when there are no associated virtual circuits on the interconnection.   In tunnel mode, an 802.1q tunnel is added to a port to send/receive double tagged packets from server instances. | [optional] 
 **Name** | Pointer to **string** |  | [optional] 
 **Organization** | Pointer to [**FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
-**Ports** | Pointer to [**[]GetInterconnection200ResponsePortsInner**](GetInterconnection200ResponsePortsInner.md) |  | [optional] 
-**Redundancy** | Pointer to **string** |  | [optional] 
-**ServiceTokens** | Pointer to [**[]GetInterconnection200ResponseServiceTokensInner**](GetInterconnection200ResponseServiceTokensInner.md) |  | [optional] 
-**Speed** | Pointer to **int32** | The connection&#39;s speed in bps. | [optional] 
+**Ports** | Pointer to [**[]GetInterconnection200ResponsePortsInner**](GetInterconnection200ResponsePortsInner.md) | For Fabric VCs, these represent Virtual Port(s) created for the interconnection. For dedicated interconnections, these represent the Dedicated Port(s). | [optional] 
+**Redundancy** | Pointer to **string** | Either &#39;primary&#39;, meaning a single interconnection, or &#39;redundant&#39;, meaning a redundant interconnection. | [optional] 
+**ServiceTokens** | Pointer to [**[]GetInterconnection200ResponseServiceTokensInner**](GetInterconnection200ResponseServiceTokensInner.md) | For Fabric VCs (Metal Billed), this will show details of the A-Side service tokens issued for the interconnection. For Fabric VCs (Fabric Billed), this will show the details of the Z-Side service tokens issued for the interconnection. Dedicated interconnections will not have any service tokens issued. There will be one per interconnection, so for redundant interconnections, there should be two service tokens issued. | [optional] 
+**Speed** | Pointer to **int32** | For interconnections on Dedicated Ports and shared connections, this represents the interconnection&#39;s speed in bps. For Fabric VCs, this field refers to the maximum speed of the interconnection in bps. This value will default to 10Gbps for Fabric VCs (Fabric Billed). | [optional] 
 **Status** | Pointer to **string** |  | [optional] 
-**Type** | Pointer to **string** |  | [optional] 
+**Tags** | Pointer to **[]string** |  | [optional] 
+**Token** | Pointer to **string** | This token is used for shared interconnections to be used as the Fabric Token. This field is entirely deprecated. | [optional] 
+**Type** | Pointer to **string** | The &#39;shared&#39; type of interconnection refers to shared connections, or later also known as Fabric Virtual Connections (or Fabric VCs). The &#39;dedicated&#39; type of interconnection refers to interconnections created with Dedicated Ports. | [optional] 
 
 ## Methods
 
@@ -38,31 +39,6 @@ will change when the set of required properties is changed
 NewGetInterconnection200ResponseWithDefaults instantiates a new GetInterconnection200Response object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetTags
-
-`func (o *GetInterconnection200Response) GetTags() []string`
-
-GetTags returns the Tags field if non-nil, zero value otherwise.
-
-### GetTagsOk
-
-`func (o *GetInterconnection200Response) GetTagsOk() (*[]string, bool)`
-
-GetTagsOk returns a tuple with the Tags field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTags
-
-`func (o *GetInterconnection200Response) SetTags(v []string)`
-
-SetTags sets Tags field to given value.
-
-### HasTags
-
-`func (o *GetInterconnection200Response) HasTags() bool`
-
-HasTags returns a boolean if a field has been set.
 
 ### GetContactEmail
 
@@ -388,6 +364,56 @@ SetStatus sets Status field to given value.
 `func (o *GetInterconnection200Response) HasStatus() bool`
 
 HasStatus returns a boolean if a field has been set.
+
+### GetTags
+
+`func (o *GetInterconnection200Response) GetTags() []string`
+
+GetTags returns the Tags field if non-nil, zero value otherwise.
+
+### GetTagsOk
+
+`func (o *GetInterconnection200Response) GetTagsOk() (*[]string, bool)`
+
+GetTagsOk returns a tuple with the Tags field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTags
+
+`func (o *GetInterconnection200Response) SetTags(v []string)`
+
+SetTags sets Tags field to given value.
+
+### HasTags
+
+`func (o *GetInterconnection200Response) HasTags() bool`
+
+HasTags returns a boolean if a field has been set.
+
+### GetToken
+
+`func (o *GetInterconnection200Response) GetToken() string`
+
+GetToken returns the Token field if non-nil, zero value otherwise.
+
+### GetTokenOk
+
+`func (o *GetInterconnection200Response) GetTokenOk() (*string, bool)`
+
+GetTokenOk returns a tuple with the Token field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetToken
+
+`func (o *GetInterconnection200Response) SetToken(v string)`
+
+SetToken sets Token field to given value.
+
+### HasToken
+
+`func (o *GetInterconnection200Response) HasToken() bool`
+
+HasToken returns a boolean if a field has been set.
 
 ### GetType
 

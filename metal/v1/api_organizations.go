@@ -1,7 +1,7 @@
 /*
 Metal API
 
-This is the API for Equinix Metal. The API allows you to programmatically interact with all of your Equinix Metal resources, including devices, networks, addresses, organizations, projects, and your user account.  The official API docs are hosted at <https://metal.equinix.com/developers/api>.
+# Introduction Equinix Metal provides a RESTful HTTP API which can be reached at <https://api.equinix.com/metal/v1>. This document describes the API and how to use it.  The API allows you to programmatically interact with all of your Equinix Metal resources, including devices, networks, addresses, organizations, projects, and your user account. Every feature of the Equinix Metal web interface is accessible through the API.  The API docs are generated from the Equinix Metal OpenAPI specification and are officially hosted at <https://metal.equinix.com/developers/api>.  # Common Parameters  The Equinix Metal API uses a few methods to minimize network traffic and improve throughput. These parameters are not used in all API calls, but are used often enough to warrant their own section. Look for these parameters in the documentation for the API calls that support them.  ## Pagination  Pagination is used to limit the number of results returned in a single request. The API will return a maximum of 100 results per page. To retrieve additional results, you can use the `page` and `per_page` query parameters.  The `page` parameter is used to specify the page number. The first page is `1`. The `per_page` parameter is used to specify the number of results per page. The maximum number of results differs by resource type.  ## Sorting  Where offered, the API allows you to sort results by a specific field. To sort results use the `sort_by` query parameter with the root level field name as the value. The `sort_direction` parameter is used to specify the sort direction, either either `asc` (ascending) or `desc` (descending).  ## Filtering  Filtering is used to limit the results returned in a single request. The API supports filtering by certain fields in the response. To filter results, you can use the field as a query parameter.  For example, to filter the IP list to only return public IPv4 addresses, you can filter by the `type` field, as in the following request:  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/projects/id/ips?type=public_ipv4 ```  Only IP addresses with the `type` field set to `public_ipv4` will be returned.  ## Searching  Searching is used to find matching resources using multiple field comparissons. The API supports searching in resources that define this behavior. The fields available for search differ by resource, as does the search strategy.  To search resources you can use the `search` query parameter.  ## Include and Exclude  For resources that contain references to other resources, sucha as a Device that refers to the Project it resides in, the Equinix Metal API will returns `href` values (API links) to the associated resource.  ```json {   ...   \"project\": {     \"href\": \"/metal/v1/projects/f3f131c8-f302-49ef-8c44-9405022dc6dd\"   } } ```  If you're going need the project details, you can avoid a second API request.  Specify the contained `href` resources and collections that you'd like to have included in the response using the `include` query parameter.  For example:    ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=projects ```  The `include` parameter is generally accepted in `GET`, `POST`, `PUT`, and `PATCH` requests where `href` resources are presented.  To have multiple resources include, use a comma-separated list (e.g. `?include=emails,projects,memberships`).  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=emails,projects,memberships ```  You may also include nested associations up to three levels deep using dot notation (`?include=memberships.projects`):  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=memberships.projects ```  To exclude resources, and optimize response delivery, use the `exclude` query parameter. The `exclude` parameter is generally accepted in `GET`, `POST`, `PUT`, and `PATCH` requests for fields with nested object responses. When excluded, these fields will be replaced with an object that contains only an `href` field.
 
 API version: 1.0.0
 Contact: support@equinixmetal.com
@@ -24,14 +24,14 @@ import (
 type OrganizationsApiService service
 
 type ApiCreateOrganizationRequest struct {
-	ctx        context.Context
-	ApiService *OrganizationsApiService
-	body       *CreateOrganizationRequest
+	ctx                       context.Context
+	ApiService                *OrganizationsApiService
+	createOrganizationRequest *CreateOrganizationRequest
 }
 
 // Organization to create
-func (r ApiCreateOrganizationRequest) Body(body CreateOrganizationRequest) ApiCreateOrganizationRequest {
-	r.body = &body
+func (r ApiCreateOrganizationRequest) CreateOrganizationRequest(createOrganizationRequest CreateOrganizationRequest) ApiCreateOrganizationRequest {
+	r.createOrganizationRequest = &createOrganizationRequest
 	return r
 }
 
@@ -74,8 +74,8 @@ func (a *OrganizationsApiService) CreateOrganizationExecute(r ApiCreateOrganizat
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
+	if r.createOrganizationRequest == nil {
+		return localVarReturnValue, nil, reportError("createOrganizationRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -96,7 +96,7 @@ func (a *OrganizationsApiService) CreateOrganizationExecute(r ApiCreateOrganizat
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.body
+	localVarPostBody = r.createOrganizationRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -140,6 +140,7 @@ func (a *OrganizationsApiService) CreateOrganizationExecute(r ApiCreateOrganizat
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -150,6 +151,7 @@ func (a *OrganizationsApiService) CreateOrganizationExecute(r ApiCreateOrganizat
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -160,6 +162,7 @@ func (a *OrganizationsApiService) CreateOrganizationExecute(r ApiCreateOrganizat
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -178,15 +181,15 @@ func (a *OrganizationsApiService) CreateOrganizationExecute(r ApiCreateOrganizat
 }
 
 type ApiCreateOrganizationInvitationRequest struct {
-	ctx        context.Context
-	ApiService *OrganizationsApiService
-	id         string
-	body       *CreateOrganizationInvitationRequest
+	ctx                                 context.Context
+	ApiService                          *OrganizationsApiService
+	id                                  string
+	createOrganizationInvitationRequest *CreateOrganizationInvitationRequest
 }
 
 // Invitation to create
-func (r ApiCreateOrganizationInvitationRequest) Body(body CreateOrganizationInvitationRequest) ApiCreateOrganizationInvitationRequest {
-	r.body = &body
+func (r ApiCreateOrganizationInvitationRequest) CreateOrganizationInvitationRequest(createOrganizationInvitationRequest CreateOrganizationInvitationRequest) ApiCreateOrganizationInvitationRequest {
+	r.createOrganizationInvitationRequest = &createOrganizationInvitationRequest
 	return r
 }
 
@@ -233,8 +236,8 @@ func (a *OrganizationsApiService) CreateOrganizationInvitationExecute(r ApiCreat
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
+	if r.createOrganizationInvitationRequest == nil {
+		return localVarReturnValue, nil, reportError("createOrganizationInvitationRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -255,7 +258,7 @@ func (a *OrganizationsApiService) CreateOrganizationInvitationExecute(r ApiCreat
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.body
+	localVarPostBody = r.createOrganizationInvitationRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -299,6 +302,7 @@ func (a *OrganizationsApiService) CreateOrganizationInvitationExecute(r ApiCreat
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -309,6 +313,7 @@ func (a *OrganizationsApiService) CreateOrganizationInvitationExecute(r ApiCreat
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -319,6 +324,7 @@ func (a *OrganizationsApiService) CreateOrganizationInvitationExecute(r ApiCreat
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -329,6 +335,7 @@ func (a *OrganizationsApiService) CreateOrganizationInvitationExecute(r ApiCreat
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -347,19 +354,19 @@ func (a *OrganizationsApiService) CreateOrganizationInvitationExecute(r ApiCreat
 }
 
 type ApiCreateOrganizationProjectRequest struct {
-	ctx        context.Context
-	ApiService *OrganizationsApiService
-	id         string
-	body       *CreateOrganizationProjectRequest
+	ctx                              context.Context
+	ApiService                       *OrganizationsApiService
+	id                               string
+	createOrganizationProjectRequest *CreateOrganizationProjectRequest
 }
 
 // Project to create
-func (r ApiCreateOrganizationProjectRequest) Body(body CreateOrganizationProjectRequest) ApiCreateOrganizationProjectRequest {
-	r.body = &body
+func (r ApiCreateOrganizationProjectRequest) CreateOrganizationProjectRequest(createOrganizationProjectRequest CreateOrganizationProjectRequest) ApiCreateOrganizationProjectRequest {
+	r.createOrganizationProjectRequest = &createOrganizationProjectRequest
 	return r
 }
 
-func (r ApiCreateOrganizationProjectRequest) Execute() (*MoveHardwareReservation201ResponseProject, *http.Response, error) {
+func (r ApiCreateOrganizationProjectRequest) Execute() (*GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject, *http.Response, error) {
 	return r.ApiService.CreateOrganizationProjectExecute(r)
 }
 
@@ -381,13 +388,13 @@ func (a *OrganizationsApiService) CreateOrganizationProject(ctx context.Context,
 }
 
 // Execute executes the request
-//  @return MoveHardwareReservation201ResponseProject
-func (a *OrganizationsApiService) CreateOrganizationProjectExecute(r ApiCreateOrganizationProjectRequest) (*MoveHardwareReservation201ResponseProject, *http.Response, error) {
+//  @return GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject
+func (a *OrganizationsApiService) CreateOrganizationProjectExecute(r ApiCreateOrganizationProjectRequest) (*GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *MoveHardwareReservation201ResponseProject
+		localVarReturnValue *GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrganizationsApiService.CreateOrganizationProject")
@@ -401,8 +408,8 @@ func (a *OrganizationsApiService) CreateOrganizationProjectExecute(r ApiCreateOr
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
+	if r.createOrganizationProjectRequest == nil {
+		return localVarReturnValue, nil, reportError("createOrganizationProjectRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -423,7 +430,7 @@ func (a *OrganizationsApiService) CreateOrganizationProjectExecute(r ApiCreateOr
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.body
+	localVarPostBody = r.createOrganizationProjectRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -467,6 +474,7 @@ func (a *OrganizationsApiService) CreateOrganizationProjectExecute(r ApiCreateOr
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -477,6 +485,7 @@ func (a *OrganizationsApiService) CreateOrganizationProjectExecute(r ApiCreateOr
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -495,15 +504,15 @@ func (a *OrganizationsApiService) CreateOrganizationProjectExecute(r ApiCreateOr
 }
 
 type ApiCreatePaymentMethodRequest struct {
-	ctx        context.Context
-	ApiService *OrganizationsApiService
-	id         string
-	body       *CreatePaymentMethodRequest
+	ctx                        context.Context
+	ApiService                 *OrganizationsApiService
+	id                         string
+	createPaymentMethodRequest *CreatePaymentMethodRequest
 }
 
 // Payment Method to create
-func (r ApiCreatePaymentMethodRequest) Body(body CreatePaymentMethodRequest) ApiCreatePaymentMethodRequest {
-	r.body = &body
+func (r ApiCreatePaymentMethodRequest) CreatePaymentMethodRequest(createPaymentMethodRequest CreatePaymentMethodRequest) ApiCreatePaymentMethodRequest {
+	r.createPaymentMethodRequest = &createPaymentMethodRequest
 	return r
 }
 
@@ -549,8 +558,8 @@ func (a *OrganizationsApiService) CreatePaymentMethodExecute(r ApiCreatePaymentM
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
+	if r.createPaymentMethodRequest == nil {
+		return localVarReturnValue, nil, reportError("createPaymentMethodRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -571,7 +580,7 @@ func (a *OrganizationsApiService) CreatePaymentMethodExecute(r ApiCreatePaymentM
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.body
+	localVarPostBody = r.createPaymentMethodRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -615,6 +624,7 @@ func (a *OrganizationsApiService) CreatePaymentMethodExecute(r ApiCreatePaymentM
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -625,6 +635,7 @@ func (a *OrganizationsApiService) CreatePaymentMethodExecute(r ApiCreatePaymentM
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -635,6 +646,7 @@ func (a *OrganizationsApiService) CreatePaymentMethodExecute(r ApiCreatePaymentM
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -759,6 +771,7 @@ func (a *OrganizationsApiService) DeleteOrganizationExecute(r ApiDeleteOrganizat
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
@@ -769,6 +782,7 @@ func (a *OrganizationsApiService) DeleteOrganizationExecute(r ApiDeleteOrganizat
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
@@ -906,6 +920,7 @@ func (a *OrganizationsApiService) FindOperatingSystemsByOrganizationExecute(r Ap
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -916,6 +931,7 @@ func (a *OrganizationsApiService) FindOperatingSystemsByOrganizationExecute(r Ap
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -926,6 +942,7 @@ func (a *OrganizationsApiService) FindOperatingSystemsByOrganizationExecute(r Ap
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -1072,6 +1089,7 @@ func (a *OrganizationsApiService) FindOrganizationByIdExecute(r ApiFindOrganizat
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -1082,6 +1100,7 @@ func (a *OrganizationsApiService) FindOrganizationByIdExecute(r ApiFindOrganizat
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -1092,6 +1111,7 @@ func (a *OrganizationsApiService) FindOrganizationByIdExecute(r ApiFindOrganizat
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -1216,6 +1236,7 @@ func (a *OrganizationsApiService) FindOrganizationCustomdataExecute(r ApiFindOrg
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
@@ -1226,6 +1247,7 @@ func (a *OrganizationsApiService) FindOrganizationCustomdataExecute(r ApiFindOrg
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
@@ -1236,6 +1258,7 @@ func (a *OrganizationsApiService) FindOrganizationCustomdataExecute(r ApiFindOrg
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
@@ -1393,6 +1416,7 @@ func (a *OrganizationsApiService) FindOrganizationInvitationsExecute(r ApiFindOr
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -1403,6 +1427,7 @@ func (a *OrganizationsApiService) FindOrganizationInvitationsExecute(r ApiFindOr
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -1413,6 +1438,7 @@ func (a *OrganizationsApiService) FindOrganizationInvitationsExecute(r ApiFindOr
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -1579,6 +1605,7 @@ func (a *OrganizationsApiService) FindOrganizationPaymentMethodsExecute(r ApiFin
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -1589,6 +1616,7 @@ func (a *OrganizationsApiService) FindOrganizationPaymentMethodsExecute(r ApiFin
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -1755,6 +1783,7 @@ func (a *OrganizationsApiService) FindOrganizationProjectsExecute(r ApiFindOrgan
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -1901,6 +1930,7 @@ func (a *OrganizationsApiService) FindOrganizationTransfersExecute(r ApiFindOrga
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -1911,6 +1941,7 @@ func (a *OrganizationsApiService) FindOrganizationTransfersExecute(r ApiFindOrga
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -2093,6 +2124,7 @@ func (a *OrganizationsApiService) FindOrganizationsExecute(r ApiFindOrganization
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -2239,6 +2271,7 @@ func (a *OrganizationsApiService) FindPlansByOrganizationExecute(r ApiFindPlansB
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -2249,6 +2282,7 @@ func (a *OrganizationsApiService) FindPlansByOrganizationExecute(r ApiFindPlansB
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -2259,6 +2293,7 @@ func (a *OrganizationsApiService) FindPlansByOrganizationExecute(r ApiFindPlansB
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -2277,15 +2312,15 @@ func (a *OrganizationsApiService) FindPlansByOrganizationExecute(r ApiFindPlansB
 }
 
 type ApiUpdateOrganizationRequest struct {
-	ctx        context.Context
-	ApiService *OrganizationsApiService
-	id         string
-	body       *CreateOrganizationRequest
+	ctx                       context.Context
+	ApiService                *OrganizationsApiService
+	id                        string
+	createOrganizationRequest *CreateOrganizationRequest
 }
 
 // Organization to update
-func (r ApiUpdateOrganizationRequest) Body(body CreateOrganizationRequest) ApiUpdateOrganizationRequest {
-	r.body = &body
+func (r ApiUpdateOrganizationRequest) CreateOrganizationRequest(createOrganizationRequest CreateOrganizationRequest) ApiUpdateOrganizationRequest {
+	r.createOrganizationRequest = &createOrganizationRequest
 	return r
 }
 
@@ -2331,8 +2366,8 @@ func (a *OrganizationsApiService) UpdateOrganizationExecute(r ApiUpdateOrganizat
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
+	if r.createOrganizationRequest == nil {
+		return localVarReturnValue, nil, reportError("createOrganizationRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -2353,7 +2388,7 @@ func (a *OrganizationsApiService) UpdateOrganizationExecute(r ApiUpdateOrganizat
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.body
+	localVarPostBody = r.createOrganizationRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -2397,6 +2432,7 @@ func (a *OrganizationsApiService) UpdateOrganizationExecute(r ApiUpdateOrganizat
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -2407,6 +2443,7 @@ func (a *OrganizationsApiService) UpdateOrganizationExecute(r ApiUpdateOrganizat
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -2417,6 +2454,7 @@ func (a *OrganizationsApiService) UpdateOrganizationExecute(r ApiUpdateOrganizat
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -2427,6 +2465,7 @@ func (a *OrganizationsApiService) UpdateOrganizationExecute(r ApiUpdateOrganizat
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr

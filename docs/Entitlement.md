@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **InstanceQuota** | Pointer to **map[string]interface{}** |  | [optional] 
 **IpQuota** | Pointer to **map[string]interface{}** |  | [optional] 
 **Name** | Pointer to **string** |  | [optional] 
-**ProjectQuota** | Pointer to **int32** |  | [optional] 
+**ProjectQuota** | Pointer to **int32** |  | [optional] [default to 0]
 **Slug** | **string** |  | 
 **VolumeLimits** | Pointer to **map[string]interface{}** |  | [optional] 
 **VolumeQuota** | Pointer to **map[string]interface{}** |  | [optional] 

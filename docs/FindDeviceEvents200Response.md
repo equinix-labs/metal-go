@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Events** | Pointer to [**[]FindConnectionEvents200Response**](FindConnectionEvents200Response.md) |  | [optional] 
+**Events** | Pointer to [**[]FindInterconnectionEvents200Response**](FindInterconnectionEvents200Response.md) |  | [optional] 
 **Meta** | Pointer to [**FindDeviceEvents200ResponseMeta**](FindDeviceEvents200ResponseMeta.md) |  | [optional] 
 
 ## Methods
@@ -28,20 +28,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetEvents
 
-`func (o *FindDeviceEvents200Response) GetEvents() []FindConnectionEvents200Response`
+`func (o *FindDeviceEvents200Response) GetEvents() []FindInterconnectionEvents200Response`
 
 GetEvents returns the Events field if non-nil, zero value otherwise.
 
 ### GetEventsOk
 
-`func (o *FindDeviceEvents200Response) GetEventsOk() (*[]FindConnectionEvents200Response, bool)`
+`func (o *FindDeviceEvents200Response) GetEventsOk() (*[]FindInterconnectionEvents200Response, bool)`
 
 GetEventsOk returns a tuple with the Events field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetEvents
 
-`func (o *FindDeviceEvents200Response) SetEvents(v []FindConnectionEvents200Response)`
+`func (o *FindDeviceEvents200Response) SetEvents(v []FindInterconnectionEvents200Response)`
 
 SetEvents sets Events field to given value.
 

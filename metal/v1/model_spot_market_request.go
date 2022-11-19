@@ -1,7 +1,7 @@
 /*
 Metal API
 
-This is the API for Equinix Metal. The API allows you to programmatically interact with all of your Equinix Metal resources, including devices, networks, addresses, organizations, projects, and your user account.  The official API docs are hosted at <https://metal.equinix.com/developers/api>.
+# Introduction Equinix Metal provides a RESTful HTTP API which can be reached at <https://api.equinix.com/metal/v1>. This document describes the API and how to use it.  The API allows you to programmatically interact with all of your Equinix Metal resources, including devices, networks, addresses, organizations, projects, and your user account. Every feature of the Equinix Metal web interface is accessible through the API.  The API docs are generated from the Equinix Metal OpenAPI specification and are officially hosted at <https://metal.equinix.com/developers/api>.  # Common Parameters  The Equinix Metal API uses a few methods to minimize network traffic and improve throughput. These parameters are not used in all API calls, but are used often enough to warrant their own section. Look for these parameters in the documentation for the API calls that support them.  ## Pagination  Pagination is used to limit the number of results returned in a single request. The API will return a maximum of 100 results per page. To retrieve additional results, you can use the `page` and `per_page` query parameters.  The `page` parameter is used to specify the page number. The first page is `1`. The `per_page` parameter is used to specify the number of results per page. The maximum number of results differs by resource type.  ## Sorting  Where offered, the API allows you to sort results by a specific field. To sort results use the `sort_by` query parameter with the root level field name as the value. The `sort_direction` parameter is used to specify the sort direction, either either `asc` (ascending) or `desc` (descending).  ## Filtering  Filtering is used to limit the results returned in a single request. The API supports filtering by certain fields in the response. To filter results, you can use the field as a query parameter.  For example, to filter the IP list to only return public IPv4 addresses, you can filter by the `type` field, as in the following request:  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/projects/id/ips?type=public_ipv4 ```  Only IP addresses with the `type` field set to `public_ipv4` will be returned.  ## Searching  Searching is used to find matching resources using multiple field comparissons. The API supports searching in resources that define this behavior. The fields available for search differ by resource, as does the search strategy.  To search resources you can use the `search` query parameter.  ## Include and Exclude  For resources that contain references to other resources, sucha as a Device that refers to the Project it resides in, the Equinix Metal API will returns `href` values (API links) to the associated resource.  ```json {   ...   \"project\": {     \"href\": \"/metal/v1/projects/f3f131c8-f302-49ef-8c44-9405022dc6dd\"   } } ```  If you're going need the project details, you can avoid a second API request.  Specify the contained `href` resources and collections that you'd like to have included in the response using the `include` query parameter.  For example:    ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=projects ```  The `include` parameter is generally accepted in `GET`, `POST`, `PUT`, and `PATCH` requests where `href` resources are presented.  To have multiple resources include, use a comma-separated list (e.g. `?include=emails,projects,memberships`).  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=emails,projects,memberships ```  You may also include nested associations up to three levels deep using dot notation (`?include=memberships.projects`):  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=memberships.projects ```  To exclude resources, and optimize response delivery, use the `exclude` query parameter. The `exclude` parameter is generally accepted in `GET`, `POST`, `PUT`, and `PATCH` requests for fields with nested object responses. When excluded, these fields will be replaced with an object that contains only an `href` field.
 
 API version: 1.0.0
 Contact: support@equinixmetal.com
@@ -50,7 +50,7 @@ func NewSpotMarketRequestWithDefaults() *SpotMarketRequest {
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *SpotMarketRequest) GetCreatedAt() time.Time {
-	if o == nil || o.CreatedAt == nil {
+	if o == nil || isNil(o.CreatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -60,7 +60,7 @@ func (o *SpotMarketRequest) GetCreatedAt() time.Time {
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SpotMarketRequest) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || o.CreatedAt == nil {
+	if o == nil || isNil(o.CreatedAt) {
 		return nil, false
 	}
 	return o.CreatedAt, true
@@ -68,7 +68,7 @@ func (o *SpotMarketRequest) GetCreatedAtOk() (*time.Time, bool) {
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *SpotMarketRequest) HasCreatedAt() bool {
-	if o != nil && o.CreatedAt != nil {
+	if o != nil && !isNil(o.CreatedAt) {
 		return true
 	}
 
@@ -82,7 +82,7 @@ func (o *SpotMarketRequest) SetCreatedAt(v time.Time) {
 
 // GetDevicesMax returns the DevicesMax field value if set, zero value otherwise.
 func (o *SpotMarketRequest) GetDevicesMax() int32 {
-	if o == nil || o.DevicesMax == nil {
+	if o == nil || isNil(o.DevicesMax) {
 		var ret int32
 		return ret
 	}
@@ -92,7 +92,7 @@ func (o *SpotMarketRequest) GetDevicesMax() int32 {
 // GetDevicesMaxOk returns a tuple with the DevicesMax field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SpotMarketRequest) GetDevicesMaxOk() (*int32, bool) {
-	if o == nil || o.DevicesMax == nil {
+	if o == nil || isNil(o.DevicesMax) {
 		return nil, false
 	}
 	return o.DevicesMax, true
@@ -100,7 +100,7 @@ func (o *SpotMarketRequest) GetDevicesMaxOk() (*int32, bool) {
 
 // HasDevicesMax returns a boolean if a field has been set.
 func (o *SpotMarketRequest) HasDevicesMax() bool {
-	if o != nil && o.DevicesMax != nil {
+	if o != nil && !isNil(o.DevicesMax) {
 		return true
 	}
 
@@ -114,7 +114,7 @@ func (o *SpotMarketRequest) SetDevicesMax(v int32) {
 
 // GetDevicesMin returns the DevicesMin field value if set, zero value otherwise.
 func (o *SpotMarketRequest) GetDevicesMin() int32 {
-	if o == nil || o.DevicesMin == nil {
+	if o == nil || isNil(o.DevicesMin) {
 		var ret int32
 		return ret
 	}
@@ -124,7 +124,7 @@ func (o *SpotMarketRequest) GetDevicesMin() int32 {
 // GetDevicesMinOk returns a tuple with the DevicesMin field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SpotMarketRequest) GetDevicesMinOk() (*int32, bool) {
-	if o == nil || o.DevicesMin == nil {
+	if o == nil || isNil(o.DevicesMin) {
 		return nil, false
 	}
 	return o.DevicesMin, true
@@ -132,7 +132,7 @@ func (o *SpotMarketRequest) GetDevicesMinOk() (*int32, bool) {
 
 // HasDevicesMin returns a boolean if a field has been set.
 func (o *SpotMarketRequest) HasDevicesMin() bool {
-	if o != nil && o.DevicesMin != nil {
+	if o != nil && !isNil(o.DevicesMin) {
 		return true
 	}
 
@@ -146,7 +146,7 @@ func (o *SpotMarketRequest) SetDevicesMin(v int32) {
 
 // GetEndAt returns the EndAt field value if set, zero value otherwise.
 func (o *SpotMarketRequest) GetEndAt() time.Time {
-	if o == nil || o.EndAt == nil {
+	if o == nil || isNil(o.EndAt) {
 		var ret time.Time
 		return ret
 	}
@@ -156,7 +156,7 @@ func (o *SpotMarketRequest) GetEndAt() time.Time {
 // GetEndAtOk returns a tuple with the EndAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SpotMarketRequest) GetEndAtOk() (*time.Time, bool) {
-	if o == nil || o.EndAt == nil {
+	if o == nil || isNil(o.EndAt) {
 		return nil, false
 	}
 	return o.EndAt, true
@@ -164,7 +164,7 @@ func (o *SpotMarketRequest) GetEndAtOk() (*time.Time, bool) {
 
 // HasEndAt returns a boolean if a field has been set.
 func (o *SpotMarketRequest) HasEndAt() bool {
-	if o != nil && o.EndAt != nil {
+	if o != nil && !isNil(o.EndAt) {
 		return true
 	}
 
@@ -178,7 +178,7 @@ func (o *SpotMarketRequest) SetEndAt(v time.Time) {
 
 // GetFacilities returns the Facilities field value if set, zero value otherwise.
 func (o *SpotMarketRequest) GetFacilities() FindBatchById200ResponseDevicesInner {
-	if o == nil || o.Facilities == nil {
+	if o == nil || isNil(o.Facilities) {
 		var ret FindBatchById200ResponseDevicesInner
 		return ret
 	}
@@ -188,7 +188,7 @@ func (o *SpotMarketRequest) GetFacilities() FindBatchById200ResponseDevicesInner
 // GetFacilitiesOk returns a tuple with the Facilities field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SpotMarketRequest) GetFacilitiesOk() (*FindBatchById200ResponseDevicesInner, bool) {
-	if o == nil || o.Facilities == nil {
+	if o == nil || isNil(o.Facilities) {
 		return nil, false
 	}
 	return o.Facilities, true
@@ -196,7 +196,7 @@ func (o *SpotMarketRequest) GetFacilitiesOk() (*FindBatchById200ResponseDevicesI
 
 // HasFacilities returns a boolean if a field has been set.
 func (o *SpotMarketRequest) HasFacilities() bool {
-	if o != nil && o.Facilities != nil {
+	if o != nil && !isNil(o.Facilities) {
 		return true
 	}
 
@@ -210,7 +210,7 @@ func (o *SpotMarketRequest) SetFacilities(v FindBatchById200ResponseDevicesInner
 
 // GetHref returns the Href field value if set, zero value otherwise.
 func (o *SpotMarketRequest) GetHref() string {
-	if o == nil || o.Href == nil {
+	if o == nil || isNil(o.Href) {
 		var ret string
 		return ret
 	}
@@ -220,7 +220,7 @@ func (o *SpotMarketRequest) GetHref() string {
 // GetHrefOk returns a tuple with the Href field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SpotMarketRequest) GetHrefOk() (*string, bool) {
-	if o == nil || o.Href == nil {
+	if o == nil || isNil(o.Href) {
 		return nil, false
 	}
 	return o.Href, true
@@ -228,7 +228,7 @@ func (o *SpotMarketRequest) GetHrefOk() (*string, bool) {
 
 // HasHref returns a boolean if a field has been set.
 func (o *SpotMarketRequest) HasHref() bool {
-	if o != nil && o.Href != nil {
+	if o != nil && !isNil(o.Href) {
 		return true
 	}
 
@@ -242,7 +242,7 @@ func (o *SpotMarketRequest) SetHref(v string) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *SpotMarketRequest) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || isNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -252,7 +252,7 @@ func (o *SpotMarketRequest) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SpotMarketRequest) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || isNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -260,7 +260,7 @@ func (o *SpotMarketRequest) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *SpotMarketRequest) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !isNil(o.Id) {
 		return true
 	}
 
@@ -274,7 +274,7 @@ func (o *SpotMarketRequest) SetId(v string) {
 
 // GetInstances returns the Instances field value if set, zero value otherwise.
 func (o *SpotMarketRequest) GetInstances() FindBatchById200ResponseDevicesInner {
-	if o == nil || o.Instances == nil {
+	if o == nil || isNil(o.Instances) {
 		var ret FindBatchById200ResponseDevicesInner
 		return ret
 	}
@@ -284,7 +284,7 @@ func (o *SpotMarketRequest) GetInstances() FindBatchById200ResponseDevicesInner 
 // GetInstancesOk returns a tuple with the Instances field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SpotMarketRequest) GetInstancesOk() (*FindBatchById200ResponseDevicesInner, bool) {
-	if o == nil || o.Instances == nil {
+	if o == nil || isNil(o.Instances) {
 		return nil, false
 	}
 	return o.Instances, true
@@ -292,7 +292,7 @@ func (o *SpotMarketRequest) GetInstancesOk() (*FindBatchById200ResponseDevicesIn
 
 // HasInstances returns a boolean if a field has been set.
 func (o *SpotMarketRequest) HasInstances() bool {
-	if o != nil && o.Instances != nil {
+	if o != nil && !isNil(o.Instances) {
 		return true
 	}
 
@@ -306,7 +306,7 @@ func (o *SpotMarketRequest) SetInstances(v FindBatchById200ResponseDevicesInner)
 
 // GetMaxBidPrice returns the MaxBidPrice field value if set, zero value otherwise.
 func (o *SpotMarketRequest) GetMaxBidPrice() float32 {
-	if o == nil || o.MaxBidPrice == nil {
+	if o == nil || isNil(o.MaxBidPrice) {
 		var ret float32
 		return ret
 	}
@@ -316,7 +316,7 @@ func (o *SpotMarketRequest) GetMaxBidPrice() float32 {
 // GetMaxBidPriceOk returns a tuple with the MaxBidPrice field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SpotMarketRequest) GetMaxBidPriceOk() (*float32, bool) {
-	if o == nil || o.MaxBidPrice == nil {
+	if o == nil || isNil(o.MaxBidPrice) {
 		return nil, false
 	}
 	return o.MaxBidPrice, true
@@ -324,7 +324,7 @@ func (o *SpotMarketRequest) GetMaxBidPriceOk() (*float32, bool) {
 
 // HasMaxBidPrice returns a boolean if a field has been set.
 func (o *SpotMarketRequest) HasMaxBidPrice() bool {
-	if o != nil && o.MaxBidPrice != nil {
+	if o != nil && !isNil(o.MaxBidPrice) {
 		return true
 	}
 
@@ -338,7 +338,7 @@ func (o *SpotMarketRequest) SetMaxBidPrice(v float32) {
 
 // GetMetro returns the Metro field value if set, zero value otherwise.
 func (o *SpotMarketRequest) GetMetro() ListSpotMarketRequests200ResponseSpotMarketRequestsInnerMetro {
-	if o == nil || o.Metro == nil {
+	if o == nil || isNil(o.Metro) {
 		var ret ListSpotMarketRequests200ResponseSpotMarketRequestsInnerMetro
 		return ret
 	}
@@ -348,7 +348,7 @@ func (o *SpotMarketRequest) GetMetro() ListSpotMarketRequests200ResponseSpotMark
 // GetMetroOk returns a tuple with the Metro field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SpotMarketRequest) GetMetroOk() (*ListSpotMarketRequests200ResponseSpotMarketRequestsInnerMetro, bool) {
-	if o == nil || o.Metro == nil {
+	if o == nil || isNil(o.Metro) {
 		return nil, false
 	}
 	return o.Metro, true
@@ -356,7 +356,7 @@ func (o *SpotMarketRequest) GetMetroOk() (*ListSpotMarketRequests200ResponseSpot
 
 // HasMetro returns a boolean if a field has been set.
 func (o *SpotMarketRequest) HasMetro() bool {
-	if o != nil && o.Metro != nil {
+	if o != nil && !isNil(o.Metro) {
 		return true
 	}
 
@@ -370,7 +370,7 @@ func (o *SpotMarketRequest) SetMetro(v ListSpotMarketRequests200ResponseSpotMark
 
 // GetProject returns the Project field value if set, zero value otherwise.
 func (o *SpotMarketRequest) GetProject() FindBatchById200ResponseDevicesInner {
-	if o == nil || o.Project == nil {
+	if o == nil || isNil(o.Project) {
 		var ret FindBatchById200ResponseDevicesInner
 		return ret
 	}
@@ -380,7 +380,7 @@ func (o *SpotMarketRequest) GetProject() FindBatchById200ResponseDevicesInner {
 // GetProjectOk returns a tuple with the Project field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SpotMarketRequest) GetProjectOk() (*FindBatchById200ResponseDevicesInner, bool) {
-	if o == nil || o.Project == nil {
+	if o == nil || isNil(o.Project) {
 		return nil, false
 	}
 	return o.Project, true
@@ -388,7 +388,7 @@ func (o *SpotMarketRequest) GetProjectOk() (*FindBatchById200ResponseDevicesInne
 
 // HasProject returns a boolean if a field has been set.
 func (o *SpotMarketRequest) HasProject() bool {
-	if o != nil && o.Project != nil {
+	if o != nil && !isNil(o.Project) {
 		return true
 	}
 
@@ -402,37 +402,37 @@ func (o *SpotMarketRequest) SetProject(v FindBatchById200ResponseDevicesInner) {
 
 func (o SpotMarketRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.CreatedAt != nil {
+	if !isNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt
 	}
-	if o.DevicesMax != nil {
+	if !isNil(o.DevicesMax) {
 		toSerialize["devices_max"] = o.DevicesMax
 	}
-	if o.DevicesMin != nil {
+	if !isNil(o.DevicesMin) {
 		toSerialize["devices_min"] = o.DevicesMin
 	}
-	if o.EndAt != nil {
+	if !isNil(o.EndAt) {
 		toSerialize["end_at"] = o.EndAt
 	}
-	if o.Facilities != nil {
+	if !isNil(o.Facilities) {
 		toSerialize["facilities"] = o.Facilities
 	}
-	if o.Href != nil {
+	if !isNil(o.Href) {
 		toSerialize["href"] = o.Href
 	}
-	if o.Id != nil {
+	if !isNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
-	if o.Instances != nil {
+	if !isNil(o.Instances) {
 		toSerialize["instances"] = o.Instances
 	}
-	if o.MaxBidPrice != nil {
+	if !isNil(o.MaxBidPrice) {
 		toSerialize["max_bid_price"] = o.MaxBidPrice
 	}
-	if o.Metro != nil {
+	if !isNil(o.Metro) {
 		toSerialize["metro"] = o.Metro
 	}
-	if o.Project != nil {
+	if !isNil(o.Project) {
 		toSerialize["project"] = o.Project
 	}
 	return json.Marshal(toSerialize)

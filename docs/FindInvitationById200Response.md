@@ -10,8 +10,9 @@ Name | Type | Description | Notes
 **Invitation** | Pointer to [**FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
 **InvitedBy** | Pointer to [**FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
 **Invitee** | Pointer to **string** |  | [optional] 
+**Nonce** | Pointer to **string** |  | [optional] 
 **Organization** | Pointer to [**FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
-**ProjectsIds** | Pointer to **[]string** |  | [optional] 
+**Projects** | Pointer to [**[]FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
 **Roles** | Pointer to **[]string** |  | [optional] 
 **UpdatedAt** | Pointer to **time.Time** |  | [optional] 
 
@@ -184,6 +185,31 @@ SetInvitee sets Invitee field to given value.
 
 HasInvitee returns a boolean if a field has been set.
 
+### GetNonce
+
+`func (o *FindInvitationById200Response) GetNonce() string`
+
+GetNonce returns the Nonce field if non-nil, zero value otherwise.
+
+### GetNonceOk
+
+`func (o *FindInvitationById200Response) GetNonceOk() (*string, bool)`
+
+GetNonceOk returns a tuple with the Nonce field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNonce
+
+`func (o *FindInvitationById200Response) SetNonce(v string)`
+
+SetNonce sets Nonce field to given value.
+
+### HasNonce
+
+`func (o *FindInvitationById200Response) HasNonce() bool`
+
+HasNonce returns a boolean if a field has been set.
+
 ### GetOrganization
 
 `func (o *FindInvitationById200Response) GetOrganization() FindBatchById200ResponseDevicesInner`
@@ -209,30 +235,30 @@ SetOrganization sets Organization field to given value.
 
 HasOrganization returns a boolean if a field has been set.
 
-### GetProjectsIds
+### GetProjects
 
-`func (o *FindInvitationById200Response) GetProjectsIds() []string`
+`func (o *FindInvitationById200Response) GetProjects() []FindBatchById200ResponseDevicesInner`
 
-GetProjectsIds returns the ProjectsIds field if non-nil, zero value otherwise.
+GetProjects returns the Projects field if non-nil, zero value otherwise.
 
-### GetProjectsIdsOk
+### GetProjectsOk
 
-`func (o *FindInvitationById200Response) GetProjectsIdsOk() (*[]string, bool)`
+`func (o *FindInvitationById200Response) GetProjectsOk() (*[]FindBatchById200ResponseDevicesInner, bool)`
 
-GetProjectsIdsOk returns a tuple with the ProjectsIds field if it's non-nil, zero value otherwise
+GetProjectsOk returns a tuple with the Projects field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetProjectsIds
+### SetProjects
 
-`func (o *FindInvitationById200Response) SetProjectsIds(v []string)`
+`func (o *FindInvitationById200Response) SetProjects(v []FindBatchById200ResponseDevicesInner)`
 
-SetProjectsIds sets ProjectsIds field to given value.
+SetProjects sets Projects field to given value.
 
-### HasProjectsIds
+### HasProjects
 
-`func (o *FindInvitationById200Response) HasProjectsIds() bool`
+`func (o *FindInvitationById200Response) HasProjects() bool`
 
-HasProjectsIds returns a boolean if a field has been set.
+HasProjects returns a boolean if a field has been set.
 
 ### GetRoles
 

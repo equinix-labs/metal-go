@@ -1,7 +1,7 @@
 /*
 Metal API
 
-This is the API for Equinix Metal. The API allows you to programmatically interact with all of your Equinix Metal resources, including devices, networks, addresses, organizations, projects, and your user account.  The official API docs are hosted at <https://metal.equinix.com/developers/api>.
+# Introduction Equinix Metal provides a RESTful HTTP API which can be reached at <https://api.equinix.com/metal/v1>. This document describes the API and how to use it.  The API allows you to programmatically interact with all of your Equinix Metal resources, including devices, networks, addresses, organizations, projects, and your user account. Every feature of the Equinix Metal web interface is accessible through the API.  The API docs are generated from the Equinix Metal OpenAPI specification and are officially hosted at <https://metal.equinix.com/developers/api>.  # Common Parameters  The Equinix Metal API uses a few methods to minimize network traffic and improve throughput. These parameters are not used in all API calls, but are used often enough to warrant their own section. Look for these parameters in the documentation for the API calls that support them.  ## Pagination  Pagination is used to limit the number of results returned in a single request. The API will return a maximum of 100 results per page. To retrieve additional results, you can use the `page` and `per_page` query parameters.  The `page` parameter is used to specify the page number. The first page is `1`. The `per_page` parameter is used to specify the number of results per page. The maximum number of results differs by resource type.  ## Sorting  Where offered, the API allows you to sort results by a specific field. To sort results use the `sort_by` query parameter with the root level field name as the value. The `sort_direction` parameter is used to specify the sort direction, either either `asc` (ascending) or `desc` (descending).  ## Filtering  Filtering is used to limit the results returned in a single request. The API supports filtering by certain fields in the response. To filter results, you can use the field as a query parameter.  For example, to filter the IP list to only return public IPv4 addresses, you can filter by the `type` field, as in the following request:  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/projects/id/ips?type=public_ipv4 ```  Only IP addresses with the `type` field set to `public_ipv4` will be returned.  ## Searching  Searching is used to find matching resources using multiple field comparissons. The API supports searching in resources that define this behavior. The fields available for search differ by resource, as does the search strategy.  To search resources you can use the `search` query parameter.  ## Include and Exclude  For resources that contain references to other resources, sucha as a Device that refers to the Project it resides in, the Equinix Metal API will returns `href` values (API links) to the associated resource.  ```json {   ...   \"project\": {     \"href\": \"/metal/v1/projects/f3f131c8-f302-49ef-8c44-9405022dc6dd\"   } } ```  If you're going need the project details, you can avoid a second API request.  Specify the contained `href` resources and collections that you'd like to have included in the response using the `include` query parameter.  For example:    ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=projects ```  The `include` parameter is generally accepted in `GET`, `POST`, `PUT`, and `PATCH` requests where `href` resources are presented.  To have multiple resources include, use a comma-separated list (e.g. `?include=emails,projects,memberships`).  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=emails,projects,memberships ```  You may also include nested associations up to three levels deep using dot notation (`?include=memberships.projects`):  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=memberships.projects ```  To exclude resources, and optimize response delivery, use the `exclude` query parameter. The `exclude` parameter is generally accepted in `GET`, `POST`, `PUT`, and `PATCH` requests for fields with nested object responses. When excluded, these fields will be replaced with an object that contains only an `href` field.
 
 API version: 1.0.0
 Contact: support@equinixmetal.com
@@ -58,7 +58,7 @@ func NewBgpNeighborDataWithDefaults() *BgpNeighborData {
 
 // GetAddressFamily returns the AddressFamily field value if set, zero value otherwise.
 func (o *BgpNeighborData) GetAddressFamily() float32 {
-	if o == nil || o.AddressFamily == nil {
+	if o == nil || isNil(o.AddressFamily) {
 		var ret float32
 		return ret
 	}
@@ -68,7 +68,7 @@ func (o *BgpNeighborData) GetAddressFamily() float32 {
 // GetAddressFamilyOk returns a tuple with the AddressFamily field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BgpNeighborData) GetAddressFamilyOk() (*float32, bool) {
-	if o == nil || o.AddressFamily == nil {
+	if o == nil || isNil(o.AddressFamily) {
 		return nil, false
 	}
 	return o.AddressFamily, true
@@ -76,7 +76,7 @@ func (o *BgpNeighborData) GetAddressFamilyOk() (*float32, bool) {
 
 // HasAddressFamily returns a boolean if a field has been set.
 func (o *BgpNeighborData) HasAddressFamily() bool {
-	if o != nil && o.AddressFamily != nil {
+	if o != nil && !isNil(o.AddressFamily) {
 		return true
 	}
 
@@ -90,7 +90,7 @@ func (o *BgpNeighborData) SetAddressFamily(v float32) {
 
 // GetCustomerAs returns the CustomerAs field value if set, zero value otherwise.
 func (o *BgpNeighborData) GetCustomerAs() float32 {
-	if o == nil || o.CustomerAs == nil {
+	if o == nil || isNil(o.CustomerAs) {
 		var ret float32
 		return ret
 	}
@@ -100,7 +100,7 @@ func (o *BgpNeighborData) GetCustomerAs() float32 {
 // GetCustomerAsOk returns a tuple with the CustomerAs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BgpNeighborData) GetCustomerAsOk() (*float32, bool) {
-	if o == nil || o.CustomerAs == nil {
+	if o == nil || isNil(o.CustomerAs) {
 		return nil, false
 	}
 	return o.CustomerAs, true
@@ -108,7 +108,7 @@ func (o *BgpNeighborData) GetCustomerAsOk() (*float32, bool) {
 
 // HasCustomerAs returns a boolean if a field has been set.
 func (o *BgpNeighborData) HasCustomerAs() bool {
-	if o != nil && o.CustomerAs != nil {
+	if o != nil && !isNil(o.CustomerAs) {
 		return true
 	}
 
@@ -122,7 +122,7 @@ func (o *BgpNeighborData) SetCustomerAs(v float32) {
 
 // GetCustomerIp returns the CustomerIp field value if set, zero value otherwise.
 func (o *BgpNeighborData) GetCustomerIp() string {
-	if o == nil || o.CustomerIp == nil {
+	if o == nil || isNil(o.CustomerIp) {
 		var ret string
 		return ret
 	}
@@ -132,7 +132,7 @@ func (o *BgpNeighborData) GetCustomerIp() string {
 // GetCustomerIpOk returns a tuple with the CustomerIp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BgpNeighborData) GetCustomerIpOk() (*string, bool) {
-	if o == nil || o.CustomerIp == nil {
+	if o == nil || isNil(o.CustomerIp) {
 		return nil, false
 	}
 	return o.CustomerIp, true
@@ -140,7 +140,7 @@ func (o *BgpNeighborData) GetCustomerIpOk() (*string, bool) {
 
 // HasCustomerIp returns a boolean if a field has been set.
 func (o *BgpNeighborData) HasCustomerIp() bool {
-	if o != nil && o.CustomerIp != nil {
+	if o != nil && !isNil(o.CustomerIp) {
 		return true
 	}
 
@@ -154,7 +154,7 @@ func (o *BgpNeighborData) SetCustomerIp(v string) {
 
 // GetMd5Enabled returns the Md5Enabled field value if set, zero value otherwise.
 func (o *BgpNeighborData) GetMd5Enabled() bool {
-	if o == nil || o.Md5Enabled == nil {
+	if o == nil || isNil(o.Md5Enabled) {
 		var ret bool
 		return ret
 	}
@@ -164,7 +164,7 @@ func (o *BgpNeighborData) GetMd5Enabled() bool {
 // GetMd5EnabledOk returns a tuple with the Md5Enabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BgpNeighborData) GetMd5EnabledOk() (*bool, bool) {
-	if o == nil || o.Md5Enabled == nil {
+	if o == nil || isNil(o.Md5Enabled) {
 		return nil, false
 	}
 	return o.Md5Enabled, true
@@ -172,7 +172,7 @@ func (o *BgpNeighborData) GetMd5EnabledOk() (*bool, bool) {
 
 // HasMd5Enabled returns a boolean if a field has been set.
 func (o *BgpNeighborData) HasMd5Enabled() bool {
-	if o != nil && o.Md5Enabled != nil {
+	if o != nil && !isNil(o.Md5Enabled) {
 		return true
 	}
 
@@ -186,7 +186,7 @@ func (o *BgpNeighborData) SetMd5Enabled(v bool) {
 
 // GetMd5Password returns the Md5Password field value if set, zero value otherwise.
 func (o *BgpNeighborData) GetMd5Password() string {
-	if o == nil || o.Md5Password == nil {
+	if o == nil || isNil(o.Md5Password) {
 		var ret string
 		return ret
 	}
@@ -196,7 +196,7 @@ func (o *BgpNeighborData) GetMd5Password() string {
 // GetMd5PasswordOk returns a tuple with the Md5Password field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BgpNeighborData) GetMd5PasswordOk() (*string, bool) {
-	if o == nil || o.Md5Password == nil {
+	if o == nil || isNil(o.Md5Password) {
 		return nil, false
 	}
 	return o.Md5Password, true
@@ -204,7 +204,7 @@ func (o *BgpNeighborData) GetMd5PasswordOk() (*string, bool) {
 
 // HasMd5Password returns a boolean if a field has been set.
 func (o *BgpNeighborData) HasMd5Password() bool {
-	if o != nil && o.Md5Password != nil {
+	if o != nil && !isNil(o.Md5Password) {
 		return true
 	}
 
@@ -218,7 +218,7 @@ func (o *BgpNeighborData) SetMd5Password(v string) {
 
 // GetMultihop returns the Multihop field value if set, zero value otherwise.
 func (o *BgpNeighborData) GetMultihop() bool {
-	if o == nil || o.Multihop == nil {
+	if o == nil || isNil(o.Multihop) {
 		var ret bool
 		return ret
 	}
@@ -228,7 +228,7 @@ func (o *BgpNeighborData) GetMultihop() bool {
 // GetMultihopOk returns a tuple with the Multihop field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BgpNeighborData) GetMultihopOk() (*bool, bool) {
-	if o == nil || o.Multihop == nil {
+	if o == nil || isNil(o.Multihop) {
 		return nil, false
 	}
 	return o.Multihop, true
@@ -236,7 +236,7 @@ func (o *BgpNeighborData) GetMultihopOk() (*bool, bool) {
 
 // HasMultihop returns a boolean if a field has been set.
 func (o *BgpNeighborData) HasMultihop() bool {
-	if o != nil && o.Multihop != nil {
+	if o != nil && !isNil(o.Multihop) {
 		return true
 	}
 
@@ -250,7 +250,7 @@ func (o *BgpNeighborData) SetMultihop(v bool) {
 
 // GetPeerAs returns the PeerAs field value if set, zero value otherwise.
 func (o *BgpNeighborData) GetPeerAs() float32 {
-	if o == nil || o.PeerAs == nil {
+	if o == nil || isNil(o.PeerAs) {
 		var ret float32
 		return ret
 	}
@@ -260,7 +260,7 @@ func (o *BgpNeighborData) GetPeerAs() float32 {
 // GetPeerAsOk returns a tuple with the PeerAs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BgpNeighborData) GetPeerAsOk() (*float32, bool) {
-	if o == nil || o.PeerAs == nil {
+	if o == nil || isNil(o.PeerAs) {
 		return nil, false
 	}
 	return o.PeerAs, true
@@ -268,7 +268,7 @@ func (o *BgpNeighborData) GetPeerAsOk() (*float32, bool) {
 
 // HasPeerAs returns a boolean if a field has been set.
 func (o *BgpNeighborData) HasPeerAs() bool {
-	if o != nil && o.PeerAs != nil {
+	if o != nil && !isNil(o.PeerAs) {
 		return true
 	}
 
@@ -282,7 +282,7 @@ func (o *BgpNeighborData) SetPeerAs(v float32) {
 
 // GetPeerIps returns the PeerIps field value if set, zero value otherwise.
 func (o *BgpNeighborData) GetPeerIps() []string {
-	if o == nil || o.PeerIps == nil {
+	if o == nil || isNil(o.PeerIps) {
 		var ret []string
 		return ret
 	}
@@ -292,7 +292,7 @@ func (o *BgpNeighborData) GetPeerIps() []string {
 // GetPeerIpsOk returns a tuple with the PeerIps field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BgpNeighborData) GetPeerIpsOk() ([]string, bool) {
-	if o == nil || o.PeerIps == nil {
+	if o == nil || isNil(o.PeerIps) {
 		return nil, false
 	}
 	return o.PeerIps, true
@@ -300,7 +300,7 @@ func (o *BgpNeighborData) GetPeerIpsOk() ([]string, bool) {
 
 // HasPeerIps returns a boolean if a field has been set.
 func (o *BgpNeighborData) HasPeerIps() bool {
-	if o != nil && o.PeerIps != nil {
+	if o != nil && !isNil(o.PeerIps) {
 		return true
 	}
 
@@ -314,7 +314,7 @@ func (o *BgpNeighborData) SetPeerIps(v []string) {
 
 // GetRoutesIn returns the RoutesIn field value if set, zero value otherwise.
 func (o *BgpNeighborData) GetRoutesIn() []GetBgpNeighborData200ResponseBgpNeighborsInnerRoutesInInner {
-	if o == nil || o.RoutesIn == nil {
+	if o == nil || isNil(o.RoutesIn) {
 		var ret []GetBgpNeighborData200ResponseBgpNeighborsInnerRoutesInInner
 		return ret
 	}
@@ -324,7 +324,7 @@ func (o *BgpNeighborData) GetRoutesIn() []GetBgpNeighborData200ResponseBgpNeighb
 // GetRoutesInOk returns a tuple with the RoutesIn field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BgpNeighborData) GetRoutesInOk() ([]GetBgpNeighborData200ResponseBgpNeighborsInnerRoutesInInner, bool) {
-	if o == nil || o.RoutesIn == nil {
+	if o == nil || isNil(o.RoutesIn) {
 		return nil, false
 	}
 	return o.RoutesIn, true
@@ -332,7 +332,7 @@ func (o *BgpNeighborData) GetRoutesInOk() ([]GetBgpNeighborData200ResponseBgpNei
 
 // HasRoutesIn returns a boolean if a field has been set.
 func (o *BgpNeighborData) HasRoutesIn() bool {
-	if o != nil && o.RoutesIn != nil {
+	if o != nil && !isNil(o.RoutesIn) {
 		return true
 	}
 
@@ -346,7 +346,7 @@ func (o *BgpNeighborData) SetRoutesIn(v []GetBgpNeighborData200ResponseBgpNeighb
 
 // GetRoutesOut returns the RoutesOut field value if set, zero value otherwise.
 func (o *BgpNeighborData) GetRoutesOut() []GetBgpNeighborData200ResponseBgpNeighborsInnerRoutesOutInner {
-	if o == nil || o.RoutesOut == nil {
+	if o == nil || isNil(o.RoutesOut) {
 		var ret []GetBgpNeighborData200ResponseBgpNeighborsInnerRoutesOutInner
 		return ret
 	}
@@ -356,7 +356,7 @@ func (o *BgpNeighborData) GetRoutesOut() []GetBgpNeighborData200ResponseBgpNeigh
 // GetRoutesOutOk returns a tuple with the RoutesOut field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BgpNeighborData) GetRoutesOutOk() ([]GetBgpNeighborData200ResponseBgpNeighborsInnerRoutesOutInner, bool) {
-	if o == nil || o.RoutesOut == nil {
+	if o == nil || isNil(o.RoutesOut) {
 		return nil, false
 	}
 	return o.RoutesOut, true
@@ -364,7 +364,7 @@ func (o *BgpNeighborData) GetRoutesOutOk() ([]GetBgpNeighborData200ResponseBgpNe
 
 // HasRoutesOut returns a boolean if a field has been set.
 func (o *BgpNeighborData) HasRoutesOut() bool {
-	if o != nil && o.RoutesOut != nil {
+	if o != nil && !isNil(o.RoutesOut) {
 		return true
 	}
 
@@ -378,34 +378,34 @@ func (o *BgpNeighborData) SetRoutesOut(v []GetBgpNeighborData200ResponseBgpNeigh
 
 func (o BgpNeighborData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.AddressFamily != nil {
+	if !isNil(o.AddressFamily) {
 		toSerialize["address_family"] = o.AddressFamily
 	}
-	if o.CustomerAs != nil {
+	if !isNil(o.CustomerAs) {
 		toSerialize["customer_as"] = o.CustomerAs
 	}
-	if o.CustomerIp != nil {
+	if !isNil(o.CustomerIp) {
 		toSerialize["customer_ip"] = o.CustomerIp
 	}
-	if o.Md5Enabled != nil {
+	if !isNil(o.Md5Enabled) {
 		toSerialize["md5_enabled"] = o.Md5Enabled
 	}
-	if o.Md5Password != nil {
+	if !isNil(o.Md5Password) {
 		toSerialize["md5_password"] = o.Md5Password
 	}
-	if o.Multihop != nil {
+	if !isNil(o.Multihop) {
 		toSerialize["multihop"] = o.Multihop
 	}
-	if o.PeerAs != nil {
+	if !isNil(o.PeerAs) {
 		toSerialize["peer_as"] = o.PeerAs
 	}
-	if o.PeerIps != nil {
+	if !isNil(o.PeerIps) {
 		toSerialize["peer_ips"] = o.PeerIps
 	}
-	if o.RoutesIn != nil {
+	if !isNil(o.RoutesIn) {
 		toSerialize["routes_in"] = o.RoutesIn
 	}
-	if o.RoutesOut != nil {
+	if !isNil(o.RoutesOut) {
 		toSerialize["routes_out"] = o.RoutesOut
 	}
 	return json.Marshal(toSerialize)

@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **Id** | Pointer to **string** |  | [optional] 
 **State** | Pointer to **string** | The current state of the Metal Gateway. &#39;Ready&#39; indicates the gateway record has been configured, but is currently not active on the network. &#39;Active&#39; indicates the gateway has been configured on the network. &#39;Deleting&#39; is a temporary state used to indicate that the gateway is in the process of being un-configured from the network, after which the gateway record will be deleted. | [optional] 
 **UpdatedAt** | Pointer to **time.Time** |  | [optional] 
-**Vlan** | Pointer to **float32** | The VLAN id of the Virtual Network record associated to this Metal Gateway. Example: 1001. | [optional] 
+**Vlan** | Pointer to **int32** | The VLAN id of the Virtual Network record associated to this Metal Gateway. | [optional] 
 
 ## Methods
 
@@ -183,20 +183,20 @@ HasUpdatedAt returns a boolean if a field has been set.
 
 ### GetVlan
 
-`func (o *MetalGatewayLite) GetVlan() float32`
+`func (o *MetalGatewayLite) GetVlan() int32`
 
 GetVlan returns the Vlan field if non-nil, zero value otherwise.
 
 ### GetVlanOk
 
-`func (o *MetalGatewayLite) GetVlanOk() (*float32, bool)`
+`func (o *MetalGatewayLite) GetVlanOk() (*int32, bool)`
 
 GetVlanOk returns a tuple with the Vlan field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVlan
 
-`func (o *MetalGatewayLite) SetVlan(v float32)`
+`func (o *MetalGatewayLite) SetVlan(v int32)`
 
 SetVlan sets Vlan field to given value.
 

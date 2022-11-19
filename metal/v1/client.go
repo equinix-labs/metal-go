@@ -1,7 +1,7 @@
 /*
 Metal API
 
-This is the API for Equinix Metal. The API allows you to programmatically interact with all of your Equinix Metal resources, including devices, networks, addresses, organizations, projects, and your user account.  The official API docs are hosted at <https://metal.equinix.com/developers/api>.
+# Introduction Equinix Metal provides a RESTful HTTP API which can be reached at <https://api.equinix.com/metal/v1>. This document describes the API and how to use it.  The API allows you to programmatically interact with all of your Equinix Metal resources, including devices, networks, addresses, organizations, projects, and your user account. Every feature of the Equinix Metal web interface is accessible through the API.  The API docs are generated from the Equinix Metal OpenAPI specification and are officially hosted at <https://metal.equinix.com/developers/api>.  # Common Parameters  The Equinix Metal API uses a few methods to minimize network traffic and improve throughput. These parameters are not used in all API calls, but are used often enough to warrant their own section. Look for these parameters in the documentation for the API calls that support them.  ## Pagination  Pagination is used to limit the number of results returned in a single request. The API will return a maximum of 100 results per page. To retrieve additional results, you can use the `page` and `per_page` query parameters.  The `page` parameter is used to specify the page number. The first page is `1`. The `per_page` parameter is used to specify the number of results per page. The maximum number of results differs by resource type.  ## Sorting  Where offered, the API allows you to sort results by a specific field. To sort results use the `sort_by` query parameter with the root level field name as the value. The `sort_direction` parameter is used to specify the sort direction, either either `asc` (ascending) or `desc` (descending).  ## Filtering  Filtering is used to limit the results returned in a single request. The API supports filtering by certain fields in the response. To filter results, you can use the field as a query parameter.  For example, to filter the IP list to only return public IPv4 addresses, you can filter by the `type` field, as in the following request:  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/projects/id/ips?type=public_ipv4 ```  Only IP addresses with the `type` field set to `public_ipv4` will be returned.  ## Searching  Searching is used to find matching resources using multiple field comparissons. The API supports searching in resources that define this behavior. The fields available for search differ by resource, as does the search strategy.  To search resources you can use the `search` query parameter.  ## Include and Exclude  For resources that contain references to other resources, sucha as a Device that refers to the Project it resides in, the Equinix Metal API will returns `href` values (API links) to the associated resource.  ```json {   ...   \"project\": {     \"href\": \"/metal/v1/projects/f3f131c8-f302-49ef-8c44-9405022dc6dd\"   } } ```  If you're going need the project details, you can avoid a second API request.  Specify the contained `href` resources and collections that you'd like to have included in the response using the `include` query parameter.  For example:    ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=projects ```  The `include` parameter is generally accepted in `GET`, `POST`, `PUT`, and `PATCH` requests where `href` resources are presented.  To have multiple resources include, use a comma-separated list (e.g. `?include=emails,projects,memberships`).  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=emails,projects,memberships ```  You may also include nested associations up to three levels deep using dot notation (`?include=memberships.projects`):  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=memberships.projects ```  To exclude resources, and optimize response delivery, use the `exclude` query parameter. The `exclude` parameter is generally accepted in `GET`, `POST`, `PUT`, and `PATCH` requests for fields with nested object responses. When excluded, these fields will be replaced with an object that contains only an `href` field.
 
 API version: 1.0.0
 Contact: support@equinixmetal.com
@@ -58,8 +58,6 @@ type APIClient struct {
 
 	CapacityApi *CapacityApiService
 
-	ConnectionsApi *ConnectionsApiService
-
 	DevicesApi *DevicesApiService
 
 	EmailsApi *EmailsApiService
@@ -73,6 +71,8 @@ type APIClient struct {
 	IPAddressesApi *IPAddressesApiService
 
 	IncidentsApi *IncidentsApiService
+
+	InterconnectionsApi *InterconnectionsApiService
 
 	InvitationsApi *InvitationsApiService
 
@@ -145,7 +145,6 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.BGPApi = (*BGPApiService)(&c.common)
 	c.BatchesApi = (*BatchesApiService)(&c.common)
 	c.CapacityApi = (*CapacityApiService)(&c.common)
-	c.ConnectionsApi = (*ConnectionsApiService)(&c.common)
 	c.DevicesApi = (*DevicesApiService)(&c.common)
 	c.EmailsApi = (*EmailsApiService)(&c.common)
 	c.EventsApi = (*EventsApiService)(&c.common)
@@ -153,6 +152,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.HardwareReservationsApi = (*HardwareReservationsApiService)(&c.common)
 	c.IPAddressesApi = (*IPAddressesApiService)(&c.common)
 	c.IncidentsApi = (*IncidentsApiService)(&c.common)
+	c.InterconnectionsApi = (*InterconnectionsApiService)(&c.common)
 	c.InvitationsApi = (*InvitationsApiService)(&c.common)
 	c.LicensesApi = (*LicensesApiService)(&c.common)
 	c.MembershipsApi = (*MembershipsApiService)(&c.common)
@@ -229,7 +229,7 @@ func typeCheckParameter(obj interface{}, expected string, name string) error {
 
 	// Check the type is as expected.
 	if reflect.TypeOf(obj).String() != expected {
-		return fmt.Errorf("Expected %s to be of type %s but received %s.", name, expected, reflect.TypeOf(obj).String())
+		return fmt.Errorf("expected %s to be of type %s but received %s", name, expected, reflect.TypeOf(obj).String())
 	}
 	return nil
 }
@@ -568,7 +568,7 @@ func setBody(body interface{}, contentType string) (bodyBuf *bytes.Buffer, err e
 	}
 
 	if bodyBuf.Len() == 0 {
-		err = fmt.Errorf("Invalid body type %s\n", contentType)
+		err = fmt.Errorf("invalid body type %s\n", contentType)
 		return nil, err
 	}
 	return bodyBuf, nil
@@ -669,4 +669,23 @@ func (e GenericOpenAPIError) Body() []byte {
 // Model returns the unpacked model of the error
 func (e GenericOpenAPIError) Model() interface{} {
 	return e.model
+}
+
+// format error message using title and detail when model implements rfc7807
+func formatErrorMessage(status string, v interface{}) string {
+	str := ""
+	metaValue := reflect.ValueOf(v).Elem()
+
+	field := metaValue.FieldByName("Title")
+	if field != (reflect.Value{}) {
+		str = fmt.Sprintf("%s", field.Interface())
+	}
+
+	field = metaValue.FieldByName("Detail")
+	if field != (reflect.Value{}) {
+		str = fmt.Sprintf("%s (%s)", str, field.Interface())
+	}
+
+	// status title (detail)
+	return fmt.Sprintf("%s %s", status, str)
 }

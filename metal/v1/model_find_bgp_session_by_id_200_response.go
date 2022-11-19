@@ -1,7 +1,7 @@
 /*
 Metal API
 
-This is the API for Equinix Metal. The API allows you to programmatically interact with all of your Equinix Metal resources, including devices, networks, addresses, organizations, projects, and your user account.  The official API docs are hosted at <https://metal.equinix.com/developers/api>.
+# Introduction Equinix Metal provides a RESTful HTTP API which can be reached at <https://api.equinix.com/metal/v1>. This document describes the API and how to use it.  The API allows you to programmatically interact with all of your Equinix Metal resources, including devices, networks, addresses, organizations, projects, and your user account. Every feature of the Equinix Metal web interface is accessible through the API.  The API docs are generated from the Equinix Metal OpenAPI specification and are officially hosted at <https://metal.equinix.com/developers/api>.  # Common Parameters  The Equinix Metal API uses a few methods to minimize network traffic and improve throughput. These parameters are not used in all API calls, but are used often enough to warrant their own section. Look for these parameters in the documentation for the API calls that support them.  ## Pagination  Pagination is used to limit the number of results returned in a single request. The API will return a maximum of 100 results per page. To retrieve additional results, you can use the `page` and `per_page` query parameters.  The `page` parameter is used to specify the page number. The first page is `1`. The `per_page` parameter is used to specify the number of results per page. The maximum number of results differs by resource type.  ## Sorting  Where offered, the API allows you to sort results by a specific field. To sort results use the `sort_by` query parameter with the root level field name as the value. The `sort_direction` parameter is used to specify the sort direction, either either `asc` (ascending) or `desc` (descending).  ## Filtering  Filtering is used to limit the results returned in a single request. The API supports filtering by certain fields in the response. To filter results, you can use the field as a query parameter.  For example, to filter the IP list to only return public IPv4 addresses, you can filter by the `type` field, as in the following request:  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/projects/id/ips?type=public_ipv4 ```  Only IP addresses with the `type` field set to `public_ipv4` will be returned.  ## Searching  Searching is used to find matching resources using multiple field comparissons. The API supports searching in resources that define this behavior. The fields available for search differ by resource, as does the search strategy.  To search resources you can use the `search` query parameter.  ## Include and Exclude  For resources that contain references to other resources, sucha as a Device that refers to the Project it resides in, the Equinix Metal API will returns `href` values (API links) to the associated resource.  ```json {   ...   \"project\": {     \"href\": \"/metal/v1/projects/f3f131c8-f302-49ef-8c44-9405022dc6dd\"   } } ```  If you're going need the project details, you can avoid a second API request.  Specify the contained `href` resources and collections that you'd like to have included in the response using the `include` query parameter.  For example:    ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=projects ```  The `include` parameter is generally accepted in `GET`, `POST`, `PUT`, and `PATCH` requests where `href` resources are presented.  To have multiple resources include, use a comma-separated list (e.g. `?include=emails,projects,memberships`).  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=emails,projects,memberships ```  You may also include nested associations up to three levels deep using dot notation (`?include=memberships.projects`):  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=memberships.projects ```  To exclude resources, and optimize response delivery, use the `exclude` query parameter. The `exclude` parameter is generally accepted in `GET`, `POST`, `PUT`, and `PATCH` requests for fields with nested object responses. When excluded, these fields will be replaced with an object that contains only an `href` field.
 
 API version: 1.0.0
 Contact: support@equinixmetal.com
@@ -74,7 +74,7 @@ func (o *FindBgpSessionById200Response) SetAddressFamily(v string) {
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *FindBgpSessionById200Response) GetCreatedAt() time.Time {
-	if o == nil || o.CreatedAt == nil {
+	if o == nil || isNil(o.CreatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -84,7 +84,7 @@ func (o *FindBgpSessionById200Response) GetCreatedAt() time.Time {
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FindBgpSessionById200Response) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || o.CreatedAt == nil {
+	if o == nil || isNil(o.CreatedAt) {
 		return nil, false
 	}
 	return o.CreatedAt, true
@@ -92,7 +92,7 @@ func (o *FindBgpSessionById200Response) GetCreatedAtOk() (*time.Time, bool) {
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *FindBgpSessionById200Response) HasCreatedAt() bool {
-	if o != nil && o.CreatedAt != nil {
+	if o != nil && !isNil(o.CreatedAt) {
 		return true
 	}
 
@@ -106,7 +106,7 @@ func (o *FindBgpSessionById200Response) SetCreatedAt(v time.Time) {
 
 // GetDefaultRoute returns the DefaultRoute field value if set, zero value otherwise.
 func (o *FindBgpSessionById200Response) GetDefaultRoute() bool {
-	if o == nil || o.DefaultRoute == nil {
+	if o == nil || isNil(o.DefaultRoute) {
 		var ret bool
 		return ret
 	}
@@ -116,7 +116,7 @@ func (o *FindBgpSessionById200Response) GetDefaultRoute() bool {
 // GetDefaultRouteOk returns a tuple with the DefaultRoute field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FindBgpSessionById200Response) GetDefaultRouteOk() (*bool, bool) {
-	if o == nil || o.DefaultRoute == nil {
+	if o == nil || isNil(o.DefaultRoute) {
 		return nil, false
 	}
 	return o.DefaultRoute, true
@@ -124,7 +124,7 @@ func (o *FindBgpSessionById200Response) GetDefaultRouteOk() (*bool, bool) {
 
 // HasDefaultRoute returns a boolean if a field has been set.
 func (o *FindBgpSessionById200Response) HasDefaultRoute() bool {
-	if o != nil && o.DefaultRoute != nil {
+	if o != nil && !isNil(o.DefaultRoute) {
 		return true
 	}
 
@@ -138,7 +138,7 @@ func (o *FindBgpSessionById200Response) SetDefaultRoute(v bool) {
 
 // GetDevice returns the Device field value if set, zero value otherwise.
 func (o *FindBgpSessionById200Response) GetDevice() FindBatchById200ResponseDevicesInner {
-	if o == nil || o.Device == nil {
+	if o == nil || isNil(o.Device) {
 		var ret FindBatchById200ResponseDevicesInner
 		return ret
 	}
@@ -148,7 +148,7 @@ func (o *FindBgpSessionById200Response) GetDevice() FindBatchById200ResponseDevi
 // GetDeviceOk returns a tuple with the Device field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FindBgpSessionById200Response) GetDeviceOk() (*FindBatchById200ResponseDevicesInner, bool) {
-	if o == nil || o.Device == nil {
+	if o == nil || isNil(o.Device) {
 		return nil, false
 	}
 	return o.Device, true
@@ -156,7 +156,7 @@ func (o *FindBgpSessionById200Response) GetDeviceOk() (*FindBatchById200Response
 
 // HasDevice returns a boolean if a field has been set.
 func (o *FindBgpSessionById200Response) HasDevice() bool {
-	if o != nil && o.Device != nil {
+	if o != nil && !isNil(o.Device) {
 		return true
 	}
 
@@ -170,7 +170,7 @@ func (o *FindBgpSessionById200Response) SetDevice(v FindBatchById200ResponseDevi
 
 // GetHref returns the Href field value if set, zero value otherwise.
 func (o *FindBgpSessionById200Response) GetHref() string {
-	if o == nil || o.Href == nil {
+	if o == nil || isNil(o.Href) {
 		var ret string
 		return ret
 	}
@@ -180,7 +180,7 @@ func (o *FindBgpSessionById200Response) GetHref() string {
 // GetHrefOk returns a tuple with the Href field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FindBgpSessionById200Response) GetHrefOk() (*string, bool) {
-	if o == nil || o.Href == nil {
+	if o == nil || isNil(o.Href) {
 		return nil, false
 	}
 	return o.Href, true
@@ -188,7 +188,7 @@ func (o *FindBgpSessionById200Response) GetHrefOk() (*string, bool) {
 
 // HasHref returns a boolean if a field has been set.
 func (o *FindBgpSessionById200Response) HasHref() bool {
-	if o != nil && o.Href != nil {
+	if o != nil && !isNil(o.Href) {
 		return true
 	}
 
@@ -202,7 +202,7 @@ func (o *FindBgpSessionById200Response) SetHref(v string) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *FindBgpSessionById200Response) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || isNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -212,7 +212,7 @@ func (o *FindBgpSessionById200Response) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FindBgpSessionById200Response) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || isNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -220,7 +220,7 @@ func (o *FindBgpSessionById200Response) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *FindBgpSessionById200Response) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !isNil(o.Id) {
 		return true
 	}
 
@@ -234,7 +234,7 @@ func (o *FindBgpSessionById200Response) SetId(v string) {
 
 // GetLearnedRoutes returns the LearnedRoutes field value if set, zero value otherwise.
 func (o *FindBgpSessionById200Response) GetLearnedRoutes() []string {
-	if o == nil || o.LearnedRoutes == nil {
+	if o == nil || isNil(o.LearnedRoutes) {
 		var ret []string
 		return ret
 	}
@@ -244,7 +244,7 @@ func (o *FindBgpSessionById200Response) GetLearnedRoutes() []string {
 // GetLearnedRoutesOk returns a tuple with the LearnedRoutes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FindBgpSessionById200Response) GetLearnedRoutesOk() ([]string, bool) {
-	if o == nil || o.LearnedRoutes == nil {
+	if o == nil || isNil(o.LearnedRoutes) {
 		return nil, false
 	}
 	return o.LearnedRoutes, true
@@ -252,7 +252,7 @@ func (o *FindBgpSessionById200Response) GetLearnedRoutesOk() ([]string, bool) {
 
 // HasLearnedRoutes returns a boolean if a field has been set.
 func (o *FindBgpSessionById200Response) HasLearnedRoutes() bool {
-	if o != nil && o.LearnedRoutes != nil {
+	if o != nil && !isNil(o.LearnedRoutes) {
 		return true
 	}
 
@@ -266,7 +266,7 @@ func (o *FindBgpSessionById200Response) SetLearnedRoutes(v []string) {
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *FindBgpSessionById200Response) GetStatus() string {
-	if o == nil || o.Status == nil {
+	if o == nil || isNil(o.Status) {
 		var ret string
 		return ret
 	}
@@ -276,7 +276,7 @@ func (o *FindBgpSessionById200Response) GetStatus() string {
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FindBgpSessionById200Response) GetStatusOk() (*string, bool) {
-	if o == nil || o.Status == nil {
+	if o == nil || isNil(o.Status) {
 		return nil, false
 	}
 	return o.Status, true
@@ -284,7 +284,7 @@ func (o *FindBgpSessionById200Response) GetStatusOk() (*string, bool) {
 
 // HasStatus returns a boolean if a field has been set.
 func (o *FindBgpSessionById200Response) HasStatus() bool {
-	if o != nil && o.Status != nil {
+	if o != nil && !isNil(o.Status) {
 		return true
 	}
 
@@ -298,7 +298,7 @@ func (o *FindBgpSessionById200Response) SetStatus(v string) {
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *FindBgpSessionById200Response) GetUpdatedAt() time.Time {
-	if o == nil || o.UpdatedAt == nil {
+	if o == nil || isNil(o.UpdatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -308,7 +308,7 @@ func (o *FindBgpSessionById200Response) GetUpdatedAt() time.Time {
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FindBgpSessionById200Response) GetUpdatedAtOk() (*time.Time, bool) {
-	if o == nil || o.UpdatedAt == nil {
+	if o == nil || isNil(o.UpdatedAt) {
 		return nil, false
 	}
 	return o.UpdatedAt, true
@@ -316,7 +316,7 @@ func (o *FindBgpSessionById200Response) GetUpdatedAtOk() (*time.Time, bool) {
 
 // HasUpdatedAt returns a boolean if a field has been set.
 func (o *FindBgpSessionById200Response) HasUpdatedAt() bool {
-	if o != nil && o.UpdatedAt != nil {
+	if o != nil && !isNil(o.UpdatedAt) {
 		return true
 	}
 
@@ -333,28 +333,28 @@ func (o FindBgpSessionById200Response) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["address_family"] = o.AddressFamily
 	}
-	if o.CreatedAt != nil {
+	if !isNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt
 	}
-	if o.DefaultRoute != nil {
+	if !isNil(o.DefaultRoute) {
 		toSerialize["default_route"] = o.DefaultRoute
 	}
-	if o.Device != nil {
+	if !isNil(o.Device) {
 		toSerialize["device"] = o.Device
 	}
-	if o.Href != nil {
+	if !isNil(o.Href) {
 		toSerialize["href"] = o.Href
 	}
-	if o.Id != nil {
+	if !isNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
-	if o.LearnedRoutes != nil {
+	if !isNil(o.LearnedRoutes) {
 		toSerialize["learned_routes"] = o.LearnedRoutes
 	}
-	if o.Status != nil {
+	if !isNil(o.Status) {
 		toSerialize["status"] = o.Status
 	}
-	if o.UpdatedAt != nil {
+	if !isNil(o.UpdatedAt) {
 		toSerialize["updated_at"] = o.UpdatedAt
 	}
 	return json.Marshal(toSerialize)

@@ -1,0 +1,96 @@
+diff --git a/metal/v1/model_create_device_batch_request_batches_inner.go b/metal/v1/model_create_device_batch_request_batches_inner.go
+index 61627db..852d047 100644
+--- a/metal/v1/model_create_device_batch_request_batches_inner.go
++++ b/metal/v1/model_create_device_batch_request_batches_inner.go
+@@ -13,6 +13,7 @@ package v1
+ 
+ import (
+ 	"encoding/json"
++	"time"
+ )
+ 
+ // CreateDeviceBatchRequestBatchesInner struct for CreateDeviceBatchRequestBatchesInner
+diff --git a/metal/v1/model_create_device_request_one_of.go b/metal/v1/model_create_device_request_one_of.go
+index 06df6b2..c250a47 100644
+--- a/metal/v1/model_create_device_request_one_of.go
++++ b/metal/v1/model_create_device_request_one_of.go
+@@ -13,6 +13,7 @@ package v1
+ 
+ import (
+ 	"encoding/json"
++	"time"
+ )
+ 
+ // CreateDeviceRequestOneOf struct for CreateDeviceRequestOneOf
+diff --git a/metal/v1/model_create_device_request_one_of_1.go b/metal/v1/model_create_device_request_one_of_1.go
+index 3b1c939..ea1e7a2 100644
+--- a/metal/v1/model_create_device_request_one_of_1.go
++++ b/metal/v1/model_create_device_request_one_of_1.go
+@@ -13,6 +13,7 @@ package v1
+ 
+ import (
+ 	"encoding/json"
++	"time"
+ )
+ 
+ // CreateDeviceRequestOneOf1 struct for CreateDeviceRequestOneOf1
+diff --git a/metal/v1/model_device_create_in_facility_input.go b/metal/v1/model_device_create_in_facility_input.go
+index e7c2b75..e8dec04 100644
+--- a/metal/v1/model_device_create_in_facility_input.go
++++ b/metal/v1/model_device_create_in_facility_input.go
+@@ -13,6 +13,7 @@ package v1
+ 
+ import (
+ 	"encoding/json"
++	"time"
+ )
+ 
+ // DeviceCreateInFacilityInput struct for DeviceCreateInFacilityInput
+diff --git a/metal/v1/model_device_create_in_metro_input.go b/metal/v1/model_device_create_in_metro_input.go
+index 77f0d16..abb1282 100644
+--- a/metal/v1/model_device_create_in_metro_input.go
++++ b/metal/v1/model_device_create_in_metro_input.go
+@@ -13,6 +13,7 @@ package v1
+ 
+ import (
+ 	"encoding/json"
++	"time"
+ )
+ 
+ // DeviceCreateInMetroInput struct for DeviceCreateInMetroInput
+diff --git a/metal/v1/model_find_device_by_id_200_response_created_by.go b/metal/v1/model_find_device_by_id_200_response_created_by.go
+index 13de115..694a00b 100644
+--- a/metal/v1/model_find_device_by_id_200_response_created_by.go
++++ b/metal/v1/model_find_device_by_id_200_response_created_by.go
+@@ -13,6 +13,7 @@ package v1
+ 
+ import (
+ 	"encoding/json"
++	"time"
+ )
+ 
+ // FindDeviceById200ResponseCreatedBy struct for FindDeviceById200ResponseCreatedBy
+diff --git a/metal/v1/model_find_project_api_keys_200_response_api_keys_inner_project.go b/metal/v1/model_find_project_api_keys_200_response_api_keys_inner_project.go
+index 0ff7ecb..7358fcc 100644
+--- a/metal/v1/model_find_project_api_keys_200_response_api_keys_inner_project.go
++++ b/metal/v1/model_find_project_api_keys_200_response_api_keys_inner_project.go
+@@ -13,6 +13,7 @@ package v1
+ 
+ import (
+ 	"encoding/json"
++	"time"
+ )
+ 
+ // FindProjectAPIKeys200ResponseApiKeysInnerProject struct for FindProjectAPIKeys200ResponseApiKeysInnerProject
+diff --git a/metal/v1/model_find_project_api_keys_200_response_api_keys_inner_user.go b/metal/v1/model_find_project_api_keys_200_response_api_keys_inner_user.go
+index d9a15fc..c4e593c 100644
+--- a/metal/v1/model_find_project_api_keys_200_response_api_keys_inner_user.go
++++ b/metal/v1/model_find_project_api_keys_200_response_api_keys_inner_user.go
+@@ -13,6 +13,7 @@ package v1
+ 
+ import (
+ 	"encoding/json"
++	"time"
+ )
+ 
+ // FindProjectAPIKeys200ResponseApiKeysInnerUser struct for FindProjectAPIKeys200ResponseApiKeysInnerUser

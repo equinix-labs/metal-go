@@ -1,7 +1,7 @@
 /*
 Metal API
 
-This is the API for Equinix Metal. The API allows you to programmatically interact with all of your Equinix Metal resources, including devices, networks, addresses, organizations, projects, and your user account.  The official API docs are hosted at <https://metal.equinix.com/developers/api>.
+# Introduction Equinix Metal provides a RESTful HTTP API which can be reached at <https://api.equinix.com/metal/v1>. This document describes the API and how to use it.  The API allows you to programmatically interact with all of your Equinix Metal resources, including devices, networks, addresses, organizations, projects, and your user account. Every feature of the Equinix Metal web interface is accessible through the API.  The API docs are generated from the Equinix Metal OpenAPI specification and are officially hosted at <https://metal.equinix.com/developers/api>.  # Common Parameters  The Equinix Metal API uses a few methods to minimize network traffic and improve throughput. These parameters are not used in all API calls, but are used often enough to warrant their own section. Look for these parameters in the documentation for the API calls that support them.  ## Pagination  Pagination is used to limit the number of results returned in a single request. The API will return a maximum of 100 results per page. To retrieve additional results, you can use the `page` and `per_page` query parameters.  The `page` parameter is used to specify the page number. The first page is `1`. The `per_page` parameter is used to specify the number of results per page. The maximum number of results differs by resource type.  ## Sorting  Where offered, the API allows you to sort results by a specific field. To sort results use the `sort_by` query parameter with the root level field name as the value. The `sort_direction` parameter is used to specify the sort direction, either either `asc` (ascending) or `desc` (descending).  ## Filtering  Filtering is used to limit the results returned in a single request. The API supports filtering by certain fields in the response. To filter results, you can use the field as a query parameter.  For example, to filter the IP list to only return public IPv4 addresses, you can filter by the `type` field, as in the following request:  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/projects/id/ips?type=public_ipv4 ```  Only IP addresses with the `type` field set to `public_ipv4` will be returned.  ## Searching  Searching is used to find matching resources using multiple field comparissons. The API supports searching in resources that define this behavior. The fields available for search differ by resource, as does the search strategy.  To search resources you can use the `search` query parameter.  ## Include and Exclude  For resources that contain references to other resources, sucha as a Device that refers to the Project it resides in, the Equinix Metal API will returns `href` values (API links) to the associated resource.  ```json {   ...   \"project\": {     \"href\": \"/metal/v1/projects/f3f131c8-f302-49ef-8c44-9405022dc6dd\"   } } ```  If you're going need the project details, you can avoid a second API request.  Specify the contained `href` resources and collections that you'd like to have included in the response using the `include` query parameter.  For example:    ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=projects ```  The `include` parameter is generally accepted in `GET`, `POST`, `PUT`, and `PATCH` requests where `href` resources are presented.  To have multiple resources include, use a comma-separated list (e.g. `?include=emails,projects,memberships`).  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=emails,projects,memberships ```  You may also include nested associations up to three levels deep using dot notation (`?include=memberships.projects`):  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=memberships.projects ```  To exclude resources, and optimize response delivery, use the `exclude` query parameter. The `exclude` parameter is generally accepted in `GET`, `POST`, `PUT`, and `PATCH` requests for fields with nested object responses. When excluded, these fields will be replaced with an object that contains only an `href` field.
 
 API version: 1.0.0
 Contact: support@equinixmetal.com
@@ -52,7 +52,7 @@ func NewSpotPricesReportWithDefaults() *SpotPricesReport {
 
 // GetAms1 returns the Ams1 field value if set, zero value otherwise.
 func (o *SpotPricesReport) GetAms1() FindSpotMarketPrices200ResponseSpotMarketPricesAms1 {
-	if o == nil || o.Ams1 == nil {
+	if o == nil || isNil(o.Ams1) {
 		var ret FindSpotMarketPrices200ResponseSpotMarketPricesAms1
 		return ret
 	}
@@ -62,7 +62,7 @@ func (o *SpotPricesReport) GetAms1() FindSpotMarketPrices200ResponseSpotMarketPr
 // GetAms1Ok returns a tuple with the Ams1 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SpotPricesReport) GetAms1Ok() (*FindSpotMarketPrices200ResponseSpotMarketPricesAms1, bool) {
-	if o == nil || o.Ams1 == nil {
+	if o == nil || isNil(o.Ams1) {
 		return nil, false
 	}
 	return o.Ams1, true
@@ -70,7 +70,7 @@ func (o *SpotPricesReport) GetAms1Ok() (*FindSpotMarketPrices200ResponseSpotMark
 
 // HasAms1 returns a boolean if a field has been set.
 func (o *SpotPricesReport) HasAms1() bool {
-	if o != nil && o.Ams1 != nil {
+	if o != nil && !isNil(o.Ams1) {
 		return true
 	}
 
@@ -84,7 +84,7 @@ func (o *SpotPricesReport) SetAms1(v FindSpotMarketPrices200ResponseSpotMarketPr
 
 // GetAtl1 returns the Atl1 field value if set, zero value otherwise.
 func (o *SpotPricesReport) GetAtl1() FindSpotMarketPrices200ResponseSpotMarketPricesAtl1 {
-	if o == nil || o.Atl1 == nil {
+	if o == nil || isNil(o.Atl1) {
 		var ret FindSpotMarketPrices200ResponseSpotMarketPricesAtl1
 		return ret
 	}
@@ -94,7 +94,7 @@ func (o *SpotPricesReport) GetAtl1() FindSpotMarketPrices200ResponseSpotMarketPr
 // GetAtl1Ok returns a tuple with the Atl1 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SpotPricesReport) GetAtl1Ok() (*FindSpotMarketPrices200ResponseSpotMarketPricesAtl1, bool) {
-	if o == nil || o.Atl1 == nil {
+	if o == nil || isNil(o.Atl1) {
 		return nil, false
 	}
 	return o.Atl1, true
@@ -102,7 +102,7 @@ func (o *SpotPricesReport) GetAtl1Ok() (*FindSpotMarketPrices200ResponseSpotMark
 
 // HasAtl1 returns a boolean if a field has been set.
 func (o *SpotPricesReport) HasAtl1() bool {
-	if o != nil && o.Atl1 != nil {
+	if o != nil && !isNil(o.Atl1) {
 		return true
 	}
 
@@ -116,7 +116,7 @@ func (o *SpotPricesReport) SetAtl1(v FindSpotMarketPrices200ResponseSpotMarketPr
 
 // GetDfw1 returns the Dfw1 field value if set, zero value otherwise.
 func (o *SpotPricesReport) GetDfw1() FindSpotMarketPrices200ResponseSpotMarketPricesAtl1 {
-	if o == nil || o.Dfw1 == nil {
+	if o == nil || isNil(o.Dfw1) {
 		var ret FindSpotMarketPrices200ResponseSpotMarketPricesAtl1
 		return ret
 	}
@@ -126,7 +126,7 @@ func (o *SpotPricesReport) GetDfw1() FindSpotMarketPrices200ResponseSpotMarketPr
 // GetDfw1Ok returns a tuple with the Dfw1 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SpotPricesReport) GetDfw1Ok() (*FindSpotMarketPrices200ResponseSpotMarketPricesAtl1, bool) {
-	if o == nil || o.Dfw1 == nil {
+	if o == nil || isNil(o.Dfw1) {
 		return nil, false
 	}
 	return o.Dfw1, true
@@ -134,7 +134,7 @@ func (o *SpotPricesReport) GetDfw1Ok() (*FindSpotMarketPrices200ResponseSpotMark
 
 // HasDfw1 returns a boolean if a field has been set.
 func (o *SpotPricesReport) HasDfw1() bool {
-	if o != nil && o.Dfw1 != nil {
+	if o != nil && !isNil(o.Dfw1) {
 		return true
 	}
 
@@ -148,7 +148,7 @@ func (o *SpotPricesReport) SetDfw1(v FindSpotMarketPrices200ResponseSpotMarketPr
 
 // GetEwr1 returns the Ewr1 field value if set, zero value otherwise.
 func (o *SpotPricesReport) GetEwr1() FindSpotMarketPrices200ResponseSpotMarketPricesAms1 {
-	if o == nil || o.Ewr1 == nil {
+	if o == nil || isNil(o.Ewr1) {
 		var ret FindSpotMarketPrices200ResponseSpotMarketPricesAms1
 		return ret
 	}
@@ -158,7 +158,7 @@ func (o *SpotPricesReport) GetEwr1() FindSpotMarketPrices200ResponseSpotMarketPr
 // GetEwr1Ok returns a tuple with the Ewr1 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SpotPricesReport) GetEwr1Ok() (*FindSpotMarketPrices200ResponseSpotMarketPricesAms1, bool) {
-	if o == nil || o.Ewr1 == nil {
+	if o == nil || isNil(o.Ewr1) {
 		return nil, false
 	}
 	return o.Ewr1, true
@@ -166,7 +166,7 @@ func (o *SpotPricesReport) GetEwr1Ok() (*FindSpotMarketPrices200ResponseSpotMark
 
 // HasEwr1 returns a boolean if a field has been set.
 func (o *SpotPricesReport) HasEwr1() bool {
-	if o != nil && o.Ewr1 != nil {
+	if o != nil && !isNil(o.Ewr1) {
 		return true
 	}
 
@@ -180,7 +180,7 @@ func (o *SpotPricesReport) SetEwr1(v FindSpotMarketPrices200ResponseSpotMarketPr
 
 // GetFra1 returns the Fra1 field value if set, zero value otherwise.
 func (o *SpotPricesReport) GetFra1() FindSpotMarketPrices200ResponseSpotMarketPricesAtl1 {
-	if o == nil || o.Fra1 == nil {
+	if o == nil || isNil(o.Fra1) {
 		var ret FindSpotMarketPrices200ResponseSpotMarketPricesAtl1
 		return ret
 	}
@@ -190,7 +190,7 @@ func (o *SpotPricesReport) GetFra1() FindSpotMarketPrices200ResponseSpotMarketPr
 // GetFra1Ok returns a tuple with the Fra1 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SpotPricesReport) GetFra1Ok() (*FindSpotMarketPrices200ResponseSpotMarketPricesAtl1, bool) {
-	if o == nil || o.Fra1 == nil {
+	if o == nil || isNil(o.Fra1) {
 		return nil, false
 	}
 	return o.Fra1, true
@@ -198,7 +198,7 @@ func (o *SpotPricesReport) GetFra1Ok() (*FindSpotMarketPrices200ResponseSpotMark
 
 // HasFra1 returns a boolean if a field has been set.
 func (o *SpotPricesReport) HasFra1() bool {
-	if o != nil && o.Fra1 != nil {
+	if o != nil && !isNil(o.Fra1) {
 		return true
 	}
 
@@ -212,7 +212,7 @@ func (o *SpotPricesReport) SetFra1(v FindSpotMarketPrices200ResponseSpotMarketPr
 
 // GetIad1 returns the Iad1 field value if set, zero value otherwise.
 func (o *SpotPricesReport) GetIad1() FindSpotMarketPrices200ResponseSpotMarketPricesAtl1 {
-	if o == nil || o.Iad1 == nil {
+	if o == nil || isNil(o.Iad1) {
 		var ret FindSpotMarketPrices200ResponseSpotMarketPricesAtl1
 		return ret
 	}
@@ -222,7 +222,7 @@ func (o *SpotPricesReport) GetIad1() FindSpotMarketPrices200ResponseSpotMarketPr
 // GetIad1Ok returns a tuple with the Iad1 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SpotPricesReport) GetIad1Ok() (*FindSpotMarketPrices200ResponseSpotMarketPricesAtl1, bool) {
-	if o == nil || o.Iad1 == nil {
+	if o == nil || isNil(o.Iad1) {
 		return nil, false
 	}
 	return o.Iad1, true
@@ -230,7 +230,7 @@ func (o *SpotPricesReport) GetIad1Ok() (*FindSpotMarketPrices200ResponseSpotMark
 
 // HasIad1 returns a boolean if a field has been set.
 func (o *SpotPricesReport) HasIad1() bool {
-	if o != nil && o.Iad1 != nil {
+	if o != nil && !isNil(o.Iad1) {
 		return true
 	}
 
@@ -244,7 +244,7 @@ func (o *SpotPricesReport) SetIad1(v FindSpotMarketPrices200ResponseSpotMarketPr
 
 // GetLax1 returns the Lax1 field value if set, zero value otherwise.
 func (o *SpotPricesReport) GetLax1() FindSpotMarketPrices200ResponseSpotMarketPricesAtl1 {
-	if o == nil || o.Lax1 == nil {
+	if o == nil || isNil(o.Lax1) {
 		var ret FindSpotMarketPrices200ResponseSpotMarketPricesAtl1
 		return ret
 	}
@@ -254,7 +254,7 @@ func (o *SpotPricesReport) GetLax1() FindSpotMarketPrices200ResponseSpotMarketPr
 // GetLax1Ok returns a tuple with the Lax1 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SpotPricesReport) GetLax1Ok() (*FindSpotMarketPrices200ResponseSpotMarketPricesAtl1, bool) {
-	if o == nil || o.Lax1 == nil {
+	if o == nil || isNil(o.Lax1) {
 		return nil, false
 	}
 	return o.Lax1, true
@@ -262,7 +262,7 @@ func (o *SpotPricesReport) GetLax1Ok() (*FindSpotMarketPrices200ResponseSpotMark
 
 // HasLax1 returns a boolean if a field has been set.
 func (o *SpotPricesReport) HasLax1() bool {
-	if o != nil && o.Lax1 != nil {
+	if o != nil && !isNil(o.Lax1) {
 		return true
 	}
 
@@ -276,7 +276,7 @@ func (o *SpotPricesReport) SetLax1(v FindSpotMarketPrices200ResponseSpotMarketPr
 
 // GetNrt1 returns the Nrt1 field value if set, zero value otherwise.
 func (o *SpotPricesReport) GetNrt1() FindSpotMarketPrices200ResponseSpotMarketPricesAms1 {
-	if o == nil || o.Nrt1 == nil {
+	if o == nil || isNil(o.Nrt1) {
 		var ret FindSpotMarketPrices200ResponseSpotMarketPricesAms1
 		return ret
 	}
@@ -286,7 +286,7 @@ func (o *SpotPricesReport) GetNrt1() FindSpotMarketPrices200ResponseSpotMarketPr
 // GetNrt1Ok returns a tuple with the Nrt1 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SpotPricesReport) GetNrt1Ok() (*FindSpotMarketPrices200ResponseSpotMarketPricesAms1, bool) {
-	if o == nil || o.Nrt1 == nil {
+	if o == nil || isNil(o.Nrt1) {
 		return nil, false
 	}
 	return o.Nrt1, true
@@ -294,7 +294,7 @@ func (o *SpotPricesReport) GetNrt1Ok() (*FindSpotMarketPrices200ResponseSpotMark
 
 // HasNrt1 returns a boolean if a field has been set.
 func (o *SpotPricesReport) HasNrt1() bool {
-	if o != nil && o.Nrt1 != nil {
+	if o != nil && !isNil(o.Nrt1) {
 		return true
 	}
 
@@ -308,7 +308,7 @@ func (o *SpotPricesReport) SetNrt1(v FindSpotMarketPrices200ResponseSpotMarketPr
 
 // GetOrd1 returns the Ord1 field value if set, zero value otherwise.
 func (o *SpotPricesReport) GetOrd1() FindSpotMarketPrices200ResponseSpotMarketPricesAtl1 {
-	if o == nil || o.Ord1 == nil {
+	if o == nil || isNil(o.Ord1) {
 		var ret FindSpotMarketPrices200ResponseSpotMarketPricesAtl1
 		return ret
 	}
@@ -318,7 +318,7 @@ func (o *SpotPricesReport) GetOrd1() FindSpotMarketPrices200ResponseSpotMarketPr
 // GetOrd1Ok returns a tuple with the Ord1 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SpotPricesReport) GetOrd1Ok() (*FindSpotMarketPrices200ResponseSpotMarketPricesAtl1, bool) {
-	if o == nil || o.Ord1 == nil {
+	if o == nil || isNil(o.Ord1) {
 		return nil, false
 	}
 	return o.Ord1, true
@@ -326,7 +326,7 @@ func (o *SpotPricesReport) GetOrd1Ok() (*FindSpotMarketPrices200ResponseSpotMark
 
 // HasOrd1 returns a boolean if a field has been set.
 func (o *SpotPricesReport) HasOrd1() bool {
-	if o != nil && o.Ord1 != nil {
+	if o != nil && !isNil(o.Ord1) {
 		return true
 	}
 
@@ -340,7 +340,7 @@ func (o *SpotPricesReport) SetOrd1(v FindSpotMarketPrices200ResponseSpotMarketPr
 
 // GetSea1 returns the Sea1 field value if set, zero value otherwise.
 func (o *SpotPricesReport) GetSea1() FindSpotMarketPrices200ResponseSpotMarketPricesAtl1 {
-	if o == nil || o.Sea1 == nil {
+	if o == nil || isNil(o.Sea1) {
 		var ret FindSpotMarketPrices200ResponseSpotMarketPricesAtl1
 		return ret
 	}
@@ -350,7 +350,7 @@ func (o *SpotPricesReport) GetSea1() FindSpotMarketPrices200ResponseSpotMarketPr
 // GetSea1Ok returns a tuple with the Sea1 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SpotPricesReport) GetSea1Ok() (*FindSpotMarketPrices200ResponseSpotMarketPricesAtl1, bool) {
-	if o == nil || o.Sea1 == nil {
+	if o == nil || isNil(o.Sea1) {
 		return nil, false
 	}
 	return o.Sea1, true
@@ -358,7 +358,7 @@ func (o *SpotPricesReport) GetSea1Ok() (*FindSpotMarketPrices200ResponseSpotMark
 
 // HasSea1 returns a boolean if a field has been set.
 func (o *SpotPricesReport) HasSea1() bool {
-	if o != nil && o.Sea1 != nil {
+	if o != nil && !isNil(o.Sea1) {
 		return true
 	}
 
@@ -372,7 +372,7 @@ func (o *SpotPricesReport) SetSea1(v FindSpotMarketPrices200ResponseSpotMarketPr
 
 // GetSin1 returns the Sin1 field value if set, zero value otherwise.
 func (o *SpotPricesReport) GetSin1() FindSpotMarketPrices200ResponseSpotMarketPricesAtl1 {
-	if o == nil || o.Sin1 == nil {
+	if o == nil || isNil(o.Sin1) {
 		var ret FindSpotMarketPrices200ResponseSpotMarketPricesAtl1
 		return ret
 	}
@@ -382,7 +382,7 @@ func (o *SpotPricesReport) GetSin1() FindSpotMarketPrices200ResponseSpotMarketPr
 // GetSin1Ok returns a tuple with the Sin1 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SpotPricesReport) GetSin1Ok() (*FindSpotMarketPrices200ResponseSpotMarketPricesAtl1, bool) {
-	if o == nil || o.Sin1 == nil {
+	if o == nil || isNil(o.Sin1) {
 		return nil, false
 	}
 	return o.Sin1, true
@@ -390,7 +390,7 @@ func (o *SpotPricesReport) GetSin1Ok() (*FindSpotMarketPrices200ResponseSpotMark
 
 // HasSin1 returns a boolean if a field has been set.
 func (o *SpotPricesReport) HasSin1() bool {
-	if o != nil && o.Sin1 != nil {
+	if o != nil && !isNil(o.Sin1) {
 		return true
 	}
 
@@ -404,7 +404,7 @@ func (o *SpotPricesReport) SetSin1(v FindSpotMarketPrices200ResponseSpotMarketPr
 
 // GetSjc1 returns the Sjc1 field value if set, zero value otherwise.
 func (o *SpotPricesReport) GetSjc1() FindSpotMarketPrices200ResponseSpotMarketPricesAms1 {
-	if o == nil || o.Sjc1 == nil {
+	if o == nil || isNil(o.Sjc1) {
 		var ret FindSpotMarketPrices200ResponseSpotMarketPricesAms1
 		return ret
 	}
@@ -414,7 +414,7 @@ func (o *SpotPricesReport) GetSjc1() FindSpotMarketPrices200ResponseSpotMarketPr
 // GetSjc1Ok returns a tuple with the Sjc1 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SpotPricesReport) GetSjc1Ok() (*FindSpotMarketPrices200ResponseSpotMarketPricesAms1, bool) {
-	if o == nil || o.Sjc1 == nil {
+	if o == nil || isNil(o.Sjc1) {
 		return nil, false
 	}
 	return o.Sjc1, true
@@ -422,7 +422,7 @@ func (o *SpotPricesReport) GetSjc1Ok() (*FindSpotMarketPrices200ResponseSpotMark
 
 // HasSjc1 returns a boolean if a field has been set.
 func (o *SpotPricesReport) HasSjc1() bool {
-	if o != nil && o.Sjc1 != nil {
+	if o != nil && !isNil(o.Sjc1) {
 		return true
 	}
 
@@ -436,7 +436,7 @@ func (o *SpotPricesReport) SetSjc1(v FindSpotMarketPrices200ResponseSpotMarketPr
 
 // GetSyd1 returns the Syd1 field value if set, zero value otherwise.
 func (o *SpotPricesReport) GetSyd1() FindSpotMarketPrices200ResponseSpotMarketPricesAtl1 {
-	if o == nil || o.Syd1 == nil {
+	if o == nil || isNil(o.Syd1) {
 		var ret FindSpotMarketPrices200ResponseSpotMarketPricesAtl1
 		return ret
 	}
@@ -446,7 +446,7 @@ func (o *SpotPricesReport) GetSyd1() FindSpotMarketPrices200ResponseSpotMarketPr
 // GetSyd1Ok returns a tuple with the Syd1 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SpotPricesReport) GetSyd1Ok() (*FindSpotMarketPrices200ResponseSpotMarketPricesAtl1, bool) {
-	if o == nil || o.Syd1 == nil {
+	if o == nil || isNil(o.Syd1) {
 		return nil, false
 	}
 	return o.Syd1, true
@@ -454,7 +454,7 @@ func (o *SpotPricesReport) GetSyd1Ok() (*FindSpotMarketPrices200ResponseSpotMark
 
 // HasSyd1 returns a boolean if a field has been set.
 func (o *SpotPricesReport) HasSyd1() bool {
-	if o != nil && o.Syd1 != nil {
+	if o != nil && !isNil(o.Syd1) {
 		return true
 	}
 
@@ -468,7 +468,7 @@ func (o *SpotPricesReport) SetSyd1(v FindSpotMarketPrices200ResponseSpotMarketPr
 
 // GetYyz1 returns the Yyz1 field value if set, zero value otherwise.
 func (o *SpotPricesReport) GetYyz1() FindSpotMarketPrices200ResponseSpotMarketPricesAtl1 {
-	if o == nil || o.Yyz1 == nil {
+	if o == nil || isNil(o.Yyz1) {
 		var ret FindSpotMarketPrices200ResponseSpotMarketPricesAtl1
 		return ret
 	}
@@ -478,7 +478,7 @@ func (o *SpotPricesReport) GetYyz1() FindSpotMarketPrices200ResponseSpotMarketPr
 // GetYyz1Ok returns a tuple with the Yyz1 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SpotPricesReport) GetYyz1Ok() (*FindSpotMarketPrices200ResponseSpotMarketPricesAtl1, bool) {
-	if o == nil || o.Yyz1 == nil {
+	if o == nil || isNil(o.Yyz1) {
 		return nil, false
 	}
 	return o.Yyz1, true
@@ -486,7 +486,7 @@ func (o *SpotPricesReport) GetYyz1Ok() (*FindSpotMarketPrices200ResponseSpotMark
 
 // HasYyz1 returns a boolean if a field has been set.
 func (o *SpotPricesReport) HasYyz1() bool {
-	if o != nil && o.Yyz1 != nil {
+	if o != nil && !isNil(o.Yyz1) {
 		return true
 	}
 
@@ -500,46 +500,46 @@ func (o *SpotPricesReport) SetYyz1(v FindSpotMarketPrices200ResponseSpotMarketPr
 
 func (o SpotPricesReport) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Ams1 != nil {
+	if !isNil(o.Ams1) {
 		toSerialize["ams1"] = o.Ams1
 	}
-	if o.Atl1 != nil {
+	if !isNil(o.Atl1) {
 		toSerialize["atl1"] = o.Atl1
 	}
-	if o.Dfw1 != nil {
+	if !isNil(o.Dfw1) {
 		toSerialize["dfw1"] = o.Dfw1
 	}
-	if o.Ewr1 != nil {
+	if !isNil(o.Ewr1) {
 		toSerialize["ewr1"] = o.Ewr1
 	}
-	if o.Fra1 != nil {
+	if !isNil(o.Fra1) {
 		toSerialize["fra1"] = o.Fra1
 	}
-	if o.Iad1 != nil {
+	if !isNil(o.Iad1) {
 		toSerialize["iad1"] = o.Iad1
 	}
-	if o.Lax1 != nil {
+	if !isNil(o.Lax1) {
 		toSerialize["lax1"] = o.Lax1
 	}
-	if o.Nrt1 != nil {
+	if !isNil(o.Nrt1) {
 		toSerialize["nrt1"] = o.Nrt1
 	}
-	if o.Ord1 != nil {
+	if !isNil(o.Ord1) {
 		toSerialize["ord1"] = o.Ord1
 	}
-	if o.Sea1 != nil {
+	if !isNil(o.Sea1) {
 		toSerialize["sea1"] = o.Sea1
 	}
-	if o.Sin1 != nil {
+	if !isNil(o.Sin1) {
 		toSerialize["sin1"] = o.Sin1
 	}
-	if o.Sjc1 != nil {
+	if !isNil(o.Sjc1) {
 		toSerialize["sjc1"] = o.Sjc1
 	}
-	if o.Syd1 != nil {
+	if !isNil(o.Syd1) {
 		toSerialize["syd1"] = o.Syd1
 	}
-	if o.Yyz1 != nil {
+	if !isNil(o.Yyz1) {
 		toSerialize["yyz1"] = o.Yyz1
 	}
 	return json.Marshal(toSerialize)
