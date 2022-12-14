@@ -17,14 +17,14 @@ import (
 
 // Facility struct for Facility
 type Facility struct {
-	Address  *FindDeviceById200ResponseFacilityAddress `json:"address,omitempty"`
-	Code     *string                                   `json:"code,omitempty"`
-	Features []string                                  `json:"features,omitempty"`
-	Id       *string                                   `json:"id,omitempty"`
+	Address  *Address `json:"address,omitempty"`
+	Code     *string  `json:"code,omitempty"`
+	Features []string `json:"features,omitempty"`
+	Id       *string  `json:"id,omitempty"`
 	// IP ranges registered in facility. Can be used for GeoIP location
-	IpRanges []string                                `json:"ip_ranges,omitempty"`
-	Metro    *FindDeviceById200ResponseFacilityMetro `json:"metro,omitempty"`
-	Name     *string                                 `json:"name,omitempty"`
+	IpRanges []string     `json:"ip_ranges,omitempty"`
+	Metro    *DeviceMetro `json:"metro,omitempty"`
+	Name     *string      `json:"name,omitempty"`
 }
 
 // NewFacility instantiates a new Facility object
@@ -45,9 +45,9 @@ func NewFacilityWithDefaults() *Facility {
 }
 
 // GetAddress returns the Address field value if set, zero value otherwise.
-func (o *Facility) GetAddress() FindDeviceById200ResponseFacilityAddress {
+func (o *Facility) GetAddress() Address {
 	if o == nil || isNil(o.Address) {
-		var ret FindDeviceById200ResponseFacilityAddress
+		var ret Address
 		return ret
 	}
 	return *o.Address
@@ -55,7 +55,7 @@ func (o *Facility) GetAddress() FindDeviceById200ResponseFacilityAddress {
 
 // GetAddressOk returns a tuple with the Address field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Facility) GetAddressOk() (*FindDeviceById200ResponseFacilityAddress, bool) {
+func (o *Facility) GetAddressOk() (*Address, bool) {
 	if o == nil || isNil(o.Address) {
 		return nil, false
 	}
@@ -71,8 +71,8 @@ func (o *Facility) HasAddress() bool {
 	return false
 }
 
-// SetAddress gets a reference to the given FindDeviceById200ResponseFacilityAddress and assigns it to the Address field.
-func (o *Facility) SetAddress(v FindDeviceById200ResponseFacilityAddress) {
+// SetAddress gets a reference to the given Address and assigns it to the Address field.
+func (o *Facility) SetAddress(v Address) {
 	o.Address = &v
 }
 
@@ -205,9 +205,9 @@ func (o *Facility) SetIpRanges(v []string) {
 }
 
 // GetMetro returns the Metro field value if set, zero value otherwise.
-func (o *Facility) GetMetro() FindDeviceById200ResponseFacilityMetro {
+func (o *Facility) GetMetro() DeviceMetro {
 	if o == nil || isNil(o.Metro) {
-		var ret FindDeviceById200ResponseFacilityMetro
+		var ret DeviceMetro
 		return ret
 	}
 	return *o.Metro
@@ -215,7 +215,7 @@ func (o *Facility) GetMetro() FindDeviceById200ResponseFacilityMetro {
 
 // GetMetroOk returns a tuple with the Metro field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Facility) GetMetroOk() (*FindDeviceById200ResponseFacilityMetro, bool) {
+func (o *Facility) GetMetroOk() (*DeviceMetro, bool) {
 	if o == nil || isNil(o.Metro) {
 		return nil, false
 	}
@@ -231,8 +231,8 @@ func (o *Facility) HasMetro() bool {
 	return false
 }
 
-// SetMetro gets a reference to the given FindDeviceById200ResponseFacilityMetro and assigns it to the Metro field.
-func (o *Facility) SetMetro(v FindDeviceById200ResponseFacilityMetro) {
+// SetMetro gets a reference to the given DeviceMetro and assigns it to the Metro field.
+func (o *Facility) SetMetro(v DeviceMetro) {
 	o.Metro = &v
 }
 

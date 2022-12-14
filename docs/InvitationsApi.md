@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 ## AcceptInvitation
 
-> FindInvitations200ResponseInvitationsInner AcceptInvitation(ctx, id).Execute()
+> Membership AcceptInvitation(ctx, id).Execute()
 
 Accept an invitation
 
@@ -40,7 +40,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `InvitationsApi.AcceptInvitation``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `AcceptInvitation`: FindInvitations200ResponseInvitationsInner
+    // response from `AcceptInvitation`: Membership
     fmt.Fprintf(os.Stdout, "Response from `InvitationsApi.AcceptInvitation`: %v\n", resp)
 }
 ```
@@ -64,7 +64,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FindInvitations200ResponseInvitationsInner**](FindInvitations200ResponseInvitationsInner.md)
+[**Membership**](Membership.md)
 
 ### Authorization
 
@@ -150,7 +150,7 @@ Name | Type | Description  | Notes
 
 ## FindInvitationById
 
-> FindInvitationById200Response FindInvitationById(ctx, id).Include(include).Exclude(exclude).Execute()
+> Invitation FindInvitationById(ctx, id).Include(include).Exclude(exclude).Execute()
 
 View an invitation
 
@@ -180,7 +180,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `InvitationsApi.FindInvitationById``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindInvitationById`: FindInvitationById200Response
+    // response from `FindInvitationById`: Invitation
     fmt.Fprintf(os.Stdout, "Response from `InvitationsApi.FindInvitationById`: %v\n", resp)
 }
 ```
@@ -206,7 +206,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FindInvitationById200Response**](FindInvitationById200Response.md)
+[**Invitation**](Invitation.md)
 
 ### Authorization
 

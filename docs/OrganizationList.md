@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Meta** | Pointer to [**FindDeviceEvents200ResponseMeta**](FindDeviceEvents200ResponseMeta.md) |  | [optional] 
-**Organizations** | Pointer to [**[]FindOrganizations200ResponseOrganizationsInner**](FindOrganizations200ResponseOrganizationsInner.md) |  | [optional] 
+**Meta** | Pointer to [**Meta**](Meta.md) |  | [optional] 
+**Organizations** | Pointer to [**[]Organization**](Organization.md) |  | [optional] 
 
 ## Methods
 
@@ -28,20 +28,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetMeta
 
-`func (o *OrganizationList) GetMeta() FindDeviceEvents200ResponseMeta`
+`func (o *OrganizationList) GetMeta() Meta`
 
 GetMeta returns the Meta field if non-nil, zero value otherwise.
 
 ### GetMetaOk
 
-`func (o *OrganizationList) GetMetaOk() (*FindDeviceEvents200ResponseMeta, bool)`
+`func (o *OrganizationList) GetMetaOk() (*Meta, bool)`
 
 GetMetaOk returns a tuple with the Meta field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMeta
 
-`func (o *OrganizationList) SetMeta(v FindDeviceEvents200ResponseMeta)`
+`func (o *OrganizationList) SetMeta(v Meta)`
 
 SetMeta sets Meta field to given value.
 
@@ -53,20 +53,20 @@ HasMeta returns a boolean if a field has been set.
 
 ### GetOrganizations
 
-`func (o *OrganizationList) GetOrganizations() []FindOrganizations200ResponseOrganizationsInner`
+`func (o *OrganizationList) GetOrganizations() []Organization`
 
 GetOrganizations returns the Organizations field if non-nil, zero value otherwise.
 
 ### GetOrganizationsOk
 
-`func (o *OrganizationList) GetOrganizationsOk() (*[]FindOrganizations200ResponseOrganizationsInner, bool)`
+`func (o *OrganizationList) GetOrganizationsOk() (*[]Organization, bool)`
 
 GetOrganizationsOk returns a tuple with the Organizations field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOrganizations
 
-`func (o *OrganizationList) SetOrganizations(v []FindOrganizations200ResponseOrganizationsInner)`
+`func (o *OrganizationList) SetOrganizations(v []Organization)`
 
 SetOrganizations sets Organizations field to given value.
 

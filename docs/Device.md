@@ -8,33 +8,33 @@ Name | Type | Description | Notes
 **BillingCycle** | Pointer to **string** |  | [optional] 
 **BondingMode** | Pointer to **int32** |  | [optional] 
 **CreatedAt** | Pointer to **time.Time** |  | [optional] 
-**CreatedBy** | Pointer to [**FindDeviceById200ResponseCreatedBy**](FindDeviceById200ResponseCreatedBy.md) |  | [optional] 
+**CreatedBy** | Pointer to [**DeviceCreatedBy**](DeviceCreatedBy.md) |  | [optional] 
 **Customdata** | Pointer to **map[string]interface{}** |  | [optional] 
 **Description** | Pointer to **string** |  | [optional] 
-**Facility** | Pointer to [**FindDeviceById200ResponseFacility**](FindDeviceById200ResponseFacility.md) |  | [optional] 
-**HardwareReservation** | Pointer to [**FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
+**Facility** | Pointer to [**Facility**](Facility.md) |  | [optional] 
+**HardwareReservation** | Pointer to [**Href**](Href.md) |  | [optional] 
 **Hostname** | Pointer to **string** |  | [optional] 
 **Href** | Pointer to **string** |  | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
 **ImageUrl** | Pointer to **string** |  | [optional] 
-**IpAddresses** | Pointer to [**[]FindDeviceById200ResponseIpAddressesInner**](FindDeviceById200ResponseIpAddressesInner.md) |  | [optional] 
+**IpAddresses** | Pointer to [**[]IPAssignment**](IPAssignment.md) |  | [optional] 
 **IpxeScriptUrl** | Pointer to **string** |  | [optional] 
 **Iqn** | Pointer to **string** |  | [optional] 
 **Locked** | Pointer to **bool** |  | [optional] 
-**Metro** | Pointer to [**FindDeviceById200ResponseFacilityMetro**](FindDeviceById200ResponseFacilityMetro.md) |  | [optional] 
-**NetworkPorts** | Pointer to [**[]FindDeviceById200ResponseNetworkPortsInner**](FindDeviceById200ResponseNetworkPortsInner.md) | By default, servers at Equinix Metal are configured in a “bonded” mode using LACP (Link Aggregation Control Protocol). Each 2-NIC server is configured with a single bond (namely bond0) with both interfaces eth0 and eth1 as members of the bond in a default Layer 3 mode. Some device plans may have a different number of ports and bonds available. | [optional] 
-**OperatingSystem** | Pointer to [**FindDeviceById200ResponseOperatingSystem**](FindDeviceById200ResponseOperatingSystem.md) |  | [optional] 
-**Actions** | Pointer to [**[]FindDeviceById200ResponseActionsInner**](FindDeviceById200ResponseActionsInner.md) | Actions supported by the device instance. | [optional] 
-**Plan** | Pointer to [**FindDeviceById200ResponsePlan**](FindDeviceById200ResponsePlan.md) |  | [optional] 
-**Project** | Pointer to [**FindDeviceById200ResponseProject**](FindDeviceById200ResponseProject.md) |  | [optional] 
-**ProjectLite** | Pointer to [**FindDeviceById200ResponseProjectLite**](FindDeviceById200ResponseProjectLite.md) |  | [optional] 
-**ProvisioningEvents** | Pointer to [**[]FindInterconnectionEvents200Response**](FindInterconnectionEvents200Response.md) |  | [optional] 
+**Metro** | Pointer to [**DeviceMetro**](DeviceMetro.md) |  | [optional] 
+**NetworkPorts** | Pointer to [**[]Port**](Port.md) | By default, servers at Equinix Metal are configured in a “bonded” mode using LACP (Link Aggregation Control Protocol). Each 2-NIC server is configured with a single bond (namely bond0) with both interfaces eth0 and eth1 as members of the bond in a default Layer 3 mode. Some device plans may have a different number of ports and bonds available. | [optional] 
+**OperatingSystem** | Pointer to [**OperatingSystem**](OperatingSystem.md) |  | [optional] 
+**Actions** | Pointer to [**[]DeviceActionsInner**](DeviceActionsInner.md) | Actions supported by the device instance. | [optional] 
+**Plan** | Pointer to [**Plan**](Plan.md) |  | [optional] 
+**Project** | Pointer to [**DeviceProject**](DeviceProject.md) |  | [optional] 
+**ProjectLite** | Pointer to [**DeviceProjectLite**](DeviceProjectLite.md) |  | [optional] 
+**ProvisioningEvents** | Pointer to [**[]Event**](Event.md) |  | [optional] 
 **ProvisioningPercentage** | Pointer to **float32** | Only visible while device provisioning | [optional] 
 **RootPassword** | Pointer to **string** | Root password is automatically generated when server is provisioned and it is removed after 24 hours | [optional] 
 **ShortId** | Pointer to **string** |  | [optional] 
 **SpotInstance** | Pointer to **bool** | Whether or not the device is a spot instance. | [optional] 
 **SpotPriceMax** | Pointer to **float32** | The maximum price per hour you are willing to pay to keep this spot instance.  If you are outbid, the termination will be set allowing two minutes before shutdown. | [optional] 
-**SshKeys** | Pointer to [**[]FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
+**SshKeys** | Pointer to [**[]Href**](Href.md) |  | [optional] 
 **State** | Pointer to **string** |  | [optional] 
 **SwitchUuid** | Pointer to **string** | Switch short id. This can be used to determine if two devices are connected to the same switch, for example. | [optional] 
 **Tags** | Pointer to **[]string** |  | [optional] 
@@ -42,7 +42,7 @@ Name | Type | Description | Notes
 **UpdatedAt** | Pointer to **time.Time** |  | [optional] 
 **User** | Pointer to **string** |  | [optional] 
 **Userdata** | Pointer to **string** |  | [optional] 
-**Volumes** | Pointer to [**[]FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
+**Volumes** | Pointer to [**[]Href**](Href.md) |  | [optional] 
 
 ## Methods
 
@@ -165,20 +165,20 @@ HasCreatedAt returns a boolean if a field has been set.
 
 ### GetCreatedBy
 
-`func (o *Device) GetCreatedBy() FindDeviceById200ResponseCreatedBy`
+`func (o *Device) GetCreatedBy() DeviceCreatedBy`
 
 GetCreatedBy returns the CreatedBy field if non-nil, zero value otherwise.
 
 ### GetCreatedByOk
 
-`func (o *Device) GetCreatedByOk() (*FindDeviceById200ResponseCreatedBy, bool)`
+`func (o *Device) GetCreatedByOk() (*DeviceCreatedBy, bool)`
 
 GetCreatedByOk returns a tuple with the CreatedBy field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCreatedBy
 
-`func (o *Device) SetCreatedBy(v FindDeviceById200ResponseCreatedBy)`
+`func (o *Device) SetCreatedBy(v DeviceCreatedBy)`
 
 SetCreatedBy sets CreatedBy field to given value.
 
@@ -240,20 +240,20 @@ HasDescription returns a boolean if a field has been set.
 
 ### GetFacility
 
-`func (o *Device) GetFacility() FindDeviceById200ResponseFacility`
+`func (o *Device) GetFacility() Facility`
 
 GetFacility returns the Facility field if non-nil, zero value otherwise.
 
 ### GetFacilityOk
 
-`func (o *Device) GetFacilityOk() (*FindDeviceById200ResponseFacility, bool)`
+`func (o *Device) GetFacilityOk() (*Facility, bool)`
 
 GetFacilityOk returns a tuple with the Facility field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFacility
 
-`func (o *Device) SetFacility(v FindDeviceById200ResponseFacility)`
+`func (o *Device) SetFacility(v Facility)`
 
 SetFacility sets Facility field to given value.
 
@@ -265,20 +265,20 @@ HasFacility returns a boolean if a field has been set.
 
 ### GetHardwareReservation
 
-`func (o *Device) GetHardwareReservation() FindBatchById200ResponseDevicesInner`
+`func (o *Device) GetHardwareReservation() Href`
 
 GetHardwareReservation returns the HardwareReservation field if non-nil, zero value otherwise.
 
 ### GetHardwareReservationOk
 
-`func (o *Device) GetHardwareReservationOk() (*FindBatchById200ResponseDevicesInner, bool)`
+`func (o *Device) GetHardwareReservationOk() (*Href, bool)`
 
 GetHardwareReservationOk returns a tuple with the HardwareReservation field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetHardwareReservation
 
-`func (o *Device) SetHardwareReservation(v FindBatchById200ResponseDevicesInner)`
+`func (o *Device) SetHardwareReservation(v Href)`
 
 SetHardwareReservation sets HardwareReservation field to given value.
 
@@ -390,20 +390,20 @@ HasImageUrl returns a boolean if a field has been set.
 
 ### GetIpAddresses
 
-`func (o *Device) GetIpAddresses() []FindDeviceById200ResponseIpAddressesInner`
+`func (o *Device) GetIpAddresses() []IPAssignment`
 
 GetIpAddresses returns the IpAddresses field if non-nil, zero value otherwise.
 
 ### GetIpAddressesOk
 
-`func (o *Device) GetIpAddressesOk() (*[]FindDeviceById200ResponseIpAddressesInner, bool)`
+`func (o *Device) GetIpAddressesOk() (*[]IPAssignment, bool)`
 
 GetIpAddressesOk returns a tuple with the IpAddresses field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIpAddresses
 
-`func (o *Device) SetIpAddresses(v []FindDeviceById200ResponseIpAddressesInner)`
+`func (o *Device) SetIpAddresses(v []IPAssignment)`
 
 SetIpAddresses sets IpAddresses field to given value.
 
@@ -490,20 +490,20 @@ HasLocked returns a boolean if a field has been set.
 
 ### GetMetro
 
-`func (o *Device) GetMetro() FindDeviceById200ResponseFacilityMetro`
+`func (o *Device) GetMetro() DeviceMetro`
 
 GetMetro returns the Metro field if non-nil, zero value otherwise.
 
 ### GetMetroOk
 
-`func (o *Device) GetMetroOk() (*FindDeviceById200ResponseFacilityMetro, bool)`
+`func (o *Device) GetMetroOk() (*DeviceMetro, bool)`
 
 GetMetroOk returns a tuple with the Metro field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMetro
 
-`func (o *Device) SetMetro(v FindDeviceById200ResponseFacilityMetro)`
+`func (o *Device) SetMetro(v DeviceMetro)`
 
 SetMetro sets Metro field to given value.
 
@@ -515,20 +515,20 @@ HasMetro returns a boolean if a field has been set.
 
 ### GetNetworkPorts
 
-`func (o *Device) GetNetworkPorts() []FindDeviceById200ResponseNetworkPortsInner`
+`func (o *Device) GetNetworkPorts() []Port`
 
 GetNetworkPorts returns the NetworkPorts field if non-nil, zero value otherwise.
 
 ### GetNetworkPortsOk
 
-`func (o *Device) GetNetworkPortsOk() (*[]FindDeviceById200ResponseNetworkPortsInner, bool)`
+`func (o *Device) GetNetworkPortsOk() (*[]Port, bool)`
 
 GetNetworkPortsOk returns a tuple with the NetworkPorts field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNetworkPorts
 
-`func (o *Device) SetNetworkPorts(v []FindDeviceById200ResponseNetworkPortsInner)`
+`func (o *Device) SetNetworkPorts(v []Port)`
 
 SetNetworkPorts sets NetworkPorts field to given value.
 
@@ -540,20 +540,20 @@ HasNetworkPorts returns a boolean if a field has been set.
 
 ### GetOperatingSystem
 
-`func (o *Device) GetOperatingSystem() FindDeviceById200ResponseOperatingSystem`
+`func (o *Device) GetOperatingSystem() OperatingSystem`
 
 GetOperatingSystem returns the OperatingSystem field if non-nil, zero value otherwise.
 
 ### GetOperatingSystemOk
 
-`func (o *Device) GetOperatingSystemOk() (*FindDeviceById200ResponseOperatingSystem, bool)`
+`func (o *Device) GetOperatingSystemOk() (*OperatingSystem, bool)`
 
 GetOperatingSystemOk returns a tuple with the OperatingSystem field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOperatingSystem
 
-`func (o *Device) SetOperatingSystem(v FindDeviceById200ResponseOperatingSystem)`
+`func (o *Device) SetOperatingSystem(v OperatingSystem)`
 
 SetOperatingSystem sets OperatingSystem field to given value.
 
@@ -565,20 +565,20 @@ HasOperatingSystem returns a boolean if a field has been set.
 
 ### GetActions
 
-`func (o *Device) GetActions() []FindDeviceById200ResponseActionsInner`
+`func (o *Device) GetActions() []DeviceActionsInner`
 
 GetActions returns the Actions field if non-nil, zero value otherwise.
 
 ### GetActionsOk
 
-`func (o *Device) GetActionsOk() (*[]FindDeviceById200ResponseActionsInner, bool)`
+`func (o *Device) GetActionsOk() (*[]DeviceActionsInner, bool)`
 
 GetActionsOk returns a tuple with the Actions field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetActions
 
-`func (o *Device) SetActions(v []FindDeviceById200ResponseActionsInner)`
+`func (o *Device) SetActions(v []DeviceActionsInner)`
 
 SetActions sets Actions field to given value.
 
@@ -590,20 +590,20 @@ HasActions returns a boolean if a field has been set.
 
 ### GetPlan
 
-`func (o *Device) GetPlan() FindDeviceById200ResponsePlan`
+`func (o *Device) GetPlan() Plan`
 
 GetPlan returns the Plan field if non-nil, zero value otherwise.
 
 ### GetPlanOk
 
-`func (o *Device) GetPlanOk() (*FindDeviceById200ResponsePlan, bool)`
+`func (o *Device) GetPlanOk() (*Plan, bool)`
 
 GetPlanOk returns a tuple with the Plan field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPlan
 
-`func (o *Device) SetPlan(v FindDeviceById200ResponsePlan)`
+`func (o *Device) SetPlan(v Plan)`
 
 SetPlan sets Plan field to given value.
 
@@ -615,20 +615,20 @@ HasPlan returns a boolean if a field has been set.
 
 ### GetProject
 
-`func (o *Device) GetProject() FindDeviceById200ResponseProject`
+`func (o *Device) GetProject() DeviceProject`
 
 GetProject returns the Project field if non-nil, zero value otherwise.
 
 ### GetProjectOk
 
-`func (o *Device) GetProjectOk() (*FindDeviceById200ResponseProject, bool)`
+`func (o *Device) GetProjectOk() (*DeviceProject, bool)`
 
 GetProjectOk returns a tuple with the Project field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetProject
 
-`func (o *Device) SetProject(v FindDeviceById200ResponseProject)`
+`func (o *Device) SetProject(v DeviceProject)`
 
 SetProject sets Project field to given value.
 
@@ -640,20 +640,20 @@ HasProject returns a boolean if a field has been set.
 
 ### GetProjectLite
 
-`func (o *Device) GetProjectLite() FindDeviceById200ResponseProjectLite`
+`func (o *Device) GetProjectLite() DeviceProjectLite`
 
 GetProjectLite returns the ProjectLite field if non-nil, zero value otherwise.
 
 ### GetProjectLiteOk
 
-`func (o *Device) GetProjectLiteOk() (*FindDeviceById200ResponseProjectLite, bool)`
+`func (o *Device) GetProjectLiteOk() (*DeviceProjectLite, bool)`
 
 GetProjectLiteOk returns a tuple with the ProjectLite field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetProjectLite
 
-`func (o *Device) SetProjectLite(v FindDeviceById200ResponseProjectLite)`
+`func (o *Device) SetProjectLite(v DeviceProjectLite)`
 
 SetProjectLite sets ProjectLite field to given value.
 
@@ -665,20 +665,20 @@ HasProjectLite returns a boolean if a field has been set.
 
 ### GetProvisioningEvents
 
-`func (o *Device) GetProvisioningEvents() []FindInterconnectionEvents200Response`
+`func (o *Device) GetProvisioningEvents() []Event`
 
 GetProvisioningEvents returns the ProvisioningEvents field if non-nil, zero value otherwise.
 
 ### GetProvisioningEventsOk
 
-`func (o *Device) GetProvisioningEventsOk() (*[]FindInterconnectionEvents200Response, bool)`
+`func (o *Device) GetProvisioningEventsOk() (*[]Event, bool)`
 
 GetProvisioningEventsOk returns a tuple with the ProvisioningEvents field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetProvisioningEvents
 
-`func (o *Device) SetProvisioningEvents(v []FindInterconnectionEvents200Response)`
+`func (o *Device) SetProvisioningEvents(v []Event)`
 
 SetProvisioningEvents sets ProvisioningEvents field to given value.
 
@@ -815,20 +815,20 @@ HasSpotPriceMax returns a boolean if a field has been set.
 
 ### GetSshKeys
 
-`func (o *Device) GetSshKeys() []FindBatchById200ResponseDevicesInner`
+`func (o *Device) GetSshKeys() []Href`
 
 GetSshKeys returns the SshKeys field if non-nil, zero value otherwise.
 
 ### GetSshKeysOk
 
-`func (o *Device) GetSshKeysOk() (*[]FindBatchById200ResponseDevicesInner, bool)`
+`func (o *Device) GetSshKeysOk() (*[]Href, bool)`
 
 GetSshKeysOk returns a tuple with the SshKeys field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSshKeys
 
-`func (o *Device) SetSshKeys(v []FindBatchById200ResponseDevicesInner)`
+`func (o *Device) SetSshKeys(v []Href)`
 
 SetSshKeys sets SshKeys field to given value.
 
@@ -1015,20 +1015,20 @@ HasUserdata returns a boolean if a field has been set.
 
 ### GetVolumes
 
-`func (o *Device) GetVolumes() []FindBatchById200ResponseDevicesInner`
+`func (o *Device) GetVolumes() []Href`
 
 GetVolumes returns the Volumes field if non-nil, zero value otherwise.
 
 ### GetVolumesOk
 
-`func (o *Device) GetVolumesOk() (*[]FindBatchById200ResponseDevicesInner, bool)`
+`func (o *Device) GetVolumesOk() (*[]Href, bool)`
 
 GetVolumesOk returns a tuple with the Volumes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVolumes
 
-`func (o *Device) SetVolumes(v []FindBatchById200ResponseDevicesInner)`
+`func (o *Device) SetVolumes(v []Href)`
 
 SetVolumes sets Volumes field to given value.
 

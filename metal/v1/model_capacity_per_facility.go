@@ -17,15 +17,15 @@ import (
 
 // CapacityPerFacility struct for CapacityPerFacility
 type CapacityPerFacility struct {
-	Baremetal0   *FindCapacityForFacility200ResponseCapacityAms1Baremetal0 `json:"baremetal_0,omitempty"`
-	Baremetal1   *FindCapacityForFacility200ResponseCapacityAms1Baremetal0 `json:"baremetal_1,omitempty"`
-	Baremetal2   *FindCapacityForFacility200ResponseCapacityAms1Baremetal0 `json:"baremetal_2,omitempty"`
-	Baremetal2a  *FindCapacityForFacility200ResponseCapacityAms1Baremetal0 `json:"baremetal_2a,omitempty"`
-	Baremetal2a2 *FindCapacityForFacility200ResponseCapacityAms1Baremetal0 `json:"baremetal_2a2,omitempty"`
-	Baremetal3   *FindCapacityForFacility200ResponseCapacityAms1Baremetal0 `json:"baremetal_3,omitempty"`
-	BaremetalS   *FindCapacityForFacility200ResponseCapacityAms1Baremetal0 `json:"baremetal_s,omitempty"`
-	C2MediumX86  *FindCapacityForFacility200ResponseCapacityAms1Baremetal0 `json:"c2.medium.x86,omitempty"`
-	M2XlargeX86  *FindCapacityForFacility200ResponseCapacityAms1Baremetal0 `json:"m2.xlarge.x86,omitempty"`
+	Baremetal0   *CapacityLevelPerBaremetal `json:"baremetal_0,omitempty"`
+	Baremetal1   *CapacityLevelPerBaremetal `json:"baremetal_1,omitempty"`
+	Baremetal2   *CapacityLevelPerBaremetal `json:"baremetal_2,omitempty"`
+	Baremetal2a  *CapacityLevelPerBaremetal `json:"baremetal_2a,omitempty"`
+	Baremetal2a2 *CapacityLevelPerBaremetal `json:"baremetal_2a2,omitempty"`
+	Baremetal3   *CapacityLevelPerBaremetal `json:"baremetal_3,omitempty"`
+	BaremetalS   *CapacityLevelPerBaremetal `json:"baremetal_s,omitempty"`
+	C2MediumX86  *CapacityLevelPerBaremetal `json:"c2.medium.x86,omitempty"`
+	M2XlargeX86  *CapacityLevelPerBaremetal `json:"m2.xlarge.x86,omitempty"`
 }
 
 // NewCapacityPerFacility instantiates a new CapacityPerFacility object
@@ -46,9 +46,9 @@ func NewCapacityPerFacilityWithDefaults() *CapacityPerFacility {
 }
 
 // GetBaremetal0 returns the Baremetal0 field value if set, zero value otherwise.
-func (o *CapacityPerFacility) GetBaremetal0() FindCapacityForFacility200ResponseCapacityAms1Baremetal0 {
+func (o *CapacityPerFacility) GetBaremetal0() CapacityLevelPerBaremetal {
 	if o == nil || isNil(o.Baremetal0) {
-		var ret FindCapacityForFacility200ResponseCapacityAms1Baremetal0
+		var ret CapacityLevelPerBaremetal
 		return ret
 	}
 	return *o.Baremetal0
@@ -56,7 +56,7 @@ func (o *CapacityPerFacility) GetBaremetal0() FindCapacityForFacility200Response
 
 // GetBaremetal0Ok returns a tuple with the Baremetal0 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CapacityPerFacility) GetBaremetal0Ok() (*FindCapacityForFacility200ResponseCapacityAms1Baremetal0, bool) {
+func (o *CapacityPerFacility) GetBaremetal0Ok() (*CapacityLevelPerBaremetal, bool) {
 	if o == nil || isNil(o.Baremetal0) {
 		return nil, false
 	}
@@ -72,15 +72,15 @@ func (o *CapacityPerFacility) HasBaremetal0() bool {
 	return false
 }
 
-// SetBaremetal0 gets a reference to the given FindCapacityForFacility200ResponseCapacityAms1Baremetal0 and assigns it to the Baremetal0 field.
-func (o *CapacityPerFacility) SetBaremetal0(v FindCapacityForFacility200ResponseCapacityAms1Baremetal0) {
+// SetBaremetal0 gets a reference to the given CapacityLevelPerBaremetal and assigns it to the Baremetal0 field.
+func (o *CapacityPerFacility) SetBaremetal0(v CapacityLevelPerBaremetal) {
 	o.Baremetal0 = &v
 }
 
 // GetBaremetal1 returns the Baremetal1 field value if set, zero value otherwise.
-func (o *CapacityPerFacility) GetBaremetal1() FindCapacityForFacility200ResponseCapacityAms1Baremetal0 {
+func (o *CapacityPerFacility) GetBaremetal1() CapacityLevelPerBaremetal {
 	if o == nil || isNil(o.Baremetal1) {
-		var ret FindCapacityForFacility200ResponseCapacityAms1Baremetal0
+		var ret CapacityLevelPerBaremetal
 		return ret
 	}
 	return *o.Baremetal1
@@ -88,7 +88,7 @@ func (o *CapacityPerFacility) GetBaremetal1() FindCapacityForFacility200Response
 
 // GetBaremetal1Ok returns a tuple with the Baremetal1 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CapacityPerFacility) GetBaremetal1Ok() (*FindCapacityForFacility200ResponseCapacityAms1Baremetal0, bool) {
+func (o *CapacityPerFacility) GetBaremetal1Ok() (*CapacityLevelPerBaremetal, bool) {
 	if o == nil || isNil(o.Baremetal1) {
 		return nil, false
 	}
@@ -104,15 +104,15 @@ func (o *CapacityPerFacility) HasBaremetal1() bool {
 	return false
 }
 
-// SetBaremetal1 gets a reference to the given FindCapacityForFacility200ResponseCapacityAms1Baremetal0 and assigns it to the Baremetal1 field.
-func (o *CapacityPerFacility) SetBaremetal1(v FindCapacityForFacility200ResponseCapacityAms1Baremetal0) {
+// SetBaremetal1 gets a reference to the given CapacityLevelPerBaremetal and assigns it to the Baremetal1 field.
+func (o *CapacityPerFacility) SetBaremetal1(v CapacityLevelPerBaremetal) {
 	o.Baremetal1 = &v
 }
 
 // GetBaremetal2 returns the Baremetal2 field value if set, zero value otherwise.
-func (o *CapacityPerFacility) GetBaremetal2() FindCapacityForFacility200ResponseCapacityAms1Baremetal0 {
+func (o *CapacityPerFacility) GetBaremetal2() CapacityLevelPerBaremetal {
 	if o == nil || isNil(o.Baremetal2) {
-		var ret FindCapacityForFacility200ResponseCapacityAms1Baremetal0
+		var ret CapacityLevelPerBaremetal
 		return ret
 	}
 	return *o.Baremetal2
@@ -120,7 +120,7 @@ func (o *CapacityPerFacility) GetBaremetal2() FindCapacityForFacility200Response
 
 // GetBaremetal2Ok returns a tuple with the Baremetal2 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CapacityPerFacility) GetBaremetal2Ok() (*FindCapacityForFacility200ResponseCapacityAms1Baremetal0, bool) {
+func (o *CapacityPerFacility) GetBaremetal2Ok() (*CapacityLevelPerBaremetal, bool) {
 	if o == nil || isNil(o.Baremetal2) {
 		return nil, false
 	}
@@ -136,15 +136,15 @@ func (o *CapacityPerFacility) HasBaremetal2() bool {
 	return false
 }
 
-// SetBaremetal2 gets a reference to the given FindCapacityForFacility200ResponseCapacityAms1Baremetal0 and assigns it to the Baremetal2 field.
-func (o *CapacityPerFacility) SetBaremetal2(v FindCapacityForFacility200ResponseCapacityAms1Baremetal0) {
+// SetBaremetal2 gets a reference to the given CapacityLevelPerBaremetal and assigns it to the Baremetal2 field.
+func (o *CapacityPerFacility) SetBaremetal2(v CapacityLevelPerBaremetal) {
 	o.Baremetal2 = &v
 }
 
 // GetBaremetal2a returns the Baremetal2a field value if set, zero value otherwise.
-func (o *CapacityPerFacility) GetBaremetal2a() FindCapacityForFacility200ResponseCapacityAms1Baremetal0 {
+func (o *CapacityPerFacility) GetBaremetal2a() CapacityLevelPerBaremetal {
 	if o == nil || isNil(o.Baremetal2a) {
-		var ret FindCapacityForFacility200ResponseCapacityAms1Baremetal0
+		var ret CapacityLevelPerBaremetal
 		return ret
 	}
 	return *o.Baremetal2a
@@ -152,7 +152,7 @@ func (o *CapacityPerFacility) GetBaremetal2a() FindCapacityForFacility200Respons
 
 // GetBaremetal2aOk returns a tuple with the Baremetal2a field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CapacityPerFacility) GetBaremetal2aOk() (*FindCapacityForFacility200ResponseCapacityAms1Baremetal0, bool) {
+func (o *CapacityPerFacility) GetBaremetal2aOk() (*CapacityLevelPerBaremetal, bool) {
 	if o == nil || isNil(o.Baremetal2a) {
 		return nil, false
 	}
@@ -168,15 +168,15 @@ func (o *CapacityPerFacility) HasBaremetal2a() bool {
 	return false
 }
 
-// SetBaremetal2a gets a reference to the given FindCapacityForFacility200ResponseCapacityAms1Baremetal0 and assigns it to the Baremetal2a field.
-func (o *CapacityPerFacility) SetBaremetal2a(v FindCapacityForFacility200ResponseCapacityAms1Baremetal0) {
+// SetBaremetal2a gets a reference to the given CapacityLevelPerBaremetal and assigns it to the Baremetal2a field.
+func (o *CapacityPerFacility) SetBaremetal2a(v CapacityLevelPerBaremetal) {
 	o.Baremetal2a = &v
 }
 
 // GetBaremetal2a2 returns the Baremetal2a2 field value if set, zero value otherwise.
-func (o *CapacityPerFacility) GetBaremetal2a2() FindCapacityForFacility200ResponseCapacityAms1Baremetal0 {
+func (o *CapacityPerFacility) GetBaremetal2a2() CapacityLevelPerBaremetal {
 	if o == nil || isNil(o.Baremetal2a2) {
-		var ret FindCapacityForFacility200ResponseCapacityAms1Baremetal0
+		var ret CapacityLevelPerBaremetal
 		return ret
 	}
 	return *o.Baremetal2a2
@@ -184,7 +184,7 @@ func (o *CapacityPerFacility) GetBaremetal2a2() FindCapacityForFacility200Respon
 
 // GetBaremetal2a2Ok returns a tuple with the Baremetal2a2 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CapacityPerFacility) GetBaremetal2a2Ok() (*FindCapacityForFacility200ResponseCapacityAms1Baremetal0, bool) {
+func (o *CapacityPerFacility) GetBaremetal2a2Ok() (*CapacityLevelPerBaremetal, bool) {
 	if o == nil || isNil(o.Baremetal2a2) {
 		return nil, false
 	}
@@ -200,15 +200,15 @@ func (o *CapacityPerFacility) HasBaremetal2a2() bool {
 	return false
 }
 
-// SetBaremetal2a2 gets a reference to the given FindCapacityForFacility200ResponseCapacityAms1Baremetal0 and assigns it to the Baremetal2a2 field.
-func (o *CapacityPerFacility) SetBaremetal2a2(v FindCapacityForFacility200ResponseCapacityAms1Baremetal0) {
+// SetBaremetal2a2 gets a reference to the given CapacityLevelPerBaremetal and assigns it to the Baremetal2a2 field.
+func (o *CapacityPerFacility) SetBaremetal2a2(v CapacityLevelPerBaremetal) {
 	o.Baremetal2a2 = &v
 }
 
 // GetBaremetal3 returns the Baremetal3 field value if set, zero value otherwise.
-func (o *CapacityPerFacility) GetBaremetal3() FindCapacityForFacility200ResponseCapacityAms1Baremetal0 {
+func (o *CapacityPerFacility) GetBaremetal3() CapacityLevelPerBaremetal {
 	if o == nil || isNil(o.Baremetal3) {
-		var ret FindCapacityForFacility200ResponseCapacityAms1Baremetal0
+		var ret CapacityLevelPerBaremetal
 		return ret
 	}
 	return *o.Baremetal3
@@ -216,7 +216,7 @@ func (o *CapacityPerFacility) GetBaremetal3() FindCapacityForFacility200Response
 
 // GetBaremetal3Ok returns a tuple with the Baremetal3 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CapacityPerFacility) GetBaremetal3Ok() (*FindCapacityForFacility200ResponseCapacityAms1Baremetal0, bool) {
+func (o *CapacityPerFacility) GetBaremetal3Ok() (*CapacityLevelPerBaremetal, bool) {
 	if o == nil || isNil(o.Baremetal3) {
 		return nil, false
 	}
@@ -232,15 +232,15 @@ func (o *CapacityPerFacility) HasBaremetal3() bool {
 	return false
 }
 
-// SetBaremetal3 gets a reference to the given FindCapacityForFacility200ResponseCapacityAms1Baremetal0 and assigns it to the Baremetal3 field.
-func (o *CapacityPerFacility) SetBaremetal3(v FindCapacityForFacility200ResponseCapacityAms1Baremetal0) {
+// SetBaremetal3 gets a reference to the given CapacityLevelPerBaremetal and assigns it to the Baremetal3 field.
+func (o *CapacityPerFacility) SetBaremetal3(v CapacityLevelPerBaremetal) {
 	o.Baremetal3 = &v
 }
 
 // GetBaremetalS returns the BaremetalS field value if set, zero value otherwise.
-func (o *CapacityPerFacility) GetBaremetalS() FindCapacityForFacility200ResponseCapacityAms1Baremetal0 {
+func (o *CapacityPerFacility) GetBaremetalS() CapacityLevelPerBaremetal {
 	if o == nil || isNil(o.BaremetalS) {
-		var ret FindCapacityForFacility200ResponseCapacityAms1Baremetal0
+		var ret CapacityLevelPerBaremetal
 		return ret
 	}
 	return *o.BaremetalS
@@ -248,7 +248,7 @@ func (o *CapacityPerFacility) GetBaremetalS() FindCapacityForFacility200Response
 
 // GetBaremetalSOk returns a tuple with the BaremetalS field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CapacityPerFacility) GetBaremetalSOk() (*FindCapacityForFacility200ResponseCapacityAms1Baremetal0, bool) {
+func (o *CapacityPerFacility) GetBaremetalSOk() (*CapacityLevelPerBaremetal, bool) {
 	if o == nil || isNil(o.BaremetalS) {
 		return nil, false
 	}
@@ -264,15 +264,15 @@ func (o *CapacityPerFacility) HasBaremetalS() bool {
 	return false
 }
 
-// SetBaremetalS gets a reference to the given FindCapacityForFacility200ResponseCapacityAms1Baremetal0 and assigns it to the BaremetalS field.
-func (o *CapacityPerFacility) SetBaremetalS(v FindCapacityForFacility200ResponseCapacityAms1Baremetal0) {
+// SetBaremetalS gets a reference to the given CapacityLevelPerBaremetal and assigns it to the BaremetalS field.
+func (o *CapacityPerFacility) SetBaremetalS(v CapacityLevelPerBaremetal) {
 	o.BaremetalS = &v
 }
 
 // GetC2MediumX86 returns the C2MediumX86 field value if set, zero value otherwise.
-func (o *CapacityPerFacility) GetC2MediumX86() FindCapacityForFacility200ResponseCapacityAms1Baremetal0 {
+func (o *CapacityPerFacility) GetC2MediumX86() CapacityLevelPerBaremetal {
 	if o == nil || isNil(o.C2MediumX86) {
-		var ret FindCapacityForFacility200ResponseCapacityAms1Baremetal0
+		var ret CapacityLevelPerBaremetal
 		return ret
 	}
 	return *o.C2MediumX86
@@ -280,7 +280,7 @@ func (o *CapacityPerFacility) GetC2MediumX86() FindCapacityForFacility200Respons
 
 // GetC2MediumX86Ok returns a tuple with the C2MediumX86 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CapacityPerFacility) GetC2MediumX86Ok() (*FindCapacityForFacility200ResponseCapacityAms1Baremetal0, bool) {
+func (o *CapacityPerFacility) GetC2MediumX86Ok() (*CapacityLevelPerBaremetal, bool) {
 	if o == nil || isNil(o.C2MediumX86) {
 		return nil, false
 	}
@@ -296,15 +296,15 @@ func (o *CapacityPerFacility) HasC2MediumX86() bool {
 	return false
 }
 
-// SetC2MediumX86 gets a reference to the given FindCapacityForFacility200ResponseCapacityAms1Baremetal0 and assigns it to the C2MediumX86 field.
-func (o *CapacityPerFacility) SetC2MediumX86(v FindCapacityForFacility200ResponseCapacityAms1Baremetal0) {
+// SetC2MediumX86 gets a reference to the given CapacityLevelPerBaremetal and assigns it to the C2MediumX86 field.
+func (o *CapacityPerFacility) SetC2MediumX86(v CapacityLevelPerBaremetal) {
 	o.C2MediumX86 = &v
 }
 
 // GetM2XlargeX86 returns the M2XlargeX86 field value if set, zero value otherwise.
-func (o *CapacityPerFacility) GetM2XlargeX86() FindCapacityForFacility200ResponseCapacityAms1Baremetal0 {
+func (o *CapacityPerFacility) GetM2XlargeX86() CapacityLevelPerBaremetal {
 	if o == nil || isNil(o.M2XlargeX86) {
-		var ret FindCapacityForFacility200ResponseCapacityAms1Baremetal0
+		var ret CapacityLevelPerBaremetal
 		return ret
 	}
 	return *o.M2XlargeX86
@@ -312,7 +312,7 @@ func (o *CapacityPerFacility) GetM2XlargeX86() FindCapacityForFacility200Respons
 
 // GetM2XlargeX86Ok returns a tuple with the M2XlargeX86 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CapacityPerFacility) GetM2XlargeX86Ok() (*FindCapacityForFacility200ResponseCapacityAms1Baremetal0, bool) {
+func (o *CapacityPerFacility) GetM2XlargeX86Ok() (*CapacityLevelPerBaremetal, bool) {
 	if o == nil || isNil(o.M2XlargeX86) {
 		return nil, false
 	}
@@ -328,8 +328,8 @@ func (o *CapacityPerFacility) HasM2XlargeX86() bool {
 	return false
 }
 
-// SetM2XlargeX86 gets a reference to the given FindCapacityForFacility200ResponseCapacityAms1Baremetal0 and assigns it to the M2XlargeX86 field.
-func (o *CapacityPerFacility) SetM2XlargeX86(v FindCapacityForFacility200ResponseCapacityAms1Baremetal0) {
+// SetM2XlargeX86 gets a reference to the given CapacityLevelPerBaremetal and assigns it to the M2XlargeX86 field.
+func (o *CapacityPerFacility) SetM2XlargeX86(v CapacityLevelPerBaremetal) {
 	o.M2XlargeX86 = &v
 }
 

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**PricesHistory** | Pointer to [**FindSpotMarketPricesHistory200ResponsePricesHistory**](FindSpotMarketPricesHistory200ResponsePricesHistory.md) |  | [optional] 
+**PricesHistory** | Pointer to [**SpotPricesDatapoints**](SpotPricesDatapoints.md) |  | [optional] 
 
 ## Methods
 
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetPricesHistory
 
-`func (o *SpotPricesHistoryReport) GetPricesHistory() FindSpotMarketPricesHistory200ResponsePricesHistory`
+`func (o *SpotPricesHistoryReport) GetPricesHistory() SpotPricesDatapoints`
 
 GetPricesHistory returns the PricesHistory field if non-nil, zero value otherwise.
 
 ### GetPricesHistoryOk
 
-`func (o *SpotPricesHistoryReport) GetPricesHistoryOk() (*FindSpotMarketPricesHistory200ResponsePricesHistory, bool)`
+`func (o *SpotPricesHistoryReport) GetPricesHistoryOk() (*SpotPricesDatapoints, bool)`
 
 GetPricesHistoryOk returns a tuple with the PricesHistory field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPricesHistory
 
-`func (o *SpotPricesHistoryReport) SetPricesHistory(v FindSpotMarketPricesHistory200ResponsePricesHistory)`
+`func (o *SpotPricesHistoryReport) SetPricesHistory(v SpotPricesDatapoints)`
 
 SetPricesHistory sets PricesHistory field to given value.
 

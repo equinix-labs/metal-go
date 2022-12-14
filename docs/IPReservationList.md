@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**IpAddresses** | Pointer to [**[]FindIPReservations200ResponseIpAddressesInner**](FindIPReservations200ResponseIpAddressesInner.md) |  | [optional] 
+**IpAddresses** | Pointer to [**[]IPReservationListIpAddressesInner**](IPReservationListIpAddressesInner.md) |  | [optional] 
 
 ## Methods
 
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetIpAddresses
 
-`func (o *IPReservationList) GetIpAddresses() []FindIPReservations200ResponseIpAddressesInner`
+`func (o *IPReservationList) GetIpAddresses() []IPReservationListIpAddressesInner`
 
 GetIpAddresses returns the IpAddresses field if non-nil, zero value otherwise.
 
 ### GetIpAddressesOk
 
-`func (o *IPReservationList) GetIpAddressesOk() (*[]FindIPReservations200ResponseIpAddressesInner, bool)`
+`func (o *IPReservationList) GetIpAddressesOk() (*[]IPReservationListIpAddressesInner, bool)`
 
 GetIpAddressesOk returns a tuple with the IpAddresses field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIpAddresses
 
-`func (o *IPReservationList) SetIpAddresses(v []FindIPReservations200ResponseIpAddressesInner)`
+`func (o *IPReservationList) SetIpAddresses(v []IPReservationListIpAddressesInner)`
 
 SetIpAddresses sets IpAddresses field to given value.
 

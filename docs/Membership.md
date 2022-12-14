@@ -7,10 +7,10 @@ Name | Type | Description | Notes
 **CreatedAt** | Pointer to **time.Time** |  | [optional] 
 **Href** | Pointer to **string** |  | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
-**Project** | Pointer to [**FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
+**Project** | Pointer to [**Href**](Href.md) |  | [optional] 
 **Roles** | Pointer to **[]string** |  | [optional] 
 **UpdatedAt** | Pointer to **time.Time** |  | [optional] 
-**User** | Pointer to [**FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
+**User** | Pointer to [**Href**](Href.md) |  | [optional] 
 
 ## Methods
 
@@ -108,20 +108,20 @@ HasId returns a boolean if a field has been set.
 
 ### GetProject
 
-`func (o *Membership) GetProject() FindBatchById200ResponseDevicesInner`
+`func (o *Membership) GetProject() Href`
 
 GetProject returns the Project field if non-nil, zero value otherwise.
 
 ### GetProjectOk
 
-`func (o *Membership) GetProjectOk() (*FindBatchById200ResponseDevicesInner, bool)`
+`func (o *Membership) GetProjectOk() (*Href, bool)`
 
 GetProjectOk returns a tuple with the Project field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetProject
 
-`func (o *Membership) SetProject(v FindBatchById200ResponseDevicesInner)`
+`func (o *Membership) SetProject(v Href)`
 
 SetProject sets Project field to given value.
 
@@ -183,20 +183,20 @@ HasUpdatedAt returns a boolean if a field has been set.
 
 ### GetUser
 
-`func (o *Membership) GetUser() FindBatchById200ResponseDevicesInner`
+`func (o *Membership) GetUser() Href`
 
 GetUser returns the User field if non-nil, zero value otherwise.
 
 ### GetUserOk
 
-`func (o *Membership) GetUserOk() (*FindBatchById200ResponseDevicesInner, bool)`
+`func (o *Membership) GetUserOk() (*Href, bool)`
 
 GetUserOk returns a tuple with the User field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUser
 
-`func (o *Membership) SetUser(v FindBatchById200ResponseDevicesInner)`
+`func (o *Membership) SetUser(v Href)`
 
 SetUser sets User field to given value.
 

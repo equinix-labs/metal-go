@@ -18,23 +18,23 @@ import (
 
 // IPAssignment struct for IPAssignment
 type IPAssignment struct {
-	Address       *string                                               `json:"address,omitempty"`
-	AddressFamily *int32                                                `json:"address_family,omitempty"`
-	AssignedTo    *FindBatchById200ResponseDevicesInner                 `json:"assigned_to,omitempty"`
-	Cidr          *int32                                                `json:"cidr,omitempty"`
-	CreatedAt     *time.Time                                            `json:"created_at,omitempty"`
-	Enabled       *bool                                                 `json:"enabled,omitempty"`
-	Gateway       *string                                               `json:"gateway,omitempty"`
-	GlobalIp      *bool                                                 `json:"global_ip,omitempty"`
-	Href          *string                                               `json:"href,omitempty"`
-	Id            *string                                               `json:"id,omitempty"`
-	Manageable    *bool                                                 `json:"manageable,omitempty"`
-	Management    *bool                                                 `json:"management,omitempty"`
-	Metro         *FindDeviceById200ResponseIpAddressesInnerMetro       `json:"metro,omitempty"`
-	Netmask       *string                                               `json:"netmask,omitempty"`
-	Network       *string                                               `json:"network,omitempty"`
-	ParentBlock   *FindDeviceById200ResponseIpAddressesInnerParentBlock `json:"parent_block,omitempty"`
-	Public        *bool                                                 `json:"public,omitempty"`
+	Address       *string            `json:"address,omitempty"`
+	AddressFamily *int32             `json:"address_family,omitempty"`
+	AssignedTo    *Href              `json:"assigned_to,omitempty"`
+	Cidr          *int32             `json:"cidr,omitempty"`
+	CreatedAt     *time.Time         `json:"created_at,omitempty"`
+	Enabled       *bool              `json:"enabled,omitempty"`
+	Gateway       *string            `json:"gateway,omitempty"`
+	GlobalIp      *bool              `json:"global_ip,omitempty"`
+	Href          *string            `json:"href,omitempty"`
+	Id            *string            `json:"id,omitempty"`
+	Manageable    *bool              `json:"manageable,omitempty"`
+	Management    *bool              `json:"management,omitempty"`
+	Metro         *IPAssignmentMetro `json:"metro,omitempty"`
+	Netmask       *string            `json:"netmask,omitempty"`
+	Network       *string            `json:"network,omitempty"`
+	ParentBlock   *ParentBlock       `json:"parent_block,omitempty"`
+	Public        *bool              `json:"public,omitempty"`
 }
 
 // NewIPAssignment instantiates a new IPAssignment object
@@ -119,9 +119,9 @@ func (o *IPAssignment) SetAddressFamily(v int32) {
 }
 
 // GetAssignedTo returns the AssignedTo field value if set, zero value otherwise.
-func (o *IPAssignment) GetAssignedTo() FindBatchById200ResponseDevicesInner {
+func (o *IPAssignment) GetAssignedTo() Href {
 	if o == nil || isNil(o.AssignedTo) {
-		var ret FindBatchById200ResponseDevicesInner
+		var ret Href
 		return ret
 	}
 	return *o.AssignedTo
@@ -129,7 +129,7 @@ func (o *IPAssignment) GetAssignedTo() FindBatchById200ResponseDevicesInner {
 
 // GetAssignedToOk returns a tuple with the AssignedTo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IPAssignment) GetAssignedToOk() (*FindBatchById200ResponseDevicesInner, bool) {
+func (o *IPAssignment) GetAssignedToOk() (*Href, bool) {
 	if o == nil || isNil(o.AssignedTo) {
 		return nil, false
 	}
@@ -145,8 +145,8 @@ func (o *IPAssignment) HasAssignedTo() bool {
 	return false
 }
 
-// SetAssignedTo gets a reference to the given FindBatchById200ResponseDevicesInner and assigns it to the AssignedTo field.
-func (o *IPAssignment) SetAssignedTo(v FindBatchById200ResponseDevicesInner) {
+// SetAssignedTo gets a reference to the given Href and assigns it to the AssignedTo field.
+func (o *IPAssignment) SetAssignedTo(v Href) {
 	o.AssignedTo = &v
 }
 
@@ -439,9 +439,9 @@ func (o *IPAssignment) SetManagement(v bool) {
 }
 
 // GetMetro returns the Metro field value if set, zero value otherwise.
-func (o *IPAssignment) GetMetro() FindDeviceById200ResponseIpAddressesInnerMetro {
+func (o *IPAssignment) GetMetro() IPAssignmentMetro {
 	if o == nil || isNil(o.Metro) {
-		var ret FindDeviceById200ResponseIpAddressesInnerMetro
+		var ret IPAssignmentMetro
 		return ret
 	}
 	return *o.Metro
@@ -449,7 +449,7 @@ func (o *IPAssignment) GetMetro() FindDeviceById200ResponseIpAddressesInnerMetro
 
 // GetMetroOk returns a tuple with the Metro field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IPAssignment) GetMetroOk() (*FindDeviceById200ResponseIpAddressesInnerMetro, bool) {
+func (o *IPAssignment) GetMetroOk() (*IPAssignmentMetro, bool) {
 	if o == nil || isNil(o.Metro) {
 		return nil, false
 	}
@@ -465,8 +465,8 @@ func (o *IPAssignment) HasMetro() bool {
 	return false
 }
 
-// SetMetro gets a reference to the given FindDeviceById200ResponseIpAddressesInnerMetro and assigns it to the Metro field.
-func (o *IPAssignment) SetMetro(v FindDeviceById200ResponseIpAddressesInnerMetro) {
+// SetMetro gets a reference to the given IPAssignmentMetro and assigns it to the Metro field.
+func (o *IPAssignment) SetMetro(v IPAssignmentMetro) {
 	o.Metro = &v
 }
 
@@ -535,9 +535,9 @@ func (o *IPAssignment) SetNetwork(v string) {
 }
 
 // GetParentBlock returns the ParentBlock field value if set, zero value otherwise.
-func (o *IPAssignment) GetParentBlock() FindDeviceById200ResponseIpAddressesInnerParentBlock {
+func (o *IPAssignment) GetParentBlock() ParentBlock {
 	if o == nil || isNil(o.ParentBlock) {
-		var ret FindDeviceById200ResponseIpAddressesInnerParentBlock
+		var ret ParentBlock
 		return ret
 	}
 	return *o.ParentBlock
@@ -545,7 +545,7 @@ func (o *IPAssignment) GetParentBlock() FindDeviceById200ResponseIpAddressesInne
 
 // GetParentBlockOk returns a tuple with the ParentBlock field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IPAssignment) GetParentBlockOk() (*FindDeviceById200ResponseIpAddressesInnerParentBlock, bool) {
+func (o *IPAssignment) GetParentBlockOk() (*ParentBlock, bool) {
 	if o == nil || isNil(o.ParentBlock) {
 		return nil, false
 	}
@@ -561,8 +561,8 @@ func (o *IPAssignment) HasParentBlock() bool {
 	return false
 }
 
-// SetParentBlock gets a reference to the given FindDeviceById200ResponseIpAddressesInnerParentBlock and assigns it to the ParentBlock field.
-func (o *IPAssignment) SetParentBlock(v FindDeviceById200ResponseIpAddressesInnerParentBlock) {
+// SetParentBlock gets a reference to the given ParentBlock and assigns it to the ParentBlock field.
+func (o *IPAssignment) SetParentBlock(v ParentBlock) {
 	o.ParentBlock = &v
 }
 

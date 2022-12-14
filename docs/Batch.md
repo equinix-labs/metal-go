@@ -5,10 +5,10 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CreatedAt** | Pointer to **time.Time** |  | [optional] 
-**Devices** | Pointer to [**[]FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
+**Devices** | Pointer to [**[]Href**](Href.md) |  | [optional] 
 **ErrorMessages** | Pointer to **[]string** |  | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
-**Project** | Pointer to [**FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
+**Project** | Pointer to [**Href**](Href.md) |  | [optional] 
 **Quantity** | Pointer to **int32** |  | [optional] 
 **State** | Pointer to **string** |  | [optional] 
 **UpdatedAt** | Pointer to **time.Time** |  | [optional] 
@@ -59,20 +59,20 @@ HasCreatedAt returns a boolean if a field has been set.
 
 ### GetDevices
 
-`func (o *Batch) GetDevices() []FindBatchById200ResponseDevicesInner`
+`func (o *Batch) GetDevices() []Href`
 
 GetDevices returns the Devices field if non-nil, zero value otherwise.
 
 ### GetDevicesOk
 
-`func (o *Batch) GetDevicesOk() (*[]FindBatchById200ResponseDevicesInner, bool)`
+`func (o *Batch) GetDevicesOk() (*[]Href, bool)`
 
 GetDevicesOk returns a tuple with the Devices field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDevices
 
-`func (o *Batch) SetDevices(v []FindBatchById200ResponseDevicesInner)`
+`func (o *Batch) SetDevices(v []Href)`
 
 SetDevices sets Devices field to given value.
 
@@ -134,20 +134,20 @@ HasId returns a boolean if a field has been set.
 
 ### GetProject
 
-`func (o *Batch) GetProject() FindBatchById200ResponseDevicesInner`
+`func (o *Batch) GetProject() Href`
 
 GetProject returns the Project field if non-nil, zero value otherwise.
 
 ### GetProjectOk
 
-`func (o *Batch) GetProjectOk() (*FindBatchById200ResponseDevicesInner, bool)`
+`func (o *Batch) GetProjectOk() (*Href, bool)`
 
 GetProjectOk returns a tuple with the Project field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetProject
 
-`func (o *Batch) SetProject(v FindBatchById200ResponseDevicesInner)`
+`func (o *Batch) SetProject(v Href)`
 
 SetProject sets Project field to given value.
 

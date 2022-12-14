@@ -18,27 +18,27 @@ import (
 // VirtualCircuit struct for VirtualCircuit
 type VirtualCircuit struct {
 	// True if the Virtual Circuit is being billed. Currently, only Virtual Circuits of Fabric VCs (Metal Billed) will be billed. Usage will start the first time the Virtual Circuit becomes active, and will not stop until it is deleted from Metal.
-	Bill        bool                                 `json:"bill"`
-	Description string                               `json:"description"`
-	Id          string                               `json:"id"`
-	Name        string                               `json:"name"`
-	NniVlan     int32                                `json:"nni_vlan"`
-	Port        FindBatchById200ResponseDevicesInner `json:"port"`
-	Project     FindBatchById200ResponseDevicesInner `json:"project"`
+	Bill        bool   `json:"bill"`
+	Description string `json:"description"`
+	Id          string `json:"id"`
+	Name        string `json:"name"`
+	NniVlan     int32  `json:"nni_vlan"`
+	Port        Href   `json:"port"`
+	Project     Href   `json:"project"`
 	// For Virtual Circuits on shared and dedicated connections, this speed should match the one set on their Interconnection Ports. For Virtual Circuits on Fabric VCs (both Metal and Fabric Billed) that have found their corresponding Fabric connection, this is the actual speed of the interconnection that was configured when setting up the interconnection on the Fabric Portal. Details on Fabric VCs are included in the specification as a developer preview and is generally unavailable. Please contact our Support team for more details.
 	Speed *int32 `json:"speed,omitempty"`
 	// The status of a Virtual Circuit is always 'Pending' on creation. The status can turn to 'Waiting on Customer VLAN' if a Metro VLAN was not set yet on the Virtual Circuit and is the last step needed for full activation. For Dedicated interconnections, as long as the Dedicated Port has been associated to the Virtual Circuit and a NNI VNID has been set, it will turn to 'Waiting on Customer VLAN'. For Fabric VCs, it will only change to 'Waiting on Customer VLAN' once the corresponding Fabric connection has been found on the Fabric side. Once a Metro VLAN is set on the Virtual Circuit (which for Fabric VCs, can be set on creation) and the necessary set up is done, it will turn into 'Activating' status as it tries to activate the Virtual Circuit. Once the Virtual Circuit fully activates and is configured on the switch, it will turn to staus 'Active'. For Fabric VCs (Metal Billed), we will start billing the moment the status of the Virtual Circuit turns to 'Active'. If there are any changes to the VLAN after the Virtual Circuit is in an 'Active' status, the status will show 'Changing VLAN' if a new VLAN has been provided, or 'Deactivating' if we are removing the VLAN. When a deletion request is issued for the Virtual Circuit, it will move to a 'deleting' status until it is fully deleted. If the Virtual Circuit is on a Fabric VC, it can also change into an 'Expired' status if the associated service token has expired.
-	Status         string                               `json:"status"`
-	Tags           []string                             `json:"tags"`
-	VirtualNetwork FindBatchById200ResponseDevicesInner `json:"virtual_network"`
-	Vnid           int32                                `json:"vnid"`
+	Status         string   `json:"status"`
+	Tags           []string `json:"tags"`
+	VirtualNetwork Href     `json:"virtual_network"`
+	Vnid           int32    `json:"vnid"`
 }
 
 // NewVirtualCircuit instantiates a new VirtualCircuit object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVirtualCircuit(bill bool, description string, id string, name string, nniVlan int32, port FindBatchById200ResponseDevicesInner, project FindBatchById200ResponseDevicesInner, status string, tags []string, virtualNetwork FindBatchById200ResponseDevicesInner, vnid int32) *VirtualCircuit {
+func NewVirtualCircuit(bill bool, description string, id string, name string, nniVlan int32, port Href, project Href, status string, tags []string, virtualNetwork Href, vnid int32) *VirtualCircuit {
 	this := VirtualCircuit{}
 	this.Bill = bill
 	this.Description = description
@@ -185,9 +185,9 @@ func (o *VirtualCircuit) SetNniVlan(v int32) {
 }
 
 // GetPort returns the Port field value
-func (o *VirtualCircuit) GetPort() FindBatchById200ResponseDevicesInner {
+func (o *VirtualCircuit) GetPort() Href {
 	if o == nil {
-		var ret FindBatchById200ResponseDevicesInner
+		var ret Href
 		return ret
 	}
 
@@ -196,7 +196,7 @@ func (o *VirtualCircuit) GetPort() FindBatchById200ResponseDevicesInner {
 
 // GetPortOk returns a tuple with the Port field value
 // and a boolean to check if the value has been set.
-func (o *VirtualCircuit) GetPortOk() (*FindBatchById200ResponseDevicesInner, bool) {
+func (o *VirtualCircuit) GetPortOk() (*Href, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -204,14 +204,14 @@ func (o *VirtualCircuit) GetPortOk() (*FindBatchById200ResponseDevicesInner, boo
 }
 
 // SetPort sets field value
-func (o *VirtualCircuit) SetPort(v FindBatchById200ResponseDevicesInner) {
+func (o *VirtualCircuit) SetPort(v Href) {
 	o.Port = v
 }
 
 // GetProject returns the Project field value
-func (o *VirtualCircuit) GetProject() FindBatchById200ResponseDevicesInner {
+func (o *VirtualCircuit) GetProject() Href {
 	if o == nil {
-		var ret FindBatchById200ResponseDevicesInner
+		var ret Href
 		return ret
 	}
 
@@ -220,7 +220,7 @@ func (o *VirtualCircuit) GetProject() FindBatchById200ResponseDevicesInner {
 
 // GetProjectOk returns a tuple with the Project field value
 // and a boolean to check if the value has been set.
-func (o *VirtualCircuit) GetProjectOk() (*FindBatchById200ResponseDevicesInner, bool) {
+func (o *VirtualCircuit) GetProjectOk() (*Href, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -228,7 +228,7 @@ func (o *VirtualCircuit) GetProjectOk() (*FindBatchById200ResponseDevicesInner, 
 }
 
 // SetProject sets field value
-func (o *VirtualCircuit) SetProject(v FindBatchById200ResponseDevicesInner) {
+func (o *VirtualCircuit) SetProject(v Href) {
 	o.Project = v
 }
 
@@ -313,9 +313,9 @@ func (o *VirtualCircuit) SetTags(v []string) {
 }
 
 // GetVirtualNetwork returns the VirtualNetwork field value
-func (o *VirtualCircuit) GetVirtualNetwork() FindBatchById200ResponseDevicesInner {
+func (o *VirtualCircuit) GetVirtualNetwork() Href {
 	if o == nil {
-		var ret FindBatchById200ResponseDevicesInner
+		var ret Href
 		return ret
 	}
 
@@ -324,7 +324,7 @@ func (o *VirtualCircuit) GetVirtualNetwork() FindBatchById200ResponseDevicesInne
 
 // GetVirtualNetworkOk returns a tuple with the VirtualNetwork field value
 // and a boolean to check if the value has been set.
-func (o *VirtualCircuit) GetVirtualNetworkOk() (*FindBatchById200ResponseDevicesInner, bool) {
+func (o *VirtualCircuit) GetVirtualNetworkOk() (*Href, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -332,7 +332,7 @@ func (o *VirtualCircuit) GetVirtualNetworkOk() (*FindBatchById200ResponseDevices
 }
 
 // SetVirtualNetwork sets field value
-func (o *VirtualCircuit) SetVirtualNetwork(v FindBatchById200ResponseDevicesInner) {
+func (o *VirtualCircuit) SetVirtualNetwork(v Href) {
 	o.VirtualNetwork = v
 }
 

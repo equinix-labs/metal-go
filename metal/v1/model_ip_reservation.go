@@ -18,35 +18,35 @@ import (
 
 // IPReservation struct for IPReservation
 type IPReservation struct {
-	Addon         *bool                                                                                       `json:"addon,omitempty"`
-	Address       *string                                                                                     `json:"address,omitempty"`
-	AddressFamily *int32                                                                                      `json:"address_family,omitempty"`
-	Assignments   []FindDeviceById200ResponseIpAddressesInner                                                 `json:"assignments,omitempty"`
-	Available     *string                                                                                     `json:"available,omitempty"`
-	Bill          *bool                                                                                       `json:"bill,omitempty"`
-	Cidr          *int32                                                                                      `json:"cidr,omitempty"`
-	CreatedAt     *time.Time                                                                                  `json:"created_at,omitempty"`
-	Customdata    map[string]interface{}                                                                      `json:"customdata,omitempty"`
-	Enabled       *bool                                                                                       `json:"enabled,omitempty"`
-	Details       *string                                                                                     `json:"details,omitempty"`
-	Facility      *FindIPAddressById200ResponseOneOfFacility                                                  `json:"facility,omitempty"`
-	Gateway       *string                                                                                     `json:"gateway,omitempty"`
-	GlobalIp      *bool                                                                                       `json:"global_ip,omitempty"`
-	Href          *string                                                                                     `json:"href,omitempty"`
-	Id            *string                                                                                     `json:"id,omitempty"`
-	Manageable    *bool                                                                                       `json:"manageable,omitempty"`
-	Management    *bool                                                                                       `json:"management,omitempty"`
-	MetalGateway  *FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetworkMetalGatewaysInner           `json:"metal_gateway,omitempty"`
-	Metro         *FindIPAddressById200ResponseOneOfMetro                                                     `json:"metro,omitempty"`
-	Netmask       *string                                                                                     `json:"netmask,omitempty"`
-	Network       *string                                                                                     `json:"network,omitempty"`
-	Project       *GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject `json:"project,omitempty"`
-	ProjectLite   *FindBatchById200ResponseDevicesInner                                                       `json:"project_lite,omitempty"`
-	RequestedBy   *FindBatchById200ResponseDevicesInner                                                       `json:"requested_by,omitempty"`
-	Public        *bool                                                                                       `json:"public,omitempty"`
-	State         *string                                                                                     `json:"state,omitempty"`
-	Tags          []string                                                                                    `json:"tags,omitempty"`
-	Type          string                                                                                      `json:"type"`
+	Addon         *bool                  `json:"addon,omitempty"`
+	Address       *string                `json:"address,omitempty"`
+	AddressFamily *int32                 `json:"address_family,omitempty"`
+	Assignments   []IPAssignment         `json:"assignments,omitempty"`
+	Available     *string                `json:"available,omitempty"`
+	Bill          *bool                  `json:"bill,omitempty"`
+	Cidr          *int32                 `json:"cidr,omitempty"`
+	CreatedAt     *time.Time             `json:"created_at,omitempty"`
+	Customdata    map[string]interface{} `json:"customdata,omitempty"`
+	Enabled       *bool                  `json:"enabled,omitempty"`
+	Details       *string                `json:"details,omitempty"`
+	Facility      *IPReservationFacility `json:"facility,omitempty"`
+	Gateway       *string                `json:"gateway,omitempty"`
+	GlobalIp      *bool                  `json:"global_ip,omitempty"`
+	Href          *string                `json:"href,omitempty"`
+	Id            *string                `json:"id,omitempty"`
+	Manageable    *bool                  `json:"manageable,omitempty"`
+	Management    *bool                  `json:"management,omitempty"`
+	MetalGateway  *MetalGatewayLite      `json:"metal_gateway,omitempty"`
+	Metro         *IPReservationMetro    `json:"metro,omitempty"`
+	Netmask       *string                `json:"netmask,omitempty"`
+	Network       *string                `json:"network,omitempty"`
+	Project       *Project               `json:"project,omitempty"`
+	ProjectLite   *Href                  `json:"project_lite,omitempty"`
+	RequestedBy   *Href                  `json:"requested_by,omitempty"`
+	Public        *bool                  `json:"public,omitempty"`
+	State         *string                `json:"state,omitempty"`
+	Tags          []string               `json:"tags,omitempty"`
+	Type          string                 `json:"type"`
 }
 
 // NewIPReservation instantiates a new IPReservation object
@@ -164,9 +164,9 @@ func (o *IPReservation) SetAddressFamily(v int32) {
 }
 
 // GetAssignments returns the Assignments field value if set, zero value otherwise.
-func (o *IPReservation) GetAssignments() []FindDeviceById200ResponseIpAddressesInner {
+func (o *IPReservation) GetAssignments() []IPAssignment {
 	if o == nil || isNil(o.Assignments) {
-		var ret []FindDeviceById200ResponseIpAddressesInner
+		var ret []IPAssignment
 		return ret
 	}
 	return o.Assignments
@@ -174,7 +174,7 @@ func (o *IPReservation) GetAssignments() []FindDeviceById200ResponseIpAddressesI
 
 // GetAssignmentsOk returns a tuple with the Assignments field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IPReservation) GetAssignmentsOk() ([]FindDeviceById200ResponseIpAddressesInner, bool) {
+func (o *IPReservation) GetAssignmentsOk() ([]IPAssignment, bool) {
 	if o == nil || isNil(o.Assignments) {
 		return nil, false
 	}
@@ -190,8 +190,8 @@ func (o *IPReservation) HasAssignments() bool {
 	return false
 }
 
-// SetAssignments gets a reference to the given []FindDeviceById200ResponseIpAddressesInner and assigns it to the Assignments field.
-func (o *IPReservation) SetAssignments(v []FindDeviceById200ResponseIpAddressesInner) {
+// SetAssignments gets a reference to the given []IPAssignment and assigns it to the Assignments field.
+func (o *IPReservation) SetAssignments(v []IPAssignment) {
 	o.Assignments = v
 }
 
@@ -420,9 +420,9 @@ func (o *IPReservation) SetDetails(v string) {
 }
 
 // GetFacility returns the Facility field value if set, zero value otherwise.
-func (o *IPReservation) GetFacility() FindIPAddressById200ResponseOneOfFacility {
+func (o *IPReservation) GetFacility() IPReservationFacility {
 	if o == nil || isNil(o.Facility) {
-		var ret FindIPAddressById200ResponseOneOfFacility
+		var ret IPReservationFacility
 		return ret
 	}
 	return *o.Facility
@@ -430,7 +430,7 @@ func (o *IPReservation) GetFacility() FindIPAddressById200ResponseOneOfFacility 
 
 // GetFacilityOk returns a tuple with the Facility field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IPReservation) GetFacilityOk() (*FindIPAddressById200ResponseOneOfFacility, bool) {
+func (o *IPReservation) GetFacilityOk() (*IPReservationFacility, bool) {
 	if o == nil || isNil(o.Facility) {
 		return nil, false
 	}
@@ -446,8 +446,8 @@ func (o *IPReservation) HasFacility() bool {
 	return false
 }
 
-// SetFacility gets a reference to the given FindIPAddressById200ResponseOneOfFacility and assigns it to the Facility field.
-func (o *IPReservation) SetFacility(v FindIPAddressById200ResponseOneOfFacility) {
+// SetFacility gets a reference to the given IPReservationFacility and assigns it to the Facility field.
+func (o *IPReservation) SetFacility(v IPReservationFacility) {
 	o.Facility = &v
 }
 
@@ -644,9 +644,9 @@ func (o *IPReservation) SetManagement(v bool) {
 }
 
 // GetMetalGateway returns the MetalGateway field value if set, zero value otherwise.
-func (o *IPReservation) GetMetalGateway() FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetworkMetalGatewaysInner {
+func (o *IPReservation) GetMetalGateway() MetalGatewayLite {
 	if o == nil || isNil(o.MetalGateway) {
-		var ret FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetworkMetalGatewaysInner
+		var ret MetalGatewayLite
 		return ret
 	}
 	return *o.MetalGateway
@@ -654,7 +654,7 @@ func (o *IPReservation) GetMetalGateway() FindDeviceById200ResponseNetworkPortsI
 
 // GetMetalGatewayOk returns a tuple with the MetalGateway field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IPReservation) GetMetalGatewayOk() (*FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetworkMetalGatewaysInner, bool) {
+func (o *IPReservation) GetMetalGatewayOk() (*MetalGatewayLite, bool) {
 	if o == nil || isNil(o.MetalGateway) {
 		return nil, false
 	}
@@ -670,15 +670,15 @@ func (o *IPReservation) HasMetalGateway() bool {
 	return false
 }
 
-// SetMetalGateway gets a reference to the given FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetworkMetalGatewaysInner and assigns it to the MetalGateway field.
-func (o *IPReservation) SetMetalGateway(v FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetworkMetalGatewaysInner) {
+// SetMetalGateway gets a reference to the given MetalGatewayLite and assigns it to the MetalGateway field.
+func (o *IPReservation) SetMetalGateway(v MetalGatewayLite) {
 	o.MetalGateway = &v
 }
 
 // GetMetro returns the Metro field value if set, zero value otherwise.
-func (o *IPReservation) GetMetro() FindIPAddressById200ResponseOneOfMetro {
+func (o *IPReservation) GetMetro() IPReservationMetro {
 	if o == nil || isNil(o.Metro) {
-		var ret FindIPAddressById200ResponseOneOfMetro
+		var ret IPReservationMetro
 		return ret
 	}
 	return *o.Metro
@@ -686,7 +686,7 @@ func (o *IPReservation) GetMetro() FindIPAddressById200ResponseOneOfMetro {
 
 // GetMetroOk returns a tuple with the Metro field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IPReservation) GetMetroOk() (*FindIPAddressById200ResponseOneOfMetro, bool) {
+func (o *IPReservation) GetMetroOk() (*IPReservationMetro, bool) {
 	if o == nil || isNil(o.Metro) {
 		return nil, false
 	}
@@ -702,8 +702,8 @@ func (o *IPReservation) HasMetro() bool {
 	return false
 }
 
-// SetMetro gets a reference to the given FindIPAddressById200ResponseOneOfMetro and assigns it to the Metro field.
-func (o *IPReservation) SetMetro(v FindIPAddressById200ResponseOneOfMetro) {
+// SetMetro gets a reference to the given IPReservationMetro and assigns it to the Metro field.
+func (o *IPReservation) SetMetro(v IPReservationMetro) {
 	o.Metro = &v
 }
 
@@ -772,9 +772,9 @@ func (o *IPReservation) SetNetwork(v string) {
 }
 
 // GetProject returns the Project field value if set, zero value otherwise.
-func (o *IPReservation) GetProject() GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject {
+func (o *IPReservation) GetProject() Project {
 	if o == nil || isNil(o.Project) {
-		var ret GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject
+		var ret Project
 		return ret
 	}
 	return *o.Project
@@ -782,7 +782,7 @@ func (o *IPReservation) GetProject() GetInterconnection200ResponsePortsInnerVirt
 
 // GetProjectOk returns a tuple with the Project field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IPReservation) GetProjectOk() (*GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject, bool) {
+func (o *IPReservation) GetProjectOk() (*Project, bool) {
 	if o == nil || isNil(o.Project) {
 		return nil, false
 	}
@@ -798,15 +798,15 @@ func (o *IPReservation) HasProject() bool {
 	return false
 }
 
-// SetProject gets a reference to the given GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject and assigns it to the Project field.
-func (o *IPReservation) SetProject(v GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject) {
+// SetProject gets a reference to the given Project and assigns it to the Project field.
+func (o *IPReservation) SetProject(v Project) {
 	o.Project = &v
 }
 
 // GetProjectLite returns the ProjectLite field value if set, zero value otherwise.
-func (o *IPReservation) GetProjectLite() FindBatchById200ResponseDevicesInner {
+func (o *IPReservation) GetProjectLite() Href {
 	if o == nil || isNil(o.ProjectLite) {
-		var ret FindBatchById200ResponseDevicesInner
+		var ret Href
 		return ret
 	}
 	return *o.ProjectLite
@@ -814,7 +814,7 @@ func (o *IPReservation) GetProjectLite() FindBatchById200ResponseDevicesInner {
 
 // GetProjectLiteOk returns a tuple with the ProjectLite field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IPReservation) GetProjectLiteOk() (*FindBatchById200ResponseDevicesInner, bool) {
+func (o *IPReservation) GetProjectLiteOk() (*Href, bool) {
 	if o == nil || isNil(o.ProjectLite) {
 		return nil, false
 	}
@@ -830,15 +830,15 @@ func (o *IPReservation) HasProjectLite() bool {
 	return false
 }
 
-// SetProjectLite gets a reference to the given FindBatchById200ResponseDevicesInner and assigns it to the ProjectLite field.
-func (o *IPReservation) SetProjectLite(v FindBatchById200ResponseDevicesInner) {
+// SetProjectLite gets a reference to the given Href and assigns it to the ProjectLite field.
+func (o *IPReservation) SetProjectLite(v Href) {
 	o.ProjectLite = &v
 }
 
 // GetRequestedBy returns the RequestedBy field value if set, zero value otherwise.
-func (o *IPReservation) GetRequestedBy() FindBatchById200ResponseDevicesInner {
+func (o *IPReservation) GetRequestedBy() Href {
 	if o == nil || isNil(o.RequestedBy) {
-		var ret FindBatchById200ResponseDevicesInner
+		var ret Href
 		return ret
 	}
 	return *o.RequestedBy
@@ -846,7 +846,7 @@ func (o *IPReservation) GetRequestedBy() FindBatchById200ResponseDevicesInner {
 
 // GetRequestedByOk returns a tuple with the RequestedBy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IPReservation) GetRequestedByOk() (*FindBatchById200ResponseDevicesInner, bool) {
+func (o *IPReservation) GetRequestedByOk() (*Href, bool) {
 	if o == nil || isNil(o.RequestedBy) {
 		return nil, false
 	}
@@ -862,8 +862,8 @@ func (o *IPReservation) HasRequestedBy() bool {
 	return false
 }
 
-// SetRequestedBy gets a reference to the given FindBatchById200ResponseDevicesInner and assigns it to the RequestedBy field.
-func (o *IPReservation) SetRequestedBy(v FindBatchById200ResponseDevicesInner) {
+// SetRequestedBy gets a reference to the given Href and assigns it to the RequestedBy field.
+func (o *IPReservation) SetRequestedBy(v Href) {
 	o.RequestedBy = &v
 }
 

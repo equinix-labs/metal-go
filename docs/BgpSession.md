@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **AddressFamily** | **string** |  | 
 **CreatedAt** | Pointer to **time.Time** |  | [optional] 
 **DefaultRoute** | Pointer to **bool** |  | [optional] 
-**Device** | Pointer to [**FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
+**Device** | Pointer to [**Href**](Href.md) |  | [optional] 
 **Href** | Pointer to **string** |  | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
 **LearnedRoutes** | Pointer to **[]string** |  | [optional] 
@@ -105,20 +105,20 @@ HasDefaultRoute returns a boolean if a field has been set.
 
 ### GetDevice
 
-`func (o *BgpSession) GetDevice() FindBatchById200ResponseDevicesInner`
+`func (o *BgpSession) GetDevice() Href`
 
 GetDevice returns the Device field if non-nil, zero value otherwise.
 
 ### GetDeviceOk
 
-`func (o *BgpSession) GetDeviceOk() (*FindBatchById200ResponseDevicesInner, bool)`
+`func (o *BgpSession) GetDeviceOk() (*Href, bool)`
 
 GetDeviceOk returns a tuple with the Device field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDevice
 
-`func (o *BgpSession) SetDevice(v FindBatchById200ResponseDevicesInner)`
+`func (o *BgpSession) SetDevice(v Href)`
 
 SetDevice sets Device field to given value.
 

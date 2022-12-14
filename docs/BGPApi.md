@@ -84,7 +84,7 @@ Name | Type | Description  | Notes
 
 ## FindBgpConfigByProject
 
-> FindBgpConfigByProject200Response FindBgpConfigByProject(ctx, id).Include(include).Exclude(exclude).Execute()
+> BgpConfig FindBgpConfigByProject(ctx, id).Include(include).Exclude(exclude).Execute()
 
 Retrieve a bgp config
 
@@ -114,7 +114,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `BGPApi.FindBgpConfigByProject``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindBgpConfigByProject`: FindBgpConfigByProject200Response
+    // response from `FindBgpConfigByProject`: BgpConfig
     fmt.Fprintf(os.Stdout, "Response from `BGPApi.FindBgpConfigByProject`: %v\n", resp)
 }
 ```
@@ -140,7 +140,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FindBgpConfigByProject200Response**](FindBgpConfigByProject200Response.md)
+[**BgpConfig**](BgpConfig.md)
 
 ### Authorization
 
@@ -158,7 +158,7 @@ Name | Type | Description  | Notes
 
 ## FindBgpSessionById
 
-> FindBgpSessionById200Response FindBgpSessionById(ctx, id).Include(include).Exclude(exclude).Execute()
+> BgpSession FindBgpSessionById(ctx, id).Include(include).Exclude(exclude).Execute()
 
 Retrieve a BGP session
 
@@ -188,7 +188,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `BGPApi.FindBgpSessionById``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindBgpSessionById`: FindBgpSessionById200Response
+    // response from `FindBgpSessionById`: BgpSession
     fmt.Fprintf(os.Stdout, "Response from `BGPApi.FindBgpSessionById`: %v\n", resp)
 }
 ```
@@ -214,7 +214,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FindBgpSessionById200Response**](FindBgpSessionById200Response.md)
+[**BgpSession**](BgpSession.md)
 
 ### Authorization
 
@@ -232,7 +232,7 @@ Name | Type | Description  | Notes
 
 ## FindGlobalBgpRanges
 
-> FindGlobalBgpRanges200Response FindGlobalBgpRanges(ctx, id).Execute()
+> GlobalBgpRangeList FindGlobalBgpRanges(ctx, id).Execute()
 
 Retrieve all global bgp ranges
 
@@ -260,7 +260,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `BGPApi.FindGlobalBgpRanges``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindGlobalBgpRanges`: FindGlobalBgpRanges200Response
+    // response from `FindGlobalBgpRanges`: GlobalBgpRangeList
     fmt.Fprintf(os.Stdout, "Response from `BGPApi.FindGlobalBgpRanges`: %v\n", resp)
 }
 ```
@@ -284,7 +284,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FindGlobalBgpRanges200Response**](FindGlobalBgpRanges200Response.md)
+[**GlobalBgpRangeList**](GlobalBgpRangeList.md)
 
 ### Authorization
 
@@ -302,7 +302,7 @@ Name | Type | Description  | Notes
 
 ## FindProjectBgpSessions
 
-> FindBgpSessions200Response FindProjectBgpSessions(ctx, id).Execute()
+> BgpSessionList FindProjectBgpSessions(ctx, id).Execute()
 
 Retrieve all BGP sessions for project
 
@@ -330,7 +330,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `BGPApi.FindProjectBgpSessions``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindProjectBgpSessions`: FindBgpSessions200Response
+    // response from `FindProjectBgpSessions`: BgpSessionList
     fmt.Fprintf(os.Stdout, "Response from `BGPApi.FindProjectBgpSessions`: %v\n", resp)
 }
 ```
@@ -354,7 +354,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FindBgpSessions200Response**](FindBgpSessions200Response.md)
+[**BgpSessionList**](BgpSessionList.md)
 
 ### Authorization
 
@@ -372,7 +372,7 @@ Name | Type | Description  | Notes
 
 ## RequestBgpConfig
 
-> RequestBgpConfig(ctx, id).RequestBgpConfigRequest(requestBgpConfigRequest).Execute()
+> RequestBgpConfig(ctx, id).BgpConfigRequestInput(bgpConfigRequestInput).Execute()
 
 Requesting bgp config
 
@@ -392,11 +392,11 @@ import (
 
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Project UUID
-    requestBgpConfigRequest := *openapiclient.NewRequestBgpConfigRequest(int32(123), "DeploymentType_example") // RequestBgpConfigRequest | BGP config Request to create
+    bgpConfigRequestInput := *openapiclient.NewBgpConfigRequestInput(int32(123), "DeploymentType_example") // BgpConfigRequestInput | BGP config Request to create
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BGPApi.RequestBgpConfig(context.Background(), id).RequestBgpConfigRequest(requestBgpConfigRequest).Execute()
+    resp, r, err := apiClient.BGPApi.RequestBgpConfig(context.Background(), id).BgpConfigRequestInput(bgpConfigRequestInput).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `BGPApi.RequestBgpConfig``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -420,7 +420,7 @@ Other parameters are passed through a pointer to a apiRequestBgpConfigRequest st
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **requestBgpConfigRequest** | [**RequestBgpConfigRequest**](RequestBgpConfigRequest.md) | BGP config Request to create | 
+ **bgpConfigRequestInput** | [**BgpConfigRequestInput**](BgpConfigRequestInput.md) | BGP config Request to create | 
 
 ### Return type
 

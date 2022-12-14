@@ -18,14 +18,14 @@ import (
 
 // PortVlanAssignment struct for PortVlanAssignment
 type PortVlanAssignment struct {
-	CreatedAt      *time.Time                            `json:"created_at,omitempty"`
-	Id             *string                               `json:"id,omitempty"`
-	Native         *bool                                 `json:"native,omitempty"`
-	Port           *FindBatchById200ResponseDevicesInner `json:"port,omitempty"`
-	State          *string                               `json:"state,omitempty"`
-	UpdatedAt      *time.Time                            `json:"updated_at,omitempty"`
-	VirtualNetwork *FindBatchById200ResponseDevicesInner `json:"virtual_network,omitempty"`
-	Vlan           *int32                                `json:"vlan,omitempty"`
+	CreatedAt      *time.Time `json:"created_at,omitempty"`
+	Id             *string    `json:"id,omitempty"`
+	Native         *bool      `json:"native,omitempty"`
+	Port           *Href      `json:"port,omitempty"`
+	State          *string    `json:"state,omitempty"`
+	UpdatedAt      *time.Time `json:"updated_at,omitempty"`
+	VirtualNetwork *Href      `json:"virtual_network,omitempty"`
+	Vlan           *int32     `json:"vlan,omitempty"`
 }
 
 // NewPortVlanAssignment instantiates a new PortVlanAssignment object
@@ -142,9 +142,9 @@ func (o *PortVlanAssignment) SetNative(v bool) {
 }
 
 // GetPort returns the Port field value if set, zero value otherwise.
-func (o *PortVlanAssignment) GetPort() FindBatchById200ResponseDevicesInner {
+func (o *PortVlanAssignment) GetPort() Href {
 	if o == nil || isNil(o.Port) {
-		var ret FindBatchById200ResponseDevicesInner
+		var ret Href
 		return ret
 	}
 	return *o.Port
@@ -152,7 +152,7 @@ func (o *PortVlanAssignment) GetPort() FindBatchById200ResponseDevicesInner {
 
 // GetPortOk returns a tuple with the Port field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PortVlanAssignment) GetPortOk() (*FindBatchById200ResponseDevicesInner, bool) {
+func (o *PortVlanAssignment) GetPortOk() (*Href, bool) {
 	if o == nil || isNil(o.Port) {
 		return nil, false
 	}
@@ -168,8 +168,8 @@ func (o *PortVlanAssignment) HasPort() bool {
 	return false
 }
 
-// SetPort gets a reference to the given FindBatchById200ResponseDevicesInner and assigns it to the Port field.
-func (o *PortVlanAssignment) SetPort(v FindBatchById200ResponseDevicesInner) {
+// SetPort gets a reference to the given Href and assigns it to the Port field.
+func (o *PortVlanAssignment) SetPort(v Href) {
 	o.Port = &v
 }
 
@@ -238,9 +238,9 @@ func (o *PortVlanAssignment) SetUpdatedAt(v time.Time) {
 }
 
 // GetVirtualNetwork returns the VirtualNetwork field value if set, zero value otherwise.
-func (o *PortVlanAssignment) GetVirtualNetwork() FindBatchById200ResponseDevicesInner {
+func (o *PortVlanAssignment) GetVirtualNetwork() Href {
 	if o == nil || isNil(o.VirtualNetwork) {
-		var ret FindBatchById200ResponseDevicesInner
+		var ret Href
 		return ret
 	}
 	return *o.VirtualNetwork
@@ -248,7 +248,7 @@ func (o *PortVlanAssignment) GetVirtualNetwork() FindBatchById200ResponseDevices
 
 // GetVirtualNetworkOk returns a tuple with the VirtualNetwork field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PortVlanAssignment) GetVirtualNetworkOk() (*FindBatchById200ResponseDevicesInner, bool) {
+func (o *PortVlanAssignment) GetVirtualNetworkOk() (*Href, bool) {
 	if o == nil || isNil(o.VirtualNetwork) {
 		return nil, false
 	}
@@ -264,8 +264,8 @@ func (o *PortVlanAssignment) HasVirtualNetwork() bool {
 	return false
 }
 
-// SetVirtualNetwork gets a reference to the given FindBatchById200ResponseDevicesInner and assigns it to the VirtualNetwork field.
-func (o *PortVlanAssignment) SetVirtualNetwork(v FindBatchById200ResponseDevicesInner) {
+// SetVirtualNetwork gets a reference to the given Href and assigns it to the VirtualNetwork field.
+func (o *PortVlanAssignment) SetVirtualNetwork(v Href) {
 	o.VirtualNetwork = &v
 }
 

@@ -148,7 +148,7 @@ Name | Type | Description  | Notes
 
 ## FindTransferRequestById
 
-> FindOrganizationTransfers200ResponseTransfersInner FindTransferRequestById(ctx, id).Include(include).Exclude(exclude).Execute()
+> TransferRequest FindTransferRequestById(ctx, id).Include(include).Exclude(exclude).Execute()
 
 View a transfer request
 
@@ -178,7 +178,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `TransferRequestsApi.FindTransferRequestById``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindTransferRequestById`: FindOrganizationTransfers200ResponseTransfersInner
+    // response from `FindTransferRequestById`: TransferRequest
     fmt.Fprintf(os.Stdout, "Response from `TransferRequestsApi.FindTransferRequestById`: %v\n", resp)
 }
 ```
@@ -204,7 +204,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FindOrganizationTransfers200ResponseTransfersInner**](FindOrganizationTransfers200ResponseTransfersInner.md)
+[**TransferRequest**](TransferRequest.md)
 
 ### Authorization
 

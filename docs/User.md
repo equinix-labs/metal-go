@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **CreatedAt** | Pointer to **time.Time** |  | [optional] 
 **Customdata** | Pointer to **map[string]interface{}** |  | [optional] 
 **Email** | Pointer to **string** |  | [optional] 
-**Emails** | Pointer to [**[]FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
+**Emails** | Pointer to [**[]Href**](Href.md) |  | [optional] 
 **FirstName** | Pointer to **string** |  | [optional] 
 **FraudScore** | Pointer to **string** |  | [optional] 
 **FullName** | Pointer to **string** |  | [optional] 
@@ -171,20 +171,20 @@ HasEmail returns a boolean if a field has been set.
 
 ### GetEmails
 
-`func (o *User) GetEmails() []FindBatchById200ResponseDevicesInner`
+`func (o *User) GetEmails() []Href`
 
 GetEmails returns the Emails field if non-nil, zero value otherwise.
 
 ### GetEmailsOk
 
-`func (o *User) GetEmailsOk() (*[]FindBatchById200ResponseDevicesInner, bool)`
+`func (o *User) GetEmailsOk() (*[]Href, bool)`
 
 GetEmailsOk returns a tuple with the Emails field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetEmails
 
-`func (o *User) SetEmails(v []FindBatchById200ResponseDevicesInner)`
+`func (o *User) SetEmails(v []Href)`
 
 SetEmails sets Emails field to given value.
 

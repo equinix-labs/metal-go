@@ -7,8 +7,8 @@ Name | Type | Description | Notes
 **CreatedAt** | Pointer to **time.Time** |  | [optional] 
 **Href** | Pointer to **string** |  | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
-**Project** | Pointer to [**FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
-**TargetOrganization** | Pointer to [**FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
+**Project** | Pointer to [**Href**](Href.md) |  | [optional] 
+**TargetOrganization** | Pointer to [**Href**](Href.md) |  | [optional] 
 **UpdatedAt** | Pointer to **time.Time** |  | [optional] 
 
 ## Methods
@@ -107,20 +107,20 @@ HasId returns a boolean if a field has been set.
 
 ### GetProject
 
-`func (o *TransferRequest) GetProject() FindBatchById200ResponseDevicesInner`
+`func (o *TransferRequest) GetProject() Href`
 
 GetProject returns the Project field if non-nil, zero value otherwise.
 
 ### GetProjectOk
 
-`func (o *TransferRequest) GetProjectOk() (*FindBatchById200ResponseDevicesInner, bool)`
+`func (o *TransferRequest) GetProjectOk() (*Href, bool)`
 
 GetProjectOk returns a tuple with the Project field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetProject
 
-`func (o *TransferRequest) SetProject(v FindBatchById200ResponseDevicesInner)`
+`func (o *TransferRequest) SetProject(v Href)`
 
 SetProject sets Project field to given value.
 
@@ -132,20 +132,20 @@ HasProject returns a boolean if a field has been set.
 
 ### GetTargetOrganization
 
-`func (o *TransferRequest) GetTargetOrganization() FindBatchById200ResponseDevicesInner`
+`func (o *TransferRequest) GetTargetOrganization() Href`
 
 GetTargetOrganization returns the TargetOrganization field if non-nil, zero value otherwise.
 
 ### GetTargetOrganizationOk
 
-`func (o *TransferRequest) GetTargetOrganizationOk() (*FindBatchById200ResponseDevicesInner, bool)`
+`func (o *TransferRequest) GetTargetOrganizationOk() (*Href, bool)`
 
 GetTargetOrganizationOk returns a tuple with the TargetOrganization field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTargetOrganization
 
-`func (o *TransferRequest) SetTargetOrganization(v FindBatchById200ResponseDevicesInner)`
+`func (o *TransferRequest) SetTargetOrganization(v Href)`
 
 SetTargetOrganization sets TargetOrganization field to given value.
 

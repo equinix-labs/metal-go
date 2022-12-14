@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Batches** | Pointer to [**[]CreateDeviceBatchRequestBatchesInner**](CreateDeviceBatchRequestBatchesInner.md) |  | [optional] 
+**Batches** | Pointer to [**[]InstancesBatchCreateInputBatchesInner**](InstancesBatchCreateInputBatchesInner.md) |  | [optional] 
 
 ## Methods
 
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetBatches
 
-`func (o *InstancesBatchCreateInput) GetBatches() []CreateDeviceBatchRequestBatchesInner`
+`func (o *InstancesBatchCreateInput) GetBatches() []InstancesBatchCreateInputBatchesInner`
 
 GetBatches returns the Batches field if non-nil, zero value otherwise.
 
 ### GetBatchesOk
 
-`func (o *InstancesBatchCreateInput) GetBatchesOk() (*[]CreateDeviceBatchRequestBatchesInner, bool)`
+`func (o *InstancesBatchCreateInput) GetBatchesOk() (*[]InstancesBatchCreateInputBatchesInner, bool)`
 
 GetBatchesOk returns a tuple with the Batches field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetBatches
 
-`func (o *InstancesBatchCreateInput) SetBatches(v []CreateDeviceBatchRequestBatchesInner)`
+`func (o *InstancesBatchCreateInput) SetBatches(v []InstancesBatchCreateInputBatchesInner)`
 
 SetBatches sets Batches field to given value.
 

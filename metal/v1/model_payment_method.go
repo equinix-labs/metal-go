@@ -18,21 +18,21 @@ import (
 
 // PaymentMethod struct for PaymentMethod
 type PaymentMethod struct {
-	BillingAddress  *FindOrganizationPaymentMethods200ResponsePaymentMethodsInnerBillingAddress `json:"billing_address,omitempty"`
-	CardType        *string                                                                     `json:"card_type,omitempty"`
-	CardholderName  *string                                                                     `json:"cardholder_name,omitempty"`
-	CreatedAt       *time.Time                                                                  `json:"created_at,omitempty"`
-	CreatedByUser   *FindBatchById200ResponseDevicesInner                                       `json:"created_by_user,omitempty"`
-	Default         *bool                                                                       `json:"default,omitempty"`
-	Email           *string                                                                     `json:"email,omitempty"`
-	ExpirationMonth *string                                                                     `json:"expiration_month,omitempty"`
-	ExpirationYear  *string                                                                     `json:"expiration_year,omitempty"`
-	Id              *string                                                                     `json:"id,omitempty"`
-	Name            *string                                                                     `json:"name,omitempty"`
-	Organization    *FindBatchById200ResponseDevicesInner                                       `json:"organization,omitempty"`
-	Projects        []FindBatchById200ResponseDevicesInner                                      `json:"projects,omitempty"`
-	Type            *string                                                                     `json:"type,omitempty"`
-	UpdatedAt       *time.Time                                                                  `json:"updated_at,omitempty"`
+	BillingAddress  *PaymentMethodBillingAddress `json:"billing_address,omitempty"`
+	CardType        *string                      `json:"card_type,omitempty"`
+	CardholderName  *string                      `json:"cardholder_name,omitempty"`
+	CreatedAt       *time.Time                   `json:"created_at,omitempty"`
+	CreatedByUser   *Href                        `json:"created_by_user,omitempty"`
+	Default         *bool                        `json:"default,omitempty"`
+	Email           *string                      `json:"email,omitempty"`
+	ExpirationMonth *string                      `json:"expiration_month,omitempty"`
+	ExpirationYear  *string                      `json:"expiration_year,omitempty"`
+	Id              *string                      `json:"id,omitempty"`
+	Name            *string                      `json:"name,omitempty"`
+	Organization    *Href                        `json:"organization,omitempty"`
+	Projects        []Href                       `json:"projects,omitempty"`
+	Type            *string                      `json:"type,omitempty"`
+	UpdatedAt       *time.Time                   `json:"updated_at,omitempty"`
 }
 
 // NewPaymentMethod instantiates a new PaymentMethod object
@@ -53,9 +53,9 @@ func NewPaymentMethodWithDefaults() *PaymentMethod {
 }
 
 // GetBillingAddress returns the BillingAddress field value if set, zero value otherwise.
-func (o *PaymentMethod) GetBillingAddress() FindOrganizationPaymentMethods200ResponsePaymentMethodsInnerBillingAddress {
+func (o *PaymentMethod) GetBillingAddress() PaymentMethodBillingAddress {
 	if o == nil || isNil(o.BillingAddress) {
-		var ret FindOrganizationPaymentMethods200ResponsePaymentMethodsInnerBillingAddress
+		var ret PaymentMethodBillingAddress
 		return ret
 	}
 	return *o.BillingAddress
@@ -63,7 +63,7 @@ func (o *PaymentMethod) GetBillingAddress() FindOrganizationPaymentMethods200Res
 
 // GetBillingAddressOk returns a tuple with the BillingAddress field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PaymentMethod) GetBillingAddressOk() (*FindOrganizationPaymentMethods200ResponsePaymentMethodsInnerBillingAddress, bool) {
+func (o *PaymentMethod) GetBillingAddressOk() (*PaymentMethodBillingAddress, bool) {
 	if o == nil || isNil(o.BillingAddress) {
 		return nil, false
 	}
@@ -79,8 +79,8 @@ func (o *PaymentMethod) HasBillingAddress() bool {
 	return false
 }
 
-// SetBillingAddress gets a reference to the given FindOrganizationPaymentMethods200ResponsePaymentMethodsInnerBillingAddress and assigns it to the BillingAddress field.
-func (o *PaymentMethod) SetBillingAddress(v FindOrganizationPaymentMethods200ResponsePaymentMethodsInnerBillingAddress) {
+// SetBillingAddress gets a reference to the given PaymentMethodBillingAddress and assigns it to the BillingAddress field.
+func (o *PaymentMethod) SetBillingAddress(v PaymentMethodBillingAddress) {
 	o.BillingAddress = &v
 }
 
@@ -181,9 +181,9 @@ func (o *PaymentMethod) SetCreatedAt(v time.Time) {
 }
 
 // GetCreatedByUser returns the CreatedByUser field value if set, zero value otherwise.
-func (o *PaymentMethod) GetCreatedByUser() FindBatchById200ResponseDevicesInner {
+func (o *PaymentMethod) GetCreatedByUser() Href {
 	if o == nil || isNil(o.CreatedByUser) {
-		var ret FindBatchById200ResponseDevicesInner
+		var ret Href
 		return ret
 	}
 	return *o.CreatedByUser
@@ -191,7 +191,7 @@ func (o *PaymentMethod) GetCreatedByUser() FindBatchById200ResponseDevicesInner 
 
 // GetCreatedByUserOk returns a tuple with the CreatedByUser field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PaymentMethod) GetCreatedByUserOk() (*FindBatchById200ResponseDevicesInner, bool) {
+func (o *PaymentMethod) GetCreatedByUserOk() (*Href, bool) {
 	if o == nil || isNil(o.CreatedByUser) {
 		return nil, false
 	}
@@ -207,8 +207,8 @@ func (o *PaymentMethod) HasCreatedByUser() bool {
 	return false
 }
 
-// SetCreatedByUser gets a reference to the given FindBatchById200ResponseDevicesInner and assigns it to the CreatedByUser field.
-func (o *PaymentMethod) SetCreatedByUser(v FindBatchById200ResponseDevicesInner) {
+// SetCreatedByUser gets a reference to the given Href and assigns it to the CreatedByUser field.
+func (o *PaymentMethod) SetCreatedByUser(v Href) {
 	o.CreatedByUser = &v
 }
 
@@ -405,9 +405,9 @@ func (o *PaymentMethod) SetName(v string) {
 }
 
 // GetOrganization returns the Organization field value if set, zero value otherwise.
-func (o *PaymentMethod) GetOrganization() FindBatchById200ResponseDevicesInner {
+func (o *PaymentMethod) GetOrganization() Href {
 	if o == nil || isNil(o.Organization) {
-		var ret FindBatchById200ResponseDevicesInner
+		var ret Href
 		return ret
 	}
 	return *o.Organization
@@ -415,7 +415,7 @@ func (o *PaymentMethod) GetOrganization() FindBatchById200ResponseDevicesInner {
 
 // GetOrganizationOk returns a tuple with the Organization field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PaymentMethod) GetOrganizationOk() (*FindBatchById200ResponseDevicesInner, bool) {
+func (o *PaymentMethod) GetOrganizationOk() (*Href, bool) {
 	if o == nil || isNil(o.Organization) {
 		return nil, false
 	}
@@ -431,15 +431,15 @@ func (o *PaymentMethod) HasOrganization() bool {
 	return false
 }
 
-// SetOrganization gets a reference to the given FindBatchById200ResponseDevicesInner and assigns it to the Organization field.
-func (o *PaymentMethod) SetOrganization(v FindBatchById200ResponseDevicesInner) {
+// SetOrganization gets a reference to the given Href and assigns it to the Organization field.
+func (o *PaymentMethod) SetOrganization(v Href) {
 	o.Organization = &v
 }
 
 // GetProjects returns the Projects field value if set, zero value otherwise.
-func (o *PaymentMethod) GetProjects() []FindBatchById200ResponseDevicesInner {
+func (o *PaymentMethod) GetProjects() []Href {
 	if o == nil || isNil(o.Projects) {
-		var ret []FindBatchById200ResponseDevicesInner
+		var ret []Href
 		return ret
 	}
 	return o.Projects
@@ -447,7 +447,7 @@ func (o *PaymentMethod) GetProjects() []FindBatchById200ResponseDevicesInner {
 
 // GetProjectsOk returns a tuple with the Projects field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PaymentMethod) GetProjectsOk() ([]FindBatchById200ResponseDevicesInner, bool) {
+func (o *PaymentMethod) GetProjectsOk() ([]Href, bool) {
 	if o == nil || isNil(o.Projects) {
 		return nil, false
 	}
@@ -463,8 +463,8 @@ func (o *PaymentMethod) HasProjects() bool {
 	return false
 }
 
-// SetProjects gets a reference to the given []FindBatchById200ResponseDevicesInner and assigns it to the Projects field.
-func (o *PaymentMethod) SetProjects(v []FindBatchById200ResponseDevicesInner) {
+// SetProjects gets a reference to the given []Href and assigns it to the Projects field.
+func (o *PaymentMethod) SetProjects(v []Href) {
 	o.Projects = v
 }
 

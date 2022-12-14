@@ -17,15 +17,15 @@ import (
 
 // SpotPricesPerFacility struct for SpotPricesPerFacility
 type SpotPricesPerFacility struct {
-	Baremetal0   *FindSpotMarketPrices200ResponseSpotMarketPricesAms1Baremetal0 `json:"baremetal_0,omitempty"`
-	Baremetal1   *FindSpotMarketPrices200ResponseSpotMarketPricesAms1Baremetal0 `json:"baremetal_1,omitempty"`
-	Baremetal2   *FindSpotMarketPrices200ResponseSpotMarketPricesAms1Baremetal0 `json:"baremetal_2,omitempty"`
-	Baremetal2a  *FindSpotMarketPrices200ResponseSpotMarketPricesAms1Baremetal0 `json:"baremetal_2a,omitempty"`
-	Baremetal2a2 *FindSpotMarketPrices200ResponseSpotMarketPricesAms1Baremetal0 `json:"baremetal_2a2,omitempty"`
-	Baremetal3   *FindSpotMarketPrices200ResponseSpotMarketPricesAms1Baremetal0 `json:"baremetal_3,omitempty"`
-	BaremetalS   *FindSpotMarketPrices200ResponseSpotMarketPricesAms1Baremetal0 `json:"baremetal_s,omitempty"`
-	C2MediumX86  *FindSpotMarketPrices200ResponseSpotMarketPricesAms1Baremetal0 `json:"c2.medium.x86,omitempty"`
-	M2XlargeX86  *FindSpotMarketPrices200ResponseSpotMarketPricesAms1Baremetal0 `json:"m2.xlarge.x86,omitempty"`
+	Baremetal0   *SpotPricesPerBaremetal `json:"baremetal_0,omitempty"`
+	Baremetal1   *SpotPricesPerBaremetal `json:"baremetal_1,omitempty"`
+	Baremetal2   *SpotPricesPerBaremetal `json:"baremetal_2,omitempty"`
+	Baremetal2a  *SpotPricesPerBaremetal `json:"baremetal_2a,omitempty"`
+	Baremetal2a2 *SpotPricesPerBaremetal `json:"baremetal_2a2,omitempty"`
+	Baremetal3   *SpotPricesPerBaremetal `json:"baremetal_3,omitempty"`
+	BaremetalS   *SpotPricesPerBaremetal `json:"baremetal_s,omitempty"`
+	C2MediumX86  *SpotPricesPerBaremetal `json:"c2.medium.x86,omitempty"`
+	M2XlargeX86  *SpotPricesPerBaremetal `json:"m2.xlarge.x86,omitempty"`
 }
 
 // NewSpotPricesPerFacility instantiates a new SpotPricesPerFacility object
@@ -46,9 +46,9 @@ func NewSpotPricesPerFacilityWithDefaults() *SpotPricesPerFacility {
 }
 
 // GetBaremetal0 returns the Baremetal0 field value if set, zero value otherwise.
-func (o *SpotPricesPerFacility) GetBaremetal0() FindSpotMarketPrices200ResponseSpotMarketPricesAms1Baremetal0 {
+func (o *SpotPricesPerFacility) GetBaremetal0() SpotPricesPerBaremetal {
 	if o == nil || isNil(o.Baremetal0) {
-		var ret FindSpotMarketPrices200ResponseSpotMarketPricesAms1Baremetal0
+		var ret SpotPricesPerBaremetal
 		return ret
 	}
 	return *o.Baremetal0
@@ -56,7 +56,7 @@ func (o *SpotPricesPerFacility) GetBaremetal0() FindSpotMarketPrices200ResponseS
 
 // GetBaremetal0Ok returns a tuple with the Baremetal0 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SpotPricesPerFacility) GetBaremetal0Ok() (*FindSpotMarketPrices200ResponseSpotMarketPricesAms1Baremetal0, bool) {
+func (o *SpotPricesPerFacility) GetBaremetal0Ok() (*SpotPricesPerBaremetal, bool) {
 	if o == nil || isNil(o.Baremetal0) {
 		return nil, false
 	}
@@ -72,15 +72,15 @@ func (o *SpotPricesPerFacility) HasBaremetal0() bool {
 	return false
 }
 
-// SetBaremetal0 gets a reference to the given FindSpotMarketPrices200ResponseSpotMarketPricesAms1Baremetal0 and assigns it to the Baremetal0 field.
-func (o *SpotPricesPerFacility) SetBaremetal0(v FindSpotMarketPrices200ResponseSpotMarketPricesAms1Baremetal0) {
+// SetBaremetal0 gets a reference to the given SpotPricesPerBaremetal and assigns it to the Baremetal0 field.
+func (o *SpotPricesPerFacility) SetBaremetal0(v SpotPricesPerBaremetal) {
 	o.Baremetal0 = &v
 }
 
 // GetBaremetal1 returns the Baremetal1 field value if set, zero value otherwise.
-func (o *SpotPricesPerFacility) GetBaremetal1() FindSpotMarketPrices200ResponseSpotMarketPricesAms1Baremetal0 {
+func (o *SpotPricesPerFacility) GetBaremetal1() SpotPricesPerBaremetal {
 	if o == nil || isNil(o.Baremetal1) {
-		var ret FindSpotMarketPrices200ResponseSpotMarketPricesAms1Baremetal0
+		var ret SpotPricesPerBaremetal
 		return ret
 	}
 	return *o.Baremetal1
@@ -88,7 +88,7 @@ func (o *SpotPricesPerFacility) GetBaremetal1() FindSpotMarketPrices200ResponseS
 
 // GetBaremetal1Ok returns a tuple with the Baremetal1 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SpotPricesPerFacility) GetBaremetal1Ok() (*FindSpotMarketPrices200ResponseSpotMarketPricesAms1Baremetal0, bool) {
+func (o *SpotPricesPerFacility) GetBaremetal1Ok() (*SpotPricesPerBaremetal, bool) {
 	if o == nil || isNil(o.Baremetal1) {
 		return nil, false
 	}
@@ -104,15 +104,15 @@ func (o *SpotPricesPerFacility) HasBaremetal1() bool {
 	return false
 }
 
-// SetBaremetal1 gets a reference to the given FindSpotMarketPrices200ResponseSpotMarketPricesAms1Baremetal0 and assigns it to the Baremetal1 field.
-func (o *SpotPricesPerFacility) SetBaremetal1(v FindSpotMarketPrices200ResponseSpotMarketPricesAms1Baremetal0) {
+// SetBaremetal1 gets a reference to the given SpotPricesPerBaremetal and assigns it to the Baremetal1 field.
+func (o *SpotPricesPerFacility) SetBaremetal1(v SpotPricesPerBaremetal) {
 	o.Baremetal1 = &v
 }
 
 // GetBaremetal2 returns the Baremetal2 field value if set, zero value otherwise.
-func (o *SpotPricesPerFacility) GetBaremetal2() FindSpotMarketPrices200ResponseSpotMarketPricesAms1Baremetal0 {
+func (o *SpotPricesPerFacility) GetBaremetal2() SpotPricesPerBaremetal {
 	if o == nil || isNil(o.Baremetal2) {
-		var ret FindSpotMarketPrices200ResponseSpotMarketPricesAms1Baremetal0
+		var ret SpotPricesPerBaremetal
 		return ret
 	}
 	return *o.Baremetal2
@@ -120,7 +120,7 @@ func (o *SpotPricesPerFacility) GetBaremetal2() FindSpotMarketPrices200ResponseS
 
 // GetBaremetal2Ok returns a tuple with the Baremetal2 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SpotPricesPerFacility) GetBaremetal2Ok() (*FindSpotMarketPrices200ResponseSpotMarketPricesAms1Baremetal0, bool) {
+func (o *SpotPricesPerFacility) GetBaremetal2Ok() (*SpotPricesPerBaremetal, bool) {
 	if o == nil || isNil(o.Baremetal2) {
 		return nil, false
 	}
@@ -136,15 +136,15 @@ func (o *SpotPricesPerFacility) HasBaremetal2() bool {
 	return false
 }
 
-// SetBaremetal2 gets a reference to the given FindSpotMarketPrices200ResponseSpotMarketPricesAms1Baremetal0 and assigns it to the Baremetal2 field.
-func (o *SpotPricesPerFacility) SetBaremetal2(v FindSpotMarketPrices200ResponseSpotMarketPricesAms1Baremetal0) {
+// SetBaremetal2 gets a reference to the given SpotPricesPerBaremetal and assigns it to the Baremetal2 field.
+func (o *SpotPricesPerFacility) SetBaremetal2(v SpotPricesPerBaremetal) {
 	o.Baremetal2 = &v
 }
 
 // GetBaremetal2a returns the Baremetal2a field value if set, zero value otherwise.
-func (o *SpotPricesPerFacility) GetBaremetal2a() FindSpotMarketPrices200ResponseSpotMarketPricesAms1Baremetal0 {
+func (o *SpotPricesPerFacility) GetBaremetal2a() SpotPricesPerBaremetal {
 	if o == nil || isNil(o.Baremetal2a) {
-		var ret FindSpotMarketPrices200ResponseSpotMarketPricesAms1Baremetal0
+		var ret SpotPricesPerBaremetal
 		return ret
 	}
 	return *o.Baremetal2a
@@ -152,7 +152,7 @@ func (o *SpotPricesPerFacility) GetBaremetal2a() FindSpotMarketPrices200Response
 
 // GetBaremetal2aOk returns a tuple with the Baremetal2a field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SpotPricesPerFacility) GetBaremetal2aOk() (*FindSpotMarketPrices200ResponseSpotMarketPricesAms1Baremetal0, bool) {
+func (o *SpotPricesPerFacility) GetBaremetal2aOk() (*SpotPricesPerBaremetal, bool) {
 	if o == nil || isNil(o.Baremetal2a) {
 		return nil, false
 	}
@@ -168,15 +168,15 @@ func (o *SpotPricesPerFacility) HasBaremetal2a() bool {
 	return false
 }
 
-// SetBaremetal2a gets a reference to the given FindSpotMarketPrices200ResponseSpotMarketPricesAms1Baremetal0 and assigns it to the Baremetal2a field.
-func (o *SpotPricesPerFacility) SetBaremetal2a(v FindSpotMarketPrices200ResponseSpotMarketPricesAms1Baremetal0) {
+// SetBaremetal2a gets a reference to the given SpotPricesPerBaremetal and assigns it to the Baremetal2a field.
+func (o *SpotPricesPerFacility) SetBaremetal2a(v SpotPricesPerBaremetal) {
 	o.Baremetal2a = &v
 }
 
 // GetBaremetal2a2 returns the Baremetal2a2 field value if set, zero value otherwise.
-func (o *SpotPricesPerFacility) GetBaremetal2a2() FindSpotMarketPrices200ResponseSpotMarketPricesAms1Baremetal0 {
+func (o *SpotPricesPerFacility) GetBaremetal2a2() SpotPricesPerBaremetal {
 	if o == nil || isNil(o.Baremetal2a2) {
-		var ret FindSpotMarketPrices200ResponseSpotMarketPricesAms1Baremetal0
+		var ret SpotPricesPerBaremetal
 		return ret
 	}
 	return *o.Baremetal2a2
@@ -184,7 +184,7 @@ func (o *SpotPricesPerFacility) GetBaremetal2a2() FindSpotMarketPrices200Respons
 
 // GetBaremetal2a2Ok returns a tuple with the Baremetal2a2 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SpotPricesPerFacility) GetBaremetal2a2Ok() (*FindSpotMarketPrices200ResponseSpotMarketPricesAms1Baremetal0, bool) {
+func (o *SpotPricesPerFacility) GetBaremetal2a2Ok() (*SpotPricesPerBaremetal, bool) {
 	if o == nil || isNil(o.Baremetal2a2) {
 		return nil, false
 	}
@@ -200,15 +200,15 @@ func (o *SpotPricesPerFacility) HasBaremetal2a2() bool {
 	return false
 }
 
-// SetBaremetal2a2 gets a reference to the given FindSpotMarketPrices200ResponseSpotMarketPricesAms1Baremetal0 and assigns it to the Baremetal2a2 field.
-func (o *SpotPricesPerFacility) SetBaremetal2a2(v FindSpotMarketPrices200ResponseSpotMarketPricesAms1Baremetal0) {
+// SetBaremetal2a2 gets a reference to the given SpotPricesPerBaremetal and assigns it to the Baremetal2a2 field.
+func (o *SpotPricesPerFacility) SetBaremetal2a2(v SpotPricesPerBaremetal) {
 	o.Baremetal2a2 = &v
 }
 
 // GetBaremetal3 returns the Baremetal3 field value if set, zero value otherwise.
-func (o *SpotPricesPerFacility) GetBaremetal3() FindSpotMarketPrices200ResponseSpotMarketPricesAms1Baremetal0 {
+func (o *SpotPricesPerFacility) GetBaremetal3() SpotPricesPerBaremetal {
 	if o == nil || isNil(o.Baremetal3) {
-		var ret FindSpotMarketPrices200ResponseSpotMarketPricesAms1Baremetal0
+		var ret SpotPricesPerBaremetal
 		return ret
 	}
 	return *o.Baremetal3
@@ -216,7 +216,7 @@ func (o *SpotPricesPerFacility) GetBaremetal3() FindSpotMarketPrices200ResponseS
 
 // GetBaremetal3Ok returns a tuple with the Baremetal3 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SpotPricesPerFacility) GetBaremetal3Ok() (*FindSpotMarketPrices200ResponseSpotMarketPricesAms1Baremetal0, bool) {
+func (o *SpotPricesPerFacility) GetBaremetal3Ok() (*SpotPricesPerBaremetal, bool) {
 	if o == nil || isNil(o.Baremetal3) {
 		return nil, false
 	}
@@ -232,15 +232,15 @@ func (o *SpotPricesPerFacility) HasBaremetal3() bool {
 	return false
 }
 
-// SetBaremetal3 gets a reference to the given FindSpotMarketPrices200ResponseSpotMarketPricesAms1Baremetal0 and assigns it to the Baremetal3 field.
-func (o *SpotPricesPerFacility) SetBaremetal3(v FindSpotMarketPrices200ResponseSpotMarketPricesAms1Baremetal0) {
+// SetBaremetal3 gets a reference to the given SpotPricesPerBaremetal and assigns it to the Baremetal3 field.
+func (o *SpotPricesPerFacility) SetBaremetal3(v SpotPricesPerBaremetal) {
 	o.Baremetal3 = &v
 }
 
 // GetBaremetalS returns the BaremetalS field value if set, zero value otherwise.
-func (o *SpotPricesPerFacility) GetBaremetalS() FindSpotMarketPrices200ResponseSpotMarketPricesAms1Baremetal0 {
+func (o *SpotPricesPerFacility) GetBaremetalS() SpotPricesPerBaremetal {
 	if o == nil || isNil(o.BaremetalS) {
-		var ret FindSpotMarketPrices200ResponseSpotMarketPricesAms1Baremetal0
+		var ret SpotPricesPerBaremetal
 		return ret
 	}
 	return *o.BaremetalS
@@ -248,7 +248,7 @@ func (o *SpotPricesPerFacility) GetBaremetalS() FindSpotMarketPrices200ResponseS
 
 // GetBaremetalSOk returns a tuple with the BaremetalS field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SpotPricesPerFacility) GetBaremetalSOk() (*FindSpotMarketPrices200ResponseSpotMarketPricesAms1Baremetal0, bool) {
+func (o *SpotPricesPerFacility) GetBaremetalSOk() (*SpotPricesPerBaremetal, bool) {
 	if o == nil || isNil(o.BaremetalS) {
 		return nil, false
 	}
@@ -264,15 +264,15 @@ func (o *SpotPricesPerFacility) HasBaremetalS() bool {
 	return false
 }
 
-// SetBaremetalS gets a reference to the given FindSpotMarketPrices200ResponseSpotMarketPricesAms1Baremetal0 and assigns it to the BaremetalS field.
-func (o *SpotPricesPerFacility) SetBaremetalS(v FindSpotMarketPrices200ResponseSpotMarketPricesAms1Baremetal0) {
+// SetBaremetalS gets a reference to the given SpotPricesPerBaremetal and assigns it to the BaremetalS field.
+func (o *SpotPricesPerFacility) SetBaremetalS(v SpotPricesPerBaremetal) {
 	o.BaremetalS = &v
 }
 
 // GetC2MediumX86 returns the C2MediumX86 field value if set, zero value otherwise.
-func (o *SpotPricesPerFacility) GetC2MediumX86() FindSpotMarketPrices200ResponseSpotMarketPricesAms1Baremetal0 {
+func (o *SpotPricesPerFacility) GetC2MediumX86() SpotPricesPerBaremetal {
 	if o == nil || isNil(o.C2MediumX86) {
-		var ret FindSpotMarketPrices200ResponseSpotMarketPricesAms1Baremetal0
+		var ret SpotPricesPerBaremetal
 		return ret
 	}
 	return *o.C2MediumX86
@@ -280,7 +280,7 @@ func (o *SpotPricesPerFacility) GetC2MediumX86() FindSpotMarketPrices200Response
 
 // GetC2MediumX86Ok returns a tuple with the C2MediumX86 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SpotPricesPerFacility) GetC2MediumX86Ok() (*FindSpotMarketPrices200ResponseSpotMarketPricesAms1Baremetal0, bool) {
+func (o *SpotPricesPerFacility) GetC2MediumX86Ok() (*SpotPricesPerBaremetal, bool) {
 	if o == nil || isNil(o.C2MediumX86) {
 		return nil, false
 	}
@@ -296,15 +296,15 @@ func (o *SpotPricesPerFacility) HasC2MediumX86() bool {
 	return false
 }
 
-// SetC2MediumX86 gets a reference to the given FindSpotMarketPrices200ResponseSpotMarketPricesAms1Baremetal0 and assigns it to the C2MediumX86 field.
-func (o *SpotPricesPerFacility) SetC2MediumX86(v FindSpotMarketPrices200ResponseSpotMarketPricesAms1Baremetal0) {
+// SetC2MediumX86 gets a reference to the given SpotPricesPerBaremetal and assigns it to the C2MediumX86 field.
+func (o *SpotPricesPerFacility) SetC2MediumX86(v SpotPricesPerBaremetal) {
 	o.C2MediumX86 = &v
 }
 
 // GetM2XlargeX86 returns the M2XlargeX86 field value if set, zero value otherwise.
-func (o *SpotPricesPerFacility) GetM2XlargeX86() FindSpotMarketPrices200ResponseSpotMarketPricesAms1Baremetal0 {
+func (o *SpotPricesPerFacility) GetM2XlargeX86() SpotPricesPerBaremetal {
 	if o == nil || isNil(o.M2XlargeX86) {
-		var ret FindSpotMarketPrices200ResponseSpotMarketPricesAms1Baremetal0
+		var ret SpotPricesPerBaremetal
 		return ret
 	}
 	return *o.M2XlargeX86
@@ -312,7 +312,7 @@ func (o *SpotPricesPerFacility) GetM2XlargeX86() FindSpotMarketPrices200Response
 
 // GetM2XlargeX86Ok returns a tuple with the M2XlargeX86 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SpotPricesPerFacility) GetM2XlargeX86Ok() (*FindSpotMarketPrices200ResponseSpotMarketPricesAms1Baremetal0, bool) {
+func (o *SpotPricesPerFacility) GetM2XlargeX86Ok() (*SpotPricesPerBaremetal, bool) {
 	if o == nil || isNil(o.M2XlargeX86) {
 		return nil, false
 	}
@@ -328,8 +328,8 @@ func (o *SpotPricesPerFacility) HasM2XlargeX86() bool {
 	return false
 }
 
-// SetM2XlargeX86 gets a reference to the given FindSpotMarketPrices200ResponseSpotMarketPricesAms1Baremetal0 and assigns it to the M2XlargeX86 field.
-func (o *SpotPricesPerFacility) SetM2XlargeX86(v FindSpotMarketPrices200ResponseSpotMarketPricesAms1Baremetal0) {
+// SetM2XlargeX86 gets a reference to the given SpotPricesPerBaremetal and assigns it to the M2XlargeX86 field.
+func (o *SpotPricesPerFacility) SetM2XlargeX86(v SpotPricesPerBaremetal) {
 	o.M2XlargeX86 = &v
 }
 

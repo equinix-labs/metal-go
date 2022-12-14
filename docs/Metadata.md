@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **Id** | Pointer to **string** |  | [optional] 
 **Iqn** | Pointer to **string** |  | [optional] 
 **Metro** | Pointer to **string** | The metro code of the instance | [optional] 
-**Network** | Pointer to [**FindDeviceMetadataByID200ResponseNetwork**](FindDeviceMetadataByID200ResponseNetwork.md) |  | [optional] 
+**Network** | Pointer to [**MetadataNetwork**](MetadataNetwork.md) |  | [optional] 
 **OperatingSystem** | Pointer to **map[string]interface{}** |  | [optional] 
 **Plan** | Pointer to **string** | The plan slug of the instance | [optional] 
 **PrivateSubnets** | Pointer to **[]string** | An array of the private subnets | [optional] 
@@ -218,20 +218,20 @@ HasMetro returns a boolean if a field has been set.
 
 ### GetNetwork
 
-`func (o *Metadata) GetNetwork() FindDeviceMetadataByID200ResponseNetwork`
+`func (o *Metadata) GetNetwork() MetadataNetwork`
 
 GetNetwork returns the Network field if non-nil, zero value otherwise.
 
 ### GetNetworkOk
 
-`func (o *Metadata) GetNetworkOk() (*FindDeviceMetadataByID200ResponseNetwork, bool)`
+`func (o *Metadata) GetNetworkOk() (*MetadataNetwork, bool)`
 
 GetNetworkOk returns a tuple with the Network field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNetwork
 
-`func (o *Metadata) SetNetwork(v FindDeviceMetadataByID200ResponseNetwork)`
+`func (o *Metadata) SetNetwork(v MetadataNetwork)`
 
 SetNetwork sets Network field to given value.
 

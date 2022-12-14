@@ -18,21 +18,21 @@ import (
 
 // CreateDeviceRequest - struct for CreateDeviceRequest
 type CreateDeviceRequest struct {
-	CreateDeviceRequestOneOf  *CreateDeviceRequestOneOf
-	CreateDeviceRequestOneOf1 *CreateDeviceRequestOneOf1
+	DeviceCreateInFacilityInput *DeviceCreateInFacilityInput
+	DeviceCreateInMetroInput    *DeviceCreateInMetroInput
 }
 
-// CreateDeviceRequestOneOfAsCreateDeviceRequest is a convenience function that returns CreateDeviceRequestOneOf wrapped in CreateDeviceRequest
-func CreateDeviceRequestOneOfAsCreateDeviceRequest(v *CreateDeviceRequestOneOf) CreateDeviceRequest {
+// DeviceCreateInFacilityInputAsCreateDeviceRequest is a convenience function that returns DeviceCreateInFacilityInput wrapped in CreateDeviceRequest
+func DeviceCreateInFacilityInputAsCreateDeviceRequest(v *DeviceCreateInFacilityInput) CreateDeviceRequest {
 	return CreateDeviceRequest{
-		CreateDeviceRequestOneOf: v,
+		DeviceCreateInFacilityInput: v,
 	}
 }
 
-// CreateDeviceRequestOneOf1AsCreateDeviceRequest is a convenience function that returns CreateDeviceRequestOneOf1 wrapped in CreateDeviceRequest
-func CreateDeviceRequestOneOf1AsCreateDeviceRequest(v *CreateDeviceRequestOneOf1) CreateDeviceRequest {
+// DeviceCreateInMetroInputAsCreateDeviceRequest is a convenience function that returns DeviceCreateInMetroInput wrapped in CreateDeviceRequest
+func DeviceCreateInMetroInputAsCreateDeviceRequest(v *DeviceCreateInMetroInput) CreateDeviceRequest {
 	return CreateDeviceRequest{
-		CreateDeviceRequestOneOf1: v,
+		DeviceCreateInMetroInput: v,
 	}
 }
 
@@ -40,36 +40,36 @@ func CreateDeviceRequestOneOf1AsCreateDeviceRequest(v *CreateDeviceRequestOneOf1
 func (dst *CreateDeviceRequest) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
-	// try to unmarshal data into CreateDeviceRequestOneOf
-	err = newStrictDecoder(data).Decode(&dst.CreateDeviceRequestOneOf)
+	// try to unmarshal data into DeviceCreateInFacilityInput
+	err = newStrictDecoder(data).Decode(&dst.DeviceCreateInFacilityInput)
 	if err == nil {
-		jsonCreateDeviceRequestOneOf, _ := json.Marshal(dst.CreateDeviceRequestOneOf)
-		if string(jsonCreateDeviceRequestOneOf) == "{}" { // empty struct
-			dst.CreateDeviceRequestOneOf = nil
+		jsonDeviceCreateInFacilityInput, _ := json.Marshal(dst.DeviceCreateInFacilityInput)
+		if string(jsonDeviceCreateInFacilityInput) == "{}" { // empty struct
+			dst.DeviceCreateInFacilityInput = nil
 		} else {
 			match++
 		}
 	} else {
-		dst.CreateDeviceRequestOneOf = nil
+		dst.DeviceCreateInFacilityInput = nil
 	}
 
-	// try to unmarshal data into CreateDeviceRequestOneOf1
-	err = newStrictDecoder(data).Decode(&dst.CreateDeviceRequestOneOf1)
+	// try to unmarshal data into DeviceCreateInMetroInput
+	err = newStrictDecoder(data).Decode(&dst.DeviceCreateInMetroInput)
 	if err == nil {
-		jsonCreateDeviceRequestOneOf1, _ := json.Marshal(dst.CreateDeviceRequestOneOf1)
-		if string(jsonCreateDeviceRequestOneOf1) == "{}" { // empty struct
-			dst.CreateDeviceRequestOneOf1 = nil
+		jsonDeviceCreateInMetroInput, _ := json.Marshal(dst.DeviceCreateInMetroInput)
+		if string(jsonDeviceCreateInMetroInput) == "{}" { // empty struct
+			dst.DeviceCreateInMetroInput = nil
 		} else {
 			match++
 		}
 	} else {
-		dst.CreateDeviceRequestOneOf1 = nil
+		dst.DeviceCreateInMetroInput = nil
 	}
 
 	if match > 1 { // more than 1 match
 		// reset to nil
-		dst.CreateDeviceRequestOneOf = nil
-		dst.CreateDeviceRequestOneOf1 = nil
+		dst.DeviceCreateInFacilityInput = nil
+		dst.DeviceCreateInMetroInput = nil
 
 		return fmt.Errorf("data matches more than one schema in oneOf(CreateDeviceRequest)")
 	} else if match == 1 {
@@ -81,12 +81,12 @@ func (dst *CreateDeviceRequest) UnmarshalJSON(data []byte) error {
 
 // Marshal data from the first non-nil pointers in the struct to JSON
 func (src CreateDeviceRequest) MarshalJSON() ([]byte, error) {
-	if src.CreateDeviceRequestOneOf != nil {
-		return json.Marshal(&src.CreateDeviceRequestOneOf)
+	if src.DeviceCreateInFacilityInput != nil {
+		return json.Marshal(&src.DeviceCreateInFacilityInput)
 	}
 
-	if src.CreateDeviceRequestOneOf1 != nil {
-		return json.Marshal(&src.CreateDeviceRequestOneOf1)
+	if src.DeviceCreateInMetroInput != nil {
+		return json.Marshal(&src.DeviceCreateInMetroInput)
 	}
 
 	return nil, nil // no data in oneOf schemas
@@ -97,12 +97,12 @@ func (obj *CreateDeviceRequest) GetActualInstance() interface{} {
 	if obj == nil {
 		return nil
 	}
-	if obj.CreateDeviceRequestOneOf != nil {
-		return obj.CreateDeviceRequestOneOf
+	if obj.DeviceCreateInFacilityInput != nil {
+		return obj.DeviceCreateInFacilityInput
 	}
 
-	if obj.CreateDeviceRequestOneOf1 != nil {
-		return obj.CreateDeviceRequestOneOf1
+	if obj.DeviceCreateInMetroInput != nil {
+		return obj.DeviceCreateInMetroInput
 	}
 
 	// all schemas are nil

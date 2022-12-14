@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CreatedAt** | Pointer to **time.Time** |  | [optional] 
-**Entity** | Pointer to [**FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
+**Entity** | Pointer to [**Href**](Href.md) |  | [optional] 
 **Fingerprint** | Pointer to **string** |  | [optional] 
 **Href** | Pointer to **string** |  | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
@@ -59,20 +59,20 @@ HasCreatedAt returns a boolean if a field has been set.
 
 ### GetEntity
 
-`func (o *SSHKey) GetEntity() FindBatchById200ResponseDevicesInner`
+`func (o *SSHKey) GetEntity() Href`
 
 GetEntity returns the Entity field if non-nil, zero value otherwise.
 
 ### GetEntityOk
 
-`func (o *SSHKey) GetEntityOk() (*FindBatchById200ResponseDevicesInner, bool)`
+`func (o *SSHKey) GetEntityOk() (*Href, bool)`
 
 GetEntityOk returns a tuple with the Entity field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetEntity
 
-`func (o *SSHKey) SetEntity(v FindBatchById200ResponseDevicesInner)`
+`func (o *SSHKey) SetEntity(v Href)`
 
 SetEntity sets Entity field to given value.
 

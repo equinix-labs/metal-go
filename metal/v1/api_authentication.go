@@ -24,18 +24,18 @@ import (
 type AuthenticationApiService service
 
 type ApiCreateAPIKeyRequest struct {
-	ctx                        context.Context
-	ApiService                 *AuthenticationApiService
-	createProjectAPIKeyRequest *CreateProjectAPIKeyRequest
+	ctx            context.Context
+	ApiService     *AuthenticationApiService
+	authTokenInput *AuthTokenInput
 }
 
 // API key to create
-func (r ApiCreateAPIKeyRequest) CreateProjectAPIKeyRequest(createProjectAPIKeyRequest CreateProjectAPIKeyRequest) ApiCreateAPIKeyRequest {
-	r.createProjectAPIKeyRequest = &createProjectAPIKeyRequest
+func (r ApiCreateAPIKeyRequest) AuthTokenInput(authTokenInput AuthTokenInput) ApiCreateAPIKeyRequest {
+	r.authTokenInput = &authTokenInput
 	return r
 }
 
-func (r ApiCreateAPIKeyRequest) Execute() (*FindProjectAPIKeys200ResponseApiKeysInner, *http.Response, error) {
+func (r ApiCreateAPIKeyRequest) Execute() (*AuthToken, *http.Response, error) {
 	return r.ApiService.CreateAPIKeyExecute(r)
 }
 
@@ -55,13 +55,13 @@ func (a *AuthenticationApiService) CreateAPIKey(ctx context.Context) ApiCreateAP
 }
 
 // Execute executes the request
-//  @return FindProjectAPIKeys200ResponseApiKeysInner
-func (a *AuthenticationApiService) CreateAPIKeyExecute(r ApiCreateAPIKeyRequest) (*FindProjectAPIKeys200ResponseApiKeysInner, *http.Response, error) {
+//  @return AuthToken
+func (a *AuthenticationApiService) CreateAPIKeyExecute(r ApiCreateAPIKeyRequest) (*AuthToken, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *FindProjectAPIKeys200ResponseApiKeysInner
+		localVarReturnValue *AuthToken
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AuthenticationApiService.CreateAPIKey")
@@ -74,8 +74,8 @@ func (a *AuthenticationApiService) CreateAPIKeyExecute(r ApiCreateAPIKeyRequest)
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createProjectAPIKeyRequest == nil {
-		return localVarReturnValue, nil, reportError("createProjectAPIKeyRequest is required and must be specified")
+	if r.authTokenInput == nil {
+		return localVarReturnValue, nil, reportError("authTokenInput is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -96,7 +96,7 @@ func (a *AuthenticationApiService) CreateAPIKeyExecute(r ApiCreateAPIKeyRequest)
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createProjectAPIKeyRequest
+	localVarPostBody = r.authTokenInput
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -134,7 +134,7 @@ func (a *AuthenticationApiService) CreateAPIKeyExecute(r ApiCreateAPIKeyRequest)
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -145,7 +145,7 @@ func (a *AuthenticationApiService) CreateAPIKeyExecute(r ApiCreateAPIKeyRequest)
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -156,7 +156,7 @@ func (a *AuthenticationApiService) CreateAPIKeyExecute(r ApiCreateAPIKeyRequest)
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -181,19 +181,19 @@ func (a *AuthenticationApiService) CreateAPIKeyExecute(r ApiCreateAPIKeyRequest)
 }
 
 type ApiCreateProjectAPIKeyRequest struct {
-	ctx                        context.Context
-	ApiService                 *AuthenticationApiService
-	id                         string
-	createProjectAPIKeyRequest *CreateProjectAPIKeyRequest
+	ctx            context.Context
+	ApiService     *AuthenticationApiService
+	id             string
+	authTokenInput *AuthTokenInput
 }
 
 // API Key to create
-func (r ApiCreateProjectAPIKeyRequest) CreateProjectAPIKeyRequest(createProjectAPIKeyRequest CreateProjectAPIKeyRequest) ApiCreateProjectAPIKeyRequest {
-	r.createProjectAPIKeyRequest = &createProjectAPIKeyRequest
+func (r ApiCreateProjectAPIKeyRequest) AuthTokenInput(authTokenInput AuthTokenInput) ApiCreateProjectAPIKeyRequest {
+	r.authTokenInput = &authTokenInput
 	return r
 }
 
-func (r ApiCreateProjectAPIKeyRequest) Execute() (*FindProjectAPIKeys200ResponseApiKeysInner, *http.Response, error) {
+func (r ApiCreateProjectAPIKeyRequest) Execute() (*AuthToken, *http.Response, error) {
 	return r.ApiService.CreateProjectAPIKeyExecute(r)
 }
 
@@ -215,13 +215,13 @@ func (a *AuthenticationApiService) CreateProjectAPIKey(ctx context.Context, id s
 }
 
 // Execute executes the request
-//  @return FindProjectAPIKeys200ResponseApiKeysInner
-func (a *AuthenticationApiService) CreateProjectAPIKeyExecute(r ApiCreateProjectAPIKeyRequest) (*FindProjectAPIKeys200ResponseApiKeysInner, *http.Response, error) {
+//  @return AuthToken
+func (a *AuthenticationApiService) CreateProjectAPIKeyExecute(r ApiCreateProjectAPIKeyRequest) (*AuthToken, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *FindProjectAPIKeys200ResponseApiKeysInner
+		localVarReturnValue *AuthToken
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AuthenticationApiService.CreateProjectAPIKey")
@@ -235,8 +235,8 @@ func (a *AuthenticationApiService) CreateProjectAPIKeyExecute(r ApiCreateProject
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createProjectAPIKeyRequest == nil {
-		return localVarReturnValue, nil, reportError("createProjectAPIKeyRequest is required and must be specified")
+	if r.authTokenInput == nil {
+		return localVarReturnValue, nil, reportError("authTokenInput is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -257,7 +257,7 @@ func (a *AuthenticationApiService) CreateProjectAPIKeyExecute(r ApiCreateProject
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createProjectAPIKeyRequest
+	localVarPostBody = r.authTokenInput
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -295,7 +295,7 @@ func (a *AuthenticationApiService) CreateProjectAPIKeyExecute(r ApiCreateProject
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -306,7 +306,7 @@ func (a *AuthenticationApiService) CreateProjectAPIKeyExecute(r ApiCreateProject
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -317,7 +317,7 @@ func (a *AuthenticationApiService) CreateProjectAPIKeyExecute(r ApiCreateProject
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -442,7 +442,7 @@ func (a *AuthenticationApiService) DeleteAPIKeyExecute(r ApiDeleteAPIKeyRequest)
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -453,7 +453,7 @@ func (a *AuthenticationApiService) DeleteAPIKeyExecute(r ApiDeleteAPIKeyRequest)
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -569,7 +569,7 @@ func (a *AuthenticationApiService) DeleteUserAPIKeyExecute(r ApiDeleteUserAPIKey
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -580,7 +580,7 @@ func (a *AuthenticationApiService) DeleteUserAPIKeyExecute(r ApiDeleteUserAPIKey
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -614,7 +614,7 @@ func (r ApiFindAPIKeysRequest) Exclude(exclude []string) ApiFindAPIKeysRequest {
 	return r
 }
 
-func (r ApiFindAPIKeysRequest) Execute() (*FindProjectAPIKeys200Response, *http.Response, error) {
+func (r ApiFindAPIKeysRequest) Execute() (*AuthTokenList, *http.Response, error) {
 	return r.ApiService.FindAPIKeysExecute(r)
 }
 
@@ -634,13 +634,13 @@ func (a *AuthenticationApiService) FindAPIKeys(ctx context.Context) ApiFindAPIKe
 }
 
 // Execute executes the request
-//  @return FindProjectAPIKeys200Response
-func (a *AuthenticationApiService) FindAPIKeysExecute(r ApiFindAPIKeysRequest) (*FindProjectAPIKeys200Response, *http.Response, error) {
+//  @return AuthTokenList
+func (a *AuthenticationApiService) FindAPIKeysExecute(r ApiFindAPIKeysRequest) (*AuthTokenList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *FindProjectAPIKeys200Response
+		localVarReturnValue *AuthTokenList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AuthenticationApiService.FindAPIKeys")
@@ -714,7 +714,7 @@ func (a *AuthenticationApiService) FindAPIKeysExecute(r ApiFindAPIKeysRequest) (
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -725,7 +725,7 @@ func (a *AuthenticationApiService) FindAPIKeysExecute(r ApiFindAPIKeysRequest) (
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -769,7 +769,7 @@ func (r ApiFindProjectAPIKeysRequest) Exclude(exclude []string) ApiFindProjectAP
 	return r
 }
 
-func (r ApiFindProjectAPIKeysRequest) Execute() (*FindProjectAPIKeys200Response, *http.Response, error) {
+func (r ApiFindProjectAPIKeysRequest) Execute() (*AuthTokenList, *http.Response, error) {
 	return r.ApiService.FindProjectAPIKeysExecute(r)
 }
 
@@ -791,13 +791,13 @@ func (a *AuthenticationApiService) FindProjectAPIKeys(ctx context.Context, id st
 }
 
 // Execute executes the request
-//  @return FindProjectAPIKeys200Response
-func (a *AuthenticationApiService) FindProjectAPIKeysExecute(r ApiFindProjectAPIKeysRequest) (*FindProjectAPIKeys200Response, *http.Response, error) {
+//  @return AuthTokenList
+func (a *AuthenticationApiService) FindProjectAPIKeysExecute(r ApiFindProjectAPIKeysRequest) (*AuthTokenList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *FindProjectAPIKeys200Response
+		localVarReturnValue *AuthTokenList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AuthenticationApiService.FindProjectAPIKeys")
@@ -872,7 +872,7 @@ func (a *AuthenticationApiService) FindProjectAPIKeysExecute(r ApiFindProjectAPI
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -883,7 +883,7 @@ func (a *AuthenticationApiService) FindProjectAPIKeysExecute(r ApiFindProjectAPI
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

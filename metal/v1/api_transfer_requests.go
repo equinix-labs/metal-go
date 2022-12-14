@@ -124,7 +124,7 @@ func (a *TransferRequestsApiService) AcceptTransferRequestExecute(r ApiAcceptTra
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -135,7 +135,7 @@ func (a *TransferRequestsApiService) AcceptTransferRequestExecute(r ApiAcceptTra
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -146,7 +146,7 @@ func (a *TransferRequestsApiService) AcceptTransferRequestExecute(r ApiAcceptTra
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -262,7 +262,7 @@ func (a *TransferRequestsApiService) DeclineTransferRequestExecute(r ApiDeclineT
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -273,7 +273,7 @@ func (a *TransferRequestsApiService) DeclineTransferRequestExecute(r ApiDeclineT
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -284,7 +284,7 @@ func (a *TransferRequestsApiService) DeclineTransferRequestExecute(r ApiDeclineT
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -319,7 +319,7 @@ func (r ApiFindTransferRequestByIdRequest) Exclude(exclude []string) ApiFindTran
 	return r
 }
 
-func (r ApiFindTransferRequestByIdRequest) Execute() (*FindOrganizationTransfers200ResponseTransfersInner, *http.Response, error) {
+func (r ApiFindTransferRequestByIdRequest) Execute() (*TransferRequest, *http.Response, error) {
 	return r.ApiService.FindTransferRequestByIdExecute(r)
 }
 
@@ -341,13 +341,13 @@ func (a *TransferRequestsApiService) FindTransferRequestById(ctx context.Context
 }
 
 // Execute executes the request
-//  @return FindOrganizationTransfers200ResponseTransfersInner
-func (a *TransferRequestsApiService) FindTransferRequestByIdExecute(r ApiFindTransferRequestByIdRequest) (*FindOrganizationTransfers200ResponseTransfersInner, *http.Response, error) {
+//  @return TransferRequest
+func (a *TransferRequestsApiService) FindTransferRequestByIdExecute(r ApiFindTransferRequestByIdRequest) (*TransferRequest, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *FindOrganizationTransfers200ResponseTransfersInner
+		localVarReturnValue *TransferRequest
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TransferRequestsApiService.FindTransferRequestById")
@@ -422,7 +422,7 @@ func (a *TransferRequestsApiService) FindTransferRequestByIdExecute(r ApiFindTra
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -433,7 +433,7 @@ func (a *TransferRequestsApiService) FindTransferRequestByIdExecute(r ApiFindTra
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -444,7 +444,7 @@ func (a *TransferRequestsApiService) FindTransferRequestByIdExecute(r ApiFindTra
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

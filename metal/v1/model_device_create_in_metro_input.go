@@ -25,7 +25,7 @@ type DeviceCreateInMetroInput struct {
 	// The billing cycle of the device.
 	BillingCycle *string `json:"billing_cycle,omitempty"`
 	// Customdata is an arbitrary JSON value that can be accessed via the metadata service.
-	Customdata interface{} `json:"customdata,omitempty"`
+	Customdata map[string]interface{} `json:"customdata,omitempty"`
 	// Any description of the device or how it will be used. This may be used to inform other API consumers with project access.
 	Description *string `json:"description,omitempty"`
 	// The features attribute allows you to optionally specify what features your server should have.  In the API shorthand syntax, all features listed are `required`:  ``` { \"features\": [\"tpm\"] } ```  Alternatively, if you do not require a certain feature, but would prefer to be assigned a server with that feature if there are any available, you may specify that feature with a `preferred` value. The request will not fail if we have no servers with that feature in our inventory. The API offers an alternative syntax for mixing preferred and required features:  ``` { \"features\": { \"tpm\": \"required\", \"raid\": \"preferred\" } } ```  The request will only fail if there are no available servers matching the required `tpm` criteria.
@@ -35,7 +35,7 @@ type DeviceCreateInMetroInput struct {
 	// The hostname to use within the operating system. The same hostname may be used on multiple devices within a project.
 	Hostname *string `json:"hostname,omitempty"`
 	// The `ip_addresses attribute will allow you to specify the addresses you want created with your device.  The default value configures public IPv4, public IPv6, and private IPv4.  Private IPv4 address is required. When specifying `ip_addresses`, one of the array items must enable private IPv4.  Some operating systems require public IPv4 address. In those cases you will receive an error message if public IPv4 is not enabled.  For example, to only configure your server with a private IPv4 address, you can send `{ \"ip_addresses\": [{ \"address_family\": 4, \"public\": false }] }`.  It is possible to request a subnet size larger than a `/30` by assigning addresses using the UUID(s) of ip_reservations in your project.  For example, `{ \"ip_addresses\": [..., {\"address_family\": 4, \"public\": true, \"ip_reservations\": [\"uuid1\", \"uuid2\"]}] }`  To access a server without public IPs, you can use our Out-of-Band console access (SOS) or proxy through another server in the project with public IPs enabled.
-	IpAddresses []DeviceCreateInFacilityInputAllOf1IpAddresses `json:"ip_addresses,omitempty"`
+	IpAddresses []DeviceCreateInputIpAddressesInner `json:"ip_addresses,omitempty"`
 	// When set, the device will chainload an iPXE Script at boot fetched from the supplied URL.  See [Custom iPXE](https://metal.equinix.com/developers/docs/operating-systems/custom-ipxe/) for more details.
 	IpxeScriptUrl *string `json:"ipxe_script_url,omitempty"`
 	// Whether the device should be locked, preventing accidental deletion.
@@ -57,9 +57,9 @@ type DeviceCreateInMetroInput struct {
 	// The maximum amount to bid for a spot instance.
 	SpotPriceMax *float32 `json:"spot_price_max,omitempty"`
 	// A list of new or existing project ssh_keys that should be authorized to access this device (typically via /root/.ssh/authorized_keys). These keys will also appear in the device metadata.  These keys are added in addition to any keys defined by   `project_ssh_keys` and `user_ssh_keys`.
-	SshKeys         []DeviceCreateInFacilityInputAllOf1SshKeys `json:"ssh_keys,omitempty"`
-	Tags            []string                                   `json:"tags,omitempty"`
-	TerminationTime *time.Time                                 `json:"termination_time,omitempty"`
+	SshKeys         []SSHKeyInput `json:"ssh_keys,omitempty"`
+	Tags            []string      `json:"tags,omitempty"`
+	TerminationTime *time.Time    `json:"termination_time,omitempty"`
 	// A list of UUIDs identifying the users that should be authorized to access this device (typically via /root/.ssh/authorized_keys).  These keys will also appear in the device metadata.  The users must be members of the project or organization.  If no SSH keys are specified (`user_ssh_keys`, `project_ssh_keys`, and `ssh_keys` are all empty lists or omitted), all parent project keys, parent project members keys and organization members keys will be included. This behaviour can be changed with 'no_ssh_keys' option to omit any SSH key being added.
 	UserSshKeys []string `json:"user_ssh_keys,omitempty"`
 	// The userdata presented in the metadata service for this device.  Userdata is fetched and interpreted by the operating system installed on the device. Acceptable formats are determined by the operating system, with the exception of a special iPXE enabling syntax which is handled before the operating system starts.  See [Server User Data](https://metal.equinix.com/developers/docs/servers/user-data/) and [Provisioning with Custom iPXE](https://metal.equinix.com/developers/docs/operating-systems/custom-ipxe/#provisioning-with-custom-ipxe) for more details.
@@ -198,10 +198,10 @@ func (o *DeviceCreateInMetroInput) SetBillingCycle(v string) {
 	o.BillingCycle = &v
 }
 
-// GetCustomdata returns the Customdata field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *DeviceCreateInMetroInput) GetCustomdata() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetCustomdata returns the Customdata field value if set, zero value otherwise.
+func (o *DeviceCreateInMetroInput) GetCustomdata() map[string]interface{} {
+	if o == nil || isNil(o.Customdata) {
+		var ret map[string]interface{}
 		return ret
 	}
 	return o.Customdata
@@ -209,25 +209,24 @@ func (o *DeviceCreateInMetroInput) GetCustomdata() interface{} {
 
 // GetCustomdataOk returns a tuple with the Customdata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *DeviceCreateInMetroInput) GetCustomdataOk() (*interface{}, bool) {
+func (o *DeviceCreateInMetroInput) GetCustomdataOk() (map[string]interface{}, bool) {
 	if o == nil || isNil(o.Customdata) {
-		return nil, false
+		return map[string]interface{}{}, false
 	}
-	return &o.Customdata, true
+	return o.Customdata, true
 }
 
 // HasCustomdata returns a boolean if a field has been set.
 func (o *DeviceCreateInMetroInput) HasCustomdata() bool {
-	if o != nil && isNil(o.Customdata) {
+	if o != nil && !isNil(o.Customdata) {
 		return true
 	}
 
 	return false
 }
 
-// SetCustomdata gets a reference to the given interface{} and assigns it to the Customdata field.
-func (o *DeviceCreateInMetroInput) SetCustomdata(v interface{}) {
+// SetCustomdata gets a reference to the given map[string]interface{} and assigns it to the Customdata field.
+func (o *DeviceCreateInMetroInput) SetCustomdata(v map[string]interface{}) {
 	o.Customdata = v
 }
 
@@ -360,9 +359,9 @@ func (o *DeviceCreateInMetroInput) SetHostname(v string) {
 }
 
 // GetIpAddresses returns the IpAddresses field value if set, zero value otherwise.
-func (o *DeviceCreateInMetroInput) GetIpAddresses() []DeviceCreateInFacilityInputAllOf1IpAddresses {
+func (o *DeviceCreateInMetroInput) GetIpAddresses() []DeviceCreateInputIpAddressesInner {
 	if o == nil || isNil(o.IpAddresses) {
-		var ret []DeviceCreateInFacilityInputAllOf1IpAddresses
+		var ret []DeviceCreateInputIpAddressesInner
 		return ret
 	}
 	return o.IpAddresses
@@ -370,7 +369,7 @@ func (o *DeviceCreateInMetroInput) GetIpAddresses() []DeviceCreateInFacilityInpu
 
 // GetIpAddressesOk returns a tuple with the IpAddresses field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DeviceCreateInMetroInput) GetIpAddressesOk() ([]DeviceCreateInFacilityInputAllOf1IpAddresses, bool) {
+func (o *DeviceCreateInMetroInput) GetIpAddressesOk() ([]DeviceCreateInputIpAddressesInner, bool) {
 	if o == nil || isNil(o.IpAddresses) {
 		return nil, false
 	}
@@ -386,8 +385,8 @@ func (o *DeviceCreateInMetroInput) HasIpAddresses() bool {
 	return false
 }
 
-// SetIpAddresses gets a reference to the given []DeviceCreateInFacilityInputAllOf1IpAddresses and assigns it to the IpAddresses field.
-func (o *DeviceCreateInMetroInput) SetIpAddresses(v []DeviceCreateInFacilityInputAllOf1IpAddresses) {
+// SetIpAddresses gets a reference to the given []DeviceCreateInputIpAddressesInner and assigns it to the IpAddresses field.
+func (o *DeviceCreateInMetroInput) SetIpAddresses(v []DeviceCreateInputIpAddressesInner) {
 	o.IpAddresses = v
 }
 
@@ -696,9 +695,9 @@ func (o *DeviceCreateInMetroInput) SetSpotPriceMax(v float32) {
 }
 
 // GetSshKeys returns the SshKeys field value if set, zero value otherwise.
-func (o *DeviceCreateInMetroInput) GetSshKeys() []DeviceCreateInFacilityInputAllOf1SshKeys {
+func (o *DeviceCreateInMetroInput) GetSshKeys() []SSHKeyInput {
 	if o == nil || isNil(o.SshKeys) {
-		var ret []DeviceCreateInFacilityInputAllOf1SshKeys
+		var ret []SSHKeyInput
 		return ret
 	}
 	return o.SshKeys
@@ -706,7 +705,7 @@ func (o *DeviceCreateInMetroInput) GetSshKeys() []DeviceCreateInFacilityInputAll
 
 // GetSshKeysOk returns a tuple with the SshKeys field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DeviceCreateInMetroInput) GetSshKeysOk() ([]DeviceCreateInFacilityInputAllOf1SshKeys, bool) {
+func (o *DeviceCreateInMetroInput) GetSshKeysOk() ([]SSHKeyInput, bool) {
 	if o == nil || isNil(o.SshKeys) {
 		return nil, false
 	}
@@ -722,8 +721,8 @@ func (o *DeviceCreateInMetroInput) HasSshKeys() bool {
 	return false
 }
 
-// SetSshKeys gets a reference to the given []DeviceCreateInFacilityInputAllOf1SshKeys and assigns it to the SshKeys field.
-func (o *DeviceCreateInMetroInput) SetSshKeys(v []DeviceCreateInFacilityInputAllOf1SshKeys) {
+// SetSshKeys gets a reference to the given []SSHKeyInput and assigns it to the SshKeys field.
+func (o *DeviceCreateInMetroInput) SetSshKeys(v []SSHKeyInput) {
 	o.SshKeys = v
 }
 
@@ -866,7 +865,7 @@ func (o DeviceCreateInMetroInput) MarshalJSON() ([]byte, error) {
 	if !isNil(o.BillingCycle) {
 		toSerialize["billing_cycle"] = o.BillingCycle
 	}
-	if o.Customdata != nil {
+	if !isNil(o.Customdata) {
 		toSerialize["customdata"] = o.Customdata
 	}
 	if !isNil(o.Description) {

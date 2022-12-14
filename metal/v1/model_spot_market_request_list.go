@@ -17,7 +17,7 @@ import (
 
 // SpotMarketRequestList struct for SpotMarketRequestList
 type SpotMarketRequestList struct {
-	SpotMarketRequests []ListSpotMarketRequests200ResponseSpotMarketRequestsInner `json:"spot_market_requests,omitempty"`
+	SpotMarketRequests []SpotMarketRequest `json:"spot_market_requests,omitempty"`
 }
 
 // NewSpotMarketRequestList instantiates a new SpotMarketRequestList object
@@ -38,9 +38,9 @@ func NewSpotMarketRequestListWithDefaults() *SpotMarketRequestList {
 }
 
 // GetSpotMarketRequests returns the SpotMarketRequests field value if set, zero value otherwise.
-func (o *SpotMarketRequestList) GetSpotMarketRequests() []ListSpotMarketRequests200ResponseSpotMarketRequestsInner {
+func (o *SpotMarketRequestList) GetSpotMarketRequests() []SpotMarketRequest {
 	if o == nil || isNil(o.SpotMarketRequests) {
-		var ret []ListSpotMarketRequests200ResponseSpotMarketRequestsInner
+		var ret []SpotMarketRequest
 		return ret
 	}
 	return o.SpotMarketRequests
@@ -48,7 +48,7 @@ func (o *SpotMarketRequestList) GetSpotMarketRequests() []ListSpotMarketRequests
 
 // GetSpotMarketRequestsOk returns a tuple with the SpotMarketRequests field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SpotMarketRequestList) GetSpotMarketRequestsOk() ([]ListSpotMarketRequests200ResponseSpotMarketRequestsInner, bool) {
+func (o *SpotMarketRequestList) GetSpotMarketRequestsOk() ([]SpotMarketRequest, bool) {
 	if o == nil || isNil(o.SpotMarketRequests) {
 		return nil, false
 	}
@@ -64,8 +64,8 @@ func (o *SpotMarketRequestList) HasSpotMarketRequests() bool {
 	return false
 }
 
-// SetSpotMarketRequests gets a reference to the given []ListSpotMarketRequests200ResponseSpotMarketRequestsInner and assigns it to the SpotMarketRequests field.
-func (o *SpotMarketRequestList) SetSpotMarketRequests(v []ListSpotMarketRequests200ResponseSpotMarketRequestsInner) {
+// SetSpotMarketRequests gets a reference to the given []SpotMarketRequest and assigns it to the SpotMarketRequests field.
+func (o *SpotMarketRequestList) SetSpotMarketRequests(v []SpotMarketRequest) {
 	o.SpotMarketRequests = v
 }
 

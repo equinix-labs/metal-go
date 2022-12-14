@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Batches** | Pointer to [**[]FindBatchById200Response**](FindBatchById200Response.md) |  | [optional] 
+**Batches** | Pointer to [**[]Batch**](Batch.md) |  | [optional] 
 
 ## Methods
 
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetBatches
 
-`func (o *BatchesList) GetBatches() []FindBatchById200Response`
+`func (o *BatchesList) GetBatches() []Batch`
 
 GetBatches returns the Batches field if non-nil, zero value otherwise.
 
 ### GetBatchesOk
 
-`func (o *BatchesList) GetBatchesOk() (*[]FindBatchById200Response, bool)`
+`func (o *BatchesList) GetBatchesOk() (*[]Batch, bool)`
 
 GetBatchesOk returns a tuple with the Batches field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetBatches
 
-`func (o *BatchesList) SetBatches(v []FindBatchById200Response)`
+`func (o *BatchesList) SetBatches(v []Batch)`
 
 SetBatches sets Batches field to given value.
 

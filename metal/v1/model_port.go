@@ -17,8 +17,8 @@ import (
 
 // Port Port is a hardware port associated with a reserved or instantiated hardware device.
 type Port struct {
-	Bond *FindDeviceById200ResponseNetworkPortsInnerBond `json:"bond,omitempty"`
-	Data *FindDeviceById200ResponseNetworkPortsInnerData `json:"data,omitempty"`
+	Bond *BondPortData `json:"bond,omitempty"`
+	Data *PortData     `json:"data,omitempty"`
 	// Indicates whether or not the bond can be broken on the port (when applicable).
 	DisbondOperationSupported *bool   `json:"disbond_operation_supported,omitempty"`
 	Href                      *string `json:"href,omitempty"`
@@ -27,9 +27,9 @@ type Port struct {
 	// Type is either \"NetworkBondPort\" for bond ports or \"NetworkPort\" for bondable ethernet ports
 	Type *string `json:"type,omitempty"`
 	// Composite network type of the bond
-	NetworkType          *string                                                         `json:"network_type,omitempty"`
-	NativeVirtualNetwork *FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetwork `json:"native_virtual_network,omitempty"`
-	VirtualNetworks      []FindBatchById200ResponseDevicesInner                          `json:"virtual_networks,omitempty"`
+	NetworkType          *string         `json:"network_type,omitempty"`
+	NativeVirtualNetwork *VirtualNetwork `json:"native_virtual_network,omitempty"`
+	VirtualNetworks      []Href          `json:"virtual_networks,omitempty"`
 }
 
 // NewPort instantiates a new Port object
@@ -50,9 +50,9 @@ func NewPortWithDefaults() *Port {
 }
 
 // GetBond returns the Bond field value if set, zero value otherwise.
-func (o *Port) GetBond() FindDeviceById200ResponseNetworkPortsInnerBond {
+func (o *Port) GetBond() BondPortData {
 	if o == nil || isNil(o.Bond) {
-		var ret FindDeviceById200ResponseNetworkPortsInnerBond
+		var ret BondPortData
 		return ret
 	}
 	return *o.Bond
@@ -60,7 +60,7 @@ func (o *Port) GetBond() FindDeviceById200ResponseNetworkPortsInnerBond {
 
 // GetBondOk returns a tuple with the Bond field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Port) GetBondOk() (*FindDeviceById200ResponseNetworkPortsInnerBond, bool) {
+func (o *Port) GetBondOk() (*BondPortData, bool) {
 	if o == nil || isNil(o.Bond) {
 		return nil, false
 	}
@@ -76,15 +76,15 @@ func (o *Port) HasBond() bool {
 	return false
 }
 
-// SetBond gets a reference to the given FindDeviceById200ResponseNetworkPortsInnerBond and assigns it to the Bond field.
-func (o *Port) SetBond(v FindDeviceById200ResponseNetworkPortsInnerBond) {
+// SetBond gets a reference to the given BondPortData and assigns it to the Bond field.
+func (o *Port) SetBond(v BondPortData) {
 	o.Bond = &v
 }
 
 // GetData returns the Data field value if set, zero value otherwise.
-func (o *Port) GetData() FindDeviceById200ResponseNetworkPortsInnerData {
+func (o *Port) GetData() PortData {
 	if o == nil || isNil(o.Data) {
-		var ret FindDeviceById200ResponseNetworkPortsInnerData
+		var ret PortData
 		return ret
 	}
 	return *o.Data
@@ -92,7 +92,7 @@ func (o *Port) GetData() FindDeviceById200ResponseNetworkPortsInnerData {
 
 // GetDataOk returns a tuple with the Data field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Port) GetDataOk() (*FindDeviceById200ResponseNetworkPortsInnerData, bool) {
+func (o *Port) GetDataOk() (*PortData, bool) {
 	if o == nil || isNil(o.Data) {
 		return nil, false
 	}
@@ -108,8 +108,8 @@ func (o *Port) HasData() bool {
 	return false
 }
 
-// SetData gets a reference to the given FindDeviceById200ResponseNetworkPortsInnerData and assigns it to the Data field.
-func (o *Port) SetData(v FindDeviceById200ResponseNetworkPortsInnerData) {
+// SetData gets a reference to the given PortData and assigns it to the Data field.
+func (o *Port) SetData(v PortData) {
 	o.Data = &v
 }
 
@@ -306,9 +306,9 @@ func (o *Port) SetNetworkType(v string) {
 }
 
 // GetNativeVirtualNetwork returns the NativeVirtualNetwork field value if set, zero value otherwise.
-func (o *Port) GetNativeVirtualNetwork() FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetwork {
+func (o *Port) GetNativeVirtualNetwork() VirtualNetwork {
 	if o == nil || isNil(o.NativeVirtualNetwork) {
-		var ret FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetwork
+		var ret VirtualNetwork
 		return ret
 	}
 	return *o.NativeVirtualNetwork
@@ -316,7 +316,7 @@ func (o *Port) GetNativeVirtualNetwork() FindDeviceById200ResponseNetworkPortsIn
 
 // GetNativeVirtualNetworkOk returns a tuple with the NativeVirtualNetwork field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Port) GetNativeVirtualNetworkOk() (*FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetwork, bool) {
+func (o *Port) GetNativeVirtualNetworkOk() (*VirtualNetwork, bool) {
 	if o == nil || isNil(o.NativeVirtualNetwork) {
 		return nil, false
 	}
@@ -332,15 +332,15 @@ func (o *Port) HasNativeVirtualNetwork() bool {
 	return false
 }
 
-// SetNativeVirtualNetwork gets a reference to the given FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetwork and assigns it to the NativeVirtualNetwork field.
-func (o *Port) SetNativeVirtualNetwork(v FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetwork) {
+// SetNativeVirtualNetwork gets a reference to the given VirtualNetwork and assigns it to the NativeVirtualNetwork field.
+func (o *Port) SetNativeVirtualNetwork(v VirtualNetwork) {
 	o.NativeVirtualNetwork = &v
 }
 
 // GetVirtualNetworks returns the VirtualNetworks field value if set, zero value otherwise.
-func (o *Port) GetVirtualNetworks() []FindBatchById200ResponseDevicesInner {
+func (o *Port) GetVirtualNetworks() []Href {
 	if o == nil || isNil(o.VirtualNetworks) {
-		var ret []FindBatchById200ResponseDevicesInner
+		var ret []Href
 		return ret
 	}
 	return o.VirtualNetworks
@@ -348,7 +348,7 @@ func (o *Port) GetVirtualNetworks() []FindBatchById200ResponseDevicesInner {
 
 // GetVirtualNetworksOk returns a tuple with the VirtualNetworks field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Port) GetVirtualNetworksOk() ([]FindBatchById200ResponseDevicesInner, bool) {
+func (o *Port) GetVirtualNetworksOk() ([]Href, bool) {
 	if o == nil || isNil(o.VirtualNetworks) {
 		return nil, false
 	}
@@ -364,8 +364,8 @@ func (o *Port) HasVirtualNetworks() bool {
 	return false
 }
 
-// SetVirtualNetworks gets a reference to the given []FindBatchById200ResponseDevicesInner and assigns it to the VirtualNetworks field.
-func (o *Port) SetVirtualNetworks(v []FindBatchById200ResponseDevicesInner) {
+// SetVirtualNetworks gets a reference to the given []Href and assigns it to the VirtualNetworks field.
+func (o *Port) SetVirtualNetworks(v []Href) {
 	o.VirtualNetworks = v
 }
 

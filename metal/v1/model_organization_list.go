@@ -17,8 +17,8 @@ import (
 
 // OrganizationList struct for OrganizationList
 type OrganizationList struct {
-	Meta          *FindDeviceEvents200ResponseMeta                 `json:"meta,omitempty"`
-	Organizations []FindOrganizations200ResponseOrganizationsInner `json:"organizations,omitempty"`
+	Meta          *Meta          `json:"meta,omitempty"`
+	Organizations []Organization `json:"organizations,omitempty"`
 }
 
 // NewOrganizationList instantiates a new OrganizationList object
@@ -39,9 +39,9 @@ func NewOrganizationListWithDefaults() *OrganizationList {
 }
 
 // GetMeta returns the Meta field value if set, zero value otherwise.
-func (o *OrganizationList) GetMeta() FindDeviceEvents200ResponseMeta {
+func (o *OrganizationList) GetMeta() Meta {
 	if o == nil || isNil(o.Meta) {
-		var ret FindDeviceEvents200ResponseMeta
+		var ret Meta
 		return ret
 	}
 	return *o.Meta
@@ -49,7 +49,7 @@ func (o *OrganizationList) GetMeta() FindDeviceEvents200ResponseMeta {
 
 // GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OrganizationList) GetMetaOk() (*FindDeviceEvents200ResponseMeta, bool) {
+func (o *OrganizationList) GetMetaOk() (*Meta, bool) {
 	if o == nil || isNil(o.Meta) {
 		return nil, false
 	}
@@ -65,15 +65,15 @@ func (o *OrganizationList) HasMeta() bool {
 	return false
 }
 
-// SetMeta gets a reference to the given FindDeviceEvents200ResponseMeta and assigns it to the Meta field.
-func (o *OrganizationList) SetMeta(v FindDeviceEvents200ResponseMeta) {
+// SetMeta gets a reference to the given Meta and assigns it to the Meta field.
+func (o *OrganizationList) SetMeta(v Meta) {
 	o.Meta = &v
 }
 
 // GetOrganizations returns the Organizations field value if set, zero value otherwise.
-func (o *OrganizationList) GetOrganizations() []FindOrganizations200ResponseOrganizationsInner {
+func (o *OrganizationList) GetOrganizations() []Organization {
 	if o == nil || isNil(o.Organizations) {
-		var ret []FindOrganizations200ResponseOrganizationsInner
+		var ret []Organization
 		return ret
 	}
 	return o.Organizations
@@ -81,7 +81,7 @@ func (o *OrganizationList) GetOrganizations() []FindOrganizations200ResponseOrga
 
 // GetOrganizationsOk returns a tuple with the Organizations field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OrganizationList) GetOrganizationsOk() ([]FindOrganizations200ResponseOrganizationsInner, bool) {
+func (o *OrganizationList) GetOrganizationsOk() ([]Organization, bool) {
 	if o == nil || isNil(o.Organizations) {
 		return nil, false
 	}
@@ -97,8 +97,8 @@ func (o *OrganizationList) HasOrganizations() bool {
 	return false
 }
 
-// SetOrganizations gets a reference to the given []FindOrganizations200ResponseOrganizationsInner and assigns it to the Organizations field.
-func (o *OrganizationList) SetOrganizations(v []FindOrganizations200ResponseOrganizationsInner) {
+// SetOrganizations gets a reference to the given []Organization and assigns it to the Organizations field.
+func (o *OrganizationList) SetOrganizations(v []Organization) {
 	o.Organizations = v
 }
 

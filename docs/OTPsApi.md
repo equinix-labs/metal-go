@@ -81,7 +81,7 @@ Name | Type | Description  | Notes
 
 ## FindRecoveryCodes
 
-> FindRecoveryCodes200Response FindRecoveryCodes(ctx).Execute()
+> RecoveryCodeList FindRecoveryCodes(ctx).Execute()
 
 Retrieve my recovery codes
 
@@ -108,7 +108,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `OTPsApi.FindRecoveryCodes``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindRecoveryCodes`: FindRecoveryCodes200Response
+    // response from `FindRecoveryCodes`: RecoveryCodeList
     fmt.Fprintf(os.Stdout, "Response from `OTPsApi.FindRecoveryCodes`: %v\n", resp)
 }
 ```
@@ -124,7 +124,7 @@ Other parameters are passed through a pointer to a apiFindRecoveryCodesRequest s
 
 ### Return type
 
-[**FindRecoveryCodes200Response**](FindRecoveryCodes200Response.md)
+[**RecoveryCodeList**](RecoveryCodeList.md)
 
 ### Authorization
 
@@ -201,7 +201,7 @@ Other parameters are passed through a pointer to a apiReceiveCodesRequest struct
 
 ## RegenerateCodes
 
-> FindRecoveryCodes200Response RegenerateCodes(ctx).Execute()
+> RecoveryCodeList RegenerateCodes(ctx).Execute()
 
 Generate new recovery codes
 
@@ -228,7 +228,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `OTPsApi.RegenerateCodes``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `RegenerateCodes`: FindRecoveryCodes200Response
+    // response from `RegenerateCodes`: RecoveryCodeList
     fmt.Fprintf(os.Stdout, "Response from `OTPsApi.RegenerateCodes`: %v\n", resp)
 }
 ```
@@ -244,7 +244,7 @@ Other parameters are passed through a pointer to a apiRegenerateCodesRequest str
 
 ### Return type
 
-[**FindRecoveryCodes200Response**](FindRecoveryCodes200Response.md)
+[**RecoveryCodeList**](RecoveryCodeList.md)
 
 ### Authorization
 

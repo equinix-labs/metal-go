@@ -24,19 +24,19 @@ import (
 type BatchesApiService service
 
 type ApiCreateDeviceBatchRequest struct {
-	ctx                      context.Context
-	ApiService               *BatchesApiService
-	id                       string
-	createDeviceBatchRequest *CreateDeviceBatchRequest
+	ctx                       context.Context
+	ApiService                *BatchesApiService
+	id                        string
+	instancesBatchCreateInput *InstancesBatchCreateInput
 }
 
 // Batches to create
-func (r ApiCreateDeviceBatchRequest) CreateDeviceBatchRequest(createDeviceBatchRequest CreateDeviceBatchRequest) ApiCreateDeviceBatchRequest {
-	r.createDeviceBatchRequest = &createDeviceBatchRequest
+func (r ApiCreateDeviceBatchRequest) InstancesBatchCreateInput(instancesBatchCreateInput InstancesBatchCreateInput) ApiCreateDeviceBatchRequest {
+	r.instancesBatchCreateInput = &instancesBatchCreateInput
 	return r
 }
 
-func (r ApiCreateDeviceBatchRequest) Execute() (*FindBatchesByProject200Response, *http.Response, error) {
+func (r ApiCreateDeviceBatchRequest) Execute() (*BatchesList, *http.Response, error) {
 	return r.ApiService.CreateDeviceBatchExecute(r)
 }
 
@@ -58,13 +58,13 @@ func (a *BatchesApiService) CreateDeviceBatch(ctx context.Context, id string) Ap
 }
 
 // Execute executes the request
-//  @return FindBatchesByProject200Response
-func (a *BatchesApiService) CreateDeviceBatchExecute(r ApiCreateDeviceBatchRequest) (*FindBatchesByProject200Response, *http.Response, error) {
+//  @return BatchesList
+func (a *BatchesApiService) CreateDeviceBatchExecute(r ApiCreateDeviceBatchRequest) (*BatchesList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *FindBatchesByProject200Response
+		localVarReturnValue *BatchesList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BatchesApiService.CreateDeviceBatch")
@@ -78,8 +78,8 @@ func (a *BatchesApiService) CreateDeviceBatchExecute(r ApiCreateDeviceBatchReque
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createDeviceBatchRequest == nil {
-		return localVarReturnValue, nil, reportError("createDeviceBatchRequest is required and must be specified")
+	if r.instancesBatchCreateInput == nil {
+		return localVarReturnValue, nil, reportError("instancesBatchCreateInput is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -100,7 +100,7 @@ func (a *BatchesApiService) CreateDeviceBatchExecute(r ApiCreateDeviceBatchReque
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createDeviceBatchRequest
+	localVarPostBody = r.instancesBatchCreateInput
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -138,7 +138,7 @@ func (a *BatchesApiService) CreateDeviceBatchExecute(r ApiCreateDeviceBatchReque
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -149,7 +149,7 @@ func (a *BatchesApiService) CreateDeviceBatchExecute(r ApiCreateDeviceBatchReque
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -160,7 +160,7 @@ func (a *BatchesApiService) CreateDeviceBatchExecute(r ApiCreateDeviceBatchReque
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -171,7 +171,7 @@ func (a *BatchesApiService) CreateDeviceBatchExecute(r ApiCreateDeviceBatchReque
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -306,7 +306,7 @@ func (a *BatchesApiService) DeleteBatchExecute(r ApiDeleteBatchRequest) (*http.R
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -317,7 +317,7 @@ func (a *BatchesApiService) DeleteBatchExecute(r ApiDeleteBatchRequest) (*http.R
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -352,7 +352,7 @@ func (r ApiFindBatchByIdRequest) Exclude(exclude []string) ApiFindBatchByIdReque
 	return r
 }
 
-func (r ApiFindBatchByIdRequest) Execute() (*FindBatchById200Response, *http.Response, error) {
+func (r ApiFindBatchByIdRequest) Execute() (*Batch, *http.Response, error) {
 	return r.ApiService.FindBatchByIdExecute(r)
 }
 
@@ -374,13 +374,13 @@ func (a *BatchesApiService) FindBatchById(ctx context.Context, id string) ApiFin
 }
 
 // Execute executes the request
-//  @return FindBatchById200Response
-func (a *BatchesApiService) FindBatchByIdExecute(r ApiFindBatchByIdRequest) (*FindBatchById200Response, *http.Response, error) {
+//  @return Batch
+func (a *BatchesApiService) FindBatchByIdExecute(r ApiFindBatchByIdRequest) (*Batch, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *FindBatchById200Response
+		localVarReturnValue *Batch
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BatchesApiService.FindBatchById")
@@ -455,7 +455,7 @@ func (a *BatchesApiService) FindBatchByIdExecute(r ApiFindBatchByIdRequest) (*Fi
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -466,7 +466,7 @@ func (a *BatchesApiService) FindBatchByIdExecute(r ApiFindBatchByIdRequest) (*Fi
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -510,7 +510,7 @@ func (r ApiFindBatchesByProjectRequest) Exclude(exclude []string) ApiFindBatches
 	return r
 }
 
-func (r ApiFindBatchesByProjectRequest) Execute() (*FindBatchesByProject200Response, *http.Response, error) {
+func (r ApiFindBatchesByProjectRequest) Execute() (*BatchesList, *http.Response, error) {
 	return r.ApiService.FindBatchesByProjectExecute(r)
 }
 
@@ -532,13 +532,13 @@ func (a *BatchesApiService) FindBatchesByProject(ctx context.Context, id string)
 }
 
 // Execute executes the request
-//  @return FindBatchesByProject200Response
-func (a *BatchesApiService) FindBatchesByProjectExecute(r ApiFindBatchesByProjectRequest) (*FindBatchesByProject200Response, *http.Response, error) {
+//  @return BatchesList
+func (a *BatchesApiService) FindBatchesByProjectExecute(r ApiFindBatchesByProjectRequest) (*BatchesList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *FindBatchesByProject200Response
+		localVarReturnValue *BatchesList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BatchesApiService.FindBatchesByProject")
@@ -613,7 +613,7 @@ func (a *BatchesApiService) FindBatchesByProjectExecute(r ApiFindBatchesByProjec
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -624,7 +624,7 @@ func (a *BatchesApiService) FindBatchesByProjectExecute(r ApiFindBatchesByProjec
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -635,7 +635,7 @@ func (a *BatchesApiService) FindBatchesByProjectExecute(r ApiFindBatchesByProjec
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

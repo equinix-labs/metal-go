@@ -27,7 +27,7 @@ type ApiFindOperatingSystemVersionRequest struct {
 	ApiService *OperatingSystemsApiService
 }
 
-func (r ApiFindOperatingSystemVersionRequest) Execute() (*FindOperatingSystemVersion200Response, *http.Response, error) {
+func (r ApiFindOperatingSystemVersionRequest) Execute() (*OperatingSystemList, *http.Response, error) {
 	return r.ApiService.FindOperatingSystemVersionExecute(r)
 }
 
@@ -47,13 +47,13 @@ func (a *OperatingSystemsApiService) FindOperatingSystemVersion(ctx context.Cont
 }
 
 // Execute executes the request
-//  @return FindOperatingSystemVersion200Response
-func (a *OperatingSystemsApiService) FindOperatingSystemVersionExecute(r ApiFindOperatingSystemVersionRequest) (*FindOperatingSystemVersion200Response, *http.Response, error) {
+//  @return OperatingSystemList
+func (a *OperatingSystemsApiService) FindOperatingSystemVersionExecute(r ApiFindOperatingSystemVersionRequest) (*OperatingSystemList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *FindOperatingSystemVersion200Response
+		localVarReturnValue *OperatingSystemList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OperatingSystemsApiService.FindOperatingSystemVersion")
@@ -121,7 +121,7 @@ func (a *OperatingSystemsApiService) FindOperatingSystemVersionExecute(r ApiFind
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -150,7 +150,7 @@ type ApiFindOperatingSystemsRequest struct {
 	ApiService *OperatingSystemsApiService
 }
 
-func (r ApiFindOperatingSystemsRequest) Execute() (*FindOperatingSystemVersion200Response, *http.Response, error) {
+func (r ApiFindOperatingSystemsRequest) Execute() (*OperatingSystemList, *http.Response, error) {
 	return r.ApiService.FindOperatingSystemsExecute(r)
 }
 
@@ -170,13 +170,13 @@ func (a *OperatingSystemsApiService) FindOperatingSystems(ctx context.Context) A
 }
 
 // Execute executes the request
-//  @return FindOperatingSystemVersion200Response
-func (a *OperatingSystemsApiService) FindOperatingSystemsExecute(r ApiFindOperatingSystemsRequest) (*FindOperatingSystemVersion200Response, *http.Response, error) {
+//  @return OperatingSystemList
+func (a *OperatingSystemsApiService) FindOperatingSystemsExecute(r ApiFindOperatingSystemsRequest) (*OperatingSystemList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *FindOperatingSystemVersion200Response
+		localVarReturnValue *OperatingSystemList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OperatingSystemsApiService.FindOperatingSystems")
@@ -244,7 +244,7 @@ func (a *OperatingSystemsApiService) FindOperatingSystemsExecute(r ApiFindOperat
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

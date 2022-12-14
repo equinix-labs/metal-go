@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **Href** | Pointer to **string** |  | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
 **Interpolated** | Pointer to **string** |  | [optional] 
-**Relationships** | Pointer to [**[]FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
+**Relationships** | Pointer to [**[]Href**](Href.md) |  | [optional] 
 **State** | Pointer to **string** |  | [optional] 
 **Type** | Pointer to **string** |  | [optional] 
 
@@ -159,20 +159,20 @@ HasInterpolated returns a boolean if a field has been set.
 
 ### GetRelationships
 
-`func (o *Event) GetRelationships() []FindBatchById200ResponseDevicesInner`
+`func (o *Event) GetRelationships() []Href`
 
 GetRelationships returns the Relationships field if non-nil, zero value otherwise.
 
 ### GetRelationshipsOk
 
-`func (o *Event) GetRelationshipsOk() (*[]FindBatchById200ResponseDevicesInner, bool)`
+`func (o *Event) GetRelationshipsOk() (*[]Href, bool)`
 
 GetRelationshipsOk returns a tuple with the Relationships field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRelationships
 
-`func (o *Event) SetRelationships(v []FindBatchById200ResponseDevicesInner)`
+`func (o *Event) SetRelationships(v []Href)`
 
 SetRelationships sets Relationships field to given value.
 

@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 ## FindHardwareReservationById
 
-> FindDeviceById200Response FindHardwareReservationById(ctx, id).Include(include).Exclude(exclude).Execute()
+> Device FindHardwareReservationById(ctx, id).Include(include).Exclude(exclude).Execute()
 
 Retrieve a hardware reservation
 
@@ -42,7 +42,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `HardwareReservationsApi.FindHardwareReservationById``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindHardwareReservationById`: FindDeviceById200Response
+    // response from `FindHardwareReservationById`: Device
     fmt.Fprintf(os.Stdout, "Response from `HardwareReservationsApi.FindHardwareReservationById`: %v\n", resp)
 }
 ```
@@ -68,7 +68,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FindDeviceById200Response**](FindDeviceById200Response.md)
+[**Device**](Device.md)
 
 ### Authorization
 
@@ -86,7 +86,7 @@ Name | Type | Description  | Notes
 
 ## FindProjectHardwareReservations
 
-> FindProjectHardwareReservations200Response FindProjectHardwareReservations(ctx, id).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
+> HardwareReservationList FindProjectHardwareReservations(ctx, id).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
 
 Retrieve all hardware reservations for a given project
 
@@ -118,7 +118,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `HardwareReservationsApi.FindProjectHardwareReservations``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindProjectHardwareReservations`: FindProjectHardwareReservations200Response
+    // response from `FindProjectHardwareReservations`: HardwareReservationList
     fmt.Fprintf(os.Stdout, "Response from `HardwareReservationsApi.FindProjectHardwareReservations`: %v\n", resp)
 }
 ```
@@ -146,7 +146,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FindProjectHardwareReservations200Response**](FindProjectHardwareReservations200Response.md)
+[**HardwareReservationList**](HardwareReservationList.md)
 
 ### Authorization
 
@@ -164,7 +164,7 @@ Name | Type | Description  | Notes
 
 ## MoveHardwareReservation
 
-> MoveHardwareReservation201Response MoveHardwareReservation(ctx, id).Body(body).Execute()
+> HardwareReservation MoveHardwareReservation(ctx, id).Body(body).Execute()
 
 Move a hardware reservation
 
@@ -193,7 +193,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `HardwareReservationsApi.MoveHardwareReservation``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `MoveHardwareReservation`: MoveHardwareReservation201Response
+    // response from `MoveHardwareReservation`: HardwareReservation
     fmt.Fprintf(os.Stdout, "Response from `HardwareReservationsApi.MoveHardwareReservation`: %v\n", resp)
 }
 ```
@@ -218,7 +218,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**MoveHardwareReservation201Response**](MoveHardwareReservation201Response.md)
+[**HardwareReservation**](HardwareReservation.md)
 
 ### Authorization
 

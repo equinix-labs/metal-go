@@ -17,7 +17,7 @@ import (
 
 // SpotPricesPerNewFacility struct for SpotPricesPerNewFacility
 type SpotPricesPerNewFacility struct {
-	Baremetal1e *FindSpotMarketPrices200ResponseSpotMarketPricesAms1Baremetal0 `json:"baremetal_1e,omitempty"`
+	Baremetal1e *SpotPricesPerBaremetal `json:"baremetal_1e,omitempty"`
 }
 
 // NewSpotPricesPerNewFacility instantiates a new SpotPricesPerNewFacility object
@@ -38,9 +38,9 @@ func NewSpotPricesPerNewFacilityWithDefaults() *SpotPricesPerNewFacility {
 }
 
 // GetBaremetal1e returns the Baremetal1e field value if set, zero value otherwise.
-func (o *SpotPricesPerNewFacility) GetBaremetal1e() FindSpotMarketPrices200ResponseSpotMarketPricesAms1Baremetal0 {
+func (o *SpotPricesPerNewFacility) GetBaremetal1e() SpotPricesPerBaremetal {
 	if o == nil || isNil(o.Baremetal1e) {
-		var ret FindSpotMarketPrices200ResponseSpotMarketPricesAms1Baremetal0
+		var ret SpotPricesPerBaremetal
 		return ret
 	}
 	return *o.Baremetal1e
@@ -48,7 +48,7 @@ func (o *SpotPricesPerNewFacility) GetBaremetal1e() FindSpotMarketPrices200Respo
 
 // GetBaremetal1eOk returns a tuple with the Baremetal1e field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SpotPricesPerNewFacility) GetBaremetal1eOk() (*FindSpotMarketPrices200ResponseSpotMarketPricesAms1Baremetal0, bool) {
+func (o *SpotPricesPerNewFacility) GetBaremetal1eOk() (*SpotPricesPerBaremetal, bool) {
 	if o == nil || isNil(o.Baremetal1e) {
 		return nil, false
 	}
@@ -64,8 +64,8 @@ func (o *SpotPricesPerNewFacility) HasBaremetal1e() bool {
 	return false
 }
 
-// SetBaremetal1e gets a reference to the given FindSpotMarketPrices200ResponseSpotMarketPricesAms1Baremetal0 and assigns it to the Baremetal1e field.
-func (o *SpotPricesPerNewFacility) SetBaremetal1e(v FindSpotMarketPrices200ResponseSpotMarketPricesAms1Baremetal0) {
+// SetBaremetal1e gets a reference to the given SpotPricesPerBaremetal and assigns it to the Baremetal1e field.
+func (o *SpotPricesPerNewFacility) SetBaremetal1e(v SpotPricesPerBaremetal) {
 	o.Baremetal1e = &v
 }
 

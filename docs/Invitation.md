@@ -7,12 +7,12 @@ Name | Type | Description | Notes
 **CreatedAt** | Pointer to **time.Time** |  | [optional] 
 **Href** | Pointer to **string** |  | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
-**Invitation** | Pointer to [**FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
-**InvitedBy** | Pointer to [**FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
+**Invitation** | Pointer to [**Href**](Href.md) |  | [optional] 
+**InvitedBy** | Pointer to [**Href**](Href.md) |  | [optional] 
 **Invitee** | Pointer to **string** |  | [optional] 
 **Nonce** | Pointer to **string** |  | [optional] 
-**Organization** | Pointer to [**FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
-**Projects** | Pointer to [**[]FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
+**Organization** | Pointer to [**Href**](Href.md) |  | [optional] 
+**Projects** | Pointer to [**[]Href**](Href.md) |  | [optional] 
 **Roles** | Pointer to **[]string** |  | [optional] 
 **UpdatedAt** | Pointer to **time.Time** |  | [optional] 
 
@@ -112,20 +112,20 @@ HasId returns a boolean if a field has been set.
 
 ### GetInvitation
 
-`func (o *Invitation) GetInvitation() FindBatchById200ResponseDevicesInner`
+`func (o *Invitation) GetInvitation() Href`
 
 GetInvitation returns the Invitation field if non-nil, zero value otherwise.
 
 ### GetInvitationOk
 
-`func (o *Invitation) GetInvitationOk() (*FindBatchById200ResponseDevicesInner, bool)`
+`func (o *Invitation) GetInvitationOk() (*Href, bool)`
 
 GetInvitationOk returns a tuple with the Invitation field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetInvitation
 
-`func (o *Invitation) SetInvitation(v FindBatchById200ResponseDevicesInner)`
+`func (o *Invitation) SetInvitation(v Href)`
 
 SetInvitation sets Invitation field to given value.
 
@@ -137,20 +137,20 @@ HasInvitation returns a boolean if a field has been set.
 
 ### GetInvitedBy
 
-`func (o *Invitation) GetInvitedBy() FindBatchById200ResponseDevicesInner`
+`func (o *Invitation) GetInvitedBy() Href`
 
 GetInvitedBy returns the InvitedBy field if non-nil, zero value otherwise.
 
 ### GetInvitedByOk
 
-`func (o *Invitation) GetInvitedByOk() (*FindBatchById200ResponseDevicesInner, bool)`
+`func (o *Invitation) GetInvitedByOk() (*Href, bool)`
 
 GetInvitedByOk returns a tuple with the InvitedBy field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetInvitedBy
 
-`func (o *Invitation) SetInvitedBy(v FindBatchById200ResponseDevicesInner)`
+`func (o *Invitation) SetInvitedBy(v Href)`
 
 SetInvitedBy sets InvitedBy field to given value.
 
@@ -212,20 +212,20 @@ HasNonce returns a boolean if a field has been set.
 
 ### GetOrganization
 
-`func (o *Invitation) GetOrganization() FindBatchById200ResponseDevicesInner`
+`func (o *Invitation) GetOrganization() Href`
 
 GetOrganization returns the Organization field if non-nil, zero value otherwise.
 
 ### GetOrganizationOk
 
-`func (o *Invitation) GetOrganizationOk() (*FindBatchById200ResponseDevicesInner, bool)`
+`func (o *Invitation) GetOrganizationOk() (*Href, bool)`
 
 GetOrganizationOk returns a tuple with the Organization field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOrganization
 
-`func (o *Invitation) SetOrganization(v FindBatchById200ResponseDevicesInner)`
+`func (o *Invitation) SetOrganization(v Href)`
 
 SetOrganization sets Organization field to given value.
 
@@ -237,20 +237,20 @@ HasOrganization returns a boolean if a field has been set.
 
 ### GetProjects
 
-`func (o *Invitation) GetProjects() []FindBatchById200ResponseDevicesInner`
+`func (o *Invitation) GetProjects() []Href`
 
 GetProjects returns the Projects field if non-nil, zero value otherwise.
 
 ### GetProjectsOk
 
-`func (o *Invitation) GetProjectsOk() (*[]FindBatchById200ResponseDevicesInner, bool)`
+`func (o *Invitation) GetProjectsOk() (*[]Href, bool)`
 
 GetProjectsOk returns a tuple with the Projects field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetProjects
 
-`func (o *Invitation) SetProjects(v []FindBatchById200ResponseDevicesInner)`
+`func (o *Invitation) SetProjects(v []Href)`
 
 SetProjects sets Projects field to given value.
 

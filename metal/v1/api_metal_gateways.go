@@ -158,7 +158,7 @@ func (a *MetalGatewaysApiService) CreateMetalGatewayExecute(r ApiCreateMetalGate
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -169,7 +169,7 @@ func (a *MetalGatewaysApiService) CreateMetalGatewayExecute(r ApiCreateMetalGate
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -180,7 +180,7 @@ func (a *MetalGatewaysApiService) CreateMetalGatewayExecute(r ApiCreateMetalGate
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -325,7 +325,7 @@ func (a *MetalGatewaysApiService) DeleteMetalGatewayExecute(r ApiDeleteMetalGate
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -336,7 +336,7 @@ func (a *MetalGatewaysApiService) DeleteMetalGatewayExecute(r ApiDeleteMetalGate
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -454,7 +454,7 @@ func (a *MetalGatewaysApiService) FindMetalGatewayByIdExecute(r ApiFindMetalGate
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -465,7 +465,7 @@ func (a *MetalGatewaysApiService) FindMetalGatewayByIdExecute(r ApiFindMetalGate
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -509,7 +509,7 @@ func (r ApiFindMetalGatewaysByProjectRequest) PerPage(perPage int32) ApiFindMeta
 	return r
 }
 
-func (r ApiFindMetalGatewaysByProjectRequest) Execute() (*FindMetalGatewaysByProject200Response, *http.Response, error) {
+func (r ApiFindMetalGatewaysByProjectRequest) Execute() (*MetalGatewayList, *http.Response, error) {
 	return r.ApiService.FindMetalGatewaysByProjectExecute(r)
 }
 
@@ -531,13 +531,13 @@ func (a *MetalGatewaysApiService) FindMetalGatewaysByProject(ctx context.Context
 }
 
 // Execute executes the request
-//  @return FindMetalGatewaysByProject200Response
-func (a *MetalGatewaysApiService) FindMetalGatewaysByProjectExecute(r ApiFindMetalGatewaysByProjectRequest) (*FindMetalGatewaysByProject200Response, *http.Response, error) {
+//  @return MetalGatewayList
+func (a *MetalGatewaysApiService) FindMetalGatewaysByProjectExecute(r ApiFindMetalGatewaysByProjectRequest) (*MetalGatewayList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *FindMetalGatewaysByProject200Response
+		localVarReturnValue *MetalGatewayList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetalGatewaysApiService.FindMetalGatewaysByProject")
@@ -612,7 +612,7 @@ func (a *MetalGatewaysApiService) FindMetalGatewaysByProjectExecute(r ApiFindMet
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -623,7 +623,7 @@ func (a *MetalGatewaysApiService) FindMetalGatewaysByProjectExecute(r ApiFindMet
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

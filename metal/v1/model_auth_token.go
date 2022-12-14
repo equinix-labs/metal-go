@@ -20,13 +20,13 @@ import (
 type AuthToken struct {
 	CreatedAt *time.Time `json:"created_at,omitempty"`
 	// Available only for API keys
-	Description *string                                           `json:"description,omitempty"`
-	Id          *string                                           `json:"id,omitempty"`
-	Project     *FindProjectAPIKeys200ResponseApiKeysInnerProject `json:"project,omitempty"`
-	ReadOnly    *bool                                             `json:"read_only,omitempty"`
-	Token       *string                                           `json:"token,omitempty"`
-	UpdatedAt   *time.Time                                        `json:"updated_at,omitempty"`
-	User        *FindProjectAPIKeys200ResponseApiKeysInnerUser    `json:"user,omitempty"`
+	Description *string           `json:"description,omitempty"`
+	Id          *string           `json:"id,omitempty"`
+	Project     *AuthTokenProject `json:"project,omitempty"`
+	ReadOnly    *bool             `json:"read_only,omitempty"`
+	Token       *string           `json:"token,omitempty"`
+	UpdatedAt   *time.Time        `json:"updated_at,omitempty"`
+	User        *AuthTokenUser    `json:"user,omitempty"`
 }
 
 // NewAuthToken instantiates a new AuthToken object
@@ -143,9 +143,9 @@ func (o *AuthToken) SetId(v string) {
 }
 
 // GetProject returns the Project field value if set, zero value otherwise.
-func (o *AuthToken) GetProject() FindProjectAPIKeys200ResponseApiKeysInnerProject {
+func (o *AuthToken) GetProject() AuthTokenProject {
 	if o == nil || isNil(o.Project) {
-		var ret FindProjectAPIKeys200ResponseApiKeysInnerProject
+		var ret AuthTokenProject
 		return ret
 	}
 	return *o.Project
@@ -153,7 +153,7 @@ func (o *AuthToken) GetProject() FindProjectAPIKeys200ResponseApiKeysInnerProjec
 
 // GetProjectOk returns a tuple with the Project field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AuthToken) GetProjectOk() (*FindProjectAPIKeys200ResponseApiKeysInnerProject, bool) {
+func (o *AuthToken) GetProjectOk() (*AuthTokenProject, bool) {
 	if o == nil || isNil(o.Project) {
 		return nil, false
 	}
@@ -169,8 +169,8 @@ func (o *AuthToken) HasProject() bool {
 	return false
 }
 
-// SetProject gets a reference to the given FindProjectAPIKeys200ResponseApiKeysInnerProject and assigns it to the Project field.
-func (o *AuthToken) SetProject(v FindProjectAPIKeys200ResponseApiKeysInnerProject) {
+// SetProject gets a reference to the given AuthTokenProject and assigns it to the Project field.
+func (o *AuthToken) SetProject(v AuthTokenProject) {
 	o.Project = &v
 }
 
@@ -271,9 +271,9 @@ func (o *AuthToken) SetUpdatedAt(v time.Time) {
 }
 
 // GetUser returns the User field value if set, zero value otherwise.
-func (o *AuthToken) GetUser() FindProjectAPIKeys200ResponseApiKeysInnerUser {
+func (o *AuthToken) GetUser() AuthTokenUser {
 	if o == nil || isNil(o.User) {
-		var ret FindProjectAPIKeys200ResponseApiKeysInnerUser
+		var ret AuthTokenUser
 		return ret
 	}
 	return *o.User
@@ -281,7 +281,7 @@ func (o *AuthToken) GetUser() FindProjectAPIKeys200ResponseApiKeysInnerUser {
 
 // GetUserOk returns a tuple with the User field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AuthToken) GetUserOk() (*FindProjectAPIKeys200ResponseApiKeysInnerUser, bool) {
+func (o *AuthToken) GetUserOk() (*AuthTokenUser, bool) {
 	if o == nil || isNil(o.User) {
 		return nil, false
 	}
@@ -297,8 +297,8 @@ func (o *AuthToken) HasUser() bool {
 	return false
 }
 
-// SetUser gets a reference to the given FindProjectAPIKeys200ResponseApiKeysInnerUser and assigns it to the User field.
-func (o *AuthToken) SetUser(v FindProjectAPIKeys200ResponseApiKeysInnerUser) {
+// SetUser gets a reference to the given AuthTokenUser and assigns it to the User field.
+func (o *AuthToken) SetUser(v AuthTokenUser) {
 	o.User = &v
 }
 

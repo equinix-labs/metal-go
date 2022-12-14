@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Address** | Pointer to [**FindDeviceById200ResponseFacilityAddress**](FindDeviceById200ResponseFacilityAddress.md) |  | [optional] 
+**Address** | Pointer to [**Address**](Address.md) |  | [optional] 
 **Code** | Pointer to **string** |  | [optional] 
 **Features** | Pointer to **[]string** |  | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
 **IpRanges** | Pointer to **[]string** | IP ranges registered in facility. Can be used for GeoIP location | [optional] 
-**Metro** | Pointer to [**FindDeviceById200ResponseFacilityMetro**](FindDeviceById200ResponseFacilityMetro.md) |  | [optional] 
+**Metro** | Pointer to [**DeviceMetro**](DeviceMetro.md) |  | [optional] 
 **Name** | Pointer to **string** |  | [optional] 
 
 ## Methods
@@ -33,20 +33,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetAddress
 
-`func (o *Facility) GetAddress() FindDeviceById200ResponseFacilityAddress`
+`func (o *Facility) GetAddress() Address`
 
 GetAddress returns the Address field if non-nil, zero value otherwise.
 
 ### GetAddressOk
 
-`func (o *Facility) GetAddressOk() (*FindDeviceById200ResponseFacilityAddress, bool)`
+`func (o *Facility) GetAddressOk() (*Address, bool)`
 
 GetAddressOk returns a tuple with the Address field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAddress
 
-`func (o *Facility) SetAddress(v FindDeviceById200ResponseFacilityAddress)`
+`func (o *Facility) SetAddress(v Address)`
 
 SetAddress sets Address field to given value.
 
@@ -158,20 +158,20 @@ HasIpRanges returns a boolean if a field has been set.
 
 ### GetMetro
 
-`func (o *Facility) GetMetro() FindDeviceById200ResponseFacilityMetro`
+`func (o *Facility) GetMetro() DeviceMetro`
 
 GetMetro returns the Metro field if non-nil, zero value otherwise.
 
 ### GetMetroOk
 
-`func (o *Facility) GetMetroOk() (*FindDeviceById200ResponseFacilityMetro, bool)`
+`func (o *Facility) GetMetroOk() (*DeviceMetro, bool)`
 
 GetMetroOk returns a tuple with the Metro field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMetro
 
-`func (o *Facility) SetMetro(v FindDeviceById200ResponseFacilityMetro)`
+`func (o *Facility) SetMetro(v DeviceMetro)`
 
 SetMetro sets Metro field to given value.
 

@@ -18,29 +18,29 @@ import (
 
 // FindIPAddressById200Response - struct for FindIPAddressById200Response
 type FindIPAddressById200Response struct {
-	FindDeviceById200ResponseIpAddressesInner *FindDeviceById200ResponseIpAddressesInner
-	FindIPAddressById200ResponseOneOf         *FindIPAddressById200ResponseOneOf
-	FindIPAddressById200ResponseOneOf1        *FindIPAddressById200ResponseOneOf1
+	IPAssignment     *IPAssignment
+	IPReservation    *IPReservation
+	VrfIpReservation *VrfIpReservation
 }
 
-// FindDeviceById200ResponseIpAddressesInnerAsFindIPAddressById200Response is a convenience function that returns FindDeviceById200ResponseIpAddressesInner wrapped in FindIPAddressById200Response
-func FindDeviceById200ResponseIpAddressesInnerAsFindIPAddressById200Response(v *FindDeviceById200ResponseIpAddressesInner) FindIPAddressById200Response {
+// IPAssignmentAsFindIPAddressById200Response is a convenience function that returns IPAssignment wrapped in FindIPAddressById200Response
+func IPAssignmentAsFindIPAddressById200Response(v *IPAssignment) FindIPAddressById200Response {
 	return FindIPAddressById200Response{
-		FindDeviceById200ResponseIpAddressesInner: v,
+		IPAssignment: v,
 	}
 }
 
-// FindIPAddressById200ResponseOneOfAsFindIPAddressById200Response is a convenience function that returns FindIPAddressById200ResponseOneOf wrapped in FindIPAddressById200Response
-func FindIPAddressById200ResponseOneOfAsFindIPAddressById200Response(v *FindIPAddressById200ResponseOneOf) FindIPAddressById200Response {
+// IPReservationAsFindIPAddressById200Response is a convenience function that returns IPReservation wrapped in FindIPAddressById200Response
+func IPReservationAsFindIPAddressById200Response(v *IPReservation) FindIPAddressById200Response {
 	return FindIPAddressById200Response{
-		FindIPAddressById200ResponseOneOf: v,
+		IPReservation: v,
 	}
 }
 
-// FindIPAddressById200ResponseOneOf1AsFindIPAddressById200Response is a convenience function that returns FindIPAddressById200ResponseOneOf1 wrapped in FindIPAddressById200Response
-func FindIPAddressById200ResponseOneOf1AsFindIPAddressById200Response(v *FindIPAddressById200ResponseOneOf1) FindIPAddressById200Response {
+// VrfIpReservationAsFindIPAddressById200Response is a convenience function that returns VrfIpReservation wrapped in FindIPAddressById200Response
+func VrfIpReservationAsFindIPAddressById200Response(v *VrfIpReservation) FindIPAddressById200Response {
 	return FindIPAddressById200Response{
-		FindIPAddressById200ResponseOneOf1: v,
+		VrfIpReservation: v,
 	}
 }
 
@@ -48,50 +48,50 @@ func FindIPAddressById200ResponseOneOf1AsFindIPAddressById200Response(v *FindIPA
 func (dst *FindIPAddressById200Response) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
-	// try to unmarshal data into FindDeviceById200ResponseIpAddressesInner
-	err = newStrictDecoder(data).Decode(&dst.FindDeviceById200ResponseIpAddressesInner)
+	// try to unmarshal data into IPAssignment
+	err = newStrictDecoder(data).Decode(&dst.IPAssignment)
 	if err == nil {
-		jsonFindDeviceById200ResponseIpAddressesInner, _ := json.Marshal(dst.FindDeviceById200ResponseIpAddressesInner)
-		if string(jsonFindDeviceById200ResponseIpAddressesInner) == "{}" { // empty struct
-			dst.FindDeviceById200ResponseIpAddressesInner = nil
+		jsonIPAssignment, _ := json.Marshal(dst.IPAssignment)
+		if string(jsonIPAssignment) == "{}" { // empty struct
+			dst.IPAssignment = nil
 		} else {
 			match++
 		}
 	} else {
-		dst.FindDeviceById200ResponseIpAddressesInner = nil
+		dst.IPAssignment = nil
 	}
 
-	// try to unmarshal data into FindIPAddressById200ResponseOneOf
-	err = newStrictDecoder(data).Decode(&dst.FindIPAddressById200ResponseOneOf)
+	// try to unmarshal data into IPReservation
+	err = newStrictDecoder(data).Decode(&dst.IPReservation)
 	if err == nil {
-		jsonFindIPAddressById200ResponseOneOf, _ := json.Marshal(dst.FindIPAddressById200ResponseOneOf)
-		if string(jsonFindIPAddressById200ResponseOneOf) == "{}" { // empty struct
-			dst.FindIPAddressById200ResponseOneOf = nil
+		jsonIPReservation, _ := json.Marshal(dst.IPReservation)
+		if string(jsonIPReservation) == "{}" { // empty struct
+			dst.IPReservation = nil
 		} else {
 			match++
 		}
 	} else {
-		dst.FindIPAddressById200ResponseOneOf = nil
+		dst.IPReservation = nil
 	}
 
-	// try to unmarshal data into FindIPAddressById200ResponseOneOf1
-	err = newStrictDecoder(data).Decode(&dst.FindIPAddressById200ResponseOneOf1)
+	// try to unmarshal data into VrfIpReservation
+	err = newStrictDecoder(data).Decode(&dst.VrfIpReservation)
 	if err == nil {
-		jsonFindIPAddressById200ResponseOneOf1, _ := json.Marshal(dst.FindIPAddressById200ResponseOneOf1)
-		if string(jsonFindIPAddressById200ResponseOneOf1) == "{}" { // empty struct
-			dst.FindIPAddressById200ResponseOneOf1 = nil
+		jsonVrfIpReservation, _ := json.Marshal(dst.VrfIpReservation)
+		if string(jsonVrfIpReservation) == "{}" { // empty struct
+			dst.VrfIpReservation = nil
 		} else {
 			match++
 		}
 	} else {
-		dst.FindIPAddressById200ResponseOneOf1 = nil
+		dst.VrfIpReservation = nil
 	}
 
 	if match > 1 { // more than 1 match
 		// reset to nil
-		dst.FindDeviceById200ResponseIpAddressesInner = nil
-		dst.FindIPAddressById200ResponseOneOf = nil
-		dst.FindIPAddressById200ResponseOneOf1 = nil
+		dst.IPAssignment = nil
+		dst.IPReservation = nil
+		dst.VrfIpReservation = nil
 
 		return fmt.Errorf("data matches more than one schema in oneOf(FindIPAddressById200Response)")
 	} else if match == 1 {
@@ -103,16 +103,16 @@ func (dst *FindIPAddressById200Response) UnmarshalJSON(data []byte) error {
 
 // Marshal data from the first non-nil pointers in the struct to JSON
 func (src FindIPAddressById200Response) MarshalJSON() ([]byte, error) {
-	if src.FindDeviceById200ResponseIpAddressesInner != nil {
-		return json.Marshal(&src.FindDeviceById200ResponseIpAddressesInner)
+	if src.IPAssignment != nil {
+		return json.Marshal(&src.IPAssignment)
 	}
 
-	if src.FindIPAddressById200ResponseOneOf != nil {
-		return json.Marshal(&src.FindIPAddressById200ResponseOneOf)
+	if src.IPReservation != nil {
+		return json.Marshal(&src.IPReservation)
 	}
 
-	if src.FindIPAddressById200ResponseOneOf1 != nil {
-		return json.Marshal(&src.FindIPAddressById200ResponseOneOf1)
+	if src.VrfIpReservation != nil {
+		return json.Marshal(&src.VrfIpReservation)
 	}
 
 	return nil, nil // no data in oneOf schemas
@@ -123,16 +123,16 @@ func (obj *FindIPAddressById200Response) GetActualInstance() interface{} {
 	if obj == nil {
 		return nil
 	}
-	if obj.FindDeviceById200ResponseIpAddressesInner != nil {
-		return obj.FindDeviceById200ResponseIpAddressesInner
+	if obj.IPAssignment != nil {
+		return obj.IPAssignment
 	}
 
-	if obj.FindIPAddressById200ResponseOneOf != nil {
-		return obj.FindIPAddressById200ResponseOneOf
+	if obj.IPReservation != nil {
+		return obj.IPReservation
 	}
 
-	if obj.FindIPAddressById200ResponseOneOf1 != nil {
-		return obj.FindIPAddressById200ResponseOneOf1
+	if obj.VrfIpReservation != nil {
+		return obj.VrfIpReservation
 	}
 
 	// all schemas are nil

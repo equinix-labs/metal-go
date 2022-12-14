@@ -24,7 +24,7 @@ Method | HTTP request | Description
 
 ## CreateOrganization
 
-> FindOrganizations200ResponseOrganizationsInner CreateOrganization(ctx).CreateOrganizationRequest(createOrganizationRequest).Execute()
+> Organization CreateOrganization(ctx).OrganizationInput(organizationInput).Execute()
 
 Create an organization
 
@@ -43,16 +43,16 @@ import (
 )
 
 func main() {
-    createOrganizationRequest := *openapiclient.NewCreateOrganizationRequest() // CreateOrganizationRequest | Organization to create
+    organizationInput := *openapiclient.NewOrganizationInput() // OrganizationInput | Organization to create
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.OrganizationsApi.CreateOrganization(context.Background()).CreateOrganizationRequest(createOrganizationRequest).Execute()
+    resp, r, err := apiClient.OrganizationsApi.CreateOrganization(context.Background()).OrganizationInput(organizationInput).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.CreateOrganization``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateOrganization`: FindOrganizations200ResponseOrganizationsInner
+    // response from `CreateOrganization`: Organization
     fmt.Fprintf(os.Stdout, "Response from `OrganizationsApi.CreateOrganization`: %v\n", resp)
 }
 ```
@@ -68,11 +68,11 @@ Other parameters are passed through a pointer to a apiCreateOrganizationRequest 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **createOrganizationRequest** | [**CreateOrganizationRequest**](CreateOrganizationRequest.md) | Organization to create | 
+ **organizationInput** | [**OrganizationInput**](OrganizationInput.md) | Organization to create | 
 
 ### Return type
 
-[**FindOrganizations200ResponseOrganizationsInner**](FindOrganizations200ResponseOrganizationsInner.md)
+[**Organization**](Organization.md)
 
 ### Authorization
 
@@ -90,7 +90,7 @@ Name | Type | Description  | Notes
 
 ## CreateOrganizationInvitation
 
-> FindInvitationById200Response CreateOrganizationInvitation(ctx, id).CreateOrganizationInvitationRequest(createOrganizationInvitationRequest).Execute()
+> Invitation CreateOrganizationInvitation(ctx, id).InvitationInput(invitationInput).Execute()
 
 Create an invitation for an organization
 
@@ -110,16 +110,16 @@ import (
 
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Organization UUID
-    createOrganizationInvitationRequest := *openapiclient.NewCreateOrganizationInvitationRequest("Invitee_example") // CreateOrganizationInvitationRequest | Invitation to create
+    invitationInput := *openapiclient.NewInvitationInput("Invitee_example") // InvitationInput | Invitation to create
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.OrganizationsApi.CreateOrganizationInvitation(context.Background(), id).CreateOrganizationInvitationRequest(createOrganizationInvitationRequest).Execute()
+    resp, r, err := apiClient.OrganizationsApi.CreateOrganizationInvitation(context.Background(), id).InvitationInput(invitationInput).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.CreateOrganizationInvitation``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateOrganizationInvitation`: FindInvitationById200Response
+    // response from `CreateOrganizationInvitation`: Invitation
     fmt.Fprintf(os.Stdout, "Response from `OrganizationsApi.CreateOrganizationInvitation`: %v\n", resp)
 }
 ```
@@ -140,11 +140,11 @@ Other parameters are passed through a pointer to a apiCreateOrganizationInvitati
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **createOrganizationInvitationRequest** | [**CreateOrganizationInvitationRequest**](CreateOrganizationInvitationRequest.md) | Invitation to create | 
+ **invitationInput** | [**InvitationInput**](InvitationInput.md) | Invitation to create | 
 
 ### Return type
 
-[**FindInvitationById200Response**](FindInvitationById200Response.md)
+[**Invitation**](Invitation.md)
 
 ### Authorization
 
@@ -162,7 +162,7 @@ Name | Type | Description  | Notes
 
 ## CreateOrganizationProject
 
-> GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject CreateOrganizationProject(ctx, id).CreateOrganizationProjectRequest(createOrganizationProjectRequest).Execute()
+> Project CreateOrganizationProject(ctx, id).ProjectCreateInput(projectCreateInput).Execute()
 
 Create a project for the organization
 
@@ -182,16 +182,16 @@ import (
 
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Organization UUID
-    createOrganizationProjectRequest := *openapiclient.NewCreateOrganizationProjectRequest("Name_example") // CreateOrganizationProjectRequest | Project to create
+    projectCreateInput := *openapiclient.NewProjectCreateInput("Name_example") // ProjectCreateInput | Project to create
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.OrganizationsApi.CreateOrganizationProject(context.Background(), id).CreateOrganizationProjectRequest(createOrganizationProjectRequest).Execute()
+    resp, r, err := apiClient.OrganizationsApi.CreateOrganizationProject(context.Background(), id).ProjectCreateInput(projectCreateInput).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.CreateOrganizationProject``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateOrganizationProject`: GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject
+    // response from `CreateOrganizationProject`: Project
     fmt.Fprintf(os.Stdout, "Response from `OrganizationsApi.CreateOrganizationProject`: %v\n", resp)
 }
 ```
@@ -212,11 +212,11 @@ Other parameters are passed through a pointer to a apiCreateOrganizationProjectR
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **createOrganizationProjectRequest** | [**CreateOrganizationProjectRequest**](CreateOrganizationProjectRequest.md) | Project to create | 
+ **projectCreateInput** | [**ProjectCreateInput**](ProjectCreateInput.md) | Project to create | 
 
 ### Return type
 
-[**GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject**](GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject.md)
+[**Project**](Project.md)
 
 ### Authorization
 
@@ -234,7 +234,7 @@ Name | Type | Description  | Notes
 
 ## CreatePaymentMethod
 
-> FindOrganizationPaymentMethods200ResponsePaymentMethodsInner CreatePaymentMethod(ctx, id).CreatePaymentMethodRequest(createPaymentMethodRequest).Execute()
+> PaymentMethod CreatePaymentMethod(ctx, id).PaymentMethodCreateInput(paymentMethodCreateInput).Execute()
 
 Create a payment method for the given organization
 
@@ -254,16 +254,16 @@ import (
 
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Organization UUID
-    createPaymentMethodRequest := *openapiclient.NewCreatePaymentMethodRequest("Name_example", "Nonce_example") // CreatePaymentMethodRequest | Payment Method to create
+    paymentMethodCreateInput := *openapiclient.NewPaymentMethodCreateInput("Name_example", "Nonce_example") // PaymentMethodCreateInput | Payment Method to create
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.OrganizationsApi.CreatePaymentMethod(context.Background(), id).CreatePaymentMethodRequest(createPaymentMethodRequest).Execute()
+    resp, r, err := apiClient.OrganizationsApi.CreatePaymentMethod(context.Background(), id).PaymentMethodCreateInput(paymentMethodCreateInput).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.CreatePaymentMethod``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreatePaymentMethod`: FindOrganizationPaymentMethods200ResponsePaymentMethodsInner
+    // response from `CreatePaymentMethod`: PaymentMethod
     fmt.Fprintf(os.Stdout, "Response from `OrganizationsApi.CreatePaymentMethod`: %v\n", resp)
 }
 ```
@@ -284,11 +284,11 @@ Other parameters are passed through a pointer to a apiCreatePaymentMethodRequest
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **createPaymentMethodRequest** | [**CreatePaymentMethodRequest**](CreatePaymentMethodRequest.md) | Payment Method to create | 
+ **paymentMethodCreateInput** | [**PaymentMethodCreateInput**](PaymentMethodCreateInput.md) | Payment Method to create | 
 
 ### Return type
 
-[**FindOrganizationPaymentMethods200ResponsePaymentMethodsInner**](FindOrganizationPaymentMethods200ResponsePaymentMethodsInner.md)
+[**PaymentMethod**](PaymentMethod.md)
 
 ### Authorization
 
@@ -374,7 +374,7 @@ Name | Type | Description  | Notes
 
 ## FindOperatingSystemsByOrganization
 
-> FindOperatingSystemVersion200Response FindOperatingSystemsByOrganization(ctx, id).Include(include).Exclude(exclude).Execute()
+> OperatingSystemList FindOperatingSystemsByOrganization(ctx, id).Include(include).Exclude(exclude).Execute()
 
 Retrieve all operating systems visible by the organization
 
@@ -404,7 +404,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.FindOperatingSystemsByOrganization``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindOperatingSystemsByOrganization`: FindOperatingSystemVersion200Response
+    // response from `FindOperatingSystemsByOrganization`: OperatingSystemList
     fmt.Fprintf(os.Stdout, "Response from `OrganizationsApi.FindOperatingSystemsByOrganization`: %v\n", resp)
 }
 ```
@@ -430,7 +430,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FindOperatingSystemVersion200Response**](FindOperatingSystemVersion200Response.md)
+[**OperatingSystemList**](OperatingSystemList.md)
 
 ### Authorization
 
@@ -448,7 +448,7 @@ Name | Type | Description  | Notes
 
 ## FindOrganizationById
 
-> FindOrganizations200ResponseOrganizationsInner FindOrganizationById(ctx, id).Include(include).Exclude(exclude).Execute()
+> Organization FindOrganizationById(ctx, id).Include(include).Exclude(exclude).Execute()
 
 Retrieve an organization's details
 
@@ -478,7 +478,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.FindOrganizationById``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindOrganizationById`: FindOrganizations200ResponseOrganizationsInner
+    // response from `FindOrganizationById`: Organization
     fmt.Fprintf(os.Stdout, "Response from `OrganizationsApi.FindOrganizationById`: %v\n", resp)
 }
 ```
@@ -504,7 +504,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FindOrganizations200ResponseOrganizationsInner**](FindOrganizations200ResponseOrganizationsInner.md)
+[**Organization**](Organization.md)
 
 ### Authorization
 
@@ -590,7 +590,7 @@ Name | Type | Description  | Notes
 
 ## FindOrganizationInvitations
 
-> FindInvitations200Response FindOrganizationInvitations(ctx, id).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
+> InvitationList FindOrganizationInvitations(ctx, id).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
 
 Retrieve organization invitations
 
@@ -622,7 +622,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.FindOrganizationInvitations``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindOrganizationInvitations`: FindInvitations200Response
+    // response from `FindOrganizationInvitations`: InvitationList
     fmt.Fprintf(os.Stdout, "Response from `OrganizationsApi.FindOrganizationInvitations`: %v\n", resp)
 }
 ```
@@ -650,7 +650,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FindInvitations200Response**](FindInvitations200Response.md)
+[**InvitationList**](InvitationList.md)
 
 ### Authorization
 
@@ -668,7 +668,7 @@ Name | Type | Description  | Notes
 
 ## FindOrganizationPaymentMethods
 
-> FindOrganizationPaymentMethods200Response FindOrganizationPaymentMethods(ctx, id).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
+> PaymentMethodList FindOrganizationPaymentMethods(ctx, id).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
 
 Retrieve all payment methods of an organization
 
@@ -700,7 +700,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.FindOrganizationPaymentMethods``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindOrganizationPaymentMethods`: FindOrganizationPaymentMethods200Response
+    // response from `FindOrganizationPaymentMethods`: PaymentMethodList
     fmt.Fprintf(os.Stdout, "Response from `OrganizationsApi.FindOrganizationPaymentMethods`: %v\n", resp)
 }
 ```
@@ -728,7 +728,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FindOrganizationPaymentMethods200Response**](FindOrganizationPaymentMethods200Response.md)
+[**PaymentMethodList**](PaymentMethodList.md)
 
 ### Authorization
 
@@ -746,7 +746,7 @@ Name | Type | Description  | Notes
 
 ## FindOrganizationProjects
 
-> FindOrganizationProjects200Response FindOrganizationProjects(ctx, id).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
+> ProjectList FindOrganizationProjects(ctx, id).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
 
 Retrieve all projects of an organization
 
@@ -778,7 +778,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.FindOrganizationProjects``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindOrganizationProjects`: FindOrganizationProjects200Response
+    // response from `FindOrganizationProjects`: ProjectList
     fmt.Fprintf(os.Stdout, "Response from `OrganizationsApi.FindOrganizationProjects`: %v\n", resp)
 }
 ```
@@ -806,7 +806,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FindOrganizationProjects200Response**](FindOrganizationProjects200Response.md)
+[**ProjectList**](ProjectList.md)
 
 ### Authorization
 
@@ -824,7 +824,7 @@ Name | Type | Description  | Notes
 
 ## FindOrganizationTransfers
 
-> FindOrganizationTransfers200Response FindOrganizationTransfers(ctx, id).Include(include).Exclude(exclude).Execute()
+> TransferRequestList FindOrganizationTransfers(ctx, id).Include(include).Exclude(exclude).Execute()
 
 Retrieve all project transfer requests from or to an organization
 
@@ -854,7 +854,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.FindOrganizationTransfers``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindOrganizationTransfers`: FindOrganizationTransfers200Response
+    // response from `FindOrganizationTransfers`: TransferRequestList
     fmt.Fprintf(os.Stdout, "Response from `OrganizationsApi.FindOrganizationTransfers`: %v\n", resp)
 }
 ```
@@ -880,7 +880,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FindOrganizationTransfers200Response**](FindOrganizationTransfers200Response.md)
+[**TransferRequestList**](TransferRequestList.md)
 
 ### Authorization
 
@@ -898,7 +898,7 @@ Name | Type | Description  | Notes
 
 ## FindOrganizations
 
-> FindOrganizations200Response FindOrganizations(ctx).Personal(personal).WithoutProjects(withoutProjects).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
+> OrganizationList FindOrganizations(ctx).Personal(personal).WithoutProjects(withoutProjects).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
 
 Retrieve all organizations
 
@@ -931,7 +931,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.FindOrganizations``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindOrganizations`: FindOrganizations200Response
+    // response from `FindOrganizations`: OrganizationList
     fmt.Fprintf(os.Stdout, "Response from `OrganizationsApi.FindOrganizations`: %v\n", resp)
 }
 ```
@@ -956,7 +956,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FindOrganizations200Response**](FindOrganizations200Response.md)
+[**OrganizationList**](OrganizationList.md)
 
 ### Authorization
 
@@ -974,7 +974,7 @@ Name | Type | Description  | Notes
 
 ## FindPlansByOrganization
 
-> FindPlansByOrganization200Response FindPlansByOrganization(ctx, id).Include(include).Exclude(exclude).Execute()
+> PlanList FindPlansByOrganization(ctx, id).Include(include).Exclude(exclude).Execute()
 
 Retrieve all plans visible by the organization
 
@@ -1004,7 +1004,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.FindPlansByOrganization``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindPlansByOrganization`: FindPlansByOrganization200Response
+    // response from `FindPlansByOrganization`: PlanList
     fmt.Fprintf(os.Stdout, "Response from `OrganizationsApi.FindPlansByOrganization`: %v\n", resp)
 }
 ```
@@ -1030,7 +1030,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FindPlansByOrganization200Response**](FindPlansByOrganization200Response.md)
+[**PlanList**](PlanList.md)
 
 ### Authorization
 
@@ -1048,7 +1048,7 @@ Name | Type | Description  | Notes
 
 ## UpdateOrganization
 
-> FindOrganizations200ResponseOrganizationsInner UpdateOrganization(ctx, id).CreateOrganizationRequest(createOrganizationRequest).Execute()
+> Organization UpdateOrganization(ctx, id).OrganizationInput(organizationInput).Execute()
 
 Update the organization
 
@@ -1068,16 +1068,16 @@ import (
 
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Organization UUID
-    createOrganizationRequest := *openapiclient.NewCreateOrganizationRequest() // CreateOrganizationRequest | Organization to update
+    organizationInput := *openapiclient.NewOrganizationInput() // OrganizationInput | Organization to update
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.OrganizationsApi.UpdateOrganization(context.Background(), id).CreateOrganizationRequest(createOrganizationRequest).Execute()
+    resp, r, err := apiClient.OrganizationsApi.UpdateOrganization(context.Background(), id).OrganizationInput(organizationInput).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.UpdateOrganization``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateOrganization`: FindOrganizations200ResponseOrganizationsInner
+    // response from `UpdateOrganization`: Organization
     fmt.Fprintf(os.Stdout, "Response from `OrganizationsApi.UpdateOrganization`: %v\n", resp)
 }
 ```
@@ -1098,11 +1098,11 @@ Other parameters are passed through a pointer to a apiUpdateOrganizationRequest 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **createOrganizationRequest** | [**CreateOrganizationRequest**](CreateOrganizationRequest.md) | Organization to update | 
+ **organizationInput** | [**OrganizationInput**](OrganizationInput.md) | Organization to update | 
 
 ### Return type
 
-[**FindOrganizations200ResponseOrganizationsInner**](FindOrganizations200ResponseOrganizationsInner.md)
+[**Organization**](Organization.md)
 
 ### Authorization
 

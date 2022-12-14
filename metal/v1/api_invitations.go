@@ -29,7 +29,7 @@ type ApiAcceptInvitationRequest struct {
 	id         string
 }
 
-func (r ApiAcceptInvitationRequest) Execute() (*FindInvitations200ResponseInvitationsInner, *http.Response, error) {
+func (r ApiAcceptInvitationRequest) Execute() (*Membership, *http.Response, error) {
 	return r.ApiService.AcceptInvitationExecute(r)
 }
 
@@ -51,13 +51,13 @@ func (a *InvitationsApiService) AcceptInvitation(ctx context.Context, id string)
 }
 
 // Execute executes the request
-//  @return FindInvitations200ResponseInvitationsInner
-func (a *InvitationsApiService) AcceptInvitationExecute(r ApiAcceptInvitationRequest) (*FindInvitations200ResponseInvitationsInner, *http.Response, error) {
+//  @return Membership
+func (a *InvitationsApiService) AcceptInvitationExecute(r ApiAcceptInvitationRequest) (*Membership, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *FindInvitations200ResponseInvitationsInner
+		localVarReturnValue *Membership
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InvitationsApiService.AcceptInvitation")
@@ -126,7 +126,7 @@ func (a *InvitationsApiService) AcceptInvitationExecute(r ApiAcceptInvitationReq
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -137,7 +137,7 @@ func (a *InvitationsApiService) AcceptInvitationExecute(r ApiAcceptInvitationReq
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -148,7 +148,7 @@ func (a *InvitationsApiService) AcceptInvitationExecute(r ApiAcceptInvitationReq
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -273,7 +273,7 @@ func (a *InvitationsApiService) DeclineInvitationExecute(r ApiDeclineInvitationR
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -284,7 +284,7 @@ func (a *InvitationsApiService) DeclineInvitationExecute(r ApiDeclineInvitationR
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -295,7 +295,7 @@ func (a *InvitationsApiService) DeclineInvitationExecute(r ApiDeclineInvitationR
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -330,7 +330,7 @@ func (r ApiFindInvitationByIdRequest) Exclude(exclude []string) ApiFindInvitatio
 	return r
 }
 
-func (r ApiFindInvitationByIdRequest) Execute() (*FindInvitationById200Response, *http.Response, error) {
+func (r ApiFindInvitationByIdRequest) Execute() (*Invitation, *http.Response, error) {
 	return r.ApiService.FindInvitationByIdExecute(r)
 }
 
@@ -352,13 +352,13 @@ func (a *InvitationsApiService) FindInvitationById(ctx context.Context, id strin
 }
 
 // Execute executes the request
-//  @return FindInvitationById200Response
-func (a *InvitationsApiService) FindInvitationByIdExecute(r ApiFindInvitationByIdRequest) (*FindInvitationById200Response, *http.Response, error) {
+//  @return Invitation
+func (a *InvitationsApiService) FindInvitationByIdExecute(r ApiFindInvitationByIdRequest) (*Invitation, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *FindInvitationById200Response
+		localVarReturnValue *Invitation
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InvitationsApiService.FindInvitationById")
@@ -433,7 +433,7 @@ func (a *InvitationsApiService) FindInvitationByIdExecute(r ApiFindInvitationByI
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -444,7 +444,7 @@ func (a *InvitationsApiService) FindInvitationByIdExecute(r ApiFindInvitationByI
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -455,7 +455,7 @@ func (a *InvitationsApiService) FindInvitationByIdExecute(r ApiFindInvitationByI
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

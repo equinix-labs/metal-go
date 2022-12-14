@@ -17,7 +17,7 @@ import (
 
 // MetalGatewayList struct for MetalGatewayList
 type MetalGatewayList struct {
-	MetalGateways []FindMetalGatewaysByProject200ResponseMetalGatewaysInner `json:"metal_gateways,omitempty"`
+	MetalGateways []MetalGatewayListMetalGatewaysInner `json:"metal_gateways,omitempty"`
 }
 
 // NewMetalGatewayList instantiates a new MetalGatewayList object
@@ -38,9 +38,9 @@ func NewMetalGatewayListWithDefaults() *MetalGatewayList {
 }
 
 // GetMetalGateways returns the MetalGateways field value if set, zero value otherwise.
-func (o *MetalGatewayList) GetMetalGateways() []FindMetalGatewaysByProject200ResponseMetalGatewaysInner {
+func (o *MetalGatewayList) GetMetalGateways() []MetalGatewayListMetalGatewaysInner {
 	if o == nil || isNil(o.MetalGateways) {
-		var ret []FindMetalGatewaysByProject200ResponseMetalGatewaysInner
+		var ret []MetalGatewayListMetalGatewaysInner
 		return ret
 	}
 	return o.MetalGateways
@@ -48,7 +48,7 @@ func (o *MetalGatewayList) GetMetalGateways() []FindMetalGatewaysByProject200Res
 
 // GetMetalGatewaysOk returns a tuple with the MetalGateways field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetalGatewayList) GetMetalGatewaysOk() ([]FindMetalGatewaysByProject200ResponseMetalGatewaysInner, bool) {
+func (o *MetalGatewayList) GetMetalGatewaysOk() ([]MetalGatewayListMetalGatewaysInner, bool) {
 	if o == nil || isNil(o.MetalGateways) {
 		return nil, false
 	}
@@ -64,8 +64,8 @@ func (o *MetalGatewayList) HasMetalGateways() bool {
 	return false
 }
 
-// SetMetalGateways gets a reference to the given []FindMetalGatewaysByProject200ResponseMetalGatewaysInner and assigns it to the MetalGateways field.
-func (o *MetalGatewayList) SetMetalGateways(v []FindMetalGatewaysByProject200ResponseMetalGatewaysInner) {
+// SetMetalGateways gets a reference to the given []MetalGatewayListMetalGatewaysInner and assigns it to the MetalGateways field.
+func (o *MetalGatewayList) SetMetalGateways(v []MetalGatewayListMetalGatewaysInner) {
 	o.MetalGateways = v
 }
 

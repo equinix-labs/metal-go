@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 ## FindDeviceUsages
 
-> FindDeviceUsages200Response FindDeviceUsages(ctx, id).CreatedAfter(createdAfter).CreatedBefore(createdBefore).Execute()
+> DeviceUsageList FindDeviceUsages(ctx, id).CreatedAfter(createdAfter).CreatedBefore(createdBefore).Execute()
 
 Retrieve all usages for device
 
@@ -41,7 +41,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `UsagesApi.FindDeviceUsages``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindDeviceUsages`: FindDeviceUsages200Response
+    // response from `FindDeviceUsages`: DeviceUsageList
     fmt.Fprintf(os.Stdout, "Response from `UsagesApi.FindDeviceUsages`: %v\n", resp)
 }
 ```
@@ -67,7 +67,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FindDeviceUsages200Response**](FindDeviceUsages200Response.md)
+[**DeviceUsageList**](DeviceUsageList.md)
 
 ### Authorization
 
@@ -85,7 +85,7 @@ Name | Type | Description  | Notes
 
 ## FindProjectUsage
 
-> FindProjectUsage200Response FindProjectUsage(ctx, id).CreatedAfter(createdAfter).CreatedBefore(createdBefore).Execute()
+> ProjectUsageList FindProjectUsage(ctx, id).CreatedAfter(createdAfter).CreatedBefore(createdBefore).Execute()
 
 Retrieve all usages for project
 
@@ -115,7 +115,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `UsagesApi.FindProjectUsage``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindProjectUsage`: FindProjectUsage200Response
+    // response from `FindProjectUsage`: ProjectUsageList
     fmt.Fprintf(os.Stdout, "Response from `UsagesApi.FindProjectUsage`: %v\n", resp)
 }
 ```
@@ -141,7 +141,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FindProjectUsage200Response**](FindProjectUsage200Response.md)
+[**ProjectUsageList**](ProjectUsageList.md)
 
 ### Authorization
 

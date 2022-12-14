@@ -130,7 +130,7 @@ func (a *PasswordResetTokensApiService) CreatePasswordResetTokenExecute(r ApiCre
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -141,7 +141,7 @@ func (a *PasswordResetTokensApiService) CreatePasswordResetTokenExecute(r ApiCre
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -161,7 +161,7 @@ type ApiResetPasswordRequest struct {
 	ApiService *PasswordResetTokensApiService
 }
 
-func (r ApiResetPasswordRequest) Execute() (*ResetPassword201Response, *http.Response, error) {
+func (r ApiResetPasswordRequest) Execute() (*NewPassword, *http.Response, error) {
 	return r.ApiService.ResetPasswordExecute(r)
 }
 
@@ -181,13 +181,13 @@ func (a *PasswordResetTokensApiService) ResetPassword(ctx context.Context) ApiRe
 }
 
 // Execute executes the request
-//  @return ResetPassword201Response
-func (a *PasswordResetTokensApiService) ResetPasswordExecute(r ApiResetPasswordRequest) (*ResetPassword201Response, *http.Response, error) {
+//  @return NewPassword
+func (a *PasswordResetTokensApiService) ResetPasswordExecute(r ApiResetPasswordRequest) (*NewPassword, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodDelete
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *ResetPassword201Response
+		localVarReturnValue *NewPassword
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PasswordResetTokensApiService.ResetPassword")
@@ -255,7 +255,7 @@ func (a *PasswordResetTokensApiService) ResetPasswordExecute(r ApiResetPasswordR
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -266,7 +266,7 @@ func (a *PasswordResetTokensApiService) ResetPasswordExecute(r ApiResetPasswordR
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

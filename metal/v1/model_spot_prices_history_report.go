@@ -17,7 +17,7 @@ import (
 
 // SpotPricesHistoryReport struct for SpotPricesHistoryReport
 type SpotPricesHistoryReport struct {
-	PricesHistory *FindSpotMarketPricesHistory200ResponsePricesHistory `json:"prices_history,omitempty"`
+	PricesHistory *SpotPricesDatapoints `json:"prices_history,omitempty"`
 }
 
 // NewSpotPricesHistoryReport instantiates a new SpotPricesHistoryReport object
@@ -38,9 +38,9 @@ func NewSpotPricesHistoryReportWithDefaults() *SpotPricesHistoryReport {
 }
 
 // GetPricesHistory returns the PricesHistory field value if set, zero value otherwise.
-func (o *SpotPricesHistoryReport) GetPricesHistory() FindSpotMarketPricesHistory200ResponsePricesHistory {
+func (o *SpotPricesHistoryReport) GetPricesHistory() SpotPricesDatapoints {
 	if o == nil || isNil(o.PricesHistory) {
-		var ret FindSpotMarketPricesHistory200ResponsePricesHistory
+		var ret SpotPricesDatapoints
 		return ret
 	}
 	return *o.PricesHistory
@@ -48,7 +48,7 @@ func (o *SpotPricesHistoryReport) GetPricesHistory() FindSpotMarketPricesHistory
 
 // GetPricesHistoryOk returns a tuple with the PricesHistory field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SpotPricesHistoryReport) GetPricesHistoryOk() (*FindSpotMarketPricesHistory200ResponsePricesHistory, bool) {
+func (o *SpotPricesHistoryReport) GetPricesHistoryOk() (*SpotPricesDatapoints, bool) {
 	if o == nil || isNil(o.PricesHistory) {
 		return nil, false
 	}
@@ -64,8 +64,8 @@ func (o *SpotPricesHistoryReport) HasPricesHistory() bool {
 	return false
 }
 
-// SetPricesHistory gets a reference to the given FindSpotMarketPricesHistory200ResponsePricesHistory and assigns it to the PricesHistory field.
-func (o *SpotPricesHistoryReport) SetPricesHistory(v FindSpotMarketPricesHistory200ResponsePricesHistory) {
+// SetPricesHistory gets a reference to the given SpotPricesDatapoints and assigns it to the PricesHistory field.
+func (o *SpotPricesHistoryReport) SetPricesHistory(v SpotPricesDatapoints) {
 	o.PricesHistory = &v
 }
 

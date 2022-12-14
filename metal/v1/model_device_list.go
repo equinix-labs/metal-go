@@ -17,8 +17,8 @@ import (
 
 // DeviceList struct for DeviceList
 type DeviceList struct {
-	Devices []FindDeviceById200Response      `json:"devices,omitempty"`
-	Meta    *FindDeviceEvents200ResponseMeta `json:"meta,omitempty"`
+	Devices []Device `json:"devices,omitempty"`
+	Meta    *Meta    `json:"meta,omitempty"`
 }
 
 // NewDeviceList instantiates a new DeviceList object
@@ -39,9 +39,9 @@ func NewDeviceListWithDefaults() *DeviceList {
 }
 
 // GetDevices returns the Devices field value if set, zero value otherwise.
-func (o *DeviceList) GetDevices() []FindDeviceById200Response {
+func (o *DeviceList) GetDevices() []Device {
 	if o == nil || isNil(o.Devices) {
-		var ret []FindDeviceById200Response
+		var ret []Device
 		return ret
 	}
 	return o.Devices
@@ -49,7 +49,7 @@ func (o *DeviceList) GetDevices() []FindDeviceById200Response {
 
 // GetDevicesOk returns a tuple with the Devices field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DeviceList) GetDevicesOk() ([]FindDeviceById200Response, bool) {
+func (o *DeviceList) GetDevicesOk() ([]Device, bool) {
 	if o == nil || isNil(o.Devices) {
 		return nil, false
 	}
@@ -65,15 +65,15 @@ func (o *DeviceList) HasDevices() bool {
 	return false
 }
 
-// SetDevices gets a reference to the given []FindDeviceById200Response and assigns it to the Devices field.
-func (o *DeviceList) SetDevices(v []FindDeviceById200Response) {
+// SetDevices gets a reference to the given []Device and assigns it to the Devices field.
+func (o *DeviceList) SetDevices(v []Device) {
 	o.Devices = v
 }
 
 // GetMeta returns the Meta field value if set, zero value otherwise.
-func (o *DeviceList) GetMeta() FindDeviceEvents200ResponseMeta {
+func (o *DeviceList) GetMeta() Meta {
 	if o == nil || isNil(o.Meta) {
-		var ret FindDeviceEvents200ResponseMeta
+		var ret Meta
 		return ret
 	}
 	return *o.Meta
@@ -81,7 +81,7 @@ func (o *DeviceList) GetMeta() FindDeviceEvents200ResponseMeta {
 
 // GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DeviceList) GetMetaOk() (*FindDeviceEvents200ResponseMeta, bool) {
+func (o *DeviceList) GetMetaOk() (*Meta, bool) {
 	if o == nil || isNil(o.Meta) {
 		return nil, false
 	}
@@ -97,8 +97,8 @@ func (o *DeviceList) HasMeta() bool {
 	return false
 }
 
-// SetMeta gets a reference to the given FindDeviceEvents200ResponseMeta and assigns it to the Meta field.
-func (o *DeviceList) SetMeta(v FindDeviceEvents200ResponseMeta) {
+// SetMeta gets a reference to the given Meta and assigns it to the Meta field.
+func (o *DeviceList) SetMeta(v Meta) {
 	o.Meta = &v
 }
 

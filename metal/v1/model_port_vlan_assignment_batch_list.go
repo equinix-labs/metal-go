@@ -17,7 +17,7 @@ import (
 
 // PortVlanAssignmentBatchList struct for PortVlanAssignmentBatchList
 type PortVlanAssignmentBatchList struct {
-	Batches []FindPortVlanAssignmentBatches200ResponseBatchesInner `json:"batches,omitempty"`
+	Batches []PortVlanAssignmentBatch `json:"batches,omitempty"`
 }
 
 // NewPortVlanAssignmentBatchList instantiates a new PortVlanAssignmentBatchList object
@@ -38,9 +38,9 @@ func NewPortVlanAssignmentBatchListWithDefaults() *PortVlanAssignmentBatchList {
 }
 
 // GetBatches returns the Batches field value if set, zero value otherwise.
-func (o *PortVlanAssignmentBatchList) GetBatches() []FindPortVlanAssignmentBatches200ResponseBatchesInner {
+func (o *PortVlanAssignmentBatchList) GetBatches() []PortVlanAssignmentBatch {
 	if o == nil || isNil(o.Batches) {
-		var ret []FindPortVlanAssignmentBatches200ResponseBatchesInner
+		var ret []PortVlanAssignmentBatch
 		return ret
 	}
 	return o.Batches
@@ -48,7 +48,7 @@ func (o *PortVlanAssignmentBatchList) GetBatches() []FindPortVlanAssignmentBatch
 
 // GetBatchesOk returns a tuple with the Batches field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PortVlanAssignmentBatchList) GetBatchesOk() ([]FindPortVlanAssignmentBatches200ResponseBatchesInner, bool) {
+func (o *PortVlanAssignmentBatchList) GetBatchesOk() ([]PortVlanAssignmentBatch, bool) {
 	if o == nil || isNil(o.Batches) {
 		return nil, false
 	}
@@ -64,8 +64,8 @@ func (o *PortVlanAssignmentBatchList) HasBatches() bool {
 	return false
 }
 
-// SetBatches gets a reference to the given []FindPortVlanAssignmentBatches200ResponseBatchesInner and assigns it to the Batches field.
-func (o *PortVlanAssignmentBatchList) SetBatches(v []FindPortVlanAssignmentBatches200ResponseBatchesInner) {
+// SetBatches gets a reference to the given []PortVlanAssignmentBatch and assigns it to the Batches field.
+func (o *PortVlanAssignmentBatchList) SetBatches(v []PortVlanAssignmentBatch) {
 	o.Batches = v
 }
 

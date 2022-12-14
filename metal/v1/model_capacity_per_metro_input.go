@@ -17,7 +17,7 @@ import (
 
 // CapacityPerMetroInput struct for CapacityPerMetroInput
 type CapacityPerMetroInput struct {
-	Servers []CheckCapacityForMetroRequestServersInner `json:"servers,omitempty"`
+	Servers []MetroServerInfo `json:"servers,omitempty"`
 }
 
 // NewCapacityPerMetroInput instantiates a new CapacityPerMetroInput object
@@ -38,9 +38,9 @@ func NewCapacityPerMetroInputWithDefaults() *CapacityPerMetroInput {
 }
 
 // GetServers returns the Servers field value if set, zero value otherwise.
-func (o *CapacityPerMetroInput) GetServers() []CheckCapacityForMetroRequestServersInner {
+func (o *CapacityPerMetroInput) GetServers() []MetroServerInfo {
 	if o == nil || isNil(o.Servers) {
-		var ret []CheckCapacityForMetroRequestServersInner
+		var ret []MetroServerInfo
 		return ret
 	}
 	return o.Servers
@@ -48,7 +48,7 @@ func (o *CapacityPerMetroInput) GetServers() []CheckCapacityForMetroRequestServe
 
 // GetServersOk returns a tuple with the Servers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CapacityPerMetroInput) GetServersOk() ([]CheckCapacityForMetroRequestServersInner, bool) {
+func (o *CapacityPerMetroInput) GetServersOk() ([]MetroServerInfo, bool) {
 	if o == nil || isNil(o.Servers) {
 		return nil, false
 	}
@@ -64,8 +64,8 @@ func (o *CapacityPerMetroInput) HasServers() bool {
 	return false
 }
 
-// SetServers gets a reference to the given []CheckCapacityForMetroRequestServersInner and assigns it to the Servers field.
-func (o *CapacityPerMetroInput) SetServers(v []CheckCapacityForMetroRequestServersInner) {
+// SetServers gets a reference to the given []MetroServerInfo and assigns it to the Servers field.
+func (o *CapacityPerMetroInput) SetServers(v []MetroServerInfo) {
 	o.Servers = v
 }
 

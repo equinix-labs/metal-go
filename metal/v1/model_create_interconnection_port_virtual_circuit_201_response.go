@@ -18,21 +18,21 @@ import (
 
 // CreateInterconnectionPortVirtualCircuit201Response - struct for CreateInterconnectionPortVirtualCircuit201Response
 type CreateInterconnectionPortVirtualCircuit201Response struct {
-	GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf  *GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf
-	GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1 *GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1
+	VirtualCircuit    *VirtualCircuit
+	VrfVirtualCircuit *VrfVirtualCircuit
 }
 
-// GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOfAsCreateInterconnectionPortVirtualCircuit201Response is a convenience function that returns GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf wrapped in CreateInterconnectionPortVirtualCircuit201Response
-func GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOfAsCreateInterconnectionPortVirtualCircuit201Response(v *GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf) CreateInterconnectionPortVirtualCircuit201Response {
+// VirtualCircuitAsCreateInterconnectionPortVirtualCircuit201Response is a convenience function that returns VirtualCircuit wrapped in CreateInterconnectionPortVirtualCircuit201Response
+func VirtualCircuitAsCreateInterconnectionPortVirtualCircuit201Response(v *VirtualCircuit) CreateInterconnectionPortVirtualCircuit201Response {
 	return CreateInterconnectionPortVirtualCircuit201Response{
-		GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf: v,
+		VirtualCircuit: v,
 	}
 }
 
-// GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1AsCreateInterconnectionPortVirtualCircuit201Response is a convenience function that returns GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1 wrapped in CreateInterconnectionPortVirtualCircuit201Response
-func GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1AsCreateInterconnectionPortVirtualCircuit201Response(v *GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1) CreateInterconnectionPortVirtualCircuit201Response {
+// VrfVirtualCircuitAsCreateInterconnectionPortVirtualCircuit201Response is a convenience function that returns VrfVirtualCircuit wrapped in CreateInterconnectionPortVirtualCircuit201Response
+func VrfVirtualCircuitAsCreateInterconnectionPortVirtualCircuit201Response(v *VrfVirtualCircuit) CreateInterconnectionPortVirtualCircuit201Response {
 	return CreateInterconnectionPortVirtualCircuit201Response{
-		GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1: v,
+		VrfVirtualCircuit: v,
 	}
 }
 
@@ -40,36 +40,36 @@ func GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerA
 func (dst *CreateInterconnectionPortVirtualCircuit201Response) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
-	// try to unmarshal data into GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf
-	err = newStrictDecoder(data).Decode(&dst.GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf)
+	// try to unmarshal data into VirtualCircuit
+	err = newStrictDecoder(data).Decode(&dst.VirtualCircuit)
 	if err == nil {
-		jsonGetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf, _ := json.Marshal(dst.GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf)
-		if string(jsonGetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf) == "{}" { // empty struct
-			dst.GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf = nil
+		jsonVirtualCircuit, _ := json.Marshal(dst.VirtualCircuit)
+		if string(jsonVirtualCircuit) == "{}" { // empty struct
+			dst.VirtualCircuit = nil
 		} else {
 			match++
 		}
 	} else {
-		dst.GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf = nil
+		dst.VirtualCircuit = nil
 	}
 
-	// try to unmarshal data into GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1
-	err = newStrictDecoder(data).Decode(&dst.GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1)
+	// try to unmarshal data into VrfVirtualCircuit
+	err = newStrictDecoder(data).Decode(&dst.VrfVirtualCircuit)
 	if err == nil {
-		jsonGetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1, _ := json.Marshal(dst.GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1)
-		if string(jsonGetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1) == "{}" { // empty struct
-			dst.GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1 = nil
+		jsonVrfVirtualCircuit, _ := json.Marshal(dst.VrfVirtualCircuit)
+		if string(jsonVrfVirtualCircuit) == "{}" { // empty struct
+			dst.VrfVirtualCircuit = nil
 		} else {
 			match++
 		}
 	} else {
-		dst.GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1 = nil
+		dst.VrfVirtualCircuit = nil
 	}
 
 	if match > 1 { // more than 1 match
 		// reset to nil
-		dst.GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf = nil
-		dst.GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1 = nil
+		dst.VirtualCircuit = nil
+		dst.VrfVirtualCircuit = nil
 
 		return fmt.Errorf("data matches more than one schema in oneOf(CreateInterconnectionPortVirtualCircuit201Response)")
 	} else if match == 1 {
@@ -81,12 +81,12 @@ func (dst *CreateInterconnectionPortVirtualCircuit201Response) UnmarshalJSON(dat
 
 // Marshal data from the first non-nil pointers in the struct to JSON
 func (src CreateInterconnectionPortVirtualCircuit201Response) MarshalJSON() ([]byte, error) {
-	if src.GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf != nil {
-		return json.Marshal(&src.GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf)
+	if src.VirtualCircuit != nil {
+		return json.Marshal(&src.VirtualCircuit)
 	}
 
-	if src.GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1 != nil {
-		return json.Marshal(&src.GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1)
+	if src.VrfVirtualCircuit != nil {
+		return json.Marshal(&src.VrfVirtualCircuit)
 	}
 
 	return nil, nil // no data in oneOf schemas
@@ -97,12 +97,12 @@ func (obj *CreateInterconnectionPortVirtualCircuit201Response) GetActualInstance
 	if obj == nil {
 		return nil
 	}
-	if obj.GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf != nil {
-		return obj.GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf
+	if obj.VirtualCircuit != nil {
+		return obj.VirtualCircuit
 	}
 
-	if obj.GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1 != nil {
-		return obj.GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1
+	if obj.VrfVirtualCircuit != nil {
+		return obj.VrfVirtualCircuit
 	}
 
 	// all schemas are nil

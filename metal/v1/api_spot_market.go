@@ -24,19 +24,19 @@ import (
 type SpotMarketApiService service
 
 type ApiCreateSpotMarketRequestRequest struct {
-	ctx                            context.Context
-	ApiService                     *SpotMarketApiService
-	id                             string
-	createSpotMarketRequestRequest *CreateSpotMarketRequestRequest
+	ctx                          context.Context
+	ApiService                   *SpotMarketApiService
+	id                           string
+	spotMarketRequestCreateInput *SpotMarketRequestCreateInput
 }
 
 // Spot Market Request to create
-func (r ApiCreateSpotMarketRequestRequest) CreateSpotMarketRequestRequest(createSpotMarketRequestRequest CreateSpotMarketRequestRequest) ApiCreateSpotMarketRequestRequest {
-	r.createSpotMarketRequestRequest = &createSpotMarketRequestRequest
+func (r ApiCreateSpotMarketRequestRequest) SpotMarketRequestCreateInput(spotMarketRequestCreateInput SpotMarketRequestCreateInput) ApiCreateSpotMarketRequestRequest {
+	r.spotMarketRequestCreateInput = &spotMarketRequestCreateInput
 	return r
 }
 
-func (r ApiCreateSpotMarketRequestRequest) Execute() (*ListSpotMarketRequests200ResponseSpotMarketRequestsInner, *http.Response, error) {
+func (r ApiCreateSpotMarketRequestRequest) Execute() (*SpotMarketRequest, *http.Response, error) {
 	return r.ApiService.CreateSpotMarketRequestExecute(r)
 }
 
@@ -66,13 +66,13 @@ func (a *SpotMarketApiService) CreateSpotMarketRequest(ctx context.Context, id s
 }
 
 // Execute executes the request
-//  @return ListSpotMarketRequests200ResponseSpotMarketRequestsInner
-func (a *SpotMarketApiService) CreateSpotMarketRequestExecute(r ApiCreateSpotMarketRequestRequest) (*ListSpotMarketRequests200ResponseSpotMarketRequestsInner, *http.Response, error) {
+//  @return SpotMarketRequest
+func (a *SpotMarketApiService) CreateSpotMarketRequestExecute(r ApiCreateSpotMarketRequestRequest) (*SpotMarketRequest, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *ListSpotMarketRequests200ResponseSpotMarketRequestsInner
+		localVarReturnValue *SpotMarketRequest
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SpotMarketApiService.CreateSpotMarketRequest")
@@ -86,8 +86,8 @@ func (a *SpotMarketApiService) CreateSpotMarketRequestExecute(r ApiCreateSpotMar
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createSpotMarketRequestRequest == nil {
-		return localVarReturnValue, nil, reportError("createSpotMarketRequestRequest is required and must be specified")
+	if r.spotMarketRequestCreateInput == nil {
+		return localVarReturnValue, nil, reportError("spotMarketRequestCreateInput is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -108,7 +108,7 @@ func (a *SpotMarketApiService) CreateSpotMarketRequestExecute(r ApiCreateSpotMar
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createSpotMarketRequestRequest
+	localVarPostBody = r.spotMarketRequestCreateInput
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -146,7 +146,7 @@ func (a *SpotMarketApiService) CreateSpotMarketRequestExecute(r ApiCreateSpotMar
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -157,7 +157,7 @@ func (a *SpotMarketApiService) CreateSpotMarketRequestExecute(r ApiCreateSpotMar
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -168,7 +168,7 @@ func (a *SpotMarketApiService) CreateSpotMarketRequestExecute(r ApiCreateSpotMar
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -303,7 +303,7 @@ func (a *SpotMarketApiService) DeleteSpotMarketRequestExecute(r ApiDeleteSpotMar
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -314,7 +314,7 @@ func (a *SpotMarketApiService) DeleteSpotMarketRequestExecute(r ApiDeleteSpotMar
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -325,7 +325,7 @@ func (a *SpotMarketApiService) DeleteSpotMarketRequestExecute(r ApiDeleteSpotMar
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -359,7 +359,7 @@ func (r ApiFindMetroSpotMarketPricesRequest) Plan(plan string) ApiFindMetroSpotM
 	return r
 }
 
-func (r ApiFindMetroSpotMarketPricesRequest) Execute() (*FindMetroSpotMarketPrices200Response, *http.Response, error) {
+func (r ApiFindMetroSpotMarketPricesRequest) Execute() (*SpotMarketPricesPerMetroList, *http.Response, error) {
 	return r.ApiService.FindMetroSpotMarketPricesExecute(r)
 }
 
@@ -379,13 +379,13 @@ func (a *SpotMarketApiService) FindMetroSpotMarketPrices(ctx context.Context) Ap
 }
 
 // Execute executes the request
-//  @return FindMetroSpotMarketPrices200Response
-func (a *SpotMarketApiService) FindMetroSpotMarketPricesExecute(r ApiFindMetroSpotMarketPricesRequest) (*FindMetroSpotMarketPrices200Response, *http.Response, error) {
+//  @return SpotMarketPricesPerMetroList
+func (a *SpotMarketApiService) FindMetroSpotMarketPricesExecute(r ApiFindMetroSpotMarketPricesRequest) (*SpotMarketPricesPerMetroList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *FindMetroSpotMarketPrices200Response
+		localVarReturnValue *SpotMarketPricesPerMetroList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SpotMarketApiService.FindMetroSpotMarketPrices")
@@ -459,7 +459,7 @@ func (a *SpotMarketApiService) FindMetroSpotMarketPricesExecute(r ApiFindMetroSp
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -470,7 +470,7 @@ func (a *SpotMarketApiService) FindMetroSpotMarketPricesExecute(r ApiFindMetroSp
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -513,7 +513,7 @@ func (r ApiFindSpotMarketPricesRequest) Plan(plan string) ApiFindSpotMarketPrice
 	return r
 }
 
-func (r ApiFindSpotMarketPricesRequest) Execute() (*FindSpotMarketPrices200Response, *http.Response, error) {
+func (r ApiFindSpotMarketPricesRequest) Execute() (*SpotMarketPricesList, *http.Response, error) {
 	return r.ApiService.FindSpotMarketPricesExecute(r)
 }
 
@@ -533,13 +533,13 @@ func (a *SpotMarketApiService) FindSpotMarketPrices(ctx context.Context) ApiFind
 }
 
 // Execute executes the request
-//  @return FindSpotMarketPrices200Response
-func (a *SpotMarketApiService) FindSpotMarketPricesExecute(r ApiFindSpotMarketPricesRequest) (*FindSpotMarketPrices200Response, *http.Response, error) {
+//  @return SpotMarketPricesList
+func (a *SpotMarketApiService) FindSpotMarketPricesExecute(r ApiFindSpotMarketPricesRequest) (*SpotMarketPricesList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *FindSpotMarketPrices200Response
+		localVarReturnValue *SpotMarketPricesList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SpotMarketApiService.FindSpotMarketPrices")
@@ -613,7 +613,7 @@ func (a *SpotMarketApiService) FindSpotMarketPricesExecute(r ApiFindSpotMarketPr
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -624,7 +624,7 @@ func (a *SpotMarketApiService) FindSpotMarketPricesExecute(r ApiFindSpotMarketPr
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -688,7 +688,7 @@ func (r ApiFindSpotMarketPricesHistoryRequest) Metro(metro string) ApiFindSpotMa
 	return r
 }
 
-func (r ApiFindSpotMarketPricesHistoryRequest) Execute() (*FindSpotMarketPricesHistory200Response, *http.Response, error) {
+func (r ApiFindSpotMarketPricesHistoryRequest) Execute() (*SpotPricesHistoryReport, *http.Response, error) {
 	return r.ApiService.FindSpotMarketPricesHistoryExecute(r)
 }
 
@@ -710,13 +710,13 @@ func (a *SpotMarketApiService) FindSpotMarketPricesHistory(ctx context.Context) 
 }
 
 // Execute executes the request
-//  @return FindSpotMarketPricesHistory200Response
-func (a *SpotMarketApiService) FindSpotMarketPricesHistoryExecute(r ApiFindSpotMarketPricesHistoryRequest) (*FindSpotMarketPricesHistory200Response, *http.Response, error) {
+//  @return SpotPricesHistoryReport
+func (a *SpotMarketApiService) FindSpotMarketPricesHistoryExecute(r ApiFindSpotMarketPricesHistoryRequest) (*SpotPricesHistoryReport, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *FindSpotMarketPricesHistory200Response
+		localVarReturnValue *SpotPricesHistoryReport
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SpotMarketApiService.FindSpotMarketPricesHistory")
@@ -803,7 +803,7 @@ func (a *SpotMarketApiService) FindSpotMarketPricesHistoryExecute(r ApiFindSpotM
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -814,7 +814,7 @@ func (a *SpotMarketApiService) FindSpotMarketPricesHistoryExecute(r ApiFindSpotM
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -858,7 +858,7 @@ func (r ApiFindSpotMarketRequestByIdRequest) Exclude(exclude []string) ApiFindSp
 	return r
 }
 
-func (r ApiFindSpotMarketRequestByIdRequest) Execute() (*ListSpotMarketRequests200ResponseSpotMarketRequestsInner, *http.Response, error) {
+func (r ApiFindSpotMarketRequestByIdRequest) Execute() (*SpotMarketRequest, *http.Response, error) {
 	return r.ApiService.FindSpotMarketRequestByIdExecute(r)
 }
 
@@ -880,13 +880,13 @@ func (a *SpotMarketApiService) FindSpotMarketRequestById(ctx context.Context, id
 }
 
 // Execute executes the request
-//  @return ListSpotMarketRequests200ResponseSpotMarketRequestsInner
-func (a *SpotMarketApiService) FindSpotMarketRequestByIdExecute(r ApiFindSpotMarketRequestByIdRequest) (*ListSpotMarketRequests200ResponseSpotMarketRequestsInner, *http.Response, error) {
+//  @return SpotMarketRequest
+func (a *SpotMarketApiService) FindSpotMarketRequestByIdExecute(r ApiFindSpotMarketRequestByIdRequest) (*SpotMarketRequest, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *ListSpotMarketRequests200ResponseSpotMarketRequestsInner
+		localVarReturnValue *SpotMarketRequest
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SpotMarketApiService.FindSpotMarketRequestById")
@@ -961,7 +961,7 @@ func (a *SpotMarketApiService) FindSpotMarketRequestByIdExecute(r ApiFindSpotMar
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -972,7 +972,7 @@ func (a *SpotMarketApiService) FindSpotMarketRequestByIdExecute(r ApiFindSpotMar
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -983,7 +983,7 @@ func (a *SpotMarketApiService) FindSpotMarketRequestByIdExecute(r ApiFindSpotMar
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1013,7 +1013,7 @@ type ApiListSpotMarketRequestsRequest struct {
 	id         string
 }
 
-func (r ApiListSpotMarketRequestsRequest) Execute() (*ListSpotMarketRequests200Response, *http.Response, error) {
+func (r ApiListSpotMarketRequestsRequest) Execute() (*SpotMarketRequestList, *http.Response, error) {
 	return r.ApiService.ListSpotMarketRequestsExecute(r)
 }
 
@@ -1035,13 +1035,13 @@ func (a *SpotMarketApiService) ListSpotMarketRequests(ctx context.Context, id st
 }
 
 // Execute executes the request
-//  @return ListSpotMarketRequests200Response
-func (a *SpotMarketApiService) ListSpotMarketRequestsExecute(r ApiListSpotMarketRequestsRequest) (*ListSpotMarketRequests200Response, *http.Response, error) {
+//  @return SpotMarketRequestList
+func (a *SpotMarketApiService) ListSpotMarketRequestsExecute(r ApiListSpotMarketRequestsRequest) (*SpotMarketRequestList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *ListSpotMarketRequests200Response
+		localVarReturnValue *SpotMarketRequestList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SpotMarketApiService.ListSpotMarketRequests")
@@ -1110,7 +1110,7 @@ func (a *SpotMarketApiService) ListSpotMarketRequestsExecute(r ApiListSpotMarket
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1121,7 +1121,7 @@ func (a *SpotMarketApiService) ListSpotMarketRequestsExecute(r ApiListSpotMarket
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

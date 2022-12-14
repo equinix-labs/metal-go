@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 ## CreateLicense
 
-> FindLicenseById200Response CreateLicense(ctx, id).CreateLicenseRequest(createLicenseRequest).Execute()
+> License CreateLicense(ctx, id).LicenseCreateInput(licenseCreateInput).Execute()
 
 Create a License
 
@@ -34,16 +34,16 @@ import (
 
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Project UUID
-    createLicenseRequest := *openapiclient.NewCreateLicenseRequest() // CreateLicenseRequest | License to create
+    licenseCreateInput := *openapiclient.NewLicenseCreateInput() // LicenseCreateInput | License to create
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.LicensesApi.CreateLicense(context.Background(), id).CreateLicenseRequest(createLicenseRequest).Execute()
+    resp, r, err := apiClient.LicensesApi.CreateLicense(context.Background(), id).LicenseCreateInput(licenseCreateInput).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LicensesApi.CreateLicense``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateLicense`: FindLicenseById200Response
+    // response from `CreateLicense`: License
     fmt.Fprintf(os.Stdout, "Response from `LicensesApi.CreateLicense`: %v\n", resp)
 }
 ```
@@ -64,11 +64,11 @@ Other parameters are passed through a pointer to a apiCreateLicenseRequest struc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **createLicenseRequest** | [**CreateLicenseRequest**](CreateLicenseRequest.md) | License to create | 
+ **licenseCreateInput** | [**LicenseCreateInput**](LicenseCreateInput.md) | License to create | 
 
 ### Return type
 
-[**FindLicenseById200Response**](FindLicenseById200Response.md)
+[**License**](License.md)
 
 ### Authorization
 
@@ -154,7 +154,7 @@ Name | Type | Description  | Notes
 
 ## FindLicenseById
 
-> FindLicenseById200Response FindLicenseById(ctx, id).Include(include).Exclude(exclude).Execute()
+> License FindLicenseById(ctx, id).Include(include).Exclude(exclude).Execute()
 
 Retrieve a license
 
@@ -184,7 +184,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `LicensesApi.FindLicenseById``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindLicenseById`: FindLicenseById200Response
+    // response from `FindLicenseById`: License
     fmt.Fprintf(os.Stdout, "Response from `LicensesApi.FindLicenseById`: %v\n", resp)
 }
 ```
@@ -210,7 +210,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FindLicenseById200Response**](FindLicenseById200Response.md)
+[**License**](License.md)
 
 ### Authorization
 
@@ -228,7 +228,7 @@ Name | Type | Description  | Notes
 
 ## FindProjectLicenses
 
-> FindProjectLicenses200Response FindProjectLicenses(ctx, id).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
+> LicenseList FindProjectLicenses(ctx, id).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
 
 Retrieve all licenses
 
@@ -260,7 +260,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `LicensesApi.FindProjectLicenses``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindProjectLicenses`: FindProjectLicenses200Response
+    // response from `FindProjectLicenses`: LicenseList
     fmt.Fprintf(os.Stdout, "Response from `LicensesApi.FindProjectLicenses`: %v\n", resp)
 }
 ```
@@ -288,7 +288,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FindProjectLicenses200Response**](FindProjectLicenses200Response.md)
+[**LicenseList**](LicenseList.md)
 
 ### Authorization
 
@@ -306,7 +306,7 @@ Name | Type | Description  | Notes
 
 ## UpdateLicense
 
-> FindLicenseById200Response UpdateLicense(ctx, id).UpdateLicenseRequest(updateLicenseRequest).Execute()
+> License UpdateLicense(ctx, id).LicenseUpdateInput(licenseUpdateInput).Execute()
 
 Update the license
 
@@ -326,16 +326,16 @@ import (
 
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | License UUID
-    updateLicenseRequest := *openapiclient.NewUpdateLicenseRequest() // UpdateLicenseRequest | License to update
+    licenseUpdateInput := *openapiclient.NewLicenseUpdateInput() // LicenseUpdateInput | License to update
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.LicensesApi.UpdateLicense(context.Background(), id).UpdateLicenseRequest(updateLicenseRequest).Execute()
+    resp, r, err := apiClient.LicensesApi.UpdateLicense(context.Background(), id).LicenseUpdateInput(licenseUpdateInput).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LicensesApi.UpdateLicense``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateLicense`: FindLicenseById200Response
+    // response from `UpdateLicense`: License
     fmt.Fprintf(os.Stdout, "Response from `LicensesApi.UpdateLicense`: %v\n", resp)
 }
 ```
@@ -356,11 +356,11 @@ Other parameters are passed through a pointer to a apiUpdateLicenseRequest struc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateLicenseRequest** | [**UpdateLicenseRequest**](UpdateLicenseRequest.md) | License to update | 
+ **licenseUpdateInput** | [**LicenseUpdateInput**](LicenseUpdateInput.md) | License to update | 
 
 ### Return type
 
-[**FindLicenseById200Response**](FindLicenseById200Response.md)
+[**License**](License.md)
 
 ### Authorization
 

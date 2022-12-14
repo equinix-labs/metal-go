@@ -17,7 +17,7 @@ import (
 
 // PortConvertLayer3Input struct for PortConvertLayer3Input
 type PortConvertLayer3Input struct {
-	RequestIps []ConvertLayer3RequestRequestIpsInner `json:"request_ips,omitempty"`
+	RequestIps []PortConvertLayer3InputRequestIpsInner `json:"request_ips,omitempty"`
 }
 
 // NewPortConvertLayer3Input instantiates a new PortConvertLayer3Input object
@@ -38,9 +38,9 @@ func NewPortConvertLayer3InputWithDefaults() *PortConvertLayer3Input {
 }
 
 // GetRequestIps returns the RequestIps field value if set, zero value otherwise.
-func (o *PortConvertLayer3Input) GetRequestIps() []ConvertLayer3RequestRequestIpsInner {
+func (o *PortConvertLayer3Input) GetRequestIps() []PortConvertLayer3InputRequestIpsInner {
 	if o == nil || isNil(o.RequestIps) {
-		var ret []ConvertLayer3RequestRequestIpsInner
+		var ret []PortConvertLayer3InputRequestIpsInner
 		return ret
 	}
 	return o.RequestIps
@@ -48,7 +48,7 @@ func (o *PortConvertLayer3Input) GetRequestIps() []ConvertLayer3RequestRequestIp
 
 // GetRequestIpsOk returns a tuple with the RequestIps field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PortConvertLayer3Input) GetRequestIpsOk() ([]ConvertLayer3RequestRequestIpsInner, bool) {
+func (o *PortConvertLayer3Input) GetRequestIpsOk() ([]PortConvertLayer3InputRequestIpsInner, bool) {
 	if o == nil || isNil(o.RequestIps) {
 		return nil, false
 	}
@@ -64,8 +64,8 @@ func (o *PortConvertLayer3Input) HasRequestIps() bool {
 	return false
 }
 
-// SetRequestIps gets a reference to the given []ConvertLayer3RequestRequestIpsInner and assigns it to the RequestIps field.
-func (o *PortConvertLayer3Input) SetRequestIps(v []ConvertLayer3RequestRequestIpsInner) {
+// SetRequestIps gets a reference to the given []PortConvertLayer3InputRequestIpsInner and assigns it to the RequestIps field.
+func (o *PortConvertLayer3Input) SetRequestIps(v []PortConvertLayer3InputRequestIpsInner) {
 	o.RequestIps = v
 }
 

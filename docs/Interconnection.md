@@ -6,15 +6,15 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ContactEmail** | Pointer to **string** |  | [optional] 
 **Description** | Pointer to **string** |  | [optional] 
-**Facility** | Pointer to [**FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
+**Facility** | Pointer to [**Href**](Href.md) |  | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
-**Metro** | Pointer to [**GetInterconnection200ResponseMetro**](GetInterconnection200ResponseMetro.md) |  | [optional] 
+**Metro** | Pointer to [**InterconnectionMetro**](InterconnectionMetro.md) |  | [optional] 
 **Mode** | Pointer to **string** | The mode of the interconnection (only relevant to Dedicated Ports). Shared connections won&#39;t have this field. Can be either &#39;standard&#39; or &#39;tunnel&#39;.   The default mode of an interconnection on a Dedicated Port is &#39;standard&#39;. The mode can only be changed when there are no associated virtual circuits on the interconnection.   In tunnel mode, an 802.1q tunnel is added to a port to send/receive double tagged packets from server instances. | [optional] 
 **Name** | Pointer to **string** |  | [optional] 
-**Organization** | Pointer to [**FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
-**Ports** | Pointer to [**[]GetInterconnection200ResponsePortsInner**](GetInterconnection200ResponsePortsInner.md) | For Fabric VCs, these represent Virtual Port(s) created for the interconnection. For dedicated interconnections, these represent the Dedicated Port(s). | [optional] 
+**Organization** | Pointer to [**Href**](Href.md) |  | [optional] 
+**Ports** | Pointer to [**[]InterconnectionPort**](InterconnectionPort.md) | For Fabric VCs, these represent Virtual Port(s) created for the interconnection. For dedicated interconnections, these represent the Dedicated Port(s). | [optional] 
 **Redundancy** | Pointer to **string** | Either &#39;primary&#39;, meaning a single interconnection, or &#39;redundant&#39;, meaning a redundant interconnection. | [optional] 
-**ServiceTokens** | Pointer to [**[]GetInterconnection200ResponseServiceTokensInner**](GetInterconnection200ResponseServiceTokensInner.md) | For Fabric VCs (Metal Billed), this will show details of the A-Side service tokens issued for the interconnection. For Fabric VCs (Fabric Billed), this will show the details of the Z-Side service tokens issued for the interconnection. Dedicated interconnections will not have any service tokens issued. There will be one per interconnection, so for redundant interconnections, there should be two service tokens issued. | [optional] 
+**ServiceTokens** | Pointer to [**[]FabricServiceToken**](FabricServiceToken.md) | For Fabric VCs (Metal Billed), this will show details of the A-Side service tokens issued for the interconnection. For Fabric VCs (Fabric Billed), this will show the details of the Z-Side service tokens issued for the interconnection. Dedicated interconnections will not have any service tokens issued. There will be one per interconnection, so for redundant interconnections, there should be two service tokens issued. | [optional] 
 **Speed** | Pointer to **int32** | For interconnections on Dedicated Ports and shared connections, this represents the interconnection&#39;s speed in bps. For Fabric VCs, this field refers to the maximum speed of the interconnection in bps. This value will default to 10Gbps for Fabric VCs (Fabric Billed). | [optional] 
 **Status** | Pointer to **string** |  | [optional] 
 **Tags** | Pointer to **[]string** |  | [optional] 
@@ -92,20 +92,20 @@ HasDescription returns a boolean if a field has been set.
 
 ### GetFacility
 
-`func (o *Interconnection) GetFacility() FindBatchById200ResponseDevicesInner`
+`func (o *Interconnection) GetFacility() Href`
 
 GetFacility returns the Facility field if non-nil, zero value otherwise.
 
 ### GetFacilityOk
 
-`func (o *Interconnection) GetFacilityOk() (*FindBatchById200ResponseDevicesInner, bool)`
+`func (o *Interconnection) GetFacilityOk() (*Href, bool)`
 
 GetFacilityOk returns a tuple with the Facility field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFacility
 
-`func (o *Interconnection) SetFacility(v FindBatchById200ResponseDevicesInner)`
+`func (o *Interconnection) SetFacility(v Href)`
 
 SetFacility sets Facility field to given value.
 
@@ -142,20 +142,20 @@ HasId returns a boolean if a field has been set.
 
 ### GetMetro
 
-`func (o *Interconnection) GetMetro() GetInterconnection200ResponseMetro`
+`func (o *Interconnection) GetMetro() InterconnectionMetro`
 
 GetMetro returns the Metro field if non-nil, zero value otherwise.
 
 ### GetMetroOk
 
-`func (o *Interconnection) GetMetroOk() (*GetInterconnection200ResponseMetro, bool)`
+`func (o *Interconnection) GetMetroOk() (*InterconnectionMetro, bool)`
 
 GetMetroOk returns a tuple with the Metro field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMetro
 
-`func (o *Interconnection) SetMetro(v GetInterconnection200ResponseMetro)`
+`func (o *Interconnection) SetMetro(v InterconnectionMetro)`
 
 SetMetro sets Metro field to given value.
 
@@ -217,20 +217,20 @@ HasName returns a boolean if a field has been set.
 
 ### GetOrganization
 
-`func (o *Interconnection) GetOrganization() FindBatchById200ResponseDevicesInner`
+`func (o *Interconnection) GetOrganization() Href`
 
 GetOrganization returns the Organization field if non-nil, zero value otherwise.
 
 ### GetOrganizationOk
 
-`func (o *Interconnection) GetOrganizationOk() (*FindBatchById200ResponseDevicesInner, bool)`
+`func (o *Interconnection) GetOrganizationOk() (*Href, bool)`
 
 GetOrganizationOk returns a tuple with the Organization field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOrganization
 
-`func (o *Interconnection) SetOrganization(v FindBatchById200ResponseDevicesInner)`
+`func (o *Interconnection) SetOrganization(v Href)`
 
 SetOrganization sets Organization field to given value.
 
@@ -242,20 +242,20 @@ HasOrganization returns a boolean if a field has been set.
 
 ### GetPorts
 
-`func (o *Interconnection) GetPorts() []GetInterconnection200ResponsePortsInner`
+`func (o *Interconnection) GetPorts() []InterconnectionPort`
 
 GetPorts returns the Ports field if non-nil, zero value otherwise.
 
 ### GetPortsOk
 
-`func (o *Interconnection) GetPortsOk() (*[]GetInterconnection200ResponsePortsInner, bool)`
+`func (o *Interconnection) GetPortsOk() (*[]InterconnectionPort, bool)`
 
 GetPortsOk returns a tuple with the Ports field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPorts
 
-`func (o *Interconnection) SetPorts(v []GetInterconnection200ResponsePortsInner)`
+`func (o *Interconnection) SetPorts(v []InterconnectionPort)`
 
 SetPorts sets Ports field to given value.
 
@@ -292,20 +292,20 @@ HasRedundancy returns a boolean if a field has been set.
 
 ### GetServiceTokens
 
-`func (o *Interconnection) GetServiceTokens() []GetInterconnection200ResponseServiceTokensInner`
+`func (o *Interconnection) GetServiceTokens() []FabricServiceToken`
 
 GetServiceTokens returns the ServiceTokens field if non-nil, zero value otherwise.
 
 ### GetServiceTokensOk
 
-`func (o *Interconnection) GetServiceTokensOk() (*[]GetInterconnection200ResponseServiceTokensInner, bool)`
+`func (o *Interconnection) GetServiceTokensOk() (*[]FabricServiceToken, bool)`
 
 GetServiceTokensOk returns a tuple with the ServiceTokens field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetServiceTokens
 
-`func (o *Interconnection) SetServiceTokens(v []GetInterconnection200ResponseServiceTokensInner)`
+`func (o *Interconnection) SetServiceTokens(v []FabricServiceToken)`
 
 SetServiceTokens sets ServiceTokens field to given value.
 

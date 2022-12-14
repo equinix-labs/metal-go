@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 ## RequestSuppert
 
-> RequestSuppert(ctx).RequestSuppertRequest(requestSuppertRequest).Execute()
+> RequestSuppert(ctx).SupportRequestInput(supportRequestInput).Execute()
 
 Create a support ticket
 
@@ -29,11 +29,11 @@ import (
 )
 
 func main() {
-    requestSuppertRequest := *openapiclient.NewRequestSuppertRequest("Message_example", "Subject_example") // RequestSuppertRequest | Support Request to create
+    supportRequestInput := *openapiclient.NewSupportRequestInput("Message_example", "Subject_example") // SupportRequestInput | Support Request to create
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.SupportRequestApi.RequestSuppert(context.Background()).RequestSuppertRequest(requestSuppertRequest).Execute()
+    resp, r, err := apiClient.SupportRequestApi.RequestSuppert(context.Background()).SupportRequestInput(supportRequestInput).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SupportRequestApi.RequestSuppert``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -52,7 +52,7 @@ Other parameters are passed through a pointer to a apiRequestSuppertRequest stru
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **requestSuppertRequest** | [**RequestSuppertRequest**](RequestSuppertRequest.md) | Support Request to create | 
+ **supportRequestInput** | [**SupportRequestInput**](SupportRequestInput.md) | Support Request to create | 
 
 ### Return type
 

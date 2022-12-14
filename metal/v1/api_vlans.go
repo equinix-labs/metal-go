@@ -24,19 +24,19 @@ import (
 type VLANsApiService service
 
 type ApiCreateVirtualNetworkRequest struct {
-	ctx                         context.Context
-	ApiService                  *VLANsApiService
-	id                          string
-	createVirtualNetworkRequest *CreateVirtualNetworkRequest
+	ctx                       context.Context
+	ApiService                *VLANsApiService
+	id                        string
+	virtualNetworkCreateInput *VirtualNetworkCreateInput
 }
 
 // Virtual Network to create
-func (r ApiCreateVirtualNetworkRequest) CreateVirtualNetworkRequest(createVirtualNetworkRequest CreateVirtualNetworkRequest) ApiCreateVirtualNetworkRequest {
-	r.createVirtualNetworkRequest = &createVirtualNetworkRequest
+func (r ApiCreateVirtualNetworkRequest) VirtualNetworkCreateInput(virtualNetworkCreateInput VirtualNetworkCreateInput) ApiCreateVirtualNetworkRequest {
+	r.virtualNetworkCreateInput = &virtualNetworkCreateInput
 	return r
 }
 
-func (r ApiCreateVirtualNetworkRequest) Execute() (*FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetwork, *http.Response, error) {
+func (r ApiCreateVirtualNetworkRequest) Execute() (*VirtualNetwork, *http.Response, error) {
 	return r.ApiService.CreateVirtualNetworkExecute(r)
 }
 
@@ -58,13 +58,13 @@ func (a *VLANsApiService) CreateVirtualNetwork(ctx context.Context, id string) A
 }
 
 // Execute executes the request
-//  @return FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetwork
-func (a *VLANsApiService) CreateVirtualNetworkExecute(r ApiCreateVirtualNetworkRequest) (*FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetwork, *http.Response, error) {
+//  @return VirtualNetwork
+func (a *VLANsApiService) CreateVirtualNetworkExecute(r ApiCreateVirtualNetworkRequest) (*VirtualNetwork, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetwork
+		localVarReturnValue *VirtualNetwork
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VLANsApiService.CreateVirtualNetwork")
@@ -78,8 +78,8 @@ func (a *VLANsApiService) CreateVirtualNetworkExecute(r ApiCreateVirtualNetworkR
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createVirtualNetworkRequest == nil {
-		return localVarReturnValue, nil, reportError("createVirtualNetworkRequest is required and must be specified")
+	if r.virtualNetworkCreateInput == nil {
+		return localVarReturnValue, nil, reportError("virtualNetworkCreateInput is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -100,7 +100,7 @@ func (a *VLANsApiService) CreateVirtualNetworkExecute(r ApiCreateVirtualNetworkR
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createVirtualNetworkRequest
+	localVarPostBody = r.virtualNetworkCreateInput
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -138,7 +138,7 @@ func (a *VLANsApiService) CreateVirtualNetworkExecute(r ApiCreateVirtualNetworkR
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -149,7 +149,7 @@ func (a *VLANsApiService) CreateVirtualNetworkExecute(r ApiCreateVirtualNetworkR
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -160,7 +160,7 @@ func (a *VLANsApiService) CreateVirtualNetworkExecute(r ApiCreateVirtualNetworkR
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -171,7 +171,7 @@ func (a *VLANsApiService) CreateVirtualNetworkExecute(r ApiCreateVirtualNetworkR
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -201,7 +201,7 @@ type ApiDeleteVirtualNetworkRequest struct {
 	id         string
 }
 
-func (r ApiDeleteVirtualNetworkRequest) Execute() (*FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetwork, *http.Response, error) {
+func (r ApiDeleteVirtualNetworkRequest) Execute() (*VirtualNetwork, *http.Response, error) {
 	return r.ApiService.DeleteVirtualNetworkExecute(r)
 }
 
@@ -223,13 +223,13 @@ func (a *VLANsApiService) DeleteVirtualNetwork(ctx context.Context, id string) A
 }
 
 // Execute executes the request
-//  @return FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetwork
-func (a *VLANsApiService) DeleteVirtualNetworkExecute(r ApiDeleteVirtualNetworkRequest) (*FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetwork, *http.Response, error) {
+//  @return VirtualNetwork
+func (a *VLANsApiService) DeleteVirtualNetworkExecute(r ApiDeleteVirtualNetworkRequest) (*VirtualNetwork, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodDelete
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetwork
+		localVarReturnValue *VirtualNetwork
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VLANsApiService.DeleteVirtualNetwork")
@@ -298,7 +298,7 @@ func (a *VLANsApiService) DeleteVirtualNetworkExecute(r ApiDeleteVirtualNetworkR
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -309,7 +309,7 @@ func (a *VLANsApiService) DeleteVirtualNetworkExecute(r ApiDeleteVirtualNetworkR
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -320,7 +320,7 @@ func (a *VLANsApiService) DeleteVirtualNetworkExecute(r ApiDeleteVirtualNetworkR
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -331,7 +331,7 @@ func (a *VLANsApiService) DeleteVirtualNetworkExecute(r ApiDeleteVirtualNetworkR
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -389,7 +389,7 @@ func (r ApiFindVirtualNetworksRequest) Metro(metro string) ApiFindVirtualNetwork
 	return r
 }
 
-func (r ApiFindVirtualNetworksRequest) Execute() (*FindVirtualNetworks200Response, *http.Response, error) {
+func (r ApiFindVirtualNetworksRequest) Execute() (*VirtualNetworkList, *http.Response, error) {
 	return r.ApiService.FindVirtualNetworksExecute(r)
 }
 
@@ -411,13 +411,13 @@ func (a *VLANsApiService) FindVirtualNetworks(ctx context.Context, id string) Ap
 }
 
 // Execute executes the request
-//  @return FindVirtualNetworks200Response
-func (a *VLANsApiService) FindVirtualNetworksExecute(r ApiFindVirtualNetworksRequest) (*FindVirtualNetworks200Response, *http.Response, error) {
+//  @return VirtualNetworkList
+func (a *VLANsApiService) FindVirtualNetworksExecute(r ApiFindVirtualNetworksRequest) (*VirtualNetworkList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *FindVirtualNetworks200Response
+		localVarReturnValue *VirtualNetworkList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VLANsApiService.FindVirtualNetworks")
@@ -498,7 +498,7 @@ func (a *VLANsApiService) FindVirtualNetworksExecute(r ApiFindVirtualNetworksReq
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -509,7 +509,7 @@ func (a *VLANsApiService) FindVirtualNetworksExecute(r ApiFindVirtualNetworksReq
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -520,7 +520,7 @@ func (a *VLANsApiService) FindVirtualNetworksExecute(r ApiFindVirtualNetworksReq
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -550,7 +550,7 @@ type ApiGetVirtualNetworkRequest struct {
 	id         string
 }
 
-func (r ApiGetVirtualNetworkRequest) Execute() (*FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetwork, *http.Response, error) {
+func (r ApiGetVirtualNetworkRequest) Execute() (*VirtualNetwork, *http.Response, error) {
 	return r.ApiService.GetVirtualNetworkExecute(r)
 }
 
@@ -572,13 +572,13 @@ func (a *VLANsApiService) GetVirtualNetwork(ctx context.Context, id string) ApiG
 }
 
 // Execute executes the request
-//  @return FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetwork
-func (a *VLANsApiService) GetVirtualNetworkExecute(r ApiGetVirtualNetworkRequest) (*FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetwork, *http.Response, error) {
+//  @return VirtualNetwork
+func (a *VLANsApiService) GetVirtualNetworkExecute(r ApiGetVirtualNetworkRequest) (*VirtualNetwork, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetwork
+		localVarReturnValue *VirtualNetwork
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VLANsApiService.GetVirtualNetwork")
@@ -647,7 +647,7 @@ func (a *VLANsApiService) GetVirtualNetworkExecute(r ApiGetVirtualNetworkRequest
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -658,7 +658,7 @@ func (a *VLANsApiService) GetVirtualNetworkExecute(r ApiGetVirtualNetworkRequest
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -669,7 +669,7 @@ func (a *VLANsApiService) GetVirtualNetworkExecute(r ApiGetVirtualNetworkRequest
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -680,7 +680,7 @@ func (a *VLANsApiService) GetVirtualNetworkExecute(r ApiGetVirtualNetworkRequest
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

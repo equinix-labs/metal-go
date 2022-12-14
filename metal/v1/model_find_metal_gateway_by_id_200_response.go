@@ -18,21 +18,21 @@ import (
 
 // FindMetalGatewayById200Response - struct for FindMetalGatewayById200Response
 type FindMetalGatewayById200Response struct {
-	FindMetalGatewayById200ResponseOneOf  *FindMetalGatewayById200ResponseOneOf
-	FindMetalGatewayById200ResponseOneOf1 *FindMetalGatewayById200ResponseOneOf1
+	MetalGateway    *MetalGateway
+	VrfMetalGateway *VrfMetalGateway
 }
 
-// FindMetalGatewayById200ResponseOneOfAsFindMetalGatewayById200Response is a convenience function that returns FindMetalGatewayById200ResponseOneOf wrapped in FindMetalGatewayById200Response
-func FindMetalGatewayById200ResponseOneOfAsFindMetalGatewayById200Response(v *FindMetalGatewayById200ResponseOneOf) FindMetalGatewayById200Response {
+// MetalGatewayAsFindMetalGatewayById200Response is a convenience function that returns MetalGateway wrapped in FindMetalGatewayById200Response
+func MetalGatewayAsFindMetalGatewayById200Response(v *MetalGateway) FindMetalGatewayById200Response {
 	return FindMetalGatewayById200Response{
-		FindMetalGatewayById200ResponseOneOf: v,
+		MetalGateway: v,
 	}
 }
 
-// FindMetalGatewayById200ResponseOneOf1AsFindMetalGatewayById200Response is a convenience function that returns FindMetalGatewayById200ResponseOneOf1 wrapped in FindMetalGatewayById200Response
-func FindMetalGatewayById200ResponseOneOf1AsFindMetalGatewayById200Response(v *FindMetalGatewayById200ResponseOneOf1) FindMetalGatewayById200Response {
+// VrfMetalGatewayAsFindMetalGatewayById200Response is a convenience function that returns VrfMetalGateway wrapped in FindMetalGatewayById200Response
+func VrfMetalGatewayAsFindMetalGatewayById200Response(v *VrfMetalGateway) FindMetalGatewayById200Response {
 	return FindMetalGatewayById200Response{
-		FindMetalGatewayById200ResponseOneOf1: v,
+		VrfMetalGateway: v,
 	}
 }
 
@@ -40,36 +40,36 @@ func FindMetalGatewayById200ResponseOneOf1AsFindMetalGatewayById200Response(v *F
 func (dst *FindMetalGatewayById200Response) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
-	// try to unmarshal data into FindMetalGatewayById200ResponseOneOf
-	err = newStrictDecoder(data).Decode(&dst.FindMetalGatewayById200ResponseOneOf)
+	// try to unmarshal data into MetalGateway
+	err = newStrictDecoder(data).Decode(&dst.MetalGateway)
 	if err == nil {
-		jsonFindMetalGatewayById200ResponseOneOf, _ := json.Marshal(dst.FindMetalGatewayById200ResponseOneOf)
-		if string(jsonFindMetalGatewayById200ResponseOneOf) == "{}" { // empty struct
-			dst.FindMetalGatewayById200ResponseOneOf = nil
+		jsonMetalGateway, _ := json.Marshal(dst.MetalGateway)
+		if string(jsonMetalGateway) == "{}" { // empty struct
+			dst.MetalGateway = nil
 		} else {
 			match++
 		}
 	} else {
-		dst.FindMetalGatewayById200ResponseOneOf = nil
+		dst.MetalGateway = nil
 	}
 
-	// try to unmarshal data into FindMetalGatewayById200ResponseOneOf1
-	err = newStrictDecoder(data).Decode(&dst.FindMetalGatewayById200ResponseOneOf1)
+	// try to unmarshal data into VrfMetalGateway
+	err = newStrictDecoder(data).Decode(&dst.VrfMetalGateway)
 	if err == nil {
-		jsonFindMetalGatewayById200ResponseOneOf1, _ := json.Marshal(dst.FindMetalGatewayById200ResponseOneOf1)
-		if string(jsonFindMetalGatewayById200ResponseOneOf1) == "{}" { // empty struct
-			dst.FindMetalGatewayById200ResponseOneOf1 = nil
+		jsonVrfMetalGateway, _ := json.Marshal(dst.VrfMetalGateway)
+		if string(jsonVrfMetalGateway) == "{}" { // empty struct
+			dst.VrfMetalGateway = nil
 		} else {
 			match++
 		}
 	} else {
-		dst.FindMetalGatewayById200ResponseOneOf1 = nil
+		dst.VrfMetalGateway = nil
 	}
 
 	if match > 1 { // more than 1 match
 		// reset to nil
-		dst.FindMetalGatewayById200ResponseOneOf = nil
-		dst.FindMetalGatewayById200ResponseOneOf1 = nil
+		dst.MetalGateway = nil
+		dst.VrfMetalGateway = nil
 
 		return fmt.Errorf("data matches more than one schema in oneOf(FindMetalGatewayById200Response)")
 	} else if match == 1 {
@@ -81,12 +81,12 @@ func (dst *FindMetalGatewayById200Response) UnmarshalJSON(data []byte) error {
 
 // Marshal data from the first non-nil pointers in the struct to JSON
 func (src FindMetalGatewayById200Response) MarshalJSON() ([]byte, error) {
-	if src.FindMetalGatewayById200ResponseOneOf != nil {
-		return json.Marshal(&src.FindMetalGatewayById200ResponseOneOf)
+	if src.MetalGateway != nil {
+		return json.Marshal(&src.MetalGateway)
 	}
 
-	if src.FindMetalGatewayById200ResponseOneOf1 != nil {
-		return json.Marshal(&src.FindMetalGatewayById200ResponseOneOf1)
+	if src.VrfMetalGateway != nil {
+		return json.Marshal(&src.VrfMetalGateway)
 	}
 
 	return nil, nil // no data in oneOf schemas
@@ -97,12 +97,12 @@ func (obj *FindMetalGatewayById200Response) GetActualInstance() interface{} {
 	if obj == nil {
 		return nil
 	}
-	if obj.FindMetalGatewayById200ResponseOneOf != nil {
-		return obj.FindMetalGatewayById200ResponseOneOf
+	if obj.MetalGateway != nil {
+		return obj.MetalGateway
 	}
 
-	if obj.FindMetalGatewayById200ResponseOneOf1 != nil {
-		return obj.FindMetalGatewayById200ResponseOneOf1
+	if obj.VrfMetalGateway != nil {
+		return obj.VrfMetalGateway
 	}
 
 	// all schemas are nil

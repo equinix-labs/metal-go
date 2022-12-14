@@ -24,20 +24,20 @@ type VrfVirtualCircuit struct {
 	// The MD5 password for the BGP peering in plaintext (not a checksum).
 	Md5 *string `json:"md5,omitempty"`
 	// An IP address from the subnet that will be used on the Metal side. This parameter is optional, but if supplied, we will use the other usable IP address in the subnet as the Customer IP. By default, the first usable IP address in the subnet will be used.
-	MetalIp *string                               `json:"metal_ip,omitempty"`
-	Name    *string                               `json:"name,omitempty"`
-	Port    *FindBatchById200ResponseDevicesInner `json:"port,omitempty"`
-	NniVlan *int32                                `json:"nni_vlan,omitempty"`
+	MetalIp *string `json:"metal_ip,omitempty"`
+	Name    *string `json:"name,omitempty"`
+	Port    *Href   `json:"port,omitempty"`
+	NniVlan *int32  `json:"nni_vlan,omitempty"`
 	// The peer ASN that will be used with the VRF on the Virtual Circuit.
-	PeerAsn *int32                                `json:"peer_asn,omitempty"`
-	Project *FindBatchById200ResponseDevicesInner `json:"project,omitempty"`
+	PeerAsn *int32 `json:"peer_asn,omitempty"`
+	Project *Href  `json:"project,omitempty"`
 	// integer representing bps speed
 	Speed  *int32  `json:"speed,omitempty"`
 	Status *string `json:"status,omitempty"`
 	// The /30 or /31 subnet of one of the VRF IP Blocks that will be used with the VRF for the Virtual Circuit. This subnet does not have to be an existing VRF IP reservation, as we will create the VRF IP reservation on creation if it does not exist. The Metal IP and Customer IP must be IPs from this subnet. For /30 subnets, the network and broadcast IPs cannot be used as the Metal or Customer IP.
-	Subnet *string                                                                              `json:"subnet,omitempty"`
-	Tags   []string                                                                             `json:"tags,omitempty"`
-	Vrf    *GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1Vrf `json:"vrf,omitempty"`
+	Subnet *string  `json:"subnet,omitempty"`
+	Tags   []string `json:"tags,omitempty"`
+	Vrf    *Vrf     `json:"vrf,omitempty"`
 }
 
 // NewVrfVirtualCircuit instantiates a new VrfVirtualCircuit object
@@ -250,9 +250,9 @@ func (o *VrfVirtualCircuit) SetName(v string) {
 }
 
 // GetPort returns the Port field value if set, zero value otherwise.
-func (o *VrfVirtualCircuit) GetPort() FindBatchById200ResponseDevicesInner {
+func (o *VrfVirtualCircuit) GetPort() Href {
 	if o == nil || isNil(o.Port) {
-		var ret FindBatchById200ResponseDevicesInner
+		var ret Href
 		return ret
 	}
 	return *o.Port
@@ -260,7 +260,7 @@ func (o *VrfVirtualCircuit) GetPort() FindBatchById200ResponseDevicesInner {
 
 // GetPortOk returns a tuple with the Port field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VrfVirtualCircuit) GetPortOk() (*FindBatchById200ResponseDevicesInner, bool) {
+func (o *VrfVirtualCircuit) GetPortOk() (*Href, bool) {
 	if o == nil || isNil(o.Port) {
 		return nil, false
 	}
@@ -276,8 +276,8 @@ func (o *VrfVirtualCircuit) HasPort() bool {
 	return false
 }
 
-// SetPort gets a reference to the given FindBatchById200ResponseDevicesInner and assigns it to the Port field.
-func (o *VrfVirtualCircuit) SetPort(v FindBatchById200ResponseDevicesInner) {
+// SetPort gets a reference to the given Href and assigns it to the Port field.
+func (o *VrfVirtualCircuit) SetPort(v Href) {
 	o.Port = &v
 }
 
@@ -346,9 +346,9 @@ func (o *VrfVirtualCircuit) SetPeerAsn(v int32) {
 }
 
 // GetProject returns the Project field value if set, zero value otherwise.
-func (o *VrfVirtualCircuit) GetProject() FindBatchById200ResponseDevicesInner {
+func (o *VrfVirtualCircuit) GetProject() Href {
 	if o == nil || isNil(o.Project) {
-		var ret FindBatchById200ResponseDevicesInner
+		var ret Href
 		return ret
 	}
 	return *o.Project
@@ -356,7 +356,7 @@ func (o *VrfVirtualCircuit) GetProject() FindBatchById200ResponseDevicesInner {
 
 // GetProjectOk returns a tuple with the Project field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VrfVirtualCircuit) GetProjectOk() (*FindBatchById200ResponseDevicesInner, bool) {
+func (o *VrfVirtualCircuit) GetProjectOk() (*Href, bool) {
 	if o == nil || isNil(o.Project) {
 		return nil, false
 	}
@@ -372,8 +372,8 @@ func (o *VrfVirtualCircuit) HasProject() bool {
 	return false
 }
 
-// SetProject gets a reference to the given FindBatchById200ResponseDevicesInner and assigns it to the Project field.
-func (o *VrfVirtualCircuit) SetProject(v FindBatchById200ResponseDevicesInner) {
+// SetProject gets a reference to the given Href and assigns it to the Project field.
+func (o *VrfVirtualCircuit) SetProject(v Href) {
 	o.Project = &v
 }
 
@@ -506,9 +506,9 @@ func (o *VrfVirtualCircuit) SetTags(v []string) {
 }
 
 // GetVrf returns the Vrf field value if set, zero value otherwise.
-func (o *VrfVirtualCircuit) GetVrf() GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1Vrf {
+func (o *VrfVirtualCircuit) GetVrf() Vrf {
 	if o == nil || isNil(o.Vrf) {
-		var ret GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1Vrf
+		var ret Vrf
 		return ret
 	}
 	return *o.Vrf
@@ -516,7 +516,7 @@ func (o *VrfVirtualCircuit) GetVrf() GetInterconnection200ResponsePortsInnerVirt
 
 // GetVrfOk returns a tuple with the Vrf field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VrfVirtualCircuit) GetVrfOk() (*GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1Vrf, bool) {
+func (o *VrfVirtualCircuit) GetVrfOk() (*Vrf, bool) {
 	if o == nil || isNil(o.Vrf) {
 		return nil, false
 	}
@@ -532,8 +532,8 @@ func (o *VrfVirtualCircuit) HasVrf() bool {
 	return false
 }
 
-// SetVrf gets a reference to the given GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1Vrf and assigns it to the Vrf field.
-func (o *VrfVirtualCircuit) SetVrf(v GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1Vrf) {
+// SetVrf gets a reference to the given Vrf and assigns it to the Vrf field.
+func (o *VrfVirtualCircuit) SetVrf(v Vrf) {
 	o.Vrf = &v
 }
 

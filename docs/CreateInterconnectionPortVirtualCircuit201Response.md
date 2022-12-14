@@ -9,25 +9,25 @@ Name | Type | Description | Notes
 **Id** | **string** |  | 
 **Name** | **string** |  | 
 **NniVlan** | **int32** |  | 
-**Port** | [**FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | 
-**Project** | [**FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | 
+**Port** | [**Href**](Href.md) |  | 
+**Project** | [**Href**](Href.md) |  | 
 **Speed** | Pointer to **int32** | integer representing bps speed | [optional] 
 **Status** | **string** |  | 
 **Tags** | **[]string** |  | 
-**VirtualNetwork** | [**FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | 
+**VirtualNetwork** | [**Href**](Href.md) |  | 
 **Vnid** | **int32** |  | 
 **CustomerIp** | Pointer to **string** | An IP address from the subnet that will be used on the Customer side. This parameter is optional, but if supplied, we will use the other usable IP address in the subnet as the Metal IP. By default, the last usable IP address in the subnet will be used. | [optional] 
 **Md5** | Pointer to **string** | The MD5 password for the BGP peering in plaintext (not a checksum). | [optional] 
 **MetalIp** | Pointer to **string** | An IP address from the subnet that will be used on the Metal side. This parameter is optional, but if supplied, we will use the other usable IP address in the subnet as the Customer IP. By default, the first usable IP address in the subnet will be used. | [optional] 
 **PeerAsn** | Pointer to **int32** | The peer ASN that will be used with the VRF on the Virtual Circuit. | [optional] 
 **Subnet** | Pointer to **string** | The /30 or /31 subnet of one of the VRF IP Blocks that will be used with the VRF for the Virtual Circuit. This subnet does not have to be an existing VRF IP reservation, as we will create the VRF IP reservation on creation if it does not exist. The Metal IP and Customer IP must be IPs from this subnet. For /30 subnets, the network and broadcast IPs cannot be used as the Metal or Customer IP. | [optional] 
-**Vrf** | Pointer to [**GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1Vrf**](GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1Vrf.md) |  | [optional] 
+**Vrf** | Pointer to [**Vrf**](Vrf.md) |  | [optional] 
 
 ## Methods
 
 ### NewCreateInterconnectionPortVirtualCircuit201Response
 
-`func NewCreateInterconnectionPortVirtualCircuit201Response(bill bool, description string, id string, name string, nniVlan int32, port FindBatchById200ResponseDevicesInner, project FindBatchById200ResponseDevicesInner, status string, tags []string, virtualNetwork FindBatchById200ResponseDevicesInner, vnid int32, ) *CreateInterconnectionPortVirtualCircuit201Response`
+`func NewCreateInterconnectionPortVirtualCircuit201Response(bill bool, description string, id string, name string, nniVlan int32, port Href, project Href, status string, tags []string, virtualNetwork Href, vnid int32, ) *CreateInterconnectionPortVirtualCircuit201Response`
 
 NewCreateInterconnectionPortVirtualCircuit201Response instantiates a new CreateInterconnectionPortVirtualCircuit201Response object
 This constructor will assign default values to properties that have it defined,
@@ -144,40 +144,40 @@ SetNniVlan sets NniVlan field to given value.
 
 ### GetPort
 
-`func (o *CreateInterconnectionPortVirtualCircuit201Response) GetPort() FindBatchById200ResponseDevicesInner`
+`func (o *CreateInterconnectionPortVirtualCircuit201Response) GetPort() Href`
 
 GetPort returns the Port field if non-nil, zero value otherwise.
 
 ### GetPortOk
 
-`func (o *CreateInterconnectionPortVirtualCircuit201Response) GetPortOk() (*FindBatchById200ResponseDevicesInner, bool)`
+`func (o *CreateInterconnectionPortVirtualCircuit201Response) GetPortOk() (*Href, bool)`
 
 GetPortOk returns a tuple with the Port field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPort
 
-`func (o *CreateInterconnectionPortVirtualCircuit201Response) SetPort(v FindBatchById200ResponseDevicesInner)`
+`func (o *CreateInterconnectionPortVirtualCircuit201Response) SetPort(v Href)`
 
 SetPort sets Port field to given value.
 
 
 ### GetProject
 
-`func (o *CreateInterconnectionPortVirtualCircuit201Response) GetProject() FindBatchById200ResponseDevicesInner`
+`func (o *CreateInterconnectionPortVirtualCircuit201Response) GetProject() Href`
 
 GetProject returns the Project field if non-nil, zero value otherwise.
 
 ### GetProjectOk
 
-`func (o *CreateInterconnectionPortVirtualCircuit201Response) GetProjectOk() (*FindBatchById200ResponseDevicesInner, bool)`
+`func (o *CreateInterconnectionPortVirtualCircuit201Response) GetProjectOk() (*Href, bool)`
 
 GetProjectOk returns a tuple with the Project field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetProject
 
-`func (o *CreateInterconnectionPortVirtualCircuit201Response) SetProject(v FindBatchById200ResponseDevicesInner)`
+`func (o *CreateInterconnectionPortVirtualCircuit201Response) SetProject(v Href)`
 
 SetProject sets Project field to given value.
 
@@ -249,20 +249,20 @@ SetTags sets Tags field to given value.
 
 ### GetVirtualNetwork
 
-`func (o *CreateInterconnectionPortVirtualCircuit201Response) GetVirtualNetwork() FindBatchById200ResponseDevicesInner`
+`func (o *CreateInterconnectionPortVirtualCircuit201Response) GetVirtualNetwork() Href`
 
 GetVirtualNetwork returns the VirtualNetwork field if non-nil, zero value otherwise.
 
 ### GetVirtualNetworkOk
 
-`func (o *CreateInterconnectionPortVirtualCircuit201Response) GetVirtualNetworkOk() (*FindBatchById200ResponseDevicesInner, bool)`
+`func (o *CreateInterconnectionPortVirtualCircuit201Response) GetVirtualNetworkOk() (*Href, bool)`
 
 GetVirtualNetworkOk returns a tuple with the VirtualNetwork field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVirtualNetwork
 
-`func (o *CreateInterconnectionPortVirtualCircuit201Response) SetVirtualNetwork(v FindBatchById200ResponseDevicesInner)`
+`func (o *CreateInterconnectionPortVirtualCircuit201Response) SetVirtualNetwork(v Href)`
 
 SetVirtualNetwork sets VirtualNetwork field to given value.
 
@@ -414,20 +414,20 @@ HasSubnet returns a boolean if a field has been set.
 
 ### GetVrf
 
-`func (o *CreateInterconnectionPortVirtualCircuit201Response) GetVrf() GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1Vrf`
+`func (o *CreateInterconnectionPortVirtualCircuit201Response) GetVrf() Vrf`
 
 GetVrf returns the Vrf field if non-nil, zero value otherwise.
 
 ### GetVrfOk
 
-`func (o *CreateInterconnectionPortVirtualCircuit201Response) GetVrfOk() (*GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1Vrf, bool)`
+`func (o *CreateInterconnectionPortVirtualCircuit201Response) GetVrfOk() (*Vrf, bool)`
 
 GetVrfOk returns a tuple with the Vrf field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVrf
 
-`func (o *CreateInterconnectionPortVirtualCircuit201Response) SetVrf(v GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1Vrf)`
+`func (o *CreateInterconnectionPortVirtualCircuit201Response) SetVrf(v Vrf)`
 
 SetVrf sets Vrf field to given value.
 

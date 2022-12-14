@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **DevicesMin** | Pointer to **int32** |  | [optional] 
 **EndAt** | Pointer to **time.Time** |  | [optional] 
 **Facilities** | Pointer to **[]string** |  | [optional] 
-**InstanceAttributes** | Pointer to [**CreateSpotMarketRequestRequestInstanceAttributes**](CreateSpotMarketRequestRequestInstanceAttributes.md) |  | [optional] 
+**InstanceAttributes** | Pointer to [**SpotMarketRequestCreateInputInstanceAttributes**](SpotMarketRequestCreateInputInstanceAttributes.md) |  | [optional] 
 **MaxBidPrice** | Pointer to **float32** |  | [optional] 
 **Metro** | Pointer to **string** | The metro ID or code the spot market request will be created in. | [optional] 
 
@@ -133,20 +133,20 @@ HasFacilities returns a boolean if a field has been set.
 
 ### GetInstanceAttributes
 
-`func (o *SpotMarketRequestCreateInput) GetInstanceAttributes() CreateSpotMarketRequestRequestInstanceAttributes`
+`func (o *SpotMarketRequestCreateInput) GetInstanceAttributes() SpotMarketRequestCreateInputInstanceAttributes`
 
 GetInstanceAttributes returns the InstanceAttributes field if non-nil, zero value otherwise.
 
 ### GetInstanceAttributesOk
 
-`func (o *SpotMarketRequestCreateInput) GetInstanceAttributesOk() (*CreateSpotMarketRequestRequestInstanceAttributes, bool)`
+`func (o *SpotMarketRequestCreateInput) GetInstanceAttributesOk() (*SpotMarketRequestCreateInputInstanceAttributes, bool)`
 
 GetInstanceAttributesOk returns a tuple with the InstanceAttributes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetInstanceAttributes
 
-`func (o *SpotMarketRequestCreateInput) SetInstanceAttributes(v CreateSpotMarketRequestRequestInstanceAttributes)`
+`func (o *SpotMarketRequestCreateInput) SetInstanceAttributes(v SpotMarketRequestCreateInputInstanceAttributes)`
 
 SetInstanceAttributes sets InstanceAttributes field to given value.
 

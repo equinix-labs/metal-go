@@ -25,19 +25,19 @@ import (
 type VRFsApiService service
 
 type ApiCreateVrfRequest struct {
-	ctx              context.Context
-	ApiService       *VRFsApiService
-	id               string
-	createVrfRequest *CreateVrfRequest
+	ctx            context.Context
+	ApiService     *VRFsApiService
+	id             string
+	vrfCreateInput *VrfCreateInput
 }
 
 // VRF to create
-func (r ApiCreateVrfRequest) CreateVrfRequest(createVrfRequest CreateVrfRequest) ApiCreateVrfRequest {
-	r.createVrfRequest = &createVrfRequest
+func (r ApiCreateVrfRequest) VrfCreateInput(vrfCreateInput VrfCreateInput) ApiCreateVrfRequest {
+	r.vrfCreateInput = &vrfCreateInput
 	return r
 }
 
-func (r ApiCreateVrfRequest) Execute() (*GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1Vrf, *http.Response, error) {
+func (r ApiCreateVrfRequest) Execute() (*Vrf, *http.Response, error) {
 	return r.ApiService.CreateVrfExecute(r)
 }
 
@@ -59,13 +59,13 @@ func (a *VRFsApiService) CreateVrf(ctx context.Context, id string) ApiCreateVrfR
 }
 
 // Execute executes the request
-//  @return GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1Vrf
-func (a *VRFsApiService) CreateVrfExecute(r ApiCreateVrfRequest) (*GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1Vrf, *http.Response, error) {
+//  @return Vrf
+func (a *VRFsApiService) CreateVrfExecute(r ApiCreateVrfRequest) (*Vrf, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1Vrf
+		localVarReturnValue *Vrf
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VRFsApiService.CreateVrf")
@@ -79,8 +79,8 @@ func (a *VRFsApiService) CreateVrfExecute(r ApiCreateVrfRequest) (*GetInterconne
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createVrfRequest == nil {
-		return localVarReturnValue, nil, reportError("createVrfRequest is required and must be specified")
+	if r.vrfCreateInput == nil {
+		return localVarReturnValue, nil, reportError("vrfCreateInput is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -101,7 +101,7 @@ func (a *VRFsApiService) CreateVrfExecute(r ApiCreateVrfRequest) (*GetInterconne
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createVrfRequest
+	localVarPostBody = r.vrfCreateInput
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -139,7 +139,7 @@ func (a *VRFsApiService) CreateVrfExecute(r ApiCreateVrfRequest) (*GetInterconne
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -150,7 +150,7 @@ func (a *VRFsApiService) CreateVrfExecute(r ApiCreateVrfRequest) (*GetInterconne
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -161,7 +161,7 @@ func (a *VRFsApiService) CreateVrfExecute(r ApiCreateVrfRequest) (*GetInterconne
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -286,7 +286,7 @@ func (a *VRFsApiService) DeleteVrfExecute(r ApiDeleteVrfRequest) (*http.Response
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -297,7 +297,7 @@ func (a *VRFsApiService) DeleteVrfExecute(r ApiDeleteVrfRequest) (*http.Response
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -308,7 +308,7 @@ func (a *VRFsApiService) DeleteVrfExecute(r ApiDeleteVrfRequest) (*http.Response
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -343,7 +343,7 @@ func (r ApiFindVrfByIdRequest) Exclude(exclude []string) ApiFindVrfByIdRequest {
 	return r
 }
 
-func (r ApiFindVrfByIdRequest) Execute() (*GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1Vrf, *http.Response, error) {
+func (r ApiFindVrfByIdRequest) Execute() (*Vrf, *http.Response, error) {
 	return r.ApiService.FindVrfByIdExecute(r)
 }
 
@@ -365,13 +365,13 @@ func (a *VRFsApiService) FindVrfById(ctx context.Context, id string) ApiFindVrfB
 }
 
 // Execute executes the request
-//  @return GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1Vrf
-func (a *VRFsApiService) FindVrfByIdExecute(r ApiFindVrfByIdRequest) (*GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1Vrf, *http.Response, error) {
+//  @return Vrf
+func (a *VRFsApiService) FindVrfByIdExecute(r ApiFindVrfByIdRequest) (*Vrf, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1Vrf
+		localVarReturnValue *Vrf
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VRFsApiService.FindVrfById")
@@ -446,7 +446,7 @@ func (a *VRFsApiService) FindVrfByIdExecute(r ApiFindVrfByIdRequest) (*GetInterc
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -457,7 +457,7 @@ func (a *VRFsApiService) FindVrfByIdExecute(r ApiFindVrfByIdRequest) (*GetInterc
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -468,7 +468,7 @@ func (a *VRFsApiService) FindVrfByIdExecute(r ApiFindVrfByIdRequest) (*GetInterc
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -512,7 +512,7 @@ func (r ApiFindVrfIpReservationsRequest) Exclude(exclude []string) ApiFindVrfIpR
 	return r
 }
 
-func (r ApiFindVrfIpReservationsRequest) Execute() (*FindVrfIpReservations200Response, *http.Response, error) {
+func (r ApiFindVrfIpReservationsRequest) Execute() (*VrfIpReservationList, *http.Response, error) {
 	return r.ApiService.FindVrfIpReservationsExecute(r)
 }
 
@@ -534,13 +534,13 @@ func (a *VRFsApiService) FindVrfIpReservations(ctx context.Context, id string) A
 }
 
 // Execute executes the request
-//  @return FindVrfIpReservations200Response
-func (a *VRFsApiService) FindVrfIpReservationsExecute(r ApiFindVrfIpReservationsRequest) (*FindVrfIpReservations200Response, *http.Response, error) {
+//  @return VrfIpReservationList
+func (a *VRFsApiService) FindVrfIpReservationsExecute(r ApiFindVrfIpReservationsRequest) (*VrfIpReservationList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *FindVrfIpReservations200Response
+		localVarReturnValue *VrfIpReservationList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VRFsApiService.FindVrfIpReservations")
@@ -631,7 +631,7 @@ func (a *VRFsApiService) FindVrfIpReservationsExecute(r ApiFindVrfIpReservations
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -642,7 +642,7 @@ func (a *VRFsApiService) FindVrfIpReservationsExecute(r ApiFindVrfIpReservations
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -693,7 +693,7 @@ func (r ApiFindVrfsRequest) Metro(metro string) ApiFindVrfsRequest {
 	return r
 }
 
-func (r ApiFindVrfsRequest) Execute() (*FindVrfs200Response, *http.Response, error) {
+func (r ApiFindVrfsRequest) Execute() (*VrfList, *http.Response, error) {
 	return r.ApiService.FindVrfsExecute(r)
 }
 
@@ -715,13 +715,13 @@ func (a *VRFsApiService) FindVrfs(ctx context.Context, id string) ApiFindVrfsReq
 }
 
 // Execute executes the request
-//  @return FindVrfs200Response
-func (a *VRFsApiService) FindVrfsExecute(r ApiFindVrfsRequest) (*FindVrfs200Response, *http.Response, error) {
+//  @return VrfList
+func (a *VRFsApiService) FindVrfsExecute(r ApiFindVrfsRequest) (*VrfList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *FindVrfs200Response
+		localVarReturnValue *VrfList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VRFsApiService.FindVrfs")
@@ -799,7 +799,7 @@ func (a *VRFsApiService) FindVrfsExecute(r ApiFindVrfsRequest) (*FindVrfs200Resp
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -810,7 +810,7 @@ func (a *VRFsApiService) FindVrfsExecute(r ApiFindVrfsRequest) (*FindVrfs200Resp
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -835,19 +835,19 @@ func (a *VRFsApiService) FindVrfsExecute(r ApiFindVrfsRequest) (*FindVrfs200Resp
 }
 
 type ApiUpdateVrfRequest struct {
-	ctx              context.Context
-	ApiService       *VRFsApiService
-	id               string
-	updateVrfRequest *UpdateVrfRequest
+	ctx            context.Context
+	ApiService     *VRFsApiService
+	id             string
+	vrfUpdateInput *VrfUpdateInput
 }
 
 // VRF to update
-func (r ApiUpdateVrfRequest) UpdateVrfRequest(updateVrfRequest UpdateVrfRequest) ApiUpdateVrfRequest {
-	r.updateVrfRequest = &updateVrfRequest
+func (r ApiUpdateVrfRequest) VrfUpdateInput(vrfUpdateInput VrfUpdateInput) ApiUpdateVrfRequest {
+	r.vrfUpdateInput = &vrfUpdateInput
 	return r
 }
 
-func (r ApiUpdateVrfRequest) Execute() (*GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1Vrf, *http.Response, error) {
+func (r ApiUpdateVrfRequest) Execute() (*Vrf, *http.Response, error) {
 	return r.ApiService.UpdateVrfExecute(r)
 }
 
@@ -869,13 +869,13 @@ func (a *VRFsApiService) UpdateVrf(ctx context.Context, id string) ApiUpdateVrfR
 }
 
 // Execute executes the request
-//  @return GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1Vrf
-func (a *VRFsApiService) UpdateVrfExecute(r ApiUpdateVrfRequest) (*GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1Vrf, *http.Response, error) {
+//  @return Vrf
+func (a *VRFsApiService) UpdateVrfExecute(r ApiUpdateVrfRequest) (*Vrf, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1Vrf
+		localVarReturnValue *Vrf
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VRFsApiService.UpdateVrf")
@@ -889,8 +889,8 @@ func (a *VRFsApiService) UpdateVrfExecute(r ApiUpdateVrfRequest) (*GetInterconne
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.updateVrfRequest == nil {
-		return localVarReturnValue, nil, reportError("updateVrfRequest is required and must be specified")
+	if r.vrfUpdateInput == nil {
+		return localVarReturnValue, nil, reportError("vrfUpdateInput is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -911,7 +911,7 @@ func (a *VRFsApiService) UpdateVrfExecute(r ApiUpdateVrfRequest) (*GetInterconne
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateVrfRequest
+	localVarPostBody = r.vrfUpdateInput
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -949,7 +949,7 @@ func (a *VRFsApiService) UpdateVrfExecute(r ApiUpdateVrfRequest) (*GetInterconne
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -960,7 +960,7 @@ func (a *VRFsApiService) UpdateVrfExecute(r ApiUpdateVrfRequest) (*GetInterconne
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -971,7 +971,7 @@ func (a *VRFsApiService) UpdateVrfExecute(r ApiUpdateVrfRequest) (*GetInterconne
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -982,7 +982,7 @@ func (a *VRFsApiService) UpdateVrfExecute(r ApiUpdateVrfRequest) (*GetInterconne
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

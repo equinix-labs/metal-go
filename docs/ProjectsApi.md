@@ -20,7 +20,7 @@ Method | HTTP request | Description
 
 ## CreateProject
 
-> GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject CreateProject(ctx).CreateProjectRequest(createProjectRequest).Execute()
+> Project CreateProject(ctx).ProjectCreateFromRootInput(projectCreateFromRootInput).Execute()
 
 Create a project
 
@@ -39,16 +39,16 @@ import (
 )
 
 func main() {
-    createProjectRequest := *openapiclient.NewCreateProjectRequest("Name_example") // CreateProjectRequest | Project to create
+    projectCreateFromRootInput := *openapiclient.NewProjectCreateFromRootInput("Name_example") // ProjectCreateFromRootInput | Project to create
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ProjectsApi.CreateProject(context.Background()).CreateProjectRequest(createProjectRequest).Execute()
+    resp, r, err := apiClient.ProjectsApi.CreateProject(context.Background()).ProjectCreateFromRootInput(projectCreateFromRootInput).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ProjectsApi.CreateProject``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateProject`: GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject
+    // response from `CreateProject`: Project
     fmt.Fprintf(os.Stdout, "Response from `ProjectsApi.CreateProject`: %v\n", resp)
 }
 ```
@@ -64,11 +64,11 @@ Other parameters are passed through a pointer to a apiCreateProjectRequest struc
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **createProjectRequest** | [**CreateProjectRequest**](CreateProjectRequest.md) | Project to create | 
+ **projectCreateFromRootInput** | [**ProjectCreateFromRootInput**](ProjectCreateFromRootInput.md) | Project to create | 
 
 ### Return type
 
-[**GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject**](GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject.md)
+[**Project**](Project.md)
 
 ### Authorization
 
@@ -86,7 +86,7 @@ Name | Type | Description  | Notes
 
 ## CreateProjectInvitation
 
-> FindInvitationById200Response CreateProjectInvitation(ctx, projectId).CreateOrganizationInvitationRequest(createOrganizationInvitationRequest).Execute()
+> Invitation CreateProjectInvitation(ctx, projectId).InvitationInput(invitationInput).Execute()
 
 Create an invitation for a project
 
@@ -106,16 +106,16 @@ import (
 
 func main() {
     projectId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Project UUID
-    createOrganizationInvitationRequest := *openapiclient.NewCreateOrganizationInvitationRequest("Invitee_example") // CreateOrganizationInvitationRequest | Invitation to create
+    invitationInput := *openapiclient.NewInvitationInput("Invitee_example") // InvitationInput | Invitation to create
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ProjectsApi.CreateProjectInvitation(context.Background(), projectId).CreateOrganizationInvitationRequest(createOrganizationInvitationRequest).Execute()
+    resp, r, err := apiClient.ProjectsApi.CreateProjectInvitation(context.Background(), projectId).InvitationInput(invitationInput).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ProjectsApi.CreateProjectInvitation``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateProjectInvitation`: FindInvitationById200Response
+    // response from `CreateProjectInvitation`: Invitation
     fmt.Fprintf(os.Stdout, "Response from `ProjectsApi.CreateProjectInvitation`: %v\n", resp)
 }
 ```
@@ -136,11 +136,11 @@ Other parameters are passed through a pointer to a apiCreateProjectInvitationReq
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **createOrganizationInvitationRequest** | [**CreateOrganizationInvitationRequest**](CreateOrganizationInvitationRequest.md) | Invitation to create | 
+ **invitationInput** | [**InvitationInput**](InvitationInput.md) | Invitation to create | 
 
 ### Return type
 
-[**FindInvitationById200Response**](FindInvitationById200Response.md)
+[**Invitation**](Invitation.md)
 
 ### Authorization
 
@@ -158,7 +158,7 @@ Name | Type | Description  | Notes
 
 ## CreateTransferRequest
 
-> FindOrganizationTransfers200ResponseTransfersInner CreateTransferRequest(ctx, id).CreateTransferRequestRequest(createTransferRequestRequest).Execute()
+> TransferRequest CreateTransferRequest(ctx, id).TransferRequestInput(transferRequestInput).Execute()
 
 Create a transfer request
 
@@ -178,16 +178,16 @@ import (
 
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | UUID of the project to be transferred
-    createTransferRequestRequest := *openapiclient.NewCreateTransferRequestRequest() // CreateTransferRequestRequest | Transfer Request to create
+    transferRequestInput := *openapiclient.NewTransferRequestInput() // TransferRequestInput | Transfer Request to create
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ProjectsApi.CreateTransferRequest(context.Background(), id).CreateTransferRequestRequest(createTransferRequestRequest).Execute()
+    resp, r, err := apiClient.ProjectsApi.CreateTransferRequest(context.Background(), id).TransferRequestInput(transferRequestInput).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ProjectsApi.CreateTransferRequest``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateTransferRequest`: FindOrganizationTransfers200ResponseTransfersInner
+    // response from `CreateTransferRequest`: TransferRequest
     fmt.Fprintf(os.Stdout, "Response from `ProjectsApi.CreateTransferRequest`: %v\n", resp)
 }
 ```
@@ -208,11 +208,11 @@ Other parameters are passed through a pointer to a apiCreateTransferRequestReque
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **createTransferRequestRequest** | [**CreateTransferRequestRequest**](CreateTransferRequestRequest.md) | Transfer Request to create | 
+ **transferRequestInput** | [**TransferRequestInput**](TransferRequestInput.md) | Transfer Request to create | 
 
 ### Return type
 
-[**FindOrganizationTransfers200ResponseTransfersInner**](FindOrganizationTransfers200ResponseTransfersInner.md)
+[**TransferRequest**](TransferRequest.md)
 
 ### Authorization
 
@@ -369,7 +369,7 @@ Name | Type | Description  | Notes
 
 ## FindProjectById
 
-> GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject FindProjectById(ctx, id).Include(include).Exclude(exclude).Execute()
+> Project FindProjectById(ctx, id).Include(include).Exclude(exclude).Execute()
 
 Retrieve a project
 
@@ -399,7 +399,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ProjectsApi.FindProjectById``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindProjectById`: GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject
+    // response from `FindProjectById`: Project
     fmt.Fprintf(os.Stdout, "Response from `ProjectsApi.FindProjectById`: %v\n", resp)
 }
 ```
@@ -425,7 +425,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject**](GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject.md)
+[**Project**](Project.md)
 
 ### Authorization
 
@@ -511,7 +511,7 @@ Name | Type | Description  | Notes
 
 ## FindProjectInvitations
 
-> FindInvitations200Response FindProjectInvitations(ctx, projectId).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
+> InvitationList FindProjectInvitations(ctx, projectId).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
 
 Retrieve project invitations
 
@@ -543,7 +543,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ProjectsApi.FindProjectInvitations``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindProjectInvitations`: FindInvitations200Response
+    // response from `FindProjectInvitations`: InvitationList
     fmt.Fprintf(os.Stdout, "Response from `ProjectsApi.FindProjectInvitations`: %v\n", resp)
 }
 ```
@@ -571,7 +571,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FindInvitations200Response**](FindInvitations200Response.md)
+[**InvitationList**](InvitationList.md)
 
 ### Authorization
 
@@ -589,7 +589,7 @@ Name | Type | Description  | Notes
 
 ## FindProjectMemberships
 
-> FindProjectMemberships200Response FindProjectMemberships(ctx, projectId).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
+> MembershipList FindProjectMemberships(ctx, projectId).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
 
 Retrieve project memberships
 
@@ -621,7 +621,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ProjectsApi.FindProjectMemberships``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindProjectMemberships`: FindProjectMemberships200Response
+    // response from `FindProjectMemberships`: MembershipList
     fmt.Fprintf(os.Stdout, "Response from `ProjectsApi.FindProjectMemberships`: %v\n", resp)
 }
 ```
@@ -649,7 +649,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FindProjectMemberships200Response**](FindProjectMemberships200Response.md)
+[**MembershipList**](MembershipList.md)
 
 ### Authorization
 
@@ -667,7 +667,7 @@ Name | Type | Description  | Notes
 
 ## FindProjects
 
-> FindOrganizationProjects200Response FindProjects(ctx).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
+> ProjectList FindProjects(ctx).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
 
 Retrieve all projects
 
@@ -698,7 +698,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ProjectsApi.FindProjects``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindProjects`: FindOrganizationProjects200Response
+    // response from `FindProjects`: ProjectList
     fmt.Fprintf(os.Stdout, "Response from `ProjectsApi.FindProjects`: %v\n", resp)
 }
 ```
@@ -721,7 +721,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FindOrganizationProjects200Response**](FindOrganizationProjects200Response.md)
+[**ProjectList**](ProjectList.md)
 
 ### Authorization
 
@@ -739,7 +739,7 @@ Name | Type | Description  | Notes
 
 ## UpdateProject
 
-> GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject UpdateProject(ctx, id).UpdateProjectRequest(updateProjectRequest).Execute()
+> Project UpdateProject(ctx, id).ProjectUpdateInput(projectUpdateInput).Execute()
 
 Update the project
 
@@ -759,16 +759,16 @@ import (
 
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Project UUID
-    updateProjectRequest := *openapiclient.NewUpdateProjectRequest() // UpdateProjectRequest | Project to update
+    projectUpdateInput := *openapiclient.NewProjectUpdateInput() // ProjectUpdateInput | Project to update
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ProjectsApi.UpdateProject(context.Background(), id).UpdateProjectRequest(updateProjectRequest).Execute()
+    resp, r, err := apiClient.ProjectsApi.UpdateProject(context.Background(), id).ProjectUpdateInput(projectUpdateInput).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ProjectsApi.UpdateProject``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateProject`: GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject
+    // response from `UpdateProject`: Project
     fmt.Fprintf(os.Stdout, "Response from `ProjectsApi.UpdateProject`: %v\n", resp)
 }
 ```
@@ -789,11 +789,11 @@ Other parameters are passed through a pointer to a apiUpdateProjectRequest struc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateProjectRequest** | [**UpdateProjectRequest**](UpdateProjectRequest.md) | Project to update | 
+ **projectUpdateInput** | [**ProjectUpdateInput**](ProjectUpdateInput.md) | Project to update | 
 
 ### Return type
 
-[**GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject**](GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject.md)
+[**Project**](Project.md)
 
 ### Authorization
 

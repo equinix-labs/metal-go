@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Servers** | Pointer to [**[]CheckCapacityForFacilityRequestServersInner**](CheckCapacityForFacilityRequestServersInner.md) |  | [optional] 
+**Servers** | Pointer to [**[]ServerInfo**](ServerInfo.md) |  | [optional] 
 
 ## Methods
 
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetServers
 
-`func (o *CapacityInput) GetServers() []CheckCapacityForFacilityRequestServersInner`
+`func (o *CapacityInput) GetServers() []ServerInfo`
 
 GetServers returns the Servers field if non-nil, zero value otherwise.
 
 ### GetServersOk
 
-`func (o *CapacityInput) GetServersOk() (*[]CheckCapacityForFacilityRequestServersInner, bool)`
+`func (o *CapacityInput) GetServersOk() (*[]ServerInfo, bool)`
 
 GetServersOk returns a tuple with the Servers field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetServers
 
-`func (o *CapacityInput) SetServers(v []CheckCapacityForFacilityRequestServersInner)`
+`func (o *CapacityInput) SetServers(v []ServerInfo)`
 
 SetServers sets Servers field to given value.
 

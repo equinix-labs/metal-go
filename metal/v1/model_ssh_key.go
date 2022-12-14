@@ -18,14 +18,14 @@ import (
 
 // SSHKey struct for SSHKey
 type SSHKey struct {
-	CreatedAt   *time.Time                            `json:"created_at,omitempty"`
-	Entity      *FindBatchById200ResponseDevicesInner `json:"entity,omitempty"`
-	Fingerprint *string                               `json:"fingerprint,omitempty"`
-	Href        *string                               `json:"href,omitempty"`
-	Id          *string                               `json:"id,omitempty"`
-	Key         *string                               `json:"key,omitempty"`
-	Label       *string                               `json:"label,omitempty"`
-	UpdatedAt   *time.Time                            `json:"updated_at,omitempty"`
+	CreatedAt   *time.Time `json:"created_at,omitempty"`
+	Entity      *Href      `json:"entity,omitempty"`
+	Fingerprint *string    `json:"fingerprint,omitempty"`
+	Href        *string    `json:"href,omitempty"`
+	Id          *string    `json:"id,omitempty"`
+	Key         *string    `json:"key,omitempty"`
+	Label       *string    `json:"label,omitempty"`
+	UpdatedAt   *time.Time `json:"updated_at,omitempty"`
 }
 
 // NewSSHKey instantiates a new SSHKey object
@@ -78,9 +78,9 @@ func (o *SSHKey) SetCreatedAt(v time.Time) {
 }
 
 // GetEntity returns the Entity field value if set, zero value otherwise.
-func (o *SSHKey) GetEntity() FindBatchById200ResponseDevicesInner {
+func (o *SSHKey) GetEntity() Href {
 	if o == nil || isNil(o.Entity) {
-		var ret FindBatchById200ResponseDevicesInner
+		var ret Href
 		return ret
 	}
 	return *o.Entity
@@ -88,7 +88,7 @@ func (o *SSHKey) GetEntity() FindBatchById200ResponseDevicesInner {
 
 // GetEntityOk returns a tuple with the Entity field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SSHKey) GetEntityOk() (*FindBatchById200ResponseDevicesInner, bool) {
+func (o *SSHKey) GetEntityOk() (*Href, bool) {
 	if o == nil || isNil(o.Entity) {
 		return nil, false
 	}
@@ -104,8 +104,8 @@ func (o *SSHKey) HasEntity() bool {
 	return false
 }
 
-// SetEntity gets a reference to the given FindBatchById200ResponseDevicesInner and assigns it to the Entity field.
-func (o *SSHKey) SetEntity(v FindBatchById200ResponseDevicesInner) {
+// SetEntity gets a reference to the given Href and assigns it to the Entity field.
+func (o *SSHKey) SetEntity(v Href) {
 	o.Entity = &v
 }
 

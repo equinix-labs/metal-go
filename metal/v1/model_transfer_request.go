@@ -18,12 +18,12 @@ import (
 
 // TransferRequest struct for TransferRequest
 type TransferRequest struct {
-	CreatedAt          *time.Time                            `json:"created_at,omitempty"`
-	Href               *string                               `json:"href,omitempty"`
-	Id                 *string                               `json:"id,omitempty"`
-	Project            *FindBatchById200ResponseDevicesInner `json:"project,omitempty"`
-	TargetOrganization *FindBatchById200ResponseDevicesInner `json:"target_organization,omitempty"`
-	UpdatedAt          *time.Time                            `json:"updated_at,omitempty"`
+	CreatedAt          *time.Time `json:"created_at,omitempty"`
+	Href               *string    `json:"href,omitempty"`
+	Id                 *string    `json:"id,omitempty"`
+	Project            *Href      `json:"project,omitempty"`
+	TargetOrganization *Href      `json:"target_organization,omitempty"`
+	UpdatedAt          *time.Time `json:"updated_at,omitempty"`
 }
 
 // NewTransferRequest instantiates a new TransferRequest object
@@ -140,9 +140,9 @@ func (o *TransferRequest) SetId(v string) {
 }
 
 // GetProject returns the Project field value if set, zero value otherwise.
-func (o *TransferRequest) GetProject() FindBatchById200ResponseDevicesInner {
+func (o *TransferRequest) GetProject() Href {
 	if o == nil || isNil(o.Project) {
-		var ret FindBatchById200ResponseDevicesInner
+		var ret Href
 		return ret
 	}
 	return *o.Project
@@ -150,7 +150,7 @@ func (o *TransferRequest) GetProject() FindBatchById200ResponseDevicesInner {
 
 // GetProjectOk returns a tuple with the Project field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TransferRequest) GetProjectOk() (*FindBatchById200ResponseDevicesInner, bool) {
+func (o *TransferRequest) GetProjectOk() (*Href, bool) {
 	if o == nil || isNil(o.Project) {
 		return nil, false
 	}
@@ -166,15 +166,15 @@ func (o *TransferRequest) HasProject() bool {
 	return false
 }
 
-// SetProject gets a reference to the given FindBatchById200ResponseDevicesInner and assigns it to the Project field.
-func (o *TransferRequest) SetProject(v FindBatchById200ResponseDevicesInner) {
+// SetProject gets a reference to the given Href and assigns it to the Project field.
+func (o *TransferRequest) SetProject(v Href) {
 	o.Project = &v
 }
 
 // GetTargetOrganization returns the TargetOrganization field value if set, zero value otherwise.
-func (o *TransferRequest) GetTargetOrganization() FindBatchById200ResponseDevicesInner {
+func (o *TransferRequest) GetTargetOrganization() Href {
 	if o == nil || isNil(o.TargetOrganization) {
-		var ret FindBatchById200ResponseDevicesInner
+		var ret Href
 		return ret
 	}
 	return *o.TargetOrganization
@@ -182,7 +182,7 @@ func (o *TransferRequest) GetTargetOrganization() FindBatchById200ResponseDevice
 
 // GetTargetOrganizationOk returns a tuple with the TargetOrganization field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TransferRequest) GetTargetOrganizationOk() (*FindBatchById200ResponseDevicesInner, bool) {
+func (o *TransferRequest) GetTargetOrganizationOk() (*Href, bool) {
 	if o == nil || isNil(o.TargetOrganization) {
 		return nil, false
 	}
@@ -198,8 +198,8 @@ func (o *TransferRequest) HasTargetOrganization() bool {
 	return false
 }
 
-// SetTargetOrganization gets a reference to the given FindBatchById200ResponseDevicesInner and assigns it to the TargetOrganization field.
-func (o *TransferRequest) SetTargetOrganization(v FindBatchById200ResponseDevicesInner) {
+// SetTargetOrganization gets a reference to the given Href and assigns it to the TargetOrganization field.
+func (o *TransferRequest) SetTargetOrganization(v Href) {
 	o.TargetOrganization = &v
 }
 

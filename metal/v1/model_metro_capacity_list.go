@@ -17,7 +17,7 @@ import (
 
 // MetroCapacityList struct for MetroCapacityList
 type MetroCapacityList struct {
-	Capacity *FindCapacityForMetro200ResponseCapacity `json:"capacity,omitempty"`
+	Capacity *MetroCapacityReport `json:"capacity,omitempty"`
 }
 
 // NewMetroCapacityList instantiates a new MetroCapacityList object
@@ -38,9 +38,9 @@ func NewMetroCapacityListWithDefaults() *MetroCapacityList {
 }
 
 // GetCapacity returns the Capacity field value if set, zero value otherwise.
-func (o *MetroCapacityList) GetCapacity() FindCapacityForMetro200ResponseCapacity {
+func (o *MetroCapacityList) GetCapacity() MetroCapacityReport {
 	if o == nil || isNil(o.Capacity) {
-		var ret FindCapacityForMetro200ResponseCapacity
+		var ret MetroCapacityReport
 		return ret
 	}
 	return *o.Capacity
@@ -48,7 +48,7 @@ func (o *MetroCapacityList) GetCapacity() FindCapacityForMetro200ResponseCapacit
 
 // GetCapacityOk returns a tuple with the Capacity field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetroCapacityList) GetCapacityOk() (*FindCapacityForMetro200ResponseCapacity, bool) {
+func (o *MetroCapacityList) GetCapacityOk() (*MetroCapacityReport, bool) {
 	if o == nil || isNil(o.Capacity) {
 		return nil, false
 	}
@@ -64,8 +64,8 @@ func (o *MetroCapacityList) HasCapacity() bool {
 	return false
 }
 
-// SetCapacity gets a reference to the given FindCapacityForMetro200ResponseCapacity and assigns it to the Capacity field.
-func (o *MetroCapacityList) SetCapacity(v FindCapacityForMetro200ResponseCapacity) {
+// SetCapacity gets a reference to the given MetroCapacityReport and assigns it to the Capacity field.
+func (o *MetroCapacityList) SetCapacity(v MetroCapacityReport) {
 	o.Capacity = &v
 }
 

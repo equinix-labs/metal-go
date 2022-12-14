@@ -49,7 +49,7 @@ func (r ApiFindPlansRequest) Exclude(exclude []string) ApiFindPlansRequest {
 	return r
 }
 
-func (r ApiFindPlansRequest) Execute() (*FindPlansByOrganization200Response, *http.Response, error) {
+func (r ApiFindPlansRequest) Execute() (*PlanList, *http.Response, error) {
 	return r.ApiService.FindPlansExecute(r)
 }
 
@@ -69,13 +69,13 @@ func (a *PlansApiService) FindPlans(ctx context.Context) ApiFindPlansRequest {
 }
 
 // Execute executes the request
-//  @return FindPlansByOrganization200Response
-func (a *PlansApiService) FindPlansExecute(r ApiFindPlansRequest) (*FindPlansByOrganization200Response, *http.Response, error) {
+//  @return PlanList
+func (a *PlansApiService) FindPlansExecute(r ApiFindPlansRequest) (*PlanList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *FindPlansByOrganization200Response
+		localVarReturnValue *PlanList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PlansApiService.FindPlans")
@@ -152,7 +152,7 @@ func (a *PlansApiService) FindPlansExecute(r ApiFindPlansRequest) (*FindPlansByO
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -196,7 +196,7 @@ func (r ApiFindPlansByProjectRequest) Exclude(exclude []string) ApiFindPlansByPr
 	return r
 }
 
-func (r ApiFindPlansByProjectRequest) Execute() (*FindPlansByOrganization200Response, *http.Response, error) {
+func (r ApiFindPlansByProjectRequest) Execute() (*PlanList, *http.Response, error) {
 	return r.ApiService.FindPlansByProjectExecute(r)
 }
 
@@ -218,13 +218,13 @@ func (a *PlansApiService) FindPlansByProject(ctx context.Context, id string) Api
 }
 
 // Execute executes the request
-//  @return FindPlansByOrganization200Response
-func (a *PlansApiService) FindPlansByProjectExecute(r ApiFindPlansByProjectRequest) (*FindPlansByOrganization200Response, *http.Response, error) {
+//  @return PlanList
+func (a *PlansApiService) FindPlansByProjectExecute(r ApiFindPlansByProjectRequest) (*PlanList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *FindPlansByOrganization200Response
+		localVarReturnValue *PlanList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PlansApiService.FindPlansByProject")
@@ -299,7 +299,7 @@ func (a *PlansApiService) FindPlansByProjectExecute(r ApiFindPlansByProjectReque
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -310,7 +310,7 @@ func (a *PlansApiService) FindPlansByProjectExecute(r ApiFindPlansByProjectReque
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -321,7 +321,7 @@ func (a *PlansApiService) FindPlansByProjectExecute(r ApiFindPlansByProjectReque
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

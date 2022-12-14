@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AvailableIn** | Pointer to [**[]FindDeviceById200ResponsePlanAvailableInInner**](FindDeviceById200ResponsePlanAvailableInInner.md) | Shows which facilities the plan is available in, and the facility-based price if it is different from the default price. | [optional] 
-**AvailableInMetros** | Pointer to [**[]FindDeviceById200ResponsePlanAvailableInMetrosInner**](FindDeviceById200ResponsePlanAvailableInMetrosInner.md) | Shows which metros the plan is available in, and the metro-based price if it is different from the default price. | [optional] 
+**AvailableIn** | Pointer to [**[]PlanAvailableInInner**](PlanAvailableInInner.md) | Shows which facilities the plan is available in, and the facility-based price if it is different from the default price. | [optional] 
+**AvailableInMetros** | Pointer to [**[]PlanAvailableInMetrosInner**](PlanAvailableInMetrosInner.md) | Shows which metros the plan is available in, and the metro-based price if it is different from the default price. | [optional] 
 **Class** | Pointer to **string** |  | [optional] 
 **Description** | Pointer to **string** |  | [optional] 
 **DeploymentTypes** | Pointer to **[]string** |  | [optional] 
@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 **Name** | Pointer to **string** |  | [optional] 
 **Pricing** | Pointer to **map[string]interface{}** |  | [optional] 
 **Slug** | Pointer to **string** |  | [optional] 
-**Specs** | Pointer to [**FindDeviceById200ResponsePlanSpecs**](FindDeviceById200ResponsePlanSpecs.md) |  | [optional] 
+**Specs** | Pointer to [**PlanSpecs**](PlanSpecs.md) |  | [optional] 
 **Type** | Pointer to **string** | The plan type | [optional] 
 
 ## Methods
@@ -39,20 +39,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetAvailableIn
 
-`func (o *Plan) GetAvailableIn() []FindDeviceById200ResponsePlanAvailableInInner`
+`func (o *Plan) GetAvailableIn() []PlanAvailableInInner`
 
 GetAvailableIn returns the AvailableIn field if non-nil, zero value otherwise.
 
 ### GetAvailableInOk
 
-`func (o *Plan) GetAvailableInOk() (*[]FindDeviceById200ResponsePlanAvailableInInner, bool)`
+`func (o *Plan) GetAvailableInOk() (*[]PlanAvailableInInner, bool)`
 
 GetAvailableInOk returns a tuple with the AvailableIn field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAvailableIn
 
-`func (o *Plan) SetAvailableIn(v []FindDeviceById200ResponsePlanAvailableInInner)`
+`func (o *Plan) SetAvailableIn(v []PlanAvailableInInner)`
 
 SetAvailableIn sets AvailableIn field to given value.
 
@@ -64,20 +64,20 @@ HasAvailableIn returns a boolean if a field has been set.
 
 ### GetAvailableInMetros
 
-`func (o *Plan) GetAvailableInMetros() []FindDeviceById200ResponsePlanAvailableInMetrosInner`
+`func (o *Plan) GetAvailableInMetros() []PlanAvailableInMetrosInner`
 
 GetAvailableInMetros returns the AvailableInMetros field if non-nil, zero value otherwise.
 
 ### GetAvailableInMetrosOk
 
-`func (o *Plan) GetAvailableInMetrosOk() (*[]FindDeviceById200ResponsePlanAvailableInMetrosInner, bool)`
+`func (o *Plan) GetAvailableInMetrosOk() (*[]PlanAvailableInMetrosInner, bool)`
 
 GetAvailableInMetrosOk returns a tuple with the AvailableInMetros field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAvailableInMetros
 
-`func (o *Plan) SetAvailableInMetros(v []FindDeviceById200ResponsePlanAvailableInMetrosInner)`
+`func (o *Plan) SetAvailableInMetros(v []PlanAvailableInMetrosInner)`
 
 SetAvailableInMetros sets AvailableInMetros field to given value.
 
@@ -314,20 +314,20 @@ HasSlug returns a boolean if a field has been set.
 
 ### GetSpecs
 
-`func (o *Plan) GetSpecs() FindDeviceById200ResponsePlanSpecs`
+`func (o *Plan) GetSpecs() PlanSpecs`
 
 GetSpecs returns the Specs field if non-nil, zero value otherwise.
 
 ### GetSpecsOk
 
-`func (o *Plan) GetSpecsOk() (*FindDeviceById200ResponsePlanSpecs, bool)`
+`func (o *Plan) GetSpecsOk() (*PlanSpecs, bool)`
 
 GetSpecsOk returns a tuple with the Specs field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSpecs
 
-`func (o *Plan) SetSpecs(v FindDeviceById200ResponsePlanSpecs)`
+`func (o *Plan) SetSpecs(v PlanSpecs)`
 
 SetSpecs sets Specs field to given value.
 

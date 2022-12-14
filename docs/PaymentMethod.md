@@ -4,19 +4,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**BillingAddress** | Pointer to [**FindOrganizationPaymentMethods200ResponsePaymentMethodsInnerBillingAddress**](FindOrganizationPaymentMethods200ResponsePaymentMethodsInnerBillingAddress.md) |  | [optional] 
+**BillingAddress** | Pointer to [**PaymentMethodBillingAddress**](PaymentMethodBillingAddress.md) |  | [optional] 
 **CardType** | Pointer to **string** |  | [optional] 
 **CardholderName** | Pointer to **string** |  | [optional] 
 **CreatedAt** | Pointer to **time.Time** |  | [optional] 
-**CreatedByUser** | Pointer to [**FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
+**CreatedByUser** | Pointer to [**Href**](Href.md) |  | [optional] 
 **Default** | Pointer to **bool** |  | [optional] 
 **Email** | Pointer to **string** |  | [optional] 
 **ExpirationMonth** | Pointer to **string** |  | [optional] 
 **ExpirationYear** | Pointer to **string** |  | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
 **Name** | Pointer to **string** |  | [optional] 
-**Organization** | Pointer to [**FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
-**Projects** | Pointer to [**[]FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
+**Organization** | Pointer to [**Href**](Href.md) |  | [optional] 
+**Projects** | Pointer to [**[]Href**](Href.md) |  | [optional] 
 **Type** | Pointer to **string** |  | [optional] 
 **UpdatedAt** | Pointer to **time.Time** |  | [optional] 
 
@@ -41,20 +41,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetBillingAddress
 
-`func (o *PaymentMethod) GetBillingAddress() FindOrganizationPaymentMethods200ResponsePaymentMethodsInnerBillingAddress`
+`func (o *PaymentMethod) GetBillingAddress() PaymentMethodBillingAddress`
 
 GetBillingAddress returns the BillingAddress field if non-nil, zero value otherwise.
 
 ### GetBillingAddressOk
 
-`func (o *PaymentMethod) GetBillingAddressOk() (*FindOrganizationPaymentMethods200ResponsePaymentMethodsInnerBillingAddress, bool)`
+`func (o *PaymentMethod) GetBillingAddressOk() (*PaymentMethodBillingAddress, bool)`
 
 GetBillingAddressOk returns a tuple with the BillingAddress field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetBillingAddress
 
-`func (o *PaymentMethod) SetBillingAddress(v FindOrganizationPaymentMethods200ResponsePaymentMethodsInnerBillingAddress)`
+`func (o *PaymentMethod) SetBillingAddress(v PaymentMethodBillingAddress)`
 
 SetBillingAddress sets BillingAddress field to given value.
 
@@ -141,20 +141,20 @@ HasCreatedAt returns a boolean if a field has been set.
 
 ### GetCreatedByUser
 
-`func (o *PaymentMethod) GetCreatedByUser() FindBatchById200ResponseDevicesInner`
+`func (o *PaymentMethod) GetCreatedByUser() Href`
 
 GetCreatedByUser returns the CreatedByUser field if non-nil, zero value otherwise.
 
 ### GetCreatedByUserOk
 
-`func (o *PaymentMethod) GetCreatedByUserOk() (*FindBatchById200ResponseDevicesInner, bool)`
+`func (o *PaymentMethod) GetCreatedByUserOk() (*Href, bool)`
 
 GetCreatedByUserOk returns a tuple with the CreatedByUser field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCreatedByUser
 
-`func (o *PaymentMethod) SetCreatedByUser(v FindBatchById200ResponseDevicesInner)`
+`func (o *PaymentMethod) SetCreatedByUser(v Href)`
 
 SetCreatedByUser sets CreatedByUser field to given value.
 
@@ -316,20 +316,20 @@ HasName returns a boolean if a field has been set.
 
 ### GetOrganization
 
-`func (o *PaymentMethod) GetOrganization() FindBatchById200ResponseDevicesInner`
+`func (o *PaymentMethod) GetOrganization() Href`
 
 GetOrganization returns the Organization field if non-nil, zero value otherwise.
 
 ### GetOrganizationOk
 
-`func (o *PaymentMethod) GetOrganizationOk() (*FindBatchById200ResponseDevicesInner, bool)`
+`func (o *PaymentMethod) GetOrganizationOk() (*Href, bool)`
 
 GetOrganizationOk returns a tuple with the Organization field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOrganization
 
-`func (o *PaymentMethod) SetOrganization(v FindBatchById200ResponseDevicesInner)`
+`func (o *PaymentMethod) SetOrganization(v Href)`
 
 SetOrganization sets Organization field to given value.
 
@@ -341,20 +341,20 @@ HasOrganization returns a boolean if a field has been set.
 
 ### GetProjects
 
-`func (o *PaymentMethod) GetProjects() []FindBatchById200ResponseDevicesInner`
+`func (o *PaymentMethod) GetProjects() []Href`
 
 GetProjects returns the Projects field if non-nil, zero value otherwise.
 
 ### GetProjectsOk
 
-`func (o *PaymentMethod) GetProjectsOk() (*[]FindBatchById200ResponseDevicesInner, bool)`
+`func (o *PaymentMethod) GetProjectsOk() (*[]Href, bool)`
 
 GetProjectsOk returns a tuple with the Projects field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetProjects
 
-`func (o *PaymentMethod) SetProjects(v []FindBatchById200ResponseDevicesInner)`
+`func (o *PaymentMethod) SetProjects(v []Href)`
 
 SetProjects sets Projects field to given value.
 

@@ -24,19 +24,19 @@ import (
 type DevicesApiService service
 
 type ApiCreateBgpSessionRequest struct {
-	ctx                     context.Context
-	ApiService              *DevicesApiService
-	id                      string
-	createBgpSessionRequest *CreateBgpSessionRequest
+	ctx             context.Context
+	ApiService      *DevicesApiService
+	id              string
+	bGPSessionInput *BGPSessionInput
 }
 
 // BGP session to create
-func (r ApiCreateBgpSessionRequest) CreateBgpSessionRequest(createBgpSessionRequest CreateBgpSessionRequest) ApiCreateBgpSessionRequest {
-	r.createBgpSessionRequest = &createBgpSessionRequest
+func (r ApiCreateBgpSessionRequest) BGPSessionInput(bGPSessionInput BGPSessionInput) ApiCreateBgpSessionRequest {
+	r.bGPSessionInput = &bGPSessionInput
 	return r
 }
 
-func (r ApiCreateBgpSessionRequest) Execute() (*FindBgpSessionById200Response, *http.Response, error) {
+func (r ApiCreateBgpSessionRequest) Execute() (*BgpSession, *http.Response, error) {
 	return r.ApiService.CreateBgpSessionExecute(r)
 }
 
@@ -58,13 +58,13 @@ func (a *DevicesApiService) CreateBgpSession(ctx context.Context, id string) Api
 }
 
 // Execute executes the request
-//  @return FindBgpSessionById200Response
-func (a *DevicesApiService) CreateBgpSessionExecute(r ApiCreateBgpSessionRequest) (*FindBgpSessionById200Response, *http.Response, error) {
+//  @return BgpSession
+func (a *DevicesApiService) CreateBgpSessionExecute(r ApiCreateBgpSessionRequest) (*BgpSession, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *FindBgpSessionById200Response
+		localVarReturnValue *BgpSession
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.CreateBgpSession")
@@ -78,8 +78,8 @@ func (a *DevicesApiService) CreateBgpSessionExecute(r ApiCreateBgpSessionRequest
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createBgpSessionRequest == nil {
-		return localVarReturnValue, nil, reportError("createBgpSessionRequest is required and must be specified")
+	if r.bGPSessionInput == nil {
+		return localVarReturnValue, nil, reportError("bGPSessionInput is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -100,7 +100,7 @@ func (a *DevicesApiService) CreateBgpSessionExecute(r ApiCreateBgpSessionRequest
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createBgpSessionRequest
+	localVarPostBody = r.bGPSessionInput
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -138,7 +138,7 @@ func (a *DevicesApiService) CreateBgpSessionExecute(r ApiCreateBgpSessionRequest
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -149,7 +149,7 @@ func (a *DevicesApiService) CreateBgpSessionExecute(r ApiCreateBgpSessionRequest
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -160,7 +160,7 @@ func (a *DevicesApiService) CreateBgpSessionExecute(r ApiCreateBgpSessionRequest
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -197,7 +197,7 @@ func (r ApiCreateDeviceRequest) CreateDeviceRequest(createDeviceRequest CreateDe
 	return r
 }
 
-func (r ApiCreateDeviceRequest) Execute() (*FindDeviceById200Response, *http.Response, error) {
+func (r ApiCreateDeviceRequest) Execute() (*Device, *http.Response, error) {
 	return r.ApiService.CreateDeviceExecute(r)
 }
 
@@ -221,13 +221,13 @@ func (a *DevicesApiService) CreateDevice(ctx context.Context, id string) ApiCrea
 }
 
 // Execute executes the request
-//  @return FindDeviceById200Response
-func (a *DevicesApiService) CreateDeviceExecute(r ApiCreateDeviceRequest) (*FindDeviceById200Response, *http.Response, error) {
+//  @return Device
+func (a *DevicesApiService) CreateDeviceExecute(r ApiCreateDeviceRequest) (*Device, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *FindDeviceById200Response
+		localVarReturnValue *Device
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.CreateDevice")
@@ -301,7 +301,7 @@ func (a *DevicesApiService) CreateDeviceExecute(r ApiCreateDeviceRequest) (*Find
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -312,7 +312,7 @@ func (a *DevicesApiService) CreateDeviceExecute(r ApiCreateDeviceRequest) (*Find
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -323,7 +323,7 @@ func (a *DevicesApiService) CreateDeviceExecute(r ApiCreateDeviceRequest) (*Find
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -334,7 +334,7 @@ func (a *DevicesApiService) CreateDeviceExecute(r ApiCreateDeviceRequest) (*Find
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -359,19 +359,19 @@ func (a *DevicesApiService) CreateDeviceExecute(r ApiCreateDeviceRequest) (*Find
 }
 
 type ApiCreateIPAssignmentRequest struct {
-	ctx                       context.Context
-	ApiService                *DevicesApiService
-	id                        string
-	createIPAssignmentRequest *CreateIPAssignmentRequest
+	ctx               context.Context
+	ApiService        *DevicesApiService
+	id                string
+	iPAssignmentInput *IPAssignmentInput
 }
 
 // IPAssignment to create
-func (r ApiCreateIPAssignmentRequest) CreateIPAssignmentRequest(createIPAssignmentRequest CreateIPAssignmentRequest) ApiCreateIPAssignmentRequest {
-	r.createIPAssignmentRequest = &createIPAssignmentRequest
+func (r ApiCreateIPAssignmentRequest) IPAssignmentInput(iPAssignmentInput IPAssignmentInput) ApiCreateIPAssignmentRequest {
+	r.iPAssignmentInput = &iPAssignmentInput
 	return r
 }
 
-func (r ApiCreateIPAssignmentRequest) Execute() (*FindDeviceById200ResponseIpAddressesInner, *http.Response, error) {
+func (r ApiCreateIPAssignmentRequest) Execute() (*IPAssignment, *http.Response, error) {
 	return r.ApiService.CreateIPAssignmentExecute(r)
 }
 
@@ -393,13 +393,13 @@ func (a *DevicesApiService) CreateIPAssignment(ctx context.Context, id string) A
 }
 
 // Execute executes the request
-//  @return FindDeviceById200ResponseIpAddressesInner
-func (a *DevicesApiService) CreateIPAssignmentExecute(r ApiCreateIPAssignmentRequest) (*FindDeviceById200ResponseIpAddressesInner, *http.Response, error) {
+//  @return IPAssignment
+func (a *DevicesApiService) CreateIPAssignmentExecute(r ApiCreateIPAssignmentRequest) (*IPAssignment, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *FindDeviceById200ResponseIpAddressesInner
+		localVarReturnValue *IPAssignment
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.CreateIPAssignment")
@@ -413,8 +413,8 @@ func (a *DevicesApiService) CreateIPAssignmentExecute(r ApiCreateIPAssignmentReq
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createIPAssignmentRequest == nil {
-		return localVarReturnValue, nil, reportError("createIPAssignmentRequest is required and must be specified")
+	if r.iPAssignmentInput == nil {
+		return localVarReturnValue, nil, reportError("iPAssignmentInput is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -435,7 +435,7 @@ func (a *DevicesApiService) CreateIPAssignmentExecute(r ApiCreateIPAssignmentReq
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createIPAssignmentRequest
+	localVarPostBody = r.iPAssignmentInput
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -473,7 +473,7 @@ func (a *DevicesApiService) CreateIPAssignmentExecute(r ApiCreateIPAssignmentReq
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -484,7 +484,7 @@ func (a *DevicesApiService) CreateIPAssignmentExecute(r ApiCreateIPAssignmentReq
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -495,7 +495,7 @@ func (a *DevicesApiService) CreateIPAssignmentExecute(r ApiCreateIPAssignmentReq
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -630,7 +630,7 @@ func (a *DevicesApiService) DeleteDeviceExecute(r ApiDeleteDeviceRequest) (*http
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -641,7 +641,7 @@ func (a *DevicesApiService) DeleteDeviceExecute(r ApiDeleteDeviceRequest) (*http
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -652,7 +652,7 @@ func (a *DevicesApiService) DeleteDeviceExecute(r ApiDeleteDeviceRequest) (*http
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -663,7 +663,7 @@ func (a *DevicesApiService) DeleteDeviceExecute(r ApiDeleteDeviceRequest) (*http
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -684,7 +684,7 @@ type ApiFindBgpSessionsRequest struct {
 	id         string
 }
 
-func (r ApiFindBgpSessionsRequest) Execute() (*FindBgpSessions200Response, *http.Response, error) {
+func (r ApiFindBgpSessionsRequest) Execute() (*BgpSessionList, *http.Response, error) {
 	return r.ApiService.FindBgpSessionsExecute(r)
 }
 
@@ -706,13 +706,13 @@ func (a *DevicesApiService) FindBgpSessions(ctx context.Context, id string) ApiF
 }
 
 // Execute executes the request
-//  @return FindBgpSessions200Response
-func (a *DevicesApiService) FindBgpSessionsExecute(r ApiFindBgpSessionsRequest) (*FindBgpSessions200Response, *http.Response, error) {
+//  @return BgpSessionList
+func (a *DevicesApiService) FindBgpSessionsExecute(r ApiFindBgpSessionsRequest) (*BgpSessionList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *FindBgpSessions200Response
+		localVarReturnValue *BgpSessionList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.FindBgpSessions")
@@ -781,7 +781,7 @@ func (a *DevicesApiService) FindBgpSessionsExecute(r ApiFindBgpSessionsRequest) 
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -792,7 +792,7 @@ func (a *DevicesApiService) FindBgpSessionsExecute(r ApiFindBgpSessionsRequest) 
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -836,7 +836,7 @@ func (r ApiFindDeviceByIdRequest) Exclude(exclude []string) ApiFindDeviceByIdReq
 	return r
 }
 
-func (r ApiFindDeviceByIdRequest) Execute() (*FindDeviceById200Response, *http.Response, error) {
+func (r ApiFindDeviceByIdRequest) Execute() (*Device, *http.Response, error) {
 	return r.ApiService.FindDeviceByIdExecute(r)
 }
 
@@ -859,13 +859,13 @@ func (a *DevicesApiService) FindDeviceById(ctx context.Context, id string) ApiFi
 }
 
 // Execute executes the request
-//  @return FindDeviceById200Response
-func (a *DevicesApiService) FindDeviceByIdExecute(r ApiFindDeviceByIdRequest) (*FindDeviceById200Response, *http.Response, error) {
+//  @return Device
+func (a *DevicesApiService) FindDeviceByIdExecute(r ApiFindDeviceByIdRequest) (*Device, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *FindDeviceById200Response
+		localVarReturnValue *Device
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.FindDeviceById")
@@ -940,7 +940,7 @@ func (a *DevicesApiService) FindDeviceByIdExecute(r ApiFindDeviceByIdRequest) (*
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -951,7 +951,7 @@ func (a *DevicesApiService) FindDeviceByIdExecute(r ApiFindDeviceByIdRequest) (*
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -962,7 +962,7 @@ func (a *DevicesApiService) FindDeviceByIdExecute(r ApiFindDeviceByIdRequest) (*
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1087,7 +1087,7 @@ func (a *DevicesApiService) FindDeviceCustomdataExecute(r ApiFindDeviceCustomdat
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1098,7 +1098,7 @@ func (a *DevicesApiService) FindDeviceCustomdataExecute(r ApiFindDeviceCustomdat
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1109,7 +1109,7 @@ func (a *DevicesApiService) FindDeviceCustomdataExecute(r ApiFindDeviceCustomdat
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1130,7 +1130,7 @@ type ApiFindDeviceMetadataByIDRequest struct {
 	id         string
 }
 
-func (r ApiFindDeviceMetadataByIDRequest) Execute() (*FindDeviceMetadataByID200Response, *http.Response, error) {
+func (r ApiFindDeviceMetadataByIDRequest) Execute() (*Metadata, *http.Response, error) {
 	return r.ApiService.FindDeviceMetadataByIDExecute(r)
 }
 
@@ -1152,13 +1152,13 @@ func (a *DevicesApiService) FindDeviceMetadataByID(ctx context.Context, id strin
 }
 
 // Execute executes the request
-//  @return FindDeviceMetadataByID200Response
-func (a *DevicesApiService) FindDeviceMetadataByIDExecute(r ApiFindDeviceMetadataByIDRequest) (*FindDeviceMetadataByID200Response, *http.Response, error) {
+//  @return Metadata
+func (a *DevicesApiService) FindDeviceMetadataByIDExecute(r ApiFindDeviceMetadataByIDRequest) (*Metadata, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *FindDeviceMetadataByID200Response
+		localVarReturnValue *Metadata
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.FindDeviceMetadataByID")
@@ -1227,7 +1227,7 @@ func (a *DevicesApiService) FindDeviceMetadataByIDExecute(r ApiFindDeviceMetadat
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1238,7 +1238,7 @@ func (a *DevicesApiService) FindDeviceMetadataByIDExecute(r ApiFindDeviceMetadat
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1249,7 +1249,7 @@ func (a *DevicesApiService) FindDeviceMetadataByIDExecute(r ApiFindDeviceMetadat
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1279,7 +1279,7 @@ type ApiFindDeviceUserdataByIDRequest struct {
 	id         string
 }
 
-func (r ApiFindDeviceUserdataByIDRequest) Execute() (*FindDeviceUserdataByID200Response, *http.Response, error) {
+func (r ApiFindDeviceUserdataByIDRequest) Execute() (*Userdata, *http.Response, error) {
 	return r.ApiService.FindDeviceUserdataByIDExecute(r)
 }
 
@@ -1301,13 +1301,13 @@ func (a *DevicesApiService) FindDeviceUserdataByID(ctx context.Context, id strin
 }
 
 // Execute executes the request
-//  @return FindDeviceUserdataByID200Response
-func (a *DevicesApiService) FindDeviceUserdataByIDExecute(r ApiFindDeviceUserdataByIDRequest) (*FindDeviceUserdataByID200Response, *http.Response, error) {
+//  @return Userdata
+func (a *DevicesApiService) FindDeviceUserdataByIDExecute(r ApiFindDeviceUserdataByIDRequest) (*Userdata, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *FindDeviceUserdataByID200Response
+		localVarReturnValue *Userdata
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.FindDeviceUserdataByID")
@@ -1376,7 +1376,7 @@ func (a *DevicesApiService) FindDeviceUserdataByIDExecute(r ApiFindDeviceUserdat
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1387,7 +1387,7 @@ func (a *DevicesApiService) FindDeviceUserdataByIDExecute(r ApiFindDeviceUserdat
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1398,7 +1398,7 @@ func (a *DevicesApiService) FindDeviceUserdataByIDExecute(r ApiFindDeviceUserdat
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1527,7 +1527,7 @@ func (a *DevicesApiService) FindIPAssignmentCustomdataExecute(r ApiFindIPAssignm
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1538,7 +1538,7 @@ func (a *DevicesApiService) FindIPAssignmentCustomdataExecute(r ApiFindIPAssignm
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1549,7 +1549,7 @@ func (a *DevicesApiService) FindIPAssignmentCustomdataExecute(r ApiFindIPAssignm
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1584,7 +1584,7 @@ func (r ApiFindIPAssignmentsRequest) Exclude(exclude []string) ApiFindIPAssignme
 	return r
 }
 
-func (r ApiFindIPAssignmentsRequest) Execute() (*FindIPAssignments200Response, *http.Response, error) {
+func (r ApiFindIPAssignmentsRequest) Execute() (*IPAssignmentList, *http.Response, error) {
 	return r.ApiService.FindIPAssignmentsExecute(r)
 }
 
@@ -1606,13 +1606,13 @@ func (a *DevicesApiService) FindIPAssignments(ctx context.Context, id string) Ap
 }
 
 // Execute executes the request
-//  @return FindIPAssignments200Response
-func (a *DevicesApiService) FindIPAssignmentsExecute(r ApiFindIPAssignmentsRequest) (*FindIPAssignments200Response, *http.Response, error) {
+//  @return IPAssignmentList
+func (a *DevicesApiService) FindIPAssignmentsExecute(r ApiFindIPAssignmentsRequest) (*IPAssignmentList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *FindIPAssignments200Response
+		localVarReturnValue *IPAssignmentList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.FindIPAssignments")
@@ -1687,7 +1687,7 @@ func (a *DevicesApiService) FindIPAssignmentsExecute(r ApiFindIPAssignmentsReque
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1698,7 +1698,7 @@ func (a *DevicesApiService) FindIPAssignmentsExecute(r ApiFindIPAssignmentsReque
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1845,7 +1845,7 @@ func (a *DevicesApiService) FindInstanceBandwidthExecute(r ApiFindInstanceBandwi
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1856,7 +1856,7 @@ func (a *DevicesApiService) FindInstanceBandwidthExecute(r ApiFindInstanceBandwi
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1940,7 +1940,7 @@ func (r ApiFindOrganizationDevicesRequest) PerPage(perPage int32) ApiFindOrganiz
 	return r
 }
 
-func (r ApiFindOrganizationDevicesRequest) Execute() (*FindOrganizationDevices200Response, *http.Response, error) {
+func (r ApiFindOrganizationDevicesRequest) Execute() (*DeviceList, *http.Response, error) {
 	return r.ApiService.FindOrganizationDevicesExecute(r)
 }
 
@@ -1962,13 +1962,13 @@ func (a *DevicesApiService) FindOrganizationDevices(ctx context.Context, id stri
 }
 
 // Execute executes the request
-//  @return FindOrganizationDevices200Response
-func (a *DevicesApiService) FindOrganizationDevicesExecute(r ApiFindOrganizationDevicesRequest) (*FindOrganizationDevices200Response, *http.Response, error) {
+//  @return DeviceList
+func (a *DevicesApiService) FindOrganizationDevicesExecute(r ApiFindOrganizationDevicesRequest) (*DeviceList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *FindOrganizationDevices200Response
+		localVarReturnValue *DeviceList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.FindOrganizationDevices")
@@ -2064,7 +2064,7 @@ func (a *DevicesApiService) FindOrganizationDevicesExecute(r ApiFindOrganization
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2075,7 +2075,7 @@ func (a *DevicesApiService) FindOrganizationDevicesExecute(r ApiFindOrganization
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2086,7 +2086,7 @@ func (a *DevicesApiService) FindOrganizationDevicesExecute(r ApiFindOrganization
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2179,7 +2179,7 @@ func (r ApiFindProjectDevicesRequest) PerPage(perPage int32) ApiFindProjectDevic
 	return r
 }
 
-func (r ApiFindProjectDevicesRequest) Execute() (*FindOrganizationDevices200Response, *http.Response, error) {
+func (r ApiFindProjectDevicesRequest) Execute() (*DeviceList, *http.Response, error) {
 	return r.ApiService.FindProjectDevicesExecute(r)
 }
 
@@ -2201,13 +2201,13 @@ func (a *DevicesApiService) FindProjectDevices(ctx context.Context, id string) A
 }
 
 // Execute executes the request
-//  @return FindOrganizationDevices200Response
-func (a *DevicesApiService) FindProjectDevicesExecute(r ApiFindProjectDevicesRequest) (*FindOrganizationDevices200Response, *http.Response, error) {
+//  @return DeviceList
+func (a *DevicesApiService) FindProjectDevicesExecute(r ApiFindProjectDevicesRequest) (*DeviceList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *FindOrganizationDevices200Response
+		localVarReturnValue *DeviceList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.FindProjectDevices")
@@ -2303,7 +2303,7 @@ func (a *DevicesApiService) FindProjectDevicesExecute(r ApiFindProjectDevicesReq
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2314,7 +2314,7 @@ func (a *DevicesApiService) FindProjectDevicesExecute(r ApiFindProjectDevicesReq
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2325,7 +2325,7 @@ func (a *DevicesApiService) FindProjectDevicesExecute(r ApiFindProjectDevicesReq
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2490,7 +2490,7 @@ func (a *DevicesApiService) FindTrafficExecute(r ApiFindTrafficRequest) (*http.R
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2501,7 +2501,7 @@ func (a *DevicesApiService) FindTrafficExecute(r ApiFindTrafficRequest) (*http.R
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2512,7 +2512,7 @@ func (a *DevicesApiService) FindTrafficExecute(r ApiFindTrafficRequest) (*http.R
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2533,7 +2533,7 @@ type ApiGetBgpNeighborDataRequest struct {
 	id         string
 }
 
-func (r ApiGetBgpNeighborDataRequest) Execute() (*GetBgpNeighborData200Response, *http.Response, error) {
+func (r ApiGetBgpNeighborDataRequest) Execute() (*BgpSessionNeighbors, *http.Response, error) {
 	return r.ApiService.GetBgpNeighborDataExecute(r)
 }
 
@@ -2555,13 +2555,13 @@ func (a *DevicesApiService) GetBgpNeighborData(ctx context.Context, id string) A
 }
 
 // Execute executes the request
-//  @return GetBgpNeighborData200Response
-func (a *DevicesApiService) GetBgpNeighborDataExecute(r ApiGetBgpNeighborDataRequest) (*GetBgpNeighborData200Response, *http.Response, error) {
+//  @return BgpSessionNeighbors
+func (a *DevicesApiService) GetBgpNeighborDataExecute(r ApiGetBgpNeighborDataRequest) (*BgpSessionNeighbors, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *GetBgpNeighborData200Response
+		localVarReturnValue *BgpSessionNeighbors
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.GetBgpNeighborData")
@@ -2630,7 +2630,7 @@ func (a *DevicesApiService) GetBgpNeighborDataExecute(r ApiGetBgpNeighborDataReq
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2641,7 +2641,7 @@ func (a *DevicesApiService) GetBgpNeighborDataExecute(r ApiGetBgpNeighborDataReq
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2652,7 +2652,7 @@ func (a *DevicesApiService) GetBgpNeighborDataExecute(r ApiGetBgpNeighborDataReq
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2677,15 +2677,15 @@ func (a *DevicesApiService) GetBgpNeighborDataExecute(r ApiGetBgpNeighborDataReq
 }
 
 type ApiPerformActionRequest struct {
-	ctx                  context.Context
-	ApiService           *DevicesApiService
-	id                   string
-	performActionRequest *PerformActionRequest
+	ctx               context.Context
+	ApiService        *DevicesApiService
+	id                string
+	deviceActionInput *DeviceActionInput
 }
 
 // Action to perform
-func (r ApiPerformActionRequest) PerformActionRequest(performActionRequest PerformActionRequest) ApiPerformActionRequest {
-	r.performActionRequest = &performActionRequest
+func (r ApiPerformActionRequest) DeviceActionInput(deviceActionInput DeviceActionInput) ApiPerformActionRequest {
+	r.deviceActionInput = &deviceActionInput
 	return r
 }
 
@@ -2729,8 +2729,8 @@ func (a *DevicesApiService) PerformActionExecute(r ApiPerformActionRequest) (*ht
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.performActionRequest == nil {
-		return nil, reportError("performActionRequest is required and must be specified")
+	if r.deviceActionInput == nil {
+		return nil, reportError("deviceActionInput is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -2751,7 +2751,7 @@ func (a *DevicesApiService) PerformActionExecute(r ApiPerformActionRequest) (*ht
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.performActionRequest
+	localVarPostBody = r.deviceActionInput
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -2789,7 +2789,7 @@ func (a *DevicesApiService) PerformActionExecute(r ApiPerformActionRequest) (*ht
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2800,7 +2800,7 @@ func (a *DevicesApiService) PerformActionExecute(r ApiPerformActionRequest) (*ht
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2811,7 +2811,7 @@ func (a *DevicesApiService) PerformActionExecute(r ApiPerformActionRequest) (*ht
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2827,19 +2827,19 @@ func (a *DevicesApiService) PerformActionExecute(r ApiPerformActionRequest) (*ht
 }
 
 type ApiUpdateDeviceRequest struct {
-	ctx                 context.Context
-	ApiService          *DevicesApiService
-	id                  string
-	updateDeviceRequest *UpdateDeviceRequest
+	ctx               context.Context
+	ApiService        *DevicesApiService
+	id                string
+	deviceUpdateInput *DeviceUpdateInput
 }
 
 // Facility to update
-func (r ApiUpdateDeviceRequest) UpdateDeviceRequest(updateDeviceRequest UpdateDeviceRequest) ApiUpdateDeviceRequest {
-	r.updateDeviceRequest = &updateDeviceRequest
+func (r ApiUpdateDeviceRequest) DeviceUpdateInput(deviceUpdateInput DeviceUpdateInput) ApiUpdateDeviceRequest {
+	r.deviceUpdateInput = &deviceUpdateInput
 	return r
 }
 
-func (r ApiUpdateDeviceRequest) Execute() (*FindDeviceById200Response, *http.Response, error) {
+func (r ApiUpdateDeviceRequest) Execute() (*Device, *http.Response, error) {
 	return r.ApiService.UpdateDeviceExecute(r)
 }
 
@@ -2861,13 +2861,13 @@ func (a *DevicesApiService) UpdateDevice(ctx context.Context, id string) ApiUpda
 }
 
 // Execute executes the request
-//  @return FindDeviceById200Response
-func (a *DevicesApiService) UpdateDeviceExecute(r ApiUpdateDeviceRequest) (*FindDeviceById200Response, *http.Response, error) {
+//  @return Device
+func (a *DevicesApiService) UpdateDeviceExecute(r ApiUpdateDeviceRequest) (*Device, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *FindDeviceById200Response
+		localVarReturnValue *Device
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.UpdateDevice")
@@ -2881,8 +2881,8 @@ func (a *DevicesApiService) UpdateDeviceExecute(r ApiUpdateDeviceRequest) (*Find
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.updateDeviceRequest == nil {
-		return localVarReturnValue, nil, reportError("updateDeviceRequest is required and must be specified")
+	if r.deviceUpdateInput == nil {
+		return localVarReturnValue, nil, reportError("deviceUpdateInput is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -2903,7 +2903,7 @@ func (a *DevicesApiService) UpdateDeviceExecute(r ApiUpdateDeviceRequest) (*Find
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateDeviceRequest
+	localVarPostBody = r.deviceUpdateInput
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -2941,7 +2941,7 @@ func (a *DevicesApiService) UpdateDeviceExecute(r ApiUpdateDeviceRequest) (*Find
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2952,7 +2952,7 @@ func (a *DevicesApiService) UpdateDeviceExecute(r ApiUpdateDeviceRequest) (*Find
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2963,7 +2963,7 @@ func (a *DevicesApiService) UpdateDeviceExecute(r ApiUpdateDeviceRequest) (*Find
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2974,7 +2974,7 @@ func (a *DevicesApiService) UpdateDeviceExecute(r ApiUpdateDeviceRequest) (*Find
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

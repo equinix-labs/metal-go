@@ -17,7 +17,7 @@ import (
 
 // MetroList struct for MetroList
 type MetroList struct {
-	Metros []GetInterconnection200ResponseMetroAllOf `json:"metros,omitempty"`
+	Metros []Metro `json:"metros,omitempty"`
 }
 
 // NewMetroList instantiates a new MetroList object
@@ -38,9 +38,9 @@ func NewMetroListWithDefaults() *MetroList {
 }
 
 // GetMetros returns the Metros field value if set, zero value otherwise.
-func (o *MetroList) GetMetros() []GetInterconnection200ResponseMetroAllOf {
+func (o *MetroList) GetMetros() []Metro {
 	if o == nil || isNil(o.Metros) {
-		var ret []GetInterconnection200ResponseMetroAllOf
+		var ret []Metro
 		return ret
 	}
 	return o.Metros
@@ -48,7 +48,7 @@ func (o *MetroList) GetMetros() []GetInterconnection200ResponseMetroAllOf {
 
 // GetMetrosOk returns a tuple with the Metros field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetroList) GetMetrosOk() ([]GetInterconnection200ResponseMetroAllOf, bool) {
+func (o *MetroList) GetMetrosOk() ([]Metro, bool) {
 	if o == nil || isNil(o.Metros) {
 		return nil, false
 	}
@@ -64,8 +64,8 @@ func (o *MetroList) HasMetros() bool {
 	return false
 }
 
-// SetMetros gets a reference to the given []GetInterconnection200ResponseMetroAllOf and assigns it to the Metros field.
-func (o *MetroList) SetMetros(v []GetInterconnection200ResponseMetroAllOf) {
+// SetMetros gets a reference to the given []Metro and assigns it to the Metros field.
+func (o *MetroList) SetMetros(v []Metro) {
 	o.Metros = v
 }
 

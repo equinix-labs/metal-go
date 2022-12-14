@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Bond** | Pointer to [**FindDeviceById200ResponseNetworkPortsInnerBond**](FindDeviceById200ResponseNetworkPortsInnerBond.md) |  | [optional] 
-**Data** | Pointer to [**FindDeviceById200ResponseNetworkPortsInnerData**](FindDeviceById200ResponseNetworkPortsInnerData.md) |  | [optional] 
+**Bond** | Pointer to [**BondPortData**](BondPortData.md) |  | [optional] 
+**Data** | Pointer to [**PortData**](PortData.md) |  | [optional] 
 **DisbondOperationSupported** | Pointer to **bool** | Indicates whether or not the bond can be broken on the port (when applicable). | [optional] 
 **Href** | Pointer to **string** |  | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
 **Name** | Pointer to **string** |  | [optional] 
 **Type** | Pointer to **string** | Type is either \&quot;NetworkBondPort\&quot; for bond ports or \&quot;NetworkPort\&quot; for bondable ethernet ports | [optional] 
 **NetworkType** | Pointer to **string** | Composite network type of the bond | [optional] 
-**NativeVirtualNetwork** | Pointer to [**FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetwork**](FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetwork.md) |  | [optional] 
-**VirtualNetworks** | Pointer to [**[]FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
+**NativeVirtualNetwork** | Pointer to [**VirtualNetwork**](VirtualNetwork.md) |  | [optional] 
+**VirtualNetworks** | Pointer to [**[]Href**](Href.md) |  | [optional] 
 
 ## Methods
 
@@ -36,20 +36,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetBond
 
-`func (o *Port) GetBond() FindDeviceById200ResponseNetworkPortsInnerBond`
+`func (o *Port) GetBond() BondPortData`
 
 GetBond returns the Bond field if non-nil, zero value otherwise.
 
 ### GetBondOk
 
-`func (o *Port) GetBondOk() (*FindDeviceById200ResponseNetworkPortsInnerBond, bool)`
+`func (o *Port) GetBondOk() (*BondPortData, bool)`
 
 GetBondOk returns a tuple with the Bond field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetBond
 
-`func (o *Port) SetBond(v FindDeviceById200ResponseNetworkPortsInnerBond)`
+`func (o *Port) SetBond(v BondPortData)`
 
 SetBond sets Bond field to given value.
 
@@ -61,20 +61,20 @@ HasBond returns a boolean if a field has been set.
 
 ### GetData
 
-`func (o *Port) GetData() FindDeviceById200ResponseNetworkPortsInnerData`
+`func (o *Port) GetData() PortData`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *Port) GetDataOk() (*FindDeviceById200ResponseNetworkPortsInnerData, bool)`
+`func (o *Port) GetDataOk() (*PortData, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetData
 
-`func (o *Port) SetData(v FindDeviceById200ResponseNetworkPortsInnerData)`
+`func (o *Port) SetData(v PortData)`
 
 SetData sets Data field to given value.
 
@@ -236,20 +236,20 @@ HasNetworkType returns a boolean if a field has been set.
 
 ### GetNativeVirtualNetwork
 
-`func (o *Port) GetNativeVirtualNetwork() FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetwork`
+`func (o *Port) GetNativeVirtualNetwork() VirtualNetwork`
 
 GetNativeVirtualNetwork returns the NativeVirtualNetwork field if non-nil, zero value otherwise.
 
 ### GetNativeVirtualNetworkOk
 
-`func (o *Port) GetNativeVirtualNetworkOk() (*FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetwork, bool)`
+`func (o *Port) GetNativeVirtualNetworkOk() (*VirtualNetwork, bool)`
 
 GetNativeVirtualNetworkOk returns a tuple with the NativeVirtualNetwork field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNativeVirtualNetwork
 
-`func (o *Port) SetNativeVirtualNetwork(v FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetwork)`
+`func (o *Port) SetNativeVirtualNetwork(v VirtualNetwork)`
 
 SetNativeVirtualNetwork sets NativeVirtualNetwork field to given value.
 
@@ -261,20 +261,20 @@ HasNativeVirtualNetwork returns a boolean if a field has been set.
 
 ### GetVirtualNetworks
 
-`func (o *Port) GetVirtualNetworks() []FindBatchById200ResponseDevicesInner`
+`func (o *Port) GetVirtualNetworks() []Href`
 
 GetVirtualNetworks returns the VirtualNetworks field if non-nil, zero value otherwise.
 
 ### GetVirtualNetworksOk
 
-`func (o *Port) GetVirtualNetworksOk() (*[]FindBatchById200ResponseDevicesInner, bool)`
+`func (o *Port) GetVirtualNetworksOk() (*[]Href, bool)`
 
 GetVirtualNetworksOk returns a tuple with the VirtualNetworks field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVirtualNetworks
 
-`func (o *Port) SetVirtualNetworks(v []FindBatchById200ResponseDevicesInner)`
+`func (o *Port) SetVirtualNetworks(v []Href)`
 
 SetVirtualNetworks sets VirtualNetworks field to given value.
 

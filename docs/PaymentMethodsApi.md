@@ -80,7 +80,7 @@ Name | Type | Description  | Notes
 
 ## FindPaymentMethodById
 
-> FindOrganizationPaymentMethods200ResponsePaymentMethodsInner FindPaymentMethodById(ctx, id).Include(include).Exclude(exclude).Execute()
+> PaymentMethod FindPaymentMethodById(ctx, id).Include(include).Exclude(exclude).Execute()
 
 Retrieve a payment method
 
@@ -110,7 +110,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `PaymentMethodsApi.FindPaymentMethodById``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindPaymentMethodById`: FindOrganizationPaymentMethods200ResponsePaymentMethodsInner
+    // response from `FindPaymentMethodById`: PaymentMethod
     fmt.Fprintf(os.Stdout, "Response from `PaymentMethodsApi.FindPaymentMethodById`: %v\n", resp)
 }
 ```
@@ -136,7 +136,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FindOrganizationPaymentMethods200ResponsePaymentMethodsInner**](FindOrganizationPaymentMethods200ResponsePaymentMethodsInner.md)
+[**PaymentMethod**](PaymentMethod.md)
 
 ### Authorization
 
@@ -154,7 +154,7 @@ Name | Type | Description  | Notes
 
 ## UpdatePaymentMethod
 
-> FindOrganizationPaymentMethods200ResponsePaymentMethodsInner UpdatePaymentMethod(ctx, id).UpdatePaymentMethodRequest(updatePaymentMethodRequest).Execute()
+> PaymentMethod UpdatePaymentMethod(ctx, id).PaymentMethodUpdateInput(paymentMethodUpdateInput).Execute()
 
 Update the payment method
 
@@ -174,16 +174,16 @@ import (
 
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Payment Method UUID
-    updatePaymentMethodRequest := *openapiclient.NewUpdatePaymentMethodRequest() // UpdatePaymentMethodRequest | Payment Method to update
+    paymentMethodUpdateInput := *openapiclient.NewPaymentMethodUpdateInput() // PaymentMethodUpdateInput | Payment Method to update
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PaymentMethodsApi.UpdatePaymentMethod(context.Background(), id).UpdatePaymentMethodRequest(updatePaymentMethodRequest).Execute()
+    resp, r, err := apiClient.PaymentMethodsApi.UpdatePaymentMethod(context.Background(), id).PaymentMethodUpdateInput(paymentMethodUpdateInput).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PaymentMethodsApi.UpdatePaymentMethod``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdatePaymentMethod`: FindOrganizationPaymentMethods200ResponsePaymentMethodsInner
+    // response from `UpdatePaymentMethod`: PaymentMethod
     fmt.Fprintf(os.Stdout, "Response from `PaymentMethodsApi.UpdatePaymentMethod`: %v\n", resp)
 }
 ```
@@ -204,11 +204,11 @@ Other parameters are passed through a pointer to a apiUpdatePaymentMethodRequest
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updatePaymentMethodRequest** | [**UpdatePaymentMethodRequest**](UpdatePaymentMethodRequest.md) | Payment Method to update | 
+ **paymentMethodUpdateInput** | [**PaymentMethodUpdateInput**](PaymentMethodUpdateInput.md) | Payment Method to update | 
 
 ### Return type
 
-[**FindOrganizationPaymentMethods200ResponsePaymentMethodsInner**](FindOrganizationPaymentMethods200ResponsePaymentMethodsInner.md)
+[**PaymentMethod**](PaymentMethod.md)
 
 ### Authorization
 

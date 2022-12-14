@@ -28,7 +28,7 @@ type ApiFindMetrosRequest struct {
 	ApiService *MetrosApiService
 }
 
-func (r ApiFindMetrosRequest) Execute() (*FindMetros200Response, *http.Response, error) {
+func (r ApiFindMetrosRequest) Execute() (*MetroList, *http.Response, error) {
 	return r.ApiService.FindMetrosExecute(r)
 }
 
@@ -48,13 +48,13 @@ func (a *MetrosApiService) FindMetros(ctx context.Context) ApiFindMetrosRequest 
 }
 
 // Execute executes the request
-//  @return FindMetros200Response
-func (a *MetrosApiService) FindMetrosExecute(r ApiFindMetrosRequest) (*FindMetros200Response, *http.Response, error) {
+//  @return MetroList
+func (a *MetrosApiService) FindMetrosExecute(r ApiFindMetrosRequest) (*MetroList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *FindMetros200Response
+		localVarReturnValue *MetroList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetrosApiService.FindMetros")
@@ -122,7 +122,7 @@ func (a *MetrosApiService) FindMetrosExecute(r ApiFindMetrosRequest) (*FindMetro
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -152,7 +152,7 @@ type ApiGetMetroRequest struct {
 	id         string
 }
 
-func (r ApiGetMetroRequest) Execute() (*GetInterconnection200ResponseMetroAllOf, *http.Response, error) {
+func (r ApiGetMetroRequest) Execute() (*Metro, *http.Response, error) {
 	return r.ApiService.GetMetroExecute(r)
 }
 
@@ -174,13 +174,13 @@ func (a *MetrosApiService) GetMetro(ctx context.Context, id string) ApiGetMetroR
 }
 
 // Execute executes the request
-//  @return GetInterconnection200ResponseMetroAllOf
-func (a *MetrosApiService) GetMetroExecute(r ApiGetMetroRequest) (*GetInterconnection200ResponseMetroAllOf, *http.Response, error) {
+//  @return Metro
+func (a *MetrosApiService) GetMetroExecute(r ApiGetMetroRequest) (*Metro, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *GetInterconnection200ResponseMetroAllOf
+		localVarReturnValue *Metro
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetrosApiService.GetMetro")
@@ -249,7 +249,7 @@ func (a *MetrosApiService) GetMetroExecute(r ApiGetMetroRequest) (*GetInterconne
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

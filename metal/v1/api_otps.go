@@ -124,7 +124,7 @@ func (a *OTPsApiService) FindEnsureOtpExecute(r ApiFindEnsureOtpRequest) (*http.
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -135,7 +135,7 @@ func (a *OTPsApiService) FindEnsureOtpExecute(r ApiFindEnsureOtpRequest) (*http.
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -155,7 +155,7 @@ type ApiFindRecoveryCodesRequest struct {
 	ApiService *OTPsApiService
 }
 
-func (r ApiFindRecoveryCodesRequest) Execute() (*FindRecoveryCodes200Response, *http.Response, error) {
+func (r ApiFindRecoveryCodesRequest) Execute() (*RecoveryCodeList, *http.Response, error) {
 	return r.ApiService.FindRecoveryCodesExecute(r)
 }
 
@@ -175,13 +175,13 @@ func (a *OTPsApiService) FindRecoveryCodes(ctx context.Context) ApiFindRecoveryC
 }
 
 // Execute executes the request
-//  @return FindRecoveryCodes200Response
-func (a *OTPsApiService) FindRecoveryCodesExecute(r ApiFindRecoveryCodesRequest) (*FindRecoveryCodes200Response, *http.Response, error) {
+//  @return RecoveryCodeList
+func (a *OTPsApiService) FindRecoveryCodesExecute(r ApiFindRecoveryCodesRequest) (*RecoveryCodeList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *FindRecoveryCodes200Response
+		localVarReturnValue *RecoveryCodeList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OTPsApiService.FindRecoveryCodes")
@@ -249,7 +249,7 @@ func (a *OTPsApiService) FindRecoveryCodesExecute(r ApiFindRecoveryCodesRequest)
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -260,7 +260,7 @@ func (a *OTPsApiService) FindRecoveryCodesExecute(r ApiFindRecoveryCodesRequest)
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -271,7 +271,7 @@ func (a *OTPsApiService) FindRecoveryCodesExecute(r ApiFindRecoveryCodesRequest)
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -392,7 +392,7 @@ func (a *OTPsApiService) ReceiveCodesExecute(r ApiReceiveCodesRequest) (*http.Re
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -403,7 +403,7 @@ func (a *OTPsApiService) ReceiveCodesExecute(r ApiReceiveCodesRequest) (*http.Re
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -414,7 +414,7 @@ func (a *OTPsApiService) ReceiveCodesExecute(r ApiReceiveCodesRequest) (*http.Re
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -425,7 +425,7 @@ func (a *OTPsApiService) ReceiveCodesExecute(r ApiReceiveCodesRequest) (*http.Re
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -445,7 +445,7 @@ type ApiRegenerateCodesRequest struct {
 	ApiService *OTPsApiService
 }
 
-func (r ApiRegenerateCodesRequest) Execute() (*FindRecoveryCodes200Response, *http.Response, error) {
+func (r ApiRegenerateCodesRequest) Execute() (*RecoveryCodeList, *http.Response, error) {
 	return r.ApiService.RegenerateCodesExecute(r)
 }
 
@@ -465,13 +465,13 @@ func (a *OTPsApiService) RegenerateCodes(ctx context.Context) ApiRegenerateCodes
 }
 
 // Execute executes the request
-//  @return FindRecoveryCodes200Response
-func (a *OTPsApiService) RegenerateCodesExecute(r ApiRegenerateCodesRequest) (*FindRecoveryCodes200Response, *http.Response, error) {
+//  @return RecoveryCodeList
+func (a *OTPsApiService) RegenerateCodesExecute(r ApiRegenerateCodesRequest) (*RecoveryCodeList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *FindRecoveryCodes200Response
+		localVarReturnValue *RecoveryCodeList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OTPsApiService.RegenerateCodes")
@@ -539,7 +539,7 @@ func (a *OTPsApiService) RegenerateCodesExecute(r ApiRegenerateCodesRequest) (*F
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -550,7 +550,7 @@ func (a *OTPsApiService) RegenerateCodesExecute(r ApiRegenerateCodesRequest) (*F
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -561,7 +561,7 @@ func (a *OTPsApiService) RegenerateCodesExecute(r ApiRegenerateCodesRequest) (*F
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

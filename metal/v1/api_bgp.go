@@ -124,7 +124,7 @@ func (a *BGPApiService) DeleteBgpSessionExecute(r ApiDeleteBgpSessionRequest) (*
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -135,7 +135,7 @@ func (a *BGPApiService) DeleteBgpSessionExecute(r ApiDeleteBgpSessionRequest) (*
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -146,7 +146,7 @@ func (a *BGPApiService) DeleteBgpSessionExecute(r ApiDeleteBgpSessionRequest) (*
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -181,7 +181,7 @@ func (r ApiFindBgpConfigByProjectRequest) Exclude(exclude []string) ApiFindBgpCo
 	return r
 }
 
-func (r ApiFindBgpConfigByProjectRequest) Execute() (*FindBgpConfigByProject200Response, *http.Response, error) {
+func (r ApiFindBgpConfigByProjectRequest) Execute() (*BgpConfig, *http.Response, error) {
 	return r.ApiService.FindBgpConfigByProjectExecute(r)
 }
 
@@ -203,13 +203,13 @@ func (a *BGPApiService) FindBgpConfigByProject(ctx context.Context, id string) A
 }
 
 // Execute executes the request
-//  @return FindBgpConfigByProject200Response
-func (a *BGPApiService) FindBgpConfigByProjectExecute(r ApiFindBgpConfigByProjectRequest) (*FindBgpConfigByProject200Response, *http.Response, error) {
+//  @return BgpConfig
+func (a *BGPApiService) FindBgpConfigByProjectExecute(r ApiFindBgpConfigByProjectRequest) (*BgpConfig, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *FindBgpConfigByProject200Response
+		localVarReturnValue *BgpConfig
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BGPApiService.FindBgpConfigByProject")
@@ -284,7 +284,7 @@ func (a *BGPApiService) FindBgpConfigByProjectExecute(r ApiFindBgpConfigByProjec
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -295,7 +295,7 @@ func (a *BGPApiService) FindBgpConfigByProjectExecute(r ApiFindBgpConfigByProjec
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -306,7 +306,7 @@ func (a *BGPApiService) FindBgpConfigByProjectExecute(r ApiFindBgpConfigByProjec
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -350,7 +350,7 @@ func (r ApiFindBgpSessionByIdRequest) Exclude(exclude []string) ApiFindBgpSessio
 	return r
 }
 
-func (r ApiFindBgpSessionByIdRequest) Execute() (*FindBgpSessionById200Response, *http.Response, error) {
+func (r ApiFindBgpSessionByIdRequest) Execute() (*BgpSession, *http.Response, error) {
 	return r.ApiService.FindBgpSessionByIdExecute(r)
 }
 
@@ -372,13 +372,13 @@ func (a *BGPApiService) FindBgpSessionById(ctx context.Context, id string) ApiFi
 }
 
 // Execute executes the request
-//  @return FindBgpSessionById200Response
-func (a *BGPApiService) FindBgpSessionByIdExecute(r ApiFindBgpSessionByIdRequest) (*FindBgpSessionById200Response, *http.Response, error) {
+//  @return BgpSession
+func (a *BGPApiService) FindBgpSessionByIdExecute(r ApiFindBgpSessionByIdRequest) (*BgpSession, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *FindBgpSessionById200Response
+		localVarReturnValue *BgpSession
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BGPApiService.FindBgpSessionById")
@@ -453,7 +453,7 @@ func (a *BGPApiService) FindBgpSessionByIdExecute(r ApiFindBgpSessionByIdRequest
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -464,7 +464,7 @@ func (a *BGPApiService) FindBgpSessionByIdExecute(r ApiFindBgpSessionByIdRequest
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -475,7 +475,7 @@ func (a *BGPApiService) FindBgpSessionByIdExecute(r ApiFindBgpSessionByIdRequest
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -505,7 +505,7 @@ type ApiFindGlobalBgpRangesRequest struct {
 	id         string
 }
 
-func (r ApiFindGlobalBgpRangesRequest) Execute() (*FindGlobalBgpRanges200Response, *http.Response, error) {
+func (r ApiFindGlobalBgpRangesRequest) Execute() (*GlobalBgpRangeList, *http.Response, error) {
 	return r.ApiService.FindGlobalBgpRangesExecute(r)
 }
 
@@ -527,13 +527,13 @@ func (a *BGPApiService) FindGlobalBgpRanges(ctx context.Context, id string) ApiF
 }
 
 // Execute executes the request
-//  @return FindGlobalBgpRanges200Response
-func (a *BGPApiService) FindGlobalBgpRangesExecute(r ApiFindGlobalBgpRangesRequest) (*FindGlobalBgpRanges200Response, *http.Response, error) {
+//  @return GlobalBgpRangeList
+func (a *BGPApiService) FindGlobalBgpRangesExecute(r ApiFindGlobalBgpRangesRequest) (*GlobalBgpRangeList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *FindGlobalBgpRanges200Response
+		localVarReturnValue *GlobalBgpRangeList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BGPApiService.FindGlobalBgpRanges")
@@ -602,7 +602,7 @@ func (a *BGPApiService) FindGlobalBgpRangesExecute(r ApiFindGlobalBgpRangesReque
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -613,7 +613,7 @@ func (a *BGPApiService) FindGlobalBgpRangesExecute(r ApiFindGlobalBgpRangesReque
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -624,7 +624,7 @@ func (a *BGPApiService) FindGlobalBgpRangesExecute(r ApiFindGlobalBgpRangesReque
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -654,7 +654,7 @@ type ApiFindProjectBgpSessionsRequest struct {
 	id         string
 }
 
-func (r ApiFindProjectBgpSessionsRequest) Execute() (*FindBgpSessions200Response, *http.Response, error) {
+func (r ApiFindProjectBgpSessionsRequest) Execute() (*BgpSessionList, *http.Response, error) {
 	return r.ApiService.FindProjectBgpSessionsExecute(r)
 }
 
@@ -676,13 +676,13 @@ func (a *BGPApiService) FindProjectBgpSessions(ctx context.Context, id string) A
 }
 
 // Execute executes the request
-//  @return FindBgpSessions200Response
-func (a *BGPApiService) FindProjectBgpSessionsExecute(r ApiFindProjectBgpSessionsRequest) (*FindBgpSessions200Response, *http.Response, error) {
+//  @return BgpSessionList
+func (a *BGPApiService) FindProjectBgpSessionsExecute(r ApiFindProjectBgpSessionsRequest) (*BgpSessionList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *FindBgpSessions200Response
+		localVarReturnValue *BgpSessionList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BGPApiService.FindProjectBgpSessions")
@@ -751,7 +751,7 @@ func (a *BGPApiService) FindProjectBgpSessionsExecute(r ApiFindProjectBgpSession
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -762,7 +762,7 @@ func (a *BGPApiService) FindProjectBgpSessionsExecute(r ApiFindProjectBgpSession
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -787,15 +787,15 @@ func (a *BGPApiService) FindProjectBgpSessionsExecute(r ApiFindProjectBgpSession
 }
 
 type ApiRequestBgpConfigRequest struct {
-	ctx                     context.Context
-	ApiService              *BGPApiService
-	id                      string
-	requestBgpConfigRequest *RequestBgpConfigRequest
+	ctx                   context.Context
+	ApiService            *BGPApiService
+	id                    string
+	bgpConfigRequestInput *BgpConfigRequestInput
 }
 
 // BGP config Request to create
-func (r ApiRequestBgpConfigRequest) RequestBgpConfigRequest(requestBgpConfigRequest RequestBgpConfigRequest) ApiRequestBgpConfigRequest {
-	r.requestBgpConfigRequest = &requestBgpConfigRequest
+func (r ApiRequestBgpConfigRequest) BgpConfigRequestInput(bgpConfigRequestInput BgpConfigRequestInput) ApiRequestBgpConfigRequest {
+	r.bgpConfigRequestInput = &bgpConfigRequestInput
 	return r
 }
 
@@ -839,8 +839,8 @@ func (a *BGPApiService) RequestBgpConfigExecute(r ApiRequestBgpConfigRequest) (*
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.requestBgpConfigRequest == nil {
-		return nil, reportError("requestBgpConfigRequest is required and must be specified")
+	if r.bgpConfigRequestInput == nil {
+		return nil, reportError("bgpConfigRequestInput is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -861,7 +861,7 @@ func (a *BGPApiService) RequestBgpConfigExecute(r ApiRequestBgpConfigRequest) (*
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.requestBgpConfigRequest
+	localVarPostBody = r.bgpConfigRequestInput
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -899,7 +899,7 @@ func (a *BGPApiService) RequestBgpConfigExecute(r ApiRequestBgpConfigRequest) (*
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -910,7 +910,7 @@ func (a *BGPApiService) RequestBgpConfigExecute(r ApiRequestBgpConfigRequest) (*
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -921,7 +921,7 @@ func (a *BGPApiService) RequestBgpConfigExecute(r ApiRequestBgpConfigRequest) (*
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -932,7 +932,7 @@ func (a *BGPApiService) RequestBgpConfigExecute(r ApiRequestBgpConfigRequest) (*
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1060,7 +1060,7 @@ func (a *BGPApiService) UpdateBgpSessionExecute(r ApiUpdateBgpSessionRequest) (*
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1071,7 +1071,7 @@ func (a *BGPApiService) UpdateBgpSessionExecute(r ApiUpdateBgpSessionRequest) (*
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1082,7 +1082,7 @@ func (a *BGPApiService) UpdateBgpSessionExecute(r ApiUpdateBgpSessionRequest) (*
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1093,7 +1093,7 @@ func (a *BGPApiService) UpdateBgpSessionExecute(r ApiUpdateBgpSessionRequest) (*
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

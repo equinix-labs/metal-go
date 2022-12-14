@@ -18,17 +18,17 @@ import (
 
 // VrfMetalGateway struct for VrfMetalGateway
 type VrfMetalGateway struct {
-	CreatedAt     *time.Time                                                                                  `json:"created_at,omitempty"`
-	CreatedBy     *FindBatchById200ResponseDevicesInner                                                       `json:"created_by,omitempty"`
-	Href          *string                                                                                     `json:"href,omitempty"`
-	Id            *string                                                                                     `json:"id,omitempty"`
-	IpReservation *FindIPAddressById200ResponseOneOf1                                                         `json:"ip_reservation,omitempty"`
-	Project       *GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject `json:"project,omitempty"`
+	CreatedAt     *time.Time        `json:"created_at,omitempty"`
+	CreatedBy     *Href             `json:"created_by,omitempty"`
+	Href          *string           `json:"href,omitempty"`
+	Id            *string           `json:"id,omitempty"`
+	IpReservation *VrfIpReservation `json:"ip_reservation,omitempty"`
+	Project       *Project          `json:"project,omitempty"`
 	// The current state of the Metal Gateway. 'Ready' indicates the gateway record has been configured, but is currently not active on the network. 'Active' indicates the gateway has been configured on the network. 'Deleting' is a temporary state used to indicate that the gateway is in the process of being un-configured from the network, after which the gateway record will be deleted.
-	State          *string                                                                              `json:"state,omitempty"`
-	UpdatedAt      *time.Time                                                                           `json:"updated_at,omitempty"`
-	VirtualNetwork *FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetwork                      `json:"virtual_network,omitempty"`
-	Vrf            *GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1Vrf `json:"vrf,omitempty"`
+	State          *string         `json:"state,omitempty"`
+	UpdatedAt      *time.Time      `json:"updated_at,omitempty"`
+	VirtualNetwork *VirtualNetwork `json:"virtual_network,omitempty"`
+	Vrf            *Vrf            `json:"vrf,omitempty"`
 }
 
 // NewVrfMetalGateway instantiates a new VrfMetalGateway object
@@ -81,9 +81,9 @@ func (o *VrfMetalGateway) SetCreatedAt(v time.Time) {
 }
 
 // GetCreatedBy returns the CreatedBy field value if set, zero value otherwise.
-func (o *VrfMetalGateway) GetCreatedBy() FindBatchById200ResponseDevicesInner {
+func (o *VrfMetalGateway) GetCreatedBy() Href {
 	if o == nil || isNil(o.CreatedBy) {
-		var ret FindBatchById200ResponseDevicesInner
+		var ret Href
 		return ret
 	}
 	return *o.CreatedBy
@@ -91,7 +91,7 @@ func (o *VrfMetalGateway) GetCreatedBy() FindBatchById200ResponseDevicesInner {
 
 // GetCreatedByOk returns a tuple with the CreatedBy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VrfMetalGateway) GetCreatedByOk() (*FindBatchById200ResponseDevicesInner, bool) {
+func (o *VrfMetalGateway) GetCreatedByOk() (*Href, bool) {
 	if o == nil || isNil(o.CreatedBy) {
 		return nil, false
 	}
@@ -107,8 +107,8 @@ func (o *VrfMetalGateway) HasCreatedBy() bool {
 	return false
 }
 
-// SetCreatedBy gets a reference to the given FindBatchById200ResponseDevicesInner and assigns it to the CreatedBy field.
-func (o *VrfMetalGateway) SetCreatedBy(v FindBatchById200ResponseDevicesInner) {
+// SetCreatedBy gets a reference to the given Href and assigns it to the CreatedBy field.
+func (o *VrfMetalGateway) SetCreatedBy(v Href) {
 	o.CreatedBy = &v
 }
 
@@ -177,9 +177,9 @@ func (o *VrfMetalGateway) SetId(v string) {
 }
 
 // GetIpReservation returns the IpReservation field value if set, zero value otherwise.
-func (o *VrfMetalGateway) GetIpReservation() FindIPAddressById200ResponseOneOf1 {
+func (o *VrfMetalGateway) GetIpReservation() VrfIpReservation {
 	if o == nil || isNil(o.IpReservation) {
-		var ret FindIPAddressById200ResponseOneOf1
+		var ret VrfIpReservation
 		return ret
 	}
 	return *o.IpReservation
@@ -187,7 +187,7 @@ func (o *VrfMetalGateway) GetIpReservation() FindIPAddressById200ResponseOneOf1 
 
 // GetIpReservationOk returns a tuple with the IpReservation field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VrfMetalGateway) GetIpReservationOk() (*FindIPAddressById200ResponseOneOf1, bool) {
+func (o *VrfMetalGateway) GetIpReservationOk() (*VrfIpReservation, bool) {
 	if o == nil || isNil(o.IpReservation) {
 		return nil, false
 	}
@@ -203,15 +203,15 @@ func (o *VrfMetalGateway) HasIpReservation() bool {
 	return false
 }
 
-// SetIpReservation gets a reference to the given FindIPAddressById200ResponseOneOf1 and assigns it to the IpReservation field.
-func (o *VrfMetalGateway) SetIpReservation(v FindIPAddressById200ResponseOneOf1) {
+// SetIpReservation gets a reference to the given VrfIpReservation and assigns it to the IpReservation field.
+func (o *VrfMetalGateway) SetIpReservation(v VrfIpReservation) {
 	o.IpReservation = &v
 }
 
 // GetProject returns the Project field value if set, zero value otherwise.
-func (o *VrfMetalGateway) GetProject() GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject {
+func (o *VrfMetalGateway) GetProject() Project {
 	if o == nil || isNil(o.Project) {
-		var ret GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject
+		var ret Project
 		return ret
 	}
 	return *o.Project
@@ -219,7 +219,7 @@ func (o *VrfMetalGateway) GetProject() GetInterconnection200ResponsePortsInnerVi
 
 // GetProjectOk returns a tuple with the Project field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VrfMetalGateway) GetProjectOk() (*GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject, bool) {
+func (o *VrfMetalGateway) GetProjectOk() (*Project, bool) {
 	if o == nil || isNil(o.Project) {
 		return nil, false
 	}
@@ -235,8 +235,8 @@ func (o *VrfMetalGateway) HasProject() bool {
 	return false
 }
 
-// SetProject gets a reference to the given GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject and assigns it to the Project field.
-func (o *VrfMetalGateway) SetProject(v GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject) {
+// SetProject gets a reference to the given Project and assigns it to the Project field.
+func (o *VrfMetalGateway) SetProject(v Project) {
 	o.Project = &v
 }
 
@@ -305,9 +305,9 @@ func (o *VrfMetalGateway) SetUpdatedAt(v time.Time) {
 }
 
 // GetVirtualNetwork returns the VirtualNetwork field value if set, zero value otherwise.
-func (o *VrfMetalGateway) GetVirtualNetwork() FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetwork {
+func (o *VrfMetalGateway) GetVirtualNetwork() VirtualNetwork {
 	if o == nil || isNil(o.VirtualNetwork) {
-		var ret FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetwork
+		var ret VirtualNetwork
 		return ret
 	}
 	return *o.VirtualNetwork
@@ -315,7 +315,7 @@ func (o *VrfMetalGateway) GetVirtualNetwork() FindDeviceById200ResponseNetworkPo
 
 // GetVirtualNetworkOk returns a tuple with the VirtualNetwork field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VrfMetalGateway) GetVirtualNetworkOk() (*FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetwork, bool) {
+func (o *VrfMetalGateway) GetVirtualNetworkOk() (*VirtualNetwork, bool) {
 	if o == nil || isNil(o.VirtualNetwork) {
 		return nil, false
 	}
@@ -331,15 +331,15 @@ func (o *VrfMetalGateway) HasVirtualNetwork() bool {
 	return false
 }
 
-// SetVirtualNetwork gets a reference to the given FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetwork and assigns it to the VirtualNetwork field.
-func (o *VrfMetalGateway) SetVirtualNetwork(v FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetwork) {
+// SetVirtualNetwork gets a reference to the given VirtualNetwork and assigns it to the VirtualNetwork field.
+func (o *VrfMetalGateway) SetVirtualNetwork(v VirtualNetwork) {
 	o.VirtualNetwork = &v
 }
 
 // GetVrf returns the Vrf field value if set, zero value otherwise.
-func (o *VrfMetalGateway) GetVrf() GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1Vrf {
+func (o *VrfMetalGateway) GetVrf() Vrf {
 	if o == nil || isNil(o.Vrf) {
-		var ret GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1Vrf
+		var ret Vrf
 		return ret
 	}
 	return *o.Vrf
@@ -347,7 +347,7 @@ func (o *VrfMetalGateway) GetVrf() GetInterconnection200ResponsePortsInnerVirtua
 
 // GetVrfOk returns a tuple with the Vrf field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VrfMetalGateway) GetVrfOk() (*GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1Vrf, bool) {
+func (o *VrfMetalGateway) GetVrfOk() (*Vrf, bool) {
 	if o == nil || isNil(o.Vrf) {
 		return nil, false
 	}
@@ -363,8 +363,8 @@ func (o *VrfMetalGateway) HasVrf() bool {
 	return false
 }
 
-// SetVrf gets a reference to the given GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1Vrf and assigns it to the Vrf field.
-func (o *VrfMetalGateway) SetVrf(v GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1Vrf) {
+// SetVrf gets a reference to the given Vrf and assigns it to the Vrf field.
+func (o *VrfMetalGateway) SetVrf(v Vrf) {
 	o.Vrf = &v
 }
 

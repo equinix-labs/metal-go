@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 ## CreateUser
 
-> GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfCreatedBy CreateUser(ctx).CreateUserRequest(createUserRequest).Execute()
+> User CreateUser(ctx).UserCreateInput(userCreateInput).Execute()
 
 Create a user
 
@@ -35,16 +35,16 @@ import (
 )
 
 func main() {
-    createUserRequest := *openapiclient.NewCreateUserRequest([]openapiclient.CreateUserRequestEmailsInner{*openapiclient.NewCreateUserRequestEmailsInner("Address_example")}, "FirstName_example", "LastName_example") // CreateUserRequest | User to create
+    userCreateInput := *openapiclient.NewUserCreateInput([]openapiclient.EmailInput{*openapiclient.NewEmailInput("Address_example")}, "FirstName_example", "LastName_example") // UserCreateInput | User to create
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.UsersApi.CreateUser(context.Background()).CreateUserRequest(createUserRequest).Execute()
+    resp, r, err := apiClient.UsersApi.CreateUser(context.Background()).UserCreateInput(userCreateInput).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.CreateUser``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateUser`: GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfCreatedBy
+    // response from `CreateUser`: User
     fmt.Fprintf(os.Stdout, "Response from `UsersApi.CreateUser`: %v\n", resp)
 }
 ```
@@ -60,11 +60,11 @@ Other parameters are passed through a pointer to a apiCreateUserRequest struct v
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **createUserRequest** | [**CreateUserRequest**](CreateUserRequest.md) | User to create | 
+ **userCreateInput** | [**UserCreateInput**](UserCreateInput.md) | User to create | 
 
 ### Return type
 
-[**GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfCreatedBy**](GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfCreatedBy.md)
+[**User**](User.md)
 
 ### Authorization
 
@@ -82,7 +82,7 @@ Name | Type | Description  | Notes
 
 ## FindCurrentUser
 
-> GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfCreatedBy FindCurrentUser(ctx).Include(include).Exclude(exclude).Execute()
+> User FindCurrentUser(ctx).Include(include).Exclude(exclude).Execute()
 
 Retrieve the current user
 
@@ -111,7 +111,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.FindCurrentUser``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindCurrentUser`: GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfCreatedBy
+    // response from `FindCurrentUser`: User
     fmt.Fprintf(os.Stdout, "Response from `UsersApi.FindCurrentUser`: %v\n", resp)
 }
 ```
@@ -132,7 +132,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfCreatedBy**](GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfCreatedBy.md)
+[**User**](User.md)
 
 ### Authorization
 
@@ -150,7 +150,7 @@ Name | Type | Description  | Notes
 
 ## FindInvitations
 
-> FindInvitations200Response FindInvitations(ctx).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
+> InvitationList FindInvitations(ctx).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
 
 Retrieve current user invitations
 
@@ -181,7 +181,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.FindInvitations``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindInvitations`: FindInvitations200Response
+    // response from `FindInvitations`: InvitationList
     fmt.Fprintf(os.Stdout, "Response from `UsersApi.FindInvitations`: %v\n", resp)
 }
 ```
@@ -204,7 +204,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FindInvitations200Response**](FindInvitations200Response.md)
+[**InvitationList**](InvitationList.md)
 
 ### Authorization
 
@@ -222,7 +222,7 @@ Name | Type | Description  | Notes
 
 ## FindUserById
 
-> GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfCreatedBy FindUserById(ctx, id).Include(include).Exclude(exclude).Execute()
+> User FindUserById(ctx, id).Include(include).Exclude(exclude).Execute()
 
 Retrieve a user
 
@@ -252,7 +252,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.FindUserById``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindUserById`: GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfCreatedBy
+    // response from `FindUserById`: User
     fmt.Fprintf(os.Stdout, "Response from `UsersApi.FindUserById`: %v\n", resp)
 }
 ```
@@ -278,7 +278,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfCreatedBy**](GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfCreatedBy.md)
+[**User**](User.md)
 
 ### Authorization
 
@@ -364,7 +364,7 @@ Name | Type | Description  | Notes
 
 ## FindUsers
 
-> FindUsers200Response FindUsers(ctx).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
+> UserList FindUsers(ctx).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
 
 Retrieve all users
 
@@ -395,7 +395,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.FindUsers``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindUsers`: FindUsers200Response
+    // response from `FindUsers`: UserList
     fmt.Fprintf(os.Stdout, "Response from `UsersApi.FindUsers`: %v\n", resp)
 }
 ```
@@ -418,7 +418,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FindUsers200Response**](FindUsers200Response.md)
+[**UserList**](UserList.md)
 
 ### Authorization
 
@@ -436,7 +436,7 @@ Name | Type | Description  | Notes
 
 ## UpdateCurrentUser
 
-> GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfCreatedBy UpdateCurrentUser(ctx).UpdateCurrentUserRequest(updateCurrentUserRequest).Execute()
+> User UpdateCurrentUser(ctx).UserUpdateInput(userUpdateInput).Execute()
 
 Update the current user
 
@@ -455,16 +455,16 @@ import (
 )
 
 func main() {
-    updateCurrentUserRequest := *openapiclient.NewUpdateCurrentUserRequest() // UpdateCurrentUserRequest | User to update
+    userUpdateInput := *openapiclient.NewUserUpdateInput() // UserUpdateInput | User to update
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.UsersApi.UpdateCurrentUser(context.Background()).UpdateCurrentUserRequest(updateCurrentUserRequest).Execute()
+    resp, r, err := apiClient.UsersApi.UpdateCurrentUser(context.Background()).UserUpdateInput(userUpdateInput).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.UpdateCurrentUser``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateCurrentUser`: GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfCreatedBy
+    // response from `UpdateCurrentUser`: User
     fmt.Fprintf(os.Stdout, "Response from `UsersApi.UpdateCurrentUser`: %v\n", resp)
 }
 ```
@@ -480,11 +480,11 @@ Other parameters are passed through a pointer to a apiUpdateCurrentUserRequest s
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **updateCurrentUserRequest** | [**UpdateCurrentUserRequest**](UpdateCurrentUserRequest.md) | User to update | 
+ **userUpdateInput** | [**UserUpdateInput**](UserUpdateInput.md) | User to update | 
 
 ### Return type
 
-[**GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfCreatedBy**](GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfCreatedBy.md)
+[**User**](User.md)
 
 ### Authorization
 

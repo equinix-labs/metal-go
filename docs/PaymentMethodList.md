@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**PaymentMethods** | Pointer to [**[]FindOrganizationPaymentMethods200ResponsePaymentMethodsInner**](FindOrganizationPaymentMethods200ResponsePaymentMethodsInner.md) |  | [optional] 
+**PaymentMethods** | Pointer to [**[]PaymentMethod**](PaymentMethod.md) |  | [optional] 
 
 ## Methods
 
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetPaymentMethods
 
-`func (o *PaymentMethodList) GetPaymentMethods() []FindOrganizationPaymentMethods200ResponsePaymentMethodsInner`
+`func (o *PaymentMethodList) GetPaymentMethods() []PaymentMethod`
 
 GetPaymentMethods returns the PaymentMethods field if non-nil, zero value otherwise.
 
 ### GetPaymentMethodsOk
 
-`func (o *PaymentMethodList) GetPaymentMethodsOk() (*[]FindOrganizationPaymentMethods200ResponsePaymentMethodsInner, bool)`
+`func (o *PaymentMethodList) GetPaymentMethodsOk() (*[]PaymentMethod, bool)`
 
 GetPaymentMethodsOk returns a tuple with the PaymentMethods field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPaymentMethods
 
-`func (o *PaymentMethodList) SetPaymentMethods(v []FindOrganizationPaymentMethods200ResponsePaymentMethodsInner)`
+`func (o *PaymentMethodList) SetPaymentMethods(v []PaymentMethod)`
 
 SetPaymentMethods sets PaymentMethods field to given value.
 

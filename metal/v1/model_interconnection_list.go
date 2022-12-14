@@ -17,7 +17,7 @@ import (
 
 // InterconnectionList struct for InterconnectionList
 type InterconnectionList struct {
-	Interconnections []GetInterconnection200Response `json:"interconnections,omitempty"`
+	Interconnections []Interconnection `json:"interconnections,omitempty"`
 }
 
 // NewInterconnectionList instantiates a new InterconnectionList object
@@ -38,9 +38,9 @@ func NewInterconnectionListWithDefaults() *InterconnectionList {
 }
 
 // GetInterconnections returns the Interconnections field value if set, zero value otherwise.
-func (o *InterconnectionList) GetInterconnections() []GetInterconnection200Response {
+func (o *InterconnectionList) GetInterconnections() []Interconnection {
 	if o == nil || isNil(o.Interconnections) {
-		var ret []GetInterconnection200Response
+		var ret []Interconnection
 		return ret
 	}
 	return o.Interconnections
@@ -48,7 +48,7 @@ func (o *InterconnectionList) GetInterconnections() []GetInterconnection200Respo
 
 // GetInterconnectionsOk returns a tuple with the Interconnections field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InterconnectionList) GetInterconnectionsOk() ([]GetInterconnection200Response, bool) {
+func (o *InterconnectionList) GetInterconnectionsOk() ([]Interconnection, bool) {
 	if o == nil || isNil(o.Interconnections) {
 		return nil, false
 	}
@@ -64,8 +64,8 @@ func (o *InterconnectionList) HasInterconnections() bool {
 	return false
 }
 
-// SetInterconnections gets a reference to the given []GetInterconnection200Response and assigns it to the Interconnections field.
-func (o *InterconnectionList) SetInterconnections(v []GetInterconnection200Response) {
+// SetInterconnections gets a reference to the given []Interconnection and assigns it to the Interconnections field.
+func (o *InterconnectionList) SetInterconnections(v []Interconnection) {
 	o.Interconnections = v
 }
 

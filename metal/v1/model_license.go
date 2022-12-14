@@ -17,12 +17,12 @@ import (
 
 // License struct for License
 type License struct {
-	Description     *string                               `json:"description,omitempty"`
-	Id              *string                               `json:"id,omitempty"`
-	LicenseKey      *string                               `json:"license_key,omitempty"`
-	LicenseeProduct *FindBatchById200ResponseDevicesInner `json:"licensee_product,omitempty"`
-	Project         *FindBatchById200ResponseDevicesInner `json:"project,omitempty"`
-	Size            *float32                              `json:"size,omitempty"`
+	Description     *string  `json:"description,omitempty"`
+	Id              *string  `json:"id,omitempty"`
+	LicenseKey      *string  `json:"license_key,omitempty"`
+	LicenseeProduct *Href    `json:"licensee_product,omitempty"`
+	Project         *Href    `json:"project,omitempty"`
+	Size            *float32 `json:"size,omitempty"`
 }
 
 // NewLicense instantiates a new License object
@@ -139,9 +139,9 @@ func (o *License) SetLicenseKey(v string) {
 }
 
 // GetLicenseeProduct returns the LicenseeProduct field value if set, zero value otherwise.
-func (o *License) GetLicenseeProduct() FindBatchById200ResponseDevicesInner {
+func (o *License) GetLicenseeProduct() Href {
 	if o == nil || isNil(o.LicenseeProduct) {
-		var ret FindBatchById200ResponseDevicesInner
+		var ret Href
 		return ret
 	}
 	return *o.LicenseeProduct
@@ -149,7 +149,7 @@ func (o *License) GetLicenseeProduct() FindBatchById200ResponseDevicesInner {
 
 // GetLicenseeProductOk returns a tuple with the LicenseeProduct field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *License) GetLicenseeProductOk() (*FindBatchById200ResponseDevicesInner, bool) {
+func (o *License) GetLicenseeProductOk() (*Href, bool) {
 	if o == nil || isNil(o.LicenseeProduct) {
 		return nil, false
 	}
@@ -165,15 +165,15 @@ func (o *License) HasLicenseeProduct() bool {
 	return false
 }
 
-// SetLicenseeProduct gets a reference to the given FindBatchById200ResponseDevicesInner and assigns it to the LicenseeProduct field.
-func (o *License) SetLicenseeProduct(v FindBatchById200ResponseDevicesInner) {
+// SetLicenseeProduct gets a reference to the given Href and assigns it to the LicenseeProduct field.
+func (o *License) SetLicenseeProduct(v Href) {
 	o.LicenseeProduct = &v
 }
 
 // GetProject returns the Project field value if set, zero value otherwise.
-func (o *License) GetProject() FindBatchById200ResponseDevicesInner {
+func (o *License) GetProject() Href {
 	if o == nil || isNil(o.Project) {
-		var ret FindBatchById200ResponseDevicesInner
+		var ret Href
 		return ret
 	}
 	return *o.Project
@@ -181,7 +181,7 @@ func (o *License) GetProject() FindBatchById200ResponseDevicesInner {
 
 // GetProjectOk returns a tuple with the Project field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *License) GetProjectOk() (*FindBatchById200ResponseDevicesInner, bool) {
+func (o *License) GetProjectOk() (*Href, bool) {
 	if o == nil || isNil(o.Project) {
 		return nil, false
 	}
@@ -197,8 +197,8 @@ func (o *License) HasProject() bool {
 	return false
 }
 
-// SetProject gets a reference to the given FindBatchById200ResponseDevicesInner and assigns it to the Project field.
-func (o *License) SetProject(v FindBatchById200ResponseDevicesInner) {
+// SetProject gets a reference to the given Href and assigns it to the Project field.
+func (o *License) SetProject(v Href) {
 	o.Project = &v
 }
 

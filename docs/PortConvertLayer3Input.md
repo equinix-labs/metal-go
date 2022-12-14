@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**RequestIps** | Pointer to [**[]ConvertLayer3RequestRequestIpsInner**](ConvertLayer3RequestRequestIpsInner.md) |  | [optional] 
+**RequestIps** | Pointer to [**[]PortConvertLayer3InputRequestIpsInner**](PortConvertLayer3InputRequestIpsInner.md) |  | [optional] 
 
 ## Methods
 
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetRequestIps
 
-`func (o *PortConvertLayer3Input) GetRequestIps() []ConvertLayer3RequestRequestIpsInner`
+`func (o *PortConvertLayer3Input) GetRequestIps() []PortConvertLayer3InputRequestIpsInner`
 
 GetRequestIps returns the RequestIps field if non-nil, zero value otherwise.
 
 ### GetRequestIpsOk
 
-`func (o *PortConvertLayer3Input) GetRequestIpsOk() (*[]ConvertLayer3RequestRequestIpsInner, bool)`
+`func (o *PortConvertLayer3Input) GetRequestIpsOk() (*[]PortConvertLayer3InputRequestIpsInner, bool)`
 
 GetRequestIpsOk returns a tuple with the RequestIps field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRequestIps
 
-`func (o *PortConvertLayer3Input) SetRequestIps(v []ConvertLayer3RequestRequestIpsInner)`
+`func (o *PortConvertLayer3Input) SetRequestIps(v []PortConvertLayer3InputRequestIpsInner)`
 
 SetRequestIps sets RequestIps field to given value.
 

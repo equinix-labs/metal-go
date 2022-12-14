@@ -17,7 +17,7 @@ import (
 
 // CapacityCheckPerFacilityList struct for CapacityCheckPerFacilityList
 type CapacityCheckPerFacilityList struct {
-	Servers []CheckCapacityForFacility200ResponseServersInner `json:"servers,omitempty"`
+	Servers []CapacityCheckPerFacilityInfo `json:"servers,omitempty"`
 }
 
 // NewCapacityCheckPerFacilityList instantiates a new CapacityCheckPerFacilityList object
@@ -38,9 +38,9 @@ func NewCapacityCheckPerFacilityListWithDefaults() *CapacityCheckPerFacilityList
 }
 
 // GetServers returns the Servers field value if set, zero value otherwise.
-func (o *CapacityCheckPerFacilityList) GetServers() []CheckCapacityForFacility200ResponseServersInner {
+func (o *CapacityCheckPerFacilityList) GetServers() []CapacityCheckPerFacilityInfo {
 	if o == nil || isNil(o.Servers) {
-		var ret []CheckCapacityForFacility200ResponseServersInner
+		var ret []CapacityCheckPerFacilityInfo
 		return ret
 	}
 	return o.Servers
@@ -48,7 +48,7 @@ func (o *CapacityCheckPerFacilityList) GetServers() []CheckCapacityForFacility20
 
 // GetServersOk returns a tuple with the Servers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CapacityCheckPerFacilityList) GetServersOk() ([]CheckCapacityForFacility200ResponseServersInner, bool) {
+func (o *CapacityCheckPerFacilityList) GetServersOk() ([]CapacityCheckPerFacilityInfo, bool) {
 	if o == nil || isNil(o.Servers) {
 		return nil, false
 	}
@@ -64,8 +64,8 @@ func (o *CapacityCheckPerFacilityList) HasServers() bool {
 	return false
 }
 
-// SetServers gets a reference to the given []CheckCapacityForFacility200ResponseServersInner and assigns it to the Servers field.
-func (o *CapacityCheckPerFacilityList) SetServers(v []CheckCapacityForFacility200ResponseServersInner) {
+// SetServers gets a reference to the given []CapacityCheckPerFacilityInfo and assigns it to the Servers field.
+func (o *CapacityCheckPerFacilityList) SetServers(v []CapacityCheckPerFacilityInfo) {
 	o.Servers = v
 }
 

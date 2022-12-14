@@ -18,21 +18,21 @@ import (
 
 // CreateMetalGatewayRequest - struct for CreateMetalGatewayRequest
 type CreateMetalGatewayRequest struct {
-	CreateMetalGatewayRequestOneOf  *CreateMetalGatewayRequestOneOf
-	CreateMetalGatewayRequestOneOf1 *CreateMetalGatewayRequestOneOf1
+	MetalGatewayCreateInput    *MetalGatewayCreateInput
+	VrfMetalGatewayCreateInput *VrfMetalGatewayCreateInput
 }
 
-// CreateMetalGatewayRequestOneOfAsCreateMetalGatewayRequest is a convenience function that returns CreateMetalGatewayRequestOneOf wrapped in CreateMetalGatewayRequest
-func CreateMetalGatewayRequestOneOfAsCreateMetalGatewayRequest(v *CreateMetalGatewayRequestOneOf) CreateMetalGatewayRequest {
+// MetalGatewayCreateInputAsCreateMetalGatewayRequest is a convenience function that returns MetalGatewayCreateInput wrapped in CreateMetalGatewayRequest
+func MetalGatewayCreateInputAsCreateMetalGatewayRequest(v *MetalGatewayCreateInput) CreateMetalGatewayRequest {
 	return CreateMetalGatewayRequest{
-		CreateMetalGatewayRequestOneOf: v,
+		MetalGatewayCreateInput: v,
 	}
 }
 
-// CreateMetalGatewayRequestOneOf1AsCreateMetalGatewayRequest is a convenience function that returns CreateMetalGatewayRequestOneOf1 wrapped in CreateMetalGatewayRequest
-func CreateMetalGatewayRequestOneOf1AsCreateMetalGatewayRequest(v *CreateMetalGatewayRequestOneOf1) CreateMetalGatewayRequest {
+// VrfMetalGatewayCreateInputAsCreateMetalGatewayRequest is a convenience function that returns VrfMetalGatewayCreateInput wrapped in CreateMetalGatewayRequest
+func VrfMetalGatewayCreateInputAsCreateMetalGatewayRequest(v *VrfMetalGatewayCreateInput) CreateMetalGatewayRequest {
 	return CreateMetalGatewayRequest{
-		CreateMetalGatewayRequestOneOf1: v,
+		VrfMetalGatewayCreateInput: v,
 	}
 }
 
@@ -40,36 +40,36 @@ func CreateMetalGatewayRequestOneOf1AsCreateMetalGatewayRequest(v *CreateMetalGa
 func (dst *CreateMetalGatewayRequest) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
-	// try to unmarshal data into CreateMetalGatewayRequestOneOf
-	err = newStrictDecoder(data).Decode(&dst.CreateMetalGatewayRequestOneOf)
+	// try to unmarshal data into MetalGatewayCreateInput
+	err = newStrictDecoder(data).Decode(&dst.MetalGatewayCreateInput)
 	if err == nil {
-		jsonCreateMetalGatewayRequestOneOf, _ := json.Marshal(dst.CreateMetalGatewayRequestOneOf)
-		if string(jsonCreateMetalGatewayRequestOneOf) == "{}" { // empty struct
-			dst.CreateMetalGatewayRequestOneOf = nil
+		jsonMetalGatewayCreateInput, _ := json.Marshal(dst.MetalGatewayCreateInput)
+		if string(jsonMetalGatewayCreateInput) == "{}" { // empty struct
+			dst.MetalGatewayCreateInput = nil
 		} else {
 			match++
 		}
 	} else {
-		dst.CreateMetalGatewayRequestOneOf = nil
+		dst.MetalGatewayCreateInput = nil
 	}
 
-	// try to unmarshal data into CreateMetalGatewayRequestOneOf1
-	err = newStrictDecoder(data).Decode(&dst.CreateMetalGatewayRequestOneOf1)
+	// try to unmarshal data into VrfMetalGatewayCreateInput
+	err = newStrictDecoder(data).Decode(&dst.VrfMetalGatewayCreateInput)
 	if err == nil {
-		jsonCreateMetalGatewayRequestOneOf1, _ := json.Marshal(dst.CreateMetalGatewayRequestOneOf1)
-		if string(jsonCreateMetalGatewayRequestOneOf1) == "{}" { // empty struct
-			dst.CreateMetalGatewayRequestOneOf1 = nil
+		jsonVrfMetalGatewayCreateInput, _ := json.Marshal(dst.VrfMetalGatewayCreateInput)
+		if string(jsonVrfMetalGatewayCreateInput) == "{}" { // empty struct
+			dst.VrfMetalGatewayCreateInput = nil
 		} else {
 			match++
 		}
 	} else {
-		dst.CreateMetalGatewayRequestOneOf1 = nil
+		dst.VrfMetalGatewayCreateInput = nil
 	}
 
 	if match > 1 { // more than 1 match
 		// reset to nil
-		dst.CreateMetalGatewayRequestOneOf = nil
-		dst.CreateMetalGatewayRequestOneOf1 = nil
+		dst.MetalGatewayCreateInput = nil
+		dst.VrfMetalGatewayCreateInput = nil
 
 		return fmt.Errorf("data matches more than one schema in oneOf(CreateMetalGatewayRequest)")
 	} else if match == 1 {
@@ -81,12 +81,12 @@ func (dst *CreateMetalGatewayRequest) UnmarshalJSON(data []byte) error {
 
 // Marshal data from the first non-nil pointers in the struct to JSON
 func (src CreateMetalGatewayRequest) MarshalJSON() ([]byte, error) {
-	if src.CreateMetalGatewayRequestOneOf != nil {
-		return json.Marshal(&src.CreateMetalGatewayRequestOneOf)
+	if src.MetalGatewayCreateInput != nil {
+		return json.Marshal(&src.MetalGatewayCreateInput)
 	}
 
-	if src.CreateMetalGatewayRequestOneOf1 != nil {
-		return json.Marshal(&src.CreateMetalGatewayRequestOneOf1)
+	if src.VrfMetalGatewayCreateInput != nil {
+		return json.Marshal(&src.VrfMetalGatewayCreateInput)
 	}
 
 	return nil, nil // no data in oneOf schemas
@@ -97,12 +97,12 @@ func (obj *CreateMetalGatewayRequest) GetActualInstance() interface{} {
 	if obj == nil {
 		return nil
 	}
-	if obj.CreateMetalGatewayRequestOneOf != nil {
-		return obj.CreateMetalGatewayRequestOneOf
+	if obj.MetalGatewayCreateInput != nil {
+		return obj.MetalGatewayCreateInput
 	}
 
-	if obj.CreateMetalGatewayRequestOneOf1 != nil {
-		return obj.CreateMetalGatewayRequestOneOf1
+	if obj.VrfMetalGatewayCreateInput != nil {
+		return obj.VrfMetalGatewayCreateInput
 	}
 
 	// all schemas are nil

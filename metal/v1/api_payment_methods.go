@@ -124,7 +124,7 @@ func (a *PaymentMethodsApiService) DeletePaymentMethodExecute(r ApiDeletePayment
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -135,7 +135,7 @@ func (a *PaymentMethodsApiService) DeletePaymentMethodExecute(r ApiDeletePayment
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -170,7 +170,7 @@ func (r ApiFindPaymentMethodByIdRequest) Exclude(exclude []string) ApiFindPaymen
 	return r
 }
 
-func (r ApiFindPaymentMethodByIdRequest) Execute() (*FindOrganizationPaymentMethods200ResponsePaymentMethodsInner, *http.Response, error) {
+func (r ApiFindPaymentMethodByIdRequest) Execute() (*PaymentMethod, *http.Response, error) {
 	return r.ApiService.FindPaymentMethodByIdExecute(r)
 }
 
@@ -192,13 +192,13 @@ func (a *PaymentMethodsApiService) FindPaymentMethodById(ctx context.Context, id
 }
 
 // Execute executes the request
-//  @return FindOrganizationPaymentMethods200ResponsePaymentMethodsInner
-func (a *PaymentMethodsApiService) FindPaymentMethodByIdExecute(r ApiFindPaymentMethodByIdRequest) (*FindOrganizationPaymentMethods200ResponsePaymentMethodsInner, *http.Response, error) {
+//  @return PaymentMethod
+func (a *PaymentMethodsApiService) FindPaymentMethodByIdExecute(r ApiFindPaymentMethodByIdRequest) (*PaymentMethod, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *FindOrganizationPaymentMethods200ResponsePaymentMethodsInner
+		localVarReturnValue *PaymentMethod
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PaymentMethodsApiService.FindPaymentMethodById")
@@ -273,7 +273,7 @@ func (a *PaymentMethodsApiService) FindPaymentMethodByIdExecute(r ApiFindPayment
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -284,7 +284,7 @@ func (a *PaymentMethodsApiService) FindPaymentMethodByIdExecute(r ApiFindPayment
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -309,19 +309,19 @@ func (a *PaymentMethodsApiService) FindPaymentMethodByIdExecute(r ApiFindPayment
 }
 
 type ApiUpdatePaymentMethodRequest struct {
-	ctx                        context.Context
-	ApiService                 *PaymentMethodsApiService
-	id                         string
-	updatePaymentMethodRequest *UpdatePaymentMethodRequest
+	ctx                      context.Context
+	ApiService               *PaymentMethodsApiService
+	id                       string
+	paymentMethodUpdateInput *PaymentMethodUpdateInput
 }
 
 // Payment Method to update
-func (r ApiUpdatePaymentMethodRequest) UpdatePaymentMethodRequest(updatePaymentMethodRequest UpdatePaymentMethodRequest) ApiUpdatePaymentMethodRequest {
-	r.updatePaymentMethodRequest = &updatePaymentMethodRequest
+func (r ApiUpdatePaymentMethodRequest) PaymentMethodUpdateInput(paymentMethodUpdateInput PaymentMethodUpdateInput) ApiUpdatePaymentMethodRequest {
+	r.paymentMethodUpdateInput = &paymentMethodUpdateInput
 	return r
 }
 
-func (r ApiUpdatePaymentMethodRequest) Execute() (*FindOrganizationPaymentMethods200ResponsePaymentMethodsInner, *http.Response, error) {
+func (r ApiUpdatePaymentMethodRequest) Execute() (*PaymentMethod, *http.Response, error) {
 	return r.ApiService.UpdatePaymentMethodExecute(r)
 }
 
@@ -343,13 +343,13 @@ func (a *PaymentMethodsApiService) UpdatePaymentMethod(ctx context.Context, id s
 }
 
 // Execute executes the request
-//  @return FindOrganizationPaymentMethods200ResponsePaymentMethodsInner
-func (a *PaymentMethodsApiService) UpdatePaymentMethodExecute(r ApiUpdatePaymentMethodRequest) (*FindOrganizationPaymentMethods200ResponsePaymentMethodsInner, *http.Response, error) {
+//  @return PaymentMethod
+func (a *PaymentMethodsApiService) UpdatePaymentMethodExecute(r ApiUpdatePaymentMethodRequest) (*PaymentMethod, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *FindOrganizationPaymentMethods200ResponsePaymentMethodsInner
+		localVarReturnValue *PaymentMethod
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PaymentMethodsApiService.UpdatePaymentMethod")
@@ -363,8 +363,8 @@ func (a *PaymentMethodsApiService) UpdatePaymentMethodExecute(r ApiUpdatePayment
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.updatePaymentMethodRequest == nil {
-		return localVarReturnValue, nil, reportError("updatePaymentMethodRequest is required and must be specified")
+	if r.paymentMethodUpdateInput == nil {
+		return localVarReturnValue, nil, reportError("paymentMethodUpdateInput is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -385,7 +385,7 @@ func (a *PaymentMethodsApiService) UpdatePaymentMethodExecute(r ApiUpdatePayment
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updatePaymentMethodRequest
+	localVarPostBody = r.paymentMethodUpdateInput
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -423,7 +423,7 @@ func (a *PaymentMethodsApiService) UpdatePaymentMethodExecute(r ApiUpdatePayment
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -434,7 +434,7 @@ func (a *PaymentMethodsApiService) UpdatePaymentMethodExecute(r ApiUpdatePayment
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -445,7 +445,7 @@ func (a *PaymentMethodsApiService) UpdatePaymentMethodExecute(r ApiUpdatePayment
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

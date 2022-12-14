@@ -44,7 +44,7 @@ import (
 func main() {
     connectionId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | UUID of the interconnection
     portId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | UUID of the interconnection port
-    createInterconnectionPortVirtualCircuitRequest := openapiclient.createInterconnectionPortVirtualCircuit_request{CreateInterconnectionPortVirtualCircuitRequestOneOf: openapiclient.NewCreateInterconnectionPortVirtualCircuitRequestOneOf()} // CreateInterconnectionPortVirtualCircuitRequest | Virtual Circuit details
+    createInterconnectionPortVirtualCircuitRequest := openapiclient.createInterconnectionPortVirtualCircuit_request{VirtualCircuitCreateInput: openapiclient.NewVirtualCircuitCreateInput()} // CreateInterconnectionPortVirtualCircuitRequest | Virtual Circuit details
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -98,7 +98,7 @@ Name | Type | Description  | Notes
 
 ## CreateOrganizationInterconnection
 
-> GetInterconnection200Response CreateOrganizationInterconnection(ctx, organizationId).CreateOrganizationInterconnectionRequest(createOrganizationInterconnectionRequest).Execute()
+> Interconnection CreateOrganizationInterconnection(ctx, organizationId).InterconnectionCreateInput(interconnectionCreateInput).Execute()
 
 Request a new interconnection for the organization
 
@@ -118,16 +118,16 @@ import (
 
 func main() {
     organizationId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | UUID of the organization
-    createOrganizationInterconnectionRequest := *openapiclient.NewCreateOrganizationInterconnectionRequest("Metro_example", "Name_example", "Redundancy_example", "Type_example") // CreateOrganizationInterconnectionRequest | Interconnection details
+    interconnectionCreateInput := *openapiclient.NewInterconnectionCreateInput("Metro_example", "Name_example", "Redundancy_example", "Type_example") // InterconnectionCreateInput | Interconnection details
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.InterconnectionsApi.CreateOrganizationInterconnection(context.Background(), organizationId).CreateOrganizationInterconnectionRequest(createOrganizationInterconnectionRequest).Execute()
+    resp, r, err := apiClient.InterconnectionsApi.CreateOrganizationInterconnection(context.Background(), organizationId).InterconnectionCreateInput(interconnectionCreateInput).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `InterconnectionsApi.CreateOrganizationInterconnection``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateOrganizationInterconnection`: GetInterconnection200Response
+    // response from `CreateOrganizationInterconnection`: Interconnection
     fmt.Fprintf(os.Stdout, "Response from `InterconnectionsApi.CreateOrganizationInterconnection`: %v\n", resp)
 }
 ```
@@ -148,11 +148,11 @@ Other parameters are passed through a pointer to a apiCreateOrganizationIntercon
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **createOrganizationInterconnectionRequest** | [**CreateOrganizationInterconnectionRequest**](CreateOrganizationInterconnectionRequest.md) | Interconnection details | 
+ **interconnectionCreateInput** | [**InterconnectionCreateInput**](InterconnectionCreateInput.md) | Interconnection details | 
 
 ### Return type
 
-[**GetInterconnection200Response**](GetInterconnection200Response.md)
+[**Interconnection**](Interconnection.md)
 
 ### Authorization
 
@@ -170,7 +170,7 @@ Name | Type | Description  | Notes
 
 ## CreateProjectInterconnection
 
-> GetInterconnection200Response CreateProjectInterconnection(ctx, projectId).CreateOrganizationInterconnectionRequest(createOrganizationInterconnectionRequest).Execute()
+> Interconnection CreateProjectInterconnection(ctx, projectId).InterconnectionCreateInput(interconnectionCreateInput).Execute()
 
 Request a new interconnection for the project's organization
 
@@ -190,16 +190,16 @@ import (
 
 func main() {
     projectId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | UUID of the project
-    createOrganizationInterconnectionRequest := *openapiclient.NewCreateOrganizationInterconnectionRequest("Metro_example", "Name_example", "Redundancy_example", "Type_example") // CreateOrganizationInterconnectionRequest | Interconnection details
+    interconnectionCreateInput := *openapiclient.NewInterconnectionCreateInput("Metro_example", "Name_example", "Redundancy_example", "Type_example") // InterconnectionCreateInput | Interconnection details
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.InterconnectionsApi.CreateProjectInterconnection(context.Background(), projectId).CreateOrganizationInterconnectionRequest(createOrganizationInterconnectionRequest).Execute()
+    resp, r, err := apiClient.InterconnectionsApi.CreateProjectInterconnection(context.Background(), projectId).InterconnectionCreateInput(interconnectionCreateInput).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `InterconnectionsApi.CreateProjectInterconnection``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateProjectInterconnection`: GetInterconnection200Response
+    // response from `CreateProjectInterconnection`: Interconnection
     fmt.Fprintf(os.Stdout, "Response from `InterconnectionsApi.CreateProjectInterconnection`: %v\n", resp)
 }
 ```
@@ -220,11 +220,11 @@ Other parameters are passed through a pointer to a apiCreateProjectInterconnecti
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **createOrganizationInterconnectionRequest** | [**CreateOrganizationInterconnectionRequest**](CreateOrganizationInterconnectionRequest.md) | Interconnection details | 
+ **interconnectionCreateInput** | [**InterconnectionCreateInput**](InterconnectionCreateInput.md) | Interconnection details | 
 
 ### Return type
 
-[**GetInterconnection200Response**](GetInterconnection200Response.md)
+[**Interconnection**](Interconnection.md)
 
 ### Authorization
 
@@ -242,7 +242,7 @@ Name | Type | Description  | Notes
 
 ## DeleteInterconnection
 
-> GetInterconnection200Response DeleteInterconnection(ctx, connectionId).Execute()
+> Interconnection DeleteInterconnection(ctx, connectionId).Execute()
 
 Delete interconnection
 
@@ -270,7 +270,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `InterconnectionsApi.DeleteInterconnection``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `DeleteInterconnection`: GetInterconnection200Response
+    // response from `DeleteInterconnection`: Interconnection
     fmt.Fprintf(os.Stdout, "Response from `InterconnectionsApi.DeleteInterconnection`: %v\n", resp)
 }
 ```
@@ -294,7 +294,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetInterconnection200Response**](GetInterconnection200Response.md)
+[**Interconnection**](Interconnection.md)
 
 ### Authorization
 
@@ -382,7 +382,7 @@ Name | Type | Description  | Notes
 
 ## GetInterconnection
 
-> GetInterconnection200Response GetInterconnection(ctx, connectionId).Execute()
+> Interconnection GetInterconnection(ctx, connectionId).Execute()
 
 Get interconnection
 
@@ -410,7 +410,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `InterconnectionsApi.GetInterconnection``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetInterconnection`: GetInterconnection200Response
+    // response from `GetInterconnection`: Interconnection
     fmt.Fprintf(os.Stdout, "Response from `InterconnectionsApi.GetInterconnection`: %v\n", resp)
 }
 ```
@@ -434,7 +434,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetInterconnection200Response**](GetInterconnection200Response.md)
+[**Interconnection**](Interconnection.md)
 
 ### Authorization
 
@@ -452,7 +452,7 @@ Name | Type | Description  | Notes
 
 ## GetInterconnectionPort
 
-> GetInterconnection200ResponsePortsInner GetInterconnectionPort(ctx, connectionId, id).Execute()
+> InterconnectionPort GetInterconnectionPort(ctx, connectionId, id).Execute()
 
 Get a interconnection port
 
@@ -481,7 +481,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `InterconnectionsApi.GetInterconnectionPort``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetInterconnectionPort`: GetInterconnection200ResponsePortsInner
+    // response from `GetInterconnectionPort`: InterconnectionPort
     fmt.Fprintf(os.Stdout, "Response from `InterconnectionsApi.GetInterconnectionPort`: %v\n", resp)
 }
 ```
@@ -507,7 +507,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetInterconnection200ResponsePortsInner**](GetInterconnection200ResponsePortsInner.md)
+[**InterconnectionPort**](InterconnectionPort.md)
 
 ### Authorization
 
@@ -595,7 +595,7 @@ Name | Type | Description  | Notes
 
 ## ListInterconnectionPortVirtualCircuits
 
-> GetInterconnection200ResponsePortsInnerVirtualCircuits ListInterconnectionPortVirtualCircuits(ctx, connectionId, portId).Execute()
+> VirtualCircuitList ListInterconnectionPortVirtualCircuits(ctx, connectionId, portId).Execute()
 
 List a interconnection port's virtual circuits
 
@@ -624,7 +624,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `InterconnectionsApi.ListInterconnectionPortVirtualCircuits``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `ListInterconnectionPortVirtualCircuits`: GetInterconnection200ResponsePortsInnerVirtualCircuits
+    // response from `ListInterconnectionPortVirtualCircuits`: VirtualCircuitList
     fmt.Fprintf(os.Stdout, "Response from `InterconnectionsApi.ListInterconnectionPortVirtualCircuits`: %v\n", resp)
 }
 ```
@@ -650,7 +650,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetInterconnection200ResponsePortsInnerVirtualCircuits**](GetInterconnection200ResponsePortsInnerVirtualCircuits.md)
+[**VirtualCircuitList**](VirtualCircuitList.md)
 
 ### Authorization
 
@@ -668,7 +668,7 @@ Name | Type | Description  | Notes
 
 ## ListInterconnectionPorts
 
-> ListInterconnectionPorts200Response ListInterconnectionPorts(ctx, connectionId).Execute()
+> InterconnectionPortList ListInterconnectionPorts(ctx, connectionId).Execute()
 
 List a interconnection's ports
 
@@ -696,7 +696,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `InterconnectionsApi.ListInterconnectionPorts``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `ListInterconnectionPorts`: ListInterconnectionPorts200Response
+    // response from `ListInterconnectionPorts`: InterconnectionPortList
     fmt.Fprintf(os.Stdout, "Response from `InterconnectionsApi.ListInterconnectionPorts`: %v\n", resp)
 }
 ```
@@ -720,7 +720,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ListInterconnectionPorts200Response**](ListInterconnectionPorts200Response.md)
+[**InterconnectionPortList**](InterconnectionPortList.md)
 
 ### Authorization
 
@@ -738,7 +738,7 @@ Name | Type | Description  | Notes
 
 ## OrganizationListInterconnections
 
-> OrganizationListInterconnections200Response OrganizationListInterconnections(ctx, organizationId).Execute()
+> InterconnectionList OrganizationListInterconnections(ctx, organizationId).Execute()
 
 List organization connections
 
@@ -766,7 +766,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `InterconnectionsApi.OrganizationListInterconnections``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `OrganizationListInterconnections`: OrganizationListInterconnections200Response
+    // response from `OrganizationListInterconnections`: InterconnectionList
     fmt.Fprintf(os.Stdout, "Response from `InterconnectionsApi.OrganizationListInterconnections`: %v\n", resp)
 }
 ```
@@ -790,7 +790,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**OrganizationListInterconnections200Response**](OrganizationListInterconnections200Response.md)
+[**InterconnectionList**](InterconnectionList.md)
 
 ### Authorization
 
@@ -808,7 +808,7 @@ Name | Type | Description  | Notes
 
 ## ProjectListInterconnections
 
-> OrganizationListInterconnections200Response ProjectListInterconnections(ctx, projectId).Execute()
+> InterconnectionList ProjectListInterconnections(ctx, projectId).Execute()
 
 List project connections
 
@@ -836,7 +836,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `InterconnectionsApi.ProjectListInterconnections``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `ProjectListInterconnections`: OrganizationListInterconnections200Response
+    // response from `ProjectListInterconnections`: InterconnectionList
     fmt.Fprintf(os.Stdout, "Response from `InterconnectionsApi.ProjectListInterconnections`: %v\n", resp)
 }
 ```
@@ -860,7 +860,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**OrganizationListInterconnections200Response**](OrganizationListInterconnections200Response.md)
+[**InterconnectionList**](InterconnectionList.md)
 
 ### Authorization
 
@@ -878,7 +878,7 @@ Name | Type | Description  | Notes
 
 ## UpdateInterconnection
 
-> GetInterconnection200Response UpdateInterconnection(ctx, connectionId).UpdateInterconnectionRequest(updateInterconnectionRequest).Execute()
+> Interconnection UpdateInterconnection(ctx, connectionId).InterconnectionUpdateInput(interconnectionUpdateInput).Execute()
 
 Update interconnection
 
@@ -898,16 +898,16 @@ import (
 
 func main() {
     connectionId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Interconnection UUID
-    updateInterconnectionRequest := *openapiclient.NewUpdateInterconnectionRequest() // UpdateInterconnectionRequest | Updated interconnection details
+    interconnectionUpdateInput := *openapiclient.NewInterconnectionUpdateInput() // InterconnectionUpdateInput | Updated interconnection details
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.InterconnectionsApi.UpdateInterconnection(context.Background(), connectionId).UpdateInterconnectionRequest(updateInterconnectionRequest).Execute()
+    resp, r, err := apiClient.InterconnectionsApi.UpdateInterconnection(context.Background(), connectionId).InterconnectionUpdateInput(interconnectionUpdateInput).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `InterconnectionsApi.UpdateInterconnection``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateInterconnection`: GetInterconnection200Response
+    // response from `UpdateInterconnection`: Interconnection
     fmt.Fprintf(os.Stdout, "Response from `InterconnectionsApi.UpdateInterconnection`: %v\n", resp)
 }
 ```
@@ -928,11 +928,11 @@ Other parameters are passed through a pointer to a apiUpdateInterconnectionReque
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateInterconnectionRequest** | [**UpdateInterconnectionRequest**](UpdateInterconnectionRequest.md) | Updated interconnection details | 
+ **interconnectionUpdateInput** | [**InterconnectionUpdateInput**](InterconnectionUpdateInput.md) | Updated interconnection details | 
 
 ### Return type
 
-[**GetInterconnection200Response**](GetInterconnection200Response.md)
+[**Interconnection**](Interconnection.md)
 
 ### Authorization
 
@@ -970,7 +970,7 @@ import (
 
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Virtual Circuit UUID
-    updateVirtualCircuitRequest := openapiclient.updateVirtualCircuit_request{UpdateVirtualCircuitRequestOneOf: openapiclient.NewUpdateVirtualCircuitRequestOneOf()} // UpdateVirtualCircuitRequest | Updated Virtual Circuit details
+    updateVirtualCircuitRequest := openapiclient.updateVirtualCircuit_request{VirtualCircuitUpdateInput: openapiclient.NewVirtualCircuitUpdateInput()} // UpdateVirtualCircuitRequest | Updated Virtual Circuit details
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)

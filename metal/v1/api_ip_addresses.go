@@ -125,7 +125,7 @@ func (a *IPAddressesApiService) DeleteIPAddressExecute(r ApiDeleteIPAddressReque
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -136,7 +136,7 @@ func (a *IPAddressesApiService) DeleteIPAddressExecute(r ApiDeleteIPAddressReque
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -147,7 +147,7 @@ func (a *IPAddressesApiService) DeleteIPAddressExecute(r ApiDeleteIPAddressReque
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -285,7 +285,7 @@ func (a *IPAddressesApiService) FindIPAddressByIdExecute(r ApiFindIPAddressByIdR
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -296,7 +296,7 @@ func (a *IPAddressesApiService) FindIPAddressByIdExecute(r ApiFindIPAddressByIdR
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -307,7 +307,7 @@ func (a *IPAddressesApiService) FindIPAddressByIdExecute(r ApiFindIPAddressByIdR
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -432,7 +432,7 @@ func (a *IPAddressesApiService) FindIPAddressCustomdataExecute(r ApiFindIPAddres
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -443,7 +443,7 @@ func (a *IPAddressesApiService) FindIPAddressCustomdataExecute(r ApiFindIPAddres
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -454,7 +454,7 @@ func (a *IPAddressesApiService) FindIPAddressCustomdataExecute(r ApiFindIPAddres
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -482,7 +482,7 @@ func (r ApiFindIPAvailabilitiesRequest) Cidr(cidr string) ApiFindIPAvailabilitie
 	return r
 }
 
-func (r ApiFindIPAvailabilitiesRequest) Execute() (*FindIPAvailabilities200Response, *http.Response, error) {
+func (r ApiFindIPAvailabilitiesRequest) Execute() (*IPAvailabilitiesList, *http.Response, error) {
 	return r.ApiService.FindIPAvailabilitiesExecute(r)
 }
 
@@ -504,13 +504,13 @@ func (a *IPAddressesApiService) FindIPAvailabilities(ctx context.Context, id str
 }
 
 // Execute executes the request
-//  @return FindIPAvailabilities200Response
-func (a *IPAddressesApiService) FindIPAvailabilitiesExecute(r ApiFindIPAvailabilitiesRequest) (*FindIPAvailabilities200Response, *http.Response, error) {
+//  @return IPAvailabilitiesList
+func (a *IPAddressesApiService) FindIPAvailabilitiesExecute(r ApiFindIPAvailabilitiesRequest) (*IPAvailabilitiesList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *FindIPAvailabilities200Response
+		localVarReturnValue *IPAvailabilitiesList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IPAddressesApiService.FindIPAvailabilities")
@@ -583,7 +583,7 @@ func (a *IPAddressesApiService) FindIPAvailabilitiesExecute(r ApiFindIPAvailabil
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -594,7 +594,7 @@ func (a *IPAddressesApiService) FindIPAvailabilitiesExecute(r ApiFindIPAvailabil
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -605,7 +605,7 @@ func (a *IPAddressesApiService) FindIPAvailabilitiesExecute(r ApiFindIPAvailabil
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -663,7 +663,7 @@ func (r ApiFindIPReservationsRequest) PerPage(perPage int32) ApiFindIPReservatio
 	return r
 }
 
-func (r ApiFindIPReservationsRequest) Execute() (*FindIPReservations200Response, *http.Response, error) {
+func (r ApiFindIPReservationsRequest) Execute() (*IPReservationList, *http.Response, error) {
 	return r.ApiService.FindIPReservationsExecute(r)
 }
 
@@ -685,13 +685,13 @@ func (a *IPAddressesApiService) FindIPReservations(ctx context.Context, id strin
 }
 
 // Execute executes the request
-//  @return FindIPReservations200Response
-func (a *IPAddressesApiService) FindIPReservationsExecute(r ApiFindIPReservationsRequest) (*FindIPReservations200Response, *http.Response, error) {
+//  @return IPReservationList
+func (a *IPAddressesApiService) FindIPReservationsExecute(r ApiFindIPReservationsRequest) (*IPReservationList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *FindIPReservations200Response
+		localVarReturnValue *IPReservationList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IPAddressesApiService.FindIPReservations")
@@ -780,7 +780,7 @@ func (a *IPAddressesApiService) FindIPReservationsExecute(r ApiFindIPReservation
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -791,7 +791,7 @@ func (a *IPAddressesApiService) FindIPReservationsExecute(r ApiFindIPReservation
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -802,7 +802,7 @@ func (a *IPAddressesApiService) FindIPReservationsExecute(r ApiFindIPReservation
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -941,7 +941,7 @@ func (a *IPAddressesApiService) RequestIPReservationExecute(r ApiRequestIPReserv
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -952,7 +952,7 @@ func (a *IPAddressesApiService) RequestIPReservationExecute(r ApiRequestIPReserv
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -963,7 +963,7 @@ func (a *IPAddressesApiService) RequestIPReservationExecute(r ApiRequestIPReserv
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -974,7 +974,7 @@ func (a *IPAddressesApiService) RequestIPReservationExecute(r ApiRequestIPReserv
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1123,7 +1123,7 @@ func (a *IPAddressesApiService) UpdateIPAddressExecute(r ApiUpdateIPAddressReque
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1134,7 +1134,7 @@ func (a *IPAddressesApiService) UpdateIPAddressExecute(r ApiUpdateIPAddressReque
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1145,7 +1145,7 @@ func (a *IPAddressesApiService) UpdateIPAddressExecute(r ApiUpdateIPAddressReque
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

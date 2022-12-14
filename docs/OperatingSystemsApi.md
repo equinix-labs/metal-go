@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 ## FindOperatingSystemVersion
 
-> FindOperatingSystemVersion200Response FindOperatingSystemVersion(ctx).Execute()
+> OperatingSystemList FindOperatingSystemVersion(ctx).Execute()
 
 Retrieve all operating system versions
 
@@ -38,7 +38,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `OperatingSystemsApi.FindOperatingSystemVersion``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindOperatingSystemVersion`: FindOperatingSystemVersion200Response
+    // response from `FindOperatingSystemVersion`: OperatingSystemList
     fmt.Fprintf(os.Stdout, "Response from `OperatingSystemsApi.FindOperatingSystemVersion`: %v\n", resp)
 }
 ```
@@ -54,7 +54,7 @@ Other parameters are passed through a pointer to a apiFindOperatingSystemVersion
 
 ### Return type
 
-[**FindOperatingSystemVersion200Response**](FindOperatingSystemVersion200Response.md)
+[**OperatingSystemList**](OperatingSystemList.md)
 
 ### Authorization
 
@@ -72,7 +72,7 @@ Other parameters are passed through a pointer to a apiFindOperatingSystemVersion
 
 ## FindOperatingSystems
 
-> FindOperatingSystemVersion200Response FindOperatingSystems(ctx).Execute()
+> OperatingSystemList FindOperatingSystems(ctx).Execute()
 
 Retrieve all operating systems
 
@@ -99,7 +99,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `OperatingSystemsApi.FindOperatingSystems``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindOperatingSystems`: FindOperatingSystemVersion200Response
+    // response from `FindOperatingSystems`: OperatingSystemList
     fmt.Fprintf(os.Stdout, "Response from `OperatingSystemsApi.FindOperatingSystems`: %v\n", resp)
 }
 ```
@@ -115,7 +115,7 @@ Other parameters are passed through a pointer to a apiFindOperatingSystemsReques
 
 ### Return type
 
-[**FindOperatingSystemVersion200Response**](FindOperatingSystemVersion200Response.md)
+[**OperatingSystemList**](OperatingSystemList.md)
 
 ### Authorization
 

@@ -18,17 +18,17 @@ import (
 
 // SelfServiceReservationResponse struct for SelfServiceReservationResponse
 type SelfServiceReservationResponse struct {
-	CreatedAt      *time.Time                                                         `json:"created_at,omitempty"`
-	Item           []FindSelfServiceReservations200ResponseReservationsInnerItemInner `json:"item,omitempty"`
-	Notes          *string                                                            `json:"notes,omitempty"`
-	Organization   *string                                                            `json:"organization,omitempty"`
-	OrganizationId *string                                                            `json:"organization_id,omitempty"`
-	Period         *FindSelfServiceReservations200ResponseReservationsInnerPeriod     `json:"period,omitempty"`
-	Project        *string                                                            `json:"project,omitempty"`
-	ProjectId      *string                                                            `json:"project_id,omitempty"`
-	StartDate      *time.Time                                                         `json:"start_date,omitempty"`
-	Status         *string                                                            `json:"status,omitempty"`
-	TotalCost      *int32                                                             `json:"total_cost,omitempty"`
+	CreatedAt      *time.Time                                 `json:"created_at,omitempty"`
+	Item           []SelfServiceReservationItemResponse       `json:"item,omitempty"`
+	Notes          *string                                    `json:"notes,omitempty"`
+	Organization   *string                                    `json:"organization,omitempty"`
+	OrganizationId *string                                    `json:"organization_id,omitempty"`
+	Period         *CreateSelfServiceReservationRequestPeriod `json:"period,omitempty"`
+	Project        *string                                    `json:"project,omitempty"`
+	ProjectId      *string                                    `json:"project_id,omitempty"`
+	StartDate      *time.Time                                 `json:"start_date,omitempty"`
+	Status         *string                                    `json:"status,omitempty"`
+	TotalCost      *int32                                     `json:"total_cost,omitempty"`
 }
 
 // NewSelfServiceReservationResponse instantiates a new SelfServiceReservationResponse object
@@ -81,9 +81,9 @@ func (o *SelfServiceReservationResponse) SetCreatedAt(v time.Time) {
 }
 
 // GetItem returns the Item field value if set, zero value otherwise.
-func (o *SelfServiceReservationResponse) GetItem() []FindSelfServiceReservations200ResponseReservationsInnerItemInner {
+func (o *SelfServiceReservationResponse) GetItem() []SelfServiceReservationItemResponse {
 	if o == nil || isNil(o.Item) {
-		var ret []FindSelfServiceReservations200ResponseReservationsInnerItemInner
+		var ret []SelfServiceReservationItemResponse
 		return ret
 	}
 	return o.Item
@@ -91,7 +91,7 @@ func (o *SelfServiceReservationResponse) GetItem() []FindSelfServiceReservations
 
 // GetItemOk returns a tuple with the Item field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SelfServiceReservationResponse) GetItemOk() ([]FindSelfServiceReservations200ResponseReservationsInnerItemInner, bool) {
+func (o *SelfServiceReservationResponse) GetItemOk() ([]SelfServiceReservationItemResponse, bool) {
 	if o == nil || isNil(o.Item) {
 		return nil, false
 	}
@@ -107,8 +107,8 @@ func (o *SelfServiceReservationResponse) HasItem() bool {
 	return false
 }
 
-// SetItem gets a reference to the given []FindSelfServiceReservations200ResponseReservationsInnerItemInner and assigns it to the Item field.
-func (o *SelfServiceReservationResponse) SetItem(v []FindSelfServiceReservations200ResponseReservationsInnerItemInner) {
+// SetItem gets a reference to the given []SelfServiceReservationItemResponse and assigns it to the Item field.
+func (o *SelfServiceReservationResponse) SetItem(v []SelfServiceReservationItemResponse) {
 	o.Item = v
 }
 
@@ -209,9 +209,9 @@ func (o *SelfServiceReservationResponse) SetOrganizationId(v string) {
 }
 
 // GetPeriod returns the Period field value if set, zero value otherwise.
-func (o *SelfServiceReservationResponse) GetPeriod() FindSelfServiceReservations200ResponseReservationsInnerPeriod {
+func (o *SelfServiceReservationResponse) GetPeriod() CreateSelfServiceReservationRequestPeriod {
 	if o == nil || isNil(o.Period) {
-		var ret FindSelfServiceReservations200ResponseReservationsInnerPeriod
+		var ret CreateSelfServiceReservationRequestPeriod
 		return ret
 	}
 	return *o.Period
@@ -219,7 +219,7 @@ func (o *SelfServiceReservationResponse) GetPeriod() FindSelfServiceReservations
 
 // GetPeriodOk returns a tuple with the Period field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SelfServiceReservationResponse) GetPeriodOk() (*FindSelfServiceReservations200ResponseReservationsInnerPeriod, bool) {
+func (o *SelfServiceReservationResponse) GetPeriodOk() (*CreateSelfServiceReservationRequestPeriod, bool) {
 	if o == nil || isNil(o.Period) {
 		return nil, false
 	}
@@ -235,8 +235,8 @@ func (o *SelfServiceReservationResponse) HasPeriod() bool {
 	return false
 }
 
-// SetPeriod gets a reference to the given FindSelfServiceReservations200ResponseReservationsInnerPeriod and assigns it to the Period field.
-func (o *SelfServiceReservationResponse) SetPeriod(v FindSelfServiceReservations200ResponseReservationsInnerPeriod) {
+// SetPeriod gets a reference to the given CreateSelfServiceReservationRequestPeriod and assigns it to the Period field.
+func (o *SelfServiceReservationResponse) SetPeriod(v CreateSelfServiceReservationRequestPeriod) {
 	o.Period = &v
 }
 

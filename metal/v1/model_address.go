@@ -17,13 +17,13 @@ import (
 
 // Address struct for Address
 type Address struct {
-	Address     string                                               `json:"address"`
-	Address2    *string                                              `json:"address2,omitempty"`
-	City        *string                                              `json:"city,omitempty"`
-	Coordinates *FindDeviceById200ResponseFacilityAddressCoordinates `json:"coordinates,omitempty"`
-	Country     string                                               `json:"country"`
-	State       *string                                              `json:"state,omitempty"`
-	ZipCode     string                                               `json:"zip_code"`
+	Address     string       `json:"address"`
+	Address2    *string      `json:"address2,omitempty"`
+	City        *string      `json:"city,omitempty"`
+	Coordinates *Coordinates `json:"coordinates,omitempty"`
+	Country     string       `json:"country"`
+	State       *string      `json:"state,omitempty"`
+	ZipCode     string       `json:"zip_code"`
 }
 
 // NewAddress instantiates a new Address object
@@ -135,9 +135,9 @@ func (o *Address) SetCity(v string) {
 }
 
 // GetCoordinates returns the Coordinates field value if set, zero value otherwise.
-func (o *Address) GetCoordinates() FindDeviceById200ResponseFacilityAddressCoordinates {
+func (o *Address) GetCoordinates() Coordinates {
 	if o == nil || isNil(o.Coordinates) {
-		var ret FindDeviceById200ResponseFacilityAddressCoordinates
+		var ret Coordinates
 		return ret
 	}
 	return *o.Coordinates
@@ -145,7 +145,7 @@ func (o *Address) GetCoordinates() FindDeviceById200ResponseFacilityAddressCoord
 
 // GetCoordinatesOk returns a tuple with the Coordinates field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Address) GetCoordinatesOk() (*FindDeviceById200ResponseFacilityAddressCoordinates, bool) {
+func (o *Address) GetCoordinatesOk() (*Coordinates, bool) {
 	if o == nil || isNil(o.Coordinates) {
 		return nil, false
 	}
@@ -161,8 +161,8 @@ func (o *Address) HasCoordinates() bool {
 	return false
 }
 
-// SetCoordinates gets a reference to the given FindDeviceById200ResponseFacilityAddressCoordinates and assigns it to the Coordinates field.
-func (o *Address) SetCoordinates(v FindDeviceById200ResponseFacilityAddressCoordinates) {
+// SetCoordinates gets a reference to the given Coordinates and assigns it to the Coordinates field.
+func (o *Address) SetCoordinates(v Coordinates) {
 	o.Coordinates = &v
 }
 

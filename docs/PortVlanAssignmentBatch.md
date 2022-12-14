@@ -7,11 +7,11 @@ Name | Type | Description | Notes
 **CreatedAt** | Pointer to **time.Time** |  | [optional] 
 **ErrorMessages** | Pointer to **[]string** |  | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
-**Port** | Pointer to [**FindDeviceById200ResponseNetworkPortsInner**](FindDeviceById200ResponseNetworkPortsInner.md) |  | [optional] 
+**Port** | Pointer to [**Port**](Port.md) |  | [optional] 
 **Quantity** | Pointer to **int32** |  | [optional] 
 **State** | Pointer to **string** |  | [optional] 
 **UpdatedAt** | Pointer to **time.Time** |  | [optional] 
-**VlanAssignments** | Pointer to [**[]FindPortVlanAssignmentBatches200ResponseBatchesInnerVlanAssignmentsInner**](FindPortVlanAssignmentBatches200ResponseBatchesInnerVlanAssignmentsInner.md) |  | [optional] 
+**VlanAssignments** | Pointer to [**[]PortVlanAssignmentBatchVlanAssignmentsInner**](PortVlanAssignmentBatchVlanAssignmentsInner.md) |  | [optional] 
 
 ## Methods
 
@@ -109,20 +109,20 @@ HasId returns a boolean if a field has been set.
 
 ### GetPort
 
-`func (o *PortVlanAssignmentBatch) GetPort() FindDeviceById200ResponseNetworkPortsInner`
+`func (o *PortVlanAssignmentBatch) GetPort() Port`
 
 GetPort returns the Port field if non-nil, zero value otherwise.
 
 ### GetPortOk
 
-`func (o *PortVlanAssignmentBatch) GetPortOk() (*FindDeviceById200ResponseNetworkPortsInner, bool)`
+`func (o *PortVlanAssignmentBatch) GetPortOk() (*Port, bool)`
 
 GetPortOk returns a tuple with the Port field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPort
 
-`func (o *PortVlanAssignmentBatch) SetPort(v FindDeviceById200ResponseNetworkPortsInner)`
+`func (o *PortVlanAssignmentBatch) SetPort(v Port)`
 
 SetPort sets Port field to given value.
 
@@ -209,20 +209,20 @@ HasUpdatedAt returns a boolean if a field has been set.
 
 ### GetVlanAssignments
 
-`func (o *PortVlanAssignmentBatch) GetVlanAssignments() []FindPortVlanAssignmentBatches200ResponseBatchesInnerVlanAssignmentsInner`
+`func (o *PortVlanAssignmentBatch) GetVlanAssignments() []PortVlanAssignmentBatchVlanAssignmentsInner`
 
 GetVlanAssignments returns the VlanAssignments field if non-nil, zero value otherwise.
 
 ### GetVlanAssignmentsOk
 
-`func (o *PortVlanAssignmentBatch) GetVlanAssignmentsOk() (*[]FindPortVlanAssignmentBatches200ResponseBatchesInnerVlanAssignmentsInner, bool)`
+`func (o *PortVlanAssignmentBatch) GetVlanAssignmentsOk() (*[]PortVlanAssignmentBatchVlanAssignmentsInner, bool)`
 
 GetVlanAssignmentsOk returns a tuple with the VlanAssignments field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVlanAssignments
 
-`func (o *PortVlanAssignmentBatch) SetVlanAssignments(v []FindPortVlanAssignmentBatches200ResponseBatchesInnerVlanAssignmentsInner)`
+`func (o *PortVlanAssignmentBatch) SetVlanAssignments(v []PortVlanAssignmentBatchVlanAssignmentsInner)`
 
 SetVlanAssignments sets VlanAssignments field to given value.
 

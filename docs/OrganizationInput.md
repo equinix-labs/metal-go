@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Address** | Pointer to [**FindDeviceById200ResponseFacilityAddress**](FindDeviceById200ResponseFacilityAddress.md) |  | [optional] 
-**BillingAddress** | Pointer to [**FindDeviceById200ResponseFacilityAddress**](FindDeviceById200ResponseFacilityAddress.md) |  | [optional] 
+**Address** | Pointer to [**Address**](Address.md) |  | [optional] 
+**BillingAddress** | Pointer to [**Address**](Address.md) |  | [optional] 
 **Customdata** | Pointer to **map[string]interface{}** |  | [optional] 
 **Description** | Pointer to **string** |  | [optional] 
 **Enforce2faAt** | Pointer to **time.Time** | Force to all members to have enabled the two factor authentication after that date, unless the value is null | [optional] 
@@ -35,20 +35,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetAddress
 
-`func (o *OrganizationInput) GetAddress() FindDeviceById200ResponseFacilityAddress`
+`func (o *OrganizationInput) GetAddress() Address`
 
 GetAddress returns the Address field if non-nil, zero value otherwise.
 
 ### GetAddressOk
 
-`func (o *OrganizationInput) GetAddressOk() (*FindDeviceById200ResponseFacilityAddress, bool)`
+`func (o *OrganizationInput) GetAddressOk() (*Address, bool)`
 
 GetAddressOk returns a tuple with the Address field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAddress
 
-`func (o *OrganizationInput) SetAddress(v FindDeviceById200ResponseFacilityAddress)`
+`func (o *OrganizationInput) SetAddress(v Address)`
 
 SetAddress sets Address field to given value.
 
@@ -60,20 +60,20 @@ HasAddress returns a boolean if a field has been set.
 
 ### GetBillingAddress
 
-`func (o *OrganizationInput) GetBillingAddress() FindDeviceById200ResponseFacilityAddress`
+`func (o *OrganizationInput) GetBillingAddress() Address`
 
 GetBillingAddress returns the BillingAddress field if non-nil, zero value otherwise.
 
 ### GetBillingAddressOk
 
-`func (o *OrganizationInput) GetBillingAddressOk() (*FindDeviceById200ResponseFacilityAddress, bool)`
+`func (o *OrganizationInput) GetBillingAddressOk() (*Address, bool)`
 
 GetBillingAddressOk returns a tuple with the BillingAddress field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetBillingAddress
 
-`func (o *OrganizationInput) SetBillingAddress(v FindDeviceById200ResponseFacilityAddress)`
+`func (o *OrganizationInput) SetBillingAddress(v Address)`
 
 SetBillingAddress sets BillingAddress field to given value.
 

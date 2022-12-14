@@ -17,8 +17,8 @@ import (
 
 // ProjectList struct for ProjectList
 type ProjectList struct {
-	Meta     *FindDeviceEvents200ResponseMeta                                                             `json:"meta,omitempty"`
-	Projects []GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject `json:"projects,omitempty"`
+	Meta     *Meta     `json:"meta,omitempty"`
+	Projects []Project `json:"projects,omitempty"`
 }
 
 // NewProjectList instantiates a new ProjectList object
@@ -39,9 +39,9 @@ func NewProjectListWithDefaults() *ProjectList {
 }
 
 // GetMeta returns the Meta field value if set, zero value otherwise.
-func (o *ProjectList) GetMeta() FindDeviceEvents200ResponseMeta {
+func (o *ProjectList) GetMeta() Meta {
 	if o == nil || isNil(o.Meta) {
-		var ret FindDeviceEvents200ResponseMeta
+		var ret Meta
 		return ret
 	}
 	return *o.Meta
@@ -49,7 +49,7 @@ func (o *ProjectList) GetMeta() FindDeviceEvents200ResponseMeta {
 
 // GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectList) GetMetaOk() (*FindDeviceEvents200ResponseMeta, bool) {
+func (o *ProjectList) GetMetaOk() (*Meta, bool) {
 	if o == nil || isNil(o.Meta) {
 		return nil, false
 	}
@@ -65,15 +65,15 @@ func (o *ProjectList) HasMeta() bool {
 	return false
 }
 
-// SetMeta gets a reference to the given FindDeviceEvents200ResponseMeta and assigns it to the Meta field.
-func (o *ProjectList) SetMeta(v FindDeviceEvents200ResponseMeta) {
+// SetMeta gets a reference to the given Meta and assigns it to the Meta field.
+func (o *ProjectList) SetMeta(v Meta) {
 	o.Meta = &v
 }
 
 // GetProjects returns the Projects field value if set, zero value otherwise.
-func (o *ProjectList) GetProjects() []GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject {
+func (o *ProjectList) GetProjects() []Project {
 	if o == nil || isNil(o.Projects) {
-		var ret []GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject
+		var ret []Project
 		return ret
 	}
 	return o.Projects
@@ -81,7 +81,7 @@ func (o *ProjectList) GetProjects() []GetInterconnection200ResponsePortsInnerVir
 
 // GetProjectsOk returns a tuple with the Projects field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectList) GetProjectsOk() ([]GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject, bool) {
+func (o *ProjectList) GetProjectsOk() ([]Project, bool) {
 	if o == nil || isNil(o.Projects) {
 		return nil, false
 	}
@@ -97,8 +97,8 @@ func (o *ProjectList) HasProjects() bool {
 	return false
 }
 
-// SetProjects gets a reference to the given []GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject and assigns it to the Projects field.
-func (o *ProjectList) SetProjects(v []GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject) {
+// SetProjects gets a reference to the given []Project and assigns it to the Projects field.
+func (o *ProjectList) SetProjects(v []Project) {
 	o.Projects = v
 }
 

@@ -5,11 +5,11 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CreatedAt** | Pointer to **time.Time** |  | [optional] 
-**Item** | Pointer to [**[]FindSelfServiceReservations200ResponseReservationsInnerItemInner**](FindSelfServiceReservations200ResponseReservationsInnerItemInner.md) |  | [optional] 
+**Item** | Pointer to [**[]SelfServiceReservationItemResponse**](SelfServiceReservationItemResponse.md) |  | [optional] 
 **Notes** | Pointer to **string** |  | [optional] 
 **Organization** | Pointer to **string** |  | [optional] 
 **OrganizationId** | Pointer to **string** |  | [optional] 
-**Period** | Pointer to [**FindSelfServiceReservations200ResponseReservationsInnerPeriod**](FindSelfServiceReservations200ResponseReservationsInnerPeriod.md) |  | [optional] 
+**Period** | Pointer to [**CreateSelfServiceReservationRequestPeriod**](CreateSelfServiceReservationRequestPeriod.md) |  | [optional] 
 **Project** | Pointer to **string** |  | [optional] 
 **ProjectId** | Pointer to **string** |  | [optional] 
 **StartDate** | Pointer to **time.Time** |  | [optional] 
@@ -62,20 +62,20 @@ HasCreatedAt returns a boolean if a field has been set.
 
 ### GetItem
 
-`func (o *SelfServiceReservationResponse) GetItem() []FindSelfServiceReservations200ResponseReservationsInnerItemInner`
+`func (o *SelfServiceReservationResponse) GetItem() []SelfServiceReservationItemResponse`
 
 GetItem returns the Item field if non-nil, zero value otherwise.
 
 ### GetItemOk
 
-`func (o *SelfServiceReservationResponse) GetItemOk() (*[]FindSelfServiceReservations200ResponseReservationsInnerItemInner, bool)`
+`func (o *SelfServiceReservationResponse) GetItemOk() (*[]SelfServiceReservationItemResponse, bool)`
 
 GetItemOk returns a tuple with the Item field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetItem
 
-`func (o *SelfServiceReservationResponse) SetItem(v []FindSelfServiceReservations200ResponseReservationsInnerItemInner)`
+`func (o *SelfServiceReservationResponse) SetItem(v []SelfServiceReservationItemResponse)`
 
 SetItem sets Item field to given value.
 
@@ -162,20 +162,20 @@ HasOrganizationId returns a boolean if a field has been set.
 
 ### GetPeriod
 
-`func (o *SelfServiceReservationResponse) GetPeriod() FindSelfServiceReservations200ResponseReservationsInnerPeriod`
+`func (o *SelfServiceReservationResponse) GetPeriod() CreateSelfServiceReservationRequestPeriod`
 
 GetPeriod returns the Period field if non-nil, zero value otherwise.
 
 ### GetPeriodOk
 
-`func (o *SelfServiceReservationResponse) GetPeriodOk() (*FindSelfServiceReservations200ResponseReservationsInnerPeriod, bool)`
+`func (o *SelfServiceReservationResponse) GetPeriodOk() (*CreateSelfServiceReservationRequestPeriod, bool)`
 
 GetPeriodOk returns a tuple with the Period field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPeriod
 
-`func (o *SelfServiceReservationResponse) SetPeriod(v FindSelfServiceReservations200ResponseReservationsInnerPeriod)`
+`func (o *SelfServiceReservationResponse) SetPeriod(v CreateSelfServiceReservationRequestPeriod)`
 
 SetPeriod sets Period field to given value.
 

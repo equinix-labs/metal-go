@@ -17,7 +17,7 @@ import (
 
 // IPAssignmentList struct for IPAssignmentList
 type IPAssignmentList struct {
-	IpAddresses []FindDeviceById200ResponseIpAddressesInner `json:"ip_addresses,omitempty"`
+	IpAddresses []IPAssignment `json:"ip_addresses,omitempty"`
 }
 
 // NewIPAssignmentList instantiates a new IPAssignmentList object
@@ -38,9 +38,9 @@ func NewIPAssignmentListWithDefaults() *IPAssignmentList {
 }
 
 // GetIpAddresses returns the IpAddresses field value if set, zero value otherwise.
-func (o *IPAssignmentList) GetIpAddresses() []FindDeviceById200ResponseIpAddressesInner {
+func (o *IPAssignmentList) GetIpAddresses() []IPAssignment {
 	if o == nil || isNil(o.IpAddresses) {
-		var ret []FindDeviceById200ResponseIpAddressesInner
+		var ret []IPAssignment
 		return ret
 	}
 	return o.IpAddresses
@@ -48,7 +48,7 @@ func (o *IPAssignmentList) GetIpAddresses() []FindDeviceById200ResponseIpAddress
 
 // GetIpAddressesOk returns a tuple with the IpAddresses field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IPAssignmentList) GetIpAddressesOk() ([]FindDeviceById200ResponseIpAddressesInner, bool) {
+func (o *IPAssignmentList) GetIpAddressesOk() ([]IPAssignment, bool) {
 	if o == nil || isNil(o.IpAddresses) {
 		return nil, false
 	}
@@ -64,8 +64,8 @@ func (o *IPAssignmentList) HasIpAddresses() bool {
 	return false
 }
 
-// SetIpAddresses gets a reference to the given []FindDeviceById200ResponseIpAddressesInner and assigns it to the IpAddresses field.
-func (o *IPAssignmentList) SetIpAddresses(v []FindDeviceById200ResponseIpAddressesInner) {
+// SetIpAddresses gets a reference to the given []IPAssignment and assigns it to the IpAddresses field.
+func (o *IPAssignmentList) SetIpAddresses(v []IPAssignment) {
 	o.IpAddresses = v
 }
 

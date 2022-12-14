@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 ## CreateSpotMarketRequest
 
-> ListSpotMarketRequests200ResponseSpotMarketRequestsInner CreateSpotMarketRequest(ctx, id).CreateSpotMarketRequestRequest(createSpotMarketRequestRequest).Execute()
+> SpotMarketRequest CreateSpotMarketRequest(ctx, id).SpotMarketRequestCreateInput(spotMarketRequestCreateInput).Execute()
 
 Create a spot market request
 
@@ -36,16 +36,16 @@ import (
 
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Project UUID
-    createSpotMarketRequestRequest := *openapiclient.NewCreateSpotMarketRequestRequest() // CreateSpotMarketRequestRequest | Spot Market Request to create
+    spotMarketRequestCreateInput := *openapiclient.NewSpotMarketRequestCreateInput() // SpotMarketRequestCreateInput | Spot Market Request to create
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.SpotMarketApi.CreateSpotMarketRequest(context.Background(), id).CreateSpotMarketRequestRequest(createSpotMarketRequestRequest).Execute()
+    resp, r, err := apiClient.SpotMarketApi.CreateSpotMarketRequest(context.Background(), id).SpotMarketRequestCreateInput(spotMarketRequestCreateInput).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SpotMarketApi.CreateSpotMarketRequest``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateSpotMarketRequest`: ListSpotMarketRequests200ResponseSpotMarketRequestsInner
+    // response from `CreateSpotMarketRequest`: SpotMarketRequest
     fmt.Fprintf(os.Stdout, "Response from `SpotMarketApi.CreateSpotMarketRequest`: %v\n", resp)
 }
 ```
@@ -66,11 +66,11 @@ Other parameters are passed through a pointer to a apiCreateSpotMarketRequestReq
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **createSpotMarketRequestRequest** | [**CreateSpotMarketRequestRequest**](CreateSpotMarketRequestRequest.md) | Spot Market Request to create | 
+ **spotMarketRequestCreateInput** | [**SpotMarketRequestCreateInput**](SpotMarketRequestCreateInput.md) | Spot Market Request to create | 
 
 ### Return type
 
-[**ListSpotMarketRequests200ResponseSpotMarketRequestsInner**](ListSpotMarketRequests200ResponseSpotMarketRequestsInner.md)
+[**SpotMarketRequest**](SpotMarketRequest.md)
 
 ### Authorization
 
@@ -158,7 +158,7 @@ Name | Type | Description  | Notes
 
 ## FindMetroSpotMarketPrices
 
-> FindMetroSpotMarketPrices200Response FindMetroSpotMarketPrices(ctx).Metro(metro).Plan(plan).Execute()
+> SpotMarketPricesPerMetroList FindMetroSpotMarketPrices(ctx).Metro(metro).Plan(plan).Execute()
 
 Get current spot market prices for metros
 
@@ -187,7 +187,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `SpotMarketApi.FindMetroSpotMarketPrices``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindMetroSpotMarketPrices`: FindMetroSpotMarketPrices200Response
+    // response from `FindMetroSpotMarketPrices`: SpotMarketPricesPerMetroList
     fmt.Fprintf(os.Stdout, "Response from `SpotMarketApi.FindMetroSpotMarketPrices`: %v\n", resp)
 }
 ```
@@ -208,7 +208,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FindMetroSpotMarketPrices200Response**](FindMetroSpotMarketPrices200Response.md)
+[**SpotMarketPricesPerMetroList**](SpotMarketPricesPerMetroList.md)
 
 ### Authorization
 
@@ -226,7 +226,7 @@ Name | Type | Description  | Notes
 
 ## FindSpotMarketPrices
 
-> FindSpotMarketPrices200Response FindSpotMarketPrices(ctx).Facility(facility).Plan(plan).Execute()
+> SpotMarketPricesList FindSpotMarketPrices(ctx).Facility(facility).Plan(plan).Execute()
 
 Get current spot market prices
 
@@ -255,7 +255,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `SpotMarketApi.FindSpotMarketPrices``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindSpotMarketPrices`: FindSpotMarketPrices200Response
+    // response from `FindSpotMarketPrices`: SpotMarketPricesList
     fmt.Fprintf(os.Stdout, "Response from `SpotMarketApi.FindSpotMarketPrices`: %v\n", resp)
 }
 ```
@@ -276,7 +276,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FindSpotMarketPrices200Response**](FindSpotMarketPrices200Response.md)
+[**SpotMarketPricesList**](SpotMarketPricesList.md)
 
 ### Authorization
 
@@ -294,7 +294,7 @@ Name | Type | Description  | Notes
 
 ## FindSpotMarketPricesHistory
 
-> FindSpotMarketPricesHistory200Response FindSpotMarketPricesHistory(ctx).Facility(facility).Plan(plan).From(from).Until(until).Metro(metro).Execute()
+> SpotPricesHistoryReport FindSpotMarketPricesHistory(ctx).Facility(facility).Plan(plan).From(from).Until(until).Metro(metro).Execute()
 
 Get spot market prices for a given period of time
 
@@ -326,7 +326,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `SpotMarketApi.FindSpotMarketPricesHistory``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindSpotMarketPricesHistory`: FindSpotMarketPricesHistory200Response
+    // response from `FindSpotMarketPricesHistory`: SpotPricesHistoryReport
     fmt.Fprintf(os.Stdout, "Response from `SpotMarketApi.FindSpotMarketPricesHistory`: %v\n", resp)
 }
 ```
@@ -350,7 +350,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FindSpotMarketPricesHistory200Response**](FindSpotMarketPricesHistory200Response.md)
+[**SpotPricesHistoryReport**](SpotPricesHistoryReport.md)
 
 ### Authorization
 
@@ -368,7 +368,7 @@ Name | Type | Description  | Notes
 
 ## FindSpotMarketRequestById
 
-> ListSpotMarketRequests200ResponseSpotMarketRequestsInner FindSpotMarketRequestById(ctx, id).Include(include).Exclude(exclude).Execute()
+> SpotMarketRequest FindSpotMarketRequestById(ctx, id).Include(include).Exclude(exclude).Execute()
 
 Retrieve a spot market request
 
@@ -398,7 +398,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `SpotMarketApi.FindSpotMarketRequestById``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindSpotMarketRequestById`: ListSpotMarketRequests200ResponseSpotMarketRequestsInner
+    // response from `FindSpotMarketRequestById`: SpotMarketRequest
     fmt.Fprintf(os.Stdout, "Response from `SpotMarketApi.FindSpotMarketRequestById`: %v\n", resp)
 }
 ```
@@ -424,7 +424,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ListSpotMarketRequests200ResponseSpotMarketRequestsInner**](ListSpotMarketRequests200ResponseSpotMarketRequestsInner.md)
+[**SpotMarketRequest**](SpotMarketRequest.md)
 
 ### Authorization
 
@@ -442,7 +442,7 @@ Name | Type | Description  | Notes
 
 ## ListSpotMarketRequests
 
-> ListSpotMarketRequests200Response ListSpotMarketRequests(ctx, id).Execute()
+> SpotMarketRequestList ListSpotMarketRequests(ctx, id).Execute()
 
 List spot market requests
 
@@ -470,7 +470,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `SpotMarketApi.ListSpotMarketRequests``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `ListSpotMarketRequests`: ListSpotMarketRequests200Response
+    // response from `ListSpotMarketRequests`: SpotMarketRequestList
     fmt.Fprintf(os.Stdout, "Response from `SpotMarketApi.ListSpotMarketRequests`: %v\n", resp)
 }
 ```
@@ -494,7 +494,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ListSpotMarketRequests200Response**](ListSpotMarketRequests200Response.md)
+[**SpotMarketRequestList**](SpotMarketRequestList.md)
 
 ### Authorization
 

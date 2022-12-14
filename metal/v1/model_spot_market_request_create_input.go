@@ -18,12 +18,12 @@ import (
 
 // SpotMarketRequestCreateInput struct for SpotMarketRequestCreateInput
 type SpotMarketRequestCreateInput struct {
-	DevicesMax         *int32                                            `json:"devices_max,omitempty"`
-	DevicesMin         *int32                                            `json:"devices_min,omitempty"`
-	EndAt              *time.Time                                        `json:"end_at,omitempty"`
-	Facilities         []string                                          `json:"facilities,omitempty"`
-	InstanceAttributes *CreateSpotMarketRequestRequestInstanceAttributes `json:"instance_attributes,omitempty"`
-	MaxBidPrice        *float32                                          `json:"max_bid_price,omitempty"`
+	DevicesMax         *int32                                          `json:"devices_max,omitempty"`
+	DevicesMin         *int32                                          `json:"devices_min,omitempty"`
+	EndAt              *time.Time                                      `json:"end_at,omitempty"`
+	Facilities         []string                                        `json:"facilities,omitempty"`
+	InstanceAttributes *SpotMarketRequestCreateInputInstanceAttributes `json:"instance_attributes,omitempty"`
+	MaxBidPrice        *float32                                        `json:"max_bid_price,omitempty"`
 	// The metro ID or code the spot market request will be created in.
 	Metro *string `json:"metro,omitempty"`
 }
@@ -174,9 +174,9 @@ func (o *SpotMarketRequestCreateInput) SetFacilities(v []string) {
 }
 
 // GetInstanceAttributes returns the InstanceAttributes field value if set, zero value otherwise.
-func (o *SpotMarketRequestCreateInput) GetInstanceAttributes() CreateSpotMarketRequestRequestInstanceAttributes {
+func (o *SpotMarketRequestCreateInput) GetInstanceAttributes() SpotMarketRequestCreateInputInstanceAttributes {
 	if o == nil || isNil(o.InstanceAttributes) {
-		var ret CreateSpotMarketRequestRequestInstanceAttributes
+		var ret SpotMarketRequestCreateInputInstanceAttributes
 		return ret
 	}
 	return *o.InstanceAttributes
@@ -184,7 +184,7 @@ func (o *SpotMarketRequestCreateInput) GetInstanceAttributes() CreateSpotMarketR
 
 // GetInstanceAttributesOk returns a tuple with the InstanceAttributes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SpotMarketRequestCreateInput) GetInstanceAttributesOk() (*CreateSpotMarketRequestRequestInstanceAttributes, bool) {
+func (o *SpotMarketRequestCreateInput) GetInstanceAttributesOk() (*SpotMarketRequestCreateInputInstanceAttributes, bool) {
 	if o == nil || isNil(o.InstanceAttributes) {
 		return nil, false
 	}
@@ -200,8 +200,8 @@ func (o *SpotMarketRequestCreateInput) HasInstanceAttributes() bool {
 	return false
 }
 
-// SetInstanceAttributes gets a reference to the given CreateSpotMarketRequestRequestInstanceAttributes and assigns it to the InstanceAttributes field.
-func (o *SpotMarketRequestCreateInput) SetInstanceAttributes(v CreateSpotMarketRequestRequestInstanceAttributes) {
+// SetInstanceAttributes gets a reference to the given SpotMarketRequestCreateInputInstanceAttributes and assigns it to the InstanceAttributes field.
+func (o *SpotMarketRequestCreateInput) SetInstanceAttributes(v SpotMarketRequestCreateInputInstanceAttributes) {
 	o.InstanceAttributes = &v
 }
 

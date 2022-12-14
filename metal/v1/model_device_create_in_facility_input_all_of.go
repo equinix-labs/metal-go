@@ -17,15 +17,14 @@ import (
 
 // DeviceCreateInFacilityInputAllOf struct for DeviceCreateInFacilityInputAllOf
 type DeviceCreateInFacilityInputAllOf struct {
-	// The datacenter where the device should be created.  Either metro or facility must be provided.  The API will accept either a single facility `{ \"facility\": \"f1\" }`, or it can be instructed to create the device in the best available datacenter `{ \"facility\": \"any\" }`.  Additionally it is possible to set a prioritized location selection. For example `{ \"facility\": [\"f3\", \"f2\", \"any\"] }` can be used to prioritize `f3` and then `f2` before accepting `any` facility. If none of the facilities provided have availability for the requested device the request will fail.
-	Facility NullableAnyOfarraystring `json:"facility"`
+	Facility DeviceCreateInFacilityInputAllOfFacility `json:"facility"`
 }
 
 // NewDeviceCreateInFacilityInputAllOf instantiates a new DeviceCreateInFacilityInputAllOf object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDeviceCreateInFacilityInputAllOf(facility NullableAnyOfarraystring) *DeviceCreateInFacilityInputAllOf {
+func NewDeviceCreateInFacilityInputAllOf(facility DeviceCreateInFacilityInputAllOfFacility) *DeviceCreateInFacilityInputAllOf {
 	this := DeviceCreateInFacilityInputAllOf{}
 	this.Facility = facility
 	return &this
@@ -40,35 +39,33 @@ func NewDeviceCreateInFacilityInputAllOfWithDefaults() *DeviceCreateInFacilityIn
 }
 
 // GetFacility returns the Facility field value
-// If the value is explicit nil, the zero value for AnyOfarraystring will be returned
-func (o *DeviceCreateInFacilityInputAllOf) GetFacility() AnyOfarraystring {
-	if o == nil || o.Facility.Get() == nil {
-		var ret AnyOfarraystring
+func (o *DeviceCreateInFacilityInputAllOf) GetFacility() DeviceCreateInFacilityInputAllOfFacility {
+	if o == nil {
+		var ret DeviceCreateInFacilityInputAllOfFacility
 		return ret
 	}
 
-	return *o.Facility.Get()
+	return o.Facility
 }
 
 // GetFacilityOk returns a tuple with the Facility field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *DeviceCreateInFacilityInputAllOf) GetFacilityOk() (*AnyOfarraystring, bool) {
+func (o *DeviceCreateInFacilityInputAllOf) GetFacilityOk() (*DeviceCreateInFacilityInputAllOfFacility, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.Facility.Get(), o.Facility.IsSet()
+	return &o.Facility, true
 }
 
 // SetFacility sets field value
-func (o *DeviceCreateInFacilityInputAllOf) SetFacility(v AnyOfarraystring) {
-	o.Facility.Set(&v)
+func (o *DeviceCreateInFacilityInputAllOf) SetFacility(v DeviceCreateInFacilityInputAllOfFacility) {
+	o.Facility = v
 }
 
 func (o DeviceCreateInFacilityInputAllOf) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
-		toSerialize["facility"] = o.Facility.Get()
+		toSerialize["facility"] = o.Facility
 	}
 	return json.Marshal(toSerialize)
 }

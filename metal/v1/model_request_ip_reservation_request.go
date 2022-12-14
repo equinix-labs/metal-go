@@ -18,21 +18,21 @@ import (
 
 // RequestIPReservationRequest - struct for RequestIPReservationRequest
 type RequestIPReservationRequest struct {
-	RequestIPReservationRequestOneOf  *RequestIPReservationRequestOneOf
-	RequestIPReservationRequestOneOf1 *RequestIPReservationRequestOneOf1
+	IPReservationRequestInput   *IPReservationRequestInput
+	VrfIpReservationCreateInput *VrfIpReservationCreateInput
 }
 
-// RequestIPReservationRequestOneOfAsRequestIPReservationRequest is a convenience function that returns RequestIPReservationRequestOneOf wrapped in RequestIPReservationRequest
-func RequestIPReservationRequestOneOfAsRequestIPReservationRequest(v *RequestIPReservationRequestOneOf) RequestIPReservationRequest {
+// IPReservationRequestInputAsRequestIPReservationRequest is a convenience function that returns IPReservationRequestInput wrapped in RequestIPReservationRequest
+func IPReservationRequestInputAsRequestIPReservationRequest(v *IPReservationRequestInput) RequestIPReservationRequest {
 	return RequestIPReservationRequest{
-		RequestIPReservationRequestOneOf: v,
+		IPReservationRequestInput: v,
 	}
 }
 
-// RequestIPReservationRequestOneOf1AsRequestIPReservationRequest is a convenience function that returns RequestIPReservationRequestOneOf1 wrapped in RequestIPReservationRequest
-func RequestIPReservationRequestOneOf1AsRequestIPReservationRequest(v *RequestIPReservationRequestOneOf1) RequestIPReservationRequest {
+// VrfIpReservationCreateInputAsRequestIPReservationRequest is a convenience function that returns VrfIpReservationCreateInput wrapped in RequestIPReservationRequest
+func VrfIpReservationCreateInputAsRequestIPReservationRequest(v *VrfIpReservationCreateInput) RequestIPReservationRequest {
 	return RequestIPReservationRequest{
-		RequestIPReservationRequestOneOf1: v,
+		VrfIpReservationCreateInput: v,
 	}
 }
 
@@ -40,36 +40,36 @@ func RequestIPReservationRequestOneOf1AsRequestIPReservationRequest(v *RequestIP
 func (dst *RequestIPReservationRequest) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
-	// try to unmarshal data into RequestIPReservationRequestOneOf
-	err = newStrictDecoder(data).Decode(&dst.RequestIPReservationRequestOneOf)
+	// try to unmarshal data into IPReservationRequestInput
+	err = newStrictDecoder(data).Decode(&dst.IPReservationRequestInput)
 	if err == nil {
-		jsonRequestIPReservationRequestOneOf, _ := json.Marshal(dst.RequestIPReservationRequestOneOf)
-		if string(jsonRequestIPReservationRequestOneOf) == "{}" { // empty struct
-			dst.RequestIPReservationRequestOneOf = nil
+		jsonIPReservationRequestInput, _ := json.Marshal(dst.IPReservationRequestInput)
+		if string(jsonIPReservationRequestInput) == "{}" { // empty struct
+			dst.IPReservationRequestInput = nil
 		} else {
 			match++
 		}
 	} else {
-		dst.RequestIPReservationRequestOneOf = nil
+		dst.IPReservationRequestInput = nil
 	}
 
-	// try to unmarshal data into RequestIPReservationRequestOneOf1
-	err = newStrictDecoder(data).Decode(&dst.RequestIPReservationRequestOneOf1)
+	// try to unmarshal data into VrfIpReservationCreateInput
+	err = newStrictDecoder(data).Decode(&dst.VrfIpReservationCreateInput)
 	if err == nil {
-		jsonRequestIPReservationRequestOneOf1, _ := json.Marshal(dst.RequestIPReservationRequestOneOf1)
-		if string(jsonRequestIPReservationRequestOneOf1) == "{}" { // empty struct
-			dst.RequestIPReservationRequestOneOf1 = nil
+		jsonVrfIpReservationCreateInput, _ := json.Marshal(dst.VrfIpReservationCreateInput)
+		if string(jsonVrfIpReservationCreateInput) == "{}" { // empty struct
+			dst.VrfIpReservationCreateInput = nil
 		} else {
 			match++
 		}
 	} else {
-		dst.RequestIPReservationRequestOneOf1 = nil
+		dst.VrfIpReservationCreateInput = nil
 	}
 
 	if match > 1 { // more than 1 match
 		// reset to nil
-		dst.RequestIPReservationRequestOneOf = nil
-		dst.RequestIPReservationRequestOneOf1 = nil
+		dst.IPReservationRequestInput = nil
+		dst.VrfIpReservationCreateInput = nil
 
 		return fmt.Errorf("data matches more than one schema in oneOf(RequestIPReservationRequest)")
 	} else if match == 1 {
@@ -81,12 +81,12 @@ func (dst *RequestIPReservationRequest) UnmarshalJSON(data []byte) error {
 
 // Marshal data from the first non-nil pointers in the struct to JSON
 func (src RequestIPReservationRequest) MarshalJSON() ([]byte, error) {
-	if src.RequestIPReservationRequestOneOf != nil {
-		return json.Marshal(&src.RequestIPReservationRequestOneOf)
+	if src.IPReservationRequestInput != nil {
+		return json.Marshal(&src.IPReservationRequestInput)
 	}
 
-	if src.RequestIPReservationRequestOneOf1 != nil {
-		return json.Marshal(&src.RequestIPReservationRequestOneOf1)
+	if src.VrfIpReservationCreateInput != nil {
+		return json.Marshal(&src.VrfIpReservationCreateInput)
 	}
 
 	return nil, nil // no data in oneOf schemas
@@ -97,12 +97,12 @@ func (obj *RequestIPReservationRequest) GetActualInstance() interface{} {
 	if obj == nil {
 		return nil
 	}
-	if obj.RequestIPReservationRequestOneOf != nil {
-		return obj.RequestIPReservationRequestOneOf
+	if obj.IPReservationRequestInput != nil {
+		return obj.IPReservationRequestInput
 	}
 
-	if obj.RequestIPReservationRequestOneOf1 != nil {
-		return obj.RequestIPReservationRequestOneOf1
+	if obj.VrfIpReservationCreateInput != nil {
+		return obj.VrfIpReservationCreateInput
 	}
 
 	// all schemas are nil
