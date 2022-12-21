@@ -44,8 +44,8 @@ CheckCapacityForFacility Check capacity
 
 Validates if a deploy can be fulfilled.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiCheckCapacityForFacilityRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiCheckCapacityForFacilityRequest
 */
 func (a *CapacityApiService) CheckCapacityForFacility(ctx context.Context) ApiCheckCapacityForFacilityRequest {
 	return ApiCheckCapacityForFacilityRequest{
@@ -55,7 +55,8 @@ func (a *CapacityApiService) CheckCapacityForFacility(ctx context.Context) ApiCh
 }
 
 // Execute executes the request
-//  @return CapacityCheckPerFacilityList
+//
+//	@return CapacityCheckPerFacilityList
 func (a *CapacityApiService) CheckCapacityForFacilityExecute(r ApiCheckCapacityForFacilityRequest) (*CapacityCheckPerFacilityList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -190,8 +191,8 @@ CheckCapacityForMetro Check capacity for a metro
 
 Validates if a deploy can be fulfilled in a metro.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiCheckCapacityForMetroRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiCheckCapacityForMetroRequest
 */
 func (a *CapacityApiService) CheckCapacityForMetro(ctx context.Context) ApiCheckCapacityForMetroRequest {
 	return ApiCheckCapacityForMetroRequest{
@@ -201,7 +202,8 @@ func (a *CapacityApiService) CheckCapacityForMetro(ctx context.Context) ApiCheck
 }
 
 // Execute executes the request
-//  @return CapacityCheckPerMetroList
+//
+//	@return CapacityCheckPerMetroList
 func (a *CapacityApiService) CheckCapacityForMetroExecute(r ApiCheckCapacityForMetroRequest) (*CapacityCheckPerMetroList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -329,8 +331,8 @@ FindCapacityForFacility View capacity
 
 Returns a list of facilities and plans with their current capacity.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiFindCapacityForFacilityRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiFindCapacityForFacilityRequest
 */
 func (a *CapacityApiService) FindCapacityForFacility(ctx context.Context) ApiFindCapacityForFacilityRequest {
 	return ApiFindCapacityForFacilityRequest{
@@ -340,7 +342,8 @@ func (a *CapacityApiService) FindCapacityForFacility(ctx context.Context) ApiFin
 }
 
 // Execute executes the request
-//  @return CapacityList
+//
+//	@return CapacityList
 func (a *CapacityApiService) FindCapacityForFacilityExecute(r ApiFindCapacityForFacilityRequest) (*CapacityList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -452,8 +455,8 @@ FindCapacityForMetro View capacity for metros
 
 Returns a list of metros and plans with their current capacity.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiFindCapacityForMetroRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiFindCapacityForMetroRequest
 */
 func (a *CapacityApiService) FindCapacityForMetro(ctx context.Context) ApiFindCapacityForMetroRequest {
 	return ApiFindCapacityForMetroRequest{
@@ -463,7 +466,8 @@ func (a *CapacityApiService) FindCapacityForMetro(ctx context.Context) ApiFindCa
 }
 
 // Execute executes the request
-//  @return MetroCapacityList
+//
+//	@return MetroCapacityList
 func (a *CapacityApiService) FindCapacityForMetroExecute(r ApiFindCapacityForMetroRequest) (*MetroCapacityList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -576,9 +580,9 @@ FindOrganizationCapacityPerFacility View available hardware plans per Facility f
 
 Returns a list of facilities and plans with their current capacity.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Organization UUID
- @return ApiFindOrganizationCapacityPerFacilityRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Organization UUID
+	@return ApiFindOrganizationCapacityPerFacilityRequest
 */
 func (a *CapacityApiService) FindOrganizationCapacityPerFacility(ctx context.Context, id string) ApiFindOrganizationCapacityPerFacilityRequest {
 	return ApiFindOrganizationCapacityPerFacilityRequest{
@@ -589,7 +593,8 @@ func (a *CapacityApiService) FindOrganizationCapacityPerFacility(ctx context.Con
 }
 
 // Execute executes the request
-//  @return CapacityList
+//
+//	@return CapacityList
 func (a *CapacityApiService) FindOrganizationCapacityPerFacilityExecute(r ApiFindOrganizationCapacityPerFacilityRequest) (*CapacityList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -714,9 +719,9 @@ FindOrganizationCapacityPerMetro View available hardware plans per Metro for giv
 
 Returns a list of metros and plans with their current capacity.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Organization UUID
- @return ApiFindOrganizationCapacityPerMetroRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Organization UUID
+	@return ApiFindOrganizationCapacityPerMetroRequest
 */
 func (a *CapacityApiService) FindOrganizationCapacityPerMetro(ctx context.Context, id string) ApiFindOrganizationCapacityPerMetroRequest {
 	return ApiFindOrganizationCapacityPerMetroRequest{
@@ -727,7 +732,8 @@ func (a *CapacityApiService) FindOrganizationCapacityPerMetro(ctx context.Contex
 }
 
 // Execute executes the request
-//  @return MetroCapacityList
+//
+//	@return MetroCapacityList
 func (a *CapacityApiService) FindOrganizationCapacityPerMetroExecute(r ApiFindOrganizationCapacityPerMetroRequest) (*MetroCapacityList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet

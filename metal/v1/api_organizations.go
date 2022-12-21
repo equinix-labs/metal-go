@@ -44,8 +44,8 @@ CreateOrganization Create an organization
 
 Creates an organization.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiCreateOrganizationRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiCreateOrganizationRequest
 */
 func (a *OrganizationsApiService) CreateOrganization(ctx context.Context) ApiCreateOrganizationRequest {
 	return ApiCreateOrganizationRequest{
@@ -55,7 +55,8 @@ func (a *OrganizationsApiService) CreateOrganization(ctx context.Context) ApiCre
 }
 
 // Execute executes the request
-//  @return Organization
+//
+//	@return Organization
 func (a *OrganizationsApiService) CreateOrganizationExecute(r ApiCreateOrganizationRequest) (*Organization, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -203,9 +204,9 @@ CreateOrganizationInvitation Create an invitation for an organization
 In order to add a user to an organization, they must first be invited.
 To invite to several projects the parameter `projects_ids:[a,b,c]` can be used
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Organization UUID
- @return ApiCreateOrganizationInvitationRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Organization UUID
+	@return ApiCreateOrganizationInvitationRequest
 */
 func (a *OrganizationsApiService) CreateOrganizationInvitation(ctx context.Context, id string) ApiCreateOrganizationInvitationRequest {
 	return ApiCreateOrganizationInvitationRequest{
@@ -216,7 +217,8 @@ func (a *OrganizationsApiService) CreateOrganizationInvitation(ctx context.Conte
 }
 
 // Execute executes the request
-//  @return Invitation
+//
+//	@return Invitation
 func (a *OrganizationsApiService) CreateOrganizationInvitationExecute(r ApiCreateOrganizationInvitationRequest) (*Invitation, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -375,9 +377,9 @@ CreateOrganizationProject Create a project for the organization
 
 Creates a new project for the organization
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Organization UUID
- @return ApiCreateOrganizationProjectRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Organization UUID
+	@return ApiCreateOrganizationProjectRequest
 */
 func (a *OrganizationsApiService) CreateOrganizationProject(ctx context.Context, id string) ApiCreateOrganizationProjectRequest {
 	return ApiCreateOrganizationProjectRequest{
@@ -388,7 +390,8 @@ func (a *OrganizationsApiService) CreateOrganizationProject(ctx context.Context,
 }
 
 // Execute executes the request
-//  @return Project
+//
+//	@return Project
 func (a *OrganizationsApiService) CreateOrganizationProjectExecute(r ApiCreateOrganizationProjectRequest) (*Project, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -525,9 +528,9 @@ CreatePaymentMethod Create a payment method for the given organization
 
 Creates a payment method.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Organization UUID
- @return ApiCreatePaymentMethodRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Organization UUID
+	@return ApiCreatePaymentMethodRequest
 */
 func (a *OrganizationsApiService) CreatePaymentMethod(ctx context.Context, id string) ApiCreatePaymentMethodRequest {
 	return ApiCreatePaymentMethodRequest{
@@ -538,7 +541,8 @@ func (a *OrganizationsApiService) CreatePaymentMethod(ctx context.Context, id st
 }
 
 // Execute executes the request
-//  @return PaymentMethod
+//
+//	@return PaymentMethod
 func (a *OrganizationsApiService) CreatePaymentMethodExecute(r ApiCreatePaymentMethodRequest) (*PaymentMethod, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -679,9 +683,9 @@ DeleteOrganization Delete the organization
 
 Deletes the organization.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Organization UUID
- @return ApiDeleteOrganizationRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Organization UUID
+	@return ApiDeleteOrganizationRequest
 */
 func (a *OrganizationsApiService) DeleteOrganization(ctx context.Context, id string) ApiDeleteOrganizationRequest {
 	return ApiDeleteOrganizationRequest{
@@ -820,9 +824,9 @@ FindOperatingSystemsByOrganization Retrieve all operating systems visible by the
 
 Returns a listing of available operating systems for the given organization
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Organization UUID
- @return ApiFindOperatingSystemsByOrganizationRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Organization UUID
+	@return ApiFindOperatingSystemsByOrganizationRequest
 */
 func (a *OrganizationsApiService) FindOperatingSystemsByOrganization(ctx context.Context, id string) ApiFindOperatingSystemsByOrganizationRequest {
 	return ApiFindOperatingSystemsByOrganizationRequest{
@@ -833,7 +837,8 @@ func (a *OrganizationsApiService) FindOperatingSystemsByOrganization(ctx context
 }
 
 // Execute executes the request
-//  @return OperatingSystemList
+//
+//	@return OperatingSystemList
 func (a *OrganizationsApiService) FindOperatingSystemsByOrganizationExecute(r ApiFindOperatingSystemsByOrganizationRequest) (*OperatingSystemList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -989,9 +994,9 @@ FindOrganizationById Retrieve an organization's details
 
 Returns a single organization's details, if the user is authorized to view it.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Organization UUID
- @return ApiFindOrganizationByIdRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Organization UUID
+	@return ApiFindOrganizationByIdRequest
 */
 func (a *OrganizationsApiService) FindOrganizationById(ctx context.Context, id string) ApiFindOrganizationByIdRequest {
 	return ApiFindOrganizationByIdRequest{
@@ -1002,7 +1007,8 @@ func (a *OrganizationsApiService) FindOrganizationById(ctx context.Context, id s
 }
 
 // Execute executes the request
-//  @return Organization
+//
+//	@return Organization
 func (a *OrganizationsApiService) FindOrganizationByIdExecute(r ApiFindOrganizationByIdRequest) (*Organization, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -1144,9 +1150,9 @@ FindOrganizationCustomdata Retrieve the custom metadata of an organization
 
 Provides the custom metadata stored for this organization in json format
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Organization UUID
- @return ApiFindOrganizationCustomdataRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Organization UUID
+	@return ApiFindOrganizationCustomdataRequest
 */
 func (a *OrganizationsApiService) FindOrganizationCustomdata(ctx context.Context, id string) ApiFindOrganizationCustomdataRequest {
 	return ApiFindOrganizationCustomdataRequest{
@@ -1310,9 +1316,9 @@ FindOrganizationInvitations Retrieve organization invitations
 
 Returns all invitations in an organization.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Organization UUID
- @return ApiFindOrganizationInvitationsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Organization UUID
+	@return ApiFindOrganizationInvitationsRequest
 */
 func (a *OrganizationsApiService) FindOrganizationInvitations(ctx context.Context, id string) ApiFindOrganizationInvitationsRequest {
 	return ApiFindOrganizationInvitationsRequest{
@@ -1323,7 +1329,8 @@ func (a *OrganizationsApiService) FindOrganizationInvitations(ctx context.Contex
 }
 
 // Execute executes the request
-//  @return InvitationList
+//
+//	@return InvitationList
 func (a *OrganizationsApiService) FindOrganizationInvitationsExecute(r ApiFindOrganizationInvitationsRequest) (*InvitationList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -1499,9 +1506,9 @@ FindOrganizationPaymentMethods Retrieve all payment methods of an organization
 
 Returns all payment methods of an organization.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Organization UUID
- @return ApiFindOrganizationPaymentMethodsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Organization UUID
+	@return ApiFindOrganizationPaymentMethodsRequest
 */
 func (a *OrganizationsApiService) FindOrganizationPaymentMethods(ctx context.Context, id string) ApiFindOrganizationPaymentMethodsRequest {
 	return ApiFindOrganizationPaymentMethodsRequest{
@@ -1512,7 +1519,8 @@ func (a *OrganizationsApiService) FindOrganizationPaymentMethods(ctx context.Con
 }
 
 // Execute executes the request
-//  @return PaymentMethodList
+//
+//	@return PaymentMethodList
 func (a *OrganizationsApiService) FindOrganizationPaymentMethodsExecute(r ApiFindOrganizationPaymentMethodsRequest) (*PaymentMethodList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -1677,9 +1685,9 @@ FindOrganizationProjects Retrieve all projects of an organization
 
 Returns a collection of projects that belong to the organization.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Organization UUID
- @return ApiFindOrganizationProjectsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Organization UUID
+	@return ApiFindOrganizationProjectsRequest
 */
 func (a *OrganizationsApiService) FindOrganizationProjects(ctx context.Context, id string) ApiFindOrganizationProjectsRequest {
 	return ApiFindOrganizationProjectsRequest{
@@ -1690,7 +1698,8 @@ func (a *OrganizationsApiService) FindOrganizationProjects(ctx context.Context, 
 }
 
 // Execute executes the request
-//  @return ProjectList
+//
+//	@return ProjectList
 func (a *OrganizationsApiService) FindOrganizationProjectsExecute(r ApiFindOrganizationProjectsRequest) (*ProjectList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -1830,9 +1839,9 @@ FindOrganizationTransfers Retrieve all project transfer requests from or to an o
 
 Provides a collection of project transfer requests from or to the organization.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Organization UUID
- @return ApiFindOrganizationTransfersRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Organization UUID
+	@return ApiFindOrganizationTransfersRequest
 */
 func (a *OrganizationsApiService) FindOrganizationTransfers(ctx context.Context, id string) ApiFindOrganizationTransfersRequest {
 	return ApiFindOrganizationTransfersRequest{
@@ -1843,7 +1852,8 @@ func (a *OrganizationsApiService) FindOrganizationTransfers(ctx context.Context,
 }
 
 // Execute executes the request
-//  @return TransferRequestList
+//
+//	@return TransferRequestList
 func (a *OrganizationsApiService) FindOrganizationTransfersExecute(r ApiFindOrganizationTransfersRequest) (*TransferRequestList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -2015,8 +2025,8 @@ FindOrganizations Retrieve all organizations
 
 Returns a list of organizations that are accessible to the current user.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiFindOrganizationsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiFindOrganizationsRequest
 */
 func (a *OrganizationsApiService) FindOrganizations(ctx context.Context) ApiFindOrganizationsRequest {
 	return ApiFindOrganizationsRequest{
@@ -2026,7 +2036,8 @@ func (a *OrganizationsApiService) FindOrganizations(ctx context.Context) ApiFind
 }
 
 // Execute executes the request
-//  @return OrganizationList
+//
+//	@return OrganizationList
 func (a *OrganizationsApiService) FindOrganizationsExecute(r ApiFindOrganizationsRequest) (*OrganizationList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -2171,9 +2182,9 @@ FindPlansByOrganization Retrieve all plans visible by the organization
 
 Returns a listing of available plans for the given organization
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Organization UUID
- @return ApiFindPlansByOrganizationRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Organization UUID
+	@return ApiFindPlansByOrganizationRequest
 */
 func (a *OrganizationsApiService) FindPlansByOrganization(ctx context.Context, id string) ApiFindPlansByOrganizationRequest {
 	return ApiFindPlansByOrganizationRequest{
@@ -2184,7 +2195,8 @@ func (a *OrganizationsApiService) FindPlansByOrganization(ctx context.Context, i
 }
 
 // Execute executes the request
-//  @return PlanList
+//
+//	@return PlanList
 func (a *OrganizationsApiService) FindPlansByOrganizationExecute(r ApiFindPlansByOrganizationRequest) (*PlanList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -2333,9 +2345,9 @@ UpdateOrganization Update the organization
 
 Updates the organization.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Organization UUID
- @return ApiUpdateOrganizationRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Organization UUID
+	@return ApiUpdateOrganizationRequest
 */
 func (a *OrganizationsApiService) UpdateOrganization(ctx context.Context, id string) ApiUpdateOrganizationRequest {
 	return ApiUpdateOrganizationRequest{
@@ -2346,7 +2358,8 @@ func (a *OrganizationsApiService) UpdateOrganization(ctx context.Context, id str
 }
 
 // Execute executes the request
-//  @return Organization
+//
+//	@return Organization
 func (a *OrganizationsApiService) UpdateOrganizationExecute(r ApiUpdateOrganizationRequest) (*Organization, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut

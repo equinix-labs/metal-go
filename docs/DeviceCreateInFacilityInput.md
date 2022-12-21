@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Facility** | [**DeviceCreateInFacilityInputAllOfFacility**](DeviceCreateInFacilityInputAllOfFacility.md) |  | 
+**Facility** | [**FacilityInputFacility**](FacilityInputFacility.md) |  | 
 **AlwaysPxe** | Pointer to **bool** | When true, devices with a &#x60;custom_ipxe&#x60; OS will always boot to iPXE. The default setting of false ensures that iPXE will be used on only the first boot. | [optional] [default to false]
 **BillingCycle** | Pointer to **string** | The billing cycle of the device. | [optional] 
 **Customdata** | Pointer to **map[string]interface{}** | Customdata is an arbitrary JSON value that can be accessed via the metadata service. | [optional] [default to {}]
@@ -33,7 +33,7 @@ Name | Type | Description | Notes
 
 ### NewDeviceCreateInFacilityInput
 
-`func NewDeviceCreateInFacilityInput(facility DeviceCreateInFacilityInputAllOfFacility, operatingSystem string, plan string, ) *DeviceCreateInFacilityInput`
+`func NewDeviceCreateInFacilityInput(facility FacilityInputFacility, operatingSystem string, plan string, ) *DeviceCreateInFacilityInput`
 
 NewDeviceCreateInFacilityInput instantiates a new DeviceCreateInFacilityInput object
 This constructor will assign default values to properties that have it defined,
@@ -50,20 +50,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetFacility
 
-`func (o *DeviceCreateInFacilityInput) GetFacility() DeviceCreateInFacilityInputAllOfFacility`
+`func (o *DeviceCreateInFacilityInput) GetFacility() FacilityInputFacility`
 
 GetFacility returns the Facility field if non-nil, zero value otherwise.
 
 ### GetFacilityOk
 
-`func (o *DeviceCreateInFacilityInput) GetFacilityOk() (*DeviceCreateInFacilityInputAllOfFacility, bool)`
+`func (o *DeviceCreateInFacilityInput) GetFacilityOk() (*FacilityInputFacility, bool)`
 
 GetFacilityOk returns a tuple with the Facility field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFacility
 
-`func (o *DeviceCreateInFacilityInput) SetFacility(v DeviceCreateInFacilityInputAllOfFacility)`
+`func (o *DeviceCreateInFacilityInput) SetFacility(v FacilityInputFacility)`
 
 SetFacility sets Facility field to given value.
 

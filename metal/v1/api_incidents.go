@@ -50,8 +50,8 @@ FindIncidents Retrieve the number of incidents
 
 Retrieve the number of incidents.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiFindIncidentsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiFindIncidentsRequest
 */
 func (a *IncidentsApiService) FindIncidents(ctx context.Context) ApiFindIncidentsRequest {
 	return ApiFindIncidentsRequest{

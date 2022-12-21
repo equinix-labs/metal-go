@@ -18,7 +18,7 @@ import (
 
 // DeviceCreateInFacilityInput struct for DeviceCreateInFacilityInput
 type DeviceCreateInFacilityInput struct {
-	Facility DeviceCreateInFacilityInputAllOfFacility `json:"facility"`
+	Facility FacilityInputFacility `json:"facility"`
 	// When true, devices with a `custom_ipxe` OS will always boot to iPXE. The default setting of false ensures that iPXE will be used on only the first boot.
 	AlwaysPxe *bool `json:"always_pxe,omitempty"`
 	// The billing cycle of the device.
@@ -69,7 +69,7 @@ type DeviceCreateInFacilityInput struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDeviceCreateInFacilityInput(facility DeviceCreateInFacilityInputAllOfFacility, operatingSystem string, plan string) *DeviceCreateInFacilityInput {
+func NewDeviceCreateInFacilityInput(facility FacilityInputFacility, operatingSystem string, plan string) *DeviceCreateInFacilityInput {
 	this := DeviceCreateInFacilityInput{}
 	this.Facility = facility
 	var alwaysPxe bool = false
@@ -110,9 +110,9 @@ func NewDeviceCreateInFacilityInputWithDefaults() *DeviceCreateInFacilityInput {
 }
 
 // GetFacility returns the Facility field value
-func (o *DeviceCreateInFacilityInput) GetFacility() DeviceCreateInFacilityInputAllOfFacility {
+func (o *DeviceCreateInFacilityInput) GetFacility() FacilityInputFacility {
 	if o == nil {
-		var ret DeviceCreateInFacilityInputAllOfFacility
+		var ret FacilityInputFacility
 		return ret
 	}
 
@@ -121,7 +121,7 @@ func (o *DeviceCreateInFacilityInput) GetFacility() DeviceCreateInFacilityInputA
 
 // GetFacilityOk returns a tuple with the Facility field value
 // and a boolean to check if the value has been set.
-func (o *DeviceCreateInFacilityInput) GetFacilityOk() (*DeviceCreateInFacilityInputAllOfFacility, bool) {
+func (o *DeviceCreateInFacilityInput) GetFacilityOk() (*FacilityInputFacility, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -129,7 +129,7 @@ func (o *DeviceCreateInFacilityInput) GetFacilityOk() (*DeviceCreateInFacilityIn
 }
 
 // SetFacility sets field value
-func (o *DeviceCreateInFacilityInput) SetFacility(v DeviceCreateInFacilityInputAllOfFacility) {
+func (o *DeviceCreateInFacilityInput) SetFacility(v FacilityInputFacility) {
 	o.Facility = v
 }
 

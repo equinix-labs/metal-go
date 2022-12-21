@@ -43,8 +43,8 @@ ValidateUserdata Validate user data
 
 Validates user data (Userdata)
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiValidateUserdataRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiValidateUserdataRequest
 */
 func (a *UserdataApiService) ValidateUserdata(ctx context.Context) ApiValidateUserdataRequest {
 	return ApiValidateUserdataRequest{

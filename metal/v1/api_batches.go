@@ -45,9 +45,9 @@ CreateDeviceBatch Create a devices batch
 
 Creates new devices in batch and provisions them in our datacenter.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Project UUID
- @return ApiCreateDeviceBatchRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Project UUID
+	@return ApiCreateDeviceBatchRequest
 */
 func (a *BatchesApiService) CreateDeviceBatch(ctx context.Context, id string) ApiCreateDeviceBatchRequest {
 	return ApiCreateDeviceBatchRequest{
@@ -58,7 +58,8 @@ func (a *BatchesApiService) CreateDeviceBatch(ctx context.Context, id string) Ap
 }
 
 // Execute executes the request
-//  @return BatchesList
+//
+//	@return BatchesList
 func (a *BatchesApiService) CreateDeviceBatchExecute(r ApiCreateDeviceBatchRequest) (*BatchesList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -217,9 +218,9 @@ DeleteBatch Delete the Batch
 
 Deletes the Batch.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Batch UUID
- @return ApiDeleteBatchRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Batch UUID
+	@return ApiDeleteBatchRequest
 */
 func (a *BatchesApiService) DeleteBatch(ctx context.Context, id string) ApiDeleteBatchRequest {
 	return ApiDeleteBatchRequest{
@@ -361,9 +362,9 @@ FindBatchById Retrieve a Batch
 
 Returns a Batch
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Batch UUID
- @return ApiFindBatchByIdRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Batch UUID
+	@return ApiFindBatchByIdRequest
 */
 func (a *BatchesApiService) FindBatchById(ctx context.Context, id string) ApiFindBatchByIdRequest {
 	return ApiFindBatchByIdRequest{
@@ -374,7 +375,8 @@ func (a *BatchesApiService) FindBatchById(ctx context.Context, id string) ApiFin
 }
 
 // Execute executes the request
-//  @return Batch
+//
+//	@return Batch
 func (a *BatchesApiService) FindBatchByIdExecute(r ApiFindBatchByIdRequest) (*Batch, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -519,9 +521,9 @@ FindBatchesByProject Retrieve all batches by project
 
 Returns all batches for the given project
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Project UUID
- @return ApiFindBatchesByProjectRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Project UUID
+	@return ApiFindBatchesByProjectRequest
 */
 func (a *BatchesApiService) FindBatchesByProject(ctx context.Context, id string) ApiFindBatchesByProjectRequest {
 	return ApiFindBatchesByProjectRequest{
@@ -532,7 +534,8 @@ func (a *BatchesApiService) FindBatchesByProject(ctx context.Context, id string)
 }
 
 // Execute executes the request
-//  @return BatchesList
+//
+//	@return BatchesList
 func (a *BatchesApiService) FindBatchesByProjectExecute(r ApiFindBatchesByProjectRequest) (*BatchesList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet

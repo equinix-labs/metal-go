@@ -59,9 +59,9 @@ CreateMetalGateway Create a metal gateway
 
 Create a metal gateway in a project
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param projectId Project UUID
- @return ApiCreateMetalGatewayRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId Project UUID
+	@return ApiCreateMetalGatewayRequest
 */
 func (a *MetalGatewaysApiService) CreateMetalGateway(ctx context.Context, projectId string) ApiCreateMetalGatewayRequest {
 	return ApiCreateMetalGatewayRequest{
@@ -72,7 +72,8 @@ func (a *MetalGatewaysApiService) CreateMetalGateway(ctx context.Context, projec
 }
 
 // Execute executes the request
-//  @return FindMetalGatewayById200Response
+//
+//	@return FindMetalGatewayById200Response
 func (a *MetalGatewaysApiService) CreateMetalGatewayExecute(r ApiCreateMetalGatewayRequest) (*FindMetalGatewayById200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -233,9 +234,9 @@ DeleteMetalGateway Deletes the metal gateway
 
 Deletes a specific metal gateway
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Metal Gateway UUID
- @return ApiDeleteMetalGatewayRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Metal Gateway UUID
+	@return ApiDeleteMetalGatewayRequest
 */
 func (a *MetalGatewaysApiService) DeleteMetalGateway(ctx context.Context, id string) ApiDeleteMetalGatewayRequest {
 	return ApiDeleteMetalGatewayRequest{
@@ -366,9 +367,9 @@ FindMetalGatewayById Returns the metal gateway
 
 Returns a specific metal gateway
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Metal Gateway UUID
- @return ApiFindMetalGatewayByIdRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Metal Gateway UUID
+	@return ApiFindMetalGatewayByIdRequest
 */
 func (a *MetalGatewaysApiService) FindMetalGatewayById(ctx context.Context, id string) ApiFindMetalGatewayByIdRequest {
 	return ApiFindMetalGatewayByIdRequest{
@@ -379,7 +380,8 @@ func (a *MetalGatewaysApiService) FindMetalGatewayById(ctx context.Context, id s
 }
 
 // Execute executes the request
-//  @return FindMetalGatewayById200Response
+//
+//	@return FindMetalGatewayById200Response
 func (a *MetalGatewaysApiService) FindMetalGatewayByIdExecute(r ApiFindMetalGatewayByIdRequest) (*FindMetalGatewayById200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -518,9 +520,9 @@ FindMetalGatewaysByProject Returns all metal gateways for a project
 
 Return all metal gateways for a project
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param projectId Project UUID
- @return ApiFindMetalGatewaysByProjectRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId Project UUID
+	@return ApiFindMetalGatewaysByProjectRequest
 */
 func (a *MetalGatewaysApiService) FindMetalGatewaysByProject(ctx context.Context, projectId string) ApiFindMetalGatewaysByProjectRequest {
 	return ApiFindMetalGatewaysByProjectRequest{
@@ -531,7 +533,8 @@ func (a *MetalGatewaysApiService) FindMetalGatewaysByProject(ctx context.Context
 }
 
 // Execute executes the request
-//  @return MetalGatewayList
+//
+//	@return MetalGatewayList
 func (a *MetalGatewaysApiService) FindMetalGatewaysByProjectExecute(r ApiFindMetalGatewaysByProjectRequest) (*MetalGatewayList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet

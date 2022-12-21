@@ -45,9 +45,9 @@ CreateLicense Create a License
 
 Creates a new license for the given project
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Project UUID
- @return ApiCreateLicenseRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Project UUID
+	@return ApiCreateLicenseRequest
 */
 func (a *LicensesApiService) CreateLicense(ctx context.Context, id string) ApiCreateLicenseRequest {
 	return ApiCreateLicenseRequest{
@@ -58,7 +58,8 @@ func (a *LicensesApiService) CreateLicense(ctx context.Context, id string) ApiCr
 }
 
 // Execute executes the request
-//  @return License
+//
+//	@return License
 func (a *LicensesApiService) CreateLicenseExecute(r ApiCreateLicenseRequest) (*License, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -210,9 +211,9 @@ DeleteLicense Delete the license
 
 Deletes a license.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id License UUID
- @return ApiDeleteLicenseRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id License UUID
+	@return ApiDeleteLicenseRequest
 */
 func (a *LicensesApiService) DeleteLicense(ctx context.Context, id string) ApiDeleteLicenseRequest {
 	return ApiDeleteLicenseRequest{
@@ -362,9 +363,9 @@ FindLicenseById Retrieve a license
 
 Returns a license
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id License UUID
- @return ApiFindLicenseByIdRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id License UUID
+	@return ApiFindLicenseByIdRequest
 */
 func (a *LicensesApiService) FindLicenseById(ctx context.Context, id string) ApiFindLicenseByIdRequest {
 	return ApiFindLicenseByIdRequest{
@@ -375,7 +376,8 @@ func (a *LicensesApiService) FindLicenseById(ctx context.Context, id string) Api
 }
 
 // Execute executes the request
-//  @return License
+//
+//	@return License
 func (a *LicensesApiService) FindLicenseByIdExecute(r ApiFindLicenseByIdRequest) (*License, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -545,9 +547,9 @@ FindProjectLicenses Retrieve all licenses
 
 Provides a collection of licenses for a given project.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Project UUID
- @return ApiFindProjectLicensesRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Project UUID
+	@return ApiFindProjectLicensesRequest
 */
 func (a *LicensesApiService) FindProjectLicenses(ctx context.Context, id string) ApiFindProjectLicensesRequest {
 	return ApiFindProjectLicensesRequest{
@@ -558,7 +560,8 @@ func (a *LicensesApiService) FindProjectLicenses(ctx context.Context, id string)
 }
 
 // Execute executes the request
-//  @return LicenseList
+//
+//	@return LicenseList
 func (a *LicensesApiService) FindProjectLicensesExecute(r ApiFindProjectLicensesRequest) (*LicenseList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -713,9 +716,9 @@ UpdateLicense Update the license
 
 Updates the license.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id License UUID
- @return ApiUpdateLicenseRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id License UUID
+	@return ApiUpdateLicenseRequest
 */
 func (a *LicensesApiService) UpdateLicense(ctx context.Context, id string) ApiUpdateLicenseRequest {
 	return ApiUpdateLicenseRequest{
@@ -726,7 +729,8 @@ func (a *LicensesApiService) UpdateLicense(ctx context.Context, id string) ApiUp
 }
 
 // Execute executes the request
-//  @return License
+//
+//	@return License
 func (a *LicensesApiService) UpdateLicenseExecute(r ApiUpdateLicenseRequest) (*License, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut

@@ -10985,9 +10985,9 @@ components:
       type: object
     AuthToken:
       example:
-        updated_at: 2000-01-23T04:56:07Z
+        updated_at: 2000-01-23T04:56:07.000+00:00
         read_only: true
-        created_at: 2000-01-23T04:56:07Z
+        created_at: 2000-01-23T04:56:07.000+00:00
         description: description
         project: null
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -11028,17 +11028,17 @@ components:
     AuthTokenList:
       example:
         api_keys:
-        - updated_at: 2000-01-23T04:56:07Z
+        - updated_at: 2000-01-23T04:56:07.000+00:00
           read_only: true
-          created_at: 2000-01-23T04:56:07Z
+          created_at: 2000-01-23T04:56:07.000+00:00
           description: description
           project: null
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           user: null
           token: token
-        - updated_at: 2000-01-23T04:56:07Z
+        - updated_at: 2000-01-23T04:56:07.000+00:00
           read_only: true
-          created_at: 2000-01-23T04:56:07Z
+          created_at: 2000-01-23T04:56:07.000+00:00
           description: description
           project: null
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -11070,11 +11070,11 @@ components:
     Batch:
       example:
         quantity: 0
-        updated_at: 2000-01-23T04:56:07Z
+        updated_at: 2000-01-23T04:56:07.000+00:00
         devices:
         - href: href
         - href: href
-        created_at: 2000-01-23T04:56:07Z
+        created_at: 2000-01-23T04:56:07.000+00:00
         project:
           href: href
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -11111,11 +11111,11 @@ components:
       example:
         batches:
         - quantity: 0
-          updated_at: 2000-01-23T04:56:07Z
+          updated_at: 2000-01-23T04:56:07.000+00:00
           devices:
           - href: href
           - href: href
-          created_at: 2000-01-23T04:56:07Z
+          created_at: 2000-01-23T04:56:07.000+00:00
           project:
             href: href
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -11124,11 +11124,11 @@ components:
           - error_messages
           - error_messages
         - quantity: 0
-          updated_at: 2000-01-23T04:56:07Z
+          updated_at: 2000-01-23T04:56:07.000+00:00
           devices:
           - href: href
           - href: href
-          created_at: 2000-01-23T04:56:07Z
+          created_at: 2000-01-23T04:56:07.000+00:00
           project:
             href: href
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -11146,8 +11146,8 @@ components:
       example:
         sessions:
         - address_family: ipv4
-          updated_at: 2000-01-23T04:56:07Z
-          created_at: 2000-01-23T04:56:07Z
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          created_at: 2000-01-23T04:56:07.000+00:00
           href: href
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           default_route: true
@@ -11158,8 +11158,8 @@ components:
           - 10.32.16.0/31
           status: unknown
         - address_family: ipv4
-          updated_at: 2000-01-23T04:56:07Z
-          created_at: 2000-01-23T04:56:07Z
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          created_at: 2000-01-23T04:56:07.000+00:00
           href: href
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           default_route: true
@@ -11182,7 +11182,7 @@ components:
           range: range
           href: href
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        created_at: 2000-01-23T04:56:07Z
+        created_at: 2000-01-23T04:56:07.000+00:00
         max_prefix: 0
         project:
           href: href
@@ -11192,7 +11192,7 @@ components:
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         asn: 65000
         md5: md5
-        requested_at: 2000-01-23T04:56:07Z
+        requested_at: 2000-01-23T04:56:07.000+00:00
         status: requested
       properties:
         asn:
@@ -11355,8 +11355,8 @@ components:
     BgpSession:
       example:
         address_family: ipv4
-        updated_at: 2000-01-23T04:56:07Z
-        created_at: 2000-01-23T04:56:07Z
+        updated_at: 2000-01-23T04:56:07.000+00:00
+        created_at: 2000-01-23T04:56:07.000+00:00
         href: href
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         default_route: true
@@ -11411,8 +11411,8 @@ components:
       example:
         bgp_sessions:
         - address_family: ipv4
-          updated_at: 2000-01-23T04:56:07Z
-          created_at: 2000-01-23T04:56:07Z
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          created_at: 2000-01-23T04:56:07.000+00:00
           href: href
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           default_route: true
@@ -11423,8 +11423,8 @@ components:
           - 10.32.16.0/31
           status: unknown
         - address_family: ipv4
-          updated_at: 2000-01-23T04:56:07Z
-          created_at: 2000-01-23T04:56:07Z
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          created_at: 2000-01-23T04:56:07.000+00:00
           href: href
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           default_route: true
@@ -11933,7 +11933,7 @@ components:
           unit: monthly
           count: 1.4658129805029452
         notes: notes
-        start_date: 2000-01-23T04:56:07Z
+        start_date: 2000-01-23T04:56:07.000+00:00
       properties:
         item:
           items:
@@ -11956,7 +11956,7 @@ components:
             cidr: 5
             href: href
             network: network
-          created_at: 2000-01-23T04:56:07Z
+          created_at: 2000-01-23T04:56:07.000+00:00
           enabled: true
           manageable: true
           network: network
@@ -11978,7 +11978,7 @@ components:
             cidr: 5
             href: href
             network: network
-          created_at: 2000-01-23T04:56:07Z
+          created_at: 2000-01-23T04:56:07.000+00:00
           enabled: true
           manageable: true
           network: network
@@ -11995,7 +11995,7 @@ components:
           assigned_to:
             href: href
         iqn: iqn
-        created_at: 2000-01-23T04:56:07Z
+        created_at: 2000-01-23T04:56:07.000+00:00
         description: description
         project: null
         switch_uuid: switch_uuid
@@ -12005,7 +12005,7 @@ components:
           relationships:
           - href: href
           - href: href
-          created_at: 2000-01-23T04:56:07Z
+          created_at: 2000-01-23T04:56:07.000+00:00
           href: href
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           state: state
@@ -12015,7 +12015,7 @@ components:
           relationships:
           - href: href
           - href: href
-          created_at: 2000-01-23T04:56:07Z
+          created_at: 2000-01-23T04:56:07.000+00:00
           href: href
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           state: state
@@ -12026,16 +12026,16 @@ components:
             vxlan: 5
             metal_gateways:
             - gateway_address: 10.1.2.1/27
-              updated_at: 2000-01-23T04:56:07Z
+              updated_at: 2000-01-23T04:56:07.000+00:00
               vlan: 1001
-              created_at: 2000-01-23T04:56:07Z
+              created_at: 2000-01-23T04:56:07.000+00:00
               href: href
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
               state: ready
             - gateway_address: 10.1.2.1/27
-              updated_at: 2000-01-23T04:56:07Z
+              updated_at: 2000-01-23T04:56:07.000+00:00
               vlan: 1001
-              created_at: 2000-01-23T04:56:07Z
+              created_at: 2000-01-23T04:56:07.000+00:00
               href: href
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
               state: ready
@@ -12072,16 +12072,16 @@ components:
             vxlan: 5
             metal_gateways:
             - gateway_address: 10.1.2.1/27
-              updated_at: 2000-01-23T04:56:07Z
+              updated_at: 2000-01-23T04:56:07.000+00:00
               vlan: 1001
-              created_at: 2000-01-23T04:56:07Z
+              created_at: 2000-01-23T04:56:07.000+00:00
               href: href
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
               state: ready
             - gateway_address: 10.1.2.1/27
-              updated_at: 2000-01-23T04:56:07Z
+              updated_at: 2000-01-23T04:56:07.000+00:00
               vlan: 1001
-              created_at: 2000-01-23T04:56:07Z
+              created_at: 2000-01-23T04:56:07.000+00:00
               href: href
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
               state: ready
@@ -12116,7 +12116,7 @@ components:
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         userdata: userdata
         hostname: hostname
-        updated_at: 2000-01-23T04:56:07Z
+        updated_at: 2000-01-23T04:56:07.000+00:00
         operating_system:
           distro: distro
           preinstallable: true
@@ -12195,7 +12195,7 @@ components:
         - href: href
         project_lite: null
         short_id: short_id
-        termination_time: 2000-01-23T04:56:07Z
+        termination_time: 2000-01-23T04:56:07.000+00:00
         created_by: null
         tags:
         - tags
@@ -12576,11 +12576,11 @@ components:
       type: object
     DeviceCreateInFacilityInput:
       allOf:
-      - $ref: '#/components/schemas/DeviceCreateInFacilityInput_allOf'
+      - $ref: '#/components/schemas/FacilityInput'
       - $ref: '#/components/schemas/DeviceCreateInput'
     DeviceCreateInMetroInput:
       allOf:
-      - $ref: '#/components/schemas/DeviceCreateInMetroInput_allOf'
+      - $ref: '#/components/schemas/MetroInput'
       - $ref: '#/components/schemas/DeviceCreateInput'
     DeviceList:
       example:
@@ -12592,7 +12592,7 @@ components:
               cidr: 5
               href: href
               network: network
-            created_at: 2000-01-23T04:56:07Z
+            created_at: 2000-01-23T04:56:07.000+00:00
             enabled: true
             manageable: true
             network: network
@@ -12614,7 +12614,7 @@ components:
               cidr: 5
               href: href
               network: network
-            created_at: 2000-01-23T04:56:07Z
+            created_at: 2000-01-23T04:56:07.000+00:00
             enabled: true
             manageable: true
             network: network
@@ -12631,7 +12631,7 @@ components:
             assigned_to:
               href: href
           iqn: iqn
-          created_at: 2000-01-23T04:56:07Z
+          created_at: 2000-01-23T04:56:07.000+00:00
           description: description
           project: null
           switch_uuid: switch_uuid
@@ -12641,7 +12641,7 @@ components:
             relationships:
             - href: href
             - href: href
-            created_at: 2000-01-23T04:56:07Z
+            created_at: 2000-01-23T04:56:07.000+00:00
             href: href
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             state: state
@@ -12651,7 +12651,7 @@ components:
             relationships:
             - href: href
             - href: href
-            created_at: 2000-01-23T04:56:07Z
+            created_at: 2000-01-23T04:56:07.000+00:00
             href: href
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             state: state
@@ -12662,16 +12662,16 @@ components:
               vxlan: 5
               metal_gateways:
               - gateway_address: 10.1.2.1/27
-                updated_at: 2000-01-23T04:56:07Z
+                updated_at: 2000-01-23T04:56:07.000+00:00
                 vlan: 1001
-                created_at: 2000-01-23T04:56:07Z
+                created_at: 2000-01-23T04:56:07.000+00:00
                 href: href
                 id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
                 state: ready
               - gateway_address: 10.1.2.1/27
-                updated_at: 2000-01-23T04:56:07Z
+                updated_at: 2000-01-23T04:56:07.000+00:00
                 vlan: 1001
-                created_at: 2000-01-23T04:56:07Z
+                created_at: 2000-01-23T04:56:07.000+00:00
                 href: href
                 id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
                 state: ready
@@ -12708,16 +12708,16 @@ components:
               vxlan: 5
               metal_gateways:
               - gateway_address: 10.1.2.1/27
-                updated_at: 2000-01-23T04:56:07Z
+                updated_at: 2000-01-23T04:56:07.000+00:00
                 vlan: 1001
-                created_at: 2000-01-23T04:56:07Z
+                created_at: 2000-01-23T04:56:07.000+00:00
                 href: href
                 id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
                 state: ready
               - gateway_address: 10.1.2.1/27
-                updated_at: 2000-01-23T04:56:07Z
+                updated_at: 2000-01-23T04:56:07.000+00:00
                 vlan: 1001
-                created_at: 2000-01-23T04:56:07Z
+                created_at: 2000-01-23T04:56:07.000+00:00
                 href: href
                 id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
                 state: ready
@@ -12752,7 +12752,7 @@ components:
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           userdata: userdata
           hostname: hostname
-          updated_at: 2000-01-23T04:56:07Z
+          updated_at: 2000-01-23T04:56:07.000+00:00
           operating_system:
             distro: distro
             preinstallable: true
@@ -12831,7 +12831,7 @@ components:
           - href: href
           project_lite: null
           short_id: short_id
-          termination_time: 2000-01-23T04:56:07Z
+          termination_time: 2000-01-23T04:56:07.000+00:00
           created_by: null
           tags:
           - tags
@@ -12880,7 +12880,7 @@ components:
               cidr: 5
               href: href
               network: network
-            created_at: 2000-01-23T04:56:07Z
+            created_at: 2000-01-23T04:56:07.000+00:00
             enabled: true
             manageable: true
             network: network
@@ -12902,7 +12902,7 @@ components:
               cidr: 5
               href: href
               network: network
-            created_at: 2000-01-23T04:56:07Z
+            created_at: 2000-01-23T04:56:07.000+00:00
             enabled: true
             manageable: true
             network: network
@@ -12919,7 +12919,7 @@ components:
             assigned_to:
               href: href
           iqn: iqn
-          created_at: 2000-01-23T04:56:07Z
+          created_at: 2000-01-23T04:56:07.000+00:00
           description: description
           project: null
           switch_uuid: switch_uuid
@@ -12929,7 +12929,7 @@ components:
             relationships:
             - href: href
             - href: href
-            created_at: 2000-01-23T04:56:07Z
+            created_at: 2000-01-23T04:56:07.000+00:00
             href: href
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             state: state
@@ -12939,7 +12939,7 @@ components:
             relationships:
             - href: href
             - href: href
-            created_at: 2000-01-23T04:56:07Z
+            created_at: 2000-01-23T04:56:07.000+00:00
             href: href
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             state: state
@@ -12950,16 +12950,16 @@ components:
               vxlan: 5
               metal_gateways:
               - gateway_address: 10.1.2.1/27
-                updated_at: 2000-01-23T04:56:07Z
+                updated_at: 2000-01-23T04:56:07.000+00:00
                 vlan: 1001
-                created_at: 2000-01-23T04:56:07Z
+                created_at: 2000-01-23T04:56:07.000+00:00
                 href: href
                 id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
                 state: ready
               - gateway_address: 10.1.2.1/27
-                updated_at: 2000-01-23T04:56:07Z
+                updated_at: 2000-01-23T04:56:07.000+00:00
                 vlan: 1001
-                created_at: 2000-01-23T04:56:07Z
+                created_at: 2000-01-23T04:56:07.000+00:00
                 href: href
                 id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
                 state: ready
@@ -12996,16 +12996,16 @@ components:
               vxlan: 5
               metal_gateways:
               - gateway_address: 10.1.2.1/27
-                updated_at: 2000-01-23T04:56:07Z
+                updated_at: 2000-01-23T04:56:07.000+00:00
                 vlan: 1001
-                created_at: 2000-01-23T04:56:07Z
+                created_at: 2000-01-23T04:56:07.000+00:00
                 href: href
                 id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
                 state: ready
               - gateway_address: 10.1.2.1/27
-                updated_at: 2000-01-23T04:56:07Z
+                updated_at: 2000-01-23T04:56:07.000+00:00
                 vlan: 1001
-                created_at: 2000-01-23T04:56:07Z
+                created_at: 2000-01-23T04:56:07.000+00:00
                 href: href
                 id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
                 state: ready
@@ -13040,7 +13040,7 @@ components:
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           userdata: userdata
           hostname: hostname
-          updated_at: 2000-01-23T04:56:07Z
+          updated_at: 2000-01-23T04:56:07.000+00:00
           operating_system:
             distro: distro
             preinstallable: true
@@ -13119,7 +13119,7 @@ components:
           - href: href
           project_lite: null
           short_id: short_id
-          termination_time: 2000-01-23T04:56:07Z
+          termination_time: 2000-01-23T04:56:07.000+00:00
           created_by: null
           tags:
           - tags
@@ -13340,7 +13340,7 @@ components:
         relationships:
         - href: href
         - href: href
-        created_at: 2000-01-23T04:56:07Z
+        created_at: 2000-01-23T04:56:07.000+00:00
         href: href
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         state: state
@@ -13387,7 +13387,7 @@ components:
           relationships:
           - href: href
           - href: href
-          created_at: 2000-01-23T04:56:07Z
+          created_at: 2000-01-23T04:56:07.000+00:00
           href: href
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           state: state
@@ -13397,7 +13397,7 @@ components:
           relationships:
           - href: href
           - href: href
-          created_at: 2000-01-23T04:56:07Z
+          created_at: 2000-01-23T04:56:07.000+00:00
           href: href
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           state: state
@@ -13414,7 +13414,7 @@ components:
     FabricServiceToken:
       example:
         max_allowed_speed: 10000000000
-        expires_at: 2000-01-23T04:56:07Z
+        expires_at: 2000-01-23T04:56:07.000+00:00
         role: primary
         service_token_type: a_side
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -13529,6 +13529,13 @@ components:
         name:
           type: string
       type: object
+    FacilityInput:
+      properties:
+        facility:
+          $ref: '#/components/schemas/FacilityInput_facility'
+      required:
+      - facility
+      type: object
     FacilityList:
       example:
         facilities:
@@ -13625,7 +13632,7 @@ components:
     HardwareReservation:
       example:
         custom_rate: 1050.5
-        created_at: 2000-01-23T04:56:07Z
+        created_at: 2000-01-23T04:56:07.000+00:00
         project:
           devices:
           - href: href
@@ -13633,7 +13640,7 @@ components:
           volumes:
           - href: href
           - href: href
-          created_at: 2000-01-23T04:56:07Z
+          created_at: 2000-01-23T04:56:07.000+00:00
           memberships:
           - href: href
           - href: href
@@ -13643,7 +13650,7 @@ components:
           ssh_keys:
           - href: href
           - href: href
-          updated_at: 2000-01-23T04:56:07Z
+          updated_at: 2000-01-23T04:56:07.000+00:00
           invitations:
           - href: href
           - href: href
@@ -13670,7 +13677,7 @@ components:
               cidr: 5
               href: href
               network: network
-            created_at: 2000-01-23T04:56:07Z
+            created_at: 2000-01-23T04:56:07.000+00:00
             enabled: true
             manageable: true
             network: network
@@ -13692,7 +13699,7 @@ components:
               cidr: 5
               href: href
               network: network
-            created_at: 2000-01-23T04:56:07Z
+            created_at: 2000-01-23T04:56:07.000+00:00
             enabled: true
             manageable: true
             network: network
@@ -13709,7 +13716,7 @@ components:
             assigned_to:
               href: href
           iqn: iqn
-          created_at: 2000-01-23T04:56:07Z
+          created_at: 2000-01-23T04:56:07.000+00:00
           description: description
           project: null
           switch_uuid: switch_uuid
@@ -13719,7 +13726,7 @@ components:
             relationships:
             - href: href
             - href: href
-            created_at: 2000-01-23T04:56:07Z
+            created_at: 2000-01-23T04:56:07.000+00:00
             href: href
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             state: state
@@ -13729,7 +13736,7 @@ components:
             relationships:
             - href: href
             - href: href
-            created_at: 2000-01-23T04:56:07Z
+            created_at: 2000-01-23T04:56:07.000+00:00
             href: href
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             state: state
@@ -13740,16 +13747,16 @@ components:
               vxlan: 5
               metal_gateways:
               - gateway_address: 10.1.2.1/27
-                updated_at: 2000-01-23T04:56:07Z
+                updated_at: 2000-01-23T04:56:07.000+00:00
                 vlan: 1001
-                created_at: 2000-01-23T04:56:07Z
+                created_at: 2000-01-23T04:56:07.000+00:00
                 href: href
                 id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
                 state: ready
               - gateway_address: 10.1.2.1/27
-                updated_at: 2000-01-23T04:56:07Z
+                updated_at: 2000-01-23T04:56:07.000+00:00
                 vlan: 1001
-                created_at: 2000-01-23T04:56:07Z
+                created_at: 2000-01-23T04:56:07.000+00:00
                 href: href
                 id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
                 state: ready
@@ -13786,16 +13793,16 @@ components:
               vxlan: 5
               metal_gateways:
               - gateway_address: 10.1.2.1/27
-                updated_at: 2000-01-23T04:56:07Z
+                updated_at: 2000-01-23T04:56:07.000+00:00
                 vlan: 1001
-                created_at: 2000-01-23T04:56:07Z
+                created_at: 2000-01-23T04:56:07.000+00:00
                 href: href
                 id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
                 state: ready
               - gateway_address: 10.1.2.1/27
-                updated_at: 2000-01-23T04:56:07Z
+                updated_at: 2000-01-23T04:56:07.000+00:00
                 vlan: 1001
-                created_at: 2000-01-23T04:56:07Z
+                created_at: 2000-01-23T04:56:07.000+00:00
                 href: href
                 id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
                 state: ready
@@ -13830,7 +13837,7 @@ components:
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           userdata: userdata
           hostname: hostname
-          updated_at: 2000-01-23T04:56:07Z
+          updated_at: 2000-01-23T04:56:07.000+00:00
           operating_system:
             distro: distro
             preinstallable: true
@@ -13909,7 +13916,7 @@ components:
           - href: href
           project_lite: null
           short_id: short_id
-          termination_time: 2000-01-23T04:56:07Z
+          termination_time: 2000-01-23T04:56:07.000+00:00
           created_by: null
           tags:
           - tags
@@ -14084,7 +14091,7 @@ components:
             href: href
         hardware_reservations:
         - custom_rate: 1050.5
-          created_at: 2000-01-23T04:56:07Z
+          created_at: 2000-01-23T04:56:07.000+00:00
           project:
             devices:
             - href: href
@@ -14092,7 +14099,7 @@ components:
             volumes:
             - href: href
             - href: href
-            created_at: 2000-01-23T04:56:07Z
+            created_at: 2000-01-23T04:56:07.000+00:00
             memberships:
             - href: href
             - href: href
@@ -14102,7 +14109,7 @@ components:
             ssh_keys:
             - href: href
             - href: href
-            updated_at: 2000-01-23T04:56:07Z
+            updated_at: 2000-01-23T04:56:07.000+00:00
             invitations:
             - href: href
             - href: href
@@ -14129,7 +14136,7 @@ components:
                 cidr: 5
                 href: href
                 network: network
-              created_at: 2000-01-23T04:56:07Z
+              created_at: 2000-01-23T04:56:07.000+00:00
               enabled: true
               manageable: true
               network: network
@@ -14151,7 +14158,7 @@ components:
                 cidr: 5
                 href: href
                 network: network
-              created_at: 2000-01-23T04:56:07Z
+              created_at: 2000-01-23T04:56:07.000+00:00
               enabled: true
               manageable: true
               network: network
@@ -14168,7 +14175,7 @@ components:
               assigned_to:
                 href: href
             iqn: iqn
-            created_at: 2000-01-23T04:56:07Z
+            created_at: 2000-01-23T04:56:07.000+00:00
             description: description
             project: null
             switch_uuid: switch_uuid
@@ -14178,7 +14185,7 @@ components:
               relationships:
               - href: href
               - href: href
-              created_at: 2000-01-23T04:56:07Z
+              created_at: 2000-01-23T04:56:07.000+00:00
               href: href
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
               state: state
@@ -14188,7 +14195,7 @@ components:
               relationships:
               - href: href
               - href: href
-              created_at: 2000-01-23T04:56:07Z
+              created_at: 2000-01-23T04:56:07.000+00:00
               href: href
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
               state: state
@@ -14199,16 +14206,16 @@ components:
                 vxlan: 5
                 metal_gateways:
                 - gateway_address: 10.1.2.1/27
-                  updated_at: 2000-01-23T04:56:07Z
+                  updated_at: 2000-01-23T04:56:07.000+00:00
                   vlan: 1001
-                  created_at: 2000-01-23T04:56:07Z
+                  created_at: 2000-01-23T04:56:07.000+00:00
                   href: href
                   id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
                   state: ready
                 - gateway_address: 10.1.2.1/27
-                  updated_at: 2000-01-23T04:56:07Z
+                  updated_at: 2000-01-23T04:56:07.000+00:00
                   vlan: 1001
-                  created_at: 2000-01-23T04:56:07Z
+                  created_at: 2000-01-23T04:56:07.000+00:00
                   href: href
                   id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
                   state: ready
@@ -14245,16 +14252,16 @@ components:
                 vxlan: 5
                 metal_gateways:
                 - gateway_address: 10.1.2.1/27
-                  updated_at: 2000-01-23T04:56:07Z
+                  updated_at: 2000-01-23T04:56:07.000+00:00
                   vlan: 1001
-                  created_at: 2000-01-23T04:56:07Z
+                  created_at: 2000-01-23T04:56:07.000+00:00
                   href: href
                   id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
                   state: ready
                 - gateway_address: 10.1.2.1/27
-                  updated_at: 2000-01-23T04:56:07Z
+                  updated_at: 2000-01-23T04:56:07.000+00:00
                   vlan: 1001
-                  created_at: 2000-01-23T04:56:07Z
+                  created_at: 2000-01-23T04:56:07.000+00:00
                   href: href
                   id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
                   state: ready
@@ -14289,7 +14296,7 @@ components:
                 id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             userdata: userdata
             hostname: hostname
-            updated_at: 2000-01-23T04:56:07Z
+            updated_at: 2000-01-23T04:56:07.000+00:00
             operating_system:
               distro: distro
               preinstallable: true
@@ -14368,7 +14375,7 @@ components:
             - href: href
             project_lite: null
             short_id: short_id
-            termination_time: 2000-01-23T04:56:07Z
+            termination_time: 2000-01-23T04:56:07.000+00:00
             created_by: null
             tags:
             - tags
@@ -14485,7 +14492,7 @@ components:
             slug: m3.large.x86
           spare: true
         - custom_rate: 1050.5
-          created_at: 2000-01-23T04:56:07Z
+          created_at: 2000-01-23T04:56:07.000+00:00
           project:
             devices:
             - href: href
@@ -14493,7 +14500,7 @@ components:
             volumes:
             - href: href
             - href: href
-            created_at: 2000-01-23T04:56:07Z
+            created_at: 2000-01-23T04:56:07.000+00:00
             memberships:
             - href: href
             - href: href
@@ -14503,7 +14510,7 @@ components:
             ssh_keys:
             - href: href
             - href: href
-            updated_at: 2000-01-23T04:56:07Z
+            updated_at: 2000-01-23T04:56:07.000+00:00
             invitations:
             - href: href
             - href: href
@@ -14530,7 +14537,7 @@ components:
                 cidr: 5
                 href: href
                 network: network
-              created_at: 2000-01-23T04:56:07Z
+              created_at: 2000-01-23T04:56:07.000+00:00
               enabled: true
               manageable: true
               network: network
@@ -14552,7 +14559,7 @@ components:
                 cidr: 5
                 href: href
                 network: network
-              created_at: 2000-01-23T04:56:07Z
+              created_at: 2000-01-23T04:56:07.000+00:00
               enabled: true
               manageable: true
               network: network
@@ -14569,7 +14576,7 @@ components:
               assigned_to:
                 href: href
             iqn: iqn
-            created_at: 2000-01-23T04:56:07Z
+            created_at: 2000-01-23T04:56:07.000+00:00
             description: description
             project: null
             switch_uuid: switch_uuid
@@ -14579,7 +14586,7 @@ components:
               relationships:
               - href: href
               - href: href
-              created_at: 2000-01-23T04:56:07Z
+              created_at: 2000-01-23T04:56:07.000+00:00
               href: href
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
               state: state
@@ -14589,7 +14596,7 @@ components:
               relationships:
               - href: href
               - href: href
-              created_at: 2000-01-23T04:56:07Z
+              created_at: 2000-01-23T04:56:07.000+00:00
               href: href
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
               state: state
@@ -14600,16 +14607,16 @@ components:
                 vxlan: 5
                 metal_gateways:
                 - gateway_address: 10.1.2.1/27
-                  updated_at: 2000-01-23T04:56:07Z
+                  updated_at: 2000-01-23T04:56:07.000+00:00
                   vlan: 1001
-                  created_at: 2000-01-23T04:56:07Z
+                  created_at: 2000-01-23T04:56:07.000+00:00
                   href: href
                   id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
                   state: ready
                 - gateway_address: 10.1.2.1/27
-                  updated_at: 2000-01-23T04:56:07Z
+                  updated_at: 2000-01-23T04:56:07.000+00:00
                   vlan: 1001
-                  created_at: 2000-01-23T04:56:07Z
+                  created_at: 2000-01-23T04:56:07.000+00:00
                   href: href
                   id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
                   state: ready
@@ -14646,16 +14653,16 @@ components:
                 vxlan: 5
                 metal_gateways:
                 - gateway_address: 10.1.2.1/27
-                  updated_at: 2000-01-23T04:56:07Z
+                  updated_at: 2000-01-23T04:56:07.000+00:00
                   vlan: 1001
-                  created_at: 2000-01-23T04:56:07Z
+                  created_at: 2000-01-23T04:56:07.000+00:00
                   href: href
                   id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
                   state: ready
                 - gateway_address: 10.1.2.1/27
-                  updated_at: 2000-01-23T04:56:07Z
+                  updated_at: 2000-01-23T04:56:07.000+00:00
                   vlan: 1001
-                  created_at: 2000-01-23T04:56:07Z
+                  created_at: 2000-01-23T04:56:07.000+00:00
                   href: href
                   id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
                   state: ready
@@ -14690,7 +14697,7 @@ components:
                 id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             userdata: userdata
             hostname: hostname
-            updated_at: 2000-01-23T04:56:07Z
+            updated_at: 2000-01-23T04:56:07.000+00:00
             operating_system:
               distro: distro
               preinstallable: true
@@ -14769,7 +14776,7 @@ components:
             - href: href
             project_lite: null
             short_id: short_id
-            termination_time: 2000-01-23T04:56:07Z
+            termination_time: 2000-01-23T04:56:07.000+00:00
             created_by: null
             tags:
             - tags
@@ -14910,7 +14917,7 @@ components:
           cidr: 5
           href: href
           network: network
-        created_at: 2000-01-23T04:56:07Z
+        created_at: 2000-01-23T04:56:07.000+00:00
         enabled: true
         manageable: true
         network: network
@@ -14988,7 +14995,7 @@ components:
             cidr: 5
             href: href
             network: network
-          created_at: 2000-01-23T04:56:07Z
+          created_at: 2000-01-23T04:56:07.000+00:00
           enabled: true
           manageable: true
           network: network
@@ -15010,7 +15017,7 @@ components:
             cidr: 5
             href: href
             network: network
-          created_at: 2000-01-23T04:56:07Z
+          created_at: 2000-01-23T04:56:07.000+00:00
           enabled: true
           manageable: true
           network: network
@@ -15203,13 +15210,13 @@ components:
         mode: standard
         service_tokens:
         - max_allowed_speed: 10000000000
-          expires_at: 2000-01-23T04:56:07Z
+          expires_at: 2000-01-23T04:56:07.000+00:00
           role: primary
           service_token_type: a_side
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           state: inactive
         - max_allowed_speed: 10000000000
-          expires_at: 2000-01-23T04:56:07Z
+          expires_at: 2000-01-23T04:56:07.000+00:00
           role: primary
           service_token_type: a_side
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -15443,13 +15450,13 @@ components:
           mode: standard
           service_tokens:
           - max_allowed_speed: 10000000000
-            expires_at: 2000-01-23T04:56:07Z
+            expires_at: 2000-01-23T04:56:07.000+00:00
             role: primary
             service_token_type: a_side
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             state: inactive
           - max_allowed_speed: 10000000000
-            expires_at: 2000-01-23T04:56:07Z
+            expires_at: 2000-01-23T04:56:07.000+00:00
             role: primary
             service_token_type: a_side
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -15495,13 +15502,13 @@ components:
           mode: standard
           service_tokens:
           - max_allowed_speed: 10000000000
-            expires_at: 2000-01-23T04:56:07Z
+            expires_at: 2000-01-23T04:56:07.000+00:00
             role: primary
             service_token_type: a_side
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             state: inactive
           - max_allowed_speed: 10000000000
-            expires_at: 2000-01-23T04:56:07Z
+            expires_at: 2000-01-23T04:56:07.000+00:00
             role: primary
             service_token_type: a_side
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -15634,7 +15641,7 @@ components:
         projects:
         - href: href
         - href: href
-        updated_at: 2000-01-23T04:56:07Z
+        updated_at: 2000-01-23T04:56:07.000+00:00
         invitation:
           href: href
         organization:
@@ -15642,7 +15649,7 @@ components:
         roles:
         - admin
         - admin
-        created_at: 2000-01-23T04:56:07Z
+        created_at: 2000-01-23T04:56:07.000+00:00
         href: href
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         invited_by:
@@ -15726,22 +15733,22 @@ components:
     InvitationList:
       example:
         invitations:
-        - updated_at: 2000-01-23T04:56:07Z
+        - updated_at: 2000-01-23T04:56:07.000+00:00
           roles:
           - roles
           - roles
-          created_at: 2000-01-23T04:56:07Z
+          created_at: 2000-01-23T04:56:07.000+00:00
           project:
             href: href
           href: href
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           user:
             href: href
-        - updated_at: 2000-01-23T04:56:07Z
+        - updated_at: 2000-01-23T04:56:07.000+00:00
           roles:
           - roles
           - roles
-          created_at: 2000-01-23T04:56:07Z
+          created_at: 2000-01-23T04:56:07.000+00:00
           project:
             href: href
           href: href
@@ -15829,11 +15836,11 @@ components:
       type: object
     Membership:
       example:
-        updated_at: 2000-01-23T04:56:07Z
+        updated_at: 2000-01-23T04:56:07.000+00:00
         roles:
         - roles
         - roles
-        created_at: 2000-01-23T04:56:07Z
+        created_at: 2000-01-23T04:56:07.000+00:00
         project:
           href: href
         href: href
@@ -15875,22 +15882,22 @@ components:
     MembershipList:
       example:
         memberships:
-        - updated_at: 2000-01-23T04:56:07Z
+        - updated_at: 2000-01-23T04:56:07.000+00:00
           roles:
           - roles
           - roles
-          created_at: 2000-01-23T04:56:07Z
+          created_at: 2000-01-23T04:56:07.000+00:00
           project:
             href: href
           href: href
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           user:
             href: href
-        - updated_at: 2000-01-23T04:56:07Z
+        - updated_at: 2000-01-23T04:56:07.000+00:00
           roles:
           - roles
           - roles
-          created_at: 2000-01-23T04:56:07Z
+          created_at: 2000-01-23T04:56:07.000+00:00
           project:
             href: href
           href: href
@@ -16087,9 +16094,9 @@ components:
     MetalGatewayLite:
       example:
         gateway_address: 10.1.2.1/27
-        updated_at: 2000-01-23T04:56:07Z
+        updated_at: 2000-01-23T04:56:07.000+00:00
         vlan: 1001
-        created_at: 2000-01-23T04:56:07Z
+        created_at: 2000-01-23T04:56:07.000+00:00
         href: href
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         state: ready
@@ -16145,6 +16152,17 @@ components:
           type: string
         name:
           type: string
+      type: object
+    MetroInput:
+      properties:
+        metro:
+          description: |-
+            Metro code or ID of where the instance should be provisioned in.
+            Either metro or facility must be provided.
+          example: sv
+          type: string
+      required:
+      - metro
       type: object
     MetroCapacityList:
       example:
@@ -17087,7 +17105,7 @@ components:
         - href: href
         - href: href
         credit_amount: 0.8008282
-        created_at: 2000-01-23T04:56:07Z
+        created_at: 2000-01-23T04:56:07.000+00:00
         description: description
         billing_address:
           country: country
@@ -17102,9 +17120,9 @@ components:
         memberships:
         - href: href
         - href: href
-        enforce_2fa_at: 2000-01-23T04:56:07Z
+        enforce_2fa_at: 2000-01-23T04:56:07.000+00:00
         twitter: twitter
-        updated_at: 2000-01-23T04:56:07Z
+        updated_at: 2000-01-23T04:56:07.000+00:00
         terms: 6
         members:
         - href: href
@@ -17191,7 +17209,7 @@ components:
           state: state
           zip_code: zip_code
         customdata: "{}"
-        enforce_2fa_at: 2000-01-23T04:56:07Z
+        enforce_2fa_at: 2000-01-23T04:56:07.000+00:00
       properties:
         address:
           $ref: '#/components/schemas/Address'
@@ -17246,7 +17264,7 @@ components:
           - href: href
           - href: href
           credit_amount: 0.8008282
-          created_at: 2000-01-23T04:56:07Z
+          created_at: 2000-01-23T04:56:07.000+00:00
           description: description
           billing_address:
             country: country
@@ -17261,9 +17279,9 @@ components:
           memberships:
           - href: href
           - href: href
-          enforce_2fa_at: 2000-01-23T04:56:07Z
+          enforce_2fa_at: 2000-01-23T04:56:07.000+00:00
           twitter: twitter
-          updated_at: 2000-01-23T04:56:07Z
+          updated_at: 2000-01-23T04:56:07.000+00:00
           terms: 6
           members:
           - href: href
@@ -17287,7 +17305,7 @@ components:
           - href: href
           - href: href
           credit_amount: 0.8008282
-          created_at: 2000-01-23T04:56:07Z
+          created_at: 2000-01-23T04:56:07.000+00:00
           description: description
           billing_address:
             country: country
@@ -17302,9 +17320,9 @@ components:
           memberships:
           - href: href
           - href: href
-          enforce_2fa_at: 2000-01-23T04:56:07Z
+          enforce_2fa_at: 2000-01-23T04:56:07.000+00:00
           twitter: twitter
-          updated_at: 2000-01-23T04:56:07Z
+          updated_at: 2000-01-23T04:56:07.000+00:00
           terms: 6
           members:
           - href: href
@@ -17342,7 +17360,7 @@ components:
         projects:
         - href: href
         - href: href
-        created_at: 2000-01-23T04:56:07Z
+        created_at: 2000-01-23T04:56:07.000+00:00
         billing_address:
           street_address: street_address
           country_code_alpha2: country_code_alpha2
@@ -17354,7 +17372,7 @@ components:
           href: href
         expiration_year: expiration_year
         default: true
-        updated_at: 2000-01-23T04:56:07Z
+        updated_at: 2000-01-23T04:56:07.000+00:00
         organization:
           href: href
         expiration_month: expiration_month
@@ -17433,7 +17451,7 @@ components:
         - projects:
           - href: href
           - href: href
-          created_at: 2000-01-23T04:56:07Z
+          created_at: 2000-01-23T04:56:07.000+00:00
           billing_address:
             street_address: street_address
             country_code_alpha2: country_code_alpha2
@@ -17445,7 +17463,7 @@ components:
             href: href
           expiration_year: expiration_year
           default: true
-          updated_at: 2000-01-23T04:56:07Z
+          updated_at: 2000-01-23T04:56:07.000+00:00
           organization:
             href: href
           expiration_month: expiration_month
@@ -17455,7 +17473,7 @@ components:
         - projects:
           - href: href
           - href: href
-          created_at: 2000-01-23T04:56:07Z
+          created_at: 2000-01-23T04:56:07.000+00:00
           billing_address:
             street_address: street_address
             country_code_alpha2: country_code_alpha2
@@ -17467,7 +17485,7 @@ components:
             href: href
           expiration_year: expiration_year
           default: true
-          updated_at: 2000-01-23T04:56:07Z
+          updated_at: 2000-01-23T04:56:07.000+00:00
           organization:
             href: href
           expiration_month: expiration_month
@@ -17724,16 +17742,16 @@ components:
           vxlan: 5
           metal_gateways:
           - gateway_address: 10.1.2.1/27
-            updated_at: 2000-01-23T04:56:07Z
+            updated_at: 2000-01-23T04:56:07.000+00:00
             vlan: 1001
-            created_at: 2000-01-23T04:56:07Z
+            created_at: 2000-01-23T04:56:07.000+00:00
             href: href
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             state: ready
           - gateway_address: 10.1.2.1/27
-            updated_at: 2000-01-23T04:56:07Z
+            updated_at: 2000-01-23T04:56:07.000+00:00
             vlan: 1001
-            created_at: 2000-01-23T04:56:07Z
+            created_at: 2000-01-23T04:56:07.000+00:00
             href: href
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             state: ready
@@ -17833,12 +17851,12 @@ components:
       example:
         virtual_network:
           href: href
-        updated_at: 2000-01-23T04:56:07Z
+        updated_at: 2000-01-23T04:56:07.000+00:00
         vlan: 0
         native: true
         port:
           href: href
-        created_at: 2000-01-23T04:56:07Z
+        created_at: 2000-01-23T04:56:07.000+00:00
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         state: assigned
       properties:
@@ -17868,22 +17886,22 @@ components:
     PortVlanAssignmentBatch:
       example:
         quantity: 0
-        updated_at: 2000-01-23T04:56:07Z
+        updated_at: 2000-01-23T04:56:07.000+00:00
         port:
           native_virtual_network:
             vxlan: 5
             metal_gateways:
             - gateway_address: 10.1.2.1/27
-              updated_at: 2000-01-23T04:56:07Z
+              updated_at: 2000-01-23T04:56:07.000+00:00
               vlan: 1001
-              created_at: 2000-01-23T04:56:07Z
+              created_at: 2000-01-23T04:56:07.000+00:00
               href: href
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
               state: ready
             - gateway_address: 10.1.2.1/27
-              updated_at: 2000-01-23T04:56:07Z
+              updated_at: 2000-01-23T04:56:07.000+00:00
               vlan: 1001
-              created_at: 2000-01-23T04:56:07Z
+              created_at: 2000-01-23T04:56:07.000+00:00
               href: href
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
               state: ready
@@ -17916,7 +17934,7 @@ components:
           bond:
             name: name
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        created_at: 2000-01-23T04:56:07Z
+        created_at: 2000-01-23T04:56:07.000+00:00
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         state: queued
         error_messages:
@@ -17980,22 +17998,22 @@ components:
       example:
         batches:
         - quantity: 0
-          updated_at: 2000-01-23T04:56:07Z
+          updated_at: 2000-01-23T04:56:07.000+00:00
           port:
             native_virtual_network:
               vxlan: 5
               metal_gateways:
               - gateway_address: 10.1.2.1/27
-                updated_at: 2000-01-23T04:56:07Z
+                updated_at: 2000-01-23T04:56:07.000+00:00
                 vlan: 1001
-                created_at: 2000-01-23T04:56:07Z
+                created_at: 2000-01-23T04:56:07.000+00:00
                 href: href
                 id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
                 state: ready
               - gateway_address: 10.1.2.1/27
-                updated_at: 2000-01-23T04:56:07Z
+                updated_at: 2000-01-23T04:56:07.000+00:00
                 vlan: 1001
-                created_at: 2000-01-23T04:56:07Z
+                created_at: 2000-01-23T04:56:07.000+00:00
                 href: href
                 id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
                 state: ready
@@ -18028,7 +18046,7 @@ components:
             bond:
               name: name
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          created_at: 2000-01-23T04:56:07Z
+          created_at: 2000-01-23T04:56:07.000+00:00
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           state: queued
           error_messages:
@@ -18044,22 +18062,22 @@ components:
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             state: assigned
         - quantity: 0
-          updated_at: 2000-01-23T04:56:07Z
+          updated_at: 2000-01-23T04:56:07.000+00:00
           port:
             native_virtual_network:
               vxlan: 5
               metal_gateways:
               - gateway_address: 10.1.2.1/27
-                updated_at: 2000-01-23T04:56:07Z
+                updated_at: 2000-01-23T04:56:07.000+00:00
                 vlan: 1001
-                created_at: 2000-01-23T04:56:07Z
+                created_at: 2000-01-23T04:56:07.000+00:00
                 href: href
                 id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
                 state: ready
               - gateway_address: 10.1.2.1/27
-                updated_at: 2000-01-23T04:56:07Z
+                updated_at: 2000-01-23T04:56:07.000+00:00
                 vlan: 1001
-                created_at: 2000-01-23T04:56:07Z
+                created_at: 2000-01-23T04:56:07.000+00:00
                 href: href
                 id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
                 state: ready
@@ -18092,7 +18110,7 @@ components:
             bond:
               name: name
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          created_at: 2000-01-23T04:56:07Z
+          created_at: 2000-01-23T04:56:07.000+00:00
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           state: queued
           error_messages:
@@ -18118,22 +18136,22 @@ components:
         vlan_assignments:
         - virtual_network:
             href: href
-          updated_at: 2000-01-23T04:56:07Z
+          updated_at: 2000-01-23T04:56:07.000+00:00
           vlan: 0
           native: true
           port:
             href: href
-          created_at: 2000-01-23T04:56:07Z
+          created_at: 2000-01-23T04:56:07.000+00:00
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           state: assigned
         - virtual_network:
             href: href
-          updated_at: 2000-01-23T04:56:07Z
+          updated_at: 2000-01-23T04:56:07.000+00:00
           vlan: 0
           native: true
           port:
             href: href
-          created_at: 2000-01-23T04:56:07Z
+          created_at: 2000-01-23T04:56:07.000+00:00
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           state: assigned
       properties:
@@ -18150,7 +18168,7 @@ components:
         volumes:
         - href: href
         - href: href
-        created_at: 2000-01-23T04:56:07Z
+        created_at: 2000-01-23T04:56:07.000+00:00
         memberships:
         - href: href
         - href: href
@@ -18160,7 +18178,7 @@ components:
         ssh_keys:
         - href: href
         - href: href
-        updated_at: 2000-01-23T04:56:07Z
+        updated_at: 2000-01-23T04:56:07.000+00:00
         invitations:
         - href: href
         - href: href
@@ -18265,7 +18283,7 @@ components:
           volumes:
           - href: href
           - href: href
-          created_at: 2000-01-23T04:56:07Z
+          created_at: 2000-01-23T04:56:07.000+00:00
           memberships:
           - href: href
           - href: href
@@ -18275,7 +18293,7 @@ components:
           ssh_keys:
           - href: href
           - href: href
-          updated_at: 2000-01-23T04:56:07Z
+          updated_at: 2000-01-23T04:56:07.000+00:00
           invitations:
           - href: href
           - href: href
@@ -18294,7 +18312,7 @@ components:
           volumes:
           - href: href
           - href: href
-          created_at: 2000-01-23T04:56:07Z
+          created_at: 2000-01-23T04:56:07.000+00:00
           memberships:
           - href: href
           - href: href
@@ -18304,7 +18322,7 @@ components:
           ssh_keys:
           - href: href
           - href: href
-          updated_at: 2000-01-23T04:56:07Z
+          updated_at: 2000-01-23T04:56:07.000+00:00
           invitations:
           - href: href
           - href: href
@@ -18425,9 +18443,9 @@ components:
       type: object
     SSHKey:
       example:
-        updated_at: 2000-01-23T04:56:07Z
+        updated_at: 2000-01-23T04:56:07.000+00:00
         fingerprint: fingerprint
-        created_at: 2000-01-23T04:56:07Z
+        created_at: 2000-01-23T04:56:07.000+00:00
         href: href
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         label: label
@@ -18489,18 +18507,18 @@ components:
     SSHKeyList:
       example:
         ssh_keys:
-        - updated_at: 2000-01-23T04:56:07Z
+        - updated_at: 2000-01-23T04:56:07.000+00:00
           fingerprint: fingerprint
-          created_at: 2000-01-23T04:56:07Z
+          created_at: 2000-01-23T04:56:07.000+00:00
           href: href
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           label: label
           entity:
             href: href
           key: key
-        - updated_at: 2000-01-23T04:56:07Z
+        - updated_at: 2000-01-23T04:56:07.000+00:00
           fingerprint: fingerprint
-          created_at: 2000-01-23T04:56:07Z
+          created_at: 2000-01-23T04:56:07.000+00:00
           href: href
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           label: label
@@ -18604,9 +18622,9 @@ components:
           project_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           organization: organization
           organization_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          created_at: 2000-01-23T04:56:07Z
+          created_at: 2000-01-23T04:56:07.000+00:00
           project: project
-          start_date: 2000-01-23T04:56:07Z
+          start_date: 2000-01-23T04:56:07.000+00:00
           status: status
         - item:
           - plan_slug: plan_slug
@@ -18637,9 +18655,9 @@ components:
           project_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           organization: organization
           organization_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          created_at: 2000-01-23T04:56:07Z
+          created_at: 2000-01-23T04:56:07.000+00:00
           project: project
-          start_date: 2000-01-23T04:56:07Z
+          start_date: 2000-01-23T04:56:07.000+00:00
           status: status
       properties:
         reservations:
@@ -18678,9 +18696,9 @@ components:
         project_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         organization: organization
         organization_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        created_at: 2000-01-23T04:56:07Z
+        created_at: 2000-01-23T04:56:07.000+00:00
         project: project
-        start_date: 2000-01-23T04:56:07Z
+        start_date: 2000-01-23T04:56:07.000+00:00
         status: status
       properties:
         created_at:
@@ -19131,11 +19149,11 @@ components:
       type: object
     SpotMarketRequest:
       example:
-        end_at: 2000-01-23T04:56:07Z
+        end_at: 2000-01-23T04:56:07.000+00:00
         instances:
           href: href
         metro: null
-        created_at: 2000-01-23T04:56:07Z
+        created_at: 2000-01-23T04:56:07.000+00:00
         devices_min: 6
         project:
           href: href
@@ -19175,7 +19193,7 @@ components:
       type: object
     SpotMarketRequestCreateInput:
       example:
-        end_at: 2000-01-23T04:56:07Z
+        end_at: 2000-01-23T04:56:07.000+00:00
         metro: metro
         instance_attributes:
           user_ssh_keys:
@@ -19186,7 +19204,7 @@ components:
           hostnames:
           - hostnames
           - hostnames
-          termination_time: 2000-01-23T04:56:07Z
+          termination_time: 2000-01-23T04:56:07.000+00:00
           project_ssh_keys:
           - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -19238,11 +19256,11 @@ components:
     SpotMarketRequestList:
       example:
         spot_market_requests:
-        - end_at: 2000-01-23T04:56:07Z
+        - end_at: 2000-01-23T04:56:07.000+00:00
           instances:
             href: href
           metro: null
-          created_at: 2000-01-23T04:56:07Z
+          created_at: 2000-01-23T04:56:07.000+00:00
           devices_min: 6
           project:
             href: href
@@ -19252,11 +19270,11 @@ components:
           max_bid_price: 1.4658129
           facilities:
             href: href
-        - end_at: 2000-01-23T04:56:07Z
+        - end_at: 2000-01-23T04:56:07.000+00:00
           instances:
             href: href
           metro: null
-          created_at: 2000-01-23T04:56:07Z
+          created_at: 2000-01-23T04:56:07.000+00:00
           devices_min: 6
           project:
             href: href
@@ -19520,10 +19538,10 @@ components:
       type: object
     TransferRequest:
       example:
-        updated_at: 2000-01-23T04:56:07Z
+        updated_at: 2000-01-23T04:56:07.000+00:00
         target_organization:
           href: href
-        created_at: 2000-01-23T04:56:07Z
+        created_at: 2000-01-23T04:56:07.000+00:00
         project:
           href: href
         href: href
@@ -19556,18 +19574,18 @@ components:
     TransferRequestList:
       example:
         transfers:
-        - updated_at: 2000-01-23T04:56:07Z
+        - updated_at: 2000-01-23T04:56:07.000+00:00
           target_organization:
             href: href
-          created_at: 2000-01-23T04:56:07Z
+          created_at: 2000-01-23T04:56:07.000+00:00
           project:
             href: href
           href: href
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        - updated_at: 2000-01-23T04:56:07Z
+        - updated_at: 2000-01-23T04:56:07.000+00:00
           target_organization:
             href: href
-          created_at: 2000-01-23T04:56:07Z
+          created_at: 2000-01-23T04:56:07.000+00:00
           project:
             href: href
           href: href
@@ -19588,10 +19606,10 @@ components:
     User:
       example:
         avatar_thumb_url: avatar_thumb_url
-        last_login_at: 2000-01-23T04:56:07Z
+        last_login_at: 2000-01-23T04:56:07.000+00:00
         max_projects: 1
         timezone: timezone
-        created_at: 2000-01-23T04:56:07Z
+        created_at: 2000-01-23T04:56:07.000+00:00
         last_name: last_name
         short_id: short_id
         fraud_score: fraud_score
@@ -19600,7 +19618,7 @@ components:
         - href: href
         full_name: full_name
         avatar_url: avatar_url
-        updated_at: 2000-01-23T04:56:07Z
+        updated_at: 2000-01-23T04:56:07.000+00:00
         phone_number: phone_number
         customdata: "{}"
         href: href
@@ -19673,7 +19691,7 @@ components:
           address: address
         social_accounts: "{}"
         password: password
-        verified_at: 2000-01-23T04:56:07Z
+        verified_at: 2000-01-23T04:56:07.000+00:00
         company_name: company_name
         company_url: company_url
         phone_number: phone_number
@@ -19751,10 +19769,10 @@ components:
             href: href
         users:
         - avatar_thumb_url: avatar_thumb_url
-          last_login_at: 2000-01-23T04:56:07Z
+          last_login_at: 2000-01-23T04:56:07.000+00:00
           max_projects: 1
           timezone: timezone
-          created_at: 2000-01-23T04:56:07Z
+          created_at: 2000-01-23T04:56:07.000+00:00
           last_name: last_name
           short_id: short_id
           fraud_score: fraud_score
@@ -19763,7 +19781,7 @@ components:
           - href: href
           full_name: full_name
           avatar_url: avatar_url
-          updated_at: 2000-01-23T04:56:07Z
+          updated_at: 2000-01-23T04:56:07.000+00:00
           phone_number: phone_number
           customdata: "{}"
           href: href
@@ -19773,10 +19791,10 @@ components:
           two_factor_auth: two_factor_auth
           email: email
         - avatar_thumb_url: avatar_thumb_url
-          last_login_at: 2000-01-23T04:56:07Z
+          last_login_at: 2000-01-23T04:56:07.000+00:00
           max_projects: 1
           timezone: timezone
-          created_at: 2000-01-23T04:56:07Z
+          created_at: 2000-01-23T04:56:07.000+00:00
           last_name: last_name
           short_id: short_id
           fraud_score: fraud_score
@@ -19785,7 +19803,7 @@ components:
           - href: href
           full_name: full_name
           avatar_url: avatar_url
-          updated_at: 2000-01-23T04:56:07Z
+          updated_at: 2000-01-23T04:56:07.000+00:00
           phone_number: phone_number
           customdata: "{}"
           href: href
@@ -20025,16 +20043,16 @@ components:
         vxlan: 5
         metal_gateways:
         - gateway_address: 10.1.2.1/27
-          updated_at: 2000-01-23T04:56:07Z
+          updated_at: 2000-01-23T04:56:07.000+00:00
           vlan: 1001
-          created_at: 2000-01-23T04:56:07Z
+          created_at: 2000-01-23T04:56:07.000+00:00
           href: href
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           state: ready
         - gateway_address: 10.1.2.1/27
-          updated_at: 2000-01-23T04:56:07Z
+          updated_at: 2000-01-23T04:56:07.000+00:00
           vlan: 1001
-          created_at: 2000-01-23T04:56:07Z
+          created_at: 2000-01-23T04:56:07.000+00:00
           href: href
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           state: ready
@@ -20120,16 +20138,16 @@ components:
         - vxlan: 5
           metal_gateways:
           - gateway_address: 10.1.2.1/27
-            updated_at: 2000-01-23T04:56:07Z
+            updated_at: 2000-01-23T04:56:07.000+00:00
             vlan: 1001
-            created_at: 2000-01-23T04:56:07Z
+            created_at: 2000-01-23T04:56:07.000+00:00
             href: href
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             state: ready
           - gateway_address: 10.1.2.1/27
-            updated_at: 2000-01-23T04:56:07Z
+            updated_at: 2000-01-23T04:56:07.000+00:00
             vlan: 1001
-            created_at: 2000-01-23T04:56:07Z
+            created_at: 2000-01-23T04:56:07.000+00:00
             href: href
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             state: ready
@@ -20150,16 +20168,16 @@ components:
         - vxlan: 5
           metal_gateways:
           - gateway_address: 10.1.2.1/27
-            updated_at: 2000-01-23T04:56:07Z
+            updated_at: 2000-01-23T04:56:07.000+00:00
             vlan: 1001
-            created_at: 2000-01-23T04:56:07Z
+            created_at: 2000-01-23T04:56:07.000+00:00
             href: href
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             state: ready
           - gateway_address: 10.1.2.1/27
-            updated_at: 2000-01-23T04:56:07Z
+            updated_at: 2000-01-23T04:56:07.000+00:00
             vlan: 1001
-            created_at: 2000-01-23T04:56:07Z
+            created_at: 2000-01-23T04:56:07.000+00:00
             href: href
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             state: ready
@@ -20203,7 +20221,7 @@ components:
           volumes:
           - href: href
           - href: href
-          created_at: 2000-01-23T04:56:07Z
+          created_at: 2000-01-23T04:56:07.000+00:00
           memberships:
           - href: href
           - href: href
@@ -20213,7 +20231,7 @@ components:
           ssh_keys:
           - href: href
           - href: href
-          updated_at: 2000-01-23T04:56:07Z
+          updated_at: 2000-01-23T04:56:07.000+00:00
           invitations:
           - href: href
           - href: href
@@ -20230,10 +20248,10 @@ components:
         href: href
         created_by:
           avatar_thumb_url: avatar_thumb_url
-          last_login_at: 2000-01-23T04:56:07Z
+          last_login_at: 2000-01-23T04:56:07.000+00:00
           max_projects: 1
           timezone: timezone
-          created_at: 2000-01-23T04:56:07Z
+          created_at: 2000-01-23T04:56:07.000+00:00
           last_name: last_name
           short_id: short_id
           fraud_score: fraud_score
@@ -20242,7 +20260,7 @@ components:
           - href: href
           full_name: full_name
           avatar_url: avatar_url
-          updated_at: 2000-01-23T04:56:07Z
+          updated_at: 2000-01-23T04:56:07.000+00:00
           phone_number: phone_number
           customdata: "{}"
           href: href
@@ -20346,7 +20364,7 @@ components:
       type: array
     VrfIpReservation:
       example:
-        created_at: 2000-01-23T04:56:07Z
+        created_at: 2000-01-23T04:56:07.000+00:00
         project:
           devices:
           - href: href
@@ -20354,7 +20372,7 @@ components:
           volumes:
           - href: href
           - href: href
-          created_at: 2000-01-23T04:56:07Z
+          created_at: 2000-01-23T04:56:07.000+00:00
           memberships:
           - href: href
           - href: href
@@ -20364,7 +20382,7 @@ components:
           ssh_keys:
           - href: href
           - href: href
-          updated_at: 2000-01-23T04:56:07Z
+          updated_at: 2000-01-23T04:56:07.000+00:00
           invitations:
           - href: href
           - href: href
@@ -20396,7 +20414,7 @@ components:
             volumes:
             - href: href
             - href: href
-            created_at: 2000-01-23T04:56:07Z
+            created_at: 2000-01-23T04:56:07.000+00:00
             memberships:
             - href: href
             - href: href
@@ -20406,7 +20424,7 @@ components:
             ssh_keys:
             - href: href
             - href: href
-            updated_at: 2000-01-23T04:56:07Z
+            updated_at: 2000-01-23T04:56:07.000+00:00
             invitations:
             - href: href
             - href: href
@@ -20423,10 +20441,10 @@ components:
           href: href
           created_by:
             avatar_thumb_url: avatar_thumb_url
-            last_login_at: 2000-01-23T04:56:07Z
+            last_login_at: 2000-01-23T04:56:07.000+00:00
             max_projects: 1
             timezone: timezone
-            created_at: 2000-01-23T04:56:07Z
+            created_at: 2000-01-23T04:56:07.000+00:00
             last_name: last_name
             short_id: short_id
             fraud_score: fraud_score
@@ -20435,7 +20453,7 @@ components:
             - href: href
             full_name: full_name
             avatar_url: avatar_url
-            updated_at: 2000-01-23T04:56:07Z
+            updated_at: 2000-01-23T04:56:07.000+00:00
             phone_number: phone_number
             customdata: "{}"
             href: href
@@ -20453,9 +20471,9 @@ components:
         - tags
         metal_gateway:
           gateway_address: 10.1.2.1/27
-          updated_at: 2000-01-23T04:56:07Z
+          updated_at: 2000-01-23T04:56:07.000+00:00
           vlan: 1001
-          created_at: 2000-01-23T04:56:07Z
+          created_at: 2000-01-23T04:56:07.000+00:00
           href: href
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           state: ready
@@ -20544,7 +20562,7 @@ components:
     VrfIpReservationList:
       example:
         ip_addresses:
-        - created_at: 2000-01-23T04:56:07Z
+        - created_at: 2000-01-23T04:56:07.000+00:00
           project:
             devices:
             - href: href
@@ -20552,7 +20570,7 @@ components:
             volumes:
             - href: href
             - href: href
-            created_at: 2000-01-23T04:56:07Z
+            created_at: 2000-01-23T04:56:07.000+00:00
             memberships:
             - href: href
             - href: href
@@ -20562,7 +20580,7 @@ components:
             ssh_keys:
             - href: href
             - href: href
-            updated_at: 2000-01-23T04:56:07Z
+            updated_at: 2000-01-23T04:56:07.000+00:00
             invitations:
             - href: href
             - href: href
@@ -20594,7 +20612,7 @@ components:
               volumes:
               - href: href
               - href: href
-              created_at: 2000-01-23T04:56:07Z
+              created_at: 2000-01-23T04:56:07.000+00:00
               memberships:
               - href: href
               - href: href
@@ -20604,7 +20622,7 @@ components:
               ssh_keys:
               - href: href
               - href: href
-              updated_at: 2000-01-23T04:56:07Z
+              updated_at: 2000-01-23T04:56:07.000+00:00
               invitations:
               - href: href
               - href: href
@@ -20621,10 +20639,10 @@ components:
             href: href
             created_by:
               avatar_thumb_url: avatar_thumb_url
-              last_login_at: 2000-01-23T04:56:07Z
+              last_login_at: 2000-01-23T04:56:07.000+00:00
               max_projects: 1
               timezone: timezone
-              created_at: 2000-01-23T04:56:07Z
+              created_at: 2000-01-23T04:56:07.000+00:00
               last_name: last_name
               short_id: short_id
               fraud_score: fraud_score
@@ -20633,7 +20651,7 @@ components:
               - href: href
               full_name: full_name
               avatar_url: avatar_url
-              updated_at: 2000-01-23T04:56:07Z
+              updated_at: 2000-01-23T04:56:07.000+00:00
               phone_number: phone_number
               customdata: "{}"
               href: href
@@ -20651,9 +20669,9 @@ components:
           - tags
           metal_gateway:
             gateway_address: 10.1.2.1/27
-            updated_at: 2000-01-23T04:56:07Z
+            updated_at: 2000-01-23T04:56:07.000+00:00
             vlan: 1001
-            created_at: 2000-01-23T04:56:07Z
+            created_at: 2000-01-23T04:56:07.000+00:00
             href: href
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             state: ready
@@ -20664,7 +20682,7 @@ components:
           href: href
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           state: state
-        - created_at: 2000-01-23T04:56:07Z
+        - created_at: 2000-01-23T04:56:07.000+00:00
           project:
             devices:
             - href: href
@@ -20672,7 +20690,7 @@ components:
             volumes:
             - href: href
             - href: href
-            created_at: 2000-01-23T04:56:07Z
+            created_at: 2000-01-23T04:56:07.000+00:00
             memberships:
             - href: href
             - href: href
@@ -20682,7 +20700,7 @@ components:
             ssh_keys:
             - href: href
             - href: href
-            updated_at: 2000-01-23T04:56:07Z
+            updated_at: 2000-01-23T04:56:07.000+00:00
             invitations:
             - href: href
             - href: href
@@ -20714,7 +20732,7 @@ components:
               volumes:
               - href: href
               - href: href
-              created_at: 2000-01-23T04:56:07Z
+              created_at: 2000-01-23T04:56:07.000+00:00
               memberships:
               - href: href
               - href: href
@@ -20724,7 +20742,7 @@ components:
               ssh_keys:
               - href: href
               - href: href
-              updated_at: 2000-01-23T04:56:07Z
+              updated_at: 2000-01-23T04:56:07.000+00:00
               invitations:
               - href: href
               - href: href
@@ -20741,10 +20759,10 @@ components:
             href: href
             created_by:
               avatar_thumb_url: avatar_thumb_url
-              last_login_at: 2000-01-23T04:56:07Z
+              last_login_at: 2000-01-23T04:56:07.000+00:00
               max_projects: 1
               timezone: timezone
-              created_at: 2000-01-23T04:56:07Z
+              created_at: 2000-01-23T04:56:07.000+00:00
               last_name: last_name
               short_id: short_id
               fraud_score: fraud_score
@@ -20753,7 +20771,7 @@ components:
               - href: href
               full_name: full_name
               avatar_url: avatar_url
-              updated_at: 2000-01-23T04:56:07Z
+              updated_at: 2000-01-23T04:56:07.000+00:00
               phone_number: phone_number
               customdata: "{}"
               href: href
@@ -20771,9 +20789,9 @@ components:
           - tags
           metal_gateway:
             gateway_address: 10.1.2.1/27
-            updated_at: 2000-01-23T04:56:07Z
+            updated_at: 2000-01-23T04:56:07.000+00:00
             vlan: 1001
-            created_at: 2000-01-23T04:56:07Z
+            created_at: 2000-01-23T04:56:07.000+00:00
             href: href
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             state: ready
@@ -20811,7 +20829,7 @@ components:
             volumes:
             - href: href
             - href: href
-            created_at: 2000-01-23T04:56:07Z
+            created_at: 2000-01-23T04:56:07.000+00:00
             memberships:
             - href: href
             - href: href
@@ -20821,7 +20839,7 @@ components:
             ssh_keys:
             - href: href
             - href: href
-            updated_at: 2000-01-23T04:56:07Z
+            updated_at: 2000-01-23T04:56:07.000+00:00
             invitations:
             - href: href
             - href: href
@@ -20838,10 +20856,10 @@ components:
           href: href
           created_by:
             avatar_thumb_url: avatar_thumb_url
-            last_login_at: 2000-01-23T04:56:07Z
+            last_login_at: 2000-01-23T04:56:07.000+00:00
             max_projects: 1
             timezone: timezone
-            created_at: 2000-01-23T04:56:07Z
+            created_at: 2000-01-23T04:56:07.000+00:00
             last_name: last_name
             short_id: short_id
             fraud_score: fraud_score
@@ -20850,7 +20868,7 @@ components:
             - href: href
             full_name: full_name
             avatar_url: avatar_url
-            updated_at: 2000-01-23T04:56:07Z
+            updated_at: 2000-01-23T04:56:07.000+00:00
             phone_number: phone_number
             customdata: "{}"
             href: href
@@ -20877,7 +20895,7 @@ components:
             volumes:
             - href: href
             - href: href
-            created_at: 2000-01-23T04:56:07Z
+            created_at: 2000-01-23T04:56:07.000+00:00
             memberships:
             - href: href
             - href: href
@@ -20887,7 +20905,7 @@ components:
             ssh_keys:
             - href: href
             - href: href
-            updated_at: 2000-01-23T04:56:07Z
+            updated_at: 2000-01-23T04:56:07.000+00:00
             invitations:
             - href: href
             - href: href
@@ -20904,10 +20922,10 @@ components:
           href: href
           created_by:
             avatar_thumb_url: avatar_thumb_url
-            last_login_at: 2000-01-23T04:56:07Z
+            last_login_at: 2000-01-23T04:56:07.000+00:00
             max_projects: 1
             timezone: timezone
-            created_at: 2000-01-23T04:56:07Z
+            created_at: 2000-01-23T04:56:07.000+00:00
             last_name: last_name
             short_id: short_id
             fraud_score: fraud_score
@@ -20916,7 +20934,7 @@ components:
             - href: href
             full_name: full_name
             avatar_url: avatar_url
-            updated_at: 2000-01-23T04:56:07Z
+            updated_at: 2000-01-23T04:56:07.000+00:00
             phone_number: phone_number
             customdata: "{}"
             href: href
@@ -21384,27 +21402,23 @@ components:
           example: false
           type: boolean
       type: object
-    DeviceCreateInFacilityInput_allOf:
-      properties:
-        facility:
-          $ref: '#/components/schemas/DeviceCreateInFacilityInput_allOf_facility'
-      required:
-      - facility
-      type: object
-      example: null
-    DeviceCreateInMetroInput_allOf:
-      properties:
-        metro:
-          description: |-
-            Metro code or ID of where the instance should be provisioned in.
-
-            Either metro or facility must be provided.
-          example: sv
+    FacilityInput_facility:
+      anyOf:
+      - example:
+        - sv15
+        items:
           type: string
-      required:
-      - metro
-      type: object
-      example: null
+        type: array
+      - example: any
+        type: string
+      description: |-
+        The datacenter where the device should be created.
+
+        Either metro or facility must be provided.
+
+        The API will accept either a single facility `{ "facility": "f1" }`, or it can be instructed to create the device in the best available datacenter `{ "facility": "any" }`.
+
+        Additionally it is possible to set a prioritized location selection. For example `{ "facility": ["f3", "f2", "any"] }` can be used to prioritize `f3` and then `f2` before accepting `any` facility. If none of the facilities provided have availability for the requested device the request will fail.
     IPAssignment_metro:
       allOf:
       - $ref: '#/components/schemas/Metro'
@@ -21711,7 +21725,7 @@ components:
         hostnames:
         - hostnames
         - hostnames
-        termination_time: 2000-01-23T04:56:07Z
+        termination_time: 2000-01-23T04:56:07.000+00:00
         project_ssh_keys:
         - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -21788,23 +21802,6 @@ components:
       anyOf:
       - $ref: '#/components/schemas/VirtualCircuit'
       - $ref: '#/components/schemas/VrfVirtualCircuit'
-    DeviceCreateInFacilityInput_allOf_facility:
-      anyOf:
-      - example:
-        - sv15
-        items:
-          type: string
-        type: array
-      - example: any
-        type: string
-      description: |-
-        The datacenter where the device should be created.
-
-        Either metro or facility must be provided.
-
-        The API will accept either a single facility `{ "facility": "f1" }`, or it can be instructed to create the device in the best available datacenter `{ "facility": "any" }`.
-
-        Additionally it is possible to set a prioritized location selection. For example `{ "facility": ["f3", "f2", "any"] }` can be used to prioritize `f3` and then `f2` before accepting `any` facility. If none of the facilities provided have availability for the requested device the request will fail.
   securitySchemes:
     x_auth_token:
       description: |

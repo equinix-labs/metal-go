@@ -18,7 +18,7 @@ import (
 
 // DeviceCreateInMetroInput struct for DeviceCreateInMetroInput
 type DeviceCreateInMetroInput struct {
-	// Metro code or ID of where the instance should be provisioned in.  Either metro or facility must be provided.
+	// Metro code or ID of where the instance should be provisioned in. Either metro or facility must be provided.
 	Metro string `json:"metro"`
 	// When true, devices with a `custom_ipxe` OS will always boot to iPXE. The default setting of false ensures that iPXE will be used on only the first boot.
 	AlwaysPxe *bool `json:"always_pxe,omitempty"`

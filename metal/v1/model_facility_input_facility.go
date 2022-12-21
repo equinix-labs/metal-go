@@ -13,96 +13,92 @@ package v1
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
-// DeviceCreateInMetroInputAllOf struct for DeviceCreateInMetroInputAllOf
-type DeviceCreateInMetroInputAllOf struct {
-	// Metro code or ID of where the instance should be provisioned in.  Either metro or facility must be provided.
-	Metro string `json:"metro"`
+// FacilityInputFacility The datacenter where the device should be created.  Either metro or facility must be provided.  The API will accept either a single facility `{ \"facility\": \"f1\" }`, or it can be instructed to create the device in the best available datacenter `{ \"facility\": \"any\" }`.  Additionally it is possible to set a prioritized location selection. For example `{ \"facility\": [\"f3\", \"f2\", \"any\"] }` can be used to prioritize `f3` and then `f2` before accepting `any` facility. If none of the facilities provided have availability for the requested device the request will fail.
+type FacilityInputFacility struct {
+	ArrayOfString *[]string
+	String        *string
 }
 
-// NewDeviceCreateInMetroInputAllOf instantiates a new DeviceCreateInMetroInputAllOf object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewDeviceCreateInMetroInputAllOf(metro string) *DeviceCreateInMetroInputAllOf {
-	this := DeviceCreateInMetroInputAllOf{}
-	this.Metro = metro
-	return &this
-}
-
-// NewDeviceCreateInMetroInputAllOfWithDefaults instantiates a new DeviceCreateInMetroInputAllOf object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewDeviceCreateInMetroInputAllOfWithDefaults() *DeviceCreateInMetroInputAllOf {
-	this := DeviceCreateInMetroInputAllOf{}
-	return &this
-}
-
-// GetMetro returns the Metro field value
-func (o *DeviceCreateInMetroInputAllOf) GetMetro() string {
-	if o == nil {
-		var ret string
-		return ret
+// Unmarshal JSON data into any of the pointers in the struct
+func (dst *FacilityInputFacility) UnmarshalJSON(data []byte) error {
+	var err error
+	// try to unmarshal JSON data into []string
+	err = json.Unmarshal(data, &dst.ArrayOfString)
+	if err == nil {
+		jsonArrayOfString, _ := json.Marshal(dst.ArrayOfString)
+		if string(jsonArrayOfString) == "{}" { // empty struct
+			dst.ArrayOfString = nil
+		} else {
+			return nil // data stored in dst.ArrayOfString, return on the first match
+		}
+	} else {
+		dst.ArrayOfString = nil
 	}
 
-	return o.Metro
-}
-
-// GetMetroOk returns a tuple with the Metro field value
-// and a boolean to check if the value has been set.
-func (o *DeviceCreateInMetroInputAllOf) GetMetroOk() (*string, bool) {
-	if o == nil {
-		return nil, false
+	// try to unmarshal JSON data into string
+	err = json.Unmarshal(data, &dst.String)
+	if err == nil {
+		jsonString, _ := json.Marshal(dst.String)
+		if string(jsonString) == "{}" { // empty struct
+			dst.String = nil
+		} else {
+			return nil // data stored in dst.String, return on the first match
+		}
+	} else {
+		dst.String = nil
 	}
-	return &o.Metro, true
+
+	return fmt.Errorf("data failed to match schemas in anyOf(FacilityInputFacility)")
 }
 
-// SetMetro sets field value
-func (o *DeviceCreateInMetroInputAllOf) SetMetro(v string) {
-	o.Metro = v
-}
-
-func (o DeviceCreateInMetroInputAllOf) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["metro"] = o.Metro
+// Marshal data from the first non-nil pointers in the struct to JSON
+func (src *FacilityInputFacility) MarshalJSON() ([]byte, error) {
+	if src.ArrayOfString != nil {
+		return json.Marshal(&src.ArrayOfString)
 	}
-	return json.Marshal(toSerialize)
+
+	if src.String != nil {
+		return json.Marshal(&src.String)
+	}
+
+	return nil, nil // no data in anyOf schemas
 }
 
-type NullableDeviceCreateInMetroInputAllOf struct {
-	value *DeviceCreateInMetroInputAllOf
+type NullableFacilityInputFacility struct {
+	value *FacilityInputFacility
 	isSet bool
 }
 
-func (v NullableDeviceCreateInMetroInputAllOf) Get() *DeviceCreateInMetroInputAllOf {
+func (v NullableFacilityInputFacility) Get() *FacilityInputFacility {
 	return v.value
 }
 
-func (v *NullableDeviceCreateInMetroInputAllOf) Set(val *DeviceCreateInMetroInputAllOf) {
+func (v *NullableFacilityInputFacility) Set(val *FacilityInputFacility) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableDeviceCreateInMetroInputAllOf) IsSet() bool {
+func (v NullableFacilityInputFacility) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableDeviceCreateInMetroInputAllOf) Unset() {
+func (v *NullableFacilityInputFacility) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableDeviceCreateInMetroInputAllOf(val *DeviceCreateInMetroInputAllOf) *NullableDeviceCreateInMetroInputAllOf {
-	return &NullableDeviceCreateInMetroInputAllOf{value: val, isSet: true}
+func NewNullableFacilityInputFacility(val *FacilityInputFacility) *NullableFacilityInputFacility {
+	return &NullableFacilityInputFacility{value: val, isSet: true}
 }
 
-func (v NullableDeviceCreateInMetroInputAllOf) MarshalJSON() ([]byte, error) {
+func (v NullableFacilityInputFacility) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableDeviceCreateInMetroInputAllOf) UnmarshalJSON(src []byte) error {
+func (v *NullableFacilityInputFacility) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

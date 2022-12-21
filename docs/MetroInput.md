@@ -1,46 +1,46 @@
-# DeviceCreateInMetroInputAllOf
+# MetroInput
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Metro** | **string** | Metro code or ID of where the instance should be provisioned in.  Either metro or facility must be provided. | 
+**Metro** | **string** | Metro code or ID of where the instance should be provisioned in. Either metro or facility must be provided. | 
 
 ## Methods
 
-### NewDeviceCreateInMetroInputAllOf
+### NewMetroInput
 
-`func NewDeviceCreateInMetroInputAllOf(metro string, ) *DeviceCreateInMetroInputAllOf`
+`func NewMetroInput(metro string, ) *MetroInput`
 
-NewDeviceCreateInMetroInputAllOf instantiates a new DeviceCreateInMetroInputAllOf object
+NewMetroInput instantiates a new MetroInput object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewDeviceCreateInMetroInputAllOfWithDefaults
+### NewMetroInputWithDefaults
 
-`func NewDeviceCreateInMetroInputAllOfWithDefaults() *DeviceCreateInMetroInputAllOf`
+`func NewMetroInputWithDefaults() *MetroInput`
 
-NewDeviceCreateInMetroInputAllOfWithDefaults instantiates a new DeviceCreateInMetroInputAllOf object
+NewMetroInputWithDefaults instantiates a new MetroInput object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetMetro
 
-`func (o *DeviceCreateInMetroInputAllOf) GetMetro() string`
+`func (o *MetroInput) GetMetro() string`
 
 GetMetro returns the Metro field if non-nil, zero value otherwise.
 
 ### GetMetroOk
 
-`func (o *DeviceCreateInMetroInputAllOf) GetMetroOk() (*string, bool)`
+`func (o *MetroInput) GetMetroOk() (*string, bool)`
 
 GetMetroOk returns a tuple with the Metro field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMetro
 
-`func (o *DeviceCreateInMetroInputAllOf) SetMetro(v string)`
+`func (o *MetroInput) SetMetro(v string)`
 
 SetMetro sets Metro field to given value.
 

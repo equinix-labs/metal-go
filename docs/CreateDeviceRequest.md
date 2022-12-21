@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Metro** | **string** | Metro code or ID of where the instance should be provisioned in.  Either metro or facility must be provided. | 
+**Metro** | **string** | Metro code or ID of where the instance should be provisioned in. Either metro or facility must be provided. | 
 **AlwaysPxe** | Pointer to **bool** | When true, devices with a &#x60;custom_ipxe&#x60; OS will always boot to iPXE. The default setting of false ensures that iPXE will be used on only the first boot. | [optional] [default to false]
 **BillingCycle** | Pointer to **string** | The billing cycle of the device. | [optional] 
 **Customdata** | Pointer to **map[string]interface{}** | Customdata is an arbitrary JSON value that can be accessed via the metadata service. | [optional] [default to {}]
@@ -28,13 +28,13 @@ Name | Type | Description | Notes
 **TerminationTime** | Pointer to **time.Time** |  | [optional] 
 **UserSshKeys** | Pointer to **[]string** | A list of UUIDs identifying the users that should be authorized to access this device (typically via /root/.ssh/authorized_keys).  These keys will also appear in the device metadata.  The users must be members of the project or organization.  If no SSH keys are specified (&#x60;user_ssh_keys&#x60;, &#x60;project_ssh_keys&#x60;, and &#x60;ssh_keys&#x60; are all empty lists or omitted), all parent project keys, parent project members keys and organization members keys will be included. This behaviour can be changed with &#39;no_ssh_keys&#39; option to omit any SSH key being added.  | [optional] 
 **Userdata** | Pointer to **string** | The userdata presented in the metadata service for this device.  Userdata is fetched and interpreted by the operating system installed on the device. Acceptable formats are determined by the operating system, with the exception of a special iPXE enabling syntax which is handled before the operating system starts.  See [Server User Data](https://metal.equinix.com/developers/docs/servers/user-data/) and [Provisioning with Custom iPXE](https://metal.equinix.com/developers/docs/operating-systems/custom-ipxe/#provisioning-with-custom-ipxe) for more details. | [optional] 
-**Facility** | [**DeviceCreateInFacilityInputAllOfFacility**](DeviceCreateInFacilityInputAllOfFacility.md) |  | 
+**Facility** | [**FacilityInputFacility**](FacilityInputFacility.md) |  | 
 
 ## Methods
 
 ### NewCreateDeviceRequest
 
-`func NewCreateDeviceRequest(metro string, operatingSystem string, plan string, facility DeviceCreateInFacilityInputAllOfFacility, ) *CreateDeviceRequest`
+`func NewCreateDeviceRequest(metro string, operatingSystem string, plan string, facility FacilityInputFacility, ) *CreateDeviceRequest`
 
 NewCreateDeviceRequest instantiates a new CreateDeviceRequest object
 This constructor will assign default values to properties that have it defined,
@@ -636,20 +636,20 @@ HasUserdata returns a boolean if a field has been set.
 
 ### GetFacility
 
-`func (o *CreateDeviceRequest) GetFacility() DeviceCreateInFacilityInputAllOfFacility`
+`func (o *CreateDeviceRequest) GetFacility() FacilityInputFacility`
 
 GetFacility returns the Facility field if non-nil, zero value otherwise.
 
 ### GetFacilityOk
 
-`func (o *CreateDeviceRequest) GetFacilityOk() (*DeviceCreateInFacilityInputAllOfFacility, bool)`
+`func (o *CreateDeviceRequest) GetFacilityOk() (*FacilityInputFacility, bool)`
 
 GetFacilityOk returns a tuple with the Facility field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFacility
 
-`func (o *CreateDeviceRequest) SetFacility(v DeviceCreateInFacilityInputAllOfFacility)`
+`func (o *CreateDeviceRequest) SetFacility(v FacilityInputFacility)`
 
 SetFacility sets Facility field to given value.
 

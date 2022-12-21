@@ -38,9 +38,9 @@ AcceptTransferRequest Accept a transfer request
 
 Accept a transfer request.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Transfer request UUID
- @return ApiAcceptTransferRequestRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Transfer request UUID
+	@return ApiAcceptTransferRequestRequest
 */
 func (a *TransferRequestsApiService) AcceptTransferRequest(ctx context.Context, id string) ApiAcceptTransferRequestRequest {
 	return ApiAcceptTransferRequestRequest{
@@ -176,9 +176,9 @@ DeclineTransferRequest Decline a transfer request
 
 Decline a transfer request.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Transfer request UUID
- @return ApiDeclineTransferRequestRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Transfer request UUID
+	@return ApiDeclineTransferRequestRequest
 */
 func (a *TransferRequestsApiService) DeclineTransferRequest(ctx context.Context, id string) ApiDeclineTransferRequestRequest {
 	return ApiDeclineTransferRequestRequest{
@@ -328,9 +328,9 @@ FindTransferRequestById View a transfer request
 
 Returns a single transfer request.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Transfer request UUID
- @return ApiFindTransferRequestByIdRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Transfer request UUID
+	@return ApiFindTransferRequestByIdRequest
 */
 func (a *TransferRequestsApiService) FindTransferRequestById(ctx context.Context, id string) ApiFindTransferRequestByIdRequest {
 	return ApiFindTransferRequestByIdRequest{
@@ -341,7 +341,8 @@ func (a *TransferRequestsApiService) FindTransferRequestById(ctx context.Context
 }
 
 // Execute executes the request
-//  @return TransferRequest
+//
+//	@return TransferRequest
 func (a *TransferRequestsApiService) FindTransferRequestByIdExecute(r ApiFindTransferRequestByIdRequest) (*TransferRequest, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet

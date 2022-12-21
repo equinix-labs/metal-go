@@ -44,8 +44,8 @@ CreateAPIKey Create an API key
 
 Creates a API key for the current user.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiCreateAPIKeyRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiCreateAPIKeyRequest
 */
 func (a *AuthenticationApiService) CreateAPIKey(ctx context.Context) ApiCreateAPIKeyRequest {
 	return ApiCreateAPIKeyRequest{
@@ -55,7 +55,8 @@ func (a *AuthenticationApiService) CreateAPIKey(ctx context.Context) ApiCreateAP
 }
 
 // Execute executes the request
-//  @return AuthToken
+//
+//	@return AuthToken
 func (a *AuthenticationApiService) CreateAPIKeyExecute(r ApiCreateAPIKeyRequest) (*AuthToken, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -202,9 +203,9 @@ CreateProjectAPIKey Create an API key for a project.
 
 Creates an API key for a project.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Project UUID
- @return ApiCreateProjectAPIKeyRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Project UUID
+	@return ApiCreateProjectAPIKeyRequest
 */
 func (a *AuthenticationApiService) CreateProjectAPIKey(ctx context.Context, id string) ApiCreateProjectAPIKeyRequest {
 	return ApiCreateProjectAPIKeyRequest{
@@ -215,7 +216,8 @@ func (a *AuthenticationApiService) CreateProjectAPIKey(ctx context.Context, id s
 }
 
 // Execute executes the request
-//  @return AuthToken
+//
+//	@return AuthToken
 func (a *AuthenticationApiService) CreateProjectAPIKeyExecute(r ApiCreateProjectAPIKeyRequest) (*AuthToken, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -356,9 +358,9 @@ DeleteAPIKey Delete the API key
 
 Deletes the API key.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id API Key UUID
- @return ApiDeleteAPIKeyRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id API Key UUID
+	@return ApiDeleteAPIKeyRequest
 */
 func (a *AuthenticationApiService) DeleteAPIKey(ctx context.Context, id string) ApiDeleteAPIKeyRequest {
 	return ApiDeleteAPIKeyRequest{
@@ -483,9 +485,9 @@ DeleteUserAPIKey Delete the API key
 
 Deletes the current user API key.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id API Key UUID
- @return ApiDeleteUserAPIKeyRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id API Key UUID
+	@return ApiDeleteUserAPIKeyRequest
 */
 func (a *AuthenticationApiService) DeleteUserAPIKey(ctx context.Context, id string) ApiDeleteUserAPIKeyRequest {
 	return ApiDeleteUserAPIKeyRequest{
@@ -623,8 +625,8 @@ FindAPIKeys Retrieve all user API keys
 
 Returns all API keys for the current user.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiFindAPIKeysRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiFindAPIKeysRequest
 */
 func (a *AuthenticationApiService) FindAPIKeys(ctx context.Context) ApiFindAPIKeysRequest {
 	return ApiFindAPIKeysRequest{
@@ -634,7 +636,8 @@ func (a *AuthenticationApiService) FindAPIKeys(ctx context.Context) ApiFindAPIKe
 }
 
 // Execute executes the request
-//  @return AuthTokenList
+//
+//	@return AuthTokenList
 func (a *AuthenticationApiService) FindAPIKeysExecute(r ApiFindAPIKeysRequest) (*AuthTokenList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -778,9 +781,9 @@ FindProjectAPIKeys Retrieve all API keys for the project.
 
 Returns all API keys for a specific project.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Project UUID
- @return ApiFindProjectAPIKeysRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Project UUID
+	@return ApiFindProjectAPIKeysRequest
 */
 func (a *AuthenticationApiService) FindProjectAPIKeys(ctx context.Context, id string) ApiFindProjectAPIKeysRequest {
 	return ApiFindProjectAPIKeysRequest{
@@ -791,7 +794,8 @@ func (a *AuthenticationApiService) FindProjectAPIKeys(ctx context.Context, id st
 }
 
 // Execute executes the request
-//  @return AuthTokenList
+//
+//	@return AuthTokenList
 func (a *AuthenticationApiService) FindProjectAPIKeysExecute(r ApiFindProjectAPIKeysRequest) (*AuthTokenList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet

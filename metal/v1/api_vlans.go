@@ -45,9 +45,9 @@ CreateVirtualNetwork Create a virtual network
 
 Creates an virtual network.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Project UUID
- @return ApiCreateVirtualNetworkRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Project UUID
+	@return ApiCreateVirtualNetworkRequest
 */
 func (a *VLANsApiService) CreateVirtualNetwork(ctx context.Context, id string) ApiCreateVirtualNetworkRequest {
 	return ApiCreateVirtualNetworkRequest{
@@ -58,7 +58,8 @@ func (a *VLANsApiService) CreateVirtualNetwork(ctx context.Context, id string) A
 }
 
 // Execute executes the request
-//  @return VirtualNetwork
+//
+//	@return VirtualNetwork
 func (a *VLANsApiService) CreateVirtualNetworkExecute(r ApiCreateVirtualNetworkRequest) (*VirtualNetwork, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -210,9 +211,9 @@ DeleteVirtualNetwork Delete a virtual network
 
 Deletes a virtual network.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Virtual Network UUID
- @return ApiDeleteVirtualNetworkRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Virtual Network UUID
+	@return ApiDeleteVirtualNetworkRequest
 */
 func (a *VLANsApiService) DeleteVirtualNetwork(ctx context.Context, id string) ApiDeleteVirtualNetworkRequest {
 	return ApiDeleteVirtualNetworkRequest{
@@ -223,7 +224,8 @@ func (a *VLANsApiService) DeleteVirtualNetwork(ctx context.Context, id string) A
 }
 
 // Execute executes the request
-//  @return VirtualNetwork
+//
+//	@return VirtualNetwork
 func (a *VLANsApiService) DeleteVirtualNetworkExecute(r ApiDeleteVirtualNetworkRequest) (*VirtualNetwork, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodDelete
@@ -398,9 +400,9 @@ FindVirtualNetworks Retrieve all virtual networks
 
 Provides a list of virtual networks for a single project.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Project UUID
- @return ApiFindVirtualNetworksRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Project UUID
+	@return ApiFindVirtualNetworksRequest
 */
 func (a *VLANsApiService) FindVirtualNetworks(ctx context.Context, id string) ApiFindVirtualNetworksRequest {
 	return ApiFindVirtualNetworksRequest{
@@ -411,7 +413,8 @@ func (a *VLANsApiService) FindVirtualNetworks(ctx context.Context, id string) Ap
 }
 
 // Execute executes the request
-//  @return VirtualNetworkList
+//
+//	@return VirtualNetworkList
 func (a *VLANsApiService) FindVirtualNetworksExecute(r ApiFindVirtualNetworksRequest) (*VirtualNetworkList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -559,9 +562,9 @@ GetVirtualNetwork Get a virtual network
 
 Get a virtual network.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Virtual Network UUID
- @return ApiGetVirtualNetworkRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Virtual Network UUID
+	@return ApiGetVirtualNetworkRequest
 */
 func (a *VLANsApiService) GetVirtualNetwork(ctx context.Context, id string) ApiGetVirtualNetworkRequest {
 	return ApiGetVirtualNetworkRequest{
@@ -572,7 +575,8 @@ func (a *VLANsApiService) GetVirtualNetwork(ctx context.Context, id string) ApiG
 }
 
 // Execute executes the request
-//  @return VirtualNetwork
+//
+//	@return VirtualNetwork
 func (a *VLANsApiService) GetVirtualNetworkExecute(r ApiGetVirtualNetworkRequest) (*VirtualNetwork, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
