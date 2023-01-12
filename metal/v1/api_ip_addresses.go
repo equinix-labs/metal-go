@@ -39,9 +39,9 @@ DeleteIPAddress Unassign an ip address
 
 Note! This call can be used to un-assign an IP assignment or delete an IP reservation. Un-assign an IP address record. Use the assignment UUID you get after attaching the IP. This will remove the relationship between an IP and the device and will make the IP address available to be assigned to another device. Delete and IP reservation. Use the reservation UUID you get after adding the IP to the project. This will permanently delete the IP block reservation from the project.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id IP Address UUID
-	@return ApiDeleteIPAddressRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id IP Address UUID
+ @return ApiDeleteIPAddressRequest
 */
 func (a *IPAddressesApiService) DeleteIPAddress(ctx context.Context, id string) ApiDeleteIPAddressRequest {
 	return ApiDeleteIPAddressRequest{
@@ -191,9 +191,9 @@ FindIPAddressById Retrieve an ip address
 
 Returns a single ip address if the user has access.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id IP Address UUID
-	@return ApiFindIPAddressByIdRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id IP Address UUID
+ @return ApiFindIPAddressByIdRequest
 */
 func (a *IPAddressesApiService) FindIPAddressById(ctx context.Context, id string) ApiFindIPAddressByIdRequest {
 	return ApiFindIPAddressByIdRequest{
@@ -204,8 +204,7 @@ func (a *IPAddressesApiService) FindIPAddressById(ctx context.Context, id string
 }
 
 // Execute executes the request
-//
-//	@return FindIPAddressById200Response
+//  @return FindIPAddressById200Response
 func (a *IPAddressesApiService) FindIPAddressByIdExecute(r ApiFindIPAddressByIdRequest) (*FindIPAddressById200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -347,9 +346,9 @@ FindIPAddressCustomdata Retrieve the custom metadata of an IP Reservation or IP 
 
 Provides the custom metadata stored for this IP Reservation or IP Assignment in json format
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id Ip Reservation UUID
-	@return ApiFindIPAddressCustomdataRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id Ip Reservation UUID
+ @return ApiFindIPAddressCustomdataRequest
 */
 func (a *IPAddressesApiService) FindIPAddressCustomdata(ctx context.Context, id string) ApiFindIPAddressCustomdataRequest {
 	return ApiFindIPAddressCustomdataRequest{
@@ -492,9 +491,9 @@ FindIPAvailabilities Retrieve all available subnets of a particular reservation
 
 Provides a list of IP resevations for a single project.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id IP Reservation UUID
-	@return ApiFindIPAvailabilitiesRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id IP Reservation UUID
+ @return ApiFindIPAvailabilitiesRequest
 */
 func (a *IPAddressesApiService) FindIPAvailabilities(ctx context.Context, id string) ApiFindIPAvailabilitiesRequest {
 	return ApiFindIPAvailabilitiesRequest{
@@ -505,8 +504,7 @@ func (a *IPAddressesApiService) FindIPAvailabilities(ctx context.Context, id str
 }
 
 // Execute executes the request
-//
-//	@return IPAvailabilitiesList
+//  @return IPAvailabilitiesList
 func (a *IPAddressesApiService) FindIPAvailabilitiesExecute(r ApiFindIPAvailabilitiesRequest) (*IPAvailabilitiesList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -674,9 +672,9 @@ FindIPReservations Retrieve all ip reservations
 
 Provides a paginated list of IP reservations for a single project.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id Project UUID
-	@return ApiFindIPReservationsRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id Project UUID
+ @return ApiFindIPReservationsRequest
 */
 func (a *IPAddressesApiService) FindIPReservations(ctx context.Context, id string) ApiFindIPReservationsRequest {
 	return ApiFindIPReservationsRequest{
@@ -687,8 +685,7 @@ func (a *IPAddressesApiService) FindIPReservations(ctx context.Context, id strin
 }
 
 // Execute executes the request
-//
-//	@return IPReservationList
+//  @return IPReservationList
 func (a *IPAddressesApiService) FindIPReservationsExecute(r ApiFindIPReservationsRequest) (*IPReservationList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -851,9 +848,9 @@ RequestIPReservation Requesting IP reservations
 
 Request more IP space for a project in order to have additional IP addresses to assign to devices.  If the request is within the max quota, an IP reservation will be created. If the project will exceed its IP quota, a request will be submitted for review, and will return an IP Reservation with a `state` of `pending`. You can automatically have the request fail with HTTP status 422 instead of triggering the review process by providing the `fail_on_approval_required` parameter set to `true` in the request.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id Project UUID
-	@return ApiRequestIPReservationRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id Project UUID
+ @return ApiRequestIPReservationRequest
 */
 func (a *IPAddressesApiService) RequestIPReservation(ctx context.Context, id string) ApiRequestIPReservationRequest {
 	return ApiRequestIPReservationRequest{
@@ -864,8 +861,7 @@ func (a *IPAddressesApiService) RequestIPReservation(ctx context.Context, id str
 }
 
 // Execute executes the request
-//
-//	@return RequestIPReservation201Response
+//  @return RequestIPReservation201Response
 func (a *IPAddressesApiService) RequestIPReservationExecute(r ApiRequestIPReservationRequest) (*RequestIPReservation201Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -1031,9 +1027,9 @@ UpdateIPAddress Update an ip address
 
 Update details about an ip address
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id IP Address UUID
-	@return ApiUpdateIPAddressRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id IP Address UUID
+ @return ApiUpdateIPAddressRequest
 */
 func (a *IPAddressesApiService) UpdateIPAddress(ctx context.Context, id string) ApiUpdateIPAddressRequest {
 	return ApiUpdateIPAddressRequest{
@@ -1044,8 +1040,7 @@ func (a *IPAddressesApiService) UpdateIPAddress(ctx context.Context, id string) 
 }
 
 // Execute executes the request
-//
-//	@return FindIPAddressById200Response
+//  @return FindIPAddressById200Response
 func (a *IPAddressesApiService) UpdateIPAddressExecute(r ApiUpdateIPAddressRequest) (*FindIPAddressById200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPatch

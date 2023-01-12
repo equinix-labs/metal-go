@@ -36,8 +36,8 @@ DisableTfaApp Disable two factor authentication
 
 Disables two factor authentication.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiDisableTfaAppRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiDisableTfaAppRequest
 */
 func (a *TwoFactorAuthApiService) DisableTfaApp(ctx context.Context) ApiDisableTfaAppRequest {
 	return ApiDisableTfaAppRequest{
@@ -159,8 +159,8 @@ DisableTfaSms Disable two factor authentication
 
 Disables two factor authentication.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiDisableTfaSmsRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiDisableTfaSmsRequest
 */
 func (a *TwoFactorAuthApiService) DisableTfaSms(ctx context.Context) ApiDisableTfaSmsRequest {
 	return ApiDisableTfaSmsRequest{
@@ -282,8 +282,8 @@ EnableTfaApp Enable two factor auth using app
 
 Enables two factor authentication using authenticator app.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiEnableTfaAppRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiEnableTfaAppRequest
 */
 func (a *TwoFactorAuthApiService) EnableTfaApp(ctx context.Context) ApiEnableTfaAppRequest {
 	return ApiEnableTfaAppRequest{
@@ -394,8 +394,8 @@ EnableTfaSms Enable two factor auth using sms
 
 Enables two factor authentication with sms.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiEnableTfaSmsRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiEnableTfaSmsRequest
 */
 func (a *TwoFactorAuthApiService) EnableTfaSms(ctx context.Context) ApiEnableTfaSmsRequest {
 	return ApiEnableTfaSmsRequest{

@@ -46,9 +46,9 @@ CreateVrf Create a new VRF in the specified project
 
 Creates a new VRF in the specified project
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id Project UUID
-	@return ApiCreateVrfRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id Project UUID
+ @return ApiCreateVrfRequest
 */
 func (a *VRFsApiService) CreateVrf(ctx context.Context, id string) ApiCreateVrfRequest {
 	return ApiCreateVrfRequest{
@@ -59,8 +59,7 @@ func (a *VRFsApiService) CreateVrf(ctx context.Context, id string) ApiCreateVrfR
 }
 
 // Execute executes the request
-//
-//	@return Vrf
+//  @return Vrf
 func (a *VRFsApiService) CreateVrfExecute(r ApiCreateVrfRequest) (*Vrf, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -201,9 +200,9 @@ DeleteVrf Delete the VRF
 
 Deletes the VRF
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id VRF UUID
-	@return ApiDeleteVrfRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id VRF UUID
+ @return ApiDeleteVrfRequest
 */
 func (a *VRFsApiService) DeleteVrf(ctx context.Context, id string) ApiDeleteVrfRequest {
 	return ApiDeleteVrfRequest{
@@ -353,9 +352,9 @@ FindVrfById Retrieve a VRF
 
 Returns a single VRF resource
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id VRF UUID
-	@return ApiFindVrfByIdRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id VRF UUID
+ @return ApiFindVrfByIdRequest
 */
 func (a *VRFsApiService) FindVrfById(ctx context.Context, id string) ApiFindVrfByIdRequest {
 	return ApiFindVrfByIdRequest{
@@ -366,8 +365,7 @@ func (a *VRFsApiService) FindVrfById(ctx context.Context, id string) ApiFindVrfB
 }
 
 // Execute executes the request
-//
-//	@return Vrf
+//  @return Vrf
 func (a *VRFsApiService) FindVrfByIdExecute(r ApiFindVrfByIdRequest) (*Vrf, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -523,9 +521,9 @@ FindVrfIpReservations Retrieve all VRF IP Reservations in the VRF
 
 Returns the list of VRF IP Reservations for the VRF.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id VRF UUID
-	@return ApiFindVrfIpReservationsRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id VRF UUID
+ @return ApiFindVrfIpReservationsRequest
 */
 func (a *VRFsApiService) FindVrfIpReservations(ctx context.Context, id string) ApiFindVrfIpReservationsRequest {
 	return ApiFindVrfIpReservationsRequest{
@@ -536,8 +534,7 @@ func (a *VRFsApiService) FindVrfIpReservations(ctx context.Context, id string) A
 }
 
 // Execute executes the request
-//
-//	@return VrfIpReservationList
+//  @return VrfIpReservationList
 func (a *VRFsApiService) FindVrfIpReservationsExecute(r ApiFindVrfIpReservationsRequest) (*VrfIpReservationList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -705,9 +702,9 @@ FindVrfs Retrieve all VRFs in the project
 
 Returns the list of VRFs for a single project.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id Project UUID
-	@return ApiFindVrfsRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id Project UUID
+ @return ApiFindVrfsRequest
 */
 func (a *VRFsApiService) FindVrfs(ctx context.Context, id string) ApiFindVrfsRequest {
 	return ApiFindVrfsRequest{
@@ -718,8 +715,7 @@ func (a *VRFsApiService) FindVrfs(ctx context.Context, id string) ApiFindVrfsReq
 }
 
 // Execute executes the request
-//
-//	@return VrfList
+//  @return VrfList
 func (a *VRFsApiService) FindVrfsExecute(r ApiFindVrfsRequest) (*VrfList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -860,9 +856,9 @@ UpdateVrf Update the VRF
 
 Updates the VRF.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id VRF UUID
-	@return ApiUpdateVrfRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id VRF UUID
+ @return ApiUpdateVrfRequest
 */
 func (a *VRFsApiService) UpdateVrf(ctx context.Context, id string) ApiUpdateVrfRequest {
 	return ApiUpdateVrfRequest{
@@ -873,8 +869,7 @@ func (a *VRFsApiService) UpdateVrf(ctx context.Context, id string) ApiUpdateVrfR
 }
 
 // Execute executes the request
-//
-//	@return Vrf
+//  @return Vrf
 func (a *VRFsApiService) UpdateVrfExecute(r ApiUpdateVrfRequest) (*Vrf, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut

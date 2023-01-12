@@ -44,8 +44,8 @@ CreateEmail Create an email
 
 Add a new email address to the current user.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiCreateEmailRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiCreateEmailRequest
 */
 func (a *EmailsApiService) CreateEmail(ctx context.Context) ApiCreateEmailRequest {
 	return ApiCreateEmailRequest{
@@ -55,8 +55,7 @@ func (a *EmailsApiService) CreateEmail(ctx context.Context) ApiCreateEmailReques
 }
 
 // Execute executes the request
-//
-//	@return Email
+//  @return Email
 func (a *EmailsApiService) CreateEmailExecute(r ApiCreateEmailRequest) (*Email, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -185,9 +184,9 @@ DeleteEmail Delete the email
 
 Deletes the email.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id Email UUID
-	@return ApiDeleteEmailRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id Email UUID
+ @return ApiDeleteEmailRequest
 */
 func (a *EmailsApiService) DeleteEmail(ctx context.Context, id string) ApiDeleteEmailRequest {
 	return ApiDeleteEmailRequest{
@@ -337,9 +336,9 @@ FindEmailById Retrieve an email
 
 Provides one of the user’s emails.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id Email UUID
-	@return ApiFindEmailByIdRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id Email UUID
+ @return ApiFindEmailByIdRequest
 */
 func (a *EmailsApiService) FindEmailById(ctx context.Context, id string) ApiFindEmailByIdRequest {
 	return ApiFindEmailByIdRequest{
@@ -350,8 +349,7 @@ func (a *EmailsApiService) FindEmailById(ctx context.Context, id string) ApiFind
 }
 
 // Execute executes the request
-//
-//	@return Email
+//  @return Email
 func (a *EmailsApiService) FindEmailByIdExecute(r ApiFindEmailByIdRequest) (*Email, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -500,9 +498,9 @@ UpdateEmail Update the email
 
 Updates the email.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id Email UUID
-	@return ApiUpdateEmailRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id Email UUID
+ @return ApiUpdateEmailRequest
 */
 func (a *EmailsApiService) UpdateEmail(ctx context.Context, id string) ApiUpdateEmailRequest {
 	return ApiUpdateEmailRequest{
@@ -513,8 +511,7 @@ func (a *EmailsApiService) UpdateEmail(ctx context.Context, id string) ApiUpdate
 }
 
 // Execute executes the request
-//
-//	@return Email
+//  @return Email
 func (a *EmailsApiService) UpdateEmailExecute(r ApiUpdateEmailRequest) (*Email, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut

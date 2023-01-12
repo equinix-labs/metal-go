@@ -45,9 +45,9 @@ CreateBgpSession Create a BGP session
 
 Creates a BGP session.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id Device UUID
-	@return ApiCreateBgpSessionRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id Device UUID
+ @return ApiCreateBgpSessionRequest
 */
 func (a *DevicesApiService) CreateBgpSession(ctx context.Context, id string) ApiCreateBgpSessionRequest {
 	return ApiCreateBgpSessionRequest{
@@ -58,8 +58,7 @@ func (a *DevicesApiService) CreateBgpSession(ctx context.Context, id string) Api
 }
 
 // Execute executes the request
-//
-//	@return BgpSession
+//  @return BgpSession
 func (a *DevicesApiService) CreateBgpSessionExecute(r ApiCreateBgpSessionRequest) (*BgpSession, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -209,9 +208,9 @@ Creates a new device and provisions it in the specified location.
 
 Device type-specific options are accepted.  For example, `baremetal` devices accept `operating_system`, `hostname`, and `plan`. These parameters may not be accepted for other device types. The default device type is `baremetal`.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id Project UUID
-	@return ApiCreateDeviceRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id Project UUID
+ @return ApiCreateDeviceRequest
 */
 func (a *DevicesApiService) CreateDevice(ctx context.Context, id string) ApiCreateDeviceRequest {
 	return ApiCreateDeviceRequest{
@@ -222,8 +221,7 @@ func (a *DevicesApiService) CreateDevice(ctx context.Context, id string) ApiCrea
 }
 
 // Execute executes the request
-//
-//	@return Device
+//  @return Device
 func (a *DevicesApiService) CreateDeviceExecute(r ApiCreateDeviceRequest) (*Device, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -382,9 +380,9 @@ CreateIPAssignment Create an ip assignment
 
 Creates an ip assignment for a device.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id Device UUID
-	@return ApiCreateIPAssignmentRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id Device UUID
+ @return ApiCreateIPAssignmentRequest
 */
 func (a *DevicesApiService) CreateIPAssignment(ctx context.Context, id string) ApiCreateIPAssignmentRequest {
 	return ApiCreateIPAssignmentRequest{
@@ -395,8 +393,7 @@ func (a *DevicesApiService) CreateIPAssignment(ctx context.Context, id string) A
 }
 
 // Execute executes the request
-//
-//	@return IPAssignment
+//  @return IPAssignment
 func (a *DevicesApiService) CreateIPAssignmentExecute(r ApiCreateIPAssignmentRequest) (*IPAssignment, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -544,9 +541,9 @@ DeleteDevice Delete the device
 
 Deletes a device and deprovisions it in our datacenter.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id Device UUID
-	@return ApiDeleteDeviceRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id Device UUID
+ @return ApiDeleteDeviceRequest
 */
 func (a *DevicesApiService) DeleteDevice(ctx context.Context, id string) ApiDeleteDeviceRequest {
 	return ApiDeleteDeviceRequest{
@@ -696,9 +693,9 @@ FindBgpSessions Retrieve all BGP sessions
 
 Provides a listing of available BGP sessions for the device.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id Device UUID
-	@return ApiFindBgpSessionsRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id Device UUID
+ @return ApiFindBgpSessionsRequest
 */
 func (a *DevicesApiService) FindBgpSessions(ctx context.Context, id string) ApiFindBgpSessionsRequest {
 	return ApiFindBgpSessionsRequest{
@@ -709,8 +706,7 @@ func (a *DevicesApiService) FindBgpSessions(ctx context.Context, id string) ApiF
 }
 
 // Execute executes the request
-//
-//	@return BgpSessionList
+//  @return BgpSessionList
 func (a *DevicesApiService) FindBgpSessionsExecute(r ApiFindBgpSessionsRequest) (*BgpSessionList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -848,12 +844,11 @@ func (r ApiFindDeviceByIdRequest) Execute() (*Device, *http.Response, error) {
 FindDeviceById Retrieve a device
 
 Type-specific options (such as facility for baremetal devices) will be included as part of the main data structure.
+                         State value can be one of: active inactive queued or provisioning
 
-	                        State value can be one of: active inactive queued or provisioning
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id Device UUID
-	@return ApiFindDeviceByIdRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id Device UUID
+ @return ApiFindDeviceByIdRequest
 */
 func (a *DevicesApiService) FindDeviceById(ctx context.Context, id string) ApiFindDeviceByIdRequest {
 	return ApiFindDeviceByIdRequest{
@@ -864,8 +859,7 @@ func (a *DevicesApiService) FindDeviceById(ctx context.Context, id string) ApiFi
 }
 
 // Execute executes the request
-//
-//	@return Device
+//  @return Device
 func (a *DevicesApiService) FindDeviceByIdExecute(r ApiFindDeviceByIdRequest) (*Device, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -1007,9 +1001,9 @@ FindDeviceCustomdata Retrieve the custom metadata of an instance
 
 Provides the custom metadata stored for this instance in json format
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id Instance UUID
-	@return ApiFindDeviceCustomdataRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id Instance UUID
+ @return ApiFindDeviceCustomdataRequest
 */
 func (a *DevicesApiService) FindDeviceCustomdata(ctx context.Context, id string) ApiFindDeviceCustomdataRequest {
 	return ApiFindDeviceCustomdataRequest{
@@ -1145,9 +1139,9 @@ FindDeviceMetadataByID Retrieve metadata
 
 Retrieve device metadata
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id Device UUID
-	@return ApiFindDeviceMetadataByIDRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id Device UUID
+ @return ApiFindDeviceMetadataByIDRequest
 */
 func (a *DevicesApiService) FindDeviceMetadataByID(ctx context.Context, id string) ApiFindDeviceMetadataByIDRequest {
 	return ApiFindDeviceMetadataByIDRequest{
@@ -1158,8 +1152,7 @@ func (a *DevicesApiService) FindDeviceMetadataByID(ctx context.Context, id strin
 }
 
 // Execute executes the request
-//
-//	@return Metadata
+//  @return Metadata
 func (a *DevicesApiService) FindDeviceMetadataByIDExecute(r ApiFindDeviceMetadataByIDRequest) (*Metadata, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -1295,9 +1288,9 @@ FindDeviceUserdataByID Retrieve userdata
 
 Retrieve device userdata
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id Device UUID
-	@return ApiFindDeviceUserdataByIDRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id Device UUID
+ @return ApiFindDeviceUserdataByIDRequest
 */
 func (a *DevicesApiService) FindDeviceUserdataByID(ctx context.Context, id string) ApiFindDeviceUserdataByIDRequest {
 	return ApiFindDeviceUserdataByIDRequest{
@@ -1308,8 +1301,7 @@ func (a *DevicesApiService) FindDeviceUserdataByID(ctx context.Context, id strin
 }
 
 // Execute executes the request
-//
-//	@return Userdata
+//  @return Userdata
 func (a *DevicesApiService) FindDeviceUserdataByIDExecute(r ApiFindDeviceUserdataByIDRequest) (*Userdata, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -1446,10 +1438,10 @@ FindIPAssignmentCustomdata Retrieve the custom metadata of an IP Assignment
 
 Provides the custom metadata stored for this IP Assignment in json format
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param instanceId Instance UUID
-	@param id Ip Assignment UUID
-	@return ApiFindIPAssignmentCustomdataRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param instanceId Instance UUID
+ @param id Ip Assignment UUID
+ @return ApiFindIPAssignmentCustomdataRequest
 */
 func (a *DevicesApiService) FindIPAssignmentCustomdata(ctx context.Context, instanceId string, id string) ApiFindIPAssignmentCustomdataRequest {
 	return ApiFindIPAssignmentCustomdataRequest{
@@ -1601,9 +1593,9 @@ FindIPAssignments Retrieve all ip assignments
 
 Returns all ip assignments for a device.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id Device UUID
-	@return ApiFindIPAssignmentsRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id Device UUID
+ @return ApiFindIPAssignmentsRequest
 */
 func (a *DevicesApiService) FindIPAssignments(ctx context.Context, id string) ApiFindIPAssignmentsRequest {
 	return ApiFindIPAssignmentsRequest{
@@ -1614,8 +1606,7 @@ func (a *DevicesApiService) FindIPAssignments(ctx context.Context, id string) Ap
 }
 
 // Execute executes the request
-//
-//	@return IPAssignmentList
+//  @return IPAssignmentList
 func (a *DevicesApiService) FindIPAssignmentsExecute(r ApiFindIPAssignmentsRequest) (*IPAssignmentList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -1760,9 +1751,9 @@ FindInstanceBandwidth Retrieve an instance bandwidth
 
 Retrieve an instance bandwidth for a given period of time.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id Device UUID
-	@return ApiFindInstanceBandwidthRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id Device UUID
+ @return ApiFindInstanceBandwidthRequest
 */
 func (a *DevicesApiService) FindInstanceBandwidth(ctx context.Context, id string) ApiFindInstanceBandwidthRequest {
 	return ApiFindInstanceBandwidthRequest{
@@ -1958,9 +1949,9 @@ FindOrganizationDevices Retrieve all devices of an organization
 
 Provides a collection of devices for a given organization.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id Organization UUID
-	@return ApiFindOrganizationDevicesRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id Organization UUID
+ @return ApiFindOrganizationDevicesRequest
 */
 func (a *DevicesApiService) FindOrganizationDevices(ctx context.Context, id string) ApiFindOrganizationDevicesRequest {
 	return ApiFindOrganizationDevicesRequest{
@@ -1971,8 +1962,7 @@ func (a *DevicesApiService) FindOrganizationDevices(ctx context.Context, id stri
 }
 
 // Execute executes the request
-//
-//	@return DeviceList
+//  @return DeviceList
 func (a *DevicesApiService) FindOrganizationDevicesExecute(r ApiFindOrganizationDevicesRequest) (*DeviceList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -2198,9 +2188,9 @@ FindProjectDevices Retrieve all devices of a project
 
 Provides a collection of devices for a given project.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id Project UUID
-	@return ApiFindProjectDevicesRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id Project UUID
+ @return ApiFindProjectDevicesRequest
 */
 func (a *DevicesApiService) FindProjectDevices(ctx context.Context, id string) ApiFindProjectDevicesRequest {
 	return ApiFindProjectDevicesRequest{
@@ -2211,8 +2201,7 @@ func (a *DevicesApiService) FindProjectDevices(ctx context.Context, id string) A
 }
 
 // Execute executes the request
-//
-//	@return DeviceList
+//  @return DeviceList
 func (a *DevicesApiService) FindProjectDevicesExecute(r ApiFindProjectDevicesRequest) (*DeviceList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -2402,9 +2391,9 @@ FindTraffic Retrieve device traffic
 
 Returns traffic for a specific device.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id Device UUID
-	@return ApiFindTrafficRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id Device UUID
+ @return ApiFindTrafficRequest
 */
 func (a *DevicesApiService) FindTraffic(ctx context.Context, id string) ApiFindTrafficRequest {
 	return ApiFindTrafficRequest{
@@ -2553,9 +2542,9 @@ GetBgpNeighborData Retrieve BGP neighbor data for this device
 
 Provides a summary of the BGP neighbor data associated to the BGP sessions for this device.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id Device UUID
-	@return ApiGetBgpNeighborDataRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id Device UUID
+ @return ApiGetBgpNeighborDataRequest
 */
 func (a *DevicesApiService) GetBgpNeighborData(ctx context.Context, id string) ApiGetBgpNeighborDataRequest {
 	return ApiGetBgpNeighborDataRequest{
@@ -2566,8 +2555,7 @@ func (a *DevicesApiService) GetBgpNeighborData(ctx context.Context, id string) A
 }
 
 // Execute executes the request
-//
-//	@return BgpSessionNeighbors
+//  @return BgpSessionNeighbors
 func (a *DevicesApiService) GetBgpNeighborDataExecute(r ApiGetBgpNeighborDataRequest) (*BgpSessionNeighbors, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -2710,9 +2698,9 @@ PerformAction Perform an action
 
 Performs an action for the given device.  Possible actions include: power_on, power_off, reboot, reinstall, and rescue (reboot the device into rescue OS.)
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id Device UUID
-	@return ApiPerformActionRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id Device UUID
+ @return ApiPerformActionRequest
 */
 func (a *DevicesApiService) PerformAction(ctx context.Context, id string) ApiPerformActionRequest {
 	return ApiPerformActionRequest{
@@ -2860,9 +2848,9 @@ UpdateDevice Update the device
 
 Updates the device.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id Device UUID
-	@return ApiUpdateDeviceRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id Device UUID
+ @return ApiUpdateDeviceRequest
 */
 func (a *DevicesApiService) UpdateDevice(ctx context.Context, id string) ApiUpdateDeviceRequest {
 	return ApiUpdateDeviceRequest{
@@ -2873,8 +2861,7 @@ func (a *DevicesApiService) UpdateDevice(ctx context.Context, id string) ApiUpda
 }
 
 // Execute executes the request
-//
-//	@return Device
+//  @return Device
 func (a *DevicesApiService) UpdateDeviceExecute(r ApiUpdateDeviceRequest) (*Device, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut

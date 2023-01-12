@@ -43,8 +43,8 @@ ConsumeVerificationRequest Verify a user using an email verification token
 
 Consumes an email verification token and verifies the user associated with it.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiConsumeVerificationRequestRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiConsumeVerificationRequestRequest
 */
 func (a *UserVerificationTokensApiService) ConsumeVerificationRequest(ctx context.Context) ApiConsumeVerificationRequestRequest {
 	return ApiConsumeVerificationRequestRequest{
@@ -178,8 +178,8 @@ CreateValidationRequest Create an email verification request
 
 Creates an email verification request
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiCreateValidationRequestRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiCreateValidationRequestRequest
 */
 func (a *UserVerificationTokensApiService) CreateValidationRequest(ctx context.Context) ApiCreateValidationRequestRequest {
 	return ApiCreateValidationRequestRequest{
