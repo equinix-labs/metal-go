@@ -26,7 +26,7 @@ pull:
 	docker pull ${IMAGE}
 
 fetch:
-	cp ../packethost-api/docs/openapi/public_openapi3.json ${SPEC_FETCHED_FILE}
+	curl ${SPEC_URL} | jq . > ${SPEC_FETCHED_FILE}
 
 fix-tags:
 	- jq '. | select(((.paths[][].tags| type=="array"), length) > 1).paths[][].tags |= [.[0]]' ${SPEC_FETCHED_FILE} | diff -d -U6 ${SPEC_FETCHED_FILE} - >  patches/01-tag-from-last-in-path.patch
