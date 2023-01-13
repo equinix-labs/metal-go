@@ -38,9 +38,9 @@ AcceptTransferRequest Accept a transfer request
 
 Accept a transfer request.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Transfer request UUID
- @return ApiAcceptTransferRequestRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Transfer request UUID
+	@return ApiAcceptTransferRequestRequest
 */
 func (a *TransferRequestsApiService) AcceptTransferRequest(ctx context.Context, id string) ApiAcceptTransferRequestRequest {
 	return ApiAcceptTransferRequestRequest{
@@ -64,7 +64,7 @@ func (a *TransferRequestsApiService) AcceptTransferRequestExecute(r ApiAcceptTra
 	}
 
 	localVarPath := localBasePath + "/transfers/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -176,9 +176,9 @@ DeclineTransferRequest Decline a transfer request
 
 Decline a transfer request.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Transfer request UUID
- @return ApiDeclineTransferRequestRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Transfer request UUID
+	@return ApiDeclineTransferRequestRequest
 */
 func (a *TransferRequestsApiService) DeclineTransferRequest(ctx context.Context, id string) ApiDeclineTransferRequestRequest {
 	return ApiDeclineTransferRequestRequest{
@@ -202,7 +202,7 @@ func (a *TransferRequestsApiService) DeclineTransferRequestExecute(r ApiDeclineT
 	}
 
 	localVarPath := localBasePath + "/transfers/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -328,9 +328,9 @@ FindTransferRequestById View a transfer request
 
 Returns a single transfer request.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Transfer request UUID
- @return ApiFindTransferRequestByIdRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Transfer request UUID
+	@return ApiFindTransferRequestByIdRequest
 */
 func (a *TransferRequestsApiService) FindTransferRequestById(ctx context.Context, id string) ApiFindTransferRequestByIdRequest {
 	return ApiFindTransferRequestByIdRequest{
@@ -341,7 +341,8 @@ func (a *TransferRequestsApiService) FindTransferRequestById(ctx context.Context
 }
 
 // Execute executes the request
-//  @return TransferRequest
+//
+//	@return TransferRequest
 func (a *TransferRequestsApiService) FindTransferRequestByIdExecute(r ApiFindTransferRequestByIdRequest) (*TransferRequest, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -356,17 +357,17 @@ func (a *TransferRequestsApiService) FindTransferRequestByIdExecute(r ApiFindTra
 	}
 
 	localVarPath := localBasePath + "/transfers/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.include != nil {
-		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
+		parameterAddToQuery(localVarQueryParams, "include", r.include, "csv")
 	}
 	if r.exclude != nil {
-		localVarQueryParams.Add("exclude", parameterToString(*r.exclude, "csv"))
+		parameterAddToQuery(localVarQueryParams, "exclude", r.exclude, "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

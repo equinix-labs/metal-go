@@ -38,9 +38,9 @@ AcceptInvitation Accept an invitation
 
 Accept an invitation.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Invitation UUID
- @return ApiAcceptInvitationRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Invitation UUID
+	@return ApiAcceptInvitationRequest
 */
 func (a *InvitationsApiService) AcceptInvitation(ctx context.Context, id string) ApiAcceptInvitationRequest {
 	return ApiAcceptInvitationRequest{
@@ -51,7 +51,8 @@ func (a *InvitationsApiService) AcceptInvitation(ctx context.Context, id string)
 }
 
 // Execute executes the request
-//  @return Membership
+//
+//	@return Membership
 func (a *InvitationsApiService) AcceptInvitationExecute(r ApiAcceptInvitationRequest) (*Membership, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
@@ -66,7 +67,7 @@ func (a *InvitationsApiService) AcceptInvitationExecute(r ApiAcceptInvitationReq
 	}
 
 	localVarPath := localBasePath + "/invitations/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -187,9 +188,9 @@ DeclineInvitation Decline an invitation
 
 Decline an invitation.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Invitation UUID
- @return ApiDeclineInvitationRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Invitation UUID
+	@return ApiDeclineInvitationRequest
 */
 func (a *InvitationsApiService) DeclineInvitation(ctx context.Context, id string) ApiDeclineInvitationRequest {
 	return ApiDeclineInvitationRequest{
@@ -213,7 +214,7 @@ func (a *InvitationsApiService) DeclineInvitationExecute(r ApiDeclineInvitationR
 	}
 
 	localVarPath := localBasePath + "/invitations/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -339,9 +340,9 @@ FindInvitationById View an invitation
 
 Returns a single invitation. (It include the `invitable` to maintain backward compatibility but will be removed soon)
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Invitation UUID
- @return ApiFindInvitationByIdRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Invitation UUID
+	@return ApiFindInvitationByIdRequest
 */
 func (a *InvitationsApiService) FindInvitationById(ctx context.Context, id string) ApiFindInvitationByIdRequest {
 	return ApiFindInvitationByIdRequest{
@@ -352,7 +353,8 @@ func (a *InvitationsApiService) FindInvitationById(ctx context.Context, id strin
 }
 
 // Execute executes the request
-//  @return Invitation
+//
+//	@return Invitation
 func (a *InvitationsApiService) FindInvitationByIdExecute(r ApiFindInvitationByIdRequest) (*Invitation, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -367,17 +369,17 @@ func (a *InvitationsApiService) FindInvitationByIdExecute(r ApiFindInvitationByI
 	}
 
 	localVarPath := localBasePath + "/invitations/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.include != nil {
-		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
+		parameterAddToQuery(localVarQueryParams, "include", r.include, "csv")
 	}
 	if r.exclude != nil {
-		localVarQueryParams.Add("exclude", parameterToString(*r.exclude, "csv"))
+		parameterAddToQuery(localVarQueryParams, "exclude", r.exclude, "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

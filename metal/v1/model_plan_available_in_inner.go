@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the PlanAvailableInInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PlanAvailableInInner{}
+
 // PlanAvailableInInner struct for PlanAvailableInInner
 type PlanAvailableInInner struct {
 	// href to the Facility
@@ -104,6 +107,14 @@ func (o *PlanAvailableInInner) SetPrice(v PlanAvailableInInnerPrice) {
 }
 
 func (o PlanAvailableInInner) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o PlanAvailableInInner) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Href) {
 		toSerialize["href"] = o.Href
@@ -111,7 +122,7 @@ func (o PlanAvailableInInner) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Price) {
 		toSerialize["price"] = o.Price
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullablePlanAvailableInInner struct {

@@ -16,6 +16,9 @@ import (
 	"time"
 )
 
+// checks if the SpotMarketRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &SpotMarketRequest{}
+
 // SpotMarketRequest struct for SpotMarketRequest
 type SpotMarketRequest struct {
 	CreatedAt   *time.Time              `json:"created_at,omitempty"`
@@ -401,6 +404,14 @@ func (o *SpotMarketRequest) SetProject(v Href) {
 }
 
 func (o SpotMarketRequest) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o SpotMarketRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt
@@ -435,7 +446,7 @@ func (o SpotMarketRequest) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Project) {
 		toSerialize["project"] = o.Project
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableSpotMarketRequest struct {

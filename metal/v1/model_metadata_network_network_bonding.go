@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the MetadataNetworkNetworkBonding type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &MetadataNetworkNetworkBonding{}
+
 // MetadataNetworkNetworkBonding struct for MetadataNetworkNetworkBonding
 type MetadataNetworkNetworkBonding struct {
 	LinkAggregation *string `json:"link_aggregation,omitempty"`
@@ -136,6 +139,14 @@ func (o *MetadataNetworkNetworkBonding) SetMode(v int32) {
 }
 
 func (o MetadataNetworkNetworkBonding) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o MetadataNetworkNetworkBonding) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.LinkAggregation) {
 		toSerialize["link_aggregation"] = o.LinkAggregation
@@ -146,7 +157,7 @@ func (o MetadataNetworkNetworkBonding) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Mode) {
 		toSerialize["mode"] = o.Mode
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableMetadataNetworkNetworkBonding struct {

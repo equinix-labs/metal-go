@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the OperatingSystem type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &OperatingSystem{}
+
 // OperatingSystem struct for OperatingSystem
 type OperatingSystem struct {
 	Distro *string `json:"distro,omitempty"`
@@ -337,6 +340,14 @@ func (o *OperatingSystem) SetVersion(v string) {
 }
 
 func (o OperatingSystem) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o OperatingSystem) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Distro) {
 		toSerialize["distro"] = o.Distro
@@ -365,7 +376,7 @@ func (o OperatingSystem) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Version) {
 		toSerialize["version"] = o.Version
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableOperatingSystem struct {

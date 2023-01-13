@@ -45,9 +45,9 @@ CreateVirtualNetwork Create a virtual network
 
 Creates an virtual network.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Project UUID
- @return ApiCreateVirtualNetworkRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Project UUID
+	@return ApiCreateVirtualNetworkRequest
 */
 func (a *VLANsApiService) CreateVirtualNetwork(ctx context.Context, id string) ApiCreateVirtualNetworkRequest {
 	return ApiCreateVirtualNetworkRequest{
@@ -58,7 +58,8 @@ func (a *VLANsApiService) CreateVirtualNetwork(ctx context.Context, id string) A
 }
 
 // Execute executes the request
-//  @return VirtualNetwork
+//
+//	@return VirtualNetwork
 func (a *VLANsApiService) CreateVirtualNetworkExecute(r ApiCreateVirtualNetworkRequest) (*VirtualNetwork, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -73,7 +74,7 @@ func (a *VLANsApiService) CreateVirtualNetworkExecute(r ApiCreateVirtualNetworkR
 	}
 
 	localVarPath := localBasePath + "/projects/{id}/virtual-networks"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -210,9 +211,9 @@ DeleteVirtualNetwork Delete a virtual network
 
 Deletes a virtual network.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Virtual Network UUID
- @return ApiDeleteVirtualNetworkRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Virtual Network UUID
+	@return ApiDeleteVirtualNetworkRequest
 */
 func (a *VLANsApiService) DeleteVirtualNetwork(ctx context.Context, id string) ApiDeleteVirtualNetworkRequest {
 	return ApiDeleteVirtualNetworkRequest{
@@ -223,7 +224,8 @@ func (a *VLANsApiService) DeleteVirtualNetwork(ctx context.Context, id string) A
 }
 
 // Execute executes the request
-//  @return VirtualNetwork
+//
+//	@return VirtualNetwork
 func (a *VLANsApiService) DeleteVirtualNetworkExecute(r ApiDeleteVirtualNetworkRequest) (*VirtualNetwork, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodDelete
@@ -238,7 +240,7 @@ func (a *VLANsApiService) DeleteVirtualNetworkExecute(r ApiDeleteVirtualNetworkR
 	}
 
 	localVarPath := localBasePath + "/virtual-networks/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -398,9 +400,9 @@ FindVirtualNetworks Retrieve all virtual networks
 
 Provides a list of virtual networks for a single project.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Project UUID
- @return ApiFindVirtualNetworksRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Project UUID
+	@return ApiFindVirtualNetworksRequest
 */
 func (a *VLANsApiService) FindVirtualNetworks(ctx context.Context, id string) ApiFindVirtualNetworksRequest {
 	return ApiFindVirtualNetworksRequest{
@@ -411,7 +413,8 @@ func (a *VLANsApiService) FindVirtualNetworks(ctx context.Context, id string) Ap
 }
 
 // Execute executes the request
-//  @return VirtualNetworkList
+//
+//	@return VirtualNetworkList
 func (a *VLANsApiService) FindVirtualNetworksExecute(r ApiFindVirtualNetworksRequest) (*VirtualNetworkList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -426,23 +429,23 @@ func (a *VLANsApiService) FindVirtualNetworksExecute(r ApiFindVirtualNetworksReq
 	}
 
 	localVarPath := localBasePath + "/projects/{id}/virtual-networks"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.include != nil {
-		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
+		parameterAddToQuery(localVarQueryParams, "include", r.include, "csv")
 	}
 	if r.exclude != nil {
-		localVarQueryParams.Add("exclude", parameterToString(*r.exclude, "csv"))
+		parameterAddToQuery(localVarQueryParams, "exclude", r.exclude, "csv")
 	}
 	if r.facility != nil {
-		localVarQueryParams.Add("facility", parameterToString(*r.facility, ""))
+		parameterAddToQuery(localVarQueryParams, "facility", r.facility, "")
 	}
 	if r.metro != nil {
-		localVarQueryParams.Add("metro", parameterToString(*r.metro, ""))
+		parameterAddToQuery(localVarQueryParams, "metro", r.metro, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -559,9 +562,9 @@ GetVirtualNetwork Get a virtual network
 
 Get a virtual network.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Virtual Network UUID
- @return ApiGetVirtualNetworkRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Virtual Network UUID
+	@return ApiGetVirtualNetworkRequest
 */
 func (a *VLANsApiService) GetVirtualNetwork(ctx context.Context, id string) ApiGetVirtualNetworkRequest {
 	return ApiGetVirtualNetworkRequest{
@@ -572,7 +575,8 @@ func (a *VLANsApiService) GetVirtualNetwork(ctx context.Context, id string) ApiG
 }
 
 // Execute executes the request
-//  @return VirtualNetwork
+//
+//	@return VirtualNetwork
 func (a *VLANsApiService) GetVirtualNetworkExecute(r ApiGetVirtualNetworkRequest) (*VirtualNetwork, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -587,7 +591,7 @@ func (a *VLANsApiService) GetVirtualNetworkExecute(r ApiGetVirtualNetworkRequest
 	}
 
 	localVarPath := localBasePath + "/virtual-networks/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

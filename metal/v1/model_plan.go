@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the Plan type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Plan{}
+
 // Plan struct for Plan
 type Plan struct {
 	// Shows which facilities the plan is available in, and the facility-based price if it is different from the default price.
@@ -469,6 +472,14 @@ func (o *Plan) SetType(v string) {
 }
 
 func (o Plan) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o Plan) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.AvailableIn) {
 		toSerialize["available_in"] = o.AvailableIn
@@ -509,7 +520,7 @@ func (o Plan) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Type) {
 		toSerialize["type"] = o.Type
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullablePlan struct {

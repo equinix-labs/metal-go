@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the PaymentMethodBillingAddress type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PaymentMethodBillingAddress{}
+
 // PaymentMethodBillingAddress struct for PaymentMethodBillingAddress
 type PaymentMethodBillingAddress struct {
 	CountryCodeAlpha2 *string `json:"country_code_alpha2,omitempty"`
@@ -136,6 +139,14 @@ func (o *PaymentMethodBillingAddress) SetStreetAddress(v string) {
 }
 
 func (o PaymentMethodBillingAddress) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o PaymentMethodBillingAddress) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.CountryCodeAlpha2) {
 		toSerialize["country_code_alpha2"] = o.CountryCodeAlpha2
@@ -146,7 +157,7 @@ func (o PaymentMethodBillingAddress) MarshalJSON() ([]byte, error) {
 	if !isNil(o.StreetAddress) {
 		toSerialize["street_address"] = o.StreetAddress
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullablePaymentMethodBillingAddress struct {

@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the IPAvailabilitiesList type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &IPAvailabilitiesList{}
+
 // IPAvailabilitiesList struct for IPAvailabilitiesList
 type IPAvailabilitiesList struct {
 	Available []string `json:"available,omitempty"`
@@ -70,11 +73,19 @@ func (o *IPAvailabilitiesList) SetAvailable(v []string) {
 }
 
 func (o IPAvailabilitiesList) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o IPAvailabilitiesList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Available) {
 		toSerialize["available"] = o.Available
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableIPAvailabilitiesList struct {

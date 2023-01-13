@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the VirtualCircuitCreateInput type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &VirtualCircuitCreateInput{}
+
 // VirtualCircuitCreateInput struct for VirtualCircuitCreateInput
 type VirtualCircuitCreateInput struct {
 	Description *string `json:"description,omitempty"`
@@ -270,6 +273,14 @@ func (o *VirtualCircuitCreateInput) SetVnid(v string) {
 }
 
 func (o VirtualCircuitCreateInput) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o VirtualCircuitCreateInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Description) {
 		toSerialize["description"] = o.Description
@@ -292,7 +303,7 @@ func (o VirtualCircuitCreateInput) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Vnid) {
 		toSerialize["vnid"] = o.Vnid
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableVirtualCircuitCreateInput struct {

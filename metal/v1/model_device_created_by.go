@@ -16,6 +16,9 @@ import (
 	"time"
 )
 
+// checks if the DeviceCreatedBy type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &DeviceCreatedBy{}
+
 // DeviceCreatedBy struct for DeviceCreatedBy
 type DeviceCreatedBy struct {
 	// Avatar thumbnail URL of the User
@@ -364,6 +367,14 @@ func (o *DeviceCreatedBy) SetUpdatedAt(v time.Time) {
 }
 
 func (o DeviceCreatedBy) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o DeviceCreatedBy) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.AvatarThumbUrl) {
 		toSerialize["avatar_thumb_url"] = o.AvatarThumbUrl
@@ -383,19 +394,15 @@ func (o DeviceCreatedBy) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Href) {
 		toSerialize["href"] = o.Href
 	}
-	if true {
-		toSerialize["id"] = o.Id
-	}
+	toSerialize["id"] = o.Id
 	if !isNil(o.LastName) {
 		toSerialize["last_name"] = o.LastName
 	}
-	if true {
-		toSerialize["short_id"] = o.ShortId
-	}
+	toSerialize["short_id"] = o.ShortId
 	if !isNil(o.UpdatedAt) {
 		toSerialize["updated_at"] = o.UpdatedAt
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableDeviceCreatedBy struct {

@@ -16,6 +16,9 @@ import (
 	"time"
 )
 
+// checks if the Event type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Event{}
+
 // Event struct for Event
 type Event struct {
 	Body          *string    `json:"body,omitempty"`
@@ -302,6 +305,14 @@ func (o *Event) SetType(v string) {
 }
 
 func (o Event) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o Event) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Body) {
 		toSerialize["body"] = o.Body
@@ -327,7 +338,7 @@ func (o Event) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Type) {
 		toSerialize["type"] = o.Type
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableEvent struct {

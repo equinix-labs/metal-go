@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the PaymentMethodUpdateInput type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PaymentMethodUpdateInput{}
+
 // PaymentMethodUpdateInput struct for PaymentMethodUpdateInput
 type PaymentMethodUpdateInput struct {
 	BillingAddress  map[string]interface{} `json:"billing_address,omitempty"`
@@ -235,6 +238,14 @@ func (o *PaymentMethodUpdateInput) SetName(v string) {
 }
 
 func (o PaymentMethodUpdateInput) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o PaymentMethodUpdateInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.BillingAddress) {
 		toSerialize["billing_address"] = o.BillingAddress
@@ -254,7 +265,7 @@ func (o PaymentMethodUpdateInput) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullablePaymentMethodUpdateInput struct {

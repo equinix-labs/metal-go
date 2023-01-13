@@ -43,8 +43,8 @@ ValidateUserdata Validate user data
 
 Validates user data (Userdata)
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiValidateUserdataRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiValidateUserdataRequest
 */
 func (a *UserdataApiService) ValidateUserdata(ctx context.Context) ApiValidateUserdataRequest {
 	return ApiValidateUserdataRequest{
@@ -73,7 +73,7 @@ func (a *UserdataApiService) ValidateUserdataExecute(r ApiValidateUserdataReques
 	localVarFormParams := url.Values{}
 
 	if r.userdata != nil {
-		localVarQueryParams.Add("userdata", parameterToString(*r.userdata, ""))
+		parameterAddToQuery(localVarQueryParams, "userdata", r.userdata, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

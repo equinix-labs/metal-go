@@ -16,6 +16,9 @@ import (
 	"time"
 )
 
+// checks if the PaymentMethod type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PaymentMethod{}
+
 // PaymentMethod struct for PaymentMethod
 type PaymentMethod struct {
 	BillingAddress  *PaymentMethodBillingAddress `json:"billing_address,omitempty"`
@@ -533,6 +536,14 @@ func (o *PaymentMethod) SetUpdatedAt(v time.Time) {
 }
 
 func (o PaymentMethod) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o PaymentMethod) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.BillingAddress) {
 		toSerialize["billing_address"] = o.BillingAddress
@@ -579,7 +590,7 @@ func (o PaymentMethod) MarshalJSON() ([]byte, error) {
 	if !isNil(o.UpdatedAt) {
 		toSerialize["updated_at"] = o.UpdatedAt
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullablePaymentMethod struct {

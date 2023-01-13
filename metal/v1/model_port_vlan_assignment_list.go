@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the PortVlanAssignmentList type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PortVlanAssignmentList{}
+
 // PortVlanAssignmentList struct for PortVlanAssignmentList
 type PortVlanAssignmentList struct {
 	VlanAssignments []PortVlanAssignment `json:"vlan_assignments,omitempty"`
@@ -70,11 +73,19 @@ func (o *PortVlanAssignmentList) SetVlanAssignments(v []PortVlanAssignment) {
 }
 
 func (o PortVlanAssignmentList) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o PortVlanAssignmentList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.VlanAssignments) {
 		toSerialize["vlan_assignments"] = o.VlanAssignments
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullablePortVlanAssignmentList struct {

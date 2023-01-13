@@ -16,6 +16,9 @@ import (
 	"time"
 )
 
+// checks if the FabricServiceToken type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &FabricServiceToken{}
+
 // FabricServiceToken struct for FabricServiceToken
 type FabricServiceToken struct {
 	// The expiration date and time of the Fabric service token. Once a service token is expired, it is no longer redeemable.
@@ -242,6 +245,14 @@ func (o *FabricServiceToken) SetState(v string) {
 }
 
 func (o FabricServiceToken) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o FabricServiceToken) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.ExpiresAt) {
 		toSerialize["expires_at"] = o.ExpiresAt
@@ -261,7 +272,7 @@ func (o FabricServiceToken) MarshalJSON() ([]byte, error) {
 	if !isNil(o.State) {
 		toSerialize["state"] = o.State
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableFabricServiceToken struct {

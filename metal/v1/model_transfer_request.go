@@ -16,6 +16,9 @@ import (
 	"time"
 )
 
+// checks if the TransferRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &TransferRequest{}
+
 // TransferRequest struct for TransferRequest
 type TransferRequest struct {
 	CreatedAt          *time.Time `json:"created_at,omitempty"`
@@ -236,6 +239,14 @@ func (o *TransferRequest) SetUpdatedAt(v time.Time) {
 }
 
 func (o TransferRequest) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o TransferRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt
@@ -255,7 +266,7 @@ func (o TransferRequest) MarshalJSON() ([]byte, error) {
 	if !isNil(o.UpdatedAt) {
 		toSerialize["updated_at"] = o.UpdatedAt
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableTransferRequest struct {

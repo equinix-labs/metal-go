@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the PortVlanAssignmentBatchCreateInput type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PortVlanAssignmentBatchCreateInput{}
+
 // PortVlanAssignmentBatchCreateInput struct for PortVlanAssignmentBatchCreateInput
 type PortVlanAssignmentBatchCreateInput struct {
 	VlanAssignments []PortVlanAssignmentBatchCreateInputVlanAssignmentsInner `json:"vlan_assignments,omitempty"`
@@ -70,11 +73,19 @@ func (o *PortVlanAssignmentBatchCreateInput) SetVlanAssignments(v []PortVlanAssi
 }
 
 func (o PortVlanAssignmentBatchCreateInput) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o PortVlanAssignmentBatchCreateInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.VlanAssignments) {
 		toSerialize["vlan_assignments"] = o.VlanAssignments
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullablePortVlanAssignmentBatchCreateInput struct {

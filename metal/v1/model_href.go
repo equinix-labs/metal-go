@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the Href type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Href{}
+
 // Href struct for Href
 type Href struct {
 	Href string `json:"href"`
@@ -63,11 +66,17 @@ func (o *Href) SetHref(v string) {
 }
 
 func (o Href) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["href"] = o.Href
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o Href) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["href"] = o.Href
+	return toSerialize, nil
 }
 
 type NullableHref struct {

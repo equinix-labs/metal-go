@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the TransferRequestList type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &TransferRequestList{}
+
 // TransferRequestList struct for TransferRequestList
 type TransferRequestList struct {
 	Transfers []TransferRequest `json:"transfers,omitempty"`
@@ -70,11 +73,19 @@ func (o *TransferRequestList) SetTransfers(v []TransferRequest) {
 }
 
 func (o TransferRequestList) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o TransferRequestList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Transfers) {
 		toSerialize["transfers"] = o.Transfers
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableTransferRequestList struct {

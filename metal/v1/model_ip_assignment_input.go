@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the IPAssignmentInput type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &IPAssignmentInput{}
+
 // IPAssignmentInput struct for IPAssignmentInput
 type IPAssignmentInput struct {
 	Address    string                 `json:"address"`
@@ -129,17 +132,23 @@ func (o *IPAssignmentInput) SetManageable(v bool) {
 }
 
 func (o IPAssignmentInput) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["address"] = o.Address
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
+	return json.Marshal(toSerialize)
+}
+
+func (o IPAssignmentInput) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["address"] = o.Address
 	if !isNil(o.Customdata) {
 		toSerialize["customdata"] = o.Customdata
 	}
 	if !isNil(o.Manageable) {
 		toSerialize["manageable"] = o.Manageable
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableIPAssignmentInput struct {

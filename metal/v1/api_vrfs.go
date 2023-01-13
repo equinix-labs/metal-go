@@ -46,9 +46,9 @@ CreateVrf Create a new VRF in the specified project
 
 Creates a new VRF in the specified project
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Project UUID
- @return ApiCreateVrfRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Project UUID
+	@return ApiCreateVrfRequest
 */
 func (a *VRFsApiService) CreateVrf(ctx context.Context, id string) ApiCreateVrfRequest {
 	return ApiCreateVrfRequest{
@@ -59,7 +59,8 @@ func (a *VRFsApiService) CreateVrf(ctx context.Context, id string) ApiCreateVrfR
 }
 
 // Execute executes the request
-//  @return Vrf
+//
+//	@return Vrf
 func (a *VRFsApiService) CreateVrfExecute(r ApiCreateVrfRequest) (*Vrf, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -74,7 +75,7 @@ func (a *VRFsApiService) CreateVrfExecute(r ApiCreateVrfRequest) (*Vrf, *http.Re
 	}
 
 	localVarPath := localBasePath + "/projects/{id}/vrfs"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -200,9 +201,9 @@ DeleteVrf Delete the VRF
 
 Deletes the VRF
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id VRF UUID
- @return ApiDeleteVrfRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id VRF UUID
+	@return ApiDeleteVrfRequest
 */
 func (a *VRFsApiService) DeleteVrf(ctx context.Context, id string) ApiDeleteVrfRequest {
 	return ApiDeleteVrfRequest{
@@ -226,7 +227,7 @@ func (a *VRFsApiService) DeleteVrfExecute(r ApiDeleteVrfRequest) (*http.Response
 	}
 
 	localVarPath := localBasePath + "/vrfs/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -352,9 +353,9 @@ FindVrfById Retrieve a VRF
 
 Returns a single VRF resource
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id VRF UUID
- @return ApiFindVrfByIdRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id VRF UUID
+	@return ApiFindVrfByIdRequest
 */
 func (a *VRFsApiService) FindVrfById(ctx context.Context, id string) ApiFindVrfByIdRequest {
 	return ApiFindVrfByIdRequest{
@@ -365,7 +366,8 @@ func (a *VRFsApiService) FindVrfById(ctx context.Context, id string) ApiFindVrfB
 }
 
 // Execute executes the request
-//  @return Vrf
+//
+//	@return Vrf
 func (a *VRFsApiService) FindVrfByIdExecute(r ApiFindVrfByIdRequest) (*Vrf, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -380,17 +382,17 @@ func (a *VRFsApiService) FindVrfByIdExecute(r ApiFindVrfByIdRequest) (*Vrf, *htt
 	}
 
 	localVarPath := localBasePath + "/vrfs/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.include != nil {
-		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
+		parameterAddToQuery(localVarQueryParams, "include", r.include, "csv")
 	}
 	if r.exclude != nil {
-		localVarQueryParams.Add("exclude", parameterToString(*r.exclude, "csv"))
+		parameterAddToQuery(localVarQueryParams, "exclude", r.exclude, "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -521,9 +523,9 @@ FindVrfIpReservations Retrieve all VRF IP Reservations in the VRF
 
 Returns the list of VRF IP Reservations for the VRF.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id VRF UUID
- @return ApiFindVrfIpReservationsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id VRF UUID
+	@return ApiFindVrfIpReservationsRequest
 */
 func (a *VRFsApiService) FindVrfIpReservations(ctx context.Context, id string) ApiFindVrfIpReservationsRequest {
 	return ApiFindVrfIpReservationsRequest{
@@ -534,7 +536,8 @@ func (a *VRFsApiService) FindVrfIpReservations(ctx context.Context, id string) A
 }
 
 // Execute executes the request
-//  @return VrfIpReservationList
+//
+//	@return VrfIpReservationList
 func (a *VRFsApiService) FindVrfIpReservationsExecute(r ApiFindVrfIpReservationsRequest) (*VrfIpReservationList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -549,7 +552,7 @@ func (a *VRFsApiService) FindVrfIpReservationsExecute(r ApiFindVrfIpReservations
 	}
 
 	localVarPath := localBasePath + "/vrfs/{id}/ips"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -560,10 +563,10 @@ func (a *VRFsApiService) FindVrfIpReservationsExecute(r ApiFindVrfIpReservations
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				localVarQueryParams.Add("include", parameterToString(s.Index(i), "multi"))
+				parameterAddToQuery(localVarQueryParams, "include", s.Index(i), "multi")
 			}
 		} else {
-			localVarQueryParams.Add("include", parameterToString(t, "multi"))
+			parameterAddToQuery(localVarQueryParams, "include", t, "multi")
 		}
 	}
 	if r.exclude != nil {
@@ -571,10 +574,10 @@ func (a *VRFsApiService) FindVrfIpReservationsExecute(r ApiFindVrfIpReservations
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				localVarQueryParams.Add("exclude", parameterToString(s.Index(i), "multi"))
+				parameterAddToQuery(localVarQueryParams, "exclude", s.Index(i), "multi")
 			}
 		} else {
-			localVarQueryParams.Add("exclude", parameterToString(t, "multi"))
+			parameterAddToQuery(localVarQueryParams, "exclude", t, "multi")
 		}
 	}
 	// to determine the Content-Type header
@@ -702,9 +705,9 @@ FindVrfs Retrieve all VRFs in the project
 
 Returns the list of VRFs for a single project.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Project UUID
- @return ApiFindVrfsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Project UUID
+	@return ApiFindVrfsRequest
 */
 func (a *VRFsApiService) FindVrfs(ctx context.Context, id string) ApiFindVrfsRequest {
 	return ApiFindVrfsRequest{
@@ -715,7 +718,8 @@ func (a *VRFsApiService) FindVrfs(ctx context.Context, id string) ApiFindVrfsReq
 }
 
 // Execute executes the request
-//  @return VrfList
+//
+//	@return VrfList
 func (a *VRFsApiService) FindVrfsExecute(r ApiFindVrfsRequest) (*VrfList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -730,20 +734,20 @@ func (a *VRFsApiService) FindVrfsExecute(r ApiFindVrfsRequest) (*VrfList, *http.
 	}
 
 	localVarPath := localBasePath + "/projects/{id}/vrfs"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.include != nil {
-		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
+		parameterAddToQuery(localVarQueryParams, "include", r.include, "csv")
 	}
 	if r.exclude != nil {
-		localVarQueryParams.Add("exclude", parameterToString(*r.exclude, "csv"))
+		parameterAddToQuery(localVarQueryParams, "exclude", r.exclude, "csv")
 	}
 	if r.metro != nil {
-		localVarQueryParams.Add("metro", parameterToString(*r.metro, ""))
+		parameterAddToQuery(localVarQueryParams, "metro", r.metro, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -856,9 +860,9 @@ UpdateVrf Update the VRF
 
 Updates the VRF.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id VRF UUID
- @return ApiUpdateVrfRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id VRF UUID
+	@return ApiUpdateVrfRequest
 */
 func (a *VRFsApiService) UpdateVrf(ctx context.Context, id string) ApiUpdateVrfRequest {
 	return ApiUpdateVrfRequest{
@@ -869,7 +873,8 @@ func (a *VRFsApiService) UpdateVrf(ctx context.Context, id string) ApiUpdateVrfR
 }
 
 // Execute executes the request
-//  @return Vrf
+//
+//	@return Vrf
 func (a *VRFsApiService) UpdateVrfExecute(r ApiUpdateVrfRequest) (*Vrf, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
@@ -884,7 +889,7 @@ func (a *VRFsApiService) UpdateVrfExecute(r ApiUpdateVrfRequest) (*Vrf, *http.Re
 	}
 
 	localVarPath := localBasePath + "/vrfs/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

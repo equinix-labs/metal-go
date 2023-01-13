@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CapacityReport type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CapacityReport{}
+
 // CapacityReport struct for CapacityReport
 type CapacityReport struct {
 	Ams1 *CapacityPerFacility    `json:"ams1,omitempty"`
@@ -499,6 +502,14 @@ func (o *CapacityReport) SetYyz1(v CapacityPerNewFacility) {
 }
 
 func (o CapacityReport) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o CapacityReport) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Ams1) {
 		toSerialize["ams1"] = o.Ams1
@@ -542,7 +553,7 @@ func (o CapacityReport) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Yyz1) {
 		toSerialize["yyz1"] = o.Yyz1
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableCapacityReport struct {

@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ServerInfo type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ServerInfo{}
+
 // ServerInfo struct for ServerInfo
 type ServerInfo struct {
 	Facility *string `json:"facility,omitempty"`
@@ -136,6 +139,14 @@ func (o *ServerInfo) SetQuantity(v string) {
 }
 
 func (o ServerInfo) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o ServerInfo) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Facility) {
 		toSerialize["facility"] = o.Facility
@@ -146,7 +157,7 @@ func (o ServerInfo) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Quantity) {
 		toSerialize["quantity"] = o.Quantity
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableServerInfo struct {

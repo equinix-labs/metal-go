@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the MetroServerInfo type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &MetroServerInfo{}
+
 // MetroServerInfo struct for MetroServerInfo
 type MetroServerInfo struct {
 	// The metro ID or code to check the capacity in.
@@ -139,6 +142,14 @@ func (o *MetroServerInfo) SetQuantity(v string) {
 }
 
 func (o MetroServerInfo) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o MetroServerInfo) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Metro) {
 		toSerialize["metro"] = o.Metro
@@ -149,7 +160,7 @@ func (o MetroServerInfo) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Quantity) {
 		toSerialize["quantity"] = o.Quantity
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableMetroServerInfo struct {

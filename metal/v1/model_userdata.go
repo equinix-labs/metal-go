@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the Userdata type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Userdata{}
+
 // Userdata struct for Userdata
 type Userdata struct {
 	Userdata *string `json:"userdata,omitempty"`
@@ -70,11 +73,19 @@ func (o *Userdata) SetUserdata(v string) {
 }
 
 func (o Userdata) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o Userdata) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Userdata) {
 		toSerialize["userdata"] = o.Userdata
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableUserdata struct {

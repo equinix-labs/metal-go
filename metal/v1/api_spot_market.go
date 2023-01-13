@@ -53,9 +53,9 @@ The request will fail if there are no available servers matching your criteria. 
 
 The request will not fail if we have no servers with that feature in our inventory.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Project UUID
- @return ApiCreateSpotMarketRequestRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Project UUID
+	@return ApiCreateSpotMarketRequestRequest
 */
 func (a *SpotMarketApiService) CreateSpotMarketRequest(ctx context.Context, id string) ApiCreateSpotMarketRequestRequest {
 	return ApiCreateSpotMarketRequestRequest{
@@ -66,7 +66,8 @@ func (a *SpotMarketApiService) CreateSpotMarketRequest(ctx context.Context, id s
 }
 
 // Execute executes the request
-//  @return SpotMarketRequest
+//
+//	@return SpotMarketRequest
 func (a *SpotMarketApiService) CreateSpotMarketRequestExecute(r ApiCreateSpotMarketRequestRequest) (*SpotMarketRequest, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -81,7 +82,7 @@ func (a *SpotMarketApiService) CreateSpotMarketRequestExecute(r ApiCreateSpotMar
 	}
 
 	localVarPath := localBasePath + "/projects/{id}/spot-market-requests"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -214,9 +215,9 @@ DeleteSpotMarketRequest Delete the spot market request
 
 Deletes the spot market request.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id SpotMarketRequest UUID
- @return ApiDeleteSpotMarketRequestRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id SpotMarketRequest UUID
+	@return ApiDeleteSpotMarketRequestRequest
 */
 func (a *SpotMarketApiService) DeleteSpotMarketRequest(ctx context.Context, id string) ApiDeleteSpotMarketRequestRequest {
 	return ApiDeleteSpotMarketRequestRequest{
@@ -240,14 +241,14 @@ func (a *SpotMarketApiService) DeleteSpotMarketRequestExecute(r ApiDeleteSpotMar
 	}
 
 	localVarPath := localBasePath + "/spot-market-requests/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.forceTermination != nil {
-		localVarQueryParams.Add("force_termination", parameterToString(*r.forceTermination, ""))
+		parameterAddToQuery(localVarQueryParams, "force_termination", r.forceTermination, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -368,8 +369,8 @@ FindMetroSpotMarketPrices Get current spot market prices for metros
 
 Get Equinix Metal current spot market prices for all metros.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiFindMetroSpotMarketPricesRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiFindMetroSpotMarketPricesRequest
 */
 func (a *SpotMarketApiService) FindMetroSpotMarketPrices(ctx context.Context) ApiFindMetroSpotMarketPricesRequest {
 	return ApiFindMetroSpotMarketPricesRequest{
@@ -379,7 +380,8 @@ func (a *SpotMarketApiService) FindMetroSpotMarketPrices(ctx context.Context) Ap
 }
 
 // Execute executes the request
-//  @return SpotMarketPricesPerMetroList
+//
+//	@return SpotMarketPricesPerMetroList
 func (a *SpotMarketApiService) FindMetroSpotMarketPricesExecute(r ApiFindMetroSpotMarketPricesRequest) (*SpotMarketPricesPerMetroList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -400,10 +402,10 @@ func (a *SpotMarketApiService) FindMetroSpotMarketPricesExecute(r ApiFindMetroSp
 	localVarFormParams := url.Values{}
 
 	if r.metro != nil {
-		localVarQueryParams.Add("metro", parameterToString(*r.metro, ""))
+		parameterAddToQuery(localVarQueryParams, "metro", r.metro, "")
 	}
 	if r.plan != nil {
-		localVarQueryParams.Add("plan", parameterToString(*r.plan, ""))
+		parameterAddToQuery(localVarQueryParams, "plan", r.plan, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -522,8 +524,8 @@ FindSpotMarketPrices Get current spot market prices
 
 Get Equinix Metal current spot market prices.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiFindSpotMarketPricesRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiFindSpotMarketPricesRequest
 */
 func (a *SpotMarketApiService) FindSpotMarketPrices(ctx context.Context) ApiFindSpotMarketPricesRequest {
 	return ApiFindSpotMarketPricesRequest{
@@ -533,7 +535,8 @@ func (a *SpotMarketApiService) FindSpotMarketPrices(ctx context.Context) ApiFind
 }
 
 // Execute executes the request
-//  @return SpotMarketPricesList
+//
+//	@return SpotMarketPricesList
 func (a *SpotMarketApiService) FindSpotMarketPricesExecute(r ApiFindSpotMarketPricesRequest) (*SpotMarketPricesList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -554,10 +557,10 @@ func (a *SpotMarketApiService) FindSpotMarketPricesExecute(r ApiFindSpotMarketPr
 	localVarFormParams := url.Values{}
 
 	if r.facility != nil {
-		localVarQueryParams.Add("facility", parameterToString(*r.facility, ""))
+		parameterAddToQuery(localVarQueryParams, "facility", r.facility, "")
 	}
 	if r.plan != nil {
-		localVarQueryParams.Add("plan", parameterToString(*r.plan, ""))
+		parameterAddToQuery(localVarQueryParams, "plan", r.plan, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -695,12 +698,12 @@ func (r ApiFindSpotMarketPricesHistoryRequest) Execute() (*SpotPricesHistoryRepo
 /*
 FindSpotMarketPricesHistory Get spot market prices for a given period of time
 
-Get spot market prices for a given plan and facility in a fixed period of time
+# Get spot market prices for a given plan and facility in a fixed period of time
 
 *Note: In the `200` response, the property `datapoints` contains arrays of `[float, integer]`.*
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiFindSpotMarketPricesHistoryRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiFindSpotMarketPricesHistoryRequest
 */
 func (a *SpotMarketApiService) FindSpotMarketPricesHistory(ctx context.Context) ApiFindSpotMarketPricesHistoryRequest {
 	return ApiFindSpotMarketPricesHistoryRequest{
@@ -710,7 +713,8 @@ func (a *SpotMarketApiService) FindSpotMarketPricesHistory(ctx context.Context) 
 }
 
 // Execute executes the request
-//  @return SpotPricesHistoryReport
+//
+//	@return SpotPricesHistoryReport
 func (a *SpotMarketApiService) FindSpotMarketPricesHistoryExecute(r ApiFindSpotMarketPricesHistoryRequest) (*SpotPricesHistoryReport, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -742,13 +746,13 @@ func (a *SpotMarketApiService) FindSpotMarketPricesHistoryExecute(r ApiFindSpotM
 		return localVarReturnValue, nil, reportError("until is required and must be specified")
 	}
 
-	localVarQueryParams.Add("facility", parameterToString(*r.facility, ""))
-	localVarQueryParams.Add("plan", parameterToString(*r.plan, ""))
+	parameterAddToQuery(localVarQueryParams, "facility", r.facility, "")
+	parameterAddToQuery(localVarQueryParams, "plan", r.plan, "")
 	if r.metro != nil {
-		localVarQueryParams.Add("metro", parameterToString(*r.metro, ""))
+		parameterAddToQuery(localVarQueryParams, "metro", r.metro, "")
 	}
-	localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	localVarQueryParams.Add("until", parameterToString(*r.until, ""))
+	parameterAddToQuery(localVarQueryParams, "from", r.from, "")
+	parameterAddToQuery(localVarQueryParams, "until", r.until, "")
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -867,9 +871,9 @@ FindSpotMarketRequestById Retrieve a spot market request
 
 Returns a single spot market request
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id SpotMarketRequest UUID
- @return ApiFindSpotMarketRequestByIdRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id SpotMarketRequest UUID
+	@return ApiFindSpotMarketRequestByIdRequest
 */
 func (a *SpotMarketApiService) FindSpotMarketRequestById(ctx context.Context, id string) ApiFindSpotMarketRequestByIdRequest {
 	return ApiFindSpotMarketRequestByIdRequest{
@@ -880,7 +884,8 @@ func (a *SpotMarketApiService) FindSpotMarketRequestById(ctx context.Context, id
 }
 
 // Execute executes the request
-//  @return SpotMarketRequest
+//
+//	@return SpotMarketRequest
 func (a *SpotMarketApiService) FindSpotMarketRequestByIdExecute(r ApiFindSpotMarketRequestByIdRequest) (*SpotMarketRequest, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -895,17 +900,17 @@ func (a *SpotMarketApiService) FindSpotMarketRequestByIdExecute(r ApiFindSpotMar
 	}
 
 	localVarPath := localBasePath + "/spot-market-requests/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.include != nil {
-		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
+		parameterAddToQuery(localVarQueryParams, "include", r.include, "csv")
 	}
 	if r.exclude != nil {
-		localVarQueryParams.Add("exclude", parameterToString(*r.exclude, "csv"))
+		parameterAddToQuery(localVarQueryParams, "exclude", r.exclude, "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1022,9 +1027,9 @@ ListSpotMarketRequests List spot market requests
 
 View all spot market requests for a given project.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Project UUID
- @return ApiListSpotMarketRequestsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Project UUID
+	@return ApiListSpotMarketRequestsRequest
 */
 func (a *SpotMarketApiService) ListSpotMarketRequests(ctx context.Context, id string) ApiListSpotMarketRequestsRequest {
 	return ApiListSpotMarketRequestsRequest{
@@ -1035,7 +1040,8 @@ func (a *SpotMarketApiService) ListSpotMarketRequests(ctx context.Context, id st
 }
 
 // Execute executes the request
-//  @return SpotMarketRequestList
+//
+//	@return SpotMarketRequestList
 func (a *SpotMarketApiService) ListSpotMarketRequestsExecute(r ApiListSpotMarketRequestsRequest) (*SpotMarketRequestList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -1050,7 +1056,7 @@ func (a *SpotMarketApiService) ListSpotMarketRequestsExecute(r ApiListSpotMarket
 	}
 
 	localVarPath := localBasePath + "/projects/{id}/spot-market-requests"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

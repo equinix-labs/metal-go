@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the DeviceActionsInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &DeviceActionsInner{}
+
 // DeviceActionsInner struct for DeviceActionsInner
 type DeviceActionsInner struct {
 	Type *string `json:"type,omitempty"`
@@ -103,6 +106,14 @@ func (o *DeviceActionsInner) SetName(v string) {
 }
 
 func (o DeviceActionsInner) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o DeviceActionsInner) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Type) {
 		toSerialize["type"] = o.Type
@@ -110,7 +121,7 @@ func (o DeviceActionsInner) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableDeviceActionsInner struct {

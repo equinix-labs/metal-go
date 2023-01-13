@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the DeviceList type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &DeviceList{}
+
 // DeviceList struct for DeviceList
 type DeviceList struct {
 	Devices []Device `json:"devices,omitempty"`
@@ -103,6 +106,14 @@ func (o *DeviceList) SetMeta(v Meta) {
 }
 
 func (o DeviceList) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o DeviceList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Devices) {
 		toSerialize["devices"] = o.Devices
@@ -110,7 +121,7 @@ func (o DeviceList) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Meta) {
 		toSerialize["meta"] = o.Meta
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableDeviceList struct {

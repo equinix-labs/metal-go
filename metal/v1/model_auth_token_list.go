@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the AuthTokenList type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &AuthTokenList{}
+
 // AuthTokenList struct for AuthTokenList
 type AuthTokenList struct {
 	ApiKeys []AuthToken `json:"api_keys,omitempty"`
@@ -70,11 +73,19 @@ func (o *AuthTokenList) SetApiKeys(v []AuthToken) {
 }
 
 func (o AuthTokenList) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o AuthTokenList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.ApiKeys) {
 		toSerialize["api_keys"] = o.ApiKeys
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableAuthTokenList struct {

@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the LicenseCreateInput type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &LicenseCreateInput{}
+
 // LicenseCreateInput struct for LicenseCreateInput
 type LicenseCreateInput struct {
 	Description       *string  `json:"description,omitempty"`
@@ -136,6 +139,14 @@ func (o *LicenseCreateInput) SetSize(v float32) {
 }
 
 func (o LicenseCreateInput) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o LicenseCreateInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Description) {
 		toSerialize["description"] = o.Description
@@ -146,7 +157,7 @@ func (o LicenseCreateInput) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Size) {
 		toSerialize["size"] = o.Size
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableLicenseCreateInput struct {

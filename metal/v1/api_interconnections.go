@@ -46,10 +46,10 @@ CreateInterconnectionPortVirtualCircuit Create a new Virtual Circuit
 
 Create a new Virtual Circuit on a Dedicated Port. To create a regular Virtual Circuit, specify a Virtual Network record and an NNI VLAN value. To create a VRF-based Virtual Circuit, specify the VRF ID and subnet, along with the NNI VLAN value.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param connectionId UUID of the interconnection
- @param portId UUID of the interconnection port
- @return ApiCreateInterconnectionPortVirtualCircuitRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param connectionId UUID of the interconnection
+	@param portId UUID of the interconnection port
+	@return ApiCreateInterconnectionPortVirtualCircuitRequest
 */
 func (a *InterconnectionsApiService) CreateInterconnectionPortVirtualCircuit(ctx context.Context, connectionId string, portId string) ApiCreateInterconnectionPortVirtualCircuitRequest {
 	return ApiCreateInterconnectionPortVirtualCircuitRequest{
@@ -61,7 +61,8 @@ func (a *InterconnectionsApiService) CreateInterconnectionPortVirtualCircuit(ctx
 }
 
 // Execute executes the request
-//  @return CreateInterconnectionPortVirtualCircuit201Response
+//
+//	@return CreateInterconnectionPortVirtualCircuit201Response
 func (a *InterconnectionsApiService) CreateInterconnectionPortVirtualCircuitExecute(r ApiCreateInterconnectionPortVirtualCircuitRequest) (*CreateInterconnectionPortVirtualCircuit201Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -76,8 +77,8 @@ func (a *InterconnectionsApiService) CreateInterconnectionPortVirtualCircuitExec
 	}
 
 	localVarPath := localBasePath + "/connections/{connection_id}/ports/{port_id}/virtual-circuits"
-	localVarPath = strings.Replace(localVarPath, "{"+"connection_id"+"}", url.PathEscape(parameterToString(r.connectionId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"port_id"+"}", url.PathEscape(parameterToString(r.portId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"connection_id"+"}", url.PathEscape(parameterValueToString(r.connectionId, "connectionId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"port_id"+"}", url.PathEscape(parameterValueToString(r.portId, "portId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -199,9 +200,9 @@ CreateOrganizationInterconnection Request a new interconnection for the organiza
 
 Creates a new interconnection request. A Project ID must be specified in the request body for connections on shared ports.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param organizationId UUID of the organization
- @return ApiCreateOrganizationInterconnectionRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param organizationId UUID of the organization
+	@return ApiCreateOrganizationInterconnectionRequest
 */
 func (a *InterconnectionsApiService) CreateOrganizationInterconnection(ctx context.Context, organizationId string) ApiCreateOrganizationInterconnectionRequest {
 	return ApiCreateOrganizationInterconnectionRequest{
@@ -212,7 +213,8 @@ func (a *InterconnectionsApiService) CreateOrganizationInterconnection(ctx conte
 }
 
 // Execute executes the request
-//  @return Interconnection
+//
+//	@return Interconnection
 func (a *InterconnectionsApiService) CreateOrganizationInterconnectionExecute(r ApiCreateOrganizationInterconnectionRequest) (*Interconnection, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -227,7 +229,7 @@ func (a *InterconnectionsApiService) CreateOrganizationInterconnectionExecute(r 
 	}
 
 	localVarPath := localBasePath + "/organizations/{organization_id}/connections"
-	localVarPath = strings.Replace(localVarPath, "{"+"organization_id"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organization_id"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -360,9 +362,9 @@ CreateProjectInterconnection Request a new interconnection for the project's org
 
 Creates a new interconnection request
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param projectId UUID of the project
- @return ApiCreateProjectInterconnectionRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId UUID of the project
+	@return ApiCreateProjectInterconnectionRequest
 */
 func (a *InterconnectionsApiService) CreateProjectInterconnection(ctx context.Context, projectId string) ApiCreateProjectInterconnectionRequest {
 	return ApiCreateProjectInterconnectionRequest{
@@ -373,7 +375,8 @@ func (a *InterconnectionsApiService) CreateProjectInterconnection(ctx context.Co
 }
 
 // Execute executes the request
-//  @return Interconnection
+//
+//	@return Interconnection
 func (a *InterconnectionsApiService) CreateProjectInterconnectionExecute(r ApiCreateProjectInterconnectionRequest) (*Interconnection, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -388,7 +391,7 @@ func (a *InterconnectionsApiService) CreateProjectInterconnectionExecute(r ApiCr
 	}
 
 	localVarPath := localBasePath + "/projects/{project_id}/connections"
-	localVarPath = strings.Replace(localVarPath, "{"+"project_id"+"}", url.PathEscape(parameterToString(r.projectId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"project_id"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -503,9 +506,9 @@ DeleteInterconnection Delete interconnection
 
 Delete a interconnection, its associated ports and virtual circuits.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param connectionId Interconnection UUID
- @return ApiDeleteInterconnectionRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param connectionId Interconnection UUID
+	@return ApiDeleteInterconnectionRequest
 */
 func (a *InterconnectionsApiService) DeleteInterconnection(ctx context.Context, connectionId string) ApiDeleteInterconnectionRequest {
 	return ApiDeleteInterconnectionRequest{
@@ -516,7 +519,8 @@ func (a *InterconnectionsApiService) DeleteInterconnection(ctx context.Context, 
 }
 
 // Execute executes the request
-//  @return Interconnection
+//
+//	@return Interconnection
 func (a *InterconnectionsApiService) DeleteInterconnectionExecute(r ApiDeleteInterconnectionRequest) (*Interconnection, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodDelete
@@ -531,7 +535,7 @@ func (a *InterconnectionsApiService) DeleteInterconnectionExecute(r ApiDeleteInt
 	}
 
 	localVarPath := localBasePath + "/connections/{connection_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"connection_id"+"}", url.PathEscape(parameterToString(r.connectionId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"connection_id"+"}", url.PathEscape(parameterValueToString(r.connectionId, "connectionId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -641,9 +645,9 @@ DeleteVirtualCircuit Delete a virtual circuit
 
 Delete a virtual circuit from a Dedicated Port.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Virtual Circuit UUID
- @return ApiDeleteVirtualCircuitRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Virtual Circuit UUID
+	@return ApiDeleteVirtualCircuitRequest
 */
 func (a *InterconnectionsApiService) DeleteVirtualCircuit(ctx context.Context, id string) ApiDeleteVirtualCircuitRequest {
 	return ApiDeleteVirtualCircuitRequest{
@@ -654,7 +658,8 @@ func (a *InterconnectionsApiService) DeleteVirtualCircuit(ctx context.Context, i
 }
 
 // Execute executes the request
-//  @return CreateInterconnectionPortVirtualCircuit201Response
+//
+//	@return CreateInterconnectionPortVirtualCircuit201Response
 func (a *InterconnectionsApiService) DeleteVirtualCircuitExecute(r ApiDeleteVirtualCircuitRequest) (*CreateInterconnectionPortVirtualCircuit201Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodDelete
@@ -669,7 +674,7 @@ func (a *InterconnectionsApiService) DeleteVirtualCircuitExecute(r ApiDeleteVirt
 	}
 
 	localVarPath := localBasePath + "/virtual-circuits/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -779,9 +784,9 @@ GetInterconnection Get interconnection
 
 Get the details of a interconnection
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param connectionId Interconnection UUID
- @return ApiGetInterconnectionRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param connectionId Interconnection UUID
+	@return ApiGetInterconnectionRequest
 */
 func (a *InterconnectionsApiService) GetInterconnection(ctx context.Context, connectionId string) ApiGetInterconnectionRequest {
 	return ApiGetInterconnectionRequest{
@@ -792,7 +797,8 @@ func (a *InterconnectionsApiService) GetInterconnection(ctx context.Context, con
 }
 
 // Execute executes the request
-//  @return Interconnection
+//
+//	@return Interconnection
 func (a *InterconnectionsApiService) GetInterconnectionExecute(r ApiGetInterconnectionRequest) (*Interconnection, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -807,7 +813,7 @@ func (a *InterconnectionsApiService) GetInterconnectionExecute(r ApiGetInterconn
 	}
 
 	localVarPath := localBasePath + "/connections/{connection_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"connection_id"+"}", url.PathEscape(parameterToString(r.connectionId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"connection_id"+"}", url.PathEscape(parameterValueToString(r.connectionId, "connectionId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -918,10 +924,10 @@ GetInterconnectionPort Get a interconnection port
 
 Get the details of an interconnection port.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param connectionId UUID of the interconnection
- @param id Port UUID
- @return ApiGetInterconnectionPortRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param connectionId UUID of the interconnection
+	@param id Port UUID
+	@return ApiGetInterconnectionPortRequest
 */
 func (a *InterconnectionsApiService) GetInterconnectionPort(ctx context.Context, connectionId string, id string) ApiGetInterconnectionPortRequest {
 	return ApiGetInterconnectionPortRequest{
@@ -933,7 +939,8 @@ func (a *InterconnectionsApiService) GetInterconnectionPort(ctx context.Context,
 }
 
 // Execute executes the request
-//  @return InterconnectionPort
+//
+//	@return InterconnectionPort
 func (a *InterconnectionsApiService) GetInterconnectionPortExecute(r ApiGetInterconnectionPortRequest) (*InterconnectionPort, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -948,8 +955,8 @@ func (a *InterconnectionsApiService) GetInterconnectionPortExecute(r ApiGetInter
 	}
 
 	localVarPath := localBasePath + "/connections/{connection_id}/ports/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"connection_id"+"}", url.PathEscape(parameterToString(r.connectionId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"connection_id"+"}", url.PathEscape(parameterValueToString(r.connectionId, "connectionId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1059,9 +1066,9 @@ GetVirtualCircuit Get a virtual circuit
 
 Get the details of a virtual circuit
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Virtual Circuit UUID
- @return ApiGetVirtualCircuitRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Virtual Circuit UUID
+	@return ApiGetVirtualCircuitRequest
 */
 func (a *InterconnectionsApiService) GetVirtualCircuit(ctx context.Context, id string) ApiGetVirtualCircuitRequest {
 	return ApiGetVirtualCircuitRequest{
@@ -1072,7 +1079,8 @@ func (a *InterconnectionsApiService) GetVirtualCircuit(ctx context.Context, id s
 }
 
 // Execute executes the request
-//  @return CreateInterconnectionPortVirtualCircuit201Response
+//
+//	@return CreateInterconnectionPortVirtualCircuit201Response
 func (a *InterconnectionsApiService) GetVirtualCircuitExecute(r ApiGetVirtualCircuitRequest) (*CreateInterconnectionPortVirtualCircuit201Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -1087,7 +1095,7 @@ func (a *InterconnectionsApiService) GetVirtualCircuitExecute(r ApiGetVirtualCir
 	}
 
 	localVarPath := localBasePath + "/virtual-circuits/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1198,10 +1206,10 @@ ListInterconnectionPortVirtualCircuits List a interconnection port's virtual cir
 
 List the virtual circuit record(s) associatiated with a particular interconnection port.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param connectionId UUID of the interconnection
- @param portId UUID of the interconnection port
- @return ApiListInterconnectionPortVirtualCircuitsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param connectionId UUID of the interconnection
+	@param portId UUID of the interconnection port
+	@return ApiListInterconnectionPortVirtualCircuitsRequest
 */
 func (a *InterconnectionsApiService) ListInterconnectionPortVirtualCircuits(ctx context.Context, connectionId string, portId string) ApiListInterconnectionPortVirtualCircuitsRequest {
 	return ApiListInterconnectionPortVirtualCircuitsRequest{
@@ -1213,7 +1221,8 @@ func (a *InterconnectionsApiService) ListInterconnectionPortVirtualCircuits(ctx 
 }
 
 // Execute executes the request
-//  @return VirtualCircuitList
+//
+//	@return VirtualCircuitList
 func (a *InterconnectionsApiService) ListInterconnectionPortVirtualCircuitsExecute(r ApiListInterconnectionPortVirtualCircuitsRequest) (*VirtualCircuitList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -1228,8 +1237,8 @@ func (a *InterconnectionsApiService) ListInterconnectionPortVirtualCircuitsExecu
 	}
 
 	localVarPath := localBasePath + "/connections/{connection_id}/ports/{port_id}/virtual-circuits"
-	localVarPath = strings.Replace(localVarPath, "{"+"connection_id"+"}", url.PathEscape(parameterToString(r.connectionId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"port_id"+"}", url.PathEscape(parameterToString(r.portId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"connection_id"+"}", url.PathEscape(parameterValueToString(r.connectionId, "connectionId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"port_id"+"}", url.PathEscape(parameterValueToString(r.portId, "portId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1339,9 +1348,9 @@ ListInterconnectionPorts List a interconnection's ports
 
 List the ports associated to an interconnection.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param connectionId UUID of the interconnection
- @return ApiListInterconnectionPortsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param connectionId UUID of the interconnection
+	@return ApiListInterconnectionPortsRequest
 */
 func (a *InterconnectionsApiService) ListInterconnectionPorts(ctx context.Context, connectionId string) ApiListInterconnectionPortsRequest {
 	return ApiListInterconnectionPortsRequest{
@@ -1352,7 +1361,8 @@ func (a *InterconnectionsApiService) ListInterconnectionPorts(ctx context.Contex
 }
 
 // Execute executes the request
-//  @return InterconnectionPortList
+//
+//	@return InterconnectionPortList
 func (a *InterconnectionsApiService) ListInterconnectionPortsExecute(r ApiListInterconnectionPortsRequest) (*InterconnectionPortList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -1367,7 +1377,7 @@ func (a *InterconnectionsApiService) ListInterconnectionPortsExecute(r ApiListIn
 	}
 
 	localVarPath := localBasePath + "/connections/{connection_id}/ports"
-	localVarPath = strings.Replace(localVarPath, "{"+"connection_id"+"}", url.PathEscape(parameterToString(r.connectionId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"connection_id"+"}", url.PathEscape(parameterValueToString(r.connectionId, "connectionId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1477,9 +1487,9 @@ OrganizationListInterconnections List organization connections
 
 List the connections belonging to the organization
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param organizationId UUID of the organization
- @return ApiOrganizationListInterconnectionsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param organizationId UUID of the organization
+	@return ApiOrganizationListInterconnectionsRequest
 */
 func (a *InterconnectionsApiService) OrganizationListInterconnections(ctx context.Context, organizationId string) ApiOrganizationListInterconnectionsRequest {
 	return ApiOrganizationListInterconnectionsRequest{
@@ -1490,7 +1500,8 @@ func (a *InterconnectionsApiService) OrganizationListInterconnections(ctx contex
 }
 
 // Execute executes the request
-//  @return InterconnectionList
+//
+//	@return InterconnectionList
 func (a *InterconnectionsApiService) OrganizationListInterconnectionsExecute(r ApiOrganizationListInterconnectionsRequest) (*InterconnectionList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -1505,7 +1516,7 @@ func (a *InterconnectionsApiService) OrganizationListInterconnectionsExecute(r A
 	}
 
 	localVarPath := localBasePath + "/organizations/{organization_id}/connections"
-	localVarPath = strings.Replace(localVarPath, "{"+"organization_id"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organization_id"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1615,9 +1626,9 @@ ProjectListInterconnections List project connections
 
 List the connections belonging to the project
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param projectId UUID of the project
- @return ApiProjectListInterconnectionsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId UUID of the project
+	@return ApiProjectListInterconnectionsRequest
 */
 func (a *InterconnectionsApiService) ProjectListInterconnections(ctx context.Context, projectId string) ApiProjectListInterconnectionsRequest {
 	return ApiProjectListInterconnectionsRequest{
@@ -1628,7 +1639,8 @@ func (a *InterconnectionsApiService) ProjectListInterconnections(ctx context.Con
 }
 
 // Execute executes the request
-//  @return InterconnectionList
+//
+//	@return InterconnectionList
 func (a *InterconnectionsApiService) ProjectListInterconnectionsExecute(r ApiProjectListInterconnectionsRequest) (*InterconnectionList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -1643,7 +1655,7 @@ func (a *InterconnectionsApiService) ProjectListInterconnectionsExecute(r ApiPro
 	}
 
 	localVarPath := localBasePath + "/projects/{project_id}/connections"
-	localVarPath = strings.Replace(localVarPath, "{"+"project_id"+"}", url.PathEscape(parameterToString(r.projectId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"project_id"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1760,9 +1772,9 @@ UpdateInterconnection Update interconnection
 
 Update the details of a interconnection
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param connectionId Interconnection UUID
- @return ApiUpdateInterconnectionRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param connectionId Interconnection UUID
+	@return ApiUpdateInterconnectionRequest
 */
 func (a *InterconnectionsApiService) UpdateInterconnection(ctx context.Context, connectionId string) ApiUpdateInterconnectionRequest {
 	return ApiUpdateInterconnectionRequest{
@@ -1773,7 +1785,8 @@ func (a *InterconnectionsApiService) UpdateInterconnection(ctx context.Context, 
 }
 
 // Execute executes the request
-//  @return Interconnection
+//
+//	@return Interconnection
 func (a *InterconnectionsApiService) UpdateInterconnectionExecute(r ApiUpdateInterconnectionRequest) (*Interconnection, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
@@ -1788,7 +1801,7 @@ func (a *InterconnectionsApiService) UpdateInterconnectionExecute(r ApiUpdateInt
 	}
 
 	localVarPath := localBasePath + "/connections/{connection_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"connection_id"+"}", url.PathEscape(parameterToString(r.connectionId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"connection_id"+"}", url.PathEscape(parameterValueToString(r.connectionId, "connectionId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1910,9 +1923,9 @@ UpdateVirtualCircuit Update a virtual circuit
 
 Update the details of a virtual circuit.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Virtual Circuit UUID
- @return ApiUpdateVirtualCircuitRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Virtual Circuit UUID
+	@return ApiUpdateVirtualCircuitRequest
 */
 func (a *InterconnectionsApiService) UpdateVirtualCircuit(ctx context.Context, id string) ApiUpdateVirtualCircuitRequest {
 	return ApiUpdateVirtualCircuitRequest{
@@ -1923,7 +1936,8 @@ func (a *InterconnectionsApiService) UpdateVirtualCircuit(ctx context.Context, i
 }
 
 // Execute executes the request
-//  @return CreateInterconnectionPortVirtualCircuit201Response
+//
+//	@return CreateInterconnectionPortVirtualCircuit201Response
 func (a *InterconnectionsApiService) UpdateVirtualCircuitExecute(r ApiUpdateVirtualCircuitRequest) (*CreateInterconnectionPortVirtualCircuit201Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
@@ -1938,7 +1952,7 @@ func (a *InterconnectionsApiService) UpdateVirtualCircuitExecute(r ApiUpdateVirt
 	}
 
 	localVarPath := localBasePath + "/virtual-circuits/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

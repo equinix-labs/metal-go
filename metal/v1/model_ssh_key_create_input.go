@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the SSHKeyCreateInput type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &SSHKeyCreateInput{}
+
 // SSHKeyCreateInput struct for SSHKeyCreateInput
 type SSHKeyCreateInput struct {
 	// List of instance UUIDs to associate SSH key with, when empty array is sent all instances belonging       to entity will be included
@@ -137,6 +140,14 @@ func (o *SSHKeyCreateInput) SetLabel(v string) {
 }
 
 func (o SSHKeyCreateInput) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o SSHKeyCreateInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.InstancesIds) {
 		toSerialize["instances_ids"] = o.InstancesIds
@@ -147,7 +158,7 @@ func (o SSHKeyCreateInput) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Label) {
 		toSerialize["label"] = o.Label
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableSSHKeyCreateInput struct {

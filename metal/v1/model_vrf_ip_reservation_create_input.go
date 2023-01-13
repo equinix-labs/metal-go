@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the VrfIpReservationCreateInput type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &VrfIpReservationCreateInput{}
+
 // VrfIpReservationCreateInput struct for VrfIpReservationCreateInput
 type VrfIpReservationCreateInput struct {
 	// The size of the VRF IP Reservation's subnet
@@ -244,29 +247,29 @@ func (o *VrfIpReservationCreateInput) SetVrfId(v string) {
 }
 
 func (o VrfIpReservationCreateInput) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["cidr"] = o.Cidr
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
+	return json.Marshal(toSerialize)
+}
+
+func (o VrfIpReservationCreateInput) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["cidr"] = o.Cidr
 	if !isNil(o.Customdata) {
 		toSerialize["customdata"] = o.Customdata
 	}
 	if !isNil(o.Details) {
 		toSerialize["details"] = o.Details
 	}
-	if true {
-		toSerialize["network"] = o.Network
-	}
+	toSerialize["network"] = o.Network
 	if !isNil(o.Tags) {
 		toSerialize["tags"] = o.Tags
 	}
-	if true {
-		toSerialize["type"] = o.Type
-	}
-	if true {
-		toSerialize["vrf_id"] = o.VrfId
-	}
-	return json.Marshal(toSerialize)
+	toSerialize["type"] = o.Type
+	toSerialize["vrf_id"] = o.VrfId
+	return toSerialize, nil
 }
 
 type NullableVrfIpReservationCreateInput struct {

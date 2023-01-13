@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the VrfVirtualCircuit type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &VrfVirtualCircuit{}
+
 // VrfVirtualCircuit struct for VrfVirtualCircuit
 type VrfVirtualCircuit struct {
 	// An IP address from the subnet that will be used on the Customer side. This parameter is optional, but if supplied, we will use the other usable IP address in the subnet as the Metal IP. By default, the last usable IP address in the subnet will be used.
@@ -538,6 +541,14 @@ func (o *VrfVirtualCircuit) SetVrf(v Vrf) {
 }
 
 func (o VrfVirtualCircuit) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o VrfVirtualCircuit) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.CustomerIp) {
 		toSerialize["customer_ip"] = o.CustomerIp
@@ -584,7 +595,7 @@ func (o VrfVirtualCircuit) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Vrf) {
 		toSerialize["vrf"] = o.Vrf
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableVrfVirtualCircuit struct {

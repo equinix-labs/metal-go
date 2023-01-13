@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the VirtualCircuit type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &VirtualCircuit{}
+
 // VirtualCircuit struct for VirtualCircuit
 type VirtualCircuit struct {
 	// True if the Virtual Circuit is being billed. Currently, only Virtual Circuits of Fabric VCs (Metal Billed) will be billed. Usage will start the first time the Virtual Circuit becomes active, and will not stop until it is deleted from Metal.
@@ -361,44 +364,30 @@ func (o *VirtualCircuit) SetVnid(v int32) {
 }
 
 func (o VirtualCircuit) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o VirtualCircuit) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["bill"] = o.Bill
-	}
-	if true {
-		toSerialize["description"] = o.Description
-	}
-	if true {
-		toSerialize["id"] = o.Id
-	}
-	if true {
-		toSerialize["name"] = o.Name
-	}
-	if true {
-		toSerialize["nni_vlan"] = o.NniVlan
-	}
-	if true {
-		toSerialize["port"] = o.Port
-	}
-	if true {
-		toSerialize["project"] = o.Project
-	}
+	toSerialize["bill"] = o.Bill
+	toSerialize["description"] = o.Description
+	toSerialize["id"] = o.Id
+	toSerialize["name"] = o.Name
+	toSerialize["nni_vlan"] = o.NniVlan
+	toSerialize["port"] = o.Port
+	toSerialize["project"] = o.Project
 	if !isNil(o.Speed) {
 		toSerialize["speed"] = o.Speed
 	}
-	if true {
-		toSerialize["status"] = o.Status
-	}
-	if true {
-		toSerialize["tags"] = o.Tags
-	}
-	if true {
-		toSerialize["virtual_network"] = o.VirtualNetwork
-	}
-	if true {
-		toSerialize["vnid"] = o.Vnid
-	}
-	return json.Marshal(toSerialize)
+	toSerialize["status"] = o.Status
+	toSerialize["tags"] = o.Tags
+	toSerialize["virtual_network"] = o.VirtualNetwork
+	toSerialize["vnid"] = o.Vnid
+	return toSerialize, nil
 }
 
 type NullableVirtualCircuit struct {

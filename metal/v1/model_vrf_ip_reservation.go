@@ -16,6 +16,9 @@ import (
 	"time"
 )
 
+// checks if the VrfIpReservation type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &VrfIpReservation{}
+
 // VrfIpReservation struct for VrfIpReservation
 type VrfIpReservation struct {
 	AddressFamily *int32            `json:"address_family,omitempty"`
@@ -519,6 +522,14 @@ func (o *VrfIpReservation) SetVrf(v Vrf) {
 }
 
 func (o VrfIpReservation) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o VrfIpReservation) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.AddressFamily) {
 		toSerialize["address_family"] = o.AddressFamily
@@ -559,13 +570,9 @@ func (o VrfIpReservation) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Tags) {
 		toSerialize["tags"] = o.Tags
 	}
-	if true {
-		toSerialize["type"] = o.Type
-	}
-	if true {
-		toSerialize["vrf"] = o.Vrf
-	}
-	return json.Marshal(toSerialize)
+	toSerialize["type"] = o.Type
+	toSerialize["vrf"] = o.Vrf
+	return toSerialize, nil
 }
 
 type NullableVrfIpReservation struct {

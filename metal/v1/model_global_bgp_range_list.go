@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GlobalBgpRangeList type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GlobalBgpRangeList{}
+
 // GlobalBgpRangeList struct for GlobalBgpRangeList
 type GlobalBgpRangeList struct {
 	GlobalBgpRanges []GlobalBgpRange `json:"global_bgp_ranges,omitempty"`
@@ -70,11 +73,19 @@ func (o *GlobalBgpRangeList) SetGlobalBgpRanges(v []GlobalBgpRange) {
 }
 
 func (o GlobalBgpRangeList) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o GlobalBgpRangeList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.GlobalBgpRanges) {
 		toSerialize["global_bgp_ranges"] = o.GlobalBgpRanges
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableGlobalBgpRangeList struct {

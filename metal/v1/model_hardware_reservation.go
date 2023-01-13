@@ -16,6 +16,9 @@ import (
 	"time"
 )
 
+// checks if the HardwareReservation type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &HardwareReservation{}
+
 // HardwareReservation struct for HardwareReservation
 type HardwareReservation struct {
 	CreatedAt *time.Time `json:"created_at,omitempty"`
@@ -473,6 +476,14 @@ func (o *HardwareReservation) SetSwitchUuid(v string) {
 }
 
 func (o HardwareReservation) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o HardwareReservation) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt
@@ -513,7 +524,7 @@ func (o HardwareReservation) MarshalJSON() ([]byte, error) {
 	if !isNil(o.SwitchUuid) {
 		toSerialize["switch_uuid"] = o.SwitchUuid
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableHardwareReservation struct {

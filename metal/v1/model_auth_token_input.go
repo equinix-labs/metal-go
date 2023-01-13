@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the AuthTokenInput type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &AuthTokenInput{}
+
 // AuthTokenInput struct for AuthTokenInput
 type AuthTokenInput struct {
 	Description *string `json:"description,omitempty"`
@@ -103,6 +106,14 @@ func (o *AuthTokenInput) SetReadOnly(v bool) {
 }
 
 func (o AuthTokenInput) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o AuthTokenInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Description) {
 		toSerialize["description"] = o.Description
@@ -110,7 +121,7 @@ func (o AuthTokenInput) MarshalJSON() ([]byte, error) {
 	if !isNil(o.ReadOnly) {
 		toSerialize["read_only"] = o.ReadOnly
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableAuthTokenInput struct {

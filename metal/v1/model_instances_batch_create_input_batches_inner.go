@@ -16,6 +16,9 @@ import (
 	"time"
 )
 
+// checks if the InstancesBatchCreateInputBatchesInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &InstancesBatchCreateInputBatchesInner{}
+
 // InstancesBatchCreateInputBatchesInner struct for InstancesBatchCreateInputBatchesInner
 type InstancesBatchCreateInputBatchesInner struct {
 	Hostnames []string `json:"hostnames,omitempty"`
@@ -948,6 +951,14 @@ func (o *InstancesBatchCreateInputBatchesInner) SetFacility(v FacilityInputFacil
 }
 
 func (o InstancesBatchCreateInputBatchesInner) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o InstancesBatchCreateInputBatchesInner) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Hostnames) {
 		toSerialize["hostnames"] = o.Hostnames
@@ -955,9 +966,7 @@ func (o InstancesBatchCreateInputBatchesInner) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Quantity) {
 		toSerialize["quantity"] = o.Quantity
 	}
-	if true {
-		toSerialize["metro"] = o.Metro
-	}
+	toSerialize["metro"] = o.Metro
 	if !isNil(o.AlwaysPxe) {
 		toSerialize["always_pxe"] = o.AlwaysPxe
 	}
@@ -991,12 +1000,8 @@ func (o InstancesBatchCreateInputBatchesInner) MarshalJSON() ([]byte, error) {
 	if !isNil(o.NoSshKeys) {
 		toSerialize["no_ssh_keys"] = o.NoSshKeys
 	}
-	if true {
-		toSerialize["operating_system"] = o.OperatingSystem
-	}
-	if true {
-		toSerialize["plan"] = o.Plan
-	}
+	toSerialize["operating_system"] = o.OperatingSystem
+	toSerialize["plan"] = o.Plan
 	if !isNil(o.PrivateIpv4SubnetSize) {
 		toSerialize["private_ipv4_subnet_size"] = o.PrivateIpv4SubnetSize
 	}
@@ -1027,10 +1032,8 @@ func (o InstancesBatchCreateInputBatchesInner) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Userdata) {
 		toSerialize["userdata"] = o.Userdata
 	}
-	if true {
-		toSerialize["facility"] = o.Facility
-	}
-	return json.Marshal(toSerialize)
+	toSerialize["facility"] = o.Facility
+	return toSerialize, nil
 }
 
 type NullableInstancesBatchCreateInputBatchesInner struct {

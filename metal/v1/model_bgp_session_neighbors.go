@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the BgpSessionNeighbors type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &BgpSessionNeighbors{}
+
 // BgpSessionNeighbors struct for BgpSessionNeighbors
 type BgpSessionNeighbors struct {
 	// A list of BGP session neighbor data
@@ -71,11 +74,19 @@ func (o *BgpSessionNeighbors) SetBgpNeighbors(v []BgpNeighborData) {
 }
 
 func (o BgpSessionNeighbors) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o BgpSessionNeighbors) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.BgpNeighbors) {
 		toSerialize["bgp_neighbors"] = o.BgpNeighbors
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableBgpSessionNeighbors struct {

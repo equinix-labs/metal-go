@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the SpotPricesPerNewFacility type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &SpotPricesPerNewFacility{}
+
 // SpotPricesPerNewFacility struct for SpotPricesPerNewFacility
 type SpotPricesPerNewFacility struct {
 	Baremetal1e *SpotPricesPerBaremetal `json:"baremetal_1e,omitempty"`
@@ -70,11 +73,19 @@ func (o *SpotPricesPerNewFacility) SetBaremetal1e(v SpotPricesPerBaremetal) {
 }
 
 func (o SpotPricesPerNewFacility) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o SpotPricesPerNewFacility) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Baremetal1e) {
 		toSerialize["baremetal_1e"] = o.Baremetal1e
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableSpotPricesPerNewFacility struct {

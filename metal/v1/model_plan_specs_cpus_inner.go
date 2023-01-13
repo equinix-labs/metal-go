@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the PlanSpecsCpusInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PlanSpecsCpusInner{}
+
 // PlanSpecsCpusInner struct for PlanSpecsCpusInner
 type PlanSpecsCpusInner struct {
 	Count *int32  `json:"count,omitempty"`
@@ -103,6 +106,14 @@ func (o *PlanSpecsCpusInner) SetType(v string) {
 }
 
 func (o PlanSpecsCpusInner) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o PlanSpecsCpusInner) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Count) {
 		toSerialize["count"] = o.Count
@@ -110,7 +121,7 @@ func (o PlanSpecsCpusInner) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Type) {
 		toSerialize["type"] = o.Type
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullablePlanSpecsCpusInner struct {

@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the Port type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Port{}
+
 // Port Port is a hardware port associated with a reserved or instantiated hardware device.
 type Port struct {
 	Bond *BondPortData `json:"bond,omitempty"`
@@ -370,6 +373,14 @@ func (o *Port) SetVirtualNetworks(v []Href) {
 }
 
 func (o Port) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o Port) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Bond) {
 		toSerialize["bond"] = o.Bond
@@ -401,7 +412,7 @@ func (o Port) MarshalJSON() ([]byte, error) {
 	if !isNil(o.VirtualNetworks) {
 		toSerialize["virtual_networks"] = o.VirtualNetworks
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullablePort struct {

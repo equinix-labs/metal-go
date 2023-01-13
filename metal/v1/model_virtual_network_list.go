@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the VirtualNetworkList type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &VirtualNetworkList{}
+
 // VirtualNetworkList struct for VirtualNetworkList
 type VirtualNetworkList struct {
 	VirtualNetworks []VirtualNetwork `json:"virtual_networks,omitempty"`
@@ -70,11 +73,19 @@ func (o *VirtualNetworkList) SetVirtualNetworks(v []VirtualNetwork) {
 }
 
 func (o VirtualNetworkList) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o VirtualNetworkList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.VirtualNetworks) {
 		toSerialize["virtual_networks"] = o.VirtualNetworks
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableVirtualNetworkList struct {

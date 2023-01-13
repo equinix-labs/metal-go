@@ -16,6 +16,9 @@ import (
 	"time"
 )
 
+// checks if the DeviceCreateInMetroInput type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &DeviceCreateInMetroInput{}
+
 // DeviceCreateInMetroInput struct for DeviceCreateInMetroInput
 type DeviceCreateInMetroInput struct {
 	// Metro code or ID of where the instance should be provisioned in. Either metro or facility must be provided.
@@ -855,10 +858,16 @@ func (o *DeviceCreateInMetroInput) SetUserdata(v string) {
 }
 
 func (o DeviceCreateInMetroInput) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["metro"] = o.Metro
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
+	return json.Marshal(toSerialize)
+}
+
+func (o DeviceCreateInMetroInput) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["metro"] = o.Metro
 	if !isNil(o.AlwaysPxe) {
 		toSerialize["always_pxe"] = o.AlwaysPxe
 	}
@@ -892,12 +901,8 @@ func (o DeviceCreateInMetroInput) MarshalJSON() ([]byte, error) {
 	if !isNil(o.NoSshKeys) {
 		toSerialize["no_ssh_keys"] = o.NoSshKeys
 	}
-	if true {
-		toSerialize["operating_system"] = o.OperatingSystem
-	}
-	if true {
-		toSerialize["plan"] = o.Plan
-	}
+	toSerialize["operating_system"] = o.OperatingSystem
+	toSerialize["plan"] = o.Plan
 	if !isNil(o.PrivateIpv4SubnetSize) {
 		toSerialize["private_ipv4_subnet_size"] = o.PrivateIpv4SubnetSize
 	}
@@ -928,7 +933,7 @@ func (o DeviceCreateInMetroInput) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Userdata) {
 		toSerialize["userdata"] = o.Userdata
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableDeviceCreateInMetroInput struct {

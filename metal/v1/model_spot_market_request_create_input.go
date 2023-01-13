@@ -16,6 +16,9 @@ import (
 	"time"
 )
 
+// checks if the SpotMarketRequestCreateInput type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &SpotMarketRequestCreateInput{}
+
 // SpotMarketRequestCreateInput struct for SpotMarketRequestCreateInput
 type SpotMarketRequestCreateInput struct {
 	DevicesMax         *int32                                          `json:"devices_max,omitempty"`
@@ -270,6 +273,14 @@ func (o *SpotMarketRequestCreateInput) SetMetro(v string) {
 }
 
 func (o SpotMarketRequestCreateInput) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o SpotMarketRequestCreateInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.DevicesMax) {
 		toSerialize["devices_max"] = o.DevicesMax
@@ -292,7 +303,7 @@ func (o SpotMarketRequestCreateInput) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Metro) {
 		toSerialize["metro"] = o.Metro
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableSpotMarketRequestCreateInput struct {

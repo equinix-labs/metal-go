@@ -59,9 +59,9 @@ CreateMetalGateway Create a metal gateway
 
 Create a metal gateway in a project
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param projectId Project UUID
- @return ApiCreateMetalGatewayRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId Project UUID
+	@return ApiCreateMetalGatewayRequest
 */
 func (a *MetalGatewaysApiService) CreateMetalGateway(ctx context.Context, projectId string) ApiCreateMetalGatewayRequest {
 	return ApiCreateMetalGatewayRequest{
@@ -72,7 +72,8 @@ func (a *MetalGatewaysApiService) CreateMetalGateway(ctx context.Context, projec
 }
 
 // Execute executes the request
-//  @return FindMetalGatewayById200Response
+//
+//	@return FindMetalGatewayById200Response
 func (a *MetalGatewaysApiService) CreateMetalGatewayExecute(r ApiCreateMetalGatewayRequest) (*FindMetalGatewayById200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -87,7 +88,7 @@ func (a *MetalGatewaysApiService) CreateMetalGatewayExecute(r ApiCreateMetalGate
 	}
 
 	localVarPath := localBasePath + "/projects/{project_id}/metal-gateways"
-	localVarPath = strings.Replace(localVarPath, "{"+"project_id"+"}", url.PathEscape(parameterToString(r.projectId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"project_id"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -97,10 +98,10 @@ func (a *MetalGatewaysApiService) CreateMetalGatewayExecute(r ApiCreateMetalGate
 	}
 
 	if r.page != nil {
-		localVarQueryParams.Add("page", parameterToString(*r.page, ""))
+		parameterAddToQuery(localVarQueryParams, "page", r.page, "")
 	}
 	if r.perPage != nil {
-		localVarQueryParams.Add("per_page", parameterToString(*r.perPage, ""))
+		parameterAddToQuery(localVarQueryParams, "per_page", r.perPage, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -233,9 +234,9 @@ DeleteMetalGateway Deletes the metal gateway
 
 Deletes a specific metal gateway
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Metal Gateway UUID
- @return ApiDeleteMetalGatewayRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Metal Gateway UUID
+	@return ApiDeleteMetalGatewayRequest
 */
 func (a *MetalGatewaysApiService) DeleteMetalGateway(ctx context.Context, id string) ApiDeleteMetalGatewayRequest {
 	return ApiDeleteMetalGatewayRequest{
@@ -259,17 +260,17 @@ func (a *MetalGatewaysApiService) DeleteMetalGatewayExecute(r ApiDeleteMetalGate
 	}
 
 	localVarPath := localBasePath + "/metal-gateways/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.include != nil {
-		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
+		parameterAddToQuery(localVarQueryParams, "include", r.include, "csv")
 	}
 	if r.exclude != nil {
-		localVarQueryParams.Add("exclude", parameterToString(*r.exclude, "csv"))
+		parameterAddToQuery(localVarQueryParams, "exclude", r.exclude, "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -366,9 +367,9 @@ FindMetalGatewayById Returns the metal gateway
 
 Returns a specific metal gateway
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Metal Gateway UUID
- @return ApiFindMetalGatewayByIdRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Metal Gateway UUID
+	@return ApiFindMetalGatewayByIdRequest
 */
 func (a *MetalGatewaysApiService) FindMetalGatewayById(ctx context.Context, id string) ApiFindMetalGatewayByIdRequest {
 	return ApiFindMetalGatewayByIdRequest{
@@ -379,7 +380,8 @@ func (a *MetalGatewaysApiService) FindMetalGatewayById(ctx context.Context, id s
 }
 
 // Execute executes the request
-//  @return FindMetalGatewayById200Response
+//
+//	@return FindMetalGatewayById200Response
 func (a *MetalGatewaysApiService) FindMetalGatewayByIdExecute(r ApiFindMetalGatewayByIdRequest) (*FindMetalGatewayById200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -394,7 +396,7 @@ func (a *MetalGatewaysApiService) FindMetalGatewayByIdExecute(r ApiFindMetalGate
 	}
 
 	localVarPath := localBasePath + "/metal-gateways/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -518,9 +520,9 @@ FindMetalGatewaysByProject Returns all metal gateways for a project
 
 Return all metal gateways for a project
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param projectId Project UUID
- @return ApiFindMetalGatewaysByProjectRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId Project UUID
+	@return ApiFindMetalGatewaysByProjectRequest
 */
 func (a *MetalGatewaysApiService) FindMetalGatewaysByProject(ctx context.Context, projectId string) ApiFindMetalGatewaysByProjectRequest {
 	return ApiFindMetalGatewaysByProjectRequest{
@@ -531,7 +533,8 @@ func (a *MetalGatewaysApiService) FindMetalGatewaysByProject(ctx context.Context
 }
 
 // Execute executes the request
-//  @return MetalGatewayList
+//
+//	@return MetalGatewayList
 func (a *MetalGatewaysApiService) FindMetalGatewaysByProjectExecute(r ApiFindMetalGatewaysByProjectRequest) (*MetalGatewayList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -546,17 +549,17 @@ func (a *MetalGatewaysApiService) FindMetalGatewaysByProjectExecute(r ApiFindMet
 	}
 
 	localVarPath := localBasePath + "/projects/{project_id}/metal-gateways"
-	localVarPath = strings.Replace(localVarPath, "{"+"project_id"+"}", url.PathEscape(parameterToString(r.projectId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"project_id"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.page != nil {
-		localVarQueryParams.Add("page", parameterToString(*r.page, ""))
+		parameterAddToQuery(localVarQueryParams, "page", r.page, "")
 	}
 	if r.perPage != nil {
-		localVarQueryParams.Add("per_page", parameterToString(*r.perPage, ""))
+		parameterAddToQuery(localVarQueryParams, "per_page", r.perPage, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

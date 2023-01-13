@@ -17,6 +17,9 @@ import (
 	"time"
 )
 
+// checks if the Organization type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Organization{}
+
 // Organization struct for Organization
 type Organization struct {
 	Address        *Address               `json:"address,omitempty"`
@@ -28,7 +31,7 @@ type Organization struct {
 	// Force to all members to have enabled the two factor authentication after that date, unless the value is null
 	Enforce2faAt *time.Time `json:"enforce_2fa_at,omitempty"`
 	Id           *string    `json:"id,omitempty"`
-	Logo         **os.File  `json:"logo,omitempty"`
+	Logo         *os.File   `json:"logo,omitempty"`
 	Members      []Href     `json:"members,omitempty"`
 	Memberships  []Href     `json:"memberships,omitempty"`
 	Name         *string    `json:"name,omitempty"`
@@ -313,9 +316,9 @@ func (o *Organization) SetId(v string) {
 }
 
 // GetLogo returns the Logo field value if set, zero value otherwise.
-func (o *Organization) GetLogo() *os.File {
+func (o *Organization) GetLogo() os.File {
 	if o == nil || isNil(o.Logo) {
-		var ret *os.File
+		var ret os.File
 		return ret
 	}
 	return *o.Logo
@@ -323,7 +326,7 @@ func (o *Organization) GetLogo() *os.File {
 
 // GetLogoOk returns a tuple with the Logo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Organization) GetLogoOk() (**os.File, bool) {
+func (o *Organization) GetLogoOk() (*os.File, bool) {
 	if o == nil || isNil(o.Logo) {
 		return nil, false
 	}
@@ -339,8 +342,8 @@ func (o *Organization) HasLogo() bool {
 	return false
 }
 
-// SetLogo gets a reference to the given *os.File and assigns it to the Logo field.
-func (o *Organization) SetLogo(v *os.File) {
+// SetLogo gets a reference to the given os.File and assigns it to the Logo field.
+func (o *Organization) SetLogo(v os.File) {
 	o.Logo = &v
 }
 
@@ -601,6 +604,14 @@ func (o *Organization) SetWebsite(v string) {
 }
 
 func (o Organization) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o Organization) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Address) {
 		toSerialize["address"] = o.Address
@@ -653,7 +664,7 @@ func (o Organization) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Website) {
 		toSerialize["website"] = o.Website
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableOrganization struct {

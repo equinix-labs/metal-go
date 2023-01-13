@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the VrfList type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &VrfList{}
+
 // VrfList struct for VrfList
 type VrfList struct {
 	Vrfs []Vrf `json:"vrfs,omitempty"`
@@ -70,11 +73,19 @@ func (o *VrfList) SetVrfs(v []Vrf) {
 }
 
 func (o VrfList) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o VrfList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Vrfs) {
 		toSerialize["vrfs"] = o.Vrfs
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableVrfList struct {

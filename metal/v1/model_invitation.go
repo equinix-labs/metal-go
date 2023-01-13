@@ -16,6 +16,9 @@ import (
 	"time"
 )
 
+// checks if the Invitation type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Invitation{}
+
 // Invitation struct for Invitation
 type Invitation struct {
 	CreatedAt    *time.Time `json:"created_at,omitempty"`
@@ -401,6 +404,14 @@ func (o *Invitation) SetUpdatedAt(v time.Time) {
 }
 
 func (o Invitation) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o Invitation) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt
@@ -435,7 +446,7 @@ func (o Invitation) MarshalJSON() ([]byte, error) {
 	if !isNil(o.UpdatedAt) {
 		toSerialize["updated_at"] = o.UpdatedAt
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableInvitation struct {

@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the Meta type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Meta{}
+
 // Meta struct for Meta
 type Meta struct {
 	First    *Href  `json:"first,omitempty"`
@@ -235,6 +238,14 @@ func (o *Meta) SetTotal(v int32) {
 }
 
 func (o Meta) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o Meta) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.First) {
 		toSerialize["first"] = o.First
@@ -254,7 +265,7 @@ func (o Meta) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Total) {
 		toSerialize["total"] = o.Total
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableMeta struct {

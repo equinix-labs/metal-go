@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the InterconnectionMetro type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &InterconnectionMetro{}
+
 // InterconnectionMetro The location of where the shared or Dedicated Port is located. For interconnections with Dedicated Ports,   this will be the location of the Dedicated Ports. For Fabric VCs (Metal Billed), this is where interconnection will be originating from, as we pre-authorize the use of one of our shared ports   as the origin of the interconnection using A-Side service tokens. We only allow local connections for Fabric VCs (Metal Billed), so the destination location must be the same as the origin. For Fabric VCs (Fabric Billed),    this will be the destination of the interconnection. We allow remote connections for Fabric VCs (Fabric Billed), so the origin of the interconnection can be a different metro set here.
 type InterconnectionMetro struct {
 	Code    *string `json:"code,omitempty"`
@@ -169,6 +172,14 @@ func (o *InterconnectionMetro) SetName(v string) {
 }
 
 func (o InterconnectionMetro) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o InterconnectionMetro) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Code) {
 		toSerialize["code"] = o.Code
@@ -182,7 +193,7 @@ func (o InterconnectionMetro) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableInterconnectionMetro struct {

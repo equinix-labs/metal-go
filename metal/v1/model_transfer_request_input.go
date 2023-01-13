@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the TransferRequestInput type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &TransferRequestInput{}
+
 // TransferRequestInput struct for TransferRequestInput
 type TransferRequestInput struct {
 	TargetOrganizationId *string `json:"target_organization_id,omitempty"`
@@ -70,11 +73,19 @@ func (o *TransferRequestInput) SetTargetOrganizationId(v string) {
 }
 
 func (o TransferRequestInput) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o TransferRequestInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.TargetOrganizationId) {
 		toSerialize["target_organization_id"] = o.TargetOrganizationId
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableTransferRequestInput struct {

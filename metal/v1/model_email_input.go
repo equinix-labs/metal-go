@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the EmailInput type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &EmailInput{}
+
 // EmailInput struct for EmailInput
 type EmailInput struct {
 	Address string `json:"address"`
@@ -96,14 +99,20 @@ func (o *EmailInput) SetDefault(v bool) {
 }
 
 func (o EmailInput) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["address"] = o.Address
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
+	return json.Marshal(toSerialize)
+}
+
+func (o EmailInput) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["address"] = o.Address
 	if !isNil(o.Default) {
 		toSerialize["default"] = o.Default
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableEmailInput struct {

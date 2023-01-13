@@ -45,9 +45,9 @@ CreateDeviceBatch Create a devices batch
 
 Creates new devices in batch and provisions them in our datacenter.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Project UUID
- @return ApiCreateDeviceBatchRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Project UUID
+	@return ApiCreateDeviceBatchRequest
 */
 func (a *BatchesApiService) CreateDeviceBatch(ctx context.Context, id string) ApiCreateDeviceBatchRequest {
 	return ApiCreateDeviceBatchRequest{
@@ -58,7 +58,8 @@ func (a *BatchesApiService) CreateDeviceBatch(ctx context.Context, id string) Ap
 }
 
 // Execute executes the request
-//  @return BatchesList
+//
+//	@return BatchesList
 func (a *BatchesApiService) CreateDeviceBatchExecute(r ApiCreateDeviceBatchRequest) (*BatchesList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -73,7 +74,7 @@ func (a *BatchesApiService) CreateDeviceBatchExecute(r ApiCreateDeviceBatchReque
 	}
 
 	localVarPath := localBasePath + "/projects/{id}/devices/batch"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -217,9 +218,9 @@ DeleteBatch Delete the Batch
 
 Deletes the Batch.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Batch UUID
- @return ApiDeleteBatchRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Batch UUID
+	@return ApiDeleteBatchRequest
 */
 func (a *BatchesApiService) DeleteBatch(ctx context.Context, id string) ApiDeleteBatchRequest {
 	return ApiDeleteBatchRequest{
@@ -243,14 +244,14 @@ func (a *BatchesApiService) DeleteBatchExecute(r ApiDeleteBatchRequest) (*http.R
 	}
 
 	localVarPath := localBasePath + "/batches/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.removeAssociatedInstances != nil {
-		localVarQueryParams.Add("remove_associated_instances", parameterToString(*r.removeAssociatedInstances, ""))
+		parameterAddToQuery(localVarQueryParams, "remove_associated_instances", r.removeAssociatedInstances, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -361,9 +362,9 @@ FindBatchById Retrieve a Batch
 
 Returns a Batch
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Batch UUID
- @return ApiFindBatchByIdRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Batch UUID
+	@return ApiFindBatchByIdRequest
 */
 func (a *BatchesApiService) FindBatchById(ctx context.Context, id string) ApiFindBatchByIdRequest {
 	return ApiFindBatchByIdRequest{
@@ -374,7 +375,8 @@ func (a *BatchesApiService) FindBatchById(ctx context.Context, id string) ApiFin
 }
 
 // Execute executes the request
-//  @return Batch
+//
+//	@return Batch
 func (a *BatchesApiService) FindBatchByIdExecute(r ApiFindBatchByIdRequest) (*Batch, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -389,17 +391,17 @@ func (a *BatchesApiService) FindBatchByIdExecute(r ApiFindBatchByIdRequest) (*Ba
 	}
 
 	localVarPath := localBasePath + "/batches/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.include != nil {
-		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
+		parameterAddToQuery(localVarQueryParams, "include", r.include, "csv")
 	}
 	if r.exclude != nil {
-		localVarQueryParams.Add("exclude", parameterToString(*r.exclude, "csv"))
+		parameterAddToQuery(localVarQueryParams, "exclude", r.exclude, "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -519,9 +521,9 @@ FindBatchesByProject Retrieve all batches by project
 
 Returns all batches for the given project
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Project UUID
- @return ApiFindBatchesByProjectRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Project UUID
+	@return ApiFindBatchesByProjectRequest
 */
 func (a *BatchesApiService) FindBatchesByProject(ctx context.Context, id string) ApiFindBatchesByProjectRequest {
 	return ApiFindBatchesByProjectRequest{
@@ -532,7 +534,8 @@ func (a *BatchesApiService) FindBatchesByProject(ctx context.Context, id string)
 }
 
 // Execute executes the request
-//  @return BatchesList
+//
+//	@return BatchesList
 func (a *BatchesApiService) FindBatchesByProjectExecute(r ApiFindBatchesByProjectRequest) (*BatchesList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -547,17 +550,17 @@ func (a *BatchesApiService) FindBatchesByProjectExecute(r ApiFindBatchesByProjec
 	}
 
 	localVarPath := localBasePath + "/projects/{id}/batches"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.include != nil {
-		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
+		parameterAddToQuery(localVarQueryParams, "include", r.include, "csv")
 	}
 	if r.exclude != nil {
-		localVarQueryParams.Add("exclude", parameterToString(*r.exclude, "csv"))
+		parameterAddToQuery(localVarQueryParams, "exclude", r.exclude, "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

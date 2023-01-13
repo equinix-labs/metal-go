@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the PlanSpecsDrivesInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PlanSpecsDrivesInner{}
+
 // PlanSpecsDrivesInner struct for PlanSpecsDrivesInner
 type PlanSpecsDrivesInner struct {
 	Count    *int32  `json:"count,omitempty"`
@@ -169,6 +172,14 @@ func (o *PlanSpecsDrivesInner) SetCategory(v string) {
 }
 
 func (o PlanSpecsDrivesInner) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o PlanSpecsDrivesInner) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Count) {
 		toSerialize["count"] = o.Count
@@ -182,7 +193,7 @@ func (o PlanSpecsDrivesInner) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Category) {
 		toSerialize["category"] = o.Category
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullablePlanSpecsDrivesInner struct {

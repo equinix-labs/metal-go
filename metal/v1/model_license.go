@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the License type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &License{}
+
 // License struct for License
 type License struct {
 	Description     *string  `json:"description,omitempty"`
@@ -235,6 +238,14 @@ func (o *License) SetSize(v float32) {
 }
 
 func (o License) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o License) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Description) {
 		toSerialize["description"] = o.Description
@@ -254,7 +265,7 @@ func (o License) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Size) {
 		toSerialize["size"] = o.Size
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableLicense struct {

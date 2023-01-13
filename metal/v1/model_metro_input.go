@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the MetroInput type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &MetroInput{}
+
 // MetroInput struct for MetroInput
 type MetroInput struct {
 	// Metro code or ID of where the instance should be provisioned in. Either metro or facility must be provided.
@@ -64,11 +67,17 @@ func (o *MetroInput) SetMetro(v string) {
 }
 
 func (o MetroInput) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["metro"] = o.Metro
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o MetroInput) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["metro"] = o.Metro
+	return toSerialize, nil
 }
 
 type NullableMetroInput struct {

@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the IPReservationRequestInput type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &IPReservationRequestInput{}
+
 // IPReservationRequestInput struct for IPReservationRequestInput
 type IPReservationRequestInput struct {
 	Comments               *string                `json:"comments,omitempty"`
@@ -321,6 +324,14 @@ func (o *IPReservationRequestInput) SetType(v string) {
 }
 
 func (o IPReservationRequestInput) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o IPReservationRequestInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Comments) {
 		toSerialize["comments"] = o.Comments
@@ -340,16 +351,12 @@ func (o IPReservationRequestInput) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Metro) {
 		toSerialize["metro"] = o.Metro
 	}
-	if true {
-		toSerialize["quantity"] = o.Quantity
-	}
+	toSerialize["quantity"] = o.Quantity
 	if !isNil(o.Tags) {
 		toSerialize["tags"] = o.Tags
 	}
-	if true {
-		toSerialize["type"] = o.Type
-	}
-	return json.Marshal(toSerialize)
+	toSerialize["type"] = o.Type
+	return toSerialize, nil
 }
 
 type NullableIPReservationRequestInput struct {

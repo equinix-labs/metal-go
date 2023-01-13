@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateSelfServiceReservationRequestPeriod type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateSelfServiceReservationRequestPeriod{}
+
 // CreateSelfServiceReservationRequestPeriod struct for CreateSelfServiceReservationRequestPeriod
 type CreateSelfServiceReservationRequestPeriod struct {
 	Count *float32 `json:"count,omitempty"`
@@ -103,6 +106,14 @@ func (o *CreateSelfServiceReservationRequestPeriod) SetUnit(v string) {
 }
 
 func (o CreateSelfServiceReservationRequestPeriod) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o CreateSelfServiceReservationRequestPeriod) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Count) {
 		toSerialize["count"] = o.Count
@@ -110,7 +121,7 @@ func (o CreateSelfServiceReservationRequestPeriod) MarshalJSON() ([]byte, error)
 	if !isNil(o.Unit) {
 		toSerialize["unit"] = o.Unit
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableCreateSelfServiceReservationRequestPeriod struct {

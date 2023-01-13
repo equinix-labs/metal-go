@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the VirtualNetwork type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &VirtualNetwork{}
+
 // VirtualNetwork struct for VirtualNetwork
 type VirtualNetwork struct {
 	AssignedTo *Href `json:"assigned_to,omitempty"`
@@ -404,6 +407,14 @@ func (o *VirtualNetwork) SetVxlan(v int32) {
 }
 
 func (o VirtualNetwork) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o VirtualNetwork) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.AssignedTo) {
 		toSerialize["assigned_to"] = o.AssignedTo
@@ -438,7 +449,7 @@ func (o VirtualNetwork) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Vxlan) {
 		toSerialize["vxlan"] = o.Vxlan
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableVirtualNetwork struct {

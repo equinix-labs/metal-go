@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the Vrf type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Vrf{}
+
 // Vrf struct for Vrf
 type Vrf struct {
 	Id   *string `json:"id,omitempty"`
@@ -337,6 +340,14 @@ func (o *Vrf) SetHref(v string) {
 }
 
 func (o Vrf) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o Vrf) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Id) {
 		toSerialize["id"] = o.Id
@@ -365,7 +376,7 @@ func (o Vrf) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Href) {
 		toSerialize["href"] = o.Href
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableVrf struct {

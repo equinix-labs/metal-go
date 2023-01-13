@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the Coordinates type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Coordinates{}
+
 // Coordinates struct for Coordinates
 type Coordinates struct {
 	Latitude  *string `json:"latitude,omitempty"`
@@ -103,6 +106,14 @@ func (o *Coordinates) SetLongitude(v string) {
 }
 
 func (o Coordinates) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o Coordinates) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Latitude) {
 		toSerialize["latitude"] = o.Latitude
@@ -110,7 +121,7 @@ func (o Coordinates) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Longitude) {
 		toSerialize["longitude"] = o.Longitude
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableCoordinates struct {

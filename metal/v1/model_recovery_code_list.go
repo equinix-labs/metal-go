@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the RecoveryCodeList type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &RecoveryCodeList{}
+
 // RecoveryCodeList struct for RecoveryCodeList
 type RecoveryCodeList struct {
 	RecoveryCodes []string `json:"recovery_codes,omitempty"`
@@ -70,11 +73,19 @@ func (o *RecoveryCodeList) SetRecoveryCodes(v []string) {
 }
 
 func (o RecoveryCodeList) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o RecoveryCodeList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.RecoveryCodes) {
 		toSerialize["recovery_codes"] = o.RecoveryCodes
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableRecoveryCodeList struct {

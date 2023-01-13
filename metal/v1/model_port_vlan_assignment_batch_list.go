@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the PortVlanAssignmentBatchList type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PortVlanAssignmentBatchList{}
+
 // PortVlanAssignmentBatchList struct for PortVlanAssignmentBatchList
 type PortVlanAssignmentBatchList struct {
 	Batches []PortVlanAssignmentBatch `json:"batches,omitempty"`
@@ -70,11 +73,19 @@ func (o *PortVlanAssignmentBatchList) SetBatches(v []PortVlanAssignmentBatch) {
 }
 
 func (o PortVlanAssignmentBatchList) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o PortVlanAssignmentBatchList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Batches) {
 		toSerialize["batches"] = o.Batches
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullablePortVlanAssignmentBatchList struct {

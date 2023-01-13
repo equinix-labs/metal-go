@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the Address type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Address{}
+
 // Address struct for Address
 type Address struct {
 	Address     string       `json:"address"`
@@ -247,10 +250,16 @@ func (o *Address) SetZipCode(v string) {
 }
 
 func (o Address) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["address"] = o.Address
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
+	return json.Marshal(toSerialize)
+}
+
+func (o Address) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["address"] = o.Address
 	if !isNil(o.Address2) {
 		toSerialize["address2"] = o.Address2
 	}
@@ -260,16 +269,12 @@ func (o Address) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Coordinates) {
 		toSerialize["coordinates"] = o.Coordinates
 	}
-	if true {
-		toSerialize["country"] = o.Country
-	}
+	toSerialize["country"] = o.Country
 	if !isNil(o.State) {
 		toSerialize["state"] = o.State
 	}
-	if true {
-		toSerialize["zip_code"] = o.ZipCode
-	}
-	return json.Marshal(toSerialize)
+	toSerialize["zip_code"] = o.ZipCode
+	return toSerialize, nil
 }
 
 type NullableAddress struct {

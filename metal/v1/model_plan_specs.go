@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the PlanSpecs type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PlanSpecs{}
+
 // PlanSpecs struct for PlanSpecs
 type PlanSpecs struct {
 	Cpus     []PlanSpecsCpusInner   `json:"cpus,omitempty"`
@@ -169,6 +172,14 @@ func (o *PlanSpecs) SetFeatures(v PlanSpecsFeatures) {
 }
 
 func (o PlanSpecs) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o PlanSpecs) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Cpus) {
 		toSerialize["cpus"] = o.Cpus
@@ -182,7 +193,7 @@ func (o PlanSpecs) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Features) {
 		toSerialize["features"] = o.Features
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullablePlanSpecs struct {

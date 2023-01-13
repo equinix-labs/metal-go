@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CapacityPerNewFacility type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CapacityPerNewFacility{}
+
 // CapacityPerNewFacility struct for CapacityPerNewFacility
 type CapacityPerNewFacility struct {
 	Baremetal1e *CapacityLevelPerBaremetal `json:"baremetal_1e,omitempty"`
@@ -70,11 +73,19 @@ func (o *CapacityPerNewFacility) SetBaremetal1e(v CapacityLevelPerBaremetal) {
 }
 
 func (o CapacityPerNewFacility) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o CapacityPerNewFacility) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Baremetal1e) {
 		toSerialize["baremetal_1e"] = o.Baremetal1e
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableCapacityPerNewFacility struct {

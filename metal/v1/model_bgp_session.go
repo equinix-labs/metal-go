@@ -16,6 +16,9 @@ import (
 	"time"
 )
 
+// checks if the BgpSession type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &BgpSession{}
+
 // BgpSession struct for BgpSession
 type BgpSession struct {
 	AddressFamily string     `json:"address_family"`
@@ -329,10 +332,16 @@ func (o *BgpSession) SetUpdatedAt(v time.Time) {
 }
 
 func (o BgpSession) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["address_family"] = o.AddressFamily
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
+	return json.Marshal(toSerialize)
+}
+
+func (o BgpSession) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["address_family"] = o.AddressFamily
 	if !isNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt
 	}
@@ -357,7 +366,7 @@ func (o BgpSession) MarshalJSON() ([]byte, error) {
 	if !isNil(o.UpdatedAt) {
 		toSerialize["updated_at"] = o.UpdatedAt
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableBgpSession struct {

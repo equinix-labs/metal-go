@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the MembershipInput type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &MembershipInput{}
+
 // MembershipInput struct for MembershipInput
 type MembershipInput struct {
 	Role []string `json:"role,omitempty"`
@@ -70,11 +73,19 @@ func (o *MembershipInput) SetRole(v []string) {
 }
 
 func (o MembershipInput) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o MembershipInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Role) {
 		toSerialize["role"] = o.Role
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableMembershipInput struct {

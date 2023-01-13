@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the MetroCapacityList type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &MetroCapacityList{}
+
 // MetroCapacityList struct for MetroCapacityList
 type MetroCapacityList struct {
 	Capacity *MetroCapacityReport `json:"capacity,omitempty"`
@@ -70,11 +73,19 @@ func (o *MetroCapacityList) SetCapacity(v MetroCapacityReport) {
 }
 
 func (o MetroCapacityList) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o MetroCapacityList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Capacity) {
 		toSerialize["capacity"] = o.Capacity
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableMetroCapacityList struct {

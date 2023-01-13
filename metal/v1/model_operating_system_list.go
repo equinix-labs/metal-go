@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the OperatingSystemList type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &OperatingSystemList{}
+
 // OperatingSystemList struct for OperatingSystemList
 type OperatingSystemList struct {
 	OperatingSystems []OperatingSystem `json:"operating_systems,omitempty"`
@@ -70,11 +73,19 @@ func (o *OperatingSystemList) SetOperatingSystems(v []OperatingSystem) {
 }
 
 func (o OperatingSystemList) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o OperatingSystemList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.OperatingSystems) {
 		toSerialize["operating_systems"] = o.OperatingSystems
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableOperatingSystemList struct {

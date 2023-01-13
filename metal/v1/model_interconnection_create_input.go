@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the InterconnectionCreateInput type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &InterconnectionCreateInput{}
+
 // InterconnectionCreateInput struct for InterconnectionCreateInput
 type InterconnectionCreateInput struct {
 	ContactEmail *string `json:"contact_email,omitempty"`
@@ -412,6 +415,14 @@ func (o *InterconnectionCreateInput) SetVlans(v []int32) {
 }
 
 func (o InterconnectionCreateInput) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o InterconnectionCreateInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.ContactEmail) {
 		toSerialize["contact_email"] = o.ContactEmail
@@ -419,21 +430,15 @@ func (o InterconnectionCreateInput) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
-	if true {
-		toSerialize["metro"] = o.Metro
-	}
+	toSerialize["metro"] = o.Metro
 	if !isNil(o.Mode) {
 		toSerialize["mode"] = o.Mode
 	}
-	if true {
-		toSerialize["name"] = o.Name
-	}
+	toSerialize["name"] = o.Name
 	if !isNil(o.Project) {
 		toSerialize["project"] = o.Project
 	}
-	if true {
-		toSerialize["redundancy"] = o.Redundancy
-	}
+	toSerialize["redundancy"] = o.Redundancy
 	if !isNil(o.ServiceTokenType) {
 		toSerialize["service_token_type"] = o.ServiceTokenType
 	}
@@ -443,13 +448,11 @@ func (o InterconnectionCreateInput) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Tags) {
 		toSerialize["tags"] = o.Tags
 	}
-	if true {
-		toSerialize["type"] = o.Type
-	}
+	toSerialize["type"] = o.Type
 	if !isNil(o.Vlans) {
 		toSerialize["vlans"] = o.Vlans
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableInterconnectionCreateInput struct {

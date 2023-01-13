@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the DeviceActionInput type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &DeviceActionInput{}
+
 // DeviceActionInput struct for DeviceActionInput
 type DeviceActionInput struct {
 	// Action to perform. See Device.actions for possible actions.
@@ -234,10 +237,16 @@ func (o *DeviceActionInput) SetIpxeScriptUrl(v string) {
 }
 
 func (o DeviceActionInput) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
+	return json.Marshal(toSerialize)
+}
+
+func (o DeviceActionInput) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["type"] = o.Type
 	if !isNil(o.ForceDelete) {
 		toSerialize["force_delete"] = o.ForceDelete
 	}
@@ -253,7 +262,7 @@ func (o DeviceActionInput) MarshalJSON() ([]byte, error) {
 	if !isNil(o.IpxeScriptUrl) {
 		toSerialize["ipxe_script_url"] = o.IpxeScriptUrl
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableDeviceActionInput struct {

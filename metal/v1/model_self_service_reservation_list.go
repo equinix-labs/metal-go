@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the SelfServiceReservationList type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &SelfServiceReservationList{}
+
 // SelfServiceReservationList struct for SelfServiceReservationList
 type SelfServiceReservationList struct {
 	Reservations []SelfServiceReservationResponse `json:"reservations,omitempty"`
@@ -70,11 +73,19 @@ func (o *SelfServiceReservationList) SetReservations(v []SelfServiceReservationR
 }
 
 func (o SelfServiceReservationList) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o SelfServiceReservationList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Reservations) {
 		toSerialize["reservations"] = o.Reservations
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableSelfServiceReservationList struct {

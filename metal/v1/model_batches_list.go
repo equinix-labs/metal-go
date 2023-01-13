@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the BatchesList type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &BatchesList{}
+
 // BatchesList struct for BatchesList
 type BatchesList struct {
 	Batches []Batch `json:"batches,omitempty"`
@@ -70,11 +73,19 @@ func (o *BatchesList) SetBatches(v []Batch) {
 }
 
 func (o BatchesList) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o BatchesList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Batches) {
 		toSerialize["batches"] = o.Batches
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableBatchesList struct {

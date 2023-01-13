@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the InterconnectionPort type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &InterconnectionPort{}
+
 // InterconnectionPort struct for InterconnectionPort
 type InterconnectionPort struct {
 	Id           *string `json:"id,omitempty"`
@@ -238,6 +241,14 @@ func (o *InterconnectionPort) SetVirtualCircuits(v VirtualCircuitList) {
 }
 
 func (o InterconnectionPort) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o InterconnectionPort) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Id) {
 		toSerialize["id"] = o.Id
@@ -257,7 +268,7 @@ func (o InterconnectionPort) MarshalJSON() ([]byte, error) {
 	if !isNil(o.VirtualCircuits) {
 		toSerialize["virtual_circuits"] = o.VirtualCircuits
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableInterconnectionPort struct {

@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the BgpNeighborData type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &BgpNeighborData{}
+
 // BgpNeighborData struct for BgpNeighborData
 type BgpNeighborData struct {
 	// Address Family for IP Address. Accepted values are 4 or 6
@@ -377,6 +380,14 @@ func (o *BgpNeighborData) SetRoutesOut(v []BgpNeighborDataRoutesOutInner) {
 }
 
 func (o BgpNeighborData) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o BgpNeighborData) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.AddressFamily) {
 		toSerialize["address_family"] = o.AddressFamily
@@ -408,7 +419,7 @@ func (o BgpNeighborData) MarshalJSON() ([]byte, error) {
 	if !isNil(o.RoutesOut) {
 		toSerialize["routes_out"] = o.RoutesOut
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableBgpNeighborData struct {

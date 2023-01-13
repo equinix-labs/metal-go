@@ -17,9 +17,12 @@ import (
 	"time"
 )
 
+// checks if the UserCreateInput type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UserCreateInput{}
+
 // UserCreateInput struct for UserCreateInput
 type UserCreateInput struct {
-	Avatar         **os.File              `json:"avatar,omitempty"`
+	Avatar         *os.File               `json:"avatar,omitempty"`
 	CompanyName    *string                `json:"company_name,omitempty"`
 	CompanyUrl     *string                `json:"company_url,omitempty"`
 	Customdata     map[string]interface{} `json:"customdata,omitempty"`
@@ -60,9 +63,9 @@ func NewUserCreateInputWithDefaults() *UserCreateInput {
 }
 
 // GetAvatar returns the Avatar field value if set, zero value otherwise.
-func (o *UserCreateInput) GetAvatar() *os.File {
+func (o *UserCreateInput) GetAvatar() os.File {
 	if o == nil || isNil(o.Avatar) {
-		var ret *os.File
+		var ret os.File
 		return ret
 	}
 	return *o.Avatar
@@ -70,7 +73,7 @@ func (o *UserCreateInput) GetAvatar() *os.File {
 
 // GetAvatarOk returns a tuple with the Avatar field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UserCreateInput) GetAvatarOk() (**os.File, bool) {
+func (o *UserCreateInput) GetAvatarOk() (*os.File, bool) {
 	if o == nil || isNil(o.Avatar) {
 		return nil, false
 	}
@@ -86,8 +89,8 @@ func (o *UserCreateInput) HasAvatar() bool {
 	return false
 }
 
-// SetAvatar gets a reference to the given *os.File and assigns it to the Avatar field.
-func (o *UserCreateInput) SetAvatar(v *os.File) {
+// SetAvatar gets a reference to the given os.File and assigns it to the Avatar field.
+func (o *UserCreateInput) SetAvatar(v os.File) {
 	o.Avatar = &v
 }
 
@@ -612,6 +615,14 @@ func (o *UserCreateInput) SetNonce(v string) {
 }
 
 func (o UserCreateInput) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o UserCreateInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Avatar) {
 		toSerialize["avatar"] = o.Avatar
@@ -625,15 +636,9 @@ func (o UserCreateInput) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Customdata) {
 		toSerialize["customdata"] = o.Customdata
 	}
-	if true {
-		toSerialize["emails"] = o.Emails
-	}
-	if true {
-		toSerialize["first_name"] = o.FirstName
-	}
-	if true {
-		toSerialize["last_name"] = o.LastName
-	}
+	toSerialize["emails"] = o.Emails
+	toSerialize["first_name"] = o.FirstName
+	toSerialize["last_name"] = o.LastName
 	if !isNil(o.Level) {
 		toSerialize["level"] = o.Level
 	}
@@ -667,7 +672,7 @@ func (o UserCreateInput) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Nonce) {
 		toSerialize["nonce"] = o.Nonce
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableUserCreateInput struct {

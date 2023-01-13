@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the BgpConfigRequestInput type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &BgpConfigRequestInput{}
+
 // BgpConfigRequestInput struct for BgpConfigRequestInput
 type BgpConfigRequestInput struct {
 	Asn            int32   `json:"asn"`
@@ -155,20 +158,24 @@ func (o *BgpConfigRequestInput) SetUseCase(v string) {
 }
 
 func (o BgpConfigRequestInput) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o BgpConfigRequestInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["asn"] = o.Asn
-	}
-	if true {
-		toSerialize["deployment_type"] = o.DeploymentType
-	}
+	toSerialize["asn"] = o.Asn
+	toSerialize["deployment_type"] = o.DeploymentType
 	if !isNil(o.Md5) {
 		toSerialize["md5"] = o.Md5
 	}
 	if !isNil(o.UseCase) {
 		toSerialize["use_case"] = o.UseCase
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableBgpConfigRequestInput struct {

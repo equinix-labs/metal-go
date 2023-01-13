@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the PaymentMethodCreateInput type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PaymentMethodCreateInput{}
+
 // PaymentMethodCreateInput struct for PaymentMethodCreateInput
 type PaymentMethodCreateInput struct {
 	Default *bool  `json:"default,omitempty"`
@@ -122,17 +125,21 @@ func (o *PaymentMethodCreateInput) SetNonce(v string) {
 }
 
 func (o PaymentMethodCreateInput) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o PaymentMethodCreateInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Default) {
 		toSerialize["default"] = o.Default
 	}
-	if true {
-		toSerialize["name"] = o.Name
-	}
-	if true {
-		toSerialize["nonce"] = o.Nonce
-	}
-	return json.Marshal(toSerialize)
+	toSerialize["name"] = o.Name
+	toSerialize["nonce"] = o.Nonce
+	return toSerialize, nil
 }
 
 type NullablePaymentMethodCreateInput struct {

@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the Interconnection type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Interconnection{}
+
 // Interconnection struct for Interconnection
 type Interconnection struct {
 	ContactEmail *string               `json:"contact_email,omitempty"`
@@ -572,6 +575,14 @@ func (o *Interconnection) SetType(v string) {
 }
 
 func (o Interconnection) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o Interconnection) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.ContactEmail) {
 		toSerialize["contact_email"] = o.ContactEmail
@@ -621,7 +632,7 @@ func (o Interconnection) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Type) {
 		toSerialize["type"] = o.Type
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableInterconnection struct {
