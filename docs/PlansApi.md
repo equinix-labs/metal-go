@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 ## FindPlans
 
-> FindPlansByOrganization200Response FindPlans(ctx).Type_(type_).Include(include).Exclude(exclude).Execute()
+> PlanList FindPlans(ctx).Type_(type_).Include(include).Exclude(exclude).Execute()
 
 Retrieve all plans
 
@@ -41,7 +41,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `PlansApi.FindPlans``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindPlans`: FindPlansByOrganization200Response
+    // response from `FindPlans`: PlanList
     fmt.Fprintf(os.Stdout, "Response from `PlansApi.FindPlans`: %v\n", resp)
 }
 ```
@@ -63,7 +63,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FindPlansByOrganization200Response**](FindPlansByOrganization200Response.md)
+[**PlanList**](PlanList.md)
 
 ### Authorization
 
@@ -81,7 +81,7 @@ Name | Type | Description  | Notes
 
 ## FindPlansByProject
 
-> FindPlansByOrganization200Response FindPlansByProject(ctx, id).Include(include).Exclude(exclude).Execute()
+> PlanList FindPlansByProject(ctx, id).Include(include).Exclude(exclude).Execute()
 
 Retrieve all plans visible by the project
 
@@ -111,7 +111,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `PlansApi.FindPlansByProject``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindPlansByProject`: FindPlansByOrganization200Response
+    // response from `FindPlansByProject`: PlanList
     fmt.Fprintf(os.Stdout, "Response from `PlansApi.FindPlansByProject`: %v\n", resp)
 }
 ```
@@ -137,7 +137,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FindPlansByOrganization200Response**](FindPlansByOrganization200Response.md)
+[**PlanList**](PlanList.md)
 
 ### Authorization
 

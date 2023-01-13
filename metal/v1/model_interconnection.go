@@ -17,21 +17,21 @@ import (
 
 // Interconnection struct for Interconnection
 type Interconnection struct {
-	ContactEmail *string                               `json:"contact_email,omitempty"`
-	Description  *string                               `json:"description,omitempty"`
-	Facility     *FindBatchById200ResponseDevicesInner `json:"facility,omitempty"`
-	Id           *string                               `json:"id,omitempty"`
-	Metro        *GetInterconnection200ResponseMetro   `json:"metro,omitempty"`
+	ContactEmail *string               `json:"contact_email,omitempty"`
+	Description  *string               `json:"description,omitempty"`
+	Facility     *Href                 `json:"facility,omitempty"`
+	Id           *string               `json:"id,omitempty"`
+	Metro        *InterconnectionMetro `json:"metro,omitempty"`
 	// The mode of the interconnection (only relevant to Dedicated Ports). Shared connections won't have this field. Can be either 'standard' or 'tunnel'.   The default mode of an interconnection on a Dedicated Port is 'standard'. The mode can only be changed when there are no associated virtual circuits on the interconnection.   In tunnel mode, an 802.1q tunnel is added to a port to send/receive double tagged packets from server instances.
-	Mode         *string                               `json:"mode,omitempty"`
-	Name         *string                               `json:"name,omitempty"`
-	Organization *FindBatchById200ResponseDevicesInner `json:"organization,omitempty"`
+	Mode         *string `json:"mode,omitempty"`
+	Name         *string `json:"name,omitempty"`
+	Organization *Href   `json:"organization,omitempty"`
 	// For Fabric VCs, these represent Virtual Port(s) created for the interconnection. For dedicated interconnections, these represent the Dedicated Port(s).
-	Ports []GetInterconnection200ResponsePortsInner `json:"ports,omitempty"`
+	Ports []InterconnectionPort `json:"ports,omitempty"`
 	// Either 'primary', meaning a single interconnection, or 'redundant', meaning a redundant interconnection.
 	Redundancy *string `json:"redundancy,omitempty"`
 	// For Fabric VCs (Metal Billed), this will show details of the A-Side service tokens issued for the interconnection. For Fabric VCs (Fabric Billed), this will show the details of the Z-Side service tokens issued for the interconnection. Dedicated interconnections will not have any service tokens issued. There will be one per interconnection, so for redundant interconnections, there should be two service tokens issued.
-	ServiceTokens []GetInterconnection200ResponseServiceTokensInner `json:"service_tokens,omitempty"`
+	ServiceTokens []FabricServiceToken `json:"service_tokens,omitempty"`
 	// For interconnections on Dedicated Ports and shared connections, this represents the interconnection's speed in bps. For Fabric VCs, this field refers to the maximum speed of the interconnection in bps. This value will default to 10Gbps for Fabric VCs (Fabric Billed).
 	Speed  *int32   `json:"speed,omitempty"`
 	Status *string  `json:"status,omitempty"`
@@ -124,9 +124,9 @@ func (o *Interconnection) SetDescription(v string) {
 }
 
 // GetFacility returns the Facility field value if set, zero value otherwise.
-func (o *Interconnection) GetFacility() FindBatchById200ResponseDevicesInner {
+func (o *Interconnection) GetFacility() Href {
 	if o == nil || isNil(o.Facility) {
-		var ret FindBatchById200ResponseDevicesInner
+		var ret Href
 		return ret
 	}
 	return *o.Facility
@@ -134,7 +134,7 @@ func (o *Interconnection) GetFacility() FindBatchById200ResponseDevicesInner {
 
 // GetFacilityOk returns a tuple with the Facility field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Interconnection) GetFacilityOk() (*FindBatchById200ResponseDevicesInner, bool) {
+func (o *Interconnection) GetFacilityOk() (*Href, bool) {
 	if o == nil || isNil(o.Facility) {
 		return nil, false
 	}
@@ -150,8 +150,8 @@ func (o *Interconnection) HasFacility() bool {
 	return false
 }
 
-// SetFacility gets a reference to the given FindBatchById200ResponseDevicesInner and assigns it to the Facility field.
-func (o *Interconnection) SetFacility(v FindBatchById200ResponseDevicesInner) {
+// SetFacility gets a reference to the given Href and assigns it to the Facility field.
+func (o *Interconnection) SetFacility(v Href) {
 	o.Facility = &v
 }
 
@@ -188,9 +188,9 @@ func (o *Interconnection) SetId(v string) {
 }
 
 // GetMetro returns the Metro field value if set, zero value otherwise.
-func (o *Interconnection) GetMetro() GetInterconnection200ResponseMetro {
+func (o *Interconnection) GetMetro() InterconnectionMetro {
 	if o == nil || isNil(o.Metro) {
-		var ret GetInterconnection200ResponseMetro
+		var ret InterconnectionMetro
 		return ret
 	}
 	return *o.Metro
@@ -198,7 +198,7 @@ func (o *Interconnection) GetMetro() GetInterconnection200ResponseMetro {
 
 // GetMetroOk returns a tuple with the Metro field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Interconnection) GetMetroOk() (*GetInterconnection200ResponseMetro, bool) {
+func (o *Interconnection) GetMetroOk() (*InterconnectionMetro, bool) {
 	if o == nil || isNil(o.Metro) {
 		return nil, false
 	}
@@ -214,8 +214,8 @@ func (o *Interconnection) HasMetro() bool {
 	return false
 }
 
-// SetMetro gets a reference to the given GetInterconnection200ResponseMetro and assigns it to the Metro field.
-func (o *Interconnection) SetMetro(v GetInterconnection200ResponseMetro) {
+// SetMetro gets a reference to the given InterconnectionMetro and assigns it to the Metro field.
+func (o *Interconnection) SetMetro(v InterconnectionMetro) {
 	o.Metro = &v
 }
 
@@ -284,9 +284,9 @@ func (o *Interconnection) SetName(v string) {
 }
 
 // GetOrganization returns the Organization field value if set, zero value otherwise.
-func (o *Interconnection) GetOrganization() FindBatchById200ResponseDevicesInner {
+func (o *Interconnection) GetOrganization() Href {
 	if o == nil || isNil(o.Organization) {
-		var ret FindBatchById200ResponseDevicesInner
+		var ret Href
 		return ret
 	}
 	return *o.Organization
@@ -294,7 +294,7 @@ func (o *Interconnection) GetOrganization() FindBatchById200ResponseDevicesInner
 
 // GetOrganizationOk returns a tuple with the Organization field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Interconnection) GetOrganizationOk() (*FindBatchById200ResponseDevicesInner, bool) {
+func (o *Interconnection) GetOrganizationOk() (*Href, bool) {
 	if o == nil || isNil(o.Organization) {
 		return nil, false
 	}
@@ -310,15 +310,15 @@ func (o *Interconnection) HasOrganization() bool {
 	return false
 }
 
-// SetOrganization gets a reference to the given FindBatchById200ResponseDevicesInner and assigns it to the Organization field.
-func (o *Interconnection) SetOrganization(v FindBatchById200ResponseDevicesInner) {
+// SetOrganization gets a reference to the given Href and assigns it to the Organization field.
+func (o *Interconnection) SetOrganization(v Href) {
 	o.Organization = &v
 }
 
 // GetPorts returns the Ports field value if set, zero value otherwise.
-func (o *Interconnection) GetPorts() []GetInterconnection200ResponsePortsInner {
+func (o *Interconnection) GetPorts() []InterconnectionPort {
 	if o == nil || isNil(o.Ports) {
-		var ret []GetInterconnection200ResponsePortsInner
+		var ret []InterconnectionPort
 		return ret
 	}
 	return o.Ports
@@ -326,7 +326,7 @@ func (o *Interconnection) GetPorts() []GetInterconnection200ResponsePortsInner {
 
 // GetPortsOk returns a tuple with the Ports field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Interconnection) GetPortsOk() ([]GetInterconnection200ResponsePortsInner, bool) {
+func (o *Interconnection) GetPortsOk() ([]InterconnectionPort, bool) {
 	if o == nil || isNil(o.Ports) {
 		return nil, false
 	}
@@ -342,8 +342,8 @@ func (o *Interconnection) HasPorts() bool {
 	return false
 }
 
-// SetPorts gets a reference to the given []GetInterconnection200ResponsePortsInner and assigns it to the Ports field.
-func (o *Interconnection) SetPorts(v []GetInterconnection200ResponsePortsInner) {
+// SetPorts gets a reference to the given []InterconnectionPort and assigns it to the Ports field.
+func (o *Interconnection) SetPorts(v []InterconnectionPort) {
 	o.Ports = v
 }
 
@@ -380,9 +380,9 @@ func (o *Interconnection) SetRedundancy(v string) {
 }
 
 // GetServiceTokens returns the ServiceTokens field value if set, zero value otherwise.
-func (o *Interconnection) GetServiceTokens() []GetInterconnection200ResponseServiceTokensInner {
+func (o *Interconnection) GetServiceTokens() []FabricServiceToken {
 	if o == nil || isNil(o.ServiceTokens) {
-		var ret []GetInterconnection200ResponseServiceTokensInner
+		var ret []FabricServiceToken
 		return ret
 	}
 	return o.ServiceTokens
@@ -390,7 +390,7 @@ func (o *Interconnection) GetServiceTokens() []GetInterconnection200ResponseServ
 
 // GetServiceTokensOk returns a tuple with the ServiceTokens field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Interconnection) GetServiceTokensOk() ([]GetInterconnection200ResponseServiceTokensInner, bool) {
+func (o *Interconnection) GetServiceTokensOk() ([]FabricServiceToken, bool) {
 	if o == nil || isNil(o.ServiceTokens) {
 		return nil, false
 	}
@@ -406,8 +406,8 @@ func (o *Interconnection) HasServiceTokens() bool {
 	return false
 }
 
-// SetServiceTokens gets a reference to the given []GetInterconnection200ResponseServiceTokensInner and assigns it to the ServiceTokens field.
-func (o *Interconnection) SetServiceTokens(v []GetInterconnection200ResponseServiceTokensInner) {
+// SetServiceTokens gets a reference to the given []FabricServiceToken and assigns it to the ServiceTokens field.
+func (o *Interconnection) SetServiceTokens(v []FabricServiceToken) {
 	o.ServiceTokens = v
 }
 

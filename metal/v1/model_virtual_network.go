@@ -17,18 +17,18 @@ import (
 
 // VirtualNetwork struct for VirtualNetwork
 type VirtualNetwork struct {
-	AssignedTo *FindBatchById200ResponseDevicesInner `json:"assigned_to,omitempty"`
+	AssignedTo *Href `json:"assigned_to,omitempty"`
 	// True if the virtual network is attached to a virtual circuit. False if not.
-	AssignedToVirtualCircuit *bool                                 `json:"assigned_to_virtual_circuit,omitempty"`
-	Description              *string                               `json:"description,omitempty"`
-	Facility                 *FindBatchById200ResponseDevicesInner `json:"facility,omitempty"`
-	Href                     *string                               `json:"href,omitempty"`
-	Id                       *string                               `json:"id,omitempty"`
+	AssignedToVirtualCircuit *bool   `json:"assigned_to_virtual_circuit,omitempty"`
+	Description              *string `json:"description,omitempty"`
+	Facility                 *Href   `json:"facility,omitempty"`
+	Href                     *string `json:"href,omitempty"`
+	Id                       *string `json:"id,omitempty"`
 	// A list of instances with ports currently associated to this Virtual Network.
-	Instances []FindBatchById200ResponseDevicesInner `json:"instances,omitempty"`
+	Instances []Href `json:"instances,omitempty"`
 	// A list of metal gateways currently associated to this Virtual Network.
-	MetalGateways []FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetworkMetalGatewaysInner `json:"metal_gateways,omitempty"`
-	Metro         *FindBatchById200ResponseDevicesInner                                              `json:"metro,omitempty"`
+	MetalGateways []MetalGatewayLite `json:"metal_gateways,omitempty"`
+	Metro         *Href              `json:"metro,omitempty"`
 	// The Metro code of the metro in which this Virtual Network is defined.
 	MetroCode *string `json:"metro_code,omitempty"`
 	Vxlan     *int32  `json:"vxlan,omitempty"`
@@ -52,9 +52,9 @@ func NewVirtualNetworkWithDefaults() *VirtualNetwork {
 }
 
 // GetAssignedTo returns the AssignedTo field value if set, zero value otherwise.
-func (o *VirtualNetwork) GetAssignedTo() FindBatchById200ResponseDevicesInner {
+func (o *VirtualNetwork) GetAssignedTo() Href {
 	if o == nil || isNil(o.AssignedTo) {
-		var ret FindBatchById200ResponseDevicesInner
+		var ret Href
 		return ret
 	}
 	return *o.AssignedTo
@@ -62,7 +62,7 @@ func (o *VirtualNetwork) GetAssignedTo() FindBatchById200ResponseDevicesInner {
 
 // GetAssignedToOk returns a tuple with the AssignedTo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VirtualNetwork) GetAssignedToOk() (*FindBatchById200ResponseDevicesInner, bool) {
+func (o *VirtualNetwork) GetAssignedToOk() (*Href, bool) {
 	if o == nil || isNil(o.AssignedTo) {
 		return nil, false
 	}
@@ -78,8 +78,8 @@ func (o *VirtualNetwork) HasAssignedTo() bool {
 	return false
 }
 
-// SetAssignedTo gets a reference to the given FindBatchById200ResponseDevicesInner and assigns it to the AssignedTo field.
-func (o *VirtualNetwork) SetAssignedTo(v FindBatchById200ResponseDevicesInner) {
+// SetAssignedTo gets a reference to the given Href and assigns it to the AssignedTo field.
+func (o *VirtualNetwork) SetAssignedTo(v Href) {
 	o.AssignedTo = &v
 }
 
@@ -148,9 +148,9 @@ func (o *VirtualNetwork) SetDescription(v string) {
 }
 
 // GetFacility returns the Facility field value if set, zero value otherwise.
-func (o *VirtualNetwork) GetFacility() FindBatchById200ResponseDevicesInner {
+func (o *VirtualNetwork) GetFacility() Href {
 	if o == nil || isNil(o.Facility) {
-		var ret FindBatchById200ResponseDevicesInner
+		var ret Href
 		return ret
 	}
 	return *o.Facility
@@ -158,7 +158,7 @@ func (o *VirtualNetwork) GetFacility() FindBatchById200ResponseDevicesInner {
 
 // GetFacilityOk returns a tuple with the Facility field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VirtualNetwork) GetFacilityOk() (*FindBatchById200ResponseDevicesInner, bool) {
+func (o *VirtualNetwork) GetFacilityOk() (*Href, bool) {
 	if o == nil || isNil(o.Facility) {
 		return nil, false
 	}
@@ -174,8 +174,8 @@ func (o *VirtualNetwork) HasFacility() bool {
 	return false
 }
 
-// SetFacility gets a reference to the given FindBatchById200ResponseDevicesInner and assigns it to the Facility field.
-func (o *VirtualNetwork) SetFacility(v FindBatchById200ResponseDevicesInner) {
+// SetFacility gets a reference to the given Href and assigns it to the Facility field.
+func (o *VirtualNetwork) SetFacility(v Href) {
 	o.Facility = &v
 }
 
@@ -244,9 +244,9 @@ func (o *VirtualNetwork) SetId(v string) {
 }
 
 // GetInstances returns the Instances field value if set, zero value otherwise.
-func (o *VirtualNetwork) GetInstances() []FindBatchById200ResponseDevicesInner {
+func (o *VirtualNetwork) GetInstances() []Href {
 	if o == nil || isNil(o.Instances) {
-		var ret []FindBatchById200ResponseDevicesInner
+		var ret []Href
 		return ret
 	}
 	return o.Instances
@@ -254,7 +254,7 @@ func (o *VirtualNetwork) GetInstances() []FindBatchById200ResponseDevicesInner {
 
 // GetInstancesOk returns a tuple with the Instances field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VirtualNetwork) GetInstancesOk() ([]FindBatchById200ResponseDevicesInner, bool) {
+func (o *VirtualNetwork) GetInstancesOk() ([]Href, bool) {
 	if o == nil || isNil(o.Instances) {
 		return nil, false
 	}
@@ -270,15 +270,15 @@ func (o *VirtualNetwork) HasInstances() bool {
 	return false
 }
 
-// SetInstances gets a reference to the given []FindBatchById200ResponseDevicesInner and assigns it to the Instances field.
-func (o *VirtualNetwork) SetInstances(v []FindBatchById200ResponseDevicesInner) {
+// SetInstances gets a reference to the given []Href and assigns it to the Instances field.
+func (o *VirtualNetwork) SetInstances(v []Href) {
 	o.Instances = v
 }
 
 // GetMetalGateways returns the MetalGateways field value if set, zero value otherwise.
-func (o *VirtualNetwork) GetMetalGateways() []FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetworkMetalGatewaysInner {
+func (o *VirtualNetwork) GetMetalGateways() []MetalGatewayLite {
 	if o == nil || isNil(o.MetalGateways) {
-		var ret []FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetworkMetalGatewaysInner
+		var ret []MetalGatewayLite
 		return ret
 	}
 	return o.MetalGateways
@@ -286,7 +286,7 @@ func (o *VirtualNetwork) GetMetalGateways() []FindDeviceById200ResponseNetworkPo
 
 // GetMetalGatewaysOk returns a tuple with the MetalGateways field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VirtualNetwork) GetMetalGatewaysOk() ([]FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetworkMetalGatewaysInner, bool) {
+func (o *VirtualNetwork) GetMetalGatewaysOk() ([]MetalGatewayLite, bool) {
 	if o == nil || isNil(o.MetalGateways) {
 		return nil, false
 	}
@@ -302,15 +302,15 @@ func (o *VirtualNetwork) HasMetalGateways() bool {
 	return false
 }
 
-// SetMetalGateways gets a reference to the given []FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetworkMetalGatewaysInner and assigns it to the MetalGateways field.
-func (o *VirtualNetwork) SetMetalGateways(v []FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetworkMetalGatewaysInner) {
+// SetMetalGateways gets a reference to the given []MetalGatewayLite and assigns it to the MetalGateways field.
+func (o *VirtualNetwork) SetMetalGateways(v []MetalGatewayLite) {
 	o.MetalGateways = v
 }
 
 // GetMetro returns the Metro field value if set, zero value otherwise.
-func (o *VirtualNetwork) GetMetro() FindBatchById200ResponseDevicesInner {
+func (o *VirtualNetwork) GetMetro() Href {
 	if o == nil || isNil(o.Metro) {
-		var ret FindBatchById200ResponseDevicesInner
+		var ret Href
 		return ret
 	}
 	return *o.Metro
@@ -318,7 +318,7 @@ func (o *VirtualNetwork) GetMetro() FindBatchById200ResponseDevicesInner {
 
 // GetMetroOk returns a tuple with the Metro field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VirtualNetwork) GetMetroOk() (*FindBatchById200ResponseDevicesInner, bool) {
+func (o *VirtualNetwork) GetMetroOk() (*Href, bool) {
 	if o == nil || isNil(o.Metro) {
 		return nil, false
 	}
@@ -334,8 +334,8 @@ func (o *VirtualNetwork) HasMetro() bool {
 	return false
 }
 
-// SetMetro gets a reference to the given FindBatchById200ResponseDevicesInner and assigns it to the Metro field.
-func (o *VirtualNetwork) SetMetro(v FindBatchById200ResponseDevicesInner) {
+// SetMetro gets a reference to the given Href and assigns it to the Metro field.
+func (o *VirtualNetwork) SetMetro(v Href) {
 	o.Metro = &v
 }
 

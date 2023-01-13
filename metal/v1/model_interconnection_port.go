@@ -17,15 +17,15 @@ import (
 
 // InterconnectionPort struct for InterconnectionPort
 type InterconnectionPort struct {
-	Id           *string                               `json:"id,omitempty"`
-	Organization *FindBatchById200ResponseDevicesInner `json:"organization,omitempty"`
+	Id           *string `json:"id,omitempty"`
+	Organization *Href   `json:"organization,omitempty"`
 	// Either 'primary' or 'secondary'.
 	Role *string `json:"role,omitempty"`
 	// For both Fabric VCs and Dedicated Ports, this will be 'requested' on creation and 'deleting' on deletion. Once the Fabric VC has found its corresponding Fabric connection, this will turn to 'active'. For Dedicated Ports, once the dedicated port is associated, this will also turn to 'active'. For Fabric VCs, this can turn into an 'expired' state if the service token associated is expired.
 	Status *string `json:"status,omitempty"`
 	// A switch 'short ID'
-	SwitchId        *string                                                 `json:"switch_id,omitempty"`
-	VirtualCircuits *GetInterconnection200ResponsePortsInnerVirtualCircuits `json:"virtual_circuits,omitempty"`
+	SwitchId        *string             `json:"switch_id,omitempty"`
+	VirtualCircuits *VirtualCircuitList `json:"virtual_circuits,omitempty"`
 }
 
 // NewInterconnectionPort instantiates a new InterconnectionPort object
@@ -78,9 +78,9 @@ func (o *InterconnectionPort) SetId(v string) {
 }
 
 // GetOrganization returns the Organization field value if set, zero value otherwise.
-func (o *InterconnectionPort) GetOrganization() FindBatchById200ResponseDevicesInner {
+func (o *InterconnectionPort) GetOrganization() Href {
 	if o == nil || isNil(o.Organization) {
-		var ret FindBatchById200ResponseDevicesInner
+		var ret Href
 		return ret
 	}
 	return *o.Organization
@@ -88,7 +88,7 @@ func (o *InterconnectionPort) GetOrganization() FindBatchById200ResponseDevicesI
 
 // GetOrganizationOk returns a tuple with the Organization field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InterconnectionPort) GetOrganizationOk() (*FindBatchById200ResponseDevicesInner, bool) {
+func (o *InterconnectionPort) GetOrganizationOk() (*Href, bool) {
 	if o == nil || isNil(o.Organization) {
 		return nil, false
 	}
@@ -104,8 +104,8 @@ func (o *InterconnectionPort) HasOrganization() bool {
 	return false
 }
 
-// SetOrganization gets a reference to the given FindBatchById200ResponseDevicesInner and assigns it to the Organization field.
-func (o *InterconnectionPort) SetOrganization(v FindBatchById200ResponseDevicesInner) {
+// SetOrganization gets a reference to the given Href and assigns it to the Organization field.
+func (o *InterconnectionPort) SetOrganization(v Href) {
 	o.Organization = &v
 }
 
@@ -206,9 +206,9 @@ func (o *InterconnectionPort) SetSwitchId(v string) {
 }
 
 // GetVirtualCircuits returns the VirtualCircuits field value if set, zero value otherwise.
-func (o *InterconnectionPort) GetVirtualCircuits() GetInterconnection200ResponsePortsInnerVirtualCircuits {
+func (o *InterconnectionPort) GetVirtualCircuits() VirtualCircuitList {
 	if o == nil || isNil(o.VirtualCircuits) {
-		var ret GetInterconnection200ResponsePortsInnerVirtualCircuits
+		var ret VirtualCircuitList
 		return ret
 	}
 	return *o.VirtualCircuits
@@ -216,7 +216,7 @@ func (o *InterconnectionPort) GetVirtualCircuits() GetInterconnection200Response
 
 // GetVirtualCircuitsOk returns a tuple with the VirtualCircuits field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InterconnectionPort) GetVirtualCircuitsOk() (*GetInterconnection200ResponsePortsInnerVirtualCircuits, bool) {
+func (o *InterconnectionPort) GetVirtualCircuitsOk() (*VirtualCircuitList, bool) {
 	if o == nil || isNil(o.VirtualCircuits) {
 		return nil, false
 	}
@@ -232,8 +232,8 @@ func (o *InterconnectionPort) HasVirtualCircuits() bool {
 	return false
 }
 
-// SetVirtualCircuits gets a reference to the given GetInterconnection200ResponsePortsInnerVirtualCircuits and assigns it to the VirtualCircuits field.
-func (o *InterconnectionPort) SetVirtualCircuits(v GetInterconnection200ResponsePortsInnerVirtualCircuits) {
+// SetVirtualCircuits gets a reference to the given VirtualCircuitList and assigns it to the VirtualCircuits field.
+func (o *InterconnectionPort) SetVirtualCircuits(v VirtualCircuitList) {
 	o.VirtualCircuits = &v
 }
 

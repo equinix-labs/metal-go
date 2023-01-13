@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**SpotMarketRequests** | Pointer to [**[]ListSpotMarketRequests200ResponseSpotMarketRequestsInner**](ListSpotMarketRequests200ResponseSpotMarketRequestsInner.md) |  | [optional] 
+**SpotMarketRequests** | Pointer to [**[]SpotMarketRequest**](SpotMarketRequest.md) |  | [optional] 
 
 ## Methods
 
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetSpotMarketRequests
 
-`func (o *SpotMarketRequestList) GetSpotMarketRequests() []ListSpotMarketRequests200ResponseSpotMarketRequestsInner`
+`func (o *SpotMarketRequestList) GetSpotMarketRequests() []SpotMarketRequest`
 
 GetSpotMarketRequests returns the SpotMarketRequests field if non-nil, zero value otherwise.
 
 ### GetSpotMarketRequestsOk
 
-`func (o *SpotMarketRequestList) GetSpotMarketRequestsOk() (*[]ListSpotMarketRequests200ResponseSpotMarketRequestsInner, bool)`
+`func (o *SpotMarketRequestList) GetSpotMarketRequestsOk() (*[]SpotMarketRequest, bool)`
 
 GetSpotMarketRequestsOk returns a tuple with the SpotMarketRequests field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSpotMarketRequests
 
-`func (o *SpotMarketRequestList) SetSpotMarketRequests(v []ListSpotMarketRequests200ResponseSpotMarketRequestsInner)`
+`func (o *SpotMarketRequestList) SetSpotMarketRequests(v []SpotMarketRequest)`
 
 SetSpotMarketRequests sets SpotMarketRequests field to given value.
 

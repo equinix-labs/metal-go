@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **AddressFamily** | Pointer to **int32** |  | [optional] 
 **Href** | Pointer to **string** |  | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
-**Project** | Pointer to [**FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
+**Project** | Pointer to [**Href**](Href.md) |  | [optional] 
 **Range** | Pointer to **string** |  | [optional] 
 
 ## Methods
@@ -106,20 +106,20 @@ HasId returns a boolean if a field has been set.
 
 ### GetProject
 
-`func (o *GlobalBgpRange) GetProject() FindBatchById200ResponseDevicesInner`
+`func (o *GlobalBgpRange) GetProject() Href`
 
 GetProject returns the Project field if non-nil, zero value otherwise.
 
 ### GetProjectOk
 
-`func (o *GlobalBgpRange) GetProjectOk() (*FindBatchById200ResponseDevicesInner, bool)`
+`func (o *GlobalBgpRange) GetProjectOk() (*Href, bool)`
 
 GetProjectOk returns a tuple with the Project field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetProject
 
-`func (o *GlobalBgpRange) SetProject(v FindBatchById200ResponseDevicesInner)`
+`func (o *GlobalBgpRange) SetProject(v Href)`
 
 SetProject sets Project field to given value.
 

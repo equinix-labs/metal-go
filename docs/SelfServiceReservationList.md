@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Reservations** | Pointer to [**[]FindSelfServiceReservations200ResponseReservationsInner**](FindSelfServiceReservations200ResponseReservationsInner.md) |  | [optional] 
+**Reservations** | Pointer to [**[]SelfServiceReservationResponse**](SelfServiceReservationResponse.md) |  | [optional] 
 
 ## Methods
 
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetReservations
 
-`func (o *SelfServiceReservationList) GetReservations() []FindSelfServiceReservations200ResponseReservationsInner`
+`func (o *SelfServiceReservationList) GetReservations() []SelfServiceReservationResponse`
 
 GetReservations returns the Reservations field if non-nil, zero value otherwise.
 
 ### GetReservationsOk
 
-`func (o *SelfServiceReservationList) GetReservationsOk() (*[]FindSelfServiceReservations200ResponseReservationsInner, bool)`
+`func (o *SelfServiceReservationList) GetReservationsOk() (*[]SelfServiceReservationResponse, bool)`
 
 GetReservationsOk returns a tuple with the Reservations field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetReservations
 
-`func (o *SelfServiceReservationList) SetReservations(v []FindSelfServiceReservations200ResponseReservationsInner)`
+`func (o *SelfServiceReservationList) SetReservations(v []SelfServiceReservationResponse)`
 
 SetReservations sets Reservations field to given value.
 

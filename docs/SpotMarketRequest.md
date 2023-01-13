@@ -8,13 +8,13 @@ Name | Type | Description | Notes
 **DevicesMax** | Pointer to **int32** |  | [optional] 
 **DevicesMin** | Pointer to **int32** |  | [optional] 
 **EndAt** | Pointer to **time.Time** |  | [optional] 
-**Facilities** | Pointer to [**FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
+**Facilities** | Pointer to [**Href**](Href.md) |  | [optional] 
 **Href** | Pointer to **string** |  | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
-**Instances** | Pointer to [**FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
+**Instances** | Pointer to [**Href**](Href.md) |  | [optional] 
 **MaxBidPrice** | Pointer to **float32** |  | [optional] 
-**Metro** | Pointer to [**ListSpotMarketRequests200ResponseSpotMarketRequestsInnerMetro**](ListSpotMarketRequests200ResponseSpotMarketRequestsInnerMetro.md) |  | [optional] 
-**Project** | Pointer to [**FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
+**Metro** | Pointer to [**SpotMarketRequestMetro**](SpotMarketRequestMetro.md) |  | [optional] 
+**Project** | Pointer to [**Href**](Href.md) |  | [optional] 
 
 ## Methods
 
@@ -137,20 +137,20 @@ HasEndAt returns a boolean if a field has been set.
 
 ### GetFacilities
 
-`func (o *SpotMarketRequest) GetFacilities() FindBatchById200ResponseDevicesInner`
+`func (o *SpotMarketRequest) GetFacilities() Href`
 
 GetFacilities returns the Facilities field if non-nil, zero value otherwise.
 
 ### GetFacilitiesOk
 
-`func (o *SpotMarketRequest) GetFacilitiesOk() (*FindBatchById200ResponseDevicesInner, bool)`
+`func (o *SpotMarketRequest) GetFacilitiesOk() (*Href, bool)`
 
 GetFacilitiesOk returns a tuple with the Facilities field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFacilities
 
-`func (o *SpotMarketRequest) SetFacilities(v FindBatchById200ResponseDevicesInner)`
+`func (o *SpotMarketRequest) SetFacilities(v Href)`
 
 SetFacilities sets Facilities field to given value.
 
@@ -212,20 +212,20 @@ HasId returns a boolean if a field has been set.
 
 ### GetInstances
 
-`func (o *SpotMarketRequest) GetInstances() FindBatchById200ResponseDevicesInner`
+`func (o *SpotMarketRequest) GetInstances() Href`
 
 GetInstances returns the Instances field if non-nil, zero value otherwise.
 
 ### GetInstancesOk
 
-`func (o *SpotMarketRequest) GetInstancesOk() (*FindBatchById200ResponseDevicesInner, bool)`
+`func (o *SpotMarketRequest) GetInstancesOk() (*Href, bool)`
 
 GetInstancesOk returns a tuple with the Instances field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetInstances
 
-`func (o *SpotMarketRequest) SetInstances(v FindBatchById200ResponseDevicesInner)`
+`func (o *SpotMarketRequest) SetInstances(v Href)`
 
 SetInstances sets Instances field to given value.
 
@@ -262,20 +262,20 @@ HasMaxBidPrice returns a boolean if a field has been set.
 
 ### GetMetro
 
-`func (o *SpotMarketRequest) GetMetro() ListSpotMarketRequests200ResponseSpotMarketRequestsInnerMetro`
+`func (o *SpotMarketRequest) GetMetro() SpotMarketRequestMetro`
 
 GetMetro returns the Metro field if non-nil, zero value otherwise.
 
 ### GetMetroOk
 
-`func (o *SpotMarketRequest) GetMetroOk() (*ListSpotMarketRequests200ResponseSpotMarketRequestsInnerMetro, bool)`
+`func (o *SpotMarketRequest) GetMetroOk() (*SpotMarketRequestMetro, bool)`
 
 GetMetroOk returns a tuple with the Metro field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMetro
 
-`func (o *SpotMarketRequest) SetMetro(v ListSpotMarketRequests200ResponseSpotMarketRequestsInnerMetro)`
+`func (o *SpotMarketRequest) SetMetro(v SpotMarketRequestMetro)`
 
 SetMetro sets Metro field to given value.
 
@@ -287,20 +287,20 @@ HasMetro returns a boolean if a field has been set.
 
 ### GetProject
 
-`func (o *SpotMarketRequest) GetProject() FindBatchById200ResponseDevicesInner`
+`func (o *SpotMarketRequest) GetProject() Href`
 
 GetProject returns the Project field if non-nil, zero value otherwise.
 
 ### GetProjectOk
 
-`func (o *SpotMarketRequest) GetProjectOk() (*FindBatchById200ResponseDevicesInner, bool)`
+`func (o *SpotMarketRequest) GetProjectOk() (*Href, bool)`
 
 GetProjectOk returns a tuple with the Project field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetProject
 
-`func (o *SpotMarketRequest) SetProject(v FindBatchById200ResponseDevicesInner)`
+`func (o *SpotMarketRequest) SetProject(v Href)`
 
 SetProject sets Project field to given value.
 

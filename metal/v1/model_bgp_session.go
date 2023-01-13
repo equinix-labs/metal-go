@@ -18,13 +18,13 @@ import (
 
 // BgpSession struct for BgpSession
 type BgpSession struct {
-	AddressFamily string                                `json:"address_family"`
-	CreatedAt     *time.Time                            `json:"created_at,omitempty"`
-	DefaultRoute  *bool                                 `json:"default_route,omitempty"`
-	Device        *FindBatchById200ResponseDevicesInner `json:"device,omitempty"`
-	Href          *string                               `json:"href,omitempty"`
-	Id            *string                               `json:"id,omitempty"`
-	LearnedRoutes []string                              `json:"learned_routes,omitempty"`
+	AddressFamily string     `json:"address_family"`
+	CreatedAt     *time.Time `json:"created_at,omitempty"`
+	DefaultRoute  *bool      `json:"default_route,omitempty"`
+	Device        *Href      `json:"device,omitempty"`
+	Href          *string    `json:"href,omitempty"`
+	Id            *string    `json:"id,omitempty"`
+	LearnedRoutes []string   `json:"learned_routes,omitempty"`
 	//  The status of the BGP Session. Multiple status values may be reported when the device is connected to multiple switches, one value per switch. Each status will start with \"unknown\" and progress to \"up\" or \"down\" depending on the connected device. Subsequent \"unknown\" values indicate a problem acquiring status from the switch.
 	Status    *string    `json:"status,omitempty"`
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
@@ -137,9 +137,9 @@ func (o *BgpSession) SetDefaultRoute(v bool) {
 }
 
 // GetDevice returns the Device field value if set, zero value otherwise.
-func (o *BgpSession) GetDevice() FindBatchById200ResponseDevicesInner {
+func (o *BgpSession) GetDevice() Href {
 	if o == nil || isNil(o.Device) {
-		var ret FindBatchById200ResponseDevicesInner
+		var ret Href
 		return ret
 	}
 	return *o.Device
@@ -147,7 +147,7 @@ func (o *BgpSession) GetDevice() FindBatchById200ResponseDevicesInner {
 
 // GetDeviceOk returns a tuple with the Device field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BgpSession) GetDeviceOk() (*FindBatchById200ResponseDevicesInner, bool) {
+func (o *BgpSession) GetDeviceOk() (*Href, bool) {
 	if o == nil || isNil(o.Device) {
 		return nil, false
 	}
@@ -163,8 +163,8 @@ func (o *BgpSession) HasDevice() bool {
 	return false
 }
 
-// SetDevice gets a reference to the given FindBatchById200ResponseDevicesInner and assigns it to the Device field.
-func (o *BgpSession) SetDevice(v FindBatchById200ResponseDevicesInner) {
+// SetDevice gets a reference to the given Href and assigns it to the Device field.
+func (o *BgpSession) SetDevice(v Href) {
 	o.Device = &v
 }
 

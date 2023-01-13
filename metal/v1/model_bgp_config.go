@@ -28,15 +28,15 @@ type BgpConfig struct {
 	// The maximum number of route filters allowed per server
 	MaxPrefix *int32 `json:"max_prefix,omitempty"`
 	// (Optional) Password for BGP session in plaintext (not a checksum)
-	Md5     NullableString                        `json:"md5,omitempty"`
-	Project *FindBatchById200ResponseDevicesInner `json:"project,omitempty"`
+	Md5     NullableString `json:"md5,omitempty"`
+	Project *Href          `json:"project,omitempty"`
 	// The IP block ranges associated to the ASN (Populated in Global BGP only)
-	Ranges      []FindBgpConfigByProject200ResponseRangesInner `json:"ranges,omitempty"`
-	RequestedAt *time.Time                                     `json:"requested_at,omitempty"`
+	Ranges      []GlobalBgpRange `json:"ranges,omitempty"`
+	RequestedAt *time.Time       `json:"requested_at,omitempty"`
 	// Specifies AS-MACRO (aka AS-SET) to use when building client route filters
 	RouteObject *string `json:"route_object,omitempty"`
 	// The direct connections between neighboring routers that want to exchange routing information.
-	Sessions []FindBgpSessionById200Response `json:"sessions,omitempty"`
+	Sessions []BgpSession `json:"sessions,omitempty"`
 	// Status of the BGP Config. Status \"requested\" is valid only with the \"global\" deployment_type.
 	Status *string `json:"status,omitempty"`
 }
@@ -298,9 +298,9 @@ func (o *BgpConfig) UnsetMd5() {
 }
 
 // GetProject returns the Project field value if set, zero value otherwise.
-func (o *BgpConfig) GetProject() FindBatchById200ResponseDevicesInner {
+func (o *BgpConfig) GetProject() Href {
 	if o == nil || isNil(o.Project) {
-		var ret FindBatchById200ResponseDevicesInner
+		var ret Href
 		return ret
 	}
 	return *o.Project
@@ -308,7 +308,7 @@ func (o *BgpConfig) GetProject() FindBatchById200ResponseDevicesInner {
 
 // GetProjectOk returns a tuple with the Project field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BgpConfig) GetProjectOk() (*FindBatchById200ResponseDevicesInner, bool) {
+func (o *BgpConfig) GetProjectOk() (*Href, bool) {
 	if o == nil || isNil(o.Project) {
 		return nil, false
 	}
@@ -324,15 +324,15 @@ func (o *BgpConfig) HasProject() bool {
 	return false
 }
 
-// SetProject gets a reference to the given FindBatchById200ResponseDevicesInner and assigns it to the Project field.
-func (o *BgpConfig) SetProject(v FindBatchById200ResponseDevicesInner) {
+// SetProject gets a reference to the given Href and assigns it to the Project field.
+func (o *BgpConfig) SetProject(v Href) {
 	o.Project = &v
 }
 
 // GetRanges returns the Ranges field value if set, zero value otherwise.
-func (o *BgpConfig) GetRanges() []FindBgpConfigByProject200ResponseRangesInner {
+func (o *BgpConfig) GetRanges() []GlobalBgpRange {
 	if o == nil || isNil(o.Ranges) {
-		var ret []FindBgpConfigByProject200ResponseRangesInner
+		var ret []GlobalBgpRange
 		return ret
 	}
 	return o.Ranges
@@ -340,7 +340,7 @@ func (o *BgpConfig) GetRanges() []FindBgpConfigByProject200ResponseRangesInner {
 
 // GetRangesOk returns a tuple with the Ranges field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BgpConfig) GetRangesOk() ([]FindBgpConfigByProject200ResponseRangesInner, bool) {
+func (o *BgpConfig) GetRangesOk() ([]GlobalBgpRange, bool) {
 	if o == nil || isNil(o.Ranges) {
 		return nil, false
 	}
@@ -356,8 +356,8 @@ func (o *BgpConfig) HasRanges() bool {
 	return false
 }
 
-// SetRanges gets a reference to the given []FindBgpConfigByProject200ResponseRangesInner and assigns it to the Ranges field.
-func (o *BgpConfig) SetRanges(v []FindBgpConfigByProject200ResponseRangesInner) {
+// SetRanges gets a reference to the given []GlobalBgpRange and assigns it to the Ranges field.
+func (o *BgpConfig) SetRanges(v []GlobalBgpRange) {
 	o.Ranges = v
 }
 
@@ -426,9 +426,9 @@ func (o *BgpConfig) SetRouteObject(v string) {
 }
 
 // GetSessions returns the Sessions field value if set, zero value otherwise.
-func (o *BgpConfig) GetSessions() []FindBgpSessionById200Response {
+func (o *BgpConfig) GetSessions() []BgpSession {
 	if o == nil || isNil(o.Sessions) {
-		var ret []FindBgpSessionById200Response
+		var ret []BgpSession
 		return ret
 	}
 	return o.Sessions
@@ -436,7 +436,7 @@ func (o *BgpConfig) GetSessions() []FindBgpSessionById200Response {
 
 // GetSessionsOk returns a tuple with the Sessions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BgpConfig) GetSessionsOk() ([]FindBgpSessionById200Response, bool) {
+func (o *BgpConfig) GetSessionsOk() ([]BgpSession, bool) {
 	if o == nil || isNil(o.Sessions) {
 		return nil, false
 	}
@@ -452,8 +452,8 @@ func (o *BgpConfig) HasSessions() bool {
 	return false
 }
 
-// SetSessions gets a reference to the given []FindBgpSessionById200Response and assigns it to the Sessions field.
-func (o *BgpConfig) SetSessions(v []FindBgpSessionById200Response) {
+// SetSessions gets a reference to the given []BgpSession and assigns it to the Sessions field.
+func (o *BgpConfig) SetSessions(v []BgpSession) {
 	o.Sessions = v
 }
 

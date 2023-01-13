@@ -20,15 +20,15 @@ import (
 type HardwareReservation struct {
 	CreatedAt *time.Time `json:"created_at,omitempty"`
 	// Amount that will be charged for every billing_cycle.
-	CustomRate *float32                           `json:"custom_rate,omitempty"`
-	Device     *FindDeviceById200Response         `json:"device,omitempty"`
-	Facility   *FindDeviceById200ResponseFacility `json:"facility,omitempty"`
-	Href       *string                            `json:"href,omitempty"`
-	Id         *string                            `json:"id,omitempty"`
+	CustomRate *float32  `json:"custom_rate,omitempty"`
+	Device     *Device   `json:"device,omitempty"`
+	Facility   *Facility `json:"facility,omitempty"`
+	Href       *string   `json:"href,omitempty"`
+	Id         *string   `json:"id,omitempty"`
 	// Whether this Device requires assistance from Metal Equinix.
-	NeedOfService *bool                                                                                       `json:"need_of_service,omitempty"`
-	Plan          *FindDeviceById200ResponsePlan                                                              `json:"plan,omitempty"`
-	Project       *GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject `json:"project,omitempty"`
+	NeedOfService *bool    `json:"need_of_service,omitempty"`
+	Plan          *Plan    `json:"plan,omitempty"`
+	Project       *Project `json:"project,omitempty"`
 	// Whether the reserved server is provisionable or not. Spare devices can't be provisioned unless they are activated first.
 	Provisionable *bool `json:"provisionable,omitempty"`
 	// Short version of the ID.
@@ -121,9 +121,9 @@ func (o *HardwareReservation) SetCustomRate(v float32) {
 }
 
 // GetDevice returns the Device field value if set, zero value otherwise.
-func (o *HardwareReservation) GetDevice() FindDeviceById200Response {
+func (o *HardwareReservation) GetDevice() Device {
 	if o == nil || isNil(o.Device) {
-		var ret FindDeviceById200Response
+		var ret Device
 		return ret
 	}
 	return *o.Device
@@ -131,7 +131,7 @@ func (o *HardwareReservation) GetDevice() FindDeviceById200Response {
 
 // GetDeviceOk returns a tuple with the Device field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HardwareReservation) GetDeviceOk() (*FindDeviceById200Response, bool) {
+func (o *HardwareReservation) GetDeviceOk() (*Device, bool) {
 	if o == nil || isNil(o.Device) {
 		return nil, false
 	}
@@ -147,15 +147,15 @@ func (o *HardwareReservation) HasDevice() bool {
 	return false
 }
 
-// SetDevice gets a reference to the given FindDeviceById200Response and assigns it to the Device field.
-func (o *HardwareReservation) SetDevice(v FindDeviceById200Response) {
+// SetDevice gets a reference to the given Device and assigns it to the Device field.
+func (o *HardwareReservation) SetDevice(v Device) {
 	o.Device = &v
 }
 
 // GetFacility returns the Facility field value if set, zero value otherwise.
-func (o *HardwareReservation) GetFacility() FindDeviceById200ResponseFacility {
+func (o *HardwareReservation) GetFacility() Facility {
 	if o == nil || isNil(o.Facility) {
-		var ret FindDeviceById200ResponseFacility
+		var ret Facility
 		return ret
 	}
 	return *o.Facility
@@ -163,7 +163,7 @@ func (o *HardwareReservation) GetFacility() FindDeviceById200ResponseFacility {
 
 // GetFacilityOk returns a tuple with the Facility field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HardwareReservation) GetFacilityOk() (*FindDeviceById200ResponseFacility, bool) {
+func (o *HardwareReservation) GetFacilityOk() (*Facility, bool) {
 	if o == nil || isNil(o.Facility) {
 		return nil, false
 	}
@@ -179,8 +179,8 @@ func (o *HardwareReservation) HasFacility() bool {
 	return false
 }
 
-// SetFacility gets a reference to the given FindDeviceById200ResponseFacility and assigns it to the Facility field.
-func (o *HardwareReservation) SetFacility(v FindDeviceById200ResponseFacility) {
+// SetFacility gets a reference to the given Facility and assigns it to the Facility field.
+func (o *HardwareReservation) SetFacility(v Facility) {
 	o.Facility = &v
 }
 
@@ -281,9 +281,9 @@ func (o *HardwareReservation) SetNeedOfService(v bool) {
 }
 
 // GetPlan returns the Plan field value if set, zero value otherwise.
-func (o *HardwareReservation) GetPlan() FindDeviceById200ResponsePlan {
+func (o *HardwareReservation) GetPlan() Plan {
 	if o == nil || isNil(o.Plan) {
-		var ret FindDeviceById200ResponsePlan
+		var ret Plan
 		return ret
 	}
 	return *o.Plan
@@ -291,7 +291,7 @@ func (o *HardwareReservation) GetPlan() FindDeviceById200ResponsePlan {
 
 // GetPlanOk returns a tuple with the Plan field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HardwareReservation) GetPlanOk() (*FindDeviceById200ResponsePlan, bool) {
+func (o *HardwareReservation) GetPlanOk() (*Plan, bool) {
 	if o == nil || isNil(o.Plan) {
 		return nil, false
 	}
@@ -307,15 +307,15 @@ func (o *HardwareReservation) HasPlan() bool {
 	return false
 }
 
-// SetPlan gets a reference to the given FindDeviceById200ResponsePlan and assigns it to the Plan field.
-func (o *HardwareReservation) SetPlan(v FindDeviceById200ResponsePlan) {
+// SetPlan gets a reference to the given Plan and assigns it to the Plan field.
+func (o *HardwareReservation) SetPlan(v Plan) {
 	o.Plan = &v
 }
 
 // GetProject returns the Project field value if set, zero value otherwise.
-func (o *HardwareReservation) GetProject() GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject {
+func (o *HardwareReservation) GetProject() Project {
 	if o == nil || isNil(o.Project) {
-		var ret GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject
+		var ret Project
 		return ret
 	}
 	return *o.Project
@@ -323,7 +323,7 @@ func (o *HardwareReservation) GetProject() GetInterconnection200ResponsePortsInn
 
 // GetProjectOk returns a tuple with the Project field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HardwareReservation) GetProjectOk() (*GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject, bool) {
+func (o *HardwareReservation) GetProjectOk() (*Project, bool) {
 	if o == nil || isNil(o.Project) {
 		return nil, false
 	}
@@ -339,8 +339,8 @@ func (o *HardwareReservation) HasProject() bool {
 	return false
 }
 
-// SetProject gets a reference to the given GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject and assigns it to the Project field.
-func (o *HardwareReservation) SetProject(v GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject) {
+// SetProject gets a reference to the given Project and assigns it to the Project field.
+func (o *HardwareReservation) SetProject(v Project) {
 	o.Project = &v
 }
 

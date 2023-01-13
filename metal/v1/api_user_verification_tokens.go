@@ -23,14 +23,14 @@ import (
 type UserVerificationTokensApiService service
 
 type ApiConsumeVerificationRequestRequest struct {
-	ctx                               context.Context
-	ApiService                        *UserVerificationTokensApiService
-	consumeVerificationRequestRequest *ConsumeVerificationRequestRequest
+	ctx         context.Context
+	ApiService  *UserVerificationTokensApiService
+	verifyEmail *VerifyEmail
 }
 
 // Email to create
-func (r ApiConsumeVerificationRequestRequest) ConsumeVerificationRequestRequest(consumeVerificationRequestRequest ConsumeVerificationRequestRequest) ApiConsumeVerificationRequestRequest {
-	r.consumeVerificationRequestRequest = &consumeVerificationRequestRequest
+func (r ApiConsumeVerificationRequestRequest) VerifyEmail(verifyEmail VerifyEmail) ApiConsumeVerificationRequestRequest {
+	r.verifyEmail = &verifyEmail
 	return r
 }
 
@@ -71,8 +71,8 @@ func (a *UserVerificationTokensApiService) ConsumeVerificationRequestExecute(r A
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.consumeVerificationRequestRequest == nil {
-		return nil, reportError("consumeVerificationRequestRequest is required and must be specified")
+	if r.verifyEmail == nil {
+		return nil, reportError("verifyEmail is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -93,7 +93,7 @@ func (a *UserVerificationTokensApiService) ConsumeVerificationRequestExecute(r A
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.consumeVerificationRequestRequest
+	localVarPostBody = r.verifyEmail
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -131,7 +131,7 @@ func (a *UserVerificationTokensApiService) ConsumeVerificationRequestExecute(r A
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -142,7 +142,7 @@ func (a *UserVerificationTokensApiService) ConsumeVerificationRequestExecute(r A
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -265,7 +265,7 @@ func (a *UserVerificationTokensApiService) CreateValidationRequestExecute(r ApiC
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -276,7 +276,7 @@ func (a *UserVerificationTokensApiService) CreateValidationRequestExecute(r ApiC
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

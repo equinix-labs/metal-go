@@ -19,24 +19,24 @@ import (
 
 // Organization struct for Organization
 type Organization struct {
-	Address        *FindDeviceById200ResponseFacilityAddress `json:"address,omitempty"`
-	BillingAddress *FindDeviceById200ResponseFacilityAddress `json:"billing_address,omitempty"`
-	CreatedAt      *time.Time                                `json:"created_at,omitempty"`
-	CreditAmount   *float32                                  `json:"credit_amount,omitempty"`
-	Customdata     map[string]interface{}                    `json:"customdata,omitempty"`
-	Description    *string                                   `json:"description,omitempty"`
+	Address        *Address               `json:"address,omitempty"`
+	BillingAddress *Address               `json:"billing_address,omitempty"`
+	CreatedAt      *time.Time             `json:"created_at,omitempty"`
+	CreditAmount   *float32               `json:"credit_amount,omitempty"`
+	Customdata     map[string]interface{} `json:"customdata,omitempty"`
+	Description    *string                `json:"description,omitempty"`
 	// Force to all members to have enabled the two factor authentication after that date, unless the value is null
-	Enforce2faAt *time.Time                             `json:"enforce_2fa_at,omitempty"`
-	Id           *string                                `json:"id,omitempty"`
-	Logo         **os.File                              `json:"logo,omitempty"`
-	Members      []FindBatchById200ResponseDevicesInner `json:"members,omitempty"`
-	Memberships  []FindBatchById200ResponseDevicesInner `json:"memberships,omitempty"`
-	Name         *string                                `json:"name,omitempty"`
-	Projects     []FindBatchById200ResponseDevicesInner `json:"projects,omitempty"`
-	Terms        *int32                                 `json:"terms,omitempty"`
-	Twitter      *string                                `json:"twitter,omitempty"`
-	UpdatedAt    *time.Time                             `json:"updated_at,omitempty"`
-	Website      *string                                `json:"website,omitempty"`
+	Enforce2faAt *time.Time `json:"enforce_2fa_at,omitempty"`
+	Id           *string    `json:"id,omitempty"`
+	Logo         **os.File  `json:"logo,omitempty"`
+	Members      []Href     `json:"members,omitempty"`
+	Memberships  []Href     `json:"memberships,omitempty"`
+	Name         *string    `json:"name,omitempty"`
+	Projects     []Href     `json:"projects,omitempty"`
+	Terms        *int32     `json:"terms,omitempty"`
+	Twitter      *string    `json:"twitter,omitempty"`
+	UpdatedAt    *time.Time `json:"updated_at,omitempty"`
+	Website      *string    `json:"website,omitempty"`
 }
 
 // NewOrganization instantiates a new Organization object
@@ -57,9 +57,9 @@ func NewOrganizationWithDefaults() *Organization {
 }
 
 // GetAddress returns the Address field value if set, zero value otherwise.
-func (o *Organization) GetAddress() FindDeviceById200ResponseFacilityAddress {
+func (o *Organization) GetAddress() Address {
 	if o == nil || isNil(o.Address) {
-		var ret FindDeviceById200ResponseFacilityAddress
+		var ret Address
 		return ret
 	}
 	return *o.Address
@@ -67,7 +67,7 @@ func (o *Organization) GetAddress() FindDeviceById200ResponseFacilityAddress {
 
 // GetAddressOk returns a tuple with the Address field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Organization) GetAddressOk() (*FindDeviceById200ResponseFacilityAddress, bool) {
+func (o *Organization) GetAddressOk() (*Address, bool) {
 	if o == nil || isNil(o.Address) {
 		return nil, false
 	}
@@ -83,15 +83,15 @@ func (o *Organization) HasAddress() bool {
 	return false
 }
 
-// SetAddress gets a reference to the given FindDeviceById200ResponseFacilityAddress and assigns it to the Address field.
-func (o *Organization) SetAddress(v FindDeviceById200ResponseFacilityAddress) {
+// SetAddress gets a reference to the given Address and assigns it to the Address field.
+func (o *Organization) SetAddress(v Address) {
 	o.Address = &v
 }
 
 // GetBillingAddress returns the BillingAddress field value if set, zero value otherwise.
-func (o *Organization) GetBillingAddress() FindDeviceById200ResponseFacilityAddress {
+func (o *Organization) GetBillingAddress() Address {
 	if o == nil || isNil(o.BillingAddress) {
-		var ret FindDeviceById200ResponseFacilityAddress
+		var ret Address
 		return ret
 	}
 	return *o.BillingAddress
@@ -99,7 +99,7 @@ func (o *Organization) GetBillingAddress() FindDeviceById200ResponseFacilityAddr
 
 // GetBillingAddressOk returns a tuple with the BillingAddress field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Organization) GetBillingAddressOk() (*FindDeviceById200ResponseFacilityAddress, bool) {
+func (o *Organization) GetBillingAddressOk() (*Address, bool) {
 	if o == nil || isNil(o.BillingAddress) {
 		return nil, false
 	}
@@ -115,8 +115,8 @@ func (o *Organization) HasBillingAddress() bool {
 	return false
 }
 
-// SetBillingAddress gets a reference to the given FindDeviceById200ResponseFacilityAddress and assigns it to the BillingAddress field.
-func (o *Organization) SetBillingAddress(v FindDeviceById200ResponseFacilityAddress) {
+// SetBillingAddress gets a reference to the given Address and assigns it to the BillingAddress field.
+func (o *Organization) SetBillingAddress(v Address) {
 	o.BillingAddress = &v
 }
 
@@ -345,9 +345,9 @@ func (o *Organization) SetLogo(v *os.File) {
 }
 
 // GetMembers returns the Members field value if set, zero value otherwise.
-func (o *Organization) GetMembers() []FindBatchById200ResponseDevicesInner {
+func (o *Organization) GetMembers() []Href {
 	if o == nil || isNil(o.Members) {
-		var ret []FindBatchById200ResponseDevicesInner
+		var ret []Href
 		return ret
 	}
 	return o.Members
@@ -355,7 +355,7 @@ func (o *Organization) GetMembers() []FindBatchById200ResponseDevicesInner {
 
 // GetMembersOk returns a tuple with the Members field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Organization) GetMembersOk() ([]FindBatchById200ResponseDevicesInner, bool) {
+func (o *Organization) GetMembersOk() ([]Href, bool) {
 	if o == nil || isNil(o.Members) {
 		return nil, false
 	}
@@ -371,15 +371,15 @@ func (o *Organization) HasMembers() bool {
 	return false
 }
 
-// SetMembers gets a reference to the given []FindBatchById200ResponseDevicesInner and assigns it to the Members field.
-func (o *Organization) SetMembers(v []FindBatchById200ResponseDevicesInner) {
+// SetMembers gets a reference to the given []Href and assigns it to the Members field.
+func (o *Organization) SetMembers(v []Href) {
 	o.Members = v
 }
 
 // GetMemberships returns the Memberships field value if set, zero value otherwise.
-func (o *Organization) GetMemberships() []FindBatchById200ResponseDevicesInner {
+func (o *Organization) GetMemberships() []Href {
 	if o == nil || isNil(o.Memberships) {
-		var ret []FindBatchById200ResponseDevicesInner
+		var ret []Href
 		return ret
 	}
 	return o.Memberships
@@ -387,7 +387,7 @@ func (o *Organization) GetMemberships() []FindBatchById200ResponseDevicesInner {
 
 // GetMembershipsOk returns a tuple with the Memberships field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Organization) GetMembershipsOk() ([]FindBatchById200ResponseDevicesInner, bool) {
+func (o *Organization) GetMembershipsOk() ([]Href, bool) {
 	if o == nil || isNil(o.Memberships) {
 		return nil, false
 	}
@@ -403,8 +403,8 @@ func (o *Organization) HasMemberships() bool {
 	return false
 }
 
-// SetMemberships gets a reference to the given []FindBatchById200ResponseDevicesInner and assigns it to the Memberships field.
-func (o *Organization) SetMemberships(v []FindBatchById200ResponseDevicesInner) {
+// SetMemberships gets a reference to the given []Href and assigns it to the Memberships field.
+func (o *Organization) SetMemberships(v []Href) {
 	o.Memberships = v
 }
 
@@ -441,9 +441,9 @@ func (o *Organization) SetName(v string) {
 }
 
 // GetProjects returns the Projects field value if set, zero value otherwise.
-func (o *Organization) GetProjects() []FindBatchById200ResponseDevicesInner {
+func (o *Organization) GetProjects() []Href {
 	if o == nil || isNil(o.Projects) {
-		var ret []FindBatchById200ResponseDevicesInner
+		var ret []Href
 		return ret
 	}
 	return o.Projects
@@ -451,7 +451,7 @@ func (o *Organization) GetProjects() []FindBatchById200ResponseDevicesInner {
 
 // GetProjectsOk returns a tuple with the Projects field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Organization) GetProjectsOk() ([]FindBatchById200ResponseDevicesInner, bool) {
+func (o *Organization) GetProjectsOk() ([]Href, bool) {
 	if o == nil || isNil(o.Projects) {
 		return nil, false
 	}
@@ -467,8 +467,8 @@ func (o *Organization) HasProjects() bool {
 	return false
 }
 
-// SetProjects gets a reference to the given []FindBatchById200ResponseDevicesInner and assigns it to the Projects field.
-func (o *Organization) SetProjects(v []FindBatchById200ResponseDevicesInner) {
+// SetProjects gets a reference to the given []Href and assigns it to the Projects field.
+func (o *Organization) SetProjects(v []Href) {
 	o.Projects = v
 }
 

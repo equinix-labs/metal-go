@@ -18,33 +18,33 @@ import (
 
 // Device struct for Device
 type Device struct {
-	AlwaysPxe           *bool                                       `json:"always_pxe,omitempty"`
-	BillingCycle        *string                                     `json:"billing_cycle,omitempty"`
-	BondingMode         *int32                                      `json:"bonding_mode,omitempty"`
-	CreatedAt           *time.Time                                  `json:"created_at,omitempty"`
-	CreatedBy           *FindDeviceById200ResponseCreatedBy         `json:"created_by,omitempty"`
-	Customdata          map[string]interface{}                      `json:"customdata,omitempty"`
-	Description         *string                                     `json:"description,omitempty"`
-	Facility            *FindDeviceById200ResponseFacility          `json:"facility,omitempty"`
-	HardwareReservation *FindBatchById200ResponseDevicesInner       `json:"hardware_reservation,omitempty"`
-	Hostname            *string                                     `json:"hostname,omitempty"`
-	Href                *string                                     `json:"href,omitempty"`
-	Id                  *string                                     `json:"id,omitempty"`
-	ImageUrl            *string                                     `json:"image_url,omitempty"`
-	IpAddresses         []FindDeviceById200ResponseIpAddressesInner `json:"ip_addresses,omitempty"`
-	IpxeScriptUrl       *string                                     `json:"ipxe_script_url,omitempty"`
-	Iqn                 *string                                     `json:"iqn,omitempty"`
-	Locked              *bool                                       `json:"locked,omitempty"`
-	Metro               *FindDeviceById200ResponseFacilityMetro     `json:"metro,omitempty"`
+	AlwaysPxe           *bool                  `json:"always_pxe,omitempty"`
+	BillingCycle        *string                `json:"billing_cycle,omitempty"`
+	BondingMode         *int32                 `json:"bonding_mode,omitempty"`
+	CreatedAt           *time.Time             `json:"created_at,omitempty"`
+	CreatedBy           *DeviceCreatedBy       `json:"created_by,omitempty"`
+	Customdata          map[string]interface{} `json:"customdata,omitempty"`
+	Description         *string                `json:"description,omitempty"`
+	Facility            *Facility              `json:"facility,omitempty"`
+	HardwareReservation *Href                  `json:"hardware_reservation,omitempty"`
+	Hostname            *string                `json:"hostname,omitempty"`
+	Href                *string                `json:"href,omitempty"`
+	Id                  *string                `json:"id,omitempty"`
+	ImageUrl            *string                `json:"image_url,omitempty"`
+	IpAddresses         []IPAssignment         `json:"ip_addresses,omitempty"`
+	IpxeScriptUrl       *string                `json:"ipxe_script_url,omitempty"`
+	Iqn                 *string                `json:"iqn,omitempty"`
+	Locked              *bool                  `json:"locked,omitempty"`
+	Metro               *DeviceMetro           `json:"metro,omitempty"`
 	// By default, servers at Equinix Metal are configured in a “bonded” mode using LACP (Link Aggregation Control Protocol). Each 2-NIC server is configured with a single bond (namely bond0) with both interfaces eth0 and eth1 as members of the bond in a default Layer 3 mode. Some device plans may have a different number of ports and bonds available.
-	NetworkPorts    []FindDeviceById200ResponseNetworkPortsInner `json:"network_ports,omitempty"`
-	OperatingSystem *FindDeviceById200ResponseOperatingSystem    `json:"operating_system,omitempty"`
+	NetworkPorts    []Port           `json:"network_ports,omitempty"`
+	OperatingSystem *OperatingSystem `json:"operating_system,omitempty"`
 	// Actions supported by the device instance.
-	Actions            []FindDeviceById200ResponseActionsInner `json:"actions,omitempty"`
-	Plan               *FindDeviceById200ResponsePlan          `json:"plan,omitempty"`
-	Project            *FindDeviceById200ResponseProject       `json:"project,omitempty"`
-	ProjectLite        *FindDeviceById200ResponseProjectLite   `json:"project_lite,omitempty"`
-	ProvisioningEvents []FindInterconnectionEvents200Response  `json:"provisioning_events,omitempty"`
+	Actions            []DeviceActionsInner `json:"actions,omitempty"`
+	Plan               *Plan                `json:"plan,omitempty"`
+	Project            *DeviceProject       `json:"project,omitempty"`
+	ProjectLite        *DeviceProjectLite   `json:"project_lite,omitempty"`
+	ProvisioningEvents []Event              `json:"provisioning_events,omitempty"`
 	// Only visible while device provisioning
 	ProvisioningPercentage *float32 `json:"provisioning_percentage,omitempty"`
 	// Root password is automatically generated when server is provisioned and it is removed after 24 hours
@@ -53,18 +53,18 @@ type Device struct {
 	// Whether or not the device is a spot instance.
 	SpotInstance *bool `json:"spot_instance,omitempty"`
 	// The maximum price per hour you are willing to pay to keep this spot instance.  If you are outbid, the termination will be set allowing two minutes before shutdown.
-	SpotPriceMax *float32                               `json:"spot_price_max,omitempty"`
-	SshKeys      []FindBatchById200ResponseDevicesInner `json:"ssh_keys,omitempty"`
-	State        *string                                `json:"state,omitempty"`
+	SpotPriceMax *float32 `json:"spot_price_max,omitempty"`
+	SshKeys      []Href   `json:"ssh_keys,omitempty"`
+	State        *string  `json:"state,omitempty"`
 	// Switch short id. This can be used to determine if two devices are connected to the same switch, for example.
 	SwitchUuid *string  `json:"switch_uuid,omitempty"`
 	Tags       []string `json:"tags,omitempty"`
 	// When the device will be terminated. This is commonly set in advance for ephemeral spot market instances but this field may also be set with on-demand and reservation instances to automatically delete the resource at a given time. The termination time can also be used to release a hardware reservation instance at a given time, keeping the reservation open for other uses.  On a spot market device, the termination time will be set automatically when outbid.
-	TerminationTime *time.Time                             `json:"termination_time,omitempty"`
-	UpdatedAt       *time.Time                             `json:"updated_at,omitempty"`
-	User            *string                                `json:"user,omitempty"`
-	Userdata        *string                                `json:"userdata,omitempty"`
-	Volumes         []FindBatchById200ResponseDevicesInner `json:"volumes,omitempty"`
+	TerminationTime *time.Time `json:"termination_time,omitempty"`
+	UpdatedAt       *time.Time `json:"updated_at,omitempty"`
+	User            *string    `json:"user,omitempty"`
+	Userdata        *string    `json:"userdata,omitempty"`
+	Volumes         []Href     `json:"volumes,omitempty"`
 }
 
 // NewDevice instantiates a new Device object
@@ -213,9 +213,9 @@ func (o *Device) SetCreatedAt(v time.Time) {
 }
 
 // GetCreatedBy returns the CreatedBy field value if set, zero value otherwise.
-func (o *Device) GetCreatedBy() FindDeviceById200ResponseCreatedBy {
+func (o *Device) GetCreatedBy() DeviceCreatedBy {
 	if o == nil || isNil(o.CreatedBy) {
-		var ret FindDeviceById200ResponseCreatedBy
+		var ret DeviceCreatedBy
 		return ret
 	}
 	return *o.CreatedBy
@@ -223,7 +223,7 @@ func (o *Device) GetCreatedBy() FindDeviceById200ResponseCreatedBy {
 
 // GetCreatedByOk returns a tuple with the CreatedBy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Device) GetCreatedByOk() (*FindDeviceById200ResponseCreatedBy, bool) {
+func (o *Device) GetCreatedByOk() (*DeviceCreatedBy, bool) {
 	if o == nil || isNil(o.CreatedBy) {
 		return nil, false
 	}
@@ -239,8 +239,8 @@ func (o *Device) HasCreatedBy() bool {
 	return false
 }
 
-// SetCreatedBy gets a reference to the given FindDeviceById200ResponseCreatedBy and assigns it to the CreatedBy field.
-func (o *Device) SetCreatedBy(v FindDeviceById200ResponseCreatedBy) {
+// SetCreatedBy gets a reference to the given DeviceCreatedBy and assigns it to the CreatedBy field.
+func (o *Device) SetCreatedBy(v DeviceCreatedBy) {
 	o.CreatedBy = &v
 }
 
@@ -309,9 +309,9 @@ func (o *Device) SetDescription(v string) {
 }
 
 // GetFacility returns the Facility field value if set, zero value otherwise.
-func (o *Device) GetFacility() FindDeviceById200ResponseFacility {
+func (o *Device) GetFacility() Facility {
 	if o == nil || isNil(o.Facility) {
-		var ret FindDeviceById200ResponseFacility
+		var ret Facility
 		return ret
 	}
 	return *o.Facility
@@ -319,7 +319,7 @@ func (o *Device) GetFacility() FindDeviceById200ResponseFacility {
 
 // GetFacilityOk returns a tuple with the Facility field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Device) GetFacilityOk() (*FindDeviceById200ResponseFacility, bool) {
+func (o *Device) GetFacilityOk() (*Facility, bool) {
 	if o == nil || isNil(o.Facility) {
 		return nil, false
 	}
@@ -335,15 +335,15 @@ func (o *Device) HasFacility() bool {
 	return false
 }
 
-// SetFacility gets a reference to the given FindDeviceById200ResponseFacility and assigns it to the Facility field.
-func (o *Device) SetFacility(v FindDeviceById200ResponseFacility) {
+// SetFacility gets a reference to the given Facility and assigns it to the Facility field.
+func (o *Device) SetFacility(v Facility) {
 	o.Facility = &v
 }
 
 // GetHardwareReservation returns the HardwareReservation field value if set, zero value otherwise.
-func (o *Device) GetHardwareReservation() FindBatchById200ResponseDevicesInner {
+func (o *Device) GetHardwareReservation() Href {
 	if o == nil || isNil(o.HardwareReservation) {
-		var ret FindBatchById200ResponseDevicesInner
+		var ret Href
 		return ret
 	}
 	return *o.HardwareReservation
@@ -351,7 +351,7 @@ func (o *Device) GetHardwareReservation() FindBatchById200ResponseDevicesInner {
 
 // GetHardwareReservationOk returns a tuple with the HardwareReservation field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Device) GetHardwareReservationOk() (*FindBatchById200ResponseDevicesInner, bool) {
+func (o *Device) GetHardwareReservationOk() (*Href, bool) {
 	if o == nil || isNil(o.HardwareReservation) {
 		return nil, false
 	}
@@ -367,8 +367,8 @@ func (o *Device) HasHardwareReservation() bool {
 	return false
 }
 
-// SetHardwareReservation gets a reference to the given FindBatchById200ResponseDevicesInner and assigns it to the HardwareReservation field.
-func (o *Device) SetHardwareReservation(v FindBatchById200ResponseDevicesInner) {
+// SetHardwareReservation gets a reference to the given Href and assigns it to the HardwareReservation field.
+func (o *Device) SetHardwareReservation(v Href) {
 	o.HardwareReservation = &v
 }
 
@@ -501,9 +501,9 @@ func (o *Device) SetImageUrl(v string) {
 }
 
 // GetIpAddresses returns the IpAddresses field value if set, zero value otherwise.
-func (o *Device) GetIpAddresses() []FindDeviceById200ResponseIpAddressesInner {
+func (o *Device) GetIpAddresses() []IPAssignment {
 	if o == nil || isNil(o.IpAddresses) {
-		var ret []FindDeviceById200ResponseIpAddressesInner
+		var ret []IPAssignment
 		return ret
 	}
 	return o.IpAddresses
@@ -511,7 +511,7 @@ func (o *Device) GetIpAddresses() []FindDeviceById200ResponseIpAddressesInner {
 
 // GetIpAddressesOk returns a tuple with the IpAddresses field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Device) GetIpAddressesOk() ([]FindDeviceById200ResponseIpAddressesInner, bool) {
+func (o *Device) GetIpAddressesOk() ([]IPAssignment, bool) {
 	if o == nil || isNil(o.IpAddresses) {
 		return nil, false
 	}
@@ -527,8 +527,8 @@ func (o *Device) HasIpAddresses() bool {
 	return false
 }
 
-// SetIpAddresses gets a reference to the given []FindDeviceById200ResponseIpAddressesInner and assigns it to the IpAddresses field.
-func (o *Device) SetIpAddresses(v []FindDeviceById200ResponseIpAddressesInner) {
+// SetIpAddresses gets a reference to the given []IPAssignment and assigns it to the IpAddresses field.
+func (o *Device) SetIpAddresses(v []IPAssignment) {
 	o.IpAddresses = v
 }
 
@@ -629,9 +629,9 @@ func (o *Device) SetLocked(v bool) {
 }
 
 // GetMetro returns the Metro field value if set, zero value otherwise.
-func (o *Device) GetMetro() FindDeviceById200ResponseFacilityMetro {
+func (o *Device) GetMetro() DeviceMetro {
 	if o == nil || isNil(o.Metro) {
-		var ret FindDeviceById200ResponseFacilityMetro
+		var ret DeviceMetro
 		return ret
 	}
 	return *o.Metro
@@ -639,7 +639,7 @@ func (o *Device) GetMetro() FindDeviceById200ResponseFacilityMetro {
 
 // GetMetroOk returns a tuple with the Metro field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Device) GetMetroOk() (*FindDeviceById200ResponseFacilityMetro, bool) {
+func (o *Device) GetMetroOk() (*DeviceMetro, bool) {
 	if o == nil || isNil(o.Metro) {
 		return nil, false
 	}
@@ -655,15 +655,15 @@ func (o *Device) HasMetro() bool {
 	return false
 }
 
-// SetMetro gets a reference to the given FindDeviceById200ResponseFacilityMetro and assigns it to the Metro field.
-func (o *Device) SetMetro(v FindDeviceById200ResponseFacilityMetro) {
+// SetMetro gets a reference to the given DeviceMetro and assigns it to the Metro field.
+func (o *Device) SetMetro(v DeviceMetro) {
 	o.Metro = &v
 }
 
 // GetNetworkPorts returns the NetworkPorts field value if set, zero value otherwise.
-func (o *Device) GetNetworkPorts() []FindDeviceById200ResponseNetworkPortsInner {
+func (o *Device) GetNetworkPorts() []Port {
 	if o == nil || isNil(o.NetworkPorts) {
-		var ret []FindDeviceById200ResponseNetworkPortsInner
+		var ret []Port
 		return ret
 	}
 	return o.NetworkPorts
@@ -671,7 +671,7 @@ func (o *Device) GetNetworkPorts() []FindDeviceById200ResponseNetworkPortsInner 
 
 // GetNetworkPortsOk returns a tuple with the NetworkPorts field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Device) GetNetworkPortsOk() ([]FindDeviceById200ResponseNetworkPortsInner, bool) {
+func (o *Device) GetNetworkPortsOk() ([]Port, bool) {
 	if o == nil || isNil(o.NetworkPorts) {
 		return nil, false
 	}
@@ -687,15 +687,15 @@ func (o *Device) HasNetworkPorts() bool {
 	return false
 }
 
-// SetNetworkPorts gets a reference to the given []FindDeviceById200ResponseNetworkPortsInner and assigns it to the NetworkPorts field.
-func (o *Device) SetNetworkPorts(v []FindDeviceById200ResponseNetworkPortsInner) {
+// SetNetworkPorts gets a reference to the given []Port and assigns it to the NetworkPorts field.
+func (o *Device) SetNetworkPorts(v []Port) {
 	o.NetworkPorts = v
 }
 
 // GetOperatingSystem returns the OperatingSystem field value if set, zero value otherwise.
-func (o *Device) GetOperatingSystem() FindDeviceById200ResponseOperatingSystem {
+func (o *Device) GetOperatingSystem() OperatingSystem {
 	if o == nil || isNil(o.OperatingSystem) {
-		var ret FindDeviceById200ResponseOperatingSystem
+		var ret OperatingSystem
 		return ret
 	}
 	return *o.OperatingSystem
@@ -703,7 +703,7 @@ func (o *Device) GetOperatingSystem() FindDeviceById200ResponseOperatingSystem {
 
 // GetOperatingSystemOk returns a tuple with the OperatingSystem field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Device) GetOperatingSystemOk() (*FindDeviceById200ResponseOperatingSystem, bool) {
+func (o *Device) GetOperatingSystemOk() (*OperatingSystem, bool) {
 	if o == nil || isNil(o.OperatingSystem) {
 		return nil, false
 	}
@@ -719,15 +719,15 @@ func (o *Device) HasOperatingSystem() bool {
 	return false
 }
 
-// SetOperatingSystem gets a reference to the given FindDeviceById200ResponseOperatingSystem and assigns it to the OperatingSystem field.
-func (o *Device) SetOperatingSystem(v FindDeviceById200ResponseOperatingSystem) {
+// SetOperatingSystem gets a reference to the given OperatingSystem and assigns it to the OperatingSystem field.
+func (o *Device) SetOperatingSystem(v OperatingSystem) {
 	o.OperatingSystem = &v
 }
 
 // GetActions returns the Actions field value if set, zero value otherwise.
-func (o *Device) GetActions() []FindDeviceById200ResponseActionsInner {
+func (o *Device) GetActions() []DeviceActionsInner {
 	if o == nil || isNil(o.Actions) {
-		var ret []FindDeviceById200ResponseActionsInner
+		var ret []DeviceActionsInner
 		return ret
 	}
 	return o.Actions
@@ -735,7 +735,7 @@ func (o *Device) GetActions() []FindDeviceById200ResponseActionsInner {
 
 // GetActionsOk returns a tuple with the Actions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Device) GetActionsOk() ([]FindDeviceById200ResponseActionsInner, bool) {
+func (o *Device) GetActionsOk() ([]DeviceActionsInner, bool) {
 	if o == nil || isNil(o.Actions) {
 		return nil, false
 	}
@@ -751,15 +751,15 @@ func (o *Device) HasActions() bool {
 	return false
 }
 
-// SetActions gets a reference to the given []FindDeviceById200ResponseActionsInner and assigns it to the Actions field.
-func (o *Device) SetActions(v []FindDeviceById200ResponseActionsInner) {
+// SetActions gets a reference to the given []DeviceActionsInner and assigns it to the Actions field.
+func (o *Device) SetActions(v []DeviceActionsInner) {
 	o.Actions = v
 }
 
 // GetPlan returns the Plan field value if set, zero value otherwise.
-func (o *Device) GetPlan() FindDeviceById200ResponsePlan {
+func (o *Device) GetPlan() Plan {
 	if o == nil || isNil(o.Plan) {
-		var ret FindDeviceById200ResponsePlan
+		var ret Plan
 		return ret
 	}
 	return *o.Plan
@@ -767,7 +767,7 @@ func (o *Device) GetPlan() FindDeviceById200ResponsePlan {
 
 // GetPlanOk returns a tuple with the Plan field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Device) GetPlanOk() (*FindDeviceById200ResponsePlan, bool) {
+func (o *Device) GetPlanOk() (*Plan, bool) {
 	if o == nil || isNil(o.Plan) {
 		return nil, false
 	}
@@ -783,15 +783,15 @@ func (o *Device) HasPlan() bool {
 	return false
 }
 
-// SetPlan gets a reference to the given FindDeviceById200ResponsePlan and assigns it to the Plan field.
-func (o *Device) SetPlan(v FindDeviceById200ResponsePlan) {
+// SetPlan gets a reference to the given Plan and assigns it to the Plan field.
+func (o *Device) SetPlan(v Plan) {
 	o.Plan = &v
 }
 
 // GetProject returns the Project field value if set, zero value otherwise.
-func (o *Device) GetProject() FindDeviceById200ResponseProject {
+func (o *Device) GetProject() DeviceProject {
 	if o == nil || isNil(o.Project) {
-		var ret FindDeviceById200ResponseProject
+		var ret DeviceProject
 		return ret
 	}
 	return *o.Project
@@ -799,7 +799,7 @@ func (o *Device) GetProject() FindDeviceById200ResponseProject {
 
 // GetProjectOk returns a tuple with the Project field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Device) GetProjectOk() (*FindDeviceById200ResponseProject, bool) {
+func (o *Device) GetProjectOk() (*DeviceProject, bool) {
 	if o == nil || isNil(o.Project) {
 		return nil, false
 	}
@@ -815,15 +815,15 @@ func (o *Device) HasProject() bool {
 	return false
 }
 
-// SetProject gets a reference to the given FindDeviceById200ResponseProject and assigns it to the Project field.
-func (o *Device) SetProject(v FindDeviceById200ResponseProject) {
+// SetProject gets a reference to the given DeviceProject and assigns it to the Project field.
+func (o *Device) SetProject(v DeviceProject) {
 	o.Project = &v
 }
 
 // GetProjectLite returns the ProjectLite field value if set, zero value otherwise.
-func (o *Device) GetProjectLite() FindDeviceById200ResponseProjectLite {
+func (o *Device) GetProjectLite() DeviceProjectLite {
 	if o == nil || isNil(o.ProjectLite) {
-		var ret FindDeviceById200ResponseProjectLite
+		var ret DeviceProjectLite
 		return ret
 	}
 	return *o.ProjectLite
@@ -831,7 +831,7 @@ func (o *Device) GetProjectLite() FindDeviceById200ResponseProjectLite {
 
 // GetProjectLiteOk returns a tuple with the ProjectLite field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Device) GetProjectLiteOk() (*FindDeviceById200ResponseProjectLite, bool) {
+func (o *Device) GetProjectLiteOk() (*DeviceProjectLite, bool) {
 	if o == nil || isNil(o.ProjectLite) {
 		return nil, false
 	}
@@ -847,15 +847,15 @@ func (o *Device) HasProjectLite() bool {
 	return false
 }
 
-// SetProjectLite gets a reference to the given FindDeviceById200ResponseProjectLite and assigns it to the ProjectLite field.
-func (o *Device) SetProjectLite(v FindDeviceById200ResponseProjectLite) {
+// SetProjectLite gets a reference to the given DeviceProjectLite and assigns it to the ProjectLite field.
+func (o *Device) SetProjectLite(v DeviceProjectLite) {
 	o.ProjectLite = &v
 }
 
 // GetProvisioningEvents returns the ProvisioningEvents field value if set, zero value otherwise.
-func (o *Device) GetProvisioningEvents() []FindInterconnectionEvents200Response {
+func (o *Device) GetProvisioningEvents() []Event {
 	if o == nil || isNil(o.ProvisioningEvents) {
-		var ret []FindInterconnectionEvents200Response
+		var ret []Event
 		return ret
 	}
 	return o.ProvisioningEvents
@@ -863,7 +863,7 @@ func (o *Device) GetProvisioningEvents() []FindInterconnectionEvents200Response 
 
 // GetProvisioningEventsOk returns a tuple with the ProvisioningEvents field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Device) GetProvisioningEventsOk() ([]FindInterconnectionEvents200Response, bool) {
+func (o *Device) GetProvisioningEventsOk() ([]Event, bool) {
 	if o == nil || isNil(o.ProvisioningEvents) {
 		return nil, false
 	}
@@ -879,8 +879,8 @@ func (o *Device) HasProvisioningEvents() bool {
 	return false
 }
 
-// SetProvisioningEvents gets a reference to the given []FindInterconnectionEvents200Response and assigns it to the ProvisioningEvents field.
-func (o *Device) SetProvisioningEvents(v []FindInterconnectionEvents200Response) {
+// SetProvisioningEvents gets a reference to the given []Event and assigns it to the ProvisioningEvents field.
+func (o *Device) SetProvisioningEvents(v []Event) {
 	o.ProvisioningEvents = v
 }
 
@@ -1045,9 +1045,9 @@ func (o *Device) SetSpotPriceMax(v float32) {
 }
 
 // GetSshKeys returns the SshKeys field value if set, zero value otherwise.
-func (o *Device) GetSshKeys() []FindBatchById200ResponseDevicesInner {
+func (o *Device) GetSshKeys() []Href {
 	if o == nil || isNil(o.SshKeys) {
-		var ret []FindBatchById200ResponseDevicesInner
+		var ret []Href
 		return ret
 	}
 	return o.SshKeys
@@ -1055,7 +1055,7 @@ func (o *Device) GetSshKeys() []FindBatchById200ResponseDevicesInner {
 
 // GetSshKeysOk returns a tuple with the SshKeys field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Device) GetSshKeysOk() ([]FindBatchById200ResponseDevicesInner, bool) {
+func (o *Device) GetSshKeysOk() ([]Href, bool) {
 	if o == nil || isNil(o.SshKeys) {
 		return nil, false
 	}
@@ -1071,8 +1071,8 @@ func (o *Device) HasSshKeys() bool {
 	return false
 }
 
-// SetSshKeys gets a reference to the given []FindBatchById200ResponseDevicesInner and assigns it to the SshKeys field.
-func (o *Device) SetSshKeys(v []FindBatchById200ResponseDevicesInner) {
+// SetSshKeys gets a reference to the given []Href and assigns it to the SshKeys field.
+func (o *Device) SetSshKeys(v []Href) {
 	o.SshKeys = v
 }
 
@@ -1301,9 +1301,9 @@ func (o *Device) SetUserdata(v string) {
 }
 
 // GetVolumes returns the Volumes field value if set, zero value otherwise.
-func (o *Device) GetVolumes() []FindBatchById200ResponseDevicesInner {
+func (o *Device) GetVolumes() []Href {
 	if o == nil || isNil(o.Volumes) {
-		var ret []FindBatchById200ResponseDevicesInner
+		var ret []Href
 		return ret
 	}
 	return o.Volumes
@@ -1311,7 +1311,7 @@ func (o *Device) GetVolumes() []FindBatchById200ResponseDevicesInner {
 
 // GetVolumesOk returns a tuple with the Volumes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Device) GetVolumesOk() ([]FindBatchById200ResponseDevicesInner, bool) {
+func (o *Device) GetVolumesOk() ([]Href, bool) {
 	if o == nil || isNil(o.Volumes) {
 		return nil, false
 	}
@@ -1327,8 +1327,8 @@ func (o *Device) HasVolumes() bool {
 	return false
 }
 
-// SetVolumes gets a reference to the given []FindBatchById200ResponseDevicesInner and assigns it to the Volumes field.
-func (o *Device) SetVolumes(v []FindBatchById200ResponseDevicesInner) {
+// SetVolumes gets a reference to the given []Href and assigns it to the Volumes field.
+func (o *Device) SetVolumes(v []Href) {
 	o.Volumes = v
 }
 

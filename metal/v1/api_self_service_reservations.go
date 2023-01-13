@@ -36,7 +36,7 @@ func (r ApiCreateSelfServiceReservationRequest) CreateSelfServiceReservationRequ
 	return r
 }
 
-func (r ApiCreateSelfServiceReservationRequest) Execute() (*FindSelfServiceReservations200ResponseReservationsInner, *http.Response, error) {
+func (r ApiCreateSelfServiceReservationRequest) Execute() (*SelfServiceReservationResponse, *http.Response, error) {
 	return r.ApiService.CreateSelfServiceReservationExecute(r)
 }
 
@@ -58,13 +58,13 @@ func (a *SelfServiceReservationsApiService) CreateSelfServiceReservation(ctx con
 }
 
 // Execute executes the request
-//  @return FindSelfServiceReservations200ResponseReservationsInner
-func (a *SelfServiceReservationsApiService) CreateSelfServiceReservationExecute(r ApiCreateSelfServiceReservationRequest) (*FindSelfServiceReservations200ResponseReservationsInner, *http.Response, error) {
+//  @return SelfServiceReservationResponse
+func (a *SelfServiceReservationsApiService) CreateSelfServiceReservationExecute(r ApiCreateSelfServiceReservationRequest) (*SelfServiceReservationResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *FindSelfServiceReservations200ResponseReservationsInner
+		localVarReturnValue *SelfServiceReservationResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SelfServiceReservationsApiService.CreateSelfServiceReservation")
@@ -138,7 +138,7 @@ func (a *SelfServiceReservationsApiService) CreateSelfServiceReservationExecute(
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -149,7 +149,7 @@ func (a *SelfServiceReservationsApiService) CreateSelfServiceReservationExecute(
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -180,7 +180,7 @@ type ApiFindSelfServiceReservationRequest struct {
 	projectId  string
 }
 
-func (r ApiFindSelfServiceReservationRequest) Execute() (*FindSelfServiceReservations200ResponseReservationsInner, *http.Response, error) {
+func (r ApiFindSelfServiceReservationRequest) Execute() (*SelfServiceReservationResponse, *http.Response, error) {
 	return r.ApiService.FindSelfServiceReservationExecute(r)
 }
 
@@ -204,13 +204,13 @@ func (a *SelfServiceReservationsApiService) FindSelfServiceReservation(ctx conte
 }
 
 // Execute executes the request
-//  @return FindSelfServiceReservations200ResponseReservationsInner
-func (a *SelfServiceReservationsApiService) FindSelfServiceReservationExecute(r ApiFindSelfServiceReservationRequest) (*FindSelfServiceReservations200ResponseReservationsInner, *http.Response, error) {
+//  @return SelfServiceReservationResponse
+func (a *SelfServiceReservationsApiService) FindSelfServiceReservationExecute(r ApiFindSelfServiceReservationRequest) (*SelfServiceReservationResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *FindSelfServiceReservations200ResponseReservationsInner
+		localVarReturnValue *SelfServiceReservationResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SelfServiceReservationsApiService.FindSelfServiceReservation")
@@ -280,7 +280,7 @@ func (a *SelfServiceReservationsApiService) FindSelfServiceReservationExecute(r 
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -291,7 +291,7 @@ func (a *SelfServiceReservationsApiService) FindSelfServiceReservationExecute(r 
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -335,7 +335,7 @@ func (r ApiFindSelfServiceReservationsRequest) PerPage(perPage int32) ApiFindSel
 	return r
 }
 
-func (r ApiFindSelfServiceReservationsRequest) Execute() (*FindSelfServiceReservations200Response, *http.Response, error) {
+func (r ApiFindSelfServiceReservationsRequest) Execute() (*SelfServiceReservationList, *http.Response, error) {
 	return r.ApiService.FindSelfServiceReservationsExecute(r)
 }
 
@@ -357,13 +357,13 @@ func (a *SelfServiceReservationsApiService) FindSelfServiceReservations(ctx cont
 }
 
 // Execute executes the request
-//  @return FindSelfServiceReservations200Response
-func (a *SelfServiceReservationsApiService) FindSelfServiceReservationsExecute(r ApiFindSelfServiceReservationsRequest) (*FindSelfServiceReservations200Response, *http.Response, error) {
+//  @return SelfServiceReservationList
+func (a *SelfServiceReservationsApiService) FindSelfServiceReservationsExecute(r ApiFindSelfServiceReservationsRequest) (*SelfServiceReservationList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *FindSelfServiceReservations200Response
+		localVarReturnValue *SelfServiceReservationList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SelfServiceReservationsApiService.FindSelfServiceReservations")
@@ -438,7 +438,7 @@ func (a *SelfServiceReservationsApiService) FindSelfServiceReservationsExecute(r
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

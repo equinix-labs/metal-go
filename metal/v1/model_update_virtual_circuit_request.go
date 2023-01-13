@@ -18,21 +18,21 @@ import (
 
 // UpdateVirtualCircuitRequest - struct for UpdateVirtualCircuitRequest
 type UpdateVirtualCircuitRequest struct {
-	UpdateVirtualCircuitRequestOneOf  *UpdateVirtualCircuitRequestOneOf
-	UpdateVirtualCircuitRequestOneOf1 *UpdateVirtualCircuitRequestOneOf1
+	VirtualCircuitUpdateInput    *VirtualCircuitUpdateInput
+	VrfVirtualCircuitUpdateInput *VrfVirtualCircuitUpdateInput
 }
 
-// UpdateVirtualCircuitRequestOneOfAsUpdateVirtualCircuitRequest is a convenience function that returns UpdateVirtualCircuitRequestOneOf wrapped in UpdateVirtualCircuitRequest
-func UpdateVirtualCircuitRequestOneOfAsUpdateVirtualCircuitRequest(v *UpdateVirtualCircuitRequestOneOf) UpdateVirtualCircuitRequest {
+// VirtualCircuitUpdateInputAsUpdateVirtualCircuitRequest is a convenience function that returns VirtualCircuitUpdateInput wrapped in UpdateVirtualCircuitRequest
+func VirtualCircuitUpdateInputAsUpdateVirtualCircuitRequest(v *VirtualCircuitUpdateInput) UpdateVirtualCircuitRequest {
 	return UpdateVirtualCircuitRequest{
-		UpdateVirtualCircuitRequestOneOf: v,
+		VirtualCircuitUpdateInput: v,
 	}
 }
 
-// UpdateVirtualCircuitRequestOneOf1AsUpdateVirtualCircuitRequest is a convenience function that returns UpdateVirtualCircuitRequestOneOf1 wrapped in UpdateVirtualCircuitRequest
-func UpdateVirtualCircuitRequestOneOf1AsUpdateVirtualCircuitRequest(v *UpdateVirtualCircuitRequestOneOf1) UpdateVirtualCircuitRequest {
+// VrfVirtualCircuitUpdateInputAsUpdateVirtualCircuitRequest is a convenience function that returns VrfVirtualCircuitUpdateInput wrapped in UpdateVirtualCircuitRequest
+func VrfVirtualCircuitUpdateInputAsUpdateVirtualCircuitRequest(v *VrfVirtualCircuitUpdateInput) UpdateVirtualCircuitRequest {
 	return UpdateVirtualCircuitRequest{
-		UpdateVirtualCircuitRequestOneOf1: v,
+		VrfVirtualCircuitUpdateInput: v,
 	}
 }
 
@@ -40,36 +40,36 @@ func UpdateVirtualCircuitRequestOneOf1AsUpdateVirtualCircuitRequest(v *UpdateVir
 func (dst *UpdateVirtualCircuitRequest) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
-	// try to unmarshal data into UpdateVirtualCircuitRequestOneOf
-	err = newStrictDecoder(data).Decode(&dst.UpdateVirtualCircuitRequestOneOf)
+	// try to unmarshal data into VirtualCircuitUpdateInput
+	err = newStrictDecoder(data).Decode(&dst.VirtualCircuitUpdateInput)
 	if err == nil {
-		jsonUpdateVirtualCircuitRequestOneOf, _ := json.Marshal(dst.UpdateVirtualCircuitRequestOneOf)
-		if string(jsonUpdateVirtualCircuitRequestOneOf) == "{}" { // empty struct
-			dst.UpdateVirtualCircuitRequestOneOf = nil
+		jsonVirtualCircuitUpdateInput, _ := json.Marshal(dst.VirtualCircuitUpdateInput)
+		if string(jsonVirtualCircuitUpdateInput) == "{}" { // empty struct
+			dst.VirtualCircuitUpdateInput = nil
 		} else {
 			match++
 		}
 	} else {
-		dst.UpdateVirtualCircuitRequestOneOf = nil
+		dst.VirtualCircuitUpdateInput = nil
 	}
 
-	// try to unmarshal data into UpdateVirtualCircuitRequestOneOf1
-	err = newStrictDecoder(data).Decode(&dst.UpdateVirtualCircuitRequestOneOf1)
+	// try to unmarshal data into VrfVirtualCircuitUpdateInput
+	err = newStrictDecoder(data).Decode(&dst.VrfVirtualCircuitUpdateInput)
 	if err == nil {
-		jsonUpdateVirtualCircuitRequestOneOf1, _ := json.Marshal(dst.UpdateVirtualCircuitRequestOneOf1)
-		if string(jsonUpdateVirtualCircuitRequestOneOf1) == "{}" { // empty struct
-			dst.UpdateVirtualCircuitRequestOneOf1 = nil
+		jsonVrfVirtualCircuitUpdateInput, _ := json.Marshal(dst.VrfVirtualCircuitUpdateInput)
+		if string(jsonVrfVirtualCircuitUpdateInput) == "{}" { // empty struct
+			dst.VrfVirtualCircuitUpdateInput = nil
 		} else {
 			match++
 		}
 	} else {
-		dst.UpdateVirtualCircuitRequestOneOf1 = nil
+		dst.VrfVirtualCircuitUpdateInput = nil
 	}
 
 	if match > 1 { // more than 1 match
 		// reset to nil
-		dst.UpdateVirtualCircuitRequestOneOf = nil
-		dst.UpdateVirtualCircuitRequestOneOf1 = nil
+		dst.VirtualCircuitUpdateInput = nil
+		dst.VrfVirtualCircuitUpdateInput = nil
 
 		return fmt.Errorf("data matches more than one schema in oneOf(UpdateVirtualCircuitRequest)")
 	} else if match == 1 {
@@ -81,12 +81,12 @@ func (dst *UpdateVirtualCircuitRequest) UnmarshalJSON(data []byte) error {
 
 // Marshal data from the first non-nil pointers in the struct to JSON
 func (src UpdateVirtualCircuitRequest) MarshalJSON() ([]byte, error) {
-	if src.UpdateVirtualCircuitRequestOneOf != nil {
-		return json.Marshal(&src.UpdateVirtualCircuitRequestOneOf)
+	if src.VirtualCircuitUpdateInput != nil {
+		return json.Marshal(&src.VirtualCircuitUpdateInput)
 	}
 
-	if src.UpdateVirtualCircuitRequestOneOf1 != nil {
-		return json.Marshal(&src.UpdateVirtualCircuitRequestOneOf1)
+	if src.VrfVirtualCircuitUpdateInput != nil {
+		return json.Marshal(&src.VrfVirtualCircuitUpdateInput)
 	}
 
 	return nil, nil // no data in oneOf schemas
@@ -97,12 +97,12 @@ func (obj *UpdateVirtualCircuitRequest) GetActualInstance() interface{} {
 	if obj == nil {
 		return nil
 	}
-	if obj.UpdateVirtualCircuitRequestOneOf != nil {
-		return obj.UpdateVirtualCircuitRequestOneOf
+	if obj.VirtualCircuitUpdateInput != nil {
+		return obj.VirtualCircuitUpdateInput
 	}
 
-	if obj.UpdateVirtualCircuitRequestOneOf1 != nil {
-		return obj.UpdateVirtualCircuitRequestOneOf1
+	if obj.VrfVirtualCircuitUpdateInput != nil {
+		return obj.VrfVirtualCircuitUpdateInput
 	}
 
 	// all schemas are nil

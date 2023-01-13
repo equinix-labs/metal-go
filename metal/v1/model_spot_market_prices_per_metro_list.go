@@ -17,7 +17,7 @@ import (
 
 // SpotMarketPricesPerMetroList struct for SpotMarketPricesPerMetroList
 type SpotMarketPricesPerMetroList struct {
-	SpotMarketPrices *FindMetroSpotMarketPrices200ResponseSpotMarketPrices `json:"spot_market_prices,omitempty"`
+	SpotMarketPrices *SpotMarketPricesPerMetroReport `json:"spot_market_prices,omitempty"`
 }
 
 // NewSpotMarketPricesPerMetroList instantiates a new SpotMarketPricesPerMetroList object
@@ -38,9 +38,9 @@ func NewSpotMarketPricesPerMetroListWithDefaults() *SpotMarketPricesPerMetroList
 }
 
 // GetSpotMarketPrices returns the SpotMarketPrices field value if set, zero value otherwise.
-func (o *SpotMarketPricesPerMetroList) GetSpotMarketPrices() FindMetroSpotMarketPrices200ResponseSpotMarketPrices {
+func (o *SpotMarketPricesPerMetroList) GetSpotMarketPrices() SpotMarketPricesPerMetroReport {
 	if o == nil || isNil(o.SpotMarketPrices) {
-		var ret FindMetroSpotMarketPrices200ResponseSpotMarketPrices
+		var ret SpotMarketPricesPerMetroReport
 		return ret
 	}
 	return *o.SpotMarketPrices
@@ -48,7 +48,7 @@ func (o *SpotMarketPricesPerMetroList) GetSpotMarketPrices() FindMetroSpotMarket
 
 // GetSpotMarketPricesOk returns a tuple with the SpotMarketPrices field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SpotMarketPricesPerMetroList) GetSpotMarketPricesOk() (*FindMetroSpotMarketPrices200ResponseSpotMarketPrices, bool) {
+func (o *SpotMarketPricesPerMetroList) GetSpotMarketPricesOk() (*SpotMarketPricesPerMetroReport, bool) {
 	if o == nil || isNil(o.SpotMarketPrices) {
 		return nil, false
 	}
@@ -64,8 +64,8 @@ func (o *SpotMarketPricesPerMetroList) HasSpotMarketPrices() bool {
 	return false
 }
 
-// SetSpotMarketPrices gets a reference to the given FindMetroSpotMarketPrices200ResponseSpotMarketPrices and assigns it to the SpotMarketPrices field.
-func (o *SpotMarketPricesPerMetroList) SetSpotMarketPrices(v FindMetroSpotMarketPrices200ResponseSpotMarketPrices) {
+// SetSpotMarketPrices gets a reference to the given SpotMarketPricesPerMetroReport and assigns it to the SpotMarketPrices field.
+func (o *SpotMarketPricesPerMetroList) SetSpotMarketPrices(v SpotMarketPricesPerMetroReport) {
 	o.SpotMarketPrices = &v
 }
 

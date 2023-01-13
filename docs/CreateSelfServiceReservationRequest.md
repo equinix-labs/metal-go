@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Item** | Pointer to [**[]CreateSelfServiceReservationRequestItemInner**](CreateSelfServiceReservationRequestItemInner.md) |  | [optional] 
+**Item** | Pointer to [**[]SelfServiceReservationItemRequest**](SelfServiceReservationItemRequest.md) |  | [optional] 
 **Notes** | Pointer to **string** |  | [optional] 
-**Period** | Pointer to [**FindSelfServiceReservations200ResponseReservationsInnerPeriod**](FindSelfServiceReservations200ResponseReservationsInnerPeriod.md) |  | [optional] 
+**Period** | Pointer to [**CreateSelfServiceReservationRequestPeriod**](CreateSelfServiceReservationRequestPeriod.md) |  | [optional] 
 **StartDate** | Pointer to **time.Time** |  | [optional] 
 
 ## Methods
@@ -30,20 +30,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetItem
 
-`func (o *CreateSelfServiceReservationRequest) GetItem() []CreateSelfServiceReservationRequestItemInner`
+`func (o *CreateSelfServiceReservationRequest) GetItem() []SelfServiceReservationItemRequest`
 
 GetItem returns the Item field if non-nil, zero value otherwise.
 
 ### GetItemOk
 
-`func (o *CreateSelfServiceReservationRequest) GetItemOk() (*[]CreateSelfServiceReservationRequestItemInner, bool)`
+`func (o *CreateSelfServiceReservationRequest) GetItemOk() (*[]SelfServiceReservationItemRequest, bool)`
 
 GetItemOk returns a tuple with the Item field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetItem
 
-`func (o *CreateSelfServiceReservationRequest) SetItem(v []CreateSelfServiceReservationRequestItemInner)`
+`func (o *CreateSelfServiceReservationRequest) SetItem(v []SelfServiceReservationItemRequest)`
 
 SetItem sets Item field to given value.
 
@@ -80,20 +80,20 @@ HasNotes returns a boolean if a field has been set.
 
 ### GetPeriod
 
-`func (o *CreateSelfServiceReservationRequest) GetPeriod() FindSelfServiceReservations200ResponseReservationsInnerPeriod`
+`func (o *CreateSelfServiceReservationRequest) GetPeriod() CreateSelfServiceReservationRequestPeriod`
 
 GetPeriod returns the Period field if non-nil, zero value otherwise.
 
 ### GetPeriodOk
 
-`func (o *CreateSelfServiceReservationRequest) GetPeriodOk() (*FindSelfServiceReservations200ResponseReservationsInnerPeriod, bool)`
+`func (o *CreateSelfServiceReservationRequest) GetPeriodOk() (*CreateSelfServiceReservationRequestPeriod, bool)`
 
 GetPeriodOk returns a tuple with the Period field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPeriod
 
-`func (o *CreateSelfServiceReservationRequest) SetPeriod(v FindSelfServiceReservations200ResponseReservationsInnerPeriod)`
+`func (o *CreateSelfServiceReservationRequest) SetPeriod(v CreateSelfServiceReservationRequestPeriod)`
 
 SetPeriod sets Period field to given value.
 

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Usages** | Pointer to [**[]FindDeviceUsages200ResponseUsagesInner**](FindDeviceUsages200ResponseUsagesInner.md) |  | [optional] 
+**Usages** | Pointer to [**[]DeviceUsage**](DeviceUsage.md) |  | [optional] 
 
 ## Methods
 
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetUsages
 
-`func (o *DeviceUsageList) GetUsages() []FindDeviceUsages200ResponseUsagesInner`
+`func (o *DeviceUsageList) GetUsages() []DeviceUsage`
 
 GetUsages returns the Usages field if non-nil, zero value otherwise.
 
 ### GetUsagesOk
 
-`func (o *DeviceUsageList) GetUsagesOk() (*[]FindDeviceUsages200ResponseUsagesInner, bool)`
+`func (o *DeviceUsageList) GetUsagesOk() (*[]DeviceUsage, bool)`
 
 GetUsagesOk returns a tuple with the Usages field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUsages
 
-`func (o *DeviceUsageList) SetUsages(v []FindDeviceUsages200ResponseUsagesInner)`
+`func (o *DeviceUsageList) SetUsages(v []DeviceUsage)`
 
 SetUsages sets Usages field to given value.
 

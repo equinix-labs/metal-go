@@ -24,18 +24,18 @@ import (
 type ProjectsApiService service
 
 type ApiCreateProjectRequest struct {
-	ctx                  context.Context
-	ApiService           *ProjectsApiService
-	createProjectRequest *CreateProjectRequest
+	ctx                        context.Context
+	ApiService                 *ProjectsApiService
+	projectCreateFromRootInput *ProjectCreateFromRootInput
 }
 
 // Project to create
-func (r ApiCreateProjectRequest) CreateProjectRequest(createProjectRequest CreateProjectRequest) ApiCreateProjectRequest {
-	r.createProjectRequest = &createProjectRequest
+func (r ApiCreateProjectRequest) ProjectCreateFromRootInput(projectCreateFromRootInput ProjectCreateFromRootInput) ApiCreateProjectRequest {
+	r.projectCreateFromRootInput = &projectCreateFromRootInput
 	return r
 }
 
-func (r ApiCreateProjectRequest) Execute() (*GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject, *http.Response, error) {
+func (r ApiCreateProjectRequest) Execute() (*Project, *http.Response, error) {
 	return r.ApiService.CreateProjectExecute(r)
 }
 
@@ -55,13 +55,13 @@ func (a *ProjectsApiService) CreateProject(ctx context.Context) ApiCreateProject
 }
 
 // Execute executes the request
-//  @return GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject
-func (a *ProjectsApiService) CreateProjectExecute(r ApiCreateProjectRequest) (*GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject, *http.Response, error) {
+//  @return Project
+func (a *ProjectsApiService) CreateProjectExecute(r ApiCreateProjectRequest) (*Project, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject
+		localVarReturnValue *Project
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.CreateProject")
@@ -74,8 +74,8 @@ func (a *ProjectsApiService) CreateProjectExecute(r ApiCreateProjectRequest) (*G
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createProjectRequest == nil {
-		return localVarReturnValue, nil, reportError("createProjectRequest is required and must be specified")
+	if r.projectCreateFromRootInput == nil {
+		return localVarReturnValue, nil, reportError("projectCreateFromRootInput is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -96,7 +96,7 @@ func (a *ProjectsApiService) CreateProjectExecute(r ApiCreateProjectRequest) (*G
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createProjectRequest
+	localVarPostBody = r.projectCreateFromRootInput
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -134,7 +134,7 @@ func (a *ProjectsApiService) CreateProjectExecute(r ApiCreateProjectRequest) (*G
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -145,7 +145,7 @@ func (a *ProjectsApiService) CreateProjectExecute(r ApiCreateProjectRequest) (*G
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -170,19 +170,19 @@ func (a *ProjectsApiService) CreateProjectExecute(r ApiCreateProjectRequest) (*G
 }
 
 type ApiCreateProjectInvitationRequest struct {
-	ctx                                 context.Context
-	ApiService                          *ProjectsApiService
-	projectId                           string
-	createOrganizationInvitationRequest *CreateOrganizationInvitationRequest
+	ctx             context.Context
+	ApiService      *ProjectsApiService
+	projectId       string
+	invitationInput *InvitationInput
 }
 
 // Invitation to create
-func (r ApiCreateProjectInvitationRequest) CreateOrganizationInvitationRequest(createOrganizationInvitationRequest CreateOrganizationInvitationRequest) ApiCreateProjectInvitationRequest {
-	r.createOrganizationInvitationRequest = &createOrganizationInvitationRequest
+func (r ApiCreateProjectInvitationRequest) InvitationInput(invitationInput InvitationInput) ApiCreateProjectInvitationRequest {
+	r.invitationInput = &invitationInput
 	return r
 }
 
-func (r ApiCreateProjectInvitationRequest) Execute() (*FindInvitationById200Response, *http.Response, error) {
+func (r ApiCreateProjectInvitationRequest) Execute() (*Invitation, *http.Response, error) {
 	return r.ApiService.CreateProjectInvitationExecute(r)
 }
 
@@ -204,13 +204,13 @@ func (a *ProjectsApiService) CreateProjectInvitation(ctx context.Context, projec
 }
 
 // Execute executes the request
-//  @return FindInvitationById200Response
-func (a *ProjectsApiService) CreateProjectInvitationExecute(r ApiCreateProjectInvitationRequest) (*FindInvitationById200Response, *http.Response, error) {
+//  @return Invitation
+func (a *ProjectsApiService) CreateProjectInvitationExecute(r ApiCreateProjectInvitationRequest) (*Invitation, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *FindInvitationById200Response
+		localVarReturnValue *Invitation
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.CreateProjectInvitation")
@@ -224,8 +224,8 @@ func (a *ProjectsApiService) CreateProjectInvitationExecute(r ApiCreateProjectIn
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createOrganizationInvitationRequest == nil {
-		return localVarReturnValue, nil, reportError("createOrganizationInvitationRequest is required and must be specified")
+	if r.invitationInput == nil {
+		return localVarReturnValue, nil, reportError("invitationInput is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -246,7 +246,7 @@ func (a *ProjectsApiService) CreateProjectInvitationExecute(r ApiCreateProjectIn
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createOrganizationInvitationRequest
+	localVarPostBody = r.invitationInput
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -284,7 +284,7 @@ func (a *ProjectsApiService) CreateProjectInvitationExecute(r ApiCreateProjectIn
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -295,7 +295,7 @@ func (a *ProjectsApiService) CreateProjectInvitationExecute(r ApiCreateProjectIn
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -306,7 +306,7 @@ func (a *ProjectsApiService) CreateProjectInvitationExecute(r ApiCreateProjectIn
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -317,7 +317,7 @@ func (a *ProjectsApiService) CreateProjectInvitationExecute(r ApiCreateProjectIn
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -342,19 +342,19 @@ func (a *ProjectsApiService) CreateProjectInvitationExecute(r ApiCreateProjectIn
 }
 
 type ApiCreateTransferRequestRequest struct {
-	ctx                          context.Context
-	ApiService                   *ProjectsApiService
-	id                           string
-	createTransferRequestRequest *CreateTransferRequestRequest
+	ctx                  context.Context
+	ApiService           *ProjectsApiService
+	id                   string
+	transferRequestInput *TransferRequestInput
 }
 
 // Transfer Request to create
-func (r ApiCreateTransferRequestRequest) CreateTransferRequestRequest(createTransferRequestRequest CreateTransferRequestRequest) ApiCreateTransferRequestRequest {
-	r.createTransferRequestRequest = &createTransferRequestRequest
+func (r ApiCreateTransferRequestRequest) TransferRequestInput(transferRequestInput TransferRequestInput) ApiCreateTransferRequestRequest {
+	r.transferRequestInput = &transferRequestInput
 	return r
 }
 
-func (r ApiCreateTransferRequestRequest) Execute() (*FindOrganizationTransfers200ResponseTransfersInner, *http.Response, error) {
+func (r ApiCreateTransferRequestRequest) Execute() (*TransferRequest, *http.Response, error) {
 	return r.ApiService.CreateTransferRequestExecute(r)
 }
 
@@ -376,13 +376,13 @@ func (a *ProjectsApiService) CreateTransferRequest(ctx context.Context, id strin
 }
 
 // Execute executes the request
-//  @return FindOrganizationTransfers200ResponseTransfersInner
-func (a *ProjectsApiService) CreateTransferRequestExecute(r ApiCreateTransferRequestRequest) (*FindOrganizationTransfers200ResponseTransfersInner, *http.Response, error) {
+//  @return TransferRequest
+func (a *ProjectsApiService) CreateTransferRequestExecute(r ApiCreateTransferRequestRequest) (*TransferRequest, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *FindOrganizationTransfers200ResponseTransfersInner
+		localVarReturnValue *TransferRequest
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.CreateTransferRequest")
@@ -396,8 +396,8 @@ func (a *ProjectsApiService) CreateTransferRequestExecute(r ApiCreateTransferReq
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createTransferRequestRequest == nil {
-		return localVarReturnValue, nil, reportError("createTransferRequestRequest is required and must be specified")
+	if r.transferRequestInput == nil {
+		return localVarReturnValue, nil, reportError("transferRequestInput is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -418,7 +418,7 @@ func (a *ProjectsApiService) CreateTransferRequestExecute(r ApiCreateTransferReq
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createTransferRequestRequest
+	localVarPostBody = r.transferRequestInput
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -456,7 +456,7 @@ func (a *ProjectsApiService) CreateTransferRequestExecute(r ApiCreateTransferReq
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -467,7 +467,7 @@ func (a *ProjectsApiService) CreateTransferRequestExecute(r ApiCreateTransferReq
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -478,7 +478,7 @@ func (a *ProjectsApiService) CreateTransferRequestExecute(r ApiCreateTransferReq
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -489,7 +489,7 @@ func (a *ProjectsApiService) CreateTransferRequestExecute(r ApiCreateTransferReq
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -614,7 +614,7 @@ func (a *ProjectsApiService) DeleteProjectExecute(r ApiDeleteProjectRequest) (*h
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -625,7 +625,7 @@ func (a *ProjectsApiService) DeleteProjectExecute(r ApiDeleteProjectRequest) (*h
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -636,7 +636,7 @@ func (a *ProjectsApiService) DeleteProjectExecute(r ApiDeleteProjectRequest) (*h
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -756,7 +756,7 @@ func (a *ProjectsApiService) FindIPReservationCustomdataExecute(r ApiFindIPReser
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -767,7 +767,7 @@ func (a *ProjectsApiService) FindIPReservationCustomdataExecute(r ApiFindIPReser
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -778,7 +778,7 @@ func (a *ProjectsApiService) FindIPReservationCustomdataExecute(r ApiFindIPReser
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -813,7 +813,7 @@ func (r ApiFindProjectByIdRequest) Exclude(exclude []string) ApiFindProjectByIdR
 	return r
 }
 
-func (r ApiFindProjectByIdRequest) Execute() (*GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject, *http.Response, error) {
+func (r ApiFindProjectByIdRequest) Execute() (*Project, *http.Response, error) {
 	return r.ApiService.FindProjectByIdExecute(r)
 }
 
@@ -835,13 +835,13 @@ func (a *ProjectsApiService) FindProjectById(ctx context.Context, id string) Api
 }
 
 // Execute executes the request
-//  @return GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject
-func (a *ProjectsApiService) FindProjectByIdExecute(r ApiFindProjectByIdRequest) (*GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject, *http.Response, error) {
+//  @return Project
+func (a *ProjectsApiService) FindProjectByIdExecute(r ApiFindProjectByIdRequest) (*Project, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject
+		localVarReturnValue *Project
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.FindProjectById")
@@ -916,7 +916,7 @@ func (a *ProjectsApiService) FindProjectByIdExecute(r ApiFindProjectByIdRequest)
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -927,7 +927,7 @@ func (a *ProjectsApiService) FindProjectByIdExecute(r ApiFindProjectByIdRequest)
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -938,7 +938,7 @@ func (a *ProjectsApiService) FindProjectByIdExecute(r ApiFindProjectByIdRequest)
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1063,7 +1063,7 @@ func (a *ProjectsApiService) FindProjectCustomdataExecute(r ApiFindProjectCustom
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1074,7 +1074,7 @@ func (a *ProjectsApiService) FindProjectCustomdataExecute(r ApiFindProjectCustom
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1085,7 +1085,7 @@ func (a *ProjectsApiService) FindProjectCustomdataExecute(r ApiFindProjectCustom
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1134,7 +1134,7 @@ func (r ApiFindProjectInvitationsRequest) PerPage(perPage int32) ApiFindProjectI
 	return r
 }
 
-func (r ApiFindProjectInvitationsRequest) Execute() (*FindInvitations200Response, *http.Response, error) {
+func (r ApiFindProjectInvitationsRequest) Execute() (*InvitationList, *http.Response, error) {
 	return r.ApiService.FindProjectInvitationsExecute(r)
 }
 
@@ -1156,13 +1156,13 @@ func (a *ProjectsApiService) FindProjectInvitations(ctx context.Context, project
 }
 
 // Execute executes the request
-//  @return FindInvitations200Response
-func (a *ProjectsApiService) FindProjectInvitationsExecute(r ApiFindProjectInvitationsRequest) (*FindInvitations200Response, *http.Response, error) {
+//  @return InvitationList
+func (a *ProjectsApiService) FindProjectInvitationsExecute(r ApiFindProjectInvitationsRequest) (*InvitationList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *FindInvitations200Response
+		localVarReturnValue *InvitationList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.FindProjectInvitations")
@@ -1243,7 +1243,7 @@ func (a *ProjectsApiService) FindProjectInvitationsExecute(r ApiFindProjectInvit
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1254,7 +1254,7 @@ func (a *ProjectsApiService) FindProjectInvitationsExecute(r ApiFindProjectInvit
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1265,7 +1265,7 @@ func (a *ProjectsApiService) FindProjectInvitationsExecute(r ApiFindProjectInvit
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1323,7 +1323,7 @@ func (r ApiFindProjectMembershipsRequest) PerPage(perPage int32) ApiFindProjectM
 	return r
 }
 
-func (r ApiFindProjectMembershipsRequest) Execute() (*FindProjectMemberships200Response, *http.Response, error) {
+func (r ApiFindProjectMembershipsRequest) Execute() (*MembershipList, *http.Response, error) {
 	return r.ApiService.FindProjectMembershipsExecute(r)
 }
 
@@ -1345,13 +1345,13 @@ func (a *ProjectsApiService) FindProjectMemberships(ctx context.Context, project
 }
 
 // Execute executes the request
-//  @return FindProjectMemberships200Response
-func (a *ProjectsApiService) FindProjectMembershipsExecute(r ApiFindProjectMembershipsRequest) (*FindProjectMemberships200Response, *http.Response, error) {
+//  @return MembershipList
+func (a *ProjectsApiService) FindProjectMembershipsExecute(r ApiFindProjectMembershipsRequest) (*MembershipList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *FindProjectMemberships200Response
+		localVarReturnValue *MembershipList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.FindProjectMemberships")
@@ -1432,7 +1432,7 @@ func (a *ProjectsApiService) FindProjectMembershipsExecute(r ApiFindProjectMembe
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1443,7 +1443,7 @@ func (a *ProjectsApiService) FindProjectMembershipsExecute(r ApiFindProjectMembe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1454,7 +1454,7 @@ func (a *ProjectsApiService) FindProjectMembershipsExecute(r ApiFindProjectMembe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1511,7 +1511,7 @@ func (r ApiFindProjectsRequest) PerPage(perPage int32) ApiFindProjectsRequest {
 	return r
 }
 
-func (r ApiFindProjectsRequest) Execute() (*FindOrganizationProjects200Response, *http.Response, error) {
+func (r ApiFindProjectsRequest) Execute() (*ProjectList, *http.Response, error) {
 	return r.ApiService.FindProjectsExecute(r)
 }
 
@@ -1531,13 +1531,13 @@ func (a *ProjectsApiService) FindProjects(ctx context.Context) ApiFindProjectsRe
 }
 
 // Execute executes the request
-//  @return FindOrganizationProjects200Response
-func (a *ProjectsApiService) FindProjectsExecute(r ApiFindProjectsRequest) (*FindOrganizationProjects200Response, *http.Response, error) {
+//  @return ProjectList
+func (a *ProjectsApiService) FindProjectsExecute(r ApiFindProjectsRequest) (*ProjectList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *FindOrganizationProjects200Response
+		localVarReturnValue *ProjectList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.FindProjects")
@@ -1617,7 +1617,7 @@ func (a *ProjectsApiService) FindProjectsExecute(r ApiFindProjectsRequest) (*Fin
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1642,19 +1642,19 @@ func (a *ProjectsApiService) FindProjectsExecute(r ApiFindProjectsRequest) (*Fin
 }
 
 type ApiUpdateProjectRequest struct {
-	ctx                  context.Context
-	ApiService           *ProjectsApiService
-	id                   string
-	updateProjectRequest *UpdateProjectRequest
+	ctx                context.Context
+	ApiService         *ProjectsApiService
+	id                 string
+	projectUpdateInput *ProjectUpdateInput
 }
 
 // Project to update
-func (r ApiUpdateProjectRequest) UpdateProjectRequest(updateProjectRequest UpdateProjectRequest) ApiUpdateProjectRequest {
-	r.updateProjectRequest = &updateProjectRequest
+func (r ApiUpdateProjectRequest) ProjectUpdateInput(projectUpdateInput ProjectUpdateInput) ApiUpdateProjectRequest {
+	r.projectUpdateInput = &projectUpdateInput
 	return r
 }
 
-func (r ApiUpdateProjectRequest) Execute() (*GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject, *http.Response, error) {
+func (r ApiUpdateProjectRequest) Execute() (*Project, *http.Response, error) {
 	return r.ApiService.UpdateProjectExecute(r)
 }
 
@@ -1676,13 +1676,13 @@ func (a *ProjectsApiService) UpdateProject(ctx context.Context, id string) ApiUp
 }
 
 // Execute executes the request
-//  @return GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject
-func (a *ProjectsApiService) UpdateProjectExecute(r ApiUpdateProjectRequest) (*GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject, *http.Response, error) {
+//  @return Project
+func (a *ProjectsApiService) UpdateProjectExecute(r ApiUpdateProjectRequest) (*Project, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject
+		localVarReturnValue *Project
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.UpdateProject")
@@ -1696,8 +1696,8 @@ func (a *ProjectsApiService) UpdateProjectExecute(r ApiUpdateProjectRequest) (*G
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.updateProjectRequest == nil {
-		return localVarReturnValue, nil, reportError("updateProjectRequest is required and must be specified")
+	if r.projectUpdateInput == nil {
+		return localVarReturnValue, nil, reportError("projectUpdateInput is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -1718,7 +1718,7 @@ func (a *ProjectsApiService) UpdateProjectExecute(r ApiUpdateProjectRequest) (*G
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateProjectRequest
+	localVarPostBody = r.projectUpdateInput
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1756,7 +1756,7 @@ func (a *ProjectsApiService) UpdateProjectExecute(r ApiUpdateProjectRequest) (*G
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1767,7 +1767,7 @@ func (a *ProjectsApiService) UpdateProjectExecute(r ApiUpdateProjectRequest) (*G
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1778,7 +1778,7 @@ func (a *ProjectsApiService) UpdateProjectExecute(r ApiUpdateProjectRequest) (*G
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1789,7 +1789,7 @@ func (a *ProjectsApiService) UpdateProjectExecute(r ApiUpdateProjectRequest) (*G
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

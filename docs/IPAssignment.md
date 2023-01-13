@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Address** | Pointer to **string** |  | [optional] 
 **AddressFamily** | Pointer to **int32** |  | [optional] 
-**AssignedTo** | Pointer to [**FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
+**AssignedTo** | Pointer to [**Href**](Href.md) |  | [optional] 
 **Cidr** | Pointer to **int32** |  | [optional] 
 **CreatedAt** | Pointer to **time.Time** |  | [optional] 
 **Enabled** | Pointer to **bool** |  | [optional] 
@@ -16,10 +16,10 @@ Name | Type | Description | Notes
 **Id** | Pointer to **string** |  | [optional] 
 **Manageable** | Pointer to **bool** |  | [optional] 
 **Management** | Pointer to **bool** |  | [optional] 
-**Metro** | Pointer to [**FindDeviceById200ResponseIpAddressesInnerMetro**](FindDeviceById200ResponseIpAddressesInnerMetro.md) |  | [optional] 
+**Metro** | Pointer to [**IPAssignmentMetro**](IPAssignmentMetro.md) |  | [optional] 
 **Netmask** | Pointer to **string** |  | [optional] 
 **Network** | Pointer to **string** |  | [optional] 
-**ParentBlock** | Pointer to [**FindDeviceById200ResponseIpAddressesInnerParentBlock**](FindDeviceById200ResponseIpAddressesInnerParentBlock.md) |  | [optional] 
+**ParentBlock** | Pointer to [**ParentBlock**](ParentBlock.md) |  | [optional] 
 **Public** | Pointer to **bool** |  | [optional] 
 
 ## Methods
@@ -93,20 +93,20 @@ HasAddressFamily returns a boolean if a field has been set.
 
 ### GetAssignedTo
 
-`func (o *IPAssignment) GetAssignedTo() FindBatchById200ResponseDevicesInner`
+`func (o *IPAssignment) GetAssignedTo() Href`
 
 GetAssignedTo returns the AssignedTo field if non-nil, zero value otherwise.
 
 ### GetAssignedToOk
 
-`func (o *IPAssignment) GetAssignedToOk() (*FindBatchById200ResponseDevicesInner, bool)`
+`func (o *IPAssignment) GetAssignedToOk() (*Href, bool)`
 
 GetAssignedToOk returns a tuple with the AssignedTo field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAssignedTo
 
-`func (o *IPAssignment) SetAssignedTo(v FindBatchById200ResponseDevicesInner)`
+`func (o *IPAssignment) SetAssignedTo(v Href)`
 
 SetAssignedTo sets AssignedTo field to given value.
 
@@ -343,20 +343,20 @@ HasManagement returns a boolean if a field has been set.
 
 ### GetMetro
 
-`func (o *IPAssignment) GetMetro() FindDeviceById200ResponseIpAddressesInnerMetro`
+`func (o *IPAssignment) GetMetro() IPAssignmentMetro`
 
 GetMetro returns the Metro field if non-nil, zero value otherwise.
 
 ### GetMetroOk
 
-`func (o *IPAssignment) GetMetroOk() (*FindDeviceById200ResponseIpAddressesInnerMetro, bool)`
+`func (o *IPAssignment) GetMetroOk() (*IPAssignmentMetro, bool)`
 
 GetMetroOk returns a tuple with the Metro field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMetro
 
-`func (o *IPAssignment) SetMetro(v FindDeviceById200ResponseIpAddressesInnerMetro)`
+`func (o *IPAssignment) SetMetro(v IPAssignmentMetro)`
 
 SetMetro sets Metro field to given value.
 
@@ -418,20 +418,20 @@ HasNetwork returns a boolean if a field has been set.
 
 ### GetParentBlock
 
-`func (o *IPAssignment) GetParentBlock() FindDeviceById200ResponseIpAddressesInnerParentBlock`
+`func (o *IPAssignment) GetParentBlock() ParentBlock`
 
 GetParentBlock returns the ParentBlock field if non-nil, zero value otherwise.
 
 ### GetParentBlockOk
 
-`func (o *IPAssignment) GetParentBlockOk() (*FindDeviceById200ResponseIpAddressesInnerParentBlock, bool)`
+`func (o *IPAssignment) GetParentBlockOk() (*ParentBlock, bool)`
 
 GetParentBlockOk returns a tuple with the ParentBlock field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetParentBlock
 
-`func (o *IPAssignment) SetParentBlock(v FindDeviceById200ResponseIpAddressesInnerParentBlock)`
+`func (o *IPAssignment) SetParentBlock(v ParentBlock)`
 
 SetParentBlock sets ParentBlock field to given value.
 

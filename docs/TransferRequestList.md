@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Transfers** | Pointer to [**[]FindOrganizationTransfers200ResponseTransfersInner**](FindOrganizationTransfers200ResponseTransfersInner.md) |  | [optional] 
+**Transfers** | Pointer to [**[]TransferRequest**](TransferRequest.md) |  | [optional] 
 
 ## Methods
 
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetTransfers
 
-`func (o *TransferRequestList) GetTransfers() []FindOrganizationTransfers200ResponseTransfersInner`
+`func (o *TransferRequestList) GetTransfers() []TransferRequest`
 
 GetTransfers returns the Transfers field if non-nil, zero value otherwise.
 
 ### GetTransfersOk
 
-`func (o *TransferRequestList) GetTransfersOk() (*[]FindOrganizationTransfers200ResponseTransfersInner, bool)`
+`func (o *TransferRequestList) GetTransfersOk() (*[]TransferRequest, bool)`
 
 GetTransfersOk returns a tuple with the Transfers field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTransfers
 
-`func (o *TransferRequestList) SetTransfers(v []FindOrganizationTransfers200ResponseTransfersInner)`
+`func (o *TransferRequestList) SetTransfers(v []TransferRequest)`
 
 SetTransfers sets Transfers field to given value.
 

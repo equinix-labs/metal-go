@@ -4,26 +4,26 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Am** | Pointer to [**FindCapacityForFacility200ResponseCapacityAms1**](FindCapacityForFacility200ResponseCapacityAms1.md) |  | [optional] 
-**At** | Pointer to [**FindCapacityForFacility200ResponseCapacityAms1**](FindCapacityForFacility200ResponseCapacityAms1.md) |  | [optional] 
-**Ch** | Pointer to [**FindCapacityForFacility200ResponseCapacityAms1**](FindCapacityForFacility200ResponseCapacityAms1.md) |  | [optional] 
-**Da** | Pointer to [**FindCapacityForFacility200ResponseCapacityAms1**](FindCapacityForFacility200ResponseCapacityAms1.md) |  | [optional] 
-**Dc** | Pointer to [**FindCapacityForFacility200ResponseCapacityAms1**](FindCapacityForFacility200ResponseCapacityAms1.md) |  | [optional] 
-**Fr** | Pointer to [**FindCapacityForFacility200ResponseCapacityAms1**](FindCapacityForFacility200ResponseCapacityAms1.md) |  | [optional] 
-**Hk** | Pointer to [**FindCapacityForFacility200ResponseCapacityAms1**](FindCapacityForFacility200ResponseCapacityAms1.md) |  | [optional] 
-**La** | Pointer to [**FindCapacityForFacility200ResponseCapacityAms1**](FindCapacityForFacility200ResponseCapacityAms1.md) |  | [optional] 
-**Ld** | Pointer to [**FindCapacityForFacility200ResponseCapacityAms1**](FindCapacityForFacility200ResponseCapacityAms1.md) |  | [optional] 
-**Md** | Pointer to [**FindCapacityForFacility200ResponseCapacityAms1**](FindCapacityForFacility200ResponseCapacityAms1.md) |  | [optional] 
-**Ny** | Pointer to [**FindCapacityForFacility200ResponseCapacityAms1**](FindCapacityForFacility200ResponseCapacityAms1.md) |  | [optional] 
-**Pa** | Pointer to [**FindCapacityForFacility200ResponseCapacityAms1**](FindCapacityForFacility200ResponseCapacityAms1.md) |  | [optional] 
-**Se** | Pointer to [**FindCapacityForFacility200ResponseCapacityAms1**](FindCapacityForFacility200ResponseCapacityAms1.md) |  | [optional] 
-**Sg** | Pointer to [**FindCapacityForFacility200ResponseCapacityAms1**](FindCapacityForFacility200ResponseCapacityAms1.md) |  | [optional] 
-**Sl** | Pointer to [**FindCapacityForFacility200ResponseCapacityAms1**](FindCapacityForFacility200ResponseCapacityAms1.md) |  | [optional] 
-**Sp** | Pointer to [**FindCapacityForFacility200ResponseCapacityAms1**](FindCapacityForFacility200ResponseCapacityAms1.md) |  | [optional] 
-**Sv** | Pointer to [**FindCapacityForFacility200ResponseCapacityAms1**](FindCapacityForFacility200ResponseCapacityAms1.md) |  | [optional] 
-**Sy** | Pointer to [**FindCapacityForFacility200ResponseCapacityAms1**](FindCapacityForFacility200ResponseCapacityAms1.md) |  | [optional] 
-**Tr** | Pointer to [**FindCapacityForFacility200ResponseCapacityAms1**](FindCapacityForFacility200ResponseCapacityAms1.md) |  | [optional] 
-**Ty** | Pointer to [**FindCapacityForFacility200ResponseCapacityAms1**](FindCapacityForFacility200ResponseCapacityAms1.md) |  | [optional] 
+**Am** | Pointer to [**CapacityPerFacility**](CapacityPerFacility.md) |  | [optional] 
+**At** | Pointer to [**CapacityPerFacility**](CapacityPerFacility.md) |  | [optional] 
+**Ch** | Pointer to [**CapacityPerFacility**](CapacityPerFacility.md) |  | [optional] 
+**Da** | Pointer to [**CapacityPerFacility**](CapacityPerFacility.md) |  | [optional] 
+**Dc** | Pointer to [**CapacityPerFacility**](CapacityPerFacility.md) |  | [optional] 
+**Fr** | Pointer to [**CapacityPerFacility**](CapacityPerFacility.md) |  | [optional] 
+**Hk** | Pointer to [**CapacityPerFacility**](CapacityPerFacility.md) |  | [optional] 
+**La** | Pointer to [**CapacityPerFacility**](CapacityPerFacility.md) |  | [optional] 
+**Ld** | Pointer to [**CapacityPerFacility**](CapacityPerFacility.md) |  | [optional] 
+**Md** | Pointer to [**CapacityPerFacility**](CapacityPerFacility.md) |  | [optional] 
+**Ny** | Pointer to [**CapacityPerFacility**](CapacityPerFacility.md) |  | [optional] 
+**Pa** | Pointer to [**CapacityPerFacility**](CapacityPerFacility.md) |  | [optional] 
+**Se** | Pointer to [**CapacityPerFacility**](CapacityPerFacility.md) |  | [optional] 
+**Sg** | Pointer to [**CapacityPerFacility**](CapacityPerFacility.md) |  | [optional] 
+**Sl** | Pointer to [**CapacityPerFacility**](CapacityPerFacility.md) |  | [optional] 
+**Sp** | Pointer to [**CapacityPerFacility**](CapacityPerFacility.md) |  | [optional] 
+**Sv** | Pointer to [**CapacityPerFacility**](CapacityPerFacility.md) |  | [optional] 
+**Sy** | Pointer to [**CapacityPerFacility**](CapacityPerFacility.md) |  | [optional] 
+**Tr** | Pointer to [**CapacityPerFacility**](CapacityPerFacility.md) |  | [optional] 
+**Ty** | Pointer to [**CapacityPerFacility**](CapacityPerFacility.md) |  | [optional] 
 
 ## Methods
 
@@ -46,20 +46,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetAm
 
-`func (o *MetroCapacityReport) GetAm() FindCapacityForFacility200ResponseCapacityAms1`
+`func (o *MetroCapacityReport) GetAm() CapacityPerFacility`
 
 GetAm returns the Am field if non-nil, zero value otherwise.
 
 ### GetAmOk
 
-`func (o *MetroCapacityReport) GetAmOk() (*FindCapacityForFacility200ResponseCapacityAms1, bool)`
+`func (o *MetroCapacityReport) GetAmOk() (*CapacityPerFacility, bool)`
 
 GetAmOk returns a tuple with the Am field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAm
 
-`func (o *MetroCapacityReport) SetAm(v FindCapacityForFacility200ResponseCapacityAms1)`
+`func (o *MetroCapacityReport) SetAm(v CapacityPerFacility)`
 
 SetAm sets Am field to given value.
 
@@ -71,20 +71,20 @@ HasAm returns a boolean if a field has been set.
 
 ### GetAt
 
-`func (o *MetroCapacityReport) GetAt() FindCapacityForFacility200ResponseCapacityAms1`
+`func (o *MetroCapacityReport) GetAt() CapacityPerFacility`
 
 GetAt returns the At field if non-nil, zero value otherwise.
 
 ### GetAtOk
 
-`func (o *MetroCapacityReport) GetAtOk() (*FindCapacityForFacility200ResponseCapacityAms1, bool)`
+`func (o *MetroCapacityReport) GetAtOk() (*CapacityPerFacility, bool)`
 
 GetAtOk returns a tuple with the At field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAt
 
-`func (o *MetroCapacityReport) SetAt(v FindCapacityForFacility200ResponseCapacityAms1)`
+`func (o *MetroCapacityReport) SetAt(v CapacityPerFacility)`
 
 SetAt sets At field to given value.
 
@@ -96,20 +96,20 @@ HasAt returns a boolean if a field has been set.
 
 ### GetCh
 
-`func (o *MetroCapacityReport) GetCh() FindCapacityForFacility200ResponseCapacityAms1`
+`func (o *MetroCapacityReport) GetCh() CapacityPerFacility`
 
 GetCh returns the Ch field if non-nil, zero value otherwise.
 
 ### GetChOk
 
-`func (o *MetroCapacityReport) GetChOk() (*FindCapacityForFacility200ResponseCapacityAms1, bool)`
+`func (o *MetroCapacityReport) GetChOk() (*CapacityPerFacility, bool)`
 
 GetChOk returns a tuple with the Ch field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCh
 
-`func (o *MetroCapacityReport) SetCh(v FindCapacityForFacility200ResponseCapacityAms1)`
+`func (o *MetroCapacityReport) SetCh(v CapacityPerFacility)`
 
 SetCh sets Ch field to given value.
 
@@ -121,20 +121,20 @@ HasCh returns a boolean if a field has been set.
 
 ### GetDa
 
-`func (o *MetroCapacityReport) GetDa() FindCapacityForFacility200ResponseCapacityAms1`
+`func (o *MetroCapacityReport) GetDa() CapacityPerFacility`
 
 GetDa returns the Da field if non-nil, zero value otherwise.
 
 ### GetDaOk
 
-`func (o *MetroCapacityReport) GetDaOk() (*FindCapacityForFacility200ResponseCapacityAms1, bool)`
+`func (o *MetroCapacityReport) GetDaOk() (*CapacityPerFacility, bool)`
 
 GetDaOk returns a tuple with the Da field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDa
 
-`func (o *MetroCapacityReport) SetDa(v FindCapacityForFacility200ResponseCapacityAms1)`
+`func (o *MetroCapacityReport) SetDa(v CapacityPerFacility)`
 
 SetDa sets Da field to given value.
 
@@ -146,20 +146,20 @@ HasDa returns a boolean if a field has been set.
 
 ### GetDc
 
-`func (o *MetroCapacityReport) GetDc() FindCapacityForFacility200ResponseCapacityAms1`
+`func (o *MetroCapacityReport) GetDc() CapacityPerFacility`
 
 GetDc returns the Dc field if non-nil, zero value otherwise.
 
 ### GetDcOk
 
-`func (o *MetroCapacityReport) GetDcOk() (*FindCapacityForFacility200ResponseCapacityAms1, bool)`
+`func (o *MetroCapacityReport) GetDcOk() (*CapacityPerFacility, bool)`
 
 GetDcOk returns a tuple with the Dc field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDc
 
-`func (o *MetroCapacityReport) SetDc(v FindCapacityForFacility200ResponseCapacityAms1)`
+`func (o *MetroCapacityReport) SetDc(v CapacityPerFacility)`
 
 SetDc sets Dc field to given value.
 
@@ -171,20 +171,20 @@ HasDc returns a boolean if a field has been set.
 
 ### GetFr
 
-`func (o *MetroCapacityReport) GetFr() FindCapacityForFacility200ResponseCapacityAms1`
+`func (o *MetroCapacityReport) GetFr() CapacityPerFacility`
 
 GetFr returns the Fr field if non-nil, zero value otherwise.
 
 ### GetFrOk
 
-`func (o *MetroCapacityReport) GetFrOk() (*FindCapacityForFacility200ResponseCapacityAms1, bool)`
+`func (o *MetroCapacityReport) GetFrOk() (*CapacityPerFacility, bool)`
 
 GetFrOk returns a tuple with the Fr field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFr
 
-`func (o *MetroCapacityReport) SetFr(v FindCapacityForFacility200ResponseCapacityAms1)`
+`func (o *MetroCapacityReport) SetFr(v CapacityPerFacility)`
 
 SetFr sets Fr field to given value.
 
@@ -196,20 +196,20 @@ HasFr returns a boolean if a field has been set.
 
 ### GetHk
 
-`func (o *MetroCapacityReport) GetHk() FindCapacityForFacility200ResponseCapacityAms1`
+`func (o *MetroCapacityReport) GetHk() CapacityPerFacility`
 
 GetHk returns the Hk field if non-nil, zero value otherwise.
 
 ### GetHkOk
 
-`func (o *MetroCapacityReport) GetHkOk() (*FindCapacityForFacility200ResponseCapacityAms1, bool)`
+`func (o *MetroCapacityReport) GetHkOk() (*CapacityPerFacility, bool)`
 
 GetHkOk returns a tuple with the Hk field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetHk
 
-`func (o *MetroCapacityReport) SetHk(v FindCapacityForFacility200ResponseCapacityAms1)`
+`func (o *MetroCapacityReport) SetHk(v CapacityPerFacility)`
 
 SetHk sets Hk field to given value.
 
@@ -221,20 +221,20 @@ HasHk returns a boolean if a field has been set.
 
 ### GetLa
 
-`func (o *MetroCapacityReport) GetLa() FindCapacityForFacility200ResponseCapacityAms1`
+`func (o *MetroCapacityReport) GetLa() CapacityPerFacility`
 
 GetLa returns the La field if non-nil, zero value otherwise.
 
 ### GetLaOk
 
-`func (o *MetroCapacityReport) GetLaOk() (*FindCapacityForFacility200ResponseCapacityAms1, bool)`
+`func (o *MetroCapacityReport) GetLaOk() (*CapacityPerFacility, bool)`
 
 GetLaOk returns a tuple with the La field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLa
 
-`func (o *MetroCapacityReport) SetLa(v FindCapacityForFacility200ResponseCapacityAms1)`
+`func (o *MetroCapacityReport) SetLa(v CapacityPerFacility)`
 
 SetLa sets La field to given value.
 
@@ -246,20 +246,20 @@ HasLa returns a boolean if a field has been set.
 
 ### GetLd
 
-`func (o *MetroCapacityReport) GetLd() FindCapacityForFacility200ResponseCapacityAms1`
+`func (o *MetroCapacityReport) GetLd() CapacityPerFacility`
 
 GetLd returns the Ld field if non-nil, zero value otherwise.
 
 ### GetLdOk
 
-`func (o *MetroCapacityReport) GetLdOk() (*FindCapacityForFacility200ResponseCapacityAms1, bool)`
+`func (o *MetroCapacityReport) GetLdOk() (*CapacityPerFacility, bool)`
 
 GetLdOk returns a tuple with the Ld field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLd
 
-`func (o *MetroCapacityReport) SetLd(v FindCapacityForFacility200ResponseCapacityAms1)`
+`func (o *MetroCapacityReport) SetLd(v CapacityPerFacility)`
 
 SetLd sets Ld field to given value.
 
@@ -271,20 +271,20 @@ HasLd returns a boolean if a field has been set.
 
 ### GetMd
 
-`func (o *MetroCapacityReport) GetMd() FindCapacityForFacility200ResponseCapacityAms1`
+`func (o *MetroCapacityReport) GetMd() CapacityPerFacility`
 
 GetMd returns the Md field if non-nil, zero value otherwise.
 
 ### GetMdOk
 
-`func (o *MetroCapacityReport) GetMdOk() (*FindCapacityForFacility200ResponseCapacityAms1, bool)`
+`func (o *MetroCapacityReport) GetMdOk() (*CapacityPerFacility, bool)`
 
 GetMdOk returns a tuple with the Md field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMd
 
-`func (o *MetroCapacityReport) SetMd(v FindCapacityForFacility200ResponseCapacityAms1)`
+`func (o *MetroCapacityReport) SetMd(v CapacityPerFacility)`
 
 SetMd sets Md field to given value.
 
@@ -296,20 +296,20 @@ HasMd returns a boolean if a field has been set.
 
 ### GetNy
 
-`func (o *MetroCapacityReport) GetNy() FindCapacityForFacility200ResponseCapacityAms1`
+`func (o *MetroCapacityReport) GetNy() CapacityPerFacility`
 
 GetNy returns the Ny field if non-nil, zero value otherwise.
 
 ### GetNyOk
 
-`func (o *MetroCapacityReport) GetNyOk() (*FindCapacityForFacility200ResponseCapacityAms1, bool)`
+`func (o *MetroCapacityReport) GetNyOk() (*CapacityPerFacility, bool)`
 
 GetNyOk returns a tuple with the Ny field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNy
 
-`func (o *MetroCapacityReport) SetNy(v FindCapacityForFacility200ResponseCapacityAms1)`
+`func (o *MetroCapacityReport) SetNy(v CapacityPerFacility)`
 
 SetNy sets Ny field to given value.
 
@@ -321,20 +321,20 @@ HasNy returns a boolean if a field has been set.
 
 ### GetPa
 
-`func (o *MetroCapacityReport) GetPa() FindCapacityForFacility200ResponseCapacityAms1`
+`func (o *MetroCapacityReport) GetPa() CapacityPerFacility`
 
 GetPa returns the Pa field if non-nil, zero value otherwise.
 
 ### GetPaOk
 
-`func (o *MetroCapacityReport) GetPaOk() (*FindCapacityForFacility200ResponseCapacityAms1, bool)`
+`func (o *MetroCapacityReport) GetPaOk() (*CapacityPerFacility, bool)`
 
 GetPaOk returns a tuple with the Pa field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPa
 
-`func (o *MetroCapacityReport) SetPa(v FindCapacityForFacility200ResponseCapacityAms1)`
+`func (o *MetroCapacityReport) SetPa(v CapacityPerFacility)`
 
 SetPa sets Pa field to given value.
 
@@ -346,20 +346,20 @@ HasPa returns a boolean if a field has been set.
 
 ### GetSe
 
-`func (o *MetroCapacityReport) GetSe() FindCapacityForFacility200ResponseCapacityAms1`
+`func (o *MetroCapacityReport) GetSe() CapacityPerFacility`
 
 GetSe returns the Se field if non-nil, zero value otherwise.
 
 ### GetSeOk
 
-`func (o *MetroCapacityReport) GetSeOk() (*FindCapacityForFacility200ResponseCapacityAms1, bool)`
+`func (o *MetroCapacityReport) GetSeOk() (*CapacityPerFacility, bool)`
 
 GetSeOk returns a tuple with the Se field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSe
 
-`func (o *MetroCapacityReport) SetSe(v FindCapacityForFacility200ResponseCapacityAms1)`
+`func (o *MetroCapacityReport) SetSe(v CapacityPerFacility)`
 
 SetSe sets Se field to given value.
 
@@ -371,20 +371,20 @@ HasSe returns a boolean if a field has been set.
 
 ### GetSg
 
-`func (o *MetroCapacityReport) GetSg() FindCapacityForFacility200ResponseCapacityAms1`
+`func (o *MetroCapacityReport) GetSg() CapacityPerFacility`
 
 GetSg returns the Sg field if non-nil, zero value otherwise.
 
 ### GetSgOk
 
-`func (o *MetroCapacityReport) GetSgOk() (*FindCapacityForFacility200ResponseCapacityAms1, bool)`
+`func (o *MetroCapacityReport) GetSgOk() (*CapacityPerFacility, bool)`
 
 GetSgOk returns a tuple with the Sg field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSg
 
-`func (o *MetroCapacityReport) SetSg(v FindCapacityForFacility200ResponseCapacityAms1)`
+`func (o *MetroCapacityReport) SetSg(v CapacityPerFacility)`
 
 SetSg sets Sg field to given value.
 
@@ -396,20 +396,20 @@ HasSg returns a boolean if a field has been set.
 
 ### GetSl
 
-`func (o *MetroCapacityReport) GetSl() FindCapacityForFacility200ResponseCapacityAms1`
+`func (o *MetroCapacityReport) GetSl() CapacityPerFacility`
 
 GetSl returns the Sl field if non-nil, zero value otherwise.
 
 ### GetSlOk
 
-`func (o *MetroCapacityReport) GetSlOk() (*FindCapacityForFacility200ResponseCapacityAms1, bool)`
+`func (o *MetroCapacityReport) GetSlOk() (*CapacityPerFacility, bool)`
 
 GetSlOk returns a tuple with the Sl field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSl
 
-`func (o *MetroCapacityReport) SetSl(v FindCapacityForFacility200ResponseCapacityAms1)`
+`func (o *MetroCapacityReport) SetSl(v CapacityPerFacility)`
 
 SetSl sets Sl field to given value.
 
@@ -421,20 +421,20 @@ HasSl returns a boolean if a field has been set.
 
 ### GetSp
 
-`func (o *MetroCapacityReport) GetSp() FindCapacityForFacility200ResponseCapacityAms1`
+`func (o *MetroCapacityReport) GetSp() CapacityPerFacility`
 
 GetSp returns the Sp field if non-nil, zero value otherwise.
 
 ### GetSpOk
 
-`func (o *MetroCapacityReport) GetSpOk() (*FindCapacityForFacility200ResponseCapacityAms1, bool)`
+`func (o *MetroCapacityReport) GetSpOk() (*CapacityPerFacility, bool)`
 
 GetSpOk returns a tuple with the Sp field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSp
 
-`func (o *MetroCapacityReport) SetSp(v FindCapacityForFacility200ResponseCapacityAms1)`
+`func (o *MetroCapacityReport) SetSp(v CapacityPerFacility)`
 
 SetSp sets Sp field to given value.
 
@@ -446,20 +446,20 @@ HasSp returns a boolean if a field has been set.
 
 ### GetSv
 
-`func (o *MetroCapacityReport) GetSv() FindCapacityForFacility200ResponseCapacityAms1`
+`func (o *MetroCapacityReport) GetSv() CapacityPerFacility`
 
 GetSv returns the Sv field if non-nil, zero value otherwise.
 
 ### GetSvOk
 
-`func (o *MetroCapacityReport) GetSvOk() (*FindCapacityForFacility200ResponseCapacityAms1, bool)`
+`func (o *MetroCapacityReport) GetSvOk() (*CapacityPerFacility, bool)`
 
 GetSvOk returns a tuple with the Sv field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSv
 
-`func (o *MetroCapacityReport) SetSv(v FindCapacityForFacility200ResponseCapacityAms1)`
+`func (o *MetroCapacityReport) SetSv(v CapacityPerFacility)`
 
 SetSv sets Sv field to given value.
 
@@ -471,20 +471,20 @@ HasSv returns a boolean if a field has been set.
 
 ### GetSy
 
-`func (o *MetroCapacityReport) GetSy() FindCapacityForFacility200ResponseCapacityAms1`
+`func (o *MetroCapacityReport) GetSy() CapacityPerFacility`
 
 GetSy returns the Sy field if non-nil, zero value otherwise.
 
 ### GetSyOk
 
-`func (o *MetroCapacityReport) GetSyOk() (*FindCapacityForFacility200ResponseCapacityAms1, bool)`
+`func (o *MetroCapacityReport) GetSyOk() (*CapacityPerFacility, bool)`
 
 GetSyOk returns a tuple with the Sy field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSy
 
-`func (o *MetroCapacityReport) SetSy(v FindCapacityForFacility200ResponseCapacityAms1)`
+`func (o *MetroCapacityReport) SetSy(v CapacityPerFacility)`
 
 SetSy sets Sy field to given value.
 
@@ -496,20 +496,20 @@ HasSy returns a boolean if a field has been set.
 
 ### GetTr
 
-`func (o *MetroCapacityReport) GetTr() FindCapacityForFacility200ResponseCapacityAms1`
+`func (o *MetroCapacityReport) GetTr() CapacityPerFacility`
 
 GetTr returns the Tr field if non-nil, zero value otherwise.
 
 ### GetTrOk
 
-`func (o *MetroCapacityReport) GetTrOk() (*FindCapacityForFacility200ResponseCapacityAms1, bool)`
+`func (o *MetroCapacityReport) GetTrOk() (*CapacityPerFacility, bool)`
 
 GetTrOk returns a tuple with the Tr field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTr
 
-`func (o *MetroCapacityReport) SetTr(v FindCapacityForFacility200ResponseCapacityAms1)`
+`func (o *MetroCapacityReport) SetTr(v CapacityPerFacility)`
 
 SetTr sets Tr field to given value.
 
@@ -521,20 +521,20 @@ HasTr returns a boolean if a field has been set.
 
 ### GetTy
 
-`func (o *MetroCapacityReport) GetTy() FindCapacityForFacility200ResponseCapacityAms1`
+`func (o *MetroCapacityReport) GetTy() CapacityPerFacility`
 
 GetTy returns the Ty field if non-nil, zero value otherwise.
 
 ### GetTyOk
 
-`func (o *MetroCapacityReport) GetTyOk() (*FindCapacityForFacility200ResponseCapacityAms1, bool)`
+`func (o *MetroCapacityReport) GetTyOk() (*CapacityPerFacility, bool)`
 
 GetTyOk returns a tuple with the Ty field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTy
 
-`func (o *MetroCapacityReport) SetTy(v FindCapacityForFacility200ResponseCapacityAms1)`
+`func (o *MetroCapacityReport) SetTy(v CapacityPerFacility)`
 
 SetTy sets Ty field to given value.
 

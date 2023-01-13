@@ -37,7 +37,7 @@ func (r ApiAssignNativeVlanRequest) Vnid(vnid string) ApiAssignNativeVlanRequest
 	return r
 }
 
-func (r ApiAssignNativeVlanRequest) Execute() (*FindDeviceById200ResponseNetworkPortsInner, *http.Response, error) {
+func (r ApiAssignNativeVlanRequest) Execute() (*Port, *http.Response, error) {
 	return r.ApiService.AssignNativeVlanExecute(r)
 }
 
@@ -59,13 +59,13 @@ func (a *PortsApiService) AssignNativeVlan(ctx context.Context, id string) ApiAs
 }
 
 // Execute executes the request
-//  @return FindDeviceById200ResponseNetworkPortsInner
-func (a *PortsApiService) AssignNativeVlanExecute(r ApiAssignNativeVlanRequest) (*FindDeviceById200ResponseNetworkPortsInner, *http.Response, error) {
+//  @return Port
+func (a *PortsApiService) AssignNativeVlanExecute(r ApiAssignNativeVlanRequest) (*Port, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *FindDeviceById200ResponseNetworkPortsInner
+		localVarReturnValue *Port
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PortsApiService.AssignNativeVlan")
@@ -138,7 +138,7 @@ func (a *PortsApiService) AssignNativeVlanExecute(r ApiAssignNativeVlanRequest) 
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -149,7 +149,7 @@ func (a *PortsApiService) AssignNativeVlanExecute(r ApiAssignNativeVlanRequest) 
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -160,7 +160,7 @@ func (a *PortsApiService) AssignNativeVlanExecute(r ApiAssignNativeVlanRequest) 
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -185,18 +185,19 @@ func (a *PortsApiService) AssignNativeVlanExecute(r ApiAssignNativeVlanRequest) 
 }
 
 type ApiAssignPortRequest struct {
-	ctx               context.Context
-	ApiService        *PortsApiService
-	id                string
-	assignPortRequest *AssignPortRequest
+	ctx             context.Context
+	ApiService      *PortsApiService
+	id              string
+	portAssignInput *PortAssignInput
 }
 
-func (r ApiAssignPortRequest) AssignPortRequest(assignPortRequest AssignPortRequest) ApiAssignPortRequest {
-	r.assignPortRequest = &assignPortRequest
+// Virtual Network ID. May be the UUID of the Virtual Network record, or the VLAN value itself (ex: &#39;1001&#39;).
+func (r ApiAssignPortRequest) PortAssignInput(portAssignInput PortAssignInput) ApiAssignPortRequest {
+	r.portAssignInput = &portAssignInput
 	return r
 }
 
-func (r ApiAssignPortRequest) Execute() (*FindDeviceById200ResponseNetworkPortsInner, *http.Response, error) {
+func (r ApiAssignPortRequest) Execute() (*Port, *http.Response, error) {
 	return r.ApiService.AssignPortExecute(r)
 }
 
@@ -218,13 +219,13 @@ func (a *PortsApiService) AssignPort(ctx context.Context, id string) ApiAssignPo
 }
 
 // Execute executes the request
-//  @return FindDeviceById200ResponseNetworkPortsInner
-func (a *PortsApiService) AssignPortExecute(r ApiAssignPortRequest) (*FindDeviceById200ResponseNetworkPortsInner, *http.Response, error) {
+//  @return Port
+func (a *PortsApiService) AssignPortExecute(r ApiAssignPortRequest) (*Port, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *FindDeviceById200ResponseNetworkPortsInner
+		localVarReturnValue *Port
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PortsApiService.AssignPort")
@@ -238,8 +239,8 @@ func (a *PortsApiService) AssignPortExecute(r ApiAssignPortRequest) (*FindDevice
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.assignPortRequest == nil {
-		return localVarReturnValue, nil, reportError("assignPortRequest is required and must be specified")
+	if r.portAssignInput == nil {
+		return localVarReturnValue, nil, reportError("portAssignInput is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -260,7 +261,7 @@ func (a *PortsApiService) AssignPortExecute(r ApiAssignPortRequest) (*FindDevice
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.assignPortRequest
+	localVarPostBody = r.portAssignInput
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -298,7 +299,7 @@ func (a *PortsApiService) AssignPortExecute(r ApiAssignPortRequest) (*FindDevice
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -309,7 +310,7 @@ func (a *PortsApiService) AssignPortExecute(r ApiAssignPortRequest) (*FindDevice
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -320,7 +321,7 @@ func (a *PortsApiService) AssignPortExecute(r ApiAssignPortRequest) (*FindDevice
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -331,7 +332,7 @@ func (a *PortsApiService) AssignPortExecute(r ApiAssignPortRequest) (*FindDevice
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -368,7 +369,7 @@ func (r ApiBondPortRequest) BulkEnable(bulkEnable bool) ApiBondPortRequest {
 	return r
 }
 
-func (r ApiBondPortRequest) Execute() (*FindDeviceById200ResponseNetworkPortsInner, *http.Response, error) {
+func (r ApiBondPortRequest) Execute() (*Port, *http.Response, error) {
 	return r.ApiService.BondPortExecute(r)
 }
 
@@ -390,13 +391,13 @@ func (a *PortsApiService) BondPort(ctx context.Context, id string) ApiBondPortRe
 }
 
 // Execute executes the request
-//  @return FindDeviceById200ResponseNetworkPortsInner
-func (a *PortsApiService) BondPortExecute(r ApiBondPortRequest) (*FindDeviceById200ResponseNetworkPortsInner, *http.Response, error) {
+//  @return Port
+func (a *PortsApiService) BondPortExecute(r ApiBondPortRequest) (*Port, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *FindDeviceById200ResponseNetworkPortsInner
+		localVarReturnValue *Port
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PortsApiService.BondPort")
@@ -468,7 +469,7 @@ func (a *PortsApiService) BondPortExecute(r ApiBondPortRequest) (*FindDeviceById
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -479,7 +480,7 @@ func (a *PortsApiService) BondPortExecute(r ApiBondPortRequest) (*FindDeviceById
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -490,7 +491,7 @@ func (a *PortsApiService) BondPortExecute(r ApiBondPortRequest) (*FindDeviceById
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -501,7 +502,7 @@ func (a *PortsApiService) BondPortExecute(r ApiBondPortRequest) (*FindDeviceById
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -526,19 +527,19 @@ func (a *PortsApiService) BondPortExecute(r ApiBondPortRequest) (*FindDeviceById
 }
 
 type ApiConvertLayer2Request struct {
-	ctx               context.Context
-	ApiService        *PortsApiService
-	id                string
-	assignPortRequest *AssignPortRequest
+	ctx             context.Context
+	ApiService      *PortsApiService
+	id              string
+	portAssignInput *PortAssignInput
 }
 
-// Virtual Network ID
-func (r ApiConvertLayer2Request) AssignPortRequest(assignPortRequest AssignPortRequest) ApiConvertLayer2Request {
-	r.assignPortRequest = &assignPortRequest
+// Virtual Network ID. May be the UUID of the Virtual Network record, or the VLAN value itself (ex: &#39;1001&#39;).
+func (r ApiConvertLayer2Request) PortAssignInput(portAssignInput PortAssignInput) ApiConvertLayer2Request {
+	r.portAssignInput = &portAssignInput
 	return r
 }
 
-func (r ApiConvertLayer2Request) Execute() (*FindDeviceById200ResponseNetworkPortsInner, *http.Response, error) {
+func (r ApiConvertLayer2Request) Execute() (*Port, *http.Response, error) {
 	return r.ApiService.ConvertLayer2Execute(r)
 }
 
@@ -560,13 +561,13 @@ func (a *PortsApiService) ConvertLayer2(ctx context.Context, id string) ApiConve
 }
 
 // Execute executes the request
-//  @return FindDeviceById200ResponseNetworkPortsInner
-func (a *PortsApiService) ConvertLayer2Execute(r ApiConvertLayer2Request) (*FindDeviceById200ResponseNetworkPortsInner, *http.Response, error) {
+//  @return Port
+func (a *PortsApiService) ConvertLayer2Execute(r ApiConvertLayer2Request) (*Port, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *FindDeviceById200ResponseNetworkPortsInner
+		localVarReturnValue *Port
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PortsApiService.ConvertLayer2")
@@ -580,6 +581,9 @@ func (a *PortsApiService) ConvertLayer2Execute(r ApiConvertLayer2Request) (*Find
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.portAssignInput == nil {
+		return localVarReturnValue, nil, reportError("portAssignInput is required and must be specified")
+	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -599,7 +603,7 @@ func (a *PortsApiService) ConvertLayer2Execute(r ApiConvertLayer2Request) (*Find
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.assignPortRequest
+	localVarPostBody = r.portAssignInput
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -637,7 +641,7 @@ func (a *PortsApiService) ConvertLayer2Execute(r ApiConvertLayer2Request) (*Find
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -648,7 +652,7 @@ func (a *PortsApiService) ConvertLayer2Execute(r ApiConvertLayer2Request) (*Find
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -659,7 +663,7 @@ func (a *PortsApiService) ConvertLayer2Execute(r ApiConvertLayer2Request) (*Find
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -670,7 +674,7 @@ func (a *PortsApiService) ConvertLayer2Execute(r ApiConvertLayer2Request) (*Find
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -695,19 +699,19 @@ func (a *PortsApiService) ConvertLayer2Execute(r ApiConvertLayer2Request) (*Find
 }
 
 type ApiConvertLayer3Request struct {
-	ctx                  context.Context
-	ApiService           *PortsApiService
-	id                   string
-	convertLayer3Request *ConvertLayer3Request
+	ctx                    context.Context
+	ApiService             *PortsApiService
+	id                     string
+	portConvertLayer3Input *PortConvertLayer3Input
 }
 
 // IPs to request
-func (r ApiConvertLayer3Request) ConvertLayer3Request(convertLayer3Request ConvertLayer3Request) ApiConvertLayer3Request {
-	r.convertLayer3Request = &convertLayer3Request
+func (r ApiConvertLayer3Request) PortConvertLayer3Input(portConvertLayer3Input PortConvertLayer3Input) ApiConvertLayer3Request {
+	r.portConvertLayer3Input = &portConvertLayer3Input
 	return r
 }
 
-func (r ApiConvertLayer3Request) Execute() (*FindDeviceById200ResponseNetworkPortsInner, *http.Response, error) {
+func (r ApiConvertLayer3Request) Execute() (*Port, *http.Response, error) {
 	return r.ApiService.ConvertLayer3Execute(r)
 }
 
@@ -729,13 +733,13 @@ func (a *PortsApiService) ConvertLayer3(ctx context.Context, id string) ApiConve
 }
 
 // Execute executes the request
-//  @return FindDeviceById200ResponseNetworkPortsInner
-func (a *PortsApiService) ConvertLayer3Execute(r ApiConvertLayer3Request) (*FindDeviceById200ResponseNetworkPortsInner, *http.Response, error) {
+//  @return Port
+func (a *PortsApiService) ConvertLayer3Execute(r ApiConvertLayer3Request) (*Port, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *FindDeviceById200ResponseNetworkPortsInner
+		localVarReturnValue *Port
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PortsApiService.ConvertLayer3")
@@ -768,7 +772,7 @@ func (a *PortsApiService) ConvertLayer3Execute(r ApiConvertLayer3Request) (*Find
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.convertLayer3Request
+	localVarPostBody = r.portConvertLayer3Input
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -806,7 +810,7 @@ func (a *PortsApiService) ConvertLayer3Execute(r ApiConvertLayer3Request) (*Find
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -817,7 +821,7 @@ func (a *PortsApiService) ConvertLayer3Execute(r ApiConvertLayer3Request) (*Find
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -828,7 +832,7 @@ func (a *PortsApiService) ConvertLayer3Execute(r ApiConvertLayer3Request) (*Find
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -839,7 +843,7 @@ func (a *PortsApiService) ConvertLayer3Execute(r ApiConvertLayer3Request) (*Find
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -864,19 +868,19 @@ func (a *PortsApiService) ConvertLayer3Execute(r ApiConvertLayer3Request) (*Find
 }
 
 type ApiCreatePortVlanAssignmentBatchRequest struct {
-	ctx                                  context.Context
-	ApiService                           *PortsApiService
-	id                                   string
-	createPortVlanAssignmentBatchRequest *CreatePortVlanAssignmentBatchRequest
+	ctx                                context.Context
+	ApiService                         *PortsApiService
+	id                                 string
+	portVlanAssignmentBatchCreateInput *PortVlanAssignmentBatchCreateInput
 }
 
 // VLAN Assignment batch details
-func (r ApiCreatePortVlanAssignmentBatchRequest) CreatePortVlanAssignmentBatchRequest(createPortVlanAssignmentBatchRequest CreatePortVlanAssignmentBatchRequest) ApiCreatePortVlanAssignmentBatchRequest {
-	r.createPortVlanAssignmentBatchRequest = &createPortVlanAssignmentBatchRequest
+func (r ApiCreatePortVlanAssignmentBatchRequest) PortVlanAssignmentBatchCreateInput(portVlanAssignmentBatchCreateInput PortVlanAssignmentBatchCreateInput) ApiCreatePortVlanAssignmentBatchRequest {
+	r.portVlanAssignmentBatchCreateInput = &portVlanAssignmentBatchCreateInput
 	return r
 }
 
-func (r ApiCreatePortVlanAssignmentBatchRequest) Execute() (*FindPortVlanAssignmentBatches200ResponseBatchesInner, *http.Response, error) {
+func (r ApiCreatePortVlanAssignmentBatchRequest) Execute() (*PortVlanAssignmentBatch, *http.Response, error) {
 	return r.ApiService.CreatePortVlanAssignmentBatchExecute(r)
 }
 
@@ -898,13 +902,13 @@ func (a *PortsApiService) CreatePortVlanAssignmentBatch(ctx context.Context, id 
 }
 
 // Execute executes the request
-//  @return FindPortVlanAssignmentBatches200ResponseBatchesInner
-func (a *PortsApiService) CreatePortVlanAssignmentBatchExecute(r ApiCreatePortVlanAssignmentBatchRequest) (*FindPortVlanAssignmentBatches200ResponseBatchesInner, *http.Response, error) {
+//  @return PortVlanAssignmentBatch
+func (a *PortsApiService) CreatePortVlanAssignmentBatchExecute(r ApiCreatePortVlanAssignmentBatchRequest) (*PortVlanAssignmentBatch, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *FindPortVlanAssignmentBatches200ResponseBatchesInner
+		localVarReturnValue *PortVlanAssignmentBatch
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PortsApiService.CreatePortVlanAssignmentBatch")
@@ -918,8 +922,8 @@ func (a *PortsApiService) CreatePortVlanAssignmentBatchExecute(r ApiCreatePortVl
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createPortVlanAssignmentBatchRequest == nil {
-		return localVarReturnValue, nil, reportError("createPortVlanAssignmentBatchRequest is required and must be specified")
+	if r.portVlanAssignmentBatchCreateInput == nil {
+		return localVarReturnValue, nil, reportError("portVlanAssignmentBatchCreateInput is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -940,7 +944,7 @@ func (a *PortsApiService) CreatePortVlanAssignmentBatchExecute(r ApiCreatePortVl
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createPortVlanAssignmentBatchRequest
+	localVarPostBody = r.portVlanAssignmentBatchCreateInput
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -978,7 +982,7 @@ func (a *PortsApiService) CreatePortVlanAssignmentBatchExecute(r ApiCreatePortVl
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -989,7 +993,7 @@ func (a *PortsApiService) CreatePortVlanAssignmentBatchExecute(r ApiCreatePortVl
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1000,7 +1004,7 @@ func (a *PortsApiService) CreatePortVlanAssignmentBatchExecute(r ApiCreatePortVl
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1011,7 +1015,7 @@ func (a *PortsApiService) CreatePortVlanAssignmentBatchExecute(r ApiCreatePortVl
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1041,7 +1045,7 @@ type ApiDeleteNativeVlanRequest struct {
 	id         string
 }
 
-func (r ApiDeleteNativeVlanRequest) Execute() (*FindDeviceById200ResponseNetworkPortsInner, *http.Response, error) {
+func (r ApiDeleteNativeVlanRequest) Execute() (*Port, *http.Response, error) {
 	return r.ApiService.DeleteNativeVlanExecute(r)
 }
 
@@ -1063,13 +1067,13 @@ func (a *PortsApiService) DeleteNativeVlan(ctx context.Context, id string) ApiDe
 }
 
 // Execute executes the request
-//  @return FindDeviceById200ResponseNetworkPortsInner
-func (a *PortsApiService) DeleteNativeVlanExecute(r ApiDeleteNativeVlanRequest) (*FindDeviceById200ResponseNetworkPortsInner, *http.Response, error) {
+//  @return Port
+func (a *PortsApiService) DeleteNativeVlanExecute(r ApiDeleteNativeVlanRequest) (*Port, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodDelete
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *FindDeviceById200ResponseNetworkPortsInner
+		localVarReturnValue *Port
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PortsApiService.DeleteNativeVlan")
@@ -1138,7 +1142,7 @@ func (a *PortsApiService) DeleteNativeVlanExecute(r ApiDeleteNativeVlanRequest) 
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1149,7 +1153,7 @@ func (a *PortsApiService) DeleteNativeVlanExecute(r ApiDeleteNativeVlanRequest) 
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1160,7 +1164,7 @@ func (a *PortsApiService) DeleteNativeVlanExecute(r ApiDeleteNativeVlanRequest) 
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1197,7 +1201,7 @@ func (r ApiDisbondPortRequest) BulkDisable(bulkDisable bool) ApiDisbondPortReque
 	return r
 }
 
-func (r ApiDisbondPortRequest) Execute() (*FindDeviceById200ResponseNetworkPortsInner, *http.Response, error) {
+func (r ApiDisbondPortRequest) Execute() (*Port, *http.Response, error) {
 	return r.ApiService.DisbondPortExecute(r)
 }
 
@@ -1219,13 +1223,13 @@ func (a *PortsApiService) DisbondPort(ctx context.Context, id string) ApiDisbond
 }
 
 // Execute executes the request
-//  @return FindDeviceById200ResponseNetworkPortsInner
-func (a *PortsApiService) DisbondPortExecute(r ApiDisbondPortRequest) (*FindDeviceById200ResponseNetworkPortsInner, *http.Response, error) {
+//  @return Port
+func (a *PortsApiService) DisbondPortExecute(r ApiDisbondPortRequest) (*Port, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *FindDeviceById200ResponseNetworkPortsInner
+		localVarReturnValue *Port
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PortsApiService.DisbondPort")
@@ -1297,7 +1301,7 @@ func (a *PortsApiService) DisbondPortExecute(r ApiDisbondPortRequest) (*FindDevi
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1308,7 +1312,7 @@ func (a *PortsApiService) DisbondPortExecute(r ApiDisbondPortRequest) (*FindDevi
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1319,7 +1323,7 @@ func (a *PortsApiService) DisbondPortExecute(r ApiDisbondPortRequest) (*FindDevi
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1330,7 +1334,7 @@ func (a *PortsApiService) DisbondPortExecute(r ApiDisbondPortRequest) (*FindDevi
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1374,7 +1378,7 @@ func (r ApiFindPortByIdRequest) Exclude(exclude []string) ApiFindPortByIdRequest
 	return r
 }
 
-func (r ApiFindPortByIdRequest) Execute() (*FindDeviceById200ResponseNetworkPortsInner, *http.Response, error) {
+func (r ApiFindPortByIdRequest) Execute() (*Port, *http.Response, error) {
 	return r.ApiService.FindPortByIdExecute(r)
 }
 
@@ -1396,13 +1400,13 @@ func (a *PortsApiService) FindPortById(ctx context.Context, id string) ApiFindPo
 }
 
 // Execute executes the request
-//  @return FindDeviceById200ResponseNetworkPortsInner
-func (a *PortsApiService) FindPortByIdExecute(r ApiFindPortByIdRequest) (*FindDeviceById200ResponseNetworkPortsInner, *http.Response, error) {
+//  @return Port
+func (a *PortsApiService) FindPortByIdExecute(r ApiFindPortByIdRequest) (*Port, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *FindDeviceById200ResponseNetworkPortsInner
+		localVarReturnValue *Port
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PortsApiService.FindPortById")
@@ -1477,7 +1481,7 @@ func (a *PortsApiService) FindPortByIdExecute(r ApiFindPortByIdRequest) (*FindDe
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1488,7 +1492,7 @@ func (a *PortsApiService) FindPortByIdExecute(r ApiFindPortByIdRequest) (*FindDe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1519,7 +1523,7 @@ type ApiFindPortVlanAssignmentBatchByPortIdAndBatchIdRequest struct {
 	batchId    string
 }
 
-func (r ApiFindPortVlanAssignmentBatchByPortIdAndBatchIdRequest) Execute() (*FindPortVlanAssignmentBatches200ResponseBatchesInner, *http.Response, error) {
+func (r ApiFindPortVlanAssignmentBatchByPortIdAndBatchIdRequest) Execute() (*PortVlanAssignmentBatch, *http.Response, error) {
 	return r.ApiService.FindPortVlanAssignmentBatchByPortIdAndBatchIdExecute(r)
 }
 
@@ -1543,13 +1547,13 @@ func (a *PortsApiService) FindPortVlanAssignmentBatchByPortIdAndBatchId(ctx cont
 }
 
 // Execute executes the request
-//  @return FindPortVlanAssignmentBatches200ResponseBatchesInner
-func (a *PortsApiService) FindPortVlanAssignmentBatchByPortIdAndBatchIdExecute(r ApiFindPortVlanAssignmentBatchByPortIdAndBatchIdRequest) (*FindPortVlanAssignmentBatches200ResponseBatchesInner, *http.Response, error) {
+//  @return PortVlanAssignmentBatch
+func (a *PortsApiService) FindPortVlanAssignmentBatchByPortIdAndBatchIdExecute(r ApiFindPortVlanAssignmentBatchByPortIdAndBatchIdRequest) (*PortVlanAssignmentBatch, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *FindPortVlanAssignmentBatches200ResponseBatchesInner
+		localVarReturnValue *PortVlanAssignmentBatch
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PortsApiService.FindPortVlanAssignmentBatchByPortIdAndBatchId")
@@ -1619,7 +1623,7 @@ func (a *PortsApiService) FindPortVlanAssignmentBatchByPortIdAndBatchIdExecute(r
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1630,7 +1634,7 @@ func (a *PortsApiService) FindPortVlanAssignmentBatchByPortIdAndBatchIdExecute(r
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1641,7 +1645,7 @@ func (a *PortsApiService) FindPortVlanAssignmentBatchByPortIdAndBatchIdExecute(r
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1671,7 +1675,7 @@ type ApiFindPortVlanAssignmentBatchesRequest struct {
 	id         string
 }
 
-func (r ApiFindPortVlanAssignmentBatchesRequest) Execute() (*FindPortVlanAssignmentBatches200Response, *http.Response, error) {
+func (r ApiFindPortVlanAssignmentBatchesRequest) Execute() (*PortVlanAssignmentBatchList, *http.Response, error) {
 	return r.ApiService.FindPortVlanAssignmentBatchesExecute(r)
 }
 
@@ -1693,13 +1697,13 @@ func (a *PortsApiService) FindPortVlanAssignmentBatches(ctx context.Context, id 
 }
 
 // Execute executes the request
-//  @return FindPortVlanAssignmentBatches200Response
-func (a *PortsApiService) FindPortVlanAssignmentBatchesExecute(r ApiFindPortVlanAssignmentBatchesRequest) (*FindPortVlanAssignmentBatches200Response, *http.Response, error) {
+//  @return PortVlanAssignmentBatchList
+func (a *PortsApiService) FindPortVlanAssignmentBatchesExecute(r ApiFindPortVlanAssignmentBatchesRequest) (*PortVlanAssignmentBatchList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *FindPortVlanAssignmentBatches200Response
+		localVarReturnValue *PortVlanAssignmentBatchList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PortsApiService.FindPortVlanAssignmentBatches")
@@ -1768,7 +1772,7 @@ func (a *PortsApiService) FindPortVlanAssignmentBatchesExecute(r ApiFindPortVlan
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1779,7 +1783,7 @@ func (a *PortsApiService) FindPortVlanAssignmentBatchesExecute(r ApiFindPortVlan
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1790,7 +1794,7 @@ func (a *PortsApiService) FindPortVlanAssignmentBatchesExecute(r ApiFindPortVlan
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1835,7 +1839,7 @@ func (r ApiFindPortVlanAssignmentByPortIdAndAssignmentIdRequest) Exclude(exclude
 	return r
 }
 
-func (r ApiFindPortVlanAssignmentByPortIdAndAssignmentIdRequest) Execute() (*FindPortVlanAssignments200ResponseVlanAssignmentsInner, *http.Response, error) {
+func (r ApiFindPortVlanAssignmentByPortIdAndAssignmentIdRequest) Execute() (*PortVlanAssignment, *http.Response, error) {
 	return r.ApiService.FindPortVlanAssignmentByPortIdAndAssignmentIdExecute(r)
 }
 
@@ -1859,13 +1863,13 @@ func (a *PortsApiService) FindPortVlanAssignmentByPortIdAndAssignmentId(ctx cont
 }
 
 // Execute executes the request
-//  @return FindPortVlanAssignments200ResponseVlanAssignmentsInner
-func (a *PortsApiService) FindPortVlanAssignmentByPortIdAndAssignmentIdExecute(r ApiFindPortVlanAssignmentByPortIdAndAssignmentIdRequest) (*FindPortVlanAssignments200ResponseVlanAssignmentsInner, *http.Response, error) {
+//  @return PortVlanAssignment
+func (a *PortsApiService) FindPortVlanAssignmentByPortIdAndAssignmentIdExecute(r ApiFindPortVlanAssignmentByPortIdAndAssignmentIdRequest) (*PortVlanAssignment, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *FindPortVlanAssignments200ResponseVlanAssignmentsInner
+		localVarReturnValue *PortVlanAssignment
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PortsApiService.FindPortVlanAssignmentByPortIdAndAssignmentId")
@@ -1957,7 +1961,7 @@ func (a *PortsApiService) FindPortVlanAssignmentByPortIdAndAssignmentIdExecute(r
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1968,7 +1972,7 @@ func (a *PortsApiService) FindPortVlanAssignmentByPortIdAndAssignmentIdExecute(r
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1979,7 +1983,7 @@ func (a *PortsApiService) FindPortVlanAssignmentByPortIdAndAssignmentIdExecute(r
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2023,7 +2027,7 @@ func (r ApiFindPortVlanAssignmentsRequest) Exclude(exclude []string) ApiFindPort
 	return r
 }
 
-func (r ApiFindPortVlanAssignmentsRequest) Execute() (*FindPortVlanAssignments200Response, *http.Response, error) {
+func (r ApiFindPortVlanAssignmentsRequest) Execute() (*PortVlanAssignmentList, *http.Response, error) {
 	return r.ApiService.FindPortVlanAssignmentsExecute(r)
 }
 
@@ -2045,13 +2049,13 @@ func (a *PortsApiService) FindPortVlanAssignments(ctx context.Context, id string
 }
 
 // Execute executes the request
-//  @return FindPortVlanAssignments200Response
-func (a *PortsApiService) FindPortVlanAssignmentsExecute(r ApiFindPortVlanAssignmentsRequest) (*FindPortVlanAssignments200Response, *http.Response, error) {
+//  @return PortVlanAssignmentList
+func (a *PortsApiService) FindPortVlanAssignmentsExecute(r ApiFindPortVlanAssignmentsRequest) (*PortVlanAssignmentList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *FindPortVlanAssignments200Response
+		localVarReturnValue *PortVlanAssignmentList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PortsApiService.FindPortVlanAssignments")
@@ -2142,7 +2146,7 @@ func (a *PortsApiService) FindPortVlanAssignmentsExecute(r ApiFindPortVlanAssign
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2153,7 +2157,7 @@ func (a *PortsApiService) FindPortVlanAssignmentsExecute(r ApiFindPortVlanAssign
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2164,7 +2168,7 @@ func (a *PortsApiService) FindPortVlanAssignmentsExecute(r ApiFindPortVlanAssign
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2189,19 +2193,19 @@ func (a *PortsApiService) FindPortVlanAssignmentsExecute(r ApiFindPortVlanAssign
 }
 
 type ApiUnassignPortRequest struct {
-	ctx               context.Context
-	ApiService        *PortsApiService
-	id                string
-	assignPortRequest *AssignPortRequest
+	ctx             context.Context
+	ApiService      *PortsApiService
+	id              string
+	portAssignInput *PortAssignInput
 }
 
 // Virtual Network ID. May be the UUID of the Virtual Network record, or the VLAN value itself (ex: &#39;1001&#39;).
-func (r ApiUnassignPortRequest) AssignPortRequest(assignPortRequest AssignPortRequest) ApiUnassignPortRequest {
-	r.assignPortRequest = &assignPortRequest
+func (r ApiUnassignPortRequest) PortAssignInput(portAssignInput PortAssignInput) ApiUnassignPortRequest {
+	r.portAssignInput = &portAssignInput
 	return r
 }
 
-func (r ApiUnassignPortRequest) Execute() (*FindDeviceById200ResponseNetworkPortsInner, *http.Response, error) {
+func (r ApiUnassignPortRequest) Execute() (*Port, *http.Response, error) {
 	return r.ApiService.UnassignPortExecute(r)
 }
 
@@ -2223,13 +2227,13 @@ func (a *PortsApiService) UnassignPort(ctx context.Context, id string) ApiUnassi
 }
 
 // Execute executes the request
-//  @return FindDeviceById200ResponseNetworkPortsInner
-func (a *PortsApiService) UnassignPortExecute(r ApiUnassignPortRequest) (*FindDeviceById200ResponseNetworkPortsInner, *http.Response, error) {
+//  @return Port
+func (a *PortsApiService) UnassignPortExecute(r ApiUnassignPortRequest) (*Port, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *FindDeviceById200ResponseNetworkPortsInner
+		localVarReturnValue *Port
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PortsApiService.UnassignPort")
@@ -2243,8 +2247,8 @@ func (a *PortsApiService) UnassignPortExecute(r ApiUnassignPortRequest) (*FindDe
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.assignPortRequest == nil {
-		return localVarReturnValue, nil, reportError("assignPortRequest is required and must be specified")
+	if r.portAssignInput == nil {
+		return localVarReturnValue, nil, reportError("portAssignInput is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -2265,7 +2269,7 @@ func (a *PortsApiService) UnassignPortExecute(r ApiUnassignPortRequest) (*FindDe
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.assignPortRequest
+	localVarPostBody = r.portAssignInput
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -2303,7 +2307,7 @@ func (a *PortsApiService) UnassignPortExecute(r ApiUnassignPortRequest) (*FindDe
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2314,7 +2318,7 @@ func (a *PortsApiService) UnassignPortExecute(r ApiUnassignPortRequest) (*FindDe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2325,7 +2329,7 @@ func (a *PortsApiService) UnassignPortExecute(r ApiUnassignPortRequest) (*FindDe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2336,7 +2340,7 @@ func (a *PortsApiService) UnassignPortExecute(r ApiUnassignPortRequest) (*FindDe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

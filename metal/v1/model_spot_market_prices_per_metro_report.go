@@ -17,13 +17,13 @@ import (
 
 // SpotMarketPricesPerMetroReport struct for SpotMarketPricesPerMetroReport
 type SpotMarketPricesPerMetroReport struct {
-	Am *FindSpotMarketPrices200ResponseSpotMarketPricesAms1 `json:"am,omitempty"`
-	Ch *FindSpotMarketPrices200ResponseSpotMarketPricesAms1 `json:"ch,omitempty"`
-	Da *FindSpotMarketPrices200ResponseSpotMarketPricesAms1 `json:"da,omitempty"`
-	La *FindSpotMarketPrices200ResponseSpotMarketPricesAms1 `json:"la,omitempty"`
-	Ny *FindSpotMarketPrices200ResponseSpotMarketPricesAms1 `json:"ny,omitempty"`
-	Sg *FindSpotMarketPrices200ResponseSpotMarketPricesAms1 `json:"sg,omitempty"`
-	Sv *FindSpotMarketPrices200ResponseSpotMarketPricesAms1 `json:"sv,omitempty"`
+	Am *SpotPricesPerFacility `json:"am,omitempty"`
+	Ch *SpotPricesPerFacility `json:"ch,omitempty"`
+	Da *SpotPricesPerFacility `json:"da,omitempty"`
+	La *SpotPricesPerFacility `json:"la,omitempty"`
+	Ny *SpotPricesPerFacility `json:"ny,omitempty"`
+	Sg *SpotPricesPerFacility `json:"sg,omitempty"`
+	Sv *SpotPricesPerFacility `json:"sv,omitempty"`
 }
 
 // NewSpotMarketPricesPerMetroReport instantiates a new SpotMarketPricesPerMetroReport object
@@ -44,9 +44,9 @@ func NewSpotMarketPricesPerMetroReportWithDefaults() *SpotMarketPricesPerMetroRe
 }
 
 // GetAm returns the Am field value if set, zero value otherwise.
-func (o *SpotMarketPricesPerMetroReport) GetAm() FindSpotMarketPrices200ResponseSpotMarketPricesAms1 {
+func (o *SpotMarketPricesPerMetroReport) GetAm() SpotPricesPerFacility {
 	if o == nil || isNil(o.Am) {
-		var ret FindSpotMarketPrices200ResponseSpotMarketPricesAms1
+		var ret SpotPricesPerFacility
 		return ret
 	}
 	return *o.Am
@@ -54,7 +54,7 @@ func (o *SpotMarketPricesPerMetroReport) GetAm() FindSpotMarketPrices200Response
 
 // GetAmOk returns a tuple with the Am field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SpotMarketPricesPerMetroReport) GetAmOk() (*FindSpotMarketPrices200ResponseSpotMarketPricesAms1, bool) {
+func (o *SpotMarketPricesPerMetroReport) GetAmOk() (*SpotPricesPerFacility, bool) {
 	if o == nil || isNil(o.Am) {
 		return nil, false
 	}
@@ -70,15 +70,15 @@ func (o *SpotMarketPricesPerMetroReport) HasAm() bool {
 	return false
 }
 
-// SetAm gets a reference to the given FindSpotMarketPrices200ResponseSpotMarketPricesAms1 and assigns it to the Am field.
-func (o *SpotMarketPricesPerMetroReport) SetAm(v FindSpotMarketPrices200ResponseSpotMarketPricesAms1) {
+// SetAm gets a reference to the given SpotPricesPerFacility and assigns it to the Am field.
+func (o *SpotMarketPricesPerMetroReport) SetAm(v SpotPricesPerFacility) {
 	o.Am = &v
 }
 
 // GetCh returns the Ch field value if set, zero value otherwise.
-func (o *SpotMarketPricesPerMetroReport) GetCh() FindSpotMarketPrices200ResponseSpotMarketPricesAms1 {
+func (o *SpotMarketPricesPerMetroReport) GetCh() SpotPricesPerFacility {
 	if o == nil || isNil(o.Ch) {
-		var ret FindSpotMarketPrices200ResponseSpotMarketPricesAms1
+		var ret SpotPricesPerFacility
 		return ret
 	}
 	return *o.Ch
@@ -86,7 +86,7 @@ func (o *SpotMarketPricesPerMetroReport) GetCh() FindSpotMarketPrices200Response
 
 // GetChOk returns a tuple with the Ch field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SpotMarketPricesPerMetroReport) GetChOk() (*FindSpotMarketPrices200ResponseSpotMarketPricesAms1, bool) {
+func (o *SpotMarketPricesPerMetroReport) GetChOk() (*SpotPricesPerFacility, bool) {
 	if o == nil || isNil(o.Ch) {
 		return nil, false
 	}
@@ -102,15 +102,15 @@ func (o *SpotMarketPricesPerMetroReport) HasCh() bool {
 	return false
 }
 
-// SetCh gets a reference to the given FindSpotMarketPrices200ResponseSpotMarketPricesAms1 and assigns it to the Ch field.
-func (o *SpotMarketPricesPerMetroReport) SetCh(v FindSpotMarketPrices200ResponseSpotMarketPricesAms1) {
+// SetCh gets a reference to the given SpotPricesPerFacility and assigns it to the Ch field.
+func (o *SpotMarketPricesPerMetroReport) SetCh(v SpotPricesPerFacility) {
 	o.Ch = &v
 }
 
 // GetDa returns the Da field value if set, zero value otherwise.
-func (o *SpotMarketPricesPerMetroReport) GetDa() FindSpotMarketPrices200ResponseSpotMarketPricesAms1 {
+func (o *SpotMarketPricesPerMetroReport) GetDa() SpotPricesPerFacility {
 	if o == nil || isNil(o.Da) {
-		var ret FindSpotMarketPrices200ResponseSpotMarketPricesAms1
+		var ret SpotPricesPerFacility
 		return ret
 	}
 	return *o.Da
@@ -118,7 +118,7 @@ func (o *SpotMarketPricesPerMetroReport) GetDa() FindSpotMarketPrices200Response
 
 // GetDaOk returns a tuple with the Da field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SpotMarketPricesPerMetroReport) GetDaOk() (*FindSpotMarketPrices200ResponseSpotMarketPricesAms1, bool) {
+func (o *SpotMarketPricesPerMetroReport) GetDaOk() (*SpotPricesPerFacility, bool) {
 	if o == nil || isNil(o.Da) {
 		return nil, false
 	}
@@ -134,15 +134,15 @@ func (o *SpotMarketPricesPerMetroReport) HasDa() bool {
 	return false
 }
 
-// SetDa gets a reference to the given FindSpotMarketPrices200ResponseSpotMarketPricesAms1 and assigns it to the Da field.
-func (o *SpotMarketPricesPerMetroReport) SetDa(v FindSpotMarketPrices200ResponseSpotMarketPricesAms1) {
+// SetDa gets a reference to the given SpotPricesPerFacility and assigns it to the Da field.
+func (o *SpotMarketPricesPerMetroReport) SetDa(v SpotPricesPerFacility) {
 	o.Da = &v
 }
 
 // GetLa returns the La field value if set, zero value otherwise.
-func (o *SpotMarketPricesPerMetroReport) GetLa() FindSpotMarketPrices200ResponseSpotMarketPricesAms1 {
+func (o *SpotMarketPricesPerMetroReport) GetLa() SpotPricesPerFacility {
 	if o == nil || isNil(o.La) {
-		var ret FindSpotMarketPrices200ResponseSpotMarketPricesAms1
+		var ret SpotPricesPerFacility
 		return ret
 	}
 	return *o.La
@@ -150,7 +150,7 @@ func (o *SpotMarketPricesPerMetroReport) GetLa() FindSpotMarketPrices200Response
 
 // GetLaOk returns a tuple with the La field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SpotMarketPricesPerMetroReport) GetLaOk() (*FindSpotMarketPrices200ResponseSpotMarketPricesAms1, bool) {
+func (o *SpotMarketPricesPerMetroReport) GetLaOk() (*SpotPricesPerFacility, bool) {
 	if o == nil || isNil(o.La) {
 		return nil, false
 	}
@@ -166,15 +166,15 @@ func (o *SpotMarketPricesPerMetroReport) HasLa() bool {
 	return false
 }
 
-// SetLa gets a reference to the given FindSpotMarketPrices200ResponseSpotMarketPricesAms1 and assigns it to the La field.
-func (o *SpotMarketPricesPerMetroReport) SetLa(v FindSpotMarketPrices200ResponseSpotMarketPricesAms1) {
+// SetLa gets a reference to the given SpotPricesPerFacility and assigns it to the La field.
+func (o *SpotMarketPricesPerMetroReport) SetLa(v SpotPricesPerFacility) {
 	o.La = &v
 }
 
 // GetNy returns the Ny field value if set, zero value otherwise.
-func (o *SpotMarketPricesPerMetroReport) GetNy() FindSpotMarketPrices200ResponseSpotMarketPricesAms1 {
+func (o *SpotMarketPricesPerMetroReport) GetNy() SpotPricesPerFacility {
 	if o == nil || isNil(o.Ny) {
-		var ret FindSpotMarketPrices200ResponseSpotMarketPricesAms1
+		var ret SpotPricesPerFacility
 		return ret
 	}
 	return *o.Ny
@@ -182,7 +182,7 @@ func (o *SpotMarketPricesPerMetroReport) GetNy() FindSpotMarketPrices200Response
 
 // GetNyOk returns a tuple with the Ny field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SpotMarketPricesPerMetroReport) GetNyOk() (*FindSpotMarketPrices200ResponseSpotMarketPricesAms1, bool) {
+func (o *SpotMarketPricesPerMetroReport) GetNyOk() (*SpotPricesPerFacility, bool) {
 	if o == nil || isNil(o.Ny) {
 		return nil, false
 	}
@@ -198,15 +198,15 @@ func (o *SpotMarketPricesPerMetroReport) HasNy() bool {
 	return false
 }
 
-// SetNy gets a reference to the given FindSpotMarketPrices200ResponseSpotMarketPricesAms1 and assigns it to the Ny field.
-func (o *SpotMarketPricesPerMetroReport) SetNy(v FindSpotMarketPrices200ResponseSpotMarketPricesAms1) {
+// SetNy gets a reference to the given SpotPricesPerFacility and assigns it to the Ny field.
+func (o *SpotMarketPricesPerMetroReport) SetNy(v SpotPricesPerFacility) {
 	o.Ny = &v
 }
 
 // GetSg returns the Sg field value if set, zero value otherwise.
-func (o *SpotMarketPricesPerMetroReport) GetSg() FindSpotMarketPrices200ResponseSpotMarketPricesAms1 {
+func (o *SpotMarketPricesPerMetroReport) GetSg() SpotPricesPerFacility {
 	if o == nil || isNil(o.Sg) {
-		var ret FindSpotMarketPrices200ResponseSpotMarketPricesAms1
+		var ret SpotPricesPerFacility
 		return ret
 	}
 	return *o.Sg
@@ -214,7 +214,7 @@ func (o *SpotMarketPricesPerMetroReport) GetSg() FindSpotMarketPrices200Response
 
 // GetSgOk returns a tuple with the Sg field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SpotMarketPricesPerMetroReport) GetSgOk() (*FindSpotMarketPrices200ResponseSpotMarketPricesAms1, bool) {
+func (o *SpotMarketPricesPerMetroReport) GetSgOk() (*SpotPricesPerFacility, bool) {
 	if o == nil || isNil(o.Sg) {
 		return nil, false
 	}
@@ -230,15 +230,15 @@ func (o *SpotMarketPricesPerMetroReport) HasSg() bool {
 	return false
 }
 
-// SetSg gets a reference to the given FindSpotMarketPrices200ResponseSpotMarketPricesAms1 and assigns it to the Sg field.
-func (o *SpotMarketPricesPerMetroReport) SetSg(v FindSpotMarketPrices200ResponseSpotMarketPricesAms1) {
+// SetSg gets a reference to the given SpotPricesPerFacility and assigns it to the Sg field.
+func (o *SpotMarketPricesPerMetroReport) SetSg(v SpotPricesPerFacility) {
 	o.Sg = &v
 }
 
 // GetSv returns the Sv field value if set, zero value otherwise.
-func (o *SpotMarketPricesPerMetroReport) GetSv() FindSpotMarketPrices200ResponseSpotMarketPricesAms1 {
+func (o *SpotMarketPricesPerMetroReport) GetSv() SpotPricesPerFacility {
 	if o == nil || isNil(o.Sv) {
-		var ret FindSpotMarketPrices200ResponseSpotMarketPricesAms1
+		var ret SpotPricesPerFacility
 		return ret
 	}
 	return *o.Sv
@@ -246,7 +246,7 @@ func (o *SpotMarketPricesPerMetroReport) GetSv() FindSpotMarketPrices200Response
 
 // GetSvOk returns a tuple with the Sv field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SpotMarketPricesPerMetroReport) GetSvOk() (*FindSpotMarketPrices200ResponseSpotMarketPricesAms1, bool) {
+func (o *SpotMarketPricesPerMetroReport) GetSvOk() (*SpotPricesPerFacility, bool) {
 	if o == nil || isNil(o.Sv) {
 		return nil, false
 	}
@@ -262,8 +262,8 @@ func (o *SpotMarketPricesPerMetroReport) HasSv() bool {
 	return false
 }
 
-// SetSv gets a reference to the given FindSpotMarketPrices200ResponseSpotMarketPricesAms1 and assigns it to the Sv field.
-func (o *SpotMarketPricesPerMetroReport) SetSv(v FindSpotMarketPrices200ResponseSpotMarketPricesAms1) {
+// SetSv gets a reference to the given SpotPricesPerFacility and assigns it to the Sv field.
+func (o *SpotMarketPricesPerMetroReport) SetSv(v SpotPricesPerFacility) {
 	o.Sv = &v
 }
 

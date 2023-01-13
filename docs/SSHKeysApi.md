@@ -17,7 +17,7 @@ Method | HTTP request | Description
 
 ## CreateProjectSSHKey
 
-> FindDeviceSSHKeys200ResponseSshKeysInner CreateProjectSSHKey(ctx, id).CreateProjectSSHKeyRequest(createProjectSSHKeyRequest).Execute()
+> SSHKey CreateProjectSSHKey(ctx, id).SSHKeyCreateInput(sSHKeyCreateInput).Execute()
 
 Create a ssh key for the given project
 
@@ -37,16 +37,16 @@ import (
 
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Project UUID
-    createProjectSSHKeyRequest := *openapiclient.NewCreateProjectSSHKeyRequest() // CreateProjectSSHKeyRequest | ssh key to create
+    sSHKeyCreateInput := *openapiclient.NewSSHKeyCreateInput() // SSHKeyCreateInput | ssh key to create
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.SSHKeysApi.CreateProjectSSHKey(context.Background(), id).CreateProjectSSHKeyRequest(createProjectSSHKeyRequest).Execute()
+    resp, r, err := apiClient.SSHKeysApi.CreateProjectSSHKey(context.Background(), id).SSHKeyCreateInput(sSHKeyCreateInput).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SSHKeysApi.CreateProjectSSHKey``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateProjectSSHKey`: FindDeviceSSHKeys200ResponseSshKeysInner
+    // response from `CreateProjectSSHKey`: SSHKey
     fmt.Fprintf(os.Stdout, "Response from `SSHKeysApi.CreateProjectSSHKey`: %v\n", resp)
 }
 ```
@@ -67,11 +67,11 @@ Other parameters are passed through a pointer to a apiCreateProjectSSHKeyRequest
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **createProjectSSHKeyRequest** | [**CreateProjectSSHKeyRequest**](CreateProjectSSHKeyRequest.md) | ssh key to create | 
+ **sSHKeyCreateInput** | [**SSHKeyCreateInput**](SSHKeyCreateInput.md) | ssh key to create | 
 
 ### Return type
 
-[**FindDeviceSSHKeys200ResponseSshKeysInner**](FindDeviceSSHKeys200ResponseSshKeysInner.md)
+[**SSHKey**](SSHKey.md)
 
 ### Authorization
 
@@ -89,7 +89,7 @@ Name | Type | Description  | Notes
 
 ## CreateSSHKey
 
-> FindDeviceSSHKeys200ResponseSshKeysInner CreateSSHKey(ctx).CreateProjectSSHKeyRequest(createProjectSSHKeyRequest).Execute()
+> SSHKey CreateSSHKey(ctx).SSHKeyCreateInput(sSHKeyCreateInput).Execute()
 
 Create a ssh key for the current user
 
@@ -108,16 +108,16 @@ import (
 )
 
 func main() {
-    createProjectSSHKeyRequest := *openapiclient.NewCreateProjectSSHKeyRequest() // CreateProjectSSHKeyRequest | ssh key to create
+    sSHKeyCreateInput := *openapiclient.NewSSHKeyCreateInput() // SSHKeyCreateInput | ssh key to create
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.SSHKeysApi.CreateSSHKey(context.Background()).CreateProjectSSHKeyRequest(createProjectSSHKeyRequest).Execute()
+    resp, r, err := apiClient.SSHKeysApi.CreateSSHKey(context.Background()).SSHKeyCreateInput(sSHKeyCreateInput).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SSHKeysApi.CreateSSHKey``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateSSHKey`: FindDeviceSSHKeys200ResponseSshKeysInner
+    // response from `CreateSSHKey`: SSHKey
     fmt.Fprintf(os.Stdout, "Response from `SSHKeysApi.CreateSSHKey`: %v\n", resp)
 }
 ```
@@ -133,11 +133,11 @@ Other parameters are passed through a pointer to a apiCreateSSHKeyRequest struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **createProjectSSHKeyRequest** | [**CreateProjectSSHKeyRequest**](CreateProjectSSHKeyRequest.md) | ssh key to create | 
+ **sSHKeyCreateInput** | [**SSHKeyCreateInput**](SSHKeyCreateInput.md) | ssh key to create | 
 
 ### Return type
 
-[**FindDeviceSSHKeys200ResponseSshKeysInner**](FindDeviceSSHKeys200ResponseSshKeysInner.md)
+[**SSHKey**](SSHKey.md)
 
 ### Authorization
 
@@ -223,7 +223,7 @@ Name | Type | Description  | Notes
 
 ## FindDeviceSSHKeys
 
-> FindDeviceSSHKeys200Response FindDeviceSSHKeys(ctx, id).SearchString(searchString).Include(include).Exclude(exclude).Execute()
+> SSHKeyList FindDeviceSSHKeys(ctx, id).SearchString(searchString).Include(include).Exclude(exclude).Execute()
 
 Retrieve a device's ssh keys
 
@@ -254,7 +254,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `SSHKeysApi.FindDeviceSSHKeys``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindDeviceSSHKeys`: FindDeviceSSHKeys200Response
+    // response from `FindDeviceSSHKeys`: SSHKeyList
     fmt.Fprintf(os.Stdout, "Response from `SSHKeysApi.FindDeviceSSHKeys`: %v\n", resp)
 }
 ```
@@ -281,7 +281,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FindDeviceSSHKeys200Response**](FindDeviceSSHKeys200Response.md)
+[**SSHKeyList**](SSHKeyList.md)
 
 ### Authorization
 
@@ -299,7 +299,7 @@ Name | Type | Description  | Notes
 
 ## FindProjectSSHKeys
 
-> FindDeviceSSHKeys200Response FindProjectSSHKeys(ctx, id).SearchString(searchString).Include(include).Exclude(exclude).Execute()
+> SSHKeyList FindProjectSSHKeys(ctx, id).SearchString(searchString).Include(include).Exclude(exclude).Execute()
 
 Retrieve a project's ssh keys
 
@@ -330,7 +330,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `SSHKeysApi.FindProjectSSHKeys``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindProjectSSHKeys`: FindDeviceSSHKeys200Response
+    // response from `FindProjectSSHKeys`: SSHKeyList
     fmt.Fprintf(os.Stdout, "Response from `SSHKeysApi.FindProjectSSHKeys`: %v\n", resp)
 }
 ```
@@ -357,7 +357,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FindDeviceSSHKeys200Response**](FindDeviceSSHKeys200Response.md)
+[**SSHKeyList**](SSHKeyList.md)
 
 ### Authorization
 
@@ -375,7 +375,7 @@ Name | Type | Description  | Notes
 
 ## FindSSHKeyById
 
-> FindDeviceSSHKeys200ResponseSshKeysInner FindSSHKeyById(ctx, id).Include(include).Exclude(exclude).Execute()
+> SSHKey FindSSHKeyById(ctx, id).Include(include).Exclude(exclude).Execute()
 
 Retrieve a ssh key
 
@@ -405,7 +405,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `SSHKeysApi.FindSSHKeyById``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindSSHKeyById`: FindDeviceSSHKeys200ResponseSshKeysInner
+    // response from `FindSSHKeyById`: SSHKey
     fmt.Fprintf(os.Stdout, "Response from `SSHKeysApi.FindSSHKeyById`: %v\n", resp)
 }
 ```
@@ -431,7 +431,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FindDeviceSSHKeys200ResponseSshKeysInner**](FindDeviceSSHKeys200ResponseSshKeysInner.md)
+[**SSHKey**](SSHKey.md)
 
 ### Authorization
 
@@ -449,7 +449,7 @@ Name | Type | Description  | Notes
 
 ## FindSSHKeys
 
-> FindDeviceSSHKeys200Response FindSSHKeys(ctx).SearchString(searchString).Include(include).Exclude(exclude).Execute()
+> SSHKeyList FindSSHKeys(ctx).SearchString(searchString).Include(include).Exclude(exclude).Execute()
 
 Retrieve all ssh keys
 
@@ -479,7 +479,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `SSHKeysApi.FindSSHKeys``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindSSHKeys`: FindDeviceSSHKeys200Response
+    // response from `FindSSHKeys`: SSHKeyList
     fmt.Fprintf(os.Stdout, "Response from `SSHKeysApi.FindSSHKeys`: %v\n", resp)
 }
 ```
@@ -501,7 +501,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FindDeviceSSHKeys200Response**](FindDeviceSSHKeys200Response.md)
+[**SSHKeyList**](SSHKeyList.md)
 
 ### Authorization
 
@@ -519,7 +519,7 @@ Name | Type | Description  | Notes
 
 ## UpdateSSHKey
 
-> FindDeviceSSHKeys200ResponseSshKeysInner UpdateSSHKey(ctx, id).CreateDeviceRequestOneOfAllOf1SshKeysInner(createDeviceRequestOneOfAllOf1SshKeysInner).Execute()
+> SSHKey UpdateSSHKey(ctx, id).SSHKeyInput(sSHKeyInput).Execute()
 
 Update the ssh key
 
@@ -539,16 +539,16 @@ import (
 
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | SSH Key UUID
-    createDeviceRequestOneOfAllOf1SshKeysInner := *openapiclient.NewCreateDeviceRequestOneOfAllOf1SshKeysInner() // CreateDeviceRequestOneOfAllOf1SshKeysInner | ssh key to update
+    sSHKeyInput := *openapiclient.NewSSHKeyInput() // SSHKeyInput | ssh key to update
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.SSHKeysApi.UpdateSSHKey(context.Background(), id).CreateDeviceRequestOneOfAllOf1SshKeysInner(createDeviceRequestOneOfAllOf1SshKeysInner).Execute()
+    resp, r, err := apiClient.SSHKeysApi.UpdateSSHKey(context.Background(), id).SSHKeyInput(sSHKeyInput).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SSHKeysApi.UpdateSSHKey``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateSSHKey`: FindDeviceSSHKeys200ResponseSshKeysInner
+    // response from `UpdateSSHKey`: SSHKey
     fmt.Fprintf(os.Stdout, "Response from `SSHKeysApi.UpdateSSHKey`: %v\n", resp)
 }
 ```
@@ -569,11 +569,11 @@ Other parameters are passed through a pointer to a apiUpdateSSHKeyRequest struct
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **createDeviceRequestOneOfAllOf1SshKeysInner** | [**CreateDeviceRequestOneOfAllOf1SshKeysInner**](CreateDeviceRequestOneOfAllOf1SshKeysInner.md) | ssh key to update | 
+ **sSHKeyInput** | [**SSHKeyInput**](SSHKeyInput.md) | ssh key to update | 
 
 ### Return type
 
-[**FindDeviceSSHKeys200ResponseSshKeysInner**](FindDeviceSSHKeys200ResponseSshKeysInner.md)
+[**SSHKey**](SSHKey.md)
 
 ### Authorization
 

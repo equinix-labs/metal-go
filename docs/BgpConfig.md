@@ -11,11 +11,11 @@ Name | Type | Description | Notes
 **Id** | Pointer to **string** |  | [optional] 
 **MaxPrefix** | Pointer to **int32** | The maximum number of route filters allowed per server | [optional] [default to 10]
 **Md5** | Pointer to **NullableString** | (Optional) Password for BGP session in plaintext (not a checksum) | [optional] 
-**Project** | Pointer to [**FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
-**Ranges** | Pointer to [**[]FindBgpConfigByProject200ResponseRangesInner**](FindBgpConfigByProject200ResponseRangesInner.md) | The IP block ranges associated to the ASN (Populated in Global BGP only) | [optional] 
+**Project** | Pointer to [**Href**](Href.md) |  | [optional] 
+**Ranges** | Pointer to [**[]GlobalBgpRange**](GlobalBgpRange.md) | The IP block ranges associated to the ASN (Populated in Global BGP only) | [optional] 
 **RequestedAt** | Pointer to **time.Time** |  | [optional] 
 **RouteObject** | Pointer to **string** | Specifies AS-MACRO (aka AS-SET) to use when building client route filters | [optional] 
-**Sessions** | Pointer to [**[]FindBgpSessionById200Response**](FindBgpSessionById200Response.md) | The direct connections between neighboring routers that want to exchange routing information. | [optional] 
+**Sessions** | Pointer to [**[]BgpSession**](BgpSession.md) | The direct connections between neighboring routers that want to exchange routing information. | [optional] 
 **Status** | Pointer to **string** | Status of the BGP Config. Status \&quot;requested\&quot; is valid only with the \&quot;global\&quot; deployment_type. | [optional] 
 
 ## Methods
@@ -224,20 +224,20 @@ HasMd5 returns a boolean if a field has been set.
 UnsetMd5 ensures that no value is present for Md5, not even an explicit nil
 ### GetProject
 
-`func (o *BgpConfig) GetProject() FindBatchById200ResponseDevicesInner`
+`func (o *BgpConfig) GetProject() Href`
 
 GetProject returns the Project field if non-nil, zero value otherwise.
 
 ### GetProjectOk
 
-`func (o *BgpConfig) GetProjectOk() (*FindBatchById200ResponseDevicesInner, bool)`
+`func (o *BgpConfig) GetProjectOk() (*Href, bool)`
 
 GetProjectOk returns a tuple with the Project field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetProject
 
-`func (o *BgpConfig) SetProject(v FindBatchById200ResponseDevicesInner)`
+`func (o *BgpConfig) SetProject(v Href)`
 
 SetProject sets Project field to given value.
 
@@ -249,20 +249,20 @@ HasProject returns a boolean if a field has been set.
 
 ### GetRanges
 
-`func (o *BgpConfig) GetRanges() []FindBgpConfigByProject200ResponseRangesInner`
+`func (o *BgpConfig) GetRanges() []GlobalBgpRange`
 
 GetRanges returns the Ranges field if non-nil, zero value otherwise.
 
 ### GetRangesOk
 
-`func (o *BgpConfig) GetRangesOk() (*[]FindBgpConfigByProject200ResponseRangesInner, bool)`
+`func (o *BgpConfig) GetRangesOk() (*[]GlobalBgpRange, bool)`
 
 GetRangesOk returns a tuple with the Ranges field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRanges
 
-`func (o *BgpConfig) SetRanges(v []FindBgpConfigByProject200ResponseRangesInner)`
+`func (o *BgpConfig) SetRanges(v []GlobalBgpRange)`
 
 SetRanges sets Ranges field to given value.
 
@@ -324,20 +324,20 @@ HasRouteObject returns a boolean if a field has been set.
 
 ### GetSessions
 
-`func (o *BgpConfig) GetSessions() []FindBgpSessionById200Response`
+`func (o *BgpConfig) GetSessions() []BgpSession`
 
 GetSessions returns the Sessions field if non-nil, zero value otherwise.
 
 ### GetSessionsOk
 
-`func (o *BgpConfig) GetSessionsOk() (*[]FindBgpSessionById200Response, bool)`
+`func (o *BgpConfig) GetSessionsOk() (*[]BgpSession, bool)`
 
 GetSessionsOk returns a tuple with the Sessions field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSessions
 
-`func (o *BgpConfig) SetSessions(v []FindBgpSessionById200Response)`
+`func (o *BgpConfig) SetSessions(v []BgpSession)`
 
 SetSessions sets Sessions field to given value.
 

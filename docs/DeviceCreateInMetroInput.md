@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Metro** | **string** | Metro code or ID of where the instance should be provisioned in.  Either metro or facility must be provided. | 
+**Metro** | **string** | Metro code or ID of where the instance should be provisioned in. Either metro or facility must be provided. | 
 **AlwaysPxe** | Pointer to **bool** | When true, devices with a &#x60;custom_ipxe&#x60; OS will always boot to iPXE. The default setting of false ensures that iPXE will be used on only the first boot. | [optional] [default to false]
 **BillingCycle** | Pointer to **string** | The billing cycle of the device. | [optional] 
-**Customdata** | Pointer to **interface{}** | Customdata is an arbitrary JSON value that can be accessed via the metadata service. | [optional] [default to {}]
+**Customdata** | Pointer to **map[string]interface{}** | Customdata is an arbitrary JSON value that can be accessed via the metadata service. | [optional] [default to {}]
 **Description** | Pointer to **string** | Any description of the device or how it will be used. This may be used to inform other API consumers with project access. | [optional] 
 **Features** | Pointer to **[]string** | The features attribute allows you to optionally specify what features your server should have.  In the API shorthand syntax, all features listed are &#x60;required&#x60;:  &#x60;&#x60;&#x60; { \&quot;features\&quot;: [\&quot;tpm\&quot;] } &#x60;&#x60;&#x60;  Alternatively, if you do not require a certain feature, but would prefer to be assigned a server with that feature if there are any available, you may specify that feature with a &#x60;preferred&#x60; value. The request will not fail if we have no servers with that feature in our inventory. The API offers an alternative syntax for mixing preferred and required features:  &#x60;&#x60;&#x60; { \&quot;features\&quot;: { \&quot;tpm\&quot;: \&quot;required\&quot;, \&quot;raid\&quot;: \&quot;preferred\&quot; } } &#x60;&#x60;&#x60;  The request will only fail if there are no available servers matching the required &#x60;tpm&#x60; criteria. | [optional] 
 **HardwareReservationId** | Pointer to **string** | The Hardware Reservation UUID to provision. Alternatively, &#x60;next-available&#x60; can be specified to select from any of the available hardware reservations. An error will be returned if the requested reservation option is not available.  See [Reserved Hardware](https://metal.equinix.com/developers/docs/deploy/reserved/) for more details. | [optional] [default to ""]
 **Hostname** | Pointer to **string** | The hostname to use within the operating system. The same hostname may be used on multiple devices within a project. | [optional] 
-**IpAddresses** | Pointer to [**[]DeviceCreateInFacilityInputAllOf1IpAddresses**](DeviceCreateInFacilityInputAllOf1IpAddresses.md) | The &#x60;ip_addresses attribute will allow you to specify the addresses you want created with your device.  The default value configures public IPv4, public IPv6, and private IPv4.  Private IPv4 address is required. When specifying &#x60;ip_addresses&#x60;, one of the array items must enable private IPv4.  Some operating systems require public IPv4 address. In those cases you will receive an error message if public IPv4 is not enabled.  For example, to only configure your server with a private IPv4 address, you can send &#x60;{ \&quot;ip_addresses\&quot;: [{ \&quot;address_family\&quot;: 4, \&quot;public\&quot;: false }] }&#x60;.  It is possible to request a subnet size larger than a &#x60;/30&#x60; by assigning addresses using the UUID(s) of ip_reservations in your project.  For example, &#x60;{ \&quot;ip_addresses\&quot;: [..., {\&quot;address_family\&quot;: 4, \&quot;public\&quot;: true, \&quot;ip_reservations\&quot;: [\&quot;uuid1\&quot;, \&quot;uuid2\&quot;]}] }&#x60;  To access a server without public IPs, you can use our Out-of-Band console access (SOS) or proxy through another server in the project with public IPs enabled. | [optional] [default to [{"address_family":4,"public":true},{"address_family":4,"public":false},{"address_family":6,"public":true}]]
+**IpAddresses** | Pointer to [**[]DeviceCreateInputIpAddressesInner**](DeviceCreateInputIpAddressesInner.md) | The &#x60;ip_addresses attribute will allow you to specify the addresses you want created with your device.  The default value configures public IPv4, public IPv6, and private IPv4.  Private IPv4 address is required. When specifying &#x60;ip_addresses&#x60;, one of the array items must enable private IPv4.  Some operating systems require public IPv4 address. In those cases you will receive an error message if public IPv4 is not enabled.  For example, to only configure your server with a private IPv4 address, you can send &#x60;{ \&quot;ip_addresses\&quot;: [{ \&quot;address_family\&quot;: 4, \&quot;public\&quot;: false }] }&#x60;.  It is possible to request a subnet size larger than a &#x60;/30&#x60; by assigning addresses using the UUID(s) of ip_reservations in your project.  For example, &#x60;{ \&quot;ip_addresses\&quot;: [..., {\&quot;address_family\&quot;: 4, \&quot;public\&quot;: true, \&quot;ip_reservations\&quot;: [\&quot;uuid1\&quot;, \&quot;uuid2\&quot;]}] }&#x60;  To access a server without public IPs, you can use our Out-of-Band console access (SOS) or proxy through another server in the project with public IPs enabled. | [optional] [default to [{"address_family":4,"public":true},{"address_family":4,"public":false},{"address_family":6,"public":true}]]
 **IpxeScriptUrl** | Pointer to **string** | When set, the device will chainload an iPXE Script at boot fetched from the supplied URL.  See [Custom iPXE](https://metal.equinix.com/developers/docs/operating-systems/custom-ipxe/) for more details. | [optional] 
 **Locked** | Pointer to **bool** | Whether the device should be locked, preventing accidental deletion. | [optional] [default to false]
 **NoSshKeys** | Pointer to **bool** | Overrides default behaviour of attaching all of the organization members ssh keys and project ssh keys to device if no specific keys specified | [optional] [default to false]
@@ -23,7 +23,7 @@ Name | Type | Description | Notes
 **PublicIpv4SubnetSize** | Pointer to **float32** | Deprecated. Use ip_addresses. Subnet range for addresses allocated to this device. Your project must have addresses available for a non-default request. | [optional] [default to 31]
 **SpotInstance** | Pointer to **bool** | Create a spot instance. Spot instances are created with a maximum bid price. If the bid price is not met, the spot instance will be terminated as indicated by the &#x60;termination_time&#x60; field. | [optional] 
 **SpotPriceMax** | Pointer to **float32** | The maximum amount to bid for a spot instance. | [optional] 
-**SshKeys** | Pointer to [**[]DeviceCreateInFacilityInputAllOf1SshKeys**](DeviceCreateInFacilityInputAllOf1SshKeys.md) | A list of new or existing project ssh_keys that should be authorized to access this device (typically via /root/.ssh/authorized_keys). These keys will also appear in the device metadata.  These keys are added in addition to any keys defined by   &#x60;project_ssh_keys&#x60; and &#x60;user_ssh_keys&#x60;.  | [optional] 
+**SshKeys** | Pointer to [**[]SSHKeyInput**](SSHKeyInput.md) | A list of new or existing project ssh_keys that should be authorized to access this device (typically via /root/.ssh/authorized_keys). These keys will also appear in the device metadata.  These keys are added in addition to any keys defined by   &#x60;project_ssh_keys&#x60; and &#x60;user_ssh_keys&#x60;.  | [optional] 
 **Tags** | Pointer to **[]string** |  | [optional] 
 **TerminationTime** | Pointer to **time.Time** |  | [optional] 
 **UserSshKeys** | Pointer to **[]string** | A list of UUIDs identifying the users that should be authorized to access this device (typically via /root/.ssh/authorized_keys).  These keys will also appear in the device metadata.  The users must be members of the project or organization.  If no SSH keys are specified (&#x60;user_ssh_keys&#x60;, &#x60;project_ssh_keys&#x60;, and &#x60;ssh_keys&#x60; are all empty lists or omitted), all parent project keys, parent project members keys and organization members keys will be included. This behaviour can be changed with &#39;no_ssh_keys&#39; option to omit any SSH key being added.  | [optional] 
@@ -120,20 +120,20 @@ HasBillingCycle returns a boolean if a field has been set.
 
 ### GetCustomdata
 
-`func (o *DeviceCreateInMetroInput) GetCustomdata() interface{}`
+`func (o *DeviceCreateInMetroInput) GetCustomdata() map[string]interface{}`
 
 GetCustomdata returns the Customdata field if non-nil, zero value otherwise.
 
 ### GetCustomdataOk
 
-`func (o *DeviceCreateInMetroInput) GetCustomdataOk() (*interface{}, bool)`
+`func (o *DeviceCreateInMetroInput) GetCustomdataOk() (*map[string]interface{}, bool)`
 
 GetCustomdataOk returns a tuple with the Customdata field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCustomdata
 
-`func (o *DeviceCreateInMetroInput) SetCustomdata(v interface{})`
+`func (o *DeviceCreateInMetroInput) SetCustomdata(v map[string]interface{})`
 
 SetCustomdata sets Customdata field to given value.
 
@@ -143,16 +143,6 @@ SetCustomdata sets Customdata field to given value.
 
 HasCustomdata returns a boolean if a field has been set.
 
-### SetCustomdataNil
-
-`func (o *DeviceCreateInMetroInput) SetCustomdataNil(b bool)`
-
- SetCustomdataNil sets the value for Customdata to be an explicit nil
-
-### UnsetCustomdata
-`func (o *DeviceCreateInMetroInput) UnsetCustomdata()`
-
-UnsetCustomdata ensures that no value is present for Customdata, not even an explicit nil
 ### GetDescription
 
 `func (o *DeviceCreateInMetroInput) GetDescription() string`
@@ -255,20 +245,20 @@ HasHostname returns a boolean if a field has been set.
 
 ### GetIpAddresses
 
-`func (o *DeviceCreateInMetroInput) GetIpAddresses() []DeviceCreateInFacilityInputAllOf1IpAddresses`
+`func (o *DeviceCreateInMetroInput) GetIpAddresses() []DeviceCreateInputIpAddressesInner`
 
 GetIpAddresses returns the IpAddresses field if non-nil, zero value otherwise.
 
 ### GetIpAddressesOk
 
-`func (o *DeviceCreateInMetroInput) GetIpAddressesOk() (*[]DeviceCreateInFacilityInputAllOf1IpAddresses, bool)`
+`func (o *DeviceCreateInMetroInput) GetIpAddressesOk() (*[]DeviceCreateInputIpAddressesInner, bool)`
 
 GetIpAddressesOk returns a tuple with the IpAddresses field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIpAddresses
 
-`func (o *DeviceCreateInMetroInput) SetIpAddresses(v []DeviceCreateInFacilityInputAllOf1IpAddresses)`
+`func (o *DeviceCreateInMetroInput) SetIpAddresses(v []DeviceCreateInputIpAddressesInner)`
 
 SetIpAddresses sets IpAddresses field to given value.
 
@@ -520,20 +510,20 @@ HasSpotPriceMax returns a boolean if a field has been set.
 
 ### GetSshKeys
 
-`func (o *DeviceCreateInMetroInput) GetSshKeys() []DeviceCreateInFacilityInputAllOf1SshKeys`
+`func (o *DeviceCreateInMetroInput) GetSshKeys() []SSHKeyInput`
 
 GetSshKeys returns the SshKeys field if non-nil, zero value otherwise.
 
 ### GetSshKeysOk
 
-`func (o *DeviceCreateInMetroInput) GetSshKeysOk() (*[]DeviceCreateInFacilityInputAllOf1SshKeys, bool)`
+`func (o *DeviceCreateInMetroInput) GetSshKeysOk() (*[]SSHKeyInput, bool)`
 
 GetSshKeysOk returns a tuple with the SshKeys field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSshKeys
 
-`func (o *DeviceCreateInMetroInput) SetSshKeys(v []DeviceCreateInFacilityInputAllOf1SshKeys)`
+`func (o *DeviceCreateInMetroInput) SetSshKeys(v []SSHKeyInput)`
 
 SetSshKeys sets SshKeys field to given value.
 

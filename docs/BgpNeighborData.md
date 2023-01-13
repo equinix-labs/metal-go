@@ -12,8 +12,8 @@ Name | Type | Description | Notes
 **Multihop** | Pointer to **bool** | True when the BGP session should be configured as multihop. | [optional] 
 **PeerAs** | Pointer to **float32** | The Peer ASN to use when configuring BGP on your device. | [optional] 
 **PeerIps** | Pointer to **[]string** | A list of one or more IP addresses to use for the Peer IP section of your BGP configuration. For non-multihop sessions, this will typically be a single gateway address for the device. For multihop sessions, it will be a list of IPs. | [optional] 
-**RoutesIn** | Pointer to [**[]GetBgpNeighborData200ResponseBgpNeighborsInnerRoutesInInner**](GetBgpNeighborData200ResponseBgpNeighborsInnerRoutesInInner.md) | A list of project subnets | [optional] 
-**RoutesOut** | Pointer to [**[]GetBgpNeighborData200ResponseBgpNeighborsInnerRoutesOutInner**](GetBgpNeighborData200ResponseBgpNeighborsInnerRoutesOutInner.md) | A list of outgoing routes. Only populated if the BGP session has default route enabled. | [optional] 
+**RoutesIn** | Pointer to [**[]BgpNeighborDataRoutesInInner**](BgpNeighborDataRoutesInInner.md) | A list of project subnets | [optional] 
+**RoutesOut** | Pointer to [**[]BgpNeighborDataRoutesOutInner**](BgpNeighborDataRoutesOutInner.md) | A list of outgoing routes. Only populated if the BGP session has default route enabled. | [optional] 
 
 ## Methods
 
@@ -236,20 +236,20 @@ HasPeerIps returns a boolean if a field has been set.
 
 ### GetRoutesIn
 
-`func (o *BgpNeighborData) GetRoutesIn() []GetBgpNeighborData200ResponseBgpNeighborsInnerRoutesInInner`
+`func (o *BgpNeighborData) GetRoutesIn() []BgpNeighborDataRoutesInInner`
 
 GetRoutesIn returns the RoutesIn field if non-nil, zero value otherwise.
 
 ### GetRoutesInOk
 
-`func (o *BgpNeighborData) GetRoutesInOk() (*[]GetBgpNeighborData200ResponseBgpNeighborsInnerRoutesInInner, bool)`
+`func (o *BgpNeighborData) GetRoutesInOk() (*[]BgpNeighborDataRoutesInInner, bool)`
 
 GetRoutesInOk returns a tuple with the RoutesIn field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRoutesIn
 
-`func (o *BgpNeighborData) SetRoutesIn(v []GetBgpNeighborData200ResponseBgpNeighborsInnerRoutesInInner)`
+`func (o *BgpNeighborData) SetRoutesIn(v []BgpNeighborDataRoutesInInner)`
 
 SetRoutesIn sets RoutesIn field to given value.
 
@@ -261,20 +261,20 @@ HasRoutesIn returns a boolean if a field has been set.
 
 ### GetRoutesOut
 
-`func (o *BgpNeighborData) GetRoutesOut() []GetBgpNeighborData200ResponseBgpNeighborsInnerRoutesOutInner`
+`func (o *BgpNeighborData) GetRoutesOut() []BgpNeighborDataRoutesOutInner`
 
 GetRoutesOut returns the RoutesOut field if non-nil, zero value otherwise.
 
 ### GetRoutesOutOk
 
-`func (o *BgpNeighborData) GetRoutesOutOk() (*[]GetBgpNeighborData200ResponseBgpNeighborsInnerRoutesOutInner, bool)`
+`func (o *BgpNeighborData) GetRoutesOutOk() (*[]BgpNeighborDataRoutesOutInner, bool)`
 
 GetRoutesOutOk returns a tuple with the RoutesOut field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRoutesOut
 
-`func (o *BgpNeighborData) SetRoutesOut(v []GetBgpNeighborData200ResponseBgpNeighborsInnerRoutesOutInner)`
+`func (o *BgpNeighborData) SetRoutesOut(v []BgpNeighborDataRoutesOutInner)`
 
 SetRoutesOut sets RoutesOut field to given value.
 

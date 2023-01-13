@@ -17,12 +17,12 @@ import (
 
 // Meta struct for Meta
 type Meta struct {
-	First    *FindBatchById200ResponseDevicesInner `json:"first,omitempty"`
-	Last     *FindBatchById200ResponseDevicesInner `json:"last,omitempty"`
-	Next     *FindBatchById200ResponseDevicesInner `json:"next,omitempty"`
-	Previous *FindBatchById200ResponseDevicesInner `json:"previous,omitempty"`
-	Self     *FindBatchById200ResponseDevicesInner `json:"self,omitempty"`
-	Total    *int32                                `json:"total,omitempty"`
+	First    *Href  `json:"first,omitempty"`
+	Last     *Href  `json:"last,omitempty"`
+	Next     *Href  `json:"next,omitempty"`
+	Previous *Href  `json:"previous,omitempty"`
+	Self     *Href  `json:"self,omitempty"`
+	Total    *int32 `json:"total,omitempty"`
 }
 
 // NewMeta instantiates a new Meta object
@@ -43,9 +43,9 @@ func NewMetaWithDefaults() *Meta {
 }
 
 // GetFirst returns the First field value if set, zero value otherwise.
-func (o *Meta) GetFirst() FindBatchById200ResponseDevicesInner {
+func (o *Meta) GetFirst() Href {
 	if o == nil || isNil(o.First) {
-		var ret FindBatchById200ResponseDevicesInner
+		var ret Href
 		return ret
 	}
 	return *o.First
@@ -53,7 +53,7 @@ func (o *Meta) GetFirst() FindBatchById200ResponseDevicesInner {
 
 // GetFirstOk returns a tuple with the First field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Meta) GetFirstOk() (*FindBatchById200ResponseDevicesInner, bool) {
+func (o *Meta) GetFirstOk() (*Href, bool) {
 	if o == nil || isNil(o.First) {
 		return nil, false
 	}
@@ -69,15 +69,15 @@ func (o *Meta) HasFirst() bool {
 	return false
 }
 
-// SetFirst gets a reference to the given FindBatchById200ResponseDevicesInner and assigns it to the First field.
-func (o *Meta) SetFirst(v FindBatchById200ResponseDevicesInner) {
+// SetFirst gets a reference to the given Href and assigns it to the First field.
+func (o *Meta) SetFirst(v Href) {
 	o.First = &v
 }
 
 // GetLast returns the Last field value if set, zero value otherwise.
-func (o *Meta) GetLast() FindBatchById200ResponseDevicesInner {
+func (o *Meta) GetLast() Href {
 	if o == nil || isNil(o.Last) {
-		var ret FindBatchById200ResponseDevicesInner
+		var ret Href
 		return ret
 	}
 	return *o.Last
@@ -85,7 +85,7 @@ func (o *Meta) GetLast() FindBatchById200ResponseDevicesInner {
 
 // GetLastOk returns a tuple with the Last field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Meta) GetLastOk() (*FindBatchById200ResponseDevicesInner, bool) {
+func (o *Meta) GetLastOk() (*Href, bool) {
 	if o == nil || isNil(o.Last) {
 		return nil, false
 	}
@@ -101,15 +101,15 @@ func (o *Meta) HasLast() bool {
 	return false
 }
 
-// SetLast gets a reference to the given FindBatchById200ResponseDevicesInner and assigns it to the Last field.
-func (o *Meta) SetLast(v FindBatchById200ResponseDevicesInner) {
+// SetLast gets a reference to the given Href and assigns it to the Last field.
+func (o *Meta) SetLast(v Href) {
 	o.Last = &v
 }
 
 // GetNext returns the Next field value if set, zero value otherwise.
-func (o *Meta) GetNext() FindBatchById200ResponseDevicesInner {
+func (o *Meta) GetNext() Href {
 	if o == nil || isNil(o.Next) {
-		var ret FindBatchById200ResponseDevicesInner
+		var ret Href
 		return ret
 	}
 	return *o.Next
@@ -117,7 +117,7 @@ func (o *Meta) GetNext() FindBatchById200ResponseDevicesInner {
 
 // GetNextOk returns a tuple with the Next field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Meta) GetNextOk() (*FindBatchById200ResponseDevicesInner, bool) {
+func (o *Meta) GetNextOk() (*Href, bool) {
 	if o == nil || isNil(o.Next) {
 		return nil, false
 	}
@@ -133,15 +133,15 @@ func (o *Meta) HasNext() bool {
 	return false
 }
 
-// SetNext gets a reference to the given FindBatchById200ResponseDevicesInner and assigns it to the Next field.
-func (o *Meta) SetNext(v FindBatchById200ResponseDevicesInner) {
+// SetNext gets a reference to the given Href and assigns it to the Next field.
+func (o *Meta) SetNext(v Href) {
 	o.Next = &v
 }
 
 // GetPrevious returns the Previous field value if set, zero value otherwise.
-func (o *Meta) GetPrevious() FindBatchById200ResponseDevicesInner {
+func (o *Meta) GetPrevious() Href {
 	if o == nil || isNil(o.Previous) {
-		var ret FindBatchById200ResponseDevicesInner
+		var ret Href
 		return ret
 	}
 	return *o.Previous
@@ -149,7 +149,7 @@ func (o *Meta) GetPrevious() FindBatchById200ResponseDevicesInner {
 
 // GetPreviousOk returns a tuple with the Previous field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Meta) GetPreviousOk() (*FindBatchById200ResponseDevicesInner, bool) {
+func (o *Meta) GetPreviousOk() (*Href, bool) {
 	if o == nil || isNil(o.Previous) {
 		return nil, false
 	}
@@ -165,15 +165,15 @@ func (o *Meta) HasPrevious() bool {
 	return false
 }
 
-// SetPrevious gets a reference to the given FindBatchById200ResponseDevicesInner and assigns it to the Previous field.
-func (o *Meta) SetPrevious(v FindBatchById200ResponseDevicesInner) {
+// SetPrevious gets a reference to the given Href and assigns it to the Previous field.
+func (o *Meta) SetPrevious(v Href) {
 	o.Previous = &v
 }
 
 // GetSelf returns the Self field value if set, zero value otherwise.
-func (o *Meta) GetSelf() FindBatchById200ResponseDevicesInner {
+func (o *Meta) GetSelf() Href {
 	if o == nil || isNil(o.Self) {
-		var ret FindBatchById200ResponseDevicesInner
+		var ret Href
 		return ret
 	}
 	return *o.Self
@@ -181,7 +181,7 @@ func (o *Meta) GetSelf() FindBatchById200ResponseDevicesInner {
 
 // GetSelfOk returns a tuple with the Self field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Meta) GetSelfOk() (*FindBatchById200ResponseDevicesInner, bool) {
+func (o *Meta) GetSelfOk() (*Href, bool) {
 	if o == nil || isNil(o.Self) {
 		return nil, false
 	}
@@ -197,8 +197,8 @@ func (o *Meta) HasSelf() bool {
 	return false
 }
 
-// SetSelf gets a reference to the given FindBatchById200ResponseDevicesInner and assigns it to the Self field.
-func (o *Meta) SetSelf(v FindBatchById200ResponseDevicesInner) {
+// SetSelf gets a reference to the given Href and assigns it to the Self field.
+func (o *Meta) SetSelf(v Href) {
 	o.Self = &v
 }
 

@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **CompanyName** | Pointer to **string** |  | [optional] 
 **CompanyUrl** | Pointer to **string** |  | [optional] 
 **Customdata** | Pointer to **map[string]interface{}** |  | [optional] 
-**Emails** | [**[]CreateUserRequestEmailsInner**](CreateUserRequestEmailsInner.md) |  | 
+**Emails** | [**[]EmailInput**](EmailInput.md) |  | 
 **FirstName** | **string** |  | 
 **LastName** | **string** |  | 
 **Level** | Pointer to **string** |  | [optional] 
@@ -27,7 +27,7 @@ Name | Type | Description | Notes
 
 ### NewUserCreateInput
 
-`func NewUserCreateInput(emails []CreateUserRequestEmailsInner, firstName string, lastName string, ) *UserCreateInput`
+`func NewUserCreateInput(emails []EmailInput, firstName string, lastName string, ) *UserCreateInput`
 
 NewUserCreateInput instantiates a new UserCreateInput object
 This constructor will assign default values to properties that have it defined,
@@ -144,20 +144,20 @@ HasCustomdata returns a boolean if a field has been set.
 
 ### GetEmails
 
-`func (o *UserCreateInput) GetEmails() []CreateUserRequestEmailsInner`
+`func (o *UserCreateInput) GetEmails() []EmailInput`
 
 GetEmails returns the Emails field if non-nil, zero value otherwise.
 
 ### GetEmailsOk
 
-`func (o *UserCreateInput) GetEmailsOk() (*[]CreateUserRequestEmailsInner, bool)`
+`func (o *UserCreateInput) GetEmailsOk() (*[]EmailInput, bool)`
 
 GetEmailsOk returns a tuple with the Emails field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetEmails
 
-`func (o *UserCreateInput) SetEmails(v []CreateUserRequestEmailsInner)`
+`func (o *UserCreateInput) SetEmails(v []EmailInput)`
 
 SetEmails sets Emails field to given value.
 

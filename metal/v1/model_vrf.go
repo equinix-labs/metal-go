@@ -24,11 +24,11 @@ type Vrf struct {
 	// A 4-byte ASN associated with the VRF.
 	LocalAsn *int32 `json:"local_asn,omitempty"`
 	// A list of CIDR network addresses. Like [\"10.0.0.0/16\", \"2001:d78::/56\"].
-	IpRanges  []string                                                                                      `json:"ip_ranges,omitempty"`
-	Project   *GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject   `json:"project,omitempty"`
-	Metro     *GetInterconnection200ResponseMetroAllOf                                                      `json:"metro,omitempty"`
-	CreatedBy *GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfCreatedBy `json:"created_by,omitempty"`
-	Href      *string                                                                                       `json:"href,omitempty"`
+	IpRanges  []string `json:"ip_ranges,omitempty"`
+	Project   *Project `json:"project,omitempty"`
+	Metro     *Metro   `json:"metro,omitempty"`
+	CreatedBy *User    `json:"created_by,omitempty"`
+	Href      *string  `json:"href,omitempty"`
 }
 
 // NewVrf instantiates a new Vrf object
@@ -209,9 +209,9 @@ func (o *Vrf) SetIpRanges(v []string) {
 }
 
 // GetProject returns the Project field value if set, zero value otherwise.
-func (o *Vrf) GetProject() GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject {
+func (o *Vrf) GetProject() Project {
 	if o == nil || isNil(o.Project) {
-		var ret GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject
+		var ret Project
 		return ret
 	}
 	return *o.Project
@@ -219,7 +219,7 @@ func (o *Vrf) GetProject() GetInterconnection200ResponsePortsInnerVirtualCircuit
 
 // GetProjectOk returns a tuple with the Project field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Vrf) GetProjectOk() (*GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject, bool) {
+func (o *Vrf) GetProjectOk() (*Project, bool) {
 	if o == nil || isNil(o.Project) {
 		return nil, false
 	}
@@ -235,15 +235,15 @@ func (o *Vrf) HasProject() bool {
 	return false
 }
 
-// SetProject gets a reference to the given GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject and assigns it to the Project field.
-func (o *Vrf) SetProject(v GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject) {
+// SetProject gets a reference to the given Project and assigns it to the Project field.
+func (o *Vrf) SetProject(v Project) {
 	o.Project = &v
 }
 
 // GetMetro returns the Metro field value if set, zero value otherwise.
-func (o *Vrf) GetMetro() GetInterconnection200ResponseMetroAllOf {
+func (o *Vrf) GetMetro() Metro {
 	if o == nil || isNil(o.Metro) {
-		var ret GetInterconnection200ResponseMetroAllOf
+		var ret Metro
 		return ret
 	}
 	return *o.Metro
@@ -251,7 +251,7 @@ func (o *Vrf) GetMetro() GetInterconnection200ResponseMetroAllOf {
 
 // GetMetroOk returns a tuple with the Metro field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Vrf) GetMetroOk() (*GetInterconnection200ResponseMetroAllOf, bool) {
+func (o *Vrf) GetMetroOk() (*Metro, bool) {
 	if o == nil || isNil(o.Metro) {
 		return nil, false
 	}
@@ -267,15 +267,15 @@ func (o *Vrf) HasMetro() bool {
 	return false
 }
 
-// SetMetro gets a reference to the given GetInterconnection200ResponseMetroAllOf and assigns it to the Metro field.
-func (o *Vrf) SetMetro(v GetInterconnection200ResponseMetroAllOf) {
+// SetMetro gets a reference to the given Metro and assigns it to the Metro field.
+func (o *Vrf) SetMetro(v Metro) {
 	o.Metro = &v
 }
 
 // GetCreatedBy returns the CreatedBy field value if set, zero value otherwise.
-func (o *Vrf) GetCreatedBy() GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfCreatedBy {
+func (o *Vrf) GetCreatedBy() User {
 	if o == nil || isNil(o.CreatedBy) {
-		var ret GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfCreatedBy
+		var ret User
 		return ret
 	}
 	return *o.CreatedBy
@@ -283,7 +283,7 @@ func (o *Vrf) GetCreatedBy() GetInterconnection200ResponsePortsInnerVirtualCircu
 
 // GetCreatedByOk returns a tuple with the CreatedBy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Vrf) GetCreatedByOk() (*GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfCreatedBy, bool) {
+func (o *Vrf) GetCreatedByOk() (*User, bool) {
 	if o == nil || isNil(o.CreatedBy) {
 		return nil, false
 	}
@@ -299,8 +299,8 @@ func (o *Vrf) HasCreatedBy() bool {
 	return false
 }
 
-// SetCreatedBy gets a reference to the given GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfCreatedBy and assigns it to the CreatedBy field.
-func (o *Vrf) SetCreatedBy(v GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfCreatedBy) {
+// SetCreatedBy gets a reference to the given User and assigns it to the CreatedBy field.
+func (o *Vrf) SetCreatedBy(v User) {
 	o.CreatedBy = &v
 }
 

@@ -23,14 +23,14 @@ import (
 type SupportRequestApiService service
 
 type ApiRequestSuppertRequest struct {
-	ctx                   context.Context
-	ApiService            *SupportRequestApiService
-	requestSuppertRequest *RequestSuppertRequest
+	ctx                 context.Context
+	ApiService          *SupportRequestApiService
+	supportRequestInput *SupportRequestInput
 }
 
 // Support Request to create
-func (r ApiRequestSuppertRequest) RequestSuppertRequest(requestSuppertRequest RequestSuppertRequest) ApiRequestSuppertRequest {
-	r.requestSuppertRequest = &requestSuppertRequest
+func (r ApiRequestSuppertRequest) SupportRequestInput(supportRequestInput SupportRequestInput) ApiRequestSuppertRequest {
+	r.supportRequestInput = &supportRequestInput
 	return r
 }
 
@@ -71,8 +71,8 @@ func (a *SupportRequestApiService) RequestSuppertExecute(r ApiRequestSuppertRequ
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.requestSuppertRequest == nil {
-		return nil, reportError("requestSuppertRequest is required and must be specified")
+	if r.supportRequestInput == nil {
+		return nil, reportError("supportRequestInput is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -93,7 +93,7 @@ func (a *SupportRequestApiService) RequestSuppertExecute(r ApiRequestSuppertRequ
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.requestSuppertRequest
+	localVarPostBody = r.supportRequestInput
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -131,7 +131,7 @@ func (a *SupportRequestApiService) RequestSuppertExecute(r ApiRequestSuppertRequ
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -142,7 +142,7 @@ func (a *SupportRequestApiService) RequestSuppertExecute(r ApiRequestSuppertRequ
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -153,7 +153,7 @@ func (a *SupportRequestApiService) RequestSuppertExecute(r ApiRequestSuppertRequ
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -164,7 +164,7 @@ func (a *SupportRequestApiService) RequestSuppertExecute(r ApiRequestSuppertRequ
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

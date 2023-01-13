@@ -80,7 +80,7 @@ Name | Type | Description  | Notes
 
 ## FindMembershipById
 
-> FindInvitations200ResponseInvitationsInner FindMembershipById(ctx, id).Include(include).Exclude(exclude).Execute()
+> Membership FindMembershipById(ctx, id).Include(include).Exclude(exclude).Execute()
 
 Retrieve a membership
 
@@ -110,7 +110,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `MembershipsApi.FindMembershipById``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindMembershipById`: FindInvitations200ResponseInvitationsInner
+    // response from `FindMembershipById`: Membership
     fmt.Fprintf(os.Stdout, "Response from `MembershipsApi.FindMembershipById`: %v\n", resp)
 }
 ```
@@ -136,7 +136,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FindInvitations200ResponseInvitationsInner**](FindInvitations200ResponseInvitationsInner.md)
+[**Membership**](Membership.md)
 
 ### Authorization
 
@@ -154,7 +154,7 @@ Name | Type | Description  | Notes
 
 ## UpdateMembership
 
-> FindInvitations200ResponseInvitationsInner UpdateMembership(ctx, id).UpdateMembershipRequest(updateMembershipRequest).Execute()
+> Membership UpdateMembership(ctx, id).MembershipInput(membershipInput).Execute()
 
 Update the membership
 
@@ -174,16 +174,16 @@ import (
 
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Membership UUID
-    updateMembershipRequest := *openapiclient.NewUpdateMembershipRequest() // UpdateMembershipRequest | Membership to update
+    membershipInput := *openapiclient.NewMembershipInput() // MembershipInput | Membership to update
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.MembershipsApi.UpdateMembership(context.Background(), id).UpdateMembershipRequest(updateMembershipRequest).Execute()
+    resp, r, err := apiClient.MembershipsApi.UpdateMembership(context.Background(), id).MembershipInput(membershipInput).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MembershipsApi.UpdateMembership``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateMembership`: FindInvitations200ResponseInvitationsInner
+    // response from `UpdateMembership`: Membership
     fmt.Fprintf(os.Stdout, "Response from `MembershipsApi.UpdateMembership`: %v\n", resp)
 }
 ```
@@ -204,11 +204,11 @@ Other parameters are passed through a pointer to a apiUpdateMembershipRequest st
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateMembershipRequest** | [**UpdateMembershipRequest**](UpdateMembershipRequest.md) | Membership to update | 
+ **membershipInput** | [**MembershipInput**](MembershipInput.md) | Membership to update | 
 
 ### Return type
 
-[**FindInvitations200ResponseInvitationsInner**](FindInvitations200ResponseInvitationsInner.md)
+[**Membership**](Membership.md)
 
 ### Authorization
 

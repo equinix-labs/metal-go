@@ -18,13 +18,13 @@ import (
 
 // Membership struct for Membership
 type Membership struct {
-	CreatedAt *time.Time                            `json:"created_at,omitempty"`
-	Href      *string                               `json:"href,omitempty"`
-	Id        *string                               `json:"id,omitempty"`
-	Project   *FindBatchById200ResponseDevicesInner `json:"project,omitempty"`
-	Roles     []string                              `json:"roles,omitempty"`
-	UpdatedAt *time.Time                            `json:"updated_at,omitempty"`
-	User      *FindBatchById200ResponseDevicesInner `json:"user,omitempty"`
+	CreatedAt *time.Time `json:"created_at,omitempty"`
+	Href      *string    `json:"href,omitempty"`
+	Id        *string    `json:"id,omitempty"`
+	Project   *Href      `json:"project,omitempty"`
+	Roles     []string   `json:"roles,omitempty"`
+	UpdatedAt *time.Time `json:"updated_at,omitempty"`
+	User      *Href      `json:"user,omitempty"`
 }
 
 // NewMembership instantiates a new Membership object
@@ -141,9 +141,9 @@ func (o *Membership) SetId(v string) {
 }
 
 // GetProject returns the Project field value if set, zero value otherwise.
-func (o *Membership) GetProject() FindBatchById200ResponseDevicesInner {
+func (o *Membership) GetProject() Href {
 	if o == nil || isNil(o.Project) {
-		var ret FindBatchById200ResponseDevicesInner
+		var ret Href
 		return ret
 	}
 	return *o.Project
@@ -151,7 +151,7 @@ func (o *Membership) GetProject() FindBatchById200ResponseDevicesInner {
 
 // GetProjectOk returns a tuple with the Project field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Membership) GetProjectOk() (*FindBatchById200ResponseDevicesInner, bool) {
+func (o *Membership) GetProjectOk() (*Href, bool) {
 	if o == nil || isNil(o.Project) {
 		return nil, false
 	}
@@ -167,8 +167,8 @@ func (o *Membership) HasProject() bool {
 	return false
 }
 
-// SetProject gets a reference to the given FindBatchById200ResponseDevicesInner and assigns it to the Project field.
-func (o *Membership) SetProject(v FindBatchById200ResponseDevicesInner) {
+// SetProject gets a reference to the given Href and assigns it to the Project field.
+func (o *Membership) SetProject(v Href) {
 	o.Project = &v
 }
 
@@ -237,9 +237,9 @@ func (o *Membership) SetUpdatedAt(v time.Time) {
 }
 
 // GetUser returns the User field value if set, zero value otherwise.
-func (o *Membership) GetUser() FindBatchById200ResponseDevicesInner {
+func (o *Membership) GetUser() Href {
 	if o == nil || isNil(o.User) {
-		var ret FindBatchById200ResponseDevicesInner
+		var ret Href
 		return ret
 	}
 	return *o.User
@@ -247,7 +247,7 @@ func (o *Membership) GetUser() FindBatchById200ResponseDevicesInner {
 
 // GetUserOk returns a tuple with the User field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Membership) GetUserOk() (*FindBatchById200ResponseDevicesInner, bool) {
+func (o *Membership) GetUserOk() (*Href, bool) {
 	if o == nil || isNil(o.User) {
 		return nil, false
 	}
@@ -263,8 +263,8 @@ func (o *Membership) HasUser() bool {
 	return false
 }
 
-// SetUser gets a reference to the given FindBatchById200ResponseDevicesInner and assigns it to the User field.
-func (o *Membership) SetUser(v FindBatchById200ResponseDevicesInner) {
+// SetUser gets a reference to the given Href and assigns it to the User field.
+func (o *Membership) SetUser(v Href) {
 	o.User = &v
 }
 

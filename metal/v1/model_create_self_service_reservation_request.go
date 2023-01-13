@@ -18,10 +18,10 @@ import (
 
 // CreateSelfServiceReservationRequest struct for CreateSelfServiceReservationRequest
 type CreateSelfServiceReservationRequest struct {
-	Item      []CreateSelfServiceReservationRequestItemInner                 `json:"item,omitempty"`
-	Notes     *string                                                        `json:"notes,omitempty"`
-	Period    *FindSelfServiceReservations200ResponseReservationsInnerPeriod `json:"period,omitempty"`
-	StartDate *time.Time                                                     `json:"start_date,omitempty"`
+	Item      []SelfServiceReservationItemRequest        `json:"item,omitempty"`
+	Notes     *string                                    `json:"notes,omitempty"`
+	Period    *CreateSelfServiceReservationRequestPeriod `json:"period,omitempty"`
+	StartDate *time.Time                                 `json:"start_date,omitempty"`
 }
 
 // NewCreateSelfServiceReservationRequest instantiates a new CreateSelfServiceReservationRequest object
@@ -42,9 +42,9 @@ func NewCreateSelfServiceReservationRequestWithDefaults() *CreateSelfServiceRese
 }
 
 // GetItem returns the Item field value if set, zero value otherwise.
-func (o *CreateSelfServiceReservationRequest) GetItem() []CreateSelfServiceReservationRequestItemInner {
+func (o *CreateSelfServiceReservationRequest) GetItem() []SelfServiceReservationItemRequest {
 	if o == nil || isNil(o.Item) {
-		var ret []CreateSelfServiceReservationRequestItemInner
+		var ret []SelfServiceReservationItemRequest
 		return ret
 	}
 	return o.Item
@@ -52,7 +52,7 @@ func (o *CreateSelfServiceReservationRequest) GetItem() []CreateSelfServiceReser
 
 // GetItemOk returns a tuple with the Item field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateSelfServiceReservationRequest) GetItemOk() ([]CreateSelfServiceReservationRequestItemInner, bool) {
+func (o *CreateSelfServiceReservationRequest) GetItemOk() ([]SelfServiceReservationItemRequest, bool) {
 	if o == nil || isNil(o.Item) {
 		return nil, false
 	}
@@ -68,8 +68,8 @@ func (o *CreateSelfServiceReservationRequest) HasItem() bool {
 	return false
 }
 
-// SetItem gets a reference to the given []CreateSelfServiceReservationRequestItemInner and assigns it to the Item field.
-func (o *CreateSelfServiceReservationRequest) SetItem(v []CreateSelfServiceReservationRequestItemInner) {
+// SetItem gets a reference to the given []SelfServiceReservationItemRequest and assigns it to the Item field.
+func (o *CreateSelfServiceReservationRequest) SetItem(v []SelfServiceReservationItemRequest) {
 	o.Item = v
 }
 
@@ -106,9 +106,9 @@ func (o *CreateSelfServiceReservationRequest) SetNotes(v string) {
 }
 
 // GetPeriod returns the Period field value if set, zero value otherwise.
-func (o *CreateSelfServiceReservationRequest) GetPeriod() FindSelfServiceReservations200ResponseReservationsInnerPeriod {
+func (o *CreateSelfServiceReservationRequest) GetPeriod() CreateSelfServiceReservationRequestPeriod {
 	if o == nil || isNil(o.Period) {
-		var ret FindSelfServiceReservations200ResponseReservationsInnerPeriod
+		var ret CreateSelfServiceReservationRequestPeriod
 		return ret
 	}
 	return *o.Period
@@ -116,7 +116,7 @@ func (o *CreateSelfServiceReservationRequest) GetPeriod() FindSelfServiceReserva
 
 // GetPeriodOk returns a tuple with the Period field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateSelfServiceReservationRequest) GetPeriodOk() (*FindSelfServiceReservations200ResponseReservationsInnerPeriod, bool) {
+func (o *CreateSelfServiceReservationRequest) GetPeriodOk() (*CreateSelfServiceReservationRequestPeriod, bool) {
 	if o == nil || isNil(o.Period) {
 		return nil, false
 	}
@@ -132,8 +132,8 @@ func (o *CreateSelfServiceReservationRequest) HasPeriod() bool {
 	return false
 }
 
-// SetPeriod gets a reference to the given FindSelfServiceReservations200ResponseReservationsInnerPeriod and assigns it to the Period field.
-func (o *CreateSelfServiceReservationRequest) SetPeriod(v FindSelfServiceReservations200ResponseReservationsInnerPeriod) {
+// SetPeriod gets a reference to the given CreateSelfServiceReservationRequestPeriod and assigns it to the Period field.
+func (o *CreateSelfServiceReservationRequest) SetPeriod(v CreateSelfServiceReservationRequestPeriod) {
 	o.Period = &v
 }
 

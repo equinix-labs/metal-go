@@ -17,26 +17,26 @@ import (
 
 // MetroCapacityReport struct for MetroCapacityReport
 type MetroCapacityReport struct {
-	Am *FindCapacityForFacility200ResponseCapacityAms1 `json:"am,omitempty"`
-	At *FindCapacityForFacility200ResponseCapacityAms1 `json:"at,omitempty"`
-	Ch *FindCapacityForFacility200ResponseCapacityAms1 `json:"ch,omitempty"`
-	Da *FindCapacityForFacility200ResponseCapacityAms1 `json:"da,omitempty"`
-	Dc *FindCapacityForFacility200ResponseCapacityAms1 `json:"dc,omitempty"`
-	Fr *FindCapacityForFacility200ResponseCapacityAms1 `json:"fr,omitempty"`
-	Hk *FindCapacityForFacility200ResponseCapacityAms1 `json:"hk,omitempty"`
-	La *FindCapacityForFacility200ResponseCapacityAms1 `json:"la,omitempty"`
-	Ld *FindCapacityForFacility200ResponseCapacityAms1 `json:"ld,omitempty"`
-	Md *FindCapacityForFacility200ResponseCapacityAms1 `json:"md,omitempty"`
-	Ny *FindCapacityForFacility200ResponseCapacityAms1 `json:"ny,omitempty"`
-	Pa *FindCapacityForFacility200ResponseCapacityAms1 `json:"pa,omitempty"`
-	Se *FindCapacityForFacility200ResponseCapacityAms1 `json:"se,omitempty"`
-	Sg *FindCapacityForFacility200ResponseCapacityAms1 `json:"sg,omitempty"`
-	Sl *FindCapacityForFacility200ResponseCapacityAms1 `json:"sl,omitempty"`
-	Sp *FindCapacityForFacility200ResponseCapacityAms1 `json:"sp,omitempty"`
-	Sv *FindCapacityForFacility200ResponseCapacityAms1 `json:"sv,omitempty"`
-	Sy *FindCapacityForFacility200ResponseCapacityAms1 `json:"sy,omitempty"`
-	Tr *FindCapacityForFacility200ResponseCapacityAms1 `json:"tr,omitempty"`
-	Ty *FindCapacityForFacility200ResponseCapacityAms1 `json:"ty,omitempty"`
+	Am *CapacityPerFacility `json:"am,omitempty"`
+	At *CapacityPerFacility `json:"at,omitempty"`
+	Ch *CapacityPerFacility `json:"ch,omitempty"`
+	Da *CapacityPerFacility `json:"da,omitempty"`
+	Dc *CapacityPerFacility `json:"dc,omitempty"`
+	Fr *CapacityPerFacility `json:"fr,omitempty"`
+	Hk *CapacityPerFacility `json:"hk,omitempty"`
+	La *CapacityPerFacility `json:"la,omitempty"`
+	Ld *CapacityPerFacility `json:"ld,omitempty"`
+	Md *CapacityPerFacility `json:"md,omitempty"`
+	Ny *CapacityPerFacility `json:"ny,omitempty"`
+	Pa *CapacityPerFacility `json:"pa,omitempty"`
+	Se *CapacityPerFacility `json:"se,omitempty"`
+	Sg *CapacityPerFacility `json:"sg,omitempty"`
+	Sl *CapacityPerFacility `json:"sl,omitempty"`
+	Sp *CapacityPerFacility `json:"sp,omitempty"`
+	Sv *CapacityPerFacility `json:"sv,omitempty"`
+	Sy *CapacityPerFacility `json:"sy,omitempty"`
+	Tr *CapacityPerFacility `json:"tr,omitempty"`
+	Ty *CapacityPerFacility `json:"ty,omitempty"`
 }
 
 // NewMetroCapacityReport instantiates a new MetroCapacityReport object
@@ -57,9 +57,9 @@ func NewMetroCapacityReportWithDefaults() *MetroCapacityReport {
 }
 
 // GetAm returns the Am field value if set, zero value otherwise.
-func (o *MetroCapacityReport) GetAm() FindCapacityForFacility200ResponseCapacityAms1 {
+func (o *MetroCapacityReport) GetAm() CapacityPerFacility {
 	if o == nil || isNil(o.Am) {
-		var ret FindCapacityForFacility200ResponseCapacityAms1
+		var ret CapacityPerFacility
 		return ret
 	}
 	return *o.Am
@@ -67,7 +67,7 @@ func (o *MetroCapacityReport) GetAm() FindCapacityForFacility200ResponseCapacity
 
 // GetAmOk returns a tuple with the Am field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetroCapacityReport) GetAmOk() (*FindCapacityForFacility200ResponseCapacityAms1, bool) {
+func (o *MetroCapacityReport) GetAmOk() (*CapacityPerFacility, bool) {
 	if o == nil || isNil(o.Am) {
 		return nil, false
 	}
@@ -83,15 +83,15 @@ func (o *MetroCapacityReport) HasAm() bool {
 	return false
 }
 
-// SetAm gets a reference to the given FindCapacityForFacility200ResponseCapacityAms1 and assigns it to the Am field.
-func (o *MetroCapacityReport) SetAm(v FindCapacityForFacility200ResponseCapacityAms1) {
+// SetAm gets a reference to the given CapacityPerFacility and assigns it to the Am field.
+func (o *MetroCapacityReport) SetAm(v CapacityPerFacility) {
 	o.Am = &v
 }
 
 // GetAt returns the At field value if set, zero value otherwise.
-func (o *MetroCapacityReport) GetAt() FindCapacityForFacility200ResponseCapacityAms1 {
+func (o *MetroCapacityReport) GetAt() CapacityPerFacility {
 	if o == nil || isNil(o.At) {
-		var ret FindCapacityForFacility200ResponseCapacityAms1
+		var ret CapacityPerFacility
 		return ret
 	}
 	return *o.At
@@ -99,7 +99,7 @@ func (o *MetroCapacityReport) GetAt() FindCapacityForFacility200ResponseCapacity
 
 // GetAtOk returns a tuple with the At field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetroCapacityReport) GetAtOk() (*FindCapacityForFacility200ResponseCapacityAms1, bool) {
+func (o *MetroCapacityReport) GetAtOk() (*CapacityPerFacility, bool) {
 	if o == nil || isNil(o.At) {
 		return nil, false
 	}
@@ -115,15 +115,15 @@ func (o *MetroCapacityReport) HasAt() bool {
 	return false
 }
 
-// SetAt gets a reference to the given FindCapacityForFacility200ResponseCapacityAms1 and assigns it to the At field.
-func (o *MetroCapacityReport) SetAt(v FindCapacityForFacility200ResponseCapacityAms1) {
+// SetAt gets a reference to the given CapacityPerFacility and assigns it to the At field.
+func (o *MetroCapacityReport) SetAt(v CapacityPerFacility) {
 	o.At = &v
 }
 
 // GetCh returns the Ch field value if set, zero value otherwise.
-func (o *MetroCapacityReport) GetCh() FindCapacityForFacility200ResponseCapacityAms1 {
+func (o *MetroCapacityReport) GetCh() CapacityPerFacility {
 	if o == nil || isNil(o.Ch) {
-		var ret FindCapacityForFacility200ResponseCapacityAms1
+		var ret CapacityPerFacility
 		return ret
 	}
 	return *o.Ch
@@ -131,7 +131,7 @@ func (o *MetroCapacityReport) GetCh() FindCapacityForFacility200ResponseCapacity
 
 // GetChOk returns a tuple with the Ch field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetroCapacityReport) GetChOk() (*FindCapacityForFacility200ResponseCapacityAms1, bool) {
+func (o *MetroCapacityReport) GetChOk() (*CapacityPerFacility, bool) {
 	if o == nil || isNil(o.Ch) {
 		return nil, false
 	}
@@ -147,15 +147,15 @@ func (o *MetroCapacityReport) HasCh() bool {
 	return false
 }
 
-// SetCh gets a reference to the given FindCapacityForFacility200ResponseCapacityAms1 and assigns it to the Ch field.
-func (o *MetroCapacityReport) SetCh(v FindCapacityForFacility200ResponseCapacityAms1) {
+// SetCh gets a reference to the given CapacityPerFacility and assigns it to the Ch field.
+func (o *MetroCapacityReport) SetCh(v CapacityPerFacility) {
 	o.Ch = &v
 }
 
 // GetDa returns the Da field value if set, zero value otherwise.
-func (o *MetroCapacityReport) GetDa() FindCapacityForFacility200ResponseCapacityAms1 {
+func (o *MetroCapacityReport) GetDa() CapacityPerFacility {
 	if o == nil || isNil(o.Da) {
-		var ret FindCapacityForFacility200ResponseCapacityAms1
+		var ret CapacityPerFacility
 		return ret
 	}
 	return *o.Da
@@ -163,7 +163,7 @@ func (o *MetroCapacityReport) GetDa() FindCapacityForFacility200ResponseCapacity
 
 // GetDaOk returns a tuple with the Da field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetroCapacityReport) GetDaOk() (*FindCapacityForFacility200ResponseCapacityAms1, bool) {
+func (o *MetroCapacityReport) GetDaOk() (*CapacityPerFacility, bool) {
 	if o == nil || isNil(o.Da) {
 		return nil, false
 	}
@@ -179,15 +179,15 @@ func (o *MetroCapacityReport) HasDa() bool {
 	return false
 }
 
-// SetDa gets a reference to the given FindCapacityForFacility200ResponseCapacityAms1 and assigns it to the Da field.
-func (o *MetroCapacityReport) SetDa(v FindCapacityForFacility200ResponseCapacityAms1) {
+// SetDa gets a reference to the given CapacityPerFacility and assigns it to the Da field.
+func (o *MetroCapacityReport) SetDa(v CapacityPerFacility) {
 	o.Da = &v
 }
 
 // GetDc returns the Dc field value if set, zero value otherwise.
-func (o *MetroCapacityReport) GetDc() FindCapacityForFacility200ResponseCapacityAms1 {
+func (o *MetroCapacityReport) GetDc() CapacityPerFacility {
 	if o == nil || isNil(o.Dc) {
-		var ret FindCapacityForFacility200ResponseCapacityAms1
+		var ret CapacityPerFacility
 		return ret
 	}
 	return *o.Dc
@@ -195,7 +195,7 @@ func (o *MetroCapacityReport) GetDc() FindCapacityForFacility200ResponseCapacity
 
 // GetDcOk returns a tuple with the Dc field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetroCapacityReport) GetDcOk() (*FindCapacityForFacility200ResponseCapacityAms1, bool) {
+func (o *MetroCapacityReport) GetDcOk() (*CapacityPerFacility, bool) {
 	if o == nil || isNil(o.Dc) {
 		return nil, false
 	}
@@ -211,15 +211,15 @@ func (o *MetroCapacityReport) HasDc() bool {
 	return false
 }
 
-// SetDc gets a reference to the given FindCapacityForFacility200ResponseCapacityAms1 and assigns it to the Dc field.
-func (o *MetroCapacityReport) SetDc(v FindCapacityForFacility200ResponseCapacityAms1) {
+// SetDc gets a reference to the given CapacityPerFacility and assigns it to the Dc field.
+func (o *MetroCapacityReport) SetDc(v CapacityPerFacility) {
 	o.Dc = &v
 }
 
 // GetFr returns the Fr field value if set, zero value otherwise.
-func (o *MetroCapacityReport) GetFr() FindCapacityForFacility200ResponseCapacityAms1 {
+func (o *MetroCapacityReport) GetFr() CapacityPerFacility {
 	if o == nil || isNil(o.Fr) {
-		var ret FindCapacityForFacility200ResponseCapacityAms1
+		var ret CapacityPerFacility
 		return ret
 	}
 	return *o.Fr
@@ -227,7 +227,7 @@ func (o *MetroCapacityReport) GetFr() FindCapacityForFacility200ResponseCapacity
 
 // GetFrOk returns a tuple with the Fr field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetroCapacityReport) GetFrOk() (*FindCapacityForFacility200ResponseCapacityAms1, bool) {
+func (o *MetroCapacityReport) GetFrOk() (*CapacityPerFacility, bool) {
 	if o == nil || isNil(o.Fr) {
 		return nil, false
 	}
@@ -243,15 +243,15 @@ func (o *MetroCapacityReport) HasFr() bool {
 	return false
 }
 
-// SetFr gets a reference to the given FindCapacityForFacility200ResponseCapacityAms1 and assigns it to the Fr field.
-func (o *MetroCapacityReport) SetFr(v FindCapacityForFacility200ResponseCapacityAms1) {
+// SetFr gets a reference to the given CapacityPerFacility and assigns it to the Fr field.
+func (o *MetroCapacityReport) SetFr(v CapacityPerFacility) {
 	o.Fr = &v
 }
 
 // GetHk returns the Hk field value if set, zero value otherwise.
-func (o *MetroCapacityReport) GetHk() FindCapacityForFacility200ResponseCapacityAms1 {
+func (o *MetroCapacityReport) GetHk() CapacityPerFacility {
 	if o == nil || isNil(o.Hk) {
-		var ret FindCapacityForFacility200ResponseCapacityAms1
+		var ret CapacityPerFacility
 		return ret
 	}
 	return *o.Hk
@@ -259,7 +259,7 @@ func (o *MetroCapacityReport) GetHk() FindCapacityForFacility200ResponseCapacity
 
 // GetHkOk returns a tuple with the Hk field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetroCapacityReport) GetHkOk() (*FindCapacityForFacility200ResponseCapacityAms1, bool) {
+func (o *MetroCapacityReport) GetHkOk() (*CapacityPerFacility, bool) {
 	if o == nil || isNil(o.Hk) {
 		return nil, false
 	}
@@ -275,15 +275,15 @@ func (o *MetroCapacityReport) HasHk() bool {
 	return false
 }
 
-// SetHk gets a reference to the given FindCapacityForFacility200ResponseCapacityAms1 and assigns it to the Hk field.
-func (o *MetroCapacityReport) SetHk(v FindCapacityForFacility200ResponseCapacityAms1) {
+// SetHk gets a reference to the given CapacityPerFacility and assigns it to the Hk field.
+func (o *MetroCapacityReport) SetHk(v CapacityPerFacility) {
 	o.Hk = &v
 }
 
 // GetLa returns the La field value if set, zero value otherwise.
-func (o *MetroCapacityReport) GetLa() FindCapacityForFacility200ResponseCapacityAms1 {
+func (o *MetroCapacityReport) GetLa() CapacityPerFacility {
 	if o == nil || isNil(o.La) {
-		var ret FindCapacityForFacility200ResponseCapacityAms1
+		var ret CapacityPerFacility
 		return ret
 	}
 	return *o.La
@@ -291,7 +291,7 @@ func (o *MetroCapacityReport) GetLa() FindCapacityForFacility200ResponseCapacity
 
 // GetLaOk returns a tuple with the La field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetroCapacityReport) GetLaOk() (*FindCapacityForFacility200ResponseCapacityAms1, bool) {
+func (o *MetroCapacityReport) GetLaOk() (*CapacityPerFacility, bool) {
 	if o == nil || isNil(o.La) {
 		return nil, false
 	}
@@ -307,15 +307,15 @@ func (o *MetroCapacityReport) HasLa() bool {
 	return false
 }
 
-// SetLa gets a reference to the given FindCapacityForFacility200ResponseCapacityAms1 and assigns it to the La field.
-func (o *MetroCapacityReport) SetLa(v FindCapacityForFacility200ResponseCapacityAms1) {
+// SetLa gets a reference to the given CapacityPerFacility and assigns it to the La field.
+func (o *MetroCapacityReport) SetLa(v CapacityPerFacility) {
 	o.La = &v
 }
 
 // GetLd returns the Ld field value if set, zero value otherwise.
-func (o *MetroCapacityReport) GetLd() FindCapacityForFacility200ResponseCapacityAms1 {
+func (o *MetroCapacityReport) GetLd() CapacityPerFacility {
 	if o == nil || isNil(o.Ld) {
-		var ret FindCapacityForFacility200ResponseCapacityAms1
+		var ret CapacityPerFacility
 		return ret
 	}
 	return *o.Ld
@@ -323,7 +323,7 @@ func (o *MetroCapacityReport) GetLd() FindCapacityForFacility200ResponseCapacity
 
 // GetLdOk returns a tuple with the Ld field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetroCapacityReport) GetLdOk() (*FindCapacityForFacility200ResponseCapacityAms1, bool) {
+func (o *MetroCapacityReport) GetLdOk() (*CapacityPerFacility, bool) {
 	if o == nil || isNil(o.Ld) {
 		return nil, false
 	}
@@ -339,15 +339,15 @@ func (o *MetroCapacityReport) HasLd() bool {
 	return false
 }
 
-// SetLd gets a reference to the given FindCapacityForFacility200ResponseCapacityAms1 and assigns it to the Ld field.
-func (o *MetroCapacityReport) SetLd(v FindCapacityForFacility200ResponseCapacityAms1) {
+// SetLd gets a reference to the given CapacityPerFacility and assigns it to the Ld field.
+func (o *MetroCapacityReport) SetLd(v CapacityPerFacility) {
 	o.Ld = &v
 }
 
 // GetMd returns the Md field value if set, zero value otherwise.
-func (o *MetroCapacityReport) GetMd() FindCapacityForFacility200ResponseCapacityAms1 {
+func (o *MetroCapacityReport) GetMd() CapacityPerFacility {
 	if o == nil || isNil(o.Md) {
-		var ret FindCapacityForFacility200ResponseCapacityAms1
+		var ret CapacityPerFacility
 		return ret
 	}
 	return *o.Md
@@ -355,7 +355,7 @@ func (o *MetroCapacityReport) GetMd() FindCapacityForFacility200ResponseCapacity
 
 // GetMdOk returns a tuple with the Md field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetroCapacityReport) GetMdOk() (*FindCapacityForFacility200ResponseCapacityAms1, bool) {
+func (o *MetroCapacityReport) GetMdOk() (*CapacityPerFacility, bool) {
 	if o == nil || isNil(o.Md) {
 		return nil, false
 	}
@@ -371,15 +371,15 @@ func (o *MetroCapacityReport) HasMd() bool {
 	return false
 }
 
-// SetMd gets a reference to the given FindCapacityForFacility200ResponseCapacityAms1 and assigns it to the Md field.
-func (o *MetroCapacityReport) SetMd(v FindCapacityForFacility200ResponseCapacityAms1) {
+// SetMd gets a reference to the given CapacityPerFacility and assigns it to the Md field.
+func (o *MetroCapacityReport) SetMd(v CapacityPerFacility) {
 	o.Md = &v
 }
 
 // GetNy returns the Ny field value if set, zero value otherwise.
-func (o *MetroCapacityReport) GetNy() FindCapacityForFacility200ResponseCapacityAms1 {
+func (o *MetroCapacityReport) GetNy() CapacityPerFacility {
 	if o == nil || isNil(o.Ny) {
-		var ret FindCapacityForFacility200ResponseCapacityAms1
+		var ret CapacityPerFacility
 		return ret
 	}
 	return *o.Ny
@@ -387,7 +387,7 @@ func (o *MetroCapacityReport) GetNy() FindCapacityForFacility200ResponseCapacity
 
 // GetNyOk returns a tuple with the Ny field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetroCapacityReport) GetNyOk() (*FindCapacityForFacility200ResponseCapacityAms1, bool) {
+func (o *MetroCapacityReport) GetNyOk() (*CapacityPerFacility, bool) {
 	if o == nil || isNil(o.Ny) {
 		return nil, false
 	}
@@ -403,15 +403,15 @@ func (o *MetroCapacityReport) HasNy() bool {
 	return false
 }
 
-// SetNy gets a reference to the given FindCapacityForFacility200ResponseCapacityAms1 and assigns it to the Ny field.
-func (o *MetroCapacityReport) SetNy(v FindCapacityForFacility200ResponseCapacityAms1) {
+// SetNy gets a reference to the given CapacityPerFacility and assigns it to the Ny field.
+func (o *MetroCapacityReport) SetNy(v CapacityPerFacility) {
 	o.Ny = &v
 }
 
 // GetPa returns the Pa field value if set, zero value otherwise.
-func (o *MetroCapacityReport) GetPa() FindCapacityForFacility200ResponseCapacityAms1 {
+func (o *MetroCapacityReport) GetPa() CapacityPerFacility {
 	if o == nil || isNil(o.Pa) {
-		var ret FindCapacityForFacility200ResponseCapacityAms1
+		var ret CapacityPerFacility
 		return ret
 	}
 	return *o.Pa
@@ -419,7 +419,7 @@ func (o *MetroCapacityReport) GetPa() FindCapacityForFacility200ResponseCapacity
 
 // GetPaOk returns a tuple with the Pa field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetroCapacityReport) GetPaOk() (*FindCapacityForFacility200ResponseCapacityAms1, bool) {
+func (o *MetroCapacityReport) GetPaOk() (*CapacityPerFacility, bool) {
 	if o == nil || isNil(o.Pa) {
 		return nil, false
 	}
@@ -435,15 +435,15 @@ func (o *MetroCapacityReport) HasPa() bool {
 	return false
 }
 
-// SetPa gets a reference to the given FindCapacityForFacility200ResponseCapacityAms1 and assigns it to the Pa field.
-func (o *MetroCapacityReport) SetPa(v FindCapacityForFacility200ResponseCapacityAms1) {
+// SetPa gets a reference to the given CapacityPerFacility and assigns it to the Pa field.
+func (o *MetroCapacityReport) SetPa(v CapacityPerFacility) {
 	o.Pa = &v
 }
 
 // GetSe returns the Se field value if set, zero value otherwise.
-func (o *MetroCapacityReport) GetSe() FindCapacityForFacility200ResponseCapacityAms1 {
+func (o *MetroCapacityReport) GetSe() CapacityPerFacility {
 	if o == nil || isNil(o.Se) {
-		var ret FindCapacityForFacility200ResponseCapacityAms1
+		var ret CapacityPerFacility
 		return ret
 	}
 	return *o.Se
@@ -451,7 +451,7 @@ func (o *MetroCapacityReport) GetSe() FindCapacityForFacility200ResponseCapacity
 
 // GetSeOk returns a tuple with the Se field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetroCapacityReport) GetSeOk() (*FindCapacityForFacility200ResponseCapacityAms1, bool) {
+func (o *MetroCapacityReport) GetSeOk() (*CapacityPerFacility, bool) {
 	if o == nil || isNil(o.Se) {
 		return nil, false
 	}
@@ -467,15 +467,15 @@ func (o *MetroCapacityReport) HasSe() bool {
 	return false
 }
 
-// SetSe gets a reference to the given FindCapacityForFacility200ResponseCapacityAms1 and assigns it to the Se field.
-func (o *MetroCapacityReport) SetSe(v FindCapacityForFacility200ResponseCapacityAms1) {
+// SetSe gets a reference to the given CapacityPerFacility and assigns it to the Se field.
+func (o *MetroCapacityReport) SetSe(v CapacityPerFacility) {
 	o.Se = &v
 }
 
 // GetSg returns the Sg field value if set, zero value otherwise.
-func (o *MetroCapacityReport) GetSg() FindCapacityForFacility200ResponseCapacityAms1 {
+func (o *MetroCapacityReport) GetSg() CapacityPerFacility {
 	if o == nil || isNil(o.Sg) {
-		var ret FindCapacityForFacility200ResponseCapacityAms1
+		var ret CapacityPerFacility
 		return ret
 	}
 	return *o.Sg
@@ -483,7 +483,7 @@ func (o *MetroCapacityReport) GetSg() FindCapacityForFacility200ResponseCapacity
 
 // GetSgOk returns a tuple with the Sg field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetroCapacityReport) GetSgOk() (*FindCapacityForFacility200ResponseCapacityAms1, bool) {
+func (o *MetroCapacityReport) GetSgOk() (*CapacityPerFacility, bool) {
 	if o == nil || isNil(o.Sg) {
 		return nil, false
 	}
@@ -499,15 +499,15 @@ func (o *MetroCapacityReport) HasSg() bool {
 	return false
 }
 
-// SetSg gets a reference to the given FindCapacityForFacility200ResponseCapacityAms1 and assigns it to the Sg field.
-func (o *MetroCapacityReport) SetSg(v FindCapacityForFacility200ResponseCapacityAms1) {
+// SetSg gets a reference to the given CapacityPerFacility and assigns it to the Sg field.
+func (o *MetroCapacityReport) SetSg(v CapacityPerFacility) {
 	o.Sg = &v
 }
 
 // GetSl returns the Sl field value if set, zero value otherwise.
-func (o *MetroCapacityReport) GetSl() FindCapacityForFacility200ResponseCapacityAms1 {
+func (o *MetroCapacityReport) GetSl() CapacityPerFacility {
 	if o == nil || isNil(o.Sl) {
-		var ret FindCapacityForFacility200ResponseCapacityAms1
+		var ret CapacityPerFacility
 		return ret
 	}
 	return *o.Sl
@@ -515,7 +515,7 @@ func (o *MetroCapacityReport) GetSl() FindCapacityForFacility200ResponseCapacity
 
 // GetSlOk returns a tuple with the Sl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetroCapacityReport) GetSlOk() (*FindCapacityForFacility200ResponseCapacityAms1, bool) {
+func (o *MetroCapacityReport) GetSlOk() (*CapacityPerFacility, bool) {
 	if o == nil || isNil(o.Sl) {
 		return nil, false
 	}
@@ -531,15 +531,15 @@ func (o *MetroCapacityReport) HasSl() bool {
 	return false
 }
 
-// SetSl gets a reference to the given FindCapacityForFacility200ResponseCapacityAms1 and assigns it to the Sl field.
-func (o *MetroCapacityReport) SetSl(v FindCapacityForFacility200ResponseCapacityAms1) {
+// SetSl gets a reference to the given CapacityPerFacility and assigns it to the Sl field.
+func (o *MetroCapacityReport) SetSl(v CapacityPerFacility) {
 	o.Sl = &v
 }
 
 // GetSp returns the Sp field value if set, zero value otherwise.
-func (o *MetroCapacityReport) GetSp() FindCapacityForFacility200ResponseCapacityAms1 {
+func (o *MetroCapacityReport) GetSp() CapacityPerFacility {
 	if o == nil || isNil(o.Sp) {
-		var ret FindCapacityForFacility200ResponseCapacityAms1
+		var ret CapacityPerFacility
 		return ret
 	}
 	return *o.Sp
@@ -547,7 +547,7 @@ func (o *MetroCapacityReport) GetSp() FindCapacityForFacility200ResponseCapacity
 
 // GetSpOk returns a tuple with the Sp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetroCapacityReport) GetSpOk() (*FindCapacityForFacility200ResponseCapacityAms1, bool) {
+func (o *MetroCapacityReport) GetSpOk() (*CapacityPerFacility, bool) {
 	if o == nil || isNil(o.Sp) {
 		return nil, false
 	}
@@ -563,15 +563,15 @@ func (o *MetroCapacityReport) HasSp() bool {
 	return false
 }
 
-// SetSp gets a reference to the given FindCapacityForFacility200ResponseCapacityAms1 and assigns it to the Sp field.
-func (o *MetroCapacityReport) SetSp(v FindCapacityForFacility200ResponseCapacityAms1) {
+// SetSp gets a reference to the given CapacityPerFacility and assigns it to the Sp field.
+func (o *MetroCapacityReport) SetSp(v CapacityPerFacility) {
 	o.Sp = &v
 }
 
 // GetSv returns the Sv field value if set, zero value otherwise.
-func (o *MetroCapacityReport) GetSv() FindCapacityForFacility200ResponseCapacityAms1 {
+func (o *MetroCapacityReport) GetSv() CapacityPerFacility {
 	if o == nil || isNil(o.Sv) {
-		var ret FindCapacityForFacility200ResponseCapacityAms1
+		var ret CapacityPerFacility
 		return ret
 	}
 	return *o.Sv
@@ -579,7 +579,7 @@ func (o *MetroCapacityReport) GetSv() FindCapacityForFacility200ResponseCapacity
 
 // GetSvOk returns a tuple with the Sv field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetroCapacityReport) GetSvOk() (*FindCapacityForFacility200ResponseCapacityAms1, bool) {
+func (o *MetroCapacityReport) GetSvOk() (*CapacityPerFacility, bool) {
 	if o == nil || isNil(o.Sv) {
 		return nil, false
 	}
@@ -595,15 +595,15 @@ func (o *MetroCapacityReport) HasSv() bool {
 	return false
 }
 
-// SetSv gets a reference to the given FindCapacityForFacility200ResponseCapacityAms1 and assigns it to the Sv field.
-func (o *MetroCapacityReport) SetSv(v FindCapacityForFacility200ResponseCapacityAms1) {
+// SetSv gets a reference to the given CapacityPerFacility and assigns it to the Sv field.
+func (o *MetroCapacityReport) SetSv(v CapacityPerFacility) {
 	o.Sv = &v
 }
 
 // GetSy returns the Sy field value if set, zero value otherwise.
-func (o *MetroCapacityReport) GetSy() FindCapacityForFacility200ResponseCapacityAms1 {
+func (o *MetroCapacityReport) GetSy() CapacityPerFacility {
 	if o == nil || isNil(o.Sy) {
-		var ret FindCapacityForFacility200ResponseCapacityAms1
+		var ret CapacityPerFacility
 		return ret
 	}
 	return *o.Sy
@@ -611,7 +611,7 @@ func (o *MetroCapacityReport) GetSy() FindCapacityForFacility200ResponseCapacity
 
 // GetSyOk returns a tuple with the Sy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetroCapacityReport) GetSyOk() (*FindCapacityForFacility200ResponseCapacityAms1, bool) {
+func (o *MetroCapacityReport) GetSyOk() (*CapacityPerFacility, bool) {
 	if o == nil || isNil(o.Sy) {
 		return nil, false
 	}
@@ -627,15 +627,15 @@ func (o *MetroCapacityReport) HasSy() bool {
 	return false
 }
 
-// SetSy gets a reference to the given FindCapacityForFacility200ResponseCapacityAms1 and assigns it to the Sy field.
-func (o *MetroCapacityReport) SetSy(v FindCapacityForFacility200ResponseCapacityAms1) {
+// SetSy gets a reference to the given CapacityPerFacility and assigns it to the Sy field.
+func (o *MetroCapacityReport) SetSy(v CapacityPerFacility) {
 	o.Sy = &v
 }
 
 // GetTr returns the Tr field value if set, zero value otherwise.
-func (o *MetroCapacityReport) GetTr() FindCapacityForFacility200ResponseCapacityAms1 {
+func (o *MetroCapacityReport) GetTr() CapacityPerFacility {
 	if o == nil || isNil(o.Tr) {
-		var ret FindCapacityForFacility200ResponseCapacityAms1
+		var ret CapacityPerFacility
 		return ret
 	}
 	return *o.Tr
@@ -643,7 +643,7 @@ func (o *MetroCapacityReport) GetTr() FindCapacityForFacility200ResponseCapacity
 
 // GetTrOk returns a tuple with the Tr field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetroCapacityReport) GetTrOk() (*FindCapacityForFacility200ResponseCapacityAms1, bool) {
+func (o *MetroCapacityReport) GetTrOk() (*CapacityPerFacility, bool) {
 	if o == nil || isNil(o.Tr) {
 		return nil, false
 	}
@@ -659,15 +659,15 @@ func (o *MetroCapacityReport) HasTr() bool {
 	return false
 }
 
-// SetTr gets a reference to the given FindCapacityForFacility200ResponseCapacityAms1 and assigns it to the Tr field.
-func (o *MetroCapacityReport) SetTr(v FindCapacityForFacility200ResponseCapacityAms1) {
+// SetTr gets a reference to the given CapacityPerFacility and assigns it to the Tr field.
+func (o *MetroCapacityReport) SetTr(v CapacityPerFacility) {
 	o.Tr = &v
 }
 
 // GetTy returns the Ty field value if set, zero value otherwise.
-func (o *MetroCapacityReport) GetTy() FindCapacityForFacility200ResponseCapacityAms1 {
+func (o *MetroCapacityReport) GetTy() CapacityPerFacility {
 	if o == nil || isNil(o.Ty) {
-		var ret FindCapacityForFacility200ResponseCapacityAms1
+		var ret CapacityPerFacility
 		return ret
 	}
 	return *o.Ty
@@ -675,7 +675,7 @@ func (o *MetroCapacityReport) GetTy() FindCapacityForFacility200ResponseCapacity
 
 // GetTyOk returns a tuple with the Ty field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetroCapacityReport) GetTyOk() (*FindCapacityForFacility200ResponseCapacityAms1, bool) {
+func (o *MetroCapacityReport) GetTyOk() (*CapacityPerFacility, bool) {
 	if o == nil || isNil(o.Ty) {
 		return nil, false
 	}
@@ -691,8 +691,8 @@ func (o *MetroCapacityReport) HasTy() bool {
 	return false
 }
 
-// SetTy gets a reference to the given FindCapacityForFacility200ResponseCapacityAms1 and assigns it to the Ty field.
-func (o *MetroCapacityReport) SetTy(v FindCapacityForFacility200ResponseCapacityAms1) {
+// SetTy gets a reference to the given CapacityPerFacility and assigns it to the Ty field.
+func (o *MetroCapacityReport) SetTy(v CapacityPerFacility) {
 	o.Ty = &v
 }
 

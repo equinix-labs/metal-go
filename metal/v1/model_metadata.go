@@ -25,9 +25,9 @@ type Metadata struct {
 	Id       *string `json:"id,omitempty"`
 	Iqn      *string `json:"iqn,omitempty"`
 	// The metro code of the instance
-	Metro           *string                                   `json:"metro,omitempty"`
-	Network         *FindDeviceMetadataByID200ResponseNetwork `json:"network,omitempty"`
-	OperatingSystem map[string]interface{}                    `json:"operating_system,omitempty"`
+	Metro           *string                `json:"metro,omitempty"`
+	Network         *MetadataNetwork       `json:"network,omitempty"`
+	OperatingSystem map[string]interface{} `json:"operating_system,omitempty"`
 	// The plan slug of the instance
 	Plan *string `json:"plan,omitempty"`
 	// An array of the private subnets
@@ -283,9 +283,9 @@ func (o *Metadata) SetMetro(v string) {
 }
 
 // GetNetwork returns the Network field value if set, zero value otherwise.
-func (o *Metadata) GetNetwork() FindDeviceMetadataByID200ResponseNetwork {
+func (o *Metadata) GetNetwork() MetadataNetwork {
 	if o == nil || isNil(o.Network) {
-		var ret FindDeviceMetadataByID200ResponseNetwork
+		var ret MetadataNetwork
 		return ret
 	}
 	return *o.Network
@@ -293,7 +293,7 @@ func (o *Metadata) GetNetwork() FindDeviceMetadataByID200ResponseNetwork {
 
 // GetNetworkOk returns a tuple with the Network field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Metadata) GetNetworkOk() (*FindDeviceMetadataByID200ResponseNetwork, bool) {
+func (o *Metadata) GetNetworkOk() (*MetadataNetwork, bool) {
 	if o == nil || isNil(o.Network) {
 		return nil, false
 	}
@@ -309,8 +309,8 @@ func (o *Metadata) HasNetwork() bool {
 	return false
 }
 
-// SetNetwork gets a reference to the given FindDeviceMetadataByID200ResponseNetwork and assigns it to the Network field.
-func (o *Metadata) SetNetwork(v FindDeviceMetadataByID200ResponseNetwork) {
+// SetNetwork gets a reference to the given MetadataNetwork and assigns it to the Network field.
+func (o *Metadata) SetNetwork(v MetadataNetwork) {
 	o.Network = &v
 }
 

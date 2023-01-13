@@ -18,19 +18,19 @@ import (
 // Plan struct for Plan
 type Plan struct {
 	// Shows which facilities the plan is available in, and the facility-based price if it is different from the default price.
-	AvailableIn []FindDeviceById200ResponsePlanAvailableInInner `json:"available_in,omitempty"`
+	AvailableIn []PlanAvailableInInner `json:"available_in,omitempty"`
 	// Shows which metros the plan is available in, and the metro-based price if it is different from the default price.
-	AvailableInMetros []FindDeviceById200ResponsePlanAvailableInMetrosInner `json:"available_in_metros,omitempty"`
-	Class             *string                                               `json:"class,omitempty"`
-	Description       *string                                               `json:"description,omitempty"`
-	DeploymentTypes   []string                                              `json:"deployment_types,omitempty"`
-	Id                *string                                               `json:"id,omitempty"`
-	Legacy            *bool                                                 `json:"legacy,omitempty"`
-	Line              *string                                               `json:"line,omitempty"`
-	Name              *string                                               `json:"name,omitempty"`
-	Pricing           map[string]interface{}                                `json:"pricing,omitempty"`
-	Slug              *string                                               `json:"slug,omitempty"`
-	Specs             *FindDeviceById200ResponsePlanSpecs                   `json:"specs,omitempty"`
+	AvailableInMetros []PlanAvailableInMetrosInner `json:"available_in_metros,omitempty"`
+	Class             *string                      `json:"class,omitempty"`
+	Description       *string                      `json:"description,omitempty"`
+	DeploymentTypes   []string                     `json:"deployment_types,omitempty"`
+	Id                *string                      `json:"id,omitempty"`
+	Legacy            *bool                        `json:"legacy,omitempty"`
+	Line              *string                      `json:"line,omitempty"`
+	Name              *string                      `json:"name,omitempty"`
+	Pricing           map[string]interface{}       `json:"pricing,omitempty"`
+	Slug              *string                      `json:"slug,omitempty"`
+	Specs             *PlanSpecs                   `json:"specs,omitempty"`
 	// The plan type
 	Type *string `json:"type,omitempty"`
 }
@@ -53,9 +53,9 @@ func NewPlanWithDefaults() *Plan {
 }
 
 // GetAvailableIn returns the AvailableIn field value if set, zero value otherwise.
-func (o *Plan) GetAvailableIn() []FindDeviceById200ResponsePlanAvailableInInner {
+func (o *Plan) GetAvailableIn() []PlanAvailableInInner {
 	if o == nil || isNil(o.AvailableIn) {
-		var ret []FindDeviceById200ResponsePlanAvailableInInner
+		var ret []PlanAvailableInInner
 		return ret
 	}
 	return o.AvailableIn
@@ -63,7 +63,7 @@ func (o *Plan) GetAvailableIn() []FindDeviceById200ResponsePlanAvailableInInner 
 
 // GetAvailableInOk returns a tuple with the AvailableIn field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Plan) GetAvailableInOk() ([]FindDeviceById200ResponsePlanAvailableInInner, bool) {
+func (o *Plan) GetAvailableInOk() ([]PlanAvailableInInner, bool) {
 	if o == nil || isNil(o.AvailableIn) {
 		return nil, false
 	}
@@ -79,15 +79,15 @@ func (o *Plan) HasAvailableIn() bool {
 	return false
 }
 
-// SetAvailableIn gets a reference to the given []FindDeviceById200ResponsePlanAvailableInInner and assigns it to the AvailableIn field.
-func (o *Plan) SetAvailableIn(v []FindDeviceById200ResponsePlanAvailableInInner) {
+// SetAvailableIn gets a reference to the given []PlanAvailableInInner and assigns it to the AvailableIn field.
+func (o *Plan) SetAvailableIn(v []PlanAvailableInInner) {
 	o.AvailableIn = v
 }
 
 // GetAvailableInMetros returns the AvailableInMetros field value if set, zero value otherwise.
-func (o *Plan) GetAvailableInMetros() []FindDeviceById200ResponsePlanAvailableInMetrosInner {
+func (o *Plan) GetAvailableInMetros() []PlanAvailableInMetrosInner {
 	if o == nil || isNil(o.AvailableInMetros) {
-		var ret []FindDeviceById200ResponsePlanAvailableInMetrosInner
+		var ret []PlanAvailableInMetrosInner
 		return ret
 	}
 	return o.AvailableInMetros
@@ -95,7 +95,7 @@ func (o *Plan) GetAvailableInMetros() []FindDeviceById200ResponsePlanAvailableIn
 
 // GetAvailableInMetrosOk returns a tuple with the AvailableInMetros field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Plan) GetAvailableInMetrosOk() ([]FindDeviceById200ResponsePlanAvailableInMetrosInner, bool) {
+func (o *Plan) GetAvailableInMetrosOk() ([]PlanAvailableInMetrosInner, bool) {
 	if o == nil || isNil(o.AvailableInMetros) {
 		return nil, false
 	}
@@ -111,8 +111,8 @@ func (o *Plan) HasAvailableInMetros() bool {
 	return false
 }
 
-// SetAvailableInMetros gets a reference to the given []FindDeviceById200ResponsePlanAvailableInMetrosInner and assigns it to the AvailableInMetros field.
-func (o *Plan) SetAvailableInMetros(v []FindDeviceById200ResponsePlanAvailableInMetrosInner) {
+// SetAvailableInMetros gets a reference to the given []PlanAvailableInMetrosInner and assigns it to the AvailableInMetros field.
+func (o *Plan) SetAvailableInMetros(v []PlanAvailableInMetrosInner) {
 	o.AvailableInMetros = v
 }
 
@@ -405,9 +405,9 @@ func (o *Plan) SetSlug(v string) {
 }
 
 // GetSpecs returns the Specs field value if set, zero value otherwise.
-func (o *Plan) GetSpecs() FindDeviceById200ResponsePlanSpecs {
+func (o *Plan) GetSpecs() PlanSpecs {
 	if o == nil || isNil(o.Specs) {
-		var ret FindDeviceById200ResponsePlanSpecs
+		var ret PlanSpecs
 		return ret
 	}
 	return *o.Specs
@@ -415,7 +415,7 @@ func (o *Plan) GetSpecs() FindDeviceById200ResponsePlanSpecs {
 
 // GetSpecsOk returns a tuple with the Specs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Plan) GetSpecsOk() (*FindDeviceById200ResponsePlanSpecs, bool) {
+func (o *Plan) GetSpecsOk() (*PlanSpecs, bool) {
 	if o == nil || isNil(o.Specs) {
 		return nil, false
 	}
@@ -431,8 +431,8 @@ func (o *Plan) HasSpecs() bool {
 	return false
 }
 
-// SetSpecs gets a reference to the given FindDeviceById200ResponsePlanSpecs and assigns it to the Specs field.
-func (o *Plan) SetSpecs(v FindDeviceById200ResponsePlanSpecs) {
+// SetSpecs gets a reference to the given PlanSpecs and assigns it to the Specs field.
+func (o *Plan) SetSpecs(v PlanSpecs) {
 	o.Specs = &v
 }
 

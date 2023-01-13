@@ -33,7 +33,7 @@ import (
 
 func main() {
     projectId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Project UUID
-    createMetalGatewayRequest := openapiclient.createMetalGateway_request{CreateMetalGatewayRequestOneOf: openapiclient.NewCreateMetalGatewayRequestOneOf("VirtualNetworkId_example")} // CreateMetalGatewayRequest | Metal Gateway to create
+    createMetalGatewayRequest := openapiclient.createMetalGateway_request{MetalGatewayCreateInput: openapiclient.NewMetalGatewayCreateInput("VirtualNetworkId_example")} // CreateMetalGatewayRequest | Metal Gateway to create
     page := int32(56) // int32 | Page to return (optional) (default to 1)
     perPage := int32(56) // int32 | Items returned per page (optional) (default to 10)
 
@@ -231,7 +231,7 @@ Name | Type | Description  | Notes
 
 ## FindMetalGatewaysByProject
 
-> FindMetalGatewaysByProject200Response FindMetalGatewaysByProject(ctx, projectId).Page(page).PerPage(perPage).Execute()
+> MetalGatewayList FindMetalGatewaysByProject(ctx, projectId).Page(page).PerPage(perPage).Execute()
 
 Returns all metal gateways for a project
 
@@ -261,7 +261,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `MetalGatewaysApi.FindMetalGatewaysByProject``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindMetalGatewaysByProject`: FindMetalGatewaysByProject200Response
+    // response from `FindMetalGatewaysByProject`: MetalGatewayList
     fmt.Fprintf(os.Stdout, "Response from `MetalGatewaysApi.FindMetalGatewaysByProject`: %v\n", resp)
 }
 ```
@@ -287,7 +287,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FindMetalGatewaysByProject200Response**](FindMetalGatewaysByProject200Response.md)
+[**MetalGatewayList**](MetalGatewayList.md)
 
 ### Authorization
 

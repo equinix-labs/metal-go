@@ -17,7 +17,7 @@ import (
 
 // TransferRequestList struct for TransferRequestList
 type TransferRequestList struct {
-	Transfers []FindOrganizationTransfers200ResponseTransfersInner `json:"transfers,omitempty"`
+	Transfers []TransferRequest `json:"transfers,omitempty"`
 }
 
 // NewTransferRequestList instantiates a new TransferRequestList object
@@ -38,9 +38,9 @@ func NewTransferRequestListWithDefaults() *TransferRequestList {
 }
 
 // GetTransfers returns the Transfers field value if set, zero value otherwise.
-func (o *TransferRequestList) GetTransfers() []FindOrganizationTransfers200ResponseTransfersInner {
+func (o *TransferRequestList) GetTransfers() []TransferRequest {
 	if o == nil || isNil(o.Transfers) {
-		var ret []FindOrganizationTransfers200ResponseTransfersInner
+		var ret []TransferRequest
 		return ret
 	}
 	return o.Transfers
@@ -48,7 +48,7 @@ func (o *TransferRequestList) GetTransfers() []FindOrganizationTransfers200Respo
 
 // GetTransfersOk returns a tuple with the Transfers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TransferRequestList) GetTransfersOk() ([]FindOrganizationTransfers200ResponseTransfersInner, bool) {
+func (o *TransferRequestList) GetTransfersOk() ([]TransferRequest, bool) {
 	if o == nil || isNil(o.Transfers) {
 		return nil, false
 	}
@@ -64,8 +64,8 @@ func (o *TransferRequestList) HasTransfers() bool {
 	return false
 }
 
-// SetTransfers gets a reference to the given []FindOrganizationTransfers200ResponseTransfersInner and assigns it to the Transfers field.
-func (o *TransferRequestList) SetTransfers(v []FindOrganizationTransfers200ResponseTransfersInner) {
+// SetTransfers gets a reference to the given []TransferRequest and assigns it to the Transfers field.
+func (o *TransferRequestList) SetTransfers(v []TransferRequest) {
 	o.Transfers = v
 }
 

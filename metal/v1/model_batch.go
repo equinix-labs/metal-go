@@ -18,14 +18,14 @@ import (
 
 // Batch struct for Batch
 type Batch struct {
-	CreatedAt     *time.Time                             `json:"created_at,omitempty"`
-	Devices       []FindBatchById200ResponseDevicesInner `json:"devices,omitempty"`
-	ErrorMessages []string                               `json:"error_messages,omitempty"`
-	Id            *string                                `json:"id,omitempty"`
-	Project       *FindBatchById200ResponseDevicesInner  `json:"project,omitempty"`
-	Quantity      *int32                                 `json:"quantity,omitempty"`
-	State         *string                                `json:"state,omitempty"`
-	UpdatedAt     *time.Time                             `json:"updated_at,omitempty"`
+	CreatedAt     *time.Time `json:"created_at,omitempty"`
+	Devices       []Href     `json:"devices,omitempty"`
+	ErrorMessages []string   `json:"error_messages,omitempty"`
+	Id            *string    `json:"id,omitempty"`
+	Project       *Href      `json:"project,omitempty"`
+	Quantity      *int32     `json:"quantity,omitempty"`
+	State         *string    `json:"state,omitempty"`
+	UpdatedAt     *time.Time `json:"updated_at,omitempty"`
 }
 
 // NewBatch instantiates a new Batch object
@@ -78,9 +78,9 @@ func (o *Batch) SetCreatedAt(v time.Time) {
 }
 
 // GetDevices returns the Devices field value if set, zero value otherwise.
-func (o *Batch) GetDevices() []FindBatchById200ResponseDevicesInner {
+func (o *Batch) GetDevices() []Href {
 	if o == nil || isNil(o.Devices) {
-		var ret []FindBatchById200ResponseDevicesInner
+		var ret []Href
 		return ret
 	}
 	return o.Devices
@@ -88,7 +88,7 @@ func (o *Batch) GetDevices() []FindBatchById200ResponseDevicesInner {
 
 // GetDevicesOk returns a tuple with the Devices field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Batch) GetDevicesOk() ([]FindBatchById200ResponseDevicesInner, bool) {
+func (o *Batch) GetDevicesOk() ([]Href, bool) {
 	if o == nil || isNil(o.Devices) {
 		return nil, false
 	}
@@ -104,8 +104,8 @@ func (o *Batch) HasDevices() bool {
 	return false
 }
 
-// SetDevices gets a reference to the given []FindBatchById200ResponseDevicesInner and assigns it to the Devices field.
-func (o *Batch) SetDevices(v []FindBatchById200ResponseDevicesInner) {
+// SetDevices gets a reference to the given []Href and assigns it to the Devices field.
+func (o *Batch) SetDevices(v []Href) {
 	o.Devices = v
 }
 
@@ -174,9 +174,9 @@ func (o *Batch) SetId(v string) {
 }
 
 // GetProject returns the Project field value if set, zero value otherwise.
-func (o *Batch) GetProject() FindBatchById200ResponseDevicesInner {
+func (o *Batch) GetProject() Href {
 	if o == nil || isNil(o.Project) {
-		var ret FindBatchById200ResponseDevicesInner
+		var ret Href
 		return ret
 	}
 	return *o.Project
@@ -184,7 +184,7 @@ func (o *Batch) GetProject() FindBatchById200ResponseDevicesInner {
 
 // GetProjectOk returns a tuple with the Project field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Batch) GetProjectOk() (*FindBatchById200ResponseDevicesInner, bool) {
+func (o *Batch) GetProjectOk() (*Href, bool) {
 	if o == nil || isNil(o.Project) {
 		return nil, false
 	}
@@ -200,8 +200,8 @@ func (o *Batch) HasProject() bool {
 	return false
 }
 
-// SetProject gets a reference to the given FindBatchById200ResponseDevicesInner and assigns it to the Project field.
-func (o *Batch) SetProject(v FindBatchById200ResponseDevicesInner) {
+// SetProject gets a reference to the given Href and assigns it to the Project field.
+func (o *Batch) SetProject(v Href) {
 	o.Project = &v
 }
 

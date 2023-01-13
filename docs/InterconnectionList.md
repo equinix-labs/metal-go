@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Interconnections** | Pointer to [**[]GetInterconnection200Response**](GetInterconnection200Response.md) |  | [optional] 
+**Interconnections** | Pointer to [**[]Interconnection**](Interconnection.md) |  | [optional] 
 
 ## Methods
 
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetInterconnections
 
-`func (o *InterconnectionList) GetInterconnections() []GetInterconnection200Response`
+`func (o *InterconnectionList) GetInterconnections() []Interconnection`
 
 GetInterconnections returns the Interconnections field if non-nil, zero value otherwise.
 
 ### GetInterconnectionsOk
 
-`func (o *InterconnectionList) GetInterconnectionsOk() (*[]GetInterconnection200Response, bool)`
+`func (o *InterconnectionList) GetInterconnectionsOk() (*[]Interconnection, bool)`
 
 GetInterconnectionsOk returns a tuple with the Interconnections field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetInterconnections
 
-`func (o *InterconnectionList) SetInterconnections(v []GetInterconnection200Response)`
+`func (o *InterconnectionList) SetInterconnections(v []Interconnection)`
 
 SetInterconnections sets Interconnections field to given value.
 

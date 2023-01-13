@@ -9,9 +9,9 @@ Name | Type | Description | Notes
 **Description** | Pointer to **string** | Optional field that can be set to describe the VRF | [optional] 
 **LocalAsn** | Pointer to **int32** | A 4-byte ASN associated with the VRF. | [optional] 
 **IpRanges** | Pointer to **[]string** | A list of CIDR network addresses. Like [\&quot;10.0.0.0/16\&quot;, \&quot;2001:d78::/56\&quot;]. | [optional] 
-**Project** | Pointer to [**GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject**](GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject.md) |  | [optional] 
-**Metro** | Pointer to [**GetInterconnection200ResponseMetroAllOf**](GetInterconnection200ResponseMetroAllOf.md) |  | [optional] 
-**CreatedBy** | Pointer to [**GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfCreatedBy**](GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfCreatedBy.md) |  | [optional] 
+**Project** | Pointer to [**Project**](Project.md) |  | [optional] 
+**Metro** | Pointer to [**Metro**](Metro.md) |  | [optional] 
+**CreatedBy** | Pointer to [**User**](User.md) |  | [optional] 
 **Href** | Pointer to **string** |  | [optional] 
 
 ## Methods
@@ -160,20 +160,20 @@ HasIpRanges returns a boolean if a field has been set.
 
 ### GetProject
 
-`func (o *Vrf) GetProject() GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject`
+`func (o *Vrf) GetProject() Project`
 
 GetProject returns the Project field if non-nil, zero value otherwise.
 
 ### GetProjectOk
 
-`func (o *Vrf) GetProjectOk() (*GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject, bool)`
+`func (o *Vrf) GetProjectOk() (*Project, bool)`
 
 GetProjectOk returns a tuple with the Project field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetProject
 
-`func (o *Vrf) SetProject(v GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject)`
+`func (o *Vrf) SetProject(v Project)`
 
 SetProject sets Project field to given value.
 
@@ -185,20 +185,20 @@ HasProject returns a boolean if a field has been set.
 
 ### GetMetro
 
-`func (o *Vrf) GetMetro() GetInterconnection200ResponseMetroAllOf`
+`func (o *Vrf) GetMetro() Metro`
 
 GetMetro returns the Metro field if non-nil, zero value otherwise.
 
 ### GetMetroOk
 
-`func (o *Vrf) GetMetroOk() (*GetInterconnection200ResponseMetroAllOf, bool)`
+`func (o *Vrf) GetMetroOk() (*Metro, bool)`
 
 GetMetroOk returns a tuple with the Metro field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMetro
 
-`func (o *Vrf) SetMetro(v GetInterconnection200ResponseMetroAllOf)`
+`func (o *Vrf) SetMetro(v Metro)`
 
 SetMetro sets Metro field to given value.
 
@@ -210,20 +210,20 @@ HasMetro returns a boolean if a field has been set.
 
 ### GetCreatedBy
 
-`func (o *Vrf) GetCreatedBy() GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfCreatedBy`
+`func (o *Vrf) GetCreatedBy() User`
 
 GetCreatedBy returns the CreatedBy field if non-nil, zero value otherwise.
 
 ### GetCreatedByOk
 
-`func (o *Vrf) GetCreatedByOk() (*GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfCreatedBy, bool)`
+`func (o *Vrf) GetCreatedByOk() (*User, bool)`
 
 GetCreatedByOk returns a tuple with the CreatedBy field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCreatedBy
 
-`func (o *Vrf) SetCreatedBy(v GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfCreatedBy)`
+`func (o *Vrf) SetCreatedBy(v User)`
 
 SetCreatedBy sets CreatedBy field to given value.
 

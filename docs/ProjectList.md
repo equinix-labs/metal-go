@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Meta** | Pointer to [**FindDeviceEvents200ResponseMeta**](FindDeviceEvents200ResponseMeta.md) |  | [optional] 
-**Projects** | Pointer to [**[]GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject**](GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject.md) |  | [optional] 
+**Meta** | Pointer to [**Meta**](Meta.md) |  | [optional] 
+**Projects** | Pointer to [**[]Project**](Project.md) |  | [optional] 
 
 ## Methods
 
@@ -28,20 +28,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetMeta
 
-`func (o *ProjectList) GetMeta() FindDeviceEvents200ResponseMeta`
+`func (o *ProjectList) GetMeta() Meta`
 
 GetMeta returns the Meta field if non-nil, zero value otherwise.
 
 ### GetMetaOk
 
-`func (o *ProjectList) GetMetaOk() (*FindDeviceEvents200ResponseMeta, bool)`
+`func (o *ProjectList) GetMetaOk() (*Meta, bool)`
 
 GetMetaOk returns a tuple with the Meta field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMeta
 
-`func (o *ProjectList) SetMeta(v FindDeviceEvents200ResponseMeta)`
+`func (o *ProjectList) SetMeta(v Meta)`
 
 SetMeta sets Meta field to given value.
 
@@ -53,20 +53,20 @@ HasMeta returns a boolean if a field has been set.
 
 ### GetProjects
 
-`func (o *ProjectList) GetProjects() []GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject`
+`func (o *ProjectList) GetProjects() []Project`
 
 GetProjects returns the Projects field if non-nil, zero value otherwise.
 
 ### GetProjectsOk
 
-`func (o *ProjectList) GetProjectsOk() (*[]GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject, bool)`
+`func (o *ProjectList) GetProjectsOk() (*[]Project, bool)`
 
 GetProjectsOk returns a tuple with the Projects field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetProjects
 
-`func (o *ProjectList) SetProjects(v []GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject)`
+`func (o *ProjectList) SetProjects(v []Project)`
 
 SetProjects sets Projects field to given value.
 

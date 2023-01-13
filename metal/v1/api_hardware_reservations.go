@@ -43,7 +43,7 @@ func (r ApiFindHardwareReservationByIdRequest) Exclude(exclude []string) ApiFind
 	return r
 }
 
-func (r ApiFindHardwareReservationByIdRequest) Execute() (*FindDeviceById200Response, *http.Response, error) {
+func (r ApiFindHardwareReservationByIdRequest) Execute() (*Device, *http.Response, error) {
 	return r.ApiService.FindHardwareReservationByIdExecute(r)
 }
 
@@ -65,13 +65,13 @@ func (a *HardwareReservationsApiService) FindHardwareReservationById(ctx context
 }
 
 // Execute executes the request
-//  @return FindDeviceById200Response
-func (a *HardwareReservationsApiService) FindHardwareReservationByIdExecute(r ApiFindHardwareReservationByIdRequest) (*FindDeviceById200Response, *http.Response, error) {
+//  @return Device
+func (a *HardwareReservationsApiService) FindHardwareReservationByIdExecute(r ApiFindHardwareReservationByIdRequest) (*Device, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *FindDeviceById200Response
+		localVarReturnValue *Device
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HardwareReservationsApiService.FindHardwareReservationById")
@@ -146,7 +146,7 @@ func (a *HardwareReservationsApiService) FindHardwareReservationByIdExecute(r Ap
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -157,7 +157,7 @@ func (a *HardwareReservationsApiService) FindHardwareReservationByIdExecute(r Ap
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -168,7 +168,7 @@ func (a *HardwareReservationsApiService) FindHardwareReservationByIdExecute(r Ap
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -226,7 +226,7 @@ func (r ApiFindProjectHardwareReservationsRequest) PerPage(perPage int32) ApiFin
 	return r
 }
 
-func (r ApiFindProjectHardwareReservationsRequest) Execute() (*FindProjectHardwareReservations200Response, *http.Response, error) {
+func (r ApiFindProjectHardwareReservationsRequest) Execute() (*HardwareReservationList, *http.Response, error) {
 	return r.ApiService.FindProjectHardwareReservationsExecute(r)
 }
 
@@ -248,13 +248,13 @@ func (a *HardwareReservationsApiService) FindProjectHardwareReservations(ctx con
 }
 
 // Execute executes the request
-//  @return FindProjectHardwareReservations200Response
-func (a *HardwareReservationsApiService) FindProjectHardwareReservationsExecute(r ApiFindProjectHardwareReservationsRequest) (*FindProjectHardwareReservations200Response, *http.Response, error) {
+//  @return HardwareReservationList
+func (a *HardwareReservationsApiService) FindProjectHardwareReservationsExecute(r ApiFindProjectHardwareReservationsRequest) (*HardwareReservationList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *FindProjectHardwareReservations200Response
+		localVarReturnValue *HardwareReservationList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HardwareReservationsApiService.FindProjectHardwareReservations")
@@ -335,7 +335,7 @@ func (a *HardwareReservationsApiService) FindProjectHardwareReservationsExecute(
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -346,7 +346,7 @@ func (a *HardwareReservationsApiService) FindProjectHardwareReservationsExecute(
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -357,7 +357,7 @@ func (a *HardwareReservationsApiService) FindProjectHardwareReservationsExecute(
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -394,7 +394,7 @@ func (r ApiMoveHardwareReservationRequest) Body(body string) ApiMoveHardwareRese
 	return r
 }
 
-func (r ApiMoveHardwareReservationRequest) Execute() (*MoveHardwareReservation201Response, *http.Response, error) {
+func (r ApiMoveHardwareReservationRequest) Execute() (*HardwareReservation, *http.Response, error) {
 	return r.ApiService.MoveHardwareReservationExecute(r)
 }
 
@@ -416,13 +416,13 @@ func (a *HardwareReservationsApiService) MoveHardwareReservation(ctx context.Con
 }
 
 // Execute executes the request
-//  @return MoveHardwareReservation201Response
-func (a *HardwareReservationsApiService) MoveHardwareReservationExecute(r ApiMoveHardwareReservationRequest) (*MoveHardwareReservation201Response, *http.Response, error) {
+//  @return HardwareReservation
+func (a *HardwareReservationsApiService) MoveHardwareReservationExecute(r ApiMoveHardwareReservationRequest) (*HardwareReservation, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *MoveHardwareReservation201Response
+		localVarReturnValue *HardwareReservation
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HardwareReservationsApiService.MoveHardwareReservation")
@@ -496,7 +496,7 @@ func (a *HardwareReservationsApiService) MoveHardwareReservationExecute(r ApiMov
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -507,7 +507,7 @@ func (a *HardwareReservationsApiService) MoveHardwareReservationExecute(r ApiMov
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -518,7 +518,7 @@ func (a *HardwareReservationsApiService) MoveHardwareReservationExecute(r ApiMov
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

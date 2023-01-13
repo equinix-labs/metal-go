@@ -17,8 +17,8 @@ import (
 
 // UserList struct for UserList
 type UserList struct {
-	Meta  *FindDeviceEvents200ResponseMeta                                                               `json:"meta,omitempty"`
-	Users []GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfCreatedBy `json:"users,omitempty"`
+	Meta  *Meta  `json:"meta,omitempty"`
+	Users []User `json:"users,omitempty"`
 }
 
 // NewUserList instantiates a new UserList object
@@ -39,9 +39,9 @@ func NewUserListWithDefaults() *UserList {
 }
 
 // GetMeta returns the Meta field value if set, zero value otherwise.
-func (o *UserList) GetMeta() FindDeviceEvents200ResponseMeta {
+func (o *UserList) GetMeta() Meta {
 	if o == nil || isNil(o.Meta) {
-		var ret FindDeviceEvents200ResponseMeta
+		var ret Meta
 		return ret
 	}
 	return *o.Meta
@@ -49,7 +49,7 @@ func (o *UserList) GetMeta() FindDeviceEvents200ResponseMeta {
 
 // GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UserList) GetMetaOk() (*FindDeviceEvents200ResponseMeta, bool) {
+func (o *UserList) GetMetaOk() (*Meta, bool) {
 	if o == nil || isNil(o.Meta) {
 		return nil, false
 	}
@@ -65,15 +65,15 @@ func (o *UserList) HasMeta() bool {
 	return false
 }
 
-// SetMeta gets a reference to the given FindDeviceEvents200ResponseMeta and assigns it to the Meta field.
-func (o *UserList) SetMeta(v FindDeviceEvents200ResponseMeta) {
+// SetMeta gets a reference to the given Meta and assigns it to the Meta field.
+func (o *UserList) SetMeta(v Meta) {
 	o.Meta = &v
 }
 
 // GetUsers returns the Users field value if set, zero value otherwise.
-func (o *UserList) GetUsers() []GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfCreatedBy {
+func (o *UserList) GetUsers() []User {
 	if o == nil || isNil(o.Users) {
-		var ret []GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfCreatedBy
+		var ret []User
 		return ret
 	}
 	return o.Users
@@ -81,7 +81,7 @@ func (o *UserList) GetUsers() []GetInterconnection200ResponsePortsInnerVirtualCi
 
 // GetUsersOk returns a tuple with the Users field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UserList) GetUsersOk() ([]GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfCreatedBy, bool) {
+func (o *UserList) GetUsersOk() ([]User, bool) {
 	if o == nil || isNil(o.Users) {
 		return nil, false
 	}
@@ -97,8 +97,8 @@ func (o *UserList) HasUsers() bool {
 	return false
 }
 
-// SetUsers gets a reference to the given []GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfCreatedBy and assigns it to the Users field.
-func (o *UserList) SetUsers(v []GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfCreatedBy) {
+// SetUsers gets a reference to the given []User and assigns it to the Users field.
+func (o *UserList) SetUsers(v []User) {
 	o.Users = v
 }
 

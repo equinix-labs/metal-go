@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 ## ConsumeVerificationRequest
 
-> ConsumeVerificationRequest(ctx).ConsumeVerificationRequestRequest(consumeVerificationRequestRequest).Execute()
+> ConsumeVerificationRequest(ctx).VerifyEmail(verifyEmail).Execute()
 
 Verify a user using an email verification token
 
@@ -30,11 +30,11 @@ import (
 )
 
 func main() {
-    consumeVerificationRequestRequest := *openapiclient.NewConsumeVerificationRequestRequest("UserToken_example") // ConsumeVerificationRequestRequest | Email to create
+    verifyEmail := *openapiclient.NewVerifyEmail("UserToken_example") // VerifyEmail | Email to create
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.UserVerificationTokensApi.ConsumeVerificationRequest(context.Background()).ConsumeVerificationRequestRequest(consumeVerificationRequestRequest).Execute()
+    resp, r, err := apiClient.UserVerificationTokensApi.ConsumeVerificationRequest(context.Background()).VerifyEmail(verifyEmail).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UserVerificationTokensApi.ConsumeVerificationRequest``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -53,7 +53,7 @@ Other parameters are passed through a pointer to a apiConsumeVerificationRequest
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **consumeVerificationRequestRequest** | [**ConsumeVerificationRequestRequest**](ConsumeVerificationRequestRequest.md) | Email to create | 
+ **verifyEmail** | [**VerifyEmail**](VerifyEmail.md) | Email to create | 
 
 ### Return type
 

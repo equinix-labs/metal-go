@@ -18,21 +18,21 @@ import (
 
 // Project struct for Project
 type Project struct {
-	BgpConfig     *FindBatchById200ResponseDevicesInner  `json:"bgp_config,omitempty"`
-	CreatedAt     *time.Time                             `json:"created_at,omitempty"`
-	Customdata    map[string]interface{}                 `json:"customdata,omitempty"`
-	Devices       []FindBatchById200ResponseDevicesInner `json:"devices,omitempty"`
-	Id            *string                                `json:"id,omitempty"`
-	Invitations   []FindBatchById200ResponseDevicesInner `json:"invitations,omitempty"`
-	MaxDevices    map[string]interface{}                 `json:"max_devices,omitempty"`
-	Members       []FindBatchById200ResponseDevicesInner `json:"members,omitempty"`
-	Memberships   []FindBatchById200ResponseDevicesInner `json:"memberships,omitempty"`
-	Name          *string                                `json:"name,omitempty"`
-	NetworkStatus map[string]interface{}                 `json:"network_status,omitempty"`
-	PaymentMethod *FindBatchById200ResponseDevicesInner  `json:"payment_method,omitempty"`
-	SshKeys       []FindBatchById200ResponseDevicesInner `json:"ssh_keys,omitempty"`
-	UpdatedAt     *time.Time                             `json:"updated_at,omitempty"`
-	Volumes       []FindBatchById200ResponseDevicesInner `json:"volumes,omitempty"`
+	BgpConfig     *Href                  `json:"bgp_config,omitempty"`
+	CreatedAt     *time.Time             `json:"created_at,omitempty"`
+	Customdata    map[string]interface{} `json:"customdata,omitempty"`
+	Devices       []Href                 `json:"devices,omitempty"`
+	Id            *string                `json:"id,omitempty"`
+	Invitations   []Href                 `json:"invitations,omitempty"`
+	MaxDevices    map[string]interface{} `json:"max_devices,omitempty"`
+	Members       []Href                 `json:"members,omitempty"`
+	Memberships   []Href                 `json:"memberships,omitempty"`
+	Name          *string                `json:"name,omitempty"`
+	NetworkStatus map[string]interface{} `json:"network_status,omitempty"`
+	PaymentMethod *Href                  `json:"payment_method,omitempty"`
+	SshKeys       []Href                 `json:"ssh_keys,omitempty"`
+	UpdatedAt     *time.Time             `json:"updated_at,omitempty"`
+	Volumes       []Href                 `json:"volumes,omitempty"`
 }
 
 // NewProject instantiates a new Project object
@@ -53,9 +53,9 @@ func NewProjectWithDefaults() *Project {
 }
 
 // GetBgpConfig returns the BgpConfig field value if set, zero value otherwise.
-func (o *Project) GetBgpConfig() FindBatchById200ResponseDevicesInner {
+func (o *Project) GetBgpConfig() Href {
 	if o == nil || isNil(o.BgpConfig) {
-		var ret FindBatchById200ResponseDevicesInner
+		var ret Href
 		return ret
 	}
 	return *o.BgpConfig
@@ -63,7 +63,7 @@ func (o *Project) GetBgpConfig() FindBatchById200ResponseDevicesInner {
 
 // GetBgpConfigOk returns a tuple with the BgpConfig field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Project) GetBgpConfigOk() (*FindBatchById200ResponseDevicesInner, bool) {
+func (o *Project) GetBgpConfigOk() (*Href, bool) {
 	if o == nil || isNil(o.BgpConfig) {
 		return nil, false
 	}
@@ -79,8 +79,8 @@ func (o *Project) HasBgpConfig() bool {
 	return false
 }
 
-// SetBgpConfig gets a reference to the given FindBatchById200ResponseDevicesInner and assigns it to the BgpConfig field.
-func (o *Project) SetBgpConfig(v FindBatchById200ResponseDevicesInner) {
+// SetBgpConfig gets a reference to the given Href and assigns it to the BgpConfig field.
+func (o *Project) SetBgpConfig(v Href) {
 	o.BgpConfig = &v
 }
 
@@ -149,9 +149,9 @@ func (o *Project) SetCustomdata(v map[string]interface{}) {
 }
 
 // GetDevices returns the Devices field value if set, zero value otherwise.
-func (o *Project) GetDevices() []FindBatchById200ResponseDevicesInner {
+func (o *Project) GetDevices() []Href {
 	if o == nil || isNil(o.Devices) {
-		var ret []FindBatchById200ResponseDevicesInner
+		var ret []Href
 		return ret
 	}
 	return o.Devices
@@ -159,7 +159,7 @@ func (o *Project) GetDevices() []FindBatchById200ResponseDevicesInner {
 
 // GetDevicesOk returns a tuple with the Devices field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Project) GetDevicesOk() ([]FindBatchById200ResponseDevicesInner, bool) {
+func (o *Project) GetDevicesOk() ([]Href, bool) {
 	if o == nil || isNil(o.Devices) {
 		return nil, false
 	}
@@ -175,8 +175,8 @@ func (o *Project) HasDevices() bool {
 	return false
 }
 
-// SetDevices gets a reference to the given []FindBatchById200ResponseDevicesInner and assigns it to the Devices field.
-func (o *Project) SetDevices(v []FindBatchById200ResponseDevicesInner) {
+// SetDevices gets a reference to the given []Href and assigns it to the Devices field.
+func (o *Project) SetDevices(v []Href) {
 	o.Devices = v
 }
 
@@ -213,9 +213,9 @@ func (o *Project) SetId(v string) {
 }
 
 // GetInvitations returns the Invitations field value if set, zero value otherwise.
-func (o *Project) GetInvitations() []FindBatchById200ResponseDevicesInner {
+func (o *Project) GetInvitations() []Href {
 	if o == nil || isNil(o.Invitations) {
-		var ret []FindBatchById200ResponseDevicesInner
+		var ret []Href
 		return ret
 	}
 	return o.Invitations
@@ -223,7 +223,7 @@ func (o *Project) GetInvitations() []FindBatchById200ResponseDevicesInner {
 
 // GetInvitationsOk returns a tuple with the Invitations field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Project) GetInvitationsOk() ([]FindBatchById200ResponseDevicesInner, bool) {
+func (o *Project) GetInvitationsOk() ([]Href, bool) {
 	if o == nil || isNil(o.Invitations) {
 		return nil, false
 	}
@@ -239,8 +239,8 @@ func (o *Project) HasInvitations() bool {
 	return false
 }
 
-// SetInvitations gets a reference to the given []FindBatchById200ResponseDevicesInner and assigns it to the Invitations field.
-func (o *Project) SetInvitations(v []FindBatchById200ResponseDevicesInner) {
+// SetInvitations gets a reference to the given []Href and assigns it to the Invitations field.
+func (o *Project) SetInvitations(v []Href) {
 	o.Invitations = v
 }
 
@@ -277,9 +277,9 @@ func (o *Project) SetMaxDevices(v map[string]interface{}) {
 }
 
 // GetMembers returns the Members field value if set, zero value otherwise.
-func (o *Project) GetMembers() []FindBatchById200ResponseDevicesInner {
+func (o *Project) GetMembers() []Href {
 	if o == nil || isNil(o.Members) {
-		var ret []FindBatchById200ResponseDevicesInner
+		var ret []Href
 		return ret
 	}
 	return o.Members
@@ -287,7 +287,7 @@ func (o *Project) GetMembers() []FindBatchById200ResponseDevicesInner {
 
 // GetMembersOk returns a tuple with the Members field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Project) GetMembersOk() ([]FindBatchById200ResponseDevicesInner, bool) {
+func (o *Project) GetMembersOk() ([]Href, bool) {
 	if o == nil || isNil(o.Members) {
 		return nil, false
 	}
@@ -303,15 +303,15 @@ func (o *Project) HasMembers() bool {
 	return false
 }
 
-// SetMembers gets a reference to the given []FindBatchById200ResponseDevicesInner and assigns it to the Members field.
-func (o *Project) SetMembers(v []FindBatchById200ResponseDevicesInner) {
+// SetMembers gets a reference to the given []Href and assigns it to the Members field.
+func (o *Project) SetMembers(v []Href) {
 	o.Members = v
 }
 
 // GetMemberships returns the Memberships field value if set, zero value otherwise.
-func (o *Project) GetMemberships() []FindBatchById200ResponseDevicesInner {
+func (o *Project) GetMemberships() []Href {
 	if o == nil || isNil(o.Memberships) {
-		var ret []FindBatchById200ResponseDevicesInner
+		var ret []Href
 		return ret
 	}
 	return o.Memberships
@@ -319,7 +319,7 @@ func (o *Project) GetMemberships() []FindBatchById200ResponseDevicesInner {
 
 // GetMembershipsOk returns a tuple with the Memberships field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Project) GetMembershipsOk() ([]FindBatchById200ResponseDevicesInner, bool) {
+func (o *Project) GetMembershipsOk() ([]Href, bool) {
 	if o == nil || isNil(o.Memberships) {
 		return nil, false
 	}
@@ -335,8 +335,8 @@ func (o *Project) HasMemberships() bool {
 	return false
 }
 
-// SetMemberships gets a reference to the given []FindBatchById200ResponseDevicesInner and assigns it to the Memberships field.
-func (o *Project) SetMemberships(v []FindBatchById200ResponseDevicesInner) {
+// SetMemberships gets a reference to the given []Href and assigns it to the Memberships field.
+func (o *Project) SetMemberships(v []Href) {
 	o.Memberships = v
 }
 
@@ -405,9 +405,9 @@ func (o *Project) SetNetworkStatus(v map[string]interface{}) {
 }
 
 // GetPaymentMethod returns the PaymentMethod field value if set, zero value otherwise.
-func (o *Project) GetPaymentMethod() FindBatchById200ResponseDevicesInner {
+func (o *Project) GetPaymentMethod() Href {
 	if o == nil || isNil(o.PaymentMethod) {
-		var ret FindBatchById200ResponseDevicesInner
+		var ret Href
 		return ret
 	}
 	return *o.PaymentMethod
@@ -415,7 +415,7 @@ func (o *Project) GetPaymentMethod() FindBatchById200ResponseDevicesInner {
 
 // GetPaymentMethodOk returns a tuple with the PaymentMethod field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Project) GetPaymentMethodOk() (*FindBatchById200ResponseDevicesInner, bool) {
+func (o *Project) GetPaymentMethodOk() (*Href, bool) {
 	if o == nil || isNil(o.PaymentMethod) {
 		return nil, false
 	}
@@ -431,15 +431,15 @@ func (o *Project) HasPaymentMethod() bool {
 	return false
 }
 
-// SetPaymentMethod gets a reference to the given FindBatchById200ResponseDevicesInner and assigns it to the PaymentMethod field.
-func (o *Project) SetPaymentMethod(v FindBatchById200ResponseDevicesInner) {
+// SetPaymentMethod gets a reference to the given Href and assigns it to the PaymentMethod field.
+func (o *Project) SetPaymentMethod(v Href) {
 	o.PaymentMethod = &v
 }
 
 // GetSshKeys returns the SshKeys field value if set, zero value otherwise.
-func (o *Project) GetSshKeys() []FindBatchById200ResponseDevicesInner {
+func (o *Project) GetSshKeys() []Href {
 	if o == nil || isNil(o.SshKeys) {
-		var ret []FindBatchById200ResponseDevicesInner
+		var ret []Href
 		return ret
 	}
 	return o.SshKeys
@@ -447,7 +447,7 @@ func (o *Project) GetSshKeys() []FindBatchById200ResponseDevicesInner {
 
 // GetSshKeysOk returns a tuple with the SshKeys field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Project) GetSshKeysOk() ([]FindBatchById200ResponseDevicesInner, bool) {
+func (o *Project) GetSshKeysOk() ([]Href, bool) {
 	if o == nil || isNil(o.SshKeys) {
 		return nil, false
 	}
@@ -463,8 +463,8 @@ func (o *Project) HasSshKeys() bool {
 	return false
 }
 
-// SetSshKeys gets a reference to the given []FindBatchById200ResponseDevicesInner and assigns it to the SshKeys field.
-func (o *Project) SetSshKeys(v []FindBatchById200ResponseDevicesInner) {
+// SetSshKeys gets a reference to the given []Href and assigns it to the SshKeys field.
+func (o *Project) SetSshKeys(v []Href) {
 	o.SshKeys = v
 }
 
@@ -501,9 +501,9 @@ func (o *Project) SetUpdatedAt(v time.Time) {
 }
 
 // GetVolumes returns the Volumes field value if set, zero value otherwise.
-func (o *Project) GetVolumes() []FindBatchById200ResponseDevicesInner {
+func (o *Project) GetVolumes() []Href {
 	if o == nil || isNil(o.Volumes) {
-		var ret []FindBatchById200ResponseDevicesInner
+		var ret []Href
 		return ret
 	}
 	return o.Volumes
@@ -511,7 +511,7 @@ func (o *Project) GetVolumes() []FindBatchById200ResponseDevicesInner {
 
 // GetVolumesOk returns a tuple with the Volumes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Project) GetVolumesOk() ([]FindBatchById200ResponseDevicesInner, bool) {
+func (o *Project) GetVolumesOk() ([]Href, bool) {
 	if o == nil || isNil(o.Volumes) {
 		return nil, false
 	}
@@ -527,8 +527,8 @@ func (o *Project) HasVolumes() bool {
 	return false
 }
 
-// SetVolumes gets a reference to the given []FindBatchById200ResponseDevicesInner and assigns it to the Volumes field.
-func (o *Project) SetVolumes(v []FindBatchById200ResponseDevicesInner) {
+// SetVolumes gets a reference to the given []Href and assigns it to the Volumes field.
+func (o *Project) SetVolumes(v []Href) {
 	o.Volumes = v
 }
 

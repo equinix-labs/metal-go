@@ -7,8 +7,8 @@ Name | Type | Description | Notes
 **Description** | Pointer to **string** |  | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
 **LicenseKey** | Pointer to **string** |  | [optional] 
-**LicenseeProduct** | Pointer to [**FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
-**Project** | Pointer to [**FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
+**LicenseeProduct** | Pointer to [**Href**](Href.md) |  | [optional] 
+**Project** | Pointer to [**Href**](Href.md) |  | [optional] 
 **Size** | Pointer to **float32** |  | [optional] 
 
 ## Methods
@@ -107,20 +107,20 @@ HasLicenseKey returns a boolean if a field has been set.
 
 ### GetLicenseeProduct
 
-`func (o *License) GetLicenseeProduct() FindBatchById200ResponseDevicesInner`
+`func (o *License) GetLicenseeProduct() Href`
 
 GetLicenseeProduct returns the LicenseeProduct field if non-nil, zero value otherwise.
 
 ### GetLicenseeProductOk
 
-`func (o *License) GetLicenseeProductOk() (*FindBatchById200ResponseDevicesInner, bool)`
+`func (o *License) GetLicenseeProductOk() (*Href, bool)`
 
 GetLicenseeProductOk returns a tuple with the LicenseeProduct field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLicenseeProduct
 
-`func (o *License) SetLicenseeProduct(v FindBatchById200ResponseDevicesInner)`
+`func (o *License) SetLicenseeProduct(v Href)`
 
 SetLicenseeProduct sets LicenseeProduct field to given value.
 
@@ -132,20 +132,20 @@ HasLicenseeProduct returns a boolean if a field has been set.
 
 ### GetProject
 
-`func (o *License) GetProject() FindBatchById200ResponseDevicesInner`
+`func (o *License) GetProject() Href`
 
 GetProject returns the Project field if non-nil, zero value otherwise.
 
 ### GetProjectOk
 
-`func (o *License) GetProjectOk() (*FindBatchById200ResponseDevicesInner, bool)`
+`func (o *License) GetProjectOk() (*Href, bool)`
 
 GetProjectOk returns a tuple with the Project field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetProject
 
-`func (o *License) SetProject(v FindBatchById200ResponseDevicesInner)`
+`func (o *License) SetProject(v Href)`
 
 SetProject sets Project field to given value.
 

@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Address** | Pointer to [**FindDeviceById200ResponseFacilityAddress**](FindDeviceById200ResponseFacilityAddress.md) |  | [optional] 
-**BillingAddress** | Pointer to [**FindDeviceById200ResponseFacilityAddress**](FindDeviceById200ResponseFacilityAddress.md) |  | [optional] 
+**Address** | Pointer to [**Address**](Address.md) |  | [optional] 
+**BillingAddress** | Pointer to [**Address**](Address.md) |  | [optional] 
 **CreatedAt** | Pointer to **time.Time** |  | [optional] 
 **CreditAmount** | Pointer to **float32** |  | [optional] 
 **Customdata** | Pointer to **map[string]interface{}** |  | [optional] 
@@ -13,10 +13,10 @@ Name | Type | Description | Notes
 **Enforce2faAt** | Pointer to **time.Time** | Force to all members to have enabled the two factor authentication after that date, unless the value is null | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
 **Logo** | Pointer to ***os.File** |  | [optional] 
-**Members** | Pointer to [**[]FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
-**Memberships** | Pointer to [**[]FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
+**Members** | Pointer to [**[]Href**](Href.md) |  | [optional] 
+**Memberships** | Pointer to [**[]Href**](Href.md) |  | [optional] 
 **Name** | Pointer to **string** |  | [optional] 
-**Projects** | Pointer to [**[]FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
+**Projects** | Pointer to [**[]Href**](Href.md) |  | [optional] 
 **Terms** | Pointer to **int32** |  | [optional] 
 **Twitter** | Pointer to **string** |  | [optional] 
 **UpdatedAt** | Pointer to **time.Time** |  | [optional] 
@@ -43,20 +43,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetAddress
 
-`func (o *Organization) GetAddress() FindDeviceById200ResponseFacilityAddress`
+`func (o *Organization) GetAddress() Address`
 
 GetAddress returns the Address field if non-nil, zero value otherwise.
 
 ### GetAddressOk
 
-`func (o *Organization) GetAddressOk() (*FindDeviceById200ResponseFacilityAddress, bool)`
+`func (o *Organization) GetAddressOk() (*Address, bool)`
 
 GetAddressOk returns a tuple with the Address field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAddress
 
-`func (o *Organization) SetAddress(v FindDeviceById200ResponseFacilityAddress)`
+`func (o *Organization) SetAddress(v Address)`
 
 SetAddress sets Address field to given value.
 
@@ -68,20 +68,20 @@ HasAddress returns a boolean if a field has been set.
 
 ### GetBillingAddress
 
-`func (o *Organization) GetBillingAddress() FindDeviceById200ResponseFacilityAddress`
+`func (o *Organization) GetBillingAddress() Address`
 
 GetBillingAddress returns the BillingAddress field if non-nil, zero value otherwise.
 
 ### GetBillingAddressOk
 
-`func (o *Organization) GetBillingAddressOk() (*FindDeviceById200ResponseFacilityAddress, bool)`
+`func (o *Organization) GetBillingAddressOk() (*Address, bool)`
 
 GetBillingAddressOk returns a tuple with the BillingAddress field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetBillingAddress
 
-`func (o *Organization) SetBillingAddress(v FindDeviceById200ResponseFacilityAddress)`
+`func (o *Organization) SetBillingAddress(v Address)`
 
 SetBillingAddress sets BillingAddress field to given value.
 
@@ -268,20 +268,20 @@ HasLogo returns a boolean if a field has been set.
 
 ### GetMembers
 
-`func (o *Organization) GetMembers() []FindBatchById200ResponseDevicesInner`
+`func (o *Organization) GetMembers() []Href`
 
 GetMembers returns the Members field if non-nil, zero value otherwise.
 
 ### GetMembersOk
 
-`func (o *Organization) GetMembersOk() (*[]FindBatchById200ResponseDevicesInner, bool)`
+`func (o *Organization) GetMembersOk() (*[]Href, bool)`
 
 GetMembersOk returns a tuple with the Members field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMembers
 
-`func (o *Organization) SetMembers(v []FindBatchById200ResponseDevicesInner)`
+`func (o *Organization) SetMembers(v []Href)`
 
 SetMembers sets Members field to given value.
 
@@ -293,20 +293,20 @@ HasMembers returns a boolean if a field has been set.
 
 ### GetMemberships
 
-`func (o *Organization) GetMemberships() []FindBatchById200ResponseDevicesInner`
+`func (o *Organization) GetMemberships() []Href`
 
 GetMemberships returns the Memberships field if non-nil, zero value otherwise.
 
 ### GetMembershipsOk
 
-`func (o *Organization) GetMembershipsOk() (*[]FindBatchById200ResponseDevicesInner, bool)`
+`func (o *Organization) GetMembershipsOk() (*[]Href, bool)`
 
 GetMembershipsOk returns a tuple with the Memberships field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMemberships
 
-`func (o *Organization) SetMemberships(v []FindBatchById200ResponseDevicesInner)`
+`func (o *Organization) SetMemberships(v []Href)`
 
 SetMemberships sets Memberships field to given value.
 
@@ -343,20 +343,20 @@ HasName returns a boolean if a field has been set.
 
 ### GetProjects
 
-`func (o *Organization) GetProjects() []FindBatchById200ResponseDevicesInner`
+`func (o *Organization) GetProjects() []Href`
 
 GetProjects returns the Projects field if non-nil, zero value otherwise.
 
 ### GetProjectsOk
 
-`func (o *Organization) GetProjectsOk() (*[]FindBatchById200ResponseDevicesInner, bool)`
+`func (o *Organization) GetProjectsOk() (*[]Href, bool)`
 
 GetProjectsOk returns a tuple with the Projects field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetProjects
 
-`func (o *Organization) SetProjects(v []FindBatchById200ResponseDevicesInner)`
+`func (o *Organization) SetProjects(v []Href)`
 
 SetProjects sets Projects field to given value.
 

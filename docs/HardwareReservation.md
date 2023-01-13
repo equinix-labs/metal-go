@@ -6,13 +6,13 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CreatedAt** | Pointer to **time.Time** |  | [optional] 
 **CustomRate** | Pointer to **float32** | Amount that will be charged for every billing_cycle. | [optional] 
-**Device** | Pointer to [**FindDeviceById200Response**](FindDeviceById200Response.md) |  | [optional] 
-**Facility** | Pointer to [**FindDeviceById200ResponseFacility**](FindDeviceById200ResponseFacility.md) |  | [optional] 
+**Device** | Pointer to [**Device**](Device.md) |  | [optional] 
+**Facility** | Pointer to [**Facility**](Facility.md) |  | [optional] 
 **Href** | Pointer to **string** |  | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
 **NeedOfService** | Pointer to **bool** | Whether this Device requires assistance from Metal Equinix. | [optional] 
-**Plan** | Pointer to [**FindDeviceById200ResponsePlan**](FindDeviceById200ResponsePlan.md) |  | [optional] 
-**Project** | Pointer to [**GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject**](GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject.md) |  | [optional] 
+**Plan** | Pointer to [**Plan**](Plan.md) |  | [optional] 
+**Project** | Pointer to [**Project**](Project.md) |  | [optional] 
 **Provisionable** | Pointer to **bool** | Whether the reserved server is provisionable or not. Spare devices can&#39;t be provisioned unless they are activated first. | [optional] 
 **ShortId** | Pointer to **string** | Short version of the ID. | [optional] 
 **Spare** | Pointer to **bool** | Whether the Hardware Reservation is a spare. Spare Hardware Reservations are used when a Hardware Reservations requires service from Metal Equinix | [optional] 
@@ -89,20 +89,20 @@ HasCustomRate returns a boolean if a field has been set.
 
 ### GetDevice
 
-`func (o *HardwareReservation) GetDevice() FindDeviceById200Response`
+`func (o *HardwareReservation) GetDevice() Device`
 
 GetDevice returns the Device field if non-nil, zero value otherwise.
 
 ### GetDeviceOk
 
-`func (o *HardwareReservation) GetDeviceOk() (*FindDeviceById200Response, bool)`
+`func (o *HardwareReservation) GetDeviceOk() (*Device, bool)`
 
 GetDeviceOk returns a tuple with the Device field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDevice
 
-`func (o *HardwareReservation) SetDevice(v FindDeviceById200Response)`
+`func (o *HardwareReservation) SetDevice(v Device)`
 
 SetDevice sets Device field to given value.
 
@@ -114,20 +114,20 @@ HasDevice returns a boolean if a field has been set.
 
 ### GetFacility
 
-`func (o *HardwareReservation) GetFacility() FindDeviceById200ResponseFacility`
+`func (o *HardwareReservation) GetFacility() Facility`
 
 GetFacility returns the Facility field if non-nil, zero value otherwise.
 
 ### GetFacilityOk
 
-`func (o *HardwareReservation) GetFacilityOk() (*FindDeviceById200ResponseFacility, bool)`
+`func (o *HardwareReservation) GetFacilityOk() (*Facility, bool)`
 
 GetFacilityOk returns a tuple with the Facility field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFacility
 
-`func (o *HardwareReservation) SetFacility(v FindDeviceById200ResponseFacility)`
+`func (o *HardwareReservation) SetFacility(v Facility)`
 
 SetFacility sets Facility field to given value.
 
@@ -214,20 +214,20 @@ HasNeedOfService returns a boolean if a field has been set.
 
 ### GetPlan
 
-`func (o *HardwareReservation) GetPlan() FindDeviceById200ResponsePlan`
+`func (o *HardwareReservation) GetPlan() Plan`
 
 GetPlan returns the Plan field if non-nil, zero value otherwise.
 
 ### GetPlanOk
 
-`func (o *HardwareReservation) GetPlanOk() (*FindDeviceById200ResponsePlan, bool)`
+`func (o *HardwareReservation) GetPlanOk() (*Plan, bool)`
 
 GetPlanOk returns a tuple with the Plan field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPlan
 
-`func (o *HardwareReservation) SetPlan(v FindDeviceById200ResponsePlan)`
+`func (o *HardwareReservation) SetPlan(v Plan)`
 
 SetPlan sets Plan field to given value.
 
@@ -239,20 +239,20 @@ HasPlan returns a boolean if a field has been set.
 
 ### GetProject
 
-`func (o *HardwareReservation) GetProject() GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject`
+`func (o *HardwareReservation) GetProject() Project`
 
 GetProject returns the Project field if non-nil, zero value otherwise.
 
 ### GetProjectOk
 
-`func (o *HardwareReservation) GetProjectOk() (*GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject, bool)`
+`func (o *HardwareReservation) GetProjectOk() (*Project, bool)`
 
 GetProjectOk returns a tuple with the Project field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetProject
 
-`func (o *HardwareReservation) SetProject(v GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject)`
+`func (o *HardwareReservation) SetProject(v Project)`
 
 SetProject sets Project field to given value.
 

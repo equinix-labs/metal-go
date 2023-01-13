@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Vrfs** | Pointer to [**[]GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1Vrf**](GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1Vrf.md) |  | [optional] 
+**Vrfs** | Pointer to [**[]Vrf**](Vrf.md) |  | [optional] 
 
 ## Methods
 
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetVrfs
 
-`func (o *VrfList) GetVrfs() []GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1Vrf`
+`func (o *VrfList) GetVrfs() []Vrf`
 
 GetVrfs returns the Vrfs field if non-nil, zero value otherwise.
 
 ### GetVrfsOk
 
-`func (o *VrfList) GetVrfsOk() (*[]GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1Vrf, bool)`
+`func (o *VrfList) GetVrfsOk() (*[]Vrf, bool)`
 
 GetVrfsOk returns a tuple with the Vrfs field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVrfs
 
-`func (o *VrfList) SetVrfs(v []GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1Vrf)`
+`func (o *VrfList) SetVrfs(v []Vrf)`
 
 SetVrfs sets Vrfs field to given value.
 

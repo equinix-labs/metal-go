@@ -17,7 +17,7 @@ import (
 
 // MembershipList struct for MembershipList
 type MembershipList struct {
-	Memberships []FindInvitations200ResponseInvitationsInner `json:"memberships,omitempty"`
+	Memberships []Membership `json:"memberships,omitempty"`
 }
 
 // NewMembershipList instantiates a new MembershipList object
@@ -38,9 +38,9 @@ func NewMembershipListWithDefaults() *MembershipList {
 }
 
 // GetMemberships returns the Memberships field value if set, zero value otherwise.
-func (o *MembershipList) GetMemberships() []FindInvitations200ResponseInvitationsInner {
+func (o *MembershipList) GetMemberships() []Membership {
 	if o == nil || isNil(o.Memberships) {
-		var ret []FindInvitations200ResponseInvitationsInner
+		var ret []Membership
 		return ret
 	}
 	return o.Memberships
@@ -48,7 +48,7 @@ func (o *MembershipList) GetMemberships() []FindInvitations200ResponseInvitation
 
 // GetMembershipsOk returns a tuple with the Memberships field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MembershipList) GetMembershipsOk() ([]FindInvitations200ResponseInvitationsInner, bool) {
+func (o *MembershipList) GetMembershipsOk() ([]Membership, bool) {
 	if o == nil || isNil(o.Memberships) {
 		return nil, false
 	}
@@ -64,8 +64,8 @@ func (o *MembershipList) HasMemberships() bool {
 	return false
 }
 
-// SetMemberships gets a reference to the given []FindInvitations200ResponseInvitationsInner and assigns it to the Memberships field.
-func (o *MembershipList) SetMemberships(v []FindInvitations200ResponseInvitationsInner) {
+// SetMemberships gets a reference to the given []Membership and assigns it to the Memberships field.
+func (o *MembershipList) SetMemberships(v []Membership) {
 	o.Memberships = v
 }
 

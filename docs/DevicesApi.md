@@ -27,7 +27,7 @@ Method | HTTP request | Description
 
 ## CreateBgpSession
 
-> FindBgpSessionById200Response CreateBgpSession(ctx, id).CreateBgpSessionRequest(createBgpSessionRequest).Execute()
+> BgpSession CreateBgpSession(ctx, id).BGPSessionInput(bGPSessionInput).Execute()
 
 Create a BGP session
 
@@ -47,16 +47,16 @@ import (
 
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Device UUID
-    createBgpSessionRequest := *openapiclient.NewCreateBgpSessionRequest() // CreateBgpSessionRequest | BGP session to create
+    bGPSessionInput := *openapiclient.NewBGPSessionInput() // BGPSessionInput | BGP session to create
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DevicesApi.CreateBgpSession(context.Background(), id).CreateBgpSessionRequest(createBgpSessionRequest).Execute()
+    resp, r, err := apiClient.DevicesApi.CreateBgpSession(context.Background(), id).BGPSessionInput(bGPSessionInput).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DevicesApi.CreateBgpSession``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateBgpSession`: FindBgpSessionById200Response
+    // response from `CreateBgpSession`: BgpSession
     fmt.Fprintf(os.Stdout, "Response from `DevicesApi.CreateBgpSession`: %v\n", resp)
 }
 ```
@@ -77,11 +77,11 @@ Other parameters are passed through a pointer to a apiCreateBgpSessionRequest st
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **createBgpSessionRequest** | [**CreateBgpSessionRequest**](CreateBgpSessionRequest.md) | BGP session to create | 
+ **bGPSessionInput** | [**BGPSessionInput**](BGPSessionInput.md) | BGP session to create | 
 
 ### Return type
 
-[**FindBgpSessionById200Response**](FindBgpSessionById200Response.md)
+[**BgpSession**](BgpSession.md)
 
 ### Authorization
 
@@ -99,7 +99,7 @@ Name | Type | Description  | Notes
 
 ## CreateDevice
 
-> FindDeviceById200Response CreateDevice(ctx, id).CreateDeviceRequest(createDeviceRequest).Execute()
+> Device CreateDevice(ctx, id).CreateDeviceRequest(createDeviceRequest).Execute()
 
 Create a device
 
@@ -119,7 +119,7 @@ import (
 
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Project UUID
-    createDeviceRequest := openapiclient.createDevice_request{CreateDeviceRequestOneOf: openapiclient.NewCreateDeviceRequestOneOf("sv", "OperatingSystem_example", "c3.large.x86")} // CreateDeviceRequest | Device to create
+    createDeviceRequest := openapiclient.createDevice_request{DeviceCreateInFacilityInput: openapiclient.NewDeviceCreateInFacilityInput(*openapiclient.NewFacilityInputFacility(), "OperatingSystem_example", "c3.large.x86")} // CreateDeviceRequest | Device to create
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -128,7 +128,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `DevicesApi.CreateDevice``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateDevice`: FindDeviceById200Response
+    // response from `CreateDevice`: Device
     fmt.Fprintf(os.Stdout, "Response from `DevicesApi.CreateDevice`: %v\n", resp)
 }
 ```
@@ -153,7 +153,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FindDeviceById200Response**](FindDeviceById200Response.md)
+[**Device**](Device.md)
 
 ### Authorization
 
@@ -171,7 +171,7 @@ Name | Type | Description  | Notes
 
 ## CreateIPAssignment
 
-> FindDeviceById200ResponseIpAddressesInner CreateIPAssignment(ctx, id).CreateIPAssignmentRequest(createIPAssignmentRequest).Execute()
+> IPAssignment CreateIPAssignment(ctx, id).IPAssignmentInput(iPAssignmentInput).Execute()
 
 Create an ip assignment
 
@@ -191,16 +191,16 @@ import (
 
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Device UUID
-    createIPAssignmentRequest := *openapiclient.NewCreateIPAssignmentRequest("Address_example") // CreateIPAssignmentRequest | IPAssignment to create
+    iPAssignmentInput := *openapiclient.NewIPAssignmentInput("Address_example") // IPAssignmentInput | IPAssignment to create
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DevicesApi.CreateIPAssignment(context.Background(), id).CreateIPAssignmentRequest(createIPAssignmentRequest).Execute()
+    resp, r, err := apiClient.DevicesApi.CreateIPAssignment(context.Background(), id).IPAssignmentInput(iPAssignmentInput).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DevicesApi.CreateIPAssignment``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateIPAssignment`: FindDeviceById200ResponseIpAddressesInner
+    // response from `CreateIPAssignment`: IPAssignment
     fmt.Fprintf(os.Stdout, "Response from `DevicesApi.CreateIPAssignment`: %v\n", resp)
 }
 ```
@@ -221,11 +221,11 @@ Other parameters are passed through a pointer to a apiCreateIPAssignmentRequest 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **createIPAssignmentRequest** | [**CreateIPAssignmentRequest**](CreateIPAssignmentRequest.md) | IPAssignment to create | 
+ **iPAssignmentInput** | [**IPAssignmentInput**](IPAssignmentInput.md) | IPAssignment to create | 
 
 ### Return type
 
-[**FindDeviceById200ResponseIpAddressesInner**](FindDeviceById200ResponseIpAddressesInner.md)
+[**IPAssignment**](IPAssignment.md)
 
 ### Authorization
 
@@ -313,7 +313,7 @@ Name | Type | Description  | Notes
 
 ## FindBgpSessions
 
-> FindBgpSessions200Response FindBgpSessions(ctx, id).Execute()
+> BgpSessionList FindBgpSessions(ctx, id).Execute()
 
 Retrieve all BGP sessions
 
@@ -341,7 +341,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `DevicesApi.FindBgpSessions``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindBgpSessions`: FindBgpSessions200Response
+    // response from `FindBgpSessions`: BgpSessionList
     fmt.Fprintf(os.Stdout, "Response from `DevicesApi.FindBgpSessions`: %v\n", resp)
 }
 ```
@@ -365,7 +365,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FindBgpSessions200Response**](FindBgpSessions200Response.md)
+[**BgpSessionList**](BgpSessionList.md)
 
 ### Authorization
 
@@ -383,7 +383,7 @@ Name | Type | Description  | Notes
 
 ## FindDeviceById
 
-> FindDeviceById200Response FindDeviceById(ctx, id).Include(include).Exclude(exclude).Execute()
+> Device FindDeviceById(ctx, id).Include(include).Exclude(exclude).Execute()
 
 Retrieve a device
 
@@ -413,7 +413,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `DevicesApi.FindDeviceById``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindDeviceById`: FindDeviceById200Response
+    // response from `FindDeviceById`: Device
     fmt.Fprintf(os.Stdout, "Response from `DevicesApi.FindDeviceById`: %v\n", resp)
 }
 ```
@@ -439,7 +439,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FindDeviceById200Response**](FindDeviceById200Response.md)
+[**Device**](Device.md)
 
 ### Authorization
 
@@ -525,7 +525,7 @@ Name | Type | Description  | Notes
 
 ## FindDeviceMetadataByID
 
-> FindDeviceMetadataByID200Response FindDeviceMetadataByID(ctx, id).Execute()
+> Metadata FindDeviceMetadataByID(ctx, id).Execute()
 
 Retrieve metadata
 
@@ -553,7 +553,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `DevicesApi.FindDeviceMetadataByID``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindDeviceMetadataByID`: FindDeviceMetadataByID200Response
+    // response from `FindDeviceMetadataByID`: Metadata
     fmt.Fprintf(os.Stdout, "Response from `DevicesApi.FindDeviceMetadataByID`: %v\n", resp)
 }
 ```
@@ -577,7 +577,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FindDeviceMetadataByID200Response**](FindDeviceMetadataByID200Response.md)
+[**Metadata**](Metadata.md)
 
 ### Authorization
 
@@ -595,7 +595,7 @@ Name | Type | Description  | Notes
 
 ## FindDeviceUserdataByID
 
-> FindDeviceUserdataByID200Response FindDeviceUserdataByID(ctx, id).Execute()
+> Userdata FindDeviceUserdataByID(ctx, id).Execute()
 
 Retrieve userdata
 
@@ -623,7 +623,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `DevicesApi.FindDeviceUserdataByID``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindDeviceUserdataByID`: FindDeviceUserdataByID200Response
+    // response from `FindDeviceUserdataByID`: Userdata
     fmt.Fprintf(os.Stdout, "Response from `DevicesApi.FindDeviceUserdataByID`: %v\n", resp)
 }
 ```
@@ -647,7 +647,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FindDeviceUserdataByID200Response**](FindDeviceUserdataByID200Response.md)
+[**Userdata**](Userdata.md)
 
 ### Authorization
 
@@ -736,7 +736,7 @@ Name | Type | Description  | Notes
 
 ## FindIPAssignments
 
-> FindIPAssignments200Response FindIPAssignments(ctx, id).Include(include).Exclude(exclude).Execute()
+> IPAssignmentList FindIPAssignments(ctx, id).Include(include).Exclude(exclude).Execute()
 
 Retrieve all ip assignments
 
@@ -766,7 +766,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `DevicesApi.FindIPAssignments``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindIPAssignments`: FindIPAssignments200Response
+    // response from `FindIPAssignments`: IPAssignmentList
     fmt.Fprintf(os.Stdout, "Response from `DevicesApi.FindIPAssignments`: %v\n", resp)
 }
 ```
@@ -792,7 +792,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FindIPAssignments200Response**](FindIPAssignments200Response.md)
+[**IPAssignmentList**](IPAssignmentList.md)
 
 ### Authorization
 
@@ -882,7 +882,7 @@ Name | Type | Description  | Notes
 
 ## FindOrganizationDevices
 
-> FindOrganizationDevices200Response FindOrganizationDevices(ctx, id).Facility(facility).Hostname(hostname).Reserved(reserved).Tag(tag).Type_(type_).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
+> DeviceList FindOrganizationDevices(ctx, id).Facility(facility).Hostname(hostname).Reserved(reserved).Tag(tag).Type_(type_).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
 
 Retrieve all devices of an organization
 
@@ -919,7 +919,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `DevicesApi.FindOrganizationDevices``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindOrganizationDevices`: FindOrganizationDevices200Response
+    // response from `FindOrganizationDevices`: DeviceList
     fmt.Fprintf(os.Stdout, "Response from `DevicesApi.FindOrganizationDevices`: %v\n", resp)
 }
 ```
@@ -952,7 +952,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FindOrganizationDevices200Response**](FindOrganizationDevices200Response.md)
+[**DeviceList**](DeviceList.md)
 
 ### Authorization
 
@@ -970,7 +970,7 @@ Name | Type | Description  | Notes
 
 ## FindProjectDevices
 
-> FindOrganizationDevices200Response FindProjectDevices(ctx, id).Facility(facility).Hostname(hostname).Reserved(reserved).Tag(tag).Type_(type_).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
+> DeviceList FindProjectDevices(ctx, id).Facility(facility).Hostname(hostname).Reserved(reserved).Tag(tag).Type_(type_).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
 
 Retrieve all devices of a project
 
@@ -1007,7 +1007,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `DevicesApi.FindProjectDevices``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindProjectDevices`: FindOrganizationDevices200Response
+    // response from `FindProjectDevices`: DeviceList
     fmt.Fprintf(os.Stdout, "Response from `DevicesApi.FindProjectDevices`: %v\n", resp)
 }
 ```
@@ -1040,7 +1040,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FindOrganizationDevices200Response**](FindOrganizationDevices200Response.md)
+[**DeviceList**](DeviceList.md)
 
 ### Authorization
 
@@ -1134,7 +1134,7 @@ Name | Type | Description  | Notes
 
 ## GetBgpNeighborData
 
-> GetBgpNeighborData200Response GetBgpNeighborData(ctx, id).Execute()
+> BgpSessionNeighbors GetBgpNeighborData(ctx, id).Execute()
 
 Retrieve BGP neighbor data for this device
 
@@ -1162,7 +1162,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `DevicesApi.GetBgpNeighborData``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetBgpNeighborData`: GetBgpNeighborData200Response
+    // response from `GetBgpNeighborData`: BgpSessionNeighbors
     fmt.Fprintf(os.Stdout, "Response from `DevicesApi.GetBgpNeighborData`: %v\n", resp)
 }
 ```
@@ -1186,7 +1186,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetBgpNeighborData200Response**](GetBgpNeighborData200Response.md)
+[**BgpSessionNeighbors**](BgpSessionNeighbors.md)
 
 ### Authorization
 
@@ -1204,7 +1204,7 @@ Name | Type | Description  | Notes
 
 ## PerformAction
 
-> PerformAction(ctx, id).PerformActionRequest(performActionRequest).Execute()
+> PerformAction(ctx, id).DeviceActionInput(deviceActionInput).Execute()
 
 Perform an action
 
@@ -1224,11 +1224,11 @@ import (
 
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Device UUID
-    performActionRequest := *openapiclient.NewPerformActionRequest("Type_example") // PerformActionRequest | Action to perform
+    deviceActionInput := *openapiclient.NewDeviceActionInput("Type_example") // DeviceActionInput | Action to perform
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DevicesApi.PerformAction(context.Background(), id).PerformActionRequest(performActionRequest).Execute()
+    resp, r, err := apiClient.DevicesApi.PerformAction(context.Background(), id).DeviceActionInput(deviceActionInput).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DevicesApi.PerformAction``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1252,7 +1252,7 @@ Other parameters are passed through a pointer to a apiPerformActionRequest struc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **performActionRequest** | [**PerformActionRequest**](PerformActionRequest.md) | Action to perform | 
+ **deviceActionInput** | [**DeviceActionInput**](DeviceActionInput.md) | Action to perform | 
 
 ### Return type
 
@@ -1274,7 +1274,7 @@ Name | Type | Description  | Notes
 
 ## UpdateDevice
 
-> FindDeviceById200Response UpdateDevice(ctx, id).UpdateDeviceRequest(updateDeviceRequest).Execute()
+> Device UpdateDevice(ctx, id).DeviceUpdateInput(deviceUpdateInput).Execute()
 
 Update the device
 
@@ -1294,16 +1294,16 @@ import (
 
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Device UUID
-    updateDeviceRequest := *openapiclient.NewUpdateDeviceRequest() // UpdateDeviceRequest | Facility to update
+    deviceUpdateInput := *openapiclient.NewDeviceUpdateInput() // DeviceUpdateInput | Facility to update
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DevicesApi.UpdateDevice(context.Background(), id).UpdateDeviceRequest(updateDeviceRequest).Execute()
+    resp, r, err := apiClient.DevicesApi.UpdateDevice(context.Background(), id).DeviceUpdateInput(deviceUpdateInput).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DevicesApi.UpdateDevice``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateDevice`: FindDeviceById200Response
+    // response from `UpdateDevice`: Device
     fmt.Fprintf(os.Stdout, "Response from `DevicesApi.UpdateDevice`: %v\n", resp)
 }
 ```
@@ -1324,11 +1324,11 @@ Other parameters are passed through a pointer to a apiUpdateDeviceRequest struct
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateDeviceRequest** | [**UpdateDeviceRequest**](UpdateDeviceRequest.md) | Facility to update | 
+ **deviceUpdateInput** | [**DeviceUpdateInput**](DeviceUpdateInput.md) | Facility to update | 
 
 ### Return type
 
-[**FindDeviceById200Response**](FindDeviceById200Response.md)
+[**Device**](Device.md)
 
 ### Authorization
 

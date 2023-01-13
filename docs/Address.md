@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Address** | **string** |  | 
 **Address2** | Pointer to **string** |  | [optional] 
 **City** | Pointer to **string** |  | [optional] 
-**Coordinates** | Pointer to [**FindDeviceById200ResponseFacilityAddressCoordinates**](FindDeviceById200ResponseFacilityAddressCoordinates.md) |  | [optional] 
+**Coordinates** | Pointer to [**Coordinates**](Coordinates.md) |  | [optional] 
 **Country** | **string** |  | 
 **State** | Pointer to **string** |  | [optional] 
 **ZipCode** | **string** |  | 
@@ -103,20 +103,20 @@ HasCity returns a boolean if a field has been set.
 
 ### GetCoordinates
 
-`func (o *Address) GetCoordinates() FindDeviceById200ResponseFacilityAddressCoordinates`
+`func (o *Address) GetCoordinates() Coordinates`
 
 GetCoordinates returns the Coordinates field if non-nil, zero value otherwise.
 
 ### GetCoordinatesOk
 
-`func (o *Address) GetCoordinatesOk() (*FindDeviceById200ResponseFacilityAddressCoordinates, bool)`
+`func (o *Address) GetCoordinatesOk() (*Coordinates, bool)`
 
 GetCoordinatesOk returns a tuple with the Coordinates field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCoordinates
 
-`func (o *Address) SetCoordinates(v FindDeviceById200ResponseFacilityAddressCoordinates)`
+`func (o *Address) SetCoordinates(v Coordinates)`
 
 SetCoordinates sets Coordinates field to given value.
 

@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 ## CreateDeviceBatch
 
-> FindBatchesByProject200Response CreateDeviceBatch(ctx, id).CreateDeviceBatchRequest(createDeviceBatchRequest).Execute()
+> BatchesList CreateDeviceBatch(ctx, id).InstancesBatchCreateInput(instancesBatchCreateInput).Execute()
 
 Create a devices batch
 
@@ -33,16 +33,16 @@ import (
 
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Project UUID
-    createDeviceBatchRequest := *openapiclient.NewCreateDeviceBatchRequest() // CreateDeviceBatchRequest | Batches to create
+    instancesBatchCreateInput := *openapiclient.NewInstancesBatchCreateInput() // InstancesBatchCreateInput | Batches to create
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BatchesApi.CreateDeviceBatch(context.Background(), id).CreateDeviceBatchRequest(createDeviceBatchRequest).Execute()
+    resp, r, err := apiClient.BatchesApi.CreateDeviceBatch(context.Background(), id).InstancesBatchCreateInput(instancesBatchCreateInput).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `BatchesApi.CreateDeviceBatch``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateDeviceBatch`: FindBatchesByProject200Response
+    // response from `CreateDeviceBatch`: BatchesList
     fmt.Fprintf(os.Stdout, "Response from `BatchesApi.CreateDeviceBatch`: %v\n", resp)
 }
 ```
@@ -63,11 +63,11 @@ Other parameters are passed through a pointer to a apiCreateDeviceBatchRequest s
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **createDeviceBatchRequest** | [**CreateDeviceBatchRequest**](CreateDeviceBatchRequest.md) | Batches to create | 
+ **instancesBatchCreateInput** | [**InstancesBatchCreateInput**](InstancesBatchCreateInput.md) | Batches to create | 
 
 ### Return type
 
-[**FindBatchesByProject200Response**](FindBatchesByProject200Response.md)
+[**BatchesList**](BatchesList.md)
 
 ### Authorization
 
@@ -155,7 +155,7 @@ Name | Type | Description  | Notes
 
 ## FindBatchById
 
-> FindBatchById200Response FindBatchById(ctx, id).Include(include).Exclude(exclude).Execute()
+> Batch FindBatchById(ctx, id).Include(include).Exclude(exclude).Execute()
 
 Retrieve a Batch
 
@@ -185,7 +185,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `BatchesApi.FindBatchById``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindBatchById`: FindBatchById200Response
+    // response from `FindBatchById`: Batch
     fmt.Fprintf(os.Stdout, "Response from `BatchesApi.FindBatchById`: %v\n", resp)
 }
 ```
@@ -211,7 +211,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FindBatchById200Response**](FindBatchById200Response.md)
+[**Batch**](Batch.md)
 
 ### Authorization
 
@@ -229,7 +229,7 @@ Name | Type | Description  | Notes
 
 ## FindBatchesByProject
 
-> FindBatchesByProject200Response FindBatchesByProject(ctx, id).Include(include).Exclude(exclude).Execute()
+> BatchesList FindBatchesByProject(ctx, id).Include(include).Exclude(exclude).Execute()
 
 Retrieve all batches by project
 
@@ -259,7 +259,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `BatchesApi.FindBatchesByProject``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindBatchesByProject`: FindBatchesByProject200Response
+    // response from `FindBatchesByProject`: BatchesList
     fmt.Fprintf(os.Stdout, "Response from `BatchesApi.FindBatchesByProject`: %v\n", resp)
 }
 ```
@@ -285,7 +285,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FindBatchesByProject200Response**](FindBatchesByProject200Response.md)
+[**BatchesList**](BatchesList.md)
 
 ### Authorization
 

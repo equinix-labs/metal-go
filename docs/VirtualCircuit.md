@@ -9,19 +9,19 @@ Name | Type | Description | Notes
 **Id** | **string** |  | 
 **Name** | **string** |  | 
 **NniVlan** | **int32** |  | 
-**Port** | [**FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | 
-**Project** | [**FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | 
+**Port** | [**Href**](Href.md) |  | 
+**Project** | [**Href**](Href.md) |  | 
 **Speed** | Pointer to **int32** | For Virtual Circuits on shared and dedicated connections, this speed should match the one set on their Interconnection Ports. For Virtual Circuits on Fabric VCs (both Metal and Fabric Billed) that have found their corresponding Fabric connection, this is the actual speed of the interconnection that was configured when setting up the interconnection on the Fabric Portal. Details on Fabric VCs are included in the specification as a developer preview and is generally unavailable. Please contact our Support team for more details. | [optional] 
 **Status** | **string** | The status of a Virtual Circuit is always &#39;Pending&#39; on creation. The status can turn to &#39;Waiting on Customer VLAN&#39; if a Metro VLAN was not set yet on the Virtual Circuit and is the last step needed for full activation. For Dedicated interconnections, as long as the Dedicated Port has been associated to the Virtual Circuit and a NNI VNID has been set, it will turn to &#39;Waiting on Customer VLAN&#39;. For Fabric VCs, it will only change to &#39;Waiting on Customer VLAN&#39; once the corresponding Fabric connection has been found on the Fabric side. Once a Metro VLAN is set on the Virtual Circuit (which for Fabric VCs, can be set on creation) and the necessary set up is done, it will turn into &#39;Activating&#39; status as it tries to activate the Virtual Circuit. Once the Virtual Circuit fully activates and is configured on the switch, it will turn to staus &#39;Active&#39;. For Fabric VCs (Metal Billed), we will start billing the moment the status of the Virtual Circuit turns to &#39;Active&#39;. If there are any changes to the VLAN after the Virtual Circuit is in an &#39;Active&#39; status, the status will show &#39;Changing VLAN&#39; if a new VLAN has been provided, or &#39;Deactivating&#39; if we are removing the VLAN. When a deletion request is issued for the Virtual Circuit, it will move to a &#39;deleting&#39; status until it is fully deleted. If the Virtual Circuit is on a Fabric VC, it can also change into an &#39;Expired&#39; status if the associated service token has expired. | 
 **Tags** | **[]string** |  | 
-**VirtualNetwork** | [**FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | 
+**VirtualNetwork** | [**Href**](Href.md) |  | 
 **Vnid** | **int32** |  | 
 
 ## Methods
 
 ### NewVirtualCircuit
 
-`func NewVirtualCircuit(bill bool, description string, id string, name string, nniVlan int32, port FindBatchById200ResponseDevicesInner, project FindBatchById200ResponseDevicesInner, status string, tags []string, virtualNetwork FindBatchById200ResponseDevicesInner, vnid int32, ) *VirtualCircuit`
+`func NewVirtualCircuit(bill bool, description string, id string, name string, nniVlan int32, port Href, project Href, status string, tags []string, virtualNetwork Href, vnid int32, ) *VirtualCircuit`
 
 NewVirtualCircuit instantiates a new VirtualCircuit object
 This constructor will assign default values to properties that have it defined,
@@ -138,40 +138,40 @@ SetNniVlan sets NniVlan field to given value.
 
 ### GetPort
 
-`func (o *VirtualCircuit) GetPort() FindBatchById200ResponseDevicesInner`
+`func (o *VirtualCircuit) GetPort() Href`
 
 GetPort returns the Port field if non-nil, zero value otherwise.
 
 ### GetPortOk
 
-`func (o *VirtualCircuit) GetPortOk() (*FindBatchById200ResponseDevicesInner, bool)`
+`func (o *VirtualCircuit) GetPortOk() (*Href, bool)`
 
 GetPortOk returns a tuple with the Port field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPort
 
-`func (o *VirtualCircuit) SetPort(v FindBatchById200ResponseDevicesInner)`
+`func (o *VirtualCircuit) SetPort(v Href)`
 
 SetPort sets Port field to given value.
 
 
 ### GetProject
 
-`func (o *VirtualCircuit) GetProject() FindBatchById200ResponseDevicesInner`
+`func (o *VirtualCircuit) GetProject() Href`
 
 GetProject returns the Project field if non-nil, zero value otherwise.
 
 ### GetProjectOk
 
-`func (o *VirtualCircuit) GetProjectOk() (*FindBatchById200ResponseDevicesInner, bool)`
+`func (o *VirtualCircuit) GetProjectOk() (*Href, bool)`
 
 GetProjectOk returns a tuple with the Project field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetProject
 
-`func (o *VirtualCircuit) SetProject(v FindBatchById200ResponseDevicesInner)`
+`func (o *VirtualCircuit) SetProject(v Href)`
 
 SetProject sets Project field to given value.
 
@@ -243,20 +243,20 @@ SetTags sets Tags field to given value.
 
 ### GetVirtualNetwork
 
-`func (o *VirtualCircuit) GetVirtualNetwork() FindBatchById200ResponseDevicesInner`
+`func (o *VirtualCircuit) GetVirtualNetwork() Href`
 
 GetVirtualNetwork returns the VirtualNetwork field if non-nil, zero value otherwise.
 
 ### GetVirtualNetworkOk
 
-`func (o *VirtualCircuit) GetVirtualNetworkOk() (*FindBatchById200ResponseDevicesInner, bool)`
+`func (o *VirtualCircuit) GetVirtualNetworkOk() (*Href, bool)`
 
 GetVirtualNetworkOk returns a tuple with the VirtualNetwork field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVirtualNetwork
 
-`func (o *VirtualCircuit) SetVirtualNetwork(v FindBatchById200ResponseDevicesInner)`
+`func (o *VirtualCircuit) SetVirtualNetwork(v Href)`
 
 SetVirtualNetwork sets VirtualNetwork field to given value.
 

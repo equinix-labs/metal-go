@@ -17,8 +17,8 @@ import (
 
 // EventList struct for EventList
 type EventList struct {
-	Events []FindInterconnectionEvents200Response `json:"events,omitempty"`
-	Meta   *FindDeviceEvents200ResponseMeta       `json:"meta,omitempty"`
+	Events []Event `json:"events,omitempty"`
+	Meta   *Meta   `json:"meta,omitempty"`
 }
 
 // NewEventList instantiates a new EventList object
@@ -39,9 +39,9 @@ func NewEventListWithDefaults() *EventList {
 }
 
 // GetEvents returns the Events field value if set, zero value otherwise.
-func (o *EventList) GetEvents() []FindInterconnectionEvents200Response {
+func (o *EventList) GetEvents() []Event {
 	if o == nil || isNil(o.Events) {
-		var ret []FindInterconnectionEvents200Response
+		var ret []Event
 		return ret
 	}
 	return o.Events
@@ -49,7 +49,7 @@ func (o *EventList) GetEvents() []FindInterconnectionEvents200Response {
 
 // GetEventsOk returns a tuple with the Events field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *EventList) GetEventsOk() ([]FindInterconnectionEvents200Response, bool) {
+func (o *EventList) GetEventsOk() ([]Event, bool) {
 	if o == nil || isNil(o.Events) {
 		return nil, false
 	}
@@ -65,15 +65,15 @@ func (o *EventList) HasEvents() bool {
 	return false
 }
 
-// SetEvents gets a reference to the given []FindInterconnectionEvents200Response and assigns it to the Events field.
-func (o *EventList) SetEvents(v []FindInterconnectionEvents200Response) {
+// SetEvents gets a reference to the given []Event and assigns it to the Events field.
+func (o *EventList) SetEvents(v []Event) {
 	o.Events = v
 }
 
 // GetMeta returns the Meta field value if set, zero value otherwise.
-func (o *EventList) GetMeta() FindDeviceEvents200ResponseMeta {
+func (o *EventList) GetMeta() Meta {
 	if o == nil || isNil(o.Meta) {
-		var ret FindDeviceEvents200ResponseMeta
+		var ret Meta
 		return ret
 	}
 	return *o.Meta
@@ -81,7 +81,7 @@ func (o *EventList) GetMeta() FindDeviceEvents200ResponseMeta {
 
 // GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *EventList) GetMetaOk() (*FindDeviceEvents200ResponseMeta, bool) {
+func (o *EventList) GetMetaOk() (*Meta, bool) {
 	if o == nil || isNil(o.Meta) {
 		return nil, false
 	}
@@ -97,8 +97,8 @@ func (o *EventList) HasMeta() bool {
 	return false
 }
 
-// SetMeta gets a reference to the given FindDeviceEvents200ResponseMeta and assigns it to the Meta field.
-func (o *EventList) SetMeta(v FindDeviceEvents200ResponseMeta) {
+// SetMeta gets a reference to the given Meta and assigns it to the Meta field.
+func (o *EventList) SetMeta(v Meta) {
 	o.Meta = &v
 }
 

@@ -19,31 +19,31 @@ import (
 
 // UserCreateInput struct for UserCreateInput
 type UserCreateInput struct {
-	Avatar         **os.File                      `json:"avatar,omitempty"`
-	CompanyName    *string                        `json:"company_name,omitempty"`
-	CompanyUrl     *string                        `json:"company_url,omitempty"`
-	Customdata     map[string]interface{}         `json:"customdata,omitempty"`
-	Emails         []CreateUserRequestEmailsInner `json:"emails"`
-	FirstName      string                         `json:"first_name"`
-	LastName       string                         `json:"last_name"`
-	Level          *string                        `json:"level,omitempty"`
-	Locked         *bool                          `json:"locked,omitempty"`
-	Password       *string                        `json:"password,omitempty"`
-	PhoneNumber    *string                        `json:"phone_number,omitempty"`
-	SocialAccounts map[string]interface{}         `json:"social_accounts,omitempty"`
-	Timezone       *string                        `json:"timezone,omitempty"`
-	Title          *string                        `json:"title,omitempty"`
-	TwoFactorAuth  *string                        `json:"two_factor_auth,omitempty"`
-	VerifiedAt     *time.Time                     `json:"verified_at,omitempty"`
-	InvitationId   *string                        `json:"invitation_id,omitempty"`
-	Nonce          *string                        `json:"nonce,omitempty"`
+	Avatar         **os.File              `json:"avatar,omitempty"`
+	CompanyName    *string                `json:"company_name,omitempty"`
+	CompanyUrl     *string                `json:"company_url,omitempty"`
+	Customdata     map[string]interface{} `json:"customdata,omitempty"`
+	Emails         []EmailInput           `json:"emails"`
+	FirstName      string                 `json:"first_name"`
+	LastName       string                 `json:"last_name"`
+	Level          *string                `json:"level,omitempty"`
+	Locked         *bool                  `json:"locked,omitempty"`
+	Password       *string                `json:"password,omitempty"`
+	PhoneNumber    *string                `json:"phone_number,omitempty"`
+	SocialAccounts map[string]interface{} `json:"social_accounts,omitempty"`
+	Timezone       *string                `json:"timezone,omitempty"`
+	Title          *string                `json:"title,omitempty"`
+	TwoFactorAuth  *string                `json:"two_factor_auth,omitempty"`
+	VerifiedAt     *time.Time             `json:"verified_at,omitempty"`
+	InvitationId   *string                `json:"invitation_id,omitempty"`
+	Nonce          *string                `json:"nonce,omitempty"`
 }
 
 // NewUserCreateInput instantiates a new UserCreateInput object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUserCreateInput(emails []CreateUserRequestEmailsInner, firstName string, lastName string) *UserCreateInput {
+func NewUserCreateInput(emails []EmailInput, firstName string, lastName string) *UserCreateInput {
 	this := UserCreateInput{}
 	this.Emails = emails
 	this.FirstName = firstName
@@ -188,9 +188,9 @@ func (o *UserCreateInput) SetCustomdata(v map[string]interface{}) {
 }
 
 // GetEmails returns the Emails field value
-func (o *UserCreateInput) GetEmails() []CreateUserRequestEmailsInner {
+func (o *UserCreateInput) GetEmails() []EmailInput {
 	if o == nil {
-		var ret []CreateUserRequestEmailsInner
+		var ret []EmailInput
 		return ret
 	}
 
@@ -199,7 +199,7 @@ func (o *UserCreateInput) GetEmails() []CreateUserRequestEmailsInner {
 
 // GetEmailsOk returns a tuple with the Emails field value
 // and a boolean to check if the value has been set.
-func (o *UserCreateInput) GetEmailsOk() ([]CreateUserRequestEmailsInner, bool) {
+func (o *UserCreateInput) GetEmailsOk() ([]EmailInput, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -207,7 +207,7 @@ func (o *UserCreateInput) GetEmailsOk() ([]CreateUserRequestEmailsInner, bool) {
 }
 
 // SetEmails sets field value
-func (o *UserCreateInput) SetEmails(v []CreateUserRequestEmailsInner) {
+func (o *UserCreateInput) SetEmails(v []EmailInput) {
 	o.Emails = v
 }
 

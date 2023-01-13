@@ -18,17 +18,17 @@ import (
 
 // Invitation struct for Invitation
 type Invitation struct {
-	CreatedAt    *time.Time                             `json:"created_at,omitempty"`
-	Href         *string                                `json:"href,omitempty"`
-	Id           *string                                `json:"id,omitempty"`
-	Invitation   *FindBatchById200ResponseDevicesInner  `json:"invitation,omitempty"`
-	InvitedBy    *FindBatchById200ResponseDevicesInner  `json:"invited_by,omitempty"`
-	Invitee      *string                                `json:"invitee,omitempty"`
-	Nonce        *string                                `json:"nonce,omitempty"`
-	Organization *FindBatchById200ResponseDevicesInner  `json:"organization,omitempty"`
-	Projects     []FindBatchById200ResponseDevicesInner `json:"projects,omitempty"`
-	Roles        []string                               `json:"roles,omitempty"`
-	UpdatedAt    *time.Time                             `json:"updated_at,omitempty"`
+	CreatedAt    *time.Time `json:"created_at,omitempty"`
+	Href         *string    `json:"href,omitempty"`
+	Id           *string    `json:"id,omitempty"`
+	Invitation   *Href      `json:"invitation,omitempty"`
+	InvitedBy    *Href      `json:"invited_by,omitempty"`
+	Invitee      *string    `json:"invitee,omitempty"`
+	Nonce        *string    `json:"nonce,omitempty"`
+	Organization *Href      `json:"organization,omitempty"`
+	Projects     []Href     `json:"projects,omitempty"`
+	Roles        []string   `json:"roles,omitempty"`
+	UpdatedAt    *time.Time `json:"updated_at,omitempty"`
 }
 
 // NewInvitation instantiates a new Invitation object
@@ -145,9 +145,9 @@ func (o *Invitation) SetId(v string) {
 }
 
 // GetInvitation returns the Invitation field value if set, zero value otherwise.
-func (o *Invitation) GetInvitation() FindBatchById200ResponseDevicesInner {
+func (o *Invitation) GetInvitation() Href {
 	if o == nil || isNil(o.Invitation) {
-		var ret FindBatchById200ResponseDevicesInner
+		var ret Href
 		return ret
 	}
 	return *o.Invitation
@@ -155,7 +155,7 @@ func (o *Invitation) GetInvitation() FindBatchById200ResponseDevicesInner {
 
 // GetInvitationOk returns a tuple with the Invitation field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Invitation) GetInvitationOk() (*FindBatchById200ResponseDevicesInner, bool) {
+func (o *Invitation) GetInvitationOk() (*Href, bool) {
 	if o == nil || isNil(o.Invitation) {
 		return nil, false
 	}
@@ -171,15 +171,15 @@ func (o *Invitation) HasInvitation() bool {
 	return false
 }
 
-// SetInvitation gets a reference to the given FindBatchById200ResponseDevicesInner and assigns it to the Invitation field.
-func (o *Invitation) SetInvitation(v FindBatchById200ResponseDevicesInner) {
+// SetInvitation gets a reference to the given Href and assigns it to the Invitation field.
+func (o *Invitation) SetInvitation(v Href) {
 	o.Invitation = &v
 }
 
 // GetInvitedBy returns the InvitedBy field value if set, zero value otherwise.
-func (o *Invitation) GetInvitedBy() FindBatchById200ResponseDevicesInner {
+func (o *Invitation) GetInvitedBy() Href {
 	if o == nil || isNil(o.InvitedBy) {
-		var ret FindBatchById200ResponseDevicesInner
+		var ret Href
 		return ret
 	}
 	return *o.InvitedBy
@@ -187,7 +187,7 @@ func (o *Invitation) GetInvitedBy() FindBatchById200ResponseDevicesInner {
 
 // GetInvitedByOk returns a tuple with the InvitedBy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Invitation) GetInvitedByOk() (*FindBatchById200ResponseDevicesInner, bool) {
+func (o *Invitation) GetInvitedByOk() (*Href, bool) {
 	if o == nil || isNil(o.InvitedBy) {
 		return nil, false
 	}
@@ -203,8 +203,8 @@ func (o *Invitation) HasInvitedBy() bool {
 	return false
 }
 
-// SetInvitedBy gets a reference to the given FindBatchById200ResponseDevicesInner and assigns it to the InvitedBy field.
-func (o *Invitation) SetInvitedBy(v FindBatchById200ResponseDevicesInner) {
+// SetInvitedBy gets a reference to the given Href and assigns it to the InvitedBy field.
+func (o *Invitation) SetInvitedBy(v Href) {
 	o.InvitedBy = &v
 }
 
@@ -273,9 +273,9 @@ func (o *Invitation) SetNonce(v string) {
 }
 
 // GetOrganization returns the Organization field value if set, zero value otherwise.
-func (o *Invitation) GetOrganization() FindBatchById200ResponseDevicesInner {
+func (o *Invitation) GetOrganization() Href {
 	if o == nil || isNil(o.Organization) {
-		var ret FindBatchById200ResponseDevicesInner
+		var ret Href
 		return ret
 	}
 	return *o.Organization
@@ -283,7 +283,7 @@ func (o *Invitation) GetOrganization() FindBatchById200ResponseDevicesInner {
 
 // GetOrganizationOk returns a tuple with the Organization field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Invitation) GetOrganizationOk() (*FindBatchById200ResponseDevicesInner, bool) {
+func (o *Invitation) GetOrganizationOk() (*Href, bool) {
 	if o == nil || isNil(o.Organization) {
 		return nil, false
 	}
@@ -299,15 +299,15 @@ func (o *Invitation) HasOrganization() bool {
 	return false
 }
 
-// SetOrganization gets a reference to the given FindBatchById200ResponseDevicesInner and assigns it to the Organization field.
-func (o *Invitation) SetOrganization(v FindBatchById200ResponseDevicesInner) {
+// SetOrganization gets a reference to the given Href and assigns it to the Organization field.
+func (o *Invitation) SetOrganization(v Href) {
 	o.Organization = &v
 }
 
 // GetProjects returns the Projects field value if set, zero value otherwise.
-func (o *Invitation) GetProjects() []FindBatchById200ResponseDevicesInner {
+func (o *Invitation) GetProjects() []Href {
 	if o == nil || isNil(o.Projects) {
-		var ret []FindBatchById200ResponseDevicesInner
+		var ret []Href
 		return ret
 	}
 	return o.Projects
@@ -315,7 +315,7 @@ func (o *Invitation) GetProjects() []FindBatchById200ResponseDevicesInner {
 
 // GetProjectsOk returns a tuple with the Projects field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Invitation) GetProjectsOk() ([]FindBatchById200ResponseDevicesInner, bool) {
+func (o *Invitation) GetProjectsOk() ([]Href, bool) {
 	if o == nil || isNil(o.Projects) {
 		return nil, false
 	}
@@ -331,8 +331,8 @@ func (o *Invitation) HasProjects() bool {
 	return false
 }
 
-// SetProjects gets a reference to the given []FindBatchById200ResponseDevicesInner and assigns it to the Projects field.
-func (o *Invitation) SetProjects(v []FindBatchById200ResponseDevicesInner) {
+// SetProjects gets a reference to the given []Href and assigns it to the Projects field.
+func (o *Invitation) SetProjects(v []Href) {
 	o.Projects = v
 }
 

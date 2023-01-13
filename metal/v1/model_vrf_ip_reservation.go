@@ -18,28 +18,28 @@ import (
 
 // VrfIpReservation struct for VrfIpReservation
 type VrfIpReservation struct {
-	AddressFamily *int32                                                                                      `json:"address_family,omitempty"`
-	Cidr          *int32                                                                                      `json:"cidr,omitempty"`
-	CreatedAt     *time.Time                                                                                  `json:"created_at,omitempty"`
-	CreatedBy     *FindBatchById200ResponseDevicesInner                                                       `json:"created_by,omitempty"`
-	Details       *string                                                                                     `json:"details,omitempty"`
-	Href          *string                                                                                     `json:"href,omitempty"`
-	Id            *string                                                                                     `json:"id,omitempty"`
-	MetalGateway  *FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetworkMetalGatewaysInner           `json:"metal_gateway,omitempty"`
-	Netmask       *string                                                                                     `json:"netmask,omitempty"`
-	Network       *string                                                                                     `json:"network,omitempty"`
-	Project       *GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject `json:"project,omitempty"`
-	State         *string                                                                                     `json:"state,omitempty"`
-	Tags          []string                                                                                    `json:"tags,omitempty"`
-	Type          string                                                                                      `json:"type"`
-	Vrf           GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1Vrf         `json:"vrf"`
+	AddressFamily *int32            `json:"address_family,omitempty"`
+	Cidr          *int32            `json:"cidr,omitempty"`
+	CreatedAt     *time.Time        `json:"created_at,omitempty"`
+	CreatedBy     *Href             `json:"created_by,omitempty"`
+	Details       *string           `json:"details,omitempty"`
+	Href          *string           `json:"href,omitempty"`
+	Id            *string           `json:"id,omitempty"`
+	MetalGateway  *MetalGatewayLite `json:"metal_gateway,omitempty"`
+	Netmask       *string           `json:"netmask,omitempty"`
+	Network       *string           `json:"network,omitempty"`
+	Project       *Project          `json:"project,omitempty"`
+	State         *string           `json:"state,omitempty"`
+	Tags          []string          `json:"tags,omitempty"`
+	Type          string            `json:"type"`
+	Vrf           Vrf               `json:"vrf"`
 }
 
 // NewVrfIpReservation instantiates a new VrfIpReservation object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVrfIpReservation(type_ string, vrf GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1Vrf) *VrfIpReservation {
+func NewVrfIpReservation(type_ string, vrf Vrf) *VrfIpReservation {
 	this := VrfIpReservation{}
 	this.Type = type_
 	this.Vrf = vrf
@@ -151,9 +151,9 @@ func (o *VrfIpReservation) SetCreatedAt(v time.Time) {
 }
 
 // GetCreatedBy returns the CreatedBy field value if set, zero value otherwise.
-func (o *VrfIpReservation) GetCreatedBy() FindBatchById200ResponseDevicesInner {
+func (o *VrfIpReservation) GetCreatedBy() Href {
 	if o == nil || isNil(o.CreatedBy) {
-		var ret FindBatchById200ResponseDevicesInner
+		var ret Href
 		return ret
 	}
 	return *o.CreatedBy
@@ -161,7 +161,7 @@ func (o *VrfIpReservation) GetCreatedBy() FindBatchById200ResponseDevicesInner {
 
 // GetCreatedByOk returns a tuple with the CreatedBy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VrfIpReservation) GetCreatedByOk() (*FindBatchById200ResponseDevicesInner, bool) {
+func (o *VrfIpReservation) GetCreatedByOk() (*Href, bool) {
 	if o == nil || isNil(o.CreatedBy) {
 		return nil, false
 	}
@@ -177,8 +177,8 @@ func (o *VrfIpReservation) HasCreatedBy() bool {
 	return false
 }
 
-// SetCreatedBy gets a reference to the given FindBatchById200ResponseDevicesInner and assigns it to the CreatedBy field.
-func (o *VrfIpReservation) SetCreatedBy(v FindBatchById200ResponseDevicesInner) {
+// SetCreatedBy gets a reference to the given Href and assigns it to the CreatedBy field.
+func (o *VrfIpReservation) SetCreatedBy(v Href) {
 	o.CreatedBy = &v
 }
 
@@ -279,9 +279,9 @@ func (o *VrfIpReservation) SetId(v string) {
 }
 
 // GetMetalGateway returns the MetalGateway field value if set, zero value otherwise.
-func (o *VrfIpReservation) GetMetalGateway() FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetworkMetalGatewaysInner {
+func (o *VrfIpReservation) GetMetalGateway() MetalGatewayLite {
 	if o == nil || isNil(o.MetalGateway) {
-		var ret FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetworkMetalGatewaysInner
+		var ret MetalGatewayLite
 		return ret
 	}
 	return *o.MetalGateway
@@ -289,7 +289,7 @@ func (o *VrfIpReservation) GetMetalGateway() FindDeviceById200ResponseNetworkPor
 
 // GetMetalGatewayOk returns a tuple with the MetalGateway field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VrfIpReservation) GetMetalGatewayOk() (*FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetworkMetalGatewaysInner, bool) {
+func (o *VrfIpReservation) GetMetalGatewayOk() (*MetalGatewayLite, bool) {
 	if o == nil || isNil(o.MetalGateway) {
 		return nil, false
 	}
@@ -305,8 +305,8 @@ func (o *VrfIpReservation) HasMetalGateway() bool {
 	return false
 }
 
-// SetMetalGateway gets a reference to the given FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetworkMetalGatewaysInner and assigns it to the MetalGateway field.
-func (o *VrfIpReservation) SetMetalGateway(v FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetworkMetalGatewaysInner) {
+// SetMetalGateway gets a reference to the given MetalGatewayLite and assigns it to the MetalGateway field.
+func (o *VrfIpReservation) SetMetalGateway(v MetalGatewayLite) {
 	o.MetalGateway = &v
 }
 
@@ -375,9 +375,9 @@ func (o *VrfIpReservation) SetNetwork(v string) {
 }
 
 // GetProject returns the Project field value if set, zero value otherwise.
-func (o *VrfIpReservation) GetProject() GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject {
+func (o *VrfIpReservation) GetProject() Project {
 	if o == nil || isNil(o.Project) {
-		var ret GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject
+		var ret Project
 		return ret
 	}
 	return *o.Project
@@ -385,7 +385,7 @@ func (o *VrfIpReservation) GetProject() GetInterconnection200ResponsePortsInnerV
 
 // GetProjectOk returns a tuple with the Project field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VrfIpReservation) GetProjectOk() (*GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject, bool) {
+func (o *VrfIpReservation) GetProjectOk() (*Project, bool) {
 	if o == nil || isNil(o.Project) {
 		return nil, false
 	}
@@ -401,8 +401,8 @@ func (o *VrfIpReservation) HasProject() bool {
 	return false
 }
 
-// SetProject gets a reference to the given GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject and assigns it to the Project field.
-func (o *VrfIpReservation) SetProject(v GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject) {
+// SetProject gets a reference to the given Project and assigns it to the Project field.
+func (o *VrfIpReservation) SetProject(v Project) {
 	o.Project = &v
 }
 
@@ -495,9 +495,9 @@ func (o *VrfIpReservation) SetType(v string) {
 }
 
 // GetVrf returns the Vrf field value
-func (o *VrfIpReservation) GetVrf() GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1Vrf {
+func (o *VrfIpReservation) GetVrf() Vrf {
 	if o == nil {
-		var ret GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1Vrf
+		var ret Vrf
 		return ret
 	}
 
@@ -506,7 +506,7 @@ func (o *VrfIpReservation) GetVrf() GetInterconnection200ResponsePortsInnerVirtu
 
 // GetVrfOk returns a tuple with the Vrf field value
 // and a boolean to check if the value has been set.
-func (o *VrfIpReservation) GetVrfOk() (*GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1Vrf, bool) {
+func (o *VrfIpReservation) GetVrfOk() (*Vrf, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -514,7 +514,7 @@ func (o *VrfIpReservation) GetVrfOk() (*GetInterconnection200ResponsePortsInnerV
 }
 
 // SetVrf sets field value
-func (o *VrfIpReservation) SetVrf(v GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1Vrf) {
+func (o *VrfIpReservation) SetVrf(v Vrf) {
 	o.Vrf = v
 }
 

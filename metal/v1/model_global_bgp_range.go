@@ -17,11 +17,11 @@ import (
 
 // GlobalBgpRange struct for GlobalBgpRange
 type GlobalBgpRange struct {
-	AddressFamily *int32                                `json:"address_family,omitempty"`
-	Href          *string                               `json:"href,omitempty"`
-	Id            *string                               `json:"id,omitempty"`
-	Project       *FindBatchById200ResponseDevicesInner `json:"project,omitempty"`
-	Range         *string                               `json:"range,omitempty"`
+	AddressFamily *int32  `json:"address_family,omitempty"`
+	Href          *string `json:"href,omitempty"`
+	Id            *string `json:"id,omitempty"`
+	Project       *Href   `json:"project,omitempty"`
+	Range         *string `json:"range,omitempty"`
 }
 
 // NewGlobalBgpRange instantiates a new GlobalBgpRange object
@@ -138,9 +138,9 @@ func (o *GlobalBgpRange) SetId(v string) {
 }
 
 // GetProject returns the Project field value if set, zero value otherwise.
-func (o *GlobalBgpRange) GetProject() FindBatchById200ResponseDevicesInner {
+func (o *GlobalBgpRange) GetProject() Href {
 	if o == nil || isNil(o.Project) {
-		var ret FindBatchById200ResponseDevicesInner
+		var ret Href
 		return ret
 	}
 	return *o.Project
@@ -148,7 +148,7 @@ func (o *GlobalBgpRange) GetProject() FindBatchById200ResponseDevicesInner {
 
 // GetProjectOk returns a tuple with the Project field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GlobalBgpRange) GetProjectOk() (*FindBatchById200ResponseDevicesInner, bool) {
+func (o *GlobalBgpRange) GetProjectOk() (*Href, bool) {
 	if o == nil || isNil(o.Project) {
 		return nil, false
 	}
@@ -164,8 +164,8 @@ func (o *GlobalBgpRange) HasProject() bool {
 	return false
 }
 
-// SetProject gets a reference to the given FindBatchById200ResponseDevicesInner and assigns it to the Project field.
-func (o *GlobalBgpRange) SetProject(v FindBatchById200ResponseDevicesInner) {
+// SetProject gets a reference to the given Href and assigns it to the Project field.
+func (o *GlobalBgpRange) SetProject(v Href) {
 	o.Project = &v
 }
 

@@ -17,7 +17,7 @@ import (
 
 // VirtualCircuitList struct for VirtualCircuitList
 type VirtualCircuitList struct {
-	VirtualCircuits []GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInner `json:"virtual_circuits,omitempty"`
+	VirtualCircuits []VirtualCircuitListVirtualCircuitsInner `json:"virtual_circuits,omitempty"`
 }
 
 // NewVirtualCircuitList instantiates a new VirtualCircuitList object
@@ -38,9 +38,9 @@ func NewVirtualCircuitListWithDefaults() *VirtualCircuitList {
 }
 
 // GetVirtualCircuits returns the VirtualCircuits field value if set, zero value otherwise.
-func (o *VirtualCircuitList) GetVirtualCircuits() []GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInner {
+func (o *VirtualCircuitList) GetVirtualCircuits() []VirtualCircuitListVirtualCircuitsInner {
 	if o == nil || isNil(o.VirtualCircuits) {
-		var ret []GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInner
+		var ret []VirtualCircuitListVirtualCircuitsInner
 		return ret
 	}
 	return o.VirtualCircuits
@@ -48,7 +48,7 @@ func (o *VirtualCircuitList) GetVirtualCircuits() []GetInterconnection200Respons
 
 // GetVirtualCircuitsOk returns a tuple with the VirtualCircuits field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VirtualCircuitList) GetVirtualCircuitsOk() ([]GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInner, bool) {
+func (o *VirtualCircuitList) GetVirtualCircuitsOk() ([]VirtualCircuitListVirtualCircuitsInner, bool) {
 	if o == nil || isNil(o.VirtualCircuits) {
 		return nil, false
 	}
@@ -64,8 +64,8 @@ func (o *VirtualCircuitList) HasVirtualCircuits() bool {
 	return false
 }
 
-// SetVirtualCircuits gets a reference to the given []GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInner and assigns it to the VirtualCircuits field.
-func (o *VirtualCircuitList) SetVirtualCircuits(v []GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInner) {
+// SetVirtualCircuits gets a reference to the given []VirtualCircuitListVirtualCircuitsInner and assigns it to the VirtualCircuits field.
+func (o *VirtualCircuitList) SetVirtualCircuits(v []VirtualCircuitListVirtualCircuitsInner) {
 	o.VirtualCircuits = v
 }
 

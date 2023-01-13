@@ -7,11 +7,11 @@ Name | Type | Description | Notes
 **CreatedAt** | Pointer to **time.Time** |  | [optional] 
 **Description** | Pointer to **string** | Available only for API keys | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
-**Project** | Pointer to [**FindProjectAPIKeys200ResponseApiKeysInnerProject**](FindProjectAPIKeys200ResponseApiKeysInnerProject.md) |  | [optional] 
+**Project** | Pointer to [**AuthTokenProject**](AuthTokenProject.md) |  | [optional] 
 **ReadOnly** | Pointer to **bool** |  | [optional] 
 **Token** | Pointer to **string** |  | [optional] 
 **UpdatedAt** | Pointer to **time.Time** |  | [optional] 
-**User** | Pointer to [**FindProjectAPIKeys200ResponseApiKeysInnerUser**](FindProjectAPIKeys200ResponseApiKeysInnerUser.md) |  | [optional] 
+**User** | Pointer to [**AuthTokenUser**](AuthTokenUser.md) |  | [optional] 
 
 ## Methods
 
@@ -109,20 +109,20 @@ HasId returns a boolean if a field has been set.
 
 ### GetProject
 
-`func (o *AuthToken) GetProject() FindProjectAPIKeys200ResponseApiKeysInnerProject`
+`func (o *AuthToken) GetProject() AuthTokenProject`
 
 GetProject returns the Project field if non-nil, zero value otherwise.
 
 ### GetProjectOk
 
-`func (o *AuthToken) GetProjectOk() (*FindProjectAPIKeys200ResponseApiKeysInnerProject, bool)`
+`func (o *AuthToken) GetProjectOk() (*AuthTokenProject, bool)`
 
 GetProjectOk returns a tuple with the Project field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetProject
 
-`func (o *AuthToken) SetProject(v FindProjectAPIKeys200ResponseApiKeysInnerProject)`
+`func (o *AuthToken) SetProject(v AuthTokenProject)`
 
 SetProject sets Project field to given value.
 
@@ -209,20 +209,20 @@ HasUpdatedAt returns a boolean if a field has been set.
 
 ### GetUser
 
-`func (o *AuthToken) GetUser() FindProjectAPIKeys200ResponseApiKeysInnerUser`
+`func (o *AuthToken) GetUser() AuthTokenUser`
 
 GetUser returns the User field if non-nil, zero value otherwise.
 
 ### GetUserOk
 
-`func (o *AuthToken) GetUserOk() (*FindProjectAPIKeys200ResponseApiKeysInnerUser, bool)`
+`func (o *AuthToken) GetUserOk() (*AuthTokenUser, bool)`
 
 GetUserOk returns a tuple with the User field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUser
 
-`func (o *AuthToken) SetUser(v FindProjectAPIKeys200ResponseApiKeysInnerUser)`
+`func (o *AuthToken) SetUser(v AuthTokenUser)`
 
 SetUser sets User field to given value.
 

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Memberships** | Pointer to [**[]FindInvitations200ResponseInvitationsInner**](FindInvitations200ResponseInvitationsInner.md) |  | [optional] 
+**Memberships** | Pointer to [**[]Membership**](Membership.md) |  | [optional] 
 
 ## Methods
 
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetMemberships
 
-`func (o *MembershipList) GetMemberships() []FindInvitations200ResponseInvitationsInner`
+`func (o *MembershipList) GetMemberships() []Membership`
 
 GetMemberships returns the Memberships field if non-nil, zero value otherwise.
 
 ### GetMembershipsOk
 
-`func (o *MembershipList) GetMembershipsOk() (*[]FindInvitations200ResponseInvitationsInner, bool)`
+`func (o *MembershipList) GetMembershipsOk() (*[]Membership, bool)`
 
 GetMembershipsOk returns a tuple with the Memberships field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMemberships
 
-`func (o *MembershipList) SetMemberships(v []FindInvitations200ResponseInvitationsInner)`
+`func (o *MembershipList) SetMemberships(v []Membership)`
 
 SetMemberships sets Memberships field to given value.
 

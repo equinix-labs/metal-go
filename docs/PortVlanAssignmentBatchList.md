@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Batches** | Pointer to [**[]FindPortVlanAssignmentBatches200ResponseBatchesInner**](FindPortVlanAssignmentBatches200ResponseBatchesInner.md) |  | [optional] 
+**Batches** | Pointer to [**[]PortVlanAssignmentBatch**](PortVlanAssignmentBatch.md) |  | [optional] 
 
 ## Methods
 
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetBatches
 
-`func (o *PortVlanAssignmentBatchList) GetBatches() []FindPortVlanAssignmentBatches200ResponseBatchesInner`
+`func (o *PortVlanAssignmentBatchList) GetBatches() []PortVlanAssignmentBatch`
 
 GetBatches returns the Batches field if non-nil, zero value otherwise.
 
 ### GetBatchesOk
 
-`func (o *PortVlanAssignmentBatchList) GetBatchesOk() (*[]FindPortVlanAssignmentBatches200ResponseBatchesInner, bool)`
+`func (o *PortVlanAssignmentBatchList) GetBatchesOk() (*[]PortVlanAssignmentBatch, bool)`
 
 GetBatchesOk returns a tuple with the Batches field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetBatches
 
-`func (o *PortVlanAssignmentBatchList) SetBatches(v []FindPortVlanAssignmentBatches200ResponseBatchesInner)`
+`func (o *PortVlanAssignmentBatchList) SetBatches(v []PortVlanAssignmentBatch)`
 
 SetBatches sets Batches field to given value.
 

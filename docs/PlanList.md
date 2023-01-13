@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Plans** | Pointer to [**[]FindDeviceById200ResponsePlan**](FindDeviceById200ResponsePlan.md) |  | [optional] 
+**Plans** | Pointer to [**[]Plan**](Plan.md) |  | [optional] 
 
 ## Methods
 
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetPlans
 
-`func (o *PlanList) GetPlans() []FindDeviceById200ResponsePlan`
+`func (o *PlanList) GetPlans() []Plan`
 
 GetPlans returns the Plans field if non-nil, zero value otherwise.
 
 ### GetPlansOk
 
-`func (o *PlanList) GetPlansOk() (*[]FindDeviceById200ResponsePlan, bool)`
+`func (o *PlanList) GetPlansOk() (*[]Plan, bool)`
 
 GetPlansOk returns a tuple with the Plans field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPlans
 
-`func (o *PlanList) SetPlans(v []FindDeviceById200ResponsePlan)`
+`func (o *PlanList) SetPlans(v []Plan)`
 
 SetPlans sets Plans field to given value.
 

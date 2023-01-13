@@ -19,10 +19,10 @@ import (
 
 // OrganizationInput struct for OrganizationInput
 type OrganizationInput struct {
-	Address        *FindDeviceById200ResponseFacilityAddress `json:"address,omitempty"`
-	BillingAddress *FindDeviceById200ResponseFacilityAddress `json:"billing_address,omitempty"`
-	Customdata     map[string]interface{}                    `json:"customdata,omitempty"`
-	Description    *string                                   `json:"description,omitempty"`
+	Address        *Address               `json:"address,omitempty"`
+	BillingAddress *Address               `json:"billing_address,omitempty"`
+	Customdata     map[string]interface{} `json:"customdata,omitempty"`
+	Description    *string                `json:"description,omitempty"`
 	// Force to all members to have enabled the two factor authentication after that date, unless the value is null
 	Enforce2faAt *time.Time `json:"enforce_2fa_at,omitempty"`
 	Logo         **os.File  `json:"logo,omitempty"`
@@ -49,9 +49,9 @@ func NewOrganizationInputWithDefaults() *OrganizationInput {
 }
 
 // GetAddress returns the Address field value if set, zero value otherwise.
-func (o *OrganizationInput) GetAddress() FindDeviceById200ResponseFacilityAddress {
+func (o *OrganizationInput) GetAddress() Address {
 	if o == nil || isNil(o.Address) {
-		var ret FindDeviceById200ResponseFacilityAddress
+		var ret Address
 		return ret
 	}
 	return *o.Address
@@ -59,7 +59,7 @@ func (o *OrganizationInput) GetAddress() FindDeviceById200ResponseFacilityAddres
 
 // GetAddressOk returns a tuple with the Address field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OrganizationInput) GetAddressOk() (*FindDeviceById200ResponseFacilityAddress, bool) {
+func (o *OrganizationInput) GetAddressOk() (*Address, bool) {
 	if o == nil || isNil(o.Address) {
 		return nil, false
 	}
@@ -75,15 +75,15 @@ func (o *OrganizationInput) HasAddress() bool {
 	return false
 }
 
-// SetAddress gets a reference to the given FindDeviceById200ResponseFacilityAddress and assigns it to the Address field.
-func (o *OrganizationInput) SetAddress(v FindDeviceById200ResponseFacilityAddress) {
+// SetAddress gets a reference to the given Address and assigns it to the Address field.
+func (o *OrganizationInput) SetAddress(v Address) {
 	o.Address = &v
 }
 
 // GetBillingAddress returns the BillingAddress field value if set, zero value otherwise.
-func (o *OrganizationInput) GetBillingAddress() FindDeviceById200ResponseFacilityAddress {
+func (o *OrganizationInput) GetBillingAddress() Address {
 	if o == nil || isNil(o.BillingAddress) {
-		var ret FindDeviceById200ResponseFacilityAddress
+		var ret Address
 		return ret
 	}
 	return *o.BillingAddress
@@ -91,7 +91,7 @@ func (o *OrganizationInput) GetBillingAddress() FindDeviceById200ResponseFacilit
 
 // GetBillingAddressOk returns a tuple with the BillingAddress field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OrganizationInput) GetBillingAddressOk() (*FindDeviceById200ResponseFacilityAddress, bool) {
+func (o *OrganizationInput) GetBillingAddressOk() (*Address, bool) {
 	if o == nil || isNil(o.BillingAddress) {
 		return nil, false
 	}
@@ -107,8 +107,8 @@ func (o *OrganizationInput) HasBillingAddress() bool {
 	return false
 }
 
-// SetBillingAddress gets a reference to the given FindDeviceById200ResponseFacilityAddress and assigns it to the BillingAddress field.
-func (o *OrganizationInput) SetBillingAddress(v FindDeviceById200ResponseFacilityAddress) {
+// SetBillingAddress gets a reference to the given Address and assigns it to the BillingAddress field.
+func (o *OrganizationInput) SetBillingAddress(v Address) {
 	o.BillingAddress = &v
 }
 

@@ -18,17 +18,17 @@ import (
 
 // SpotMarketRequest struct for SpotMarketRequest
 type SpotMarketRequest struct {
-	CreatedAt   *time.Time                                                     `json:"created_at,omitempty"`
-	DevicesMax  *int32                                                         `json:"devices_max,omitempty"`
-	DevicesMin  *int32                                                         `json:"devices_min,omitempty"`
-	EndAt       *time.Time                                                     `json:"end_at,omitempty"`
-	Facilities  *FindBatchById200ResponseDevicesInner                          `json:"facilities,omitempty"`
-	Href        *string                                                        `json:"href,omitempty"`
-	Id          *string                                                        `json:"id,omitempty"`
-	Instances   *FindBatchById200ResponseDevicesInner                          `json:"instances,omitempty"`
-	MaxBidPrice *float32                                                       `json:"max_bid_price,omitempty"`
-	Metro       *ListSpotMarketRequests200ResponseSpotMarketRequestsInnerMetro `json:"metro,omitempty"`
-	Project     *FindBatchById200ResponseDevicesInner                          `json:"project,omitempty"`
+	CreatedAt   *time.Time              `json:"created_at,omitempty"`
+	DevicesMax  *int32                  `json:"devices_max,omitempty"`
+	DevicesMin  *int32                  `json:"devices_min,omitempty"`
+	EndAt       *time.Time              `json:"end_at,omitempty"`
+	Facilities  *Href                   `json:"facilities,omitempty"`
+	Href        *string                 `json:"href,omitempty"`
+	Id          *string                 `json:"id,omitempty"`
+	Instances   *Href                   `json:"instances,omitempty"`
+	MaxBidPrice *float32                `json:"max_bid_price,omitempty"`
+	Metro       *SpotMarketRequestMetro `json:"metro,omitempty"`
+	Project     *Href                   `json:"project,omitempty"`
 }
 
 // NewSpotMarketRequest instantiates a new SpotMarketRequest object
@@ -177,9 +177,9 @@ func (o *SpotMarketRequest) SetEndAt(v time.Time) {
 }
 
 // GetFacilities returns the Facilities field value if set, zero value otherwise.
-func (o *SpotMarketRequest) GetFacilities() FindBatchById200ResponseDevicesInner {
+func (o *SpotMarketRequest) GetFacilities() Href {
 	if o == nil || isNil(o.Facilities) {
-		var ret FindBatchById200ResponseDevicesInner
+		var ret Href
 		return ret
 	}
 	return *o.Facilities
@@ -187,7 +187,7 @@ func (o *SpotMarketRequest) GetFacilities() FindBatchById200ResponseDevicesInner
 
 // GetFacilitiesOk returns a tuple with the Facilities field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SpotMarketRequest) GetFacilitiesOk() (*FindBatchById200ResponseDevicesInner, bool) {
+func (o *SpotMarketRequest) GetFacilitiesOk() (*Href, bool) {
 	if o == nil || isNil(o.Facilities) {
 		return nil, false
 	}
@@ -203,8 +203,8 @@ func (o *SpotMarketRequest) HasFacilities() bool {
 	return false
 }
 
-// SetFacilities gets a reference to the given FindBatchById200ResponseDevicesInner and assigns it to the Facilities field.
-func (o *SpotMarketRequest) SetFacilities(v FindBatchById200ResponseDevicesInner) {
+// SetFacilities gets a reference to the given Href and assigns it to the Facilities field.
+func (o *SpotMarketRequest) SetFacilities(v Href) {
 	o.Facilities = &v
 }
 
@@ -273,9 +273,9 @@ func (o *SpotMarketRequest) SetId(v string) {
 }
 
 // GetInstances returns the Instances field value if set, zero value otherwise.
-func (o *SpotMarketRequest) GetInstances() FindBatchById200ResponseDevicesInner {
+func (o *SpotMarketRequest) GetInstances() Href {
 	if o == nil || isNil(o.Instances) {
-		var ret FindBatchById200ResponseDevicesInner
+		var ret Href
 		return ret
 	}
 	return *o.Instances
@@ -283,7 +283,7 @@ func (o *SpotMarketRequest) GetInstances() FindBatchById200ResponseDevicesInner 
 
 // GetInstancesOk returns a tuple with the Instances field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SpotMarketRequest) GetInstancesOk() (*FindBatchById200ResponseDevicesInner, bool) {
+func (o *SpotMarketRequest) GetInstancesOk() (*Href, bool) {
 	if o == nil || isNil(o.Instances) {
 		return nil, false
 	}
@@ -299,8 +299,8 @@ func (o *SpotMarketRequest) HasInstances() bool {
 	return false
 }
 
-// SetInstances gets a reference to the given FindBatchById200ResponseDevicesInner and assigns it to the Instances field.
-func (o *SpotMarketRequest) SetInstances(v FindBatchById200ResponseDevicesInner) {
+// SetInstances gets a reference to the given Href and assigns it to the Instances field.
+func (o *SpotMarketRequest) SetInstances(v Href) {
 	o.Instances = &v
 }
 
@@ -337,9 +337,9 @@ func (o *SpotMarketRequest) SetMaxBidPrice(v float32) {
 }
 
 // GetMetro returns the Metro field value if set, zero value otherwise.
-func (o *SpotMarketRequest) GetMetro() ListSpotMarketRequests200ResponseSpotMarketRequestsInnerMetro {
+func (o *SpotMarketRequest) GetMetro() SpotMarketRequestMetro {
 	if o == nil || isNil(o.Metro) {
-		var ret ListSpotMarketRequests200ResponseSpotMarketRequestsInnerMetro
+		var ret SpotMarketRequestMetro
 		return ret
 	}
 	return *o.Metro
@@ -347,7 +347,7 @@ func (o *SpotMarketRequest) GetMetro() ListSpotMarketRequests200ResponseSpotMark
 
 // GetMetroOk returns a tuple with the Metro field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SpotMarketRequest) GetMetroOk() (*ListSpotMarketRequests200ResponseSpotMarketRequestsInnerMetro, bool) {
+func (o *SpotMarketRequest) GetMetroOk() (*SpotMarketRequestMetro, bool) {
 	if o == nil || isNil(o.Metro) {
 		return nil, false
 	}
@@ -363,15 +363,15 @@ func (o *SpotMarketRequest) HasMetro() bool {
 	return false
 }
 
-// SetMetro gets a reference to the given ListSpotMarketRequests200ResponseSpotMarketRequestsInnerMetro and assigns it to the Metro field.
-func (o *SpotMarketRequest) SetMetro(v ListSpotMarketRequests200ResponseSpotMarketRequestsInnerMetro) {
+// SetMetro gets a reference to the given SpotMarketRequestMetro and assigns it to the Metro field.
+func (o *SpotMarketRequest) SetMetro(v SpotMarketRequestMetro) {
 	o.Metro = &v
 }
 
 // GetProject returns the Project field value if set, zero value otherwise.
-func (o *SpotMarketRequest) GetProject() FindBatchById200ResponseDevicesInner {
+func (o *SpotMarketRequest) GetProject() Href {
 	if o == nil || isNil(o.Project) {
-		var ret FindBatchById200ResponseDevicesInner
+		var ret Href
 		return ret
 	}
 	return *o.Project
@@ -379,7 +379,7 @@ func (o *SpotMarketRequest) GetProject() FindBatchById200ResponseDevicesInner {
 
 // GetProjectOk returns a tuple with the Project field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SpotMarketRequest) GetProjectOk() (*FindBatchById200ResponseDevicesInner, bool) {
+func (o *SpotMarketRequest) GetProjectOk() (*Href, bool) {
 	if o == nil || isNil(o.Project) {
 		return nil, false
 	}
@@ -395,8 +395,8 @@ func (o *SpotMarketRequest) HasProject() bool {
 	return false
 }
 
-// SetProject gets a reference to the given FindBatchById200ResponseDevicesInner and assigns it to the Project field.
-func (o *SpotMarketRequest) SetProject(v FindBatchById200ResponseDevicesInner) {
+// SetProject gets a reference to the given Href and assigns it to the Project field.
+func (o *SpotMarketRequest) SetProject(v Href) {
 	o.Project = &v
 }
 

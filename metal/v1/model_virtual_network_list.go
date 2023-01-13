@@ -17,7 +17,7 @@ import (
 
 // VirtualNetworkList struct for VirtualNetworkList
 type VirtualNetworkList struct {
-	VirtualNetworks []FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetwork `json:"virtual_networks,omitempty"`
+	VirtualNetworks []VirtualNetwork `json:"virtual_networks,omitempty"`
 }
 
 // NewVirtualNetworkList instantiates a new VirtualNetworkList object
@@ -38,9 +38,9 @@ func NewVirtualNetworkListWithDefaults() *VirtualNetworkList {
 }
 
 // GetVirtualNetworks returns the VirtualNetworks field value if set, zero value otherwise.
-func (o *VirtualNetworkList) GetVirtualNetworks() []FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetwork {
+func (o *VirtualNetworkList) GetVirtualNetworks() []VirtualNetwork {
 	if o == nil || isNil(o.VirtualNetworks) {
-		var ret []FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetwork
+		var ret []VirtualNetwork
 		return ret
 	}
 	return o.VirtualNetworks
@@ -48,7 +48,7 @@ func (o *VirtualNetworkList) GetVirtualNetworks() []FindDeviceById200ResponseNet
 
 // GetVirtualNetworksOk returns a tuple with the VirtualNetworks field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VirtualNetworkList) GetVirtualNetworksOk() ([]FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetwork, bool) {
+func (o *VirtualNetworkList) GetVirtualNetworksOk() ([]VirtualNetwork, bool) {
 	if o == nil || isNil(o.VirtualNetworks) {
 		return nil, false
 	}
@@ -64,8 +64,8 @@ func (o *VirtualNetworkList) HasVirtualNetworks() bool {
 	return false
 }
 
-// SetVirtualNetworks gets a reference to the given []FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetwork and assigns it to the VirtualNetworks field.
-func (o *VirtualNetworkList) SetVirtualNetworks(v []FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetwork) {
+// SetVirtualNetworks gets a reference to the given []VirtualNetwork and assigns it to the VirtualNetworks field.
+func (o *VirtualNetworkList) SetVirtualNetworks(v []VirtualNetwork) {
 	o.VirtualNetworks = v
 }
 

@@ -226,7 +226,7 @@ Name | Type | Description  | Notes
 
 ## FindIPAvailabilities
 
-> FindIPAvailabilities200Response FindIPAvailabilities(ctx, id).Cidr(cidr).Execute()
+> IPAvailabilitiesList FindIPAvailabilities(ctx, id).Cidr(cidr).Execute()
 
 Retrieve all available subnets of a particular reservation
 
@@ -255,7 +255,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `IPAddressesApi.FindIPAvailabilities``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindIPAvailabilities`: FindIPAvailabilities200Response
+    // response from `FindIPAvailabilities`: IPAvailabilitiesList
     fmt.Fprintf(os.Stdout, "Response from `IPAddressesApi.FindIPAvailabilities`: %v\n", resp)
 }
 ```
@@ -280,7 +280,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FindIPAvailabilities200Response**](FindIPAvailabilities200Response.md)
+[**IPAvailabilitiesList**](IPAvailabilitiesList.md)
 
 ### Authorization
 
@@ -298,7 +298,7 @@ Name | Type | Description  | Notes
 
 ## FindIPReservations
 
-> FindIPReservations200Response FindIPReservations(ctx, id).Types(types).Include(include).Exclude(exclude).PerPage(perPage).Execute()
+> IPReservationList FindIPReservations(ctx, id).Types(types).Include(include).Exclude(exclude).PerPage(perPage).Execute()
 
 Retrieve all ip reservations
 
@@ -330,7 +330,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `IPAddressesApi.FindIPReservations``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindIPReservations`: FindIPReservations200Response
+    // response from `FindIPReservations`: IPReservationList
     fmt.Fprintf(os.Stdout, "Response from `IPAddressesApi.FindIPReservations`: %v\n", resp)
 }
 ```
@@ -358,7 +358,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FindIPReservations200Response**](FindIPReservations200Response.md)
+[**IPReservationList**](IPReservationList.md)
 
 ### Authorization
 
@@ -396,7 +396,7 @@ import (
 
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Project UUID
-    requestIPReservationRequest := openapiclient.requestIPReservation_request{RequestIPReservationRequestOneOf: openapiclient.NewRequestIPReservationRequestOneOf(int32(123), "Type_example")} // RequestIPReservationRequest | IP Reservation Request to create
+    requestIPReservationRequest := openapiclient.requestIPReservation_request{IPReservationRequestInput: openapiclient.NewIPReservationRequestInput(int32(123), "Type_example")} // RequestIPReservationRequest | IP Reservation Request to create
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)

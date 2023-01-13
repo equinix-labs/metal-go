@@ -7,10 +7,10 @@ Name | Type | Description | Notes
 **CreatedAt** | Pointer to **time.Time** |  | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
 **Native** | Pointer to **bool** |  | [optional] 
-**Port** | Pointer to [**FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
+**Port** | Pointer to [**Href**](Href.md) |  | [optional] 
 **State** | Pointer to **string** |  | [optional] 
 **UpdatedAt** | Pointer to **time.Time** |  | [optional] 
-**VirtualNetwork** | Pointer to [**FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
+**VirtualNetwork** | Pointer to [**Href**](Href.md) |  | [optional] 
 **Vlan** | Pointer to **int32** |  | [optional] 
 
 ## Methods
@@ -109,20 +109,20 @@ HasNative returns a boolean if a field has been set.
 
 ### GetPort
 
-`func (o *PortVlanAssignment) GetPort() FindBatchById200ResponseDevicesInner`
+`func (o *PortVlanAssignment) GetPort() Href`
 
 GetPort returns the Port field if non-nil, zero value otherwise.
 
 ### GetPortOk
 
-`func (o *PortVlanAssignment) GetPortOk() (*FindBatchById200ResponseDevicesInner, bool)`
+`func (o *PortVlanAssignment) GetPortOk() (*Href, bool)`
 
 GetPortOk returns a tuple with the Port field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPort
 
-`func (o *PortVlanAssignment) SetPort(v FindBatchById200ResponseDevicesInner)`
+`func (o *PortVlanAssignment) SetPort(v Href)`
 
 SetPort sets Port field to given value.
 
@@ -184,20 +184,20 @@ HasUpdatedAt returns a boolean if a field has been set.
 
 ### GetVirtualNetwork
 
-`func (o *PortVlanAssignment) GetVirtualNetwork() FindBatchById200ResponseDevicesInner`
+`func (o *PortVlanAssignment) GetVirtualNetwork() Href`
 
 GetVirtualNetwork returns the VirtualNetwork field if non-nil, zero value otherwise.
 
 ### GetVirtualNetworkOk
 
-`func (o *PortVlanAssignment) GetVirtualNetworkOk() (*FindBatchById200ResponseDevicesInner, bool)`
+`func (o *PortVlanAssignment) GetVirtualNetworkOk() (*Href, bool)`
 
 GetVirtualNetworkOk returns a tuple with the VirtualNetwork field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVirtualNetwork
 
-`func (o *PortVlanAssignment) SetVirtualNetwork(v FindBatchById200ResponseDevicesInner)`
+`func (o *PortVlanAssignment) SetVirtualNetwork(v Href)`
 
 SetVirtualNetwork sets VirtualNetwork field to given value.
 

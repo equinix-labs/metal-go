@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Address** | Pointer to **string** |  | [optional] 
 **AddressFamily** | Pointer to **int32** |  | [optional] 
-**AssignedTo** | Pointer to [**FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
+**AssignedTo** | Pointer to [**Href**](Href.md) |  | [optional] 
 **Cidr** | Pointer to **int32** |  | [optional] 
 **CreatedAt** | Pointer to **time.Time** |  | [optional] 
 **Enabled** | Pointer to **bool** |  | [optional] 
@@ -16,33 +16,33 @@ Name | Type | Description | Notes
 **Id** | Pointer to **string** |  | [optional] 
 **Manageable** | Pointer to **bool** |  | [optional] 
 **Management** | Pointer to **bool** |  | [optional] 
-**Metro** | Pointer to [**FindIPAddressById200ResponseOneOfMetro**](FindIPAddressById200ResponseOneOfMetro.md) |  | [optional] 
+**Metro** | Pointer to [**IPReservationMetro**](IPReservationMetro.md) |  | [optional] 
 **Netmask** | Pointer to **string** |  | [optional] 
 **Network** | Pointer to **string** |  | [optional] 
-**ParentBlock** | Pointer to [**FindDeviceById200ResponseIpAddressesInnerParentBlock**](FindDeviceById200ResponseIpAddressesInnerParentBlock.md) |  | [optional] 
+**ParentBlock** | Pointer to [**ParentBlock**](ParentBlock.md) |  | [optional] 
 **Public** | Pointer to **bool** |  | [optional] 
 **Addon** | Pointer to **bool** |  | [optional] 
-**Assignments** | Pointer to [**[]FindDeviceById200ResponseIpAddressesInner**](FindDeviceById200ResponseIpAddressesInner.md) |  | [optional] 
+**Assignments** | Pointer to [**[]IPAssignment**](IPAssignment.md) |  | [optional] 
 **Available** | Pointer to **string** |  | [optional] 
 **Bill** | Pointer to **bool** |  | [optional] 
 **Customdata** | Pointer to **map[string]interface{}** |  | [optional] 
 **Details** | Pointer to **string** |  | [optional] 
-**Facility** | Pointer to [**FindIPAddressById200ResponseOneOfFacility**](FindIPAddressById200ResponseOneOfFacility.md) |  | [optional] 
-**MetalGateway** | Pointer to [**FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetworkMetalGatewaysInner**](FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetworkMetalGatewaysInner.md) |  | [optional] 
-**Project** | Pointer to [**GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject**](GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject.md) |  | [optional] 
-**ProjectLite** | Pointer to [**FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
-**RequestedBy** | Pointer to [**FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
+**Facility** | Pointer to [**IPReservationFacility**](IPReservationFacility.md) |  | [optional] 
+**MetalGateway** | Pointer to [**MetalGatewayLite**](MetalGatewayLite.md) |  | [optional] 
+**Project** | Pointer to [**Project**](Project.md) |  | [optional] 
+**ProjectLite** | Pointer to [**Href**](Href.md) |  | [optional] 
+**RequestedBy** | Pointer to [**Href**](Href.md) |  | [optional] 
 **State** | Pointer to **string** |  | [optional] 
 **Tags** | Pointer to **[]string** |  | [optional] 
 **Type** | **string** |  | 
-**CreatedBy** | Pointer to [**FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
-**Vrf** | [**GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1Vrf**](GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1Vrf.md) |  | 
+**CreatedBy** | Pointer to [**Href**](Href.md) |  | [optional] 
+**Vrf** | [**Vrf**](Vrf.md) |  | 
 
 ## Methods
 
 ### NewFindIPAddressById200Response
 
-`func NewFindIPAddressById200Response(type_ string, vrf GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1Vrf, ) *FindIPAddressById200Response`
+`func NewFindIPAddressById200Response(type_ string, vrf Vrf, ) *FindIPAddressById200Response`
 
 NewFindIPAddressById200Response instantiates a new FindIPAddressById200Response object
 This constructor will assign default values to properties that have it defined,
@@ -109,20 +109,20 @@ HasAddressFamily returns a boolean if a field has been set.
 
 ### GetAssignedTo
 
-`func (o *FindIPAddressById200Response) GetAssignedTo() FindBatchById200ResponseDevicesInner`
+`func (o *FindIPAddressById200Response) GetAssignedTo() Href`
 
 GetAssignedTo returns the AssignedTo field if non-nil, zero value otherwise.
 
 ### GetAssignedToOk
 
-`func (o *FindIPAddressById200Response) GetAssignedToOk() (*FindBatchById200ResponseDevicesInner, bool)`
+`func (o *FindIPAddressById200Response) GetAssignedToOk() (*Href, bool)`
 
 GetAssignedToOk returns a tuple with the AssignedTo field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAssignedTo
 
-`func (o *FindIPAddressById200Response) SetAssignedTo(v FindBatchById200ResponseDevicesInner)`
+`func (o *FindIPAddressById200Response) SetAssignedTo(v Href)`
 
 SetAssignedTo sets AssignedTo field to given value.
 
@@ -359,20 +359,20 @@ HasManagement returns a boolean if a field has been set.
 
 ### GetMetro
 
-`func (o *FindIPAddressById200Response) GetMetro() FindIPAddressById200ResponseOneOfMetro`
+`func (o *FindIPAddressById200Response) GetMetro() IPReservationMetro`
 
 GetMetro returns the Metro field if non-nil, zero value otherwise.
 
 ### GetMetroOk
 
-`func (o *FindIPAddressById200Response) GetMetroOk() (*FindIPAddressById200ResponseOneOfMetro, bool)`
+`func (o *FindIPAddressById200Response) GetMetroOk() (*IPReservationMetro, bool)`
 
 GetMetroOk returns a tuple with the Metro field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMetro
 
-`func (o *FindIPAddressById200Response) SetMetro(v FindIPAddressById200ResponseOneOfMetro)`
+`func (o *FindIPAddressById200Response) SetMetro(v IPReservationMetro)`
 
 SetMetro sets Metro field to given value.
 
@@ -434,20 +434,20 @@ HasNetwork returns a boolean if a field has been set.
 
 ### GetParentBlock
 
-`func (o *FindIPAddressById200Response) GetParentBlock() FindDeviceById200ResponseIpAddressesInnerParentBlock`
+`func (o *FindIPAddressById200Response) GetParentBlock() ParentBlock`
 
 GetParentBlock returns the ParentBlock field if non-nil, zero value otherwise.
 
 ### GetParentBlockOk
 
-`func (o *FindIPAddressById200Response) GetParentBlockOk() (*FindDeviceById200ResponseIpAddressesInnerParentBlock, bool)`
+`func (o *FindIPAddressById200Response) GetParentBlockOk() (*ParentBlock, bool)`
 
 GetParentBlockOk returns a tuple with the ParentBlock field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetParentBlock
 
-`func (o *FindIPAddressById200Response) SetParentBlock(v FindDeviceById200ResponseIpAddressesInnerParentBlock)`
+`func (o *FindIPAddressById200Response) SetParentBlock(v ParentBlock)`
 
 SetParentBlock sets ParentBlock field to given value.
 
@@ -509,20 +509,20 @@ HasAddon returns a boolean if a field has been set.
 
 ### GetAssignments
 
-`func (o *FindIPAddressById200Response) GetAssignments() []FindDeviceById200ResponseIpAddressesInner`
+`func (o *FindIPAddressById200Response) GetAssignments() []IPAssignment`
 
 GetAssignments returns the Assignments field if non-nil, zero value otherwise.
 
 ### GetAssignmentsOk
 
-`func (o *FindIPAddressById200Response) GetAssignmentsOk() (*[]FindDeviceById200ResponseIpAddressesInner, bool)`
+`func (o *FindIPAddressById200Response) GetAssignmentsOk() (*[]IPAssignment, bool)`
 
 GetAssignmentsOk returns a tuple with the Assignments field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAssignments
 
-`func (o *FindIPAddressById200Response) SetAssignments(v []FindDeviceById200ResponseIpAddressesInner)`
+`func (o *FindIPAddressById200Response) SetAssignments(v []IPAssignment)`
 
 SetAssignments sets Assignments field to given value.
 
@@ -634,20 +634,20 @@ HasDetails returns a boolean if a field has been set.
 
 ### GetFacility
 
-`func (o *FindIPAddressById200Response) GetFacility() FindIPAddressById200ResponseOneOfFacility`
+`func (o *FindIPAddressById200Response) GetFacility() IPReservationFacility`
 
 GetFacility returns the Facility field if non-nil, zero value otherwise.
 
 ### GetFacilityOk
 
-`func (o *FindIPAddressById200Response) GetFacilityOk() (*FindIPAddressById200ResponseOneOfFacility, bool)`
+`func (o *FindIPAddressById200Response) GetFacilityOk() (*IPReservationFacility, bool)`
 
 GetFacilityOk returns a tuple with the Facility field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFacility
 
-`func (o *FindIPAddressById200Response) SetFacility(v FindIPAddressById200ResponseOneOfFacility)`
+`func (o *FindIPAddressById200Response) SetFacility(v IPReservationFacility)`
 
 SetFacility sets Facility field to given value.
 
@@ -659,20 +659,20 @@ HasFacility returns a boolean if a field has been set.
 
 ### GetMetalGateway
 
-`func (o *FindIPAddressById200Response) GetMetalGateway() FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetworkMetalGatewaysInner`
+`func (o *FindIPAddressById200Response) GetMetalGateway() MetalGatewayLite`
 
 GetMetalGateway returns the MetalGateway field if non-nil, zero value otherwise.
 
 ### GetMetalGatewayOk
 
-`func (o *FindIPAddressById200Response) GetMetalGatewayOk() (*FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetworkMetalGatewaysInner, bool)`
+`func (o *FindIPAddressById200Response) GetMetalGatewayOk() (*MetalGatewayLite, bool)`
 
 GetMetalGatewayOk returns a tuple with the MetalGateway field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMetalGateway
 
-`func (o *FindIPAddressById200Response) SetMetalGateway(v FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetworkMetalGatewaysInner)`
+`func (o *FindIPAddressById200Response) SetMetalGateway(v MetalGatewayLite)`
 
 SetMetalGateway sets MetalGateway field to given value.
 
@@ -684,20 +684,20 @@ HasMetalGateway returns a boolean if a field has been set.
 
 ### GetProject
 
-`func (o *FindIPAddressById200Response) GetProject() GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject`
+`func (o *FindIPAddressById200Response) GetProject() Project`
 
 GetProject returns the Project field if non-nil, zero value otherwise.
 
 ### GetProjectOk
 
-`func (o *FindIPAddressById200Response) GetProjectOk() (*GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject, bool)`
+`func (o *FindIPAddressById200Response) GetProjectOk() (*Project, bool)`
 
 GetProjectOk returns a tuple with the Project field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetProject
 
-`func (o *FindIPAddressById200Response) SetProject(v GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1VrfProject)`
+`func (o *FindIPAddressById200Response) SetProject(v Project)`
 
 SetProject sets Project field to given value.
 
@@ -709,20 +709,20 @@ HasProject returns a boolean if a field has been set.
 
 ### GetProjectLite
 
-`func (o *FindIPAddressById200Response) GetProjectLite() FindBatchById200ResponseDevicesInner`
+`func (o *FindIPAddressById200Response) GetProjectLite() Href`
 
 GetProjectLite returns the ProjectLite field if non-nil, zero value otherwise.
 
 ### GetProjectLiteOk
 
-`func (o *FindIPAddressById200Response) GetProjectLiteOk() (*FindBatchById200ResponseDevicesInner, bool)`
+`func (o *FindIPAddressById200Response) GetProjectLiteOk() (*Href, bool)`
 
 GetProjectLiteOk returns a tuple with the ProjectLite field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetProjectLite
 
-`func (o *FindIPAddressById200Response) SetProjectLite(v FindBatchById200ResponseDevicesInner)`
+`func (o *FindIPAddressById200Response) SetProjectLite(v Href)`
 
 SetProjectLite sets ProjectLite field to given value.
 
@@ -734,20 +734,20 @@ HasProjectLite returns a boolean if a field has been set.
 
 ### GetRequestedBy
 
-`func (o *FindIPAddressById200Response) GetRequestedBy() FindBatchById200ResponseDevicesInner`
+`func (o *FindIPAddressById200Response) GetRequestedBy() Href`
 
 GetRequestedBy returns the RequestedBy field if non-nil, zero value otherwise.
 
 ### GetRequestedByOk
 
-`func (o *FindIPAddressById200Response) GetRequestedByOk() (*FindBatchById200ResponseDevicesInner, bool)`
+`func (o *FindIPAddressById200Response) GetRequestedByOk() (*Href, bool)`
 
 GetRequestedByOk returns a tuple with the RequestedBy field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRequestedBy
 
-`func (o *FindIPAddressById200Response) SetRequestedBy(v FindBatchById200ResponseDevicesInner)`
+`func (o *FindIPAddressById200Response) SetRequestedBy(v Href)`
 
 SetRequestedBy sets RequestedBy field to given value.
 
@@ -829,20 +829,20 @@ SetType sets Type field to given value.
 
 ### GetCreatedBy
 
-`func (o *FindIPAddressById200Response) GetCreatedBy() FindBatchById200ResponseDevicesInner`
+`func (o *FindIPAddressById200Response) GetCreatedBy() Href`
 
 GetCreatedBy returns the CreatedBy field if non-nil, zero value otherwise.
 
 ### GetCreatedByOk
 
-`func (o *FindIPAddressById200Response) GetCreatedByOk() (*FindBatchById200ResponseDevicesInner, bool)`
+`func (o *FindIPAddressById200Response) GetCreatedByOk() (*Href, bool)`
 
 GetCreatedByOk returns a tuple with the CreatedBy field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCreatedBy
 
-`func (o *FindIPAddressById200Response) SetCreatedBy(v FindBatchById200ResponseDevicesInner)`
+`func (o *FindIPAddressById200Response) SetCreatedBy(v Href)`
 
 SetCreatedBy sets CreatedBy field to given value.
 
@@ -854,20 +854,20 @@ HasCreatedBy returns a boolean if a field has been set.
 
 ### GetVrf
 
-`func (o *FindIPAddressById200Response) GetVrf() GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1Vrf`
+`func (o *FindIPAddressById200Response) GetVrf() Vrf`
 
 GetVrf returns the Vrf field if non-nil, zero value otherwise.
 
 ### GetVrfOk
 
-`func (o *FindIPAddressById200Response) GetVrfOk() (*GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1Vrf, bool)`
+`func (o *FindIPAddressById200Response) GetVrfOk() (*Vrf, bool)`
 
 GetVrfOk returns a tuple with the Vrf field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVrf
 
-`func (o *FindIPAddressById200Response) SetVrf(v GetInterconnection200ResponsePortsInnerVirtualCircuitsVirtualCircuitsInnerAnyOf1Vrf)`
+`func (o *FindIPAddressById200Response) SetVrf(v Vrf)`
 
 SetVrf sets Vrf field to given value.
 

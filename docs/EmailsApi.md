@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 ## CreateEmail
 
-> CreateEmail201Response CreateEmail(ctx).CreateEmailRequest(createEmailRequest).Execute()
+> Email CreateEmail(ctx).CreateEmailInput(createEmailInput).Execute()
 
 Create an email
 
@@ -32,16 +32,16 @@ import (
 )
 
 func main() {
-    createEmailRequest := *openapiclient.NewCreateEmailRequest("Address_example") // CreateEmailRequest | Email to create
+    createEmailInput := *openapiclient.NewCreateEmailInput("Address_example") // CreateEmailInput | Email to create
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.EmailsApi.CreateEmail(context.Background()).CreateEmailRequest(createEmailRequest).Execute()
+    resp, r, err := apiClient.EmailsApi.CreateEmail(context.Background()).CreateEmailInput(createEmailInput).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `EmailsApi.CreateEmail``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateEmail`: CreateEmail201Response
+    // response from `CreateEmail`: Email
     fmt.Fprintf(os.Stdout, "Response from `EmailsApi.CreateEmail`: %v\n", resp)
 }
 ```
@@ -57,11 +57,11 @@ Other parameters are passed through a pointer to a apiCreateEmailRequest struct 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **createEmailRequest** | [**CreateEmailRequest**](CreateEmailRequest.md) | Email to create | 
+ **createEmailInput** | [**CreateEmailInput**](CreateEmailInput.md) | Email to create | 
 
 ### Return type
 
-[**CreateEmail201Response**](CreateEmail201Response.md)
+[**Email**](Email.md)
 
 ### Authorization
 
@@ -147,7 +147,7 @@ Name | Type | Description  | Notes
 
 ## FindEmailById
 
-> CreateEmail201Response FindEmailById(ctx, id).Include(include).Exclude(exclude).Execute()
+> Email FindEmailById(ctx, id).Include(include).Exclude(exclude).Execute()
 
 Retrieve an email
 
@@ -177,7 +177,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `EmailsApi.FindEmailById``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindEmailById`: CreateEmail201Response
+    // response from `FindEmailById`: Email
     fmt.Fprintf(os.Stdout, "Response from `EmailsApi.FindEmailById`: %v\n", resp)
 }
 ```
@@ -203,7 +203,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CreateEmail201Response**](CreateEmail201Response.md)
+[**Email**](Email.md)
 
 ### Authorization
 
@@ -221,7 +221,7 @@ Name | Type | Description  | Notes
 
 ## UpdateEmail
 
-> CreateEmail201Response UpdateEmail(ctx, id).UpdateEmailRequest(updateEmailRequest).Execute()
+> Email UpdateEmail(ctx, id).UpdateEmailInput(updateEmailInput).Execute()
 
 Update the email
 
@@ -241,16 +241,16 @@ import (
 
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Email UUID
-    updateEmailRequest := *openapiclient.NewUpdateEmailRequest() // UpdateEmailRequest | email to update
+    updateEmailInput := *openapiclient.NewUpdateEmailInput() // UpdateEmailInput | email to update
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.EmailsApi.UpdateEmail(context.Background(), id).UpdateEmailRequest(updateEmailRequest).Execute()
+    resp, r, err := apiClient.EmailsApi.UpdateEmail(context.Background(), id).UpdateEmailInput(updateEmailInput).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `EmailsApi.UpdateEmail``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateEmail`: CreateEmail201Response
+    // response from `UpdateEmail`: Email
     fmt.Fprintf(os.Stdout, "Response from `EmailsApi.UpdateEmail`: %v\n", resp)
 }
 ```
@@ -271,11 +271,11 @@ Other parameters are passed through a pointer to a apiUpdateEmailRequest struct 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateEmailRequest** | [**UpdateEmailRequest**](UpdateEmailRequest.md) | email to update | 
+ **updateEmailInput** | [**UpdateEmailInput**](UpdateEmailInput.md) | email to update | 
 
 ### Return type
 
-[**CreateEmail201Response**](CreateEmail201Response.md)
+[**Email**](Email.md)
 
 ### Authorization
 

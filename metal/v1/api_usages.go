@@ -43,7 +43,7 @@ func (r ApiFindDeviceUsagesRequest) CreatedBefore(createdBefore string) ApiFindD
 	return r
 }
 
-func (r ApiFindDeviceUsagesRequest) Execute() (*FindDeviceUsages200Response, *http.Response, error) {
+func (r ApiFindDeviceUsagesRequest) Execute() (*DeviceUsageList, *http.Response, error) {
 	return r.ApiService.FindDeviceUsagesExecute(r)
 }
 
@@ -65,13 +65,13 @@ func (a *UsagesApiService) FindDeviceUsages(ctx context.Context, id string) ApiF
 }
 
 // Execute executes the request
-//  @return FindDeviceUsages200Response
-func (a *UsagesApiService) FindDeviceUsagesExecute(r ApiFindDeviceUsagesRequest) (*FindDeviceUsages200Response, *http.Response, error) {
+//  @return DeviceUsageList
+func (a *UsagesApiService) FindDeviceUsagesExecute(r ApiFindDeviceUsagesRequest) (*DeviceUsageList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *FindDeviceUsages200Response
+		localVarReturnValue *DeviceUsageList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsagesApiService.FindDeviceUsages")
@@ -146,7 +146,7 @@ func (a *UsagesApiService) FindDeviceUsagesExecute(r ApiFindDeviceUsagesRequest)
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -157,7 +157,7 @@ func (a *UsagesApiService) FindDeviceUsagesExecute(r ApiFindDeviceUsagesRequest)
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -201,7 +201,7 @@ func (r ApiFindProjectUsageRequest) CreatedBefore(createdBefore string) ApiFindP
 	return r
 }
 
-func (r ApiFindProjectUsageRequest) Execute() (*FindProjectUsage200Response, *http.Response, error) {
+func (r ApiFindProjectUsageRequest) Execute() (*ProjectUsageList, *http.Response, error) {
 	return r.ApiService.FindProjectUsageExecute(r)
 }
 
@@ -223,13 +223,13 @@ func (a *UsagesApiService) FindProjectUsage(ctx context.Context, id string) ApiF
 }
 
 // Execute executes the request
-//  @return FindProjectUsage200Response
-func (a *UsagesApiService) FindProjectUsageExecute(r ApiFindProjectUsageRequest) (*FindProjectUsage200Response, *http.Response, error) {
+//  @return ProjectUsageList
+func (a *UsagesApiService) FindProjectUsageExecute(r ApiFindProjectUsageRequest) (*ProjectUsageList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *FindProjectUsage200Response
+		localVarReturnValue *ProjectUsageList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsagesApiService.FindProjectUsage")
@@ -304,7 +304,7 @@ func (a *UsagesApiService) FindProjectUsageExecute(r ApiFindProjectUsageRequest)
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -315,7 +315,7 @@ func (a *UsagesApiService) FindProjectUsageExecute(r ApiFindProjectUsageRequest)
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DeleteAPIKey401Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

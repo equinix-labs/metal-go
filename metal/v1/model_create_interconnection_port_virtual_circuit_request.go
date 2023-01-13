@@ -18,21 +18,21 @@ import (
 
 // CreateInterconnectionPortVirtualCircuitRequest - struct for CreateInterconnectionPortVirtualCircuitRequest
 type CreateInterconnectionPortVirtualCircuitRequest struct {
-	CreateInterconnectionPortVirtualCircuitRequestOneOf  *CreateInterconnectionPortVirtualCircuitRequestOneOf
-	CreateInterconnectionPortVirtualCircuitRequestOneOf1 *CreateInterconnectionPortVirtualCircuitRequestOneOf1
+	VirtualCircuitCreateInput    *VirtualCircuitCreateInput
+	VrfVirtualCircuitCreateInput *VrfVirtualCircuitCreateInput
 }
 
-// CreateInterconnectionPortVirtualCircuitRequestOneOfAsCreateInterconnectionPortVirtualCircuitRequest is a convenience function that returns CreateInterconnectionPortVirtualCircuitRequestOneOf wrapped in CreateInterconnectionPortVirtualCircuitRequest
-func CreateInterconnectionPortVirtualCircuitRequestOneOfAsCreateInterconnectionPortVirtualCircuitRequest(v *CreateInterconnectionPortVirtualCircuitRequestOneOf) CreateInterconnectionPortVirtualCircuitRequest {
+// VirtualCircuitCreateInputAsCreateInterconnectionPortVirtualCircuitRequest is a convenience function that returns VirtualCircuitCreateInput wrapped in CreateInterconnectionPortVirtualCircuitRequest
+func VirtualCircuitCreateInputAsCreateInterconnectionPortVirtualCircuitRequest(v *VirtualCircuitCreateInput) CreateInterconnectionPortVirtualCircuitRequest {
 	return CreateInterconnectionPortVirtualCircuitRequest{
-		CreateInterconnectionPortVirtualCircuitRequestOneOf: v,
+		VirtualCircuitCreateInput: v,
 	}
 }
 
-// CreateInterconnectionPortVirtualCircuitRequestOneOf1AsCreateInterconnectionPortVirtualCircuitRequest is a convenience function that returns CreateInterconnectionPortVirtualCircuitRequestOneOf1 wrapped in CreateInterconnectionPortVirtualCircuitRequest
-func CreateInterconnectionPortVirtualCircuitRequestOneOf1AsCreateInterconnectionPortVirtualCircuitRequest(v *CreateInterconnectionPortVirtualCircuitRequestOneOf1) CreateInterconnectionPortVirtualCircuitRequest {
+// VrfVirtualCircuitCreateInputAsCreateInterconnectionPortVirtualCircuitRequest is a convenience function that returns VrfVirtualCircuitCreateInput wrapped in CreateInterconnectionPortVirtualCircuitRequest
+func VrfVirtualCircuitCreateInputAsCreateInterconnectionPortVirtualCircuitRequest(v *VrfVirtualCircuitCreateInput) CreateInterconnectionPortVirtualCircuitRequest {
 	return CreateInterconnectionPortVirtualCircuitRequest{
-		CreateInterconnectionPortVirtualCircuitRequestOneOf1: v,
+		VrfVirtualCircuitCreateInput: v,
 	}
 }
 
@@ -40,36 +40,36 @@ func CreateInterconnectionPortVirtualCircuitRequestOneOf1AsCreateInterconnection
 func (dst *CreateInterconnectionPortVirtualCircuitRequest) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
-	// try to unmarshal data into CreateInterconnectionPortVirtualCircuitRequestOneOf
-	err = newStrictDecoder(data).Decode(&dst.CreateInterconnectionPortVirtualCircuitRequestOneOf)
+	// try to unmarshal data into VirtualCircuitCreateInput
+	err = newStrictDecoder(data).Decode(&dst.VirtualCircuitCreateInput)
 	if err == nil {
-		jsonCreateInterconnectionPortVirtualCircuitRequestOneOf, _ := json.Marshal(dst.CreateInterconnectionPortVirtualCircuitRequestOneOf)
-		if string(jsonCreateInterconnectionPortVirtualCircuitRequestOneOf) == "{}" { // empty struct
-			dst.CreateInterconnectionPortVirtualCircuitRequestOneOf = nil
+		jsonVirtualCircuitCreateInput, _ := json.Marshal(dst.VirtualCircuitCreateInput)
+		if string(jsonVirtualCircuitCreateInput) == "{}" { // empty struct
+			dst.VirtualCircuitCreateInput = nil
 		} else {
 			match++
 		}
 	} else {
-		dst.CreateInterconnectionPortVirtualCircuitRequestOneOf = nil
+		dst.VirtualCircuitCreateInput = nil
 	}
 
-	// try to unmarshal data into CreateInterconnectionPortVirtualCircuitRequestOneOf1
-	err = newStrictDecoder(data).Decode(&dst.CreateInterconnectionPortVirtualCircuitRequestOneOf1)
+	// try to unmarshal data into VrfVirtualCircuitCreateInput
+	err = newStrictDecoder(data).Decode(&dst.VrfVirtualCircuitCreateInput)
 	if err == nil {
-		jsonCreateInterconnectionPortVirtualCircuitRequestOneOf1, _ := json.Marshal(dst.CreateInterconnectionPortVirtualCircuitRequestOneOf1)
-		if string(jsonCreateInterconnectionPortVirtualCircuitRequestOneOf1) == "{}" { // empty struct
-			dst.CreateInterconnectionPortVirtualCircuitRequestOneOf1 = nil
+		jsonVrfVirtualCircuitCreateInput, _ := json.Marshal(dst.VrfVirtualCircuitCreateInput)
+		if string(jsonVrfVirtualCircuitCreateInput) == "{}" { // empty struct
+			dst.VrfVirtualCircuitCreateInput = nil
 		} else {
 			match++
 		}
 	} else {
-		dst.CreateInterconnectionPortVirtualCircuitRequestOneOf1 = nil
+		dst.VrfVirtualCircuitCreateInput = nil
 	}
 
 	if match > 1 { // more than 1 match
 		// reset to nil
-		dst.CreateInterconnectionPortVirtualCircuitRequestOneOf = nil
-		dst.CreateInterconnectionPortVirtualCircuitRequestOneOf1 = nil
+		dst.VirtualCircuitCreateInput = nil
+		dst.VrfVirtualCircuitCreateInput = nil
 
 		return fmt.Errorf("data matches more than one schema in oneOf(CreateInterconnectionPortVirtualCircuitRequest)")
 	} else if match == 1 {
@@ -81,12 +81,12 @@ func (dst *CreateInterconnectionPortVirtualCircuitRequest) UnmarshalJSON(data []
 
 // Marshal data from the first non-nil pointers in the struct to JSON
 func (src CreateInterconnectionPortVirtualCircuitRequest) MarshalJSON() ([]byte, error) {
-	if src.CreateInterconnectionPortVirtualCircuitRequestOneOf != nil {
-		return json.Marshal(&src.CreateInterconnectionPortVirtualCircuitRequestOneOf)
+	if src.VirtualCircuitCreateInput != nil {
+		return json.Marshal(&src.VirtualCircuitCreateInput)
 	}
 
-	if src.CreateInterconnectionPortVirtualCircuitRequestOneOf1 != nil {
-		return json.Marshal(&src.CreateInterconnectionPortVirtualCircuitRequestOneOf1)
+	if src.VrfVirtualCircuitCreateInput != nil {
+		return json.Marshal(&src.VrfVirtualCircuitCreateInput)
 	}
 
 	return nil, nil // no data in oneOf schemas
@@ -97,12 +97,12 @@ func (obj *CreateInterconnectionPortVirtualCircuitRequest) GetActualInstance() i
 	if obj == nil {
 		return nil
 	}
-	if obj.CreateInterconnectionPortVirtualCircuitRequestOneOf != nil {
-		return obj.CreateInterconnectionPortVirtualCircuitRequestOneOf
+	if obj.VirtualCircuitCreateInput != nil {
+		return obj.VirtualCircuitCreateInput
 	}
 
-	if obj.CreateInterconnectionPortVirtualCircuitRequestOneOf1 != nil {
-		return obj.CreateInterconnectionPortVirtualCircuitRequestOneOf1
+	if obj.VrfVirtualCircuitCreateInput != nil {
+		return obj.VrfVirtualCircuitCreateInput
 	}
 
 	// all schemas are nil

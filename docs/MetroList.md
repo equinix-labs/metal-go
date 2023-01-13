@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Metros** | Pointer to [**[]GetInterconnection200ResponseMetroAllOf**](GetInterconnection200ResponseMetroAllOf.md) |  | [optional] 
+**Metros** | Pointer to [**[]Metro**](Metro.md) |  | [optional] 
 
 ## Methods
 
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetMetros
 
-`func (o *MetroList) GetMetros() []GetInterconnection200ResponseMetroAllOf`
+`func (o *MetroList) GetMetros() []Metro`
 
 GetMetros returns the Metros field if non-nil, zero value otherwise.
 
 ### GetMetrosOk
 
-`func (o *MetroList) GetMetrosOk() (*[]GetInterconnection200ResponseMetroAllOf, bool)`
+`func (o *MetroList) GetMetrosOk() (*[]Metro, bool)`
 
 GetMetrosOk returns a tuple with the Metros field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMetros
 
-`func (o *MetroList) SetMetros(v []GetInterconnection200ResponseMetroAllOf)`
+`func (o *MetroList) SetMetros(v []Metro)`
 
 SetMetros sets Metros field to given value.
 

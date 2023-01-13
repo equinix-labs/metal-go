@@ -18,14 +18,14 @@ import (
 
 // Event struct for Event
 type Event struct {
-	Body          *string                                `json:"body,omitempty"`
-	CreatedAt     *time.Time                             `json:"created_at,omitempty"`
-	Href          *string                                `json:"href,omitempty"`
-	Id            *string                                `json:"id,omitempty"`
-	Interpolated  *string                                `json:"interpolated,omitempty"`
-	Relationships []FindBatchById200ResponseDevicesInner `json:"relationships,omitempty"`
-	State         *string                                `json:"state,omitempty"`
-	Type          *string                                `json:"type,omitempty"`
+	Body          *string    `json:"body,omitempty"`
+	CreatedAt     *time.Time `json:"created_at,omitempty"`
+	Href          *string    `json:"href,omitempty"`
+	Id            *string    `json:"id,omitempty"`
+	Interpolated  *string    `json:"interpolated,omitempty"`
+	Relationships []Href     `json:"relationships,omitempty"`
+	State         *string    `json:"state,omitempty"`
+	Type          *string    `json:"type,omitempty"`
 }
 
 // NewEvent instantiates a new Event object
@@ -206,9 +206,9 @@ func (o *Event) SetInterpolated(v string) {
 }
 
 // GetRelationships returns the Relationships field value if set, zero value otherwise.
-func (o *Event) GetRelationships() []FindBatchById200ResponseDevicesInner {
+func (o *Event) GetRelationships() []Href {
 	if o == nil || isNil(o.Relationships) {
-		var ret []FindBatchById200ResponseDevicesInner
+		var ret []Href
 		return ret
 	}
 	return o.Relationships
@@ -216,7 +216,7 @@ func (o *Event) GetRelationships() []FindBatchById200ResponseDevicesInner {
 
 // GetRelationshipsOk returns a tuple with the Relationships field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Event) GetRelationshipsOk() ([]FindBatchById200ResponseDevicesInner, bool) {
+func (o *Event) GetRelationshipsOk() ([]Href, bool) {
 	if o == nil || isNil(o.Relationships) {
 		return nil, false
 	}
@@ -232,8 +232,8 @@ func (o *Event) HasRelationships() bool {
 	return false
 }
 
-// SetRelationships gets a reference to the given []FindBatchById200ResponseDevicesInner and assigns it to the Relationships field.
-func (o *Event) SetRelationships(v []FindBatchById200ResponseDevicesInner) {
+// SetRelationships gets a reference to the given []Href and assigns it to the Relationships field.
+func (o *Event) SetRelationships(v []Href) {
 	o.Relationships = v
 }
 

@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AssignedTo** | Pointer to [**FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
+**AssignedTo** | Pointer to [**Href**](Href.md) |  | [optional] 
 **AssignedToVirtualCircuit** | Pointer to **bool** | True if the virtual network is attached to a virtual circuit. False if not. | [optional] 
 **Description** | Pointer to **string** |  | [optional] 
-**Facility** | Pointer to [**FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
+**Facility** | Pointer to [**Href**](Href.md) |  | [optional] 
 **Href** | Pointer to **string** |  | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
-**Instances** | Pointer to [**[]FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) | A list of instances with ports currently associated to this Virtual Network. | [optional] 
-**MetalGateways** | Pointer to [**[]FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetworkMetalGatewaysInner**](FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetworkMetalGatewaysInner.md) | A list of metal gateways currently associated to this Virtual Network. | [optional] 
-**Metro** | Pointer to [**FindBatchById200ResponseDevicesInner**](FindBatchById200ResponseDevicesInner.md) |  | [optional] 
+**Instances** | Pointer to [**[]Href**](Href.md) | A list of instances with ports currently associated to this Virtual Network. | [optional] 
+**MetalGateways** | Pointer to [**[]MetalGatewayLite**](MetalGatewayLite.md) | A list of metal gateways currently associated to this Virtual Network. | [optional] 
+**Metro** | Pointer to [**Href**](Href.md) |  | [optional] 
 **MetroCode** | Pointer to **string** | The Metro code of the metro in which this Virtual Network is defined. | [optional] 
 **Vxlan** | Pointer to **int32** |  | [optional] 
 
@@ -37,20 +37,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetAssignedTo
 
-`func (o *VirtualNetwork) GetAssignedTo() FindBatchById200ResponseDevicesInner`
+`func (o *VirtualNetwork) GetAssignedTo() Href`
 
 GetAssignedTo returns the AssignedTo field if non-nil, zero value otherwise.
 
 ### GetAssignedToOk
 
-`func (o *VirtualNetwork) GetAssignedToOk() (*FindBatchById200ResponseDevicesInner, bool)`
+`func (o *VirtualNetwork) GetAssignedToOk() (*Href, bool)`
 
 GetAssignedToOk returns a tuple with the AssignedTo field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAssignedTo
 
-`func (o *VirtualNetwork) SetAssignedTo(v FindBatchById200ResponseDevicesInner)`
+`func (o *VirtualNetwork) SetAssignedTo(v Href)`
 
 SetAssignedTo sets AssignedTo field to given value.
 
@@ -112,20 +112,20 @@ HasDescription returns a boolean if a field has been set.
 
 ### GetFacility
 
-`func (o *VirtualNetwork) GetFacility() FindBatchById200ResponseDevicesInner`
+`func (o *VirtualNetwork) GetFacility() Href`
 
 GetFacility returns the Facility field if non-nil, zero value otherwise.
 
 ### GetFacilityOk
 
-`func (o *VirtualNetwork) GetFacilityOk() (*FindBatchById200ResponseDevicesInner, bool)`
+`func (o *VirtualNetwork) GetFacilityOk() (*Href, bool)`
 
 GetFacilityOk returns a tuple with the Facility field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFacility
 
-`func (o *VirtualNetwork) SetFacility(v FindBatchById200ResponseDevicesInner)`
+`func (o *VirtualNetwork) SetFacility(v Href)`
 
 SetFacility sets Facility field to given value.
 
@@ -187,20 +187,20 @@ HasId returns a boolean if a field has been set.
 
 ### GetInstances
 
-`func (o *VirtualNetwork) GetInstances() []FindBatchById200ResponseDevicesInner`
+`func (o *VirtualNetwork) GetInstances() []Href`
 
 GetInstances returns the Instances field if non-nil, zero value otherwise.
 
 ### GetInstancesOk
 
-`func (o *VirtualNetwork) GetInstancesOk() (*[]FindBatchById200ResponseDevicesInner, bool)`
+`func (o *VirtualNetwork) GetInstancesOk() (*[]Href, bool)`
 
 GetInstancesOk returns a tuple with the Instances field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetInstances
 
-`func (o *VirtualNetwork) SetInstances(v []FindBatchById200ResponseDevicesInner)`
+`func (o *VirtualNetwork) SetInstances(v []Href)`
 
 SetInstances sets Instances field to given value.
 
@@ -212,20 +212,20 @@ HasInstances returns a boolean if a field has been set.
 
 ### GetMetalGateways
 
-`func (o *VirtualNetwork) GetMetalGateways() []FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetworkMetalGatewaysInner`
+`func (o *VirtualNetwork) GetMetalGateways() []MetalGatewayLite`
 
 GetMetalGateways returns the MetalGateways field if non-nil, zero value otherwise.
 
 ### GetMetalGatewaysOk
 
-`func (o *VirtualNetwork) GetMetalGatewaysOk() (*[]FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetworkMetalGatewaysInner, bool)`
+`func (o *VirtualNetwork) GetMetalGatewaysOk() (*[]MetalGatewayLite, bool)`
 
 GetMetalGatewaysOk returns a tuple with the MetalGateways field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMetalGateways
 
-`func (o *VirtualNetwork) SetMetalGateways(v []FindDeviceById200ResponseNetworkPortsInnerNativeVirtualNetworkMetalGatewaysInner)`
+`func (o *VirtualNetwork) SetMetalGateways(v []MetalGatewayLite)`
 
 SetMetalGateways sets MetalGateways field to given value.
 
@@ -237,20 +237,20 @@ HasMetalGateways returns a boolean if a field has been set.
 
 ### GetMetro
 
-`func (o *VirtualNetwork) GetMetro() FindBatchById200ResponseDevicesInner`
+`func (o *VirtualNetwork) GetMetro() Href`
 
 GetMetro returns the Metro field if non-nil, zero value otherwise.
 
 ### GetMetroOk
 
-`func (o *VirtualNetwork) GetMetroOk() (*FindBatchById200ResponseDevicesInner, bool)`
+`func (o *VirtualNetwork) GetMetroOk() (*Href, bool)`
 
 GetMetroOk returns a tuple with the Metro field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMetro
 
-`func (o *VirtualNetwork) SetMetro(v FindBatchById200ResponseDevicesInner)`
+`func (o *VirtualNetwork) SetMetro(v Href)`
 
 SetMetro sets Metro field to given value.
 

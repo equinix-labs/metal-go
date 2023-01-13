@@ -18,26 +18,26 @@ import (
 
 // User struct for User
 type User struct {
-	AvatarThumbUrl   *string                                `json:"avatar_thumb_url,omitempty"`
-	AvatarUrl        *string                                `json:"avatar_url,omitempty"`
-	CreatedAt        *time.Time                             `json:"created_at,omitempty"`
-	Customdata       map[string]interface{}                 `json:"customdata,omitempty"`
-	Email            *string                                `json:"email,omitempty"`
-	Emails           []FindBatchById200ResponseDevicesInner `json:"emails,omitempty"`
-	FirstName        *string                                `json:"first_name,omitempty"`
-	FraudScore       *string                                `json:"fraud_score,omitempty"`
-	FullName         *string                                `json:"full_name,omitempty"`
-	Href             *string                                `json:"href,omitempty"`
-	Id               *string                                `json:"id,omitempty"`
-	LastLoginAt      *time.Time                             `json:"last_login_at,omitempty"`
-	LastName         *string                                `json:"last_name,omitempty"`
-	MaxOrganizations *int32                                 `json:"max_organizations,omitempty"`
-	MaxProjects      *int32                                 `json:"max_projects,omitempty"`
-	PhoneNumber      *string                                `json:"phone_number,omitempty"`
-	ShortId          *string                                `json:"short_id,omitempty"`
-	Timezone         *string                                `json:"timezone,omitempty"`
-	TwoFactorAuth    *string                                `json:"two_factor_auth,omitempty"`
-	UpdatedAt        *time.Time                             `json:"updated_at,omitempty"`
+	AvatarThumbUrl   *string                `json:"avatar_thumb_url,omitempty"`
+	AvatarUrl        *string                `json:"avatar_url,omitempty"`
+	CreatedAt        *time.Time             `json:"created_at,omitempty"`
+	Customdata       map[string]interface{} `json:"customdata,omitempty"`
+	Email            *string                `json:"email,omitempty"`
+	Emails           []Href                 `json:"emails,omitempty"`
+	FirstName        *string                `json:"first_name,omitempty"`
+	FraudScore       *string                `json:"fraud_score,omitempty"`
+	FullName         *string                `json:"full_name,omitempty"`
+	Href             *string                `json:"href,omitempty"`
+	Id               *string                `json:"id,omitempty"`
+	LastLoginAt      *time.Time             `json:"last_login_at,omitempty"`
+	LastName         *string                `json:"last_name,omitempty"`
+	MaxOrganizations *int32                 `json:"max_organizations,omitempty"`
+	MaxProjects      *int32                 `json:"max_projects,omitempty"`
+	PhoneNumber      *string                `json:"phone_number,omitempty"`
+	ShortId          *string                `json:"short_id,omitempty"`
+	Timezone         *string                `json:"timezone,omitempty"`
+	TwoFactorAuth    *string                `json:"two_factor_auth,omitempty"`
+	UpdatedAt        *time.Time             `json:"updated_at,omitempty"`
 }
 
 // NewUser instantiates a new User object
@@ -218,9 +218,9 @@ func (o *User) SetEmail(v string) {
 }
 
 // GetEmails returns the Emails field value if set, zero value otherwise.
-func (o *User) GetEmails() []FindBatchById200ResponseDevicesInner {
+func (o *User) GetEmails() []Href {
 	if o == nil || isNil(o.Emails) {
-		var ret []FindBatchById200ResponseDevicesInner
+		var ret []Href
 		return ret
 	}
 	return o.Emails
@@ -228,7 +228,7 @@ func (o *User) GetEmails() []FindBatchById200ResponseDevicesInner {
 
 // GetEmailsOk returns a tuple with the Emails field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *User) GetEmailsOk() ([]FindBatchById200ResponseDevicesInner, bool) {
+func (o *User) GetEmailsOk() ([]Href, bool) {
 	if o == nil || isNil(o.Emails) {
 		return nil, false
 	}
@@ -244,8 +244,8 @@ func (o *User) HasEmails() bool {
 	return false
 }
 
-// SetEmails gets a reference to the given []FindBatchById200ResponseDevicesInner and assigns it to the Emails field.
-func (o *User) SetEmails(v []FindBatchById200ResponseDevicesInner) {
+// SetEmails gets a reference to the given []Href and assigns it to the Emails field.
+func (o *User) SetEmails(v []Href) {
 	o.Emails = v
 }
 
