@@ -14,16 +14,17 @@ GIT_ORG=equinix-labs
 GIT_REPO=metal-go
 PACKAGE_PREFIX=metal
 PACKAGE_MAJOR=v1
+CRI=docker # nerdctl
 
 # Pull in custom-built generator jar so we can use unmerged bugfixes
 # Custom generator is built from https://github.com/ctreatma/openapi-generator/tree/local-generator-testing
-SWAGGER=docker run --rm -u ${CURRENT_UID}:${CURRENT_GID} -v $(CURDIR):/local -v $(CURDIR)/lib/openapi-generator-cli.jar:/opt/openapi-generator/modules/openapi-generator-cli/target/openapi-generator-cli.jar ${IMAGE}
+SWAGGER=${CRI} run --rm -u ${CURRENT_UID}:${CURRENT_GID} -v $(CURDIR):/local -v $(CURDIR)/lib/openapi-generator-cli.jar:/opt/openapi-generator/modules/openapi-generator-cli/target/openapi-generator-cli.jar ${IMAGE}
 GOLANGCI_LINT=golangci-lint
 
 all: pull fetch patch clean gen mod docs move-other patch-post fmt test stage
 
 pull:
-	docker pull ${IMAGE}
+	${CRI} pull ${IMAGE}
 
 fetch:
 	curl ${SPEC_URL} | jq . > ${SPEC_FETCHED_FILE}
