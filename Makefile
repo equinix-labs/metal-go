@@ -62,8 +62,6 @@ gen:
 		--git-repo-id ${GIT_REPO}/${PACKAGE_PREFIX} \
 		-o /local/${PACKAGE_PREFIX}/${PACKAGE_MAJOR} \
 		-i /local/${SPEC_PATCHED_FILE}
-    # generated code is missing some types; hack 'em in
-	cat missing_types.go.part >> metal/v1/utils.go
 
 validate:
 	${SWAGGER} validate \
