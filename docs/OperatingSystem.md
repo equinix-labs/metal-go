@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Distro** | Pointer to **string** |  | [optional] 
+**DistroLabel** | Pointer to **string** |  | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
 **Licensed** | Pointer to **bool** | Licenced OS is priced according to pricing property | [optional] 
 **Name** | Pointer to **string** |  | [optional] 
@@ -57,6 +58,31 @@ SetDistro sets Distro field to given value.
 `func (o *OperatingSystem) HasDistro() bool`
 
 HasDistro returns a boolean if a field has been set.
+
+### GetDistroLabel
+
+`func (o *OperatingSystem) GetDistroLabel() string`
+
+GetDistroLabel returns the DistroLabel field if non-nil, zero value otherwise.
+
+### GetDistroLabelOk
+
+`func (o *OperatingSystem) GetDistroLabelOk() (*string, bool)`
+
+GetDistroLabelOk returns a tuple with the DistroLabel field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDistroLabel
+
+`func (o *OperatingSystem) SetDistroLabel(v string)`
+
+SetDistroLabel sets DistroLabel field to given value.
+
+### HasDistroLabel
+
+`func (o *OperatingSystem) HasDistroLabel() bool`
+
+HasDistroLabel returns a boolean if a field has been set.
 
 ### GetId
 
