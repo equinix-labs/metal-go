@@ -5,7 +5,7 @@
       "email": "support@equinixmetal.com",
       "name": "Equinix Metal API Team"
     },
-    "description": "# Introduction\nEquinix Metal provides a RESTful HTTP API which can be reached at <https://api.equinix.com/metal/v1>. This document describes the API and how to use it.\n\nThe API allows you to programmatically interact with all\nof your Equinix Metal resources, including devices, networks, addresses, organizations,\nprojects, and your user account. Every feature of the Equinix Metal web interface is accessible through the API.\n\nThe API docs are generated from the Equinix Metal OpenAPI specification and are officially hosted at <https://metal.equinix.com/developers/api>.\n\n# Common Parameters\n\nThe Equinix Metal API uses a few methods to minimize network traffic and improve throughput. These parameters are not used in all API calls, but are used often enough to warrant their own section. Look for these parameters in the documentation for the API calls that support them.\n\n## Pagination\n\nPagination is used to limit the number of results returned in a single request. The API will return a maximum of 100 results per page. To retrieve additional results, you can use the `page` and `per_page` query parameters.\n\nThe `page` parameter is used to specify the page number. The first page is `1`. The `per_page` parameter is used to specify the number of results per page. The maximum number of results differs by resource type.\n\n## Sorting\n\nWhere offered, the API allows you to sort results by a specific field. To sort results use the `sort_by` query parameter with the root level field name as the value. The `sort_direction` parameter is used to specify the sort direction, either either `asc` (ascending) or `desc` (descending).\n\n## Filtering\n\nFiltering is used to limit the results returned in a single request. The API supports filtering by certain fields in the response. To filter results, you can use the field as a query parameter.\n\nFor example, to filter the IP list to only return public IPv4 addresses, you can filter by the `type` field, as in the following request:\n\n```sh\ncurl -H 'X-Auth-Token: my_authentication_token' \\\n  https://api.equinix.com/metal/v1/projects/id/ips?type=public_ipv4\n```\n\nOnly IP addresses with the `type` field set to `public_ipv4` will be returned.\n\n## Searching\n\nSearching is used to find matching resources using multiple field comparissons. The API supports searching in resources that define this behavior. The fields available for search differ by resource, as does the search strategy.\n\nTo search resources you can use the `search` query parameter.\n\n## Include and Exclude\n\nFor resources that contain references to other resources, sucha as a Device that refers to the Project it resides in, the Equinix Metal API will returns `href` values (API links) to the associated resource.\n\n```json\n{\n  ...\n  \"project\": {\n    \"href\": \"/metal/v1/projects/f3f131c8-f302-49ef-8c44-9405022dc6dd\"\n  }\n}\n```\n\nIf you're going need the project details, you can avoid a second API request.  Specify the contained `href` resources and collections that you'd like to have included in the response using the `include` query parameter.\n\nFor example:\n  \n```sh\ncurl -H 'X-Auth-Token: my_authentication_token' \\\n  https://api.equinix.com/metal/v1/user?include=projects\n```\n\nThe `include` parameter is generally accepted in `GET`, `POST`, `PUT`, and `PATCH` requests where `href` resources are presented.\n\nTo have multiple resources include, use a comma-separated list (e.g. `?include=emails,projects,memberships`).\n\n```sh\ncurl -H 'X-Auth-Token: my_authentication_token' \\\n  https://api.equinix.com/metal/v1/user?include=emails,projects,memberships\n```\n\nYou may also include nested associations up to three levels deep using dot notation (`?include=memberships.projects`):\n\n```sh\ncurl -H 'X-Auth-Token: my_authentication_token' \\\n  https://api.equinix.com/metal/v1/user?include=memberships.projects\n```\n\nTo exclude resources, and optimize response delivery, use the `exclude` query parameter. The `exclude` parameter is generally accepted in `GET`, `POST`, `PUT`, and `PATCH` requests for fields with nested object responses. When excluded, these fields will be replaced with an object that contains only an `href` field.\n",
+    "description": "# Introduction\nEquinix Metal provides a RESTful HTTP API which can be reached at <https://api.equinix.com/metal/v1>. This document describes the API and how to use it.\n\nThe API allows you to programmatically interact with all\nof your Equinix Metal resources, including devices, networks, addresses, organizations,\nprojects, and your user account. Every feature of the Equinix Metal web interface is accessible through the API.\n\nThe API docs are generated from the Equinix Metal OpenAPI specification and are officially hosted at <https://metal.equinix.com/developers/api>.\n\n# Common Parameters\n\nThe Equinix Metal API uses a few methods to minimize network traffic and improve throughput. These parameters are not used in all API calls, but are used often enough to warrant their own section. Look for these parameters in the documentation for the API calls that support them.\n\n## Pagination\n\nPagination is used to limit the number of results returned in a single request. The API will return a maximum of 100 results per page. To retrieve additional results, you can use the `page` and `per_page` query parameters.\n\nThe `page` parameter is used to specify the page number. The first page is `1`. The `per_page` parameter is used to specify the number of results per page. The maximum number of results differs by resource type.\n\n## Sorting\n\nWhere offered, the API allows you to sort results by a specific field. To sort results use the `sort_by` query parameter with the root level field name as the value. The `sort_direction` parameter is used to specify the sort direction, either either `asc` (ascending) or `desc` (descending).\n\n## Filtering\n\nFiltering is used to limit the results returned in a single request. The API supports filtering by certain fields in the response. To filter results, you can use the field as a query parameter.\n\nFor example, to filter the IP list to only return public IPv4 addresses, you can filter by the `type` field, as in the following request:\n\n```sh\ncurl -H 'X-Auth-Token: my_authentication_token' \\\n  https://api.equinix.com/metal/v1/projects/id/ips?type=public_ipv4\n```\n\nOnly IP addresses with the `type` field set to `public_ipv4` will be returned.\n\n## Searching\n\nSearching is used to find matching resources using multiple field comparissons. The API supports searching in resources that define this behavior. The fields available for search differ by resource, as does the search strategy.\n\nTo search resources you can use the `search` query parameter.\n\n## Include and Exclude\n\nFor resources that contain references to other resources, sucha as a Device that refers to the Project it resides in, the Equinix Metal API will returns `href` values (API links) to the associated resource.\n\n```json\n{\n  ...\n  \"project\": {\n    \"href\": \"/metal/v1/projects/f3f131c8-f302-49ef-8c44-9405022dc6dd\"\n  }\n}\n```\n\nIf you're going need the project details, you can avoid a second API request.  Specify the contained `href` resources and collections that you'd like to have included in the response using the `include` query parameter.\n\nFor example:\n\n```sh\ncurl -H 'X-Auth-Token: my_authentication_token' \\\n  https://api.equinix.com/metal/v1/user?include=projects\n```\n\nThe `include` parameter is generally accepted in `GET`, `POST`, `PUT`, and `PATCH` requests where `href` resources are presented.\n\nTo have multiple resources include, use a comma-separated list (e.g. `?include=emails,projects,memberships`).\n\n```sh\ncurl -H 'X-Auth-Token: my_authentication_token' \\\n  https://api.equinix.com/metal/v1/user?include=emails,projects,memberships\n```\n\nYou may also include nested associations up to three levels deep using dot notation (`?include=memberships.projects`):\n\n```sh\ncurl -H 'X-Auth-Token: my_authentication_token' \\\n  https://api.equinix.com/metal/v1/user?include=memberships.projects\n```\n\nTo exclude resources, and optimize response delivery, use the `exclude` query parameter. The `exclude` parameter is generally accepted in `GET`, `POST`, `PUT`, and `PATCH` requests for fields with nested object responses. When excluded, these fields will be replaced with an object that contains only an `href` field.\n",
     "license": {
       "name": "Equinix Metal",
       "url": "https://metal.equinix.com/legal/"
@@ -12304,6 +12304,282 @@
         ]
       }
     },
+    "/routes/{id}": {
+      "delete": {
+        "description": "Trigger the deletion of a VRF Route resource. The status of the route will update to 'deleting', and the route resource will remain accessible while background operations remove the route from the network. Once the route has been removed from the network, the resource will be fully deleted.",
+        "operationId": "deleteVrfRouteById",
+        "parameters": [
+          {
+            "description": "VRF Route UUID",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Nested attributes to include. Included objects will return their full\nattributes. Attribute names can be dotted (up to 3 levels) to included deeply\nnested objects.",
+            "explode": false,
+            "in": "query",
+            "name": "include",
+            "schema": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "style": "form"
+          },
+          {
+            "description": "Nested attributes to exclude. Excluded objects will return only the href\nattribute. Attribute names can be dotted (up to 3 levels) to exclude deeply\nnested objects.",
+            "explode": false,
+            "in": "query",
+            "name": "exclude",
+            "schema": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "style": "form"
+          }
+        ],
+        "responses": {
+          "202": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VrfRoute"
+                }
+              }
+            },
+            "description": "Accepted"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          }
+        },
+        "summary": "Delete a VRF Route",
+        "tags": [
+          "VRFs"
+        ]
+      },
+      "get": {
+        "description": "Returns a single VRF Route resource",
+        "operationId": "findVrfRouteById",
+        "parameters": [
+          {
+            "description": "VRF Route UUID",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Nested attributes to include. Included objects will return their full\nattributes. Attribute names can be dotted (up to 3 levels) to included deeply\nnested objects.",
+            "explode": false,
+            "in": "query",
+            "name": "include",
+            "schema": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "style": "form"
+          },
+          {
+            "description": "Nested attributes to exclude. Excluded objects will return only the href\nattribute. Attribute names can be dotted (up to 3 levels) to exclude deeply\nnested objects.",
+            "explode": false,
+            "in": "query",
+            "name": "exclude",
+            "schema": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "style": "form"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VrfRoute"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Not Found"
+          }
+        },
+        "summary": "Retrieve a VRF Route",
+        "tags": [
+          "VRFs"
+        ]
+      },
+      "put": {
+        "description": "Requests a VRF Route be redeployed across the network. Updating the prefix or next-hop address on a route is not currently supported.",
+        "operationId": "updateVrfRouteById",
+        "parameters": [
+          {
+            "description": "VRF Route UUID",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Nested attributes to include. Included objects will return their full\nattributes. Attribute names can be dotted (up to 3 levels) to included deeply\nnested objects.",
+            "explode": false,
+            "in": "query",
+            "name": "include",
+            "schema": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "style": "form"
+          },
+          {
+            "description": "Nested attributes to exclude. Excluded objects will return only the href\nattribute. Attribute names can be dotted (up to 3 levels) to exclude deeply\nnested objects.",
+            "explode": false,
+            "in": "query",
+            "name": "exclude",
+            "schema": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "style": "form"
+          }
+        ],
+        "responses": {
+          "202": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VrfRoute"
+                }
+              }
+            },
+            "description": "Accepted"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          }
+        },
+        "summary": "Update a VRF Route",
+        "tags": [
+          "VRFs"
+        ]
+      }
+    },
     "/spot-market-requests/{id}": {
       "delete": {
         "description": "Deletes the spot market request.",
@@ -14832,6 +15108,168 @@
           }
         },
         "summary": "Retrieve all VRF IP Reservations in the VRF",
+        "tags": [
+          "VRFs"
+        ]
+      }
+    },
+    "/vrfs/{id}/routes": {
+      "get": {
+        "description": "Returns the list of routes for the VRF",
+        "operationId": "getVrfRoutes",
+        "parameters": [
+          {
+            "description": "VRF UUID",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Nested attributes to include. Included objects will return their full\nattributes. Attribute names can be dotted (up to 3 levels) to included deeply\nnested objects.",
+            "explode": false,
+            "in": "query",
+            "name": "include",
+            "schema": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "style": "form"
+          },
+          {
+            "description": "Nested attributes to exclude. Excluded objects will return only the href\nattribute. Attribute names can be dotted (up to 3 levels) to exclude deeply\nnested objects.",
+            "explode": false,
+            "in": "query",
+            "name": "exclude",
+            "schema": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "style": "form"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VrfRouteList"
+                }
+              }
+            },
+            "description": "ok"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "not found"
+          }
+        },
+        "summary": "Retrieve all routes in the VRF",
+        "tags": [
+          "VRFs"
+        ]
+      },
+      "post": {
+        "description": "Create a route in a VRF. Currently only static default routes are supported.\n\nNotice: VRFs are a test feature currently under active development, and only available to certain users. Please contact Customer Success for more information.\n",
+        "operationId": "createVrfRoute",
+        "parameters": [
+          {
+            "description": "VRF UUID",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VrfRouteCreateInput"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VrfRoute"
+                }
+              }
+            },
+            "description": "ok"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "not found"
+          }
+        },
+        "summary": "Create a VRF route",
         "tags": [
           "VRFs"
         ]
@@ -17465,6 +17903,9 @@
           "distro": {
             "type": "string"
           },
+          "distro_label": {
+            "type": "string"
+          },
           "id": {
             "format": "uuid",
             "type": "string"
@@ -19538,6 +19979,108 @@
         ],
         "type": "object"
       },
+      "VrfRoute": {
+        "properties": {
+          "id": {
+            "description": "The unique identifier for the newly-created resource",
+            "example": "e1ff9c2b-051a-4688-965f-153e274f77e0",
+            "format": "uuid",
+            "readOnly": true,
+            "type": "string"
+          },
+          "status": {
+            "description": "The status of the route. Potential values are \"pending\", \"active\", \"deleting\", and \"error\", representing various lifecycle states of the route and whether or not it has been successfully configured on the network",
+            "enum": [
+              "pending",
+              "active",
+              "deleting",
+              "error"
+            ],
+            "example": "active",
+            "readOnly": true,
+            "type": "string"
+          },
+          "prefix": {
+            "description": "The IPv4 prefix for the route, in CIDR-style notation",
+            "example": "0.0.0.0/0",
+            "type": "string"
+          },
+          "next_hop": {
+            "description": "The next-hop IPv4 address for the route",
+            "example": "192.168.1.254",
+            "format": "ipv4",
+            "type": "string"
+          },
+          "type": {
+            "description": "VRF route type, like 'bgp', 'connected', and 'static'. Currently, only static routes are supported",
+            "enum": [
+              "static"
+            ],
+            "example": "static",
+            "readOnly": true,
+            "type": "string"
+          },
+          "created_at": {
+            "format": "date-time",
+            "readOnly": true,
+            "type": "string"
+          },
+          "updated_at": {
+            "format": "date-time",
+            "readOnly": true,
+            "type": "string"
+          },
+          "metal_gateway": {
+            "$ref": "#/components/schemas/VrfRoute_metal_gateway"
+          },
+          "virtual_network": {
+            "$ref": "#/components/schemas/VrfRoute_virtual_network"
+          },
+          "vrf": {
+            "$ref": "#/components/schemas/VrfRoute_vrf"
+          },
+          "href": {
+            "example": "/routes/e1ff9c2b-051a-4688-965f-153e274f77e0",
+            "readOnly": true,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "VrfRouteCreateInput": {
+        "properties": {
+          "prefix": {
+            "description": "The IPv4 prefix for the route, in CIDR-style notation. For a static default route, this will always be \"0.0.0.0/0\"",
+            "example": "0.0.0.0/0",
+            "type": "string"
+          },
+          "next_hop": {
+            "description": "The IPv4 address within the VRF of the host that will handle this route",
+            "example": "192.168.1.254",
+            "format": "ipv4",
+            "type": "string"
+          }
+        },
+        "required": [
+          "next_hop",
+          "prefix"
+        ],
+        "type": "object"
+      },
+      "VrfRouteList": {
+        "properties": {
+          "routes": {
+            "items": {
+              "$ref": "#/components/schemas/VrfRoute"
+            },
+            "type": "array"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/Meta"
+          }
+        },
+        "type": "object"
+      },
       "VrfUpdateInput": {
         "properties": {
           "description": {
@@ -20467,6 +21010,42 @@
             "$ref": "#/components/schemas/VrfVirtualCircuit"
           }
         ]
+      },
+      "VrfRoute_metal_gateway": {
+        "description": "A link to the Metal Gateway to which this VRF Route is associated",
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/Href"
+          },
+          {
+            "$ref": "#/components/schemas/MetalGateway"
+          }
+        ],
+        "readOnly": true
+      },
+      "VrfRoute_virtual_network": {
+        "description": "A link to the Virtual Network to which this VRF Route is associated, through the Metal Gateway",
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/Href"
+          },
+          {
+            "$ref": "#/components/schemas/VirtualNetwork"
+          }
+        ],
+        "readOnly": true
+      },
+      "VrfRoute_vrf": {
+        "description": "A link to the VRF within which this route exists",
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/Href"
+          },
+          {
+            "$ref": "#/components/schemas/Vrf"
+          }
+        ],
+        "readOnly": true
       }
     },
     "securitySchemes": {
