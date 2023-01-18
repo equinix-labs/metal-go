@@ -293,6 +293,12 @@ docs/VrfIpReservationList.md
 docs/VrfList.md
 docs/VrfMetalGateway.md
 docs/VrfMetalGatewayCreateInput.md
+docs/VrfRoute.md
+docs/VrfRouteCreateInput.md
+docs/VrfRouteList.md
+docs/VrfRouteMetalGateway.md
+docs/VrfRouteVirtualNetwork.md
+docs/VrfRouteVrf.md
 docs/VrfUpdateInput.md
 docs/VrfVirtualCircuit.md
 docs/VrfVirtualCircuitCreateInput.md
@@ -514,6 +520,12 @@ model_vrf_ip_reservation_list.go
 model_vrf_list.go
 model_vrf_metal_gateway.go
 model_vrf_metal_gateway_create_input.go
+model_vrf_route.go
+model_vrf_route_create_input.go
+model_vrf_route_list.go
+model_vrf_route_metal_gateway.go
+model_vrf_route_virtual_network.go
+model_vrf_route_vrf.go
 model_vrf_update_input.go
 model_vrf_virtual_circuit.go
 model_vrf_virtual_circuit_create_input.go

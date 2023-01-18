@@ -34,6 +34,18 @@ func Test_v1_VRFsApiService(t *testing.T) {
 		assert.Equal(t, 200, httpRes.StatusCode)
 	})
 
+	t.Run("Test VRFsApiService CreateVrfRoute", func(t *testing.T) {
+		t.Skip("skip test") // remove to run test
+
+		var id string
+
+		resp, httpRes, err := apiClient.VRFsApi.CreateVrfRoute(context.Background(), id).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+	})
+
 	t.Run("Test VRFsApiService DeleteVrf", func(t *testing.T) {
 		t.Skip("skip test") // remove to run test
 
@@ -42,6 +54,18 @@ func Test_v1_VRFsApiService(t *testing.T) {
 		httpRes, err := apiClient.VRFsApi.DeleteVrf(context.Background(), id).Execute()
 
 		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+	})
+
+	t.Run("Test VRFsApiService DeleteVrfRouteById", func(t *testing.T) {
+		t.Skip("skip test") // remove to run test
+
+		var id string
+
+		resp, httpRes, err := apiClient.VRFsApi.DeleteVrfRouteById(context.Background(), id).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 	})
 
@@ -69,6 +93,18 @@ func Test_v1_VRFsApiService(t *testing.T) {
 		assert.Equal(t, 200, httpRes.StatusCode)
 	})
 
+	t.Run("Test VRFsApiService FindVrfRouteById", func(t *testing.T) {
+		t.Skip("skip test") // remove to run test
+
+		var id string
+
+		resp, httpRes, err := apiClient.VRFsApi.FindVrfRouteById(context.Background(), id).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+	})
+
 	t.Run("Test VRFsApiService FindVrfs", func(t *testing.T) {
 		t.Skip("skip test") // remove to run test
 
@@ -81,12 +117,36 @@ func Test_v1_VRFsApiService(t *testing.T) {
 		assert.Equal(t, 200, httpRes.StatusCode)
 	})
 
+	t.Run("Test VRFsApiService GetVrfRoutes", func(t *testing.T) {
+		t.Skip("skip test") // remove to run test
+
+		var id string
+
+		resp, httpRes, err := apiClient.VRFsApi.GetVrfRoutes(context.Background(), id).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+	})
+
 	t.Run("Test VRFsApiService UpdateVrf", func(t *testing.T) {
 		t.Skip("skip test") // remove to run test
 
 		var id string
 
 		resp, httpRes, err := apiClient.VRFsApi.UpdateVrf(context.Background(), id).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+	})
+
+	t.Run("Test VRFsApiService UpdateVrfRouteById", func(t *testing.T) {
+		t.Skip("skip test") // remove to run test
+
+		var id string
+
+		resp, httpRes, err := apiClient.VRFsApi.UpdateVrfRouteById(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
