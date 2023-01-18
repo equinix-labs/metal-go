@@ -58,7 +58,7 @@ For resources that contain references to other resources, sucha as a Device that
 If you're going need the project details, you can avoid a second API request.  Specify the contained `href` resources and collections that you'd like to have included in the response using the `include` query parameter.
 
 For example:
-  
+
 ```sh
 curl -H 'X-Auth-Token: my_authentication_token' \\
   https://api.equinix.com/metal/v1/user?include=projects
@@ -352,11 +352,16 @@ Class | Method | HTTP request | Description
 *VLANsApi* | [**FindVirtualNetworks**](docs/VLANsApi.md#findvirtualnetworks) | **Get** /projects/{id}/virtual-networks | Retrieve all virtual networks
 *VLANsApi* | [**GetVirtualNetwork**](docs/VLANsApi.md#getvirtualnetwork) | **Get** /virtual-networks/{id} | Get a virtual network
 *VRFsApi* | [**CreateVrf**](docs/VRFsApi.md#createvrf) | **Post** /projects/{id}/vrfs | Create a new VRF in the specified project
+*VRFsApi* | [**CreateVrfRoute**](docs/VRFsApi.md#createvrfroute) | **Post** /vrfs/{id}/routes | Create a VRF route
 *VRFsApi* | [**DeleteVrf**](docs/VRFsApi.md#deletevrf) | **Delete** /vrfs/{id} | Delete the VRF
+*VRFsApi* | [**DeleteVrfRouteById**](docs/VRFsApi.md#deletevrfroutebyid) | **Delete** /routes/{id} | Delete a VRF Route
 *VRFsApi* | [**FindVrfById**](docs/VRFsApi.md#findvrfbyid) | **Get** /vrfs/{id} | Retrieve a VRF
 *VRFsApi* | [**FindVrfIpReservations**](docs/VRFsApi.md#findvrfipreservations) | **Get** /vrfs/{id}/ips | Retrieve all VRF IP Reservations in the VRF
+*VRFsApi* | [**FindVrfRouteById**](docs/VRFsApi.md#findvrfroutebyid) | **Get** /routes/{id} | Retrieve a VRF Route
 *VRFsApi* | [**FindVrfs**](docs/VRFsApi.md#findvrfs) | **Get** /projects/{id}/vrfs | Retrieve all VRFs in the project
+*VRFsApi* | [**GetVrfRoutes**](docs/VRFsApi.md#getvrfroutes) | **Get** /vrfs/{id}/routes | Retrieve all routes in the VRF
 *VRFsApi* | [**UpdateVrf**](docs/VRFsApi.md#updatevrf) | **Put** /vrfs/{id} | Update the VRF
+*VRFsApi* | [**UpdateVrfRouteById**](docs/VRFsApi.md#updatevrfroutebyid) | **Put** /routes/{id} | Update a VRF Route
 
 
 ## Documentation For Models
@@ -575,6 +580,12 @@ Class | Method | HTTP request | Description
  - [VrfList](docs/VrfList.md)
  - [VrfMetalGateway](docs/VrfMetalGateway.md)
  - [VrfMetalGatewayCreateInput](docs/VrfMetalGatewayCreateInput.md)
+ - [VrfRoute](docs/VrfRoute.md)
+ - [VrfRouteCreateInput](docs/VrfRouteCreateInput.md)
+ - [VrfRouteList](docs/VrfRouteList.md)
+ - [VrfRouteMetalGateway](docs/VrfRouteMetalGateway.md)
+ - [VrfRouteVirtualNetwork](docs/VrfRouteVirtualNetwork.md)
+ - [VrfRouteVrf](docs/VrfRouteVrf.md)
  - [VrfUpdateInput](docs/VrfUpdateInput.md)
  - [VrfVirtualCircuit](docs/VrfVirtualCircuit.md)
  - [VrfVirtualCircuitCreateInput](docs/VrfVirtualCircuitCreateInput.md)
