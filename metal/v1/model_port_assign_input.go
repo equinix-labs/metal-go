@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the PortAssignInput type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PortAssignInput{}
+
 // PortAssignInput struct for PortAssignInput
 type PortAssignInput struct {
 	// Virtual Network ID. May be the UUID of the Virtual Network record, or the VLAN value itself.
@@ -71,11 +74,19 @@ func (o *PortAssignInput) SetVnid(v string) {
 }
 
 func (o PortAssignInput) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o PortAssignInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Vnid) {
 		toSerialize["vnid"] = o.Vnid
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullablePortAssignInput struct {

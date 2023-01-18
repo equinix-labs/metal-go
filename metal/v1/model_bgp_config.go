@@ -16,6 +16,9 @@ import (
 	"time"
 )
 
+// checks if the BgpConfig type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &BgpConfig{}
+
 // BgpConfig struct for BgpConfig
 type BgpConfig struct {
 	// Autonomous System Number. ASN is required with Global BGP. With Local BGP the private ASN, 65000, is assigned.
@@ -490,6 +493,14 @@ func (o *BgpConfig) SetStatus(v string) {
 }
 
 func (o BgpConfig) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o BgpConfig) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Asn) {
 		toSerialize["asn"] = o.Asn
@@ -530,7 +541,7 @@ func (o BgpConfig) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Status) {
 		toSerialize["status"] = o.Status
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableBgpConfig struct {

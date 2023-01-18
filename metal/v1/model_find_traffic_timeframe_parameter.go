@@ -16,6 +16,9 @@ import (
 	"time"
 )
 
+// checks if the FindTrafficTimeframeParameter type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &FindTrafficTimeframeParameter{}
+
 // FindTrafficTimeframeParameter struct for FindTrafficTimeframeParameter
 type FindTrafficTimeframeParameter struct {
 	EndedAt   time.Time `json:"ended_at"`
@@ -90,14 +93,18 @@ func (o *FindTrafficTimeframeParameter) SetStartedAt(v time.Time) {
 }
 
 func (o FindTrafficTimeframeParameter) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["ended_at"] = o.EndedAt
-	}
-	if true {
-		toSerialize["started_at"] = o.StartedAt
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o FindTrafficTimeframeParameter) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["ended_at"] = o.EndedAt
+	toSerialize["started_at"] = o.StartedAt
+	return toSerialize, nil
 }
 
 type NullableFindTrafficTimeframeParameter struct {

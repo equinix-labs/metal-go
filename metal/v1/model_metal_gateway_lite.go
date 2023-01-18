@@ -16,6 +16,9 @@ import (
 	"time"
 )
 
+// checks if the MetalGatewayLite type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &MetalGatewayLite{}
+
 // MetalGatewayLite struct for MetalGatewayLite
 type MetalGatewayLite struct {
 	CreatedAt *time.Time `json:"created_at,omitempty"`
@@ -272,6 +275,14 @@ func (o *MetalGatewayLite) SetVlan(v int32) {
 }
 
 func (o MetalGatewayLite) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o MetalGatewayLite) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt
@@ -294,7 +305,7 @@ func (o MetalGatewayLite) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Vlan) {
 		toSerialize["vlan"] = o.Vlan
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableMetalGatewayLite struct {

@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the SupportRequestInput type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &SupportRequestInput{}
+
 // SupportRequestInput struct for SupportRequestInput
 type SupportRequestInput struct {
 	DeviceId  *string `json:"device_id,omitempty"`
@@ -188,23 +191,27 @@ func (o *SupportRequestInput) SetSubject(v string) {
 }
 
 func (o SupportRequestInput) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o SupportRequestInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.DeviceId) {
 		toSerialize["device_id"] = o.DeviceId
 	}
-	if true {
-		toSerialize["message"] = o.Message
-	}
+	toSerialize["message"] = o.Message
 	if !isNil(o.Priority) {
 		toSerialize["priority"] = o.Priority
 	}
 	if !isNil(o.ProjectId) {
 		toSerialize["project_id"] = o.ProjectId
 	}
-	if true {
-		toSerialize["subject"] = o.Subject
-	}
-	return json.Marshal(toSerialize)
+	toSerialize["subject"] = o.Subject
+	return toSerialize, nil
 }
 
 type NullableSupportRequestInput struct {

@@ -38,9 +38,9 @@ DeletePaymentMethod Delete the payment method
 
 Deletes the payment method.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Payment Method UUID
- @return ApiDeletePaymentMethodRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Payment Method UUID
+	@return ApiDeletePaymentMethodRequest
 */
 func (a *PaymentMethodsApiService) DeletePaymentMethod(ctx context.Context, id string) ApiDeletePaymentMethodRequest {
 	return ApiDeletePaymentMethodRequest{
@@ -64,7 +64,7 @@ func (a *PaymentMethodsApiService) DeletePaymentMethodExecute(r ApiDeletePayment
 	}
 
 	localVarPath := localBasePath + "/payment-methods/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -179,9 +179,9 @@ FindPaymentMethodById Retrieve a payment method
 
 Returns a payment method
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Payment Method UUID
- @return ApiFindPaymentMethodByIdRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Payment Method UUID
+	@return ApiFindPaymentMethodByIdRequest
 */
 func (a *PaymentMethodsApiService) FindPaymentMethodById(ctx context.Context, id string) ApiFindPaymentMethodByIdRequest {
 	return ApiFindPaymentMethodByIdRequest{
@@ -192,7 +192,8 @@ func (a *PaymentMethodsApiService) FindPaymentMethodById(ctx context.Context, id
 }
 
 // Execute executes the request
-//  @return PaymentMethod
+//
+//	@return PaymentMethod
 func (a *PaymentMethodsApiService) FindPaymentMethodByIdExecute(r ApiFindPaymentMethodByIdRequest) (*PaymentMethod, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -207,17 +208,17 @@ func (a *PaymentMethodsApiService) FindPaymentMethodByIdExecute(r ApiFindPayment
 	}
 
 	localVarPath := localBasePath + "/payment-methods/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.include != nil {
-		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
+		parameterAddToQuery(localVarQueryParams, "include", r.include, "csv")
 	}
 	if r.exclude != nil {
-		localVarQueryParams.Add("exclude", parameterToString(*r.exclude, "csv"))
+		parameterAddToQuery(localVarQueryParams, "exclude", r.exclude, "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -330,9 +331,9 @@ UpdatePaymentMethod Update the payment method
 
 Updates the payment method.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Payment Method UUID
- @return ApiUpdatePaymentMethodRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Payment Method UUID
+	@return ApiUpdatePaymentMethodRequest
 */
 func (a *PaymentMethodsApiService) UpdatePaymentMethod(ctx context.Context, id string) ApiUpdatePaymentMethodRequest {
 	return ApiUpdatePaymentMethodRequest{
@@ -343,7 +344,8 @@ func (a *PaymentMethodsApiService) UpdatePaymentMethod(ctx context.Context, id s
 }
 
 // Execute executes the request
-//  @return PaymentMethod
+//
+//	@return PaymentMethod
 func (a *PaymentMethodsApiService) UpdatePaymentMethodExecute(r ApiUpdatePaymentMethodRequest) (*PaymentMethod, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
@@ -358,7 +360,7 @@ func (a *PaymentMethodsApiService) UpdatePaymentMethodExecute(r ApiUpdatePayment
 	}
 
 	localVarPath := localBasePath + "/payment-methods/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

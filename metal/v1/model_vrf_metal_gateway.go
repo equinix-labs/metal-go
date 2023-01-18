@@ -16,6 +16,9 @@ import (
 	"time"
 )
 
+// checks if the VrfMetalGateway type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &VrfMetalGateway{}
+
 // VrfMetalGateway struct for VrfMetalGateway
 type VrfMetalGateway struct {
 	CreatedAt     *time.Time        `json:"created_at,omitempty"`
@@ -369,6 +372,14 @@ func (o *VrfMetalGateway) SetVrf(v Vrf) {
 }
 
 func (o VrfMetalGateway) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o VrfMetalGateway) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt
@@ -400,7 +411,7 @@ func (o VrfMetalGateway) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Vrf) {
 		toSerialize["vrf"] = o.Vrf
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableVrfMetalGateway struct {

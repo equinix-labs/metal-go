@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the VerifyEmail type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &VerifyEmail{}
+
 // VerifyEmail struct for VerifyEmail
 type VerifyEmail struct {
 	// User verification token
@@ -64,11 +67,17 @@ func (o *VerifyEmail) SetUserToken(v string) {
 }
 
 func (o VerifyEmail) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["user_token"] = o.UserToken
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o VerifyEmail) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["user_token"] = o.UserToken
+	return toSerialize, nil
 }
 
 type NullableVerifyEmail struct {

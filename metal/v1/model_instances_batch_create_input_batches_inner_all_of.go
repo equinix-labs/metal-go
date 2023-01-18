@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the InstancesBatchCreateInputBatchesInnerAllOf type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &InstancesBatchCreateInputBatchesInnerAllOf{}
+
 // InstancesBatchCreateInputBatchesInnerAllOf struct for InstancesBatchCreateInputBatchesInnerAllOf
 type InstancesBatchCreateInputBatchesInnerAllOf struct {
 	Hostnames []string `json:"hostnames,omitempty"`
@@ -104,6 +107,14 @@ func (o *InstancesBatchCreateInputBatchesInnerAllOf) SetQuantity(v int32) {
 }
 
 func (o InstancesBatchCreateInputBatchesInnerAllOf) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o InstancesBatchCreateInputBatchesInnerAllOf) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Hostnames) {
 		toSerialize["hostnames"] = o.Hostnames
@@ -111,7 +122,7 @@ func (o InstancesBatchCreateInputBatchesInnerAllOf) MarshalJSON() ([]byte, error
 	if !isNil(o.Quantity) {
 		toSerialize["quantity"] = o.Quantity
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableInstancesBatchCreateInputBatchesInnerAllOf struct {

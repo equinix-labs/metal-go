@@ -45,9 +45,9 @@ CreateProjectSSHKey Create a ssh key for the given project
 
 Creates a ssh key.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Project UUID
- @return ApiCreateProjectSSHKeyRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Project UUID
+	@return ApiCreateProjectSSHKeyRequest
 */
 func (a *SSHKeysApiService) CreateProjectSSHKey(ctx context.Context, id string) ApiCreateProjectSSHKeyRequest {
 	return ApiCreateProjectSSHKeyRequest{
@@ -58,7 +58,8 @@ func (a *SSHKeysApiService) CreateProjectSSHKey(ctx context.Context, id string) 
 }
 
 // Execute executes the request
-//  @return SSHKey
+//
+//	@return SSHKey
 func (a *SSHKeysApiService) CreateProjectSSHKeyExecute(r ApiCreateProjectSSHKeyRequest) (*SSHKey, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -73,7 +74,7 @@ func (a *SSHKeysApiService) CreateProjectSSHKeyExecute(r ApiCreateProjectSSHKeyR
 	}
 
 	localVarPath := localBasePath + "/projects/{id}/ssh-keys"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -194,8 +195,8 @@ CreateSSHKey Create a ssh key for the current user
 
 Creates a ssh key.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiCreateSSHKeyRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiCreateSSHKeyRequest
 */
 func (a *SSHKeysApiService) CreateSSHKey(ctx context.Context) ApiCreateSSHKeyRequest {
 	return ApiCreateSSHKeyRequest{
@@ -205,7 +206,8 @@ func (a *SSHKeysApiService) CreateSSHKey(ctx context.Context) ApiCreateSSHKeyReq
 }
 
 // Execute executes the request
-//  @return SSHKey
+//
+//	@return SSHKey
 func (a *SSHKeysApiService) CreateSSHKeyExecute(r ApiCreateSSHKeyRequest) (*SSHKey, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -334,9 +336,9 @@ DeleteSSHKey Delete the ssh key
 
 Deletes the ssh key.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id ssh key UUID
- @return ApiDeleteSSHKeyRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id ssh key UUID
+	@return ApiDeleteSSHKeyRequest
 */
 func (a *SSHKeysApiService) DeleteSSHKey(ctx context.Context, id string) ApiDeleteSSHKeyRequest {
 	return ApiDeleteSSHKeyRequest{
@@ -360,7 +362,7 @@ func (a *SSHKeysApiService) DeleteSSHKeyExecute(r ApiDeleteSSHKeyRequest) (*http
 	}
 
 	localVarPath := localBasePath + "/ssh-keys/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -493,9 +495,9 @@ FindDeviceSSHKeys Retrieve a device's ssh keys
 
 Returns a collection of the device's ssh keys.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Project UUID
- @return ApiFindDeviceSSHKeysRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Project UUID
+	@return ApiFindDeviceSSHKeysRequest
 */
 func (a *SSHKeysApiService) FindDeviceSSHKeys(ctx context.Context, id string) ApiFindDeviceSSHKeysRequest {
 	return ApiFindDeviceSSHKeysRequest{
@@ -506,7 +508,8 @@ func (a *SSHKeysApiService) FindDeviceSSHKeys(ctx context.Context, id string) Ap
 }
 
 // Execute executes the request
-//  @return SSHKeyList
+//
+//	@return SSHKeyList
 func (a *SSHKeysApiService) FindDeviceSSHKeysExecute(r ApiFindDeviceSSHKeysRequest) (*SSHKeyList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -521,20 +524,20 @@ func (a *SSHKeysApiService) FindDeviceSSHKeysExecute(r ApiFindDeviceSSHKeysReque
 	}
 
 	localVarPath := localBasePath + "/devices/{id}/ssh-keys"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.searchString != nil {
-		localVarQueryParams.Add("Search string", parameterToString(*r.searchString, ""))
+		parameterAddToQuery(localVarQueryParams, "Search string", r.searchString, "")
 	}
 	if r.include != nil {
-		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
+		parameterAddToQuery(localVarQueryParams, "include", r.include, "csv")
 	}
 	if r.exclude != nil {
-		localVarQueryParams.Add("exclude", parameterToString(*r.exclude, "csv"))
+		parameterAddToQuery(localVarQueryParams, "exclude", r.exclude, "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -650,9 +653,9 @@ FindProjectSSHKeys Retrieve a project's ssh keys
 
 Returns a collection of the project's ssh keys.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Project UUID
- @return ApiFindProjectSSHKeysRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Project UUID
+	@return ApiFindProjectSSHKeysRequest
 */
 func (a *SSHKeysApiService) FindProjectSSHKeys(ctx context.Context, id string) ApiFindProjectSSHKeysRequest {
 	return ApiFindProjectSSHKeysRequest{
@@ -663,7 +666,8 @@ func (a *SSHKeysApiService) FindProjectSSHKeys(ctx context.Context, id string) A
 }
 
 // Execute executes the request
-//  @return SSHKeyList
+//
+//	@return SSHKeyList
 func (a *SSHKeysApiService) FindProjectSSHKeysExecute(r ApiFindProjectSSHKeysRequest) (*SSHKeyList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -678,20 +682,20 @@ func (a *SSHKeysApiService) FindProjectSSHKeysExecute(r ApiFindProjectSSHKeysReq
 	}
 
 	localVarPath := localBasePath + "/projects/{id}/ssh-keys"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.searchString != nil {
-		localVarQueryParams.Add("Search string", parameterToString(*r.searchString, ""))
+		parameterAddToQuery(localVarQueryParams, "Search string", r.searchString, "")
 	}
 	if r.include != nil {
-		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
+		parameterAddToQuery(localVarQueryParams, "include", r.include, "csv")
 	}
 	if r.exclude != nil {
-		localVarQueryParams.Add("exclude", parameterToString(*r.exclude, "csv"))
+		parameterAddToQuery(localVarQueryParams, "exclude", r.exclude, "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -800,9 +804,9 @@ FindSSHKeyById Retrieve a ssh key
 
 Returns a single ssh key if the user has access
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id SSH Key UUID
- @return ApiFindSSHKeyByIdRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id SSH Key UUID
+	@return ApiFindSSHKeyByIdRequest
 */
 func (a *SSHKeysApiService) FindSSHKeyById(ctx context.Context, id string) ApiFindSSHKeyByIdRequest {
 	return ApiFindSSHKeyByIdRequest{
@@ -813,7 +817,8 @@ func (a *SSHKeysApiService) FindSSHKeyById(ctx context.Context, id string) ApiFi
 }
 
 // Execute executes the request
-//  @return SSHKey
+//
+//	@return SSHKey
 func (a *SSHKeysApiService) FindSSHKeyByIdExecute(r ApiFindSSHKeyByIdRequest) (*SSHKey, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -828,17 +833,17 @@ func (a *SSHKeysApiService) FindSSHKeyByIdExecute(r ApiFindSSHKeyByIdRequest) (*
 	}
 
 	localVarPath := localBasePath + "/ssh-keys/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.include != nil {
-		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
+		parameterAddToQuery(localVarQueryParams, "include", r.include, "csv")
 	}
 	if r.exclude != nil {
-		localVarQueryParams.Add("exclude", parameterToString(*r.exclude, "csv"))
+		parameterAddToQuery(localVarQueryParams, "exclude", r.exclude, "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -975,8 +980,8 @@ FindSSHKeys Retrieve all ssh keys
 
 Returns a collection of the user’s ssh keys.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiFindSSHKeysRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiFindSSHKeysRequest
 */
 func (a *SSHKeysApiService) FindSSHKeys(ctx context.Context) ApiFindSSHKeysRequest {
 	return ApiFindSSHKeysRequest{
@@ -986,7 +991,8 @@ func (a *SSHKeysApiService) FindSSHKeys(ctx context.Context) ApiFindSSHKeysReque
 }
 
 // Execute executes the request
-//  @return SSHKeyList
+//
+//	@return SSHKeyList
 func (a *SSHKeysApiService) FindSSHKeysExecute(r ApiFindSSHKeysRequest) (*SSHKeyList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -1007,13 +1013,13 @@ func (a *SSHKeysApiService) FindSSHKeysExecute(r ApiFindSSHKeysRequest) (*SSHKey
 	localVarFormParams := url.Values{}
 
 	if r.searchString != nil {
-		localVarQueryParams.Add("Search string", parameterToString(*r.searchString, ""))
+		parameterAddToQuery(localVarQueryParams, "Search string", r.searchString, "")
 	}
 	if r.include != nil {
-		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
+		parameterAddToQuery(localVarQueryParams, "include", r.include, "csv")
 	}
 	if r.exclude != nil {
-		localVarQueryParams.Add("exclude", parameterToString(*r.exclude, "csv"))
+		parameterAddToQuery(localVarQueryParams, "exclude", r.exclude, "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1115,9 +1121,9 @@ UpdateSSHKey Update the ssh key
 
 Updates the ssh key.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id SSH Key UUID
- @return ApiUpdateSSHKeyRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id SSH Key UUID
+	@return ApiUpdateSSHKeyRequest
 */
 func (a *SSHKeysApiService) UpdateSSHKey(ctx context.Context, id string) ApiUpdateSSHKeyRequest {
 	return ApiUpdateSSHKeyRequest{
@@ -1128,7 +1134,8 @@ func (a *SSHKeysApiService) UpdateSSHKey(ctx context.Context, id string) ApiUpda
 }
 
 // Execute executes the request
-//  @return SSHKey
+//
+//	@return SSHKey
 func (a *SSHKeysApiService) UpdateSSHKeyExecute(r ApiUpdateSSHKeyRequest) (*SSHKey, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
@@ -1143,7 +1150,7 @@ func (a *SSHKeysApiService) UpdateSSHKeyExecute(r ApiUpdateSSHKeyRequest) (*SSHK
 	}
 
 	localVarPath := localBasePath + "/ssh-keys/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

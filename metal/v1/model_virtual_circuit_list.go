@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the VirtualCircuitList type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &VirtualCircuitList{}
+
 // VirtualCircuitList struct for VirtualCircuitList
 type VirtualCircuitList struct {
 	VirtualCircuits []VirtualCircuitListVirtualCircuitsInner `json:"virtual_circuits,omitempty"`
@@ -70,11 +73,19 @@ func (o *VirtualCircuitList) SetVirtualCircuits(v []VirtualCircuitListVirtualCir
 }
 
 func (o VirtualCircuitList) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o VirtualCircuitList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.VirtualCircuits) {
 		toSerialize["virtual_circuits"] = o.VirtualCircuits
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableVirtualCircuitList struct {

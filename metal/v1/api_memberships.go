@@ -38,9 +38,9 @@ DeleteMembership Delete the membership
 
 Deletes the membership.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Membership UUID
- @return ApiDeleteMembershipRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Membership UUID
+	@return ApiDeleteMembershipRequest
 */
 func (a *MembershipsApiService) DeleteMembership(ctx context.Context, id string) ApiDeleteMembershipRequest {
 	return ApiDeleteMembershipRequest{
@@ -64,7 +64,7 @@ func (a *MembershipsApiService) DeleteMembershipExecute(r ApiDeleteMembershipReq
 	}
 
 	localVarPath := localBasePath + "/memberships/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -190,9 +190,9 @@ FindMembershipById Retrieve a membership
 
 Returns a single membership.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Membership UUID
- @return ApiFindMembershipByIdRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Membership UUID
+	@return ApiFindMembershipByIdRequest
 */
 func (a *MembershipsApiService) FindMembershipById(ctx context.Context, id string) ApiFindMembershipByIdRequest {
 	return ApiFindMembershipByIdRequest{
@@ -203,7 +203,8 @@ func (a *MembershipsApiService) FindMembershipById(ctx context.Context, id strin
 }
 
 // Execute executes the request
-//  @return Membership
+//
+//	@return Membership
 func (a *MembershipsApiService) FindMembershipByIdExecute(r ApiFindMembershipByIdRequest) (*Membership, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -218,17 +219,17 @@ func (a *MembershipsApiService) FindMembershipByIdExecute(r ApiFindMembershipByI
 	}
 
 	localVarPath := localBasePath + "/memberships/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.include != nil {
-		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
+		parameterAddToQuery(localVarQueryParams, "include", r.include, "csv")
 	}
 	if r.exclude != nil {
-		localVarQueryParams.Add("exclude", parameterToString(*r.exclude, "csv"))
+		parameterAddToQuery(localVarQueryParams, "exclude", r.exclude, "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -352,9 +353,9 @@ UpdateMembership Update the membership
 
 Updates the membership.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Membership UUID
- @return ApiUpdateMembershipRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Membership UUID
+	@return ApiUpdateMembershipRequest
 */
 func (a *MembershipsApiService) UpdateMembership(ctx context.Context, id string) ApiUpdateMembershipRequest {
 	return ApiUpdateMembershipRequest{
@@ -365,7 +366,8 @@ func (a *MembershipsApiService) UpdateMembership(ctx context.Context, id string)
 }
 
 // Execute executes the request
-//  @return Membership
+//
+//	@return Membership
 func (a *MembershipsApiService) UpdateMembershipExecute(r ApiUpdateMembershipRequest) (*Membership, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
@@ -380,7 +382,7 @@ func (a *MembershipsApiService) UpdateMembershipExecute(r ApiUpdateMembershipReq
 	}
 
 	localVarPath := localBasePath + "/memberships/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

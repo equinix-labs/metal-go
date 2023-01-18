@@ -16,6 +16,9 @@ import (
 	"time"
 )
 
+// checks if the AuthTokenProject type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &AuthTokenProject{}
+
 // AuthTokenProject struct for AuthTokenProject
 type AuthTokenProject struct {
 	BgpConfig     *Href                  `json:"bgp_config,omitempty"`
@@ -533,6 +536,14 @@ func (o *AuthTokenProject) SetVolumes(v []Href) {
 }
 
 func (o AuthTokenProject) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o AuthTokenProject) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.BgpConfig) {
 		toSerialize["bgp_config"] = o.BgpConfig
@@ -579,7 +590,7 @@ func (o AuthTokenProject) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Volumes) {
 		toSerialize["volumes"] = o.Volumes
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableAuthTokenProject struct {

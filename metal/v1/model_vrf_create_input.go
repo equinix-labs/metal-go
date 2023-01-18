@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the VrfCreateInput type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &VrfCreateInput{}
+
 // VrfCreateInput struct for VrfCreateInput
 type VrfCreateInput struct {
 	Description *string `json:"description,omitempty"`
@@ -190,6 +193,14 @@ func (o *VrfCreateInput) SetName(v string) {
 }
 
 func (o VrfCreateInput) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o VrfCreateInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Description) {
 		toSerialize["description"] = o.Description
@@ -200,13 +211,9 @@ func (o VrfCreateInput) MarshalJSON() ([]byte, error) {
 	if !isNil(o.LocalAsn) {
 		toSerialize["local_asn"] = o.LocalAsn
 	}
-	if true {
-		toSerialize["metro"] = o.Metro
-	}
-	if true {
-		toSerialize["name"] = o.Name
-	}
-	return json.Marshal(toSerialize)
+	toSerialize["metro"] = o.Metro
+	toSerialize["name"] = o.Name
+	return toSerialize, nil
 }
 
 type NullableVrfCreateInput struct {

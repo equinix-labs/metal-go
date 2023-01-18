@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the DeviceUpdateInput type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &DeviceUpdateInput{}
+
 // DeviceUpdateInput struct for DeviceUpdateInput
 type DeviceUpdateInput struct {
 	AlwaysPxe     *bool                  `json:"always_pxe,omitempty"`
@@ -402,6 +405,14 @@ func (o *DeviceUpdateInput) SetUserdata(v string) {
 }
 
 func (o DeviceUpdateInput) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o DeviceUpdateInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.AlwaysPxe) {
 		toSerialize["always_pxe"] = o.AlwaysPxe
@@ -436,7 +447,7 @@ func (o DeviceUpdateInput) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Userdata) {
 		toSerialize["userdata"] = o.Userdata
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableDeviceUpdateInput struct {

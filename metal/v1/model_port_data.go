@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the PortData type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PortData{}
+
 // PortData struct for PortData
 type PortData struct {
 	// MAC address is set for NetworkPort ports
@@ -105,6 +108,14 @@ func (o *PortData) SetBonded(v bool) {
 }
 
 func (o PortData) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o PortData) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Mac) {
 		toSerialize["mac"] = o.Mac
@@ -112,7 +123,7 @@ func (o PortData) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Bonded) {
 		toSerialize["bonded"] = o.Bonded
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullablePortData struct {

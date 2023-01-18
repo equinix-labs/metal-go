@@ -16,6 +16,9 @@ import (
 	"time"
 )
 
+// checks if the SelfServiceReservationResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &SelfServiceReservationResponse{}
+
 // SelfServiceReservationResponse struct for SelfServiceReservationResponse
 type SelfServiceReservationResponse struct {
 	CreatedAt      *time.Time                                 `json:"created_at,omitempty"`
@@ -401,6 +404,14 @@ func (o *SelfServiceReservationResponse) SetTotalCost(v int32) {
 }
 
 func (o SelfServiceReservationResponse) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o SelfServiceReservationResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt
@@ -435,7 +446,7 @@ func (o SelfServiceReservationResponse) MarshalJSON() ([]byte, error) {
 	if !isNil(o.TotalCost) {
 		toSerialize["total_cost"] = o.TotalCost
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableSelfServiceReservationResponse struct {

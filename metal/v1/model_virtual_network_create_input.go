@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the VirtualNetworkCreateInput type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &VirtualNetworkCreateInput{}
+
 // VirtualNetworkCreateInput struct for VirtualNetworkCreateInput
 type VirtualNetworkCreateInput struct {
 	Description *string `json:"description,omitempty"`
@@ -172,6 +175,14 @@ func (o *VirtualNetworkCreateInput) SetVxlan(v int32) {
 }
 
 func (o VirtualNetworkCreateInput) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o VirtualNetworkCreateInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Description) {
 		toSerialize["description"] = o.Description
@@ -185,7 +196,7 @@ func (o VirtualNetworkCreateInput) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Vxlan) {
 		toSerialize["vxlan"] = o.Vxlan
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableVirtualNetworkCreateInput struct {

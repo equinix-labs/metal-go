@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **Description** | Pointer to **string** |  | [optional] 
 **Enforce2faAt** | Pointer to **time.Time** | Force to all members to have enabled the two factor authentication after that date, unless the value is null | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
-**Logo** | Pointer to ***os.File** |  | [optional] 
+**Logo** | Pointer to **os.File** |  | [optional] 
 **Members** | Pointer to [**[]Href**](Href.md) |  | [optional] 
 **Memberships** | Pointer to [**[]Href**](Href.md) |  | [optional] 
 **Name** | Pointer to **string** |  | [optional] 
@@ -243,20 +243,20 @@ HasId returns a boolean if a field has been set.
 
 ### GetLogo
 
-`func (o *Organization) GetLogo() *os.File`
+`func (o *Organization) GetLogo() os.File`
 
 GetLogo returns the Logo field if non-nil, zero value otherwise.
 
 ### GetLogoOk
 
-`func (o *Organization) GetLogoOk() (**os.File, bool)`
+`func (o *Organization) GetLogoOk() (*os.File, bool)`
 
 GetLogoOk returns a tuple with the Logo field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLogo
 
-`func (o *Organization) SetLogo(v *os.File)`
+`func (o *Organization) SetLogo(v os.File)`
 
 SetLogo sets Logo field to given value.
 

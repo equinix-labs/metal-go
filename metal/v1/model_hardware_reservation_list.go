@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the HardwareReservationList type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &HardwareReservationList{}
+
 // HardwareReservationList struct for HardwareReservationList
 type HardwareReservationList struct {
 	HardwareReservations []HardwareReservation `json:"hardware_reservations,omitempty"`
@@ -103,6 +106,14 @@ func (o *HardwareReservationList) SetMeta(v Meta) {
 }
 
 func (o HardwareReservationList) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o HardwareReservationList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.HardwareReservations) {
 		toSerialize["hardware_reservations"] = o.HardwareReservations
@@ -110,7 +121,7 @@ func (o HardwareReservationList) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Meta) {
 		toSerialize["meta"] = o.Meta
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableHardwareReservationList struct {

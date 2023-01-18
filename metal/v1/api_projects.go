@@ -44,8 +44,8 @@ CreateProject Create a project
 
 Creates a new project for the user default organization. If the user don't have an organization, a new one will be created.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiCreateProjectRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiCreateProjectRequest
 */
 func (a *ProjectsApiService) CreateProject(ctx context.Context) ApiCreateProjectRequest {
 	return ApiCreateProjectRequest{
@@ -55,7 +55,8 @@ func (a *ProjectsApiService) CreateProject(ctx context.Context) ApiCreateProject
 }
 
 // Execute executes the request
-//  @return Project
+//
+//	@return Project
 func (a *ProjectsApiService) CreateProjectExecute(r ApiCreateProjectRequest) (*Project, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -191,9 +192,9 @@ CreateProjectInvitation Create an invitation for a project
 
 In order to add a user to a project, they must first be invited.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param projectId Project UUID
- @return ApiCreateProjectInvitationRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId Project UUID
+	@return ApiCreateProjectInvitationRequest
 */
 func (a *ProjectsApiService) CreateProjectInvitation(ctx context.Context, projectId string) ApiCreateProjectInvitationRequest {
 	return ApiCreateProjectInvitationRequest{
@@ -204,7 +205,8 @@ func (a *ProjectsApiService) CreateProjectInvitation(ctx context.Context, projec
 }
 
 // Execute executes the request
-//  @return Invitation
+//
+//	@return Invitation
 func (a *ProjectsApiService) CreateProjectInvitationExecute(r ApiCreateProjectInvitationRequest) (*Invitation, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -219,7 +221,7 @@ func (a *ProjectsApiService) CreateProjectInvitationExecute(r ApiCreateProjectIn
 	}
 
 	localVarPath := localBasePath + "/projects/{project_id}/invitations"
-	localVarPath = strings.Replace(localVarPath, "{"+"project_id"+"}", url.PathEscape(parameterToString(r.projectId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"project_id"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -363,9 +365,9 @@ CreateTransferRequest Create a transfer request
 
 Organization owners can transfer their projects to other organizations.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id UUID of the project to be transferred
- @return ApiCreateTransferRequestRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id UUID of the project to be transferred
+	@return ApiCreateTransferRequestRequest
 */
 func (a *ProjectsApiService) CreateTransferRequest(ctx context.Context, id string) ApiCreateTransferRequestRequest {
 	return ApiCreateTransferRequestRequest{
@@ -376,7 +378,8 @@ func (a *ProjectsApiService) CreateTransferRequest(ctx context.Context, id strin
 }
 
 // Execute executes the request
-//  @return TransferRequest
+//
+//	@return TransferRequest
 func (a *ProjectsApiService) CreateTransferRequestExecute(r ApiCreateTransferRequestRequest) (*TransferRequest, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -391,7 +394,7 @@ func (a *ProjectsApiService) CreateTransferRequestExecute(r ApiCreateTransferReq
 	}
 
 	localVarPath := localBasePath + "/projects/{id}/transfers"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -528,9 +531,9 @@ DeleteProject Delete the project
 
 Deletes the project.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Project UUID
- @return ApiDeleteProjectRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Project UUID
+	@return ApiDeleteProjectRequest
 */
 func (a *ProjectsApiService) DeleteProject(ctx context.Context, id string) ApiDeleteProjectRequest {
 	return ApiDeleteProjectRequest{
@@ -554,7 +557,7 @@ func (a *ProjectsApiService) DeleteProjectExecute(r ApiDeleteProjectRequest) (*h
 	}
 
 	localVarPath := localBasePath + "/projects/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -667,10 +670,10 @@ FindIPReservationCustomdata Retrieve the custom metadata of an IP Reservation
 
 Provides the custom metadata stored for this IP Reservation in json format
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param projectId Project UUID
- @param id Ip Reservation UUID
- @return ApiFindIPReservationCustomdataRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId Project UUID
+	@param id Ip Reservation UUID
+	@return ApiFindIPReservationCustomdataRequest
 */
 func (a *ProjectsApiService) FindIPReservationCustomdata(ctx context.Context, projectId string, id string) ApiFindIPReservationCustomdataRequest {
 	return ApiFindIPReservationCustomdataRequest{
@@ -695,8 +698,8 @@ func (a *ProjectsApiService) FindIPReservationCustomdataExecute(r ApiFindIPReser
 	}
 
 	localVarPath := localBasePath + "/projects/{project_id}/ips/{id}/customdata"
-	localVarPath = strings.Replace(localVarPath, "{"+"project_id"+"}", url.PathEscape(parameterToString(r.projectId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"project_id"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -822,9 +825,9 @@ FindProjectById Retrieve a project
 
 Returns a single project if the user has access
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Project UUID
- @return ApiFindProjectByIdRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Project UUID
+	@return ApiFindProjectByIdRequest
 */
 func (a *ProjectsApiService) FindProjectById(ctx context.Context, id string) ApiFindProjectByIdRequest {
 	return ApiFindProjectByIdRequest{
@@ -835,7 +838,8 @@ func (a *ProjectsApiService) FindProjectById(ctx context.Context, id string) Api
 }
 
 // Execute executes the request
-//  @return Project
+//
+//	@return Project
 func (a *ProjectsApiService) FindProjectByIdExecute(r ApiFindProjectByIdRequest) (*Project, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -850,17 +854,17 @@ func (a *ProjectsApiService) FindProjectByIdExecute(r ApiFindProjectByIdRequest)
 	}
 
 	localVarPath := localBasePath + "/projects/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.include != nil {
-		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
+		parameterAddToQuery(localVarQueryParams, "include", r.include, "csv")
 	}
 	if r.exclude != nil {
-		localVarQueryParams.Add("exclude", parameterToString(*r.exclude, "csv"))
+		parameterAddToQuery(localVarQueryParams, "exclude", r.exclude, "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -977,9 +981,9 @@ FindProjectCustomdata Retrieve the custom metadata of a project
 
 Provides the custom metadata stored for this project in json format
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Project UUID
- @return ApiFindProjectCustomdataRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Project UUID
+	@return ApiFindProjectCustomdataRequest
 */
 func (a *ProjectsApiService) FindProjectCustomdata(ctx context.Context, id string) ApiFindProjectCustomdataRequest {
 	return ApiFindProjectCustomdataRequest{
@@ -1003,7 +1007,7 @@ func (a *ProjectsApiService) FindProjectCustomdataExecute(r ApiFindProjectCustom
 	}
 
 	localVarPath := localBasePath + "/projects/{id}/customdata"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1143,9 +1147,9 @@ FindProjectInvitations Retrieve project invitations
 
 Returns all invitations in a project.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param projectId Project UUID
- @return ApiFindProjectInvitationsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId Project UUID
+	@return ApiFindProjectInvitationsRequest
 */
 func (a *ProjectsApiService) FindProjectInvitations(ctx context.Context, projectId string) ApiFindProjectInvitationsRequest {
 	return ApiFindProjectInvitationsRequest{
@@ -1156,7 +1160,8 @@ func (a *ProjectsApiService) FindProjectInvitations(ctx context.Context, project
 }
 
 // Execute executes the request
-//  @return InvitationList
+//
+//	@return InvitationList
 func (a *ProjectsApiService) FindProjectInvitationsExecute(r ApiFindProjectInvitationsRequest) (*InvitationList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -1171,23 +1176,23 @@ func (a *ProjectsApiService) FindProjectInvitationsExecute(r ApiFindProjectInvit
 	}
 
 	localVarPath := localBasePath + "/projects/{project_id}/invitations"
-	localVarPath = strings.Replace(localVarPath, "{"+"project_id"+"}", url.PathEscape(parameterToString(r.projectId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"project_id"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.include != nil {
-		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
+		parameterAddToQuery(localVarQueryParams, "include", r.include, "csv")
 	}
 	if r.exclude != nil {
-		localVarQueryParams.Add("exclude", parameterToString(*r.exclude, "csv"))
+		parameterAddToQuery(localVarQueryParams, "exclude", r.exclude, "csv")
 	}
 	if r.page != nil {
-		localVarQueryParams.Add("page", parameterToString(*r.page, ""))
+		parameterAddToQuery(localVarQueryParams, "page", r.page, "")
 	}
 	if r.perPage != nil {
-		localVarQueryParams.Add("per_page", parameterToString(*r.perPage, ""))
+		parameterAddToQuery(localVarQueryParams, "per_page", r.perPage, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1332,9 +1337,9 @@ FindProjectMemberships Retrieve project memberships
 
 Returns all memberships in a project.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param projectId Project UUID
- @return ApiFindProjectMembershipsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId Project UUID
+	@return ApiFindProjectMembershipsRequest
 */
 func (a *ProjectsApiService) FindProjectMemberships(ctx context.Context, projectId string) ApiFindProjectMembershipsRequest {
 	return ApiFindProjectMembershipsRequest{
@@ -1345,7 +1350,8 @@ func (a *ProjectsApiService) FindProjectMemberships(ctx context.Context, project
 }
 
 // Execute executes the request
-//  @return MembershipList
+//
+//	@return MembershipList
 func (a *ProjectsApiService) FindProjectMembershipsExecute(r ApiFindProjectMembershipsRequest) (*MembershipList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -1360,23 +1366,23 @@ func (a *ProjectsApiService) FindProjectMembershipsExecute(r ApiFindProjectMembe
 	}
 
 	localVarPath := localBasePath + "/projects/{project_id}/memberships"
-	localVarPath = strings.Replace(localVarPath, "{"+"project_id"+"}", url.PathEscape(parameterToString(r.projectId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"project_id"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.include != nil {
-		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
+		parameterAddToQuery(localVarQueryParams, "include", r.include, "csv")
 	}
 	if r.exclude != nil {
-		localVarQueryParams.Add("exclude", parameterToString(*r.exclude, "csv"))
+		parameterAddToQuery(localVarQueryParams, "exclude", r.exclude, "csv")
 	}
 	if r.page != nil {
-		localVarQueryParams.Add("page", parameterToString(*r.page, ""))
+		parameterAddToQuery(localVarQueryParams, "page", r.page, "")
 	}
 	if r.perPage != nil {
-		localVarQueryParams.Add("per_page", parameterToString(*r.perPage, ""))
+		parameterAddToQuery(localVarQueryParams, "per_page", r.perPage, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1520,8 +1526,8 @@ FindProjects Retrieve all projects
 
 Returns a collection of projects that the current user is a member of.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiFindProjectsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiFindProjectsRequest
 */
 func (a *ProjectsApiService) FindProjects(ctx context.Context) ApiFindProjectsRequest {
 	return ApiFindProjectsRequest{
@@ -1531,7 +1537,8 @@ func (a *ProjectsApiService) FindProjects(ctx context.Context) ApiFindProjectsRe
 }
 
 // Execute executes the request
-//  @return ProjectList
+//
+//	@return ProjectList
 func (a *ProjectsApiService) FindProjectsExecute(r ApiFindProjectsRequest) (*ProjectList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -1552,16 +1559,16 @@ func (a *ProjectsApiService) FindProjectsExecute(r ApiFindProjectsRequest) (*Pro
 	localVarFormParams := url.Values{}
 
 	if r.include != nil {
-		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
+		parameterAddToQuery(localVarQueryParams, "include", r.include, "csv")
 	}
 	if r.exclude != nil {
-		localVarQueryParams.Add("exclude", parameterToString(*r.exclude, "csv"))
+		parameterAddToQuery(localVarQueryParams, "exclude", r.exclude, "csv")
 	}
 	if r.page != nil {
-		localVarQueryParams.Add("page", parameterToString(*r.page, ""))
+		parameterAddToQuery(localVarQueryParams, "page", r.page, "")
 	}
 	if r.perPage != nil {
-		localVarQueryParams.Add("per_page", parameterToString(*r.perPage, ""))
+		parameterAddToQuery(localVarQueryParams, "per_page", r.perPage, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1663,9 +1670,9 @@ UpdateProject Update the project
 
 Updates the project.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Project UUID
- @return ApiUpdateProjectRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Project UUID
+	@return ApiUpdateProjectRequest
 */
 func (a *ProjectsApiService) UpdateProject(ctx context.Context, id string) ApiUpdateProjectRequest {
 	return ApiUpdateProjectRequest{
@@ -1676,7 +1683,8 @@ func (a *ProjectsApiService) UpdateProject(ctx context.Context, id string) ApiUp
 }
 
 // Execute executes the request
-//  @return Project
+//
+//	@return Project
 func (a *ProjectsApiService) UpdateProjectExecute(r ApiUpdateProjectRequest) (*Project, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
@@ -1691,7 +1699,7 @@ func (a *ProjectsApiService) UpdateProjectExecute(r ApiUpdateProjectRequest) (*P
 	}
 
 	localVarPath := localBasePath + "/projects/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

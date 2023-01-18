@@ -66,9 +66,9 @@ FindDeviceEvents Retrieve device's events
 
 Returns a list of events pertaining to a specific device
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Device UUID
- @return ApiFindDeviceEventsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Device UUID
+	@return ApiFindDeviceEventsRequest
 */
 func (a *EventsApiService) FindDeviceEvents(ctx context.Context, id string) ApiFindDeviceEventsRequest {
 	return ApiFindDeviceEventsRequest{
@@ -79,7 +79,8 @@ func (a *EventsApiService) FindDeviceEvents(ctx context.Context, id string) ApiF
 }
 
 // Execute executes the request
-//  @return EventList
+//
+//	@return EventList
 func (a *EventsApiService) FindDeviceEventsExecute(r ApiFindDeviceEventsRequest) (*EventList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -94,23 +95,23 @@ func (a *EventsApiService) FindDeviceEventsExecute(r ApiFindDeviceEventsRequest)
 	}
 
 	localVarPath := localBasePath + "/devices/{id}/events"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.include != nil {
-		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
+		parameterAddToQuery(localVarQueryParams, "include", r.include, "csv")
 	}
 	if r.exclude != nil {
-		localVarQueryParams.Add("exclude", parameterToString(*r.exclude, "csv"))
+		parameterAddToQuery(localVarQueryParams, "exclude", r.exclude, "csv")
 	}
 	if r.page != nil {
-		localVarQueryParams.Add("page", parameterToString(*r.page, ""))
+		parameterAddToQuery(localVarQueryParams, "page", r.page, "")
 	}
 	if r.perPage != nil {
-		localVarQueryParams.Add("per_page", parameterToString(*r.perPage, ""))
+		parameterAddToQuery(localVarQueryParams, "per_page", r.perPage, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -241,9 +242,9 @@ FindEventById Retrieve an event
 
 Returns a single event if the user has access
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Event UUID
- @return ApiFindEventByIdRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Event UUID
+	@return ApiFindEventByIdRequest
 */
 func (a *EventsApiService) FindEventById(ctx context.Context, id string) ApiFindEventByIdRequest {
 	return ApiFindEventByIdRequest{
@@ -254,7 +255,8 @@ func (a *EventsApiService) FindEventById(ctx context.Context, id string) ApiFind
 }
 
 // Execute executes the request
-//  @return Event
+//
+//	@return Event
 func (a *EventsApiService) FindEventByIdExecute(r ApiFindEventByIdRequest) (*Event, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -269,17 +271,17 @@ func (a *EventsApiService) FindEventByIdExecute(r ApiFindEventByIdRequest) (*Eve
 	}
 
 	localVarPath := localBasePath + "/events/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.include != nil {
-		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
+		parameterAddToQuery(localVarQueryParams, "include", r.include, "csv")
 	}
 	if r.exclude != nil {
-		localVarQueryParams.Add("exclude", parameterToString(*r.exclude, "csv"))
+		parameterAddToQuery(localVarQueryParams, "exclude", r.exclude, "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -423,8 +425,8 @@ FindEvents Retrieve current user's events
 
 Returns a list of the current user’s events
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiFindEventsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiFindEventsRequest
 */
 func (a *EventsApiService) FindEvents(ctx context.Context) ApiFindEventsRequest {
 	return ApiFindEventsRequest{
@@ -434,7 +436,8 @@ func (a *EventsApiService) FindEvents(ctx context.Context) ApiFindEventsRequest 
 }
 
 // Execute executes the request
-//  @return EventList
+//
+//	@return EventList
 func (a *EventsApiService) FindEventsExecute(r ApiFindEventsRequest) (*EventList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -455,16 +458,16 @@ func (a *EventsApiService) FindEventsExecute(r ApiFindEventsRequest) (*EventList
 	localVarFormParams := url.Values{}
 
 	if r.include != nil {
-		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
+		parameterAddToQuery(localVarQueryParams, "include", r.include, "csv")
 	}
 	if r.exclude != nil {
-		localVarQueryParams.Add("exclude", parameterToString(*r.exclude, "csv"))
+		parameterAddToQuery(localVarQueryParams, "exclude", r.exclude, "csv")
 	}
 	if r.page != nil {
-		localVarQueryParams.Add("page", parameterToString(*r.page, ""))
+		parameterAddToQuery(localVarQueryParams, "page", r.page, "")
 	}
 	if r.perPage != nil {
-		localVarQueryParams.Add("per_page", parameterToString(*r.perPage, ""))
+		parameterAddToQuery(localVarQueryParams, "per_page", r.perPage, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -587,9 +590,9 @@ FindInterconnectionEvents Retrieve interconnection events
 
 Returns a list of the interconnection events
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param connectionId Interconnection UUID
- @return ApiFindInterconnectionEventsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param connectionId Interconnection UUID
+	@return ApiFindInterconnectionEventsRequest
 */
 func (a *EventsApiService) FindInterconnectionEvents(ctx context.Context, connectionId string) ApiFindInterconnectionEventsRequest {
 	return ApiFindInterconnectionEventsRequest{
@@ -600,7 +603,8 @@ func (a *EventsApiService) FindInterconnectionEvents(ctx context.Context, connec
 }
 
 // Execute executes the request
-//  @return Event
+//
+//	@return Event
 func (a *EventsApiService) FindInterconnectionEventsExecute(r ApiFindInterconnectionEventsRequest) (*Event, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -615,23 +619,23 @@ func (a *EventsApiService) FindInterconnectionEventsExecute(r ApiFindInterconnec
 	}
 
 	localVarPath := localBasePath + "/connections/{connection_id}/events"
-	localVarPath = strings.Replace(localVarPath, "{"+"connection_id"+"}", url.PathEscape(parameterToString(r.connectionId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"connection_id"+"}", url.PathEscape(parameterValueToString(r.connectionId, "connectionId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.include != nil {
-		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
+		parameterAddToQuery(localVarQueryParams, "include", r.include, "csv")
 	}
 	if r.exclude != nil {
-		localVarQueryParams.Add("exclude", parameterToString(*r.exclude, "csv"))
+		parameterAddToQuery(localVarQueryParams, "exclude", r.exclude, "csv")
 	}
 	if r.page != nil {
-		localVarQueryParams.Add("page", parameterToString(*r.page, ""))
+		parameterAddToQuery(localVarQueryParams, "page", r.page, "")
 	}
 	if r.perPage != nil {
-		localVarQueryParams.Add("per_page", parameterToString(*r.perPage, ""))
+		parameterAddToQuery(localVarQueryParams, "per_page", r.perPage, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -777,10 +781,10 @@ FindInterconnectionPortEvents Retrieve interconnection port events
 
 Returns a list of the interconnection port events
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param connectionId Interconnection UUID
- @param id Interconnection Port UUID
- @return ApiFindInterconnectionPortEventsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param connectionId Interconnection UUID
+	@param id Interconnection Port UUID
+	@return ApiFindInterconnectionPortEventsRequest
 */
 func (a *EventsApiService) FindInterconnectionPortEvents(ctx context.Context, connectionId string, id string) ApiFindInterconnectionPortEventsRequest {
 	return ApiFindInterconnectionPortEventsRequest{
@@ -792,7 +796,8 @@ func (a *EventsApiService) FindInterconnectionPortEvents(ctx context.Context, co
 }
 
 // Execute executes the request
-//  @return Event
+//
+//	@return Event
 func (a *EventsApiService) FindInterconnectionPortEventsExecute(r ApiFindInterconnectionPortEventsRequest) (*Event, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -807,24 +812,24 @@ func (a *EventsApiService) FindInterconnectionPortEventsExecute(r ApiFindInterco
 	}
 
 	localVarPath := localBasePath + "/connections/{connection_id}/ports/{id}/events"
-	localVarPath = strings.Replace(localVarPath, "{"+"connection_id"+"}", url.PathEscape(parameterToString(r.connectionId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"connection_id"+"}", url.PathEscape(parameterValueToString(r.connectionId, "connectionId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.include != nil {
-		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
+		parameterAddToQuery(localVarQueryParams, "include", r.include, "csv")
 	}
 	if r.exclude != nil {
-		localVarQueryParams.Add("exclude", parameterToString(*r.exclude, "csv"))
+		parameterAddToQuery(localVarQueryParams, "exclude", r.exclude, "csv")
 	}
 	if r.page != nil {
-		localVarQueryParams.Add("page", parameterToString(*r.page, ""))
+		parameterAddToQuery(localVarQueryParams, "page", r.page, "")
 	}
 	if r.perPage != nil {
-		localVarQueryParams.Add("per_page", parameterToString(*r.perPage, ""))
+		parameterAddToQuery(localVarQueryParams, "per_page", r.perPage, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -969,9 +974,9 @@ FindOrganizationEvents Retrieve organization's events
 
 Returns a list of events for a single organization
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Organization UUID
- @return ApiFindOrganizationEventsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Organization UUID
+	@return ApiFindOrganizationEventsRequest
 */
 func (a *EventsApiService) FindOrganizationEvents(ctx context.Context, id string) ApiFindOrganizationEventsRequest {
 	return ApiFindOrganizationEventsRequest{
@@ -982,7 +987,8 @@ func (a *EventsApiService) FindOrganizationEvents(ctx context.Context, id string
 }
 
 // Execute executes the request
-//  @return EventList
+//
+//	@return EventList
 func (a *EventsApiService) FindOrganizationEventsExecute(r ApiFindOrganizationEventsRequest) (*EventList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -997,23 +1003,23 @@ func (a *EventsApiService) FindOrganizationEventsExecute(r ApiFindOrganizationEv
 	}
 
 	localVarPath := localBasePath + "/organizations/{id}/events"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.include != nil {
-		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
+		parameterAddToQuery(localVarQueryParams, "include", r.include, "csv")
 	}
 	if r.exclude != nil {
-		localVarQueryParams.Add("exclude", parameterToString(*r.exclude, "csv"))
+		parameterAddToQuery(localVarQueryParams, "exclude", r.exclude, "csv")
 	}
 	if r.page != nil {
-		localVarQueryParams.Add("page", parameterToString(*r.page, ""))
+		parameterAddToQuery(localVarQueryParams, "page", r.page, "")
 	}
 	if r.perPage != nil {
-		localVarQueryParams.Add("per_page", parameterToString(*r.perPage, ""))
+		parameterAddToQuery(localVarQueryParams, "per_page", r.perPage, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1158,9 +1164,9 @@ FindProjectEvents Retrieve project's events
 
 Returns a list of events for a single project
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Project UUID
- @return ApiFindProjectEventsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Project UUID
+	@return ApiFindProjectEventsRequest
 */
 func (a *EventsApiService) FindProjectEvents(ctx context.Context, id string) ApiFindProjectEventsRequest {
 	return ApiFindProjectEventsRequest{
@@ -1171,7 +1177,8 @@ func (a *EventsApiService) FindProjectEvents(ctx context.Context, id string) Api
 }
 
 // Execute executes the request
-//  @return EventList
+//
+//	@return EventList
 func (a *EventsApiService) FindProjectEventsExecute(r ApiFindProjectEventsRequest) (*EventList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -1186,23 +1193,23 @@ func (a *EventsApiService) FindProjectEventsExecute(r ApiFindProjectEventsReques
 	}
 
 	localVarPath := localBasePath + "/projects/{id}/events"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.include != nil {
-		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
+		parameterAddToQuery(localVarQueryParams, "include", r.include, "csv")
 	}
 	if r.exclude != nil {
-		localVarQueryParams.Add("exclude", parameterToString(*r.exclude, "csv"))
+		parameterAddToQuery(localVarQueryParams, "exclude", r.exclude, "csv")
 	}
 	if r.page != nil {
-		localVarQueryParams.Add("page", parameterToString(*r.page, ""))
+		parameterAddToQuery(localVarQueryParams, "page", r.page, "")
 	}
 	if r.perPage != nil {
-		localVarQueryParams.Add("per_page", parameterToString(*r.perPage, ""))
+		parameterAddToQuery(localVarQueryParams, "per_page", r.perPage, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1347,9 +1354,9 @@ FindVirtualCircuitEvents Retrieve interconnection events
 
 Returns a list of the virtual circuit events
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Virtual Circuit UUID
- @return ApiFindVirtualCircuitEventsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Virtual Circuit UUID
+	@return ApiFindVirtualCircuitEventsRequest
 */
 func (a *EventsApiService) FindVirtualCircuitEvents(ctx context.Context, id string) ApiFindVirtualCircuitEventsRequest {
 	return ApiFindVirtualCircuitEventsRequest{
@@ -1360,7 +1367,8 @@ func (a *EventsApiService) FindVirtualCircuitEvents(ctx context.Context, id stri
 }
 
 // Execute executes the request
-//  @return Event
+//
+//	@return Event
 func (a *EventsApiService) FindVirtualCircuitEventsExecute(r ApiFindVirtualCircuitEventsRequest) (*Event, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -1375,23 +1383,23 @@ func (a *EventsApiService) FindVirtualCircuitEventsExecute(r ApiFindVirtualCircu
 	}
 
 	localVarPath := localBasePath + "/virtual-circuit/{id}/events"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.include != nil {
-		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
+		parameterAddToQuery(localVarQueryParams, "include", r.include, "csv")
 	}
 	if r.exclude != nil {
-		localVarQueryParams.Add("exclude", parameterToString(*r.exclude, "csv"))
+		parameterAddToQuery(localVarQueryParams, "exclude", r.exclude, "csv")
 	}
 	if r.page != nil {
-		localVarQueryParams.Add("page", parameterToString(*r.page, ""))
+		parameterAddToQuery(localVarQueryParams, "page", r.page, "")
 	}
 	if r.perPage != nil {
-		localVarQueryParams.Add("per_page", parameterToString(*r.perPage, ""))
+		parameterAddToQuery(localVarQueryParams, "per_page", r.perPage, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

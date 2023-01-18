@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the VrfVirtualCircuitUpdateInput type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &VrfVirtualCircuitUpdateInput{}
+
 // VrfVirtualCircuitUpdateInput struct for VrfVirtualCircuitUpdateInput
 type VrfVirtualCircuitUpdateInput struct {
 	Description *string `json:"description,omitempty"`
@@ -170,6 +173,14 @@ func (o *VrfVirtualCircuitUpdateInput) SetTags(v []string) {
 }
 
 func (o VrfVirtualCircuitUpdateInput) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o VrfVirtualCircuitUpdateInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Description) {
 		toSerialize["description"] = o.Description
@@ -183,7 +194,7 @@ func (o VrfVirtualCircuitUpdateInput) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Tags) {
 		toSerialize["tags"] = o.Tags
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableVrfVirtualCircuitUpdateInput struct {

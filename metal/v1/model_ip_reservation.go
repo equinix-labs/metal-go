@@ -16,6 +16,9 @@ import (
 	"time"
 )
 
+// checks if the IPReservation type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &IPReservation{}
+
 // IPReservation struct for IPReservation
 type IPReservation struct {
 	Addon         *bool                  `json:"addon,omitempty"`
@@ -988,6 +991,14 @@ func (o *IPReservation) SetType(v string) {
 }
 
 func (o IPReservation) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o IPReservation) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Addon) {
 		toSerialize["addon"] = o.Addon
@@ -1073,10 +1084,8 @@ func (o IPReservation) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Tags) {
 		toSerialize["tags"] = o.Tags
 	}
-	if true {
-		toSerialize["type"] = o.Type
-	}
-	return json.Marshal(toSerialize)
+	toSerialize["type"] = o.Type
+	return toSerialize, nil
 }
 
 type NullableIPReservation struct {

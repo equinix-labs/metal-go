@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the FacilityList type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &FacilityList{}
+
 // FacilityList struct for FacilityList
 type FacilityList struct {
 	Facilities []Facility `json:"facilities,omitempty"`
@@ -70,11 +73,19 @@ func (o *FacilityList) SetFacilities(v []Facility) {
 }
 
 func (o FacilityList) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o FacilityList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Facilities) {
 		toSerialize["facilities"] = o.Facilities
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableFacilityList struct {

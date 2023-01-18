@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the MetalGatewayList type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &MetalGatewayList{}
+
 // MetalGatewayList struct for MetalGatewayList
 type MetalGatewayList struct {
 	MetalGateways []MetalGatewayListMetalGatewaysInner `json:"metal_gateways,omitempty"`
@@ -70,11 +73,19 @@ func (o *MetalGatewayList) SetMetalGateways(v []MetalGatewayListMetalGatewaysInn
 }
 
 func (o MetalGatewayList) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o MetalGatewayList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.MetalGateways) {
 		toSerialize["metal_gateways"] = o.MetalGateways
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableMetalGatewayList struct {

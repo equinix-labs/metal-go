@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the BgpNeighborDataRoutesOutInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &BgpNeighborDataRoutesOutInner{}
+
 // BgpNeighborDataRoutesOutInner struct for BgpNeighborDataRoutesOutInner
 type BgpNeighborDataRoutesOutInner struct {
 	Exact *bool   `json:"exact,omitempty"`
@@ -103,6 +106,14 @@ func (o *BgpNeighborDataRoutesOutInner) SetRoute(v string) {
 }
 
 func (o BgpNeighborDataRoutesOutInner) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o BgpNeighborDataRoutesOutInner) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Exact) {
 		toSerialize["exact"] = o.Exact
@@ -110,7 +121,7 @@ func (o BgpNeighborDataRoutesOutInner) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Route) {
 		toSerialize["route"] = o.Route
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableBgpNeighborDataRoutesOutInner struct {

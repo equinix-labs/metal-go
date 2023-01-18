@@ -52,9 +52,9 @@ FindDeviceUsages Retrieve all usages for device
 
 Returns all usages for a device.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Device UUID
- @return ApiFindDeviceUsagesRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Device UUID
+	@return ApiFindDeviceUsagesRequest
 */
 func (a *UsagesApiService) FindDeviceUsages(ctx context.Context, id string) ApiFindDeviceUsagesRequest {
 	return ApiFindDeviceUsagesRequest{
@@ -65,7 +65,8 @@ func (a *UsagesApiService) FindDeviceUsages(ctx context.Context, id string) ApiF
 }
 
 // Execute executes the request
-//  @return DeviceUsageList
+//
+//	@return DeviceUsageList
 func (a *UsagesApiService) FindDeviceUsagesExecute(r ApiFindDeviceUsagesRequest) (*DeviceUsageList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -80,17 +81,17 @@ func (a *UsagesApiService) FindDeviceUsagesExecute(r ApiFindDeviceUsagesRequest)
 	}
 
 	localVarPath := localBasePath + "/devices/{id}/usages"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.createdAfter != nil {
-		localVarQueryParams.Add("created[after]", parameterToString(*r.createdAfter, ""))
+		parameterAddToQuery(localVarQueryParams, "created[after]", r.createdAfter, "")
 	}
 	if r.createdBefore != nil {
-		localVarQueryParams.Add("created[before]", parameterToString(*r.createdBefore, ""))
+		parameterAddToQuery(localVarQueryParams, "created[before]", r.createdBefore, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -210,9 +211,9 @@ FindProjectUsage Retrieve all usages for project
 
 Returns all usages for a project.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Project UUID
- @return ApiFindProjectUsageRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Project UUID
+	@return ApiFindProjectUsageRequest
 */
 func (a *UsagesApiService) FindProjectUsage(ctx context.Context, id string) ApiFindProjectUsageRequest {
 	return ApiFindProjectUsageRequest{
@@ -223,7 +224,8 @@ func (a *UsagesApiService) FindProjectUsage(ctx context.Context, id string) ApiF
 }
 
 // Execute executes the request
-//  @return ProjectUsageList
+//
+//	@return ProjectUsageList
 func (a *UsagesApiService) FindProjectUsageExecute(r ApiFindProjectUsageRequest) (*ProjectUsageList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -238,17 +240,17 @@ func (a *UsagesApiService) FindProjectUsageExecute(r ApiFindProjectUsageRequest)
 	}
 
 	localVarPath := localBasePath + "/projects/{id}/usages"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.createdAfter != nil {
-		localVarQueryParams.Add("created[after]", parameterToString(*r.createdAfter, ""))
+		parameterAddToQuery(localVarQueryParams, "created[after]", r.createdAfter, "")
 	}
 	if r.createdBefore != nil {
-		localVarQueryParams.Add("created[before]", parameterToString(*r.createdBefore, ""))
+		parameterAddToQuery(localVarQueryParams, "created[before]", r.createdBefore, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

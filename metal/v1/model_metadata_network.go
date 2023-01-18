@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the MetadataNetwork type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &MetadataNetwork{}
+
 // MetadataNetwork struct for MetadataNetwork
 type MetadataNetwork struct {
 	Addresses  []string                 `json:"addresses,omitempty"`
@@ -136,6 +139,14 @@ func (o *MetadataNetwork) SetNetwork(v MetadataNetworkNetwork) {
 }
 
 func (o MetadataNetwork) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o MetadataNetwork) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Addresses) {
 		toSerialize["addresses"] = o.Addresses
@@ -146,7 +157,7 @@ func (o MetadataNetwork) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Network) {
 		toSerialize["network"] = o.Network
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableMetadataNetwork struct {

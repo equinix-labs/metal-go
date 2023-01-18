@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the SpotMarketPricesList type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &SpotMarketPricesList{}
+
 // SpotMarketPricesList struct for SpotMarketPricesList
 type SpotMarketPricesList struct {
 	SpotMarketPrices *SpotPricesReport `json:"spot_market_prices,omitempty"`
@@ -70,11 +73,19 @@ func (o *SpotMarketPricesList) SetSpotMarketPrices(v SpotPricesReport) {
 }
 
 func (o SpotMarketPricesList) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o SpotMarketPricesList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.SpotMarketPrices) {
 		toSerialize["spot_market_prices"] = o.SpotMarketPrices
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableSpotMarketPricesList struct {

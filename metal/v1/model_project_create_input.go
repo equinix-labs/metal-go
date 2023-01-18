@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ProjectCreateInput type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ProjectCreateInput{}
+
 // ProjectCreateInput struct for ProjectCreateInput
 type ProjectCreateInput struct {
 	Customdata      map[string]interface{} `json:"customdata,omitempty"`
@@ -129,17 +132,23 @@ func (o *ProjectCreateInput) SetPaymentMethodId(v string) {
 }
 
 func (o ProjectCreateInput) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o ProjectCreateInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Customdata) {
 		toSerialize["customdata"] = o.Customdata
 	}
-	if true {
-		toSerialize["name"] = o.Name
-	}
+	toSerialize["name"] = o.Name
 	if !isNil(o.PaymentMethodId) {
 		toSerialize["payment_method_id"] = o.PaymentMethodId
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableProjectCreateInput struct {

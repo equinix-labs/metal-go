@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the VrfVirtualCircuitCreateInput type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &VrfVirtualCircuitCreateInput{}
+
 // VrfVirtualCircuitCreateInput struct for VrfVirtualCircuitCreateInput
 type VrfVirtualCircuitCreateInput struct {
 	// An IP address from the subnet that will be used on the Customer side. This parameter is optional, but if supplied, we will use the other usable IP address in the subnet as the Metal IP. By default, the last usable IP address in the subnet will be used.
@@ -416,6 +419,14 @@ func (o *VrfVirtualCircuitCreateInput) SetVrf(v string) {
 }
 
 func (o VrfVirtualCircuitCreateInput) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o VrfVirtualCircuitCreateInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.CustomerIp) {
 		toSerialize["customer_ip"] = o.CustomerIp
@@ -432,28 +443,18 @@ func (o VrfVirtualCircuitCreateInput) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
-	if true {
-		toSerialize["nni_vlan"] = o.NniVlan
-	}
-	if true {
-		toSerialize["peer_asn"] = o.PeerAsn
-	}
-	if true {
-		toSerialize["project"] = o.Project
-	}
+	toSerialize["nni_vlan"] = o.NniVlan
+	toSerialize["peer_asn"] = o.PeerAsn
+	toSerialize["project"] = o.Project
 	if !isNil(o.Speed) {
 		toSerialize["speed"] = o.Speed
 	}
-	if true {
-		toSerialize["subnet"] = o.Subnet
-	}
+	toSerialize["subnet"] = o.Subnet
 	if !isNil(o.Tags) {
 		toSerialize["tags"] = o.Tags
 	}
-	if true {
-		toSerialize["vrf"] = o.Vrf
-	}
-	return json.Marshal(toSerialize)
+	toSerialize["vrf"] = o.Vrf
+	return toSerialize, nil
 }
 
 type NullableVrfVirtualCircuitCreateInput struct {

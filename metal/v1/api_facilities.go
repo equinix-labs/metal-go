@@ -52,8 +52,8 @@ FindFacilities Retrieve all facilities
 
 Provides a listing of available datacenters where you can provision Packet devices.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiFindFacilitiesRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiFindFacilitiesRequest
 */
 func (a *FacilitiesApiService) FindFacilities(ctx context.Context) ApiFindFacilitiesRequest {
 	return ApiFindFacilitiesRequest{
@@ -63,7 +63,8 @@ func (a *FacilitiesApiService) FindFacilities(ctx context.Context) ApiFindFacili
 }
 
 // Execute executes the request
-//  @return FacilityList
+//
+//	@return FacilityList
 func (a *FacilitiesApiService) FindFacilitiesExecute(r ApiFindFacilitiesRequest) (*FacilityList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -88,10 +89,10 @@ func (a *FacilitiesApiService) FindFacilitiesExecute(r ApiFindFacilitiesRequest)
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				localVarQueryParams.Add("include", parameterToString(s.Index(i), "multi"))
+				parameterAddToQuery(localVarQueryParams, "include", s.Index(i), "multi")
 			}
 		} else {
-			localVarQueryParams.Add("include", parameterToString(t, "multi"))
+			parameterAddToQuery(localVarQueryParams, "include", t, "multi")
 		}
 	}
 	if r.exclude != nil {
@@ -99,10 +100,10 @@ func (a *FacilitiesApiService) FindFacilitiesExecute(r ApiFindFacilitiesRequest)
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				localVarQueryParams.Add("exclude", parameterToString(s.Index(i), "multi"))
+				parameterAddToQuery(localVarQueryParams, "exclude", s.Index(i), "multi")
 			}
 		} else {
-			localVarQueryParams.Add("exclude", parameterToString(t, "multi"))
+			parameterAddToQuery(localVarQueryParams, "exclude", t, "multi")
 		}
 	}
 	// to determine the Content-Type header
@@ -212,9 +213,9 @@ FindFacilitiesByOrganization Retrieve all facilities visible by the organization
 
 Returns a listing of available datacenters for the given organization
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Organization UUID
- @return ApiFindFacilitiesByOrganizationRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Organization UUID
+	@return ApiFindFacilitiesByOrganizationRequest
 */
 func (a *FacilitiesApiService) FindFacilitiesByOrganization(ctx context.Context, id string) ApiFindFacilitiesByOrganizationRequest {
 	return ApiFindFacilitiesByOrganizationRequest{
@@ -225,7 +226,8 @@ func (a *FacilitiesApiService) FindFacilitiesByOrganization(ctx context.Context,
 }
 
 // Execute executes the request
-//  @return FacilityList
+//
+//	@return FacilityList
 func (a *FacilitiesApiService) FindFacilitiesByOrganizationExecute(r ApiFindFacilitiesByOrganizationRequest) (*FacilityList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -240,17 +242,17 @@ func (a *FacilitiesApiService) FindFacilitiesByOrganizationExecute(r ApiFindFaci
 	}
 
 	localVarPath := localBasePath + "/organizations/{id}/facilities"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.include != nil {
-		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
+		parameterAddToQuery(localVarQueryParams, "include", r.include, "csv")
 	}
 	if r.exclude != nil {
-		localVarQueryParams.Add("exclude", parameterToString(*r.exclude, "csv"))
+		parameterAddToQuery(localVarQueryParams, "exclude", r.exclude, "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -381,9 +383,9 @@ FindFacilitiesByProject Retrieve all facilities visible by the project
 
 Returns a listing of available datacenters for the given project
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Project UUID
- @return ApiFindFacilitiesByProjectRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Project UUID
+	@return ApiFindFacilitiesByProjectRequest
 */
 func (a *FacilitiesApiService) FindFacilitiesByProject(ctx context.Context, id string) ApiFindFacilitiesByProjectRequest {
 	return ApiFindFacilitiesByProjectRequest{
@@ -394,7 +396,8 @@ func (a *FacilitiesApiService) FindFacilitiesByProject(ctx context.Context, id s
 }
 
 // Execute executes the request
-//  @return FacilityList
+//
+//	@return FacilityList
 func (a *FacilitiesApiService) FindFacilitiesByProjectExecute(r ApiFindFacilitiesByProjectRequest) (*FacilityList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -409,17 +412,17 @@ func (a *FacilitiesApiService) FindFacilitiesByProjectExecute(r ApiFindFacilitie
 	}
 
 	localVarPath := localBasePath + "/projects/{id}/facilities"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.include != nil {
-		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
+		parameterAddToQuery(localVarQueryParams, "include", r.include, "csv")
 	}
 	if r.exclude != nil {
-		localVarQueryParams.Add("exclude", parameterToString(*r.exclude, "csv"))
+		parameterAddToQuery(localVarQueryParams, "exclude", r.exclude, "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

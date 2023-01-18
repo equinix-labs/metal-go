@@ -16,6 +16,9 @@ import (
 	"time"
 )
 
+// checks if the AuthTokenUser type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &AuthTokenUser{}
+
 // AuthTokenUser struct for AuthTokenUser
 type AuthTokenUser struct {
 	AvatarThumbUrl   *string                `json:"avatar_thumb_url,omitempty"`
@@ -698,6 +701,14 @@ func (o *AuthTokenUser) SetUpdatedAt(v time.Time) {
 }
 
 func (o AuthTokenUser) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o AuthTokenUser) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.AvatarThumbUrl) {
 		toSerialize["avatar_thumb_url"] = o.AvatarThumbUrl
@@ -759,7 +770,7 @@ func (o AuthTokenUser) MarshalJSON() ([]byte, error) {
 	if !isNil(o.UpdatedAt) {
 		toSerialize["updated_at"] = o.UpdatedAt
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableAuthTokenUser struct {

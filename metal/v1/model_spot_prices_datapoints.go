@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the SpotPricesDatapoints type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &SpotPricesDatapoints{}
+
 // SpotPricesDatapoints struct for SpotPricesDatapoints
 type SpotPricesDatapoints struct {
 	Datapoints [][]float32 `json:"datapoints,omitempty"`
@@ -70,11 +73,19 @@ func (o *SpotPricesDatapoints) SetDatapoints(v [][]float32) {
 }
 
 func (o SpotPricesDatapoints) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o SpotPricesDatapoints) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Datapoints) {
 		toSerialize["datapoints"] = o.Datapoints
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableSpotPricesDatapoints struct {

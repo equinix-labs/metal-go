@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CapacityLevelPerBaremetal type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CapacityLevelPerBaremetal{}
+
 // CapacityLevelPerBaremetal struct for CapacityLevelPerBaremetal
 type CapacityLevelPerBaremetal struct {
 	Level *string `json:"level,omitempty"`
@@ -70,11 +73,19 @@ func (o *CapacityLevelPerBaremetal) SetLevel(v string) {
 }
 
 func (o CapacityLevelPerBaremetal) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o CapacityLevelPerBaremetal) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Level) {
 		toSerialize["level"] = o.Level
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableCapacityLevelPerBaremetal struct {

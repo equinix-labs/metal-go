@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the SSHKeyList type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &SSHKeyList{}
+
 // SSHKeyList struct for SSHKeyList
 type SSHKeyList struct {
 	SshKeys []SSHKey `json:"ssh_keys,omitempty"`
@@ -70,11 +73,19 @@ func (o *SSHKeyList) SetSshKeys(v []SSHKey) {
 }
 
 func (o SSHKeyList) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o SSHKeyList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.SshKeys) {
 		toSerialize["ssh_keys"] = o.SshKeys
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableSSHKeyList struct {

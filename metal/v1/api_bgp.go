@@ -38,9 +38,9 @@ DeleteBgpSession Delete the BGP session
 
 Deletes the BGP session.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id BGP session UUID
- @return ApiDeleteBgpSessionRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id BGP session UUID
+	@return ApiDeleteBgpSessionRequest
 */
 func (a *BGPApiService) DeleteBgpSession(ctx context.Context, id string) ApiDeleteBgpSessionRequest {
 	return ApiDeleteBgpSessionRequest{
@@ -64,7 +64,7 @@ func (a *BGPApiService) DeleteBgpSessionExecute(r ApiDeleteBgpSessionRequest) (*
 	}
 
 	localVarPath := localBasePath + "/bgp/sessions/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -190,9 +190,9 @@ FindBgpConfigByProject Retrieve a bgp config
 
 Returns a bgp config
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Project UUID
- @return ApiFindBgpConfigByProjectRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Project UUID
+	@return ApiFindBgpConfigByProjectRequest
 */
 func (a *BGPApiService) FindBgpConfigByProject(ctx context.Context, id string) ApiFindBgpConfigByProjectRequest {
 	return ApiFindBgpConfigByProjectRequest{
@@ -203,7 +203,8 @@ func (a *BGPApiService) FindBgpConfigByProject(ctx context.Context, id string) A
 }
 
 // Execute executes the request
-//  @return BgpConfig
+//
+//	@return BgpConfig
 func (a *BGPApiService) FindBgpConfigByProjectExecute(r ApiFindBgpConfigByProjectRequest) (*BgpConfig, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -218,17 +219,17 @@ func (a *BGPApiService) FindBgpConfigByProjectExecute(r ApiFindBgpConfigByProjec
 	}
 
 	localVarPath := localBasePath + "/projects/{id}/bgp-config"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.include != nil {
-		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
+		parameterAddToQuery(localVarQueryParams, "include", r.include, "csv")
 	}
 	if r.exclude != nil {
-		localVarQueryParams.Add("exclude", parameterToString(*r.exclude, "csv"))
+		parameterAddToQuery(localVarQueryParams, "exclude", r.exclude, "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -359,9 +360,9 @@ FindBgpSessionById Retrieve a BGP session
 
 Returns a BGP session
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id BGP session UUID
- @return ApiFindBgpSessionByIdRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id BGP session UUID
+	@return ApiFindBgpSessionByIdRequest
 */
 func (a *BGPApiService) FindBgpSessionById(ctx context.Context, id string) ApiFindBgpSessionByIdRequest {
 	return ApiFindBgpSessionByIdRequest{
@@ -372,7 +373,8 @@ func (a *BGPApiService) FindBgpSessionById(ctx context.Context, id string) ApiFi
 }
 
 // Execute executes the request
-//  @return BgpSession
+//
+//	@return BgpSession
 func (a *BGPApiService) FindBgpSessionByIdExecute(r ApiFindBgpSessionByIdRequest) (*BgpSession, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -387,17 +389,17 @@ func (a *BGPApiService) FindBgpSessionByIdExecute(r ApiFindBgpSessionByIdRequest
 	}
 
 	localVarPath := localBasePath + "/bgp/sessions/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.include != nil {
-		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
+		parameterAddToQuery(localVarQueryParams, "include", r.include, "csv")
 	}
 	if r.exclude != nil {
-		localVarQueryParams.Add("exclude", parameterToString(*r.exclude, "csv"))
+		parameterAddToQuery(localVarQueryParams, "exclude", r.exclude, "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -514,9 +516,9 @@ FindGlobalBgpRanges Retrieve all global bgp ranges
 
 Returns all global bgp ranges for a project
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Project UUID
- @return ApiFindGlobalBgpRangesRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Project UUID
+	@return ApiFindGlobalBgpRangesRequest
 */
 func (a *BGPApiService) FindGlobalBgpRanges(ctx context.Context, id string) ApiFindGlobalBgpRangesRequest {
 	return ApiFindGlobalBgpRangesRequest{
@@ -527,7 +529,8 @@ func (a *BGPApiService) FindGlobalBgpRanges(ctx context.Context, id string) ApiF
 }
 
 // Execute executes the request
-//  @return GlobalBgpRangeList
+//
+//	@return GlobalBgpRangeList
 func (a *BGPApiService) FindGlobalBgpRangesExecute(r ApiFindGlobalBgpRangesRequest) (*GlobalBgpRangeList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -542,7 +545,7 @@ func (a *BGPApiService) FindGlobalBgpRangesExecute(r ApiFindGlobalBgpRangesReque
 	}
 
 	localVarPath := localBasePath + "/projects/{id}/global-bgp-ranges"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -663,9 +666,9 @@ FindProjectBgpSessions Retrieve all BGP sessions for project
 
 Provides a listing of available BGP sessions for the project.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Project UUID
- @return ApiFindProjectBgpSessionsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Project UUID
+	@return ApiFindProjectBgpSessionsRequest
 */
 func (a *BGPApiService) FindProjectBgpSessions(ctx context.Context, id string) ApiFindProjectBgpSessionsRequest {
 	return ApiFindProjectBgpSessionsRequest{
@@ -676,7 +679,8 @@ func (a *BGPApiService) FindProjectBgpSessions(ctx context.Context, id string) A
 }
 
 // Execute executes the request
-//  @return BgpSessionList
+//
+//	@return BgpSessionList
 func (a *BGPApiService) FindProjectBgpSessionsExecute(r ApiFindProjectBgpSessionsRequest) (*BgpSessionList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -691,7 +695,7 @@ func (a *BGPApiService) FindProjectBgpSessionsExecute(r ApiFindProjectBgpSession
 	}
 
 	localVarPath := localBasePath + "/projects/{id}/bgp/sessions"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -808,9 +812,9 @@ RequestBgpConfig Requesting bgp config
 
 Requests to enable bgp configuration for a project.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Project UUID
- @return ApiRequestBgpConfigRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Project UUID
+	@return ApiRequestBgpConfigRequest
 */
 func (a *BGPApiService) RequestBgpConfig(ctx context.Context, id string) ApiRequestBgpConfigRequest {
 	return ApiRequestBgpConfigRequest{
@@ -834,7 +838,7 @@ func (a *BGPApiService) RequestBgpConfigExecute(r ApiRequestBgpConfigRequest) (*
 	}
 
 	localVarPath := localBasePath + "/projects/{id}/bgp-configs"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -969,9 +973,9 @@ UpdateBgpSession Update the BGP session
 
 Updates the BGP session by either enabling or disabling the default route functionality.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id BGP session UUID
- @return ApiUpdateBgpSessionRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id BGP session UUID
+	@return ApiUpdateBgpSessionRequest
 */
 func (a *BGPApiService) UpdateBgpSession(ctx context.Context, id string) ApiUpdateBgpSessionRequest {
 	return ApiUpdateBgpSessionRequest{
@@ -995,7 +999,7 @@ func (a *BGPApiService) UpdateBgpSessionExecute(r ApiUpdateBgpSessionRequest) (*
 	}
 
 	localVarPath := localBasePath + "/bgp/sessions/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

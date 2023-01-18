@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UserUpdateInput type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UserUpdateInput{}
+
 // UserUpdateInput struct for UserUpdateInput
 type UserUpdateInput struct {
 	Customdata  map[string]interface{} `json:"customdata,omitempty"`
@@ -235,6 +238,14 @@ func (o *UserUpdateInput) SetTimezone(v string) {
 }
 
 func (o UserUpdateInput) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o UserUpdateInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Customdata) {
 		toSerialize["customdata"] = o.Customdata
@@ -254,7 +265,7 @@ func (o UserUpdateInput) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Timezone) {
 		toSerialize["timezone"] = o.Timezone
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableUserUpdateInput struct {

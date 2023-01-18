@@ -58,8 +58,8 @@ FindPlans Retrieve all plans
 
 Provides a listing of available plans to provision your device on.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiFindPlansRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiFindPlansRequest
 */
 func (a *PlansApiService) FindPlans(ctx context.Context) ApiFindPlansRequest {
 	return ApiFindPlansRequest{
@@ -69,7 +69,8 @@ func (a *PlansApiService) FindPlans(ctx context.Context) ApiFindPlansRequest {
 }
 
 // Execute executes the request
-//  @return PlanList
+//
+//	@return PlanList
 func (a *PlansApiService) FindPlansExecute(r ApiFindPlansRequest) (*PlanList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -90,13 +91,13 @@ func (a *PlansApiService) FindPlansExecute(r ApiFindPlansRequest) (*PlanList, *h
 	localVarFormParams := url.Values{}
 
 	if r.type_ != nil {
-		localVarQueryParams.Add("type", parameterToString(*r.type_, ""))
+		parameterAddToQuery(localVarQueryParams, "type", r.type_, "")
 	}
 	if r.include != nil {
-		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
+		parameterAddToQuery(localVarQueryParams, "include", r.include, "csv")
 	}
 	if r.exclude != nil {
-		localVarQueryParams.Add("exclude", parameterToString(*r.exclude, "csv"))
+		parameterAddToQuery(localVarQueryParams, "exclude", r.exclude, "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -205,9 +206,9 @@ FindPlansByProject Retrieve all plans visible by the project
 
 Returns a listing of available plans for the given project
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Project UUID
- @return ApiFindPlansByProjectRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Project UUID
+	@return ApiFindPlansByProjectRequest
 */
 func (a *PlansApiService) FindPlansByProject(ctx context.Context, id string) ApiFindPlansByProjectRequest {
 	return ApiFindPlansByProjectRequest{
@@ -218,7 +219,8 @@ func (a *PlansApiService) FindPlansByProject(ctx context.Context, id string) Api
 }
 
 // Execute executes the request
-//  @return PlanList
+//
+//	@return PlanList
 func (a *PlansApiService) FindPlansByProjectExecute(r ApiFindPlansByProjectRequest) (*PlanList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -233,17 +235,17 @@ func (a *PlansApiService) FindPlansByProjectExecute(r ApiFindPlansByProjectReque
 	}
 
 	localVarPath := localBasePath + "/projects/{id}/plans"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.include != nil {
-		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
+		parameterAddToQuery(localVarQueryParams, "include", r.include, "csv")
 	}
 	if r.exclude != nil {
-		localVarQueryParams.Add("exclude", parameterToString(*r.exclude, "csv"))
+		parameterAddToQuery(localVarQueryParams, "exclude", r.exclude, "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

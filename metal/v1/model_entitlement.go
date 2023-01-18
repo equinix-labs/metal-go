@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the Entitlement type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Entitlement{}
+
 // Entitlement struct for Entitlement
 type Entitlement struct {
 	Description   *string                `json:"description,omitempty"`
@@ -416,6 +419,14 @@ func (o *Entitlement) SetWeight(v int32) {
 }
 
 func (o Entitlement) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o Entitlement) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Description) {
 		toSerialize["description"] = o.Description
@@ -426,9 +437,7 @@ func (o Entitlement) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Href) {
 		toSerialize["href"] = o.Href
 	}
-	if true {
-		toSerialize["id"] = o.Id
-	}
+	toSerialize["id"] = o.Id
 	if !isNil(o.InstanceQuota) {
 		toSerialize["instance_quota"] = o.InstanceQuota
 	}
@@ -441,19 +450,15 @@ func (o Entitlement) MarshalJSON() ([]byte, error) {
 	if !isNil(o.ProjectQuota) {
 		toSerialize["project_quota"] = o.ProjectQuota
 	}
-	if true {
-		toSerialize["slug"] = o.Slug
-	}
+	toSerialize["slug"] = o.Slug
 	if !isNil(o.VolumeLimits) {
 		toSerialize["volume_limits"] = o.VolumeLimits
 	}
 	if !isNil(o.VolumeQuota) {
 		toSerialize["volume_quota"] = o.VolumeQuota
 	}
-	if true {
-		toSerialize["weight"] = o.Weight
-	}
-	return json.Marshal(toSerialize)
+	toSerialize["weight"] = o.Weight
+	return toSerialize, nil
 }
 
 type NullableEntitlement struct {

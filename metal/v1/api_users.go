@@ -44,8 +44,8 @@ CreateUser Create a user
 
 Creates a user.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiCreateUserRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiCreateUserRequest
 */
 func (a *UsersApiService) CreateUser(ctx context.Context) ApiCreateUserRequest {
 	return ApiCreateUserRequest{
@@ -55,7 +55,8 @@ func (a *UsersApiService) CreateUser(ctx context.Context) ApiCreateUserRequest {
 }
 
 // Execute executes the request
-//  @return User
+//
+//	@return User
 func (a *UsersApiService) CreateUserExecute(r ApiCreateUserRequest) (*User, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -197,8 +198,8 @@ FindCurrentUser Retrieve the current user
 
 Returns the user object for the currently logged-in user.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiFindCurrentUserRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiFindCurrentUserRequest
 */
 func (a *UsersApiService) FindCurrentUser(ctx context.Context) ApiFindCurrentUserRequest {
 	return ApiFindCurrentUserRequest{
@@ -208,7 +209,8 @@ func (a *UsersApiService) FindCurrentUser(ctx context.Context) ApiFindCurrentUse
 }
 
 // Execute executes the request
-//  @return User
+//
+//	@return User
 func (a *UsersApiService) FindCurrentUserExecute(r ApiFindCurrentUserRequest) (*User, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -229,10 +231,10 @@ func (a *UsersApiService) FindCurrentUserExecute(r ApiFindCurrentUserRequest) (*
 	localVarFormParams := url.Values{}
 
 	if r.include != nil {
-		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
+		parameterAddToQuery(localVarQueryParams, "include", r.include, "csv")
 	}
 	if r.exclude != nil {
-		localVarQueryParams.Add("exclude", parameterToString(*r.exclude, "csv"))
+		parameterAddToQuery(localVarQueryParams, "exclude", r.exclude, "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -354,8 +356,8 @@ FindInvitations Retrieve current user invitations
 
 Returns all invitations in current user.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiFindInvitationsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiFindInvitationsRequest
 */
 func (a *UsersApiService) FindInvitations(ctx context.Context) ApiFindInvitationsRequest {
 	return ApiFindInvitationsRequest{
@@ -365,7 +367,8 @@ func (a *UsersApiService) FindInvitations(ctx context.Context) ApiFindInvitation
 }
 
 // Execute executes the request
-//  @return InvitationList
+//
+//	@return InvitationList
 func (a *UsersApiService) FindInvitationsExecute(r ApiFindInvitationsRequest) (*InvitationList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -386,16 +389,16 @@ func (a *UsersApiService) FindInvitationsExecute(r ApiFindInvitationsRequest) (*
 	localVarFormParams := url.Values{}
 
 	if r.include != nil {
-		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
+		parameterAddToQuery(localVarQueryParams, "include", r.include, "csv")
 	}
 	if r.exclude != nil {
-		localVarQueryParams.Add("exclude", parameterToString(*r.exclude, "csv"))
+		parameterAddToQuery(localVarQueryParams, "exclude", r.exclude, "csv")
 	}
 	if r.page != nil {
-		localVarQueryParams.Add("page", parameterToString(*r.page, ""))
+		parameterAddToQuery(localVarQueryParams, "page", r.page, "")
 	}
 	if r.perPage != nil {
-		localVarQueryParams.Add("per_page", parameterToString(*r.perPage, ""))
+		parameterAddToQuery(localVarQueryParams, "per_page", r.perPage, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -526,9 +529,9 @@ FindUserById Retrieve a user
 
 Returns a single user if the user has access
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id User UUID
- @return ApiFindUserByIdRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id User UUID
+	@return ApiFindUserByIdRequest
 */
 func (a *UsersApiService) FindUserById(ctx context.Context, id string) ApiFindUserByIdRequest {
 	return ApiFindUserByIdRequest{
@@ -539,7 +542,8 @@ func (a *UsersApiService) FindUserById(ctx context.Context, id string) ApiFindUs
 }
 
 // Execute executes the request
-//  @return User
+//
+//	@return User
 func (a *UsersApiService) FindUserByIdExecute(r ApiFindUserByIdRequest) (*User, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -554,17 +558,17 @@ func (a *UsersApiService) FindUserByIdExecute(r ApiFindUserByIdRequest) (*User, 
 	}
 
 	localVarPath := localBasePath + "/users/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.include != nil {
-		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
+		parameterAddToQuery(localVarQueryParams, "include", r.include, "csv")
 	}
 	if r.exclude != nil {
-		localVarQueryParams.Add("exclude", parameterToString(*r.exclude, "csv"))
+		parameterAddToQuery(localVarQueryParams, "exclude", r.exclude, "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -681,9 +685,9 @@ FindUserCustomdata Retrieve the custom metadata of a user
 
 Provides the custom metadata stored for this user in json format
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id User UUID
- @return ApiFindUserCustomdataRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id User UUID
+	@return ApiFindUserCustomdataRequest
 */
 func (a *UsersApiService) FindUserCustomdata(ctx context.Context, id string) ApiFindUserCustomdataRequest {
 	return ApiFindUserCustomdataRequest{
@@ -707,7 +711,7 @@ func (a *UsersApiService) FindUserCustomdataExecute(r ApiFindUserCustomdataReque
 	}
 
 	localVarPath := localBasePath + "/users/{id}/customdata"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -846,8 +850,8 @@ FindUsers Retrieve all users
 
 Returns a list of users that the are accessible to the current user (all users in the current user’s projects, essentially).
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiFindUsersRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiFindUsersRequest
 */
 func (a *UsersApiService) FindUsers(ctx context.Context) ApiFindUsersRequest {
 	return ApiFindUsersRequest{
@@ -857,7 +861,8 @@ func (a *UsersApiService) FindUsers(ctx context.Context) ApiFindUsersRequest {
 }
 
 // Execute executes the request
-//  @return UserList
+//
+//	@return UserList
 func (a *UsersApiService) FindUsersExecute(r ApiFindUsersRequest) (*UserList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -878,16 +883,16 @@ func (a *UsersApiService) FindUsersExecute(r ApiFindUsersRequest) (*UserList, *h
 	localVarFormParams := url.Values{}
 
 	if r.include != nil {
-		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
+		parameterAddToQuery(localVarQueryParams, "include", r.include, "csv")
 	}
 	if r.exclude != nil {
-		localVarQueryParams.Add("exclude", parameterToString(*r.exclude, "csv"))
+		parameterAddToQuery(localVarQueryParams, "exclude", r.exclude, "csv")
 	}
 	if r.page != nil {
-		localVarQueryParams.Add("page", parameterToString(*r.page, ""))
+		parameterAddToQuery(localVarQueryParams, "page", r.page, "")
 	}
 	if r.perPage != nil {
-		localVarQueryParams.Add("per_page", parameterToString(*r.perPage, ""))
+		parameterAddToQuery(localVarQueryParams, "per_page", r.perPage, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -988,8 +993,8 @@ UpdateCurrentUser Update the current user
 
 Updates the currently logged-in user.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiUpdateCurrentUserRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiUpdateCurrentUserRequest
 */
 func (a *UsersApiService) UpdateCurrentUser(ctx context.Context) ApiUpdateCurrentUserRequest {
 	return ApiUpdateCurrentUserRequest{
@@ -999,7 +1004,8 @@ func (a *UsersApiService) UpdateCurrentUser(ctx context.Context) ApiUpdateCurren
 }
 
 // Execute executes the request
-//  @return User
+//
+//	@return User
 func (a *UsersApiService) UpdateCurrentUserExecute(r ApiUpdateCurrentUserRequest) (*User, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut

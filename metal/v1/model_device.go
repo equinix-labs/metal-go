@@ -16,6 +16,9 @@ import (
 	"time"
 )
 
+// checks if the Device type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Device{}
+
 // Device struct for Device
 type Device struct {
 	AlwaysPxe           *bool                  `json:"always_pxe,omitempty"`
@@ -1333,6 +1336,14 @@ func (o *Device) SetVolumes(v []Href) {
 }
 
 func (o Device) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o Device) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.AlwaysPxe) {
 		toSerialize["always_pxe"] = o.AlwaysPxe
@@ -1451,7 +1462,7 @@ func (o Device) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Volumes) {
 		toSerialize["volumes"] = o.Volumes
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableDevice struct {

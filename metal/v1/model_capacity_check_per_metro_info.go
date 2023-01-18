@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CapacityCheckPerMetroInfo type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CapacityCheckPerMetroInfo{}
+
 // CapacityCheckPerMetroInfo struct for CapacityCheckPerMetroInfo
 type CapacityCheckPerMetroInfo struct {
 	// Returns true if there is enough capacity in the metro to fulfill the quantity set. Returns false if there is not enough.
@@ -173,6 +176,14 @@ func (o *CapacityCheckPerMetroInfo) SetQuantity(v string) {
 }
 
 func (o CapacityCheckPerMetroInfo) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o CapacityCheckPerMetroInfo) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Available) {
 		toSerialize["available"] = o.Available
@@ -186,7 +197,7 @@ func (o CapacityCheckPerMetroInfo) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Quantity) {
 		toSerialize["quantity"] = o.Quantity
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableCapacityCheckPerMetroInfo struct {

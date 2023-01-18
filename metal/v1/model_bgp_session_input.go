@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the BGPSessionInput type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &BGPSessionInput{}
+
 // BGPSessionInput struct for BGPSessionInput
 type BGPSessionInput struct {
 	// Address family for BGP session.
@@ -109,6 +112,14 @@ func (o *BGPSessionInput) SetDefaultRoute(v bool) {
 }
 
 func (o BGPSessionInput) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o BGPSessionInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.AddressFamily) {
 		toSerialize["address_family"] = o.AddressFamily
@@ -116,7 +127,7 @@ func (o BGPSessionInput) MarshalJSON() ([]byte, error) {
 	if !isNil(o.DefaultRoute) {
 		toSerialize["default_route"] = o.DefaultRoute
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableBGPSessionInput struct {

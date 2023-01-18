@@ -43,8 +43,8 @@ CreatePasswordResetToken Create a password reset token
 
 Creates a password reset token
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiCreatePasswordResetTokenRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiCreatePasswordResetTokenRequest
 */
 func (a *PasswordResetTokensApiService) CreatePasswordResetToken(ctx context.Context) ApiCreatePasswordResetTokenRequest {
 	return ApiCreatePasswordResetTokenRequest{
@@ -75,7 +75,7 @@ func (a *PasswordResetTokensApiService) CreatePasswordResetTokenExecute(r ApiCre
 		return nil, reportError("email is required and must be specified")
 	}
 
-	localVarQueryParams.Add("email", parameterToString(*r.email, ""))
+	parameterAddToQuery(localVarQueryParams, "email", r.email, "")
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -170,8 +170,8 @@ ResetPassword Reset current user password
 
 Resets current user password.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiResetPasswordRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiResetPasswordRequest
 */
 func (a *PasswordResetTokensApiService) ResetPassword(ctx context.Context) ApiResetPasswordRequest {
 	return ApiResetPasswordRequest{
@@ -181,7 +181,8 @@ func (a *PasswordResetTokensApiService) ResetPassword(ctx context.Context) ApiRe
 }
 
 // Execute executes the request
-//  @return NewPassword
+//
+//	@return NewPassword
 func (a *PasswordResetTokensApiService) ResetPasswordExecute(r ApiResetPasswordRequest) (*NewPassword, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodDelete

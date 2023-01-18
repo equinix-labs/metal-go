@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the PlanSpecsFeatures type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PlanSpecsFeatures{}
+
 // PlanSpecsFeatures struct for PlanSpecsFeatures
 type PlanSpecsFeatures struct {
 	Raid *bool `json:"raid,omitempty"`
@@ -136,6 +139,14 @@ func (o *PlanSpecsFeatures) SetUefi(v bool) {
 }
 
 func (o PlanSpecsFeatures) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o PlanSpecsFeatures) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Raid) {
 		toSerialize["raid"] = o.Raid
@@ -146,7 +157,7 @@ func (o PlanSpecsFeatures) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Uefi) {
 		toSerialize["uefi"] = o.Uefi
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullablePlanSpecsFeatures struct {

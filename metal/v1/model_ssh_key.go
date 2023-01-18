@@ -16,6 +16,9 @@ import (
 	"time"
 )
 
+// checks if the SSHKey type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &SSHKey{}
+
 // SSHKey struct for SSHKey
 type SSHKey struct {
 	CreatedAt   *time.Time `json:"created_at,omitempty"`
@@ -302,6 +305,14 @@ func (o *SSHKey) SetUpdatedAt(v time.Time) {
 }
 
 func (o SSHKey) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o SSHKey) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt
@@ -327,7 +338,7 @@ func (o SSHKey) MarshalJSON() ([]byte, error) {
 	if !isNil(o.UpdatedAt) {
 		toSerialize["updated_at"] = o.UpdatedAt
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableSSHKey struct {

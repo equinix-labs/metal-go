@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CapacityPerMetroInput type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CapacityPerMetroInput{}
+
 // CapacityPerMetroInput struct for CapacityPerMetroInput
 type CapacityPerMetroInput struct {
 	Servers []MetroServerInfo `json:"servers,omitempty"`
@@ -70,11 +73,19 @@ func (o *CapacityPerMetroInput) SetServers(v []MetroServerInfo) {
 }
 
 func (o CapacityPerMetroInput) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o CapacityPerMetroInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Servers) {
 		toSerialize["servers"] = o.Servers
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableCapacityPerMetroInput struct {

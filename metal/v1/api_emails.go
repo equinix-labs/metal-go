@@ -44,8 +44,8 @@ CreateEmail Create an email
 
 Add a new email address to the current user.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiCreateEmailRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiCreateEmailRequest
 */
 func (a *EmailsApiService) CreateEmail(ctx context.Context) ApiCreateEmailRequest {
 	return ApiCreateEmailRequest{
@@ -55,7 +55,8 @@ func (a *EmailsApiService) CreateEmail(ctx context.Context) ApiCreateEmailReques
 }
 
 // Execute executes the request
-//  @return Email
+//
+//	@return Email
 func (a *EmailsApiService) CreateEmailExecute(r ApiCreateEmailRequest) (*Email, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -184,9 +185,9 @@ DeleteEmail Delete the email
 
 Deletes the email.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Email UUID
- @return ApiDeleteEmailRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Email UUID
+	@return ApiDeleteEmailRequest
 */
 func (a *EmailsApiService) DeleteEmail(ctx context.Context, id string) ApiDeleteEmailRequest {
 	return ApiDeleteEmailRequest{
@@ -210,7 +211,7 @@ func (a *EmailsApiService) DeleteEmailExecute(r ApiDeleteEmailRequest) (*http.Re
 	}
 
 	localVarPath := localBasePath + "/emails/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -336,9 +337,9 @@ FindEmailById Retrieve an email
 
 Provides one of the user’s emails.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Email UUID
- @return ApiFindEmailByIdRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Email UUID
+	@return ApiFindEmailByIdRequest
 */
 func (a *EmailsApiService) FindEmailById(ctx context.Context, id string) ApiFindEmailByIdRequest {
 	return ApiFindEmailByIdRequest{
@@ -349,7 +350,8 @@ func (a *EmailsApiService) FindEmailById(ctx context.Context, id string) ApiFind
 }
 
 // Execute executes the request
-//  @return Email
+//
+//	@return Email
 func (a *EmailsApiService) FindEmailByIdExecute(r ApiFindEmailByIdRequest) (*Email, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -364,17 +366,17 @@ func (a *EmailsApiService) FindEmailByIdExecute(r ApiFindEmailByIdRequest) (*Ema
 	}
 
 	localVarPath := localBasePath + "/emails/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.include != nil {
-		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
+		parameterAddToQuery(localVarQueryParams, "include", r.include, "csv")
 	}
 	if r.exclude != nil {
-		localVarQueryParams.Add("exclude", parameterToString(*r.exclude, "csv"))
+		parameterAddToQuery(localVarQueryParams, "exclude", r.exclude, "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -498,9 +500,9 @@ UpdateEmail Update the email
 
 Updates the email.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Email UUID
- @return ApiUpdateEmailRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Email UUID
+	@return ApiUpdateEmailRequest
 */
 func (a *EmailsApiService) UpdateEmail(ctx context.Context, id string) ApiUpdateEmailRequest {
 	return ApiUpdateEmailRequest{
@@ -511,7 +513,8 @@ func (a *EmailsApiService) UpdateEmail(ctx context.Context, id string) ApiUpdate
 }
 
 // Execute executes the request
-//  @return Email
+//
+//	@return Email
 func (a *EmailsApiService) UpdateEmailExecute(r ApiUpdateEmailRequest) (*Email, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
@@ -526,7 +529,7 @@ func (a *EmailsApiService) UpdateEmailExecute(r ApiUpdateEmailRequest) (*Email, 
 	}
 
 	localVarPath := localBasePath + "/emails/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

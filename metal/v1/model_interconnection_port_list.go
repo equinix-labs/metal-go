@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the InterconnectionPortList type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &InterconnectionPortList{}
+
 // InterconnectionPortList struct for InterconnectionPortList
 type InterconnectionPortList struct {
 	Ports []InterconnectionPort `json:"ports,omitempty"`
@@ -70,11 +73,19 @@ func (o *InterconnectionPortList) SetPorts(v []InterconnectionPort) {
 }
 
 func (o InterconnectionPortList) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o InterconnectionPortList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Ports) {
 		toSerialize["ports"] = o.Ports
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableInterconnectionPortList struct {

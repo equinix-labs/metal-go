@@ -37,8 +37,8 @@ FindMetros Retrieve all metros
 
 Provides a listing of available metros
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiFindMetrosRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiFindMetrosRequest
 */
 func (a *MetrosApiService) FindMetros(ctx context.Context) ApiFindMetrosRequest {
 	return ApiFindMetrosRequest{
@@ -48,7 +48,8 @@ func (a *MetrosApiService) FindMetros(ctx context.Context) ApiFindMetrosRequest 
 }
 
 // Execute executes the request
-//  @return MetroList
+//
+//	@return MetroList
 func (a *MetrosApiService) FindMetrosExecute(r ApiFindMetrosRequest) (*MetroList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -161,9 +162,9 @@ GetMetro Retrieve a specific Metro's details
 
 Show the details for a metro, including name, code, and country.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Metro UUID
- @return ApiGetMetroRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Metro UUID
+	@return ApiGetMetroRequest
 */
 func (a *MetrosApiService) GetMetro(ctx context.Context, id string) ApiGetMetroRequest {
 	return ApiGetMetroRequest{
@@ -174,7 +175,8 @@ func (a *MetrosApiService) GetMetro(ctx context.Context, id string) ApiGetMetroR
 }
 
 // Execute executes the request
-//  @return Metro
+//
+//	@return Metro
 func (a *MetrosApiService) GetMetroExecute(r ApiGetMetroRequest) (*Metro, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -189,7 +191,7 @@ func (a *MetrosApiService) GetMetroExecute(r ApiGetMetroRequest) (*Metro, *http.
 	}
 
 	localVarPath := localBasePath + "/locations/metros/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

@@ -52,9 +52,9 @@ FindHardwareReservationById Retrieve a hardware reservation
 
 Returns a single hardware reservation
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id HardwareReservation UUID
- @return ApiFindHardwareReservationByIdRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id HardwareReservation UUID
+	@return ApiFindHardwareReservationByIdRequest
 */
 func (a *HardwareReservationsApiService) FindHardwareReservationById(ctx context.Context, id string) ApiFindHardwareReservationByIdRequest {
 	return ApiFindHardwareReservationByIdRequest{
@@ -65,7 +65,8 @@ func (a *HardwareReservationsApiService) FindHardwareReservationById(ctx context
 }
 
 // Execute executes the request
-//  @return Device
+//
+//	@return Device
 func (a *HardwareReservationsApiService) FindHardwareReservationByIdExecute(r ApiFindHardwareReservationByIdRequest) (*Device, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -80,17 +81,17 @@ func (a *HardwareReservationsApiService) FindHardwareReservationByIdExecute(r Ap
 	}
 
 	localVarPath := localBasePath + "/hardware-reservations/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.include != nil {
-		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
+		parameterAddToQuery(localVarQueryParams, "include", r.include, "csv")
 	}
 	if r.exclude != nil {
-		localVarQueryParams.Add("exclude", parameterToString(*r.exclude, "csv"))
+		parameterAddToQuery(localVarQueryParams, "exclude", r.exclude, "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -235,9 +236,9 @@ FindProjectHardwareReservations Retrieve all hardware reservations for a given p
 
 Provides a collection of hardware reservations for a given project.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Project UUID
- @return ApiFindProjectHardwareReservationsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Project UUID
+	@return ApiFindProjectHardwareReservationsRequest
 */
 func (a *HardwareReservationsApiService) FindProjectHardwareReservations(ctx context.Context, id string) ApiFindProjectHardwareReservationsRequest {
 	return ApiFindProjectHardwareReservationsRequest{
@@ -248,7 +249,8 @@ func (a *HardwareReservationsApiService) FindProjectHardwareReservations(ctx con
 }
 
 // Execute executes the request
-//  @return HardwareReservationList
+//
+//	@return HardwareReservationList
 func (a *HardwareReservationsApiService) FindProjectHardwareReservationsExecute(r ApiFindProjectHardwareReservationsRequest) (*HardwareReservationList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -263,23 +265,23 @@ func (a *HardwareReservationsApiService) FindProjectHardwareReservationsExecute(
 	}
 
 	localVarPath := localBasePath + "/projects/{id}/hardware-reservations"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.include != nil {
-		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
+		parameterAddToQuery(localVarQueryParams, "include", r.include, "csv")
 	}
 	if r.exclude != nil {
-		localVarQueryParams.Add("exclude", parameterToString(*r.exclude, "csv"))
+		parameterAddToQuery(localVarQueryParams, "exclude", r.exclude, "csv")
 	}
 	if r.page != nil {
-		localVarQueryParams.Add("page", parameterToString(*r.page, ""))
+		parameterAddToQuery(localVarQueryParams, "page", r.page, "")
 	}
 	if r.perPage != nil {
-		localVarQueryParams.Add("per_page", parameterToString(*r.perPage, ""))
+		parameterAddToQuery(localVarQueryParams, "per_page", r.perPage, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -403,9 +405,9 @@ MoveHardwareReservation Move a hardware reservation
 
 Move a hardware reservation to another project
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Hardware Reservation UUID
- @return ApiMoveHardwareReservationRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Hardware Reservation UUID
+	@return ApiMoveHardwareReservationRequest
 */
 func (a *HardwareReservationsApiService) MoveHardwareReservation(ctx context.Context, id string) ApiMoveHardwareReservationRequest {
 	return ApiMoveHardwareReservationRequest{
@@ -416,7 +418,8 @@ func (a *HardwareReservationsApiService) MoveHardwareReservation(ctx context.Con
 }
 
 // Execute executes the request
-//  @return HardwareReservation
+//
+//	@return HardwareReservation
 func (a *HardwareReservationsApiService) MoveHardwareReservationExecute(r ApiMoveHardwareReservationRequest) (*HardwareReservation, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -431,7 +434,7 @@ func (a *HardwareReservationsApiService) MoveHardwareReservationExecute(r ApiMov
 	}
 
 	localVarPath := localBasePath + "/hardware-reservations/{id}/move"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

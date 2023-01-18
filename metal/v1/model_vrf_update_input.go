@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the VrfUpdateInput type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &VrfUpdateInput{}
+
 // VrfUpdateInput struct for VrfUpdateInput
 type VrfUpdateInput struct {
 	Description *string `json:"description,omitempty"`
@@ -171,6 +174,14 @@ func (o *VrfUpdateInput) SetName(v string) {
 }
 
 func (o VrfUpdateInput) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o VrfUpdateInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Description) {
 		toSerialize["description"] = o.Description
@@ -184,7 +195,7 @@ func (o VrfUpdateInput) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableVrfUpdateInput struct {

@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the FacilityInput type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &FacilityInput{}
+
 // FacilityInput struct for FacilityInput
 type FacilityInput struct {
 	Facility FacilityInputFacility `json:"facility"`
@@ -63,11 +66,17 @@ func (o *FacilityInput) SetFacility(v FacilityInputFacility) {
 }
 
 func (o FacilityInput) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["facility"] = o.Facility
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o FacilityInput) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["facility"] = o.Facility
+	return toSerialize, nil
 }
 
 type NullableFacilityInput struct {

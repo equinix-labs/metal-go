@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the VrfMetalGatewayCreateInput type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &VrfMetalGatewayCreateInput{}
+
 // VrfMetalGatewayCreateInput struct for VrfMetalGatewayCreateInput
 type VrfMetalGatewayCreateInput struct {
 	// The UUID an a VRF IP Reservation that belongs to the same project as the one in which the Metal Gateway is to be created. Additionally, the VRF IP Reservation and the Virtual Network must reside in the same Metro.
@@ -91,14 +94,18 @@ func (o *VrfMetalGatewayCreateInput) SetVirtualNetworkId(v string) {
 }
 
 func (o VrfMetalGatewayCreateInput) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["ip_reservation_id"] = o.IpReservationId
-	}
-	if true {
-		toSerialize["virtual_network_id"] = o.VirtualNetworkId
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o VrfMetalGatewayCreateInput) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["ip_reservation_id"] = o.IpReservationId
+	toSerialize["virtual_network_id"] = o.VirtualNetworkId
+	return toSerialize, nil
 }
 
 type NullableVrfMetalGatewayCreateInput struct {

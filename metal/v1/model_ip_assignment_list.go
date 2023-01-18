@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the IPAssignmentList type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &IPAssignmentList{}
+
 // IPAssignmentList struct for IPAssignmentList
 type IPAssignmentList struct {
 	IpAddresses []IPAssignment `json:"ip_addresses,omitempty"`
@@ -70,11 +73,19 @@ func (o *IPAssignmentList) SetIpAddresses(v []IPAssignment) {
 }
 
 func (o IPAssignmentList) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o IPAssignmentList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.IpAddresses) {
 		toSerialize["ip_addresses"] = o.IpAddresses
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableIPAssignmentList struct {

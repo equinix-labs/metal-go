@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ParentBlock type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ParentBlock{}
+
 // ParentBlock struct for ParentBlock
 type ParentBlock struct {
 	Cidr    *int32  `json:"cidr,omitempty"`
@@ -169,6 +172,14 @@ func (o *ParentBlock) SetNetwork(v string) {
 }
 
 func (o ParentBlock) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o ParentBlock) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Cidr) {
 		toSerialize["cidr"] = o.Cidr
@@ -182,7 +193,7 @@ func (o ParentBlock) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Network) {
 		toSerialize["network"] = o.Network
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableParentBlock struct {

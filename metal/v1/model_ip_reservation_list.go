@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the IPReservationList type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &IPReservationList{}
+
 // IPReservationList struct for IPReservationList
 type IPReservationList struct {
 	IpAddresses []IPReservationListIpAddressesInner `json:"ip_addresses,omitempty"`
@@ -70,11 +73,19 @@ func (o *IPReservationList) SetIpAddresses(v []IPReservationListIpAddressesInner
 }
 
 func (o IPReservationList) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o IPReservationList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.IpAddresses) {
 		toSerialize["ip_addresses"] = o.IpAddresses
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableIPReservationList struct {

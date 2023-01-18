@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the Metadata type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Metadata{}
+
 // Metadata struct for Metadata
 type Metadata struct {
 	Class      *string                `json:"class,omitempty"`
@@ -603,6 +606,14 @@ func (o *Metadata) SetVolumes(v []string) {
 }
 
 func (o Metadata) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o Metadata) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Class) {
 		toSerialize["class"] = o.Class
@@ -655,7 +666,7 @@ func (o Metadata) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Volumes) {
 		toSerialize["volumes"] = o.Volumes
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableMetadata struct {

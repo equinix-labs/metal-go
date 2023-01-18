@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the Email type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Email{}
+
 // Email struct for Email
 type Email struct {
 	Address  *string `json:"address,omitempty"`
@@ -202,6 +205,14 @@ func (o *Email) SetVerified(v bool) {
 }
 
 func (o Email) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o Email) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Address) {
 		toSerialize["address"] = o.Address
@@ -218,7 +229,7 @@ func (o Email) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Verified) {
 		toSerialize["verified"] = o.Verified
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableEmail struct {

@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the DeviceMetro type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &DeviceMetro{}
+
 // DeviceMetro struct for DeviceMetro
 type DeviceMetro struct {
 	Code    *string `json:"code,omitempty"`
@@ -169,6 +172,14 @@ func (o *DeviceMetro) SetName(v string) {
 }
 
 func (o DeviceMetro) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o DeviceMetro) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Code) {
 		toSerialize["code"] = o.Code
@@ -182,7 +193,7 @@ func (o DeviceMetro) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableDeviceMetro struct {

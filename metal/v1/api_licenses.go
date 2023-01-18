@@ -45,9 +45,9 @@ CreateLicense Create a License
 
 Creates a new license for the given project
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Project UUID
- @return ApiCreateLicenseRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Project UUID
+	@return ApiCreateLicenseRequest
 */
 func (a *LicensesApiService) CreateLicense(ctx context.Context, id string) ApiCreateLicenseRequest {
 	return ApiCreateLicenseRequest{
@@ -58,7 +58,8 @@ func (a *LicensesApiService) CreateLicense(ctx context.Context, id string) ApiCr
 }
 
 // Execute executes the request
-//  @return License
+//
+//	@return License
 func (a *LicensesApiService) CreateLicenseExecute(r ApiCreateLicenseRequest) (*License, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -73,7 +74,7 @@ func (a *LicensesApiService) CreateLicenseExecute(r ApiCreateLicenseRequest) (*L
 	}
 
 	localVarPath := localBasePath + "/projects/{id}/licenses"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -210,9 +211,9 @@ DeleteLicense Delete the license
 
 Deletes a license.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id License UUID
- @return ApiDeleteLicenseRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id License UUID
+	@return ApiDeleteLicenseRequest
 */
 func (a *LicensesApiService) DeleteLicense(ctx context.Context, id string) ApiDeleteLicenseRequest {
 	return ApiDeleteLicenseRequest{
@@ -236,7 +237,7 @@ func (a *LicensesApiService) DeleteLicenseExecute(r ApiDeleteLicenseRequest) (*h
 	}
 
 	localVarPath := localBasePath + "/licenses/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -362,9 +363,9 @@ FindLicenseById Retrieve a license
 
 Returns a license
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id License UUID
- @return ApiFindLicenseByIdRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id License UUID
+	@return ApiFindLicenseByIdRequest
 */
 func (a *LicensesApiService) FindLicenseById(ctx context.Context, id string) ApiFindLicenseByIdRequest {
 	return ApiFindLicenseByIdRequest{
@@ -375,7 +376,8 @@ func (a *LicensesApiService) FindLicenseById(ctx context.Context, id string) Api
 }
 
 // Execute executes the request
-//  @return License
+//
+//	@return License
 func (a *LicensesApiService) FindLicenseByIdExecute(r ApiFindLicenseByIdRequest) (*License, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -390,17 +392,17 @@ func (a *LicensesApiService) FindLicenseByIdExecute(r ApiFindLicenseByIdRequest)
 	}
 
 	localVarPath := localBasePath + "/licenses/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.include != nil {
-		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
+		parameterAddToQuery(localVarQueryParams, "include", r.include, "csv")
 	}
 	if r.exclude != nil {
-		localVarQueryParams.Add("exclude", parameterToString(*r.exclude, "csv"))
+		parameterAddToQuery(localVarQueryParams, "exclude", r.exclude, "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -545,9 +547,9 @@ FindProjectLicenses Retrieve all licenses
 
 Provides a collection of licenses for a given project.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Project UUID
- @return ApiFindProjectLicensesRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Project UUID
+	@return ApiFindProjectLicensesRequest
 */
 func (a *LicensesApiService) FindProjectLicenses(ctx context.Context, id string) ApiFindProjectLicensesRequest {
 	return ApiFindProjectLicensesRequest{
@@ -558,7 +560,8 @@ func (a *LicensesApiService) FindProjectLicenses(ctx context.Context, id string)
 }
 
 // Execute executes the request
-//  @return LicenseList
+//
+//	@return LicenseList
 func (a *LicensesApiService) FindProjectLicensesExecute(r ApiFindProjectLicensesRequest) (*LicenseList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -573,23 +576,23 @@ func (a *LicensesApiService) FindProjectLicensesExecute(r ApiFindProjectLicenses
 	}
 
 	localVarPath := localBasePath + "/projects/{id}/licenses"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.include != nil {
-		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
+		parameterAddToQuery(localVarQueryParams, "include", r.include, "csv")
 	}
 	if r.exclude != nil {
-		localVarQueryParams.Add("exclude", parameterToString(*r.exclude, "csv"))
+		parameterAddToQuery(localVarQueryParams, "exclude", r.exclude, "csv")
 	}
 	if r.page != nil {
-		localVarQueryParams.Add("page", parameterToString(*r.page, ""))
+		parameterAddToQuery(localVarQueryParams, "page", r.page, "")
 	}
 	if r.perPage != nil {
-		localVarQueryParams.Add("per_page", parameterToString(*r.perPage, ""))
+		parameterAddToQuery(localVarQueryParams, "per_page", r.perPage, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -713,9 +716,9 @@ UpdateLicense Update the license
 
 Updates the license.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id License UUID
- @return ApiUpdateLicenseRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id License UUID
+	@return ApiUpdateLicenseRequest
 */
 func (a *LicensesApiService) UpdateLicense(ctx context.Context, id string) ApiUpdateLicenseRequest {
 	return ApiUpdateLicenseRequest{
@@ -726,7 +729,8 @@ func (a *LicensesApiService) UpdateLicense(ctx context.Context, id string) ApiUp
 }
 
 // Execute executes the request
-//  @return License
+//
+//	@return License
 func (a *LicensesApiService) UpdateLicenseExecute(r ApiUpdateLicenseRequest) (*License, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
@@ -741,7 +745,7 @@ func (a *LicensesApiService) UpdateLicenseExecute(r ApiUpdateLicenseRequest) (*L
 	}
 
 	localVarPath := localBasePath + "/licenses/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

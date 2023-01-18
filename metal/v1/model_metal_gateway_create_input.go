@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the MetalGatewayCreateInput type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &MetalGatewayCreateInput{}
+
 // MetalGatewayCreateInput struct for MetalGatewayCreateInput
 type MetalGatewayCreateInput struct {
 	// The UUID of an IP reservation that belongs to the same project as where the metal gateway will be created in. This field is required unless the private IPv4 subnet size is specified.
@@ -132,6 +135,14 @@ func (o *MetalGatewayCreateInput) SetVirtualNetworkId(v string) {
 }
 
 func (o MetalGatewayCreateInput) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o MetalGatewayCreateInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.IpReservationId) {
 		toSerialize["ip_reservation_id"] = o.IpReservationId
@@ -139,10 +150,8 @@ func (o MetalGatewayCreateInput) MarshalJSON() ([]byte, error) {
 	if !isNil(o.PrivateIpv4SubnetSize) {
 		toSerialize["private_ipv4_subnet_size"] = o.PrivateIpv4SubnetSize
 	}
-	if true {
-		toSerialize["virtual_network_id"] = o.VirtualNetworkId
-	}
-	return json.Marshal(toSerialize)
+	toSerialize["virtual_network_id"] = o.VirtualNetworkId
+	return toSerialize, nil
 }
 
 type NullableMetalGatewayCreateInput struct {

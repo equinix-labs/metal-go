@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the PortConvertLayer3Input type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PortConvertLayer3Input{}
+
 // PortConvertLayer3Input struct for PortConvertLayer3Input
 type PortConvertLayer3Input struct {
 	RequestIps []PortConvertLayer3InputRequestIpsInner `json:"request_ips,omitempty"`
@@ -70,11 +73,19 @@ func (o *PortConvertLayer3Input) SetRequestIps(v []PortConvertLayer3InputRequest
 }
 
 func (o PortConvertLayer3Input) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o PortConvertLayer3Input) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.RequestIps) {
 		toSerialize["request_ips"] = o.RequestIps
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullablePortConvertLayer3Input struct {

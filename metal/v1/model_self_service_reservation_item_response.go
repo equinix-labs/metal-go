@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the SelfServiceReservationItemResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &SelfServiceReservationItemResponse{}
+
 // SelfServiceReservationItemResponse struct for SelfServiceReservationItemResponse
 type SelfServiceReservationItemResponse struct {
 	Amount    *float32 `json:"amount,omitempty"`
@@ -367,6 +370,14 @@ func (o *SelfServiceReservationItemResponse) SetTerm(v string) {
 }
 
 func (o SelfServiceReservationItemResponse) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o SelfServiceReservationItemResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Amount) {
 		toSerialize["amount"] = o.Amount
@@ -398,7 +409,7 @@ func (o SelfServiceReservationItemResponse) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Term) {
 		toSerialize["term"] = o.Term
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableSelfServiceReservationItemResponse struct {

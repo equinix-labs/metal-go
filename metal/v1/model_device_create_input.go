@@ -16,6 +16,9 @@ import (
 	"time"
 )
 
+// checks if the DeviceCreateInput type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &DeviceCreateInput{}
+
 // DeviceCreateInput struct for DeviceCreateInput
 type DeviceCreateInput struct {
 	// When true, devices with a `custom_ipxe` OS will always boot to iPXE. The default setting of false ensures that iPXE will be used on only the first boot.
@@ -828,6 +831,14 @@ func (o *DeviceCreateInput) SetUserdata(v string) {
 }
 
 func (o DeviceCreateInput) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o DeviceCreateInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.AlwaysPxe) {
 		toSerialize["always_pxe"] = o.AlwaysPxe
@@ -862,12 +873,8 @@ func (o DeviceCreateInput) MarshalJSON() ([]byte, error) {
 	if !isNil(o.NoSshKeys) {
 		toSerialize["no_ssh_keys"] = o.NoSshKeys
 	}
-	if true {
-		toSerialize["operating_system"] = o.OperatingSystem
-	}
-	if true {
-		toSerialize["plan"] = o.Plan
-	}
+	toSerialize["operating_system"] = o.OperatingSystem
+	toSerialize["plan"] = o.Plan
 	if !isNil(o.PrivateIpv4SubnetSize) {
 		toSerialize["private_ipv4_subnet_size"] = o.PrivateIpv4SubnetSize
 	}
@@ -898,7 +905,7 @@ func (o DeviceCreateInput) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Userdata) {
 		toSerialize["userdata"] = o.Userdata
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableDeviceCreateInput struct {

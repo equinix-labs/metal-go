@@ -16,6 +16,9 @@ import (
 	"time"
 )
 
+// checks if the SpotMarketRequestCreateInputInstanceAttributes type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &SpotMarketRequestCreateInputInstanceAttributes{}
+
 // SpotMarketRequestCreateInputInstanceAttributes struct for SpotMarketRequestCreateInputInstanceAttributes
 type SpotMarketRequestCreateInputInstanceAttributes struct {
 	AlwaysPxe             *bool                  `json:"always_pxe,omitempty"`
@@ -633,6 +636,14 @@ func (o *SpotMarketRequestCreateInputInstanceAttributes) SetUserdata(v string) {
 }
 
 func (o SpotMarketRequestCreateInputInstanceAttributes) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o SpotMarketRequestCreateInputInstanceAttributes) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.AlwaysPxe) {
 		toSerialize["always_pxe"] = o.AlwaysPxe
@@ -688,7 +699,7 @@ func (o SpotMarketRequestCreateInputInstanceAttributes) MarshalJSON() ([]byte, e
 	if !isNil(o.Userdata) {
 		toSerialize["userdata"] = o.Userdata
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableSpotMarketRequestCreateInputInstanceAttributes struct {

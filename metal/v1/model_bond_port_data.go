@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the BondPortData type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &BondPortData{}
+
 // BondPortData struct for BondPortData
 type BondPortData struct {
 	// ID of the bonding port
@@ -105,6 +108,14 @@ func (o *BondPortData) SetName(v string) {
 }
 
 func (o BondPortData) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o BondPortData) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Id) {
 		toSerialize["id"] = o.Id
@@ -112,7 +123,7 @@ func (o BondPortData) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableBondPortData struct {

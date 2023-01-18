@@ -38,9 +38,9 @@ FindEnsureOtp Verify user by providing an OTP
 
 It verifies the user once a valid OTP is provided. It gives back a session token, essentially logging in the user.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param otp OTP
- @return ApiFindEnsureOtpRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param otp OTP
+	@return ApiFindEnsureOtpRequest
 */
 func (a *OTPsApiService) FindEnsureOtp(ctx context.Context, otp string) ApiFindEnsureOtpRequest {
 	return ApiFindEnsureOtpRequest{
@@ -64,7 +64,7 @@ func (a *OTPsApiService) FindEnsureOtpExecute(r ApiFindEnsureOtpRequest) (*http.
 	}
 
 	localVarPath := localBasePath + "/user/otp/verify/{otp}"
-	localVarPath = strings.Replace(localVarPath, "{"+"otp"+"}", url.PathEscape(parameterToString(r.otp, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"otp"+"}", url.PathEscape(parameterValueToString(r.otp, "otp")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -164,8 +164,8 @@ FindRecoveryCodes Retrieve my recovery codes
 
 Returns my recovery codes.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiFindRecoveryCodesRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiFindRecoveryCodesRequest
 */
 func (a *OTPsApiService) FindRecoveryCodes(ctx context.Context) ApiFindRecoveryCodesRequest {
 	return ApiFindRecoveryCodesRequest{
@@ -175,7 +175,8 @@ func (a *OTPsApiService) FindRecoveryCodes(ctx context.Context) ApiFindRecoveryC
 }
 
 // Execute executes the request
-//  @return RecoveryCodeList
+//
+//	@return RecoveryCodeList
 func (a *OTPsApiService) FindRecoveryCodesExecute(r ApiFindRecoveryCodesRequest) (*RecoveryCodeList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -309,8 +310,8 @@ ReceiveCodes Receive an OTP per sms
 
 Sends an OTP to the user's mobile phone.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiReceiveCodesRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiReceiveCodesRequest
 */
 func (a *OTPsApiService) ReceiveCodes(ctx context.Context) ApiReceiveCodesRequest {
 	return ApiReceiveCodesRequest{
@@ -454,8 +455,8 @@ RegenerateCodes Generate new recovery codes
 
 Generate a new set of recovery codes.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiRegenerateCodesRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiRegenerateCodesRequest
 */
 func (a *OTPsApiService) RegenerateCodes(ctx context.Context) ApiRegenerateCodesRequest {
 	return ApiRegenerateCodesRequest{
@@ -465,7 +466,8 @@ func (a *OTPsApiService) RegenerateCodes(ctx context.Context) ApiRegenerateCodes
 }
 
 // Execute executes the request
-//  @return RecoveryCodeList
+//
+//	@return RecoveryCodeList
 func (a *OTPsApiService) RegenerateCodesExecute(r ApiRegenerateCodesRequest) (*RecoveryCodeList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost

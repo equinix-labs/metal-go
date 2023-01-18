@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the DeviceCreateInputIpAddressesInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &DeviceCreateInputIpAddressesInner{}
+
 // DeviceCreateInputIpAddressesInner struct for DeviceCreateInputIpAddressesInner
 type DeviceCreateInputIpAddressesInner struct {
 	// Address Family for IP Address
@@ -177,6 +180,14 @@ func (o *DeviceCreateInputIpAddressesInner) SetPublic(v bool) {
 }
 
 func (o DeviceCreateInputIpAddressesInner) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o DeviceCreateInputIpAddressesInner) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.AddressFamily) {
 		toSerialize["address_family"] = o.AddressFamily
@@ -190,7 +201,7 @@ func (o DeviceCreateInputIpAddressesInner) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Public) {
 		toSerialize["public"] = o.Public
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableDeviceCreateInputIpAddressesInner struct {

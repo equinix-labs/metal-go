@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ProjectUsageList type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ProjectUsageList{}
+
 // ProjectUsageList struct for ProjectUsageList
 type ProjectUsageList struct {
 	Usages []ProjectUsage `json:"usages,omitempty"`
@@ -70,11 +73,19 @@ func (o *ProjectUsageList) SetUsages(v []ProjectUsage) {
 }
 
 func (o ProjectUsageList) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o ProjectUsageList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Usages) {
 		toSerialize["usages"] = o.Usages
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableProjectUsageList struct {

@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ProjectCreateFromRootInput type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ProjectCreateFromRootInput{}
+
 // ProjectCreateFromRootInput struct for ProjectCreateFromRootInput
 type ProjectCreateFromRootInput struct {
 	Customdata      map[string]interface{} `json:"customdata,omitempty"`
@@ -162,20 +165,26 @@ func (o *ProjectCreateFromRootInput) SetPaymentMethodId(v string) {
 }
 
 func (o ProjectCreateFromRootInput) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o ProjectCreateFromRootInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Customdata) {
 		toSerialize["customdata"] = o.Customdata
 	}
-	if true {
-		toSerialize["name"] = o.Name
-	}
+	toSerialize["name"] = o.Name
 	if !isNil(o.OrganizationId) {
 		toSerialize["organization_id"] = o.OrganizationId
 	}
 	if !isNil(o.PaymentMethodId) {
 		toSerialize["payment_method_id"] = o.PaymentMethodId
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableProjectCreateFromRootInput struct {

@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ProjectUpdateInput type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ProjectUpdateInput{}
+
 // ProjectUpdateInput struct for ProjectUpdateInput
 type ProjectUpdateInput struct {
 	BackendTransferEnabled *bool                  `json:"backend_transfer_enabled,omitempty"`
@@ -169,6 +172,14 @@ func (o *ProjectUpdateInput) SetPaymentMethodId(v string) {
 }
 
 func (o ProjectUpdateInput) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o ProjectUpdateInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.BackendTransferEnabled) {
 		toSerialize["backend_transfer_enabled"] = o.BackendTransferEnabled
@@ -182,7 +193,7 @@ func (o ProjectUpdateInput) MarshalJSON() ([]byte, error) {
 	if !isNil(o.PaymentMethodId) {
 		toSerialize["payment_method_id"] = o.PaymentMethodId
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableProjectUpdateInput struct {

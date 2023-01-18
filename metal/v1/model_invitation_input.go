@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the InvitationInput type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &InvitationInput{}
+
 // InvitationInput struct for InvitationInput
 type InvitationInput struct {
 	Invitee        string   `json:"invitee"`
@@ -195,10 +198,16 @@ func (o *InvitationInput) SetRoles(v []string) {
 }
 
 func (o InvitationInput) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["invitee"] = o.Invitee
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
+	return json.Marshal(toSerialize)
+}
+
+func (o InvitationInput) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["invitee"] = o.Invitee
 	if !isNil(o.Message) {
 		toSerialize["message"] = o.Message
 	}
@@ -211,7 +220,7 @@ func (o InvitationInput) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Roles) {
 		toSerialize["roles"] = o.Roles
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableInvitationInput struct {

@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CapacityInput type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CapacityInput{}
+
 // CapacityInput struct for CapacityInput
 type CapacityInput struct {
 	Servers []ServerInfo `json:"servers,omitempty"`
@@ -70,11 +73,19 @@ func (o *CapacityInput) SetServers(v []ServerInfo) {
 }
 
 func (o CapacityInput) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o CapacityInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Servers) {
 		toSerialize["servers"] = o.Servers
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableCapacityInput struct {

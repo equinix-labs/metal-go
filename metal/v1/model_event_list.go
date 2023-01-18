@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the EventList type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &EventList{}
+
 // EventList struct for EventList
 type EventList struct {
 	Events []Event `json:"events,omitempty"`
@@ -103,6 +106,14 @@ func (o *EventList) SetMeta(v Meta) {
 }
 
 func (o EventList) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o EventList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Events) {
 		toSerialize["events"] = o.Events
@@ -110,7 +121,7 @@ func (o EventList) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Meta) {
 		toSerialize["meta"] = o.Meta
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableEventList struct {

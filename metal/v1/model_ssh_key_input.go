@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the SSHKeyInput type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &SSHKeyInput{}
+
 // SSHKeyInput struct for SSHKeyInput
 type SSHKeyInput struct {
 	Key   *string `json:"key,omitempty"`
@@ -103,6 +106,14 @@ func (o *SSHKeyInput) SetLabel(v string) {
 }
 
 func (o SSHKeyInput) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o SSHKeyInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Key) {
 		toSerialize["key"] = o.Key
@@ -110,7 +121,7 @@ func (o SSHKeyInput) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Label) {
 		toSerialize["label"] = o.Label
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableSSHKeyInput struct {
