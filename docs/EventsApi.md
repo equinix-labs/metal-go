@@ -11,7 +11,7 @@ Method | HTTP request | Description
 [**FindInterconnectionPortEvents**](EventsApi.md#FindInterconnectionPortEvents) | **Get** /connections/{connection_id}/ports/{id}/events | Retrieve interconnection port events
 [**FindOrganizationEvents**](EventsApi.md#FindOrganizationEvents) | **Get** /organizations/{id}/events | Retrieve organization&#39;s events
 [**FindProjectEvents**](EventsApi.md#FindProjectEvents) | **Get** /projects/{id}/events | Retrieve project&#39;s events
-[**FindVirtualCircuitEvents**](EventsApi.md#FindVirtualCircuitEvents) | **Get** /virtual-circuit/{id}/events | Retrieve interconnection events
+[**FindVirtualCircuitEvents**](EventsApi.md#FindVirtualCircuitEvents) | **Get** /virtual-circuits/{id}/events | Retrieve interconnection events
 
 
 

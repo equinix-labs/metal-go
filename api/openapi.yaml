@@ -2609,7 +2609,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Device'
+                $ref: '#/components/schemas/HardwareReservation'
           description: ok
         "401":
           content:
@@ -2632,6 +2632,55 @@ paths:
       summary: Retrieve a hardware reservation
       tags:
       - HardwareReservations
+  /hardware-reservations/{id}/activate:
+    post:
+      description: Activate a spare hardware reservation
+      operationId: activateHardwareReservation
+      parameters:
+      - description: Hardware Reservation UUID
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/activateHardwareReservation_request'
+        description: Note to attach to the reservation
+        required: false
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HardwareReservation'
+          description: ok
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: not found
+      summary: Activate a spare hardware reservation
+      tags:
+      - HardwareReservations
   /hardware-reservations/{id}/move:
     post:
       description: Move a hardware reservation to another project
@@ -2650,9 +2699,8 @@ paths:
         content:
           application/json:
             schema:
-              format: uuid
-              type: string
-        description: Project UUID
+              $ref: '#/components/schemas/moveHardwareReservation_request'
+        description: Destination Project UUID
         required: true
       responses:
         "201":
@@ -7429,6 +7477,37 @@ paths:
           format: uuid
           type: string
         style: simple
+      - description: "Search by facility code, plan name, project name, reservation\
+          \ short ID or device hostname"
+        explode: true
+        in: query
+        name: query
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter by hardware reservation state
+        explode: true
+        in: query
+        name: state
+        required: false
+        schema:
+          enum:
+          - active
+          - spare
+          - need_of_service
+          type: string
+        style: form
+      - description: Filter hardware reservation that is provisionable
+        explode: true
+        in: query
+        name: provisionable
+        required: false
+        schema:
+          enum:
+          - only
+          type: string
+        style: form
       - description: |-
           Nested attributes to include. Included objects will return their full
           attributes. Attribute names can be dotted (up to 3 levels) to included deeply
@@ -7987,7 +8066,7 @@ paths:
       - description: "Search by key, label, or fingerprint"
         explode: true
         in: query
-        name: Search string
+        name: query
         required: false
         schema:
           type: string
@@ -9174,24 +9253,24 @@ paths:
               schema:
                 $ref: '#/components/schemas/VrfRoute'
           description: Accepted
-        "403":
+        "401":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
           description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Forbidden
         "404":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
           description: Not Found
-        "422":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Unprocessable Entity
       summary: Delete a VRF Route
       tags:
       - VRFs
@@ -9247,6 +9326,68 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
           description: Unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Not Found
+      summary: Retrieve a VRF Route
+      tags:
+      - VRFs
+    patch:
+      description: Requests a VRF Route be redeployed across the network. Updating
+        the prefix or next-hop address on a route is not currently supported.
+      operationId: patchVrfRouteById
+      parameters:
+      - description: VRF Route UUID
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - description: |-
+          Nested attributes to include. Included objects will return their full
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+          nested objects.
+        explode: false
+        in: query
+        name: include
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Nested attributes to exclude. Excluded objects will return only the href
+          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
+          nested objects.
+        explode: false
+        in: query
+        name: exclude
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VrfRoute'
+          description: Accepted
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unauthorized
         "403":
           content:
             application/json:
@@ -9259,7 +9400,19 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
           description: Not Found
-      summary: Retrieve a VRF Route
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unprocessable Entity
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Too Many Requests
+      summary: Update a VRF Route
       tags:
       - VRFs
     put:
@@ -9333,6 +9486,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
           description: Unprocessable Entity
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Too Many Requests
       summary: Update a VRF Route
       tags:
       - VRFs
@@ -10582,7 +10741,7 @@ paths:
       summary: Verify a user using an email verification token
       tags:
       - UserVerificationTokens
-  /virtual-circuit/{id}/events:
+  /virtual-circuits/{id}/events:
     get:
       description: Returns a list of the virtual circuit events
       operationId: findVirtualCircuitEvents
@@ -11153,25 +11312,19 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/VrfRouteList'
-          description: ok
+          description: OK
         "401":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-          description: unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: forbidden
+          description: Unauthorized
         "404":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-          description: not found
+          description: Not Found
       summary: Retrieve all routes in the VRF
       tags:
       - VRFs
@@ -11203,25 +11356,31 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/VrfRoute'
-          description: ok
+          description: OK
         "401":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-          description: unauthorized
+          description: Unauthorized
         "403":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-          description: forbidden
+          description: Forbidden
         "404":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-          description: not found
+          description: Not Found
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unprocessable entity
       summary: Create a VRF route
       tags:
       - VRFs
@@ -12491,7 +12650,8 @@ components:
           slug: slug
           distro_label: distro_label
         billing_cycle: billing_cycle
-        customdata: "{}"
+        customdata:
+          key: ""
         href: href
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         state: active
@@ -12611,6 +12771,8 @@ components:
         created_by:
           $ref: '#/components/schemas/Device_created_by'
         customdata:
+          additionalProperties: true
+          default: {}
           type: object
         description:
           type: string
@@ -12753,6 +12915,7 @@ components:
           - yearly
           type: string
         customdata:
+          additionalProperties: true
           default: {}
           description: |-
             Customdata is an arbitrary JSON value that can be accessed via the
@@ -13128,7 +13291,8 @@ components:
             slug: slug
             distro_label: distro_label
           billing_cycle: billing_cycle
-          customdata: "{}"
+          customdata:
+            key: ""
           href: href
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           state: active
@@ -13417,7 +13581,8 @@ components:
             slug: slug
             distro_label: distro_label
           billing_cycle: billing_cycle
-          customdata: "{}"
+          customdata:
+            key: ""
           href: href
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           state: active
@@ -13553,7 +13718,8 @@ components:
         description: description
         always_pxe: true
         billing_cycle: billing_cycle
-        customdata: "{}"
+        customdata:
+          key: ""
         ipxe_script_url: ipxe_script_url
         locked: true
         tags:
@@ -13565,6 +13731,8 @@ components:
         billing_cycle:
           type: string
         customdata:
+          additionalProperties: true
+          default: {}
           type: object
         description:
           type: string
@@ -14215,7 +14383,8 @@ components:
             slug: slug
             distro_label: distro_label
           billing_cycle: billing_cycle
-          customdata: "{}"
+          customdata:
+            key: ""
           href: href
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           state: active
@@ -14415,7 +14584,7 @@ components:
           format: uuid
           type: string
         need_of_service:
-          description: Whether this Device requires assistance from Metal Equinix.
+          description: Whether this Device requires assistance from Equinix Metal.
           type: boolean
         plan:
           $ref: '#/components/schemas/Plan'
@@ -14432,7 +14601,7 @@ components:
         spare:
           description: Whether the Hardware Reservation is a spare. Spare Hardware
             Reservations are used when a Hardware Reservations requires service from
-            Metal Equinix
+            Equinix Metal
           type: boolean
         switch_uuid:
           description: "Switch short id. This can be used to determine if two devices\
@@ -14675,7 +14844,8 @@ components:
               slug: slug
               distro_label: distro_label
             billing_cycle: billing_cycle
-            customdata: "{}"
+            customdata:
+              key: ""
             href: href
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             state: active
@@ -15077,7 +15247,8 @@ components:
               slug: slug
               distro_label: distro_label
             billing_cycle: billing_cycle
-            customdata: "{}"
+            customdata:
+              key: ""
             href: href
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             state: active
@@ -16336,7 +16507,8 @@ components:
         - private_subnets
         - private_subnets
         operating_system: "{}"
-        customdata: "{}"
+        customdata:
+          key: ""
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         class: class
         facility: facility
@@ -16345,6 +16517,8 @@ components:
         class:
           type: string
         customdata:
+          additionalProperties: true
+          default: {}
           type: object
         facility:
           description: The facility code of the instance
@@ -21771,6 +21945,17 @@ components:
       required:
       - ended_at
       - started_at
+      type: object
+    activateHardwareReservation_request:
+      properties:
+        description:
+          type: string
+      type: object
+    moveHardwareReservation_request:
+      properties:
+        project_id:
+          format: uuid
+          type: string
       type: object
     findIPAddressById_200_response:
       oneOf:
