@@ -22,6 +22,18 @@ func Test_v1_HardwareReservationsApiService(t *testing.T) {
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
+	t.Run("Test HardwareReservationsApiService ActivateHardwareReservation", func(t *testing.T) {
+		t.Skip("skip test") // remove to run test
+
+		var id string
+
+		resp, httpRes, err := apiClient.HardwareReservationsApi.ActivateHardwareReservation(context.Background(), id).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+	})
+
 	t.Run("Test HardwareReservationsApiService FindHardwareReservationById", func(t *testing.T) {
 		t.Skip("skip test") // remove to run test
 

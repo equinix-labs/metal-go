@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **BondingMode** | Pointer to **int32** |  | [optional] 
 **CreatedAt** | Pointer to **time.Time** |  | [optional] 
 **CreatedBy** | Pointer to [**DeviceCreatedBy**](DeviceCreatedBy.md) |  | [optional] 
-**Customdata** | Pointer to **map[string]interface{}** |  | [optional] 
+**Customdata** | Pointer to **map[string]interface{}** |  | [optional] [default to {}]
 **Description** | Pointer to **string** |  | [optional] 
 **Facility** | Pointer to [**Facility**](Facility.md) |  | [optional] 
 **HardwareReservation** | Pointer to [**Href**](Href.md) |  | [optional] 

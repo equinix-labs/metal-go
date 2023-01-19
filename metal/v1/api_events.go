@@ -1382,7 +1382,7 @@ func (a *EventsApiService) FindVirtualCircuitEventsExecute(r ApiFindVirtualCircu
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/virtual-circuit/{id}/events"
+	localVarPath := localBasePath + "/virtual-circuits/{id}/events"
 	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)

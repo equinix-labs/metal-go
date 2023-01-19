@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Class** | Pointer to **string** |  | [optional] 
-**Customdata** | Pointer to **map[string]interface{}** |  | [optional] 
+**Customdata** | Pointer to **map[string]interface{}** |  | [optional] [default to {}]
 **Facility** | Pointer to **string** | The facility code of the instance | [optional] 
 **Hostname** | Pointer to **string** |  | [optional] 
 **Id** | Pointer to **string** |  | [optional] 

@@ -42,6 +42,7 @@ api_vlans.go
 api_vrfs.go
 client.go
 configuration.go
+docs/ActivateHardwareReservationRequest.md
 docs/Address.md
 docs/AuthToken.md
 docs/AuthTokenInput.md
@@ -177,6 +178,7 @@ docs/MetroInput.md
 docs/MetroList.md
 docs/MetroServerInfo.md
 docs/MetrosApi.md
+docs/MoveHardwareReservationRequest.md
 docs/NewPassword.md
 docs/OTPsApi.md
 docs/OperatingSystem.md
@@ -306,6 +308,7 @@ docs/VrfVirtualCircuitUpdateInput.md
 git_push.sh
 go.mod
 go.sum
+model_activate_hardware_reservation_request.go
 model_address.go
 model_auth_token.go
 model_auth_token_input.go
@@ -424,6 +427,7 @@ model_metro_capacity_report.go
 model_metro_input.go
 model_metro_list.go
 model_metro_server_info.go
+model_move_hardware_reservation_request.go
 model_new_password.go
 model_operating_system.go
 model_operating_system_list.go

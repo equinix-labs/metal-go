@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AlwaysPxe** | Pointer to **bool** |  | [optional] 
 **BillingCycle** | Pointer to **string** |  | [optional] 
-**Customdata** | Pointer to **map[string]interface{}** |  | [optional] 
+**Customdata** | Pointer to **map[string]interface{}** |  | [optional] [default to {}]
 **Description** | Pointer to **string** |  | [optional] 
 **Hostname** | Pointer to **string** |  | [optional] 
 **IpxeScriptUrl** | Pointer to **string** |  | [optional] 

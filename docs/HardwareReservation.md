@@ -10,12 +10,12 @@ Name | Type | Description | Notes
 **Facility** | Pointer to [**Facility**](Facility.md) |  | [optional] 
 **Href** | Pointer to **string** |  | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
-**NeedOfService** | Pointer to **bool** | Whether this Device requires assistance from Metal Equinix. | [optional] 
+**NeedOfService** | Pointer to **bool** | Whether this Device requires assistance from Equinix Metal. | [optional] 
 **Plan** | Pointer to [**Plan**](Plan.md) |  | [optional] 
 **Project** | Pointer to [**Project**](Project.md) |  | [optional] 
 **Provisionable** | Pointer to **bool** | Whether the reserved server is provisionable or not. Spare devices can&#39;t be provisioned unless they are activated first. | [optional] 
 **ShortId** | Pointer to **string** | Short version of the ID. | [optional] 
-**Spare** | Pointer to **bool** | Whether the Hardware Reservation is a spare. Spare Hardware Reservations are used when a Hardware Reservations requires service from Metal Equinix | [optional] 
+**Spare** | Pointer to **bool** | Whether the Hardware Reservation is a spare. Spare Hardware Reservations are used when a Hardware Reservations requires service from Equinix Metal | [optional] 
 **SwitchUuid** | Pointer to **string** | Switch short id. This can be used to determine if two devices are connected to the same switch, for example. | [optional] 
 
 ## Methods

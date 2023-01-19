@@ -618,17 +618,17 @@ func (a *SSHKeysApiService) FindDeviceSSHKeysExecute(r ApiFindDeviceSSHKeysReque
 }
 
 type ApiFindProjectSSHKeysRequest struct {
-	ctx          context.Context
-	ApiService   *SSHKeysApiService
-	id           string
-	searchString *string
-	include      *[]string
-	exclude      *[]string
+	ctx        context.Context
+	ApiService *SSHKeysApiService
+	id         string
+	query      *string
+	include    *[]string
+	exclude    *[]string
 }
 
 // Search by key, label, or fingerprint
-func (r ApiFindProjectSSHKeysRequest) SearchString(searchString string) ApiFindProjectSSHKeysRequest {
-	r.searchString = &searchString
+func (r ApiFindProjectSSHKeysRequest) Query(query string) ApiFindProjectSSHKeysRequest {
+	r.query = &query
 	return r
 }
 
@@ -688,8 +688,8 @@ func (a *SSHKeysApiService) FindProjectSSHKeysExecute(r ApiFindProjectSSHKeysReq
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	if r.searchString != nil {
-		parameterAddToQuery(localVarQueryParams, "Search string", r.searchString, "")
+	if r.query != nil {
+		parameterAddToQuery(localVarQueryParams, "query", r.query, "")
 	}
 	if r.include != nil {
 		parameterAddToQuery(localVarQueryParams, "include", r.include, "csv")

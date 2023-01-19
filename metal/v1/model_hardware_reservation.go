@@ -28,7 +28,7 @@ type HardwareReservation struct {
 	Facility   *Facility `json:"facility,omitempty"`
 	Href       *string   `json:"href,omitempty"`
 	Id         *string   `json:"id,omitempty"`
-	// Whether this Device requires assistance from Metal Equinix.
+	// Whether this Device requires assistance from Equinix Metal.
 	NeedOfService *bool    `json:"need_of_service,omitempty"`
 	Plan          *Plan    `json:"plan,omitempty"`
 	Project       *Project `json:"project,omitempty"`
@@ -36,7 +36,7 @@ type HardwareReservation struct {
 	Provisionable *bool `json:"provisionable,omitempty"`
 	// Short version of the ID.
 	ShortId *string `json:"short_id,omitempty"`
-	// Whether the Hardware Reservation is a spare. Spare Hardware Reservations are used when a Hardware Reservations requires service from Metal Equinix
+	// Whether the Hardware Reservation is a spare. Spare Hardware Reservations are used when a Hardware Reservations requires service from Equinix Metal
 	Spare *bool `json:"spare,omitempty"`
 	// Switch short id. This can be used to determine if two devices are connected to the same switch, for example.
 	SwitchUuid *string `json:"switch_uuid,omitempty"`
