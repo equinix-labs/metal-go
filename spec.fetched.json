@@ -3441,7 +3441,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Device"
+                  "$ref": "#/components/schemas/HardwareReservation"
                 }
               }
             },
@@ -3484,6 +3484,81 @@
         ]
       }
     },
+    "/hardware-reservations/{id}/activate": {
+      "post": {
+        "description": "Activate a spare hardware reservation",
+        "operationId": "activateHardwareReservation",
+        "parameters": [
+          {
+            "description": "Hardware Reservation UUID",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/activateHardwareReservation_request"
+              }
+            }
+          },
+          "description": "Note to attach to the reservation",
+          "required": false
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HardwareReservation"
+                }
+              }
+            },
+            "description": "ok"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "not found"
+          }
+        },
+        "summary": "Activate a spare hardware reservation",
+        "tags": [
+          "HardwareReservations"
+        ]
+      }
+    },
     "/hardware-reservations/{id}/move": {
       "post": {
         "description": "Move a hardware reservation to another project",
@@ -3504,12 +3579,11 @@
           "content": {
             "application/json": {
               "schema": {
-                "format": "uuid",
-                "type": "string"
+                "$ref": "#/components/schemas/moveHardwareReservation_request"
               }
             }
           },
-          "description": "Project UUID",
+          "description": "Destination Project UUID",
           "required": true
         },
         "responses": {
@@ -10005,6 +10079,38 @@
             }
           },
           {
+            "description": "Search by facility code, plan name, project name, reservation short ID or device hostname",
+            "in": "query",
+            "name": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Filter by hardware reservation state",
+            "in": "query",
+            "name": "state",
+            "schema": {
+              "enum": [
+                "active",
+                "spare",
+                "need_of_service"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "Filter hardware reservation that is provisionable",
+            "in": "query",
+            "name": "provisionable",
+            "schema": {
+              "enum": [
+                "only"
+              ],
+              "type": "string"
+            }
+          },
+          {
             "description": "Nested attributes to include. Included objects will return their full\nattributes. Attribute names can be dotted (up to 3 levels) to included deeply\nnested objects.",
             "explode": false,
             "in": "query",
@@ -10739,7 +10845,7 @@
           {
             "description": "Search by key, label, or fingerprint",
             "in": "query",
-            "name": "Search string",
+            "name": "query",
             "schema": {
               "type": "string"
             }
@@ -12357,7 +12463,7 @@
             },
             "description": "Accepted"
           },
-          "403": {
+          "401": {
             "content": {
               "application/json": {
                 "schema": {
@@ -12366,6 +12472,16 @@
               }
             },
             "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Forbidden"
           },
           "404": {
             "content": {
@@ -12376,16 +12492,6 @@
               }
             },
             "description": "Not Found"
-          },
-          "422": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            },
-            "description": "Unprocessable Entity"
           }
         },
         "summary": "Delete a VRF Route",
@@ -12455,6 +12561,84 @@
             },
             "description": "Unauthorized"
           },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Not Found"
+          }
+        },
+        "summary": "Retrieve a VRF Route",
+        "tags": [
+          "VRFs"
+        ]
+      },
+      "patch": {
+        "description": "Requests a VRF Route be redeployed across the network. Updating the prefix or next-hop address on a route is not currently supported.",
+        "operationId": "patchVrfRouteById",
+        "parameters": [
+          {
+            "description": "VRF Route UUID",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Nested attributes to include. Included objects will return their full\nattributes. Attribute names can be dotted (up to 3 levels) to included deeply\nnested objects.",
+            "explode": false,
+            "in": "query",
+            "name": "include",
+            "schema": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "style": "form"
+          },
+          {
+            "description": "Nested attributes to exclude. Excluded objects will return only the href\nattribute. Attribute names can be dotted (up to 3 levels) to exclude deeply\nnested objects.",
+            "explode": false,
+            "in": "query",
+            "name": "exclude",
+            "schema": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "style": "form"
+          }
+        ],
+        "responses": {
+          "202": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VrfRoute"
+                }
+              }
+            },
+            "description": "Accepted"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
           "403": {
             "content": {
               "application/json": {
@@ -12474,9 +12658,29 @@
               }
             },
             "description": "Not Found"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Too Many Requests"
           }
         },
-        "summary": "Retrieve a VRF Route",
+        "summary": "Update a VRF Route",
         "tags": [
           "VRFs"
         ]
@@ -12572,6 +12776,16 @@
               }
             },
             "description": "Unprocessable Entity"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Too Many Requests"
           }
         },
         "summary": "Update a VRF Route",
@@ -14368,7 +14582,7 @@
         ]
       }
     },
-    "/virtual-circuit/{id}/events": {
+    "/virtual-circuits/{id}/events": {
       "get": {
         "description": "Returns a list of the virtual circuit events",
         "operationId": "findVirtualCircuitEvents",
@@ -15164,7 +15378,7 @@
                 }
               }
             },
-            "description": "ok"
+            "description": "OK"
           },
           "401": {
             "content": {
@@ -15174,17 +15388,7 @@
                 }
               }
             },
-            "description": "unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            },
-            "description": "forbidden"
+            "description": "Unauthorized"
           },
           "404": {
             "content": {
@@ -15194,7 +15398,7 @@
                 }
               }
             },
-            "description": "not found"
+            "description": "Not Found"
           }
         },
         "summary": "Retrieve all routes in the VRF",
@@ -15236,7 +15440,7 @@
                 }
               }
             },
-            "description": "ok"
+            "description": "OK"
           },
           "401": {
             "content": {
@@ -15246,7 +15450,7 @@
                 }
               }
             },
-            "description": "unauthorized"
+            "description": "Unauthorized"
           },
           "403": {
             "content": {
@@ -15256,7 +15460,7 @@
                 }
               }
             },
-            "description": "forbidden"
+            "description": "Forbidden"
           },
           "404": {
             "content": {
@@ -15266,7 +15470,17 @@
                 }
               }
             },
-            "description": "not found"
+            "description": "Not Found"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Unprocessable entity"
           }
         },
         "summary": "Create a VRF route",
@@ -16014,6 +16228,8 @@
             "$ref": "#/components/schemas/Device_created_by"
           },
           "customdata": {
+            "additionalProperties": true,
+            "default": {},
             "type": "object"
           },
           "description": {
@@ -16183,6 +16399,7 @@
             "type": "string"
           },
           "customdata": {
+            "additionalProperties": true,
             "default": {},
             "description": "Customdata is an arbitrary JSON value that can be accessed via the\nmetadata service.",
             "type": "object"
@@ -16369,6 +16586,8 @@
             "type": "string"
           },
           "customdata": {
+            "additionalProperties": true,
+            "default": {},
             "type": "object"
           },
           "description": {
@@ -16755,7 +16974,7 @@
             "type": "string"
           },
           "need_of_service": {
-            "description": "Whether this Device requires assistance from Metal Equinix.",
+            "description": "Whether this Device requires assistance from Equinix Metal.",
             "type": "boolean"
           },
           "plan": {
@@ -16774,7 +16993,7 @@
             "type": "string"
           },
           "spare": {
-            "description": "Whether the Hardware Reservation is a spare. Spare Hardware Reservations are used when a Hardware Reservations requires service from Metal Equinix",
+            "description": "Whether the Hardware Reservation is a spare. Spare Hardware Reservations are used when a Hardware Reservations requires service from Equinix Metal",
             "type": "boolean"
           },
           "switch_uuid": {
@@ -17577,6 +17796,8 @@
             "type": "string"
           },
           "customdata": {
+            "additionalProperties": true,
+            "default": {},
             "type": "object"
           },
           "facility": {
@@ -20356,6 +20577,23 @@
           "ended_at",
           "started_at"
         ],
+        "type": "object"
+      },
+      "activateHardwareReservation_request": {
+        "properties": {
+          "description": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "moveHardwareReservation_request": {
+        "properties": {
+          "project_id": {
+            "format": "uuid",
+            "type": "string"
+          }
+        },
         "type": "object"
       },
       "findIPAddressById_200_response": {
