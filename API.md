@@ -210,10 +210,11 @@ Class | Method | HTTP request | Description
 *EventsApi* | [**FindInterconnectionPortEvents**](docs/EventsApi.md#findinterconnectionportevents) | **Get** /connections/{connection_id}/ports/{id}/events | Retrieve interconnection port events
 *EventsApi* | [**FindOrganizationEvents**](docs/EventsApi.md#findorganizationevents) | **Get** /organizations/{id}/events | Retrieve organization&#39;s events
 *EventsApi* | [**FindProjectEvents**](docs/EventsApi.md#findprojectevents) | **Get** /projects/{id}/events | Retrieve project&#39;s events
-*EventsApi* | [**FindVirtualCircuitEvents**](docs/EventsApi.md#findvirtualcircuitevents) | **Get** /virtual-circuit/{id}/events | Retrieve interconnection events
+*EventsApi* | [**FindVirtualCircuitEvents**](docs/EventsApi.md#findvirtualcircuitevents) | **Get** /virtual-circuits/{id}/events | Retrieve interconnection events
 *FacilitiesApi* | [**FindFacilities**](docs/FacilitiesApi.md#findfacilities) | **Get** /facilities | Retrieve all facilities
 *FacilitiesApi* | [**FindFacilitiesByOrganization**](docs/FacilitiesApi.md#findfacilitiesbyorganization) | **Get** /organizations/{id}/facilities | Retrieve all facilities visible by the organization
 *FacilitiesApi* | [**FindFacilitiesByProject**](docs/FacilitiesApi.md#findfacilitiesbyproject) | **Get** /projects/{id}/facilities | Retrieve all facilities visible by the project
+*HardwareReservationsApi* | [**ActivateHardwareReservation**](docs/HardwareReservationsApi.md#activatehardwarereservation) | **Post** /hardware-reservations/{id}/activate | Activate a spare hardware reservation
 *HardwareReservationsApi* | [**FindHardwareReservationById**](docs/HardwareReservationsApi.md#findhardwarereservationbyid) | **Get** /hardware-reservations/{id} | Retrieve a hardware reservation
 *HardwareReservationsApi* | [**FindProjectHardwareReservations**](docs/HardwareReservationsApi.md#findprojecthardwarereservations) | **Get** /projects/{id}/hardware-reservations | Retrieve all hardware reservations for a given project
 *HardwareReservationsApi* | [**MoveHardwareReservation**](docs/HardwareReservationsApi.md#movehardwarereservation) | **Post** /hardware-reservations/{id}/move | Move a hardware reservation
@@ -360,12 +361,14 @@ Class | Method | HTTP request | Description
 *VRFsApi* | [**FindVrfRouteById**](docs/VRFsApi.md#findvrfroutebyid) | **Get** /routes/{id} | Retrieve a VRF Route
 *VRFsApi* | [**FindVrfs**](docs/VRFsApi.md#findvrfs) | **Get** /projects/{id}/vrfs | Retrieve all VRFs in the project
 *VRFsApi* | [**GetVrfRoutes**](docs/VRFsApi.md#getvrfroutes) | **Get** /vrfs/{id}/routes | Retrieve all routes in the VRF
+*VRFsApi* | [**PatchVrfRouteById**](docs/VRFsApi.md#patchvrfroutebyid) | **Patch** /routes/{id} | Update a VRF Route
 *VRFsApi* | [**UpdateVrf**](docs/VRFsApi.md#updatevrf) | **Put** /vrfs/{id} | Update the VRF
 *VRFsApi* | [**UpdateVrfRouteById**](docs/VRFsApi.md#updatevrfroutebyid) | **Put** /routes/{id} | Update a VRF Route
 
 
 ## Documentation For Models
 
+ - [ActivateHardwareReservationRequest](docs/ActivateHardwareReservationRequest.md)
  - [Address](docs/Address.md)
  - [AuthToken](docs/AuthToken.md)
  - [AuthTokenInput](docs/AuthTokenInput.md)
@@ -484,6 +487,7 @@ Class | Method | HTTP request | Description
  - [MetroInput](docs/MetroInput.md)
  - [MetroList](docs/MetroList.md)
  - [MetroServerInfo](docs/MetroServerInfo.md)
+ - [MoveHardwareReservationRequest](docs/MoveHardwareReservationRequest.md)
  - [NewPassword](docs/NewPassword.md)
  - [OperatingSystem](docs/OperatingSystem.md)
  - [OperatingSystemList](docs/OperatingSystemList.md)
