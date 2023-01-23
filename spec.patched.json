@@ -16030,15 +16030,27 @@
           },
           "routes_in": {
             "description": "A list of project subnets",
+            "example": [
+              {
+                "exact": true,
+                "route": "10.32.16.0/31"
+              }
+            ],
             "items": {
-              "$ref": "#/components/schemas/BgpNeighborData_routes_in_inner"
+              "$ref": "#/components/schemas/BgpRoute"
             },
             "type": "array"
           },
           "routes_out": {
             "description": "A list of outgoing routes. Only populated if the BGP session has default route enabled.",
+            "example": [
+              {
+                "exact": true,
+                "route": "0.0.0.0/0"
+              }
+            ],
             "items": {
-              "$ref": "#/components/schemas/BgpNeighborData_routes_out_inner"
+              "$ref": "#/components/schemas/BgpRoute"
             },
             "type": "array"
           }
@@ -20791,6 +20803,18 @@
         },
         "type": "object"
       },
+      "BgpRoute": {
+        "properties": {
+          "exact": {
+            "type": "boolean"
+          },
+          "route": {
+            "example": "10.32.16.0/31",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
       "createInterconnectionPortVirtualCircuit_request": {
         "oneOf": [
           {
@@ -20939,31 +20963,6 @@
             "type": "object"
           }
         ]
-      },
-      "BgpNeighborData_routes_in_inner": {
-        "properties": {
-          "exact": {
-            "type": "boolean"
-          },
-          "route": {
-            "description": "A project network",
-            "example": "10.32.16.0/31",
-            "type": "string"
-          }
-        },
-        "type": "object"
-      },
-      "BgpNeighborData_routes_out_inner": {
-        "properties": {
-          "exact": {
-            "type": "boolean"
-          },
-          "route": {
-            "example": "0.0.0.0/0",
-            "type": "string"
-          }
-        },
-        "type": "object"
       },
       "CreateSelfServiceReservationRequest_period": {
         "properties": {
