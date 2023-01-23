@@ -20,6 +20,9 @@ Name | Type | Description | Notes
 **Tags** | Pointer to **[]string** |  | [optional] 
 **Token** | Pointer to **string** | This token is used for shared interconnections to be used as the Fabric Token. This field is entirely deprecated. | [optional] 
 **Type** | Pointer to **string** | The &#39;shared&#39; type of interconnection refers to shared connections, or later also known as Fabric Virtual Connections (or Fabric VCs). The &#39;dedicated&#39; type of interconnection refers to interconnections created with Dedicated Ports. | [optional] 
+**CreatedAt** | Pointer to **time.Time** |  | [optional] 
+**UpdatedAt** | Pointer to **time.Time** |  | [optional] 
+**RequestedBy** | Pointer to [**Href**](Href.md) |  | [optional] 
 
 ## Methods
 
@@ -439,6 +442,81 @@ SetType sets Type field to given value.
 `func (o *Interconnection) HasType() bool`
 
 HasType returns a boolean if a field has been set.
+
+### GetCreatedAt
+
+`func (o *Interconnection) GetCreatedAt() time.Time`
+
+GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
+
+### GetCreatedAtOk
+
+`func (o *Interconnection) GetCreatedAtOk() (*time.Time, bool)`
+
+GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCreatedAt
+
+`func (o *Interconnection) SetCreatedAt(v time.Time)`
+
+SetCreatedAt sets CreatedAt field to given value.
+
+### HasCreatedAt
+
+`func (o *Interconnection) HasCreatedAt() bool`
+
+HasCreatedAt returns a boolean if a field has been set.
+
+### GetUpdatedAt
+
+`func (o *Interconnection) GetUpdatedAt() time.Time`
+
+GetUpdatedAt returns the UpdatedAt field if non-nil, zero value otherwise.
+
+### GetUpdatedAtOk
+
+`func (o *Interconnection) GetUpdatedAtOk() (*time.Time, bool)`
+
+GetUpdatedAtOk returns a tuple with the UpdatedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUpdatedAt
+
+`func (o *Interconnection) SetUpdatedAt(v time.Time)`
+
+SetUpdatedAt sets UpdatedAt field to given value.
+
+### HasUpdatedAt
+
+`func (o *Interconnection) HasUpdatedAt() bool`
+
+HasUpdatedAt returns a boolean if a field has been set.
+
+### GetRequestedBy
+
+`func (o *Interconnection) GetRequestedBy() Href`
+
+GetRequestedBy returns the RequestedBy field if non-nil, zero value otherwise.
+
+### GetRequestedByOk
+
+`func (o *Interconnection) GetRequestedByOk() (*Href, bool)`
+
+GetRequestedByOk returns a tuple with the RequestedBy field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRequestedBy
+
+`func (o *Interconnection) SetRequestedBy(v Href)`
+
+SetRequestedBy sets RequestedBy field to given value.
+
+### HasRequestedBy
+
+`func (o *Interconnection) HasRequestedBy() bool`
+
+HasRequestedBy returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -23,11 +23,11 @@ Name | Type | Description | Notes
 **Manageable** | Pointer to **bool** |  | [optional] 
 **Management** | Pointer to **bool** |  | [optional] 
 **MetalGateway** | Pointer to [**MetalGatewayLite**](MetalGatewayLite.md) |  | [optional] 
-**Metro** | Pointer to [**IPReservationMetro**](IPReservationMetro.md) |  | [optional] 
+**Metro** | Pointer to [**Metro**](Metro.md) |  | [optional] 
 **Netmask** | Pointer to **string** |  | [optional] 
 **Network** | Pointer to **string** |  | [optional] 
 **Project** | Pointer to [**Project**](Project.md) |  | [optional] 
-**ProjectLite** | Pointer to [**Href**](Href.md) |  | [optional] 
+**ProjectLite** | Pointer to [**Project**](Project.md) |  | [optional] 
 **RequestedBy** | Pointer to [**Href**](Href.md) |  | [optional] 
 **Public** | Pointer to **bool** |  | [optional] 
 **State** | Pointer to **string** |  | [optional] 
@@ -532,20 +532,20 @@ HasMetalGateway returns a boolean if a field has been set.
 
 ### GetMetro
 
-`func (o *RequestIPReservation201Response) GetMetro() IPReservationMetro`
+`func (o *RequestIPReservation201Response) GetMetro() Metro`
 
 GetMetro returns the Metro field if non-nil, zero value otherwise.
 
 ### GetMetroOk
 
-`func (o *RequestIPReservation201Response) GetMetroOk() (*IPReservationMetro, bool)`
+`func (o *RequestIPReservation201Response) GetMetroOk() (*Metro, bool)`
 
 GetMetroOk returns a tuple with the Metro field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMetro
 
-`func (o *RequestIPReservation201Response) SetMetro(v IPReservationMetro)`
+`func (o *RequestIPReservation201Response) SetMetro(v Metro)`
 
 SetMetro sets Metro field to given value.
 
@@ -632,20 +632,20 @@ HasProject returns a boolean if a field has been set.
 
 ### GetProjectLite
 
-`func (o *RequestIPReservation201Response) GetProjectLite() Href`
+`func (o *RequestIPReservation201Response) GetProjectLite() Project`
 
 GetProjectLite returns the ProjectLite field if non-nil, zero value otherwise.
 
 ### GetProjectLiteOk
 
-`func (o *RequestIPReservation201Response) GetProjectLiteOk() (*Href, bool)`
+`func (o *RequestIPReservation201Response) GetProjectLiteOk() (*Project, bool)`
 
 GetProjectLiteOk returns a tuple with the ProjectLite field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetProjectLite
 
-`func (o *RequestIPReservation201Response) SetProjectLite(v Href)`
+`func (o *RequestIPReservation201Response) SetProjectLite(v Project)`
 
 SetProjectLite sets ProjectLite field to given value.
 

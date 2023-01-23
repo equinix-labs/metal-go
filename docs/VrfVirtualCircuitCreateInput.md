@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **Name** | Pointer to **string** |  | [optional] 
 **NniVlan** | **int32** |  | 
 **PeerAsn** | **int32** | The peer ASN that will be used with the VRF on the Virtual Circuit. | 
-**Project** | **string** |  | 
+**ProjectId** | **string** |  | 
 **Speed** | Pointer to **int32** | speed can be passed as integer number representing bps speed or string (e.g. &#39;52m&#39; or &#39;100g&#39; or &#39;4 gbps&#39;) | [optional] 
 **Subnet** | **string** | The /30 or /31 subnet of one of the VRF IP Blocks that will be used with the VRF for the Virtual Circuit. This subnet does not have to be an existing VRF IP reservation, as we will create the VRF IP reservation on creation if it does not exist. The Metal IP and Customer IP must be IPs from this subnet. For /30 subnets, the network and broadcast IPs cannot be used as the Metal or Customer IP. The subnet specified must be contained within an already-defined IP Range for the VRF. | 
 **Tags** | Pointer to **[]string** |  | [optional] 
@@ -21,7 +21,7 @@ Name | Type | Description | Notes
 
 ### NewVrfVirtualCircuitCreateInput
 
-`func NewVrfVirtualCircuitCreateInput(nniVlan int32, peerAsn int32, project string, subnet string, vrf string, ) *VrfVirtualCircuitCreateInput`
+`func NewVrfVirtualCircuitCreateInput(nniVlan int32, peerAsn int32, projectId string, subnet string, vrf string, ) *VrfVirtualCircuitCreateInput`
 
 NewVrfVirtualCircuitCreateInput instantiates a new VrfVirtualCircuitCreateInput object
 This constructor will assign default values to properties that have it defined,
@@ -211,24 +211,24 @@ and a boolean to check if the value has been set.
 SetPeerAsn sets PeerAsn field to given value.
 
 
-### GetProject
+### GetProjectId
 
-`func (o *VrfVirtualCircuitCreateInput) GetProject() string`
+`func (o *VrfVirtualCircuitCreateInput) GetProjectId() string`
 
-GetProject returns the Project field if non-nil, zero value otherwise.
+GetProjectId returns the ProjectId field if non-nil, zero value otherwise.
 
-### GetProjectOk
+### GetProjectIdOk
 
-`func (o *VrfVirtualCircuitCreateInput) GetProjectOk() (*string, bool)`
+`func (o *VrfVirtualCircuitCreateInput) GetProjectIdOk() (*string, bool)`
 
-GetProjectOk returns a tuple with the Project field if it's non-nil, zero value otherwise
+GetProjectIdOk returns a tuple with the ProjectId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetProject
+### SetProjectId
 
-`func (o *VrfVirtualCircuitCreateInput) SetProject(v string)`
+`func (o *VrfVirtualCircuitCreateInput) SetProjectId(v string)`
 
-SetProject sets Project field to given value.
+SetProjectId sets ProjectId field to given value.
 
 
 ### GetSpeed

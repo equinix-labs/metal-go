@@ -29,6 +29,10 @@ type InterconnectionPort struct {
 	// A switch 'short ID'
 	SwitchId        *string             `json:"switch_id,omitempty"`
 	VirtualCircuits *VirtualCircuitList `json:"virtual_circuits,omitempty"`
+	Name            *string             `json:"name,omitempty"`
+	Speed           *int32              `json:"speed,omitempty"`
+	LinkStatus      *string             `json:"link_status,omitempty"`
+	Href            *string             `json:"href,omitempty"`
 }
 
 // NewInterconnectionPort instantiates a new InterconnectionPort object
@@ -240,6 +244,134 @@ func (o *InterconnectionPort) SetVirtualCircuits(v VirtualCircuitList) {
 	o.VirtualCircuits = &v
 }
 
+// GetName returns the Name field value if set, zero value otherwise.
+func (o *InterconnectionPort) GetName() string {
+	if o == nil || isNil(o.Name) {
+		var ret string
+		return ret
+	}
+	return *o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *InterconnectionPort) GetNameOk() (*string, bool) {
+	if o == nil || isNil(o.Name) {
+		return nil, false
+	}
+	return o.Name, true
+}
+
+// HasName returns a boolean if a field has been set.
+func (o *InterconnectionPort) HasName() bool {
+	if o != nil && !isNil(o.Name) {
+		return true
+	}
+
+	return false
+}
+
+// SetName gets a reference to the given string and assigns it to the Name field.
+func (o *InterconnectionPort) SetName(v string) {
+	o.Name = &v
+}
+
+// GetSpeed returns the Speed field value if set, zero value otherwise.
+func (o *InterconnectionPort) GetSpeed() int32 {
+	if o == nil || isNil(o.Speed) {
+		var ret int32
+		return ret
+	}
+	return *o.Speed
+}
+
+// GetSpeedOk returns a tuple with the Speed field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *InterconnectionPort) GetSpeedOk() (*int32, bool) {
+	if o == nil || isNil(o.Speed) {
+		return nil, false
+	}
+	return o.Speed, true
+}
+
+// HasSpeed returns a boolean if a field has been set.
+func (o *InterconnectionPort) HasSpeed() bool {
+	if o != nil && !isNil(o.Speed) {
+		return true
+	}
+
+	return false
+}
+
+// SetSpeed gets a reference to the given int32 and assigns it to the Speed field.
+func (o *InterconnectionPort) SetSpeed(v int32) {
+	o.Speed = &v
+}
+
+// GetLinkStatus returns the LinkStatus field value if set, zero value otherwise.
+func (o *InterconnectionPort) GetLinkStatus() string {
+	if o == nil || isNil(o.LinkStatus) {
+		var ret string
+		return ret
+	}
+	return *o.LinkStatus
+}
+
+// GetLinkStatusOk returns a tuple with the LinkStatus field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *InterconnectionPort) GetLinkStatusOk() (*string, bool) {
+	if o == nil || isNil(o.LinkStatus) {
+		return nil, false
+	}
+	return o.LinkStatus, true
+}
+
+// HasLinkStatus returns a boolean if a field has been set.
+func (o *InterconnectionPort) HasLinkStatus() bool {
+	if o != nil && !isNil(o.LinkStatus) {
+		return true
+	}
+
+	return false
+}
+
+// SetLinkStatus gets a reference to the given string and assigns it to the LinkStatus field.
+func (o *InterconnectionPort) SetLinkStatus(v string) {
+	o.LinkStatus = &v
+}
+
+// GetHref returns the Href field value if set, zero value otherwise.
+func (o *InterconnectionPort) GetHref() string {
+	if o == nil || isNil(o.Href) {
+		var ret string
+		return ret
+	}
+	return *o.Href
+}
+
+// GetHrefOk returns a tuple with the Href field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *InterconnectionPort) GetHrefOk() (*string, bool) {
+	if o == nil || isNil(o.Href) {
+		return nil, false
+	}
+	return o.Href, true
+}
+
+// HasHref returns a boolean if a field has been set.
+func (o *InterconnectionPort) HasHref() bool {
+	if o != nil && !isNil(o.Href) {
+		return true
+	}
+
+	return false
+}
+
+// SetHref gets a reference to the given string and assigns it to the Href field.
+func (o *InterconnectionPort) SetHref(v string) {
+	o.Href = &v
+}
+
 func (o InterconnectionPort) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -267,6 +399,18 @@ func (o InterconnectionPort) ToMap() (map[string]interface{}, error) {
 	}
 	if !isNil(o.VirtualCircuits) {
 		toSerialize["virtual_circuits"] = o.VirtualCircuits
+	}
+	if !isNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !isNil(o.Speed) {
+		toSerialize["speed"] = o.Speed
+	}
+	if !isNil(o.LinkStatus) {
+		toSerialize["link_status"] = o.LinkStatus
+	}
+	if !isNil(o.Href) {
+		toSerialize["href"] = o.Href
 	}
 	return toSerialize, nil
 }

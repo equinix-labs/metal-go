@@ -236,6 +236,7 @@ Class | Method | HTTP request | Description
 *InterconnectionsApi* | [**GetVirtualCircuit**](docs/InterconnectionsApi.md#getvirtualcircuit) | **Get** /virtual-circuits/{id} | Get a virtual circuit
 *InterconnectionsApi* | [**ListInterconnectionPortVirtualCircuits**](docs/InterconnectionsApi.md#listinterconnectionportvirtualcircuits) | **Get** /connections/{connection_id}/ports/{port_id}/virtual-circuits | List a interconnection port&#39;s virtual circuits
 *InterconnectionsApi* | [**ListInterconnectionPorts**](docs/InterconnectionsApi.md#listinterconnectionports) | **Get** /connections/{connection_id}/ports | List a interconnection&#39;s ports
+*InterconnectionsApi* | [**ListInterconnectionVirtualCircuits**](docs/InterconnectionsApi.md#listinterconnectionvirtualcircuits) | **Get** /connections/{connection_id}/virtual-circuits | List a interconnection&#39;s virtual circuits
 *InterconnectionsApi* | [**OrganizationListInterconnections**](docs/InterconnectionsApi.md#organizationlistinterconnections) | **Get** /organizations/{organization_id}/connections | List organization connections
 *InterconnectionsApi* | [**ProjectListInterconnections**](docs/InterconnectionsApi.md#projectlistinterconnections) | **Get** /projects/{project_id}/connections | List project connections
 *InterconnectionsApi* | [**UpdateInterconnection**](docs/InterconnectionsApi.md#updateinterconnection) | **Put** /connections/{connection_id} | Update interconnection
@@ -357,6 +358,7 @@ Class | Method | HTTP request | Description
 *VRFsApi* | [**DeleteVrf**](docs/VRFsApi.md#deletevrf) | **Delete** /vrfs/{id} | Delete the VRF
 *VRFsApi* | [**DeleteVrfRouteById**](docs/VRFsApi.md#deletevrfroutebyid) | **Delete** /routes/{id} | Delete a VRF Route
 *VRFsApi* | [**FindVrfById**](docs/VRFsApi.md#findvrfbyid) | **Get** /vrfs/{id} | Retrieve a VRF
+*VRFsApi* | [**FindVrfIpReservation**](docs/VRFsApi.md#findvrfipreservation) | **Get** /vrfs/{vrf_id}/ips/{id} | Retrieve all VRF IP Reservations in the VRF
 *VRFsApi* | [**FindVrfIpReservations**](docs/VRFsApi.md#findvrfipreservations) | **Get** /vrfs/{id}/ips | Retrieve all VRF IP Reservations in the VRF
 *VRFsApi* | [**FindVrfRouteById**](docs/VRFsApi.md#findvrfroutebyid) | **Get** /routes/{id} | Retrieve a VRF Route
 *VRFsApi* | [**FindVrfs**](docs/VRFsApi.md#findvrfs) | **Get** /projects/{id}/vrfs | Retrieve all VRFs in the project
@@ -432,7 +434,6 @@ Class | Method | HTTP request | Description
  - [FacilityInput](docs/FacilityInput.md)
  - [FacilityInputFacility](docs/FacilityInputFacility.md)
  - [FacilityList](docs/FacilityList.md)
- - [FindIPAddressById200Response](docs/FindIPAddressById200Response.md)
  - [FindMetalGatewayById200Response](docs/FindMetalGatewayById200Response.md)
  - [FindTrafficTimeframeParameter](docs/FindTrafficTimeframeParameter.md)
  - [GlobalBgpRange](docs/GlobalBgpRange.md)
@@ -444,6 +445,7 @@ Class | Method | HTTP request | Description
  - [IPAssignmentInput](docs/IPAssignmentInput.md)
  - [IPAssignmentList](docs/IPAssignmentList.md)
  - [IPAssignmentMetro](docs/IPAssignmentMetro.md)
+ - [IPAssignmentUpdateInput](docs/IPAssignmentUpdateInput.md)
  - [IPAvailabilitiesList](docs/IPAvailabilitiesList.md)
  - [IPReservation](docs/IPReservation.md)
  - [IPReservationFacility](docs/IPReservationFacility.md)
@@ -560,6 +562,7 @@ Class | Method | HTTP request | Description
  - [TransferRequestInput](docs/TransferRequestInput.md)
  - [TransferRequestList](docs/TransferRequestList.md)
  - [UpdateEmailInput](docs/UpdateEmailInput.md)
+ - [UpdateIPAddress200Response](docs/UpdateIPAddress200Response.md)
  - [UpdateVirtualCircuitRequest](docs/UpdateVirtualCircuitRequest.md)
  - [User](docs/User.md)
  - [UserCreateInput](docs/UserCreateInput.md)

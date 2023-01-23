@@ -14,6 +14,7 @@ Method | HTTP request | Description
 [**GetVirtualCircuit**](InterconnectionsApi.md#GetVirtualCircuit) | **Get** /virtual-circuits/{id} | Get a virtual circuit
 [**ListInterconnectionPortVirtualCircuits**](InterconnectionsApi.md#ListInterconnectionPortVirtualCircuits) | **Get** /connections/{connection_id}/ports/{port_id}/virtual-circuits | List a interconnection port&#39;s virtual circuits
 [**ListInterconnectionPorts**](InterconnectionsApi.md#ListInterconnectionPorts) | **Get** /connections/{connection_id}/ports | List a interconnection&#39;s ports
+[**ListInterconnectionVirtualCircuits**](InterconnectionsApi.md#ListInterconnectionVirtualCircuits) | **Get** /connections/{connection_id}/virtual-circuits | List a interconnection&#39;s virtual circuits
 [**OrganizationListInterconnections**](InterconnectionsApi.md#OrganizationListInterconnections) | **Get** /organizations/{organization_id}/connections | List organization connections
 [**ProjectListInterconnections**](InterconnectionsApi.md#ProjectListInterconnections) | **Get** /projects/{project_id}/connections | List project connections
 [**UpdateInterconnection**](InterconnectionsApi.md#UpdateInterconnection) | **Put** /connections/{connection_id} | Update interconnection
@@ -44,7 +45,7 @@ import (
 func main() {
     connectionId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | UUID of the interconnection
     portId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | UUID of the interconnection port
-    createInterconnectionPortVirtualCircuitRequest := openapiclient.createInterconnectionPortVirtualCircuit_request{VirtualCircuitCreateInput: openapiclient.NewVirtualCircuitCreateInput()} // CreateInterconnectionPortVirtualCircuitRequest | Virtual Circuit details
+    createInterconnectionPortVirtualCircuitRequest := openapiclient.createInterconnectionPortVirtualCircuit_request{VirtualCircuitCreateInput: openapiclient.NewVirtualCircuitCreateInput("ProjectId_example")} // CreateInterconnectionPortVirtualCircuitRequest | Virtual Circuit details
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -721,6 +722,76 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**InterconnectionPortList**](InterconnectionPortList.md)
+
+### Authorization
+
+[x_auth_token](../README.md#x_auth_token)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ListInterconnectionVirtualCircuits
+
+> VirtualCircuitList ListInterconnectionVirtualCircuits(ctx, connectionId).Execute()
+
+List a interconnection's virtual circuits
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    connectionId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | UUID of the interconnection
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.InterconnectionsApi.ListInterconnectionVirtualCircuits(context.Background(), connectionId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `InterconnectionsApi.ListInterconnectionVirtualCircuits``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListInterconnectionVirtualCircuits`: VirtualCircuitList
+    fmt.Fprintf(os.Stdout, "Response from `InterconnectionsApi.ListInterconnectionVirtualCircuits`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**connectionId** | **string** | UUID of the interconnection | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListInterconnectionVirtualCircuitsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**VirtualCircuitList**](VirtualCircuitList.md)
 
 ### Authorization
 

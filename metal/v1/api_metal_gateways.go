@@ -225,7 +225,7 @@ func (r ApiDeleteMetalGatewayRequest) Exclude(exclude []string) ApiDeleteMetalGa
 	return r
 }
 
-func (r ApiDeleteMetalGatewayRequest) Execute() (*http.Response, error) {
+func (r ApiDeleteMetalGatewayRequest) Execute() (*FindMetalGatewayById200Response, *http.Response, error) {
 	return r.ApiService.DeleteMetalGatewayExecute(r)
 }
 
@@ -247,16 +247,19 @@ func (a *MetalGatewaysApiService) DeleteMetalGateway(ctx context.Context, id str
 }
 
 // Execute executes the request
-func (a *MetalGatewaysApiService) DeleteMetalGatewayExecute(r ApiDeleteMetalGatewayRequest) (*http.Response, error) {
+//
+//	@return FindMetalGatewayById200Response
+func (a *MetalGatewaysApiService) DeleteMetalGatewayExecute(r ApiDeleteMetalGatewayRequest) (*FindMetalGatewayById200Response, *http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodDelete
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod  = http.MethodDelete
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *FindMetalGatewayById200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetalGatewaysApiService.DeleteMetalGateway")
 	if err != nil {
-		return nil, &GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/metal-gateways/{id}"
@@ -305,19 +308,19 @@ func (a *MetalGatewaysApiService) DeleteMetalGatewayExecute(r ApiDeleteMetalGate
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
-		return nil, err
+		return localVarReturnValue, nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -330,26 +333,35 @@ func (a *MetalGatewaysApiService) DeleteMetalGatewayExecute(r ApiDeleteMetalGate
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
-			return localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 		}
-		return localVarHTTPResponse, newErr
+		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	return localVarHTTPResponse, nil
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
 type ApiFindMetalGatewayByIdRequest struct {

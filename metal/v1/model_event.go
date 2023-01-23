@@ -21,14 +21,16 @@ var _ MappedNullable = &Event{}
 
 // Event struct for Event
 type Event struct {
-	Body          *string    `json:"body,omitempty"`
-	CreatedAt     *time.Time `json:"created_at,omitempty"`
-	Href          *string    `json:"href,omitempty"`
-	Id            *string    `json:"id,omitempty"`
-	Interpolated  *string    `json:"interpolated,omitempty"`
-	Relationships []Href     `json:"relationships,omitempty"`
-	State         *string    `json:"state,omitempty"`
-	Type          *string    `json:"type,omitempty"`
+	Body          *string                `json:"body,omitempty"`
+	CreatedAt     *time.Time             `json:"created_at,omitempty"`
+	Href          *string                `json:"href,omitempty"`
+	Id            *string                `json:"id,omitempty"`
+	Interpolated  *string                `json:"interpolated,omitempty"`
+	Relationships []Href                 `json:"relationships,omitempty"`
+	State         *string                `json:"state,omitempty"`
+	Type          *string                `json:"type,omitempty"`
+	ModifiedBy    map[string]interface{} `json:"modified_by,omitempty"`
+	Ip            *string                `json:"ip,omitempty"`
 }
 
 // NewEvent instantiates a new Event object
@@ -304,6 +306,70 @@ func (o *Event) SetType(v string) {
 	o.Type = &v
 }
 
+// GetModifiedBy returns the ModifiedBy field value if set, zero value otherwise.
+func (o *Event) GetModifiedBy() map[string]interface{} {
+	if o == nil || isNil(o.ModifiedBy) {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.ModifiedBy
+}
+
+// GetModifiedByOk returns a tuple with the ModifiedBy field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Event) GetModifiedByOk() (map[string]interface{}, bool) {
+	if o == nil || isNil(o.ModifiedBy) {
+		return map[string]interface{}{}, false
+	}
+	return o.ModifiedBy, true
+}
+
+// HasModifiedBy returns a boolean if a field has been set.
+func (o *Event) HasModifiedBy() bool {
+	if o != nil && !isNil(o.ModifiedBy) {
+		return true
+	}
+
+	return false
+}
+
+// SetModifiedBy gets a reference to the given map[string]interface{} and assigns it to the ModifiedBy field.
+func (o *Event) SetModifiedBy(v map[string]interface{}) {
+	o.ModifiedBy = v
+}
+
+// GetIp returns the Ip field value if set, zero value otherwise.
+func (o *Event) GetIp() string {
+	if o == nil || isNil(o.Ip) {
+		var ret string
+		return ret
+	}
+	return *o.Ip
+}
+
+// GetIpOk returns a tuple with the Ip field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Event) GetIpOk() (*string, bool) {
+	if o == nil || isNil(o.Ip) {
+		return nil, false
+	}
+	return o.Ip, true
+}
+
+// HasIp returns a boolean if a field has been set.
+func (o *Event) HasIp() bool {
+	if o != nil && !isNil(o.Ip) {
+		return true
+	}
+
+	return false
+}
+
+// SetIp gets a reference to the given string and assigns it to the Ip field.
+func (o *Event) SetIp(v string) {
+	o.Ip = &v
+}
+
 func (o Event) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -337,6 +403,12 @@ func (o Event) ToMap() (map[string]interface{}, error) {
 	}
 	if !isNil(o.Type) {
 		toSerialize["type"] = o.Type
+	}
+	if !isNil(o.ModifiedBy) {
+		toSerialize["modified_by"] = o.ModifiedBy
+	}
+	if !isNil(o.Ip) {
+		toSerialize["ip"] = o.Ip
 	}
 	return toSerialize, nil
 }

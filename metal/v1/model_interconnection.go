@@ -13,6 +13,7 @@ package v1
 
 import (
 	"encoding/json"
+	"time"
 )
 
 // checks if the Interconnection type satisfies the MappedNullable interface at compile time
@@ -42,7 +43,10 @@ type Interconnection struct {
 	// This token is used for shared interconnections to be used as the Fabric Token. This field is entirely deprecated.
 	Token *string `json:"token,omitempty"`
 	// The 'shared' type of interconnection refers to shared connections, or later also known as Fabric Virtual Connections (or Fabric VCs). The 'dedicated' type of interconnection refers to interconnections created with Dedicated Ports.
-	Type *string `json:"type,omitempty"`
+	Type        *string    `json:"type,omitempty"`
+	CreatedAt   *time.Time `json:"created_at,omitempty"`
+	UpdatedAt   *time.Time `json:"updated_at,omitempty"`
+	RequestedBy *Href      `json:"requested_by,omitempty"`
 }
 
 // NewInterconnection instantiates a new Interconnection object
@@ -574,6 +578,102 @@ func (o *Interconnection) SetType(v string) {
 	o.Type = &v
 }
 
+// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
+func (o *Interconnection) GetCreatedAt() time.Time {
+	if o == nil || isNil(o.CreatedAt) {
+		var ret time.Time
+		return ret
+	}
+	return *o.CreatedAt
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Interconnection) GetCreatedAtOk() (*time.Time, bool) {
+	if o == nil || isNil(o.CreatedAt) {
+		return nil, false
+	}
+	return o.CreatedAt, true
+}
+
+// HasCreatedAt returns a boolean if a field has been set.
+func (o *Interconnection) HasCreatedAt() bool {
+	if o != nil && !isNil(o.CreatedAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
+func (o *Interconnection) SetCreatedAt(v time.Time) {
+	o.CreatedAt = &v
+}
+
+// GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
+func (o *Interconnection) GetUpdatedAt() time.Time {
+	if o == nil || isNil(o.UpdatedAt) {
+		var ret time.Time
+		return ret
+	}
+	return *o.UpdatedAt
+}
+
+// GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Interconnection) GetUpdatedAtOk() (*time.Time, bool) {
+	if o == nil || isNil(o.UpdatedAt) {
+		return nil, false
+	}
+	return o.UpdatedAt, true
+}
+
+// HasUpdatedAt returns a boolean if a field has been set.
+func (o *Interconnection) HasUpdatedAt() bool {
+	if o != nil && !isNil(o.UpdatedAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetUpdatedAt gets a reference to the given time.Time and assigns it to the UpdatedAt field.
+func (o *Interconnection) SetUpdatedAt(v time.Time) {
+	o.UpdatedAt = &v
+}
+
+// GetRequestedBy returns the RequestedBy field value if set, zero value otherwise.
+func (o *Interconnection) GetRequestedBy() Href {
+	if o == nil || isNil(o.RequestedBy) {
+		var ret Href
+		return ret
+	}
+	return *o.RequestedBy
+}
+
+// GetRequestedByOk returns a tuple with the RequestedBy field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Interconnection) GetRequestedByOk() (*Href, bool) {
+	if o == nil || isNil(o.RequestedBy) {
+		return nil, false
+	}
+	return o.RequestedBy, true
+}
+
+// HasRequestedBy returns a boolean if a field has been set.
+func (o *Interconnection) HasRequestedBy() bool {
+	if o != nil && !isNil(o.RequestedBy) {
+		return true
+	}
+
+	return false
+}
+
+// SetRequestedBy gets a reference to the given Href and assigns it to the RequestedBy field.
+func (o *Interconnection) SetRequestedBy(v Href) {
+	o.RequestedBy = &v
+}
+
 func (o Interconnection) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -631,6 +731,15 @@ func (o Interconnection) ToMap() (map[string]interface{}, error) {
 	}
 	if !isNil(o.Type) {
 		toSerialize["type"] = o.Type
+	}
+	if !isNil(o.CreatedAt) {
+		toSerialize["created_at"] = o.CreatedAt
+	}
+	if !isNil(o.UpdatedAt) {
+		toSerialize["updated_at"] = o.UpdatedAt
+	}
+	if !isNil(o.RequestedBy) {
+		toSerialize["requested_by"] = o.RequestedBy
 	}
 	return toSerialize, nil
 }

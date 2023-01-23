@@ -21,21 +21,30 @@ var _ MappedNullable = &VrfIpReservation{}
 
 // VrfIpReservation struct for VrfIpReservation
 type VrfIpReservation struct {
-	AddressFamily *int32            `json:"address_family,omitempty"`
-	Cidr          *int32            `json:"cidr,omitempty"`
-	CreatedAt     *time.Time        `json:"created_at,omitempty"`
-	CreatedBy     *Href             `json:"created_by,omitempty"`
-	Details       *string           `json:"details,omitempty"`
-	Href          *string           `json:"href,omitempty"`
-	Id            *string           `json:"id,omitempty"`
-	MetalGateway  *MetalGatewayLite `json:"metal_gateway,omitempty"`
-	Netmask       *string           `json:"netmask,omitempty"`
-	Network       *string           `json:"network,omitempty"`
-	Project       *Project          `json:"project,omitempty"`
-	State         *string           `json:"state,omitempty"`
-	Tags          []string          `json:"tags,omitempty"`
-	Type          string            `json:"type"`
-	Vrf           Vrf               `json:"vrf"`
+	AddressFamily *int32                 `json:"address_family,omitempty"`
+	Cidr          *int32                 `json:"cidr,omitempty"`
+	CreatedAt     *time.Time             `json:"created_at,omitempty"`
+	CreatedBy     *Href                  `json:"created_by,omitempty"`
+	Details       *string                `json:"details,omitempty"`
+	Href          *string                `json:"href,omitempty"`
+	Id            *string                `json:"id,omitempty"`
+	MetalGateway  *MetalGatewayLite      `json:"metal_gateway,omitempty"`
+	Netmask       *string                `json:"netmask,omitempty"`
+	Network       *string                `json:"network,omitempty"`
+	Project       *Project               `json:"project,omitempty"`
+	State         *string                `json:"state,omitempty"`
+	Tags          []string               `json:"tags,omitempty"`
+	Type          string                 `json:"type"`
+	Vrf           Vrf                    `json:"vrf"`
+	Public        *bool                  `json:"public,omitempty"`
+	Management    *bool                  `json:"management,omitempty"`
+	Manageable    *bool                  `json:"manageable,omitempty"`
+	Customdata    map[string]interface{} `json:"customdata,omitempty"`
+	Bill          *bool                  `json:"bill,omitempty"`
+	ProjectLite   *Project               `json:"project_lite,omitempty"`
+	Address       *string                `json:"address,omitempty"`
+	Gateway       *string                `json:"gateway,omitempty"`
+	Metro         *Metro                 `json:"metro,omitempty"`
 }
 
 // NewVrfIpReservation instantiates a new VrfIpReservation object
@@ -521,6 +530,294 @@ func (o *VrfIpReservation) SetVrf(v Vrf) {
 	o.Vrf = v
 }
 
+// GetPublic returns the Public field value if set, zero value otherwise.
+func (o *VrfIpReservation) GetPublic() bool {
+	if o == nil || isNil(o.Public) {
+		var ret bool
+		return ret
+	}
+	return *o.Public
+}
+
+// GetPublicOk returns a tuple with the Public field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VrfIpReservation) GetPublicOk() (*bool, bool) {
+	if o == nil || isNil(o.Public) {
+		return nil, false
+	}
+	return o.Public, true
+}
+
+// HasPublic returns a boolean if a field has been set.
+func (o *VrfIpReservation) HasPublic() bool {
+	if o != nil && !isNil(o.Public) {
+		return true
+	}
+
+	return false
+}
+
+// SetPublic gets a reference to the given bool and assigns it to the Public field.
+func (o *VrfIpReservation) SetPublic(v bool) {
+	o.Public = &v
+}
+
+// GetManagement returns the Management field value if set, zero value otherwise.
+func (o *VrfIpReservation) GetManagement() bool {
+	if o == nil || isNil(o.Management) {
+		var ret bool
+		return ret
+	}
+	return *o.Management
+}
+
+// GetManagementOk returns a tuple with the Management field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VrfIpReservation) GetManagementOk() (*bool, bool) {
+	if o == nil || isNil(o.Management) {
+		return nil, false
+	}
+	return o.Management, true
+}
+
+// HasManagement returns a boolean if a field has been set.
+func (o *VrfIpReservation) HasManagement() bool {
+	if o != nil && !isNil(o.Management) {
+		return true
+	}
+
+	return false
+}
+
+// SetManagement gets a reference to the given bool and assigns it to the Management field.
+func (o *VrfIpReservation) SetManagement(v bool) {
+	o.Management = &v
+}
+
+// GetManageable returns the Manageable field value if set, zero value otherwise.
+func (o *VrfIpReservation) GetManageable() bool {
+	if o == nil || isNil(o.Manageable) {
+		var ret bool
+		return ret
+	}
+	return *o.Manageable
+}
+
+// GetManageableOk returns a tuple with the Manageable field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VrfIpReservation) GetManageableOk() (*bool, bool) {
+	if o == nil || isNil(o.Manageable) {
+		return nil, false
+	}
+	return o.Manageable, true
+}
+
+// HasManageable returns a boolean if a field has been set.
+func (o *VrfIpReservation) HasManageable() bool {
+	if o != nil && !isNil(o.Manageable) {
+		return true
+	}
+
+	return false
+}
+
+// SetManageable gets a reference to the given bool and assigns it to the Manageable field.
+func (o *VrfIpReservation) SetManageable(v bool) {
+	o.Manageable = &v
+}
+
+// GetCustomdata returns the Customdata field value if set, zero value otherwise.
+func (o *VrfIpReservation) GetCustomdata() map[string]interface{} {
+	if o == nil || isNil(o.Customdata) {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.Customdata
+}
+
+// GetCustomdataOk returns a tuple with the Customdata field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VrfIpReservation) GetCustomdataOk() (map[string]interface{}, bool) {
+	if o == nil || isNil(o.Customdata) {
+		return map[string]interface{}{}, false
+	}
+	return o.Customdata, true
+}
+
+// HasCustomdata returns a boolean if a field has been set.
+func (o *VrfIpReservation) HasCustomdata() bool {
+	if o != nil && !isNil(o.Customdata) {
+		return true
+	}
+
+	return false
+}
+
+// SetCustomdata gets a reference to the given map[string]interface{} and assigns it to the Customdata field.
+func (o *VrfIpReservation) SetCustomdata(v map[string]interface{}) {
+	o.Customdata = v
+}
+
+// GetBill returns the Bill field value if set, zero value otherwise.
+func (o *VrfIpReservation) GetBill() bool {
+	if o == nil || isNil(o.Bill) {
+		var ret bool
+		return ret
+	}
+	return *o.Bill
+}
+
+// GetBillOk returns a tuple with the Bill field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VrfIpReservation) GetBillOk() (*bool, bool) {
+	if o == nil || isNil(o.Bill) {
+		return nil, false
+	}
+	return o.Bill, true
+}
+
+// HasBill returns a boolean if a field has been set.
+func (o *VrfIpReservation) HasBill() bool {
+	if o != nil && !isNil(o.Bill) {
+		return true
+	}
+
+	return false
+}
+
+// SetBill gets a reference to the given bool and assigns it to the Bill field.
+func (o *VrfIpReservation) SetBill(v bool) {
+	o.Bill = &v
+}
+
+// GetProjectLite returns the ProjectLite field value if set, zero value otherwise.
+func (o *VrfIpReservation) GetProjectLite() Project {
+	if o == nil || isNil(o.ProjectLite) {
+		var ret Project
+		return ret
+	}
+	return *o.ProjectLite
+}
+
+// GetProjectLiteOk returns a tuple with the ProjectLite field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VrfIpReservation) GetProjectLiteOk() (*Project, bool) {
+	if o == nil || isNil(o.ProjectLite) {
+		return nil, false
+	}
+	return o.ProjectLite, true
+}
+
+// HasProjectLite returns a boolean if a field has been set.
+func (o *VrfIpReservation) HasProjectLite() bool {
+	if o != nil && !isNil(o.ProjectLite) {
+		return true
+	}
+
+	return false
+}
+
+// SetProjectLite gets a reference to the given Project and assigns it to the ProjectLite field.
+func (o *VrfIpReservation) SetProjectLite(v Project) {
+	o.ProjectLite = &v
+}
+
+// GetAddress returns the Address field value if set, zero value otherwise.
+func (o *VrfIpReservation) GetAddress() string {
+	if o == nil || isNil(o.Address) {
+		var ret string
+		return ret
+	}
+	return *o.Address
+}
+
+// GetAddressOk returns a tuple with the Address field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VrfIpReservation) GetAddressOk() (*string, bool) {
+	if o == nil || isNil(o.Address) {
+		return nil, false
+	}
+	return o.Address, true
+}
+
+// HasAddress returns a boolean if a field has been set.
+func (o *VrfIpReservation) HasAddress() bool {
+	if o != nil && !isNil(o.Address) {
+		return true
+	}
+
+	return false
+}
+
+// SetAddress gets a reference to the given string and assigns it to the Address field.
+func (o *VrfIpReservation) SetAddress(v string) {
+	o.Address = &v
+}
+
+// GetGateway returns the Gateway field value if set, zero value otherwise.
+func (o *VrfIpReservation) GetGateway() string {
+	if o == nil || isNil(o.Gateway) {
+		var ret string
+		return ret
+	}
+	return *o.Gateway
+}
+
+// GetGatewayOk returns a tuple with the Gateway field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VrfIpReservation) GetGatewayOk() (*string, bool) {
+	if o == nil || isNil(o.Gateway) {
+		return nil, false
+	}
+	return o.Gateway, true
+}
+
+// HasGateway returns a boolean if a field has been set.
+func (o *VrfIpReservation) HasGateway() bool {
+	if o != nil && !isNil(o.Gateway) {
+		return true
+	}
+
+	return false
+}
+
+// SetGateway gets a reference to the given string and assigns it to the Gateway field.
+func (o *VrfIpReservation) SetGateway(v string) {
+	o.Gateway = &v
+}
+
+// GetMetro returns the Metro field value if set, zero value otherwise.
+func (o *VrfIpReservation) GetMetro() Metro {
+	if o == nil || isNil(o.Metro) {
+		var ret Metro
+		return ret
+	}
+	return *o.Metro
+}
+
+// GetMetroOk returns a tuple with the Metro field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VrfIpReservation) GetMetroOk() (*Metro, bool) {
+	if o == nil || isNil(o.Metro) {
+		return nil, false
+	}
+	return o.Metro, true
+}
+
+// HasMetro returns a boolean if a field has been set.
+func (o *VrfIpReservation) HasMetro() bool {
+	if o != nil && !isNil(o.Metro) {
+		return true
+	}
+
+	return false
+}
+
+// SetMetro gets a reference to the given Metro and assigns it to the Metro field.
+func (o *VrfIpReservation) SetMetro(v Metro) {
+	o.Metro = &v
+}
+
 func (o VrfIpReservation) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -572,6 +869,33 @@ func (o VrfIpReservation) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["type"] = o.Type
 	toSerialize["vrf"] = o.Vrf
+	if !isNil(o.Public) {
+		toSerialize["public"] = o.Public
+	}
+	if !isNil(o.Management) {
+		toSerialize["management"] = o.Management
+	}
+	if !isNil(o.Manageable) {
+		toSerialize["manageable"] = o.Manageable
+	}
+	if !isNil(o.Customdata) {
+		toSerialize["customdata"] = o.Customdata
+	}
+	if !isNil(o.Bill) {
+		toSerialize["bill"] = o.Bill
+	}
+	if !isNil(o.ProjectLite) {
+		toSerialize["project_lite"] = o.ProjectLite
+	}
+	if !isNil(o.Address) {
+		toSerialize["address"] = o.Address
+	}
+	if !isNil(o.Gateway) {
+		toSerialize["gateway"] = o.Gateway
+	}
+	if !isNil(o.Metro) {
+		toSerialize["metro"] = o.Metro
+	}
 	return toSerialize, nil
 }
 

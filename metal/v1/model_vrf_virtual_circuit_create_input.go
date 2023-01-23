@@ -30,8 +30,8 @@ type VrfVirtualCircuitCreateInput struct {
 	Name    *string `json:"name,omitempty"`
 	NniVlan int32   `json:"nni_vlan"`
 	// The peer ASN that will be used with the VRF on the Virtual Circuit.
-	PeerAsn int32  `json:"peer_asn"`
-	Project string `json:"project"`
+	PeerAsn   int32  `json:"peer_asn"`
+	ProjectId string `json:"project_id"`
 	// speed can be passed as integer number representing bps speed or string (e.g. '52m' or '100g' or '4 gbps')
 	Speed *int32 `json:"speed,omitempty"`
 	// The /30 or /31 subnet of one of the VRF IP Blocks that will be used with the VRF for the Virtual Circuit. This subnet does not have to be an existing VRF IP reservation, as we will create the VRF IP reservation on creation if it does not exist. The Metal IP and Customer IP must be IPs from this subnet. For /30 subnets, the network and broadcast IPs cannot be used as the Metal or Customer IP. The subnet specified must be contained within an already-defined IP Range for the VRF.
@@ -45,11 +45,11 @@ type VrfVirtualCircuitCreateInput struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVrfVirtualCircuitCreateInput(nniVlan int32, peerAsn int32, project string, subnet string, vrf string) *VrfVirtualCircuitCreateInput {
+func NewVrfVirtualCircuitCreateInput(nniVlan int32, peerAsn int32, projectId string, subnet string, vrf string) *VrfVirtualCircuitCreateInput {
 	this := VrfVirtualCircuitCreateInput{}
 	this.NniVlan = nniVlan
 	this.PeerAsn = peerAsn
-	this.Project = project
+	this.ProjectId = projectId
 	this.Subnet = subnet
 	this.Vrf = vrf
 	return &this
@@ -282,28 +282,28 @@ func (o *VrfVirtualCircuitCreateInput) SetPeerAsn(v int32) {
 	o.PeerAsn = v
 }
 
-// GetProject returns the Project field value
-func (o *VrfVirtualCircuitCreateInput) GetProject() string {
+// GetProjectId returns the ProjectId field value
+func (o *VrfVirtualCircuitCreateInput) GetProjectId() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Project
+	return o.ProjectId
 }
 
-// GetProjectOk returns a tuple with the Project field value
+// GetProjectIdOk returns a tuple with the ProjectId field value
 // and a boolean to check if the value has been set.
-func (o *VrfVirtualCircuitCreateInput) GetProjectOk() (*string, bool) {
+func (o *VrfVirtualCircuitCreateInput) GetProjectIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Project, true
+	return &o.ProjectId, true
 }
 
-// SetProject sets field value
-func (o *VrfVirtualCircuitCreateInput) SetProject(v string) {
-	o.Project = v
+// SetProjectId sets field value
+func (o *VrfVirtualCircuitCreateInput) SetProjectId(v string) {
+	o.ProjectId = v
 }
 
 // GetSpeed returns the Speed field value if set, zero value otherwise.
@@ -445,7 +445,7 @@ func (o VrfVirtualCircuitCreateInput) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["nni_vlan"] = o.NniVlan
 	toSerialize["peer_asn"] = o.PeerAsn
-	toSerialize["project"] = o.Project
+	toSerialize["project_id"] = o.ProjectId
 	if !isNil(o.Speed) {
 		toSerialize["speed"] = o.Speed
 	}

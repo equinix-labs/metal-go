@@ -89,7 +89,7 @@ Name | Type | Description  | Notes
 
 ## DeleteMetalGateway
 
-> DeleteMetalGateway(ctx, id).Include(include).Exclude(exclude).Execute()
+> FindMetalGatewayById200Response DeleteMetalGateway(ctx, id).Include(include).Exclude(exclude).Execute()
 
 Deletes the metal gateway
 
@@ -119,6 +119,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `MetalGatewaysApi.DeleteMetalGateway``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
+    // response from `DeleteMetalGateway`: FindMetalGatewayById200Response
+    fmt.Fprintf(os.Stdout, "Response from `MetalGatewaysApi.DeleteMetalGateway`: %v\n", resp)
 }
 ```
 
@@ -143,7 +145,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
- (empty response body)
+[**FindMetalGatewayById200Response**](FindMetalGatewayById200Response.md)
 
 ### Authorization
 

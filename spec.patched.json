@@ -1098,7 +1098,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Event"
+                  "$ref": "#/components/schemas/EventList"
                 }
               }
             },
@@ -1190,6 +1190,60 @@
           }
         },
         "summary": "List a interconnection's ports",
+        "tags": [
+          "Interconnections"
+        ]
+      }
+    },
+    "/connections/{connection_id}/virtual-circuits": {
+      "get": {
+        "description": "List the virtual circuit record(s) associated with a particular interconnection id.",
+        "operationId": "listInterconnectionVirtualCircuits",
+        "parameters": [
+          {
+            "description": "UUID of the interconnection",
+            "in": "path",
+            "name": "connection_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VirtualCircuitList"
+                }
+              }
+            },
+            "description": "ok"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "not found"
+          }
+        },
+        "summary": "List a interconnection's virtual circuits",
         "tags": [
           "Interconnections"
         ]
@@ -4100,7 +4154,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/findIPAddressById_200_response"
+                  "$ref": "#/components/schemas/IPAvailabilitiesList"
                 }
               }
             },
@@ -4155,32 +4209,23 @@
               "format": "uuid",
               "type": "string"
             }
-          },
-          {
-            "description": "Notes for this IP Assignment",
-            "in": "query",
-            "name": "details",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "Provides the custom metadata stored for this IP Assignment in json format",
-            "in": "query",
-            "name": "customdata",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
           }
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IPAssignmentUpdateInput"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/findIPAddressById_200_response"
+                  "$ref": "#/components/schemas/updateIPAddress_200_response"
                 }
               }
             },
@@ -5247,8 +5292,15 @@
           }
         ],
         "responses": {
-          "204": {
-            "description": "no content"
+          "202": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/findMetalGatewayById_200_response"
+                }
+              }
+            },
+            "description": "accepted"
           },
           "401": {
             "content": {
@@ -15327,6 +15379,94 @@
         ]
       }
     },
+    "/vrfs/{vrf_id}/ips/{id}": {
+      "get": {
+        "description": "Returns the IP Reservation for the VRF.",
+        "operationId": "findVrfIpReservation",
+        "parameters": [
+          {
+            "description": "VRF UUID",
+            "in": "path",
+            "name": "vrf_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "type": "string"
+            }
+          },
+          {
+            "description": "IP UUID",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.",
+            "in": "query",
+            "name": "include",
+            "schema": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "style": "form"
+          },
+          {
+            "description": "Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.",
+            "in": "query",
+            "name": "exclude",
+            "schema": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "style": "form"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VrfIpReservation"
+                }
+              }
+            },
+            "description": "ok"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "not found"
+          }
+        },
+        "summary": "Retrieve all VRF IP Reservations in the VRF",
+        "tags": [
+          "VRFs"
+        ]
+      }
+    },
     "/vrfs/{id}/routes": {
       "get": {
         "description": "Returns the list of routes for the VRF",
@@ -16781,6 +16921,12 @@
           },
           "type": {
             "type": "string"
+          },
+          "modified_by": {
+            "type": "object"
+          },
+          "ip": {
+            "type": "string"
           }
         },
         "type": "object"
@@ -17379,6 +17525,17 @@
               "dedicated"
             ],
             "type": "string"
+          },
+          "created_at": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "updated_at": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "requested_by": {
+            "$ref": "#/components/schemas/Href"
           }
         },
         "type": "object"
@@ -17502,6 +17659,18 @@
           },
           "virtual_circuits": {
             "$ref": "#/components/schemas/VirtualCircuitList"
+          },
+          "name": {
+            "type": "string"
+          },
+          "speed": {
+            "type": "integer"
+          },
+          "link_status": {
+            "type": "string"
+          },
+          "href": {
+            "type": "string"
           }
         },
         "type": "object"
@@ -17785,6 +17954,12 @@
             "$ref": "#/components/schemas/Href"
           },
           "total": {
+            "type": "integer"
+          },
+          "current_page": {
+            "type": "integer"
+          },
+          "last_page": {
             "type": "integer"
           }
         },
@@ -18668,6 +18843,9 @@
               "$ref": "#/components/schemas/PortVlanAssignmentBatch_vlan_assignments_inner"
             },
             "type": "array"
+          },
+          "project": {
+            "$ref": "#/components/schemas/Href"
           }
         },
         "type": "object"
@@ -19750,6 +19928,14 @@
           },
           "vnid": {
             "type": "integer"
+          },
+          "created_at": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "updated_at": {
+            "format": "date-time",
+            "type": "string"
           }
         },
         "required": [
@@ -19780,7 +19966,7 @@
             "minimum": 2,
             "type": "integer"
           },
-          "project": {
+          "project_id": {
             "format": "uuid",
             "type": "string"
           },
@@ -19800,6 +19986,9 @@
             "type": "string"
           }
         },
+        "required": [
+          "project_id"
+        ],
         "type": "object"
       },
       "VirtualCircuitList": {
@@ -19955,6 +20144,14 @@
           },
           "href": {
             "type": "string"
+          },
+          "created_at": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "updated_at": {
+            "format": "date-time",
+            "type": "string"
           }
         },
         "type": "object"
@@ -20064,6 +20261,33 @@
           },
           "vrf": {
             "$ref": "#/components/schemas/Vrf"
+          },
+          "public": {
+            "type": "boolean"
+          },
+          "management": {
+            "type": "boolean"
+          },
+          "manageable": {
+            "type": "boolean"
+          },
+          "customdata": {
+            "type": "object"
+          },
+          "bill": {
+            "type": "boolean"
+          },
+          "project_lite": {
+            "$ref": "#/components/schemas/Project"
+          },
+          "address": {
+            "type": "string"
+          },
+          "gateway": {
+            "type": "string"
+          },
+          "metro": {
+            "$ref": "#/components/schemas/Metro"
           }
         },
         "required": [
@@ -20384,6 +20608,14 @@
           },
           "vrf": {
             "$ref": "#/components/schemas/Vrf"
+          },
+          "created_at": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "updated_at": {
+            "format": "date-time",
+            "type": "string"
           }
         },
         "type": "object"
@@ -20420,7 +20652,7 @@
             "description": "The peer ASN that will be used with the VRF on the Virtual Circuit.",
             "type": "integer"
           },
-          "project": {
+          "project_id": {
             "format": "uuid",
             "type": "string"
           },
@@ -20448,7 +20680,7 @@
         "required": [
           "nni_vlan",
           "peer_asn",
-          "project",
+          "project_id",
           "subnet",
           "vrf"
         ],
@@ -20513,6 +20745,23 @@
         "required": [
           "type"
         ],
+        "type": "object"
+      },
+      "IPAssignmentUpdateInput": {
+        "properties": {
+          "details": {
+            "type": "string"
+          },
+          "customdata": {
+            "type": "object"
+          },
+          "tags": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          }
+        },
         "type": "object"
       },
       "BondPortData": {
@@ -20596,7 +20845,7 @@
         },
         "type": "object"
       },
-      "findIPAddressById_200_response": {
+      "updateIPAddress_200_response": {
         "oneOf": [
           {
             "$ref": "#/components/schemas/IPAssignment"

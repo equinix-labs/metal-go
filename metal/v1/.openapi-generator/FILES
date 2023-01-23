@@ -114,7 +114,6 @@ docs/Facility.md
 docs/FacilityInput.md
 docs/FacilityInputFacility.md
 docs/FacilityList.md
-docs/FindIPAddressById200Response.md
 docs/FindMetalGatewayById200Response.md
 docs/FindTrafficTimeframeParameter.md
 docs/GlobalBgpRange.md
@@ -128,6 +127,7 @@ docs/IPAssignment.md
 docs/IPAssignmentInput.md
 docs/IPAssignmentList.md
 docs/IPAssignmentMetro.md
+docs/IPAssignmentUpdateInput.md
 docs/IPAvailabilitiesList.md
 docs/IPReservation.md
 docs/IPReservationFacility.md
@@ -265,6 +265,7 @@ docs/TransferRequestList.md
 docs/TransferRequestsApi.md
 docs/TwoFactorAuthApi.md
 docs/UpdateEmailInput.md
+docs/UpdateIPAddress200Response.md
 docs/UpdateVirtualCircuitRequest.md
 docs/UsagesApi.md
 docs/User.md
@@ -372,7 +373,6 @@ model_facility.go
 model_facility_input.go
 model_facility_input_facility.go
 model_facility_list.go
-model_find_ip_address_by_id_200_response.go
 model_find_metal_gateway_by_id_200_response.go
 model_find_traffic_timeframe_parameter.go
 model_global_bgp_range.go
@@ -397,6 +397,7 @@ model_ip_assignment.go
 model_ip_assignment_input.go
 model_ip_assignment_list.go
 model_ip_assignment_metro.go
+model_ip_assignment_update_input.go
 model_ip_availabilities_list.go
 model_ip_reservation.go
 model_ip_reservation_facility.go
@@ -500,6 +501,7 @@ model_transfer_request.go
 model_transfer_request_input.go
 model_transfer_request_list.go
 model_update_email_input.go
+model_update_ip_address_200_response.go
 model_update_virtual_circuit_request.go
 model_user.go
 model_user_create_input.go

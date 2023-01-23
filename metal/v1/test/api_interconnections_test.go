@@ -145,6 +145,18 @@ func Test_v1_InterconnectionsApiService(t *testing.T) {
 		assert.Equal(t, 200, httpRes.StatusCode)
 	})
 
+	t.Run("Test InterconnectionsApiService ListInterconnectionVirtualCircuits", func(t *testing.T) {
+		t.Skip("skip test") // remove to run test
+
+		var connectionId string
+
+		resp, httpRes, err := apiClient.InterconnectionsApi.ListInterconnectionVirtualCircuits(context.Background(), connectionId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+	})
+
 	t.Run("Test InterconnectionsApiService OrganizationListInterconnections", func(t *testing.T) {
 		t.Skip("skip test") // remove to run test
 
