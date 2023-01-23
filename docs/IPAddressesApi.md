@@ -84,7 +84,7 @@ Name | Type | Description  | Notes
 
 ## FindIPAddressById
 
-> FindIPAddressById200Response FindIPAddressById(ctx, id).Include(include).Exclude(exclude).Execute()
+> IPAvailabilitiesList FindIPAddressById(ctx, id).Include(include).Exclude(exclude).Execute()
 
 Retrieve an ip address
 
@@ -114,7 +114,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `IPAddressesApi.FindIPAddressById``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindIPAddressById`: FindIPAddressById200Response
+    // response from `FindIPAddressById`: IPAvailabilitiesList
     fmt.Fprintf(os.Stdout, "Response from `IPAddressesApi.FindIPAddressById`: %v\n", resp)
 }
 ```
@@ -140,7 +140,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FindIPAddressById200Response**](FindIPAddressById200Response.md)
+[**IPAvailabilitiesList**](IPAvailabilitiesList.md)
 
 ### Authorization
 
@@ -448,7 +448,7 @@ Name | Type | Description  | Notes
 
 ## UpdateIPAddress
 
-> FindIPAddressById200Response UpdateIPAddress(ctx, id).Details(details).Customdata(customdata).Execute()
+> UpdateIPAddress200Response UpdateIPAddress(ctx, id).IPAssignmentUpdateInput(iPAssignmentUpdateInput).Execute()
 
 Update an ip address
 
@@ -468,17 +468,16 @@ import (
 
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | IP Address UUID
-    details := "details_example" // string | Notes for this IP Assignment
-    customdata := "customdata_example" // string | Provides the custom metadata stored for this IP Assignment in json format
+    iPAssignmentUpdateInput := *openapiclient.NewIPAssignmentUpdateInput() // IPAssignmentUpdateInput |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.IPAddressesApi.UpdateIPAddress(context.Background(), id).Details(details).Customdata(customdata).Execute()
+    resp, r, err := apiClient.IPAddressesApi.UpdateIPAddress(context.Background(), id).IPAssignmentUpdateInput(iPAssignmentUpdateInput).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `IPAddressesApi.UpdateIPAddress``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateIPAddress`: FindIPAddressById200Response
+    // response from `UpdateIPAddress`: UpdateIPAddress200Response
     fmt.Fprintf(os.Stdout, "Response from `IPAddressesApi.UpdateIPAddress`: %v\n", resp)
 }
 ```
@@ -499,12 +498,11 @@ Other parameters are passed through a pointer to a apiUpdateIPAddressRequest str
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **details** | **string** | Notes for this IP Assignment | 
- **customdata** | **string** | Provides the custom metadata stored for this IP Assignment in json format | 
+ **iPAssignmentUpdateInput** | [**IPAssignmentUpdateInput**](IPAssignmentUpdateInput.md) |  | 
 
 ### Return type
 
-[**FindIPAddressById200Response**](FindIPAddressById200Response.md)
+[**UpdateIPAddress200Response**](UpdateIPAddress200Response.md)
 
 ### Authorization
 
@@ -512,7 +510,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

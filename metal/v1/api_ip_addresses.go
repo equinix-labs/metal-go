@@ -182,7 +182,7 @@ func (r ApiFindIPAddressByIdRequest) Exclude(exclude []string) ApiFindIPAddressB
 	return r
 }
 
-func (r ApiFindIPAddressByIdRequest) Execute() (*FindIPAddressById200Response, *http.Response, error) {
+func (r ApiFindIPAddressByIdRequest) Execute() (*IPAvailabilitiesList, *http.Response, error) {
 	return r.ApiService.FindIPAddressByIdExecute(r)
 }
 
@@ -205,13 +205,13 @@ func (a *IPAddressesApiService) FindIPAddressById(ctx context.Context, id string
 
 // Execute executes the request
 //
-//	@return FindIPAddressById200Response
-func (a *IPAddressesApiService) FindIPAddressByIdExecute(r ApiFindIPAddressByIdRequest) (*FindIPAddressById200Response, *http.Response, error) {
+//	@return IPAvailabilitiesList
+func (a *IPAddressesApiService) FindIPAddressByIdExecute(r ApiFindIPAddressByIdRequest) (*IPAvailabilitiesList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *FindIPAddressById200Response
+		localVarReturnValue *IPAvailabilitiesList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IPAddressesApiService.FindIPAddressById")
@@ -1003,26 +1003,18 @@ func (a *IPAddressesApiService) RequestIPReservationExecute(r ApiRequestIPReserv
 }
 
 type ApiUpdateIPAddressRequest struct {
-	ctx        context.Context
-	ApiService *IPAddressesApiService
-	id         string
-	details    *string
-	customdata *string
+	ctx                     context.Context
+	ApiService              *IPAddressesApiService
+	id                      string
+	iPAssignmentUpdateInput *IPAssignmentUpdateInput
 }
 
-// Notes for this IP Assignment
-func (r ApiUpdateIPAddressRequest) Details(details string) ApiUpdateIPAddressRequest {
-	r.details = &details
+func (r ApiUpdateIPAddressRequest) IPAssignmentUpdateInput(iPAssignmentUpdateInput IPAssignmentUpdateInput) ApiUpdateIPAddressRequest {
+	r.iPAssignmentUpdateInput = &iPAssignmentUpdateInput
 	return r
 }
 
-// Provides the custom metadata stored for this IP Assignment in json format
-func (r ApiUpdateIPAddressRequest) Customdata(customdata string) ApiUpdateIPAddressRequest {
-	r.customdata = &customdata
-	return r
-}
-
-func (r ApiUpdateIPAddressRequest) Execute() (*FindIPAddressById200Response, *http.Response, error) {
+func (r ApiUpdateIPAddressRequest) Execute() (*UpdateIPAddress200Response, *http.Response, error) {
 	return r.ApiService.UpdateIPAddressExecute(r)
 }
 
@@ -1045,13 +1037,13 @@ func (a *IPAddressesApiService) UpdateIPAddress(ctx context.Context, id string) 
 
 // Execute executes the request
 //
-//	@return FindIPAddressById200Response
-func (a *IPAddressesApiService) UpdateIPAddressExecute(r ApiUpdateIPAddressRequest) (*FindIPAddressById200Response, *http.Response, error) {
+//	@return UpdateIPAddress200Response
+func (a *IPAddressesApiService) UpdateIPAddressExecute(r ApiUpdateIPAddressRequest) (*UpdateIPAddress200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPatch
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *FindIPAddressById200Response
+		localVarReturnValue *UpdateIPAddress200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IPAddressesApiService.UpdateIPAddress")
@@ -1065,17 +1057,9 @@ func (a *IPAddressesApiService) UpdateIPAddressExecute(r ApiUpdateIPAddressReque
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.details == nil {
-		return localVarReturnValue, nil, reportError("details is required and must be specified")
-	}
-	if r.customdata == nil {
-		return localVarReturnValue, nil, reportError("customdata is required and must be specified")
-	}
 
-	parameterAddToQuery(localVarQueryParams, "details", r.details, "")
-	parameterAddToQuery(localVarQueryParams, "customdata", r.customdata, "")
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
+	localVarHTTPContentTypes := []string{"application/json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -1091,6 +1075,8 @@ func (a *IPAddressesApiService) UpdateIPAddressExecute(r ApiUpdateIPAddressReque
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	// body params
+	localVarPostBody = r.iPAssignmentUpdateInput
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

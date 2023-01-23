@@ -81,6 +81,19 @@ func Test_v1_VRFsApiService(t *testing.T) {
 		assert.Equal(t, 200, httpRes.StatusCode)
 	})
 
+	t.Run("Test VRFsApiService FindVrfIpReservation", func(t *testing.T) {
+		t.Skip("skip test") // remove to run test
+
+		var vrfId string
+		var id string
+
+		resp, httpRes, err := apiClient.VRFsApi.FindVrfIpReservation(context.Background(), vrfId, id).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+	})
+
 	t.Run("Test VRFsApiService FindVrfIpReservations", func(t *testing.T) {
 		t.Skip("skip test") // remove to run test
 

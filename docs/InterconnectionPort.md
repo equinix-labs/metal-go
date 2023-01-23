@@ -10,6 +10,10 @@ Name | Type | Description | Notes
 **Status** | Pointer to **string** | For both Fabric VCs and Dedicated Ports, this will be &#39;requested&#39; on creation and &#39;deleting&#39; on deletion. Once the Fabric VC has found its corresponding Fabric connection, this will turn to &#39;active&#39;. For Dedicated Ports, once the dedicated port is associated, this will also turn to &#39;active&#39;. For Fabric VCs, this can turn into an &#39;expired&#39; state if the service token associated is expired. | [optional] 
 **SwitchId** | Pointer to **string** | A switch &#39;short ID&#39; | [optional] 
 **VirtualCircuits** | Pointer to [**VirtualCircuitList**](VirtualCircuitList.md) |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
+**Speed** | Pointer to **int32** |  | [optional] 
+**LinkStatus** | Pointer to **string** |  | [optional] 
+**Href** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -179,6 +183,106 @@ SetVirtualCircuits sets VirtualCircuits field to given value.
 `func (o *InterconnectionPort) HasVirtualCircuits() bool`
 
 HasVirtualCircuits returns a boolean if a field has been set.
+
+### GetName
+
+`func (o *InterconnectionPort) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *InterconnectionPort) GetNameOk() (*string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetName
+
+`func (o *InterconnectionPort) SetName(v string)`
+
+SetName sets Name field to given value.
+
+### HasName
+
+`func (o *InterconnectionPort) HasName() bool`
+
+HasName returns a boolean if a field has been set.
+
+### GetSpeed
+
+`func (o *InterconnectionPort) GetSpeed() int32`
+
+GetSpeed returns the Speed field if non-nil, zero value otherwise.
+
+### GetSpeedOk
+
+`func (o *InterconnectionPort) GetSpeedOk() (*int32, bool)`
+
+GetSpeedOk returns a tuple with the Speed field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSpeed
+
+`func (o *InterconnectionPort) SetSpeed(v int32)`
+
+SetSpeed sets Speed field to given value.
+
+### HasSpeed
+
+`func (o *InterconnectionPort) HasSpeed() bool`
+
+HasSpeed returns a boolean if a field has been set.
+
+### GetLinkStatus
+
+`func (o *InterconnectionPort) GetLinkStatus() string`
+
+GetLinkStatus returns the LinkStatus field if non-nil, zero value otherwise.
+
+### GetLinkStatusOk
+
+`func (o *InterconnectionPort) GetLinkStatusOk() (*string, bool)`
+
+GetLinkStatusOk returns a tuple with the LinkStatus field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLinkStatus
+
+`func (o *InterconnectionPort) SetLinkStatus(v string)`
+
+SetLinkStatus sets LinkStatus field to given value.
+
+### HasLinkStatus
+
+`func (o *InterconnectionPort) HasLinkStatus() bool`
+
+HasLinkStatus returns a boolean if a field has been set.
+
+### GetHref
+
+`func (o *InterconnectionPort) GetHref() string`
+
+GetHref returns the Href field if non-nil, zero value otherwise.
+
+### GetHrefOk
+
+`func (o *InterconnectionPort) GetHrefOk() (*string, bool)`
+
+GetHrefOk returns a tuple with the Href field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHref
+
+`func (o *InterconnectionPort) SetHref(v string)`
+
+SetHref sets Href field to given value.
+
+### HasHref
+
+`func (o *InterconnectionPort) HasHref() bool`
+
+HasHref returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

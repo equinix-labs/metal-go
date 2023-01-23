@@ -23,7 +23,7 @@ type VirtualCircuitCreateInput struct {
 	Description *string `json:"description,omitempty"`
 	Name        *string `json:"name,omitempty"`
 	NniVlan     *int32  `json:"nni_vlan,omitempty"`
-	Project     *string `json:"project,omitempty"`
+	ProjectId   string  `json:"project_id"`
 	// speed can be passed as integer number representing bps speed or string (e.g. '52m' or '100g' or '4 gbps')
 	Speed *int32   `json:"speed,omitempty"`
 	Tags  []string `json:"tags,omitempty"`
@@ -35,8 +35,9 @@ type VirtualCircuitCreateInput struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVirtualCircuitCreateInput() *VirtualCircuitCreateInput {
+func NewVirtualCircuitCreateInput(projectId string) *VirtualCircuitCreateInput {
 	this := VirtualCircuitCreateInput{}
+	this.ProjectId = projectId
 	return &this
 }
 
@@ -144,36 +145,28 @@ func (o *VirtualCircuitCreateInput) SetNniVlan(v int32) {
 	o.NniVlan = &v
 }
 
-// GetProject returns the Project field value if set, zero value otherwise.
-func (o *VirtualCircuitCreateInput) GetProject() string {
-	if o == nil || isNil(o.Project) {
+// GetProjectId returns the ProjectId field value
+func (o *VirtualCircuitCreateInput) GetProjectId() string {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Project
+
+	return o.ProjectId
 }
 
-// GetProjectOk returns a tuple with the Project field value if set, nil otherwise
+// GetProjectIdOk returns a tuple with the ProjectId field value
 // and a boolean to check if the value has been set.
-func (o *VirtualCircuitCreateInput) GetProjectOk() (*string, bool) {
-	if o == nil || isNil(o.Project) {
+func (o *VirtualCircuitCreateInput) GetProjectIdOk() (*string, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Project, true
+	return &o.ProjectId, true
 }
 
-// HasProject returns a boolean if a field has been set.
-func (o *VirtualCircuitCreateInput) HasProject() bool {
-	if o != nil && !isNil(o.Project) {
-		return true
-	}
-
-	return false
-}
-
-// SetProject gets a reference to the given string and assigns it to the Project field.
-func (o *VirtualCircuitCreateInput) SetProject(v string) {
-	o.Project = &v
+// SetProjectId sets field value
+func (o *VirtualCircuitCreateInput) SetProjectId(v string) {
+	o.ProjectId = v
 }
 
 // GetSpeed returns the Speed field value if set, zero value otherwise.
@@ -291,9 +284,7 @@ func (o VirtualCircuitCreateInput) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.NniVlan) {
 		toSerialize["nni_vlan"] = o.NniVlan
 	}
-	if !isNil(o.Project) {
-		toSerialize["project"] = o.Project
-	}
+	toSerialize["project_id"] = o.ProjectId
 	if !isNil(o.Speed) {
 		toSerialize["speed"] = o.Speed
 	}

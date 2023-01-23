@@ -13,6 +13,7 @@ package v1
 
 import (
 	"encoding/json"
+	"time"
 )
 
 // checks if the VrfVirtualCircuit type satisfies the MappedNullable interface at compile time
@@ -38,9 +39,11 @@ type VrfVirtualCircuit struct {
 	Speed  *int32  `json:"speed,omitempty"`
 	Status *string `json:"status,omitempty"`
 	// The /30 or /31 subnet of one of the VRF IP Blocks that will be used with the VRF for the Virtual Circuit. This subnet does not have to be an existing VRF IP reservation, as we will create the VRF IP reservation on creation if it does not exist. The Metal IP and Customer IP must be IPs from this subnet. For /30 subnets, the network and broadcast IPs cannot be used as the Metal or Customer IP.
-	Subnet *string  `json:"subnet,omitempty"`
-	Tags   []string `json:"tags,omitempty"`
-	Vrf    *Vrf     `json:"vrf,omitempty"`
+	Subnet    *string    `json:"subnet,omitempty"`
+	Tags      []string   `json:"tags,omitempty"`
+	Vrf       *Vrf       `json:"vrf,omitempty"`
+	CreatedAt *time.Time `json:"created_at,omitempty"`
+	UpdatedAt *time.Time `json:"updated_at,omitempty"`
 }
 
 // NewVrfVirtualCircuit instantiates a new VrfVirtualCircuit object
@@ -540,6 +543,70 @@ func (o *VrfVirtualCircuit) SetVrf(v Vrf) {
 	o.Vrf = &v
 }
 
+// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
+func (o *VrfVirtualCircuit) GetCreatedAt() time.Time {
+	if o == nil || isNil(o.CreatedAt) {
+		var ret time.Time
+		return ret
+	}
+	return *o.CreatedAt
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VrfVirtualCircuit) GetCreatedAtOk() (*time.Time, bool) {
+	if o == nil || isNil(o.CreatedAt) {
+		return nil, false
+	}
+	return o.CreatedAt, true
+}
+
+// HasCreatedAt returns a boolean if a field has been set.
+func (o *VrfVirtualCircuit) HasCreatedAt() bool {
+	if o != nil && !isNil(o.CreatedAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
+func (o *VrfVirtualCircuit) SetCreatedAt(v time.Time) {
+	o.CreatedAt = &v
+}
+
+// GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
+func (o *VrfVirtualCircuit) GetUpdatedAt() time.Time {
+	if o == nil || isNil(o.UpdatedAt) {
+		var ret time.Time
+		return ret
+	}
+	return *o.UpdatedAt
+}
+
+// GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VrfVirtualCircuit) GetUpdatedAtOk() (*time.Time, bool) {
+	if o == nil || isNil(o.UpdatedAt) {
+		return nil, false
+	}
+	return o.UpdatedAt, true
+}
+
+// HasUpdatedAt returns a boolean if a field has been set.
+func (o *VrfVirtualCircuit) HasUpdatedAt() bool {
+	if o != nil && !isNil(o.UpdatedAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetUpdatedAt gets a reference to the given time.Time and assigns it to the UpdatedAt field.
+func (o *VrfVirtualCircuit) SetUpdatedAt(v time.Time) {
+	o.UpdatedAt = &v
+}
+
 func (o VrfVirtualCircuit) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -594,6 +661,12 @@ func (o VrfVirtualCircuit) ToMap() (map[string]interface{}, error) {
 	}
 	if !isNil(o.Vrf) {
 		toSerialize["vrf"] = o.Vrf
+	}
+	if !isNil(o.CreatedAt) {
+		toSerialize["created_at"] = o.CreatedAt
+	}
+	if !isNil(o.UpdatedAt) {
+		toSerialize["updated_at"] = o.UpdatedAt
 	}
 	return toSerialize, nil
 }

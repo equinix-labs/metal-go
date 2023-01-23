@@ -13,6 +13,7 @@ package v1
 
 import (
 	"encoding/json"
+	"time"
 )
 
 // checks if the VirtualCircuit type satisfies the MappedNullable interface at compile time
@@ -31,10 +32,12 @@ type VirtualCircuit struct {
 	// For Virtual Circuits on shared and dedicated connections, this speed should match the one set on their Interconnection Ports. For Virtual Circuits on Fabric VCs (both Metal and Fabric Billed) that have found their corresponding Fabric connection, this is the actual speed of the interconnection that was configured when setting up the interconnection on the Fabric Portal. Details on Fabric VCs are included in the specification as a developer preview and is generally unavailable. Please contact our Support team for more details.
 	Speed *int32 `json:"speed,omitempty"`
 	// The status of a Virtual Circuit is always 'Pending' on creation. The status can turn to 'Waiting on Customer VLAN' if a Metro VLAN was not set yet on the Virtual Circuit and is the last step needed for full activation. For Dedicated interconnections, as long as the Dedicated Port has been associated to the Virtual Circuit and a NNI VNID has been set, it will turn to 'Waiting on Customer VLAN'. For Fabric VCs, it will only change to 'Waiting on Customer VLAN' once the corresponding Fabric connection has been found on the Fabric side. Once a Metro VLAN is set on the Virtual Circuit (which for Fabric VCs, can be set on creation) and the necessary set up is done, it will turn into 'Activating' status as it tries to activate the Virtual Circuit. Once the Virtual Circuit fully activates and is configured on the switch, it will turn to staus 'Active'. For Fabric VCs (Metal Billed), we will start billing the moment the status of the Virtual Circuit turns to 'Active'. If there are any changes to the VLAN after the Virtual Circuit is in an 'Active' status, the status will show 'Changing VLAN' if a new VLAN has been provided, or 'Deactivating' if we are removing the VLAN. When a deletion request is issued for the Virtual Circuit, it will move to a 'deleting' status until it is fully deleted. If the Virtual Circuit is on a Fabric VC, it can also change into an 'Expired' status if the associated service token has expired.
-	Status         string   `json:"status"`
-	Tags           []string `json:"tags"`
-	VirtualNetwork Href     `json:"virtual_network"`
-	Vnid           int32    `json:"vnid"`
+	Status         string     `json:"status"`
+	Tags           []string   `json:"tags"`
+	VirtualNetwork Href       `json:"virtual_network"`
+	Vnid           int32      `json:"vnid"`
+	CreatedAt      *time.Time `json:"created_at,omitempty"`
+	UpdatedAt      *time.Time `json:"updated_at,omitempty"`
 }
 
 // NewVirtualCircuit instantiates a new VirtualCircuit object
@@ -363,6 +366,70 @@ func (o *VirtualCircuit) SetVnid(v int32) {
 	o.Vnid = v
 }
 
+// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
+func (o *VirtualCircuit) GetCreatedAt() time.Time {
+	if o == nil || isNil(o.CreatedAt) {
+		var ret time.Time
+		return ret
+	}
+	return *o.CreatedAt
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VirtualCircuit) GetCreatedAtOk() (*time.Time, bool) {
+	if o == nil || isNil(o.CreatedAt) {
+		return nil, false
+	}
+	return o.CreatedAt, true
+}
+
+// HasCreatedAt returns a boolean if a field has been set.
+func (o *VirtualCircuit) HasCreatedAt() bool {
+	if o != nil && !isNil(o.CreatedAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
+func (o *VirtualCircuit) SetCreatedAt(v time.Time) {
+	o.CreatedAt = &v
+}
+
+// GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
+func (o *VirtualCircuit) GetUpdatedAt() time.Time {
+	if o == nil || isNil(o.UpdatedAt) {
+		var ret time.Time
+		return ret
+	}
+	return *o.UpdatedAt
+}
+
+// GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VirtualCircuit) GetUpdatedAtOk() (*time.Time, bool) {
+	if o == nil || isNil(o.UpdatedAt) {
+		return nil, false
+	}
+	return o.UpdatedAt, true
+}
+
+// HasUpdatedAt returns a boolean if a field has been set.
+func (o *VirtualCircuit) HasUpdatedAt() bool {
+	if o != nil && !isNil(o.UpdatedAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetUpdatedAt gets a reference to the given time.Time and assigns it to the UpdatedAt field.
+func (o *VirtualCircuit) SetUpdatedAt(v time.Time) {
+	o.UpdatedAt = &v
+}
+
 func (o VirtualCircuit) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -387,6 +454,12 @@ func (o VirtualCircuit) ToMap() (map[string]interface{}, error) {
 	toSerialize["tags"] = o.Tags
 	toSerialize["virtual_network"] = o.VirtualNetwork
 	toSerialize["vnid"] = o.Vnid
+	if !isNil(o.CreatedAt) {
+		toSerialize["created_at"] = o.CreatedAt
+	}
+	if !isNil(o.UpdatedAt) {
+		toSerialize["updated_at"] = o.UpdatedAt
+	}
 	return toSerialize, nil
 }
 

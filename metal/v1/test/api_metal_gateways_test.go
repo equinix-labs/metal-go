@@ -39,9 +39,10 @@ func Test_v1_MetalGatewaysApiService(t *testing.T) {
 
 		var id string
 
-		httpRes, err := apiClient.MetalGatewaysApi.DeleteMetalGateway(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.MetalGatewaysApi.DeleteMetalGateway(context.Background(), id).Execute()
 
 		require.Nil(t, err)
+		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 	})
 

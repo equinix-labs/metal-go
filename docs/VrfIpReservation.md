@@ -19,6 +19,15 @@ Name | Type | Description | Notes
 **Tags** | Pointer to **[]string** |  | [optional] 
 **Type** | **string** |  | 
 **Vrf** | [**Vrf**](Vrf.md) |  | 
+**Public** | Pointer to **bool** |  | [optional] 
+**Management** | Pointer to **bool** |  | [optional] 
+**Manageable** | Pointer to **bool** |  | [optional] 
+**Customdata** | Pointer to **map[string]interface{}** |  | [optional] 
+**Bill** | Pointer to **bool** |  | [optional] 
+**ProjectLite** | Pointer to [**Project**](Project.md) |  | [optional] 
+**Address** | Pointer to **string** |  | [optional] 
+**Gateway** | Pointer to **string** |  | [optional] 
+**Metro** | Pointer to [**Metro**](Metro.md) |  | [optional] 
 
 ## Methods
 
@@ -403,6 +412,231 @@ and a boolean to check if the value has been set.
 
 SetVrf sets Vrf field to given value.
 
+
+### GetPublic
+
+`func (o *VrfIpReservation) GetPublic() bool`
+
+GetPublic returns the Public field if non-nil, zero value otherwise.
+
+### GetPublicOk
+
+`func (o *VrfIpReservation) GetPublicOk() (*bool, bool)`
+
+GetPublicOk returns a tuple with the Public field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPublic
+
+`func (o *VrfIpReservation) SetPublic(v bool)`
+
+SetPublic sets Public field to given value.
+
+### HasPublic
+
+`func (o *VrfIpReservation) HasPublic() bool`
+
+HasPublic returns a boolean if a field has been set.
+
+### GetManagement
+
+`func (o *VrfIpReservation) GetManagement() bool`
+
+GetManagement returns the Management field if non-nil, zero value otherwise.
+
+### GetManagementOk
+
+`func (o *VrfIpReservation) GetManagementOk() (*bool, bool)`
+
+GetManagementOk returns a tuple with the Management field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetManagement
+
+`func (o *VrfIpReservation) SetManagement(v bool)`
+
+SetManagement sets Management field to given value.
+
+### HasManagement
+
+`func (o *VrfIpReservation) HasManagement() bool`
+
+HasManagement returns a boolean if a field has been set.
+
+### GetManageable
+
+`func (o *VrfIpReservation) GetManageable() bool`
+
+GetManageable returns the Manageable field if non-nil, zero value otherwise.
+
+### GetManageableOk
+
+`func (o *VrfIpReservation) GetManageableOk() (*bool, bool)`
+
+GetManageableOk returns a tuple with the Manageable field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetManageable
+
+`func (o *VrfIpReservation) SetManageable(v bool)`
+
+SetManageable sets Manageable field to given value.
+
+### HasManageable
+
+`func (o *VrfIpReservation) HasManageable() bool`
+
+HasManageable returns a boolean if a field has been set.
+
+### GetCustomdata
+
+`func (o *VrfIpReservation) GetCustomdata() map[string]interface{}`
+
+GetCustomdata returns the Customdata field if non-nil, zero value otherwise.
+
+### GetCustomdataOk
+
+`func (o *VrfIpReservation) GetCustomdataOk() (*map[string]interface{}, bool)`
+
+GetCustomdataOk returns a tuple with the Customdata field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCustomdata
+
+`func (o *VrfIpReservation) SetCustomdata(v map[string]interface{})`
+
+SetCustomdata sets Customdata field to given value.
+
+### HasCustomdata
+
+`func (o *VrfIpReservation) HasCustomdata() bool`
+
+HasCustomdata returns a boolean if a field has been set.
+
+### GetBill
+
+`func (o *VrfIpReservation) GetBill() bool`
+
+GetBill returns the Bill field if non-nil, zero value otherwise.
+
+### GetBillOk
+
+`func (o *VrfIpReservation) GetBillOk() (*bool, bool)`
+
+GetBillOk returns a tuple with the Bill field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBill
+
+`func (o *VrfIpReservation) SetBill(v bool)`
+
+SetBill sets Bill field to given value.
+
+### HasBill
+
+`func (o *VrfIpReservation) HasBill() bool`
+
+HasBill returns a boolean if a field has been set.
+
+### GetProjectLite
+
+`func (o *VrfIpReservation) GetProjectLite() Project`
+
+GetProjectLite returns the ProjectLite field if non-nil, zero value otherwise.
+
+### GetProjectLiteOk
+
+`func (o *VrfIpReservation) GetProjectLiteOk() (*Project, bool)`
+
+GetProjectLiteOk returns a tuple with the ProjectLite field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProjectLite
+
+`func (o *VrfIpReservation) SetProjectLite(v Project)`
+
+SetProjectLite sets ProjectLite field to given value.
+
+### HasProjectLite
+
+`func (o *VrfIpReservation) HasProjectLite() bool`
+
+HasProjectLite returns a boolean if a field has been set.
+
+### GetAddress
+
+`func (o *VrfIpReservation) GetAddress() string`
+
+GetAddress returns the Address field if non-nil, zero value otherwise.
+
+### GetAddressOk
+
+`func (o *VrfIpReservation) GetAddressOk() (*string, bool)`
+
+GetAddressOk returns a tuple with the Address field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAddress
+
+`func (o *VrfIpReservation) SetAddress(v string)`
+
+SetAddress sets Address field to given value.
+
+### HasAddress
+
+`func (o *VrfIpReservation) HasAddress() bool`
+
+HasAddress returns a boolean if a field has been set.
+
+### GetGateway
+
+`func (o *VrfIpReservation) GetGateway() string`
+
+GetGateway returns the Gateway field if non-nil, zero value otherwise.
+
+### GetGatewayOk
+
+`func (o *VrfIpReservation) GetGatewayOk() (*string, bool)`
+
+GetGatewayOk returns a tuple with the Gateway field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetGateway
+
+`func (o *VrfIpReservation) SetGateway(v string)`
+
+SetGateway sets Gateway field to given value.
+
+### HasGateway
+
+`func (o *VrfIpReservation) HasGateway() bool`
+
+HasGateway returns a boolean if a field has been set.
+
+### GetMetro
+
+`func (o *VrfIpReservation) GetMetro() Metro`
+
+GetMetro returns the Metro field if non-nil, zero value otherwise.
+
+### GetMetroOk
+
+`func (o *VrfIpReservation) GetMetroOk() (*Metro, bool)`
+
+GetMetroOk returns a tuple with the Metro field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMetro
+
+`func (o *VrfIpReservation) SetMetro(v Metro)`
+
+SetMetro sets Metro field to given value.
+
+### HasMetro
+
+`func (o *VrfIpReservation) HasMetro() bool`
+
+HasMetro returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

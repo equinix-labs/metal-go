@@ -581,7 +581,7 @@ func (r ApiFindInterconnectionEventsRequest) PerPage(perPage int32) ApiFindInter
 	return r
 }
 
-func (r ApiFindInterconnectionEventsRequest) Execute() (*Event, *http.Response, error) {
+func (r ApiFindInterconnectionEventsRequest) Execute() (*EventList, *http.Response, error) {
 	return r.ApiService.FindInterconnectionEventsExecute(r)
 }
 
@@ -604,13 +604,13 @@ func (a *EventsApiService) FindInterconnectionEvents(ctx context.Context, connec
 
 // Execute executes the request
 //
-//	@return Event
-func (a *EventsApiService) FindInterconnectionEventsExecute(r ApiFindInterconnectionEventsRequest) (*Event, *http.Response, error) {
+//	@return EventList
+func (a *EventsApiService) FindInterconnectionEventsExecute(r ApiFindInterconnectionEventsRequest) (*EventList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *Event
+		localVarReturnValue *EventList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EventsApiService.FindInterconnectionEvents")

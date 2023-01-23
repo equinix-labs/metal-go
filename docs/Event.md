@@ -12,6 +12,8 @@ Name | Type | Description | Notes
 **Relationships** | Pointer to [**[]Href**](Href.md) |  | [optional] 
 **State** | Pointer to **string** |  | [optional] 
 **Type** | Pointer to **string** |  | [optional] 
+**ModifiedBy** | Pointer to **map[string]interface{}** |  | [optional] 
+**Ip** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -231,6 +233,56 @@ SetType sets Type field to given value.
 `func (o *Event) HasType() bool`
 
 HasType returns a boolean if a field has been set.
+
+### GetModifiedBy
+
+`func (o *Event) GetModifiedBy() map[string]interface{}`
+
+GetModifiedBy returns the ModifiedBy field if non-nil, zero value otherwise.
+
+### GetModifiedByOk
+
+`func (o *Event) GetModifiedByOk() (*map[string]interface{}, bool)`
+
+GetModifiedByOk returns a tuple with the ModifiedBy field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetModifiedBy
+
+`func (o *Event) SetModifiedBy(v map[string]interface{})`
+
+SetModifiedBy sets ModifiedBy field to given value.
+
+### HasModifiedBy
+
+`func (o *Event) HasModifiedBy() bool`
+
+HasModifiedBy returns a boolean if a field has been set.
+
+### GetIp
+
+`func (o *Event) GetIp() string`
+
+GetIp returns the Ip field if non-nil, zero value otherwise.
+
+### GetIpOk
+
+`func (o *Event) GetIpOk() (*string, bool)`
+
+GetIpOk returns a tuple with the Ip field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIp
+
+`func (o *Event) SetIp(v string)`
+
+SetIp sets Ip field to given value.
+
+### HasIp
+
+`func (o *Event) HasIp() bool`
+
+HasIp returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

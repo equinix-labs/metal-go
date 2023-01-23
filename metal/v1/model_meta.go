@@ -20,12 +20,14 @@ var _ MappedNullable = &Meta{}
 
 // Meta struct for Meta
 type Meta struct {
-	First    *Href  `json:"first,omitempty"`
-	Last     *Href  `json:"last,omitempty"`
-	Next     *Href  `json:"next,omitempty"`
-	Previous *Href  `json:"previous,omitempty"`
-	Self     *Href  `json:"self,omitempty"`
-	Total    *int32 `json:"total,omitempty"`
+	First       *Href  `json:"first,omitempty"`
+	Last        *Href  `json:"last,omitempty"`
+	Next        *Href  `json:"next,omitempty"`
+	Previous    *Href  `json:"previous,omitempty"`
+	Self        *Href  `json:"self,omitempty"`
+	Total       *int32 `json:"total,omitempty"`
+	CurrentPage *int32 `json:"current_page,omitempty"`
+	LastPage    *int32 `json:"last_page,omitempty"`
 }
 
 // NewMeta instantiates a new Meta object
@@ -237,6 +239,70 @@ func (o *Meta) SetTotal(v int32) {
 	o.Total = &v
 }
 
+// GetCurrentPage returns the CurrentPage field value if set, zero value otherwise.
+func (o *Meta) GetCurrentPage() int32 {
+	if o == nil || isNil(o.CurrentPage) {
+		var ret int32
+		return ret
+	}
+	return *o.CurrentPage
+}
+
+// GetCurrentPageOk returns a tuple with the CurrentPage field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Meta) GetCurrentPageOk() (*int32, bool) {
+	if o == nil || isNil(o.CurrentPage) {
+		return nil, false
+	}
+	return o.CurrentPage, true
+}
+
+// HasCurrentPage returns a boolean if a field has been set.
+func (o *Meta) HasCurrentPage() bool {
+	if o != nil && !isNil(o.CurrentPage) {
+		return true
+	}
+
+	return false
+}
+
+// SetCurrentPage gets a reference to the given int32 and assigns it to the CurrentPage field.
+func (o *Meta) SetCurrentPage(v int32) {
+	o.CurrentPage = &v
+}
+
+// GetLastPage returns the LastPage field value if set, zero value otherwise.
+func (o *Meta) GetLastPage() int32 {
+	if o == nil || isNil(o.LastPage) {
+		var ret int32
+		return ret
+	}
+	return *o.LastPage
+}
+
+// GetLastPageOk returns a tuple with the LastPage field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Meta) GetLastPageOk() (*int32, bool) {
+	if o == nil || isNil(o.LastPage) {
+		return nil, false
+	}
+	return o.LastPage, true
+}
+
+// HasLastPage returns a boolean if a field has been set.
+func (o *Meta) HasLastPage() bool {
+	if o != nil && !isNil(o.LastPage) {
+		return true
+	}
+
+	return false
+}
+
+// SetLastPage gets a reference to the given int32 and assigns it to the LastPage field.
+func (o *Meta) SetLastPage(v int32) {
+	o.LastPage = &v
+}
+
 func (o Meta) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -264,6 +330,12 @@ func (o Meta) ToMap() (map[string]interface{}, error) {
 	}
 	if !isNil(o.Total) {
 		toSerialize["total"] = o.Total
+	}
+	if !isNil(o.CurrentPage) {
+		toSerialize["current_page"] = o.CurrentPage
+	}
+	if !isNil(o.LastPage) {
+		toSerialize["last_page"] = o.LastPage
 	}
 	return toSerialize, nil
 }

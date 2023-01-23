@@ -241,7 +241,7 @@ Name | Type | Description  | Notes
 
 ## FindInterconnectionEvents
 
-> Event FindInterconnectionEvents(ctx, connectionId).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
+> EventList FindInterconnectionEvents(ctx, connectionId).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
 
 Retrieve interconnection events
 
@@ -273,7 +273,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `EventsApi.FindInterconnectionEvents``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindInterconnectionEvents`: Event
+    // response from `FindInterconnectionEvents`: EventList
     fmt.Fprintf(os.Stdout, "Response from `EventsApi.FindInterconnectionEvents`: %v\n", resp)
 }
 ```
@@ -301,7 +301,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Event**](Event.md)
+[**EventList**](EventList.md)
 
 ### Authorization
 

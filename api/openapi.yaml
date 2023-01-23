@@ -900,7 +900,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Event'
+                $ref: '#/components/schemas/EventList'
           description: ok
         "401":
           content:
@@ -957,6 +957,43 @@ paths:
                 $ref: '#/components/schemas/Error'
           description: not found
       summary: List a interconnection's ports
+      tags:
+      - Interconnections
+  /connections/{connection_id}/virtual-circuits:
+    get:
+      description: List the virtual circuit record(s) associated with a particular
+        interconnection id.
+      operationId: listInterconnectionVirtualCircuits
+      parameters:
+      - description: UUID of the interconnection
+        explode: false
+        in: path
+        name: connection_id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VirtualCircuitList'
+          description: ok
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: not found
+      summary: List a interconnection's virtual circuits
       tags:
       - Interconnections
   /connections/{connection_id}/ports/{id}:
@@ -3091,7 +3128,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/findIPAddressById_200_response'
+                $ref: '#/components/schemas/IPAvailabilitiesList'
           description: ok
         "401":
           content:
@@ -3127,29 +3164,17 @@ paths:
           format: uuid
           type: string
         style: simple
-      - description: Notes for this IP Assignment
-        explode: true
-        in: query
-        name: details
-        required: true
-        schema:
-          type: string
-        style: form
-      - description: Provides the custom metadata stored for this IP Assignment in
-          json format
-        explode: true
-        in: query
-        name: customdata
-        required: true
-        schema:
-          type: string
-        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IPAssignmentUpdateInput'
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/findIPAddressById_200_response'
+                $ref: '#/components/schemas/updateIPAddress_200_response'
           description: ok
         "401":
           content:
@@ -3936,8 +3961,12 @@ paths:
           type: array
         style: form
       responses:
-        "204":
-          description: no content
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/findMetalGatewayById_200_response'
+          description: accepted
         "401":
           content:
             application/json:
@@ -11266,6 +11295,75 @@ paths:
       summary: Retrieve all VRF IP Reservations in the VRF
       tags:
       - VRFs
+  /vrfs/{vrf_id}/ips/{id}:
+    get:
+      description: Returns the IP Reservation for the VRF.
+      operationId: findVrfIpReservation
+      parameters:
+      - description: VRF UUID
+        explode: false
+        in: path
+        name: vrf_id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - description: IP UUID
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - description: Nested attributes to include. Included objects will return their
+          full attributes. Attribute names can be dotted (up to 3 levels) to included
+          deeply nested objects.
+        explode: true
+        in: query
+        name: include
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Nested attributes to exclude. Excluded objects will return only
+          the href attribute. Attribute names can be dotted (up to 3 levels) to exclude
+          deeply nested objects.
+        explode: true
+        in: query
+        name: exclude
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VrfIpReservation'
+          description: ok
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: not found
+      summary: Retrieve all VRF IP Reservations in the VRF
+      tags:
+      - VRFs
   /vrfs/{id}/routes:
     get:
       description: Returns the list of routes for the VRF
@@ -12524,6 +12622,8 @@ components:
           relationships:
           - href: href
           - href: href
+          ip: ip
+          modified_by: "{}"
           created_at: 2000-01-23T04:56:07.000+00:00
           href: href
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -12534,6 +12634,8 @@ components:
           relationships:
           - href: href
           - href: href
+          ip: ip
+          modified_by: "{}"
           created_at: 2000-01-23T04:56:07.000+00:00
           href: href
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -13165,6 +13267,8 @@ components:
             relationships:
             - href: href
             - href: href
+            ip: ip
+            modified_by: "{}"
             created_at: 2000-01-23T04:56:07.000+00:00
             href: href
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -13175,6 +13279,8 @@ components:
             relationships:
             - href: href
             - href: href
+            ip: ip
+            modified_by: "{}"
             created_at: 2000-01-23T04:56:07.000+00:00
             href: href
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -13455,6 +13561,8 @@ components:
             relationships:
             - href: href
             - href: href
+            ip: ip
+            modified_by: "{}"
             created_at: 2000-01-23T04:56:07.000+00:00
             href: href
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -13465,6 +13573,8 @@ components:
             relationships:
             - href: href
             - href: href
+            ip: ip
+            modified_by: "{}"
             created_at: 2000-01-23T04:56:07.000+00:00
             href: href
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -13697,10 +13807,12 @@ components:
             href: href
           previous:
             href: href
+          last_page: 1
           self:
             href: href
           first:
             href: href
+          current_page: 6
       properties:
         devices:
           items:
@@ -13871,6 +13983,8 @@ components:
         relationships:
         - href: href
         - href: href
+        ip: ip
+        modified_by: "{}"
         created_at: 2000-01-23T04:56:07.000+00:00
         href: href
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -13898,6 +14012,10 @@ components:
           type: string
         type:
           type: string
+        modified_by:
+          type: object
+        ip:
+          type: string
       type: object
     EventList:
       example:
@@ -13909,15 +14027,19 @@ components:
             href: href
           previous:
             href: href
+          last_page: 1
           self:
             href: href
           first:
             href: href
+          current_page: 6
         events:
         - interpolated: interpolated
           relationships:
           - href: href
           - href: href
+          ip: ip
+          modified_by: "{}"
           created_at: 2000-01-23T04:56:07.000+00:00
           href: href
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -13928,6 +14050,8 @@ components:
           relationships:
           - href: href
           - href: href
+          ip: ip
+          modified_by: "{}"
           created_at: 2000-01-23T04:56:07.000+00:00
           href: href
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -14257,6 +14381,8 @@ components:
             relationships:
             - href: href
             - href: href
+            ip: ip
+            modified_by: "{}"
             created_at: 2000-01-23T04:56:07.000+00:00
             href: href
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -14267,6 +14393,8 @@ components:
             relationships:
             - href: href
             - href: href
+            ip: ip
+            modified_by: "{}"
             created_at: 2000-01-23T04:56:07.000+00:00
             href: href
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -14618,10 +14746,12 @@ components:
             href: href
           previous:
             href: href
+          last_page: 1
           self:
             href: href
           first:
             href: href
+          current_page: 6
         hardware_reservations:
         - custom_rate: 1050.5
           created_at: 2000-01-23T04:56:07.000+00:00
@@ -14718,6 +14848,8 @@ components:
               relationships:
               - href: href
               - href: href
+              ip: ip
+              modified_by: "{}"
               created_at: 2000-01-23T04:56:07.000+00:00
               href: href
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -14728,6 +14860,8 @@ components:
               relationships:
               - href: href
               - href: href
+              ip: ip
+              modified_by: "{}"
               created_at: 2000-01-23T04:56:07.000+00:00
               href: href
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -15121,6 +15255,8 @@ components:
               relationships:
               - href: href
               - href: href
+              ip: ip
+              modified_by: "{}"
               created_at: 2000-01-23T04:56:07.000+00:00
               href: href
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -15131,6 +15267,8 @@ components:
               relationships:
               - href: href
               - href: href
+              ip: ip
+              modified_by: "{}"
               created_at: 2000-01-23T04:56:07.000+00:00
               href: href
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -15716,6 +15854,7 @@ components:
     Interconnection:
       example:
         description: description
+        created_at: 2000-01-23T04:56:07.000+00:00
         ports:
         - role: primary
           virtual_circuits:
@@ -15724,8 +15863,12 @@ components:
             - null
           organization:
             href: href
+          name: name
+          link_status: link_status
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           switch_id: switch_id
+          href: href
+          speed: 0
           status: requested
         - role: primary
           virtual_circuits:
@@ -15734,8 +15877,12 @@ components:
             - null
           organization:
             href: href
+          name: name
+          link_status: link_status
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           switch_id: switch_id
+          href: href
+          speed: 0
           status: requested
         type: shared
         speed: 10000000000
@@ -15758,6 +15905,9 @@ components:
           service_token_type: a_side
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           state: inactive
+        requested_by:
+          href: href
+        updated_at: 2000-01-23T04:56:07.000+00:00
         metro: null
         organization:
           href: href
@@ -15845,6 +15995,14 @@ components:
           - shared
           - dedicated
           type: string
+        created_at:
+          format: date-time
+          type: string
+        updated_at:
+          format: date-time
+          type: string
+        requested_by:
+          $ref: '#/components/schemas/Href'
       type: object
     InterconnectionCreateInput:
       example:
@@ -15956,6 +16114,7 @@ components:
       example:
         interconnections:
         - description: description
+          created_at: 2000-01-23T04:56:07.000+00:00
           ports:
           - role: primary
             virtual_circuits:
@@ -15964,8 +16123,12 @@ components:
               - null
             organization:
               href: href
+            name: name
+            link_status: link_status
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             switch_id: switch_id
+            href: href
+            speed: 0
             status: requested
           - role: primary
             virtual_circuits:
@@ -15974,8 +16137,12 @@ components:
               - null
             organization:
               href: href
+            name: name
+            link_status: link_status
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             switch_id: switch_id
+            href: href
+            speed: 0
             status: requested
           type: shared
           speed: 10000000000
@@ -15998,6 +16165,9 @@ components:
             service_token_type: a_side
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             state: inactive
+          requested_by:
+            href: href
+          updated_at: 2000-01-23T04:56:07.000+00:00
           metro: null
           organization:
             href: href
@@ -16008,6 +16178,7 @@ components:
             href: href
           status: status
         - description: description
+          created_at: 2000-01-23T04:56:07.000+00:00
           ports:
           - role: primary
             virtual_circuits:
@@ -16016,8 +16187,12 @@ components:
               - null
             organization:
               href: href
+            name: name
+            link_status: link_status
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             switch_id: switch_id
+            href: href
+            speed: 0
             status: requested
           - role: primary
             virtual_circuits:
@@ -16026,8 +16201,12 @@ components:
               - null
             organization:
               href: href
+            name: name
+            link_status: link_status
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             switch_id: switch_id
+            href: href
+            speed: 0
             status: requested
           type: shared
           speed: 10000000000
@@ -16050,6 +16229,9 @@ components:
             service_token_type: a_side
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             state: inactive
+          requested_by:
+            href: href
+          updated_at: 2000-01-23T04:56:07.000+00:00
           metro: null
           organization:
             href: href
@@ -16074,8 +16256,12 @@ components:
           - null
         organization:
           href: href
+        name: name
+        link_status: link_status
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         switch_id: switch_id
+        href: href
+        speed: 0
         status: requested
       properties:
         id:
@@ -16107,6 +16293,14 @@ components:
           type: string
         virtual_circuits:
           $ref: '#/components/schemas/VirtualCircuitList'
+        name:
+          type: string
+        speed:
+          type: integer
+        link_status:
+          type: string
+        href:
+          type: string
       type: object
     InterconnectionPortList:
       example:
@@ -16118,8 +16312,12 @@ components:
             - null
           organization:
             href: href
+          name: name
+          link_status: link_status
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           switch_id: switch_id
+          href: href
+          speed: 0
           status: requested
         - role: primary
           virtual_circuits:
@@ -16128,8 +16326,12 @@ components:
             - null
           organization:
             href: href
+          name: name
+          link_status: link_status
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           switch_id: switch_id
+          href: href
+          speed: 0
           status: requested
       properties:
         ports:
@@ -16456,10 +16658,12 @@ components:
           href: href
         previous:
           href: href
+        last_page: 1
         self:
           href: href
         first:
           href: href
+        current_page: 6
       properties:
         first:
           $ref: '#/components/schemas/Href'
@@ -16472,6 +16676,10 @@ components:
         self:
           $ref: '#/components/schemas/Href'
         total:
+          type: integer
+        current_page:
+          type: integer
+        last_page:
           type: integer
       type: object
     Metadata:
@@ -17789,10 +17997,12 @@ components:
             href: href
           previous:
             href: href
+          last_page: 1
           self:
             href: href
           first:
             href: href
+          current_page: 6
         organizations:
         - website: website
           address:
@@ -18480,6 +18690,8 @@ components:
             name: name
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         created_at: 2000-01-23T04:56:07.000+00:00
+        project:
+          href: href
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         state: queued
         error_messages:
@@ -18523,6 +18735,8 @@ components:
           items:
             $ref: '#/components/schemas/PortVlanAssignmentBatch_vlan_assignments_inner'
           type: array
+        project:
+          $ref: '#/components/schemas/Href'
       type: object
     PortVlanAssignmentBatchCreateInput:
       example:
@@ -18592,6 +18806,8 @@ components:
               name: name
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           created_at: 2000-01-23T04:56:07.000+00:00
+          project:
+            href: href
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           state: queued
           error_messages:
@@ -18656,6 +18872,8 @@ components:
               name: name
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           created_at: 2000-01-23T04:56:07.000+00:00
+          project:
+            href: href
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           state: queued
           error_messages:
@@ -18888,10 +19106,12 @@ components:
             href: href
           previous:
             href: href
+          last_page: 1
           self:
             href: href
           first:
             href: href
+          current_page: 6
       properties:
         meta:
           $ref: '#/components/schemas/Meta'
@@ -20308,10 +20528,12 @@ components:
             href: href
           previous:
             href: href
+          last_page: 1
           self:
             href: href
           first:
             href: href
+          current_page: 6
         users:
         - avatar_thumb_url: avatar_thumb_url
           last_login_at: 2000-01-23T04:56:07.000+00:00
@@ -20513,6 +20735,12 @@ components:
           $ref: '#/components/schemas/Href'
         vnid:
           type: integer
+        created_at:
+          format: date-time
+          type: string
+        updated_at:
+          format: date-time
+          type: string
       required:
       - bill
       - description
@@ -20536,7 +20764,7 @@ components:
           maximum: 4094
           minimum: 2
           type: integer
-        project:
+        project_id:
           format: uuid
           type: string
         speed:
@@ -20552,6 +20780,8 @@ components:
             Network in your project (sent as integer).
           format: uuid
           type: string
+      required:
+      - project_id
       type: object
     VirtualCircuitList:
       example:
@@ -20748,6 +20978,7 @@ components:
       type: object
     Vrf:
       example:
+        updated_at: 2000-01-23T04:56:07.000+00:00
         local_asn: 0
         ip_ranges:
         - ip_ranges
@@ -20789,6 +21020,7 @@ components:
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           payment_method:
             href: href
+        created_at: 2000-01-23T04:56:07.000+00:00
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         href: href
         created_by:
@@ -20840,6 +21072,12 @@ components:
         created_by:
           $ref: '#/components/schemas/User'
         href:
+          type: string
+        created_at:
+          format: date-time
+          type: string
+        updated_at:
+          format: date-time
           type: string
       type: object
     VrfCreateInput:
@@ -20909,6 +21147,7 @@ components:
       type: array
     VrfIpReservation:
       example:
+        address: address
         created_at: 2000-01-23T04:56:07.000+00:00
         project:
           devices:
@@ -20940,7 +21179,39 @@ components:
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           payment_method:
             href: href
+        bill: true
+        project_lite:
+          devices:
+          - href: href
+          - href: href
+          volumes:
+          - href: href
+          - href: href
+          created_at: 2000-01-23T04:56:07.000+00:00
+          memberships:
+          - href: href
+          - href: href
+          bgp_config:
+            href: href
+          max_devices: "{}"
+          ssh_keys:
+          - href: href
+          - href: href
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          invitations:
+          - href: href
+          - href: href
+          members:
+          - href: href
+          - href: href
+          name: name
+          network_status: "{}"
+          customdata: "{}"
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          payment_method:
+            href: href
         vrf:
+          updated_at: 2000-01-23T04:56:07.000+00:00
           local_asn: 0
           ip_ranges:
           - ip_ranges
@@ -20982,6 +21253,7 @@ components:
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             payment_method:
               href: href
+          created_at: 2000-01-23T04:56:07.000+00:00
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           href: href
           created_by:
@@ -21014,6 +21286,7 @@ components:
         tags:
         - tags
         - tags
+        manageable: true
         metal_gateway:
           gateway_address: 10.1.2.1/27
           updated_at: 2000-01-23T04:56:07.000+00:00
@@ -21023,12 +21296,21 @@ components:
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           state: ready
         address_family: 0
+        public: true
         netmask: netmask
+        management: true
+        metro:
+          country: country
+          code: code
+          name: name
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         cidr: 6
         details: details
         href: href
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         state: state
+        customdata: "{}"
+        gateway: gateway
       properties:
         address_family:
           type: integer
@@ -21066,6 +21348,24 @@ components:
           type: string
         vrf:
           $ref: '#/components/schemas/Vrf'
+        public:
+          type: boolean
+        management:
+          type: boolean
+        manageable:
+          type: boolean
+        customdata:
+          type: object
+        bill:
+          type: boolean
+        project_lite:
+          $ref: '#/components/schemas/Project'
+        address:
+          type: string
+        gateway:
+          type: string
+        metro:
+          $ref: '#/components/schemas/Metro'
       required:
       - type
       - vrf
@@ -21107,7 +21407,8 @@ components:
     VrfIpReservationList:
       example:
         ip_addresses:
-        - created_at: 2000-01-23T04:56:07.000+00:00
+        - address: address
+          created_at: 2000-01-23T04:56:07.000+00:00
           project:
             devices:
             - href: href
@@ -21138,7 +21439,39 @@ components:
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             payment_method:
               href: href
+          bill: true
+          project_lite:
+            devices:
+            - href: href
+            - href: href
+            volumes:
+            - href: href
+            - href: href
+            created_at: 2000-01-23T04:56:07.000+00:00
+            memberships:
+            - href: href
+            - href: href
+            bgp_config:
+              href: href
+            max_devices: "{}"
+            ssh_keys:
+            - href: href
+            - href: href
+            updated_at: 2000-01-23T04:56:07.000+00:00
+            invitations:
+            - href: href
+            - href: href
+            members:
+            - href: href
+            - href: href
+            name: name
+            network_status: "{}"
+            customdata: "{}"
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            payment_method:
+              href: href
           vrf:
+            updated_at: 2000-01-23T04:56:07.000+00:00
             local_asn: 0
             ip_ranges:
             - ip_ranges
@@ -21180,6 +21513,7 @@ components:
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
               payment_method:
                 href: href
+            created_at: 2000-01-23T04:56:07.000+00:00
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             href: href
             created_by:
@@ -21212,6 +21546,7 @@ components:
           tags:
           - tags
           - tags
+          manageable: true
           metal_gateway:
             gateway_address: 10.1.2.1/27
             updated_at: 2000-01-23T04:56:07.000+00:00
@@ -21221,13 +21556,23 @@ components:
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             state: ready
           address_family: 0
+          public: true
           netmask: netmask
+          management: true
+          metro:
+            country: country
+            code: code
+            name: name
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           cidr: 6
           details: details
           href: href
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           state: state
-        - created_at: 2000-01-23T04:56:07.000+00:00
+          customdata: "{}"
+          gateway: gateway
+        - address: address
+          created_at: 2000-01-23T04:56:07.000+00:00
           project:
             devices:
             - href: href
@@ -21258,7 +21603,39 @@ components:
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             payment_method:
               href: href
+          bill: true
+          project_lite:
+            devices:
+            - href: href
+            - href: href
+            volumes:
+            - href: href
+            - href: href
+            created_at: 2000-01-23T04:56:07.000+00:00
+            memberships:
+            - href: href
+            - href: href
+            bgp_config:
+              href: href
+            max_devices: "{}"
+            ssh_keys:
+            - href: href
+            - href: href
+            updated_at: 2000-01-23T04:56:07.000+00:00
+            invitations:
+            - href: href
+            - href: href
+            members:
+            - href: href
+            - href: href
+            name: name
+            network_status: "{}"
+            customdata: "{}"
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            payment_method:
+              href: href
           vrf:
+            updated_at: 2000-01-23T04:56:07.000+00:00
             local_asn: 0
             ip_ranges:
             - ip_ranges
@@ -21300,6 +21677,7 @@ components:
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
               payment_method:
                 href: href
+            created_at: 2000-01-23T04:56:07.000+00:00
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             href: href
             created_by:
@@ -21332,6 +21710,7 @@ components:
           tags:
           - tags
           - tags
+          manageable: true
           metal_gateway:
             gateway_address: 10.1.2.1/27
             updated_at: 2000-01-23T04:56:07.000+00:00
@@ -21341,12 +21720,21 @@ components:
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             state: ready
           address_family: 0
+          public: true
           netmask: netmask
+          management: true
+          metro:
+            country: country
+            code: code
+            name: name
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           cidr: 6
           details: details
           href: href
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           state: state
+          customdata: "{}"
+          gateway: gateway
       properties:
         ip_addresses:
           items:
@@ -21356,7 +21744,8 @@ components:
     VrfList:
       example:
         vrfs:
-        - local_asn: 0
+        - updated_at: 2000-01-23T04:56:07.000+00:00
+          local_asn: 0
           ip_ranges:
           - ip_ranges
           - ip_ranges
@@ -21397,6 +21786,7 @@ components:
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             payment_method:
               href: href
+          created_at: 2000-01-23T04:56:07.000+00:00
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           href: href
           created_by:
@@ -21422,7 +21812,8 @@ components:
             max_organizations: 6
             two_factor_auth: two_factor_auth
             email: email
-        - local_asn: 0
+        - updated_at: 2000-01-23T04:56:07.000+00:00
+          local_asn: 0
           ip_ranges:
           - ip_ranges
           - ip_ranges
@@ -21463,6 +21854,7 @@ components:
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             payment_method:
               href: href
+          created_at: 2000-01-23T04:56:07.000+00:00
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           href: href
           created_by:
@@ -21672,10 +22064,12 @@ components:
             href: href
           previous:
             href: href
+          last_page: 1
           self:
             href: href
           first:
             href: href
+          current_page: 6
       properties:
         routes:
           items:
@@ -21778,6 +22172,12 @@ components:
           type: array
         vrf:
           $ref: '#/components/schemas/Vrf'
+        created_at:
+          format: date-time
+          type: string
+        updated_at:
+          format: date-time
+          type: string
       type: object
     VrfVirtualCircuitCreateInput:
       properties:
@@ -21811,7 +22211,7 @@ components:
           description: The peer ASN that will be used with the VRF on the Virtual
             Circuit.
           type: integer
-        project:
+        project_id:
           format: uuid
           type: string
         speed:
@@ -21840,7 +22240,7 @@ components:
       required:
       - nni_vlan
       - peer_asn
-      - project
+      - project_id
       - subnet
       - vrf
       type: object
@@ -21900,6 +22300,23 @@ components:
       required:
       - type
       type: object
+    IPAssignmentUpdateInput:
+      example:
+        details: details
+        customdata: "{}"
+        tags:
+        - tags
+        - tags
+      properties:
+        details:
+          type: string
+        customdata:
+          type: object
+        tags:
+          items:
+            type: string
+          type: array
+      type: object
     BondPortData:
       example:
         name: name
@@ -21957,7 +22374,7 @@ components:
           format: uuid
           type: string
       type: object
-    findIPAddressById_200_response:
+    updateIPAddress_200_response:
       oneOf:
       - $ref: '#/components/schemas/IPAssignment'
       - $ref: '#/components/schemas/IPReservation'

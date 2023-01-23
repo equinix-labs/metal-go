@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Description** | Pointer to **string** |  | [optional] 
 **Name** | Pointer to **string** |  | [optional] 
 **NniVlan** | **int32** |  | 
-**Project** | **string** |  | 
+**ProjectId** | **string** |  | 
 **Speed** | Pointer to **int32** | speed can be passed as integer number representing bps speed or string (e.g. &#39;52m&#39; or &#39;100g&#39; or &#39;4 gbps&#39;) | [optional] 
 **Tags** | Pointer to **[]string** |  | [optional] 
 **Vnid** | Pointer to **string** | A Virtual Network record UUID or the VNID of a Metro Virtual Network in your project (sent as integer). | [optional] 
@@ -22,7 +22,7 @@ Name | Type | Description | Notes
 
 ### NewCreateInterconnectionPortVirtualCircuitRequest
 
-`func NewCreateInterconnectionPortVirtualCircuitRequest(nniVlan int32, project string, peerAsn int32, subnet string, vrf string, ) *CreateInterconnectionPortVirtualCircuitRequest`
+`func NewCreateInterconnectionPortVirtualCircuitRequest(nniVlan int32, projectId string, peerAsn int32, subnet string, vrf string, ) *CreateInterconnectionPortVirtualCircuitRequest`
 
 NewCreateInterconnectionPortVirtualCircuitRequest instantiates a new CreateInterconnectionPortVirtualCircuitRequest object
 This constructor will assign default values to properties that have it defined,
@@ -107,24 +107,24 @@ and a boolean to check if the value has been set.
 SetNniVlan sets NniVlan field to given value.
 
 
-### GetProject
+### GetProjectId
 
-`func (o *CreateInterconnectionPortVirtualCircuitRequest) GetProject() string`
+`func (o *CreateInterconnectionPortVirtualCircuitRequest) GetProjectId() string`
 
-GetProject returns the Project field if non-nil, zero value otherwise.
+GetProjectId returns the ProjectId field if non-nil, zero value otherwise.
 
-### GetProjectOk
+### GetProjectIdOk
 
-`func (o *CreateInterconnectionPortVirtualCircuitRequest) GetProjectOk() (*string, bool)`
+`func (o *CreateInterconnectionPortVirtualCircuitRequest) GetProjectIdOk() (*string, bool)`
 
-GetProjectOk returns a tuple with the Project field if it's non-nil, zero value otherwise
+GetProjectIdOk returns a tuple with the ProjectId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetProject
+### SetProjectId
 
-`func (o *CreateInterconnectionPortVirtualCircuitRequest) SetProject(v string)`
+`func (o *CreateInterconnectionPortVirtualCircuitRequest) SetProjectId(v string)`
 
-SetProject sets Project field to given value.
+SetProjectId sets ProjectId field to given value.
 
 
 ### GetSpeed

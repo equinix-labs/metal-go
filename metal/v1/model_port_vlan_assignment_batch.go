@@ -29,6 +29,7 @@ type PortVlanAssignmentBatch struct {
 	State           *string                                       `json:"state,omitempty"`
 	UpdatedAt       *time.Time                                    `json:"updated_at,omitempty"`
 	VlanAssignments []PortVlanAssignmentBatchVlanAssignmentsInner `json:"vlan_assignments,omitempty"`
+	Project         *Href                                         `json:"project,omitempty"`
 }
 
 // NewPortVlanAssignmentBatch instantiates a new PortVlanAssignmentBatch object
@@ -304,6 +305,38 @@ func (o *PortVlanAssignmentBatch) SetVlanAssignments(v []PortVlanAssignmentBatch
 	o.VlanAssignments = v
 }
 
+// GetProject returns the Project field value if set, zero value otherwise.
+func (o *PortVlanAssignmentBatch) GetProject() Href {
+	if o == nil || isNil(o.Project) {
+		var ret Href
+		return ret
+	}
+	return *o.Project
+}
+
+// GetProjectOk returns a tuple with the Project field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PortVlanAssignmentBatch) GetProjectOk() (*Href, bool) {
+	if o == nil || isNil(o.Project) {
+		return nil, false
+	}
+	return o.Project, true
+}
+
+// HasProject returns a boolean if a field has been set.
+func (o *PortVlanAssignmentBatch) HasProject() bool {
+	if o != nil && !isNil(o.Project) {
+		return true
+	}
+
+	return false
+}
+
+// SetProject gets a reference to the given Href and assigns it to the Project field.
+func (o *PortVlanAssignmentBatch) SetProject(v Href) {
+	o.Project = &v
+}
+
 func (o PortVlanAssignmentBatch) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -337,6 +370,9 @@ func (o PortVlanAssignmentBatch) ToMap() (map[string]interface{}, error) {
 	}
 	if !isNil(o.VlanAssignments) {
 		toSerialize["vlan_assignments"] = o.VlanAssignments
+	}
+	if !isNil(o.Project) {
+		toSerialize["project"] = o.Project
 	}
 	return toSerialize, nil
 }

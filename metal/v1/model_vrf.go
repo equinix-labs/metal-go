@@ -13,6 +13,7 @@ package v1
 
 import (
 	"encoding/json"
+	"time"
 )
 
 // checks if the Vrf type satisfies the MappedNullable interface at compile time
@@ -27,11 +28,13 @@ type Vrf struct {
 	// A 4-byte ASN associated with the VRF.
 	LocalAsn *int32 `json:"local_asn,omitempty"`
 	// A list of CIDR network addresses. Like [\"10.0.0.0/16\", \"2001:d78::/56\"].
-	IpRanges  []string `json:"ip_ranges,omitempty"`
-	Project   *Project `json:"project,omitempty"`
-	Metro     *Metro   `json:"metro,omitempty"`
-	CreatedBy *User    `json:"created_by,omitempty"`
-	Href      *string  `json:"href,omitempty"`
+	IpRanges  []string   `json:"ip_ranges,omitempty"`
+	Project   *Project   `json:"project,omitempty"`
+	Metro     *Metro     `json:"metro,omitempty"`
+	CreatedBy *User      `json:"created_by,omitempty"`
+	Href      *string    `json:"href,omitempty"`
+	CreatedAt *time.Time `json:"created_at,omitempty"`
+	UpdatedAt *time.Time `json:"updated_at,omitempty"`
 }
 
 // NewVrf instantiates a new Vrf object
@@ -339,6 +342,70 @@ func (o *Vrf) SetHref(v string) {
 	o.Href = &v
 }
 
+// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
+func (o *Vrf) GetCreatedAt() time.Time {
+	if o == nil || isNil(o.CreatedAt) {
+		var ret time.Time
+		return ret
+	}
+	return *o.CreatedAt
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Vrf) GetCreatedAtOk() (*time.Time, bool) {
+	if o == nil || isNil(o.CreatedAt) {
+		return nil, false
+	}
+	return o.CreatedAt, true
+}
+
+// HasCreatedAt returns a boolean if a field has been set.
+func (o *Vrf) HasCreatedAt() bool {
+	if o != nil && !isNil(o.CreatedAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
+func (o *Vrf) SetCreatedAt(v time.Time) {
+	o.CreatedAt = &v
+}
+
+// GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
+func (o *Vrf) GetUpdatedAt() time.Time {
+	if o == nil || isNil(o.UpdatedAt) {
+		var ret time.Time
+		return ret
+	}
+	return *o.UpdatedAt
+}
+
+// GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Vrf) GetUpdatedAtOk() (*time.Time, bool) {
+	if o == nil || isNil(o.UpdatedAt) {
+		return nil, false
+	}
+	return o.UpdatedAt, true
+}
+
+// HasUpdatedAt returns a boolean if a field has been set.
+func (o *Vrf) HasUpdatedAt() bool {
+	if o != nil && !isNil(o.UpdatedAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetUpdatedAt gets a reference to the given time.Time and assigns it to the UpdatedAt field.
+func (o *Vrf) SetUpdatedAt(v time.Time) {
+	o.UpdatedAt = &v
+}
+
 func (o Vrf) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -375,6 +442,12 @@ func (o Vrf) ToMap() (map[string]interface{}, error) {
 	}
 	if !isNil(o.Href) {
 		toSerialize["href"] = o.Href
+	}
+	if !isNil(o.CreatedAt) {
+		toSerialize["created_at"] = o.CreatedAt
+	}
+	if !isNil(o.UpdatedAt) {
+		toSerialize["updated_at"] = o.UpdatedAt
 	}
 	return toSerialize, nil
 }
