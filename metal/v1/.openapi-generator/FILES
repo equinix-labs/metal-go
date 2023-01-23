@@ -58,8 +58,7 @@ docs/BatchesList.md
 docs/BgpConfig.md
 docs/BgpConfigRequestInput.md
 docs/BgpNeighborData.md
-docs/BgpNeighborDataRoutesInInner.md
-docs/BgpNeighborDataRoutesOutInner.md
+docs/BgpRoute.md
 docs/BgpSession.md
 docs/BgpSessionList.md
 docs/BgpSessionNeighbors.md
@@ -321,8 +320,7 @@ model_batches_list.go
 model_bgp_config.go
 model_bgp_config_request_input.go
 model_bgp_neighbor_data.go
-model_bgp_neighbor_data_routes_in_inner.go
-model_bgp_neighbor_data_routes_out_inner.go
+model_bgp_route.go
 model_bgp_session.go
 model_bgp_session_input.go
 model_bgp_session_list.go

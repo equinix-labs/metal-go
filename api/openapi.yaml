@@ -11897,10 +11897,8 @@ components:
         customer_as: 65000
         address_family: 4
         routes_in:
-        - route: 10.32.16.0/31
-          exact: true
-        - route: 10.32.16.0/31
-          exact: true
+        - exact: true
+          route: 10.32.16.0/31
         customer_ip: 10.32.16.1 (IPv4) or 2604:1380:4111:2700::1 (IPv6)
         multihop: true
         peer_as: 65530
@@ -11909,10 +11907,8 @@ components:
         - 169.254.255.1
         - 169.254.255.2
         routes_out:
-        - route: 0.0.0.0/0
-          exact: true
-        - route: 0.0.0.0/0
-          exact: true
+        - exact: true
+          route: 0.0.0.0/0
       properties:
         address_family:
           description: Address Family for IP Address. Accepted values are 4 or 6
@@ -11959,14 +11955,20 @@ components:
           type: array
         routes_in:
           description: A list of project subnets
+          example:
+          - exact: true
+            route: 10.32.16.0/31
           items:
-            $ref: '#/components/schemas/BgpNeighborData_routes_in_inner'
+            $ref: '#/components/schemas/BgpRoute'
           type: array
         routes_out:
           description: A list of outgoing routes. Only populated if the BGP session
             has default route enabled.
+          example:
+          - exact: true
+            route: 0.0.0.0/0
           items:
-            $ref: '#/components/schemas/BgpNeighborData_routes_out_inner'
+            $ref: '#/components/schemas/BgpRoute'
           type: array
       type: object
     BgpSession:
@@ -12064,10 +12066,8 @@ components:
           customer_as: 65000
           address_family: 4
           routes_in:
-          - route: 10.32.16.0/31
-            exact: true
-          - route: 10.32.16.0/31
-            exact: true
+          - exact: true
+            route: 10.32.16.0/31
           customer_ip: 10.32.16.1 (IPv4) or 2604:1380:4111:2700::1 (IPv6)
           multihop: true
           peer_as: 65530
@@ -12076,18 +12076,14 @@ components:
           - 169.254.255.1
           - 169.254.255.2
           routes_out:
-          - route: 0.0.0.0/0
-            exact: true
-          - route: 0.0.0.0/0
-            exact: true
+          - exact: true
+            route: 0.0.0.0/0
         - md5_password: md5_password
           customer_as: 65000
           address_family: 4
           routes_in:
-          - route: 10.32.16.0/31
-            exact: true
-          - route: 10.32.16.0/31
-            exact: true
+          - exact: true
+            route: 10.32.16.0/31
           customer_ip: 10.32.16.1 (IPv4) or 2604:1380:4111:2700::1 (IPv6)
           multihop: true
           peer_as: 65530
@@ -12096,10 +12092,8 @@ components:
           - 169.254.255.1
           - 169.254.255.2
           routes_out:
-          - route: 0.0.0.0/0
-            exact: true
-          - route: 0.0.0.0/0
-            exact: true
+          - exact: true
+            route: 0.0.0.0/0
       properties:
         bgp_neighbors:
           description: A list of BGP session neighbor data
@@ -22343,6 +22337,14 @@ components:
             ports that are active
           type: boolean
       type: object
+    BgpRoute:
+      properties:
+        exact:
+          type: boolean
+        route:
+          example: 10.32.16.0/31
+          type: string
+      type: object
     createInterconnectionPortVirtualCircuit_request:
       oneOf:
       - $ref: '#/components/schemas/VirtualCircuitCreateInput'
@@ -22413,29 +22415,6 @@ components:
       - $ref: '#/components/schemas/User'
       - description: Available only for user tokens
         type: object
-    BgpNeighborData_routes_in_inner:
-      example:
-        route: 10.32.16.0/31
-        exact: true
-      properties:
-        exact:
-          type: boolean
-        route:
-          description: A project network
-          example: 10.32.16.0/31
-          type: string
-      type: object
-    BgpNeighborData_routes_out_inner:
-      example:
-        route: 0.0.0.0/0
-        exact: true
-      properties:
-        exact:
-          type: boolean
-        route:
-          example: 0.0.0.0/0
-          type: string
-      type: object
     CreateSelfServiceReservationRequest_period:
       example:
         unit: monthly
