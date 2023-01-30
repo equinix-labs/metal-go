@@ -363,7 +363,6 @@ Class | Method | HTTP request | Description
 *VRFsApi* | [**FindVrfRouteById**](docs/VRFsApi.md#findvrfroutebyid) | **Get** /routes/{id} | Retrieve a VRF Route
 *VRFsApi* | [**FindVrfs**](docs/VRFsApi.md#findvrfs) | **Get** /projects/{id}/vrfs | Retrieve all VRFs in the project
 *VRFsApi* | [**GetVrfRoutes**](docs/VRFsApi.md#getvrfroutes) | **Get** /vrfs/{id}/routes | Retrieve all routes in the VRF
-*VRFsApi* | [**PatchVrfRouteById**](docs/VRFsApi.md#patchvrfroutebyid) | **Patch** /routes/{id} | Update a VRF Route
 *VRFsApi* | [**UpdateVrf**](docs/VRFsApi.md#updatevrf) | **Put** /vrfs/{id} | Update the VRF
 *VRFsApi* | [**UpdateVrfRouteById**](docs/VRFsApi.md#updatevrfroutebyid) | **Put** /routes/{id} | Update a VRF Route
 
@@ -433,6 +432,7 @@ Class | Method | HTTP request | Description
  - [FacilityInput](docs/FacilityInput.md)
  - [FacilityInputFacility](docs/FacilityInputFacility.md)
  - [FacilityList](docs/FacilityList.md)
+ - [FindIPAddressById200Response](docs/FindIPAddressById200Response.md)
  - [FindMetalGatewayById200Response](docs/FindMetalGatewayById200Response.md)
  - [FindTrafficTimeframeParameter](docs/FindTrafficTimeframeParameter.md)
  - [GlobalBgpRange](docs/GlobalBgpRange.md)
@@ -561,7 +561,6 @@ Class | Method | HTTP request | Description
  - [TransferRequestInput](docs/TransferRequestInput.md)
  - [TransferRequestList](docs/TransferRequestList.md)
  - [UpdateEmailInput](docs/UpdateEmailInput.md)
- - [UpdateIPAddress200Response](docs/UpdateIPAddress200Response.md)
  - [UpdateVirtualCircuitRequest](docs/UpdateVirtualCircuitRequest.md)
  - [User](docs/User.md)
  - [UserCreateInput](docs/UserCreateInput.md)
