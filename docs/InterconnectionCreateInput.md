@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **Tags** | Pointer to **[]string** |  | [optional] 
 **Type** | **string** | Either &#39;shared&#39; or &#39;dedicated&#39;. The &#39;shared&#39; type represents shared interconnections, or also known as Fabric VCs. The &#39;dedicated&#39; type represents dedicated interconnections, or also known as Dedicated Ports. | 
 **Vlans** | Pointer to **[]int32** | A list of one or two metro-based VLANs that will be set on the virtual circuits of primary and/or secondary (if redundant) interconnections respectively when creating Fabric VCs. VLANs can also be set after the interconnection is created, but are required to fully activate the interconnection. This parameter is included in the specification as a developer preview and is generally unavailable. Please contact our Support team for more details. | [optional] 
+**Vrfs** | Pointer to **[]string** | Can only be set when creating Fabric VCs in VRF(s). This field holds a list of VRF UUIDs that will be set automatically on the virtual circuits on creation, and can hold up to two UUIDs. Two UUIDs are required when requesting redundant Fabric VCs. The first UUID will be set on the primary virtual circuit, while the second UUID will be set on the secondary. The two UUIDs can be the same if both the primary and secondary virtual circuits will be in the same VRF. This parameter is included in the specification as a developer preview and is generally unavailable. Please contact our Support team for more details. | [optional] 
 
 ## Methods
 
@@ -315,6 +316,31 @@ SetVlans sets Vlans field to given value.
 `func (o *InterconnectionCreateInput) HasVlans() bool`
 
 HasVlans returns a boolean if a field has been set.
+
+### GetVrfs
+
+`func (o *InterconnectionCreateInput) GetVrfs() []string`
+
+GetVrfs returns the Vrfs field if non-nil, zero value otherwise.
+
+### GetVrfsOk
+
+`func (o *InterconnectionCreateInput) GetVrfsOk() (*[]string, bool)`
+
+GetVrfsOk returns a tuple with the Vrfs field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVrfs
+
+`func (o *InterconnectionCreateInput) SetVrfs(v []string)`
+
+SetVrfs sets Vrfs field to given value.
+
+### HasVrfs
+
+`func (o *InterconnectionCreateInput) HasVrfs() bool`
+
+HasVrfs returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

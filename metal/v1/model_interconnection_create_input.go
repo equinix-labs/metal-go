@@ -39,6 +39,8 @@ type InterconnectionCreateInput struct {
 	Type string `json:"type"`
 	// A list of one or two metro-based VLANs that will be set on the virtual circuits of primary and/or secondary (if redundant) interconnections respectively when creating Fabric VCs. VLANs can also be set after the interconnection is created, but are required to fully activate the interconnection. This parameter is included in the specification as a developer preview and is generally unavailable. Please contact our Support team for more details.
 	Vlans []int32 `json:"vlans,omitempty"`
+	// Can only be set when creating Fabric VCs in VRF(s). This field holds a list of VRF UUIDs that will be set automatically on the virtual circuits on creation, and can hold up to two UUIDs. Two UUIDs are required when requesting redundant Fabric VCs. The first UUID will be set on the primary virtual circuit, while the second UUID will be set on the secondary. The two UUIDs can be the same if both the primary and secondary virtual circuits will be in the same VRF. This parameter is included in the specification as a developer preview and is generally unavailable. Please contact our Support team for more details.
+	Vrfs []string `json:"vrfs,omitempty"`
 }
 
 // NewInterconnectionCreateInput instantiates a new InterconnectionCreateInput object
@@ -414,6 +416,38 @@ func (o *InterconnectionCreateInput) SetVlans(v []int32) {
 	o.Vlans = v
 }
 
+// GetVrfs returns the Vrfs field value if set, zero value otherwise.
+func (o *InterconnectionCreateInput) GetVrfs() []string {
+	if o == nil || isNil(o.Vrfs) {
+		var ret []string
+		return ret
+	}
+	return o.Vrfs
+}
+
+// GetVrfsOk returns a tuple with the Vrfs field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *InterconnectionCreateInput) GetVrfsOk() ([]string, bool) {
+	if o == nil || isNil(o.Vrfs) {
+		return nil, false
+	}
+	return o.Vrfs, true
+}
+
+// HasVrfs returns a boolean if a field has been set.
+func (o *InterconnectionCreateInput) HasVrfs() bool {
+	if o != nil && !isNil(o.Vrfs) {
+		return true
+	}
+
+	return false
+}
+
+// SetVrfs gets a reference to the given []string and assigns it to the Vrfs field.
+func (o *InterconnectionCreateInput) SetVrfs(v []string) {
+	o.Vrfs = v
+}
+
 func (o InterconnectionCreateInput) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -451,6 +485,9 @@ func (o InterconnectionCreateInput) ToMap() (map[string]interface{}, error) {
 	toSerialize["type"] = o.Type
 	if !isNil(o.Vlans) {
 		toSerialize["vlans"] = o.Vlans
+	}
+	if !isNil(o.Vrfs) {
+		toSerialize["vrfs"] = o.Vrfs
 	}
 	return toSerialize, nil
 }
