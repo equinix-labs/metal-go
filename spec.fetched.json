@@ -17509,6 +17509,14 @@
               "type": "integer"
             },
             "type": "array"
+          },
+          "vrfs": {
+            "description": "Can only be set when creating Fabric VCs in VRF(s). This field holds a list of VRF UUIDs that will be set automatically on the virtual circuits on creation, and can hold up to two UUIDs. Two UUIDs are required when requesting redundant Fabric VCs. The first UUID will be set on the primary virtual circuit, while the second UUID will be set on the secondary. The two UUIDs can be the same if both the primary and secondary virtual circuits will be in the same VRF. This parameter is included in the specification as a developer preview and is generally unavailable. Please contact our Support team for more details.",
+            "items": {
+              "format": "uuid",
+              "type": "string"
+            },
+            "type": "array"
           }
         },
         "required": [
@@ -20592,14 +20600,37 @@
       },
       "VrfVirtualCircuitUpdateInput": {
         "properties": {
+          "customer_ip": {
+            "description": "An IP address from the subnet that will be used on the Customer side. This parameter is optional, but if supplied, we will use the other usable IP address in the subnet as the Metal IP. By default, the last usable IP address in the subnet will be used.",
+            "example": "12.0.0.2",
+            "type": "string"
+          },
           "description": {
+            "type": "string"
+          },
+          "md5": {
+            "description": "The MD5 password for the BGP peering in plaintext (not a checksum).",
+            "type": "string"
+          },
+          "metal_ip": {
+            "description": "An IP address from the subnet that will be used on the Metal side. This parameter is optional, but if supplied, we will use the other usable IP address in the subnet as the Customer IP. By default, the first usable IP address in the subnet will be used.",
+            "example": "12.0.0.1",
             "type": "string"
           },
           "name": {
             "type": "string"
           },
+          "peer_asn": {
+            "description": "The peer ASN that will be used with the VRF on the Virtual Circuit.",
+            "type": "integer"
+          },
           "speed": {
             "description": "Speed can be changed only if it is an interconnection on a Dedicated Port",
+            "type": "string"
+          },
+          "subnet": {
+            "description": "The /30 or /31 subnet of one of the VRF IP Blocks that will be used with the VRF for the Virtual Circuit. This subnet does not have to be an existing VRF IP reservation, as we will create the VRF IP reservation on creation if it does not exist. The Metal IP and Customer IP must be IPs from this subnet. For /30 subnets, the network and broadcast IPs cannot be used as the Metal or Customer IP.",
+            "example": "12.0.0.0/30",
             "type": "string"
           },
           "tags": {

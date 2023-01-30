@@ -20,11 +20,21 @@ var _ MappedNullable = &VrfVirtualCircuitUpdateInput{}
 
 // VrfVirtualCircuitUpdateInput struct for VrfVirtualCircuitUpdateInput
 type VrfVirtualCircuitUpdateInput struct {
+	// An IP address from the subnet that will be used on the Customer side. This parameter is optional, but if supplied, we will use the other usable IP address in the subnet as the Metal IP. By default, the last usable IP address in the subnet will be used.
+	CustomerIp  *string `json:"customer_ip,omitempty"`
 	Description *string `json:"description,omitempty"`
-	Name        *string `json:"name,omitempty"`
+	// The MD5 password for the BGP peering in plaintext (not a checksum).
+	Md5 *string `json:"md5,omitempty"`
+	// An IP address from the subnet that will be used on the Metal side. This parameter is optional, but if supplied, we will use the other usable IP address in the subnet as the Customer IP. By default, the first usable IP address in the subnet will be used.
+	MetalIp *string `json:"metal_ip,omitempty"`
+	Name    *string `json:"name,omitempty"`
+	// The peer ASN that will be used with the VRF on the Virtual Circuit.
+	PeerAsn *int32 `json:"peer_asn,omitempty"`
 	// Speed can be changed only if it is an interconnection on a Dedicated Port
-	Speed *string  `json:"speed,omitempty"`
-	Tags  []string `json:"tags,omitempty"`
+	Speed *string `json:"speed,omitempty"`
+	// The /30 or /31 subnet of one of the VRF IP Blocks that will be used with the VRF for the Virtual Circuit. This subnet does not have to be an existing VRF IP reservation, as we will create the VRF IP reservation on creation if it does not exist. The Metal IP and Customer IP must be IPs from this subnet. For /30 subnets, the network and broadcast IPs cannot be used as the Metal or Customer IP.
+	Subnet *string  `json:"subnet,omitempty"`
+	Tags   []string `json:"tags,omitempty"`
 }
 
 // NewVrfVirtualCircuitUpdateInput instantiates a new VrfVirtualCircuitUpdateInput object
@@ -42,6 +52,38 @@ func NewVrfVirtualCircuitUpdateInput() *VrfVirtualCircuitUpdateInput {
 func NewVrfVirtualCircuitUpdateInputWithDefaults() *VrfVirtualCircuitUpdateInput {
 	this := VrfVirtualCircuitUpdateInput{}
 	return &this
+}
+
+// GetCustomerIp returns the CustomerIp field value if set, zero value otherwise.
+func (o *VrfVirtualCircuitUpdateInput) GetCustomerIp() string {
+	if o == nil || isNil(o.CustomerIp) {
+		var ret string
+		return ret
+	}
+	return *o.CustomerIp
+}
+
+// GetCustomerIpOk returns a tuple with the CustomerIp field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VrfVirtualCircuitUpdateInput) GetCustomerIpOk() (*string, bool) {
+	if o == nil || isNil(o.CustomerIp) {
+		return nil, false
+	}
+	return o.CustomerIp, true
+}
+
+// HasCustomerIp returns a boolean if a field has been set.
+func (o *VrfVirtualCircuitUpdateInput) HasCustomerIp() bool {
+	if o != nil && !isNil(o.CustomerIp) {
+		return true
+	}
+
+	return false
+}
+
+// SetCustomerIp gets a reference to the given string and assigns it to the CustomerIp field.
+func (o *VrfVirtualCircuitUpdateInput) SetCustomerIp(v string) {
+	o.CustomerIp = &v
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise.
@@ -76,6 +118,70 @@ func (o *VrfVirtualCircuitUpdateInput) SetDescription(v string) {
 	o.Description = &v
 }
 
+// GetMd5 returns the Md5 field value if set, zero value otherwise.
+func (o *VrfVirtualCircuitUpdateInput) GetMd5() string {
+	if o == nil || isNil(o.Md5) {
+		var ret string
+		return ret
+	}
+	return *o.Md5
+}
+
+// GetMd5Ok returns a tuple with the Md5 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VrfVirtualCircuitUpdateInput) GetMd5Ok() (*string, bool) {
+	if o == nil || isNil(o.Md5) {
+		return nil, false
+	}
+	return o.Md5, true
+}
+
+// HasMd5 returns a boolean if a field has been set.
+func (o *VrfVirtualCircuitUpdateInput) HasMd5() bool {
+	if o != nil && !isNil(o.Md5) {
+		return true
+	}
+
+	return false
+}
+
+// SetMd5 gets a reference to the given string and assigns it to the Md5 field.
+func (o *VrfVirtualCircuitUpdateInput) SetMd5(v string) {
+	o.Md5 = &v
+}
+
+// GetMetalIp returns the MetalIp field value if set, zero value otherwise.
+func (o *VrfVirtualCircuitUpdateInput) GetMetalIp() string {
+	if o == nil || isNil(o.MetalIp) {
+		var ret string
+		return ret
+	}
+	return *o.MetalIp
+}
+
+// GetMetalIpOk returns a tuple with the MetalIp field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VrfVirtualCircuitUpdateInput) GetMetalIpOk() (*string, bool) {
+	if o == nil || isNil(o.MetalIp) {
+		return nil, false
+	}
+	return o.MetalIp, true
+}
+
+// HasMetalIp returns a boolean if a field has been set.
+func (o *VrfVirtualCircuitUpdateInput) HasMetalIp() bool {
+	if o != nil && !isNil(o.MetalIp) {
+		return true
+	}
+
+	return false
+}
+
+// SetMetalIp gets a reference to the given string and assigns it to the MetalIp field.
+func (o *VrfVirtualCircuitUpdateInput) SetMetalIp(v string) {
+	o.MetalIp = &v
+}
+
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *VrfVirtualCircuitUpdateInput) GetName() string {
 	if o == nil || isNil(o.Name) {
@@ -108,6 +214,38 @@ func (o *VrfVirtualCircuitUpdateInput) SetName(v string) {
 	o.Name = &v
 }
 
+// GetPeerAsn returns the PeerAsn field value if set, zero value otherwise.
+func (o *VrfVirtualCircuitUpdateInput) GetPeerAsn() int32 {
+	if o == nil || isNil(o.PeerAsn) {
+		var ret int32
+		return ret
+	}
+	return *o.PeerAsn
+}
+
+// GetPeerAsnOk returns a tuple with the PeerAsn field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VrfVirtualCircuitUpdateInput) GetPeerAsnOk() (*int32, bool) {
+	if o == nil || isNil(o.PeerAsn) {
+		return nil, false
+	}
+	return o.PeerAsn, true
+}
+
+// HasPeerAsn returns a boolean if a field has been set.
+func (o *VrfVirtualCircuitUpdateInput) HasPeerAsn() bool {
+	if o != nil && !isNil(o.PeerAsn) {
+		return true
+	}
+
+	return false
+}
+
+// SetPeerAsn gets a reference to the given int32 and assigns it to the PeerAsn field.
+func (o *VrfVirtualCircuitUpdateInput) SetPeerAsn(v int32) {
+	o.PeerAsn = &v
+}
+
 // GetSpeed returns the Speed field value if set, zero value otherwise.
 func (o *VrfVirtualCircuitUpdateInput) GetSpeed() string {
 	if o == nil || isNil(o.Speed) {
@@ -138,6 +276,38 @@ func (o *VrfVirtualCircuitUpdateInput) HasSpeed() bool {
 // SetSpeed gets a reference to the given string and assigns it to the Speed field.
 func (o *VrfVirtualCircuitUpdateInput) SetSpeed(v string) {
 	o.Speed = &v
+}
+
+// GetSubnet returns the Subnet field value if set, zero value otherwise.
+func (o *VrfVirtualCircuitUpdateInput) GetSubnet() string {
+	if o == nil || isNil(o.Subnet) {
+		var ret string
+		return ret
+	}
+	return *o.Subnet
+}
+
+// GetSubnetOk returns a tuple with the Subnet field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VrfVirtualCircuitUpdateInput) GetSubnetOk() (*string, bool) {
+	if o == nil || isNil(o.Subnet) {
+		return nil, false
+	}
+	return o.Subnet, true
+}
+
+// HasSubnet returns a boolean if a field has been set.
+func (o *VrfVirtualCircuitUpdateInput) HasSubnet() bool {
+	if o != nil && !isNil(o.Subnet) {
+		return true
+	}
+
+	return false
+}
+
+// SetSubnet gets a reference to the given string and assigns it to the Subnet field.
+func (o *VrfVirtualCircuitUpdateInput) SetSubnet(v string) {
+	o.Subnet = &v
 }
 
 // GetTags returns the Tags field value if set, zero value otherwise.
@@ -182,14 +352,29 @@ func (o VrfVirtualCircuitUpdateInput) MarshalJSON() ([]byte, error) {
 
 func (o VrfVirtualCircuitUpdateInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !isNil(o.CustomerIp) {
+		toSerialize["customer_ip"] = o.CustomerIp
+	}
 	if !isNil(o.Description) {
 		toSerialize["description"] = o.Description
+	}
+	if !isNil(o.Md5) {
+		toSerialize["md5"] = o.Md5
+	}
+	if !isNil(o.MetalIp) {
+		toSerialize["metal_ip"] = o.MetalIp
 	}
 	if !isNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
+	if !isNil(o.PeerAsn) {
+		toSerialize["peer_asn"] = o.PeerAsn
+	}
 	if !isNil(o.Speed) {
 		toSerialize["speed"] = o.Speed
+	}
+	if !isNil(o.Subnet) {
+		toSerialize["subnet"] = o.Subnet
 	}
 	if !isNil(o.Tags) {
 		toSerialize["tags"] = o.Tags
