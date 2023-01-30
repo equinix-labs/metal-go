@@ -16,36 +16,36 @@ import (
 	"fmt"
 )
 
-// UpdateIPAddress200Response - struct for UpdateIPAddress200Response
-type UpdateIPAddress200Response struct {
+// FindIPAddressById200Response - struct for FindIPAddressById200Response
+type FindIPAddressById200Response struct {
 	IPAssignment     *IPAssignment
 	IPReservation    *IPReservation
 	VrfIpReservation *VrfIpReservation
 }
 
-// IPAssignmentAsUpdateIPAddress200Response is a convenience function that returns IPAssignment wrapped in UpdateIPAddress200Response
-func IPAssignmentAsUpdateIPAddress200Response(v *IPAssignment) UpdateIPAddress200Response {
-	return UpdateIPAddress200Response{
+// IPAssignmentAsFindIPAddressById200Response is a convenience function that returns IPAssignment wrapped in FindIPAddressById200Response
+func IPAssignmentAsFindIPAddressById200Response(v *IPAssignment) FindIPAddressById200Response {
+	return FindIPAddressById200Response{
 		IPAssignment: v,
 	}
 }
 
-// IPReservationAsUpdateIPAddress200Response is a convenience function that returns IPReservation wrapped in UpdateIPAddress200Response
-func IPReservationAsUpdateIPAddress200Response(v *IPReservation) UpdateIPAddress200Response {
-	return UpdateIPAddress200Response{
+// IPReservationAsFindIPAddressById200Response is a convenience function that returns IPReservation wrapped in FindIPAddressById200Response
+func IPReservationAsFindIPAddressById200Response(v *IPReservation) FindIPAddressById200Response {
+	return FindIPAddressById200Response{
 		IPReservation: v,
 	}
 }
 
-// VrfIpReservationAsUpdateIPAddress200Response is a convenience function that returns VrfIpReservation wrapped in UpdateIPAddress200Response
-func VrfIpReservationAsUpdateIPAddress200Response(v *VrfIpReservation) UpdateIPAddress200Response {
-	return UpdateIPAddress200Response{
+// VrfIpReservationAsFindIPAddressById200Response is a convenience function that returns VrfIpReservation wrapped in FindIPAddressById200Response
+func VrfIpReservationAsFindIPAddressById200Response(v *VrfIpReservation) FindIPAddressById200Response {
+	return FindIPAddressById200Response{
 		VrfIpReservation: v,
 	}
 }
 
 // Unmarshal JSON data into one of the pointers in the struct
-func (dst *UpdateIPAddress200Response) UnmarshalJSON(data []byte) error {
+func (dst *FindIPAddressById200Response) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
 	// try to unmarshal data into IPAssignment
@@ -93,16 +93,16 @@ func (dst *UpdateIPAddress200Response) UnmarshalJSON(data []byte) error {
 		dst.IPReservation = nil
 		dst.VrfIpReservation = nil
 
-		return fmt.Errorf("data matches more than one schema in oneOf(UpdateIPAddress200Response)")
+		return fmt.Errorf("data matches more than one schema in oneOf(FindIPAddressById200Response)")
 	} else if match == 1 {
 		return nil // exactly one match
 	} else { // no match
-		return fmt.Errorf("data failed to match schemas in oneOf(UpdateIPAddress200Response)")
+		return fmt.Errorf("data failed to match schemas in oneOf(FindIPAddressById200Response)")
 	}
 }
 
 // Marshal data from the first non-nil pointers in the struct to JSON
-func (src UpdateIPAddress200Response) MarshalJSON() ([]byte, error) {
+func (src FindIPAddressById200Response) MarshalJSON() ([]byte, error) {
 	if src.IPAssignment != nil {
 		return json.Marshal(&src.IPAssignment)
 	}
@@ -119,7 +119,7 @@ func (src UpdateIPAddress200Response) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *UpdateIPAddress200Response) GetActualInstance() interface{} {
+func (obj *FindIPAddressById200Response) GetActualInstance() interface{} {
 	if obj == nil {
 		return nil
 	}
@@ -139,38 +139,38 @@ func (obj *UpdateIPAddress200Response) GetActualInstance() interface{} {
 	return nil
 }
 
-type NullableUpdateIPAddress200Response struct {
-	value *UpdateIPAddress200Response
+type NullableFindIPAddressById200Response struct {
+	value *FindIPAddressById200Response
 	isSet bool
 }
 
-func (v NullableUpdateIPAddress200Response) Get() *UpdateIPAddress200Response {
+func (v NullableFindIPAddressById200Response) Get() *FindIPAddressById200Response {
 	return v.value
 }
 
-func (v *NullableUpdateIPAddress200Response) Set(val *UpdateIPAddress200Response) {
+func (v *NullableFindIPAddressById200Response) Set(val *FindIPAddressById200Response) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableUpdateIPAddress200Response) IsSet() bool {
+func (v NullableFindIPAddressById200Response) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableUpdateIPAddress200Response) Unset() {
+func (v *NullableFindIPAddressById200Response) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableUpdateIPAddress200Response(val *UpdateIPAddress200Response) *NullableUpdateIPAddress200Response {
-	return &NullableUpdateIPAddress200Response{value: val, isSet: true}
+func NewNullableFindIPAddressById200Response(val *FindIPAddressById200Response) *NullableFindIPAddressById200Response {
+	return &NullableFindIPAddressById200Response{value: val, isSet: true}
 }
 
-func (v NullableUpdateIPAddress200Response) MarshalJSON() ([]byte, error) {
+func (v NullableFindIPAddressById200Response) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableUpdateIPAddress200Response) UnmarshalJSON(src []byte) error {
+func (v *NullableFindIPAddressById200Response) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

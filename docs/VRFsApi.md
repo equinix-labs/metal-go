@@ -14,7 +14,6 @@ Method | HTTP request | Description
 [**FindVrfRouteById**](VRFsApi.md#FindVrfRouteById) | **Get** /routes/{id} | Retrieve a VRF Route
 [**FindVrfs**](VRFsApi.md#FindVrfs) | **Get** /projects/{id}/vrfs | Retrieve all VRFs in the project
 [**GetVrfRoutes**](VRFsApi.md#GetVrfRoutes) | **Get** /vrfs/{id}/routes | Retrieve all routes in the VRF
-[**PatchVrfRouteById**](VRFsApi.md#PatchVrfRouteById) | **Patch** /routes/{id} | Update a VRF Route
 [**UpdateVrf**](VRFsApi.md#UpdateVrf) | **Put** /vrfs/{id} | Update the VRF
 [**UpdateVrfRouteById**](VRFsApi.md#UpdateVrfRouteById) | **Put** /routes/{id} | Update a VRF Route
 
@@ -740,80 +739,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**VrfRouteList**](VrfRouteList.md)
-
-### Authorization
-
-[x_auth_token](../README.md#x_auth_token)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## PatchVrfRouteById
-
-> VrfRoute PatchVrfRouteById(ctx, id).Include(include).Exclude(exclude).Execute()
-
-Update a VRF Route
-
-
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
-)
-
-func main() {
-    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | VRF Route UUID
-    include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
-    exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
-
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.VRFsApi.PatchVrfRouteById(context.Background(), id).Include(include).Exclude(exclude).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `VRFsApi.PatchVrfRouteById``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `PatchVrfRouteById`: VrfRoute
-    fmt.Fprintf(os.Stdout, "Response from `VRFsApi.PatchVrfRouteById`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** | VRF Route UUID | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiPatchVrfRouteByIdRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
- **exclude** | **[]string** | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | 
-
-### Return type
-
-[**VrfRoute**](VrfRoute.md)
 
 ### Authorization
 

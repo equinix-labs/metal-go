@@ -84,7 +84,7 @@ Name | Type | Description  | Notes
 
 ## FindIPAddressById
 
-> IPAvailabilitiesList FindIPAddressById(ctx, id).Include(include).Exclude(exclude).Execute()
+> FindIPAddressById200Response FindIPAddressById(ctx, id).Include(include).Exclude(exclude).Execute()
 
 Retrieve an ip address
 
@@ -114,7 +114,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `IPAddressesApi.FindIPAddressById``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindIPAddressById`: IPAvailabilitiesList
+    // response from `FindIPAddressById`: FindIPAddressById200Response
     fmt.Fprintf(os.Stdout, "Response from `IPAddressesApi.FindIPAddressById`: %v\n", resp)
 }
 ```
@@ -140,7 +140,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**IPAvailabilitiesList**](IPAvailabilitiesList.md)
+[**FindIPAddressById200Response**](FindIPAddressById200Response.md)
 
 ### Authorization
 
@@ -448,7 +448,7 @@ Name | Type | Description  | Notes
 
 ## UpdateIPAddress
 
-> UpdateIPAddress200Response UpdateIPAddress(ctx, id).IPAssignmentUpdateInput(iPAssignmentUpdateInput).Execute()
+> FindIPAddressById200Response UpdateIPAddress(ctx, id).IPAssignmentUpdateInput(iPAssignmentUpdateInput).Execute()
 
 Update an ip address
 
@@ -477,7 +477,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `IPAddressesApi.UpdateIPAddress``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateIPAddress`: UpdateIPAddress200Response
+    // response from `UpdateIPAddress`: FindIPAddressById200Response
     fmt.Fprintf(os.Stdout, "Response from `IPAddressesApi.UpdateIPAddress`: %v\n", resp)
 }
 ```
@@ -502,7 +502,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**UpdateIPAddress200Response**](UpdateIPAddress200Response.md)
+[**FindIPAddressById200Response**](FindIPAddressById200Response.md)
 
 ### Authorization
 
