@@ -3128,7 +3128,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/IPAvailabilitiesList'
+                $ref: '#/components/schemas/findIPAddressById_200_response'
           description: ok
         "401":
           content:
@@ -3174,7 +3174,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/updateIPAddress_200_response'
+                $ref: '#/components/schemas/findIPAddressById_200_response'
           description: ok
         "401":
           content:
@@ -9362,86 +9362,6 @@ paths:
                 $ref: '#/components/schemas/Error'
           description: Not Found
       summary: Retrieve a VRF Route
-      tags:
-      - VRFs
-    patch:
-      description: Requests a VRF Route be redeployed across the network. Updating
-        the prefix or next-hop address on a route is not currently supported.
-      operationId: patchVrfRouteById
-      parameters:
-      - description: VRF Route UUID
-        explode: false
-        in: path
-        name: id
-        required: true
-        schema:
-          format: uuid
-          type: string
-        style: simple
-      - description: |-
-          Nested attributes to include. Included objects will return their full
-          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
-          nested objects.
-        explode: false
-        in: query
-        name: include
-        required: false
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
-      - description: |-
-          Nested attributes to exclude. Excluded objects will return only the href
-          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
-          nested objects.
-        explode: false
-        in: query
-        name: exclude
-        required: false
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
-      responses:
-        "202":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/VrfRoute'
-          description: Accepted
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Not Found
-        "422":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Unprocessable Entity
-        "429":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Too Many Requests
-      summary: Update a VRF Route
       tags:
       - VRFs
     put:
@@ -22376,7 +22296,7 @@ components:
           format: uuid
           type: string
       type: object
-    updateIPAddress_200_response:
+    findIPAddressById_200_response:
       oneOf:
       - $ref: '#/components/schemas/IPAssignment'
       - $ref: '#/components/schemas/IPReservation'

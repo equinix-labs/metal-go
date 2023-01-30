@@ -182,7 +182,7 @@ func (r ApiFindIPAddressByIdRequest) Exclude(exclude []string) ApiFindIPAddressB
 	return r
 }
 
-func (r ApiFindIPAddressByIdRequest) Execute() (*IPAvailabilitiesList, *http.Response, error) {
+func (r ApiFindIPAddressByIdRequest) Execute() (*FindIPAddressById200Response, *http.Response, error) {
 	return r.ApiService.FindIPAddressByIdExecute(r)
 }
 
@@ -205,13 +205,13 @@ func (a *IPAddressesApiService) FindIPAddressById(ctx context.Context, id string
 
 // Execute executes the request
 //
-//	@return IPAvailabilitiesList
-func (a *IPAddressesApiService) FindIPAddressByIdExecute(r ApiFindIPAddressByIdRequest) (*IPAvailabilitiesList, *http.Response, error) {
+//	@return FindIPAddressById200Response
+func (a *IPAddressesApiService) FindIPAddressByIdExecute(r ApiFindIPAddressByIdRequest) (*FindIPAddressById200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *IPAvailabilitiesList
+		localVarReturnValue *FindIPAddressById200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IPAddressesApiService.FindIPAddressById")
@@ -1014,7 +1014,7 @@ func (r ApiUpdateIPAddressRequest) IPAssignmentUpdateInput(iPAssignmentUpdateInp
 	return r
 }
 
-func (r ApiUpdateIPAddressRequest) Execute() (*UpdateIPAddress200Response, *http.Response, error) {
+func (r ApiUpdateIPAddressRequest) Execute() (*FindIPAddressById200Response, *http.Response, error) {
 	return r.ApiService.UpdateIPAddressExecute(r)
 }
 
@@ -1037,13 +1037,13 @@ func (a *IPAddressesApiService) UpdateIPAddress(ctx context.Context, id string) 
 
 // Execute executes the request
 //
-//	@return UpdateIPAddress200Response
-func (a *IPAddressesApiService) UpdateIPAddressExecute(r ApiUpdateIPAddressRequest) (*UpdateIPAddress200Response, *http.Response, error) {
+//	@return FindIPAddressById200Response
+func (a *IPAddressesApiService) UpdateIPAddressExecute(r ApiUpdateIPAddressRequest) (*FindIPAddressById200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPatch
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *UpdateIPAddress200Response
+		localVarReturnValue *FindIPAddressById200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IPAddressesApiService.UpdateIPAddress")
