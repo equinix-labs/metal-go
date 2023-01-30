@@ -78,8 +78,6 @@ docs/CapacityReport.md
 docs/Coordinates.md
 docs/CreateDeviceRequest.md
 docs/CreateEmailInput.md
-docs/CreateInterconnectionPortVirtualCircuit201Response.md
-docs/CreateInterconnectionPortVirtualCircuitRequest.md
 docs/CreateMetalGatewayRequest.md
 docs/CreateSelfServiceReservationRequest.md
 docs/CreateSelfServiceReservationRequestPeriod.md
@@ -265,7 +263,6 @@ docs/TransferRequestList.md
 docs/TransferRequestsApi.md
 docs/TwoFactorAuthApi.md
 docs/UpdateEmailInput.md
-docs/UpdateVirtualCircuitRequest.md
 docs/UsagesApi.md
 docs/User.md
 docs/UserCreateInput.md
@@ -282,11 +279,13 @@ docs/VerifyEmail.md
 docs/VirtualCircuit.md
 docs/VirtualCircuitCreateInput.md
 docs/VirtualCircuitList.md
-docs/VirtualCircuitListVirtualCircuitsInner.md
 docs/VirtualCircuitUpdateInput.md
 docs/VirtualNetwork.md
 docs/VirtualNetworkCreateInput.md
 docs/VirtualNetworkList.md
+docs/VlanVirtualCircuit.md
+docs/VlanVirtualCircuitCreateInput.md
+docs/VlanVirtualCircuitUpdateInput.md
 docs/Vrf.md
 docs/VrfCreateInput.md
 docs/VrfIpReservation.md
@@ -340,8 +339,6 @@ model_capacity_report.go
 model_coordinates.go
 model_create_device_request.go
 model_create_email_input.go
-model_create_interconnection_port_virtual_circuit_201_response.go
-model_create_interconnection_port_virtual_circuit_request.go
 model_create_metal_gateway_request.go
 model_create_self_service_reservation_request.go
 model_create_self_service_reservation_request_period.go
@@ -500,7 +497,6 @@ model_transfer_request.go
 model_transfer_request_input.go
 model_transfer_request_list.go
 model_update_email_input.go
-model_update_virtual_circuit_request.go
 model_user.go
 model_user_create_input.go
 model_user_list.go
@@ -511,11 +507,13 @@ model_verify_email.go
 model_virtual_circuit.go
 model_virtual_circuit_create_input.go
 model_virtual_circuit_list.go
-model_virtual_circuit_list_virtual_circuits_inner.go
 model_virtual_circuit_update_input.go
 model_virtual_network.go
 model_virtual_network_create_input.go
 model_virtual_network_list.go
+model_vlan_virtual_circuit.go
+model_vlan_virtual_circuit_create_input.go
+model_vlan_virtual_circuit_update_input.go
 model_vrf.go
 model_vrf_create_input.go
 model_vrf_ip_reservation.go

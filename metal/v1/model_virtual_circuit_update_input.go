@@ -13,225 +13,100 @@ package v1
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
-// checks if the VirtualCircuitUpdateInput type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &VirtualCircuitUpdateInput{}
-
-// VirtualCircuitUpdateInput struct for VirtualCircuitUpdateInput
+// VirtualCircuitUpdateInput - struct for VirtualCircuitUpdateInput
 type VirtualCircuitUpdateInput struct {
-	Description *string `json:"description,omitempty"`
-	Name        *string `json:"name,omitempty"`
-	// Speed can be changed only if it is an interconnection on a Dedicated Port
-	Speed *string  `json:"speed,omitempty"`
-	Tags  []string `json:"tags,omitempty"`
-	// A Virtual Network record UUID or the VNID of a Metro Virtual Network in your project.
-	Vnid *string `json:"vnid,omitempty"`
+	VlanVirtualCircuitUpdateInput *VlanVirtualCircuitUpdateInput
+	VrfVirtualCircuitUpdateInput  *VrfVirtualCircuitUpdateInput
 }
 
-// NewVirtualCircuitUpdateInput instantiates a new VirtualCircuitUpdateInput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewVirtualCircuitUpdateInput() *VirtualCircuitUpdateInput {
-	this := VirtualCircuitUpdateInput{}
-	return &this
-}
-
-// NewVirtualCircuitUpdateInputWithDefaults instantiates a new VirtualCircuitUpdateInput object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewVirtualCircuitUpdateInputWithDefaults() *VirtualCircuitUpdateInput {
-	this := VirtualCircuitUpdateInput{}
-	return &this
-}
-
-// GetDescription returns the Description field value if set, zero value otherwise.
-func (o *VirtualCircuitUpdateInput) GetDescription() string {
-	if o == nil || isNil(o.Description) {
-		var ret string
-		return ret
+// VlanVirtualCircuitUpdateInputAsVirtualCircuitUpdateInput is a convenience function that returns VlanVirtualCircuitUpdateInput wrapped in VirtualCircuitUpdateInput
+func VlanVirtualCircuitUpdateInputAsVirtualCircuitUpdateInput(v *VlanVirtualCircuitUpdateInput) VirtualCircuitUpdateInput {
+	return VirtualCircuitUpdateInput{
+		VlanVirtualCircuitUpdateInput: v,
 	}
-	return *o.Description
 }
 
-// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *VirtualCircuitUpdateInput) GetDescriptionOk() (*string, bool) {
-	if o == nil || isNil(o.Description) {
-		return nil, false
+// VrfVirtualCircuitUpdateInputAsVirtualCircuitUpdateInput is a convenience function that returns VrfVirtualCircuitUpdateInput wrapped in VirtualCircuitUpdateInput
+func VrfVirtualCircuitUpdateInputAsVirtualCircuitUpdateInput(v *VrfVirtualCircuitUpdateInput) VirtualCircuitUpdateInput {
+	return VirtualCircuitUpdateInput{
+		VrfVirtualCircuitUpdateInput: v,
 	}
-	return o.Description, true
 }
 
-// HasDescription returns a boolean if a field has been set.
-func (o *VirtualCircuitUpdateInput) HasDescription() bool {
-	if o != nil && !isNil(o.Description) {
-		return true
+// Unmarshal JSON data into one of the pointers in the struct
+func (dst *VirtualCircuitUpdateInput) UnmarshalJSON(data []byte) error {
+	var err error
+	match := 0
+	// try to unmarshal data into VlanVirtualCircuitUpdateInput
+	err = newStrictDecoder(data).Decode(&dst.VlanVirtualCircuitUpdateInput)
+	if err == nil {
+		jsonVlanVirtualCircuitUpdateInput, _ := json.Marshal(dst.VlanVirtualCircuitUpdateInput)
+		if string(jsonVlanVirtualCircuitUpdateInput) == "{}" { // empty struct
+			dst.VlanVirtualCircuitUpdateInput = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.VlanVirtualCircuitUpdateInput = nil
 	}
 
-	return false
-}
-
-// SetDescription gets a reference to the given string and assigns it to the Description field.
-func (o *VirtualCircuitUpdateInput) SetDescription(v string) {
-	o.Description = &v
-}
-
-// GetName returns the Name field value if set, zero value otherwise.
-func (o *VirtualCircuitUpdateInput) GetName() string {
-	if o == nil || isNil(o.Name) {
-		var ret string
-		return ret
-	}
-	return *o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *VirtualCircuitUpdateInput) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-		return nil, false
-	}
-	return o.Name, true
-}
-
-// HasName returns a boolean if a field has been set.
-func (o *VirtualCircuitUpdateInput) HasName() bool {
-	if o != nil && !isNil(o.Name) {
-		return true
+	// try to unmarshal data into VrfVirtualCircuitUpdateInput
+	err = newStrictDecoder(data).Decode(&dst.VrfVirtualCircuitUpdateInput)
+	if err == nil {
+		jsonVrfVirtualCircuitUpdateInput, _ := json.Marshal(dst.VrfVirtualCircuitUpdateInput)
+		if string(jsonVrfVirtualCircuitUpdateInput) == "{}" { // empty struct
+			dst.VrfVirtualCircuitUpdateInput = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.VrfVirtualCircuitUpdateInput = nil
 	}
 
-	return false
+	if match > 1 { // more than 1 match
+		// reset to nil
+		dst.VlanVirtualCircuitUpdateInput = nil
+		dst.VrfVirtualCircuitUpdateInput = nil
+
+		return fmt.Errorf("data matches more than one schema in oneOf(VirtualCircuitUpdateInput)")
+	} else if match == 1 {
+		return nil // exactly one match
+	} else { // no match
+		return fmt.Errorf("data failed to match schemas in oneOf(VirtualCircuitUpdateInput)")
+	}
 }
 
-// SetName gets a reference to the given string and assigns it to the Name field.
-func (o *VirtualCircuitUpdateInput) SetName(v string) {
-	o.Name = &v
+// Marshal data from the first non-nil pointers in the struct to JSON
+func (src VirtualCircuitUpdateInput) MarshalJSON() ([]byte, error) {
+	if src.VlanVirtualCircuitUpdateInput != nil {
+		return json.Marshal(&src.VlanVirtualCircuitUpdateInput)
+	}
+
+	if src.VrfVirtualCircuitUpdateInput != nil {
+		return json.Marshal(&src.VrfVirtualCircuitUpdateInput)
+	}
+
+	return nil, nil // no data in oneOf schemas
 }
 
-// GetSpeed returns the Speed field value if set, zero value otherwise.
-func (o *VirtualCircuitUpdateInput) GetSpeed() string {
-	if o == nil || isNil(o.Speed) {
-		var ret string
-		return ret
+// Get the actual instance
+func (obj *VirtualCircuitUpdateInput) GetActualInstance() interface{} {
+	if obj == nil {
+		return nil
 	}
-	return *o.Speed
-}
-
-// GetSpeedOk returns a tuple with the Speed field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *VirtualCircuitUpdateInput) GetSpeedOk() (*string, bool) {
-	if o == nil || isNil(o.Speed) {
-		return nil, false
-	}
-	return o.Speed, true
-}
-
-// HasSpeed returns a boolean if a field has been set.
-func (o *VirtualCircuitUpdateInput) HasSpeed() bool {
-	if o != nil && !isNil(o.Speed) {
-		return true
+	if obj.VlanVirtualCircuitUpdateInput != nil {
+		return obj.VlanVirtualCircuitUpdateInput
 	}
 
-	return false
-}
-
-// SetSpeed gets a reference to the given string and assigns it to the Speed field.
-func (o *VirtualCircuitUpdateInput) SetSpeed(v string) {
-	o.Speed = &v
-}
-
-// GetTags returns the Tags field value if set, zero value otherwise.
-func (o *VirtualCircuitUpdateInput) GetTags() []string {
-	if o == nil || isNil(o.Tags) {
-		var ret []string
-		return ret
-	}
-	return o.Tags
-}
-
-// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *VirtualCircuitUpdateInput) GetTagsOk() ([]string, bool) {
-	if o == nil || isNil(o.Tags) {
-		return nil, false
-	}
-	return o.Tags, true
-}
-
-// HasTags returns a boolean if a field has been set.
-func (o *VirtualCircuitUpdateInput) HasTags() bool {
-	if o != nil && !isNil(o.Tags) {
-		return true
+	if obj.VrfVirtualCircuitUpdateInput != nil {
+		return obj.VrfVirtualCircuitUpdateInput
 	}
 
-	return false
-}
-
-// SetTags gets a reference to the given []string and assigns it to the Tags field.
-func (o *VirtualCircuitUpdateInput) SetTags(v []string) {
-	o.Tags = v
-}
-
-// GetVnid returns the Vnid field value if set, zero value otherwise.
-func (o *VirtualCircuitUpdateInput) GetVnid() string {
-	if o == nil || isNil(o.Vnid) {
-		var ret string
-		return ret
-	}
-	return *o.Vnid
-}
-
-// GetVnidOk returns a tuple with the Vnid field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *VirtualCircuitUpdateInput) GetVnidOk() (*string, bool) {
-	if o == nil || isNil(o.Vnid) {
-		return nil, false
-	}
-	return o.Vnid, true
-}
-
-// HasVnid returns a boolean if a field has been set.
-func (o *VirtualCircuitUpdateInput) HasVnid() bool {
-	if o != nil && !isNil(o.Vnid) {
-		return true
-	}
-
-	return false
-}
-
-// SetVnid gets a reference to the given string and assigns it to the Vnid field.
-func (o *VirtualCircuitUpdateInput) SetVnid(v string) {
-	o.Vnid = &v
-}
-
-func (o VirtualCircuitUpdateInput) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
-}
-
-func (o VirtualCircuitUpdateInput) ToMap() (map[string]interface{}, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Description) {
-		toSerialize["description"] = o.Description
-	}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.Speed) {
-		toSerialize["speed"] = o.Speed
-	}
-	if !isNil(o.Tags) {
-		toSerialize["tags"] = o.Tags
-	}
-	if !isNil(o.Vnid) {
-		toSerialize["vnid"] = o.Vnid
-	}
-	return toSerialize, nil
+	// all schemas are nil
+	return nil
 }
 
 type NullableVirtualCircuitUpdateInput struct {

@@ -20,7 +20,7 @@ var _ MappedNullable = &VirtualCircuitList{}
 
 // VirtualCircuitList struct for VirtualCircuitList
 type VirtualCircuitList struct {
-	VirtualCircuits []VirtualCircuitListVirtualCircuitsInner `json:"virtual_circuits,omitempty"`
+	VirtualCircuits []VirtualCircuit `json:"virtual_circuits,omitempty"`
 }
 
 // NewVirtualCircuitList instantiates a new VirtualCircuitList object
@@ -41,9 +41,9 @@ func NewVirtualCircuitListWithDefaults() *VirtualCircuitList {
 }
 
 // GetVirtualCircuits returns the VirtualCircuits field value if set, zero value otherwise.
-func (o *VirtualCircuitList) GetVirtualCircuits() []VirtualCircuitListVirtualCircuitsInner {
+func (o *VirtualCircuitList) GetVirtualCircuits() []VirtualCircuit {
 	if o == nil || isNil(o.VirtualCircuits) {
-		var ret []VirtualCircuitListVirtualCircuitsInner
+		var ret []VirtualCircuit
 		return ret
 	}
 	return o.VirtualCircuits
@@ -51,7 +51,7 @@ func (o *VirtualCircuitList) GetVirtualCircuits() []VirtualCircuitListVirtualCir
 
 // GetVirtualCircuitsOk returns a tuple with the VirtualCircuits field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VirtualCircuitList) GetVirtualCircuitsOk() ([]VirtualCircuitListVirtualCircuitsInner, bool) {
+func (o *VirtualCircuitList) GetVirtualCircuitsOk() ([]VirtualCircuit, bool) {
 	if o == nil || isNil(o.VirtualCircuits) {
 		return nil, false
 	}
@@ -67,8 +67,8 @@ func (o *VirtualCircuitList) HasVirtualCircuits() bool {
 	return false
 }
 
-// SetVirtualCircuits gets a reference to the given []VirtualCircuitListVirtualCircuitsInner and assigns it to the VirtualCircuits field.
-func (o *VirtualCircuitList) SetVirtualCircuits(v []VirtualCircuitListVirtualCircuitsInner) {
+// SetVirtualCircuits gets a reference to the given []VirtualCircuit and assigns it to the VirtualCircuits field.
+func (o *VirtualCircuitList) SetVirtualCircuits(v []VirtualCircuit) {
 	o.VirtualCircuits = v
 }
 

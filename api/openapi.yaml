@@ -1217,7 +1217,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/createInterconnectionPortVirtualCircuit_request'
+              $ref: '#/components/schemas/VirtualCircuitCreateInput'
         description: Virtual Circuit details
         required: true
       responses:
@@ -1225,7 +1225,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/createInterconnectionPortVirtualCircuit_201_response'
+                $ref: '#/components/schemas/VirtualCircuit'
           description: ok
         "403":
           content:
@@ -10801,7 +10801,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/createInterconnectionPortVirtualCircuit_201_response'
+                $ref: '#/components/schemas/VirtualCircuit'
           description: accepted
         "403":
           content:
@@ -10836,7 +10836,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/createInterconnectionPortVirtualCircuit_201_response'
+                $ref: '#/components/schemas/VirtualCircuit'
           description: ok
         "403":
           content:
@@ -10870,7 +10870,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/updateVirtualCircuit_request'
+              $ref: '#/components/schemas/VirtualCircuitUpdateInput'
         description: Updated Virtual Circuit details
         required: true
       responses:
@@ -10878,13 +10878,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/createInterconnectionPortVirtualCircuit_201_response'
+                $ref: '#/components/schemas/VirtualCircuit'
           description: ok
         "202":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/createInterconnectionPortVirtualCircuit_201_response'
+                $ref: '#/components/schemas/VirtualCircuit'
           description: accepted
         "403":
           content:
@@ -20591,129 +20591,13 @@ components:
       - user_token
       type: object
     VirtualCircuit:
-      properties:
-        bill:
-          default: false
-          description: "True if the Virtual Circuit is being billed. Currently, only\
-            \ Virtual Circuits of Fabric VCs (Metal Billed) will be billed. Usage\
-            \ will start the first time the Virtual Circuit becomes active, and will\
-            \ not stop until it is deleted from Metal."
-          type: boolean
-        description:
-          type: string
-        id:
-          format: uuid
-          type: string
-        name:
-          type: string
-        nni_vlan:
-          type: integer
-        port:
-          $ref: '#/components/schemas/Href'
-        project:
-          $ref: '#/components/schemas/Href'
-        speed:
-          description: "For Virtual Circuits on shared and dedicated connections,\
-            \ this speed should match the one set on their Interconnection Ports.\
-            \ For Virtual Circuits on Fabric VCs (both Metal and Fabric Billed) that\
-            \ have found their corresponding Fabric connection, this is the actual\
-            \ speed of the interconnection that was configured when setting up the\
-            \ interconnection on the Fabric Portal. Details on Fabric VCs are included\
-            \ in the specification as a developer preview and is generally unavailable.\
-            \ Please contact our Support team for more details."
-          type: integer
-        status:
-          description: "The status of a Virtual Circuit is always 'Pending' on creation.\
-            \ The status can turn to 'Waiting on Customer VLAN' if a Metro VLAN was\
-            \ not set yet on the Virtual Circuit and is the last step needed for full\
-            \ activation. For Dedicated interconnections, as long as the Dedicated\
-            \ Port has been associated to the Virtual Circuit and a NNI VNID has been\
-            \ set, it will turn to 'Waiting on Customer VLAN'. For Fabric VCs, it\
-            \ will only change to 'Waiting on Customer VLAN' once the corresponding\
-            \ Fabric connection has been found on the Fabric side. Once a Metro VLAN\
-            \ is set on the Virtual Circuit (which for Fabric VCs, can be set on creation)\
-            \ and the necessary set up is done, it will turn into 'Activating' status\
-            \ as it tries to activate the Virtual Circuit. Once the Virtual Circuit\
-            \ fully activates and is configured on the switch, it will turn to staus\
-            \ 'Active'. For Fabric VCs (Metal Billed), we will start billing the moment\
-            \ the status of the Virtual Circuit turns to 'Active'. If there are any\
-            \ changes to the VLAN after the Virtual Circuit is in an 'Active' status,\
-            \ the status will show 'Changing VLAN' if a new VLAN has been provided,\
-            \ or 'Deactivating' if we are removing the VLAN. When a deletion request\
-            \ is issued for the Virtual Circuit, it will move to a 'deleting' status\
-            \ until it is fully deleted. If the Virtual Circuit is on a Fabric VC,\
-            \ it can also change into an 'Expired' status if the associated service\
-            \ token has expired."
-          enum:
-          - pending
-          - waiting_on_customer_vlan
-          - activating
-          - changing_vlan
-          - deactivating
-          - deleting
-          - active
-          - expired
-          - activation_failed
-          - changing_vlan_failed
-          - deactivation_failed
-          - delete_failed
-          type: string
-        tags:
-          items:
-            type: string
-          type: array
-        virtual_network:
-          $ref: '#/components/schemas/Href'
-        vnid:
-          type: integer
-        created_at:
-          format: date-time
-          type: string
-        updated_at:
-          format: date-time
-          type: string
-      required:
-      - bill
-      - description
-      - id
-      - name
-      - nni_vlan
-      - port
-      - project
-      - status
-      - tags
-      - virtual_network
-      - vnid
-      type: object
+      oneOf:
+      - $ref: '#/components/schemas/VlanVirtualCircuit'
+      - $ref: '#/components/schemas/VrfVirtualCircuit'
     VirtualCircuitCreateInput:
-      properties:
-        description:
-          type: string
-        name:
-          type: string
-        nni_vlan:
-          maximum: 4094
-          minimum: 2
-          type: integer
-        project_id:
-          format: uuid
-          type: string
-        speed:
-          description: speed can be passed as integer number representing bps speed
-            or string (e.g. '52m' or '100g' or '4 gbps')
-          type: integer
-        tags:
-          items:
-            type: string
-          type: array
-        vnid:
-          description: A Virtual Network record UUID or the VNID of a Metro Virtual
-            Network in your project (sent as integer).
-          format: uuid
-          type: string
-      required:
-      - project_id
-      type: object
+      oneOf:
+      - $ref: '#/components/schemas/VlanVirtualCircuitCreateInput'
+      - $ref: '#/components/schemas/VrfVirtualCircuitCreateInput'
     VirtualCircuitList:
       example:
         virtual_circuits:
@@ -20722,28 +20606,13 @@ components:
       properties:
         virtual_circuits:
           items:
-            $ref: '#/components/schemas/VirtualCircuitList_virtual_circuits_inner'
+            $ref: '#/components/schemas/VirtualCircuit'
           type: array
       type: object
     VirtualCircuitUpdateInput:
-      properties:
-        description:
-          type: string
-        name:
-          type: string
-        speed:
-          description: Speed can be changed only if it is an interconnection on a
-            Dedicated Port
-          type: string
-        tags:
-          items:
-            type: string
-          type: array
-        vnid:
-          description: A Virtual Network record UUID or the VNID of a Metro Virtual
-            Network in your project.
-          type: string
-      type: object
+      oneOf:
+      - $ref: '#/components/schemas/VlanVirtualCircuitUpdateInput'
+      - $ref: '#/components/schemas/VrfVirtualCircuitUpdateInput'
     VirtualNetwork:
       example:
         vxlan: 5
@@ -20906,6 +20775,149 @@ components:
           items:
             $ref: '#/components/schemas/VirtualNetwork'
           type: array
+      type: object
+    VlanVirtualCircuit:
+      properties:
+        bill:
+          default: false
+          description: "True if the Virtual Circuit is being billed. Currently, only\
+            \ Virtual Circuits of Fabric VCs (Metal Billed) will be billed. Usage\
+            \ will start the first time the Virtual Circuit becomes active, and will\
+            \ not stop until it is deleted from Metal."
+          type: boolean
+        description:
+          type: string
+        id:
+          format: uuid
+          type: string
+        name:
+          type: string
+        nni_vlan:
+          type: integer
+        port:
+          $ref: '#/components/schemas/Href'
+        project:
+          $ref: '#/components/schemas/Href'
+        speed:
+          description: "For Virtual Circuits on shared and dedicated connections,\
+            \ this speed should match the one set on their Interconnection Ports.\
+            \ For Virtual Circuits on Fabric VCs (both Metal and Fabric Billed) that\
+            \ have found their corresponding Fabric connection, this is the actual\
+            \ speed of the interconnection that was configured when setting up the\
+            \ interconnection on the Fabric Portal. Details on Fabric VCs are included\
+            \ in the specification as a developer preview and is generally unavailable.\
+            \ Please contact our Support team for more details."
+          type: integer
+        status:
+          description: "The status of a Virtual Circuit is always 'Pending' on creation.\
+            \ The status can turn to 'Waiting on Customer VLAN' if a Metro VLAN was\
+            \ not set yet on the Virtual Circuit and is the last step needed for full\
+            \ activation. For Dedicated interconnections, as long as the Dedicated\
+            \ Port has been associated to the Virtual Circuit and a NNI VNID has been\
+            \ set, it will turn to 'Waiting on Customer VLAN'. For Fabric VCs, it\
+            \ will only change to 'Waiting on Customer VLAN' once the corresponding\
+            \ Fabric connection has been found on the Fabric side. Once a Metro VLAN\
+            \ is set on the Virtual Circuit (which for Fabric VCs, can be set on creation)\
+            \ and the necessary set up is done, it will turn into 'Activating' status\
+            \ as it tries to activate the Virtual Circuit. Once the Virtual Circuit\
+            \ fully activates and is configured on the switch, it will turn to staus\
+            \ 'Active'. For Fabric VCs (Metal Billed), we will start billing the moment\
+            \ the status of the Virtual Circuit turns to 'Active'. If there are any\
+            \ changes to the VLAN after the Virtual Circuit is in an 'Active' status,\
+            \ the status will show 'Changing VLAN' if a new VLAN has been provided,\
+            \ or 'Deactivating' if we are removing the VLAN. When a deletion request\
+            \ is issued for the Virtual Circuit, it will move to a 'deleting' status\
+            \ until it is fully deleted. If the Virtual Circuit is on a Fabric VC,\
+            \ it can also change into an 'Expired' status if the associated service\
+            \ token has expired."
+          enum:
+          - pending
+          - waiting_on_customer_vlan
+          - activating
+          - changing_vlan
+          - deactivating
+          - deleting
+          - active
+          - expired
+          - activation_failed
+          - changing_vlan_failed
+          - deactivation_failed
+          - delete_failed
+          type: string
+        tags:
+          items:
+            type: string
+          type: array
+        virtual_network:
+          $ref: '#/components/schemas/Href'
+        vnid:
+          type: integer
+        created_at:
+          format: date-time
+          type: string
+        updated_at:
+          format: date-time
+          type: string
+      required:
+      - bill
+      - description
+      - id
+      - name
+      - nni_vlan
+      - port
+      - project
+      - status
+      - tags
+      - virtual_network
+      - vnid
+      type: object
+    VlanVirtualCircuitCreateInput:
+      properties:
+        description:
+          type: string
+        name:
+          type: string
+        nni_vlan:
+          maximum: 4094
+          minimum: 2
+          type: integer
+        project_id:
+          format: uuid
+          type: string
+        speed:
+          description: speed can be passed as integer number representing bps speed
+            or string (e.g. '52m' or '100g' or '4 gbps')
+          type: integer
+        tags:
+          items:
+            type: string
+          type: array
+        vnid:
+          description: A Virtual Network record UUID or the VNID of a Metro Virtual
+            Network in your project (sent as integer).
+          format: uuid
+          type: string
+      required:
+      - project_id
+      type: object
+    VlanVirtualCircuitUpdateInput:
+      properties:
+        description:
+          type: string
+        name:
+          type: string
+        speed:
+          description: Speed can be changed only if it is an interconnection on a
+            Dedicated Port
+          type: string
+        tags:
+          items:
+            type: string
+          type: array
+        vnid:
+          description: A Virtual Network record UUID or the VNID of a Metro Virtual
+            Network in your project.
+          type: string
       type: object
     Vrf:
       example:
@@ -22312,14 +22324,6 @@ components:
           example: 10.32.16.0/31
           type: string
       type: object
-    createInterconnectionPortVirtualCircuit_request:
-      oneOf:
-      - $ref: '#/components/schemas/VirtualCircuitCreateInput'
-      - $ref: '#/components/schemas/VrfVirtualCircuitCreateInput'
-    createInterconnectionPortVirtualCircuit_201_response:
-      oneOf:
-      - $ref: '#/components/schemas/VirtualCircuit'
-      - $ref: '#/components/schemas/VrfVirtualCircuit'
     findTraffic_timeframe_parameter:
       properties:
         ended_at:
@@ -22368,10 +22372,6 @@ components:
       oneOf:
       - $ref: '#/components/schemas/MetalGatewayCreateInput'
       - $ref: '#/components/schemas/VrfMetalGatewayCreateInput'
-    updateVirtualCircuit_request:
-      oneOf:
-      - $ref: '#/components/schemas/VirtualCircuitUpdateInput'
-      - $ref: '#/components/schemas/VrfVirtualCircuitUpdateInput'
     AuthToken_project:
       allOf:
       - $ref: '#/components/schemas/Project'
@@ -22851,10 +22851,6 @@ components:
         userdata:
           type: string
       type: object
-    VirtualCircuitList_virtual_circuits_inner:
-      anyOf:
-      - $ref: '#/components/schemas/VirtualCircuit'
-      - $ref: '#/components/schemas/VrfVirtualCircuit'
     VrfRoute_metal_gateway:
       description: A link to the Metal Gateway to which this VRF Route is associated
       oneOf:

@@ -24,20 +24,20 @@ import (
 type InterconnectionsApiService service
 
 type ApiCreateInterconnectionPortVirtualCircuitRequest struct {
-	ctx                                            context.Context
-	ApiService                                     *InterconnectionsApiService
-	connectionId                                   string
-	portId                                         string
-	createInterconnectionPortVirtualCircuitRequest *CreateInterconnectionPortVirtualCircuitRequest
+	ctx                       context.Context
+	ApiService                *InterconnectionsApiService
+	connectionId              string
+	portId                    string
+	virtualCircuitCreateInput *VirtualCircuitCreateInput
 }
 
 // Virtual Circuit details
-func (r ApiCreateInterconnectionPortVirtualCircuitRequest) CreateInterconnectionPortVirtualCircuitRequest(createInterconnectionPortVirtualCircuitRequest CreateInterconnectionPortVirtualCircuitRequest) ApiCreateInterconnectionPortVirtualCircuitRequest {
-	r.createInterconnectionPortVirtualCircuitRequest = &createInterconnectionPortVirtualCircuitRequest
+func (r ApiCreateInterconnectionPortVirtualCircuitRequest) VirtualCircuitCreateInput(virtualCircuitCreateInput VirtualCircuitCreateInput) ApiCreateInterconnectionPortVirtualCircuitRequest {
+	r.virtualCircuitCreateInput = &virtualCircuitCreateInput
 	return r
 }
 
-func (r ApiCreateInterconnectionPortVirtualCircuitRequest) Execute() (*CreateInterconnectionPortVirtualCircuit201Response, *http.Response, error) {
+func (r ApiCreateInterconnectionPortVirtualCircuitRequest) Execute() (*VirtualCircuit, *http.Response, error) {
 	return r.ApiService.CreateInterconnectionPortVirtualCircuitExecute(r)
 }
 
@@ -62,13 +62,13 @@ func (a *InterconnectionsApiService) CreateInterconnectionPortVirtualCircuit(ctx
 
 // Execute executes the request
 //
-//	@return CreateInterconnectionPortVirtualCircuit201Response
-func (a *InterconnectionsApiService) CreateInterconnectionPortVirtualCircuitExecute(r ApiCreateInterconnectionPortVirtualCircuitRequest) (*CreateInterconnectionPortVirtualCircuit201Response, *http.Response, error) {
+//	@return VirtualCircuit
+func (a *InterconnectionsApiService) CreateInterconnectionPortVirtualCircuitExecute(r ApiCreateInterconnectionPortVirtualCircuitRequest) (*VirtualCircuit, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *CreateInterconnectionPortVirtualCircuit201Response
+		localVarReturnValue *VirtualCircuit
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InterconnectionsApiService.CreateInterconnectionPortVirtualCircuit")
@@ -83,8 +83,8 @@ func (a *InterconnectionsApiService) CreateInterconnectionPortVirtualCircuitExec
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createInterconnectionPortVirtualCircuitRequest == nil {
-		return localVarReturnValue, nil, reportError("createInterconnectionPortVirtualCircuitRequest is required and must be specified")
+	if r.virtualCircuitCreateInput == nil {
+		return localVarReturnValue, nil, reportError("virtualCircuitCreateInput is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -105,7 +105,7 @@ func (a *InterconnectionsApiService) CreateInterconnectionPortVirtualCircuitExec
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createInterconnectionPortVirtualCircuitRequest
+	localVarPostBody = r.virtualCircuitCreateInput
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -636,7 +636,7 @@ type ApiDeleteVirtualCircuitRequest struct {
 	id         string
 }
 
-func (r ApiDeleteVirtualCircuitRequest) Execute() (*CreateInterconnectionPortVirtualCircuit201Response, *http.Response, error) {
+func (r ApiDeleteVirtualCircuitRequest) Execute() (*VirtualCircuit, *http.Response, error) {
 	return r.ApiService.DeleteVirtualCircuitExecute(r)
 }
 
@@ -659,13 +659,13 @@ func (a *InterconnectionsApiService) DeleteVirtualCircuit(ctx context.Context, i
 
 // Execute executes the request
 //
-//	@return CreateInterconnectionPortVirtualCircuit201Response
-func (a *InterconnectionsApiService) DeleteVirtualCircuitExecute(r ApiDeleteVirtualCircuitRequest) (*CreateInterconnectionPortVirtualCircuit201Response, *http.Response, error) {
+//	@return VirtualCircuit
+func (a *InterconnectionsApiService) DeleteVirtualCircuitExecute(r ApiDeleteVirtualCircuitRequest) (*VirtualCircuit, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodDelete
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *CreateInterconnectionPortVirtualCircuit201Response
+		localVarReturnValue *VirtualCircuit
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InterconnectionsApiService.DeleteVirtualCircuit")
@@ -1057,7 +1057,7 @@ type ApiGetVirtualCircuitRequest struct {
 	id         string
 }
 
-func (r ApiGetVirtualCircuitRequest) Execute() (*CreateInterconnectionPortVirtualCircuit201Response, *http.Response, error) {
+func (r ApiGetVirtualCircuitRequest) Execute() (*VirtualCircuit, *http.Response, error) {
 	return r.ApiService.GetVirtualCircuitExecute(r)
 }
 
@@ -1080,13 +1080,13 @@ func (a *InterconnectionsApiService) GetVirtualCircuit(ctx context.Context, id s
 
 // Execute executes the request
 //
-//	@return CreateInterconnectionPortVirtualCircuit201Response
-func (a *InterconnectionsApiService) GetVirtualCircuitExecute(r ApiGetVirtualCircuitRequest) (*CreateInterconnectionPortVirtualCircuit201Response, *http.Response, error) {
+//	@return VirtualCircuit
+func (a *InterconnectionsApiService) GetVirtualCircuitExecute(r ApiGetVirtualCircuitRequest) (*VirtualCircuit, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *CreateInterconnectionPortVirtualCircuit201Response
+		localVarReturnValue *VirtualCircuit
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InterconnectionsApiService.GetVirtualCircuit")
@@ -2041,19 +2041,19 @@ func (a *InterconnectionsApiService) UpdateInterconnectionExecute(r ApiUpdateInt
 }
 
 type ApiUpdateVirtualCircuitRequest struct {
-	ctx                         context.Context
-	ApiService                  *InterconnectionsApiService
-	id                          string
-	updateVirtualCircuitRequest *UpdateVirtualCircuitRequest
+	ctx                       context.Context
+	ApiService                *InterconnectionsApiService
+	id                        string
+	virtualCircuitUpdateInput *VirtualCircuitUpdateInput
 }
 
 // Updated Virtual Circuit details
-func (r ApiUpdateVirtualCircuitRequest) UpdateVirtualCircuitRequest(updateVirtualCircuitRequest UpdateVirtualCircuitRequest) ApiUpdateVirtualCircuitRequest {
-	r.updateVirtualCircuitRequest = &updateVirtualCircuitRequest
+func (r ApiUpdateVirtualCircuitRequest) VirtualCircuitUpdateInput(virtualCircuitUpdateInput VirtualCircuitUpdateInput) ApiUpdateVirtualCircuitRequest {
+	r.virtualCircuitUpdateInput = &virtualCircuitUpdateInput
 	return r
 }
 
-func (r ApiUpdateVirtualCircuitRequest) Execute() (*CreateInterconnectionPortVirtualCircuit201Response, *http.Response, error) {
+func (r ApiUpdateVirtualCircuitRequest) Execute() (*VirtualCircuit, *http.Response, error) {
 	return r.ApiService.UpdateVirtualCircuitExecute(r)
 }
 
@@ -2076,13 +2076,13 @@ func (a *InterconnectionsApiService) UpdateVirtualCircuit(ctx context.Context, i
 
 // Execute executes the request
 //
-//	@return CreateInterconnectionPortVirtualCircuit201Response
-func (a *InterconnectionsApiService) UpdateVirtualCircuitExecute(r ApiUpdateVirtualCircuitRequest) (*CreateInterconnectionPortVirtualCircuit201Response, *http.Response, error) {
+//	@return VirtualCircuit
+func (a *InterconnectionsApiService) UpdateVirtualCircuitExecute(r ApiUpdateVirtualCircuitRequest) (*VirtualCircuit, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *CreateInterconnectionPortVirtualCircuit201Response
+		localVarReturnValue *VirtualCircuit
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InterconnectionsApiService.UpdateVirtualCircuit")
@@ -2096,8 +2096,8 @@ func (a *InterconnectionsApiService) UpdateVirtualCircuitExecute(r ApiUpdateVirt
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.updateVirtualCircuitRequest == nil {
-		return localVarReturnValue, nil, reportError("updateVirtualCircuitRequest is required and must be specified")
+	if r.virtualCircuitUpdateInput == nil {
+		return localVarReturnValue, nil, reportError("virtualCircuitUpdateInput is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -2118,7 +2118,7 @@ func (a *InterconnectionsApiService) UpdateVirtualCircuitExecute(r ApiUpdateVirt
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateVirtualCircuitRequest
+	localVarPostBody = r.virtualCircuitUpdateInput
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
