@@ -9,8 +9,8 @@ SPEC_URL:=https://api.equinix.com/metal/v1/api-docs
 
 SPEC_FETCHED_FILE:=spec.fetched.json
 SPEC_PATCHED_FILE:=spec.patched.json
-IMAGE_SHA=sha256:98fb0a00a0247faea5079e7e21c723ef9b96e1506dcc07f3225b4c3d60e19b5a # latest, 2023-01-13
-IMAGE=openapitools/openapi-generator-cli@${IMAGE_SHA}
+OPENAPI_IMAGE_TAG=v6.3.0
+OPENAPI_IMAGE=openapitools/openapi-generator-cli:${OPENAPI_IMAGE_TAG}
 GIT_ORG=equinix-labs
 GIT_REPO=metal-go
 PACKAGE_PREFIX=metal
@@ -19,13 +19,13 @@ CRI=docker # nerdctl
 
 # Pull in custom-built generator jar so we can use unmerged bugfixes
 # Custom generator is built from https://github.com/ctreatma/openapi-generator/tree/local-generator-testing
-SWAGGER=${CRI} run --rm -u ${CURRENT_UID}:${CURRENT_GID} -v $(CURDIR):/local ${IMAGE}
+SWAGGER=${CRI} run --rm -u ${CURRENT_UID}:${CURRENT_GID} -v $(CURDIR):/local ${OPENAPI_IMAGE}
 GOLANGCI_LINT=golangci-lint
 
 all: pull fetch patch clean gen mod docs move-other patch-post fmt test stage
 
 pull:
-	${CRI} pull ${IMAGE}
+	${CRI} pull ${OPENAPI_IMAGE}
 
 fetch:
 	curl ${SPEC_URL} | jq . > ${SPEC_FETCHED_FILE}

@@ -22,7 +22,7 @@ var _ MappedNullable = &UserCreateInput{}
 
 // UserCreateInput struct for UserCreateInput
 type UserCreateInput struct {
-	Avatar         *os.File               `json:"avatar,omitempty"`
+	Avatar         **os.File              `json:"avatar,omitempty"`
 	CompanyName    *string                `json:"company_name,omitempty"`
 	CompanyUrl     *string                `json:"company_url,omitempty"`
 	Customdata     map[string]interface{} `json:"customdata,omitempty"`
@@ -63,9 +63,9 @@ func NewUserCreateInputWithDefaults() *UserCreateInput {
 }
 
 // GetAvatar returns the Avatar field value if set, zero value otherwise.
-func (o *UserCreateInput) GetAvatar() os.File {
+func (o *UserCreateInput) GetAvatar() *os.File {
 	if o == nil || isNil(o.Avatar) {
-		var ret os.File
+		var ret *os.File
 		return ret
 	}
 	return *o.Avatar
@@ -73,7 +73,7 @@ func (o *UserCreateInput) GetAvatar() os.File {
 
 // GetAvatarOk returns a tuple with the Avatar field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UserCreateInput) GetAvatarOk() (*os.File, bool) {
+func (o *UserCreateInput) GetAvatarOk() (**os.File, bool) {
 	if o == nil || isNil(o.Avatar) {
 		return nil, false
 	}
@@ -89,8 +89,8 @@ func (o *UserCreateInput) HasAvatar() bool {
 	return false
 }
 
-// SetAvatar gets a reference to the given os.File and assigns it to the Avatar field.
-func (o *UserCreateInput) SetAvatar(v os.File) {
+// SetAvatar gets a reference to the given *os.File and assigns it to the Avatar field.
+func (o *UserCreateInput) SetAvatar(v *os.File) {
 	o.Avatar = &v
 }
 
