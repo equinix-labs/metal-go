@@ -40,6 +40,8 @@ type HardwareReservation struct {
 	Spare *bool `json:"spare,omitempty"`
 	// Switch short id. This can be used to determine if two devices are connected to the same switch, for example.
 	SwitchUuid *string `json:"switch_uuid,omitempty"`
+	// Expiration date for the reservation.
+	TerminationTime *time.Time `json:"termination_time,omitempty"`
 }
 
 // NewHardwareReservation instantiates a new HardwareReservation object
@@ -475,6 +477,38 @@ func (o *HardwareReservation) SetSwitchUuid(v string) {
 	o.SwitchUuid = &v
 }
 
+// GetTerminationTime returns the TerminationTime field value if set, zero value otherwise.
+func (o *HardwareReservation) GetTerminationTime() time.Time {
+	if o == nil || isNil(o.TerminationTime) {
+		var ret time.Time
+		return ret
+	}
+	return *o.TerminationTime
+}
+
+// GetTerminationTimeOk returns a tuple with the TerminationTime field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *HardwareReservation) GetTerminationTimeOk() (*time.Time, bool) {
+	if o == nil || isNil(o.TerminationTime) {
+		return nil, false
+	}
+	return o.TerminationTime, true
+}
+
+// HasTerminationTime returns a boolean if a field has been set.
+func (o *HardwareReservation) HasTerminationTime() bool {
+	if o != nil && !isNil(o.TerminationTime) {
+		return true
+	}
+
+	return false
+}
+
+// SetTerminationTime gets a reference to the given time.Time and assigns it to the TerminationTime field.
+func (o *HardwareReservation) SetTerminationTime(v time.Time) {
+	o.TerminationTime = &v
+}
+
 func (o HardwareReservation) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -523,6 +557,9 @@ func (o HardwareReservation) ToMap() (map[string]interface{}, error) {
 	}
 	if !isNil(o.SwitchUuid) {
 		toSerialize["switch_uuid"] = o.SwitchUuid
+	}
+	if !isNil(o.TerminationTime) {
+		toSerialize["termination_time"] = o.TerminationTime
 	}
 	return toSerialize, nil
 }
