@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **ShortId** | Pointer to **string** | Short version of the ID. | [optional] 
 **Spare** | Pointer to **bool** | Whether the Hardware Reservation is a spare. Spare Hardware Reservations are used when a Hardware Reservations requires service from Equinix Metal | [optional] 
 **SwitchUuid** | Pointer to **string** | Switch short id. This can be used to determine if two devices are connected to the same switch, for example. | [optional] 
+**TerminationTime** | Pointer to **time.Time** | Expiration date for the reservation. | [optional] 
 
 ## Methods
 
@@ -361,6 +362,31 @@ SetSwitchUuid sets SwitchUuid field to given value.
 `func (o *HardwareReservation) HasSwitchUuid() bool`
 
 HasSwitchUuid returns a boolean if a field has been set.
+
+### GetTerminationTime
+
+`func (o *HardwareReservation) GetTerminationTime() time.Time`
+
+GetTerminationTime returns the TerminationTime field if non-nil, zero value otherwise.
+
+### GetTerminationTimeOk
+
+`func (o *HardwareReservation) GetTerminationTimeOk() (*time.Time, bool)`
+
+GetTerminationTimeOk returns a tuple with the TerminationTime field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTerminationTime
+
+`func (o *HardwareReservation) SetTerminationTime(v time.Time)`
+
+SetTerminationTime sets TerminationTime field to given value.
+
+### HasTerminationTime
+
+`func (o *HardwareReservation) HasTerminationTime() bool`
+
+HasTerminationTime returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
