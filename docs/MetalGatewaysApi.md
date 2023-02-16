@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 ## CreateMetalGateway
 
-> FindMetalGatewayById200Response CreateMetalGateway(ctx, projectId).CreateMetalGatewayRequest(createMetalGatewayRequest).Page(page).PerPage(perPage).Execute()
+> FindMetalGatewayById200Response CreateMetalGateway(ctx, projectId).CreateMetalGatewayRequest(createMetalGatewayRequest).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
 
 Create a metal gateway
 
@@ -34,12 +34,14 @@ import (
 func main() {
     projectId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Project UUID
     createMetalGatewayRequest := openapiclient.createMetalGateway_request{MetalGatewayCreateInput: openapiclient.NewMetalGatewayCreateInput("VirtualNetworkId_example")} // CreateMetalGatewayRequest | Metal Gateway to create
+    include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
+    exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
     page := int32(56) // int32 | Page to return (optional) (default to 1)
     perPage := int32(56) // int32 | Items returned per page (optional) (default to 10)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.MetalGatewaysApi.CreateMetalGateway(context.Background(), projectId).CreateMetalGatewayRequest(createMetalGatewayRequest).Page(page).PerPage(perPage).Execute()
+    resp, r, err := apiClient.MetalGatewaysApi.CreateMetalGateway(context.Background(), projectId).CreateMetalGatewayRequest(createMetalGatewayRequest).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MetalGatewaysApi.CreateMetalGateway``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -66,6 +68,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **createMetalGatewayRequest** | [**CreateMetalGatewayRequest**](CreateMetalGatewayRequest.md) | Metal Gateway to create | 
+ **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
+ **exclude** | **[]string** | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | 
  **page** | **int32** | Page to return | [default to 1]
  **perPage** | **int32** | Items returned per page | [default to 10]
 
@@ -163,7 +167,7 @@ Name | Type | Description  | Notes
 
 ## FindMetalGatewayById
 
-> FindMetalGatewayById200Response FindMetalGatewayById(ctx, id).Execute()
+> FindMetalGatewayById200Response FindMetalGatewayById(ctx, id).Include(include).Exclude(exclude).Execute()
 
 Returns the metal gateway
 
@@ -183,10 +187,12 @@ import (
 
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Metal Gateway UUID
+    include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
+    exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.MetalGatewaysApi.FindMetalGatewayById(context.Background(), id).Execute()
+    resp, r, err := apiClient.MetalGatewaysApi.FindMetalGatewayById(context.Background(), id).Include(include).Exclude(exclude).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MetalGatewaysApi.FindMetalGatewayById``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -212,6 +218,8 @@ Other parameters are passed through a pointer to a apiFindMetalGatewayByIdReques
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
+ **exclude** | **[]string** | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | 
 
 ### Return type
 
@@ -233,7 +241,7 @@ Name | Type | Description  | Notes
 
 ## FindMetalGatewaysByProject
 
-> MetalGatewayList FindMetalGatewaysByProject(ctx, projectId).Page(page).PerPage(perPage).Execute()
+> MetalGatewayList FindMetalGatewaysByProject(ctx, projectId).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
 
 Returns all metal gateways for a project
 
@@ -253,12 +261,14 @@ import (
 
 func main() {
     projectId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Project UUID
+    include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
+    exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
     page := int32(56) // int32 | Page to return (optional) (default to 1)
     perPage := int32(56) // int32 | Items returned per page (optional) (default to 10)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.MetalGatewaysApi.FindMetalGatewaysByProject(context.Background(), projectId).Page(page).PerPage(perPage).Execute()
+    resp, r, err := apiClient.MetalGatewaysApi.FindMetalGatewaysByProject(context.Background(), projectId).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MetalGatewaysApi.FindMetalGatewaysByProject``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -284,6 +294,8 @@ Other parameters are passed through a pointer to a apiFindMetalGatewaysByProject
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
+ **exclude** | **[]string** | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | 
  **page** | **int32** | Page to return | [default to 1]
  **perPage** | **int32** | Items returned per page | [default to 10]
 

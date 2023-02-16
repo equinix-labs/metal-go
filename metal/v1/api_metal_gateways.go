@@ -28,6 +28,8 @@ type ApiCreateMetalGatewayRequest struct {
 	ApiService                *MetalGatewaysApiService
 	projectId                 string
 	createMetalGatewayRequest *CreateMetalGatewayRequest
+	include                   *[]string
+	exclude                   *[]string
 	page                      *int32
 	perPage                   *int32
 }
@@ -35,6 +37,18 @@ type ApiCreateMetalGatewayRequest struct {
 // Metal Gateway to create
 func (r ApiCreateMetalGatewayRequest) CreateMetalGatewayRequest(createMetalGatewayRequest CreateMetalGatewayRequest) ApiCreateMetalGatewayRequest {
 	r.createMetalGatewayRequest = &createMetalGatewayRequest
+	return r
+}
+
+// Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+func (r ApiCreateMetalGatewayRequest) Include(include []string) ApiCreateMetalGatewayRequest {
+	r.include = &include
+	return r
+}
+
+// Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
+func (r ApiCreateMetalGatewayRequest) Exclude(exclude []string) ApiCreateMetalGatewayRequest {
+	r.exclude = &exclude
 	return r
 }
 
@@ -97,6 +111,12 @@ func (a *MetalGatewaysApiService) CreateMetalGatewayExecute(r ApiCreateMetalGate
 		return localVarReturnValue, nil, reportError("createMetalGatewayRequest is required and must be specified")
 	}
 
+	if r.include != nil {
+		parameterAddToQuery(localVarQueryParams, "include", r.include, "csv")
+	}
+	if r.exclude != nil {
+		parameterAddToQuery(localVarQueryParams, "exclude", r.exclude, "csv")
+	}
 	if r.page != nil {
 		parameterAddToQuery(localVarQueryParams, "page", r.page, "")
 	}
@@ -368,6 +388,20 @@ type ApiFindMetalGatewayByIdRequest struct {
 	ctx        context.Context
 	ApiService *MetalGatewaysApiService
 	id         string
+	include    *[]string
+	exclude    *[]string
+}
+
+// Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+func (r ApiFindMetalGatewayByIdRequest) Include(include []string) ApiFindMetalGatewayByIdRequest {
+	r.include = &include
+	return r
+}
+
+// Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
+func (r ApiFindMetalGatewayByIdRequest) Exclude(exclude []string) ApiFindMetalGatewayByIdRequest {
+	r.exclude = &exclude
+	return r
 }
 
 func (r ApiFindMetalGatewayByIdRequest) Execute() (*FindMetalGatewayById200Response, *http.Response, error) {
@@ -414,6 +448,12 @@ func (a *MetalGatewaysApiService) FindMetalGatewayByIdExecute(r ApiFindMetalGate
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.include != nil {
+		parameterAddToQuery(localVarQueryParams, "include", r.include, "csv")
+	}
+	if r.exclude != nil {
+		parameterAddToQuery(localVarQueryParams, "exclude", r.exclude, "csv")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -507,8 +547,22 @@ type ApiFindMetalGatewaysByProjectRequest struct {
 	ctx        context.Context
 	ApiService *MetalGatewaysApiService
 	projectId  string
+	include    *[]string
+	exclude    *[]string
 	page       *int32
 	perPage    *int32
+}
+
+// Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+func (r ApiFindMetalGatewaysByProjectRequest) Include(include []string) ApiFindMetalGatewaysByProjectRequest {
+	r.include = &include
+	return r
+}
+
+// Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
+func (r ApiFindMetalGatewaysByProjectRequest) Exclude(exclude []string) ApiFindMetalGatewaysByProjectRequest {
+	r.exclude = &exclude
+	return r
 }
 
 // Page to return
@@ -567,6 +621,12 @@ func (a *MetalGatewaysApiService) FindMetalGatewaysByProjectExecute(r ApiFindMet
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.include != nil {
+		parameterAddToQuery(localVarQueryParams, "include", r.include, "csv")
+	}
+	if r.exclude != nil {
+		parameterAddToQuery(localVarQueryParams, "exclude", r.exclude, "csv")
+	}
 	if r.page != nil {
 		parameterAddToQuery(localVarQueryParams, "page", r.page, "")
 	}
