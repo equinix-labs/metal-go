@@ -671,7 +671,7 @@ Name | Type | Description  | Notes
 
 ## FindPortVlanAssignmentBatchByPortIdAndBatchId
 
-> PortVlanAssignmentBatch FindPortVlanAssignmentBatchByPortIdAndBatchId(ctx, id, batchId).Execute()
+> PortVlanAssignmentBatch FindPortVlanAssignmentBatchByPortIdAndBatchId(ctx, id, batchId).Include(include).Exclude(exclude).Execute()
 
 Retrieve a VLAN Assignment Batch's details
 
@@ -692,10 +692,12 @@ import (
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Port UUID
     batchId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Batch ID
+    include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
+    exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PortsApi.FindPortVlanAssignmentBatchByPortIdAndBatchId(context.Background(), id, batchId).Execute()
+    resp, r, err := apiClient.PortsApi.FindPortVlanAssignmentBatchByPortIdAndBatchId(context.Background(), id, batchId).Include(include).Exclude(exclude).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PortsApi.FindPortVlanAssignmentBatchByPortIdAndBatchId``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -723,6 +725,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
+ **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
+ **exclude** | **[]string** | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | 
 
 ### Return type
 
