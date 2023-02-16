@@ -5,12 +5,12 @@ CURRENT_GID := $(shell id -g)
 
 # https://github.com/OpenAPITools/openapi-generator-cli
 
-SPEC_URL:=https://api.equinix.com/metal/v1/api-docs
+SPEC_BASE_URL:=https://api.packet.net/api-docs-test
 SPEC_ROOT_FILE:=openapi3.yaml
-SPEC_FETCHED_DIR=spec/oas3.fetched/
+SPEC_FETCHED_DIR=spec/oas3.fetched
 SPEC_PATCH_DIR=patches/spec.fetched.json
-SPEC_PATCHED_DIR=spec/oas3.patched/
-SPEC_COMBINED_DIR=spec/oas3.combined/
+SPEC_PATCHED_DIR=spec/oas3.patched
+SPEC_COMBINED_DIR=spec/oas3.combined
 
 SPEC_FETCHED_FILE:=spec.fetched.json
 SPEC_PATCHED_FILE:=spec.patched.json
@@ -22,15 +22,17 @@ PACKAGE_PREFIX=metal
 PACKAGE_MAJOR=v1
 CRI=docker # nerdctl
 
-# Pull in custom-built generator jar so we can use unmerged bugfixes
-# Custom generator is built from https://github.com/ctreatma/openapi-generator/tree/local-generator-testing
-SWAGGER=${CRI} run --rm -u ${CURRENT_UID}:${CURRENT_GID} -v $(CURDIR):/local ${OPENAPI_IMAGE}
+OPENAPI_GENERATOR=${CRI} run --rm -u ${CURRENT_UID}:${CURRENT_GID} -v $(CURDIR):/local ${OPENAPI_IMAGE}
+SPEC_FETCHER=${CRI} run --rm -v $(CURDIR):/workdir --entrypoint sh mikefarah/yq:4.30.8 script/download_spec.sh
 GOLANGCI_LINT=golangci-lint
 
-all: pull patch combine_spec clean gen mod docs move-other patch-post fmt test stage
+all: pull fetch patch combine_spec clean gen mod docs move-other patch-post fmt test stage
 
 pull:
 	${CRI} pull ${OPENAPI_IMAGE}
+
+fetch:
+	${SPEC_FETCHER} ${SPEC_BASE_URL} ${SPEC_FETCHED_DIR} ${SPEC_ROOT_FILE}
 
 patch:
 	rm -rf ${SPEC_PATCHED_DIR}
@@ -41,7 +43,7 @@ patch:
 	done
 
 combine_spec:
-	${SWAGGER} generate \
+	${OPENAPI_GENERATOR} generate \
 		-i /local/${SPEC_PATCHED_DIR}/${SPEC_ROOT_FILE} \
 		-g openapi-yaml \
 		-p skipOperationExample=true \
@@ -57,7 +59,7 @@ clean:
 	rm -rf $(PACKAGE_PREFIX)
 
 gen:
-	${SWAGGER} generate -g go \
+	${OPENAPI_GENERATOR} generate -g go \
 		--package-name ${PACKAGE_MAJOR} \
 		-p isGoSubmodule=true \
 		--model-package types \
@@ -68,7 +70,7 @@ gen:
 		-i /local/${SPEC_COMBINED_DIR}/${SPEC_ROOT_FILE}
 
 validate:
-	${SWAGGER} validate \
+	${OPENAPI_GENERATOR} validate \
 		--recommend \
 		-i /local/${SPEC_PATCHED_DIR}
 
