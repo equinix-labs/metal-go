@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Avatar** | Pointer to **os.File** |  | [optional] 
+**Avatar** | Pointer to ***os.File** |  | [optional] 
 **CompanyName** | Pointer to **string** |  | [optional] 
 **CompanyUrl** | Pointer to **string** |  | [optional] 
 **Customdata** | Pointer to **map[string]interface{}** |  | [optional] 
@@ -44,20 +44,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetAvatar
 
-`func (o *UserCreateInput) GetAvatar() os.File`
+`func (o *UserCreateInput) GetAvatar() *os.File`
 
 GetAvatar returns the Avatar field if non-nil, zero value otherwise.
 
 ### GetAvatarOk
 
-`func (o *UserCreateInput) GetAvatarOk() (*os.File, bool)`
+`func (o *UserCreateInput) GetAvatarOk() (**os.File, bool)`
 
 GetAvatarOk returns a tuple with the Avatar field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAvatar
 
-`func (o *UserCreateInput) SetAvatar(v os.File)`
+`func (o *UserCreateInput) SetAvatar(v *os.File)`
 
 SetAvatar sets Avatar field to given value.
 
