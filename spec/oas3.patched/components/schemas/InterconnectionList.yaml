@@ -1,0 +1,6 @@
+properties:
+  interconnections:
+    items:
+      $ref: './Interconnection.yaml'
+    type: array
+type: object

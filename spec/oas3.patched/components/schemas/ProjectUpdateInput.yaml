@@ -1,0 +1,11 @@
+properties:
+  backend_transfer_enabled:
+    type: boolean
+  customdata:
+    type: object
+  name:
+    type: string
+  payment_method_id:
+    format: uuid
+    type: string
+type: object

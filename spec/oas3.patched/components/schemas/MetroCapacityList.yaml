@@ -1,0 +1,4 @@
+properties:
+  capacity:
+    $ref: './MetroCapacityReport.yaml'
+type: object

@@ -1,0 +1,6 @@
+content:
+  application/json:
+    schema:
+      $ref: '../schemas/InterconnectionCreateInput.yaml'
+description: Interconnection details
+required: true

@@ -1,0 +1,8 @@
+properties:
+  virtual_circuits:
+    items:
+      anyOf:
+      - $ref: './VirtualCircuit.yaml'
+      - $ref: './VrfVirtualCircuit.yaml'
+    type: array
+type: object

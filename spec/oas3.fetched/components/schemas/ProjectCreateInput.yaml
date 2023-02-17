@@ -1,0 +1,11 @@
+properties:
+  customdata:
+    type: object
+  name:
+    type: string
+  payment_method_id:
+    format: uuid
+    type: string
+required:
+- name
+type: object

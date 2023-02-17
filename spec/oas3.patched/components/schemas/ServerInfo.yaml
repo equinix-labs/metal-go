@@ -1,0 +1,8 @@
+properties:
+  facility:
+    type: string
+  plan:
+    type: string
+  quantity:
+    type: string
+type: object

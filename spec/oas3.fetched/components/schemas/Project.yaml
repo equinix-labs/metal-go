@@ -1,0 +1,47 @@
+properties:
+  bgp_config:
+    $ref: './Href.yaml'
+  created_at:
+    format: date-time
+    type: string
+  customdata:
+    type: object
+  devices:
+    items:
+      $ref: './Href.yaml'
+    type: array
+  id:
+    format: uuid
+    type: string
+  invitations:
+    items:
+      $ref: './Href.yaml'
+    type: array
+  max_devices:
+    type: object
+  members:
+    items:
+      $ref: './Href.yaml'
+    type: array
+  memberships:
+    items:
+      $ref: './Href.yaml'
+    type: array
+  name:
+    type: string
+  network_status:
+    type: object
+  payment_method:
+    $ref: './Href.yaml'
+  ssh_keys:
+    items:
+      $ref: './Href.yaml'
+    type: array
+  updated_at:
+    format: date-time
+    type: string
+  volumes:
+    items:
+      $ref: './Href.yaml'
+    type: array
+type: object

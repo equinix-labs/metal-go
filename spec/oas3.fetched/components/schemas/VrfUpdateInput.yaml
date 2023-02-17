@@ -1,0 +1,11 @@
+properties:
+  description:
+    type: string
+  ip_ranges:
+    $ref: './VrfIpRangeUpdateInput.yaml'
+  local_asn:
+    type: integer
+    format: int32
+    description: The new `local_asn` value for the VRF. This field cannot be updated when there are active Interconnection Virtual Circuits associated to the VRF.
+  name:
+    type: string

@@ -1,0 +1,153 @@
+properties:
+  always_pxe:
+    type: boolean
+  billing_cycle:
+    type: string
+  bonding_mode:
+    type: integer
+  created_at:
+    format: date-time
+    type: string
+  created_by:
+    allOf:
+    - $ref: './UserLite.yaml'
+    - description: The user that created the device.
+  customdata:
+    default: {}
+    type: object
+    additionalProperties: true
+  description:
+    type: string
+  facility:
+    $ref: './Facility.yaml'
+  hardware_reservation:
+    $ref: './Href.yaml'
+  hostname:
+    type: string
+  href:
+    type: string
+  id:
+    format: uuid
+    type: string
+  image_url:
+    type: string
+  ip_addresses:
+    items:
+      $ref: './IPAssignment.yaml'
+    type: array
+  ipxe_script_url:
+    type: string
+  iqn:
+    type: string
+  locked:
+    type: boolean
+  metro:
+    allOf:
+    - $ref: './Metro.yaml'
+    - description: The metro the facility is in
+  network_ports:
+    description:
+      By default, servers at Equinix Metal are configured in a “bonded” mode
+      using LACP (Link Aggregation Control Protocol). Each 2-NIC server is
+      configured with a single bond (namely bond0) with both interfaces eth0
+      and eth1 as members of the bond in a default Layer 3 mode. Some device
+      plans may have a different number of ports and bonds available.
+    type: array
+    items:
+      $ref: './Port.yaml'
+  operating_system:
+    $ref: './OperatingSystem.yaml'
+  actions:
+    description: Actions supported by the device instance.
+    items:
+      properties:
+        type:
+          type: string
+        name:
+          type: string
+      type: object
+    type: array
+  plan:
+    $ref: './Plan.yaml'
+  project:
+    allOf:
+    - $ref: './Href.yaml'
+    - description: Full version of project object when included
+  project_lite:
+    allOf:
+    - $ref: './Href.yaml'
+    - description: Lite version of project object when included
+  provisioning_events:
+    items:
+      $ref: './Event.yaml'
+    type: array
+  provisioning_percentage:
+    description: Only visible while device provisioning
+    format: float
+    type: number
+  root_password:
+    description: Root password is automatically generated when server is provisioned
+      and it is removed after 24 hours
+    type: string
+  short_id:
+    type: string
+  spot_instance:
+    description: Whether or not the device is a spot instance.
+    type: boolean
+  spot_price_max:
+    description: |-
+      The maximum price per hour you are willing to pay to keep this spot
+      instance.  If you are outbid, the termination will be set allowing two
+      minutes before shutdown.
+    format: float
+    type: number
+  ssh_keys:
+    items:
+      $ref: './Href.yaml'
+    type: array
+  state:
+    type: string
+    enum:
+      - active
+      - deleted
+      - deprovisioning
+      - failed
+      - inactive
+      - queued
+      - reinstalling
+      - post_provisioning
+      - powering_on
+      - powering_off
+      - provisioning
+  switch_uuid:
+    description: |-
+      Switch short id. This can be used to determine if two devices are
+      connected to the same switch, for example.
+    type: string
+  tags:
+    items:
+      type: string
+    type: array
+  termination_time:
+    description: |-
+      When the device will be terminated. This is commonly set in advance for
+      ephemeral spot market instances but this field may also be set with
+      on-demand and reservation instances to automatically delete the resource
+      at a given time. The termination time can also be used to release a
+      hardware reservation instance at a given time, keeping the reservation
+      open for other uses.  On a spot market device, the termination time will
+      be set automatically when outbid.
+    format: date-time
+    type: string
+  updated_at:
+    format: date-time
+    type: string
+  user:
+    type: string
+  userdata:
+    type: string
+  volumes:
+    items:
+      $ref: './Href.yaml'
+    type: array
+type: object
