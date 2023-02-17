@@ -1,0 +1,13 @@
+properties:
+  asn:
+    type: integer
+  deployment_type:
+    type: string
+  md5:
+    type: string
+  use_case:
+    type: string
+required:
+- deployment_type
+- asn
+type: object

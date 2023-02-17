@@ -1,0 +1,30 @@
+properties:
+  id:
+    format: uuid
+    type: string
+  name:
+    type: string
+  description:
+    description: Optional field that can be set to describe the VRF
+    type: string
+  local_asn:
+    description: A 4-byte ASN associated with the VRF.
+    type: integer
+    format: int32
+  ip_ranges:
+    $ref: './VrfIpRangeList.yaml'
+  project:
+    $ref: './Project.yaml'
+  metro:
+    $ref: './Metro.yaml'
+  created_by:
+    $ref: './User.yaml'
+  href:
+    type: string
+  created_at:
+    format: date-time
+    type: string
+  updated_at:
+    format: date-time
+    type: string
+type: object

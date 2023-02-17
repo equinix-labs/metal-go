@@ -1,0 +1,30 @@
+properties:
+  ams1:
+    $ref: './CapacityPerFacility.yaml'
+  atl1:
+    $ref: './CapacityPerNewFacility.yaml'
+  dfw1:
+    $ref: './CapacityPerNewFacility.yaml'
+  ewr1:
+    $ref: './CapacityPerFacility.yaml'
+  fra1:
+    $ref: './CapacityPerNewFacility.yaml'
+  iad1:
+    $ref: './CapacityPerNewFacility.yaml'
+  lax1:
+    $ref: './CapacityPerNewFacility.yaml'
+  nrt1:
+    $ref: './CapacityPerFacility.yaml'
+  ord1:
+    $ref: './CapacityPerNewFacility.yaml'
+  sea1:
+    $ref: './CapacityPerNewFacility.yaml'
+  sin1:
+    $ref: './CapacityPerNewFacility.yaml'
+  sjc1:
+    $ref: './CapacityPerFacility.yaml'
+  syd1:
+    $ref: './CapacityPerNewFacility.yaml'
+  yyz1:
+    $ref: './CapacityPerNewFacility.yaml'
+type: object

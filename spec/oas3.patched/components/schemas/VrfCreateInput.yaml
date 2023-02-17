@@ -1,0 +1,16 @@
+properties:
+  description:
+    type: string
+  ip_ranges:
+    $ref: './VrfIpRangeCreateInput.yaml'
+  local_asn:
+    type: integer
+    format: int32
+  metro:
+    description: The UUID (or metro code) for the Metro in which to create this VRF.
+    type: string
+  name:
+    type: string
+required:
+- metro
+- name

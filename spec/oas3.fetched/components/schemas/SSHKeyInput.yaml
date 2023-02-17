@@ -1,0 +1,6 @@
+properties:
+  key:
+    type: string
+  label:
+    type: string
+type: object

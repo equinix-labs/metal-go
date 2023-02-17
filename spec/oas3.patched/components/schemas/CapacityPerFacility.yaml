@@ -1,0 +1,20 @@
+properties:
+  baremetal_0:
+    $ref: './CapacityLevelPerBaremetal.yaml'
+  baremetal_1:
+    $ref: './CapacityLevelPerBaremetal.yaml'
+  baremetal_2:
+    $ref: './CapacityLevelPerBaremetal.yaml'
+  baremetal_2a:
+    $ref: './CapacityLevelPerBaremetal.yaml'
+  baremetal_2a2:
+    $ref: './CapacityLevelPerBaremetal.yaml'
+  baremetal_3:
+    $ref: './CapacityLevelPerBaremetal.yaml'
+  baremetal_s:
+    $ref: './CapacityLevelPerBaremetal.yaml'
+  c2.medium.x86:
+    $ref: './CapacityLevelPerBaremetal.yaml'
+  m2.xlarge.x86:
+    $ref: './CapacityLevelPerBaremetal.yaml'
+type: object

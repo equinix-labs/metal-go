@@ -1,0 +1,8 @@
+properties:
+  metal_gateways:
+    items:
+      anyOf:
+      - $ref: './MetalGateway.yaml'
+      - $ref: './VrfMetalGateway.yaml'
+    type: array
+type: object

@@ -1,0 +1,6 @@
+properties:
+  servers:
+    items:
+      $ref: './MetroServerInfo.yaml'
+    type: array
+type: object
