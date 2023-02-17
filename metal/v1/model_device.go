@@ -59,6 +59,7 @@ type Device struct {
 	SpotPriceMax *float32 `json:"spot_price_max,omitempty"`
 	SshKeys      []Href   `json:"ssh_keys,omitempty"`
 	State        *string  `json:"state,omitempty"`
+	Storage      *Storage `json:"storage,omitempty"`
 	// Switch short id. This can be used to determine if two devices are connected to the same switch, for example.
 	SwitchUuid *string  `json:"switch_uuid,omitempty"`
 	Tags       []string `json:"tags,omitempty"`
@@ -1111,6 +1112,38 @@ func (o *Device) SetState(v string) {
 	o.State = &v
 }
 
+// GetStorage returns the Storage field value if set, zero value otherwise.
+func (o *Device) GetStorage() Storage {
+	if o == nil || isNil(o.Storage) {
+		var ret Storage
+		return ret
+	}
+	return *o.Storage
+}
+
+// GetStorageOk returns a tuple with the Storage field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Device) GetStorageOk() (*Storage, bool) {
+	if o == nil || isNil(o.Storage) {
+		return nil, false
+	}
+	return o.Storage, true
+}
+
+// HasStorage returns a boolean if a field has been set.
+func (o *Device) HasStorage() bool {
+	if o != nil && !isNil(o.Storage) {
+		return true
+	}
+
+	return false
+}
+
+// SetStorage gets a reference to the given Storage and assigns it to the Storage field.
+func (o *Device) SetStorage(v Storage) {
+	o.Storage = &v
+}
+
 // GetSwitchUuid returns the SwitchUuid field value if set, zero value otherwise.
 func (o *Device) GetSwitchUuid() string {
 	if o == nil || isNil(o.SwitchUuid) {
@@ -1440,6 +1473,9 @@ func (o Device) ToMap() (map[string]interface{}, error) {
 	}
 	if !isNil(o.State) {
 		toSerialize["state"] = o.State
+	}
+	if !isNil(o.Storage) {
+		toSerialize["storage"] = o.Storage
 	}
 	if !isNil(o.SwitchUuid) {
 		toSerialize["switch_uuid"] = o.SwitchUuid
