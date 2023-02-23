@@ -11353,6 +11353,8 @@ components:
           - powering_off
           - provisioning
           type: string
+        storage:
+          $ref: '#/components/schemas/Storage'
         switch_uuid:
           description: |-
             Switch short id. This can be used to determine if two devices are
@@ -14699,6 +14701,21 @@ components:
             type: string
           type: array
       type: object
+    Storage:
+      properties:
+        disks:
+          items:
+            $ref: '#/components/schemas/Disk'
+          type: array
+        raid:
+          items:
+            $ref: '#/components/schemas/Raid'
+          type: array
+        filesystems:
+          items:
+            $ref: '#/components/schemas/Filesystem'
+          type: array
+      type: object
     BondPortData:
       properties:
         id:
@@ -14726,6 +14743,56 @@ components:
         route:
           example: 10.32.16.0/31
           type: string
+      type: object
+    Disk:
+      properties:
+        device:
+          type: string
+        wipeTable:
+          type: boolean
+        partitions:
+          items:
+            $ref: '#/components/schemas/Partition'
+          type: array
+      type: object
+    Raid:
+      properties:
+        devices:
+          items:
+            type: string
+          type: array
+        level:
+          type: string
+        name:
+          type: string
+      type: object
+    Filesystem:
+      properties:
+        mount:
+          $ref: '#/components/schemas/Mount'
+      type: object
+    Partition:
+      properties:
+        label:
+          type: string
+        number:
+          format: int32
+          type: integer
+        size:
+          type: string
+      type: object
+    Mount:
+      properties:
+        device:
+          type: string
+        format:
+          type: string
+        point:
+          type: string
+        options:
+          items:
+            type: string
+          type: array
       type: object
     createInterconnectionPortVirtualCircuit_request:
       oneOf:
