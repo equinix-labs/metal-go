@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **CreatedAt** | Pointer to **time.Time** |  | [optional] 
 **Customdata** | Pointer to **map[string]interface{}** |  | [optional] 
 **Devices** | Pointer to [**[]Href**](Href.md) |  | [optional] 
+**Href** | Pointer to **string** |  | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
 **Invitations** | Pointer to [**[]Href**](Href.md) |  | [optional] 
 **MaxDevices** | Pointer to **map[string]interface{}** |  | [optional] 
@@ -138,6 +139,31 @@ SetDevices sets Devices field to given value.
 `func (o *Project) HasDevices() bool`
 
 HasDevices returns a boolean if a field has been set.
+
+### GetHref
+
+`func (o *Project) GetHref() string`
+
+GetHref returns the Href field if non-nil, zero value otherwise.
+
+### GetHrefOk
+
+`func (o *Project) GetHrefOk() (*string, bool)`
+
+GetHrefOk returns a tuple with the Href field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHref
+
+`func (o *Project) SetHref(v string)`
+
+SetHref sets Href field to given value.
+
+### HasHref
+
+`func (o *Project) HasHref() bool`
+
+HasHref returns a boolean if a field has been set.
 
 ### GetId
 

@@ -25,6 +25,7 @@ type AuthTokenProject struct {
 	CreatedAt     *time.Time             `json:"created_at,omitempty"`
 	Customdata    map[string]interface{} `json:"customdata,omitempty"`
 	Devices       []Href                 `json:"devices,omitempty"`
+	Href          *string                `json:"href,omitempty"`
 	Id            *string                `json:"id,omitempty"`
 	Invitations   []Href                 `json:"invitations,omitempty"`
 	MaxDevices    map[string]interface{} `json:"max_devices,omitempty"`
@@ -181,6 +182,38 @@ func (o *AuthTokenProject) HasDevices() bool {
 // SetDevices gets a reference to the given []Href and assigns it to the Devices field.
 func (o *AuthTokenProject) SetDevices(v []Href) {
 	o.Devices = v
+}
+
+// GetHref returns the Href field value if set, zero value otherwise.
+func (o *AuthTokenProject) GetHref() string {
+	if o == nil || isNil(o.Href) {
+		var ret string
+		return ret
+	}
+	return *o.Href
+}
+
+// GetHrefOk returns a tuple with the Href field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AuthTokenProject) GetHrefOk() (*string, bool) {
+	if o == nil || isNil(o.Href) {
+		return nil, false
+	}
+	return o.Href, true
+}
+
+// HasHref returns a boolean if a field has been set.
+func (o *AuthTokenProject) HasHref() bool {
+	if o != nil && !isNil(o.Href) {
+		return true
+	}
+
+	return false
+}
+
+// SetHref gets a reference to the given string and assigns it to the Href field.
+func (o *AuthTokenProject) SetHref(v string) {
+	o.Href = &v
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
@@ -556,6 +589,9 @@ func (o AuthTokenProject) ToMap() (map[string]interface{}, error) {
 	}
 	if !isNil(o.Devices) {
 		toSerialize["devices"] = o.Devices
+	}
+	if !isNil(o.Href) {
+		toSerialize["href"] = o.Href
 	}
 	if !isNil(o.Id) {
 		toSerialize["id"] = o.Id
