@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **Customdata** | Pointer to **map[string]interface{}** |  | [optional] [default to {}]
 **Description** | Pointer to **string** |  | [optional] 
 **Facility** | Pointer to [**Facility**](Facility.md) |  | [optional] 
-**HardwareReservation** | Pointer to [**Href**](Href.md) |  | [optional] 
+**HardwareReservation** | Pointer to [**HardwareReservationOrHref**](HardwareReservationOrHref.md) |  | [optional] 
 **Hostname** | Pointer to **string** |  | [optional] 
 **Href** | Pointer to **string** |  | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
@@ -26,7 +26,7 @@ Name | Type | Description | Notes
 **OperatingSystem** | Pointer to [**OperatingSystem**](OperatingSystem.md) |  | [optional] 
 **Actions** | Pointer to [**[]DeviceActionsInner**](DeviceActionsInner.md) | Actions supported by the device instance. | [optional] 
 **Plan** | Pointer to [**Plan**](Plan.md) |  | [optional] 
-**Project** | Pointer to [**DeviceProject**](DeviceProject.md) |  | [optional] 
+**Project** | Pointer to [**ProjectOrHref**](ProjectOrHref.md) |  | [optional] 
 **ProjectLite** | Pointer to [**DeviceProjectLite**](DeviceProjectLite.md) |  | [optional] 
 **ProvisioningEvents** | Pointer to [**[]Event**](Event.md) |  | [optional] 
 **ProvisioningPercentage** | Pointer to **float32** | Only visible while device provisioning | [optional] 
@@ -266,20 +266,20 @@ HasFacility returns a boolean if a field has been set.
 
 ### GetHardwareReservation
 
-`func (o *Device) GetHardwareReservation() Href`
+`func (o *Device) GetHardwareReservation() HardwareReservationOrHref`
 
 GetHardwareReservation returns the HardwareReservation field if non-nil, zero value otherwise.
 
 ### GetHardwareReservationOk
 
-`func (o *Device) GetHardwareReservationOk() (*Href, bool)`
+`func (o *Device) GetHardwareReservationOk() (*HardwareReservationOrHref, bool)`
 
 GetHardwareReservationOk returns a tuple with the HardwareReservation field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetHardwareReservation
 
-`func (o *Device) SetHardwareReservation(v Href)`
+`func (o *Device) SetHardwareReservation(v HardwareReservationOrHref)`
 
 SetHardwareReservation sets HardwareReservation field to given value.
 
@@ -616,20 +616,20 @@ HasPlan returns a boolean if a field has been set.
 
 ### GetProject
 
-`func (o *Device) GetProject() DeviceProject`
+`func (o *Device) GetProject() ProjectOrHref`
 
 GetProject returns the Project field if non-nil, zero value otherwise.
 
 ### GetProjectOk
 
-`func (o *Device) GetProjectOk() (*DeviceProject, bool)`
+`func (o *Device) GetProjectOk() (*ProjectOrHref, bool)`
 
 GetProjectOk returns a tuple with the Project field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetProject
 
-`func (o *Device) SetProject(v DeviceProject)`
+`func (o *Device) SetProject(v ProjectOrHref)`
 
 SetProject sets Project field to given value.
 

@@ -11267,7 +11267,7 @@ components:
         facility:
           $ref: '#/components/schemas/Facility'
         hardware_reservation:
-          $ref: '#/components/schemas/Href'
+          $ref: '#/components/schemas/HardwareReservationOrHref'
         hostname:
           type: string
         href:
@@ -11308,7 +11308,7 @@ components:
         plan:
           $ref: '#/components/schemas/Plan'
         project:
-          $ref: '#/components/schemas/Device_project'
+          $ref: '#/components/schemas/ProjectOrHref'
         project_lite:
           $ref: '#/components/schemas/Device_project_lite'
         provisioning_events:
@@ -14701,6 +14701,14 @@ components:
             type: string
           type: array
       type: object
+    HardwareReservationOrHref:
+      oneOf:
+      - $ref: '#/components/schemas/Href'
+      - $ref: '#/components/schemas/HardwareReservation'
+    ProjectOrHref:
+      oneOf:
+      - $ref: '#/components/schemas/Href'
+      - $ref: '#/components/schemas/Project'
     Storage:
       properties:
         disks:
@@ -14893,11 +14901,6 @@ components:
         name:
           type: string
       type: object
-    Device_project:
-      allOf:
-      - $ref: '#/components/schemas/Href'
-      - description: Full version of project object when included
-        type: object
     Device_project_lite:
       allOf:
       - $ref: '#/components/schemas/Href'

@@ -21,31 +21,31 @@ var _ MappedNullable = &Device{}
 
 // Device struct for Device
 type Device struct {
-	AlwaysPxe           *bool                  `json:"always_pxe,omitempty"`
-	BillingCycle        *string                `json:"billing_cycle,omitempty"`
-	BondingMode         *int32                 `json:"bonding_mode,omitempty"`
-	CreatedAt           *time.Time             `json:"created_at,omitempty"`
-	CreatedBy           *DeviceCreatedBy       `json:"created_by,omitempty"`
-	Customdata          map[string]interface{} `json:"customdata,omitempty"`
-	Description         *string                `json:"description,omitempty"`
-	Facility            *Facility              `json:"facility,omitempty"`
-	HardwareReservation *Href                  `json:"hardware_reservation,omitempty"`
-	Hostname            *string                `json:"hostname,omitempty"`
-	Href                *string                `json:"href,omitempty"`
-	Id                  *string                `json:"id,omitempty"`
-	ImageUrl            *string                `json:"image_url,omitempty"`
-	IpAddresses         []IPAssignment         `json:"ip_addresses,omitempty"`
-	IpxeScriptUrl       *string                `json:"ipxe_script_url,omitempty"`
-	Iqn                 *string                `json:"iqn,omitempty"`
-	Locked              *bool                  `json:"locked,omitempty"`
-	Metro               *DeviceMetro           `json:"metro,omitempty"`
+	AlwaysPxe           *bool                      `json:"always_pxe,omitempty"`
+	BillingCycle        *string                    `json:"billing_cycle,omitempty"`
+	BondingMode         *int32                     `json:"bonding_mode,omitempty"`
+	CreatedAt           *time.Time                 `json:"created_at,omitempty"`
+	CreatedBy           *DeviceCreatedBy           `json:"created_by,omitempty"`
+	Customdata          map[string]interface{}     `json:"customdata,omitempty"`
+	Description         *string                    `json:"description,omitempty"`
+	Facility            *Facility                  `json:"facility,omitempty"`
+	HardwareReservation *HardwareReservationOrHref `json:"hardware_reservation,omitempty"`
+	Hostname            *string                    `json:"hostname,omitempty"`
+	Href                *string                    `json:"href,omitempty"`
+	Id                  *string                    `json:"id,omitempty"`
+	ImageUrl            *string                    `json:"image_url,omitempty"`
+	IpAddresses         []IPAssignment             `json:"ip_addresses,omitempty"`
+	IpxeScriptUrl       *string                    `json:"ipxe_script_url,omitempty"`
+	Iqn                 *string                    `json:"iqn,omitempty"`
+	Locked              *bool                      `json:"locked,omitempty"`
+	Metro               *DeviceMetro               `json:"metro,omitempty"`
 	// By default, servers at Equinix Metal are configured in a “bonded” mode using LACP (Link Aggregation Control Protocol). Each 2-NIC server is configured with a single bond (namely bond0) with both interfaces eth0 and eth1 as members of the bond in a default Layer 3 mode. Some device plans may have a different number of ports and bonds available.
 	NetworkPorts    []Port           `json:"network_ports,omitempty"`
 	OperatingSystem *OperatingSystem `json:"operating_system,omitempty"`
 	// Actions supported by the device instance.
 	Actions            []DeviceActionsInner `json:"actions,omitempty"`
 	Plan               *Plan                `json:"plan,omitempty"`
-	Project            *DeviceProject       `json:"project,omitempty"`
+	Project            *ProjectOrHref       `json:"project,omitempty"`
 	ProjectLite        *DeviceProjectLite   `json:"project_lite,omitempty"`
 	ProvisioningEvents []Event              `json:"provisioning_events,omitempty"`
 	// Only visible while device provisioning
@@ -345,9 +345,9 @@ func (o *Device) SetFacility(v Facility) {
 }
 
 // GetHardwareReservation returns the HardwareReservation field value if set, zero value otherwise.
-func (o *Device) GetHardwareReservation() Href {
+func (o *Device) GetHardwareReservation() HardwareReservationOrHref {
 	if o == nil || isNil(o.HardwareReservation) {
-		var ret Href
+		var ret HardwareReservationOrHref
 		return ret
 	}
 	return *o.HardwareReservation
@@ -355,7 +355,7 @@ func (o *Device) GetHardwareReservation() Href {
 
 // GetHardwareReservationOk returns a tuple with the HardwareReservation field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Device) GetHardwareReservationOk() (*Href, bool) {
+func (o *Device) GetHardwareReservationOk() (*HardwareReservationOrHref, bool) {
 	if o == nil || isNil(o.HardwareReservation) {
 		return nil, false
 	}
@@ -371,8 +371,8 @@ func (o *Device) HasHardwareReservation() bool {
 	return false
 }
 
-// SetHardwareReservation gets a reference to the given Href and assigns it to the HardwareReservation field.
-func (o *Device) SetHardwareReservation(v Href) {
+// SetHardwareReservation gets a reference to the given HardwareReservationOrHref and assigns it to the HardwareReservation field.
+func (o *Device) SetHardwareReservation(v HardwareReservationOrHref) {
 	o.HardwareReservation = &v
 }
 
@@ -793,9 +793,9 @@ func (o *Device) SetPlan(v Plan) {
 }
 
 // GetProject returns the Project field value if set, zero value otherwise.
-func (o *Device) GetProject() DeviceProject {
+func (o *Device) GetProject() ProjectOrHref {
 	if o == nil || isNil(o.Project) {
-		var ret DeviceProject
+		var ret ProjectOrHref
 		return ret
 	}
 	return *o.Project
@@ -803,7 +803,7 @@ func (o *Device) GetProject() DeviceProject {
 
 // GetProjectOk returns a tuple with the Project field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Device) GetProjectOk() (*DeviceProject, bool) {
+func (o *Device) GetProjectOk() (*ProjectOrHref, bool) {
 	if o == nil || isNil(o.Project) {
 		return nil, false
 	}
@@ -819,8 +819,8 @@ func (o *Device) HasProject() bool {
 	return false
 }
 
-// SetProject gets a reference to the given DeviceProject and assigns it to the Project field.
-func (o *Device) SetProject(v DeviceProject) {
+// SetProject gets a reference to the given ProjectOrHref and assigns it to the Project field.
+func (o *Device) SetProject(v ProjectOrHref) {
 	o.Project = &v
 }
 

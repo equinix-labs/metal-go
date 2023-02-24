@@ -21,7 +21,7 @@ properties:
   facility:
     $ref: './Facility.yaml'
   hardware_reservation:
-    $ref: './Href.yaml'
+    $ref: './HardwareReservationOrHref.yaml'
   hostname:
     type: string
   href:
@@ -70,9 +70,7 @@ properties:
   plan:
     $ref: './Plan.yaml'
   project:
-    allOf:
-    - $ref: './Href.yaml'
-    - description: Full version of project object when included
+    $ref: './ProjectOrHref.yaml'
   project_lite:
     allOf:
     - $ref: './Href.yaml'

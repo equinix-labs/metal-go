@@ -13,104 +13,134 @@ package v1
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
-// checks if the DeviceProject type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &DeviceProject{}
-
-// DeviceProject struct for DeviceProject
-type DeviceProject struct {
-	Href string `json:"href"`
+// ProjectOrHref - struct for ProjectOrHref
+type ProjectOrHref struct {
+	Href    *Href
+	Project *Project
 }
 
-// NewDeviceProject instantiates a new DeviceProject object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewDeviceProject(href string) *DeviceProject {
-	this := DeviceProject{}
-	this.Href = href
-	return &this
+// HrefAsProjectOrHref is a convenience function that returns Href wrapped in ProjectOrHref
+func HrefAsProjectOrHref(v *Href) ProjectOrHref {
+	return ProjectOrHref{
+		Href: v,
+	}
 }
 
-// NewDeviceProjectWithDefaults instantiates a new DeviceProject object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewDeviceProjectWithDefaults() *DeviceProject {
-	this := DeviceProject{}
-	return &this
+// ProjectAsProjectOrHref is a convenience function that returns Project wrapped in ProjectOrHref
+func ProjectAsProjectOrHref(v *Project) ProjectOrHref {
+	return ProjectOrHref{
+		Project: v,
+	}
 }
 
-// GetHref returns the Href field value
-func (o *DeviceProject) GetHref() string {
-	if o == nil {
-		var ret string
-		return ret
+// Unmarshal JSON data into one of the pointers in the struct
+func (dst *ProjectOrHref) UnmarshalJSON(data []byte) error {
+	var err error
+	match := 0
+	// try to unmarshal data into Href
+	err = newStrictDecoder(data).Decode(&dst.Href)
+	if err == nil {
+		jsonHref, _ := json.Marshal(dst.Href)
+		if string(jsonHref) == "{}" { // empty struct
+			dst.Href = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.Href = nil
 	}
 
-	return o.Href
-}
-
-// GetHrefOk returns a tuple with the Href field value
-// and a boolean to check if the value has been set.
-func (o *DeviceProject) GetHrefOk() (*string, bool) {
-	if o == nil {
-		return nil, false
+	// try to unmarshal data into Project
+	err = newStrictDecoder(data).Decode(&dst.Project)
+	if err == nil {
+		jsonProject, _ := json.Marshal(dst.Project)
+		if string(jsonProject) == "{}" { // empty struct
+			dst.Project = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.Project = nil
 	}
-	return &o.Href, true
-}
 
-// SetHref sets field value
-func (o *DeviceProject) SetHref(v string) {
-	o.Href = v
-}
+	if match > 1 { // more than 1 match
+		// reset to nil
+		dst.Href = nil
+		dst.Project = nil
 
-func (o DeviceProject) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
+		return fmt.Errorf("data matches more than one schema in oneOf(ProjectOrHref)")
+	} else if match == 1 {
+		return nil // exactly one match
+	} else { // no match
+		return fmt.Errorf("data failed to match schemas in oneOf(ProjectOrHref)")
 	}
-	return json.Marshal(toSerialize)
 }
 
-func (o DeviceProject) ToMap() (map[string]interface{}, error) {
-	toSerialize := map[string]interface{}{}
-	toSerialize["href"] = o.Href
-	return toSerialize, nil
+// Marshal data from the first non-nil pointers in the struct to JSON
+func (src ProjectOrHref) MarshalJSON() ([]byte, error) {
+	if src.Href != nil {
+		return json.Marshal(&src.Href)
+	}
+
+	if src.Project != nil {
+		return json.Marshal(&src.Project)
+	}
+
+	return nil, nil // no data in oneOf schemas
 }
 
-type NullableDeviceProject struct {
-	value *DeviceProject
+// Get the actual instance
+func (obj *ProjectOrHref) GetActualInstance() interface{} {
+	if obj == nil {
+		return nil
+	}
+	if obj.Href != nil {
+		return obj.Href
+	}
+
+	if obj.Project != nil {
+		return obj.Project
+	}
+
+	// all schemas are nil
+	return nil
+}
+
+type NullableProjectOrHref struct {
+	value *ProjectOrHref
 	isSet bool
 }
 
-func (v NullableDeviceProject) Get() *DeviceProject {
+func (v NullableProjectOrHref) Get() *ProjectOrHref {
 	return v.value
 }
 
-func (v *NullableDeviceProject) Set(val *DeviceProject) {
+func (v *NullableProjectOrHref) Set(val *ProjectOrHref) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableDeviceProject) IsSet() bool {
+func (v NullableProjectOrHref) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableDeviceProject) Unset() {
+func (v *NullableProjectOrHref) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableDeviceProject(val *DeviceProject) *NullableDeviceProject {
-	return &NullableDeviceProject{value: val, isSet: true}
+func NewNullableProjectOrHref(val *ProjectOrHref) *NullableProjectOrHref {
+	return &NullableProjectOrHref{value: val, isSet: true}
 }
 
-func (v NullableDeviceProject) MarshalJSON() ([]byte, error) {
+func (v NullableProjectOrHref) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableDeviceProject) UnmarshalJSON(src []byte) error {
+func (v *NullableProjectOrHref) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

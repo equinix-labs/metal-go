@@ -93,7 +93,6 @@ docs/DeviceCreateInputIpAddressesInner.md
 docs/DeviceCreatedBy.md
 docs/DeviceList.md
 docs/DeviceMetro.md
-docs/DeviceProject.md
 docs/DeviceProjectLite.md
 docs/DeviceUpdateInput.md
 docs/DeviceUsage.md
@@ -122,6 +121,7 @@ docs/GlobalBgpRange.md
 docs/GlobalBgpRangeList.md
 docs/HardwareReservation.md
 docs/HardwareReservationList.md
+docs/HardwareReservationOrHref.md
 docs/HardwareReservationsApi.md
 docs/Href.md
 docs/IPAddressesApi.md
@@ -228,6 +228,7 @@ docs/Project.md
 docs/ProjectCreateFromRootInput.md
 docs/ProjectCreateInput.md
 docs/ProjectList.md
+docs/ProjectOrHref.md
 docs/ProjectUpdateInput.md
 docs/ProjectUsage.md
 docs/ProjectUsageList.md
@@ -361,7 +362,6 @@ model_device_create_input_ip_addresses_inner.go
 model_device_created_by.go
 model_device_list.go
 model_device_metro.go
-model_device_project.go
 model_device_project_lite.go
 model_device_update_input.go
 model_device_usage.go
@@ -386,6 +386,7 @@ model_global_bgp_range.go
 model_global_bgp_range_list.go
 model_hardware_reservation.go
 model_hardware_reservation_list.go
+model_hardware_reservation_or_href.go
 model_href.go
 model_instances_batch_create_input.go
 model_instances_batch_create_input_batches_inner.go
@@ -476,6 +477,7 @@ model_project.go
 model_project_create_from_root_input.go
 model_project_create_input.go
 model_project_list.go
+model_project_or_href.go
 model_project_update_input.go
 model_project_usage.go
 model_project_usage_list.go
