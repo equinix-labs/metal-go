@@ -2,12 +2,23 @@
 
 set -eu -o pipefail
 
-function find_path_prefix () {
-  local parent_path=$(realpath `dirname $1`)
-  local child_path=$(realpath `dirname $2`)
-  echo $parent_path
-  echo $child_path
-  path_prefix=${child_path#$parent_path}
+function resolve_file () {
+  local raw_file_path=$1
+  if [ ! -f "$raw_file_path"  ]
+  then
+    mkdir -p $(dirname $raw_file_path)
+    touch $raw_file_path
+    file_path=$(realpath $raw_file_path)
+    rm $raw_file_path
+  else
+    file_path=$(realpath $raw_file_path)
+  fi
+}
+
+function resolve_relative_path () {
+  local parent_path=$(realpath $1)
+  resolve_file $2
+  resolved_path=${file_path#$parent_path}
 }
 
 function download_file () {
@@ -18,15 +29,17 @@ function download_file () {
   if [ ! -f "$full_path"  ]
   then
     echo "Fetching $spec_base_url$path"
-    mkdir -p $(dirname $full_path)
+
+    local current_output_dir=$(dirname $full_path)
+    mkdir -p $current_output_dir
     wget -O $full_path $spec_base_url$path
 
     ref_targets="$(yq e '.. | select(has("$ref")) | .$ref' $full_path)"
 
     for path in $ref_targets
     do
-      find_path_prefix "$output_dir/." $full_path
-      download_file $spec_base_url $output_dir $path_prefix/$path
+      resolve_relative_path $output_dir/ $current_output_dir/$path
+      download_file $spec_base_url $output_dir $resolved_path
     done
   fi
 }

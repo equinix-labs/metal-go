@@ -3,9 +3,7 @@
 CURRENT_UID := $(shell id -u)
 CURRENT_GID := $(shell id -g)
 
-# https://github.com/OpenAPITools/openapi-generator-cli
-
-SPEC_BASE_URL:=https://api.packet.net/api-docs-test
+SPEC_BASE_URL:=https://api.equinix.com/metal/v1/api-docs
 SPEC_ROOT_FILE:=openapi3.yaml
 SPEC_FETCHED_DIR=spec/oas3.fetched
 SPEC_PATCH_DIR=patches/spec.fetched.json
