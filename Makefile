@@ -24,7 +24,7 @@ OPENAPI_GENERATOR=${CRI} run --rm -u ${CURRENT_UID}:${CURRENT_GID} -v $(CURDIR):
 SPEC_FETCHER=${CRI} run --rm -v $(CURDIR):/workdir --entrypoint sh mikefarah/yq:4.30.8 script/download_spec.sh
 GOLANGCI_LINT=golangci-lint
 
-all: pull fetch patch combine_spec clean gen mod docs move-other patch-post fmt test stage
+all: pull fetch patch combine-spec clean gen mod docs move-other patch-post fmt test stage
 
 pull:
 	${CRI} pull ${OPENAPI_IMAGE}
@@ -40,7 +40,7 @@ patch:
 		patch --no-backup-if-mismatch -N -t -p1 -i $$diff; \
 	done
 
-combine_spec:
+combine-spec:
 	${OPENAPI_GENERATOR} generate \
 		-i /local/${SPEC_PATCHED_DIR}/${SPEC_ROOT_FILE} \
 		-g openapi-yaml \
