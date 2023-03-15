@@ -25,7 +25,7 @@ jobs:
     - name: Sync
       run: |
         make # pull fetch patch gen mod test
-        git commit -m 'sync: fetch ${{ steps.date.outputs.date }} spec and apply patches' *.json
+        git commit -m 'sync: fetch ${{ steps.date.outputs.date }} spec and apply patches' spec/**/*.yaml
         git commit -m 'sync: generate client with ${{ steps.date.outputs.date }} spec' metal api docs README.md
     - name: Create Pull Request
       uses: peter-evans/create-pull-request@v4
