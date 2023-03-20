@@ -15,90 +15,194 @@ import (
 	"encoding/json"
 )
 
-// checks if the IPAssignmentInput type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &IPAssignmentInput{}
+// checks if the UserLimited type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UserLimited{}
 
-// IPAssignmentInput struct for IPAssignmentInput
-type IPAssignmentInput struct {
-	Address    string                 `json:"address"`
-	Customdata map[string]interface{} `json:"customdata,omitempty"`
+// UserLimited struct for UserLimited
+type UserLimited struct {
+	// Avatar thumbnail URL of the User
+	AvatarThumbUrl *string `json:"avatar_thumb_url,omitempty"`
+	// Avatar URL of the User
+	AvatarUrl *string `json:"avatar_url,omitempty"`
+	// Full name of the User
+	FullName *string `json:"full_name,omitempty"`
+	// API URL uniquely representing the User
+	Href *string `json:"href,omitempty"`
+	// ID of the User
+	Id string `json:"id"`
 }
 
-// NewIPAssignmentInput instantiates a new IPAssignmentInput object
+// NewUserLimited instantiates a new UserLimited object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewIPAssignmentInput(address string) *IPAssignmentInput {
-	this := IPAssignmentInput{}
-	this.Address = address
+func NewUserLimited(id string) *UserLimited {
+	this := UserLimited{}
+	this.Id = id
 	return &this
 }
 
-// NewIPAssignmentInputWithDefaults instantiates a new IPAssignmentInput object
+// NewUserLimitedWithDefaults instantiates a new UserLimited object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewIPAssignmentInputWithDefaults() *IPAssignmentInput {
-	this := IPAssignmentInput{}
+func NewUserLimitedWithDefaults() *UserLimited {
+	this := UserLimited{}
 	return &this
 }
 
-// GetAddress returns the Address field value
-func (o *IPAssignmentInput) GetAddress() string {
-	if o == nil {
+// GetAvatarThumbUrl returns the AvatarThumbUrl field value if set, zero value otherwise.
+func (o *UserLimited) GetAvatarThumbUrl() string {
+	if o == nil || isNil(o.AvatarThumbUrl) {
 		var ret string
 		return ret
 	}
-
-	return o.Address
+	return *o.AvatarThumbUrl
 }
 
-// GetAddressOk returns a tuple with the Address field value
+// GetAvatarThumbUrlOk returns a tuple with the AvatarThumbUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IPAssignmentInput) GetAddressOk() (*string, bool) {
-	if o == nil {
+func (o *UserLimited) GetAvatarThumbUrlOk() (*string, bool) {
+	if o == nil || isNil(o.AvatarThumbUrl) {
 		return nil, false
 	}
-	return &o.Address, true
+	return o.AvatarThumbUrl, true
 }
 
-// SetAddress sets field value
-func (o *IPAssignmentInput) SetAddress(v string) {
-	o.Address = v
-}
-
-// GetCustomdata returns the Customdata field value if set, zero value otherwise.
-func (o *IPAssignmentInput) GetCustomdata() map[string]interface{} {
-	if o == nil || isNil(o.Customdata) {
-		var ret map[string]interface{}
-		return ret
-	}
-	return o.Customdata
-}
-
-// GetCustomdataOk returns a tuple with the Customdata field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *IPAssignmentInput) GetCustomdataOk() (map[string]interface{}, bool) {
-	if o == nil || isNil(o.Customdata) {
-		return map[string]interface{}{}, false
-	}
-	return o.Customdata, true
-}
-
-// HasCustomdata returns a boolean if a field has been set.
-func (o *IPAssignmentInput) HasCustomdata() bool {
-	if o != nil && !isNil(o.Customdata) {
+// HasAvatarThumbUrl returns a boolean if a field has been set.
+func (o *UserLimited) HasAvatarThumbUrl() bool {
+	if o != nil && !isNil(o.AvatarThumbUrl) {
 		return true
 	}
 
 	return false
 }
 
-// SetCustomdata gets a reference to the given map[string]interface{} and assigns it to the Customdata field.
-func (o *IPAssignmentInput) SetCustomdata(v map[string]interface{}) {
-	o.Customdata = v
+// SetAvatarThumbUrl gets a reference to the given string and assigns it to the AvatarThumbUrl field.
+func (o *UserLimited) SetAvatarThumbUrl(v string) {
+	o.AvatarThumbUrl = &v
 }
 
-func (o IPAssignmentInput) MarshalJSON() ([]byte, error) {
+// GetAvatarUrl returns the AvatarUrl field value if set, zero value otherwise.
+func (o *UserLimited) GetAvatarUrl() string {
+	if o == nil || isNil(o.AvatarUrl) {
+		var ret string
+		return ret
+	}
+	return *o.AvatarUrl
+}
+
+// GetAvatarUrlOk returns a tuple with the AvatarUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UserLimited) GetAvatarUrlOk() (*string, bool) {
+	if o == nil || isNil(o.AvatarUrl) {
+		return nil, false
+	}
+	return o.AvatarUrl, true
+}
+
+// HasAvatarUrl returns a boolean if a field has been set.
+func (o *UserLimited) HasAvatarUrl() bool {
+	if o != nil && !isNil(o.AvatarUrl) {
+		return true
+	}
+
+	return false
+}
+
+// SetAvatarUrl gets a reference to the given string and assigns it to the AvatarUrl field.
+func (o *UserLimited) SetAvatarUrl(v string) {
+	o.AvatarUrl = &v
+}
+
+// GetFullName returns the FullName field value if set, zero value otherwise.
+func (o *UserLimited) GetFullName() string {
+	if o == nil || isNil(o.FullName) {
+		var ret string
+		return ret
+	}
+	return *o.FullName
+}
+
+// GetFullNameOk returns a tuple with the FullName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UserLimited) GetFullNameOk() (*string, bool) {
+	if o == nil || isNil(o.FullName) {
+		return nil, false
+	}
+	return o.FullName, true
+}
+
+// HasFullName returns a boolean if a field has been set.
+func (o *UserLimited) HasFullName() bool {
+	if o != nil && !isNil(o.FullName) {
+		return true
+	}
+
+	return false
+}
+
+// SetFullName gets a reference to the given string and assigns it to the FullName field.
+func (o *UserLimited) SetFullName(v string) {
+	o.FullName = &v
+}
+
+// GetHref returns the Href field value if set, zero value otherwise.
+func (o *UserLimited) GetHref() string {
+	if o == nil || isNil(o.Href) {
+		var ret string
+		return ret
+	}
+	return *o.Href
+}
+
+// GetHrefOk returns a tuple with the Href field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UserLimited) GetHrefOk() (*string, bool) {
+	if o == nil || isNil(o.Href) {
+		return nil, false
+	}
+	return o.Href, true
+}
+
+// HasHref returns a boolean if a field has been set.
+func (o *UserLimited) HasHref() bool {
+	if o != nil && !isNil(o.Href) {
+		return true
+	}
+
+	return false
+}
+
+// SetHref gets a reference to the given string and assigns it to the Href field.
+func (o *UserLimited) SetHref(v string) {
+	o.Href = &v
+}
+
+// GetId returns the Id field value
+func (o *UserLimited) GetId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *UserLimited) GetIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value
+func (o *UserLimited) SetId(v string) {
+	o.Id = v
+}
+
+func (o UserLimited) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -106,47 +210,56 @@ func (o IPAssignmentInput) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o IPAssignmentInput) ToMap() (map[string]interface{}, error) {
+func (o UserLimited) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["address"] = o.Address
-	if !isNil(o.Customdata) {
-		toSerialize["customdata"] = o.Customdata
+	if !isNil(o.AvatarThumbUrl) {
+		toSerialize["avatar_thumb_url"] = o.AvatarThumbUrl
 	}
+	if !isNil(o.AvatarUrl) {
+		toSerialize["avatar_url"] = o.AvatarUrl
+	}
+	if !isNil(o.FullName) {
+		toSerialize["full_name"] = o.FullName
+	}
+	if !isNil(o.Href) {
+		toSerialize["href"] = o.Href
+	}
+	toSerialize["id"] = o.Id
 	return toSerialize, nil
 }
 
-type NullableIPAssignmentInput struct {
-	value *IPAssignmentInput
+type NullableUserLimited struct {
+	value *UserLimited
 	isSet bool
 }
 
-func (v NullableIPAssignmentInput) Get() *IPAssignmentInput {
+func (v NullableUserLimited) Get() *UserLimited {
 	return v.value
 }
 
-func (v *NullableIPAssignmentInput) Set(val *IPAssignmentInput) {
+func (v *NullableUserLimited) Set(val *UserLimited) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableIPAssignmentInput) IsSet() bool {
+func (v NullableUserLimited) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableIPAssignmentInput) Unset() {
+func (v *NullableUserLimited) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableIPAssignmentInput(val *IPAssignmentInput) *NullableIPAssignmentInput {
-	return &NullableIPAssignmentInput{value: val, isSet: true}
+func NewNullableUserLimited(val *UserLimited) *NullableUserLimited {
+	return &NullableUserLimited{value: val, isSet: true}
 }
 
-func (v NullableIPAssignmentInput) MarshalJSON() ([]byte, error) {
+func (v NullableUserLimited) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableIPAssignmentInput) UnmarshalJSON(src []byte) error {
+func (v *NullableUserLimited) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

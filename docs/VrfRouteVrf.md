@@ -8,6 +8,8 @@ Name | Type | Description | Notes
 **Id** | Pointer to **string** |  | [optional] 
 **Name** | Pointer to **string** |  | [optional] 
 **Description** | Pointer to **string** | Optional field that can be set to describe the VRF | [optional] 
+**BgpDynamicNeighborsEnabled** | Pointer to **bool** | Toggle to enable the dynamic bgp neighbors feature on the VRF | [optional] 
+**BgpDynamicNeighborsExportRouteMap** | Pointer to **bool** | Toggle to export the VRF route-map to the dynamic bgp neighbors | [optional] 
 **LocalAsn** | Pointer to **int32** | A 4-byte ASN associated with the VRF. | [optional] 
 **IpRanges** | Pointer to **[]string** | A list of CIDR network addresses. Like [\&quot;10.0.0.0/16\&quot;, \&quot;2001:d78::/56\&quot;]. | [optional] 
 **Project** | Pointer to [**Project**](Project.md) |  | [optional] 
@@ -129,6 +131,56 @@ SetDescription sets Description field to given value.
 `func (o *VrfRouteVrf) HasDescription() bool`
 
 HasDescription returns a boolean if a field has been set.
+
+### GetBgpDynamicNeighborsEnabled
+
+`func (o *VrfRouteVrf) GetBgpDynamicNeighborsEnabled() bool`
+
+GetBgpDynamicNeighborsEnabled returns the BgpDynamicNeighborsEnabled field if non-nil, zero value otherwise.
+
+### GetBgpDynamicNeighborsEnabledOk
+
+`func (o *VrfRouteVrf) GetBgpDynamicNeighborsEnabledOk() (*bool, bool)`
+
+GetBgpDynamicNeighborsEnabledOk returns a tuple with the BgpDynamicNeighborsEnabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBgpDynamicNeighborsEnabled
+
+`func (o *VrfRouteVrf) SetBgpDynamicNeighborsEnabled(v bool)`
+
+SetBgpDynamicNeighborsEnabled sets BgpDynamicNeighborsEnabled field to given value.
+
+### HasBgpDynamicNeighborsEnabled
+
+`func (o *VrfRouteVrf) HasBgpDynamicNeighborsEnabled() bool`
+
+HasBgpDynamicNeighborsEnabled returns a boolean if a field has been set.
+
+### GetBgpDynamicNeighborsExportRouteMap
+
+`func (o *VrfRouteVrf) GetBgpDynamicNeighborsExportRouteMap() bool`
+
+GetBgpDynamicNeighborsExportRouteMap returns the BgpDynamicNeighborsExportRouteMap field if non-nil, zero value otherwise.
+
+### GetBgpDynamicNeighborsExportRouteMapOk
+
+`func (o *VrfRouteVrf) GetBgpDynamicNeighborsExportRouteMapOk() (*bool, bool)`
+
+GetBgpDynamicNeighborsExportRouteMapOk returns a tuple with the BgpDynamicNeighborsExportRouteMap field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBgpDynamicNeighborsExportRouteMap
+
+`func (o *VrfRouteVrf) SetBgpDynamicNeighborsExportRouteMap(v bool)`
+
+SetBgpDynamicNeighborsExportRouteMap sets BgpDynamicNeighborsExportRouteMap field to given value.
+
+### HasBgpDynamicNeighborsExportRouteMap
+
+`func (o *VrfRouteVrf) HasBgpDynamicNeighborsExportRouteMap() bool`
+
+HasBgpDynamicNeighborsExportRouteMap returns a boolean if a field has been set.
 
 ### GetLocalAsn
 

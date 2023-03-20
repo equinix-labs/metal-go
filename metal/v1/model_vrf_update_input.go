@@ -20,7 +20,11 @@ var _ MappedNullable = &VrfUpdateInput{}
 
 // VrfUpdateInput struct for VrfUpdateInput
 type VrfUpdateInput struct {
-	Description *string `json:"description,omitempty"`
+	// Toggle to enable the dynamic bgp neighbors feature on the VRF
+	BgpDynamicNeighborsEnabled *bool `json:"bgp_dynamic_neighbors_enabled,omitempty"`
+	// Toggle to export the VRF route-map to the dynamic bgp neighbors
+	BgpDynamicNeighborsExportRouteMap *bool   `json:"bgp_dynamic_neighbors_export_route_map,omitempty"`
+	Description                       *string `json:"description,omitempty"`
 	// A list of CIDR network addresses. Like [\"10.0.0.0/16\", \"2001:d78::/56\"]. IPv4 blocks must be between /8 and /29 in size. IPv6 blocks must be between /56 and /64. A VRF\\'s IP ranges must be defined in order to create VRF IP Reservations, which can then be used for Metal Gateways or Virtual Circuits. Adding a new CIDR address to the list will result in the creation of a new IP Range for this VRF. Removal of an existing CIDR address from the list will result in the deletion of an existing IP Range for this VRF. Deleting an IP Range will result in the deletion of any VRF IP Reservations contained within the IP Range, as well as the VRF IP Reservation\\'s associated Metal Gateways or Virtual Circuits. If you do not wish to add or remove IP Ranges, either include the full existing list of IP Ranges in the update request, or do not specify the `ip_ranges` field in the update request. Specifying a value of `[]` will remove all existing IP Ranges from the VRF.
 	IpRanges []string `json:"ip_ranges,omitempty"`
 	// The new `local_asn` value for the VRF. This field cannot be updated when there are active Interconnection Virtual Circuits associated to the VRF.
@@ -43,6 +47,70 @@ func NewVrfUpdateInput() *VrfUpdateInput {
 func NewVrfUpdateInputWithDefaults() *VrfUpdateInput {
 	this := VrfUpdateInput{}
 	return &this
+}
+
+// GetBgpDynamicNeighborsEnabled returns the BgpDynamicNeighborsEnabled field value if set, zero value otherwise.
+func (o *VrfUpdateInput) GetBgpDynamicNeighborsEnabled() bool {
+	if o == nil || isNil(o.BgpDynamicNeighborsEnabled) {
+		var ret bool
+		return ret
+	}
+	return *o.BgpDynamicNeighborsEnabled
+}
+
+// GetBgpDynamicNeighborsEnabledOk returns a tuple with the BgpDynamicNeighborsEnabled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VrfUpdateInput) GetBgpDynamicNeighborsEnabledOk() (*bool, bool) {
+	if o == nil || isNil(o.BgpDynamicNeighborsEnabled) {
+		return nil, false
+	}
+	return o.BgpDynamicNeighborsEnabled, true
+}
+
+// HasBgpDynamicNeighborsEnabled returns a boolean if a field has been set.
+func (o *VrfUpdateInput) HasBgpDynamicNeighborsEnabled() bool {
+	if o != nil && !isNil(o.BgpDynamicNeighborsEnabled) {
+		return true
+	}
+
+	return false
+}
+
+// SetBgpDynamicNeighborsEnabled gets a reference to the given bool and assigns it to the BgpDynamicNeighborsEnabled field.
+func (o *VrfUpdateInput) SetBgpDynamicNeighborsEnabled(v bool) {
+	o.BgpDynamicNeighborsEnabled = &v
+}
+
+// GetBgpDynamicNeighborsExportRouteMap returns the BgpDynamicNeighborsExportRouteMap field value if set, zero value otherwise.
+func (o *VrfUpdateInput) GetBgpDynamicNeighborsExportRouteMap() bool {
+	if o == nil || isNil(o.BgpDynamicNeighborsExportRouteMap) {
+		var ret bool
+		return ret
+	}
+	return *o.BgpDynamicNeighborsExportRouteMap
+}
+
+// GetBgpDynamicNeighborsExportRouteMapOk returns a tuple with the BgpDynamicNeighborsExportRouteMap field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VrfUpdateInput) GetBgpDynamicNeighborsExportRouteMapOk() (*bool, bool) {
+	if o == nil || isNil(o.BgpDynamicNeighborsExportRouteMap) {
+		return nil, false
+	}
+	return o.BgpDynamicNeighborsExportRouteMap, true
+}
+
+// HasBgpDynamicNeighborsExportRouteMap returns a boolean if a field has been set.
+func (o *VrfUpdateInput) HasBgpDynamicNeighborsExportRouteMap() bool {
+	if o != nil && !isNil(o.BgpDynamicNeighborsExportRouteMap) {
+		return true
+	}
+
+	return false
+}
+
+// SetBgpDynamicNeighborsExportRouteMap gets a reference to the given bool and assigns it to the BgpDynamicNeighborsExportRouteMap field.
+func (o *VrfUpdateInput) SetBgpDynamicNeighborsExportRouteMap(v bool) {
+	o.BgpDynamicNeighborsExportRouteMap = &v
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise.
@@ -183,6 +251,12 @@ func (o VrfUpdateInput) MarshalJSON() ([]byte, error) {
 
 func (o VrfUpdateInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !isNil(o.BgpDynamicNeighborsEnabled) {
+		toSerialize["bgp_dynamic_neighbors_enabled"] = o.BgpDynamicNeighborsEnabled
+	}
+	if !isNil(o.BgpDynamicNeighborsExportRouteMap) {
+		toSerialize["bgp_dynamic_neighbors_export_route_map"] = o.BgpDynamicNeighborsExportRouteMap
+	}
 	if !isNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
