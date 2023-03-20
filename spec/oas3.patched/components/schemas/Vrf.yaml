@@ -7,6 +7,12 @@ properties:
   description:
     description: Optional field that can be set to describe the VRF
     type: string
+  bgp_dynamic_neighbors_enabled:
+    description: Toggle to enable the dynamic bgp neighbors feature on the VRF
+    type: boolean
+  bgp_dynamic_neighbors_export_route_map:
+    description: Toggle to export the VRF route-map to the dynamic bgp neighbors
+    type: boolean
   local_asn:
     description: A 4-byte ASN associated with the VRF.
     type: integer

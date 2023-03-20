@@ -3,8 +3,6 @@ properties:
     type: string
   customdata:
     type: object
-  manageable:
-    type: boolean
 required:
 - address
 type: object

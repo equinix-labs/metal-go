@@ -15,90 +15,99 @@ import (
 	"encoding/json"
 )
 
-// checks if the IPAssignmentInput type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &IPAssignmentInput{}
+// checks if the BgpDynamicNeighborCreateInput type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &BgpDynamicNeighborCreateInput{}
 
-// IPAssignmentInput struct for IPAssignmentInput
-type IPAssignmentInput struct {
-	Address    string                 `json:"address"`
-	Customdata map[string]interface{} `json:"customdata,omitempty"`
+// BgpDynamicNeighborCreateInput struct for BgpDynamicNeighborCreateInput
+type BgpDynamicNeighborCreateInput struct {
+	// Network range of the dynamic BGP neighbor in CIDR format
+	BgpNeighborRange *string `json:"bgp_neighbor_range,omitempty"`
+	// The ASN of the dynamic BGP neighbor
+	BgpNeighborAsn *int32 `json:"bgp_neighbor_asn,omitempty"`
 }
 
-// NewIPAssignmentInput instantiates a new IPAssignmentInput object
+// NewBgpDynamicNeighborCreateInput instantiates a new BgpDynamicNeighborCreateInput object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewIPAssignmentInput(address string) *IPAssignmentInput {
-	this := IPAssignmentInput{}
-	this.Address = address
+func NewBgpDynamicNeighborCreateInput() *BgpDynamicNeighborCreateInput {
+	this := BgpDynamicNeighborCreateInput{}
 	return &this
 }
 
-// NewIPAssignmentInputWithDefaults instantiates a new IPAssignmentInput object
+// NewBgpDynamicNeighborCreateInputWithDefaults instantiates a new BgpDynamicNeighborCreateInput object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewIPAssignmentInputWithDefaults() *IPAssignmentInput {
-	this := IPAssignmentInput{}
+func NewBgpDynamicNeighborCreateInputWithDefaults() *BgpDynamicNeighborCreateInput {
+	this := BgpDynamicNeighborCreateInput{}
 	return &this
 }
 
-// GetAddress returns the Address field value
-func (o *IPAssignmentInput) GetAddress() string {
-	if o == nil {
+// GetBgpNeighborRange returns the BgpNeighborRange field value if set, zero value otherwise.
+func (o *BgpDynamicNeighborCreateInput) GetBgpNeighborRange() string {
+	if o == nil || isNil(o.BgpNeighborRange) {
 		var ret string
 		return ret
 	}
-
-	return o.Address
+	return *o.BgpNeighborRange
 }
 
-// GetAddressOk returns a tuple with the Address field value
+// GetBgpNeighborRangeOk returns a tuple with the BgpNeighborRange field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IPAssignmentInput) GetAddressOk() (*string, bool) {
-	if o == nil {
+func (o *BgpDynamicNeighborCreateInput) GetBgpNeighborRangeOk() (*string, bool) {
+	if o == nil || isNil(o.BgpNeighborRange) {
 		return nil, false
 	}
-	return &o.Address, true
+	return o.BgpNeighborRange, true
 }
 
-// SetAddress sets field value
-func (o *IPAssignmentInput) SetAddress(v string) {
-	o.Address = v
-}
-
-// GetCustomdata returns the Customdata field value if set, zero value otherwise.
-func (o *IPAssignmentInput) GetCustomdata() map[string]interface{} {
-	if o == nil || isNil(o.Customdata) {
-		var ret map[string]interface{}
-		return ret
-	}
-	return o.Customdata
-}
-
-// GetCustomdataOk returns a tuple with the Customdata field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *IPAssignmentInput) GetCustomdataOk() (map[string]interface{}, bool) {
-	if o == nil || isNil(o.Customdata) {
-		return map[string]interface{}{}, false
-	}
-	return o.Customdata, true
-}
-
-// HasCustomdata returns a boolean if a field has been set.
-func (o *IPAssignmentInput) HasCustomdata() bool {
-	if o != nil && !isNil(o.Customdata) {
+// HasBgpNeighborRange returns a boolean if a field has been set.
+func (o *BgpDynamicNeighborCreateInput) HasBgpNeighborRange() bool {
+	if o != nil && !isNil(o.BgpNeighborRange) {
 		return true
 	}
 
 	return false
 }
 
-// SetCustomdata gets a reference to the given map[string]interface{} and assigns it to the Customdata field.
-func (o *IPAssignmentInput) SetCustomdata(v map[string]interface{}) {
-	o.Customdata = v
+// SetBgpNeighborRange gets a reference to the given string and assigns it to the BgpNeighborRange field.
+func (o *BgpDynamicNeighborCreateInput) SetBgpNeighborRange(v string) {
+	o.BgpNeighborRange = &v
 }
 
-func (o IPAssignmentInput) MarshalJSON() ([]byte, error) {
+// GetBgpNeighborAsn returns the BgpNeighborAsn field value if set, zero value otherwise.
+func (o *BgpDynamicNeighborCreateInput) GetBgpNeighborAsn() int32 {
+	if o == nil || isNil(o.BgpNeighborAsn) {
+		var ret int32
+		return ret
+	}
+	return *o.BgpNeighborAsn
+}
+
+// GetBgpNeighborAsnOk returns a tuple with the BgpNeighborAsn field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *BgpDynamicNeighborCreateInput) GetBgpNeighborAsnOk() (*int32, bool) {
+	if o == nil || isNil(o.BgpNeighborAsn) {
+		return nil, false
+	}
+	return o.BgpNeighborAsn, true
+}
+
+// HasBgpNeighborAsn returns a boolean if a field has been set.
+func (o *BgpDynamicNeighborCreateInput) HasBgpNeighborAsn() bool {
+	if o != nil && !isNil(o.BgpNeighborAsn) {
+		return true
+	}
+
+	return false
+}
+
+// SetBgpNeighborAsn gets a reference to the given int32 and assigns it to the BgpNeighborAsn field.
+func (o *BgpDynamicNeighborCreateInput) SetBgpNeighborAsn(v int32) {
+	o.BgpNeighborAsn = &v
+}
+
+func (o BgpDynamicNeighborCreateInput) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -106,47 +115,49 @@ func (o IPAssignmentInput) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o IPAssignmentInput) ToMap() (map[string]interface{}, error) {
+func (o BgpDynamicNeighborCreateInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["address"] = o.Address
-	if !isNil(o.Customdata) {
-		toSerialize["customdata"] = o.Customdata
+	if !isNil(o.BgpNeighborRange) {
+		toSerialize["bgp_neighbor_range"] = o.BgpNeighborRange
+	}
+	if !isNil(o.BgpNeighborAsn) {
+		toSerialize["bgp_neighbor_asn"] = o.BgpNeighborAsn
 	}
 	return toSerialize, nil
 }
 
-type NullableIPAssignmentInput struct {
-	value *IPAssignmentInput
+type NullableBgpDynamicNeighborCreateInput struct {
+	value *BgpDynamicNeighborCreateInput
 	isSet bool
 }
 
-func (v NullableIPAssignmentInput) Get() *IPAssignmentInput {
+func (v NullableBgpDynamicNeighborCreateInput) Get() *BgpDynamicNeighborCreateInput {
 	return v.value
 }
 
-func (v *NullableIPAssignmentInput) Set(val *IPAssignmentInput) {
+func (v *NullableBgpDynamicNeighborCreateInput) Set(val *BgpDynamicNeighborCreateInput) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableIPAssignmentInput) IsSet() bool {
+func (v NullableBgpDynamicNeighborCreateInput) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableIPAssignmentInput) Unset() {
+func (v *NullableBgpDynamicNeighborCreateInput) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableIPAssignmentInput(val *IPAssignmentInput) *NullableIPAssignmentInput {
-	return &NullableIPAssignmentInput{value: val, isSet: true}
+func NewNullableBgpDynamicNeighborCreateInput(val *BgpDynamicNeighborCreateInput) *NullableBgpDynamicNeighborCreateInput {
+	return &NullableBgpDynamicNeighborCreateInput{value: val, isSet: true}
 }
 
-func (v NullableIPAssignmentInput) MarshalJSON() ([]byte, error) {
+func (v NullableBgpDynamicNeighborCreateInput) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableIPAssignmentInput) UnmarshalJSON(src []byte) error {
+func (v *NullableBgpDynamicNeighborCreateInput) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

@@ -25,6 +25,10 @@ type Vrf struct {
 	Name *string `json:"name,omitempty"`
 	// Optional field that can be set to describe the VRF
 	Description *string `json:"description,omitempty"`
+	// Toggle to enable the dynamic bgp neighbors feature on the VRF
+	BgpDynamicNeighborsEnabled *bool `json:"bgp_dynamic_neighbors_enabled,omitempty"`
+	// Toggle to export the VRF route-map to the dynamic bgp neighbors
+	BgpDynamicNeighborsExportRouteMap *bool `json:"bgp_dynamic_neighbors_export_route_map,omitempty"`
 	// A 4-byte ASN associated with the VRF.
 	LocalAsn *int32 `json:"local_asn,omitempty"`
 	// A list of CIDR network addresses. Like [\"10.0.0.0/16\", \"2001:d78::/56\"].
@@ -148,6 +152,70 @@ func (o *Vrf) HasDescription() bool {
 // SetDescription gets a reference to the given string and assigns it to the Description field.
 func (o *Vrf) SetDescription(v string) {
 	o.Description = &v
+}
+
+// GetBgpDynamicNeighborsEnabled returns the BgpDynamicNeighborsEnabled field value if set, zero value otherwise.
+func (o *Vrf) GetBgpDynamicNeighborsEnabled() bool {
+	if o == nil || isNil(o.BgpDynamicNeighborsEnabled) {
+		var ret bool
+		return ret
+	}
+	return *o.BgpDynamicNeighborsEnabled
+}
+
+// GetBgpDynamicNeighborsEnabledOk returns a tuple with the BgpDynamicNeighborsEnabled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Vrf) GetBgpDynamicNeighborsEnabledOk() (*bool, bool) {
+	if o == nil || isNil(o.BgpDynamicNeighborsEnabled) {
+		return nil, false
+	}
+	return o.BgpDynamicNeighborsEnabled, true
+}
+
+// HasBgpDynamicNeighborsEnabled returns a boolean if a field has been set.
+func (o *Vrf) HasBgpDynamicNeighborsEnabled() bool {
+	if o != nil && !isNil(o.BgpDynamicNeighborsEnabled) {
+		return true
+	}
+
+	return false
+}
+
+// SetBgpDynamicNeighborsEnabled gets a reference to the given bool and assigns it to the BgpDynamicNeighborsEnabled field.
+func (o *Vrf) SetBgpDynamicNeighborsEnabled(v bool) {
+	o.BgpDynamicNeighborsEnabled = &v
+}
+
+// GetBgpDynamicNeighborsExportRouteMap returns the BgpDynamicNeighborsExportRouteMap field value if set, zero value otherwise.
+func (o *Vrf) GetBgpDynamicNeighborsExportRouteMap() bool {
+	if o == nil || isNil(o.BgpDynamicNeighborsExportRouteMap) {
+		var ret bool
+		return ret
+	}
+	return *o.BgpDynamicNeighborsExportRouteMap
+}
+
+// GetBgpDynamicNeighborsExportRouteMapOk returns a tuple with the BgpDynamicNeighborsExportRouteMap field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Vrf) GetBgpDynamicNeighborsExportRouteMapOk() (*bool, bool) {
+	if o == nil || isNil(o.BgpDynamicNeighborsExportRouteMap) {
+		return nil, false
+	}
+	return o.BgpDynamicNeighborsExportRouteMap, true
+}
+
+// HasBgpDynamicNeighborsExportRouteMap returns a boolean if a field has been set.
+func (o *Vrf) HasBgpDynamicNeighborsExportRouteMap() bool {
+	if o != nil && !isNil(o.BgpDynamicNeighborsExportRouteMap) {
+		return true
+	}
+
+	return false
+}
+
+// SetBgpDynamicNeighborsExportRouteMap gets a reference to the given bool and assigns it to the BgpDynamicNeighborsExportRouteMap field.
+func (o *Vrf) SetBgpDynamicNeighborsExportRouteMap(v bool) {
+	o.BgpDynamicNeighborsExportRouteMap = &v
 }
 
 // GetLocalAsn returns the LocalAsn field value if set, zero value otherwise.
@@ -424,6 +492,12 @@ func (o Vrf) ToMap() (map[string]interface{}, error) {
 	}
 	if !isNil(o.Description) {
 		toSerialize["description"] = o.Description
+	}
+	if !isNil(o.BgpDynamicNeighborsEnabled) {
+		toSerialize["bgp_dynamic_neighbors_enabled"] = o.BgpDynamicNeighborsEnabled
+	}
+	if !isNil(o.BgpDynamicNeighborsExportRouteMap) {
+		toSerialize["bgp_dynamic_neighbors_export_route_map"] = o.BgpDynamicNeighborsExportRouteMap
 	}
 	if !isNil(o.LocalAsn) {
 		toSerialize["local_asn"] = o.LocalAsn

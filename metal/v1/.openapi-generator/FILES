@@ -57,6 +57,9 @@ docs/BatchesApi.md
 docs/BatchesList.md
 docs/BgpConfig.md
 docs/BgpConfigRequestInput.md
+docs/BgpDynamicNeighbor.md
+docs/BgpDynamicNeighborCreateInput.md
+docs/BgpDynamicNeighborList.md
 docs/BgpNeighborData.md
 docs/BgpRoute.md
 docs/BgpSession.md
@@ -275,6 +278,7 @@ docs/UpdateVirtualCircuitRequest.md
 docs/UsagesApi.md
 docs/User.md
 docs/UserCreateInput.md
+docs/UserLimited.md
 docs/UserList.md
 docs/UserLite.md
 docs/UserUpdateInput.md
@@ -325,6 +329,9 @@ model_batch.go
 model_batches_list.go
 model_bgp_config.go
 model_bgp_config_request_input.go
+model_bgp_dynamic_neighbor.go
+model_bgp_dynamic_neighbor_create_input.go
+model_bgp_dynamic_neighbor_list.go
 model_bgp_neighbor_data.go
 model_bgp_route.go
 model_bgp_session.go
@@ -515,6 +522,7 @@ model_update_email_input.go
 model_update_virtual_circuit_request.go
 model_user.go
 model_user_create_input.go
+model_user_limited.go
 model_user_list.go
 model_user_lite.go
 model_user_update_input.go
