@@ -133,6 +133,12 @@ components:
       $ref: './components/schemas/BgpConfig.yaml'
     BgpConfigRequestInput:
       $ref: './components/schemas/BgpConfigRequestInput.yaml'
+    BgpDynamicNeighbor:
+      $ref: './components/schemas/BgpDynamicNeighbor.yaml'
+    BgpDynamicNeighborCreateInput:
+      $ref: './components/schemas/BgpDynamicNeighborCreateInput.yaml'
+    BgpDynamicNeighborList:
+      $ref: './components/schemas/BgpDynamicNeighborList.yaml'
     BgpNeighborData:
       $ref: './components/schemas/BgpNeighborData.yaml'
     BgpSession:
@@ -407,6 +413,8 @@ components:
       $ref: './components/schemas/UserCreateInput.yaml'
     Userdata:
       $ref: './components/schemas/Userdata.yaml'
+    UserLimited:
+      $ref: './components/schemas/UserLimited.yaml'
     UserList:
       $ref: './components/schemas/UserList.yaml'
     UserLite:
