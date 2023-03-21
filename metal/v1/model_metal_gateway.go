@@ -28,10 +28,13 @@ type MetalGateway struct {
 	IpReservation *IPReservation `json:"ip_reservation,omitempty"`
 	Project       *Project       `json:"project,omitempty"`
 	// The current state of the Metal Gateway. 'Ready' indicates the gateway record has been configured, but is currently not active on the network. 'Active' indicates the gateway has been configured on the network. 'Deleting' is a temporary state used to indicate that the gateway is in the process of being un-configured from the network, after which the gateway record will be deleted.
-	State          *string         `json:"state,omitempty"`
-	UpdatedAt      *time.Time      `json:"updated_at,omitempty"`
-	VirtualNetwork *VirtualNetwork `json:"virtual_network,omitempty"`
+	State                *string         `json:"state,omitempty"`
+	UpdatedAt            *time.Time      `json:"updated_at,omitempty"`
+	VirtualNetwork       *VirtualNetwork `json:"virtual_network,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _MetalGateway MetalGateway
 
 // NewMetalGateway instantiates a new MetalGateway object
 // This constructor will assign default values to properties that have it defined,
@@ -375,7 +378,37 @@ func (o MetalGateway) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.VirtualNetwork) {
 		toSerialize["virtual_network"] = o.VirtualNetwork
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *MetalGateway) UnmarshalJSON(bytes []byte) (err error) {
+	varMetalGateway := _MetalGateway{}
+
+	if err = json.Unmarshal(bytes, &varMetalGateway); err == nil {
+		*o = MetalGateway(varMetalGateway)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "created_by")
+		delete(additionalProperties, "href")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "ip_reservation")
+		delete(additionalProperties, "project")
+		delete(additionalProperties, "state")
+		delete(additionalProperties, "updated_at")
+		delete(additionalProperties, "virtual_network")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableMetalGateway struct {

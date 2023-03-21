@@ -30,14 +30,17 @@ type VrfRoute struct {
 	// The next-hop IPv4 address for the route
 	NextHop *string `json:"next_hop,omitempty"`
 	// VRF route type, like 'bgp', 'connected', and 'static'. Currently, only static routes are supported
-	Type           *string                 `json:"type,omitempty"`
-	CreatedAt      *time.Time              `json:"created_at,omitempty"`
-	UpdatedAt      *time.Time              `json:"updated_at,omitempty"`
-	MetalGateway   *VrfRouteMetalGateway   `json:"metal_gateway,omitempty"`
-	VirtualNetwork *VrfRouteVirtualNetwork `json:"virtual_network,omitempty"`
-	Vrf            *VrfRouteVrf            `json:"vrf,omitempty"`
-	Href           *string                 `json:"href,omitempty"`
+	Type                 *string                 `json:"type,omitempty"`
+	CreatedAt            *time.Time              `json:"created_at,omitempty"`
+	UpdatedAt            *time.Time              `json:"updated_at,omitempty"`
+	MetalGateway         *VrfRouteMetalGateway   `json:"metal_gateway,omitempty"`
+	VirtualNetwork       *VrfRouteVirtualNetwork `json:"virtual_network,omitempty"`
+	Vrf                  *VrfRouteVrf            `json:"vrf,omitempty"`
+	Href                 *string                 `json:"href,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _VrfRoute VrfRoute
 
 // NewVrfRoute instantiates a new VrfRoute object
 // This constructor will assign default values to properties that have it defined,
@@ -439,7 +442,39 @@ func (o VrfRoute) ToMap() (map[string]interface{}, error) {
 		toSerialize["vrf"] = o.Vrf
 	}
 	// skip: href is readOnly
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *VrfRoute) UnmarshalJSON(bytes []byte) (err error) {
+	varVrfRoute := _VrfRoute{}
+
+	if err = json.Unmarshal(bytes, &varVrfRoute); err == nil {
+		*o = VrfRoute(varVrfRoute)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "status")
+		delete(additionalProperties, "prefix")
+		delete(additionalProperties, "next_hop")
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "updated_at")
+		delete(additionalProperties, "metal_gateway")
+		delete(additionalProperties, "virtual_network")
+		delete(additionalProperties, "vrf")
+		delete(additionalProperties, "href")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableVrfRoute struct {

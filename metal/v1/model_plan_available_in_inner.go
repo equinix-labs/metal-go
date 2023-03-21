@@ -21,9 +21,12 @@ var _ MappedNullable = &PlanAvailableInInner{}
 // PlanAvailableInInner struct for PlanAvailableInInner
 type PlanAvailableInInner struct {
 	// href to the Facility
-	Href  *string                    `json:"href,omitempty"`
-	Price *PlanAvailableInInnerPrice `json:"price,omitempty"`
+	Href                 *string                    `json:"href,omitempty"`
+	Price                *PlanAvailableInInnerPrice `json:"price,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _PlanAvailableInInner PlanAvailableInInner
 
 // NewPlanAvailableInInner instantiates a new PlanAvailableInInner object
 // This constructor will assign default values to properties that have it defined,
@@ -122,7 +125,30 @@ func (o PlanAvailableInInner) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Price) {
 		toSerialize["price"] = o.Price
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *PlanAvailableInInner) UnmarshalJSON(bytes []byte) (err error) {
+	varPlanAvailableInInner := _PlanAvailableInInner{}
+
+	if err = json.Unmarshal(bytes, &varPlanAvailableInInner); err == nil {
+		*o = PlanAvailableInInner(varPlanAvailableInInner)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "href")
+		delete(additionalProperties, "price")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePlanAvailableInInner struct {

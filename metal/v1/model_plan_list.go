@@ -20,8 +20,11 @@ var _ MappedNullable = &PlanList{}
 
 // PlanList struct for PlanList
 type PlanList struct {
-	Plans []Plan `json:"plans,omitempty"`
+	Plans                []Plan `json:"plans,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _PlanList PlanList
 
 // NewPlanList instantiates a new PlanList object
 // This constructor will assign default values to properties that have it defined,
@@ -85,7 +88,29 @@ func (o PlanList) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Plans) {
 		toSerialize["plans"] = o.Plans
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *PlanList) UnmarshalJSON(bytes []byte) (err error) {
+	varPlanList := _PlanList{}
+
+	if err = json.Unmarshal(bytes, &varPlanList); err == nil {
+		*o = PlanList(varPlanList)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "plans")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePlanList struct {

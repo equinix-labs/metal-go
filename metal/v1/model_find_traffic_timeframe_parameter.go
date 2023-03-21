@@ -21,9 +21,12 @@ var _ MappedNullable = &FindTrafficTimeframeParameter{}
 
 // FindTrafficTimeframeParameter struct for FindTrafficTimeframeParameter
 type FindTrafficTimeframeParameter struct {
-	EndedAt   time.Time `json:"ended_at"`
-	StartedAt time.Time `json:"started_at"`
+	EndedAt              time.Time `json:"ended_at"`
+	StartedAt            time.Time `json:"started_at"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _FindTrafficTimeframeParameter FindTrafficTimeframeParameter
 
 // NewFindTrafficTimeframeParameter instantiates a new FindTrafficTimeframeParameter object
 // This constructor will assign default values to properties that have it defined,
@@ -104,7 +107,30 @@ func (o FindTrafficTimeframeParameter) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["ended_at"] = o.EndedAt
 	toSerialize["started_at"] = o.StartedAt
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *FindTrafficTimeframeParameter) UnmarshalJSON(bytes []byte) (err error) {
+	varFindTrafficTimeframeParameter := _FindTrafficTimeframeParameter{}
+
+	if err = json.Unmarshal(bytes, &varFindTrafficTimeframeParameter); err == nil {
+		*o = FindTrafficTimeframeParameter(varFindTrafficTimeframeParameter)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "ended_at")
+		delete(additionalProperties, "started_at")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableFindTrafficTimeframeParameter struct {

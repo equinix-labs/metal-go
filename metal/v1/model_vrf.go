@@ -32,14 +32,17 @@ type Vrf struct {
 	// A 4-byte ASN associated with the VRF.
 	LocalAsn *int32 `json:"local_asn,omitempty"`
 	// A list of CIDR network addresses. Like [\"10.0.0.0/16\", \"2001:d78::/56\"].
-	IpRanges  []string   `json:"ip_ranges,omitempty"`
-	Project   *Project   `json:"project,omitempty"`
-	Metro     *Metro     `json:"metro,omitempty"`
-	CreatedBy *User      `json:"created_by,omitempty"`
-	Href      *string    `json:"href,omitempty"`
-	CreatedAt *time.Time `json:"created_at,omitempty"`
-	UpdatedAt *time.Time `json:"updated_at,omitempty"`
+	IpRanges             []string   `json:"ip_ranges,omitempty"`
+	Project              *Project   `json:"project,omitempty"`
+	Metro                *Metro     `json:"metro,omitempty"`
+	CreatedBy            *User      `json:"created_by,omitempty"`
+	Href                 *string    `json:"href,omitempty"`
+	CreatedAt            *time.Time `json:"created_at,omitempty"`
+	UpdatedAt            *time.Time `json:"updated_at,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Vrf Vrf
 
 // NewVrf instantiates a new Vrf object
 // This constructor will assign default values to properties that have it defined,
@@ -523,7 +526,41 @@ func (o Vrf) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.UpdatedAt) {
 		toSerialize["updated_at"] = o.UpdatedAt
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *Vrf) UnmarshalJSON(bytes []byte) (err error) {
+	varVrf := _Vrf{}
+
+	if err = json.Unmarshal(bytes, &varVrf); err == nil {
+		*o = Vrf(varVrf)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "bgp_dynamic_neighbors_enabled")
+		delete(additionalProperties, "bgp_dynamic_neighbors_export_route_map")
+		delete(additionalProperties, "local_asn")
+		delete(additionalProperties, "ip_ranges")
+		delete(additionalProperties, "project")
+		delete(additionalProperties, "metro")
+		delete(additionalProperties, "created_by")
+		delete(additionalProperties, "href")
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "updated_at")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableVrf struct {

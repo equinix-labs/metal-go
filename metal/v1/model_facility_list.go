@@ -20,8 +20,11 @@ var _ MappedNullable = &FacilityList{}
 
 // FacilityList struct for FacilityList
 type FacilityList struct {
-	Facilities []Facility `json:"facilities,omitempty"`
+	Facilities           []Facility `json:"facilities,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _FacilityList FacilityList
 
 // NewFacilityList instantiates a new FacilityList object
 // This constructor will assign default values to properties that have it defined,
@@ -85,7 +88,29 @@ func (o FacilityList) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Facilities) {
 		toSerialize["facilities"] = o.Facilities
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *FacilityList) UnmarshalJSON(bytes []byte) (err error) {
+	varFacilityList := _FacilityList{}
+
+	if err = json.Unmarshal(bytes, &varFacilityList); err == nil {
+		*o = FacilityList(varFacilityList)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "facilities")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableFacilityList struct {

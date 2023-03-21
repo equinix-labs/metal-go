@@ -20,16 +20,19 @@ var _ MappedNullable = &SpotPricesPerFacility{}
 
 // SpotPricesPerFacility struct for SpotPricesPerFacility
 type SpotPricesPerFacility struct {
-	Baremetal0   *SpotPricesPerBaremetal `json:"baremetal_0,omitempty"`
-	Baremetal1   *SpotPricesPerBaremetal `json:"baremetal_1,omitempty"`
-	Baremetal2   *SpotPricesPerBaremetal `json:"baremetal_2,omitempty"`
-	Baremetal2a  *SpotPricesPerBaremetal `json:"baremetal_2a,omitempty"`
-	Baremetal2a2 *SpotPricesPerBaremetal `json:"baremetal_2a2,omitempty"`
-	Baremetal3   *SpotPricesPerBaremetal `json:"baremetal_3,omitempty"`
-	BaremetalS   *SpotPricesPerBaremetal `json:"baremetal_s,omitempty"`
-	C2MediumX86  *SpotPricesPerBaremetal `json:"c2.medium.x86,omitempty"`
-	M2XlargeX86  *SpotPricesPerBaremetal `json:"m2.xlarge.x86,omitempty"`
+	Baremetal0           *SpotPricesPerBaremetal `json:"baremetal_0,omitempty"`
+	Baremetal1           *SpotPricesPerBaremetal `json:"baremetal_1,omitempty"`
+	Baremetal2           *SpotPricesPerBaremetal `json:"baremetal_2,omitempty"`
+	Baremetal2a          *SpotPricesPerBaremetal `json:"baremetal_2a,omitempty"`
+	Baremetal2a2         *SpotPricesPerBaremetal `json:"baremetal_2a2,omitempty"`
+	Baremetal3           *SpotPricesPerBaremetal `json:"baremetal_3,omitempty"`
+	BaremetalS           *SpotPricesPerBaremetal `json:"baremetal_s,omitempty"`
+	C2MediumX86          *SpotPricesPerBaremetal `json:"c2.medium.x86,omitempty"`
+	M2XlargeX86          *SpotPricesPerBaremetal `json:"m2.xlarge.x86,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SpotPricesPerFacility SpotPricesPerFacility
 
 // NewSpotPricesPerFacility instantiates a new SpotPricesPerFacility object
 // This constructor will assign default values to properties that have it defined,
@@ -373,7 +376,37 @@ func (o SpotPricesPerFacility) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.M2XlargeX86) {
 		toSerialize["m2.xlarge.x86"] = o.M2XlargeX86
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *SpotPricesPerFacility) UnmarshalJSON(bytes []byte) (err error) {
+	varSpotPricesPerFacility := _SpotPricesPerFacility{}
+
+	if err = json.Unmarshal(bytes, &varSpotPricesPerFacility); err == nil {
+		*o = SpotPricesPerFacility(varSpotPricesPerFacility)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "baremetal_0")
+		delete(additionalProperties, "baremetal_1")
+		delete(additionalProperties, "baremetal_2")
+		delete(additionalProperties, "baremetal_2a")
+		delete(additionalProperties, "baremetal_2a2")
+		delete(additionalProperties, "baremetal_3")
+		delete(additionalProperties, "baremetal_s")
+		delete(additionalProperties, "c2.medium.x86")
+		delete(additionalProperties, "m2.xlarge.x86")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableSpotPricesPerFacility struct {

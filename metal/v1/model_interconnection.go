@@ -43,11 +43,14 @@ type Interconnection struct {
 	// This token is used for shared interconnections to be used as the Fabric Token. This field is entirely deprecated.
 	Token *string `json:"token,omitempty"`
 	// The 'shared' type of interconnection refers to shared connections, or later also known as Fabric Virtual Connections (or Fabric VCs). The 'dedicated' type of interconnection refers to interconnections created with Dedicated Ports.
-	Type        *string    `json:"type,omitempty"`
-	CreatedAt   *time.Time `json:"created_at,omitempty"`
-	UpdatedAt   *time.Time `json:"updated_at,omitempty"`
-	RequestedBy *Href      `json:"requested_by,omitempty"`
+	Type                 *string    `json:"type,omitempty"`
+	CreatedAt            *time.Time `json:"created_at,omitempty"`
+	UpdatedAt            *time.Time `json:"updated_at,omitempty"`
+	RequestedBy          *Href      `json:"requested_by,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Interconnection Interconnection
 
 // NewInterconnection instantiates a new Interconnection object
 // This constructor will assign default values to properties that have it defined,
@@ -741,7 +744,47 @@ func (o Interconnection) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.RequestedBy) {
 		toSerialize["requested_by"] = o.RequestedBy
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *Interconnection) UnmarshalJSON(bytes []byte) (err error) {
+	varInterconnection := _Interconnection{}
+
+	if err = json.Unmarshal(bytes, &varInterconnection); err == nil {
+		*o = Interconnection(varInterconnection)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "contact_email")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "facility")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "metro")
+		delete(additionalProperties, "mode")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "organization")
+		delete(additionalProperties, "ports")
+		delete(additionalProperties, "redundancy")
+		delete(additionalProperties, "service_tokens")
+		delete(additionalProperties, "speed")
+		delete(additionalProperties, "status")
+		delete(additionalProperties, "tags")
+		delete(additionalProperties, "token")
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "updated_at")
+		delete(additionalProperties, "requested_by")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableInterconnection struct {

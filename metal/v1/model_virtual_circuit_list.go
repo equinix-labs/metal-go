@@ -20,8 +20,11 @@ var _ MappedNullable = &VirtualCircuitList{}
 
 // VirtualCircuitList struct for VirtualCircuitList
 type VirtualCircuitList struct {
-	VirtualCircuits []VirtualCircuitListVirtualCircuitsInner `json:"virtual_circuits,omitempty"`
+	VirtualCircuits      []VirtualCircuitListVirtualCircuitsInner `json:"virtual_circuits,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _VirtualCircuitList VirtualCircuitList
 
 // NewVirtualCircuitList instantiates a new VirtualCircuitList object
 // This constructor will assign default values to properties that have it defined,
@@ -85,7 +88,29 @@ func (o VirtualCircuitList) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.VirtualCircuits) {
 		toSerialize["virtual_circuits"] = o.VirtualCircuits
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *VirtualCircuitList) UnmarshalJSON(bytes []byte) (err error) {
+	varVirtualCircuitList := _VirtualCircuitList{}
+
+	if err = json.Unmarshal(bytes, &varVirtualCircuitList); err == nil {
+		*o = VirtualCircuitList(varVirtualCircuitList)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "virtual_circuits")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableVirtualCircuitList struct {

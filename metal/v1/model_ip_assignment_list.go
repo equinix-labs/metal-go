@@ -20,8 +20,11 @@ var _ MappedNullable = &IPAssignmentList{}
 
 // IPAssignmentList struct for IPAssignmentList
 type IPAssignmentList struct {
-	IpAddresses []IPAssignment `json:"ip_addresses,omitempty"`
+	IpAddresses          []IPAssignment `json:"ip_addresses,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _IPAssignmentList IPAssignmentList
 
 // NewIPAssignmentList instantiates a new IPAssignmentList object
 // This constructor will assign default values to properties that have it defined,
@@ -85,7 +88,29 @@ func (o IPAssignmentList) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.IpAddresses) {
 		toSerialize["ip_addresses"] = o.IpAddresses
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *IPAssignmentList) UnmarshalJSON(bytes []byte) (err error) {
+	varIPAssignmentList := _IPAssignmentList{}
+
+	if err = json.Unmarshal(bytes, &varIPAssignmentList); err == nil {
+		*o = IPAssignmentList(varIPAssignmentList)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "ip_addresses")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableIPAssignmentList struct {

@@ -28,8 +28,11 @@ type SpotMarketRequestCreateInput struct {
 	InstanceAttributes *SpotMarketRequestCreateInputInstanceAttributes `json:"instance_attributes,omitempty"`
 	MaxBidPrice        *float32                                        `json:"max_bid_price,omitempty"`
 	// The metro ID or code the spot market request will be created in.
-	Metro *string `json:"metro,omitempty"`
+	Metro                *string `json:"metro,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SpotMarketRequestCreateInput SpotMarketRequestCreateInput
 
 // NewSpotMarketRequestCreateInput instantiates a new SpotMarketRequestCreateInput object
 // This constructor will assign default values to properties that have it defined,
@@ -303,7 +306,35 @@ func (o SpotMarketRequestCreateInput) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Metro) {
 		toSerialize["metro"] = o.Metro
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *SpotMarketRequestCreateInput) UnmarshalJSON(bytes []byte) (err error) {
+	varSpotMarketRequestCreateInput := _SpotMarketRequestCreateInput{}
+
+	if err = json.Unmarshal(bytes, &varSpotMarketRequestCreateInput); err == nil {
+		*o = SpotMarketRequestCreateInput(varSpotMarketRequestCreateInput)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "devices_max")
+		delete(additionalProperties, "devices_min")
+		delete(additionalProperties, "end_at")
+		delete(additionalProperties, "facilities")
+		delete(additionalProperties, "instance_attributes")
+		delete(additionalProperties, "max_bid_price")
+		delete(additionalProperties, "metro")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableSpotMarketRequestCreateInput struct {

@@ -20,16 +20,19 @@ var _ MappedNullable = &CapacityPerFacility{}
 
 // CapacityPerFacility struct for CapacityPerFacility
 type CapacityPerFacility struct {
-	Baremetal0   *CapacityLevelPerBaremetal `json:"baremetal_0,omitempty"`
-	Baremetal1   *CapacityLevelPerBaremetal `json:"baremetal_1,omitempty"`
-	Baremetal2   *CapacityLevelPerBaremetal `json:"baremetal_2,omitempty"`
-	Baremetal2a  *CapacityLevelPerBaremetal `json:"baremetal_2a,omitempty"`
-	Baremetal2a2 *CapacityLevelPerBaremetal `json:"baremetal_2a2,omitempty"`
-	Baremetal3   *CapacityLevelPerBaremetal `json:"baremetal_3,omitempty"`
-	BaremetalS   *CapacityLevelPerBaremetal `json:"baremetal_s,omitempty"`
-	C2MediumX86  *CapacityLevelPerBaremetal `json:"c2.medium.x86,omitempty"`
-	M2XlargeX86  *CapacityLevelPerBaremetal `json:"m2.xlarge.x86,omitempty"`
+	Baremetal0           *CapacityLevelPerBaremetal `json:"baremetal_0,omitempty"`
+	Baremetal1           *CapacityLevelPerBaremetal `json:"baremetal_1,omitempty"`
+	Baremetal2           *CapacityLevelPerBaremetal `json:"baremetal_2,omitempty"`
+	Baremetal2a          *CapacityLevelPerBaremetal `json:"baremetal_2a,omitempty"`
+	Baremetal2a2         *CapacityLevelPerBaremetal `json:"baremetal_2a2,omitempty"`
+	Baremetal3           *CapacityLevelPerBaremetal `json:"baremetal_3,omitempty"`
+	BaremetalS           *CapacityLevelPerBaremetal `json:"baremetal_s,omitempty"`
+	C2MediumX86          *CapacityLevelPerBaremetal `json:"c2.medium.x86,omitempty"`
+	M2XlargeX86          *CapacityLevelPerBaremetal `json:"m2.xlarge.x86,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _CapacityPerFacility CapacityPerFacility
 
 // NewCapacityPerFacility instantiates a new CapacityPerFacility object
 // This constructor will assign default values to properties that have it defined,
@@ -373,7 +376,37 @@ func (o CapacityPerFacility) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.M2XlargeX86) {
 		toSerialize["m2.xlarge.x86"] = o.M2XlargeX86
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *CapacityPerFacility) UnmarshalJSON(bytes []byte) (err error) {
+	varCapacityPerFacility := _CapacityPerFacility{}
+
+	if err = json.Unmarshal(bytes, &varCapacityPerFacility); err == nil {
+		*o = CapacityPerFacility(varCapacityPerFacility)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "baremetal_0")
+		delete(additionalProperties, "baremetal_1")
+		delete(additionalProperties, "baremetal_2")
+		delete(additionalProperties, "baremetal_2a")
+		delete(additionalProperties, "baremetal_2a2")
+		delete(additionalProperties, "baremetal_3")
+		delete(additionalProperties, "baremetal_s")
+		delete(additionalProperties, "c2.medium.x86")
+		delete(additionalProperties, "m2.xlarge.x86")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableCapacityPerFacility struct {

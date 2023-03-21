@@ -20,8 +20,11 @@ var _ MappedNullable = &PortConvertLayer3Input{}
 
 // PortConvertLayer3Input struct for PortConvertLayer3Input
 type PortConvertLayer3Input struct {
-	RequestIps []PortConvertLayer3InputRequestIpsInner `json:"request_ips,omitempty"`
+	RequestIps           []PortConvertLayer3InputRequestIpsInner `json:"request_ips,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _PortConvertLayer3Input PortConvertLayer3Input
 
 // NewPortConvertLayer3Input instantiates a new PortConvertLayer3Input object
 // This constructor will assign default values to properties that have it defined,
@@ -85,7 +88,29 @@ func (o PortConvertLayer3Input) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.RequestIps) {
 		toSerialize["request_ips"] = o.RequestIps
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *PortConvertLayer3Input) UnmarshalJSON(bytes []byte) (err error) {
+	varPortConvertLayer3Input := _PortConvertLayer3Input{}
+
+	if err = json.Unmarshal(bytes, &varPortConvertLayer3Input); err == nil {
+		*o = PortConvertLayer3Input(varPortConvertLayer3Input)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "request_ips")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePortConvertLayer3Input struct {

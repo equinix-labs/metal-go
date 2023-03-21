@@ -20,9 +20,12 @@ var _ MappedNullable = &Coordinates{}
 
 // Coordinates struct for Coordinates
 type Coordinates struct {
-	Latitude  *string `json:"latitude,omitempty"`
-	Longitude *string `json:"longitude,omitempty"`
+	Latitude             *string `json:"latitude,omitempty"`
+	Longitude            *string `json:"longitude,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Coordinates Coordinates
 
 // NewCoordinates instantiates a new Coordinates object
 // This constructor will assign default values to properties that have it defined,
@@ -121,7 +124,30 @@ func (o Coordinates) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Longitude) {
 		toSerialize["longitude"] = o.Longitude
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *Coordinates) UnmarshalJSON(bytes []byte) (err error) {
+	varCoordinates := _Coordinates{}
+
+	if err = json.Unmarshal(bytes, &varCoordinates); err == nil {
+		*o = Coordinates(varCoordinates)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "latitude")
+		delete(additionalProperties, "longitude")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableCoordinates struct {

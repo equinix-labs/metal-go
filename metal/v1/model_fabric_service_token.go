@@ -32,8 +32,11 @@ type FabricServiceToken struct {
 	// Either 'a_side' or 'z_side', depending on which type of Fabric VC was requested.
 	ServiceTokenType *string `json:"service_token_type,omitempty"`
 	// The state of the service token that corresponds with the service token state on Fabric. An 'inactive' state refers to a token that has not been redeemed yet on the Fabric side, an 'active' state refers to a token that has already been redeemed, and an 'expired' state refers to a token that has reached its expiry time.
-	State *string `json:"state,omitempty"`
+	State                *string `json:"state,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _FabricServiceToken FabricServiceToken
 
 // NewFabricServiceToken instantiates a new FabricServiceToken object
 // This constructor will assign default values to properties that have it defined,
@@ -272,7 +275,34 @@ func (o FabricServiceToken) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.State) {
 		toSerialize["state"] = o.State
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *FabricServiceToken) UnmarshalJSON(bytes []byte) (err error) {
+	varFabricServiceToken := _FabricServiceToken{}
+
+	if err = json.Unmarshal(bytes, &varFabricServiceToken); err == nil {
+		*o = FabricServiceToken(varFabricServiceToken)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "expires_at")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "max_allowed_speed")
+		delete(additionalProperties, "role")
+		delete(additionalProperties, "service_token_type")
+		delete(additionalProperties, "state")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableFabricServiceToken struct {

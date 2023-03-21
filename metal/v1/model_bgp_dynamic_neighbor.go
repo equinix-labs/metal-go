@@ -26,14 +26,17 @@ type BgpDynamicNeighbor struct {
 	// The ASN of the dynamic BGP neighbor
 	BgpNeighborAsn *int32 `json:"bgp_neighbor_asn,omitempty"`
 	// Network range of the dynamic BGP neighbor in CIDR format
-	BgpNeighborRange *string          `json:"bgp_neighbor_range,omitempty"`
-	MetalGateway     *VrfMetalGateway `json:"metal_gateway,omitempty"`
-	State            *string          `json:"state,omitempty"`
-	Href             *string          `json:"href,omitempty"`
-	CreatedAt        *time.Time       `json:"created_at,omitempty"`
-	CreatedBy        *UserLimited     `json:"created_by,omitempty"`
-	UpdatedAt        *time.Time       `json:"updated_at,omitempty"`
+	BgpNeighborRange     *string          `json:"bgp_neighbor_range,omitempty"`
+	MetalGateway         *VrfMetalGateway `json:"metal_gateway,omitempty"`
+	State                *string          `json:"state,omitempty"`
+	Href                 *string          `json:"href,omitempty"`
+	CreatedAt            *time.Time       `json:"created_at,omitempty"`
+	CreatedBy            *UserLimited     `json:"created_by,omitempty"`
+	UpdatedAt            *time.Time       `json:"updated_at,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _BgpDynamicNeighbor BgpDynamicNeighbor
 
 // NewBgpDynamicNeighbor instantiates a new BgpDynamicNeighbor object
 // This constructor will assign default values to properties that have it defined,
@@ -367,7 +370,37 @@ func (o BgpDynamicNeighbor) ToMap() (map[string]interface{}, error) {
 		toSerialize["created_by"] = o.CreatedBy
 	}
 	// skip: updated_at is readOnly
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *BgpDynamicNeighbor) UnmarshalJSON(bytes []byte) (err error) {
+	varBgpDynamicNeighbor := _BgpDynamicNeighbor{}
+
+	if err = json.Unmarshal(bytes, &varBgpDynamicNeighbor); err == nil {
+		*o = BgpDynamicNeighbor(varBgpDynamicNeighbor)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "bgp_neighbor_asn")
+		delete(additionalProperties, "bgp_neighbor_range")
+		delete(additionalProperties, "metal_gateway")
+		delete(additionalProperties, "state")
+		delete(additionalProperties, "href")
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "created_by")
+		delete(additionalProperties, "updated_at")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableBgpDynamicNeighbor struct {

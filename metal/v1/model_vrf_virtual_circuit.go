@@ -39,12 +39,15 @@ type VrfVirtualCircuit struct {
 	Speed  *int32  `json:"speed,omitempty"`
 	Status *string `json:"status,omitempty"`
 	// The /30 or /31 subnet of one of the VRF IP Blocks that will be used with the VRF for the Virtual Circuit. This subnet does not have to be an existing VRF IP reservation, as we will create the VRF IP reservation on creation if it does not exist. The Metal IP and Customer IP must be IPs from this subnet. For /30 subnets, the network and broadcast IPs cannot be used as the Metal or Customer IP.
-	Subnet    *string    `json:"subnet,omitempty"`
-	Tags      []string   `json:"tags,omitempty"`
-	Vrf       *Vrf       `json:"vrf,omitempty"`
-	CreatedAt *time.Time `json:"created_at,omitempty"`
-	UpdatedAt *time.Time `json:"updated_at,omitempty"`
+	Subnet               *string    `json:"subnet,omitempty"`
+	Tags                 []string   `json:"tags,omitempty"`
+	Vrf                  *Vrf       `json:"vrf,omitempty"`
+	CreatedAt            *time.Time `json:"created_at,omitempty"`
+	UpdatedAt            *time.Time `json:"updated_at,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _VrfVirtualCircuit VrfVirtualCircuit
 
 // NewVrfVirtualCircuit instantiates a new VrfVirtualCircuit object
 // This constructor will assign default values to properties that have it defined,
@@ -668,7 +671,45 @@ func (o VrfVirtualCircuit) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.UpdatedAt) {
 		toSerialize["updated_at"] = o.UpdatedAt
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *VrfVirtualCircuit) UnmarshalJSON(bytes []byte) (err error) {
+	varVrfVirtualCircuit := _VrfVirtualCircuit{}
+
+	if err = json.Unmarshal(bytes, &varVrfVirtualCircuit); err == nil {
+		*o = VrfVirtualCircuit(varVrfVirtualCircuit)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "customer_ip")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "md5")
+		delete(additionalProperties, "metal_ip")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "port")
+		delete(additionalProperties, "nni_vlan")
+		delete(additionalProperties, "peer_asn")
+		delete(additionalProperties, "project")
+		delete(additionalProperties, "speed")
+		delete(additionalProperties, "status")
+		delete(additionalProperties, "subnet")
+		delete(additionalProperties, "tags")
+		delete(additionalProperties, "vrf")
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "updated_at")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableVrfVirtualCircuit struct {

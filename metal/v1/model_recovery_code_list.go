@@ -20,8 +20,11 @@ var _ MappedNullable = &RecoveryCodeList{}
 
 // RecoveryCodeList struct for RecoveryCodeList
 type RecoveryCodeList struct {
-	RecoveryCodes []string `json:"recovery_codes,omitempty"`
+	RecoveryCodes        []string `json:"recovery_codes,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _RecoveryCodeList RecoveryCodeList
 
 // NewRecoveryCodeList instantiates a new RecoveryCodeList object
 // This constructor will assign default values to properties that have it defined,
@@ -85,7 +88,29 @@ func (o RecoveryCodeList) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.RecoveryCodes) {
 		toSerialize["recovery_codes"] = o.RecoveryCodes
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *RecoveryCodeList) UnmarshalJSON(bytes []byte) (err error) {
+	varRecoveryCodeList := _RecoveryCodeList{}
+
+	if err = json.Unmarshal(bytes, &varRecoveryCodeList); err == nil {
+		*o = RecoveryCodeList(varRecoveryCodeList)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "recovery_codes")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableRecoveryCodeList struct {

@@ -20,8 +20,11 @@ var _ MappedNullable = &IPReservationList{}
 
 // IPReservationList struct for IPReservationList
 type IPReservationList struct {
-	IpAddresses []IPReservationListIpAddressesInner `json:"ip_addresses,omitempty"`
+	IpAddresses          []IPReservationListIpAddressesInner `json:"ip_addresses,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _IPReservationList IPReservationList
 
 // NewIPReservationList instantiates a new IPReservationList object
 // This constructor will assign default values to properties that have it defined,
@@ -85,7 +88,29 @@ func (o IPReservationList) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.IpAddresses) {
 		toSerialize["ip_addresses"] = o.IpAddresses
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *IPReservationList) UnmarshalJSON(bytes []byte) (err error) {
+	varIPReservationList := _IPReservationList{}
+
+	if err = json.Unmarshal(bytes, &varIPReservationList); err == nil {
+		*o = IPReservationList(varIPReservationList)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "ip_addresses")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableIPReservationList struct {

@@ -20,11 +20,14 @@ var _ MappedNullable = &InterconnectionMetro{}
 
 // InterconnectionMetro The location of where the shared or Dedicated Port is located. For interconnections with Dedicated Ports,   this will be the location of the Dedicated Ports. For Fabric VCs (Metal Billed), this is where interconnection will be originating from, as we pre-authorize the use of one of our shared ports   as the origin of the interconnection using A-Side service tokens. We only allow local connections for Fabric VCs (Metal Billed), so the destination location must be the same as the origin. For Fabric VCs (Fabric Billed),    this will be the destination of the interconnection. We allow remote connections for Fabric VCs (Fabric Billed), so the origin of the interconnection can be a different metro set here.
 type InterconnectionMetro struct {
-	Code    *string `json:"code,omitempty"`
-	Country *string `json:"country,omitempty"`
-	Id      *string `json:"id,omitempty"`
-	Name    *string `json:"name,omitempty"`
+	Code                 *string `json:"code,omitempty"`
+	Country              *string `json:"country,omitempty"`
+	Id                   *string `json:"id,omitempty"`
+	Name                 *string `json:"name,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _InterconnectionMetro InterconnectionMetro
 
 // NewInterconnectionMetro instantiates a new InterconnectionMetro object
 // This constructor will assign default values to properties that have it defined,
@@ -193,7 +196,32 @@ func (o InterconnectionMetro) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *InterconnectionMetro) UnmarshalJSON(bytes []byte) (err error) {
+	varInterconnectionMetro := _InterconnectionMetro{}
+
+	if err = json.Unmarshal(bytes, &varInterconnectionMetro); err == nil {
+		*o = InterconnectionMetro(varInterconnectionMetro)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "code")
+		delete(additionalProperties, "country")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "name")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableInterconnectionMetro struct {

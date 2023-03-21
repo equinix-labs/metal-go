@@ -20,9 +20,12 @@ var _ MappedNullable = &OrganizationList{}
 
 // OrganizationList struct for OrganizationList
 type OrganizationList struct {
-	Meta          *Meta          `json:"meta,omitempty"`
-	Organizations []Organization `json:"organizations,omitempty"`
+	Meta                 *Meta          `json:"meta,omitempty"`
+	Organizations        []Organization `json:"organizations,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _OrganizationList OrganizationList
 
 // NewOrganizationList instantiates a new OrganizationList object
 // This constructor will assign default values to properties that have it defined,
@@ -121,7 +124,30 @@ func (o OrganizationList) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Organizations) {
 		toSerialize["organizations"] = o.Organizations
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *OrganizationList) UnmarshalJSON(bytes []byte) (err error) {
+	varOrganizationList := _OrganizationList{}
+
+	if err = json.Unmarshal(bytes, &varOrganizationList); err == nil {
+		*o = OrganizationList(varOrganizationList)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "meta")
+		delete(additionalProperties, "organizations")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableOrganizationList struct {

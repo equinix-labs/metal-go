@@ -25,8 +25,11 @@ type MetroServerInfo struct {
 	// The plan ID or slug to check the capacity of.
 	Plan *string `json:"plan,omitempty"`
 	// The number of servers to check the capacity of.
-	Quantity *string `json:"quantity,omitempty"`
+	Quantity             *string `json:"quantity,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _MetroServerInfo MetroServerInfo
 
 // NewMetroServerInfo instantiates a new MetroServerInfo object
 // This constructor will assign default values to properties that have it defined,
@@ -160,7 +163,31 @@ func (o MetroServerInfo) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Quantity) {
 		toSerialize["quantity"] = o.Quantity
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *MetroServerInfo) UnmarshalJSON(bytes []byte) (err error) {
+	varMetroServerInfo := _MetroServerInfo{}
+
+	if err = json.Unmarshal(bytes, &varMetroServerInfo); err == nil {
+		*o = MetroServerInfo(varMetroServerInfo)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "metro")
+		delete(additionalProperties, "plan")
+		delete(additionalProperties, "quantity")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableMetroServerInfo struct {

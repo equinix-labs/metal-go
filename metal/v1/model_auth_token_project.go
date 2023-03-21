@@ -21,23 +21,26 @@ var _ MappedNullable = &AuthTokenProject{}
 
 // AuthTokenProject struct for AuthTokenProject
 type AuthTokenProject struct {
-	BgpConfig     *Href                  `json:"bgp_config,omitempty"`
-	CreatedAt     *time.Time             `json:"created_at,omitempty"`
-	Customdata    map[string]interface{} `json:"customdata,omitempty"`
-	Devices       []Href                 `json:"devices,omitempty"`
-	Href          *string                `json:"href,omitempty"`
-	Id            *string                `json:"id,omitempty"`
-	Invitations   []Href                 `json:"invitations,omitempty"`
-	MaxDevices    map[string]interface{} `json:"max_devices,omitempty"`
-	Members       []Href                 `json:"members,omitempty"`
-	Memberships   []Href                 `json:"memberships,omitempty"`
-	Name          *string                `json:"name,omitempty"`
-	NetworkStatus map[string]interface{} `json:"network_status,omitempty"`
-	PaymentMethod *Href                  `json:"payment_method,omitempty"`
-	SshKeys       []Href                 `json:"ssh_keys,omitempty"`
-	UpdatedAt     *time.Time             `json:"updated_at,omitempty"`
-	Volumes       []Href                 `json:"volumes,omitempty"`
+	BgpConfig            *Href                  `json:"bgp_config,omitempty"`
+	CreatedAt            *time.Time             `json:"created_at,omitempty"`
+	Customdata           map[string]interface{} `json:"customdata,omitempty"`
+	Devices              []Href                 `json:"devices,omitempty"`
+	Href                 *string                `json:"href,omitempty"`
+	Id                   *string                `json:"id,omitempty"`
+	Invitations          []Href                 `json:"invitations,omitempty"`
+	MaxDevices           map[string]interface{} `json:"max_devices,omitempty"`
+	Members              []Href                 `json:"members,omitempty"`
+	Memberships          []Href                 `json:"memberships,omitempty"`
+	Name                 *string                `json:"name,omitempty"`
+	NetworkStatus        map[string]interface{} `json:"network_status,omitempty"`
+	PaymentMethod        *Href                  `json:"payment_method,omitempty"`
+	SshKeys              []Href                 `json:"ssh_keys,omitempty"`
+	UpdatedAt            *time.Time             `json:"updated_at,omitempty"`
+	Volumes              []Href                 `json:"volumes,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _AuthTokenProject AuthTokenProject
 
 // NewAuthTokenProject instantiates a new AuthTokenProject object
 // This constructor will assign default values to properties that have it defined,
@@ -626,7 +629,44 @@ func (o AuthTokenProject) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Volumes) {
 		toSerialize["volumes"] = o.Volumes
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *AuthTokenProject) UnmarshalJSON(bytes []byte) (err error) {
+	varAuthTokenProject := _AuthTokenProject{}
+
+	if err = json.Unmarshal(bytes, &varAuthTokenProject); err == nil {
+		*o = AuthTokenProject(varAuthTokenProject)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "bgp_config")
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "customdata")
+		delete(additionalProperties, "devices")
+		delete(additionalProperties, "href")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "invitations")
+		delete(additionalProperties, "max_devices")
+		delete(additionalProperties, "members")
+		delete(additionalProperties, "memberships")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "network_status")
+		delete(additionalProperties, "payment_method")
+		delete(additionalProperties, "ssh_keys")
+		delete(additionalProperties, "updated_at")
+		delete(additionalProperties, "volumes")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableAuthTokenProject struct {

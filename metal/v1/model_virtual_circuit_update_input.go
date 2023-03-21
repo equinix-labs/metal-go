@@ -26,8 +26,11 @@ type VirtualCircuitUpdateInput struct {
 	Speed *string  `json:"speed,omitempty"`
 	Tags  []string `json:"tags,omitempty"`
 	// A Virtual Network record UUID or the VNID of a Metro Virtual Network in your project.
-	Vnid *string `json:"vnid,omitempty"`
+	Vnid                 *string `json:"vnid,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _VirtualCircuitUpdateInput VirtualCircuitUpdateInput
 
 // NewVirtualCircuitUpdateInput instantiates a new VirtualCircuitUpdateInput object
 // This constructor will assign default values to properties that have it defined,
@@ -231,7 +234,33 @@ func (o VirtualCircuitUpdateInput) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Vnid) {
 		toSerialize["vnid"] = o.Vnid
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *VirtualCircuitUpdateInput) UnmarshalJSON(bytes []byte) (err error) {
+	varVirtualCircuitUpdateInput := _VirtualCircuitUpdateInput{}
+
+	if err = json.Unmarshal(bytes, &varVirtualCircuitUpdateInput); err == nil {
+		*o = VirtualCircuitUpdateInput(varVirtualCircuitUpdateInput)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "speed")
+		delete(additionalProperties, "tags")
+		delete(additionalProperties, "vnid")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableVirtualCircuitUpdateInput struct {

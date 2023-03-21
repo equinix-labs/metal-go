@@ -20,11 +20,14 @@ var _ MappedNullable = &PortVlanAssignmentBatchVlanAssignmentsInner{}
 
 // PortVlanAssignmentBatchVlanAssignmentsInner struct for PortVlanAssignmentBatchVlanAssignmentsInner
 type PortVlanAssignmentBatchVlanAssignmentsInner struct {
-	Id     *string `json:"id,omitempty"`
-	Native *bool   `json:"native,omitempty"`
-	State  *string `json:"state,omitempty"`
-	Vlan   *int32  `json:"vlan,omitempty"`
+	Id                   *string `json:"id,omitempty"`
+	Native               *bool   `json:"native,omitempty"`
+	State                *string `json:"state,omitempty"`
+	Vlan                 *int32  `json:"vlan,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _PortVlanAssignmentBatchVlanAssignmentsInner PortVlanAssignmentBatchVlanAssignmentsInner
 
 // NewPortVlanAssignmentBatchVlanAssignmentsInner instantiates a new PortVlanAssignmentBatchVlanAssignmentsInner object
 // This constructor will assign default values to properties that have it defined,
@@ -193,7 +196,32 @@ func (o PortVlanAssignmentBatchVlanAssignmentsInner) ToMap() (map[string]interfa
 	if !isNil(o.Vlan) {
 		toSerialize["vlan"] = o.Vlan
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *PortVlanAssignmentBatchVlanAssignmentsInner) UnmarshalJSON(bytes []byte) (err error) {
+	varPortVlanAssignmentBatchVlanAssignmentsInner := _PortVlanAssignmentBatchVlanAssignmentsInner{}
+
+	if err = json.Unmarshal(bytes, &varPortVlanAssignmentBatchVlanAssignmentsInner); err == nil {
+		*o = PortVlanAssignmentBatchVlanAssignmentsInner(varPortVlanAssignmentBatchVlanAssignmentsInner)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "native")
+		delete(additionalProperties, "state")
+		delete(additionalProperties, "vlan")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePortVlanAssignmentBatchVlanAssignmentsInner struct {

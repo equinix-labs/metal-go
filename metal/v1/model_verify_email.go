@@ -21,8 +21,11 @@ var _ MappedNullable = &VerifyEmail{}
 // VerifyEmail struct for VerifyEmail
 type VerifyEmail struct {
 	// User verification token
-	UserToken string `json:"user_token"`
+	UserToken            string `json:"user_token"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _VerifyEmail VerifyEmail
 
 // NewVerifyEmail instantiates a new VerifyEmail object
 // This constructor will assign default values to properties that have it defined,
@@ -77,7 +80,29 @@ func (o VerifyEmail) MarshalJSON() ([]byte, error) {
 func (o VerifyEmail) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["user_token"] = o.UserToken
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *VerifyEmail) UnmarshalJSON(bytes []byte) (err error) {
+	varVerifyEmail := _VerifyEmail{}
+
+	if err = json.Unmarshal(bytes, &varVerifyEmail); err == nil {
+		*o = VerifyEmail(varVerifyEmail)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "user_token")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableVerifyEmail struct {

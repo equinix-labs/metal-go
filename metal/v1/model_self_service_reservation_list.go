@@ -20,8 +20,11 @@ var _ MappedNullable = &SelfServiceReservationList{}
 
 // SelfServiceReservationList struct for SelfServiceReservationList
 type SelfServiceReservationList struct {
-	Reservations []SelfServiceReservationResponse `json:"reservations,omitempty"`
+	Reservations         []SelfServiceReservationResponse `json:"reservations,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SelfServiceReservationList SelfServiceReservationList
 
 // NewSelfServiceReservationList instantiates a new SelfServiceReservationList object
 // This constructor will assign default values to properties that have it defined,
@@ -85,7 +88,29 @@ func (o SelfServiceReservationList) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Reservations) {
 		toSerialize["reservations"] = o.Reservations
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *SelfServiceReservationList) UnmarshalJSON(bytes []byte) (err error) {
+	varSelfServiceReservationList := _SelfServiceReservationList{}
+
+	if err = json.Unmarshal(bytes, &varSelfServiceReservationList); err == nil {
+		*o = SelfServiceReservationList(varSelfServiceReservationList)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "reservations")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableSelfServiceReservationList struct {

@@ -29,18 +29,21 @@ type Organization struct {
 	Customdata     map[string]interface{} `json:"customdata,omitempty"`
 	Description    *string                `json:"description,omitempty"`
 	// Force to all members to have enabled the two factor authentication after that date, unless the value is null
-	Enforce2faAt *time.Time `json:"enforce_2fa_at,omitempty"`
-	Id           *string    `json:"id,omitempty"`
-	Logo         **os.File  `json:"logo,omitempty"`
-	Members      []Href     `json:"members,omitempty"`
-	Memberships  []Href     `json:"memberships,omitempty"`
-	Name         *string    `json:"name,omitempty"`
-	Projects     []Href     `json:"projects,omitempty"`
-	Terms        *int32     `json:"terms,omitempty"`
-	Twitter      *string    `json:"twitter,omitempty"`
-	UpdatedAt    *time.Time `json:"updated_at,omitempty"`
-	Website      *string    `json:"website,omitempty"`
+	Enforce2faAt         *time.Time `json:"enforce_2fa_at,omitempty"`
+	Id                   *string    `json:"id,omitempty"`
+	Logo                 **os.File  `json:"logo,omitempty"`
+	Members              []Href     `json:"members,omitempty"`
+	Memberships          []Href     `json:"memberships,omitempty"`
+	Name                 *string    `json:"name,omitempty"`
+	Projects             []Href     `json:"projects,omitempty"`
+	Terms                *int32     `json:"terms,omitempty"`
+	Twitter              *string    `json:"twitter,omitempty"`
+	UpdatedAt            *time.Time `json:"updated_at,omitempty"`
+	Website              *string    `json:"website,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Organization Organization
 
 // NewOrganization instantiates a new Organization object
 // This constructor will assign default values to properties that have it defined,
@@ -664,7 +667,45 @@ func (o Organization) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Website) {
 		toSerialize["website"] = o.Website
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *Organization) UnmarshalJSON(bytes []byte) (err error) {
+	varOrganization := _Organization{}
+
+	if err = json.Unmarshal(bytes, &varOrganization); err == nil {
+		*o = Organization(varOrganization)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "address")
+		delete(additionalProperties, "billing_address")
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "credit_amount")
+		delete(additionalProperties, "customdata")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "enforce_2fa_at")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "logo")
+		delete(additionalProperties, "members")
+		delete(additionalProperties, "memberships")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "projects")
+		delete(additionalProperties, "terms")
+		delete(additionalProperties, "twitter")
+		delete(additionalProperties, "updated_at")
+		delete(additionalProperties, "website")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableOrganization struct {

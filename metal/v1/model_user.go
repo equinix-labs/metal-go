@@ -21,27 +21,30 @@ var _ MappedNullable = &User{}
 
 // User struct for User
 type User struct {
-	AvatarThumbUrl   *string                `json:"avatar_thumb_url,omitempty"`
-	AvatarUrl        *string                `json:"avatar_url,omitempty"`
-	CreatedAt        *time.Time             `json:"created_at,omitempty"`
-	Customdata       map[string]interface{} `json:"customdata,omitempty"`
-	Email            *string                `json:"email,omitempty"`
-	Emails           []Href                 `json:"emails,omitempty"`
-	FirstName        *string                `json:"first_name,omitempty"`
-	FraudScore       *string                `json:"fraud_score,omitempty"`
-	FullName         *string                `json:"full_name,omitempty"`
-	Href             *string                `json:"href,omitempty"`
-	Id               *string                `json:"id,omitempty"`
-	LastLoginAt      *time.Time             `json:"last_login_at,omitempty"`
-	LastName         *string                `json:"last_name,omitempty"`
-	MaxOrganizations *int32                 `json:"max_organizations,omitempty"`
-	MaxProjects      *int32                 `json:"max_projects,omitempty"`
-	PhoneNumber      *string                `json:"phone_number,omitempty"`
-	ShortId          *string                `json:"short_id,omitempty"`
-	Timezone         *string                `json:"timezone,omitempty"`
-	TwoFactorAuth    *string                `json:"two_factor_auth,omitempty"`
-	UpdatedAt        *time.Time             `json:"updated_at,omitempty"`
+	AvatarThumbUrl       *string                `json:"avatar_thumb_url,omitempty"`
+	AvatarUrl            *string                `json:"avatar_url,omitempty"`
+	CreatedAt            *time.Time             `json:"created_at,omitempty"`
+	Customdata           map[string]interface{} `json:"customdata,omitempty"`
+	Email                *string                `json:"email,omitempty"`
+	Emails               []Href                 `json:"emails,omitempty"`
+	FirstName            *string                `json:"first_name,omitempty"`
+	FraudScore           *string                `json:"fraud_score,omitempty"`
+	FullName             *string                `json:"full_name,omitempty"`
+	Href                 *string                `json:"href,omitempty"`
+	Id                   *string                `json:"id,omitempty"`
+	LastLoginAt          *time.Time             `json:"last_login_at,omitempty"`
+	LastName             *string                `json:"last_name,omitempty"`
+	MaxOrganizations     *int32                 `json:"max_organizations,omitempty"`
+	MaxProjects          *int32                 `json:"max_projects,omitempty"`
+	PhoneNumber          *string                `json:"phone_number,omitempty"`
+	ShortId              *string                `json:"short_id,omitempty"`
+	Timezone             *string                `json:"timezone,omitempty"`
+	TwoFactorAuth        *string                `json:"two_factor_auth,omitempty"`
+	UpdatedAt            *time.Time             `json:"updated_at,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _User User
 
 // NewUser instantiates a new User object
 // This constructor will assign default values to properties that have it defined,
@@ -770,7 +773,48 @@ func (o User) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.UpdatedAt) {
 		toSerialize["updated_at"] = o.UpdatedAt
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *User) UnmarshalJSON(bytes []byte) (err error) {
+	varUser := _User{}
+
+	if err = json.Unmarshal(bytes, &varUser); err == nil {
+		*o = User(varUser)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "avatar_thumb_url")
+		delete(additionalProperties, "avatar_url")
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "customdata")
+		delete(additionalProperties, "email")
+		delete(additionalProperties, "emails")
+		delete(additionalProperties, "first_name")
+		delete(additionalProperties, "fraud_score")
+		delete(additionalProperties, "full_name")
+		delete(additionalProperties, "href")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "last_login_at")
+		delete(additionalProperties, "last_name")
+		delete(additionalProperties, "max_organizations")
+		delete(additionalProperties, "max_projects")
+		delete(additionalProperties, "phone_number")
+		delete(additionalProperties, "short_id")
+		delete(additionalProperties, "timezone")
+		delete(additionalProperties, "two_factor_auth")
+		delete(additionalProperties, "updated_at")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUser struct {

@@ -37,12 +37,15 @@ type Metadata struct {
 	PrivateSubnets []string `json:"private_subnets,omitempty"`
 	Reserved       *bool    `json:"reserved,omitempty"`
 	// The specs of the plan version of the instance
-	Specs         map[string]interface{} `json:"specs,omitempty"`
-	SshKeys       []string               `json:"ssh_keys,omitempty"`
-	SwitchShortId *string                `json:"switch_short_id,omitempty"`
-	Tags          []string               `json:"tags,omitempty"`
-	Volumes       []string               `json:"volumes,omitempty"`
+	Specs                map[string]interface{} `json:"specs,omitempty"`
+	SshKeys              []string               `json:"ssh_keys,omitempty"`
+	SwitchShortId        *string                `json:"switch_short_id,omitempty"`
+	Tags                 []string               `json:"tags,omitempty"`
+	Volumes              []string               `json:"volumes,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Metadata Metadata
 
 // NewMetadata instantiates a new Metadata object
 // This constructor will assign default values to properties that have it defined,
@@ -666,7 +669,45 @@ func (o Metadata) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Volumes) {
 		toSerialize["volumes"] = o.Volumes
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *Metadata) UnmarshalJSON(bytes []byte) (err error) {
+	varMetadata := _Metadata{}
+
+	if err = json.Unmarshal(bytes, &varMetadata); err == nil {
+		*o = Metadata(varMetadata)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "class")
+		delete(additionalProperties, "customdata")
+		delete(additionalProperties, "facility")
+		delete(additionalProperties, "hostname")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "iqn")
+		delete(additionalProperties, "metro")
+		delete(additionalProperties, "network")
+		delete(additionalProperties, "operating_system")
+		delete(additionalProperties, "plan")
+		delete(additionalProperties, "private_subnets")
+		delete(additionalProperties, "reserved")
+		delete(additionalProperties, "specs")
+		delete(additionalProperties, "ssh_keys")
+		delete(additionalProperties, "switch_short_id")
+		delete(additionalProperties, "tags")
+		delete(additionalProperties, "volumes")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableMetadata struct {

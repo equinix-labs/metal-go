@@ -20,10 +20,13 @@ var _ MappedNullable = &PlanSpecsFeatures{}
 
 // PlanSpecsFeatures struct for PlanSpecsFeatures
 type PlanSpecsFeatures struct {
-	Raid *bool `json:"raid,omitempty"`
-	Txt  *bool `json:"txt,omitempty"`
-	Uefi *bool `json:"uefi,omitempty"`
+	Raid                 *bool `json:"raid,omitempty"`
+	Txt                  *bool `json:"txt,omitempty"`
+	Uefi                 *bool `json:"uefi,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _PlanSpecsFeatures PlanSpecsFeatures
 
 // NewPlanSpecsFeatures instantiates a new PlanSpecsFeatures object
 // This constructor will assign default values to properties that have it defined,
@@ -157,7 +160,31 @@ func (o PlanSpecsFeatures) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Uefi) {
 		toSerialize["uefi"] = o.Uefi
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *PlanSpecsFeatures) UnmarshalJSON(bytes []byte) (err error) {
+	varPlanSpecsFeatures := _PlanSpecsFeatures{}
+
+	if err = json.Unmarshal(bytes, &varPlanSpecsFeatures); err == nil {
+		*o = PlanSpecsFeatures(varPlanSpecsFeatures)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "raid")
+		delete(additionalProperties, "txt")
+		delete(additionalProperties, "uefi")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePlanSpecsFeatures struct {

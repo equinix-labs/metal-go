@@ -21,7 +21,10 @@ var _ MappedNullable = &TransferRequestInput{}
 // TransferRequestInput struct for TransferRequestInput
 type TransferRequestInput struct {
 	TargetOrganizationId *string `json:"target_organization_id,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _TransferRequestInput TransferRequestInput
 
 // NewTransferRequestInput instantiates a new TransferRequestInput object
 // This constructor will assign default values to properties that have it defined,
@@ -85,7 +88,29 @@ func (o TransferRequestInput) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.TargetOrganizationId) {
 		toSerialize["target_organization_id"] = o.TargetOrganizationId
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *TransferRequestInput) UnmarshalJSON(bytes []byte) (err error) {
+	varTransferRequestInput := _TransferRequestInput{}
+
+	if err = json.Unmarshal(bytes, &varTransferRequestInput); err == nil {
+		*o = TransferRequestInput(varTransferRequestInput)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "target_organization_id")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableTransferRequestInput struct {

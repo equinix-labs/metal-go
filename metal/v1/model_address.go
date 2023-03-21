@@ -20,14 +20,17 @@ var _ MappedNullable = &Address{}
 
 // Address struct for Address
 type Address struct {
-	Address     string       `json:"address"`
-	Address2    *string      `json:"address2,omitempty"`
-	City        *string      `json:"city,omitempty"`
-	Coordinates *Coordinates `json:"coordinates,omitempty"`
-	Country     string       `json:"country"`
-	State       *string      `json:"state,omitempty"`
-	ZipCode     string       `json:"zip_code"`
+	Address              string       `json:"address"`
+	Address2             *string      `json:"address2,omitempty"`
+	City                 *string      `json:"city,omitempty"`
+	Coordinates          *Coordinates `json:"coordinates,omitempty"`
+	Country              string       `json:"country"`
+	State                *string      `json:"state,omitempty"`
+	ZipCode              string       `json:"zip_code"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Address Address
 
 // NewAddress instantiates a new Address object
 // This constructor will assign default values to properties that have it defined,
@@ -274,7 +277,35 @@ func (o Address) ToMap() (map[string]interface{}, error) {
 		toSerialize["state"] = o.State
 	}
 	toSerialize["zip_code"] = o.ZipCode
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *Address) UnmarshalJSON(bytes []byte) (err error) {
+	varAddress := _Address{}
+
+	if err = json.Unmarshal(bytes, &varAddress); err == nil {
+		*o = Address(varAddress)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "address")
+		delete(additionalProperties, "address2")
+		delete(additionalProperties, "city")
+		delete(additionalProperties, "coordinates")
+		delete(additionalProperties, "country")
+		delete(additionalProperties, "state")
+		delete(additionalProperties, "zip_code")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableAddress struct {

@@ -33,7 +33,10 @@ type Port struct {
 	NetworkType          *string         `json:"network_type,omitempty"`
 	NativeVirtualNetwork *VirtualNetwork `json:"native_virtual_network,omitempty"`
 	VirtualNetworks      []Href          `json:"virtual_networks,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Port Port
 
 // NewPort instantiates a new Port object
 // This constructor will assign default values to properties that have it defined,
@@ -412,7 +415,38 @@ func (o Port) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.VirtualNetworks) {
 		toSerialize["virtual_networks"] = o.VirtualNetworks
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *Port) UnmarshalJSON(bytes []byte) (err error) {
+	varPort := _Port{}
+
+	if err = json.Unmarshal(bytes, &varPort); err == nil {
+		*o = Port(varPort)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "bond")
+		delete(additionalProperties, "data")
+		delete(additionalProperties, "disbond_operation_supported")
+		delete(additionalProperties, "href")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "network_type")
+		delete(additionalProperties, "native_virtual_network")
+		delete(additionalProperties, "virtual_networks")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePort struct {

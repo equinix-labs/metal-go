@@ -23,14 +23,17 @@ var _ MappedNullable = &AuthToken{}
 type AuthToken struct {
 	CreatedAt *time.Time `json:"created_at,omitempty"`
 	// Available only for API keys
-	Description *string           `json:"description,omitempty"`
-	Id          *string           `json:"id,omitempty"`
-	Project     *AuthTokenProject `json:"project,omitempty"`
-	ReadOnly    *bool             `json:"read_only,omitempty"`
-	Token       *string           `json:"token,omitempty"`
-	UpdatedAt   *time.Time        `json:"updated_at,omitempty"`
-	User        *AuthTokenUser    `json:"user,omitempty"`
+	Description          *string           `json:"description,omitempty"`
+	Id                   *string           `json:"id,omitempty"`
+	Project              *AuthTokenProject `json:"project,omitempty"`
+	ReadOnly             *bool             `json:"read_only,omitempty"`
+	Token                *string           `json:"token,omitempty"`
+	UpdatedAt            *time.Time        `json:"updated_at,omitempty"`
+	User                 *AuthTokenUser    `json:"user,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _AuthToken AuthToken
 
 // NewAuthToken instantiates a new AuthToken object
 // This constructor will assign default values to properties that have it defined,
@@ -339,7 +342,36 @@ func (o AuthToken) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.User) {
 		toSerialize["user"] = o.User
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *AuthToken) UnmarshalJSON(bytes []byte) (err error) {
+	varAuthToken := _AuthToken{}
+
+	if err = json.Unmarshal(bytes, &varAuthToken); err == nil {
+		*o = AuthToken(varAuthToken)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "project")
+		delete(additionalProperties, "read_only")
+		delete(additionalProperties, "token")
+		delete(additionalProperties, "updated_at")
+		delete(additionalProperties, "user")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableAuthToken struct {

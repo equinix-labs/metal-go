@@ -20,9 +20,12 @@ var _ MappedNullable = &AuthTokenInput{}
 
 // AuthTokenInput struct for AuthTokenInput
 type AuthTokenInput struct {
-	Description *string `json:"description,omitempty"`
-	ReadOnly    *bool   `json:"read_only,omitempty"`
+	Description          *string `json:"description,omitempty"`
+	ReadOnly             *bool   `json:"read_only,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _AuthTokenInput AuthTokenInput
 
 // NewAuthTokenInput instantiates a new AuthTokenInput object
 // This constructor will assign default values to properties that have it defined,
@@ -121,7 +124,30 @@ func (o AuthTokenInput) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.ReadOnly) {
 		toSerialize["read_only"] = o.ReadOnly
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *AuthTokenInput) UnmarshalJSON(bytes []byte) (err error) {
+	varAuthTokenInput := _AuthTokenInput{}
+
+	if err = json.Unmarshal(bytes, &varAuthTokenInput); err == nil {
+		*o = AuthTokenInput(varAuthTokenInput)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "read_only")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableAuthTokenInput struct {

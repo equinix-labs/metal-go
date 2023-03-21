@@ -20,8 +20,11 @@ var _ MappedNullable = &CreateEmailInput{}
 
 // CreateEmailInput struct for CreateEmailInput
 type CreateEmailInput struct {
-	Address string `json:"address"`
+	Address              string `json:"address"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _CreateEmailInput CreateEmailInput
 
 // NewCreateEmailInput instantiates a new CreateEmailInput object
 // This constructor will assign default values to properties that have it defined,
@@ -76,7 +79,29 @@ func (o CreateEmailInput) MarshalJSON() ([]byte, error) {
 func (o CreateEmailInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["address"] = o.Address
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *CreateEmailInput) UnmarshalJSON(bytes []byte) (err error) {
+	varCreateEmailInput := _CreateEmailInput{}
+
+	if err = json.Unmarshal(bytes, &varCreateEmailInput); err == nil {
+		*o = CreateEmailInput(varCreateEmailInput)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "address")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableCreateEmailInput struct {

@@ -25,8 +25,11 @@ type MetalGatewayCreateInput struct {
 	// The subnet size (8, 16, 32, 64, or 128) of the private IPv4 reservation that will be created for the metal gateway. This field is required unless a project IP reservation was specified.           Please keep in mind that the number of private metal gateway ranges are limited per project. If you would like to increase the limit per project, please contact support for assistance.
 	PrivateIpv4SubnetSize *int32 `json:"private_ipv4_subnet_size,omitempty"`
 	// The UUID of a metro virtual network that belongs to the same project as where the metal gateway will be created in.
-	VirtualNetworkId string `json:"virtual_network_id"`
+	VirtualNetworkId     string `json:"virtual_network_id"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _MetalGatewayCreateInput MetalGatewayCreateInput
 
 // NewMetalGatewayCreateInput instantiates a new MetalGatewayCreateInput object
 // This constructor will assign default values to properties that have it defined,
@@ -151,7 +154,31 @@ func (o MetalGatewayCreateInput) ToMap() (map[string]interface{}, error) {
 		toSerialize["private_ipv4_subnet_size"] = o.PrivateIpv4SubnetSize
 	}
 	toSerialize["virtual_network_id"] = o.VirtualNetworkId
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *MetalGatewayCreateInput) UnmarshalJSON(bytes []byte) (err error) {
+	varMetalGatewayCreateInput := _MetalGatewayCreateInput{}
+
+	if err = json.Unmarshal(bytes, &varMetalGatewayCreateInput); err == nil {
+		*o = MetalGatewayCreateInput(varMetalGatewayCreateInput)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "ip_reservation_id")
+		delete(additionalProperties, "private_ipv4_subnet_size")
+		delete(additionalProperties, "virtual_network_id")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableMetalGatewayCreateInput struct {

@@ -20,11 +20,14 @@ var _ MappedNullable = &BgpConfigRequestInput{}
 
 // BgpConfigRequestInput struct for BgpConfigRequestInput
 type BgpConfigRequestInput struct {
-	Asn            int32   `json:"asn"`
-	DeploymentType string  `json:"deployment_type"`
-	Md5            *string `json:"md5,omitempty"`
-	UseCase        *string `json:"use_case,omitempty"`
+	Asn                  int32   `json:"asn"`
+	DeploymentType       string  `json:"deployment_type"`
+	Md5                  *string `json:"md5,omitempty"`
+	UseCase              *string `json:"use_case,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _BgpConfigRequestInput BgpConfigRequestInput
 
 // NewBgpConfigRequestInput instantiates a new BgpConfigRequestInput object
 // This constructor will assign default values to properties that have it defined,
@@ -175,7 +178,32 @@ func (o BgpConfigRequestInput) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.UseCase) {
 		toSerialize["use_case"] = o.UseCase
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *BgpConfigRequestInput) UnmarshalJSON(bytes []byte) (err error) {
+	varBgpConfigRequestInput := _BgpConfigRequestInput{}
+
+	if err = json.Unmarshal(bytes, &varBgpConfigRequestInput); err == nil {
+		*o = BgpConfigRequestInput(varBgpConfigRequestInput)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "asn")
+		delete(additionalProperties, "deployment_type")
+		delete(additionalProperties, "md5")
+		delete(additionalProperties, "use_case")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableBgpConfigRequestInput struct {

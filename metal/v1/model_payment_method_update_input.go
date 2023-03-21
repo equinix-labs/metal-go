@@ -20,13 +20,16 @@ var _ MappedNullable = &PaymentMethodUpdateInput{}
 
 // PaymentMethodUpdateInput struct for PaymentMethodUpdateInput
 type PaymentMethodUpdateInput struct {
-	BillingAddress  map[string]interface{} `json:"billing_address,omitempty"`
-	CardholderName  *string                `json:"cardholder_name,omitempty"`
-	Default         *bool                  `json:"default,omitempty"`
-	ExpirationMonth *string                `json:"expiration_month,omitempty"`
-	ExpirationYear  *int32                 `json:"expiration_year,omitempty"`
-	Name            *string                `json:"name,omitempty"`
+	BillingAddress       map[string]interface{} `json:"billing_address,omitempty"`
+	CardholderName       *string                `json:"cardholder_name,omitempty"`
+	Default              *bool                  `json:"default,omitempty"`
+	ExpirationMonth      *string                `json:"expiration_month,omitempty"`
+	ExpirationYear       *int32                 `json:"expiration_year,omitempty"`
+	Name                 *string                `json:"name,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _PaymentMethodUpdateInput PaymentMethodUpdateInput
 
 // NewPaymentMethodUpdateInput instantiates a new PaymentMethodUpdateInput object
 // This constructor will assign default values to properties that have it defined,
@@ -265,7 +268,34 @@ func (o PaymentMethodUpdateInput) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *PaymentMethodUpdateInput) UnmarshalJSON(bytes []byte) (err error) {
+	varPaymentMethodUpdateInput := _PaymentMethodUpdateInput{}
+
+	if err = json.Unmarshal(bytes, &varPaymentMethodUpdateInput); err == nil {
+		*o = PaymentMethodUpdateInput(varPaymentMethodUpdateInput)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "billing_address")
+		delete(additionalProperties, "cardholder_name")
+		delete(additionalProperties, "default")
+		delete(additionalProperties, "expiration_month")
+		delete(additionalProperties, "expiration_year")
+		delete(additionalProperties, "name")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePaymentMethodUpdateInput struct {

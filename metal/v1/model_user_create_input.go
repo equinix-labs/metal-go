@@ -22,25 +22,28 @@ var _ MappedNullable = &UserCreateInput{}
 
 // UserCreateInput struct for UserCreateInput
 type UserCreateInput struct {
-	Avatar         **os.File              `json:"avatar,omitempty"`
-	CompanyName    *string                `json:"company_name,omitempty"`
-	CompanyUrl     *string                `json:"company_url,omitempty"`
-	Customdata     map[string]interface{} `json:"customdata,omitempty"`
-	Emails         []EmailInput           `json:"emails"`
-	FirstName      string                 `json:"first_name"`
-	LastName       string                 `json:"last_name"`
-	Level          *string                `json:"level,omitempty"`
-	Locked         *bool                  `json:"locked,omitempty"`
-	Password       *string                `json:"password,omitempty"`
-	PhoneNumber    *string                `json:"phone_number,omitempty"`
-	SocialAccounts map[string]interface{} `json:"social_accounts,omitempty"`
-	Timezone       *string                `json:"timezone,omitempty"`
-	Title          *string                `json:"title,omitempty"`
-	TwoFactorAuth  *string                `json:"two_factor_auth,omitempty"`
-	VerifiedAt     *time.Time             `json:"verified_at,omitempty"`
-	InvitationId   *string                `json:"invitation_id,omitempty"`
-	Nonce          *string                `json:"nonce,omitempty"`
+	Avatar               **os.File              `json:"avatar,omitempty"`
+	CompanyName          *string                `json:"company_name,omitempty"`
+	CompanyUrl           *string                `json:"company_url,omitempty"`
+	Customdata           map[string]interface{} `json:"customdata,omitempty"`
+	Emails               []EmailInput           `json:"emails"`
+	FirstName            string                 `json:"first_name"`
+	LastName             string                 `json:"last_name"`
+	Level                *string                `json:"level,omitempty"`
+	Locked               *bool                  `json:"locked,omitempty"`
+	Password             *string                `json:"password,omitempty"`
+	PhoneNumber          *string                `json:"phone_number,omitempty"`
+	SocialAccounts       map[string]interface{} `json:"social_accounts,omitempty"`
+	Timezone             *string                `json:"timezone,omitempty"`
+	Title                *string                `json:"title,omitempty"`
+	TwoFactorAuth        *string                `json:"two_factor_auth,omitempty"`
+	VerifiedAt           *time.Time             `json:"verified_at,omitempty"`
+	InvitationId         *string                `json:"invitation_id,omitempty"`
+	Nonce                *string                `json:"nonce,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UserCreateInput UserCreateInput
 
 // NewUserCreateInput instantiates a new UserCreateInput object
 // This constructor will assign default values to properties that have it defined,
@@ -672,7 +675,46 @@ func (o UserCreateInput) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Nonce) {
 		toSerialize["nonce"] = o.Nonce
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *UserCreateInput) UnmarshalJSON(bytes []byte) (err error) {
+	varUserCreateInput := _UserCreateInput{}
+
+	if err = json.Unmarshal(bytes, &varUserCreateInput); err == nil {
+		*o = UserCreateInput(varUserCreateInput)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "avatar")
+		delete(additionalProperties, "company_name")
+		delete(additionalProperties, "company_url")
+		delete(additionalProperties, "customdata")
+		delete(additionalProperties, "emails")
+		delete(additionalProperties, "first_name")
+		delete(additionalProperties, "last_name")
+		delete(additionalProperties, "level")
+		delete(additionalProperties, "locked")
+		delete(additionalProperties, "password")
+		delete(additionalProperties, "phone_number")
+		delete(additionalProperties, "social_accounts")
+		delete(additionalProperties, "timezone")
+		delete(additionalProperties, "title")
+		delete(additionalProperties, "two_factor_auth")
+		delete(additionalProperties, "verified_at")
+		delete(additionalProperties, "invitation_id")
+		delete(additionalProperties, "nonce")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUserCreateInput struct {

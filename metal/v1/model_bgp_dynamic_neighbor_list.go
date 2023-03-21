@@ -20,9 +20,12 @@ var _ MappedNullable = &BgpDynamicNeighborList{}
 
 // BgpDynamicNeighborList struct for BgpDynamicNeighborList
 type BgpDynamicNeighborList struct {
-	BgpDynamicNeighbors []BgpDynamicNeighbor `json:"bgp_dynamic_neighbors,omitempty"`
-	Meta                *Meta                `json:"meta,omitempty"`
+	BgpDynamicNeighbors  []BgpDynamicNeighbor `json:"bgp_dynamic_neighbors,omitempty"`
+	Meta                 *Meta                `json:"meta,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _BgpDynamicNeighborList BgpDynamicNeighborList
 
 // NewBgpDynamicNeighborList instantiates a new BgpDynamicNeighborList object
 // This constructor will assign default values to properties that have it defined,
@@ -121,7 +124,30 @@ func (o BgpDynamicNeighborList) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Meta) {
 		toSerialize["meta"] = o.Meta
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *BgpDynamicNeighborList) UnmarshalJSON(bytes []byte) (err error) {
+	varBgpDynamicNeighborList := _BgpDynamicNeighborList{}
+
+	if err = json.Unmarshal(bytes, &varBgpDynamicNeighborList); err == nil {
+		*o = BgpDynamicNeighborList(varBgpDynamicNeighborList)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "bgp_dynamic_neighbors")
+		delete(additionalProperties, "meta")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableBgpDynamicNeighborList struct {

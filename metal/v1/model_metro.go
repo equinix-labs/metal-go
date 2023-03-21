@@ -20,11 +20,14 @@ var _ MappedNullable = &Metro{}
 
 // Metro struct for Metro
 type Metro struct {
-	Code    *string `json:"code,omitempty"`
-	Country *string `json:"country,omitempty"`
-	Id      *string `json:"id,omitempty"`
-	Name    *string `json:"name,omitempty"`
+	Code                 *string `json:"code,omitempty"`
+	Country              *string `json:"country,omitempty"`
+	Id                   *string `json:"id,omitempty"`
+	Name                 *string `json:"name,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Metro Metro
 
 // NewMetro instantiates a new Metro object
 // This constructor will assign default values to properties that have it defined,
@@ -193,7 +196,32 @@ func (o Metro) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *Metro) UnmarshalJSON(bytes []byte) (err error) {
+	varMetro := _Metro{}
+
+	if err = json.Unmarshal(bytes, &varMetro); err == nil {
+		*o = Metro(varMetro)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "code")
+		delete(additionalProperties, "country")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "name")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableMetro struct {

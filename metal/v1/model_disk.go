@@ -20,10 +20,13 @@ var _ MappedNullable = &Disk{}
 
 // Disk struct for Disk
 type Disk struct {
-	Device     *string     `json:"device,omitempty"`
-	WipeTable  *bool       `json:"wipeTable,omitempty"`
-	Partitions []Partition `json:"partitions,omitempty"`
+	Device               *string     `json:"device,omitempty"`
+	WipeTable            *bool       `json:"wipeTable,omitempty"`
+	Partitions           []Partition `json:"partitions,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Disk Disk
 
 // NewDisk instantiates a new Disk object
 // This constructor will assign default values to properties that have it defined,
@@ -157,7 +160,31 @@ func (o Disk) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Partitions) {
 		toSerialize["partitions"] = o.Partitions
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *Disk) UnmarshalJSON(bytes []byte) (err error) {
+	varDisk := _Disk{}
+
+	if err = json.Unmarshal(bytes, &varDisk); err == nil {
+		*o = Disk(varDisk)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "device")
+		delete(additionalProperties, "wipeTable")
+		delete(additionalProperties, "partitions")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableDisk struct {

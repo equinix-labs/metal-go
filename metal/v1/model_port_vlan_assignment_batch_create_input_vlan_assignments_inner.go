@@ -20,10 +20,13 @@ var _ MappedNullable = &PortVlanAssignmentBatchCreateInputVlanAssignmentsInner{}
 
 // PortVlanAssignmentBatchCreateInputVlanAssignmentsInner struct for PortVlanAssignmentBatchCreateInputVlanAssignmentsInner
 type PortVlanAssignmentBatchCreateInputVlanAssignmentsInner struct {
-	Native *bool   `json:"native,omitempty"`
-	State  *string `json:"state,omitempty"`
-	Vlan   *string `json:"vlan,omitempty"`
+	Native               *bool   `json:"native,omitempty"`
+	State                *string `json:"state,omitempty"`
+	Vlan                 *string `json:"vlan,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _PortVlanAssignmentBatchCreateInputVlanAssignmentsInner PortVlanAssignmentBatchCreateInputVlanAssignmentsInner
 
 // NewPortVlanAssignmentBatchCreateInputVlanAssignmentsInner instantiates a new PortVlanAssignmentBatchCreateInputVlanAssignmentsInner object
 // This constructor will assign default values to properties that have it defined,
@@ -157,7 +160,31 @@ func (o PortVlanAssignmentBatchCreateInputVlanAssignmentsInner) ToMap() (map[str
 	if !isNil(o.Vlan) {
 		toSerialize["vlan"] = o.Vlan
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *PortVlanAssignmentBatchCreateInputVlanAssignmentsInner) UnmarshalJSON(bytes []byte) (err error) {
+	varPortVlanAssignmentBatchCreateInputVlanAssignmentsInner := _PortVlanAssignmentBatchCreateInputVlanAssignmentsInner{}
+
+	if err = json.Unmarshal(bytes, &varPortVlanAssignmentBatchCreateInputVlanAssignmentsInner); err == nil {
+		*o = PortVlanAssignmentBatchCreateInputVlanAssignmentsInner(varPortVlanAssignmentBatchCreateInputVlanAssignmentsInner)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "native")
+		delete(additionalProperties, "state")
+		delete(additionalProperties, "vlan")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePortVlanAssignmentBatchCreateInputVlanAssignmentsInner struct {

@@ -21,18 +21,21 @@ var _ MappedNullable = &SpotMarketRequest{}
 
 // SpotMarketRequest struct for SpotMarketRequest
 type SpotMarketRequest struct {
-	CreatedAt   *time.Time              `json:"created_at,omitempty"`
-	DevicesMax  *int32                  `json:"devices_max,omitempty"`
-	DevicesMin  *int32                  `json:"devices_min,omitempty"`
-	EndAt       *time.Time              `json:"end_at,omitempty"`
-	Facilities  *Href                   `json:"facilities,omitempty"`
-	Href        *string                 `json:"href,omitempty"`
-	Id          *string                 `json:"id,omitempty"`
-	Instances   *Href                   `json:"instances,omitempty"`
-	MaxBidPrice *float32                `json:"max_bid_price,omitempty"`
-	Metro       *SpotMarketRequestMetro `json:"metro,omitempty"`
-	Project     *Href                   `json:"project,omitempty"`
+	CreatedAt            *time.Time              `json:"created_at,omitempty"`
+	DevicesMax           *int32                  `json:"devices_max,omitempty"`
+	DevicesMin           *int32                  `json:"devices_min,omitempty"`
+	EndAt                *time.Time              `json:"end_at,omitempty"`
+	Facilities           *Href                   `json:"facilities,omitempty"`
+	Href                 *string                 `json:"href,omitempty"`
+	Id                   *string                 `json:"id,omitempty"`
+	Instances            *Href                   `json:"instances,omitempty"`
+	MaxBidPrice          *float32                `json:"max_bid_price,omitempty"`
+	Metro                *SpotMarketRequestMetro `json:"metro,omitempty"`
+	Project              *Href                   `json:"project,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SpotMarketRequest SpotMarketRequest
 
 // NewSpotMarketRequest instantiates a new SpotMarketRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -446,7 +449,39 @@ func (o SpotMarketRequest) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Project) {
 		toSerialize["project"] = o.Project
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *SpotMarketRequest) UnmarshalJSON(bytes []byte) (err error) {
+	varSpotMarketRequest := _SpotMarketRequest{}
+
+	if err = json.Unmarshal(bytes, &varSpotMarketRequest); err == nil {
+		*o = SpotMarketRequest(varSpotMarketRequest)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "devices_max")
+		delete(additionalProperties, "devices_min")
+		delete(additionalProperties, "end_at")
+		delete(additionalProperties, "facilities")
+		delete(additionalProperties, "href")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "instances")
+		delete(additionalProperties, "max_bid_price")
+		delete(additionalProperties, "metro")
+		delete(additionalProperties, "project")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableSpotMarketRequest struct {

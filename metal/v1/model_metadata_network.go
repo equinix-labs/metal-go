@@ -20,10 +20,13 @@ var _ MappedNullable = &MetadataNetwork{}
 
 // MetadataNetwork struct for MetadataNetwork
 type MetadataNetwork struct {
-	Addresses  []string                 `json:"addresses,omitempty"`
-	Interfaces []map[string]interface{} `json:"interfaces,omitempty"`
-	Network    *MetadataNetworkNetwork  `json:"network,omitempty"`
+	Addresses            []string                 `json:"addresses,omitempty"`
+	Interfaces           []map[string]interface{} `json:"interfaces,omitempty"`
+	Network              *MetadataNetworkNetwork  `json:"network,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _MetadataNetwork MetadataNetwork
 
 // NewMetadataNetwork instantiates a new MetadataNetwork object
 // This constructor will assign default values to properties that have it defined,
@@ -157,7 +160,31 @@ func (o MetadataNetwork) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Network) {
 		toSerialize["network"] = o.Network
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *MetadataNetwork) UnmarshalJSON(bytes []byte) (err error) {
+	varMetadataNetwork := _MetadataNetwork{}
+
+	if err = json.Unmarshal(bytes, &varMetadataNetwork); err == nil {
+		*o = MetadataNetwork(varMetadataNetwork)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "addresses")
+		delete(additionalProperties, "interfaces")
+		delete(additionalProperties, "network")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableMetadataNetwork struct {

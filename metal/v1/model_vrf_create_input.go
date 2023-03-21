@@ -25,9 +25,12 @@ type VrfCreateInput struct {
 	IpRanges []string `json:"ip_ranges,omitempty"`
 	LocalAsn *int32   `json:"local_asn,omitempty"`
 	// The UUID (or metro code) for the Metro in which to create this VRF.
-	Metro string `json:"metro"`
-	Name  string `json:"name"`
+	Metro                string `json:"metro"`
+	Name                 string `json:"name"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _VrfCreateInput VrfCreateInput
 
 // NewVrfCreateInput instantiates a new VrfCreateInput object
 // This constructor will assign default values to properties that have it defined,
@@ -213,7 +216,33 @@ func (o VrfCreateInput) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["metro"] = o.Metro
 	toSerialize["name"] = o.Name
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *VrfCreateInput) UnmarshalJSON(bytes []byte) (err error) {
+	varVrfCreateInput := _VrfCreateInput{}
+
+	if err = json.Unmarshal(bytes, &varVrfCreateInput); err == nil {
+		*o = VrfCreateInput(varVrfCreateInput)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "ip_ranges")
+		delete(additionalProperties, "local_asn")
+		delete(additionalProperties, "metro")
+		delete(additionalProperties, "name")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableVrfCreateInput struct {

@@ -28,11 +28,14 @@ type VrfMetalGateway struct {
 	IpReservation *VrfIpReservation `json:"ip_reservation,omitempty"`
 	Project       *Project          `json:"project,omitempty"`
 	// The current state of the Metal Gateway. 'Ready' indicates the gateway record has been configured, but is currently not active on the network. 'Active' indicates the gateway has been configured on the network. 'Deleting' is a temporary state used to indicate that the gateway is in the process of being un-configured from the network, after which the gateway record will be deleted.
-	State          *string         `json:"state,omitempty"`
-	UpdatedAt      *time.Time      `json:"updated_at,omitempty"`
-	VirtualNetwork *VirtualNetwork `json:"virtual_network,omitempty"`
-	Vrf            *Vrf            `json:"vrf,omitempty"`
+	State                *string         `json:"state,omitempty"`
+	UpdatedAt            *time.Time      `json:"updated_at,omitempty"`
+	VirtualNetwork       *VirtualNetwork `json:"virtual_network,omitempty"`
+	Vrf                  *Vrf            `json:"vrf,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _VrfMetalGateway VrfMetalGateway
 
 // NewVrfMetalGateway instantiates a new VrfMetalGateway object
 // This constructor will assign default values to properties that have it defined,
@@ -411,7 +414,38 @@ func (o VrfMetalGateway) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Vrf) {
 		toSerialize["vrf"] = o.Vrf
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *VrfMetalGateway) UnmarshalJSON(bytes []byte) (err error) {
+	varVrfMetalGateway := _VrfMetalGateway{}
+
+	if err = json.Unmarshal(bytes, &varVrfMetalGateway); err == nil {
+		*o = VrfMetalGateway(varVrfMetalGateway)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "created_by")
+		delete(additionalProperties, "href")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "ip_reservation")
+		delete(additionalProperties, "project")
+		delete(additionalProperties, "state")
+		delete(additionalProperties, "updated_at")
+		delete(additionalProperties, "virtual_network")
+		delete(additionalProperties, "vrf")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableVrfMetalGateway struct {

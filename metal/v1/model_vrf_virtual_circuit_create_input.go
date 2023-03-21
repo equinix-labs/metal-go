@@ -38,8 +38,11 @@ type VrfVirtualCircuitCreateInput struct {
 	Subnet string   `json:"subnet"`
 	Tags   []string `json:"tags,omitempty"`
 	// The UUID of the VRF that will be associated with the Virtual Circuit.
-	Vrf string `json:"vrf"`
+	Vrf                  string `json:"vrf"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _VrfVirtualCircuitCreateInput VrfVirtualCircuitCreateInput
 
 // NewVrfVirtualCircuitCreateInput instantiates a new VrfVirtualCircuitCreateInput object
 // This constructor will assign default values to properties that have it defined,
@@ -454,7 +457,40 @@ func (o VrfVirtualCircuitCreateInput) ToMap() (map[string]interface{}, error) {
 		toSerialize["tags"] = o.Tags
 	}
 	toSerialize["vrf"] = o.Vrf
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *VrfVirtualCircuitCreateInput) UnmarshalJSON(bytes []byte) (err error) {
+	varVrfVirtualCircuitCreateInput := _VrfVirtualCircuitCreateInput{}
+
+	if err = json.Unmarshal(bytes, &varVrfVirtualCircuitCreateInput); err == nil {
+		*o = VrfVirtualCircuitCreateInput(varVrfVirtualCircuitCreateInput)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "customer_ip")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "md5")
+		delete(additionalProperties, "metal_ip")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "nni_vlan")
+		delete(additionalProperties, "peer_asn")
+		delete(additionalProperties, "project_id")
+		delete(additionalProperties, "speed")
+		delete(additionalProperties, "subnet")
+		delete(additionalProperties, "tags")
+		delete(additionalProperties, "vrf")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableVrfVirtualCircuitCreateInput struct {

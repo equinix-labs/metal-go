@@ -23,8 +23,11 @@ type VrfMetalGatewayCreateInput struct {
 	// The UUID an a VRF IP Reservation that belongs to the same project as the one in which the Metal Gateway is to be created. Additionally, the VRF IP Reservation and the Virtual Network must reside in the same Metro.
 	IpReservationId string `json:"ip_reservation_id"`
 	// THe UUID of a Metro Virtual Network that belongs to the same project as the one in which the Metal Gateway is to be created. Additionally, the Virtual Network and the VRF IP Reservation must reside in the same metro.
-	VirtualNetworkId string `json:"virtual_network_id"`
+	VirtualNetworkId     string `json:"virtual_network_id"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _VrfMetalGatewayCreateInput VrfMetalGatewayCreateInput
 
 // NewVrfMetalGatewayCreateInput instantiates a new VrfMetalGatewayCreateInput object
 // This constructor will assign default values to properties that have it defined,
@@ -105,7 +108,30 @@ func (o VrfMetalGatewayCreateInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["ip_reservation_id"] = o.IpReservationId
 	toSerialize["virtual_network_id"] = o.VirtualNetworkId
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *VrfMetalGatewayCreateInput) UnmarshalJSON(bytes []byte) (err error) {
+	varVrfMetalGatewayCreateInput := _VrfMetalGatewayCreateInput{}
+
+	if err = json.Unmarshal(bytes, &varVrfMetalGatewayCreateInput); err == nil {
+		*o = VrfMetalGatewayCreateInput(varVrfMetalGatewayCreateInput)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "ip_reservation_id")
+		delete(additionalProperties, "virtual_network_id")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableVrfMetalGatewayCreateInput struct {

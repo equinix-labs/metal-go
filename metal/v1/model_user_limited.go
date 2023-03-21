@@ -29,8 +29,11 @@ type UserLimited struct {
 	// API URL uniquely representing the User
 	Href *string `json:"href,omitempty"`
 	// ID of the User
-	Id string `json:"id"`
+	Id                   string `json:"id"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UserLimited UserLimited
 
 // NewUserLimited instantiates a new UserLimited object
 // This constructor will assign default values to properties that have it defined,
@@ -225,7 +228,33 @@ func (o UserLimited) ToMap() (map[string]interface{}, error) {
 		toSerialize["href"] = o.Href
 	}
 	toSerialize["id"] = o.Id
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *UserLimited) UnmarshalJSON(bytes []byte) (err error) {
+	varUserLimited := _UserLimited{}
+
+	if err = json.Unmarshal(bytes, &varUserLimited); err == nil {
+		*o = UserLimited(varUserLimited)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "avatar_thumb_url")
+		delete(additionalProperties, "avatar_url")
+		delete(additionalProperties, "full_name")
+		delete(additionalProperties, "href")
+		delete(additionalProperties, "id")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUserLimited struct {

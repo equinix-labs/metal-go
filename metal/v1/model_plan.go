@@ -35,8 +35,11 @@ type Plan struct {
 	Slug              *string                      `json:"slug,omitempty"`
 	Specs             *PlanSpecs                   `json:"specs,omitempty"`
 	// The plan type
-	Type *string `json:"type,omitempty"`
+	Type                 *string `json:"type,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Plan Plan
 
 // NewPlan instantiates a new Plan object
 // This constructor will assign default values to properties that have it defined,
@@ -520,7 +523,41 @@ func (o Plan) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Type) {
 		toSerialize["type"] = o.Type
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *Plan) UnmarshalJSON(bytes []byte) (err error) {
+	varPlan := _Plan{}
+
+	if err = json.Unmarshal(bytes, &varPlan); err == nil {
+		*o = Plan(varPlan)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "available_in")
+		delete(additionalProperties, "available_in_metros")
+		delete(additionalProperties, "class")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "deployment_types")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "legacy")
+		delete(additionalProperties, "line")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "pricing")
+		delete(additionalProperties, "slug")
+		delete(additionalProperties, "specs")
+		delete(additionalProperties, "type")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePlan struct {

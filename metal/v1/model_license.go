@@ -20,13 +20,16 @@ var _ MappedNullable = &License{}
 
 // License struct for License
 type License struct {
-	Description     *string  `json:"description,omitempty"`
-	Id              *string  `json:"id,omitempty"`
-	LicenseKey      *string  `json:"license_key,omitempty"`
-	LicenseeProduct *Href    `json:"licensee_product,omitempty"`
-	Project         *Href    `json:"project,omitempty"`
-	Size            *float32 `json:"size,omitempty"`
+	Description          *string  `json:"description,omitempty"`
+	Id                   *string  `json:"id,omitempty"`
+	LicenseKey           *string  `json:"license_key,omitempty"`
+	LicenseeProduct      *Href    `json:"licensee_product,omitempty"`
+	Project              *Href    `json:"project,omitempty"`
+	Size                 *float32 `json:"size,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _License License
 
 // NewLicense instantiates a new License object
 // This constructor will assign default values to properties that have it defined,
@@ -265,7 +268,34 @@ func (o License) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Size) {
 		toSerialize["size"] = o.Size
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *License) UnmarshalJSON(bytes []byte) (err error) {
+	varLicense := _License{}
+
+	if err = json.Unmarshal(bytes, &varLicense); err == nil {
+		*o = License(varLicense)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "license_key")
+		delete(additionalProperties, "licensee_product")
+		delete(additionalProperties, "project")
+		delete(additionalProperties, "size")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableLicense struct {

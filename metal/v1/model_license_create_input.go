@@ -20,10 +20,13 @@ var _ MappedNullable = &LicenseCreateInput{}
 
 // LicenseCreateInput struct for LicenseCreateInput
 type LicenseCreateInput struct {
-	Description       *string  `json:"description,omitempty"`
-	LicenseeProductId *string  `json:"licensee_product_id,omitempty"`
-	Size              *float32 `json:"size,omitempty"`
+	Description          *string  `json:"description,omitempty"`
+	LicenseeProductId    *string  `json:"licensee_product_id,omitempty"`
+	Size                 *float32 `json:"size,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _LicenseCreateInput LicenseCreateInput
 
 // NewLicenseCreateInput instantiates a new LicenseCreateInput object
 // This constructor will assign default values to properties that have it defined,
@@ -157,7 +160,31 @@ func (o LicenseCreateInput) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Size) {
 		toSerialize["size"] = o.Size
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *LicenseCreateInput) UnmarshalJSON(bytes []byte) (err error) {
+	varLicenseCreateInput := _LicenseCreateInput{}
+
+	if err = json.Unmarshal(bytes, &varLicenseCreateInput); err == nil {
+		*o = LicenseCreateInput(varLicenseCreateInput)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "licensee_product_id")
+		delete(additionalProperties, "size")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableLicenseCreateInput struct {

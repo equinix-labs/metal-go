@@ -20,9 +20,12 @@ var _ MappedNullable = &LicenseUpdateInput{}
 
 // LicenseUpdateInput struct for LicenseUpdateInput
 type LicenseUpdateInput struct {
-	Description *string  `json:"description,omitempty"`
-	Size        *float32 `json:"size,omitempty"`
+	Description          *string  `json:"description,omitempty"`
+	Size                 *float32 `json:"size,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _LicenseUpdateInput LicenseUpdateInput
 
 // NewLicenseUpdateInput instantiates a new LicenseUpdateInput object
 // This constructor will assign default values to properties that have it defined,
@@ -121,7 +124,30 @@ func (o LicenseUpdateInput) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Size) {
 		toSerialize["size"] = o.Size
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *LicenseUpdateInput) UnmarshalJSON(bytes []byte) (err error) {
+	varLicenseUpdateInput := _LicenseUpdateInput{}
+
+	if err = json.Unmarshal(bytes, &varLicenseUpdateInput); err == nil {
+		*o = LicenseUpdateInput(varLicenseUpdateInput)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "size")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableLicenseUpdateInput struct {

@@ -23,8 +23,11 @@ type VrfRouteCreateInput struct {
 	// The IPv4 prefix for the route, in CIDR-style notation. For a static default route, this will always be \"0.0.0.0/0\"
 	Prefix string `json:"prefix"`
 	// The IPv4 address within the VRF of the host that will handle this route
-	NextHop string `json:"next_hop"`
+	NextHop              string `json:"next_hop"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _VrfRouteCreateInput VrfRouteCreateInput
 
 // NewVrfRouteCreateInput instantiates a new VrfRouteCreateInput object
 // This constructor will assign default values to properties that have it defined,
@@ -105,7 +108,30 @@ func (o VrfRouteCreateInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["prefix"] = o.Prefix
 	toSerialize["next_hop"] = o.NextHop
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *VrfRouteCreateInput) UnmarshalJSON(bytes []byte) (err error) {
+	varVrfRouteCreateInput := _VrfRouteCreateInput{}
+
+	if err = json.Unmarshal(bytes, &varVrfRouteCreateInput); err == nil {
+		*o = VrfRouteCreateInput(varVrfRouteCreateInput)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "prefix")
+		delete(additionalProperties, "next_hop")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableVrfRouteCreateInput struct {

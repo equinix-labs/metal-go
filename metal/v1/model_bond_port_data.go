@@ -23,8 +23,11 @@ type BondPortData struct {
 	// ID of the bonding port
 	Id *string `json:"id,omitempty"`
 	// Name of the port interface for the bond (\"bond0\")
-	Name *string `json:"name,omitempty"`
+	Name                 *string `json:"name,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _BondPortData BondPortData
 
 // NewBondPortData instantiates a new BondPortData object
 // This constructor will assign default values to properties that have it defined,
@@ -123,7 +126,30 @@ func (o BondPortData) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *BondPortData) UnmarshalJSON(bytes []byte) (err error) {
+	varBondPortData := _BondPortData{}
+
+	if err = json.Unmarshal(bytes, &varBondPortData); err == nil {
+		*o = BondPortData(varBondPortData)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "name")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableBondPortData struct {

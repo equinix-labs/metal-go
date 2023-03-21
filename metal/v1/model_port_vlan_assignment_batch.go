@@ -21,16 +21,19 @@ var _ MappedNullable = &PortVlanAssignmentBatch{}
 
 // PortVlanAssignmentBatch struct for PortVlanAssignmentBatch
 type PortVlanAssignmentBatch struct {
-	CreatedAt       *time.Time                                    `json:"created_at,omitempty"`
-	ErrorMessages   []string                                      `json:"error_messages,omitempty"`
-	Id              *string                                       `json:"id,omitempty"`
-	Port            *Port                                         `json:"port,omitempty"`
-	Quantity        *int32                                        `json:"quantity,omitempty"`
-	State           *string                                       `json:"state,omitempty"`
-	UpdatedAt       *time.Time                                    `json:"updated_at,omitempty"`
-	VlanAssignments []PortVlanAssignmentBatchVlanAssignmentsInner `json:"vlan_assignments,omitempty"`
-	Project         *Href                                         `json:"project,omitempty"`
+	CreatedAt            *time.Time                                    `json:"created_at,omitempty"`
+	ErrorMessages        []string                                      `json:"error_messages,omitempty"`
+	Id                   *string                                       `json:"id,omitempty"`
+	Port                 *Port                                         `json:"port,omitempty"`
+	Quantity             *int32                                        `json:"quantity,omitempty"`
+	State                *string                                       `json:"state,omitempty"`
+	UpdatedAt            *time.Time                                    `json:"updated_at,omitempty"`
+	VlanAssignments      []PortVlanAssignmentBatchVlanAssignmentsInner `json:"vlan_assignments,omitempty"`
+	Project              *Href                                         `json:"project,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _PortVlanAssignmentBatch PortVlanAssignmentBatch
 
 // NewPortVlanAssignmentBatch instantiates a new PortVlanAssignmentBatch object
 // This constructor will assign default values to properties that have it defined,
@@ -374,7 +377,37 @@ func (o PortVlanAssignmentBatch) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Project) {
 		toSerialize["project"] = o.Project
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *PortVlanAssignmentBatch) UnmarshalJSON(bytes []byte) (err error) {
+	varPortVlanAssignmentBatch := _PortVlanAssignmentBatch{}
+
+	if err = json.Unmarshal(bytes, &varPortVlanAssignmentBatch); err == nil {
+		*o = PortVlanAssignmentBatch(varPortVlanAssignmentBatch)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "error_messages")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "port")
+		delete(additionalProperties, "quantity")
+		delete(additionalProperties, "state")
+		delete(additionalProperties, "updated_at")
+		delete(additionalProperties, "vlan_assignments")
+		delete(additionalProperties, "project")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePortVlanAssignmentBatch struct {

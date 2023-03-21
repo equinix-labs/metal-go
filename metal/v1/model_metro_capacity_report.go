@@ -20,27 +20,30 @@ var _ MappedNullable = &MetroCapacityReport{}
 
 // MetroCapacityReport struct for MetroCapacityReport
 type MetroCapacityReport struct {
-	Am *CapacityPerFacility `json:"am,omitempty"`
-	At *CapacityPerFacility `json:"at,omitempty"`
-	Ch *CapacityPerFacility `json:"ch,omitempty"`
-	Da *CapacityPerFacility `json:"da,omitempty"`
-	Dc *CapacityPerFacility `json:"dc,omitempty"`
-	Fr *CapacityPerFacility `json:"fr,omitempty"`
-	Hk *CapacityPerFacility `json:"hk,omitempty"`
-	La *CapacityPerFacility `json:"la,omitempty"`
-	Ld *CapacityPerFacility `json:"ld,omitempty"`
-	Md *CapacityPerFacility `json:"md,omitempty"`
-	Ny *CapacityPerFacility `json:"ny,omitempty"`
-	Pa *CapacityPerFacility `json:"pa,omitempty"`
-	Se *CapacityPerFacility `json:"se,omitempty"`
-	Sg *CapacityPerFacility `json:"sg,omitempty"`
-	Sl *CapacityPerFacility `json:"sl,omitempty"`
-	Sp *CapacityPerFacility `json:"sp,omitempty"`
-	Sv *CapacityPerFacility `json:"sv,omitempty"`
-	Sy *CapacityPerFacility `json:"sy,omitempty"`
-	Tr *CapacityPerFacility `json:"tr,omitempty"`
-	Ty *CapacityPerFacility `json:"ty,omitempty"`
+	Am                   *CapacityPerFacility `json:"am,omitempty"`
+	At                   *CapacityPerFacility `json:"at,omitempty"`
+	Ch                   *CapacityPerFacility `json:"ch,omitempty"`
+	Da                   *CapacityPerFacility `json:"da,omitempty"`
+	Dc                   *CapacityPerFacility `json:"dc,omitempty"`
+	Fr                   *CapacityPerFacility `json:"fr,omitempty"`
+	Hk                   *CapacityPerFacility `json:"hk,omitempty"`
+	La                   *CapacityPerFacility `json:"la,omitempty"`
+	Ld                   *CapacityPerFacility `json:"ld,omitempty"`
+	Md                   *CapacityPerFacility `json:"md,omitempty"`
+	Ny                   *CapacityPerFacility `json:"ny,omitempty"`
+	Pa                   *CapacityPerFacility `json:"pa,omitempty"`
+	Se                   *CapacityPerFacility `json:"se,omitempty"`
+	Sg                   *CapacityPerFacility `json:"sg,omitempty"`
+	Sl                   *CapacityPerFacility `json:"sl,omitempty"`
+	Sp                   *CapacityPerFacility `json:"sp,omitempty"`
+	Sv                   *CapacityPerFacility `json:"sv,omitempty"`
+	Sy                   *CapacityPerFacility `json:"sy,omitempty"`
+	Tr                   *CapacityPerFacility `json:"tr,omitempty"`
+	Ty                   *CapacityPerFacility `json:"ty,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _MetroCapacityReport MetroCapacityReport
 
 // NewMetroCapacityReport instantiates a new MetroCapacityReport object
 // This constructor will assign default values to properties that have it defined,
@@ -769,7 +772,48 @@ func (o MetroCapacityReport) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Ty) {
 		toSerialize["ty"] = o.Ty
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *MetroCapacityReport) UnmarshalJSON(bytes []byte) (err error) {
+	varMetroCapacityReport := _MetroCapacityReport{}
+
+	if err = json.Unmarshal(bytes, &varMetroCapacityReport); err == nil {
+		*o = MetroCapacityReport(varMetroCapacityReport)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "am")
+		delete(additionalProperties, "at")
+		delete(additionalProperties, "ch")
+		delete(additionalProperties, "da")
+		delete(additionalProperties, "dc")
+		delete(additionalProperties, "fr")
+		delete(additionalProperties, "hk")
+		delete(additionalProperties, "la")
+		delete(additionalProperties, "ld")
+		delete(additionalProperties, "md")
+		delete(additionalProperties, "ny")
+		delete(additionalProperties, "pa")
+		delete(additionalProperties, "se")
+		delete(additionalProperties, "sg")
+		delete(additionalProperties, "sl")
+		delete(additionalProperties, "sp")
+		delete(additionalProperties, "sv")
+		delete(additionalProperties, "sy")
+		delete(additionalProperties, "tr")
+		delete(additionalProperties, "ty")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableMetroCapacityReport struct {

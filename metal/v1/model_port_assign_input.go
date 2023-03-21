@@ -21,8 +21,11 @@ var _ MappedNullable = &PortAssignInput{}
 // PortAssignInput struct for PortAssignInput
 type PortAssignInput struct {
 	// Virtual Network ID. May be the UUID of the Virtual Network record, or the VLAN value itself.
-	Vnid *string `json:"vnid,omitempty"`
+	Vnid                 *string `json:"vnid,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _PortAssignInput PortAssignInput
 
 // NewPortAssignInput instantiates a new PortAssignInput object
 // This constructor will assign default values to properties that have it defined,
@@ -86,7 +89,29 @@ func (o PortAssignInput) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Vnid) {
 		toSerialize["vnid"] = o.Vnid
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *PortAssignInput) UnmarshalJSON(bytes []byte) (err error) {
+	varPortAssignInput := _PortAssignInput{}
+
+	if err = json.Unmarshal(bytes, &varPortAssignInput); err == nil {
+		*o = PortAssignInput(varPortAssignInput)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "vnid")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePortAssignInput struct {

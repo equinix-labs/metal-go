@@ -20,10 +20,13 @@ var _ MappedNullable = &PaymentMethodBillingAddress{}
 
 // PaymentMethodBillingAddress struct for PaymentMethodBillingAddress
 type PaymentMethodBillingAddress struct {
-	CountryCodeAlpha2 *string `json:"country_code_alpha2,omitempty"`
-	PostalCode        *string `json:"postal_code,omitempty"`
-	StreetAddress     *string `json:"street_address,omitempty"`
+	CountryCodeAlpha2    *string `json:"country_code_alpha2,omitempty"`
+	PostalCode           *string `json:"postal_code,omitempty"`
+	StreetAddress        *string `json:"street_address,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _PaymentMethodBillingAddress PaymentMethodBillingAddress
 
 // NewPaymentMethodBillingAddress instantiates a new PaymentMethodBillingAddress object
 // This constructor will assign default values to properties that have it defined,
@@ -157,7 +160,31 @@ func (o PaymentMethodBillingAddress) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.StreetAddress) {
 		toSerialize["street_address"] = o.StreetAddress
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *PaymentMethodBillingAddress) UnmarshalJSON(bytes []byte) (err error) {
+	varPaymentMethodBillingAddress := _PaymentMethodBillingAddress{}
+
+	if err = json.Unmarshal(bytes, &varPaymentMethodBillingAddress); err == nil {
+		*o = PaymentMethodBillingAddress(varPaymentMethodBillingAddress)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "country_code_alpha2")
+		delete(additionalProperties, "postal_code")
+		delete(additionalProperties, "street_address")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePaymentMethodBillingAddress struct {

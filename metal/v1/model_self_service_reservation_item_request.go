@@ -20,12 +20,15 @@ var _ MappedNullable = &SelfServiceReservationItemRequest{}
 
 // SelfServiceReservationItemRequest struct for SelfServiceReservationItemRequest
 type SelfServiceReservationItemRequest struct {
-	Amount   *float32 `json:"amount,omitempty"`
-	MetroId  *string  `json:"metro_id,omitempty"`
-	PlanId   *string  `json:"plan_id,omitempty"`
-	Quantity *int32   `json:"quantity,omitempty"`
-	Term     *string  `json:"term,omitempty"`
+	Amount               *float32 `json:"amount,omitempty"`
+	MetroId              *string  `json:"metro_id,omitempty"`
+	PlanId               *string  `json:"plan_id,omitempty"`
+	Quantity             *int32   `json:"quantity,omitempty"`
+	Term                 *string  `json:"term,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SelfServiceReservationItemRequest SelfServiceReservationItemRequest
 
 // NewSelfServiceReservationItemRequest instantiates a new SelfServiceReservationItemRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -229,7 +232,33 @@ func (o SelfServiceReservationItemRequest) ToMap() (map[string]interface{}, erro
 	if !isNil(o.Term) {
 		toSerialize["term"] = o.Term
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *SelfServiceReservationItemRequest) UnmarshalJSON(bytes []byte) (err error) {
+	varSelfServiceReservationItemRequest := _SelfServiceReservationItemRequest{}
+
+	if err = json.Unmarshal(bytes, &varSelfServiceReservationItemRequest); err == nil {
+		*o = SelfServiceReservationItemRequest(varSelfServiceReservationItemRequest)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "amount")
+		delete(additionalProperties, "metro_id")
+		delete(additionalProperties, "plan_id")
+		delete(additionalProperties, "quantity")
+		delete(additionalProperties, "term")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableSelfServiceReservationItemRequest struct {

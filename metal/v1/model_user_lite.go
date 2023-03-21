@@ -40,8 +40,11 @@ type UserLite struct {
 	// Short ID of the User
 	ShortId string `json:"short_id"`
 	// When the user details were last updated
-	UpdatedAt *time.Time `json:"updated_at,omitempty"`
+	UpdatedAt            *time.Time `json:"updated_at,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UserLite UserLite
 
 // NewUserLite instantiates a new UserLite object
 // This constructor will assign default values to properties that have it defined,
@@ -402,7 +405,38 @@ func (o UserLite) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.UpdatedAt) {
 		toSerialize["updated_at"] = o.UpdatedAt
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *UserLite) UnmarshalJSON(bytes []byte) (err error) {
+	varUserLite := _UserLite{}
+
+	if err = json.Unmarshal(bytes, &varUserLite); err == nil {
+		*o = UserLite(varUserLite)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "avatar_thumb_url")
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "email")
+		delete(additionalProperties, "first_name")
+		delete(additionalProperties, "full_name")
+		delete(additionalProperties, "href")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "last_name")
+		delete(additionalProperties, "short_id")
+		delete(additionalProperties, "updated_at")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUserLite struct {

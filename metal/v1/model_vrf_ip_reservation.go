@@ -21,31 +21,34 @@ var _ MappedNullable = &VrfIpReservation{}
 
 // VrfIpReservation struct for VrfIpReservation
 type VrfIpReservation struct {
-	AddressFamily *int32                 `json:"address_family,omitempty"`
-	Cidr          *int32                 `json:"cidr,omitempty"`
-	CreatedAt     *time.Time             `json:"created_at,omitempty"`
-	CreatedBy     *Href                  `json:"created_by,omitempty"`
-	Details       *string                `json:"details,omitempty"`
-	Href          *string                `json:"href,omitempty"`
-	Id            *string                `json:"id,omitempty"`
-	MetalGateway  *MetalGatewayLite      `json:"metal_gateway,omitempty"`
-	Netmask       *string                `json:"netmask,omitempty"`
-	Network       *string                `json:"network,omitempty"`
-	Project       *Project               `json:"project,omitempty"`
-	State         *string                `json:"state,omitempty"`
-	Tags          []string               `json:"tags,omitempty"`
-	Type          string                 `json:"type"`
-	Vrf           Vrf                    `json:"vrf"`
-	Public        *bool                  `json:"public,omitempty"`
-	Management    *bool                  `json:"management,omitempty"`
-	Manageable    *bool                  `json:"manageable,omitempty"`
-	Customdata    map[string]interface{} `json:"customdata,omitempty"`
-	Bill          *bool                  `json:"bill,omitempty"`
-	ProjectLite   *Project               `json:"project_lite,omitempty"`
-	Address       *string                `json:"address,omitempty"`
-	Gateway       *string                `json:"gateway,omitempty"`
-	Metro         *Metro                 `json:"metro,omitempty"`
+	AddressFamily        *int32                 `json:"address_family,omitempty"`
+	Cidr                 *int32                 `json:"cidr,omitempty"`
+	CreatedAt            *time.Time             `json:"created_at,omitempty"`
+	CreatedBy            *Href                  `json:"created_by,omitempty"`
+	Details              *string                `json:"details,omitempty"`
+	Href                 *string                `json:"href,omitempty"`
+	Id                   *string                `json:"id,omitempty"`
+	MetalGateway         *MetalGatewayLite      `json:"metal_gateway,omitempty"`
+	Netmask              *string                `json:"netmask,omitempty"`
+	Network              *string                `json:"network,omitempty"`
+	Project              *Project               `json:"project,omitempty"`
+	State                *string                `json:"state,omitempty"`
+	Tags                 []string               `json:"tags,omitempty"`
+	Type                 string                 `json:"type"`
+	Vrf                  Vrf                    `json:"vrf"`
+	Public               *bool                  `json:"public,omitempty"`
+	Management           *bool                  `json:"management,omitempty"`
+	Manageable           *bool                  `json:"manageable,omitempty"`
+	Customdata           map[string]interface{} `json:"customdata,omitempty"`
+	Bill                 *bool                  `json:"bill,omitempty"`
+	ProjectLite          *Project               `json:"project_lite,omitempty"`
+	Address              *string                `json:"address,omitempty"`
+	Gateway              *string                `json:"gateway,omitempty"`
+	Metro                *Metro                 `json:"metro,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _VrfIpReservation VrfIpReservation
 
 // NewVrfIpReservation instantiates a new VrfIpReservation object
 // This constructor will assign default values to properties that have it defined,
@@ -896,7 +899,52 @@ func (o VrfIpReservation) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Metro) {
 		toSerialize["metro"] = o.Metro
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *VrfIpReservation) UnmarshalJSON(bytes []byte) (err error) {
+	varVrfIpReservation := _VrfIpReservation{}
+
+	if err = json.Unmarshal(bytes, &varVrfIpReservation); err == nil {
+		*o = VrfIpReservation(varVrfIpReservation)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "address_family")
+		delete(additionalProperties, "cidr")
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "created_by")
+		delete(additionalProperties, "details")
+		delete(additionalProperties, "href")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "metal_gateway")
+		delete(additionalProperties, "netmask")
+		delete(additionalProperties, "network")
+		delete(additionalProperties, "project")
+		delete(additionalProperties, "state")
+		delete(additionalProperties, "tags")
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "vrf")
+		delete(additionalProperties, "public")
+		delete(additionalProperties, "management")
+		delete(additionalProperties, "manageable")
+		delete(additionalProperties, "customdata")
+		delete(additionalProperties, "bill")
+		delete(additionalProperties, "project_lite")
+		delete(additionalProperties, "address")
+		delete(additionalProperties, "gateway")
+		delete(additionalProperties, "metro")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableVrfIpReservation struct {

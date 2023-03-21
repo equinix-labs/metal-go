@@ -60,6 +60,7 @@ gen:
 	${OPENAPI_GENERATOR} generate -g go \
 		--package-name ${PACKAGE_MAJOR} \
 		-p isGoSubmodule=true \
+		-p disallowAdditionalPropertiesIfNotPresent=false \
 		--model-package types \
 		--api-package models \
 		--git-user-id ${GIT_ORG} \

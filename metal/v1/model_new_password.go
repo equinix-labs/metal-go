@@ -20,8 +20,11 @@ var _ MappedNullable = &NewPassword{}
 
 // NewPassword struct for NewPassword
 type NewPassword struct {
-	NewPassword *string `json:"new_password,omitempty"`
+	NewPassword          *string `json:"new_password,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _NewPassword NewPassword
 
 // NewNewPassword instantiates a new NewPassword object
 // This constructor will assign default values to properties that have it defined,
@@ -85,7 +88,29 @@ func (o NewPassword) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.NewPassword) {
 		toSerialize["new_password"] = o.NewPassword
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *NewPassword) UnmarshalJSON(bytes []byte) (err error) {
+	varNewPassword := _NewPassword{}
+
+	if err = json.Unmarshal(bytes, &varNewPassword); err == nil {
+		*o = NewPassword(varNewPassword)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "new_password")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableNewPassword struct {

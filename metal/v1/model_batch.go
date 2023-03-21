@@ -21,15 +21,18 @@ var _ MappedNullable = &Batch{}
 
 // Batch struct for Batch
 type Batch struct {
-	CreatedAt     *time.Time `json:"created_at,omitempty"`
-	Devices       []Href     `json:"devices,omitempty"`
-	ErrorMessages []string   `json:"error_messages,omitempty"`
-	Id            *string    `json:"id,omitempty"`
-	Project       *Href      `json:"project,omitempty"`
-	Quantity      *int32     `json:"quantity,omitempty"`
-	State         *string    `json:"state,omitempty"`
-	UpdatedAt     *time.Time `json:"updated_at,omitempty"`
+	CreatedAt            *time.Time `json:"created_at,omitempty"`
+	Devices              []Href     `json:"devices,omitempty"`
+	ErrorMessages        []string   `json:"error_messages,omitempty"`
+	Id                   *string    `json:"id,omitempty"`
+	Project              *Href      `json:"project,omitempty"`
+	Quantity             *int32     `json:"quantity,omitempty"`
+	State                *string    `json:"state,omitempty"`
+	UpdatedAt            *time.Time `json:"updated_at,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Batch Batch
 
 // NewBatch instantiates a new Batch object
 // This constructor will assign default values to properties that have it defined,
@@ -338,7 +341,36 @@ func (o Batch) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.UpdatedAt) {
 		toSerialize["updated_at"] = o.UpdatedAt
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *Batch) UnmarshalJSON(bytes []byte) (err error) {
+	varBatch := _Batch{}
+
+	if err = json.Unmarshal(bytes, &varBatch); err == nil {
+		*o = Batch(varBatch)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "devices")
+		delete(additionalProperties, "error_messages")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "project")
+		delete(additionalProperties, "quantity")
+		delete(additionalProperties, "state")
+		delete(additionalProperties, "updated_at")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableBatch struct {

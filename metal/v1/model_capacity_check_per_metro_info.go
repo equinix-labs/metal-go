@@ -27,8 +27,11 @@ type CapacityCheckPerMetroInfo struct {
 	// The plan ID or slug sent to check capacity.
 	Plan *string `json:"plan,omitempty"`
 	// The number of servers sent to check capacity.
-	Quantity *string `json:"quantity,omitempty"`
+	Quantity             *string `json:"quantity,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _CapacityCheckPerMetroInfo CapacityCheckPerMetroInfo
 
 // NewCapacityCheckPerMetroInfo instantiates a new CapacityCheckPerMetroInfo object
 // This constructor will assign default values to properties that have it defined,
@@ -197,7 +200,32 @@ func (o CapacityCheckPerMetroInfo) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Quantity) {
 		toSerialize["quantity"] = o.Quantity
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *CapacityCheckPerMetroInfo) UnmarshalJSON(bytes []byte) (err error) {
+	varCapacityCheckPerMetroInfo := _CapacityCheckPerMetroInfo{}
+
+	if err = json.Unmarshal(bytes, &varCapacityCheckPerMetroInfo); err == nil {
+		*o = CapacityCheckPerMetroInfo(varCapacityCheckPerMetroInfo)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "available")
+		delete(additionalProperties, "metro")
+		delete(additionalProperties, "plan")
+		delete(additionalProperties, "quantity")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableCapacityCheckPerMetroInfo struct {

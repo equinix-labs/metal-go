@@ -20,9 +20,12 @@ var _ MappedNullable = &BgpRoute{}
 
 // BgpRoute struct for BgpRoute
 type BgpRoute struct {
-	Exact *bool   `json:"exact,omitempty"`
-	Route *string `json:"route,omitempty"`
+	Exact                *bool   `json:"exact,omitempty"`
+	Route                *string `json:"route,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _BgpRoute BgpRoute
 
 // NewBgpRoute instantiates a new BgpRoute object
 // This constructor will assign default values to properties that have it defined,
@@ -121,7 +124,30 @@ func (o BgpRoute) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Route) {
 		toSerialize["route"] = o.Route
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *BgpRoute) UnmarshalJSON(bytes []byte) (err error) {
+	varBgpRoute := _BgpRoute{}
+
+	if err = json.Unmarshal(bytes, &varBgpRoute); err == nil {
+		*o = BgpRoute(varBgpRoute)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "exact")
+		delete(additionalProperties, "route")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableBgpRoute struct {

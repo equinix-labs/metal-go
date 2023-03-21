@@ -20,8 +20,11 @@ var _ MappedNullable = &PortVlanAssignmentBatchList{}
 
 // PortVlanAssignmentBatchList struct for PortVlanAssignmentBatchList
 type PortVlanAssignmentBatchList struct {
-	Batches []PortVlanAssignmentBatch `json:"batches,omitempty"`
+	Batches              []PortVlanAssignmentBatch `json:"batches,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _PortVlanAssignmentBatchList PortVlanAssignmentBatchList
 
 // NewPortVlanAssignmentBatchList instantiates a new PortVlanAssignmentBatchList object
 // This constructor will assign default values to properties that have it defined,
@@ -85,7 +88,29 @@ func (o PortVlanAssignmentBatchList) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Batches) {
 		toSerialize["batches"] = o.Batches
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *PortVlanAssignmentBatchList) UnmarshalJSON(bytes []byte) (err error) {
+	varPortVlanAssignmentBatchList := _PortVlanAssignmentBatchList{}
+
+	if err = json.Unmarshal(bytes, &varPortVlanAssignmentBatchList); err == nil {
+		*o = PortVlanAssignmentBatchList(varPortVlanAssignmentBatchList)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "batches")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePortVlanAssignmentBatchList struct {

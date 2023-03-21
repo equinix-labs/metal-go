@@ -20,8 +20,11 @@ var _ MappedNullable = &MembershipInput{}
 
 // MembershipInput struct for MembershipInput
 type MembershipInput struct {
-	Role []string `json:"role,omitempty"`
+	Role                 []string `json:"role,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _MembershipInput MembershipInput
 
 // NewMembershipInput instantiates a new MembershipInput object
 // This constructor will assign default values to properties that have it defined,
@@ -85,7 +88,29 @@ func (o MembershipInput) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Role) {
 		toSerialize["role"] = o.Role
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *MembershipInput) UnmarshalJSON(bytes []byte) (err error) {
+	varMembershipInput := _MembershipInput{}
+
+	if err = json.Unmarshal(bytes, &varMembershipInput); err == nil {
+		*o = MembershipInput(varMembershipInput)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "role")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableMembershipInput struct {

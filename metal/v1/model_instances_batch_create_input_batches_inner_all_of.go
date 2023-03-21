@@ -22,8 +22,11 @@ var _ MappedNullable = &InstancesBatchCreateInputBatchesInnerAllOf{}
 type InstancesBatchCreateInputBatchesInnerAllOf struct {
 	Hostnames []string `json:"hostnames,omitempty"`
 	// The number of devices to create in this batch. The hostname may contain an `{{index}}` placeholder, which will be replaced with the index of the device in the batch. For example, if the hostname is `device-{{index}}`, the first device in the batch will have the hostname `device-01`, the second device will have the hostname `device-02`, and so on.
-	Quantity *int32 `json:"quantity,omitempty"`
+	Quantity             *int32 `json:"quantity,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _InstancesBatchCreateInputBatchesInnerAllOf InstancesBatchCreateInputBatchesInnerAllOf
 
 // NewInstancesBatchCreateInputBatchesInnerAllOf instantiates a new InstancesBatchCreateInputBatchesInnerAllOf object
 // This constructor will assign default values to properties that have it defined,
@@ -122,7 +125,30 @@ func (o InstancesBatchCreateInputBatchesInnerAllOf) ToMap() (map[string]interfac
 	if !isNil(o.Quantity) {
 		toSerialize["quantity"] = o.Quantity
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *InstancesBatchCreateInputBatchesInnerAllOf) UnmarshalJSON(bytes []byte) (err error) {
+	varInstancesBatchCreateInputBatchesInnerAllOf := _InstancesBatchCreateInputBatchesInnerAllOf{}
+
+	if err = json.Unmarshal(bytes, &varInstancesBatchCreateInputBatchesInnerAllOf); err == nil {
+		*o = InstancesBatchCreateInputBatchesInnerAllOf(varInstancesBatchCreateInputBatchesInnerAllOf)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "hostnames")
+		delete(additionalProperties, "quantity")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableInstancesBatchCreateInputBatchesInnerAllOf struct {

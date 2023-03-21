@@ -21,8 +21,11 @@ var _ MappedNullable = &BgpSessionNeighbors{}
 // BgpSessionNeighbors struct for BgpSessionNeighbors
 type BgpSessionNeighbors struct {
 	// A list of BGP session neighbor data
-	BgpNeighbors []BgpNeighborData `json:"bgp_neighbors,omitempty"`
+	BgpNeighbors         []BgpNeighborData `json:"bgp_neighbors,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _BgpSessionNeighbors BgpSessionNeighbors
 
 // NewBgpSessionNeighbors instantiates a new BgpSessionNeighbors object
 // This constructor will assign default values to properties that have it defined,
@@ -86,7 +89,29 @@ func (o BgpSessionNeighbors) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.BgpNeighbors) {
 		toSerialize["bgp_neighbors"] = o.BgpNeighbors
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *BgpSessionNeighbors) UnmarshalJSON(bytes []byte) (err error) {
+	varBgpSessionNeighbors := _BgpSessionNeighbors{}
+
+	if err = json.Unmarshal(bytes, &varBgpSessionNeighbors); err == nil {
+		*o = BgpSessionNeighbors(varBgpSessionNeighbors)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "bgp_neighbors")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableBgpSessionNeighbors struct {

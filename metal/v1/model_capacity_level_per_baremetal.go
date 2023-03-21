@@ -20,8 +20,11 @@ var _ MappedNullable = &CapacityLevelPerBaremetal{}
 
 // CapacityLevelPerBaremetal struct for CapacityLevelPerBaremetal
 type CapacityLevelPerBaremetal struct {
-	Level *string `json:"level,omitempty"`
+	Level                *string `json:"level,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _CapacityLevelPerBaremetal CapacityLevelPerBaremetal
 
 // NewCapacityLevelPerBaremetal instantiates a new CapacityLevelPerBaremetal object
 // This constructor will assign default values to properties that have it defined,
@@ -85,7 +88,29 @@ func (o CapacityLevelPerBaremetal) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Level) {
 		toSerialize["level"] = o.Level
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *CapacityLevelPerBaremetal) UnmarshalJSON(bytes []byte) (err error) {
+	varCapacityLevelPerBaremetal := _CapacityLevelPerBaremetal{}
+
+	if err = json.Unmarshal(bytes, &varCapacityLevelPerBaremetal); err == nil {
+		*o = CapacityLevelPerBaremetal(varCapacityLevelPerBaremetal)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "level")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableCapacityLevelPerBaremetal struct {

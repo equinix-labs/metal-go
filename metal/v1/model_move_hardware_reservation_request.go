@@ -20,8 +20,11 @@ var _ MappedNullable = &MoveHardwareReservationRequest{}
 
 // MoveHardwareReservationRequest struct for MoveHardwareReservationRequest
 type MoveHardwareReservationRequest struct {
-	ProjectId *string `json:"project_id,omitempty"`
+	ProjectId            *string `json:"project_id,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _MoveHardwareReservationRequest MoveHardwareReservationRequest
 
 // NewMoveHardwareReservationRequest instantiates a new MoveHardwareReservationRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -85,7 +88,29 @@ func (o MoveHardwareReservationRequest) ToMap() (map[string]interface{}, error) 
 	if !isNil(o.ProjectId) {
 		toSerialize["project_id"] = o.ProjectId
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *MoveHardwareReservationRequest) UnmarshalJSON(bytes []byte) (err error) {
+	varMoveHardwareReservationRequest := _MoveHardwareReservationRequest{}
+
+	if err = json.Unmarshal(bytes, &varMoveHardwareReservationRequest); err == nil {
+		*o = MoveHardwareReservationRequest(varMoveHardwareReservationRequest)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "project_id")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableMoveHardwareReservationRequest struct {

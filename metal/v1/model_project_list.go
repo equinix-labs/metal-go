@@ -20,9 +20,12 @@ var _ MappedNullable = &ProjectList{}
 
 // ProjectList struct for ProjectList
 type ProjectList struct {
-	Meta     *Meta     `json:"meta,omitempty"`
-	Projects []Project `json:"projects,omitempty"`
+	Meta                 *Meta     `json:"meta,omitempty"`
+	Projects             []Project `json:"projects,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ProjectList ProjectList
 
 // NewProjectList instantiates a new ProjectList object
 // This constructor will assign default values to properties that have it defined,
@@ -121,7 +124,30 @@ func (o ProjectList) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Projects) {
 		toSerialize["projects"] = o.Projects
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *ProjectList) UnmarshalJSON(bytes []byte) (err error) {
+	varProjectList := _ProjectList{}
+
+	if err = json.Unmarshal(bytes, &varProjectList); err == nil {
+		*o = ProjectList(varProjectList)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "meta")
+		delete(additionalProperties, "projects")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableProjectList struct {

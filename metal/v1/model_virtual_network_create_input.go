@@ -26,8 +26,11 @@ type VirtualNetworkCreateInput struct {
 	// The UUID (or metro code) for the Metro in which to create this Virtual Network.
 	Metro *string `json:"metro,omitempty"`
 	// VLAN ID between 2-3999. Must be unique for the project within the Metro in which this Virtual Network is being created. If no value is specified, the next-available VLAN ID in the range 1000-1999 will be automatically selected.
-	Vxlan *int32 `json:"vxlan,omitempty"`
+	Vxlan                *int32 `json:"vxlan,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _VirtualNetworkCreateInput VirtualNetworkCreateInput
 
 // NewVirtualNetworkCreateInput instantiates a new VirtualNetworkCreateInput object
 // This constructor will assign default values to properties that have it defined,
@@ -196,7 +199,32 @@ func (o VirtualNetworkCreateInput) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Vxlan) {
 		toSerialize["vxlan"] = o.Vxlan
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *VirtualNetworkCreateInput) UnmarshalJSON(bytes []byte) (err error) {
+	varVirtualNetworkCreateInput := _VirtualNetworkCreateInput{}
+
+	if err = json.Unmarshal(bytes, &varVirtualNetworkCreateInput); err == nil {
+		*o = VirtualNetworkCreateInput(varVirtualNetworkCreateInput)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "facility")
+		delete(additionalProperties, "metro")
+		delete(additionalProperties, "vxlan")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableVirtualNetworkCreateInput struct {

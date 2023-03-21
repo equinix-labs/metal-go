@@ -23,8 +23,11 @@ type PortData struct {
 	// MAC address is set for NetworkPort ports
 	Mac *string `json:"mac,omitempty"`
 	// Bonded is true for NetworkPort ports in a bond and NetworkBondPort ports that are active
-	Bonded *bool `json:"bonded,omitempty"`
+	Bonded               *bool `json:"bonded,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _PortData PortData
 
 // NewPortData instantiates a new PortData object
 // This constructor will assign default values to properties that have it defined,
@@ -123,7 +126,30 @@ func (o PortData) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Bonded) {
 		toSerialize["bonded"] = o.Bonded
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *PortData) UnmarshalJSON(bytes []byte) (err error) {
+	varPortData := _PortData{}
+
+	if err = json.Unmarshal(bytes, &varPortData); err == nil {
+		*o = PortData(varPortData)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "mac")
+		delete(additionalProperties, "bonded")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePortData struct {

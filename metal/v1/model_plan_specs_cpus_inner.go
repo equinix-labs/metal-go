@@ -20,9 +20,12 @@ var _ MappedNullable = &PlanSpecsCpusInner{}
 
 // PlanSpecsCpusInner struct for PlanSpecsCpusInner
 type PlanSpecsCpusInner struct {
-	Count *int32  `json:"count,omitempty"`
-	Type  *string `json:"type,omitempty"`
+	Count                *int32  `json:"count,omitempty"`
+	Type                 *string `json:"type,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _PlanSpecsCpusInner PlanSpecsCpusInner
 
 // NewPlanSpecsCpusInner instantiates a new PlanSpecsCpusInner object
 // This constructor will assign default values to properties that have it defined,
@@ -121,7 +124,30 @@ func (o PlanSpecsCpusInner) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Type) {
 		toSerialize["type"] = o.Type
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *PlanSpecsCpusInner) UnmarshalJSON(bytes []byte) (err error) {
+	varPlanSpecsCpusInner := _PlanSpecsCpusInner{}
+
+	if err = json.Unmarshal(bytes, &varPlanSpecsCpusInner); err == nil {
+		*o = PlanSpecsCpusInner(varPlanSpecsCpusInner)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "count")
+		delete(additionalProperties, "type")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePlanSpecsCpusInner struct {

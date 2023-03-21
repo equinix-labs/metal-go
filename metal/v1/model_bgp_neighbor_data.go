@@ -39,8 +39,11 @@ type BgpNeighborData struct {
 	// A list of project subnets
 	RoutesIn []BgpRoute `json:"routes_in,omitempty"`
 	// A list of outgoing routes. Only populated if the BGP session has default route enabled.
-	RoutesOut []BgpRoute `json:"routes_out,omitempty"`
+	RoutesOut            []BgpRoute `json:"routes_out,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _BgpNeighborData BgpNeighborData
 
 // NewBgpNeighborData instantiates a new BgpNeighborData object
 // This constructor will assign default values to properties that have it defined,
@@ -419,7 +422,38 @@ func (o BgpNeighborData) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.RoutesOut) {
 		toSerialize["routes_out"] = o.RoutesOut
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *BgpNeighborData) UnmarshalJSON(bytes []byte) (err error) {
+	varBgpNeighborData := _BgpNeighborData{}
+
+	if err = json.Unmarshal(bytes, &varBgpNeighborData); err == nil {
+		*o = BgpNeighborData(varBgpNeighborData)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "address_family")
+		delete(additionalProperties, "customer_as")
+		delete(additionalProperties, "customer_ip")
+		delete(additionalProperties, "md5_enabled")
+		delete(additionalProperties, "md5_password")
+		delete(additionalProperties, "multihop")
+		delete(additionalProperties, "peer_as")
+		delete(additionalProperties, "peer_ips")
+		delete(additionalProperties, "routes_in")
+		delete(additionalProperties, "routes_out")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableBgpNeighborData struct {

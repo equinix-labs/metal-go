@@ -20,8 +20,11 @@ var _ MappedNullable = &ActivateHardwareReservationRequest{}
 
 // ActivateHardwareReservationRequest struct for ActivateHardwareReservationRequest
 type ActivateHardwareReservationRequest struct {
-	Description *string `json:"description,omitempty"`
+	Description          *string `json:"description,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ActivateHardwareReservationRequest ActivateHardwareReservationRequest
 
 // NewActivateHardwareReservationRequest instantiates a new ActivateHardwareReservationRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -85,7 +88,29 @@ func (o ActivateHardwareReservationRequest) ToMap() (map[string]interface{}, err
 	if !isNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *ActivateHardwareReservationRequest) UnmarshalJSON(bytes []byte) (err error) {
+	varActivateHardwareReservationRequest := _ActivateHardwareReservationRequest{}
+
+	if err = json.Unmarshal(bytes, &varActivateHardwareReservationRequest); err == nil {
+		*o = ActivateHardwareReservationRequest(varActivateHardwareReservationRequest)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "description")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableActivateHardwareReservationRequest struct {
