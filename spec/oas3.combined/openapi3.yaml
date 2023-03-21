@@ -11328,7 +11328,7 @@ components:
         facility:
           $ref: '#/components/schemas/Facility'
         hardware_reservation:
-          $ref: '#/components/schemas/Href'
+          $ref: '#/components/schemas/HardwareReservation'
         hostname:
           type: string
         href:
@@ -11369,7 +11369,7 @@ components:
         plan:
           $ref: '#/components/schemas/Plan'
         project:
-          $ref: '#/components/schemas/Device_project'
+          $ref: '#/components/schemas/Project'
         project_lite:
           $ref: '#/components/schemas/Device_project_lite'
         provisioning_events:
@@ -13302,6 +13302,8 @@ components:
           items:
             $ref: '#/components/schemas/Href'
           type: array
+        href:
+          type: string
         id:
           format: uuid
           type: string
@@ -14985,11 +14987,6 @@ components:
         name:
           type: string
       type: object
-    Device_project:
-      allOf:
-      - $ref: '#/components/schemas/Href'
-      - description: Full version of project object when included
-        type: object
     Device_project_lite:
       allOf:
       - $ref: '#/components/schemas/Href'

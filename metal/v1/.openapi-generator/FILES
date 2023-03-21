@@ -96,7 +96,6 @@ docs/DeviceCreateInputIpAddressesInner.md
 docs/DeviceCreatedBy.md
 docs/DeviceList.md
 docs/DeviceMetro.md
-docs/DeviceProject.md
 docs/DeviceProjectLite.md
 docs/DeviceUpdateInput.md
 docs/DeviceUsage.md
@@ -368,7 +367,6 @@ model_device_create_input_ip_addresses_inner.go
 model_device_created_by.go
 model_device_list.go
 model_device_metro.go
-model_device_project.go
 model_device_project_lite.go
 model_device_update_input.go
 model_device_usage.go

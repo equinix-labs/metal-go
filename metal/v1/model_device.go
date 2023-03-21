@@ -29,7 +29,7 @@ type Device struct {
 	Customdata          map[string]interface{} `json:"customdata,omitempty"`
 	Description         *string                `json:"description,omitempty"`
 	Facility            *Facility              `json:"facility,omitempty"`
-	HardwareReservation *Href                  `json:"hardware_reservation,omitempty"`
+	HardwareReservation *HardwareReservation   `json:"hardware_reservation,omitempty"`
 	Hostname            *string                `json:"hostname,omitempty"`
 	Href                *string                `json:"href,omitempty"`
 	Id                  *string                `json:"id,omitempty"`
@@ -45,7 +45,7 @@ type Device struct {
 	// Actions supported by the device instance.
 	Actions            []DeviceActionsInner `json:"actions,omitempty"`
 	Plan               *Plan                `json:"plan,omitempty"`
-	Project            *DeviceProject       `json:"project,omitempty"`
+	Project            *Project             `json:"project,omitempty"`
 	ProjectLite        *DeviceProjectLite   `json:"project_lite,omitempty"`
 	ProvisioningEvents []Event              `json:"provisioning_events,omitempty"`
 	// Only visible while device provisioning
@@ -345,9 +345,9 @@ func (o *Device) SetFacility(v Facility) {
 }
 
 // GetHardwareReservation returns the HardwareReservation field value if set, zero value otherwise.
-func (o *Device) GetHardwareReservation() Href {
+func (o *Device) GetHardwareReservation() HardwareReservation {
 	if o == nil || isNil(o.HardwareReservation) {
-		var ret Href
+		var ret HardwareReservation
 		return ret
 	}
 	return *o.HardwareReservation
@@ -355,7 +355,7 @@ func (o *Device) GetHardwareReservation() Href {
 
 // GetHardwareReservationOk returns a tuple with the HardwareReservation field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Device) GetHardwareReservationOk() (*Href, bool) {
+func (o *Device) GetHardwareReservationOk() (*HardwareReservation, bool) {
 	if o == nil || isNil(o.HardwareReservation) {
 		return nil, false
 	}
@@ -371,8 +371,8 @@ func (o *Device) HasHardwareReservation() bool {
 	return false
 }
 
-// SetHardwareReservation gets a reference to the given Href and assigns it to the HardwareReservation field.
-func (o *Device) SetHardwareReservation(v Href) {
+// SetHardwareReservation gets a reference to the given HardwareReservation and assigns it to the HardwareReservation field.
+func (o *Device) SetHardwareReservation(v HardwareReservation) {
 	o.HardwareReservation = &v
 }
 
@@ -793,9 +793,9 @@ func (o *Device) SetPlan(v Plan) {
 }
 
 // GetProject returns the Project field value if set, zero value otherwise.
-func (o *Device) GetProject() DeviceProject {
+func (o *Device) GetProject() Project {
 	if o == nil || isNil(o.Project) {
-		var ret DeviceProject
+		var ret Project
 		return ret
 	}
 	return *o.Project
@@ -803,7 +803,7 @@ func (o *Device) GetProject() DeviceProject {
 
 // GetProjectOk returns a tuple with the Project field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Device) GetProjectOk() (*DeviceProject, bool) {
+func (o *Device) GetProjectOk() (*Project, bool) {
 	if o == nil || isNil(o.Project) {
 		return nil, false
 	}
@@ -819,8 +819,8 @@ func (o *Device) HasProject() bool {
 	return false
 }
 
-// SetProject gets a reference to the given DeviceProject and assigns it to the Project field.
-func (o *Device) SetProject(v DeviceProject) {
+// SetProject gets a reference to the given Project and assigns it to the Project field.
+func (o *Device) SetProject(v Project) {
 	o.Project = &v
 }
 

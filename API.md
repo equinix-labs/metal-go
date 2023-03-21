@@ -419,7 +419,6 @@ Class | Method | HTTP request | Description
  - [DeviceCreatedBy](docs/DeviceCreatedBy.md)
  - [DeviceList](docs/DeviceList.md)
  - [DeviceMetro](docs/DeviceMetro.md)
- - [DeviceProject](docs/DeviceProject.md)
  - [DeviceProjectLite](docs/DeviceProjectLite.md)
  - [DeviceUpdateInput](docs/DeviceUpdateInput.md)
  - [DeviceUsage](docs/DeviceUsage.md)
