@@ -65,8 +65,11 @@ type DeviceCreateInFacilityInput struct {
 	// A list of UUIDs identifying the users that should be authorized to access this device (typically via /root/.ssh/authorized_keys).  These keys will also appear in the device metadata.  The users must be members of the project or organization.  If no SSH keys are specified (`user_ssh_keys`, `project_ssh_keys`, and `ssh_keys` are all empty lists or omitted), all parent project keys, parent project members keys and organization members keys will be included. This behaviour can be changed with 'no_ssh_keys' option to omit any SSH key being added.
 	UserSshKeys []string `json:"user_ssh_keys,omitempty"`
 	// The userdata presented in the metadata service for this device.  Userdata is fetched and interpreted by the operating system installed on the device. Acceptable formats are determined by the operating system, with the exception of a special iPXE enabling syntax which is handled before the operating system starts.  See [Server User Data](https://metal.equinix.com/developers/docs/servers/user-data/) and [Provisioning with Custom iPXE](https://metal.equinix.com/developers/docs/operating-systems/custom-ipxe/#provisioning-with-custom-ipxe) for more details.
-	Userdata *string `json:"userdata,omitempty"`
+	Userdata             *string `json:"userdata,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _DeviceCreateInFacilityInput DeviceCreateInFacilityInput
 
 // NewDeviceCreateInFacilityInput instantiates a new DeviceCreateInFacilityInput object
 // This constructor will assign default values to properties that have it defined,
@@ -932,7 +935,52 @@ func (o DeviceCreateInFacilityInput) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Userdata) {
 		toSerialize["userdata"] = o.Userdata
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *DeviceCreateInFacilityInput) UnmarshalJSON(bytes []byte) (err error) {
+	varDeviceCreateInFacilityInput := _DeviceCreateInFacilityInput{}
+
+	if err = json.Unmarshal(bytes, &varDeviceCreateInFacilityInput); err == nil {
+		*o = DeviceCreateInFacilityInput(varDeviceCreateInFacilityInput)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "facility")
+		delete(additionalProperties, "always_pxe")
+		delete(additionalProperties, "billing_cycle")
+		delete(additionalProperties, "customdata")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "features")
+		delete(additionalProperties, "hardware_reservation_id")
+		delete(additionalProperties, "hostname")
+		delete(additionalProperties, "ip_addresses")
+		delete(additionalProperties, "ipxe_script_url")
+		delete(additionalProperties, "locked")
+		delete(additionalProperties, "no_ssh_keys")
+		delete(additionalProperties, "operating_system")
+		delete(additionalProperties, "plan")
+		delete(additionalProperties, "private_ipv4_subnet_size")
+		delete(additionalProperties, "project_ssh_keys")
+		delete(additionalProperties, "public_ipv4_subnet_size")
+		delete(additionalProperties, "spot_instance")
+		delete(additionalProperties, "spot_price_max")
+		delete(additionalProperties, "ssh_keys")
+		delete(additionalProperties, "tags")
+		delete(additionalProperties, "termination_time")
+		delete(additionalProperties, "user_ssh_keys")
+		delete(additionalProperties, "userdata")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableDeviceCreateInFacilityInput struct {

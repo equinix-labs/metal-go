@@ -20,12 +20,15 @@ var _ MappedNullable = &InvitationInput{}
 
 // InvitationInput struct for InvitationInput
 type InvitationInput struct {
-	Invitee        string   `json:"invitee"`
-	Message        *string  `json:"message,omitempty"`
-	OrganizationId *string  `json:"organization_id,omitempty"`
-	ProjectsIds    []string `json:"projects_ids,omitempty"`
-	Roles          []string `json:"roles,omitempty"`
+	Invitee              string   `json:"invitee"`
+	Message              *string  `json:"message,omitempty"`
+	OrganizationId       *string  `json:"organization_id,omitempty"`
+	ProjectsIds          []string `json:"projects_ids,omitempty"`
+	Roles                []string `json:"roles,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _InvitationInput InvitationInput
 
 // NewInvitationInput instantiates a new InvitationInput object
 // This constructor will assign default values to properties that have it defined,
@@ -220,7 +223,33 @@ func (o InvitationInput) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Roles) {
 		toSerialize["roles"] = o.Roles
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *InvitationInput) UnmarshalJSON(bytes []byte) (err error) {
+	varInvitationInput := _InvitationInput{}
+
+	if err = json.Unmarshal(bytes, &varInvitationInput); err == nil {
+		*o = InvitationInput(varInvitationInput)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "invitee")
+		delete(additionalProperties, "message")
+		delete(additionalProperties, "organization_id")
+		delete(additionalProperties, "projects_ids")
+		delete(additionalProperties, "roles")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableInvitationInput struct {

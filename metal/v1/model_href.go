@@ -20,8 +20,11 @@ var _ MappedNullable = &Href{}
 
 // Href struct for Href
 type Href struct {
-	Href string `json:"href"`
+	Href                 string `json:"href"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Href Href
 
 // NewHref instantiates a new Href object
 // This constructor will assign default values to properties that have it defined,
@@ -76,7 +79,29 @@ func (o Href) MarshalJSON() ([]byte, error) {
 func (o Href) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["href"] = o.Href
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *Href) UnmarshalJSON(bytes []byte) (err error) {
+	varHref := _Href{}
+
+	if err = json.Unmarshal(bytes, &varHref); err == nil {
+		*o = Href(varHref)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "href")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableHref struct {

@@ -20,8 +20,11 @@ var _ MappedNullable = &LicenseList{}
 
 // LicenseList struct for LicenseList
 type LicenseList struct {
-	Licenses []License `json:"licenses,omitempty"`
+	Licenses             []License `json:"licenses,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _LicenseList LicenseList
 
 // NewLicenseList instantiates a new LicenseList object
 // This constructor will assign default values to properties that have it defined,
@@ -85,7 +88,29 @@ func (o LicenseList) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Licenses) {
 		toSerialize["licenses"] = o.Licenses
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *LicenseList) UnmarshalJSON(bytes []byte) (err error) {
+	varLicenseList := _LicenseList{}
+
+	if err = json.Unmarshal(bytes, &varLicenseList); err == nil {
+		*o = LicenseList(varLicenseList)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "licenses")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableLicenseList struct {

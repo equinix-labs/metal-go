@@ -23,8 +23,11 @@ type BgpDynamicNeighborCreateInput struct {
 	// Network range of the dynamic BGP neighbor in CIDR format
 	BgpNeighborRange *string `json:"bgp_neighbor_range,omitempty"`
 	// The ASN of the dynamic BGP neighbor
-	BgpNeighborAsn *int32 `json:"bgp_neighbor_asn,omitempty"`
+	BgpNeighborAsn       *int32 `json:"bgp_neighbor_asn,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _BgpDynamicNeighborCreateInput BgpDynamicNeighborCreateInput
 
 // NewBgpDynamicNeighborCreateInput instantiates a new BgpDynamicNeighborCreateInput object
 // This constructor will assign default values to properties that have it defined,
@@ -123,7 +126,30 @@ func (o BgpDynamicNeighborCreateInput) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.BgpNeighborAsn) {
 		toSerialize["bgp_neighbor_asn"] = o.BgpNeighborAsn
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *BgpDynamicNeighborCreateInput) UnmarshalJSON(bytes []byte) (err error) {
+	varBgpDynamicNeighborCreateInput := _BgpDynamicNeighborCreateInput{}
+
+	if err = json.Unmarshal(bytes, &varBgpDynamicNeighborCreateInput); err == nil {
+		*o = BgpDynamicNeighborCreateInput(varBgpDynamicNeighborCreateInput)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "bgp_neighbor_range")
+		delete(additionalProperties, "bgp_neighbor_asn")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableBgpDynamicNeighborCreateInput struct {

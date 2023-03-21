@@ -20,9 +20,12 @@ var _ MappedNullable = &SSHKeyInput{}
 
 // SSHKeyInput struct for SSHKeyInput
 type SSHKeyInput struct {
-	Key   *string `json:"key,omitempty"`
-	Label *string `json:"label,omitempty"`
+	Key                  *string `json:"key,omitempty"`
+	Label                *string `json:"label,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SSHKeyInput SSHKeyInput
 
 // NewSSHKeyInput instantiates a new SSHKeyInput object
 // This constructor will assign default values to properties that have it defined,
@@ -121,7 +124,30 @@ func (o SSHKeyInput) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Label) {
 		toSerialize["label"] = o.Label
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *SSHKeyInput) UnmarshalJSON(bytes []byte) (err error) {
+	varSSHKeyInput := _SSHKeyInput{}
+
+	if err = json.Unmarshal(bytes, &varSSHKeyInput); err == nil {
+		*o = SSHKeyInput(varSSHKeyInput)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "key")
+		delete(additionalProperties, "label")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableSSHKeyInput struct {

@@ -20,8 +20,11 @@ var _ MappedNullable = &AuthTokenList{}
 
 // AuthTokenList struct for AuthTokenList
 type AuthTokenList struct {
-	ApiKeys []AuthToken `json:"api_keys,omitempty"`
+	ApiKeys              []AuthToken `json:"api_keys,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _AuthTokenList AuthTokenList
 
 // NewAuthTokenList instantiates a new AuthTokenList object
 // This constructor will assign default values to properties that have it defined,
@@ -85,7 +88,29 @@ func (o AuthTokenList) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.ApiKeys) {
 		toSerialize["api_keys"] = o.ApiKeys
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *AuthTokenList) UnmarshalJSON(bytes []byte) (err error) {
+	varAuthTokenList := _AuthTokenList{}
+
+	if err = json.Unmarshal(bytes, &varAuthTokenList); err == nil {
+		*o = AuthTokenList(varAuthTokenList)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "api_keys")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableAuthTokenList struct {

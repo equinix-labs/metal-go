@@ -29,11 +29,14 @@ type OperatingSystem struct {
 	// Servers can be already preinstalled with OS in order to shorten provision time.
 	Preinstallable *bool `json:"preinstallable,omitempty"`
 	// This object contains price per time unit and optional multiplier value if licence price depends on hardware plan or components (e.g. number of cores)
-	Pricing         map[string]interface{} `json:"pricing,omitempty"`
-	ProvisionableOn []string               `json:"provisionable_on,omitempty"`
-	Slug            *string                `json:"slug,omitempty"`
-	Version         *string                `json:"version,omitempty"`
+	Pricing              map[string]interface{} `json:"pricing,omitempty"`
+	ProvisionableOn      []string               `json:"provisionable_on,omitempty"`
+	Slug                 *string                `json:"slug,omitempty"`
+	Version              *string                `json:"version,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _OperatingSystem OperatingSystem
 
 // NewOperatingSystem instantiates a new OperatingSystem object
 // This constructor will assign default values to properties that have it defined,
@@ -412,7 +415,38 @@ func (o OperatingSystem) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Version) {
 		toSerialize["version"] = o.Version
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *OperatingSystem) UnmarshalJSON(bytes []byte) (err error) {
+	varOperatingSystem := _OperatingSystem{}
+
+	if err = json.Unmarshal(bytes, &varOperatingSystem); err == nil {
+		*o = OperatingSystem(varOperatingSystem)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "distro")
+		delete(additionalProperties, "distro_label")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "licensed")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "preinstallable")
+		delete(additionalProperties, "pricing")
+		delete(additionalProperties, "provisionable_on")
+		delete(additionalProperties, "slug")
+		delete(additionalProperties, "version")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableOperatingSystem struct {

@@ -20,10 +20,13 @@ var _ MappedNullable = &MetadataNetworkNetworkBonding{}
 
 // MetadataNetworkNetworkBonding struct for MetadataNetworkNetworkBonding
 type MetadataNetworkNetworkBonding struct {
-	LinkAggregation *string `json:"link_aggregation,omitempty"`
-	Mac             *string `json:"mac,omitempty"`
-	Mode            *int32  `json:"mode,omitempty"`
+	LinkAggregation      *string `json:"link_aggregation,omitempty"`
+	Mac                  *string `json:"mac,omitempty"`
+	Mode                 *int32  `json:"mode,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _MetadataNetworkNetworkBonding MetadataNetworkNetworkBonding
 
 // NewMetadataNetworkNetworkBonding instantiates a new MetadataNetworkNetworkBonding object
 // This constructor will assign default values to properties that have it defined,
@@ -157,7 +160,31 @@ func (o MetadataNetworkNetworkBonding) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Mode) {
 		toSerialize["mode"] = o.Mode
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *MetadataNetworkNetworkBonding) UnmarshalJSON(bytes []byte) (err error) {
+	varMetadataNetworkNetworkBonding := _MetadataNetworkNetworkBonding{}
+
+	if err = json.Unmarshal(bytes, &varMetadataNetworkNetworkBonding); err == nil {
+		*o = MetadataNetworkNetworkBonding(varMetadataNetworkNetworkBonding)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "link_aggregation")
+		delete(additionalProperties, "mac")
+		delete(additionalProperties, "mode")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableMetadataNetworkNetworkBonding struct {

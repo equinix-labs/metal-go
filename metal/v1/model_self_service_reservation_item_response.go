@@ -20,17 +20,20 @@ var _ MappedNullable = &SelfServiceReservationItemResponse{}
 
 // SelfServiceReservationItemResponse struct for SelfServiceReservationItemResponse
 type SelfServiceReservationItemResponse struct {
-	Amount    *float32 `json:"amount,omitempty"`
-	Id        *string  `json:"id,omitempty"`
-	MetroCode *string  `json:"metro_code,omitempty"`
-	MetroId   *string  `json:"metro_id,omitempty"`
-	MetroName *string  `json:"metro_name,omitempty"`
-	PlanId    *string  `json:"plan_id,omitempty"`
-	PlanName  *string  `json:"plan_name,omitempty"`
-	PlanSlug  *string  `json:"plan_slug,omitempty"`
-	Quantity  *int32   `json:"quantity,omitempty"`
-	Term      *string  `json:"term,omitempty"`
+	Amount               *float32 `json:"amount,omitempty"`
+	Id                   *string  `json:"id,omitempty"`
+	MetroCode            *string  `json:"metro_code,omitempty"`
+	MetroId              *string  `json:"metro_id,omitempty"`
+	MetroName            *string  `json:"metro_name,omitempty"`
+	PlanId               *string  `json:"plan_id,omitempty"`
+	PlanName             *string  `json:"plan_name,omitempty"`
+	PlanSlug             *string  `json:"plan_slug,omitempty"`
+	Quantity             *int32   `json:"quantity,omitempty"`
+	Term                 *string  `json:"term,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SelfServiceReservationItemResponse SelfServiceReservationItemResponse
 
 // NewSelfServiceReservationItemResponse instantiates a new SelfServiceReservationItemResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -409,7 +412,38 @@ func (o SelfServiceReservationItemResponse) ToMap() (map[string]interface{}, err
 	if !isNil(o.Term) {
 		toSerialize["term"] = o.Term
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *SelfServiceReservationItemResponse) UnmarshalJSON(bytes []byte) (err error) {
+	varSelfServiceReservationItemResponse := _SelfServiceReservationItemResponse{}
+
+	if err = json.Unmarshal(bytes, &varSelfServiceReservationItemResponse); err == nil {
+		*o = SelfServiceReservationItemResponse(varSelfServiceReservationItemResponse)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "amount")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "metro_code")
+		delete(additionalProperties, "metro_id")
+		delete(additionalProperties, "metro_name")
+		delete(additionalProperties, "plan_id")
+		delete(additionalProperties, "plan_name")
+		delete(additionalProperties, "plan_slug")
+		delete(additionalProperties, "quantity")
+		delete(additionalProperties, "term")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableSelfServiceReservationItemResponse struct {

@@ -20,8 +20,11 @@ var _ MappedNullable = &PaymentMethodList{}
 
 // PaymentMethodList struct for PaymentMethodList
 type PaymentMethodList struct {
-	PaymentMethods []PaymentMethod `json:"payment_methods,omitempty"`
+	PaymentMethods       []PaymentMethod `json:"payment_methods,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _PaymentMethodList PaymentMethodList
 
 // NewPaymentMethodList instantiates a new PaymentMethodList object
 // This constructor will assign default values to properties that have it defined,
@@ -85,7 +88,29 @@ func (o PaymentMethodList) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.PaymentMethods) {
 		toSerialize["payment_methods"] = o.PaymentMethods
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *PaymentMethodList) UnmarshalJSON(bytes []byte) (err error) {
+	varPaymentMethodList := _PaymentMethodList{}
+
+	if err = json.Unmarshal(bytes, &varPaymentMethodList); err == nil {
+		*o = PaymentMethodList(varPaymentMethodList)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "payment_methods")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePaymentMethodList struct {

@@ -31,8 +31,11 @@ type DeviceActionInput struct {
 	// When type is `reinstall`, use this `operating_system` (defaults to the current `operating system`)
 	OperatingSystem *string `json:"operating_system,omitempty"`
 	// When type is `reinstall`, use this `ipxe_script_url` (`operating_system` must be `custom_ipxe`, defaults to the current `ipxe_script_url`)
-	IpxeScriptUrl *string `json:"ipxe_script_url,omitempty"`
+	IpxeScriptUrl        *string `json:"ipxe_script_url,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _DeviceActionInput DeviceActionInput
 
 // NewDeviceActionInput instantiates a new DeviceActionInput object
 // This constructor will assign default values to properties that have it defined,
@@ -262,7 +265,34 @@ func (o DeviceActionInput) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.IpxeScriptUrl) {
 		toSerialize["ipxe_script_url"] = o.IpxeScriptUrl
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *DeviceActionInput) UnmarshalJSON(bytes []byte) (err error) {
+	varDeviceActionInput := _DeviceActionInput{}
+
+	if err = json.Unmarshal(bytes, &varDeviceActionInput); err == nil {
+		*o = DeviceActionInput(varDeviceActionInput)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "force_delete")
+		delete(additionalProperties, "deprovision_fast")
+		delete(additionalProperties, "preserve_data")
+		delete(additionalProperties, "operating_system")
+		delete(additionalProperties, "ipxe_script_url")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableDeviceActionInput struct {

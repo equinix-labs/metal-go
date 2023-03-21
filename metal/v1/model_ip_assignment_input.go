@@ -20,9 +20,12 @@ var _ MappedNullable = &IPAssignmentInput{}
 
 // IPAssignmentInput struct for IPAssignmentInput
 type IPAssignmentInput struct {
-	Address    string                 `json:"address"`
-	Customdata map[string]interface{} `json:"customdata,omitempty"`
+	Address              string                 `json:"address"`
+	Customdata           map[string]interface{} `json:"customdata,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _IPAssignmentInput IPAssignmentInput
 
 // NewIPAssignmentInput instantiates a new IPAssignmentInput object
 // This constructor will assign default values to properties that have it defined,
@@ -112,7 +115,30 @@ func (o IPAssignmentInput) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Customdata) {
 		toSerialize["customdata"] = o.Customdata
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *IPAssignmentInput) UnmarshalJSON(bytes []byte) (err error) {
+	varIPAssignmentInput := _IPAssignmentInput{}
+
+	if err = json.Unmarshal(bytes, &varIPAssignmentInput); err == nil {
+		*o = IPAssignmentInput(varIPAssignmentInput)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "address")
+		delete(additionalProperties, "customdata")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableIPAssignmentInput struct {

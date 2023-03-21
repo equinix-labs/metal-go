@@ -20,8 +20,11 @@ var _ MappedNullable = &SpotPricesDatapoints{}
 
 // SpotPricesDatapoints struct for SpotPricesDatapoints
 type SpotPricesDatapoints struct {
-	Datapoints [][]float32 `json:"datapoints,omitempty"`
+	Datapoints           [][]float32 `json:"datapoints,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SpotPricesDatapoints SpotPricesDatapoints
 
 // NewSpotPricesDatapoints instantiates a new SpotPricesDatapoints object
 // This constructor will assign default values to properties that have it defined,
@@ -85,7 +88,29 @@ func (o SpotPricesDatapoints) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Datapoints) {
 		toSerialize["datapoints"] = o.Datapoints
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *SpotPricesDatapoints) UnmarshalJSON(bytes []byte) (err error) {
+	varSpotPricesDatapoints := _SpotPricesDatapoints{}
+
+	if err = json.Unmarshal(bytes, &varSpotPricesDatapoints); err == nil {
+		*o = SpotPricesDatapoints(varSpotPricesDatapoints)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "datapoints")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableSpotPricesDatapoints struct {

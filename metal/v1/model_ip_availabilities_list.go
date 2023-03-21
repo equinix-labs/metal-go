@@ -20,8 +20,11 @@ var _ MappedNullable = &IPAvailabilitiesList{}
 
 // IPAvailabilitiesList struct for IPAvailabilitiesList
 type IPAvailabilitiesList struct {
-	Available []string `json:"available,omitempty"`
+	Available            []string `json:"available,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _IPAvailabilitiesList IPAvailabilitiesList
 
 // NewIPAvailabilitiesList instantiates a new IPAvailabilitiesList object
 // This constructor will assign default values to properties that have it defined,
@@ -85,7 +88,29 @@ func (o IPAvailabilitiesList) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Available) {
 		toSerialize["available"] = o.Available
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *IPAvailabilitiesList) UnmarshalJSON(bytes []byte) (err error) {
+	varIPAvailabilitiesList := _IPAvailabilitiesList{}
+
+	if err = json.Unmarshal(bytes, &varIPAvailabilitiesList); err == nil {
+		*o = IPAvailabilitiesList(varIPAvailabilitiesList)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "available")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableIPAvailabilitiesList struct {

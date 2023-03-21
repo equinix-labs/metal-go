@@ -23,8 +23,11 @@ type BGPSessionInput struct {
 	// Address family for BGP session.
 	AddressFamily *string `json:"address_family,omitempty"`
 	// Set the default route policy.
-	DefaultRoute *bool `json:"default_route,omitempty"`
+	DefaultRoute         *bool `json:"default_route,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _BGPSessionInput BGPSessionInput
 
 // NewBGPSessionInput instantiates a new BGPSessionInput object
 // This constructor will assign default values to properties that have it defined,
@@ -127,7 +130,30 @@ func (o BGPSessionInput) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.DefaultRoute) {
 		toSerialize["default_route"] = o.DefaultRoute
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *BGPSessionInput) UnmarshalJSON(bytes []byte) (err error) {
+	varBGPSessionInput := _BGPSessionInput{}
+
+	if err = json.Unmarshal(bytes, &varBGPSessionInput); err == nil {
+		*o = BGPSessionInput(varBGPSessionInput)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "address_family")
+		delete(additionalProperties, "default_route")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableBGPSessionInput struct {

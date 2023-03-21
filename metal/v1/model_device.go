@@ -64,12 +64,15 @@ type Device struct {
 	SwitchUuid *string  `json:"switch_uuid,omitempty"`
 	Tags       []string `json:"tags,omitempty"`
 	// When the device will be terminated. This is commonly set in advance for ephemeral spot market instances but this field may also be set with on-demand and reservation instances to automatically delete the resource at a given time. The termination time can also be used to release a hardware reservation instance at a given time, keeping the reservation open for other uses.  On a spot market device, the termination time will be set automatically when outbid.
-	TerminationTime *time.Time `json:"termination_time,omitempty"`
-	UpdatedAt       *time.Time `json:"updated_at,omitempty"`
-	User            *string    `json:"user,omitempty"`
-	Userdata        *string    `json:"userdata,omitempty"`
-	Volumes         []Href     `json:"volumes,omitempty"`
+	TerminationTime      *time.Time `json:"termination_time,omitempty"`
+	UpdatedAt            *time.Time `json:"updated_at,omitempty"`
+	User                 *string    `json:"user,omitempty"`
+	Userdata             *string    `json:"userdata,omitempty"`
+	Volumes              []Href     `json:"volumes,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Device Device
 
 // NewDevice instantiates a new Device object
 // This constructor will assign default values to properties that have it defined,
@@ -1498,7 +1501,68 @@ func (o Device) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Volumes) {
 		toSerialize["volumes"] = o.Volumes
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *Device) UnmarshalJSON(bytes []byte) (err error) {
+	varDevice := _Device{}
+
+	if err = json.Unmarshal(bytes, &varDevice); err == nil {
+		*o = Device(varDevice)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "always_pxe")
+		delete(additionalProperties, "billing_cycle")
+		delete(additionalProperties, "bonding_mode")
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "created_by")
+		delete(additionalProperties, "customdata")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "facility")
+		delete(additionalProperties, "hardware_reservation")
+		delete(additionalProperties, "hostname")
+		delete(additionalProperties, "href")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "image_url")
+		delete(additionalProperties, "ip_addresses")
+		delete(additionalProperties, "ipxe_script_url")
+		delete(additionalProperties, "iqn")
+		delete(additionalProperties, "locked")
+		delete(additionalProperties, "metro")
+		delete(additionalProperties, "network_ports")
+		delete(additionalProperties, "operating_system")
+		delete(additionalProperties, "actions")
+		delete(additionalProperties, "plan")
+		delete(additionalProperties, "project")
+		delete(additionalProperties, "project_lite")
+		delete(additionalProperties, "provisioning_events")
+		delete(additionalProperties, "provisioning_percentage")
+		delete(additionalProperties, "root_password")
+		delete(additionalProperties, "short_id")
+		delete(additionalProperties, "spot_instance")
+		delete(additionalProperties, "spot_price_max")
+		delete(additionalProperties, "ssh_keys")
+		delete(additionalProperties, "state")
+		delete(additionalProperties, "storage")
+		delete(additionalProperties, "switch_uuid")
+		delete(additionalProperties, "tags")
+		delete(additionalProperties, "termination_time")
+		delete(additionalProperties, "updated_at")
+		delete(additionalProperties, "user")
+		delete(additionalProperties, "userdata")
+		delete(additionalProperties, "volumes")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableDevice struct {

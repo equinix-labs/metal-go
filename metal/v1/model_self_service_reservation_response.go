@@ -21,18 +21,21 @@ var _ MappedNullable = &SelfServiceReservationResponse{}
 
 // SelfServiceReservationResponse struct for SelfServiceReservationResponse
 type SelfServiceReservationResponse struct {
-	CreatedAt      *time.Time                                 `json:"created_at,omitempty"`
-	Item           []SelfServiceReservationItemResponse       `json:"item,omitempty"`
-	Notes          *string                                    `json:"notes,omitempty"`
-	Organization   *string                                    `json:"organization,omitempty"`
-	OrganizationId *string                                    `json:"organization_id,omitempty"`
-	Period         *CreateSelfServiceReservationRequestPeriod `json:"period,omitempty"`
-	Project        *string                                    `json:"project,omitempty"`
-	ProjectId      *string                                    `json:"project_id,omitempty"`
-	StartDate      *time.Time                                 `json:"start_date,omitempty"`
-	Status         *string                                    `json:"status,omitempty"`
-	TotalCost      *int32                                     `json:"total_cost,omitempty"`
+	CreatedAt            *time.Time                                 `json:"created_at,omitempty"`
+	Item                 []SelfServiceReservationItemResponse       `json:"item,omitempty"`
+	Notes                *string                                    `json:"notes,omitempty"`
+	Organization         *string                                    `json:"organization,omitempty"`
+	OrganizationId       *string                                    `json:"organization_id,omitempty"`
+	Period               *CreateSelfServiceReservationRequestPeriod `json:"period,omitempty"`
+	Project              *string                                    `json:"project,omitempty"`
+	ProjectId            *string                                    `json:"project_id,omitempty"`
+	StartDate            *time.Time                                 `json:"start_date,omitempty"`
+	Status               *string                                    `json:"status,omitempty"`
+	TotalCost            *int32                                     `json:"total_cost,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SelfServiceReservationResponse SelfServiceReservationResponse
 
 // NewSelfServiceReservationResponse instantiates a new SelfServiceReservationResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -446,7 +449,39 @@ func (o SelfServiceReservationResponse) ToMap() (map[string]interface{}, error) 
 	if !isNil(o.TotalCost) {
 		toSerialize["total_cost"] = o.TotalCost
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *SelfServiceReservationResponse) UnmarshalJSON(bytes []byte) (err error) {
+	varSelfServiceReservationResponse := _SelfServiceReservationResponse{}
+
+	if err = json.Unmarshal(bytes, &varSelfServiceReservationResponse); err == nil {
+		*o = SelfServiceReservationResponse(varSelfServiceReservationResponse)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "item")
+		delete(additionalProperties, "notes")
+		delete(additionalProperties, "organization")
+		delete(additionalProperties, "organization_id")
+		delete(additionalProperties, "period")
+		delete(additionalProperties, "project")
+		delete(additionalProperties, "project_id")
+		delete(additionalProperties, "start_date")
+		delete(additionalProperties, "status")
+		delete(additionalProperties, "total_cost")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableSelfServiceReservationResponse struct {

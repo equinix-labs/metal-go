@@ -21,10 +21,13 @@ var _ MappedNullable = &SSHKeyCreateInput{}
 // SSHKeyCreateInput struct for SSHKeyCreateInput
 type SSHKeyCreateInput struct {
 	// List of instance UUIDs to associate SSH key with, when empty array is sent all instances belonging       to entity will be included
-	InstancesIds []string `json:"instances_ids,omitempty"`
-	Key          *string  `json:"key,omitempty"`
-	Label        *string  `json:"label,omitempty"`
+	InstancesIds         []string `json:"instances_ids,omitempty"`
+	Key                  *string  `json:"key,omitempty"`
+	Label                *string  `json:"label,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SSHKeyCreateInput SSHKeyCreateInput
 
 // NewSSHKeyCreateInput instantiates a new SSHKeyCreateInput object
 // This constructor will assign default values to properties that have it defined,
@@ -158,7 +161,31 @@ func (o SSHKeyCreateInput) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Label) {
 		toSerialize["label"] = o.Label
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *SSHKeyCreateInput) UnmarshalJSON(bytes []byte) (err error) {
+	varSSHKeyCreateInput := _SSHKeyCreateInput{}
+
+	if err = json.Unmarshal(bytes, &varSSHKeyCreateInput); err == nil {
+		*o = SSHKeyCreateInput(varSSHKeyCreateInput)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "instances_ids")
+		delete(additionalProperties, "key")
+		delete(additionalProperties, "label")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableSSHKeyCreateInput struct {

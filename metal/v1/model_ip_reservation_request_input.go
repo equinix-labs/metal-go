@@ -26,11 +26,14 @@ type IPReservationRequestInput struct {
 	Facility               *string                `json:"facility,omitempty"`
 	FailOnApprovalRequired *bool                  `json:"fail_on_approval_required,omitempty"`
 	// The code of the metro you are requesting the IP reservation in.
-	Metro    *string  `json:"metro,omitempty"`
-	Quantity int32    `json:"quantity"`
-	Tags     []string `json:"tags,omitempty"`
-	Type     string   `json:"type"`
+	Metro                *string  `json:"metro,omitempty"`
+	Quantity             int32    `json:"quantity"`
+	Tags                 []string `json:"tags,omitempty"`
+	Type                 string   `json:"type"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _IPReservationRequestInput IPReservationRequestInput
 
 // NewIPReservationRequestInput instantiates a new IPReservationRequestInput object
 // This constructor will assign default values to properties that have it defined,
@@ -356,7 +359,37 @@ func (o IPReservationRequestInput) ToMap() (map[string]interface{}, error) {
 		toSerialize["tags"] = o.Tags
 	}
 	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *IPReservationRequestInput) UnmarshalJSON(bytes []byte) (err error) {
+	varIPReservationRequestInput := _IPReservationRequestInput{}
+
+	if err = json.Unmarshal(bytes, &varIPReservationRequestInput); err == nil {
+		*o = IPReservationRequestInput(varIPReservationRequestInput)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "comments")
+		delete(additionalProperties, "customdata")
+		delete(additionalProperties, "details")
+		delete(additionalProperties, "facility")
+		delete(additionalProperties, "fail_on_approval_required")
+		delete(additionalProperties, "metro")
+		delete(additionalProperties, "quantity")
+		delete(additionalProperties, "tags")
+		delete(additionalProperties, "type")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableIPReservationRequestInput struct {

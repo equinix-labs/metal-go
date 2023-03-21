@@ -21,13 +21,16 @@ var _ MappedNullable = &TransferRequest{}
 
 // TransferRequest struct for TransferRequest
 type TransferRequest struct {
-	CreatedAt          *time.Time `json:"created_at,omitempty"`
-	Href               *string    `json:"href,omitempty"`
-	Id                 *string    `json:"id,omitempty"`
-	Project            *Href      `json:"project,omitempty"`
-	TargetOrganization *Href      `json:"target_organization,omitempty"`
-	UpdatedAt          *time.Time `json:"updated_at,omitempty"`
+	CreatedAt            *time.Time `json:"created_at,omitempty"`
+	Href                 *string    `json:"href,omitempty"`
+	Id                   *string    `json:"id,omitempty"`
+	Project              *Href      `json:"project,omitempty"`
+	TargetOrganization   *Href      `json:"target_organization,omitempty"`
+	UpdatedAt            *time.Time `json:"updated_at,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _TransferRequest TransferRequest
 
 // NewTransferRequest instantiates a new TransferRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -266,7 +269,34 @@ func (o TransferRequest) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.UpdatedAt) {
 		toSerialize["updated_at"] = o.UpdatedAt
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *TransferRequest) UnmarshalJSON(bytes []byte) (err error) {
+	varTransferRequest := _TransferRequest{}
+
+	if err = json.Unmarshal(bytes, &varTransferRequest); err == nil {
+		*o = TransferRequest(varTransferRequest)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "href")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "project")
+		delete(additionalProperties, "target_organization")
+		delete(additionalProperties, "updated_at")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableTransferRequest struct {

@@ -20,8 +20,11 @@ var _ MappedNullable = &GlobalBgpRangeList{}
 
 // GlobalBgpRangeList struct for GlobalBgpRangeList
 type GlobalBgpRangeList struct {
-	GlobalBgpRanges []GlobalBgpRange `json:"global_bgp_ranges,omitempty"`
+	GlobalBgpRanges      []GlobalBgpRange `json:"global_bgp_ranges,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _GlobalBgpRangeList GlobalBgpRangeList
 
 // NewGlobalBgpRangeList instantiates a new GlobalBgpRangeList object
 // This constructor will assign default values to properties that have it defined,
@@ -85,7 +88,29 @@ func (o GlobalBgpRangeList) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.GlobalBgpRanges) {
 		toSerialize["global_bgp_ranges"] = o.GlobalBgpRanges
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *GlobalBgpRangeList) UnmarshalJSON(bytes []byte) (err error) {
+	varGlobalBgpRangeList := _GlobalBgpRangeList{}
+
+	if err = json.Unmarshal(bytes, &varGlobalBgpRangeList); err == nil {
+		*o = GlobalBgpRangeList(varGlobalBgpRangeList)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "global_bgp_ranges")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableGlobalBgpRangeList struct {

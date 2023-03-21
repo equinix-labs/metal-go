@@ -21,22 +21,25 @@ var _ MappedNullable = &PaymentMethod{}
 
 // PaymentMethod struct for PaymentMethod
 type PaymentMethod struct {
-	BillingAddress  *PaymentMethodBillingAddress `json:"billing_address,omitempty"`
-	CardType        *string                      `json:"card_type,omitempty"`
-	CardholderName  *string                      `json:"cardholder_name,omitempty"`
-	CreatedAt       *time.Time                   `json:"created_at,omitempty"`
-	CreatedByUser   *Href                        `json:"created_by_user,omitempty"`
-	Default         *bool                        `json:"default,omitempty"`
-	Email           *string                      `json:"email,omitempty"`
-	ExpirationMonth *string                      `json:"expiration_month,omitempty"`
-	ExpirationYear  *string                      `json:"expiration_year,omitempty"`
-	Id              *string                      `json:"id,omitempty"`
-	Name            *string                      `json:"name,omitempty"`
-	Organization    *Href                        `json:"organization,omitempty"`
-	Projects        []Href                       `json:"projects,omitempty"`
-	Type            *string                      `json:"type,omitempty"`
-	UpdatedAt       *time.Time                   `json:"updated_at,omitempty"`
+	BillingAddress       *PaymentMethodBillingAddress `json:"billing_address,omitempty"`
+	CardType             *string                      `json:"card_type,omitempty"`
+	CardholderName       *string                      `json:"cardholder_name,omitempty"`
+	CreatedAt            *time.Time                   `json:"created_at,omitempty"`
+	CreatedByUser        *Href                        `json:"created_by_user,omitempty"`
+	Default              *bool                        `json:"default,omitempty"`
+	Email                *string                      `json:"email,omitempty"`
+	ExpirationMonth      *string                      `json:"expiration_month,omitempty"`
+	ExpirationYear       *string                      `json:"expiration_year,omitempty"`
+	Id                   *string                      `json:"id,omitempty"`
+	Name                 *string                      `json:"name,omitempty"`
+	Organization         *Href                        `json:"organization,omitempty"`
+	Projects             []Href                       `json:"projects,omitempty"`
+	Type                 *string                      `json:"type,omitempty"`
+	UpdatedAt            *time.Time                   `json:"updated_at,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _PaymentMethod PaymentMethod
 
 // NewPaymentMethod instantiates a new PaymentMethod object
 // This constructor will assign default values to properties that have it defined,
@@ -590,7 +593,43 @@ func (o PaymentMethod) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.UpdatedAt) {
 		toSerialize["updated_at"] = o.UpdatedAt
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *PaymentMethod) UnmarshalJSON(bytes []byte) (err error) {
+	varPaymentMethod := _PaymentMethod{}
+
+	if err = json.Unmarshal(bytes, &varPaymentMethod); err == nil {
+		*o = PaymentMethod(varPaymentMethod)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "billing_address")
+		delete(additionalProperties, "card_type")
+		delete(additionalProperties, "cardholder_name")
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "created_by_user")
+		delete(additionalProperties, "default")
+		delete(additionalProperties, "email")
+		delete(additionalProperties, "expiration_month")
+		delete(additionalProperties, "expiration_year")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "organization")
+		delete(additionalProperties, "projects")
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "updated_at")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePaymentMethod struct {

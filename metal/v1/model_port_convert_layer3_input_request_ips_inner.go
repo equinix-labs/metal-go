@@ -20,9 +20,12 @@ var _ MappedNullable = &PortConvertLayer3InputRequestIpsInner{}
 
 // PortConvertLayer3InputRequestIpsInner struct for PortConvertLayer3InputRequestIpsInner
 type PortConvertLayer3InputRequestIpsInner struct {
-	AddressFamily *int32 `json:"address_family,omitempty"`
-	Public        *bool  `json:"public,omitempty"`
+	AddressFamily        *int32 `json:"address_family,omitempty"`
+	Public               *bool  `json:"public,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _PortConvertLayer3InputRequestIpsInner PortConvertLayer3InputRequestIpsInner
 
 // NewPortConvertLayer3InputRequestIpsInner instantiates a new PortConvertLayer3InputRequestIpsInner object
 // This constructor will assign default values to properties that have it defined,
@@ -121,7 +124,30 @@ func (o PortConvertLayer3InputRequestIpsInner) ToMap() (map[string]interface{}, 
 	if !isNil(o.Public) {
 		toSerialize["public"] = o.Public
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *PortConvertLayer3InputRequestIpsInner) UnmarshalJSON(bytes []byte) (err error) {
+	varPortConvertLayer3InputRequestIpsInner := _PortConvertLayer3InputRequestIpsInner{}
+
+	if err = json.Unmarshal(bytes, &varPortConvertLayer3InputRequestIpsInner); err == nil {
+		*o = PortConvertLayer3InputRequestIpsInner(varPortConvertLayer3InputRequestIpsInner)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "address_family")
+		delete(additionalProperties, "public")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePortConvertLayer3InputRequestIpsInner struct {

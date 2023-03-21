@@ -27,12 +27,15 @@ type OrganizationInput struct {
 	Customdata     map[string]interface{} `json:"customdata,omitempty"`
 	Description    *string                `json:"description,omitempty"`
 	// Force to all members to have enabled the two factor authentication after that date, unless the value is null
-	Enforce2faAt *time.Time `json:"enforce_2fa_at,omitempty"`
-	Logo         **os.File  `json:"logo,omitempty"`
-	Name         *string    `json:"name,omitempty"`
-	Twitter      *string    `json:"twitter,omitempty"`
-	Website      *string    `json:"website,omitempty"`
+	Enforce2faAt         *time.Time `json:"enforce_2fa_at,omitempty"`
+	Logo                 **os.File  `json:"logo,omitempty"`
+	Name                 *string    `json:"name,omitempty"`
+	Twitter              *string    `json:"twitter,omitempty"`
+	Website              *string    `json:"website,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _OrganizationInput OrganizationInput
 
 // NewOrganizationInput instantiates a new OrganizationInput object
 // This constructor will assign default values to properties that have it defined,
@@ -376,7 +379,37 @@ func (o OrganizationInput) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Website) {
 		toSerialize["website"] = o.Website
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *OrganizationInput) UnmarshalJSON(bytes []byte) (err error) {
+	varOrganizationInput := _OrganizationInput{}
+
+	if err = json.Unmarshal(bytes, &varOrganizationInput); err == nil {
+		*o = OrganizationInput(varOrganizationInput)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "address")
+		delete(additionalProperties, "billing_address")
+		delete(additionalProperties, "customdata")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "enforce_2fa_at")
+		delete(additionalProperties, "logo")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "twitter")
+		delete(additionalProperties, "website")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableOrganizationInput struct {

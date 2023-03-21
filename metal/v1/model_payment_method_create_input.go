@@ -20,10 +20,13 @@ var _ MappedNullable = &PaymentMethodCreateInput{}
 
 // PaymentMethodCreateInput struct for PaymentMethodCreateInput
 type PaymentMethodCreateInput struct {
-	Default *bool  `json:"default,omitempty"`
-	Name    string `json:"name"`
-	Nonce   string `json:"nonce"`
+	Default              *bool  `json:"default,omitempty"`
+	Name                 string `json:"name"`
+	Nonce                string `json:"nonce"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _PaymentMethodCreateInput PaymentMethodCreateInput
 
 // NewPaymentMethodCreateInput instantiates a new PaymentMethodCreateInput object
 // This constructor will assign default values to properties that have it defined,
@@ -139,7 +142,31 @@ func (o PaymentMethodCreateInput) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["name"] = o.Name
 	toSerialize["nonce"] = o.Nonce
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *PaymentMethodCreateInput) UnmarshalJSON(bytes []byte) (err error) {
+	varPaymentMethodCreateInput := _PaymentMethodCreateInput{}
+
+	if err = json.Unmarshal(bytes, &varPaymentMethodCreateInput); err == nil {
+		*o = PaymentMethodCreateInput(varPaymentMethodCreateInput)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "default")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "nonce")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePaymentMethodCreateInput struct {

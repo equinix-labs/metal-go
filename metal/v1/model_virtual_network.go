@@ -33,9 +33,12 @@ type VirtualNetwork struct {
 	MetalGateways []MetalGatewayLite `json:"metal_gateways,omitempty"`
 	Metro         *Href              `json:"metro,omitempty"`
 	// The Metro code of the metro in which this Virtual Network is defined.
-	MetroCode *string `json:"metro_code,omitempty"`
-	Vxlan     *int32  `json:"vxlan,omitempty"`
+	MetroCode            *string `json:"metro_code,omitempty"`
+	Vxlan                *int32  `json:"vxlan,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _VirtualNetwork VirtualNetwork
 
 // NewVirtualNetwork instantiates a new VirtualNetwork object
 // This constructor will assign default values to properties that have it defined,
@@ -449,7 +452,39 @@ func (o VirtualNetwork) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Vxlan) {
 		toSerialize["vxlan"] = o.Vxlan
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *VirtualNetwork) UnmarshalJSON(bytes []byte) (err error) {
+	varVirtualNetwork := _VirtualNetwork{}
+
+	if err = json.Unmarshal(bytes, &varVirtualNetwork); err == nil {
+		*o = VirtualNetwork(varVirtualNetwork)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "assigned_to")
+		delete(additionalProperties, "assigned_to_virtual_circuit")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "facility")
+		delete(additionalProperties, "href")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "instances")
+		delete(additionalProperties, "metal_gateways")
+		delete(additionalProperties, "metro")
+		delete(additionalProperties, "metro_code")
+		delete(additionalProperties, "vxlan")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableVirtualNetwork struct {

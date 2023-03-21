@@ -20,10 +20,13 @@ var _ MappedNullable = &DeviceUsage{}
 
 // DeviceUsage struct for DeviceUsage
 type DeviceUsage struct {
-	Quantity *string `json:"quantity,omitempty"`
-	Total    *string `json:"total,omitempty"`
-	Unit     *string `json:"unit,omitempty"`
+	Quantity             *string `json:"quantity,omitempty"`
+	Total                *string `json:"total,omitempty"`
+	Unit                 *string `json:"unit,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _DeviceUsage DeviceUsage
 
 // NewDeviceUsage instantiates a new DeviceUsage object
 // This constructor will assign default values to properties that have it defined,
@@ -157,7 +160,31 @@ func (o DeviceUsage) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Unit) {
 		toSerialize["unit"] = o.Unit
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *DeviceUsage) UnmarshalJSON(bytes []byte) (err error) {
+	varDeviceUsage := _DeviceUsage{}
+
+	if err = json.Unmarshal(bytes, &varDeviceUsage); err == nil {
+		*o = DeviceUsage(varDeviceUsage)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "quantity")
+		delete(additionalProperties, "total")
+		delete(additionalProperties, "unit")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableDeviceUsage struct {

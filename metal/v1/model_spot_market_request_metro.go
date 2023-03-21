@@ -20,11 +20,14 @@ var _ MappedNullable = &SpotMarketRequestMetro{}
 
 // SpotMarketRequestMetro struct for SpotMarketRequestMetro
 type SpotMarketRequestMetro struct {
-	Code    *string `json:"code,omitempty"`
-	Country *string `json:"country,omitempty"`
-	Id      *string `json:"id,omitempty"`
-	Name    *string `json:"name,omitempty"`
+	Code                 *string `json:"code,omitempty"`
+	Country              *string `json:"country,omitempty"`
+	Id                   *string `json:"id,omitempty"`
+	Name                 *string `json:"name,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SpotMarketRequestMetro SpotMarketRequestMetro
 
 // NewSpotMarketRequestMetro instantiates a new SpotMarketRequestMetro object
 // This constructor will assign default values to properties that have it defined,
@@ -193,7 +196,32 @@ func (o SpotMarketRequestMetro) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *SpotMarketRequestMetro) UnmarshalJSON(bytes []byte) (err error) {
+	varSpotMarketRequestMetro := _SpotMarketRequestMetro{}
+
+	if err = json.Unmarshal(bytes, &varSpotMarketRequestMetro); err == nil {
+		*o = SpotMarketRequestMetro(varSpotMarketRequestMetro)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "code")
+		delete(additionalProperties, "country")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "name")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableSpotMarketRequestMetro struct {

@@ -20,8 +20,11 @@ var _ MappedNullable = &MetalGatewayList{}
 
 // MetalGatewayList struct for MetalGatewayList
 type MetalGatewayList struct {
-	MetalGateways []MetalGatewayListMetalGatewaysInner `json:"metal_gateways,omitempty"`
+	MetalGateways        []MetalGatewayListMetalGatewaysInner `json:"metal_gateways,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _MetalGatewayList MetalGatewayList
 
 // NewMetalGatewayList instantiates a new MetalGatewayList object
 // This constructor will assign default values to properties that have it defined,
@@ -85,7 +88,29 @@ func (o MetalGatewayList) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.MetalGateways) {
 		toSerialize["metal_gateways"] = o.MetalGateways
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *MetalGatewayList) UnmarshalJSON(bytes []byte) (err error) {
+	varMetalGatewayList := _MetalGatewayList{}
+
+	if err = json.Unmarshal(bytes, &varMetalGatewayList); err == nil {
+		*o = MetalGatewayList(varMetalGatewayList)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "metal_gateways")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableMetalGatewayList struct {

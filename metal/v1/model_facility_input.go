@@ -20,8 +20,11 @@ var _ MappedNullable = &FacilityInput{}
 
 // FacilityInput struct for FacilityInput
 type FacilityInput struct {
-	Facility FacilityInputFacility `json:"facility"`
+	Facility             FacilityInputFacility `json:"facility"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _FacilityInput FacilityInput
 
 // NewFacilityInput instantiates a new FacilityInput object
 // This constructor will assign default values to properties that have it defined,
@@ -76,7 +79,29 @@ func (o FacilityInput) MarshalJSON() ([]byte, error) {
 func (o FacilityInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["facility"] = o.Facility
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *FacilityInput) UnmarshalJSON(bytes []byte) (err error) {
+	varFacilityInput := _FacilityInput{}
+
+	if err = json.Unmarshal(bytes, &varFacilityInput); err == nil {
+		*o = FacilityInput(varFacilityInput)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "facility")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableFacilityInput struct {

@@ -20,12 +20,15 @@ var _ MappedNullable = &Email{}
 
 // Email struct for Email
 type Email struct {
-	Address  *string `json:"address,omitempty"`
-	Default  *bool   `json:"default,omitempty"`
-	Href     *string `json:"href,omitempty"`
-	Id       *string `json:"id,omitempty"`
-	Verified *bool   `json:"verified,omitempty"`
+	Address              *string `json:"address,omitempty"`
+	Default              *bool   `json:"default,omitempty"`
+	Href                 *string `json:"href,omitempty"`
+	Id                   *string `json:"id,omitempty"`
+	Verified             *bool   `json:"verified,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Email Email
 
 // NewEmail instantiates a new Email object
 // This constructor will assign default values to properties that have it defined,
@@ -229,7 +232,33 @@ func (o Email) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Verified) {
 		toSerialize["verified"] = o.Verified
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *Email) UnmarshalJSON(bytes []byte) (err error) {
+	varEmail := _Email{}
+
+	if err = json.Unmarshal(bytes, &varEmail); err == nil {
+		*o = Email(varEmail)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "address")
+		delete(additionalProperties, "default")
+		delete(additionalProperties, "href")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "verified")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableEmail struct {

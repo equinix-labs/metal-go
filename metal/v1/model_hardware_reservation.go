@@ -41,8 +41,11 @@ type HardwareReservation struct {
 	// Switch short id. This can be used to determine if two devices are connected to the same switch, for example.
 	SwitchUuid *string `json:"switch_uuid,omitempty"`
 	// Expiration date for the reservation.
-	TerminationTime *time.Time `json:"termination_time,omitempty"`
+	TerminationTime      *time.Time `json:"termination_time,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _HardwareReservation HardwareReservation
 
 // NewHardwareReservation instantiates a new HardwareReservation object
 // This constructor will assign default values to properties that have it defined,
@@ -561,7 +564,42 @@ func (o HardwareReservation) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.TerminationTime) {
 		toSerialize["termination_time"] = o.TerminationTime
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *HardwareReservation) UnmarshalJSON(bytes []byte) (err error) {
+	varHardwareReservation := _HardwareReservation{}
+
+	if err = json.Unmarshal(bytes, &varHardwareReservation); err == nil {
+		*o = HardwareReservation(varHardwareReservation)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "custom_rate")
+		delete(additionalProperties, "device")
+		delete(additionalProperties, "facility")
+		delete(additionalProperties, "href")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "need_of_service")
+		delete(additionalProperties, "plan")
+		delete(additionalProperties, "project")
+		delete(additionalProperties, "provisionable")
+		delete(additionalProperties, "short_id")
+		delete(additionalProperties, "spare")
+		delete(additionalProperties, "switch_uuid")
+		delete(additionalProperties, "termination_time")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableHardwareReservation struct {

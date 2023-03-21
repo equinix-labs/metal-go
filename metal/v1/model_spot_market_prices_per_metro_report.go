@@ -20,14 +20,17 @@ var _ MappedNullable = &SpotMarketPricesPerMetroReport{}
 
 // SpotMarketPricesPerMetroReport struct for SpotMarketPricesPerMetroReport
 type SpotMarketPricesPerMetroReport struct {
-	Am *SpotPricesPerFacility `json:"am,omitempty"`
-	Ch *SpotPricesPerFacility `json:"ch,omitempty"`
-	Da *SpotPricesPerFacility `json:"da,omitempty"`
-	La *SpotPricesPerFacility `json:"la,omitempty"`
-	Ny *SpotPricesPerFacility `json:"ny,omitempty"`
-	Sg *SpotPricesPerFacility `json:"sg,omitempty"`
-	Sv *SpotPricesPerFacility `json:"sv,omitempty"`
+	Am                   *SpotPricesPerFacility `json:"am,omitempty"`
+	Ch                   *SpotPricesPerFacility `json:"ch,omitempty"`
+	Da                   *SpotPricesPerFacility `json:"da,omitempty"`
+	La                   *SpotPricesPerFacility `json:"la,omitempty"`
+	Ny                   *SpotPricesPerFacility `json:"ny,omitempty"`
+	Sg                   *SpotPricesPerFacility `json:"sg,omitempty"`
+	Sv                   *SpotPricesPerFacility `json:"sv,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SpotMarketPricesPerMetroReport SpotMarketPricesPerMetroReport
 
 // NewSpotMarketPricesPerMetroReport instantiates a new SpotMarketPricesPerMetroReport object
 // This constructor will assign default values to properties that have it defined,
@@ -301,7 +304,35 @@ func (o SpotMarketPricesPerMetroReport) ToMap() (map[string]interface{}, error) 
 	if !isNil(o.Sv) {
 		toSerialize["sv"] = o.Sv
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *SpotMarketPricesPerMetroReport) UnmarshalJSON(bytes []byte) (err error) {
+	varSpotMarketPricesPerMetroReport := _SpotMarketPricesPerMetroReport{}
+
+	if err = json.Unmarshal(bytes, &varSpotMarketPricesPerMetroReport); err == nil {
+		*o = SpotMarketPricesPerMetroReport(varSpotMarketPricesPerMetroReport)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "am")
+		delete(additionalProperties, "ch")
+		delete(additionalProperties, "da")
+		delete(additionalProperties, "la")
+		delete(additionalProperties, "ny")
+		delete(additionalProperties, "sg")
+		delete(additionalProperties, "sv")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableSpotMarketPricesPerMetroReport struct {

@@ -41,8 +41,11 @@ type BgpConfig struct {
 	// The direct connections between neighboring routers that want to exchange routing information.
 	Sessions []BgpSession `json:"sessions,omitempty"`
 	// Status of the BGP Config. Status \"requested\" is valid only with the \"global\" deployment_type.
-	Status *string `json:"status,omitempty"`
+	Status               *string `json:"status,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _BgpConfig BgpConfig
 
 // NewBgpConfig instantiates a new BgpConfig object
 // This constructor will assign default values to properties that have it defined,
@@ -541,7 +544,41 @@ func (o BgpConfig) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Status) {
 		toSerialize["status"] = o.Status
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *BgpConfig) UnmarshalJSON(bytes []byte) (err error) {
+	varBgpConfig := _BgpConfig{}
+
+	if err = json.Unmarshal(bytes, &varBgpConfig); err == nil {
+		*o = BgpConfig(varBgpConfig)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "asn")
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "deployment_type")
+		delete(additionalProperties, "href")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "max_prefix")
+		delete(additionalProperties, "md5")
+		delete(additionalProperties, "project")
+		delete(additionalProperties, "ranges")
+		delete(additionalProperties, "requested_at")
+		delete(additionalProperties, "route_object")
+		delete(additionalProperties, "sessions")
+		delete(additionalProperties, "status")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableBgpConfig struct {

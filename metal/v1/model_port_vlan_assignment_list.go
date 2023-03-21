@@ -20,8 +20,11 @@ var _ MappedNullable = &PortVlanAssignmentList{}
 
 // PortVlanAssignmentList struct for PortVlanAssignmentList
 type PortVlanAssignmentList struct {
-	VlanAssignments []PortVlanAssignment `json:"vlan_assignments,omitempty"`
+	VlanAssignments      []PortVlanAssignment `json:"vlan_assignments,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _PortVlanAssignmentList PortVlanAssignmentList
 
 // NewPortVlanAssignmentList instantiates a new PortVlanAssignmentList object
 // This constructor will assign default values to properties that have it defined,
@@ -85,7 +88,29 @@ func (o PortVlanAssignmentList) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.VlanAssignments) {
 		toSerialize["vlan_assignments"] = o.VlanAssignments
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *PortVlanAssignmentList) UnmarshalJSON(bytes []byte) (err error) {
+	varPortVlanAssignmentList := _PortVlanAssignmentList{}
+
+	if err = json.Unmarshal(bytes, &varPortVlanAssignmentList); err == nil {
+		*o = PortVlanAssignmentList(varPortVlanAssignmentList)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "vlan_assignments")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePortVlanAssignmentList struct {

@@ -21,8 +21,11 @@ var _ MappedNullable = &MetroInput{}
 // MetroInput struct for MetroInput
 type MetroInput struct {
 	// Metro code or ID of where the instance should be provisioned in. Either metro or facility must be provided.
-	Metro string `json:"metro"`
+	Metro                string `json:"metro"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _MetroInput MetroInput
 
 // NewMetroInput instantiates a new MetroInput object
 // This constructor will assign default values to properties that have it defined,
@@ -77,7 +80,29 @@ func (o MetroInput) MarshalJSON() ([]byte, error) {
 func (o MetroInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["metro"] = o.Metro
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *MetroInput) UnmarshalJSON(bytes []byte) (err error) {
+	varMetroInput := _MetroInput{}
+
+	if err = json.Unmarshal(bytes, &varMetroInput); err == nil {
+		*o = MetroInput(varMetroInput)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "metro")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableMetroInput struct {

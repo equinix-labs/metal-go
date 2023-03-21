@@ -20,8 +20,11 @@ var _ MappedNullable = &CapacityInput{}
 
 // CapacityInput struct for CapacityInput
 type CapacityInput struct {
-	Servers []ServerInfo `json:"servers,omitempty"`
+	Servers              []ServerInfo `json:"servers,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _CapacityInput CapacityInput
 
 // NewCapacityInput instantiates a new CapacityInput object
 // This constructor will assign default values to properties that have it defined,
@@ -85,7 +88,29 @@ func (o CapacityInput) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Servers) {
 		toSerialize["servers"] = o.Servers
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *CapacityInput) UnmarshalJSON(bytes []byte) (err error) {
+	varCapacityInput := _CapacityInput{}
+
+	if err = json.Unmarshal(bytes, &varCapacityInput); err == nil {
+		*o = CapacityInput(varCapacityInput)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "servers")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableCapacityInput struct {

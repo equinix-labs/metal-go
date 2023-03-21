@@ -20,21 +20,24 @@ var _ MappedNullable = &CapacityReport{}
 
 // CapacityReport struct for CapacityReport
 type CapacityReport struct {
-	Ams1 *CapacityPerFacility    `json:"ams1,omitempty"`
-	Atl1 *CapacityPerNewFacility `json:"atl1,omitempty"`
-	Dfw1 *CapacityPerNewFacility `json:"dfw1,omitempty"`
-	Ewr1 *CapacityPerFacility    `json:"ewr1,omitempty"`
-	Fra1 *CapacityPerNewFacility `json:"fra1,omitempty"`
-	Iad1 *CapacityPerNewFacility `json:"iad1,omitempty"`
-	Lax1 *CapacityPerNewFacility `json:"lax1,omitempty"`
-	Nrt1 *CapacityPerFacility    `json:"nrt1,omitempty"`
-	Ord1 *CapacityPerNewFacility `json:"ord1,omitempty"`
-	Sea1 *CapacityPerNewFacility `json:"sea1,omitempty"`
-	Sin1 *CapacityPerNewFacility `json:"sin1,omitempty"`
-	Sjc1 *CapacityPerFacility    `json:"sjc1,omitempty"`
-	Syd1 *CapacityPerNewFacility `json:"syd1,omitempty"`
-	Yyz1 *CapacityPerNewFacility `json:"yyz1,omitempty"`
+	Ams1                 *CapacityPerFacility    `json:"ams1,omitempty"`
+	Atl1                 *CapacityPerNewFacility `json:"atl1,omitempty"`
+	Dfw1                 *CapacityPerNewFacility `json:"dfw1,omitempty"`
+	Ewr1                 *CapacityPerFacility    `json:"ewr1,omitempty"`
+	Fra1                 *CapacityPerNewFacility `json:"fra1,omitempty"`
+	Iad1                 *CapacityPerNewFacility `json:"iad1,omitempty"`
+	Lax1                 *CapacityPerNewFacility `json:"lax1,omitempty"`
+	Nrt1                 *CapacityPerFacility    `json:"nrt1,omitempty"`
+	Ord1                 *CapacityPerNewFacility `json:"ord1,omitempty"`
+	Sea1                 *CapacityPerNewFacility `json:"sea1,omitempty"`
+	Sin1                 *CapacityPerNewFacility `json:"sin1,omitempty"`
+	Sjc1                 *CapacityPerFacility    `json:"sjc1,omitempty"`
+	Syd1                 *CapacityPerNewFacility `json:"syd1,omitempty"`
+	Yyz1                 *CapacityPerNewFacility `json:"yyz1,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _CapacityReport CapacityReport
 
 // NewCapacityReport instantiates a new CapacityReport object
 // This constructor will assign default values to properties that have it defined,
@@ -553,7 +556,42 @@ func (o CapacityReport) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Yyz1) {
 		toSerialize["yyz1"] = o.Yyz1
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *CapacityReport) UnmarshalJSON(bytes []byte) (err error) {
+	varCapacityReport := _CapacityReport{}
+
+	if err = json.Unmarshal(bytes, &varCapacityReport); err == nil {
+		*o = CapacityReport(varCapacityReport)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "ams1")
+		delete(additionalProperties, "atl1")
+		delete(additionalProperties, "dfw1")
+		delete(additionalProperties, "ewr1")
+		delete(additionalProperties, "fra1")
+		delete(additionalProperties, "iad1")
+		delete(additionalProperties, "lax1")
+		delete(additionalProperties, "nrt1")
+		delete(additionalProperties, "ord1")
+		delete(additionalProperties, "sea1")
+		delete(additionalProperties, "sin1")
+		delete(additionalProperties, "sjc1")
+		delete(additionalProperties, "syd1")
+		delete(additionalProperties, "yyz1")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableCapacityReport struct {

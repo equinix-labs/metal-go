@@ -21,24 +21,27 @@ var _ MappedNullable = &IPAssignment{}
 
 // IPAssignment struct for IPAssignment
 type IPAssignment struct {
-	Address       *string            `json:"address,omitempty"`
-	AddressFamily *int32             `json:"address_family,omitempty"`
-	AssignedTo    *Href              `json:"assigned_to,omitempty"`
-	Cidr          *int32             `json:"cidr,omitempty"`
-	CreatedAt     *time.Time         `json:"created_at,omitempty"`
-	Enabled       *bool              `json:"enabled,omitempty"`
-	Gateway       *string            `json:"gateway,omitempty"`
-	GlobalIp      *bool              `json:"global_ip,omitempty"`
-	Href          *string            `json:"href,omitempty"`
-	Id            *string            `json:"id,omitempty"`
-	Manageable    *bool              `json:"manageable,omitempty"`
-	Management    *bool              `json:"management,omitempty"`
-	Metro         *IPAssignmentMetro `json:"metro,omitempty"`
-	Netmask       *string            `json:"netmask,omitempty"`
-	Network       *string            `json:"network,omitempty"`
-	ParentBlock   *ParentBlock       `json:"parent_block,omitempty"`
-	Public        *bool              `json:"public,omitempty"`
+	Address              *string            `json:"address,omitempty"`
+	AddressFamily        *int32             `json:"address_family,omitempty"`
+	AssignedTo           *Href              `json:"assigned_to,omitempty"`
+	Cidr                 *int32             `json:"cidr,omitempty"`
+	CreatedAt            *time.Time         `json:"created_at,omitempty"`
+	Enabled              *bool              `json:"enabled,omitempty"`
+	Gateway              *string            `json:"gateway,omitempty"`
+	GlobalIp             *bool              `json:"global_ip,omitempty"`
+	Href                 *string            `json:"href,omitempty"`
+	Id                   *string            `json:"id,omitempty"`
+	Manageable           *bool              `json:"manageable,omitempty"`
+	Management           *bool              `json:"management,omitempty"`
+	Metro                *IPAssignmentMetro `json:"metro,omitempty"`
+	Netmask              *string            `json:"netmask,omitempty"`
+	Network              *string            `json:"network,omitempty"`
+	ParentBlock          *ParentBlock       `json:"parent_block,omitempty"`
+	Public               *bool              `json:"public,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _IPAssignment IPAssignment
 
 // NewIPAssignment instantiates a new IPAssignment object
 // This constructor will assign default values to properties that have it defined,
@@ -662,7 +665,45 @@ func (o IPAssignment) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Public) {
 		toSerialize["public"] = o.Public
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *IPAssignment) UnmarshalJSON(bytes []byte) (err error) {
+	varIPAssignment := _IPAssignment{}
+
+	if err = json.Unmarshal(bytes, &varIPAssignment); err == nil {
+		*o = IPAssignment(varIPAssignment)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "address")
+		delete(additionalProperties, "address_family")
+		delete(additionalProperties, "assigned_to")
+		delete(additionalProperties, "cidr")
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "enabled")
+		delete(additionalProperties, "gateway")
+		delete(additionalProperties, "global_ip")
+		delete(additionalProperties, "href")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "manageable")
+		delete(additionalProperties, "management")
+		delete(additionalProperties, "metro")
+		delete(additionalProperties, "netmask")
+		delete(additionalProperties, "network")
+		delete(additionalProperties, "parent_block")
+		delete(additionalProperties, "public")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableIPAssignment struct {

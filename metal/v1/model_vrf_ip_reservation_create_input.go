@@ -30,8 +30,11 @@ type VrfIpReservationCreateInput struct {
 	// Must be set to 'vrf'
 	Type string `json:"type"`
 	// The ID of the VRF in which this VRF IP Reservation is created. The VRF must have an existing IP Range that contains the requested subnet. This field may be aliased as just 'vrf'.
-	VrfId string `json:"vrf_id"`
+	VrfId                string `json:"vrf_id"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _VrfIpReservationCreateInput VrfIpReservationCreateInput
 
 // NewVrfIpReservationCreateInput instantiates a new VrfIpReservationCreateInput object
 // This constructor will assign default values to properties that have it defined,
@@ -269,7 +272,35 @@ func (o VrfIpReservationCreateInput) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["type"] = o.Type
 	toSerialize["vrf_id"] = o.VrfId
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *VrfIpReservationCreateInput) UnmarshalJSON(bytes []byte) (err error) {
+	varVrfIpReservationCreateInput := _VrfIpReservationCreateInput{}
+
+	if err = json.Unmarshal(bytes, &varVrfIpReservationCreateInput); err == nil {
+		*o = VrfIpReservationCreateInput(varVrfIpReservationCreateInput)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "cidr")
+		delete(additionalProperties, "customdata")
+		delete(additionalProperties, "details")
+		delete(additionalProperties, "network")
+		delete(additionalProperties, "tags")
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "vrf_id")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableVrfIpReservationCreateInput struct {

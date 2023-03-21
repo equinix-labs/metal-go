@@ -20,8 +20,11 @@ var _ MappedNullable = &BgpSessionList{}
 
 // BgpSessionList struct for BgpSessionList
 type BgpSessionList struct {
-	BgpSessions []BgpSession `json:"bgp_sessions,omitempty"`
+	BgpSessions          []BgpSession `json:"bgp_sessions,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _BgpSessionList BgpSessionList
 
 // NewBgpSessionList instantiates a new BgpSessionList object
 // This constructor will assign default values to properties that have it defined,
@@ -85,7 +88,29 @@ func (o BgpSessionList) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.BgpSessions) {
 		toSerialize["bgp_sessions"] = o.BgpSessions
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *BgpSessionList) UnmarshalJSON(bytes []byte) (err error) {
+	varBgpSessionList := _BgpSessionList{}
+
+	if err = json.Unmarshal(bytes, &varBgpSessionList); err == nil {
+		*o = BgpSessionList(varBgpSessionList)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "bgp_sessions")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableBgpSessionList struct {

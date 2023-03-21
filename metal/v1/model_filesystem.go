@@ -20,8 +20,11 @@ var _ MappedNullable = &Filesystem{}
 
 // Filesystem struct for Filesystem
 type Filesystem struct {
-	Mount *Mount `json:"mount,omitempty"`
+	Mount                *Mount `json:"mount,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Filesystem Filesystem
 
 // NewFilesystem instantiates a new Filesystem object
 // This constructor will assign default values to properties that have it defined,
@@ -85,7 +88,29 @@ func (o Filesystem) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Mount) {
 		toSerialize["mount"] = o.Mount
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *Filesystem) UnmarshalJSON(bytes []byte) (err error) {
+	varFilesystem := _Filesystem{}
+
+	if err = json.Unmarshal(bytes, &varFilesystem); err == nil {
+		*o = Filesystem(varFilesystem)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "mount")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableFilesystem struct {

@@ -29,9 +29,12 @@ type BgpSession struct {
 	Id            *string    `json:"id,omitempty"`
 	LearnedRoutes []string   `json:"learned_routes,omitempty"`
 	//  The status of the BGP Session. Multiple status values may be reported when the device is connected to multiple switches, one value per switch. Each status will start with \"unknown\" and progress to \"up\" or \"down\" depending on the connected device. Subsequent \"unknown\" values indicate a problem acquiring status from the switch.
-	Status    *string    `json:"status,omitempty"`
-	UpdatedAt *time.Time `json:"updated_at,omitempty"`
+	Status               *string    `json:"status,omitempty"`
+	UpdatedAt            *time.Time `json:"updated_at,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _BgpSession BgpSession
 
 // NewBgpSession instantiates a new BgpSession object
 // This constructor will assign default values to properties that have it defined,
@@ -366,7 +369,37 @@ func (o BgpSession) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.UpdatedAt) {
 		toSerialize["updated_at"] = o.UpdatedAt
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *BgpSession) UnmarshalJSON(bytes []byte) (err error) {
+	varBgpSession := _BgpSession{}
+
+	if err = json.Unmarshal(bytes, &varBgpSession); err == nil {
+		*o = BgpSession(varBgpSession)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "address_family")
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "default_route")
+		delete(additionalProperties, "device")
+		delete(additionalProperties, "href")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "learned_routes")
+		delete(additionalProperties, "status")
+		delete(additionalProperties, "updated_at")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableBgpSession struct {

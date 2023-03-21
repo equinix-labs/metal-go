@@ -24,7 +24,10 @@ type ProjectUpdateInput struct {
 	Customdata             map[string]interface{} `json:"customdata,omitempty"`
 	Name                   *string                `json:"name,omitempty"`
 	PaymentMethodId        *string                `json:"payment_method_id,omitempty"`
+	AdditionalProperties   map[string]interface{}
 }
+
+type _ProjectUpdateInput ProjectUpdateInput
 
 // NewProjectUpdateInput instantiates a new ProjectUpdateInput object
 // This constructor will assign default values to properties that have it defined,
@@ -193,7 +196,32 @@ func (o ProjectUpdateInput) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.PaymentMethodId) {
 		toSerialize["payment_method_id"] = o.PaymentMethodId
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *ProjectUpdateInput) UnmarshalJSON(bytes []byte) (err error) {
+	varProjectUpdateInput := _ProjectUpdateInput{}
+
+	if err = json.Unmarshal(bytes, &varProjectUpdateInput); err == nil {
+		*o = ProjectUpdateInput(varProjectUpdateInput)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "backend_transfer_enabled")
+		delete(additionalProperties, "customdata")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "payment_method_id")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableProjectUpdateInput struct {

@@ -26,9 +26,12 @@ type InterconnectionUpdateInput struct {
 	Mode *string `json:"mode,omitempty"`
 	Name *string `json:"name,omitempty"`
 	// Updating from 'redundant' to 'primary' will remove a secondary port, while updating from 'primary' to 'redundant' will add one.
-	Redundancy *string  `json:"redundancy,omitempty"`
-	Tags       []string `json:"tags,omitempty"`
+	Redundancy           *string  `json:"redundancy,omitempty"`
+	Tags                 []string `json:"tags,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _InterconnectionUpdateInput InterconnectionUpdateInput
 
 // NewInterconnectionUpdateInput instantiates a new InterconnectionUpdateInput object
 // This constructor will assign default values to properties that have it defined,
@@ -267,7 +270,34 @@ func (o InterconnectionUpdateInput) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Tags) {
 		toSerialize["tags"] = o.Tags
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *InterconnectionUpdateInput) UnmarshalJSON(bytes []byte) (err error) {
+	varInterconnectionUpdateInput := _InterconnectionUpdateInput{}
+
+	if err = json.Unmarshal(bytes, &varInterconnectionUpdateInput); err == nil {
+		*o = InterconnectionUpdateInput(varInterconnectionUpdateInput)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "contact_email")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "mode")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "redundancy")
+		delete(additionalProperties, "tags")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableInterconnectionUpdateInput struct {

@@ -22,7 +22,10 @@ var _ MappedNullable = &HardwareReservationList{}
 type HardwareReservationList struct {
 	HardwareReservations []HardwareReservation `json:"hardware_reservations,omitempty"`
 	Meta                 *Meta                 `json:"meta,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _HardwareReservationList HardwareReservationList
 
 // NewHardwareReservationList instantiates a new HardwareReservationList object
 // This constructor will assign default values to properties that have it defined,
@@ -121,7 +124,30 @@ func (o HardwareReservationList) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Meta) {
 		toSerialize["meta"] = o.Meta
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *HardwareReservationList) UnmarshalJSON(bytes []byte) (err error) {
+	varHardwareReservationList := _HardwareReservationList{}
+
+	if err = json.Unmarshal(bytes, &varHardwareReservationList); err == nil {
+		*o = HardwareReservationList(varHardwareReservationList)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "hardware_reservations")
+		delete(additionalProperties, "meta")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableHardwareReservationList struct {

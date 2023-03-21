@@ -20,8 +20,11 @@ var _ MappedNullable = &OperatingSystemList{}
 
 // OperatingSystemList struct for OperatingSystemList
 type OperatingSystemList struct {
-	OperatingSystems []OperatingSystem `json:"operating_systems,omitempty"`
+	OperatingSystems     []OperatingSystem `json:"operating_systems,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _OperatingSystemList OperatingSystemList
 
 // NewOperatingSystemList instantiates a new OperatingSystemList object
 // This constructor will assign default values to properties that have it defined,
@@ -85,7 +88,29 @@ func (o OperatingSystemList) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.OperatingSystems) {
 		toSerialize["operating_systems"] = o.OperatingSystems
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *OperatingSystemList) UnmarshalJSON(bytes []byte) (err error) {
+	varOperatingSystemList := _OperatingSystemList{}
+
+	if err = json.Unmarshal(bytes, &varOperatingSystemList); err == nil {
+		*o = OperatingSystemList(varOperatingSystemList)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "operating_systems")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableOperatingSystemList struct {

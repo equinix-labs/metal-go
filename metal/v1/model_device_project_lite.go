@@ -20,8 +20,11 @@ var _ MappedNullable = &DeviceProjectLite{}
 
 // DeviceProjectLite struct for DeviceProjectLite
 type DeviceProjectLite struct {
-	Href string `json:"href"`
+	Href                 string `json:"href"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _DeviceProjectLite DeviceProjectLite
 
 // NewDeviceProjectLite instantiates a new DeviceProjectLite object
 // This constructor will assign default values to properties that have it defined,
@@ -76,7 +79,29 @@ func (o DeviceProjectLite) MarshalJSON() ([]byte, error) {
 func (o DeviceProjectLite) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["href"] = o.Href
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *DeviceProjectLite) UnmarshalJSON(bytes []byte) (err error) {
+	varDeviceProjectLite := _DeviceProjectLite{}
+
+	if err = json.Unmarshal(bytes, &varDeviceProjectLite); err == nil {
+		*o = DeviceProjectLite(varDeviceProjectLite)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "href")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableDeviceProjectLite struct {

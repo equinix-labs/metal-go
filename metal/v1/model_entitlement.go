@@ -20,19 +20,22 @@ var _ MappedNullable = &Entitlement{}
 
 // Entitlement struct for Entitlement
 type Entitlement struct {
-	Description   *string                `json:"description,omitempty"`
-	FeatureAccess map[string]interface{} `json:"feature_access,omitempty"`
-	Href          *string                `json:"href,omitempty"`
-	Id            string                 `json:"id"`
-	InstanceQuota map[string]interface{} `json:"instance_quota,omitempty"`
-	IpQuota       map[string]interface{} `json:"ip_quota,omitempty"`
-	Name          *string                `json:"name,omitempty"`
-	ProjectQuota  *int32                 `json:"project_quota,omitempty"`
-	Slug          string                 `json:"slug"`
-	VolumeLimits  map[string]interface{} `json:"volume_limits,omitempty"`
-	VolumeQuota   map[string]interface{} `json:"volume_quota,omitempty"`
-	Weight        int32                  `json:"weight"`
+	Description          *string                `json:"description,omitempty"`
+	FeatureAccess        map[string]interface{} `json:"feature_access,omitempty"`
+	Href                 *string                `json:"href,omitempty"`
+	Id                   string                 `json:"id"`
+	InstanceQuota        map[string]interface{} `json:"instance_quota,omitempty"`
+	IpQuota              map[string]interface{} `json:"ip_quota,omitempty"`
+	Name                 *string                `json:"name,omitempty"`
+	ProjectQuota         *int32                 `json:"project_quota,omitempty"`
+	Slug                 string                 `json:"slug"`
+	VolumeLimits         map[string]interface{} `json:"volume_limits,omitempty"`
+	VolumeQuota          map[string]interface{} `json:"volume_quota,omitempty"`
+	Weight               int32                  `json:"weight"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Entitlement Entitlement
 
 // NewEntitlement instantiates a new Entitlement object
 // This constructor will assign default values to properties that have it defined,
@@ -458,7 +461,40 @@ func (o Entitlement) ToMap() (map[string]interface{}, error) {
 		toSerialize["volume_quota"] = o.VolumeQuota
 	}
 	toSerialize["weight"] = o.Weight
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *Entitlement) UnmarshalJSON(bytes []byte) (err error) {
+	varEntitlement := _Entitlement{}
+
+	if err = json.Unmarshal(bytes, &varEntitlement); err == nil {
+		*o = Entitlement(varEntitlement)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "feature_access")
+		delete(additionalProperties, "href")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "instance_quota")
+		delete(additionalProperties, "ip_quota")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "project_quota")
+		delete(additionalProperties, "slug")
+		delete(additionalProperties, "volume_limits")
+		delete(additionalProperties, "volume_quota")
+		delete(additionalProperties, "weight")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableEntitlement struct {

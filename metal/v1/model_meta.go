@@ -20,15 +20,18 @@ var _ MappedNullable = &Meta{}
 
 // Meta struct for Meta
 type Meta struct {
-	First       *Href  `json:"first,omitempty"`
-	Last        *Href  `json:"last,omitempty"`
-	Next        *Href  `json:"next,omitempty"`
-	Previous    *Href  `json:"previous,omitempty"`
-	Self        *Href  `json:"self,omitempty"`
-	Total       *int32 `json:"total,omitempty"`
-	CurrentPage *int32 `json:"current_page,omitempty"`
-	LastPage    *int32 `json:"last_page,omitempty"`
+	First                *Href  `json:"first,omitempty"`
+	Last                 *Href  `json:"last,omitempty"`
+	Next                 *Href  `json:"next,omitempty"`
+	Previous             *Href  `json:"previous,omitempty"`
+	Self                 *Href  `json:"self,omitempty"`
+	Total                *int32 `json:"total,omitempty"`
+	CurrentPage          *int32 `json:"current_page,omitempty"`
+	LastPage             *int32 `json:"last_page,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Meta Meta
 
 // NewMeta instantiates a new Meta object
 // This constructor will assign default values to properties that have it defined,
@@ -337,7 +340,36 @@ func (o Meta) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.LastPage) {
 		toSerialize["last_page"] = o.LastPage
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *Meta) UnmarshalJSON(bytes []byte) (err error) {
+	varMeta := _Meta{}
+
+	if err = json.Unmarshal(bytes, &varMeta); err == nil {
+		*o = Meta(varMeta)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "first")
+		delete(additionalProperties, "last")
+		delete(additionalProperties, "next")
+		delete(additionalProperties, "previous")
+		delete(additionalProperties, "self")
+		delete(additionalProperties, "total")
+		delete(additionalProperties, "current_page")
+		delete(additionalProperties, "last_page")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableMeta struct {

@@ -20,8 +20,11 @@ var _ MappedNullable = &DeviceUsageList{}
 
 // DeviceUsageList struct for DeviceUsageList
 type DeviceUsageList struct {
-	Usages []DeviceUsage `json:"usages,omitempty"`
+	Usages               []DeviceUsage `json:"usages,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _DeviceUsageList DeviceUsageList
 
 // NewDeviceUsageList instantiates a new DeviceUsageList object
 // This constructor will assign default values to properties that have it defined,
@@ -85,7 +88,29 @@ func (o DeviceUsageList) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Usages) {
 		toSerialize["usages"] = o.Usages
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *DeviceUsageList) UnmarshalJSON(bytes []byte) (err error) {
+	varDeviceUsageList := _DeviceUsageList{}
+
+	if err = json.Unmarshal(bytes, &varDeviceUsageList); err == nil {
+		*o = DeviceUsageList(varDeviceUsageList)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "usages")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableDeviceUsageList struct {

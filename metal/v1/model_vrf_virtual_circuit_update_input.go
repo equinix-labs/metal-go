@@ -33,9 +33,12 @@ type VrfVirtualCircuitUpdateInput struct {
 	// Speed can be changed only if it is an interconnection on a Dedicated Port
 	Speed *string `json:"speed,omitempty"`
 	// The /30 or /31 subnet of one of the VRF IP Blocks that will be used with the VRF for the Virtual Circuit. This subnet does not have to be an existing VRF IP reservation, as we will create the VRF IP reservation on creation if it does not exist. The Metal IP and Customer IP must be IPs from this subnet. For /30 subnets, the network and broadcast IPs cannot be used as the Metal or Customer IP.
-	Subnet *string  `json:"subnet,omitempty"`
-	Tags   []string `json:"tags,omitempty"`
+	Subnet               *string  `json:"subnet,omitempty"`
+	Tags                 []string `json:"tags,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _VrfVirtualCircuitUpdateInput VrfVirtualCircuitUpdateInput
 
 // NewVrfVirtualCircuitUpdateInput instantiates a new VrfVirtualCircuitUpdateInput object
 // This constructor will assign default values to properties that have it defined,
@@ -379,7 +382,37 @@ func (o VrfVirtualCircuitUpdateInput) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Tags) {
 		toSerialize["tags"] = o.Tags
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *VrfVirtualCircuitUpdateInput) UnmarshalJSON(bytes []byte) (err error) {
+	varVrfVirtualCircuitUpdateInput := _VrfVirtualCircuitUpdateInput{}
+
+	if err = json.Unmarshal(bytes, &varVrfVirtualCircuitUpdateInput); err == nil {
+		*o = VrfVirtualCircuitUpdateInput(varVrfVirtualCircuitUpdateInput)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "customer_ip")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "md5")
+		delete(additionalProperties, "metal_ip")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "peer_asn")
+		delete(additionalProperties, "speed")
+		delete(additionalProperties, "subnet")
+		delete(additionalProperties, "tags")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableVrfVirtualCircuitUpdateInput struct {

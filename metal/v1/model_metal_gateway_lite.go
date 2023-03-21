@@ -30,8 +30,11 @@ type MetalGatewayLite struct {
 	State     *string    `json:"state,omitempty"`
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
 	// The VLAN id of the Virtual Network record associated to this Metal Gateway.
-	Vlan *int32 `json:"vlan,omitempty"`
+	Vlan                 *int32 `json:"vlan,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _MetalGatewayLite MetalGatewayLite
 
 // NewMetalGatewayLite instantiates a new MetalGatewayLite object
 // This constructor will assign default values to properties that have it defined,
@@ -305,7 +308,35 @@ func (o MetalGatewayLite) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Vlan) {
 		toSerialize["vlan"] = o.Vlan
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *MetalGatewayLite) UnmarshalJSON(bytes []byte) (err error) {
+	varMetalGatewayLite := _MetalGatewayLite{}
+
+	if err = json.Unmarshal(bytes, &varMetalGatewayLite); err == nil {
+		*o = MetalGatewayLite(varMetalGatewayLite)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "gateway_address")
+		delete(additionalProperties, "href")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "state")
+		delete(additionalProperties, "updated_at")
+		delete(additionalProperties, "vlan")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableMetalGatewayLite struct {

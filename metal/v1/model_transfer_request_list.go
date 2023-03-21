@@ -20,8 +20,11 @@ var _ MappedNullable = &TransferRequestList{}
 
 // TransferRequestList struct for TransferRequestList
 type TransferRequestList struct {
-	Transfers []TransferRequest `json:"transfers,omitempty"`
+	Transfers            []TransferRequest `json:"transfers,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _TransferRequestList TransferRequestList
 
 // NewTransferRequestList instantiates a new TransferRequestList object
 // This constructor will assign default values to properties that have it defined,
@@ -85,7 +88,29 @@ func (o TransferRequestList) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Transfers) {
 		toSerialize["transfers"] = o.Transfers
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *TransferRequestList) UnmarshalJSON(bytes []byte) (err error) {
+	varTransferRequestList := _TransferRequestList{}
+
+	if err = json.Unmarshal(bytes, &varTransferRequestList); err == nil {
+		*o = TransferRequestList(varTransferRequestList)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "transfers")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableTransferRequestList struct {

@@ -20,11 +20,14 @@ var _ MappedNullable = &ParentBlock{}
 
 // ParentBlock struct for ParentBlock
 type ParentBlock struct {
-	Cidr    *int32  `json:"cidr,omitempty"`
-	Href    *string `json:"href,omitempty"`
-	Netmask *string `json:"netmask,omitempty"`
-	Network *string `json:"network,omitempty"`
+	Cidr                 *int32  `json:"cidr,omitempty"`
+	Href                 *string `json:"href,omitempty"`
+	Netmask              *string `json:"netmask,omitempty"`
+	Network              *string `json:"network,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ParentBlock ParentBlock
 
 // NewParentBlock instantiates a new ParentBlock object
 // This constructor will assign default values to properties that have it defined,
@@ -193,7 +196,32 @@ func (o ParentBlock) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Network) {
 		toSerialize["network"] = o.Network
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *ParentBlock) UnmarshalJSON(bytes []byte) (err error) {
+	varParentBlock := _ParentBlock{}
+
+	if err = json.Unmarshal(bytes, &varParentBlock); err == nil {
+		*o = ParentBlock(varParentBlock)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "cidr")
+		delete(additionalProperties, "href")
+		delete(additionalProperties, "netmask")
+		delete(additionalProperties, "network")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableParentBlock struct {

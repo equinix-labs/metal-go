@@ -40,8 +40,11 @@ type InterconnectionCreateInput struct {
 	// A list of one or two metro-based VLANs that will be set on the virtual circuits of primary and/or secondary (if redundant) interconnections respectively when creating Fabric VCs. VLANs can also be set after the interconnection is created, but are required to fully activate the interconnection. This parameter is included in the specification as a developer preview and is generally unavailable. Please contact our Support team for more details.
 	Vlans []int32 `json:"vlans,omitempty"`
 	// Can only be set when creating Fabric VCs in VRF(s). This field holds a list of VRF UUIDs that will be set automatically on the virtual circuits on creation, and can hold up to two UUIDs. Two UUIDs are required when requesting redundant Fabric VCs. The first UUID will be set on the primary virtual circuit, while the second UUID will be set on the secondary. The two UUIDs can be the same if both the primary and secondary virtual circuits will be in the same VRF. This parameter is included in the specification as a developer preview and is generally unavailable. Please contact our Support team for more details.
-	Vrfs []string `json:"vrfs,omitempty"`
+	Vrfs                 []string `json:"vrfs,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _InterconnectionCreateInput InterconnectionCreateInput
 
 // NewInterconnectionCreateInput instantiates a new InterconnectionCreateInput object
 // This constructor will assign default values to properties that have it defined,
@@ -489,7 +492,41 @@ func (o InterconnectionCreateInput) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Vrfs) {
 		toSerialize["vrfs"] = o.Vrfs
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *InterconnectionCreateInput) UnmarshalJSON(bytes []byte) (err error) {
+	varInterconnectionCreateInput := _InterconnectionCreateInput{}
+
+	if err = json.Unmarshal(bytes, &varInterconnectionCreateInput); err == nil {
+		*o = InterconnectionCreateInput(varInterconnectionCreateInput)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "contact_email")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "metro")
+		delete(additionalProperties, "mode")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "project")
+		delete(additionalProperties, "redundancy")
+		delete(additionalProperties, "service_token_type")
+		delete(additionalProperties, "speed")
+		delete(additionalProperties, "tags")
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "vlans")
+		delete(additionalProperties, "vrfs")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableInterconnectionCreateInput struct {

@@ -21,11 +21,14 @@ var _ MappedNullable = &CreateSelfServiceReservationRequest{}
 
 // CreateSelfServiceReservationRequest struct for CreateSelfServiceReservationRequest
 type CreateSelfServiceReservationRequest struct {
-	Item      []SelfServiceReservationItemRequest        `json:"item,omitempty"`
-	Notes     *string                                    `json:"notes,omitempty"`
-	Period    *CreateSelfServiceReservationRequestPeriod `json:"period,omitempty"`
-	StartDate *time.Time                                 `json:"start_date,omitempty"`
+	Item                 []SelfServiceReservationItemRequest        `json:"item,omitempty"`
+	Notes                *string                                    `json:"notes,omitempty"`
+	Period               *CreateSelfServiceReservationRequestPeriod `json:"period,omitempty"`
+	StartDate            *time.Time                                 `json:"start_date,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _CreateSelfServiceReservationRequest CreateSelfServiceReservationRequest
 
 // NewCreateSelfServiceReservationRequest instantiates a new CreateSelfServiceReservationRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -194,7 +197,32 @@ func (o CreateSelfServiceReservationRequest) ToMap() (map[string]interface{}, er
 	if !isNil(o.StartDate) {
 		toSerialize["start_date"] = o.StartDate
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *CreateSelfServiceReservationRequest) UnmarshalJSON(bytes []byte) (err error) {
+	varCreateSelfServiceReservationRequest := _CreateSelfServiceReservationRequest{}
+
+	if err = json.Unmarshal(bytes, &varCreateSelfServiceReservationRequest); err == nil {
+		*o = CreateSelfServiceReservationRequest(varCreateSelfServiceReservationRequest)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "item")
+		delete(additionalProperties, "notes")
+		delete(additionalProperties, "period")
+		delete(additionalProperties, "start_date")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableCreateSelfServiceReservationRequest struct {

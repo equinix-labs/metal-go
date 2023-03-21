@@ -20,8 +20,11 @@ var _ MappedNullable = &Userdata{}
 
 // Userdata struct for Userdata
 type Userdata struct {
-	Userdata *string `json:"userdata,omitempty"`
+	Userdata             *string `json:"userdata,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Userdata Userdata
 
 // NewUserdata instantiates a new Userdata object
 // This constructor will assign default values to properties that have it defined,
@@ -85,7 +88,29 @@ func (o Userdata) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Userdata) {
 		toSerialize["userdata"] = o.Userdata
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *Userdata) UnmarshalJSON(bytes []byte) (err error) {
+	varUserdata := _Userdata{}
+
+	if err = json.Unmarshal(bytes, &varUserdata); err == nil {
+		*o = Userdata(varUserdata)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "userdata")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUserdata struct {

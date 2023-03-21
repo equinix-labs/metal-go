@@ -20,8 +20,11 @@ var _ MappedNullable = &BatchesList{}
 
 // BatchesList struct for BatchesList
 type BatchesList struct {
-	Batches []Batch `json:"batches,omitempty"`
+	Batches              []Batch `json:"batches,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _BatchesList BatchesList
 
 // NewBatchesList instantiates a new BatchesList object
 // This constructor will assign default values to properties that have it defined,
@@ -85,7 +88,29 @@ func (o BatchesList) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Batches) {
 		toSerialize["batches"] = o.Batches
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *BatchesList) UnmarshalJSON(bytes []byte) (err error) {
+	varBatchesList := _BatchesList{}
+
+	if err = json.Unmarshal(bytes, &varBatchesList); err == nil {
+		*o = BatchesList(varBatchesList)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "batches")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableBatchesList struct {

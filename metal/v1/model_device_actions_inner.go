@@ -20,9 +20,12 @@ var _ MappedNullable = &DeviceActionsInner{}
 
 // DeviceActionsInner struct for DeviceActionsInner
 type DeviceActionsInner struct {
-	Type *string `json:"type,omitempty"`
-	Name *string `json:"name,omitempty"`
+	Type                 *string `json:"type,omitempty"`
+	Name                 *string `json:"name,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _DeviceActionsInner DeviceActionsInner
 
 // NewDeviceActionsInner instantiates a new DeviceActionsInner object
 // This constructor will assign default values to properties that have it defined,
@@ -121,7 +124,30 @@ func (o DeviceActionsInner) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *DeviceActionsInner) UnmarshalJSON(bytes []byte) (err error) {
+	varDeviceActionsInner := _DeviceActionsInner{}
+
+	if err = json.Unmarshal(bytes, &varDeviceActionsInner); err == nil {
+		*o = DeviceActionsInner(varDeviceActionsInner)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "name")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableDeviceActionsInner struct {

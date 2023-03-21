@@ -27,13 +27,16 @@ type InterconnectionPort struct {
 	// For both Fabric VCs and Dedicated Ports, this will be 'requested' on creation and 'deleting' on deletion. Once the Fabric VC has found its corresponding Fabric connection, this will turn to 'active'. For Dedicated Ports, once the dedicated port is associated, this will also turn to 'active'. For Fabric VCs, this can turn into an 'expired' state if the service token associated is expired.
 	Status *string `json:"status,omitempty"`
 	// A switch 'short ID'
-	SwitchId        *string             `json:"switch_id,omitempty"`
-	VirtualCircuits *VirtualCircuitList `json:"virtual_circuits,omitempty"`
-	Name            *string             `json:"name,omitempty"`
-	Speed           *int32              `json:"speed,omitempty"`
-	LinkStatus      *string             `json:"link_status,omitempty"`
-	Href            *string             `json:"href,omitempty"`
+	SwitchId             *string             `json:"switch_id,omitempty"`
+	VirtualCircuits      *VirtualCircuitList `json:"virtual_circuits,omitempty"`
+	Name                 *string             `json:"name,omitempty"`
+	Speed                *int32              `json:"speed,omitempty"`
+	LinkStatus           *string             `json:"link_status,omitempty"`
+	Href                 *string             `json:"href,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _InterconnectionPort InterconnectionPort
 
 // NewInterconnectionPort instantiates a new InterconnectionPort object
 // This constructor will assign default values to properties that have it defined,
@@ -412,7 +415,38 @@ func (o InterconnectionPort) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Href) {
 		toSerialize["href"] = o.Href
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *InterconnectionPort) UnmarshalJSON(bytes []byte) (err error) {
+	varInterconnectionPort := _InterconnectionPort{}
+
+	if err = json.Unmarshal(bytes, &varInterconnectionPort); err == nil {
+		*o = InterconnectionPort(varInterconnectionPort)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "organization")
+		delete(additionalProperties, "role")
+		delete(additionalProperties, "status")
+		delete(additionalProperties, "switch_id")
+		delete(additionalProperties, "virtual_circuits")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "speed")
+		delete(additionalProperties, "link_status")
+		delete(additionalProperties, "href")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableInterconnectionPort struct {

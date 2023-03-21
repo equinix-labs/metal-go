@@ -38,9 +38,12 @@ type SpotMarketRequestCreateInputInstanceAttributes struct {
 	Tags                  []string               `json:"tags,omitempty"`
 	TerminationTime       *time.Time             `json:"termination_time,omitempty"`
 	// The UUIDs of users whose SSH keys should be included on the provisioned device.
-	UserSshKeys []string `json:"user_ssh_keys,omitempty"`
-	Userdata    *string  `json:"userdata,omitempty"`
+	UserSshKeys          []string `json:"user_ssh_keys,omitempty"`
+	Userdata             *string  `json:"userdata,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SpotMarketRequestCreateInputInstanceAttributes SpotMarketRequestCreateInputInstanceAttributes
 
 // NewSpotMarketRequestCreateInputInstanceAttributes instantiates a new SpotMarketRequestCreateInputInstanceAttributes object
 // This constructor will assign default values to properties that have it defined,
@@ -699,7 +702,46 @@ func (o SpotMarketRequestCreateInputInstanceAttributes) ToMap() (map[string]inte
 	if !isNil(o.Userdata) {
 		toSerialize["userdata"] = o.Userdata
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *SpotMarketRequestCreateInputInstanceAttributes) UnmarshalJSON(bytes []byte) (err error) {
+	varSpotMarketRequestCreateInputInstanceAttributes := _SpotMarketRequestCreateInputInstanceAttributes{}
+
+	if err = json.Unmarshal(bytes, &varSpotMarketRequestCreateInputInstanceAttributes); err == nil {
+		*o = SpotMarketRequestCreateInputInstanceAttributes(varSpotMarketRequestCreateInputInstanceAttributes)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "always_pxe")
+		delete(additionalProperties, "billing_cycle")
+		delete(additionalProperties, "customdata")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "features")
+		delete(additionalProperties, "hostname")
+		delete(additionalProperties, "hostnames")
+		delete(additionalProperties, "locked")
+		delete(additionalProperties, "no_ssh_keys")
+		delete(additionalProperties, "operating_system")
+		delete(additionalProperties, "plan")
+		delete(additionalProperties, "private_ipv4_subnet_size")
+		delete(additionalProperties, "project_ssh_keys")
+		delete(additionalProperties, "public_ipv4_subnet_size")
+		delete(additionalProperties, "tags")
+		delete(additionalProperties, "termination_time")
+		delete(additionalProperties, "user_ssh_keys")
+		delete(additionalProperties, "userdata")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableSpotMarketRequestCreateInputInstanceAttributes struct {

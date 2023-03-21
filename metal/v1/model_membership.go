@@ -21,14 +21,17 @@ var _ MappedNullable = &Membership{}
 
 // Membership struct for Membership
 type Membership struct {
-	CreatedAt *time.Time `json:"created_at,omitempty"`
-	Href      *string    `json:"href,omitempty"`
-	Id        *string    `json:"id,omitempty"`
-	Project   *Href      `json:"project,omitempty"`
-	Roles     []string   `json:"roles,omitempty"`
-	UpdatedAt *time.Time `json:"updated_at,omitempty"`
-	User      *Href      `json:"user,omitempty"`
+	CreatedAt            *time.Time `json:"created_at,omitempty"`
+	Href                 *string    `json:"href,omitempty"`
+	Id                   *string    `json:"id,omitempty"`
+	Project              *Href      `json:"project,omitempty"`
+	Roles                []string   `json:"roles,omitempty"`
+	UpdatedAt            *time.Time `json:"updated_at,omitempty"`
+	User                 *Href      `json:"user,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Membership Membership
 
 // NewMembership instantiates a new Membership object
 // This constructor will assign default values to properties that have it defined,
@@ -302,7 +305,35 @@ func (o Membership) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.User) {
 		toSerialize["user"] = o.User
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *Membership) UnmarshalJSON(bytes []byte) (err error) {
+	varMembership := _Membership{}
+
+	if err = json.Unmarshal(bytes, &varMembership); err == nil {
+		*o = Membership(varMembership)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "href")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "project")
+		delete(additionalProperties, "roles")
+		delete(additionalProperties, "updated_at")
+		delete(additionalProperties, "user")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableMembership struct {

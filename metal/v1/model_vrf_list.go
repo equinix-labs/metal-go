@@ -20,8 +20,11 @@ var _ MappedNullable = &VrfList{}
 
 // VrfList struct for VrfList
 type VrfList struct {
-	Vrfs []Vrf `json:"vrfs,omitempty"`
+	Vrfs                 []Vrf `json:"vrfs,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _VrfList VrfList
 
 // NewVrfList instantiates a new VrfList object
 // This constructor will assign default values to properties that have it defined,
@@ -85,7 +88,29 @@ func (o VrfList) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Vrfs) {
 		toSerialize["vrfs"] = o.Vrfs
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *VrfList) UnmarshalJSON(bytes []byte) (err error) {
+	varVrfList := _VrfList{}
+
+	if err = json.Unmarshal(bytes, &varVrfList); err == nil {
+		*o = VrfList(varVrfList)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "vrfs")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableVrfList struct {

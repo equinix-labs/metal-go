@@ -20,11 +20,14 @@ var _ MappedNullable = &PlanSpecs{}
 
 // PlanSpecs struct for PlanSpecs
 type PlanSpecs struct {
-	Cpus     []PlanSpecsCpusInner   `json:"cpus,omitempty"`
-	Drives   []PlanSpecsDrivesInner `json:"drives,omitempty"`
-	Nics     []PlanSpecsNicsInner   `json:"nics,omitempty"`
-	Features *PlanSpecsFeatures     `json:"features,omitempty"`
+	Cpus                 []PlanSpecsCpusInner   `json:"cpus,omitempty"`
+	Drives               []PlanSpecsDrivesInner `json:"drives,omitempty"`
+	Nics                 []PlanSpecsNicsInner   `json:"nics,omitempty"`
+	Features             *PlanSpecsFeatures     `json:"features,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _PlanSpecs PlanSpecs
 
 // NewPlanSpecs instantiates a new PlanSpecs object
 // This constructor will assign default values to properties that have it defined,
@@ -193,7 +196,32 @@ func (o PlanSpecs) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Features) {
 		toSerialize["features"] = o.Features
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *PlanSpecs) UnmarshalJSON(bytes []byte) (err error) {
+	varPlanSpecs := _PlanSpecs{}
+
+	if err = json.Unmarshal(bytes, &varPlanSpecs); err == nil {
+		*o = PlanSpecs(varPlanSpecs)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "cpus")
+		delete(additionalProperties, "drives")
+		delete(additionalProperties, "nics")
+		delete(additionalProperties, "features")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePlanSpecs struct {

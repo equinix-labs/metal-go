@@ -20,12 +20,15 @@ var _ MappedNullable = &GlobalBgpRange{}
 
 // GlobalBgpRange struct for GlobalBgpRange
 type GlobalBgpRange struct {
-	AddressFamily *int32  `json:"address_family,omitempty"`
-	Href          *string `json:"href,omitempty"`
-	Id            *string `json:"id,omitempty"`
-	Project       *Href   `json:"project,omitempty"`
-	Range         *string `json:"range,omitempty"`
+	AddressFamily        *int32  `json:"address_family,omitempty"`
+	Href                 *string `json:"href,omitempty"`
+	Id                   *string `json:"id,omitempty"`
+	Project              *Href   `json:"project,omitempty"`
+	Range                *string `json:"range,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _GlobalBgpRange GlobalBgpRange
 
 // NewGlobalBgpRange instantiates a new GlobalBgpRange object
 // This constructor will assign default values to properties that have it defined,
@@ -229,7 +232,33 @@ func (o GlobalBgpRange) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Range) {
 		toSerialize["range"] = o.Range
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *GlobalBgpRange) UnmarshalJSON(bytes []byte) (err error) {
+	varGlobalBgpRange := _GlobalBgpRange{}
+
+	if err = json.Unmarshal(bytes, &varGlobalBgpRange); err == nil {
+		*o = GlobalBgpRange(varGlobalBgpRange)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "address_family")
+		delete(additionalProperties, "href")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "project")
+		delete(additionalProperties, "range")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableGlobalBgpRange struct {

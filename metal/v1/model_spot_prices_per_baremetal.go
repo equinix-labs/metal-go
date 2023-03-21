@@ -20,8 +20,11 @@ var _ MappedNullable = &SpotPricesPerBaremetal{}
 
 // SpotPricesPerBaremetal struct for SpotPricesPerBaremetal
 type SpotPricesPerBaremetal struct {
-	Price *float32 `json:"price,omitempty"`
+	Price                *float32 `json:"price,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SpotPricesPerBaremetal SpotPricesPerBaremetal
 
 // NewSpotPricesPerBaremetal instantiates a new SpotPricesPerBaremetal object
 // This constructor will assign default values to properties that have it defined,
@@ -85,7 +88,29 @@ func (o SpotPricesPerBaremetal) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Price) {
 		toSerialize["price"] = o.Price
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *SpotPricesPerBaremetal) UnmarshalJSON(bytes []byte) (err error) {
+	varSpotPricesPerBaremetal := _SpotPricesPerBaremetal{}
+
+	if err = json.Unmarshal(bytes, &varSpotPricesPerBaremetal); err == nil {
+		*o = SpotPricesPerBaremetal(varSpotPricesPerBaremetal)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "price")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableSpotPricesPerBaremetal struct {

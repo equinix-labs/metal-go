@@ -20,13 +20,16 @@ var _ MappedNullable = &UserUpdateInput{}
 
 // UserUpdateInput struct for UserUpdateInput
 type UserUpdateInput struct {
-	Customdata  map[string]interface{} `json:"customdata,omitempty"`
-	FirstName   *string                `json:"first_name,omitempty"`
-	LastName    *string                `json:"last_name,omitempty"`
-	Password    *string                `json:"password,omitempty"`
-	PhoneNumber *string                `json:"phone_number,omitempty"`
-	Timezone    *string                `json:"timezone,omitempty"`
+	Customdata           map[string]interface{} `json:"customdata,omitempty"`
+	FirstName            *string                `json:"first_name,omitempty"`
+	LastName             *string                `json:"last_name,omitempty"`
+	Password             *string                `json:"password,omitempty"`
+	PhoneNumber          *string                `json:"phone_number,omitempty"`
+	Timezone             *string                `json:"timezone,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UserUpdateInput UserUpdateInput
 
 // NewUserUpdateInput instantiates a new UserUpdateInput object
 // This constructor will assign default values to properties that have it defined,
@@ -265,7 +268,34 @@ func (o UserUpdateInput) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Timezone) {
 		toSerialize["timezone"] = o.Timezone
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *UserUpdateInput) UnmarshalJSON(bytes []byte) (err error) {
+	varUserUpdateInput := _UserUpdateInput{}
+
+	if err = json.Unmarshal(bytes, &varUserUpdateInput); err == nil {
+		*o = UserUpdateInput(varUserUpdateInput)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "customdata")
+		delete(additionalProperties, "first_name")
+		delete(additionalProperties, "last_name")
+		delete(additionalProperties, "password")
+		delete(additionalProperties, "phone_number")
+		delete(additionalProperties, "timezone")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUserUpdateInput struct {

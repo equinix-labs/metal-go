@@ -20,16 +20,19 @@ var _ MappedNullable = &ProjectUsage{}
 
 // ProjectUsage struct for ProjectUsage
 type ProjectUsage struct {
-	Facility    *string `json:"facility,omitempty"`
-	Name        *string `json:"name,omitempty"`
-	Plan        *string `json:"plan,omitempty"`
-	PlanVersion *string `json:"plan_version,omitempty"`
-	Price       *string `json:"price,omitempty"`
-	Quantity    *string `json:"quantity,omitempty"`
-	Total       *string `json:"total,omitempty"`
-	Type        *string `json:"type,omitempty"`
-	Unit        *string `json:"unit,omitempty"`
+	Facility             *string `json:"facility,omitempty"`
+	Name                 *string `json:"name,omitempty"`
+	Plan                 *string `json:"plan,omitempty"`
+	PlanVersion          *string `json:"plan_version,omitempty"`
+	Price                *string `json:"price,omitempty"`
+	Quantity             *string `json:"quantity,omitempty"`
+	Total                *string `json:"total,omitempty"`
+	Type                 *string `json:"type,omitempty"`
+	Unit                 *string `json:"unit,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ProjectUsage ProjectUsage
 
 // NewProjectUsage instantiates a new ProjectUsage object
 // This constructor will assign default values to properties that have it defined,
@@ -373,7 +376,37 @@ func (o ProjectUsage) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Unit) {
 		toSerialize["unit"] = o.Unit
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *ProjectUsage) UnmarshalJSON(bytes []byte) (err error) {
+	varProjectUsage := _ProjectUsage{}
+
+	if err = json.Unmarshal(bytes, &varProjectUsage); err == nil {
+		*o = ProjectUsage(varProjectUsage)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "facility")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "plan")
+		delete(additionalProperties, "plan_version")
+		delete(additionalProperties, "price")
+		delete(additionalProperties, "quantity")
+		delete(additionalProperties, "total")
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "unit")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableProjectUsage struct {

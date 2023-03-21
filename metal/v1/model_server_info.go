@@ -20,10 +20,13 @@ var _ MappedNullable = &ServerInfo{}
 
 // ServerInfo struct for ServerInfo
 type ServerInfo struct {
-	Facility *string `json:"facility,omitempty"`
-	Plan     *string `json:"plan,omitempty"`
-	Quantity *string `json:"quantity,omitempty"`
+	Facility             *string `json:"facility,omitempty"`
+	Plan                 *string `json:"plan,omitempty"`
+	Quantity             *string `json:"quantity,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ServerInfo ServerInfo
 
 // NewServerInfo instantiates a new ServerInfo object
 // This constructor will assign default values to properties that have it defined,
@@ -157,7 +160,31 @@ func (o ServerInfo) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Quantity) {
 		toSerialize["quantity"] = o.Quantity
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *ServerInfo) UnmarshalJSON(bytes []byte) (err error) {
+	varServerInfo := _ServerInfo{}
+
+	if err = json.Unmarshal(bytes, &varServerInfo); err == nil {
+		*o = ServerInfo(varServerInfo)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "facility")
+		delete(additionalProperties, "plan")
+		delete(additionalProperties, "quantity")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableServerInfo struct {

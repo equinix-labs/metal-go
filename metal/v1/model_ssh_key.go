@@ -21,15 +21,18 @@ var _ MappedNullable = &SSHKey{}
 
 // SSHKey struct for SSHKey
 type SSHKey struct {
-	CreatedAt   *time.Time `json:"created_at,omitempty"`
-	Entity      *Href      `json:"entity,omitempty"`
-	Fingerprint *string    `json:"fingerprint,omitempty"`
-	Href        *string    `json:"href,omitempty"`
-	Id          *string    `json:"id,omitempty"`
-	Key         *string    `json:"key,omitempty"`
-	Label       *string    `json:"label,omitempty"`
-	UpdatedAt   *time.Time `json:"updated_at,omitempty"`
+	CreatedAt            *time.Time `json:"created_at,omitempty"`
+	Entity               *Href      `json:"entity,omitempty"`
+	Fingerprint          *string    `json:"fingerprint,omitempty"`
+	Href                 *string    `json:"href,omitempty"`
+	Id                   *string    `json:"id,omitempty"`
+	Key                  *string    `json:"key,omitempty"`
+	Label                *string    `json:"label,omitempty"`
+	UpdatedAt            *time.Time `json:"updated_at,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SSHKey SSHKey
 
 // NewSSHKey instantiates a new SSHKey object
 // This constructor will assign default values to properties that have it defined,
@@ -338,7 +341,36 @@ func (o SSHKey) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.UpdatedAt) {
 		toSerialize["updated_at"] = o.UpdatedAt
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *SSHKey) UnmarshalJSON(bytes []byte) (err error) {
+	varSSHKey := _SSHKey{}
+
+	if err = json.Unmarshal(bytes, &varSSHKey); err == nil {
+		*o = SSHKey(varSSHKey)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "entity")
+		delete(additionalProperties, "fingerprint")
+		delete(additionalProperties, "href")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "key")
+		delete(additionalProperties, "label")
+		delete(additionalProperties, "updated_at")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableSSHKey struct {

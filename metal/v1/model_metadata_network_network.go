@@ -20,8 +20,11 @@ var _ MappedNullable = &MetadataNetworkNetwork{}
 
 // MetadataNetworkNetwork struct for MetadataNetworkNetwork
 type MetadataNetworkNetwork struct {
-	Bonding *MetadataNetworkNetworkBonding `json:"bonding,omitempty"`
+	Bonding              *MetadataNetworkNetworkBonding `json:"bonding,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _MetadataNetworkNetwork MetadataNetworkNetwork
 
 // NewMetadataNetworkNetwork instantiates a new MetadataNetworkNetwork object
 // This constructor will assign default values to properties that have it defined,
@@ -85,7 +88,29 @@ func (o MetadataNetworkNetwork) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Bonding) {
 		toSerialize["bonding"] = o.Bonding
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *MetadataNetworkNetwork) UnmarshalJSON(bytes []byte) (err error) {
+	varMetadataNetworkNetwork := _MetadataNetworkNetwork{}
+
+	if err = json.Unmarshal(bytes, &varMetadataNetworkNetwork); err == nil {
+		*o = MetadataNetworkNetwork(varMetadataNetworkNetwork)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "bonding")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableMetadataNetworkNetwork struct {

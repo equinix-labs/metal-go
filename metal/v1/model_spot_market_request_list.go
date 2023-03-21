@@ -20,8 +20,11 @@ var _ MappedNullable = &SpotMarketRequestList{}
 
 // SpotMarketRequestList struct for SpotMarketRequestList
 type SpotMarketRequestList struct {
-	SpotMarketRequests []SpotMarketRequest `json:"spot_market_requests,omitempty"`
+	SpotMarketRequests   []SpotMarketRequest `json:"spot_market_requests,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SpotMarketRequestList SpotMarketRequestList
 
 // NewSpotMarketRequestList instantiates a new SpotMarketRequestList object
 // This constructor will assign default values to properties that have it defined,
@@ -85,7 +88,29 @@ func (o SpotMarketRequestList) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.SpotMarketRequests) {
 		toSerialize["spot_market_requests"] = o.SpotMarketRequests
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *SpotMarketRequestList) UnmarshalJSON(bytes []byte) (err error) {
+	varSpotMarketRequestList := _SpotMarketRequestList{}
+
+	if err = json.Unmarshal(bytes, &varSpotMarketRequestList); err == nil {
+		*o = SpotMarketRequestList(varSpotMarketRequestList)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "spot_market_requests")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableSpotMarketRequestList struct {

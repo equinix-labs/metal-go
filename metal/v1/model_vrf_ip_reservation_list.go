@@ -20,8 +20,11 @@ var _ MappedNullable = &VrfIpReservationList{}
 
 // VrfIpReservationList struct for VrfIpReservationList
 type VrfIpReservationList struct {
-	IpAddresses []VrfIpReservation `json:"ip_addresses,omitempty"`
+	IpAddresses          []VrfIpReservation `json:"ip_addresses,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _VrfIpReservationList VrfIpReservationList
 
 // NewVrfIpReservationList instantiates a new VrfIpReservationList object
 // This constructor will assign default values to properties that have it defined,
@@ -85,7 +88,29 @@ func (o VrfIpReservationList) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.IpAddresses) {
 		toSerialize["ip_addresses"] = o.IpAddresses
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *VrfIpReservationList) UnmarshalJSON(bytes []byte) (err error) {
+	varVrfIpReservationList := _VrfIpReservationList{}
+
+	if err = json.Unmarshal(bytes, &varVrfIpReservationList); err == nil {
+		*o = VrfIpReservationList(varVrfIpReservationList)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "ip_addresses")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableVrfIpReservationList struct {

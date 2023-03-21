@@ -20,8 +20,11 @@ var _ MappedNullable = &CapacityPerNewFacility{}
 
 // CapacityPerNewFacility struct for CapacityPerNewFacility
 type CapacityPerNewFacility struct {
-	Baremetal1e *CapacityLevelPerBaremetal `json:"baremetal_1e,omitempty"`
+	Baremetal1e          *CapacityLevelPerBaremetal `json:"baremetal_1e,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _CapacityPerNewFacility CapacityPerNewFacility
 
 // NewCapacityPerNewFacility instantiates a new CapacityPerNewFacility object
 // This constructor will assign default values to properties that have it defined,
@@ -85,7 +88,29 @@ func (o CapacityPerNewFacility) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Baremetal1e) {
 		toSerialize["baremetal_1e"] = o.Baremetal1e
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *CapacityPerNewFacility) UnmarshalJSON(bytes []byte) (err error) {
+	varCapacityPerNewFacility := _CapacityPerNewFacility{}
+
+	if err = json.Unmarshal(bytes, &varCapacityPerNewFacility); err == nil {
+		*o = CapacityPerNewFacility(varCapacityPerNewFacility)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "baremetal_1e")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableCapacityPerNewFacility struct {

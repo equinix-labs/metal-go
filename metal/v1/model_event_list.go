@@ -20,9 +20,12 @@ var _ MappedNullable = &EventList{}
 
 // EventList struct for EventList
 type EventList struct {
-	Events []Event `json:"events,omitempty"`
-	Meta   *Meta   `json:"meta,omitempty"`
+	Events               []Event `json:"events,omitempty"`
+	Meta                 *Meta   `json:"meta,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _EventList EventList
 
 // NewEventList instantiates a new EventList object
 // This constructor will assign default values to properties that have it defined,
@@ -121,7 +124,30 @@ func (o EventList) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Meta) {
 		toSerialize["meta"] = o.Meta
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *EventList) UnmarshalJSON(bytes []byte) (err error) {
+	varEventList := _EventList{}
+
+	if err = json.Unmarshal(bytes, &varEventList); err == nil {
+		*o = EventList(varEventList)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "events")
+		delete(additionalProperties, "meta")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableEventList struct {

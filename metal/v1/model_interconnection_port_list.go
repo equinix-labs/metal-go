@@ -20,8 +20,11 @@ var _ MappedNullable = &InterconnectionPortList{}
 
 // InterconnectionPortList struct for InterconnectionPortList
 type InterconnectionPortList struct {
-	Ports []InterconnectionPort `json:"ports,omitempty"`
+	Ports                []InterconnectionPort `json:"ports,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _InterconnectionPortList InterconnectionPortList
 
 // NewInterconnectionPortList instantiates a new InterconnectionPortList object
 // This constructor will assign default values to properties that have it defined,
@@ -85,7 +88,29 @@ func (o InterconnectionPortList) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Ports) {
 		toSerialize["ports"] = o.Ports
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *InterconnectionPortList) UnmarshalJSON(bytes []byte) (err error) {
+	varInterconnectionPortList := _InterconnectionPortList{}
+
+	if err = json.Unmarshal(bytes, &varInterconnectionPortList); err == nil {
+		*o = InterconnectionPortList(varInterconnectionPortList)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "ports")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableInterconnectionPortList struct {

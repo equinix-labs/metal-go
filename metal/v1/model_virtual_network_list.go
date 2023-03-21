@@ -20,8 +20,11 @@ var _ MappedNullable = &VirtualNetworkList{}
 
 // VirtualNetworkList struct for VirtualNetworkList
 type VirtualNetworkList struct {
-	VirtualNetworks []VirtualNetwork `json:"virtual_networks,omitempty"`
+	VirtualNetworks      []VirtualNetwork `json:"virtual_networks,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _VirtualNetworkList VirtualNetworkList
 
 // NewVirtualNetworkList instantiates a new VirtualNetworkList object
 // This constructor will assign default values to properties that have it defined,
@@ -85,7 +88,29 @@ func (o VirtualNetworkList) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.VirtualNetworks) {
 		toSerialize["virtual_networks"] = o.VirtualNetworks
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *VirtualNetworkList) UnmarshalJSON(bytes []byte) (err error) {
+	varVirtualNetworkList := _VirtualNetworkList{}
+
+	if err = json.Unmarshal(bytes, &varVirtualNetworkList); err == nil {
+		*o = VirtualNetworkList(varVirtualNetworkList)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "virtual_networks")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableVirtualNetworkList struct {

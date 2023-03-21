@@ -21,18 +21,21 @@ var _ MappedNullable = &Invitation{}
 
 // Invitation struct for Invitation
 type Invitation struct {
-	CreatedAt    *time.Time `json:"created_at,omitempty"`
-	Href         *string    `json:"href,omitempty"`
-	Id           *string    `json:"id,omitempty"`
-	Invitation   *Href      `json:"invitation,omitempty"`
-	InvitedBy    *Href      `json:"invited_by,omitempty"`
-	Invitee      *string    `json:"invitee,omitempty"`
-	Nonce        *string    `json:"nonce,omitempty"`
-	Organization *Href      `json:"organization,omitempty"`
-	Projects     []Href     `json:"projects,omitempty"`
-	Roles        []string   `json:"roles,omitempty"`
-	UpdatedAt    *time.Time `json:"updated_at,omitempty"`
+	CreatedAt            *time.Time `json:"created_at,omitempty"`
+	Href                 *string    `json:"href,omitempty"`
+	Id                   *string    `json:"id,omitempty"`
+	Invitation           *Href      `json:"invitation,omitempty"`
+	InvitedBy            *Href      `json:"invited_by,omitempty"`
+	Invitee              *string    `json:"invitee,omitempty"`
+	Nonce                *string    `json:"nonce,omitempty"`
+	Organization         *Href      `json:"organization,omitempty"`
+	Projects             []Href     `json:"projects,omitempty"`
+	Roles                []string   `json:"roles,omitempty"`
+	UpdatedAt            *time.Time `json:"updated_at,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Invitation Invitation
 
 // NewInvitation instantiates a new Invitation object
 // This constructor will assign default values to properties that have it defined,
@@ -446,7 +449,39 @@ func (o Invitation) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.UpdatedAt) {
 		toSerialize["updated_at"] = o.UpdatedAt
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *Invitation) UnmarshalJSON(bytes []byte) (err error) {
+	varInvitation := _Invitation{}
+
+	if err = json.Unmarshal(bytes, &varInvitation); err == nil {
+		*o = Invitation(varInvitation)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "href")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "invitation")
+		delete(additionalProperties, "invited_by")
+		delete(additionalProperties, "invitee")
+		delete(additionalProperties, "nonce")
+		delete(additionalProperties, "organization")
+		delete(additionalProperties, "projects")
+		delete(additionalProperties, "roles")
+		delete(additionalProperties, "updated_at")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableInvitation struct {

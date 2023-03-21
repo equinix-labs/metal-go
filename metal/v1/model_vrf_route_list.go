@@ -20,9 +20,12 @@ var _ MappedNullable = &VrfRouteList{}
 
 // VrfRouteList struct for VrfRouteList
 type VrfRouteList struct {
-	Routes []VrfRoute `json:"routes,omitempty"`
-	Meta   *Meta      `json:"meta,omitempty"`
+	Routes               []VrfRoute `json:"routes,omitempty"`
+	Meta                 *Meta      `json:"meta,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _VrfRouteList VrfRouteList
 
 // NewVrfRouteList instantiates a new VrfRouteList object
 // This constructor will assign default values to properties that have it defined,
@@ -121,7 +124,30 @@ func (o VrfRouteList) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Meta) {
 		toSerialize["meta"] = o.Meta
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *VrfRouteList) UnmarshalJSON(bytes []byte) (err error) {
+	varVrfRouteList := _VrfRouteList{}
+
+	if err = json.Unmarshal(bytes, &varVrfRouteList); err == nil {
+		*o = VrfRouteList(varVrfRouteList)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "routes")
+		delete(additionalProperties, "meta")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableVrfRouteList struct {

@@ -30,10 +30,13 @@ type DeviceUpdateInput struct {
 	// If true, this instance can not be converted to a different network type.
 	NetworkFrozen *bool `json:"network_frozen,omitempty"`
 	// Can be set to false to convert a spot-market instance to on-demand.
-	SpotInstance *bool    `json:"spot_instance,omitempty"`
-	Tags         []string `json:"tags,omitempty"`
-	Userdata     *string  `json:"userdata,omitempty"`
+	SpotInstance         *bool    `json:"spot_instance,omitempty"`
+	Tags                 []string `json:"tags,omitempty"`
+	Userdata             *string  `json:"userdata,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _DeviceUpdateInput DeviceUpdateInput
 
 // NewDeviceUpdateInput instantiates a new DeviceUpdateInput object
 // This constructor will assign default values to properties that have it defined,
@@ -447,7 +450,39 @@ func (o DeviceUpdateInput) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Userdata) {
 		toSerialize["userdata"] = o.Userdata
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *DeviceUpdateInput) UnmarshalJSON(bytes []byte) (err error) {
+	varDeviceUpdateInput := _DeviceUpdateInput{}
+
+	if err = json.Unmarshal(bytes, &varDeviceUpdateInput); err == nil {
+		*o = DeviceUpdateInput(varDeviceUpdateInput)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "always_pxe")
+		delete(additionalProperties, "billing_cycle")
+		delete(additionalProperties, "customdata")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "hostname")
+		delete(additionalProperties, "ipxe_script_url")
+		delete(additionalProperties, "locked")
+		delete(additionalProperties, "network_frozen")
+		delete(additionalProperties, "spot_instance")
+		delete(additionalProperties, "tags")
+		delete(additionalProperties, "userdata")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableDeviceUpdateInput struct {

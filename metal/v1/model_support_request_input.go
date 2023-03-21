@@ -20,12 +20,15 @@ var _ MappedNullable = &SupportRequestInput{}
 
 // SupportRequestInput struct for SupportRequestInput
 type SupportRequestInput struct {
-	DeviceId  *string `json:"device_id,omitempty"`
-	Message   string  `json:"message"`
-	Priority  *string `json:"priority,omitempty"`
-	ProjectId *string `json:"project_id,omitempty"`
-	Subject   string  `json:"subject"`
+	DeviceId             *string `json:"device_id,omitempty"`
+	Message              string  `json:"message"`
+	Priority             *string `json:"priority,omitempty"`
+	ProjectId            *string `json:"project_id,omitempty"`
+	Subject              string  `json:"subject"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SupportRequestInput SupportRequestInput
 
 // NewSupportRequestInput instantiates a new SupportRequestInput object
 // This constructor will assign default values to properties that have it defined,
@@ -211,7 +214,33 @@ func (o SupportRequestInput) ToMap() (map[string]interface{}, error) {
 		toSerialize["project_id"] = o.ProjectId
 	}
 	toSerialize["subject"] = o.Subject
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *SupportRequestInput) UnmarshalJSON(bytes []byte) (err error) {
+	varSupportRequestInput := _SupportRequestInput{}
+
+	if err = json.Unmarshal(bytes, &varSupportRequestInput); err == nil {
+		*o = SupportRequestInput(varSupportRequestInput)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "device_id")
+		delete(additionalProperties, "message")
+		delete(additionalProperties, "priority")
+		delete(additionalProperties, "project_id")
+		delete(additionalProperties, "subject")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableSupportRequestInput struct {

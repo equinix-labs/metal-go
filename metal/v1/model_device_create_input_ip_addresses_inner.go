@@ -27,8 +27,11 @@ type DeviceCreateInputIpAddressesInner struct {
 	// UUIDs of any IP reservations to use when assigning IPs
 	IpReservations []string `json:"ip_reservations,omitempty"`
 	// Address Type for IP Address
-	Public *bool `json:"public,omitempty"`
+	Public               *bool `json:"public,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _DeviceCreateInputIpAddressesInner DeviceCreateInputIpAddressesInner
 
 // NewDeviceCreateInputIpAddressesInner instantiates a new DeviceCreateInputIpAddressesInner object
 // This constructor will assign default values to properties that have it defined,
@@ -201,7 +204,32 @@ func (o DeviceCreateInputIpAddressesInner) ToMap() (map[string]interface{}, erro
 	if !isNil(o.Public) {
 		toSerialize["public"] = o.Public
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *DeviceCreateInputIpAddressesInner) UnmarshalJSON(bytes []byte) (err error) {
+	varDeviceCreateInputIpAddressesInner := _DeviceCreateInputIpAddressesInner{}
+
+	if err = json.Unmarshal(bytes, &varDeviceCreateInputIpAddressesInner); err == nil {
+		*o = DeviceCreateInputIpAddressesInner(varDeviceCreateInputIpAddressesInner)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "address_family")
+		delete(additionalProperties, "cidr")
+		delete(additionalProperties, "ip_reservations")
+		delete(additionalProperties, "public")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableDeviceCreateInputIpAddressesInner struct {

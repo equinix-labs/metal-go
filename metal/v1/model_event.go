@@ -21,17 +21,20 @@ var _ MappedNullable = &Event{}
 
 // Event struct for Event
 type Event struct {
-	Body          *string                `json:"body,omitempty"`
-	CreatedAt     *time.Time             `json:"created_at,omitempty"`
-	Href          *string                `json:"href,omitempty"`
-	Id            *string                `json:"id,omitempty"`
-	Interpolated  *string                `json:"interpolated,omitempty"`
-	Relationships []Href                 `json:"relationships,omitempty"`
-	State         *string                `json:"state,omitempty"`
-	Type          *string                `json:"type,omitempty"`
-	ModifiedBy    map[string]interface{} `json:"modified_by,omitempty"`
-	Ip            *string                `json:"ip,omitempty"`
+	Body                 *string                `json:"body,omitempty"`
+	CreatedAt            *time.Time             `json:"created_at,omitempty"`
+	Href                 *string                `json:"href,omitempty"`
+	Id                   *string                `json:"id,omitempty"`
+	Interpolated         *string                `json:"interpolated,omitempty"`
+	Relationships        []Href                 `json:"relationships,omitempty"`
+	State                *string                `json:"state,omitempty"`
+	Type                 *string                `json:"type,omitempty"`
+	ModifiedBy           map[string]interface{} `json:"modified_by,omitempty"`
+	Ip                   *string                `json:"ip,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Event Event
 
 // NewEvent instantiates a new Event object
 // This constructor will assign default values to properties that have it defined,
@@ -410,7 +413,38 @@ func (o Event) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Ip) {
 		toSerialize["ip"] = o.Ip
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *Event) UnmarshalJSON(bytes []byte) (err error) {
+	varEvent := _Event{}
+
+	if err = json.Unmarshal(bytes, &varEvent); err == nil {
+		*o = Event(varEvent)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "body")
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "href")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "interpolated")
+		delete(additionalProperties, "relationships")
+		delete(additionalProperties, "state")
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "modified_by")
+		delete(additionalProperties, "ip")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableEvent struct {

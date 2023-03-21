@@ -20,8 +20,11 @@ var _ MappedNullable = &SpotMarketPricesPerMetroList{}
 
 // SpotMarketPricesPerMetroList struct for SpotMarketPricesPerMetroList
 type SpotMarketPricesPerMetroList struct {
-	SpotMarketPrices *SpotMarketPricesPerMetroReport `json:"spot_market_prices,omitempty"`
+	SpotMarketPrices     *SpotMarketPricesPerMetroReport `json:"spot_market_prices,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SpotMarketPricesPerMetroList SpotMarketPricesPerMetroList
 
 // NewSpotMarketPricesPerMetroList instantiates a new SpotMarketPricesPerMetroList object
 // This constructor will assign default values to properties that have it defined,
@@ -85,7 +88,29 @@ func (o SpotMarketPricesPerMetroList) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.SpotMarketPrices) {
 		toSerialize["spot_market_prices"] = o.SpotMarketPrices
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *SpotMarketPricesPerMetroList) UnmarshalJSON(bytes []byte) (err error) {
+	varSpotMarketPricesPerMetroList := _SpotMarketPricesPerMetroList{}
+
+	if err = json.Unmarshal(bytes, &varSpotMarketPricesPerMetroList); err == nil {
+		*o = SpotMarketPricesPerMetroList(varSpotMarketPricesPerMetroList)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "spot_market_prices")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableSpotMarketPricesPerMetroList struct {

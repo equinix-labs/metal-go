@@ -20,8 +20,11 @@ var _ MappedNullable = &CapacityCheckPerMetroList{}
 
 // CapacityCheckPerMetroList struct for CapacityCheckPerMetroList
 type CapacityCheckPerMetroList struct {
-	Servers []CapacityCheckPerMetroInfo `json:"servers,omitempty"`
+	Servers              []CapacityCheckPerMetroInfo `json:"servers,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _CapacityCheckPerMetroList CapacityCheckPerMetroList
 
 // NewCapacityCheckPerMetroList instantiates a new CapacityCheckPerMetroList object
 // This constructor will assign default values to properties that have it defined,
@@ -85,7 +88,29 @@ func (o CapacityCheckPerMetroList) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Servers) {
 		toSerialize["servers"] = o.Servers
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *CapacityCheckPerMetroList) UnmarshalJSON(bytes []byte) (err error) {
+	varCapacityCheckPerMetroList := _CapacityCheckPerMetroList{}
+
+	if err = json.Unmarshal(bytes, &varCapacityCheckPerMetroList); err == nil {
+		*o = CapacityCheckPerMetroList(varCapacityCheckPerMetroList)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "servers")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableCapacityCheckPerMetroList struct {

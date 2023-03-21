@@ -20,8 +20,11 @@ var _ MappedNullable = &InstancesBatchCreateInput{}
 
 // InstancesBatchCreateInput struct for InstancesBatchCreateInput
 type InstancesBatchCreateInput struct {
-	Batches []InstancesBatchCreateInputBatchesInner `json:"batches,omitempty"`
+	Batches              []InstancesBatchCreateInputBatchesInner `json:"batches,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _InstancesBatchCreateInput InstancesBatchCreateInput
 
 // NewInstancesBatchCreateInput instantiates a new InstancesBatchCreateInput object
 // This constructor will assign default values to properties that have it defined,
@@ -85,7 +88,29 @@ func (o InstancesBatchCreateInput) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Batches) {
 		toSerialize["batches"] = o.Batches
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *InstancesBatchCreateInput) UnmarshalJSON(bytes []byte) (err error) {
+	varInstancesBatchCreateInput := _InstancesBatchCreateInput{}
+
+	if err = json.Unmarshal(bytes, &varInstancesBatchCreateInput); err == nil {
+		*o = InstancesBatchCreateInput(varInstancesBatchCreateInput)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "batches")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableInstancesBatchCreateInput struct {

@@ -20,9 +20,12 @@ var _ MappedNullable = &UserList{}
 
 // UserList struct for UserList
 type UserList struct {
-	Meta  *Meta  `json:"meta,omitempty"`
-	Users []User `json:"users,omitempty"`
+	Meta                 *Meta  `json:"meta,omitempty"`
+	Users                []User `json:"users,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UserList UserList
 
 // NewUserList instantiates a new UserList object
 // This constructor will assign default values to properties that have it defined,
@@ -121,7 +124,30 @@ func (o UserList) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Users) {
 		toSerialize["users"] = o.Users
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *UserList) UnmarshalJSON(bytes []byte) (err error) {
+	varUserList := _UserList{}
+
+	if err = json.Unmarshal(bytes, &varUserList); err == nil {
+		*o = UserList(varUserList)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "meta")
+		delete(additionalProperties, "users")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUserList struct {

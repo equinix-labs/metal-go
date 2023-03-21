@@ -20,10 +20,13 @@ var _ MappedNullable = &Raid{}
 
 // Raid struct for Raid
 type Raid struct {
-	Devices []string `json:"devices,omitempty"`
-	Level   *string  `json:"level,omitempty"`
-	Name    *string  `json:"name,omitempty"`
+	Devices              []string `json:"devices,omitempty"`
+	Level                *string  `json:"level,omitempty"`
+	Name                 *string  `json:"name,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Raid Raid
 
 // NewRaid instantiates a new Raid object
 // This constructor will assign default values to properties that have it defined,
@@ -157,7 +160,31 @@ func (o Raid) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *Raid) UnmarshalJSON(bytes []byte) (err error) {
+	varRaid := _Raid{}
+
+	if err = json.Unmarshal(bytes, &varRaid); err == nil {
+		*o = Raid(varRaid)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "devices")
+		delete(additionalProperties, "level")
+		delete(additionalProperties, "name")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableRaid struct {

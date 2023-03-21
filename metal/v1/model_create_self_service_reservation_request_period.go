@@ -20,9 +20,12 @@ var _ MappedNullable = &CreateSelfServiceReservationRequestPeriod{}
 
 // CreateSelfServiceReservationRequestPeriod struct for CreateSelfServiceReservationRequestPeriod
 type CreateSelfServiceReservationRequestPeriod struct {
-	Count *float32 `json:"count,omitempty"`
-	Unit  *string  `json:"unit,omitempty"`
+	Count                *float32 `json:"count,omitempty"`
+	Unit                 *string  `json:"unit,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _CreateSelfServiceReservationRequestPeriod CreateSelfServiceReservationRequestPeriod
 
 // NewCreateSelfServiceReservationRequestPeriod instantiates a new CreateSelfServiceReservationRequestPeriod object
 // This constructor will assign default values to properties that have it defined,
@@ -121,7 +124,30 @@ func (o CreateSelfServiceReservationRequestPeriod) ToMap() (map[string]interface
 	if !isNil(o.Unit) {
 		toSerialize["unit"] = o.Unit
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *CreateSelfServiceReservationRequestPeriod) UnmarshalJSON(bytes []byte) (err error) {
+	varCreateSelfServiceReservationRequestPeriod := _CreateSelfServiceReservationRequestPeriod{}
+
+	if err = json.Unmarshal(bytes, &varCreateSelfServiceReservationRequestPeriod); err == nil {
+		*o = CreateSelfServiceReservationRequestPeriod(varCreateSelfServiceReservationRequestPeriod)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "count")
+		delete(additionalProperties, "unit")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableCreateSelfServiceReservationRequestPeriod struct {

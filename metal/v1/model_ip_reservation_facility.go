@@ -25,10 +25,13 @@ type IPReservationFacility struct {
 	Features []string `json:"features,omitempty"`
 	Id       *string  `json:"id,omitempty"`
 	// IP ranges registered in facility. Can be used for GeoIP location
-	IpRanges []string     `json:"ip_ranges,omitempty"`
-	Metro    *DeviceMetro `json:"metro,omitempty"`
-	Name     *string      `json:"name,omitempty"`
+	IpRanges             []string     `json:"ip_ranges,omitempty"`
+	Metro                *DeviceMetro `json:"metro,omitempty"`
+	Name                 *string      `json:"name,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _IPReservationFacility IPReservationFacility
 
 // NewIPReservationFacility instantiates a new IPReservationFacility object
 // This constructor will assign default values to properties that have it defined,
@@ -302,7 +305,35 @@ func (o IPReservationFacility) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *IPReservationFacility) UnmarshalJSON(bytes []byte) (err error) {
+	varIPReservationFacility := _IPReservationFacility{}
+
+	if err = json.Unmarshal(bytes, &varIPReservationFacility); err == nil {
+		*o = IPReservationFacility(varIPReservationFacility)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "address")
+		delete(additionalProperties, "code")
+		delete(additionalProperties, "features")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "ip_ranges")
+		delete(additionalProperties, "metro")
+		delete(additionalProperties, "name")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableIPReservationFacility struct {

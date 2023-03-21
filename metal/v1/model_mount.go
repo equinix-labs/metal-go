@@ -20,11 +20,14 @@ var _ MappedNullable = &Mount{}
 
 // Mount struct for Mount
 type Mount struct {
-	Device  *string  `json:"device,omitempty"`
-	Format  *string  `json:"format,omitempty"`
-	Point   *string  `json:"point,omitempty"`
-	Options []string `json:"options,omitempty"`
+	Device               *string  `json:"device,omitempty"`
+	Format               *string  `json:"format,omitempty"`
+	Point                *string  `json:"point,omitempty"`
+	Options              []string `json:"options,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Mount Mount
 
 // NewMount instantiates a new Mount object
 // This constructor will assign default values to properties that have it defined,
@@ -193,7 +196,32 @@ func (o Mount) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Options) {
 		toSerialize["options"] = o.Options
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *Mount) UnmarshalJSON(bytes []byte) (err error) {
+	varMount := _Mount{}
+
+	if err = json.Unmarshal(bytes, &varMount); err == nil {
+		*o = Mount(varMount)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "device")
+		delete(additionalProperties, "format")
+		delete(additionalProperties, "point")
+		delete(additionalProperties, "options")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableMount struct {

@@ -20,21 +20,24 @@ var _ MappedNullable = &SpotPricesReport{}
 
 // SpotPricesReport struct for SpotPricesReport
 type SpotPricesReport struct {
-	Ams1 *SpotPricesPerFacility    `json:"ams1,omitempty"`
-	Atl1 *SpotPricesPerNewFacility `json:"atl1,omitempty"`
-	Dfw1 *SpotPricesPerNewFacility `json:"dfw1,omitempty"`
-	Ewr1 *SpotPricesPerFacility    `json:"ewr1,omitempty"`
-	Fra1 *SpotPricesPerNewFacility `json:"fra1,omitempty"`
-	Iad1 *SpotPricesPerNewFacility `json:"iad1,omitempty"`
-	Lax1 *SpotPricesPerNewFacility `json:"lax1,omitempty"`
-	Nrt1 *SpotPricesPerFacility    `json:"nrt1,omitempty"`
-	Ord1 *SpotPricesPerNewFacility `json:"ord1,omitempty"`
-	Sea1 *SpotPricesPerNewFacility `json:"sea1,omitempty"`
-	Sin1 *SpotPricesPerNewFacility `json:"sin1,omitempty"`
-	Sjc1 *SpotPricesPerFacility    `json:"sjc1,omitempty"`
-	Syd1 *SpotPricesPerNewFacility `json:"syd1,omitempty"`
-	Yyz1 *SpotPricesPerNewFacility `json:"yyz1,omitempty"`
+	Ams1                 *SpotPricesPerFacility    `json:"ams1,omitempty"`
+	Atl1                 *SpotPricesPerNewFacility `json:"atl1,omitempty"`
+	Dfw1                 *SpotPricesPerNewFacility `json:"dfw1,omitempty"`
+	Ewr1                 *SpotPricesPerFacility    `json:"ewr1,omitempty"`
+	Fra1                 *SpotPricesPerNewFacility `json:"fra1,omitempty"`
+	Iad1                 *SpotPricesPerNewFacility `json:"iad1,omitempty"`
+	Lax1                 *SpotPricesPerNewFacility `json:"lax1,omitempty"`
+	Nrt1                 *SpotPricesPerFacility    `json:"nrt1,omitempty"`
+	Ord1                 *SpotPricesPerNewFacility `json:"ord1,omitempty"`
+	Sea1                 *SpotPricesPerNewFacility `json:"sea1,omitempty"`
+	Sin1                 *SpotPricesPerNewFacility `json:"sin1,omitempty"`
+	Sjc1                 *SpotPricesPerFacility    `json:"sjc1,omitempty"`
+	Syd1                 *SpotPricesPerNewFacility `json:"syd1,omitempty"`
+	Yyz1                 *SpotPricesPerNewFacility `json:"yyz1,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SpotPricesReport SpotPricesReport
 
 // NewSpotPricesReport instantiates a new SpotPricesReport object
 // This constructor will assign default values to properties that have it defined,
@@ -553,7 +556,42 @@ func (o SpotPricesReport) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Yyz1) {
 		toSerialize["yyz1"] = o.Yyz1
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *SpotPricesReport) UnmarshalJSON(bytes []byte) (err error) {
+	varSpotPricesReport := _SpotPricesReport{}
+
+	if err = json.Unmarshal(bytes, &varSpotPricesReport); err == nil {
+		*o = SpotPricesReport(varSpotPricesReport)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "ams1")
+		delete(additionalProperties, "atl1")
+		delete(additionalProperties, "dfw1")
+		delete(additionalProperties, "ewr1")
+		delete(additionalProperties, "fra1")
+		delete(additionalProperties, "iad1")
+		delete(additionalProperties, "lax1")
+		delete(additionalProperties, "nrt1")
+		delete(additionalProperties, "ord1")
+		delete(additionalProperties, "sea1")
+		delete(additionalProperties, "sin1")
+		delete(additionalProperties, "sjc1")
+		delete(additionalProperties, "syd1")
+		delete(additionalProperties, "yyz1")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableSpotPricesReport struct {
