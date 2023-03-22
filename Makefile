@@ -18,6 +18,7 @@ GIT_ORG=equinix-labs
 GIT_REPO=metal-go
 PACKAGE_PREFIX=metal
 PACKAGE_MAJOR=v1
+PACKAGE_VERSION=0.7.0
 CRI=docker # nerdctl
 
 OPENAPI_GENERATOR=${CRI} run --rm -u ${CURRENT_UID}:${CURRENT_GID} -v $(CURDIR):/local ${OPENAPI_IMAGE}
@@ -59,6 +60,8 @@ clean:
 gen:
 	${OPENAPI_GENERATOR} generate -g go \
 		--package-name ${PACKAGE_MAJOR} \
+		--http-user-agent "${GIT_REPO}/${PACKAGE_VERSION}" \
+		-p packageVersion=${PACKAGE_VERSION} \
 		-p isGoSubmodule=true \
 		-p disallowAdditionalPropertiesIfNotPresent=false \
 		--model-package types \
