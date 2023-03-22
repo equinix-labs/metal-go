@@ -18151,7 +18151,9 @@ components:
           format: uuid
           type: string
         legacy:
+          description: Deprecated. Always return false
           type: boolean
+          x-deprecated: true
         line:
           enum:
           - baremetal

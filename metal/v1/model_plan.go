@@ -28,12 +28,13 @@ type Plan struct {
 	Description       *string                      `json:"description,omitempty"`
 	DeploymentTypes   []string                     `json:"deployment_types,omitempty"`
 	Id                *string                      `json:"id,omitempty"`
-	Legacy            *bool                        `json:"legacy,omitempty"`
-	Line              *string                      `json:"line,omitempty"`
-	Name              *string                      `json:"name,omitempty"`
-	Pricing           map[string]interface{}       `json:"pricing,omitempty"`
-	Slug              *string                      `json:"slug,omitempty"`
-	Specs             *PlanSpecs                   `json:"specs,omitempty"`
+	// Deprecated. Always return false
+	Legacy  *bool                  `json:"legacy,omitempty"`
+	Line    *string                `json:"line,omitempty"`
+	Name    *string                `json:"name,omitempty"`
+	Pricing map[string]interface{} `json:"pricing,omitempty"`
+	Slug    *string                `json:"slug,omitempty"`
+	Specs   *PlanSpecs             `json:"specs,omitempty"`
 	// The plan type
 	Type                 *string `json:"type,omitempty"`
 	AdditionalProperties map[string]interface{}

@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **Description** | Pointer to **string** |  | [optional] 
 **DeploymentTypes** | Pointer to **[]string** |  | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
-**Legacy** | Pointer to **bool** |  | [optional] 
+**Legacy** | Pointer to **bool** | Deprecated. Always return false | [optional] 
 **Line** | Pointer to **string** |  | [optional] 
 **Name** | Pointer to **string** |  | [optional] 
 **Pricing** | Pointer to **map[string]interface{}** |  | [optional] 
