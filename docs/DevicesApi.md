@@ -119,7 +119,7 @@ import (
 
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Project UUID
-    createDeviceRequest := openapiclient.createDevice_request{DeviceCreateInFacilityInput: openapiclient.NewDeviceCreateInFacilityInput(*openapiclient.NewFacilityInputFacility(), "OperatingSystem_example", "c3.large.x86")} // CreateDeviceRequest | Device to create
+    createDeviceRequest := openapiclient.createDevice_request{DeviceCreateInFacilityInput: openapiclient.NewDeviceCreateInFacilityInput([]string{"Facility_example"}, "OperatingSystem_example", "c3.large.x86")} // CreateDeviceRequest | Device to create
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)

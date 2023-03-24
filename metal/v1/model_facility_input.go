@@ -20,7 +20,8 @@ var _ MappedNullable = &FacilityInput{}
 
 // FacilityInput struct for FacilityInput
 type FacilityInput struct {
-	Facility             FacilityInputFacility `json:"facility"`
+	// The datacenter where the device should be created.  Either metro or facility must be provided.  The API will accept either a single facility `{ \"facility\": \"f1\" }`, or it can be instructed to create the device in the best available datacenter `{ \"facility\": \"any\" }`.  Additionally it is possible to set a prioritized location selection. For example `{ \"facility\": [\"f3\", \"f2\", \"any\"] }` can be used to prioritize `f3` and then `f2` before accepting `any` facility. If none of the facilities provided have availability for the requested device the request will fail.
+	Facility             []string `json:"facility"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -30,7 +31,7 @@ type _FacilityInput FacilityInput
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFacilityInput(facility FacilityInputFacility) *FacilityInput {
+func NewFacilityInput(facility []string) *FacilityInput {
 	this := FacilityInput{}
 	this.Facility = facility
 	return &this
@@ -45,9 +46,9 @@ func NewFacilityInputWithDefaults() *FacilityInput {
 }
 
 // GetFacility returns the Facility field value
-func (o *FacilityInput) GetFacility() FacilityInputFacility {
+func (o *FacilityInput) GetFacility() []string {
 	if o == nil {
-		var ret FacilityInputFacility
+		var ret []string
 		return ret
 	}
 
@@ -56,15 +57,15 @@ func (o *FacilityInput) GetFacility() FacilityInputFacility {
 
 // GetFacilityOk returns a tuple with the Facility field value
 // and a boolean to check if the value has been set.
-func (o *FacilityInput) GetFacilityOk() (*FacilityInputFacility, bool) {
+func (o *FacilityInput) GetFacilityOk() ([]string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Facility, true
+	return o.Facility, true
 }
 
 // SetFacility sets field value
-func (o *FacilityInput) SetFacility(v FacilityInputFacility) {
+func (o *FacilityInput) SetFacility(v []string) {
 	o.Facility = v
 }
 

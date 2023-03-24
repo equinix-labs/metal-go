@@ -69,8 +69,9 @@ type InstancesBatchCreateInputBatchesInner struct {
 	// A list of UUIDs identifying the users that should be authorized to access this device (typically via /root/.ssh/authorized_keys).  These keys will also appear in the device metadata.  The users must be members of the project or organization.  If no SSH keys are specified (`user_ssh_keys`, `project_ssh_keys`, and `ssh_keys` are all empty lists or omitted), all parent project keys, parent project members keys and organization members keys will be included. This behaviour can be changed with 'no_ssh_keys' option to omit any SSH key being added.
 	UserSshKeys []string `json:"user_ssh_keys,omitempty"`
 	// The userdata presented in the metadata service for this device.  Userdata is fetched and interpreted by the operating system installed on the device. Acceptable formats are determined by the operating system, with the exception of a special iPXE enabling syntax which is handled before the operating system starts.  See [Server User Data](https://metal.equinix.com/developers/docs/servers/user-data/) and [Provisioning with Custom iPXE](https://metal.equinix.com/developers/docs/operating-systems/custom-ipxe/#provisioning-with-custom-ipxe) for more details.
-	Userdata             *string               `json:"userdata,omitempty"`
-	Facility             FacilityInputFacility `json:"facility"`
+	Userdata *string `json:"userdata,omitempty"`
+	// The datacenter where the device should be created.  Either metro or facility must be provided.  The API will accept either a single facility `{ \"facility\": \"f1\" }`, or it can be instructed to create the device in the best available datacenter `{ \"facility\": \"any\" }`.  Additionally it is possible to set a prioritized location selection. For example `{ \"facility\": [\"f3\", \"f2\", \"any\"] }` can be used to prioritize `f3` and then `f2` before accepting `any` facility. If none of the facilities provided have availability for the requested device the request will fail.
+	Facility             []string `json:"facility"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -80,7 +81,7 @@ type _InstancesBatchCreateInputBatchesInner InstancesBatchCreateInputBatchesInne
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewInstancesBatchCreateInputBatchesInner(metro string, operatingSystem string, plan string, facility FacilityInputFacility) *InstancesBatchCreateInputBatchesInner {
+func NewInstancesBatchCreateInputBatchesInner(metro string, operatingSystem string, plan string, facility []string) *InstancesBatchCreateInputBatchesInner {
 	this := InstancesBatchCreateInputBatchesInner{}
 	this.Metro = metro
 	var alwaysPxe bool = false
@@ -930,9 +931,9 @@ func (o *InstancesBatchCreateInputBatchesInner) SetUserdata(v string) {
 }
 
 // GetFacility returns the Facility field value
-func (o *InstancesBatchCreateInputBatchesInner) GetFacility() FacilityInputFacility {
+func (o *InstancesBatchCreateInputBatchesInner) GetFacility() []string {
 	if o == nil {
-		var ret FacilityInputFacility
+		var ret []string
 		return ret
 	}
 
@@ -941,15 +942,15 @@ func (o *InstancesBatchCreateInputBatchesInner) GetFacility() FacilityInputFacil
 
 // GetFacilityOk returns a tuple with the Facility field value
 // and a boolean to check if the value has been set.
-func (o *InstancesBatchCreateInputBatchesInner) GetFacilityOk() (*FacilityInputFacility, bool) {
+func (o *InstancesBatchCreateInputBatchesInner) GetFacilityOk() ([]string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Facility, true
+	return o.Facility, true
 }
 
 // SetFacility sets field value
-func (o *InstancesBatchCreateInputBatchesInner) SetFacility(v FacilityInputFacility) {
+func (o *InstancesBatchCreateInputBatchesInner) SetFacility(v []string) {
 	o.Facility = v
 }
 
