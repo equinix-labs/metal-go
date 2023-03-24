@@ -15,15 +15,15 @@ import (
 	"encoding/json"
 )
 
-// checks if the DeviceCreateInputIpAddressesInner type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &DeviceCreateInputIpAddressesInner{}
+// checks if the IPAddress type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &IPAddress{}
 
-// DeviceCreateInputIpAddressesInner struct for DeviceCreateInputIpAddressesInner
-type DeviceCreateInputIpAddressesInner struct {
+// IPAddress struct for IPAddress
+type IPAddress struct {
 	// Address Family for IP Address
-	AddressFamily *float32 `json:"address_family,omitempty"`
+	AddressFamily *int32 `json:"address_family,omitempty"`
 	// Cidr Size for the IP Block created. Valid values depends on the operating system being provisioned. (28..32 for IPv4 addresses, 124..127 for IPv6 addresses)
-	Cidr *float32 `json:"cidr,omitempty"`
+	Cidr *int32 `json:"cidr,omitempty"`
 	// UUIDs of any IP reservations to use when assigning IPs
 	IpReservations []string `json:"ip_reservations,omitempty"`
 	// Address Type for IP Address
@@ -31,33 +31,33 @@ type DeviceCreateInputIpAddressesInner struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _DeviceCreateInputIpAddressesInner DeviceCreateInputIpAddressesInner
+type _IPAddress IPAddress
 
-// NewDeviceCreateInputIpAddressesInner instantiates a new DeviceCreateInputIpAddressesInner object
+// NewIPAddress instantiates a new IPAddress object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDeviceCreateInputIpAddressesInner() *DeviceCreateInputIpAddressesInner {
-	this := DeviceCreateInputIpAddressesInner{}
+func NewIPAddress() *IPAddress {
+	this := IPAddress{}
 	var public bool = true
 	this.Public = &public
 	return &this
 }
 
-// NewDeviceCreateInputIpAddressesInnerWithDefaults instantiates a new DeviceCreateInputIpAddressesInner object
+// NewIPAddressWithDefaults instantiates a new IPAddress object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewDeviceCreateInputIpAddressesInnerWithDefaults() *DeviceCreateInputIpAddressesInner {
-	this := DeviceCreateInputIpAddressesInner{}
+func NewIPAddressWithDefaults() *IPAddress {
+	this := IPAddress{}
 	var public bool = true
 	this.Public = &public
 	return &this
 }
 
 // GetAddressFamily returns the AddressFamily field value if set, zero value otherwise.
-func (o *DeviceCreateInputIpAddressesInner) GetAddressFamily() float32 {
+func (o *IPAddress) GetAddressFamily() int32 {
 	if o == nil || isNil(o.AddressFamily) {
-		var ret float32
+		var ret int32
 		return ret
 	}
 	return *o.AddressFamily
@@ -65,7 +65,7 @@ func (o *DeviceCreateInputIpAddressesInner) GetAddressFamily() float32 {
 
 // GetAddressFamilyOk returns a tuple with the AddressFamily field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DeviceCreateInputIpAddressesInner) GetAddressFamilyOk() (*float32, bool) {
+func (o *IPAddress) GetAddressFamilyOk() (*int32, bool) {
 	if o == nil || isNil(o.AddressFamily) {
 		return nil, false
 	}
@@ -73,7 +73,7 @@ func (o *DeviceCreateInputIpAddressesInner) GetAddressFamilyOk() (*float32, bool
 }
 
 // HasAddressFamily returns a boolean if a field has been set.
-func (o *DeviceCreateInputIpAddressesInner) HasAddressFamily() bool {
+func (o *IPAddress) HasAddressFamily() bool {
 	if o != nil && !isNil(o.AddressFamily) {
 		return true
 	}
@@ -81,15 +81,15 @@ func (o *DeviceCreateInputIpAddressesInner) HasAddressFamily() bool {
 	return false
 }
 
-// SetAddressFamily gets a reference to the given float32 and assigns it to the AddressFamily field.
-func (o *DeviceCreateInputIpAddressesInner) SetAddressFamily(v float32) {
+// SetAddressFamily gets a reference to the given int32 and assigns it to the AddressFamily field.
+func (o *IPAddress) SetAddressFamily(v int32) {
 	o.AddressFamily = &v
 }
 
 // GetCidr returns the Cidr field value if set, zero value otherwise.
-func (o *DeviceCreateInputIpAddressesInner) GetCidr() float32 {
+func (o *IPAddress) GetCidr() int32 {
 	if o == nil || isNil(o.Cidr) {
-		var ret float32
+		var ret int32
 		return ret
 	}
 	return *o.Cidr
@@ -97,7 +97,7 @@ func (o *DeviceCreateInputIpAddressesInner) GetCidr() float32 {
 
 // GetCidrOk returns a tuple with the Cidr field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DeviceCreateInputIpAddressesInner) GetCidrOk() (*float32, bool) {
+func (o *IPAddress) GetCidrOk() (*int32, bool) {
 	if o == nil || isNil(o.Cidr) {
 		return nil, false
 	}
@@ -105,7 +105,7 @@ func (o *DeviceCreateInputIpAddressesInner) GetCidrOk() (*float32, bool) {
 }
 
 // HasCidr returns a boolean if a field has been set.
-func (o *DeviceCreateInputIpAddressesInner) HasCidr() bool {
+func (o *IPAddress) HasCidr() bool {
 	if o != nil && !isNil(o.Cidr) {
 		return true
 	}
@@ -113,13 +113,13 @@ func (o *DeviceCreateInputIpAddressesInner) HasCidr() bool {
 	return false
 }
 
-// SetCidr gets a reference to the given float32 and assigns it to the Cidr field.
-func (o *DeviceCreateInputIpAddressesInner) SetCidr(v float32) {
+// SetCidr gets a reference to the given int32 and assigns it to the Cidr field.
+func (o *IPAddress) SetCidr(v int32) {
 	o.Cidr = &v
 }
 
 // GetIpReservations returns the IpReservations field value if set, zero value otherwise.
-func (o *DeviceCreateInputIpAddressesInner) GetIpReservations() []string {
+func (o *IPAddress) GetIpReservations() []string {
 	if o == nil || isNil(o.IpReservations) {
 		var ret []string
 		return ret
@@ -129,7 +129,7 @@ func (o *DeviceCreateInputIpAddressesInner) GetIpReservations() []string {
 
 // GetIpReservationsOk returns a tuple with the IpReservations field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DeviceCreateInputIpAddressesInner) GetIpReservationsOk() ([]string, bool) {
+func (o *IPAddress) GetIpReservationsOk() ([]string, bool) {
 	if o == nil || isNil(o.IpReservations) {
 		return nil, false
 	}
@@ -137,7 +137,7 @@ func (o *DeviceCreateInputIpAddressesInner) GetIpReservationsOk() ([]string, boo
 }
 
 // HasIpReservations returns a boolean if a field has been set.
-func (o *DeviceCreateInputIpAddressesInner) HasIpReservations() bool {
+func (o *IPAddress) HasIpReservations() bool {
 	if o != nil && !isNil(o.IpReservations) {
 		return true
 	}
@@ -146,12 +146,12 @@ func (o *DeviceCreateInputIpAddressesInner) HasIpReservations() bool {
 }
 
 // SetIpReservations gets a reference to the given []string and assigns it to the IpReservations field.
-func (o *DeviceCreateInputIpAddressesInner) SetIpReservations(v []string) {
+func (o *IPAddress) SetIpReservations(v []string) {
 	o.IpReservations = v
 }
 
 // GetPublic returns the Public field value if set, zero value otherwise.
-func (o *DeviceCreateInputIpAddressesInner) GetPublic() bool {
+func (o *IPAddress) GetPublic() bool {
 	if o == nil || isNil(o.Public) {
 		var ret bool
 		return ret
@@ -161,7 +161,7 @@ func (o *DeviceCreateInputIpAddressesInner) GetPublic() bool {
 
 // GetPublicOk returns a tuple with the Public field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DeviceCreateInputIpAddressesInner) GetPublicOk() (*bool, bool) {
+func (o *IPAddress) GetPublicOk() (*bool, bool) {
 	if o == nil || isNil(o.Public) {
 		return nil, false
 	}
@@ -169,7 +169,7 @@ func (o *DeviceCreateInputIpAddressesInner) GetPublicOk() (*bool, bool) {
 }
 
 // HasPublic returns a boolean if a field has been set.
-func (o *DeviceCreateInputIpAddressesInner) HasPublic() bool {
+func (o *IPAddress) HasPublic() bool {
 	if o != nil && !isNil(o.Public) {
 		return true
 	}
@@ -178,11 +178,11 @@ func (o *DeviceCreateInputIpAddressesInner) HasPublic() bool {
 }
 
 // SetPublic gets a reference to the given bool and assigns it to the Public field.
-func (o *DeviceCreateInputIpAddressesInner) SetPublic(v bool) {
+func (o *IPAddress) SetPublic(v bool) {
 	o.Public = &v
 }
 
-func (o DeviceCreateInputIpAddressesInner) MarshalJSON() ([]byte, error) {
+func (o IPAddress) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -190,7 +190,7 @@ func (o DeviceCreateInputIpAddressesInner) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o DeviceCreateInputIpAddressesInner) ToMap() (map[string]interface{}, error) {
+func (o IPAddress) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.AddressFamily) {
 		toSerialize["address_family"] = o.AddressFamily
@@ -212,11 +212,11 @@ func (o DeviceCreateInputIpAddressesInner) ToMap() (map[string]interface{}, erro
 	return toSerialize, nil
 }
 
-func (o *DeviceCreateInputIpAddressesInner) UnmarshalJSON(bytes []byte) (err error) {
-	varDeviceCreateInputIpAddressesInner := _DeviceCreateInputIpAddressesInner{}
+func (o *IPAddress) UnmarshalJSON(bytes []byte) (err error) {
+	varIPAddress := _IPAddress{}
 
-	if err = json.Unmarshal(bytes, &varDeviceCreateInputIpAddressesInner); err == nil {
-		*o = DeviceCreateInputIpAddressesInner(varDeviceCreateInputIpAddressesInner)
+	if err = json.Unmarshal(bytes, &varIPAddress); err == nil {
+		*o = IPAddress(varIPAddress)
 	}
 
 	additionalProperties := make(map[string]interface{})
@@ -232,38 +232,38 @@ func (o *DeviceCreateInputIpAddressesInner) UnmarshalJSON(bytes []byte) (err err
 	return err
 }
 
-type NullableDeviceCreateInputIpAddressesInner struct {
-	value *DeviceCreateInputIpAddressesInner
+type NullableIPAddress struct {
+	value *IPAddress
 	isSet bool
 }
 
-func (v NullableDeviceCreateInputIpAddressesInner) Get() *DeviceCreateInputIpAddressesInner {
+func (v NullableIPAddress) Get() *IPAddress {
 	return v.value
 }
 
-func (v *NullableDeviceCreateInputIpAddressesInner) Set(val *DeviceCreateInputIpAddressesInner) {
+func (v *NullableIPAddress) Set(val *IPAddress) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableDeviceCreateInputIpAddressesInner) IsSet() bool {
+func (v NullableIPAddress) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableDeviceCreateInputIpAddressesInner) Unset() {
+func (v *NullableIPAddress) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableDeviceCreateInputIpAddressesInner(val *DeviceCreateInputIpAddressesInner) *NullableDeviceCreateInputIpAddressesInner {
-	return &NullableDeviceCreateInputIpAddressesInner{value: val, isSet: true}
+func NewNullableIPAddress(val *IPAddress) *NullableIPAddress {
+	return &NullableIPAddress{value: val, isSet: true}
 }
 
-func (v NullableDeviceCreateInputIpAddressesInner) MarshalJSON() ([]byte, error) {
+func (v NullableIPAddress) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableDeviceCreateInputIpAddressesInner) UnmarshalJSON(src []byte) error {
+func (v *NullableIPAddress) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

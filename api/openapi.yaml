@@ -11998,16 +11998,16 @@ components:
         address_family:
           description: Address Family for IP Address. Accepted values are 4 or 6
           example: 4
-          format: integer
-          type: number
+          format: int32
+          type: integer
         customer_as:
           description: "The customer's ASN. In a local BGP deployment, this will be\
             \ an internal ASN used to route within the data center. For a global BGP\
             \ deployment, this will be the your own ASN, configured when you set up\
             \ BGP for your project."
           example: 65000
-          format: integer
-          type: number
+          format: int32
+          type: integer
         customer_ip:
           description: "The device's IP address. For an IPv4 BGP session, this is\
             \ typically the private bond0 address for the device."
@@ -12025,8 +12025,8 @@ components:
         peer_as:
           description: The Peer ASN to use when configuring BGP on your device.
           example: 65530
-          format: integer
-          type: number
+          format: int32
+          type: integer
         peer_ips:
           description: "A list of one or more IP addresses to use for the Peer IP\
             \ section of your BGP configuration. For non-multihop sessions, this will\
@@ -13356,7 +13356,7 @@ components:
 
             To access a server without public IPs, you can use our Out-of-Band console access (SOS) or proxy through another server in the project with public IPs enabled.
           items:
-            $ref: '#/components/schemas/DeviceCreateInput_ip_addresses_inner'
+            $ref: '#/components/schemas/IPAddress'
           type: array
         ipxe_script_url:
           description: |-
@@ -13390,8 +13390,8 @@ components:
           default: 28
           description: Deprecated. Use ip_addresses. Subnet range for addresses allocated
             to this device.
-          format: integer
-          type: number
+          format: int32
+          type: integer
           x-deprecated: true
         project_ssh_keys:
           description: |
@@ -13411,8 +13411,8 @@ components:
           description: Deprecated. Use ip_addresses. Subnet range for addresses allocated
             to this device. Your project must have addresses available for a non-default
             request.
-          format: integer
-          type: number
+          format: int32
+          type: integer
           x-deprecated: true
         spot_instance:
           description: "Create a spot instance. Spot instances are created with a\
@@ -15363,6 +15363,34 @@ components:
       required:
       - href
       type: object
+    IPAddress:
+      properties:
+        address_family:
+          description: Address Family for IP Address
+          enum:
+          - 4
+          - 6
+          example: 4
+          format: int32
+          type: integer
+        cidr:
+          description: "Cidr Size for the IP Block created. Valid values depends on\
+            \ the operating system being provisioned. (28..32 for IPv4 addresses,\
+            \ 124..127 for IPv6 addresses)"
+          example: 28
+          format: int32
+          type: integer
+        ip_reservations:
+          description: UUIDs of any IP reservations to use when assigning IPs
+          items:
+            type: string
+          type: array
+        public:
+          default: true
+          description: Address Type for IP Address
+          example: false
+          type: boolean
+      type: object
     IPAssignment:
       example:
         address: address
@@ -16626,11 +16654,27 @@ components:
         metal_gateways:
         - null
         - null
+        meta:
+          next:
+            href: href
+          total: 0
+          last:
+            href: href
+          previous:
+            href: href
+          last_page: 1
+          self:
+            href: href
+          first:
+            href: href
+          current_page: 6
       properties:
         metal_gateways:
           items:
             $ref: '#/components/schemas/MetalGatewayList_metal_gateways_inner'
           type: array
+        meta:
+          $ref: '#/components/schemas/Meta'
       type: object
     MetalGatewayLite:
       example:
@@ -22496,34 +22540,6 @@ components:
       - $ref: '#/components/schemas/Href'
       - description: Lite version of project object when included
         type: object
-    DeviceCreateInput_ip_addresses_inner:
-      properties:
-        address_family:
-          description: Address Family for IP Address
-          enum:
-          - 4
-          - 6
-          example: 4
-          format: integer
-          type: number
-        cidr:
-          description: "Cidr Size for the IP Block created. Valid values depends on\
-            \ the operating system being provisioned. (28..32 for IPv4 addresses,\
-            \ 124..127 for IPv6 addresses)"
-          example: 28
-          format: integer
-          type: number
-        ip_reservations:
-          description: UUIDs of any IP reservations to use when assigning IPs
-          items:
-            type: string
-          type: array
-        public:
-          default: true
-          description: Address Type for IP Address
-          example: false
-          type: boolean
-      type: object
     FacilityInput_facility:
       anyOf:
       - example:

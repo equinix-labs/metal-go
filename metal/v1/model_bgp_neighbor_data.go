@@ -21,9 +21,9 @@ var _ MappedNullable = &BgpNeighborData{}
 // BgpNeighborData struct for BgpNeighborData
 type BgpNeighborData struct {
 	// Address Family for IP Address. Accepted values are 4 or 6
-	AddressFamily *float32 `json:"address_family,omitempty"`
+	AddressFamily *int32 `json:"address_family,omitempty"`
 	// The customer's ASN. In a local BGP deployment, this will be an internal ASN used to route within the data center. For a global BGP deployment, this will be the your own ASN, configured when you set up BGP for your project.
-	CustomerAs *float32 `json:"customer_as,omitempty"`
+	CustomerAs *int32 `json:"customer_as,omitempty"`
 	// The device's IP address. For an IPv4 BGP session, this is typically the private bond0 address for the device.
 	CustomerIp *string `json:"customer_ip,omitempty"`
 	// True if an MD5 password is configured for the project.
@@ -33,7 +33,7 @@ type BgpNeighborData struct {
 	// True when the BGP session should be configured as multihop.
 	Multihop *bool `json:"multihop,omitempty"`
 	// The Peer ASN to use when configuring BGP on your device.
-	PeerAs *float32 `json:"peer_as,omitempty"`
+	PeerAs *int32 `json:"peer_as,omitempty"`
 	// A list of one or more IP addresses to use for the Peer IP section of your BGP configuration. For non-multihop sessions, this will typically be a single gateway address for the device. For multihop sessions, it will be a list of IPs.
 	PeerIps []string `json:"peer_ips,omitempty"`
 	// A list of project subnets
@@ -63,9 +63,9 @@ func NewBgpNeighborDataWithDefaults() *BgpNeighborData {
 }
 
 // GetAddressFamily returns the AddressFamily field value if set, zero value otherwise.
-func (o *BgpNeighborData) GetAddressFamily() float32 {
+func (o *BgpNeighborData) GetAddressFamily() int32 {
 	if o == nil || isNil(o.AddressFamily) {
-		var ret float32
+		var ret int32
 		return ret
 	}
 	return *o.AddressFamily
@@ -73,7 +73,7 @@ func (o *BgpNeighborData) GetAddressFamily() float32 {
 
 // GetAddressFamilyOk returns a tuple with the AddressFamily field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BgpNeighborData) GetAddressFamilyOk() (*float32, bool) {
+func (o *BgpNeighborData) GetAddressFamilyOk() (*int32, bool) {
 	if o == nil || isNil(o.AddressFamily) {
 		return nil, false
 	}
@@ -89,15 +89,15 @@ func (o *BgpNeighborData) HasAddressFamily() bool {
 	return false
 }
 
-// SetAddressFamily gets a reference to the given float32 and assigns it to the AddressFamily field.
-func (o *BgpNeighborData) SetAddressFamily(v float32) {
+// SetAddressFamily gets a reference to the given int32 and assigns it to the AddressFamily field.
+func (o *BgpNeighborData) SetAddressFamily(v int32) {
 	o.AddressFamily = &v
 }
 
 // GetCustomerAs returns the CustomerAs field value if set, zero value otherwise.
-func (o *BgpNeighborData) GetCustomerAs() float32 {
+func (o *BgpNeighborData) GetCustomerAs() int32 {
 	if o == nil || isNil(o.CustomerAs) {
-		var ret float32
+		var ret int32
 		return ret
 	}
 	return *o.CustomerAs
@@ -105,7 +105,7 @@ func (o *BgpNeighborData) GetCustomerAs() float32 {
 
 // GetCustomerAsOk returns a tuple with the CustomerAs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BgpNeighborData) GetCustomerAsOk() (*float32, bool) {
+func (o *BgpNeighborData) GetCustomerAsOk() (*int32, bool) {
 	if o == nil || isNil(o.CustomerAs) {
 		return nil, false
 	}
@@ -121,8 +121,8 @@ func (o *BgpNeighborData) HasCustomerAs() bool {
 	return false
 }
 
-// SetCustomerAs gets a reference to the given float32 and assigns it to the CustomerAs field.
-func (o *BgpNeighborData) SetCustomerAs(v float32) {
+// SetCustomerAs gets a reference to the given int32 and assigns it to the CustomerAs field.
+func (o *BgpNeighborData) SetCustomerAs(v int32) {
 	o.CustomerAs = &v
 }
 
@@ -255,9 +255,9 @@ func (o *BgpNeighborData) SetMultihop(v bool) {
 }
 
 // GetPeerAs returns the PeerAs field value if set, zero value otherwise.
-func (o *BgpNeighborData) GetPeerAs() float32 {
+func (o *BgpNeighborData) GetPeerAs() int32 {
 	if o == nil || isNil(o.PeerAs) {
-		var ret float32
+		var ret int32
 		return ret
 	}
 	return *o.PeerAs
@@ -265,7 +265,7 @@ func (o *BgpNeighborData) GetPeerAs() float32 {
 
 // GetPeerAsOk returns a tuple with the PeerAs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BgpNeighborData) GetPeerAsOk() (*float32, bool) {
+func (o *BgpNeighborData) GetPeerAsOk() (*int32, bool) {
 	if o == nil || isNil(o.PeerAs) {
 		return nil, false
 	}
@@ -281,8 +281,8 @@ func (o *BgpNeighborData) HasPeerAs() bool {
 	return false
 }
 
-// SetPeerAs gets a reference to the given float32 and assigns it to the PeerAs field.
-func (o *BgpNeighborData) SetPeerAs(v float32) {
+// SetPeerAs gets a reference to the given int32 and assigns it to the PeerAs field.
+func (o *BgpNeighborData) SetPeerAs(v int32) {
 	o.PeerAs = &v
 }
 

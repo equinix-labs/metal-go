@@ -1,130 +1,130 @@
-# DeviceCreateInputIpAddressesInner
+# IPAddress
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AddressFamily** | Pointer to **float32** | Address Family for IP Address | [optional] 
-**Cidr** | Pointer to **float32** | Cidr Size for the IP Block created. Valid values depends on the operating system being provisioned. (28..32 for IPv4 addresses, 124..127 for IPv6 addresses) | [optional] 
+**AddressFamily** | Pointer to **int32** | Address Family for IP Address | [optional] 
+**Cidr** | Pointer to **int32** | Cidr Size for the IP Block created. Valid values depends on the operating system being provisioned. (28..32 for IPv4 addresses, 124..127 for IPv6 addresses) | [optional] 
 **IpReservations** | Pointer to **[]string** | UUIDs of any IP reservations to use when assigning IPs | [optional] 
 **Public** | Pointer to **bool** | Address Type for IP Address | [optional] [default to true]
 
 ## Methods
 
-### NewDeviceCreateInputIpAddressesInner
+### NewIPAddress
 
-`func NewDeviceCreateInputIpAddressesInner() *DeviceCreateInputIpAddressesInner`
+`func NewIPAddress() *IPAddress`
 
-NewDeviceCreateInputIpAddressesInner instantiates a new DeviceCreateInputIpAddressesInner object
+NewIPAddress instantiates a new IPAddress object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewDeviceCreateInputIpAddressesInnerWithDefaults
+### NewIPAddressWithDefaults
 
-`func NewDeviceCreateInputIpAddressesInnerWithDefaults() *DeviceCreateInputIpAddressesInner`
+`func NewIPAddressWithDefaults() *IPAddress`
 
-NewDeviceCreateInputIpAddressesInnerWithDefaults instantiates a new DeviceCreateInputIpAddressesInner object
+NewIPAddressWithDefaults instantiates a new IPAddress object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetAddressFamily
 
-`func (o *DeviceCreateInputIpAddressesInner) GetAddressFamily() float32`
+`func (o *IPAddress) GetAddressFamily() int32`
 
 GetAddressFamily returns the AddressFamily field if non-nil, zero value otherwise.
 
 ### GetAddressFamilyOk
 
-`func (o *DeviceCreateInputIpAddressesInner) GetAddressFamilyOk() (*float32, bool)`
+`func (o *IPAddress) GetAddressFamilyOk() (*int32, bool)`
 
 GetAddressFamilyOk returns a tuple with the AddressFamily field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAddressFamily
 
-`func (o *DeviceCreateInputIpAddressesInner) SetAddressFamily(v float32)`
+`func (o *IPAddress) SetAddressFamily(v int32)`
 
 SetAddressFamily sets AddressFamily field to given value.
 
 ### HasAddressFamily
 
-`func (o *DeviceCreateInputIpAddressesInner) HasAddressFamily() bool`
+`func (o *IPAddress) HasAddressFamily() bool`
 
 HasAddressFamily returns a boolean if a field has been set.
 
 ### GetCidr
 
-`func (o *DeviceCreateInputIpAddressesInner) GetCidr() float32`
+`func (o *IPAddress) GetCidr() int32`
 
 GetCidr returns the Cidr field if non-nil, zero value otherwise.
 
 ### GetCidrOk
 
-`func (o *DeviceCreateInputIpAddressesInner) GetCidrOk() (*float32, bool)`
+`func (o *IPAddress) GetCidrOk() (*int32, bool)`
 
 GetCidrOk returns a tuple with the Cidr field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCidr
 
-`func (o *DeviceCreateInputIpAddressesInner) SetCidr(v float32)`
+`func (o *IPAddress) SetCidr(v int32)`
 
 SetCidr sets Cidr field to given value.
 
 ### HasCidr
 
-`func (o *DeviceCreateInputIpAddressesInner) HasCidr() bool`
+`func (o *IPAddress) HasCidr() bool`
 
 HasCidr returns a boolean if a field has been set.
 
 ### GetIpReservations
 
-`func (o *DeviceCreateInputIpAddressesInner) GetIpReservations() []string`
+`func (o *IPAddress) GetIpReservations() []string`
 
 GetIpReservations returns the IpReservations field if non-nil, zero value otherwise.
 
 ### GetIpReservationsOk
 
-`func (o *DeviceCreateInputIpAddressesInner) GetIpReservationsOk() (*[]string, bool)`
+`func (o *IPAddress) GetIpReservationsOk() (*[]string, bool)`
 
 GetIpReservationsOk returns a tuple with the IpReservations field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIpReservations
 
-`func (o *DeviceCreateInputIpAddressesInner) SetIpReservations(v []string)`
+`func (o *IPAddress) SetIpReservations(v []string)`
 
 SetIpReservations sets IpReservations field to given value.
 
 ### HasIpReservations
 
-`func (o *DeviceCreateInputIpAddressesInner) HasIpReservations() bool`
+`func (o *IPAddress) HasIpReservations() bool`
 
 HasIpReservations returns a boolean if a field has been set.
 
 ### GetPublic
 
-`func (o *DeviceCreateInputIpAddressesInner) GetPublic() bool`
+`func (o *IPAddress) GetPublic() bool`
 
 GetPublic returns the Public field if non-nil, zero value otherwise.
 
 ### GetPublicOk
 
-`func (o *DeviceCreateInputIpAddressesInner) GetPublicOk() (*bool, bool)`
+`func (o *IPAddress) GetPublicOk() (*bool, bool)`
 
 GetPublicOk returns a tuple with the Public field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPublic
 
-`func (o *DeviceCreateInputIpAddressesInner) SetPublic(v bool)`
+`func (o *IPAddress) SetPublic(v bool)`
 
 SetPublic sets Public field to given value.
 
 ### HasPublic
 
-`func (o *DeviceCreateInputIpAddressesInner) HasPublic() bool`
+`func (o *IPAddress) HasPublic() bool`
 
 HasPublic returns a boolean if a field has been set.
 
