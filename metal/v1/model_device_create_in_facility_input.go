@@ -21,7 +21,8 @@ var _ MappedNullable = &DeviceCreateInFacilityInput{}
 
 // DeviceCreateInFacilityInput struct for DeviceCreateInFacilityInput
 type DeviceCreateInFacilityInput struct {
-	Facility FacilityInputFacility `json:"facility"`
+	// The datacenter where the device should be created.  Either metro or facility must be provided.  The API will accept either a single facility `{ \"facility\": \"f1\" }`, or it can be instructed to create the device in the best available datacenter `{ \"facility\": \"any\" }`.  Additionally it is possible to set a prioritized location selection. For example `{ \"facility\": [\"f3\", \"f2\", \"any\"] }` can be used to prioritize `f3` and then `f2` before accepting `any` facility. If none of the facilities provided have availability for the requested device the request will fail.
+	Facility []string `json:"facility"`
 	// When true, devices with a `custom_ipxe` OS will always boot to iPXE. The default setting of false ensures that iPXE will be used on only the first boot.
 	AlwaysPxe *bool `json:"always_pxe,omitempty"`
 	// The billing cycle of the device.
@@ -75,7 +76,7 @@ type _DeviceCreateInFacilityInput DeviceCreateInFacilityInput
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDeviceCreateInFacilityInput(facility FacilityInputFacility, operatingSystem string, plan string) *DeviceCreateInFacilityInput {
+func NewDeviceCreateInFacilityInput(facility []string, operatingSystem string, plan string) *DeviceCreateInFacilityInput {
 	this := DeviceCreateInFacilityInput{}
 	this.Facility = facility
 	var alwaysPxe bool = false
@@ -116,9 +117,9 @@ func NewDeviceCreateInFacilityInputWithDefaults() *DeviceCreateInFacilityInput {
 }
 
 // GetFacility returns the Facility field value
-func (o *DeviceCreateInFacilityInput) GetFacility() FacilityInputFacility {
+func (o *DeviceCreateInFacilityInput) GetFacility() []string {
 	if o == nil {
-		var ret FacilityInputFacility
+		var ret []string
 		return ret
 	}
 
@@ -127,15 +128,15 @@ func (o *DeviceCreateInFacilityInput) GetFacility() FacilityInputFacility {
 
 // GetFacilityOk returns a tuple with the Facility field value
 // and a boolean to check if the value has been set.
-func (o *DeviceCreateInFacilityInput) GetFacilityOk() (*FacilityInputFacility, bool) {
+func (o *DeviceCreateInFacilityInput) GetFacilityOk() ([]string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Facility, true
+	return o.Facility, true
 }
 
 // SetFacility sets field value
-func (o *DeviceCreateInFacilityInput) SetFacility(v FacilityInputFacility) {
+func (o *DeviceCreateInFacilityInput) SetFacility(v []string) {
 	o.Facility = v
 }
 

@@ -432,7 +432,6 @@ Class | Method | HTTP request | Description
  - [FabricServiceToken](docs/FabricServiceToken.md)
  - [Facility](docs/Facility.md)
  - [FacilityInput](docs/FacilityInput.md)
- - [FacilityInputFacility](docs/FacilityInputFacility.md)
  - [FacilityList](docs/FacilityList.md)
  - [Filesystem](docs/Filesystem.md)
  - [FindIPAddressById200Response](docs/FindIPAddressById200Response.md)

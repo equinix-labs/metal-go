@@ -14838,7 +14838,19 @@ components:
     FacilityInput:
       properties:
         facility:
-          $ref: '#/components/schemas/FacilityInput_facility'
+          description: |-
+            The datacenter where the device should be created.
+
+            Either metro or facility must be provided.
+
+            The API will accept either a single facility `{ "facility": "f1" }`, or it can be instructed to create the device in the best available datacenter `{ "facility": "any" }`.
+
+            Additionally it is possible to set a prioritized location selection. For example `{ "facility": ["f3", "f2", "any"] }` can be used to prioritize `f3` and then `f2` before accepting `any` facility. If none of the facilities provided have availability for the requested device the request will fail.
+          example:
+          - sv15
+          items:
+            type: string
+          type: array
       required:
       - facility
       type: object
@@ -22540,23 +22552,6 @@ components:
       - $ref: '#/components/schemas/Href'
       - description: Lite version of project object when included
         type: object
-    FacilityInput_facility:
-      anyOf:
-      - example:
-        - sv15
-        items:
-          type: string
-        type: array
-      - example: any
-        type: string
-      description: |-
-        The datacenter where the device should be created.
-
-        Either metro or facility must be provided.
-
-        The API will accept either a single facility `{ "facility": "f1" }`, or it can be instructed to create the device in the best available datacenter `{ "facility": "any" }`.
-
-        Additionally it is possible to set a prioritized location selection. For example `{ "facility": ["f3", "f2", "any"] }` can be used to prioritize `f3` and then `f2` before accepting `any` facility. If none of the facilities provided have availability for the requested device the request will fail.
     IPAssignment_metro:
       allOf:
       - $ref: '#/components/schemas/Metro'

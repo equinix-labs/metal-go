@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Facility** | [**FacilityInputFacility**](FacilityInputFacility.md) |  | 
+**Facility** | **[]string** | The datacenter where the device should be created.  Either metro or facility must be provided.  The API will accept either a single facility &#x60;{ \&quot;facility\&quot;: \&quot;f1\&quot; }&#x60;, or it can be instructed to create the device in the best available datacenter &#x60;{ \&quot;facility\&quot;: \&quot;any\&quot; }&#x60;.  Additionally it is possible to set a prioritized location selection. For example &#x60;{ \&quot;facility\&quot;: [\&quot;f3\&quot;, \&quot;f2\&quot;, \&quot;any\&quot;] }&#x60; can be used to prioritize &#x60;f3&#x60; and then &#x60;f2&#x60; before accepting &#x60;any&#x60; facility. If none of the facilities provided have availability for the requested device the request will fail. | 
 **AlwaysPxe** | Pointer to **bool** | When true, devices with a &#x60;custom_ipxe&#x60; OS will always boot to iPXE. The default setting of false ensures that iPXE will be used on only the first boot. | [optional] [default to false]
 **BillingCycle** | Pointer to **string** | The billing cycle of the device. | [optional] 
 **Customdata** | Pointer to **map[string]interface{}** | Customdata is an arbitrary JSON value that can be accessed via the metadata service. | [optional] [default to {}]
@@ -33,7 +33,7 @@ Name | Type | Description | Notes
 
 ### NewDeviceCreateInFacilityInput
 
-`func NewDeviceCreateInFacilityInput(facility FacilityInputFacility, operatingSystem string, plan string, ) *DeviceCreateInFacilityInput`
+`func NewDeviceCreateInFacilityInput(facility []string, operatingSystem string, plan string, ) *DeviceCreateInFacilityInput`
 
 NewDeviceCreateInFacilityInput instantiates a new DeviceCreateInFacilityInput object
 This constructor will assign default values to properties that have it defined,
@@ -50,20 +50,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetFacility
 
-`func (o *DeviceCreateInFacilityInput) GetFacility() FacilityInputFacility`
+`func (o *DeviceCreateInFacilityInput) GetFacility() []string`
 
 GetFacility returns the Facility field if non-nil, zero value otherwise.
 
 ### GetFacilityOk
 
-`func (o *DeviceCreateInFacilityInput) GetFacilityOk() (*FacilityInputFacility, bool)`
+`func (o *DeviceCreateInFacilityInput) GetFacilityOk() (*[]string, bool)`
 
 GetFacilityOk returns a tuple with the Facility field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFacility
 
-`func (o *DeviceCreateInFacilityInput) SetFacility(v FacilityInputFacility)`
+`func (o *DeviceCreateInFacilityInput) SetFacility(v []string)`
 
 SetFacility sets Facility field to given value.
 
