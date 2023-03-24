@@ -38,7 +38,7 @@ type DeviceCreateInMetroInput struct {
 	// The hostname to use within the operating system. The same hostname may be used on multiple devices within a project.
 	Hostname *string `json:"hostname,omitempty"`
 	// The `ip_addresses attribute will allow you to specify the addresses you want created with your device.  The default value configures public IPv4, public IPv6, and private IPv4.  Private IPv4 address is required. When specifying `ip_addresses`, one of the array items must enable private IPv4.  Some operating systems require public IPv4 address. In those cases you will receive an error message if public IPv4 is not enabled.  For example, to only configure your server with a private IPv4 address, you can send `{ \"ip_addresses\": [{ \"address_family\": 4, \"public\": false }] }`.  It is possible to request a subnet size larger than a `/30` by assigning addresses using the UUID(s) of ip_reservations in your project.  For example, `{ \"ip_addresses\": [..., {\"address_family\": 4, \"public\": true, \"ip_reservations\": [\"uuid1\", \"uuid2\"]}] }`  To access a server without public IPs, you can use our Out-of-Band console access (SOS) or proxy through another server in the project with public IPs enabled.
-	IpAddresses []DeviceCreateInputIpAddressesInner `json:"ip_addresses,omitempty"`
+	IpAddresses []IPAddress `json:"ip_addresses,omitempty"`
 	// When set, the device will chainload an iPXE Script at boot fetched from the supplied URL.  See [Custom iPXE](https://metal.equinix.com/developers/docs/operating-systems/custom-ipxe/) for more details.
 	IpxeScriptUrl *string `json:"ipxe_script_url,omitempty"`
 	// Whether the device should be locked, preventing accidental deletion.
@@ -50,11 +50,11 @@ type DeviceCreateInMetroInput struct {
 	// The slug of the device plan to provision.
 	Plan string `json:"plan"`
 	// Deprecated. Use ip_addresses. Subnet range for addresses allocated to this device.
-	PrivateIpv4SubnetSize *float32 `json:"private_ipv4_subnet_size,omitempty"`
+	PrivateIpv4SubnetSize *int32 `json:"private_ipv4_subnet_size,omitempty"`
 	// A list of UUIDs identifying the device parent project that should be authorized to access this device (typically via /root/.ssh/authorized_keys). These keys will also appear in the device metadata.  If no SSH keys are specified (`user_ssh_keys`, `project_ssh_keys`, and `ssh_keys` are all empty lists or omitted), all parent project keys, parent project members keys and organization members keys will be included. This behaviour can be changed with 'no_ssh_keys' option to omit any SSH key being added.
 	ProjectSshKeys []string `json:"project_ssh_keys,omitempty"`
 	// Deprecated. Use ip_addresses. Subnet range for addresses allocated to this device. Your project must have addresses available for a non-default request.
-	PublicIpv4SubnetSize *float32 `json:"public_ipv4_subnet_size,omitempty"`
+	PublicIpv4SubnetSize *int32 `json:"public_ipv4_subnet_size,omitempty"`
 	// Create a spot instance. Spot instances are created with a maximum bid price. If the bid price is not met, the spot instance will be terminated as indicated by the `termination_time` field.
 	SpotInstance *bool `json:"spot_instance,omitempty"`
 	// The maximum amount to bid for a spot instance.
@@ -89,9 +89,9 @@ func NewDeviceCreateInMetroInput(metro string, operatingSystem string, plan stri
 	this.NoSshKeys = &noSshKeys
 	this.OperatingSystem = operatingSystem
 	this.Plan = plan
-	var privateIpv4SubnetSize float32 = 28
+	var privateIpv4SubnetSize int32 = 28
 	this.PrivateIpv4SubnetSize = &privateIpv4SubnetSize
-	var publicIpv4SubnetSize float32 = 31
+	var publicIpv4SubnetSize int32 = 31
 	this.PublicIpv4SubnetSize = &publicIpv4SubnetSize
 	return &this
 }
@@ -109,9 +109,9 @@ func NewDeviceCreateInMetroInputWithDefaults() *DeviceCreateInMetroInput {
 	this.Locked = &locked
 	var noSshKeys bool = false
 	this.NoSshKeys = &noSshKeys
-	var privateIpv4SubnetSize float32 = 28
+	var privateIpv4SubnetSize int32 = 28
 	this.PrivateIpv4SubnetSize = &privateIpv4SubnetSize
-	var publicIpv4SubnetSize float32 = 31
+	var publicIpv4SubnetSize int32 = 31
 	this.PublicIpv4SubnetSize = &publicIpv4SubnetSize
 	return &this
 }
@@ -365,9 +365,9 @@ func (o *DeviceCreateInMetroInput) SetHostname(v string) {
 }
 
 // GetIpAddresses returns the IpAddresses field value if set, zero value otherwise.
-func (o *DeviceCreateInMetroInput) GetIpAddresses() []DeviceCreateInputIpAddressesInner {
+func (o *DeviceCreateInMetroInput) GetIpAddresses() []IPAddress {
 	if o == nil || isNil(o.IpAddresses) {
-		var ret []DeviceCreateInputIpAddressesInner
+		var ret []IPAddress
 		return ret
 	}
 	return o.IpAddresses
@@ -375,7 +375,7 @@ func (o *DeviceCreateInMetroInput) GetIpAddresses() []DeviceCreateInputIpAddress
 
 // GetIpAddressesOk returns a tuple with the IpAddresses field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DeviceCreateInMetroInput) GetIpAddressesOk() ([]DeviceCreateInputIpAddressesInner, bool) {
+func (o *DeviceCreateInMetroInput) GetIpAddressesOk() ([]IPAddress, bool) {
 	if o == nil || isNil(o.IpAddresses) {
 		return nil, false
 	}
@@ -391,8 +391,8 @@ func (o *DeviceCreateInMetroInput) HasIpAddresses() bool {
 	return false
 }
 
-// SetIpAddresses gets a reference to the given []DeviceCreateInputIpAddressesInner and assigns it to the IpAddresses field.
-func (o *DeviceCreateInMetroInput) SetIpAddresses(v []DeviceCreateInputIpAddressesInner) {
+// SetIpAddresses gets a reference to the given []IPAddress and assigns it to the IpAddresses field.
+func (o *DeviceCreateInMetroInput) SetIpAddresses(v []IPAddress) {
 	o.IpAddresses = v
 }
 
@@ -541,9 +541,9 @@ func (o *DeviceCreateInMetroInput) SetPlan(v string) {
 }
 
 // GetPrivateIpv4SubnetSize returns the PrivateIpv4SubnetSize field value if set, zero value otherwise.
-func (o *DeviceCreateInMetroInput) GetPrivateIpv4SubnetSize() float32 {
+func (o *DeviceCreateInMetroInput) GetPrivateIpv4SubnetSize() int32 {
 	if o == nil || isNil(o.PrivateIpv4SubnetSize) {
-		var ret float32
+		var ret int32
 		return ret
 	}
 	return *o.PrivateIpv4SubnetSize
@@ -551,7 +551,7 @@ func (o *DeviceCreateInMetroInput) GetPrivateIpv4SubnetSize() float32 {
 
 // GetPrivateIpv4SubnetSizeOk returns a tuple with the PrivateIpv4SubnetSize field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DeviceCreateInMetroInput) GetPrivateIpv4SubnetSizeOk() (*float32, bool) {
+func (o *DeviceCreateInMetroInput) GetPrivateIpv4SubnetSizeOk() (*int32, bool) {
 	if o == nil || isNil(o.PrivateIpv4SubnetSize) {
 		return nil, false
 	}
@@ -567,8 +567,8 @@ func (o *DeviceCreateInMetroInput) HasPrivateIpv4SubnetSize() bool {
 	return false
 }
 
-// SetPrivateIpv4SubnetSize gets a reference to the given float32 and assigns it to the PrivateIpv4SubnetSize field.
-func (o *DeviceCreateInMetroInput) SetPrivateIpv4SubnetSize(v float32) {
+// SetPrivateIpv4SubnetSize gets a reference to the given int32 and assigns it to the PrivateIpv4SubnetSize field.
+func (o *DeviceCreateInMetroInput) SetPrivateIpv4SubnetSize(v int32) {
 	o.PrivateIpv4SubnetSize = &v
 }
 
@@ -605,9 +605,9 @@ func (o *DeviceCreateInMetroInput) SetProjectSshKeys(v []string) {
 }
 
 // GetPublicIpv4SubnetSize returns the PublicIpv4SubnetSize field value if set, zero value otherwise.
-func (o *DeviceCreateInMetroInput) GetPublicIpv4SubnetSize() float32 {
+func (o *DeviceCreateInMetroInput) GetPublicIpv4SubnetSize() int32 {
 	if o == nil || isNil(o.PublicIpv4SubnetSize) {
-		var ret float32
+		var ret int32
 		return ret
 	}
 	return *o.PublicIpv4SubnetSize
@@ -615,7 +615,7 @@ func (o *DeviceCreateInMetroInput) GetPublicIpv4SubnetSize() float32 {
 
 // GetPublicIpv4SubnetSizeOk returns a tuple with the PublicIpv4SubnetSize field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DeviceCreateInMetroInput) GetPublicIpv4SubnetSizeOk() (*float32, bool) {
+func (o *DeviceCreateInMetroInput) GetPublicIpv4SubnetSizeOk() (*int32, bool) {
 	if o == nil || isNil(o.PublicIpv4SubnetSize) {
 		return nil, false
 	}
@@ -631,8 +631,8 @@ func (o *DeviceCreateInMetroInput) HasPublicIpv4SubnetSize() bool {
 	return false
 }
 
-// SetPublicIpv4SubnetSize gets a reference to the given float32 and assigns it to the PublicIpv4SubnetSize field.
-func (o *DeviceCreateInMetroInput) SetPublicIpv4SubnetSize(v float32) {
+// SetPublicIpv4SubnetSize gets a reference to the given int32 and assigns it to the PublicIpv4SubnetSize field.
+func (o *DeviceCreateInMetroInput) SetPublicIpv4SubnetSize(v int32) {
 	o.PublicIpv4SubnetSize = &v
 }
 

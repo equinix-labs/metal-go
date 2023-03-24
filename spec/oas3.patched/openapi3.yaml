@@ -221,6 +221,8 @@ components:
       $ref: './components/schemas/HardwareReservationList.yaml'
     Href:
       $ref: './components/schemas/Href.yaml'
+    IPAddress:
+      $ref: './components/schemas/IPAddress.yaml'
     IPAssignment:
       $ref: './components/schemas/IPAssignment.yaml'
     IPAssignmentInput:

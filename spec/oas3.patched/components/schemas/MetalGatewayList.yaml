@@ -5,4 +5,6 @@ properties:
       - $ref: './MetalGateway.yaml'
       - $ref: './VrfMetalGateway.yaml'
     type: array
+  meta:
+    $ref: './Meta.yaml'
 type: object

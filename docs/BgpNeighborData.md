@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AddressFamily** | Pointer to **float32** | Address Family for IP Address. Accepted values are 4 or 6 | [optional] 
-**CustomerAs** | Pointer to **float32** | The customer&#39;s ASN. In a local BGP deployment, this will be an internal ASN used to route within the data center. For a global BGP deployment, this will be the your own ASN, configured when you set up BGP for your project. | [optional] 
+**AddressFamily** | Pointer to **int32** | Address Family for IP Address. Accepted values are 4 or 6 | [optional] 
+**CustomerAs** | Pointer to **int32** | The customer&#39;s ASN. In a local BGP deployment, this will be an internal ASN used to route within the data center. For a global BGP deployment, this will be the your own ASN, configured when you set up BGP for your project. | [optional] 
 **CustomerIp** | Pointer to **string** | The device&#39;s IP address. For an IPv4 BGP session, this is typically the private bond0 address for the device. | [optional] 
 **Md5Enabled** | Pointer to **bool** | True if an MD5 password is configured for the project. | [optional] 
 **Md5Password** | Pointer to **string** | The MD5 password configured for the project, if set. | [optional] 
 **Multihop** | Pointer to **bool** | True when the BGP session should be configured as multihop. | [optional] 
-**PeerAs** | Pointer to **float32** | The Peer ASN to use when configuring BGP on your device. | [optional] 
+**PeerAs** | Pointer to **int32** | The Peer ASN to use when configuring BGP on your device. | [optional] 
 **PeerIps** | Pointer to **[]string** | A list of one or more IP addresses to use for the Peer IP section of your BGP configuration. For non-multihop sessions, this will typically be a single gateway address for the device. For multihop sessions, it will be a list of IPs. | [optional] 
 **RoutesIn** | Pointer to [**[]BgpRoute**](BgpRoute.md) | A list of project subnets | [optional] 
 **RoutesOut** | Pointer to [**[]BgpRoute**](BgpRoute.md) | A list of outgoing routes. Only populated if the BGP session has default route enabled. | [optional] 
@@ -36,20 +36,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetAddressFamily
 
-`func (o *BgpNeighborData) GetAddressFamily() float32`
+`func (o *BgpNeighborData) GetAddressFamily() int32`
 
 GetAddressFamily returns the AddressFamily field if non-nil, zero value otherwise.
 
 ### GetAddressFamilyOk
 
-`func (o *BgpNeighborData) GetAddressFamilyOk() (*float32, bool)`
+`func (o *BgpNeighborData) GetAddressFamilyOk() (*int32, bool)`
 
 GetAddressFamilyOk returns a tuple with the AddressFamily field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAddressFamily
 
-`func (o *BgpNeighborData) SetAddressFamily(v float32)`
+`func (o *BgpNeighborData) SetAddressFamily(v int32)`
 
 SetAddressFamily sets AddressFamily field to given value.
 
@@ -61,20 +61,20 @@ HasAddressFamily returns a boolean if a field has been set.
 
 ### GetCustomerAs
 
-`func (o *BgpNeighborData) GetCustomerAs() float32`
+`func (o *BgpNeighborData) GetCustomerAs() int32`
 
 GetCustomerAs returns the CustomerAs field if non-nil, zero value otherwise.
 
 ### GetCustomerAsOk
 
-`func (o *BgpNeighborData) GetCustomerAsOk() (*float32, bool)`
+`func (o *BgpNeighborData) GetCustomerAsOk() (*int32, bool)`
 
 GetCustomerAsOk returns a tuple with the CustomerAs field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCustomerAs
 
-`func (o *BgpNeighborData) SetCustomerAs(v float32)`
+`func (o *BgpNeighborData) SetCustomerAs(v int32)`
 
 SetCustomerAs sets CustomerAs field to given value.
 
@@ -186,20 +186,20 @@ HasMultihop returns a boolean if a field has been set.
 
 ### GetPeerAs
 
-`func (o *BgpNeighborData) GetPeerAs() float32`
+`func (o *BgpNeighborData) GetPeerAs() int32`
 
 GetPeerAs returns the PeerAs field if non-nil, zero value otherwise.
 
 ### GetPeerAsOk
 
-`func (o *BgpNeighborData) GetPeerAsOk() (*float32, bool)`
+`func (o *BgpNeighborData) GetPeerAsOk() (*int32, bool)`
 
 GetPeerAsOk returns a tuple with the PeerAs field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPeerAs
 
-`func (o *BgpNeighborData) SetPeerAs(v float32)`
+`func (o *BgpNeighborData) SetPeerAs(v int32)`
 
 SetPeerAs sets PeerAs field to given value.
 
