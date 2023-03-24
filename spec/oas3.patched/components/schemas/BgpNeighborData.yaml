@@ -2,15 +2,15 @@ properties:
   address_family:
     description: Address Family for IP Address. Accepted values are 4 or 6
     example: 4
-    format: integer
-    type: number
+    format: int32
+    type: integer
   customer_as:
     description: The customer's ASN. In a local BGP deployment, this will be an internal
       ASN used to route within the data center. For a global BGP deployment, this
       will be the your own ASN, configured when you set up BGP for your project.
     example: 65000
-    format: integer
-    type: number
+    format: int32
+    type: integer
   customer_ip:
     description: The device's IP address. For an IPv4 BGP session, this is typically
       the private bond0 address for the device.
@@ -28,8 +28,8 @@ properties:
   peer_as:
     description: The Peer ASN to use when configuring BGP on your device.
     example: 65530
-    format: integer
-    type: number
+    format: int32
+    type: integer
   peer_ips:
     description: A list of one or more IP addresses to use for the Peer IP section
       of your BGP configuration. For non-multihop sessions, this will typically be

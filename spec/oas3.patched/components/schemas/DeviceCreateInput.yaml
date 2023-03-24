@@ -83,33 +83,7 @@ properties:
 
       To access a server without public IPs, you can use our Out-of-Band console access (SOS) or proxy through another server in the project with public IPs enabled.
     items:
-      properties:
-        address_family:
-          description: Address Family for IP Address
-          enum:
-          - 4
-          - 6
-          example: 4
-          format: integer
-          type: number
-        cidr:
-          description: Cidr Size for the IP Block created. Valid values depends on
-            the operating system being provisioned. (28..32 for IPv4 addresses, 124..127
-            for IPv6 addresses)
-          example: 28
-          format: integer
-          type: number
-        ip_reservations:
-          description: UUIDs of any IP reservations to use when assigning IPs
-          items:
-            type: string
-          type: array
-        public:
-          default: true
-          description: Address Type for IP Address
-          example: false
-          type: boolean
-      type: object
+      $ref: './IPAddress.yaml'
     type: array
   ipxe_script_url:
     description: |-
@@ -141,8 +115,8 @@ properties:
     default: 28
     description: Deprecated. Use ip_addresses. Subnet range for addresses allocated
       to this device.
-    format: integer
-    type: number
+    format: int32
+    type: integer
     x-deprecated: true
   project_ssh_keys:
     description: |+
@@ -162,8 +136,8 @@ properties:
     description: Deprecated. Use ip_addresses. Subnet range for addresses allocated
       to this device. Your project must have addresses available for a non-default
       request.
-    format: integer
-    type: number
+    format: int32
+    type: integer
     x-deprecated: true
   spot_instance:
     type: boolean
