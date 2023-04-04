@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Count** | Pointer to **float32** |  | [optional] 
+**Count** | Pointer to **int32** |  | [optional] 
 **Unit** | Pointer to **string** |  | [optional] 
 
 ## Methods
@@ -28,20 +28,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetCount
 
-`func (o *CreateSelfServiceReservationRequestPeriod) GetCount() float32`
+`func (o *CreateSelfServiceReservationRequestPeriod) GetCount() int32`
 
 GetCount returns the Count field if non-nil, zero value otherwise.
 
 ### GetCountOk
 
-`func (o *CreateSelfServiceReservationRequestPeriod) GetCountOk() (*float32, bool)`
+`func (o *CreateSelfServiceReservationRequestPeriod) GetCountOk() (*int32, bool)`
 
 GetCountOk returns a tuple with the Count field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCount
 
-`func (o *CreateSelfServiceReservationRequestPeriod) SetCount(v float32)`
+`func (o *CreateSelfServiceReservationRequestPeriod) SetCount(v int32)`
 
 SetCount sets Count field to given value.
 

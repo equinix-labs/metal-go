@@ -12627,7 +12627,7 @@ components:
           plan_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         period:
           unit: monthly
-          count: 1.4658129805029452
+          count: 1
         notes: notes
         start_date: 2000-01-23T04:56:07.000+00:00
       properties:
@@ -19237,7 +19237,7 @@ components:
             plan_name: plan_name
           period:
             unit: monthly
-            count: 1.4658129805029452
+            count: 1
           notes: notes
           total_cost: 5
           project_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -19270,7 +19270,7 @@ components:
             plan_name: plan_name
           period:
             unit: monthly
-            count: 1.4658129805029452
+            count: 1
           notes: notes
           total_cost: 5
           project_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -19311,7 +19311,7 @@ components:
           plan_name: plan_name
         period:
           unit: monthly
-          count: 1.4658129805029452
+          count: 1
         notes: notes
         total_cost: 5
         project_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -22515,13 +22515,13 @@ components:
     CreateSelfServiceReservationRequest_period:
       example:
         unit: monthly
-        count: 1.4658129805029452
+        count: 1
       properties:
         count:
           enum:
           - 12
           - 36
-          type: number
+          type: integer
         unit:
           enum:
           - monthly
@@ -22666,7 +22666,7 @@ components:
       properties:
         hour:
           example: 1.23
-          format: decimal
+          format: double
           type: number
       type: object
     Plan_available_in_inner:

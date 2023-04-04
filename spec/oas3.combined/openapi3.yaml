@@ -15008,7 +15008,7 @@ components:
           enum:
           - 12
           - 36
-          type: number
+          type: integer
         unit:
           enum:
           - monthly
@@ -15127,7 +15127,7 @@ components:
       properties:
         hour:
           example: 1.23
-          format: decimal
+          format: double
           type: number
       type: object
     Plan_available_in_inner:

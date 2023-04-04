@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Hour** | Pointer to **float32** |  | [optional] 
+**Hour** | Pointer to **float64** |  | [optional] 
 
 ## Methods
 
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetHour
 
-`func (o *PlanAvailableInInnerPrice) GetHour() float32`
+`func (o *PlanAvailableInInnerPrice) GetHour() float64`
 
 GetHour returns the Hour field if non-nil, zero value otherwise.
 
 ### GetHourOk
 
-`func (o *PlanAvailableInInnerPrice) GetHourOk() (*float32, bool)`
+`func (o *PlanAvailableInInnerPrice) GetHourOk() (*float64, bool)`
 
 GetHourOk returns a tuple with the Hour field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetHour
 
-`func (o *PlanAvailableInInnerPrice) SetHour(v float32)`
+`func (o *PlanAvailableInInnerPrice) SetHour(v float64)`
 
 SetHour sets Hour field to given value.
 

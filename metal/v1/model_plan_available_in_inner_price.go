@@ -20,7 +20,7 @@ var _ MappedNullable = &PlanAvailableInInnerPrice{}
 
 // PlanAvailableInInnerPrice struct for PlanAvailableInInnerPrice
 type PlanAvailableInInnerPrice struct {
-	Hour                 *float32 `json:"hour,omitempty"`
+	Hour                 *float64 `json:"hour,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -44,9 +44,9 @@ func NewPlanAvailableInInnerPriceWithDefaults() *PlanAvailableInInnerPrice {
 }
 
 // GetHour returns the Hour field value if set, zero value otherwise.
-func (o *PlanAvailableInInnerPrice) GetHour() float32 {
+func (o *PlanAvailableInInnerPrice) GetHour() float64 {
 	if o == nil || isNil(o.Hour) {
-		var ret float32
+		var ret float64
 		return ret
 	}
 	return *o.Hour
@@ -54,7 +54,7 @@ func (o *PlanAvailableInInnerPrice) GetHour() float32 {
 
 // GetHourOk returns a tuple with the Hour field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PlanAvailableInInnerPrice) GetHourOk() (*float32, bool) {
+func (o *PlanAvailableInInnerPrice) GetHourOk() (*float64, bool) {
 	if o == nil || isNil(o.Hour) {
 		return nil, false
 	}
@@ -70,8 +70,8 @@ func (o *PlanAvailableInInnerPrice) HasHour() bool {
 	return false
 }
 
-// SetHour gets a reference to the given float32 and assigns it to the Hour field.
-func (o *PlanAvailableInInnerPrice) SetHour(v float32) {
+// SetHour gets a reference to the given float64 and assigns it to the Hour field.
+func (o *PlanAvailableInInnerPrice) SetHour(v float64) {
 	o.Hour = &v
 }
 
