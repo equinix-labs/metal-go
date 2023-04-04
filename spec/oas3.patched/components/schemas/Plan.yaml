@@ -13,7 +13,7 @@ properties:
           properties:
             hour:
               type: number
-              format: decimal
+              format: double
               example: 1.23
     type: array
   available_in_metros:
@@ -30,7 +30,7 @@ properties:
           properties:
             hour:
               type: number
-              format: decimal
+              format: double
               example: 1.23
     type: array
   class:

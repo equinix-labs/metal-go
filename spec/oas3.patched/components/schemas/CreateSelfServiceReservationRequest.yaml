@@ -11,7 +11,7 @@ properties:
         enum:
         - 12
         - 36
-        type: number
+        type: integer
       unit:
         enum:
         - monthly
