@@ -20,8 +20,8 @@ var _ MappedNullable = &CreateSelfServiceReservationRequestPeriod{}
 
 // CreateSelfServiceReservationRequestPeriod struct for CreateSelfServiceReservationRequestPeriod
 type CreateSelfServiceReservationRequestPeriod struct {
-	Count                *float32 `json:"count,omitempty"`
-	Unit                 *string  `json:"unit,omitempty"`
+	Count                *int32  `json:"count,omitempty"`
+	Unit                 *string `json:"unit,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -45,9 +45,9 @@ func NewCreateSelfServiceReservationRequestPeriodWithDefaults() *CreateSelfServi
 }
 
 // GetCount returns the Count field value if set, zero value otherwise.
-func (o *CreateSelfServiceReservationRequestPeriod) GetCount() float32 {
+func (o *CreateSelfServiceReservationRequestPeriod) GetCount() int32 {
 	if o == nil || isNil(o.Count) {
-		var ret float32
+		var ret int32
 		return ret
 	}
 	return *o.Count
@@ -55,7 +55,7 @@ func (o *CreateSelfServiceReservationRequestPeriod) GetCount() float32 {
 
 // GetCountOk returns a tuple with the Count field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateSelfServiceReservationRequestPeriod) GetCountOk() (*float32, bool) {
+func (o *CreateSelfServiceReservationRequestPeriod) GetCountOk() (*int32, bool) {
 	if o == nil || isNil(o.Count) {
 		return nil, false
 	}
@@ -71,8 +71,8 @@ func (o *CreateSelfServiceReservationRequestPeriod) HasCount() bool {
 	return false
 }
 
-// SetCount gets a reference to the given float32 and assigns it to the Count field.
-func (o *CreateSelfServiceReservationRequestPeriod) SetCount(v float32) {
+// SetCount gets a reference to the given int32 and assigns it to the Count field.
+func (o *CreateSelfServiceReservationRequestPeriod) SetCount(v int32) {
 	o.Count = &v
 }
 
