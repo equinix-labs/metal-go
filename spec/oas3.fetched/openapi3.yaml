@@ -439,6 +439,12 @@ components:
       $ref: './components/schemas/VirtualNetworkCreateInput.yaml'
     VirtualNetworkList:
       $ref: './components/schemas/VirtualNetworkList.yaml'
+    VlanVirtualCircuit:
+      $ref: './components/schemas/VlanVirtualCircuit.yaml'
+    VlanVirtualCircuitCreateInput:
+      $ref: './components/schemas/VlanVirtualCircuitCreateInput.yaml'
+    VlanVirtualCircuitUpdateInput:
+      $ref: './components/schemas/VlanVirtualCircuitUpdateInput.yaml'
     Vrf:
       $ref: './components/schemas/Vrf.yaml'
     VrfCreateInput:

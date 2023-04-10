@@ -24,7 +24,7 @@ Method | HTTP request | Description
 
 ## CreateInterconnectionPortVirtualCircuit
 
-> CreateInterconnectionPortVirtualCircuit201Response CreateInterconnectionPortVirtualCircuit(ctx, connectionId, portId).CreateInterconnectionPortVirtualCircuitRequest(createInterconnectionPortVirtualCircuitRequest).Execute()
+> VirtualCircuit CreateInterconnectionPortVirtualCircuit(ctx, connectionId, portId).VirtualCircuitCreateInput(virtualCircuitCreateInput).Execute()
 
 Create a new Virtual Circuit
 
@@ -45,16 +45,16 @@ import (
 func main() {
     connectionId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | UUID of the interconnection
     portId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | UUID of the interconnection port
-    createInterconnectionPortVirtualCircuitRequest := openapiclient.createInterconnectionPortVirtualCircuit_request{VirtualCircuitCreateInput: openapiclient.NewVirtualCircuitCreateInput("ProjectId_example")} // CreateInterconnectionPortVirtualCircuitRequest | Virtual Circuit details
+    virtualCircuitCreateInput := openapiclient.VirtualCircuitCreateInput{VlanVirtualCircuitCreateInput: openapiclient.NewVlanVirtualCircuitCreateInput("ProjectId_example")} // VirtualCircuitCreateInput | Virtual Circuit details
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.InterconnectionsApi.CreateInterconnectionPortVirtualCircuit(context.Background(), connectionId, portId).CreateInterconnectionPortVirtualCircuitRequest(createInterconnectionPortVirtualCircuitRequest).Execute()
+    resp, r, err := apiClient.InterconnectionsApi.CreateInterconnectionPortVirtualCircuit(context.Background(), connectionId, portId).VirtualCircuitCreateInput(virtualCircuitCreateInput).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `InterconnectionsApi.CreateInterconnectionPortVirtualCircuit``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateInterconnectionPortVirtualCircuit`: CreateInterconnectionPortVirtualCircuit201Response
+    // response from `CreateInterconnectionPortVirtualCircuit`: VirtualCircuit
     fmt.Fprintf(os.Stdout, "Response from `InterconnectionsApi.CreateInterconnectionPortVirtualCircuit`: %v\n", resp)
 }
 ```
@@ -77,11 +77,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **createInterconnectionPortVirtualCircuitRequest** | [**CreateInterconnectionPortVirtualCircuitRequest**](CreateInterconnectionPortVirtualCircuitRequest.md) | Virtual Circuit details | 
+ **virtualCircuitCreateInput** | [**VirtualCircuitCreateInput**](VirtualCircuitCreateInput.md) | Virtual Circuit details | 
 
 ### Return type
 
-[**CreateInterconnectionPortVirtualCircuit201Response**](CreateInterconnectionPortVirtualCircuit201Response.md)
+[**VirtualCircuit**](VirtualCircuit.md)
 
 ### Authorization
 
@@ -313,7 +313,7 @@ Name | Type | Description  | Notes
 
 ## DeleteVirtualCircuit
 
-> CreateInterconnectionPortVirtualCircuit201Response DeleteVirtualCircuit(ctx, id).Execute()
+> VirtualCircuit DeleteVirtualCircuit(ctx, id).Execute()
 
 Delete a virtual circuit
 
@@ -341,7 +341,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `InterconnectionsApi.DeleteVirtualCircuit``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `DeleteVirtualCircuit`: CreateInterconnectionPortVirtualCircuit201Response
+    // response from `DeleteVirtualCircuit`: VirtualCircuit
     fmt.Fprintf(os.Stdout, "Response from `InterconnectionsApi.DeleteVirtualCircuit`: %v\n", resp)
 }
 ```
@@ -365,7 +365,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CreateInterconnectionPortVirtualCircuit201Response**](CreateInterconnectionPortVirtualCircuit201Response.md)
+[**VirtualCircuit**](VirtualCircuit.md)
 
 ### Authorization
 
@@ -526,7 +526,7 @@ Name | Type | Description  | Notes
 
 ## GetVirtualCircuit
 
-> CreateInterconnectionPortVirtualCircuit201Response GetVirtualCircuit(ctx, id).Execute()
+> VirtualCircuit GetVirtualCircuit(ctx, id).Execute()
 
 Get a virtual circuit
 
@@ -554,7 +554,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `InterconnectionsApi.GetVirtualCircuit``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetVirtualCircuit`: CreateInterconnectionPortVirtualCircuit201Response
+    // response from `GetVirtualCircuit`: VirtualCircuit
     fmt.Fprintf(os.Stdout, "Response from `InterconnectionsApi.GetVirtualCircuit`: %v\n", resp)
 }
 ```
@@ -578,7 +578,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CreateInterconnectionPortVirtualCircuit201Response**](CreateInterconnectionPortVirtualCircuit201Response.md)
+[**VirtualCircuit**](VirtualCircuit.md)
 
 ### Authorization
 
@@ -1021,7 +1021,7 @@ Name | Type | Description  | Notes
 
 ## UpdateVirtualCircuit
 
-> CreateInterconnectionPortVirtualCircuit201Response UpdateVirtualCircuit(ctx, id).UpdateVirtualCircuitRequest(updateVirtualCircuitRequest).Execute()
+> VirtualCircuit UpdateVirtualCircuit(ctx, id).VirtualCircuitUpdateInput(virtualCircuitUpdateInput).Execute()
 
 Update a virtual circuit
 
@@ -1041,16 +1041,16 @@ import (
 
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Virtual Circuit UUID
-    updateVirtualCircuitRequest := openapiclient.updateVirtualCircuit_request{VirtualCircuitUpdateInput: openapiclient.NewVirtualCircuitUpdateInput()} // UpdateVirtualCircuitRequest | Updated Virtual Circuit details
+    virtualCircuitUpdateInput := openapiclient.VirtualCircuitUpdateInput{VlanVirtualCircuitUpdateInput: openapiclient.NewVlanVirtualCircuitUpdateInput()} // VirtualCircuitUpdateInput | Updated Virtual Circuit details
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.InterconnectionsApi.UpdateVirtualCircuit(context.Background(), id).UpdateVirtualCircuitRequest(updateVirtualCircuitRequest).Execute()
+    resp, r, err := apiClient.InterconnectionsApi.UpdateVirtualCircuit(context.Background(), id).VirtualCircuitUpdateInput(virtualCircuitUpdateInput).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `InterconnectionsApi.UpdateVirtualCircuit``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateVirtualCircuit`: CreateInterconnectionPortVirtualCircuit201Response
+    // response from `UpdateVirtualCircuit`: VirtualCircuit
     fmt.Fprintf(os.Stdout, "Response from `InterconnectionsApi.UpdateVirtualCircuit`: %v\n", resp)
 }
 ```
@@ -1071,11 +1071,11 @@ Other parameters are passed through a pointer to a apiUpdateVirtualCircuitReques
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateVirtualCircuitRequest** | [**UpdateVirtualCircuitRequest**](UpdateVirtualCircuitRequest.md) | Updated Virtual Circuit details | 
+ **virtualCircuitUpdateInput** | [**VirtualCircuitUpdateInput**](VirtualCircuitUpdateInput.md) | Updated Virtual Circuit details | 
 
 ### Return type
 
-[**CreateInterconnectionPortVirtualCircuit201Response**](CreateInterconnectionPortVirtualCircuit201Response.md)
+[**VirtualCircuit**](VirtualCircuit.md)
 
 ### Authorization
 

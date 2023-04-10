@@ -11,13 +11,19 @@ Name | Type | Description | Notes
 **NniVlan** | **int32** |  | 
 **Port** | [**Href**](Href.md) |  | 
 **Project** | [**Href**](Href.md) |  | 
-**Speed** | Pointer to **int32** | For Virtual Circuits on shared and dedicated connections, this speed should match the one set on their Interconnection Ports. For Virtual Circuits on Fabric VCs (both Metal and Fabric Billed) that have found their corresponding Fabric connection, this is the actual speed of the interconnection that was configured when setting up the interconnection on the Fabric Portal. Details on Fabric VCs are included in the specification as a developer preview and is generally unavailable. Please contact our Support team for more details. | [optional] 
-**Status** | **string** | The status of a Virtual Circuit is always &#39;Pending&#39; on creation. The status can turn to &#39;Waiting on Customer VLAN&#39; if a Metro VLAN was not set yet on the Virtual Circuit and is the last step needed for full activation. For Dedicated interconnections, as long as the Dedicated Port has been associated to the Virtual Circuit and a NNI VNID has been set, it will turn to &#39;Waiting on Customer VLAN&#39;. For Fabric VCs, it will only change to &#39;Waiting on Customer VLAN&#39; once the corresponding Fabric connection has been found on the Fabric side. Once a Metro VLAN is set on the Virtual Circuit (which for Fabric VCs, can be set on creation) and the necessary set up is done, it will turn into &#39;Activating&#39; status as it tries to activate the Virtual Circuit. Once the Virtual Circuit fully activates and is configured on the switch, it will turn to staus &#39;Active&#39;. For Fabric VCs (Metal Billed), we will start billing the moment the status of the Virtual Circuit turns to &#39;Active&#39;. If there are any changes to the VLAN after the Virtual Circuit is in an &#39;Active&#39; status, the status will show &#39;Changing VLAN&#39; if a new VLAN has been provided, or &#39;Deactivating&#39; if we are removing the VLAN. When a deletion request is issued for the Virtual Circuit, it will move to a &#39;deleting&#39; status until it is fully deleted. If the Virtual Circuit is on a Fabric VC, it can also change into an &#39;Expired&#39; status if the associated service token has expired. | 
+**Speed** | Pointer to **int32** | integer representing bps speed | [optional] 
+**Status** | **string** |  | 
 **Tags** | **[]string** |  | 
 **VirtualNetwork** | [**Href**](Href.md) |  | 
 **Vnid** | **int32** |  | 
 **CreatedAt** | Pointer to **time.Time** |  | [optional] 
 **UpdatedAt** | Pointer to **time.Time** |  | [optional] 
+**CustomerIp** | Pointer to **string** | An IP address from the subnet that will be used on the Customer side. This parameter is optional, but if supplied, we will use the other usable IP address in the subnet as the Metal IP. By default, the last usable IP address in the subnet will be used. | [optional] 
+**Md5** | Pointer to **string** | The MD5 password for the BGP peering in plaintext (not a checksum). | [optional] 
+**MetalIp** | Pointer to **string** | An IP address from the subnet that will be used on the Metal side. This parameter is optional, but if supplied, we will use the other usable IP address in the subnet as the Customer IP. By default, the first usable IP address in the subnet will be used. | [optional] 
+**PeerAsn** | Pointer to **int32** | The peer ASN that will be used with the VRF on the Virtual Circuit. | [optional] 
+**Subnet** | Pointer to **string** | The /30 or /31 subnet of one of the VRF IP Blocks that will be used with the VRF for the Virtual Circuit. This subnet does not have to be an existing VRF IP reservation, as we will create the VRF IP reservation on creation if it does not exist. The Metal IP and Customer IP must be IPs from this subnet. For /30 subnets, the network and broadcast IPs cannot be used as the Metal or Customer IP. | [optional] 
+**Vrf** | Pointer to [**Vrf**](Vrf.md) |  | [optional] 
 
 ## Methods
 
@@ -332,6 +338,156 @@ SetUpdatedAt sets UpdatedAt field to given value.
 `func (o *VirtualCircuit) HasUpdatedAt() bool`
 
 HasUpdatedAt returns a boolean if a field has been set.
+
+### GetCustomerIp
+
+`func (o *VirtualCircuit) GetCustomerIp() string`
+
+GetCustomerIp returns the CustomerIp field if non-nil, zero value otherwise.
+
+### GetCustomerIpOk
+
+`func (o *VirtualCircuit) GetCustomerIpOk() (*string, bool)`
+
+GetCustomerIpOk returns a tuple with the CustomerIp field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCustomerIp
+
+`func (o *VirtualCircuit) SetCustomerIp(v string)`
+
+SetCustomerIp sets CustomerIp field to given value.
+
+### HasCustomerIp
+
+`func (o *VirtualCircuit) HasCustomerIp() bool`
+
+HasCustomerIp returns a boolean if a field has been set.
+
+### GetMd5
+
+`func (o *VirtualCircuit) GetMd5() string`
+
+GetMd5 returns the Md5 field if non-nil, zero value otherwise.
+
+### GetMd5Ok
+
+`func (o *VirtualCircuit) GetMd5Ok() (*string, bool)`
+
+GetMd5Ok returns a tuple with the Md5 field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMd5
+
+`func (o *VirtualCircuit) SetMd5(v string)`
+
+SetMd5 sets Md5 field to given value.
+
+### HasMd5
+
+`func (o *VirtualCircuit) HasMd5() bool`
+
+HasMd5 returns a boolean if a field has been set.
+
+### GetMetalIp
+
+`func (o *VirtualCircuit) GetMetalIp() string`
+
+GetMetalIp returns the MetalIp field if non-nil, zero value otherwise.
+
+### GetMetalIpOk
+
+`func (o *VirtualCircuit) GetMetalIpOk() (*string, bool)`
+
+GetMetalIpOk returns a tuple with the MetalIp field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMetalIp
+
+`func (o *VirtualCircuit) SetMetalIp(v string)`
+
+SetMetalIp sets MetalIp field to given value.
+
+### HasMetalIp
+
+`func (o *VirtualCircuit) HasMetalIp() bool`
+
+HasMetalIp returns a boolean if a field has been set.
+
+### GetPeerAsn
+
+`func (o *VirtualCircuit) GetPeerAsn() int32`
+
+GetPeerAsn returns the PeerAsn field if non-nil, zero value otherwise.
+
+### GetPeerAsnOk
+
+`func (o *VirtualCircuit) GetPeerAsnOk() (*int32, bool)`
+
+GetPeerAsnOk returns a tuple with the PeerAsn field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPeerAsn
+
+`func (o *VirtualCircuit) SetPeerAsn(v int32)`
+
+SetPeerAsn sets PeerAsn field to given value.
+
+### HasPeerAsn
+
+`func (o *VirtualCircuit) HasPeerAsn() bool`
+
+HasPeerAsn returns a boolean if a field has been set.
+
+### GetSubnet
+
+`func (o *VirtualCircuit) GetSubnet() string`
+
+GetSubnet returns the Subnet field if non-nil, zero value otherwise.
+
+### GetSubnetOk
+
+`func (o *VirtualCircuit) GetSubnetOk() (*string, bool)`
+
+GetSubnetOk returns a tuple with the Subnet field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSubnet
+
+`func (o *VirtualCircuit) SetSubnet(v string)`
+
+SetSubnet sets Subnet field to given value.
+
+### HasSubnet
+
+`func (o *VirtualCircuit) HasSubnet() bool`
+
+HasSubnet returns a boolean if a field has been set.
+
+### GetVrf
+
+`func (o *VirtualCircuit) GetVrf() Vrf`
+
+GetVrf returns the Vrf field if non-nil, zero value otherwise.
+
+### GetVrfOk
+
+`func (o *VirtualCircuit) GetVrfOk() (*Vrf, bool)`
+
+GetVrfOk returns a tuple with the Vrf field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVrf
+
+`func (o *VirtualCircuit) SetVrf(v Vrf)`
+
+SetVrf sets Vrf field to given value.
+
+### HasVrf
+
+`func (o *VirtualCircuit) HasVrf() bool`
+
+HasVrf returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

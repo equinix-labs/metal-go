@@ -63,9 +63,7 @@ post:
     content:
       application/json:
         schema:
-          oneOf:
-          - $ref: '../../../../../components/schemas/VirtualCircuitCreateInput.yaml'
-          - $ref: '../../../../../components/schemas/VrfVirtualCircuitCreateInput.yaml'
+          $ref: '../../../../../components/schemas/VirtualCircuitCreateInput.yaml'
     description: Virtual Circuit details
     required: true
   responses:
@@ -73,9 +71,7 @@ post:
       content:
         application/json:
           schema:
-            oneOf:
-            - $ref: '../../../../../components/schemas/VirtualCircuit.yaml'
-            - $ref: '../../../../../components/schemas/VrfVirtualCircuit.yaml'
+            $ref: '../../../../../components/schemas/VirtualCircuit.yaml'
       description: ok
     "403":
       content:
