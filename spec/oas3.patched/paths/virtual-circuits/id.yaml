@@ -14,9 +14,7 @@ delete:
       content:
         application/json:
           schema:
-            oneOf:
-            - $ref: '../../components/schemas/VirtualCircuit.yaml'
-            - $ref: '../../components/schemas/VrfVirtualCircuit.yaml'
+            $ref: '../../components/schemas/VirtualCircuit.yaml'
       description: accepted
     "403":
       content:
@@ -49,9 +47,7 @@ get:
       content:
         application/json:
           schema:
-            oneOf:
-            - $ref: '../../components/schemas/VirtualCircuit.yaml'
-            - $ref: '../../components/schemas/VrfVirtualCircuit.yaml'
+            $ref: '../../components/schemas/VirtualCircuit.yaml'
       description: ok
     "403":
       content:
@@ -83,9 +79,7 @@ put:
     content:
       application/json:
         schema:
-          oneOf:
-          - $ref: '../../components/schemas/VirtualCircuitUpdateInput.yaml'
-          - $ref: '../../components/schemas/VrfVirtualCircuitUpdateInput.yaml'
+          $ref: '../../components/schemas/VirtualCircuitUpdateInput.yaml'
     description: Updated Virtual Circuit details
     required: true
   responses:
@@ -93,17 +87,13 @@ put:
       content:
         application/json:
           schema:
-            oneOf:
-            - $ref: '../../components/schemas/VirtualCircuit.yaml'
-            - $ref: '../../components/schemas/VrfVirtualCircuit.yaml'
+            $ref: '../../components/schemas/VirtualCircuit.yaml'
       description: ok
     "202":
       content:
         application/json:
           schema:
-            oneOf:
-            - $ref: '../../components/schemas/VirtualCircuit.yaml'
-            - $ref: '../../components/schemas/VrfVirtualCircuit.yaml'
+            $ref: '../../components/schemas/VirtualCircuit.yaml'
       description: accepted
     "403":
       content:
