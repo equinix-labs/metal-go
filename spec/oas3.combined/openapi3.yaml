@@ -1154,7 +1154,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/createInterconnectionPortVirtualCircuit_request'
+              $ref: '#/components/schemas/VirtualCircuitCreateInput'
         description: Virtual Circuit details
         required: true
       responses:
@@ -1162,7 +1162,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/createInterconnectionPortVirtualCircuit_201_response'
+                $ref: '#/components/schemas/VirtualCircuit'
           description: ok
         "403":
           content:
@@ -10150,7 +10150,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/createInterconnectionPortVirtualCircuit_201_response'
+                $ref: '#/components/schemas/VirtualCircuit'
           description: accepted
         "403":
           content:
@@ -10183,7 +10183,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/createInterconnectionPortVirtualCircuit_201_response'
+                $ref: '#/components/schemas/VirtualCircuit'
           description: ok
         "403":
           content:
@@ -10215,7 +10215,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/updateVirtualCircuit_request'
+              $ref: '#/components/schemas/VirtualCircuitUpdateInput'
         description: Updated Virtual Circuit details
         required: true
       responses:
@@ -10223,13 +10223,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/createInterconnectionPortVirtualCircuit_201_response'
+                $ref: '#/components/schemas/VirtualCircuit'
           description: ok
         "202":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/createInterconnectionPortVirtualCircuit_201_response'
+                $ref: '#/components/schemas/VirtualCircuit'
           description: accepted
         "403":
           content:
@@ -14025,6 +14025,90 @@ components:
       - user_token
       type: object
     VirtualCircuit:
+      oneOf:
+      - $ref: '#/components/schemas/VlanVirtualCircuit'
+      - $ref: '#/components/schemas/VrfVirtualCircuit'
+    VirtualCircuitCreateInput:
+      oneOf:
+      - $ref: '#/components/schemas/VlanVirtualCircuitCreateInput'
+      - $ref: '#/components/schemas/VrfVirtualCircuitCreateInput'
+    VirtualCircuitList:
+      properties:
+        virtual_circuits:
+          items:
+            $ref: '#/components/schemas/VirtualCircuit'
+          type: array
+      type: object
+    VirtualCircuitUpdateInput:
+      oneOf:
+      - $ref: '#/components/schemas/VlanVirtualCircuitUpdateInput'
+      - $ref: '#/components/schemas/VrfVirtualCircuitUpdateInput'
+    VirtualNetwork:
+      properties:
+        assigned_to:
+          $ref: '#/components/schemas/Href'
+        assigned_to_virtual_circuit:
+          description: True if the virtual network is attached to a virtual circuit.
+            False if not.
+          type: boolean
+        description:
+          type: string
+        facility:
+          $ref: '#/components/schemas/Href'
+        href:
+          type: string
+        id:
+          format: uuid
+          type: string
+        instances:
+          description: A list of instances with ports currently associated to this
+            Virtual Network.
+          items:
+            $ref: '#/components/schemas/Href'
+          type: array
+        metal_gateways:
+          description: A list of metal gateways currently associated to this Virtual
+            Network.
+          items:
+            $ref: '#/components/schemas/MetalGatewayLite'
+          type: array
+        metro:
+          $ref: '#/components/schemas/Href'
+        metro_code:
+          description: The Metro code of the metro in which this Virtual Network is
+            defined.
+          type: string
+        vxlan:
+          type: integer
+      type: object
+    VirtualNetworkCreateInput:
+      properties:
+        description:
+          type: string
+        facility:
+          description: The UUID (or facility code) for the Facility in which to create
+            this Virtual network.
+          type: string
+        metro:
+          description: The UUID (or metro code) for the Metro in which to create this
+            Virtual Network.
+          type: string
+        vxlan:
+          description: "VLAN ID between 2-3999. Must be unique for the project within\
+            \ the Metro in which this Virtual Network is being created. If no value\
+            \ is specified, the next-available VLAN ID in the range 1000-1999 will\
+            \ be automatically selected."
+          example: 1099
+          type: integer
+      type: object
+    VirtualNetworkList:
+      properties:
+        virtual_networks:
+          items:
+            $ref: '#/components/schemas/VirtualNetwork'
+          type: array
+      type: object
+    VlanVirtualCircuit:
       properties:
         bill:
           default: false
@@ -14119,7 +14203,7 @@ components:
       - virtual_network
       - vnid
       type: object
-    VirtualCircuitCreateInput:
+    VlanVirtualCircuitCreateInput:
       properties:
         description:
           type: string
@@ -14148,14 +14232,7 @@ components:
       required:
       - project_id
       type: object
-    VirtualCircuitList:
-      properties:
-        virtual_circuits:
-          items:
-            $ref: '#/components/schemas/VirtualCircuitList_virtual_circuits_inner'
-          type: array
-      type: object
-    VirtualCircuitUpdateInput:
+    VlanVirtualCircuitUpdateInput:
       properties:
         description:
           type: string
@@ -14173,71 +14250,6 @@ components:
           description: A Virtual Network record UUID or the VNID of a Metro Virtual
             Network in your project.
           type: string
-      type: object
-    VirtualNetwork:
-      properties:
-        assigned_to:
-          $ref: '#/components/schemas/Href'
-        assigned_to_virtual_circuit:
-          description: True if the virtual network is attached to a virtual circuit.
-            False if not.
-          type: boolean
-        description:
-          type: string
-        facility:
-          $ref: '#/components/schemas/Href'
-        href:
-          type: string
-        id:
-          format: uuid
-          type: string
-        instances:
-          description: A list of instances with ports currently associated to this
-            Virtual Network.
-          items:
-            $ref: '#/components/schemas/Href'
-          type: array
-        metal_gateways:
-          description: A list of metal gateways currently associated to this Virtual
-            Network.
-          items:
-            $ref: '#/components/schemas/MetalGatewayLite'
-          type: array
-        metro:
-          $ref: '#/components/schemas/Href'
-        metro_code:
-          description: The Metro code of the metro in which this Virtual Network is
-            defined.
-          type: string
-        vxlan:
-          type: integer
-      type: object
-    VirtualNetworkCreateInput:
-      properties:
-        description:
-          type: string
-        facility:
-          description: The UUID (or facility code) for the Facility in which to create
-            this Virtual network.
-          type: string
-        metro:
-          description: The UUID (or metro code) for the Metro in which to create this
-            Virtual Network.
-          type: string
-        vxlan:
-          description: "VLAN ID between 2-3999. Must be unique for the project within\
-            \ the Metro in which this Virtual Network is being created. If no value\
-            \ is specified, the next-available VLAN ID in the range 1000-1999 will\
-            \ be automatically selected."
-          example: 1099
-          type: integer
-      type: object
-    VirtualNetworkList:
-      properties:
-        virtual_networks:
-          items:
-            $ref: '#/components/schemas/VirtualNetwork'
-          type: array
       type: object
     Vrf:
       properties:
@@ -14932,14 +14944,6 @@ components:
             type: string
           type: array
       type: object
-    createInterconnectionPortVirtualCircuit_request:
-      oneOf:
-      - $ref: '#/components/schemas/VirtualCircuitCreateInput'
-      - $ref: '#/components/schemas/VrfVirtualCircuitCreateInput'
-    createInterconnectionPortVirtualCircuit_201_response:
-      oneOf:
-      - $ref: '#/components/schemas/VirtualCircuit'
-      - $ref: '#/components/schemas/VrfVirtualCircuit'
     findTraffic_timeframe_parameter:
       properties:
         ended_at:
@@ -14988,10 +14992,6 @@ components:
       oneOf:
       - $ref: '#/components/schemas/MetalGatewayCreateInput'
       - $ref: '#/components/schemas/VrfMetalGatewayCreateInput'
-    updateVirtualCircuit_request:
-      oneOf:
-      - $ref: '#/components/schemas/VirtualCircuitUpdateInput'
-      - $ref: '#/components/schemas/VrfVirtualCircuitUpdateInput'
     AuthToken_project:
       allOf:
       - $ref: '#/components/schemas/Project'
@@ -15304,10 +15304,6 @@ components:
         userdata:
           type: string
       type: object
-    VirtualCircuitList_virtual_circuits_inner:
-      anyOf:
-      - $ref: '#/components/schemas/VirtualCircuit'
-      - $ref: '#/components/schemas/VrfVirtualCircuit'
     VrfRoute_metal_gateway:
       description: A link to the Metal Gateway to which this VRF Route is associated
       oneOf:
