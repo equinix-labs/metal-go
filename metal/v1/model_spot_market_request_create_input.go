@@ -25,7 +25,7 @@ type SpotMarketRequestCreateInput struct {
 	DevicesMin         *int32                                          `json:"devices_min,omitempty"`
 	EndAt              *time.Time                                      `json:"end_at,omitempty"`
 	Facilities         []string                                        `json:"facilities,omitempty"`
-	InstanceAttributes *SpotMarketRequestCreateInputInstanceAttributes `json:"instance_attributes,omitempty"`
+	InstanceParameters *SpotMarketRequestCreateInputInstanceParameters `json:"instance_parameters,omitempty"`
 	MaxBidPrice        *float32                                        `json:"max_bid_price,omitempty"`
 	// The metro ID or code the spot market request will be created in.
 	Metro                *string `json:"metro,omitempty"`
@@ -179,36 +179,36 @@ func (o *SpotMarketRequestCreateInput) SetFacilities(v []string) {
 	o.Facilities = v
 }
 
-// GetInstanceAttributes returns the InstanceAttributes field value if set, zero value otherwise.
-func (o *SpotMarketRequestCreateInput) GetInstanceAttributes() SpotMarketRequestCreateInputInstanceAttributes {
-	if o == nil || isNil(o.InstanceAttributes) {
-		var ret SpotMarketRequestCreateInputInstanceAttributes
+// GetInstanceParameters returns the InstanceParameters field value if set, zero value otherwise.
+func (o *SpotMarketRequestCreateInput) GetInstanceParameters() SpotMarketRequestCreateInputInstanceParameters {
+	if o == nil || isNil(o.InstanceParameters) {
+		var ret SpotMarketRequestCreateInputInstanceParameters
 		return ret
 	}
-	return *o.InstanceAttributes
+	return *o.InstanceParameters
 }
 
-// GetInstanceAttributesOk returns a tuple with the InstanceAttributes field value if set, nil otherwise
+// GetInstanceParametersOk returns a tuple with the InstanceParameters field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SpotMarketRequestCreateInput) GetInstanceAttributesOk() (*SpotMarketRequestCreateInputInstanceAttributes, bool) {
-	if o == nil || isNil(o.InstanceAttributes) {
+func (o *SpotMarketRequestCreateInput) GetInstanceParametersOk() (*SpotMarketRequestCreateInputInstanceParameters, bool) {
+	if o == nil || isNil(o.InstanceParameters) {
 		return nil, false
 	}
-	return o.InstanceAttributes, true
+	return o.InstanceParameters, true
 }
 
-// HasInstanceAttributes returns a boolean if a field has been set.
-func (o *SpotMarketRequestCreateInput) HasInstanceAttributes() bool {
-	if o != nil && !isNil(o.InstanceAttributes) {
+// HasInstanceParameters returns a boolean if a field has been set.
+func (o *SpotMarketRequestCreateInput) HasInstanceParameters() bool {
+	if o != nil && !isNil(o.InstanceParameters) {
 		return true
 	}
 
 	return false
 }
 
-// SetInstanceAttributes gets a reference to the given SpotMarketRequestCreateInputInstanceAttributes and assigns it to the InstanceAttributes field.
-func (o *SpotMarketRequestCreateInput) SetInstanceAttributes(v SpotMarketRequestCreateInputInstanceAttributes) {
-	o.InstanceAttributes = &v
+// SetInstanceParameters gets a reference to the given SpotMarketRequestCreateInputInstanceParameters and assigns it to the InstanceParameters field.
+func (o *SpotMarketRequestCreateInput) SetInstanceParameters(v SpotMarketRequestCreateInputInstanceParameters) {
+	o.InstanceParameters = &v
 }
 
 // GetMaxBidPrice returns the MaxBidPrice field value if set, zero value otherwise.
@@ -297,8 +297,8 @@ func (o SpotMarketRequestCreateInput) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Facilities) {
 		toSerialize["facilities"] = o.Facilities
 	}
-	if !isNil(o.InstanceAttributes) {
-		toSerialize["instance_attributes"] = o.InstanceAttributes
+	if !isNil(o.InstanceParameters) {
+		toSerialize["instance_parameters"] = o.InstanceParameters
 	}
 	if !isNil(o.MaxBidPrice) {
 		toSerialize["max_bid_price"] = o.MaxBidPrice
@@ -328,7 +328,7 @@ func (o *SpotMarketRequestCreateInput) UnmarshalJSON(bytes []byte) (err error) {
 		delete(additionalProperties, "devices_min")
 		delete(additionalProperties, "end_at")
 		delete(additionalProperties, "facilities")
-		delete(additionalProperties, "instance_attributes")
+		delete(additionalProperties, "instance_parameters")
 		delete(additionalProperties, "max_bid_price")
 		delete(additionalProperties, "metro")
 		o.AdditionalProperties = additionalProperties

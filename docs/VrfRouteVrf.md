@@ -8,9 +8,12 @@ Name | Type | Description | Notes
 **Id** | Pointer to **string** |  | [optional] 
 **Name** | Pointer to **string** |  | [optional] 
 **Description** | Pointer to **string** | Optional field that can be set to describe the VRF | [optional] 
+**Bill** | Pointer to **bool** | True if the VRF is being billed. Usage will start when the first VRF Virtual Circuit is active, and will only stop when the VRF has been deleted. | [optional] [default to false]
 **BgpDynamicNeighborsEnabled** | Pointer to **bool** | Toggle to enable the dynamic bgp neighbors feature on the VRF | [optional] 
 **BgpDynamicNeighborsExportRouteMap** | Pointer to **bool** | Toggle to export the VRF route-map to the dynamic bgp neighbors | [optional] 
+**BgpDynamicNeighborsBfdEnabled** | Pointer to **bool** | Toggle BFD on dynamic bgp neighbors sessions | [optional] 
 **LocalAsn** | Pointer to **int32** | A 4-byte ASN associated with the VRF. | [optional] 
+**VirtualCircuits** | Pointer to [**[]VrfVirtualCircuitsInner**](VrfVirtualCircuitsInner.md) | Virtual circuits that are in the VRF | [optional] 
 **IpRanges** | Pointer to **[]string** | A list of CIDR network addresses. Like [\&quot;10.0.0.0/16\&quot;, \&quot;2001:d78::/56\&quot;]. | [optional] 
 **Project** | Pointer to [**Project**](Project.md) |  | [optional] 
 **Metro** | Pointer to [**Metro**](Metro.md) |  | [optional] 
@@ -132,6 +135,31 @@ SetDescription sets Description field to given value.
 
 HasDescription returns a boolean if a field has been set.
 
+### GetBill
+
+`func (o *VrfRouteVrf) GetBill() bool`
+
+GetBill returns the Bill field if non-nil, zero value otherwise.
+
+### GetBillOk
+
+`func (o *VrfRouteVrf) GetBillOk() (*bool, bool)`
+
+GetBillOk returns a tuple with the Bill field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBill
+
+`func (o *VrfRouteVrf) SetBill(v bool)`
+
+SetBill sets Bill field to given value.
+
+### HasBill
+
+`func (o *VrfRouteVrf) HasBill() bool`
+
+HasBill returns a boolean if a field has been set.
+
 ### GetBgpDynamicNeighborsEnabled
 
 `func (o *VrfRouteVrf) GetBgpDynamicNeighborsEnabled() bool`
@@ -182,6 +210,31 @@ SetBgpDynamicNeighborsExportRouteMap sets BgpDynamicNeighborsExportRouteMap fiel
 
 HasBgpDynamicNeighborsExportRouteMap returns a boolean if a field has been set.
 
+### GetBgpDynamicNeighborsBfdEnabled
+
+`func (o *VrfRouteVrf) GetBgpDynamicNeighborsBfdEnabled() bool`
+
+GetBgpDynamicNeighborsBfdEnabled returns the BgpDynamicNeighborsBfdEnabled field if non-nil, zero value otherwise.
+
+### GetBgpDynamicNeighborsBfdEnabledOk
+
+`func (o *VrfRouteVrf) GetBgpDynamicNeighborsBfdEnabledOk() (*bool, bool)`
+
+GetBgpDynamicNeighborsBfdEnabledOk returns a tuple with the BgpDynamicNeighborsBfdEnabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBgpDynamicNeighborsBfdEnabled
+
+`func (o *VrfRouteVrf) SetBgpDynamicNeighborsBfdEnabled(v bool)`
+
+SetBgpDynamicNeighborsBfdEnabled sets BgpDynamicNeighborsBfdEnabled field to given value.
+
+### HasBgpDynamicNeighborsBfdEnabled
+
+`func (o *VrfRouteVrf) HasBgpDynamicNeighborsBfdEnabled() bool`
+
+HasBgpDynamicNeighborsBfdEnabled returns a boolean if a field has been set.
+
 ### GetLocalAsn
 
 `func (o *VrfRouteVrf) GetLocalAsn() int32`
@@ -206,6 +259,31 @@ SetLocalAsn sets LocalAsn field to given value.
 `func (o *VrfRouteVrf) HasLocalAsn() bool`
 
 HasLocalAsn returns a boolean if a field has been set.
+
+### GetVirtualCircuits
+
+`func (o *VrfRouteVrf) GetVirtualCircuits() []VrfVirtualCircuitsInner`
+
+GetVirtualCircuits returns the VirtualCircuits field if non-nil, zero value otherwise.
+
+### GetVirtualCircuitsOk
+
+`func (o *VrfRouteVrf) GetVirtualCircuitsOk() (*[]VrfVirtualCircuitsInner, bool)`
+
+GetVirtualCircuitsOk returns a tuple with the VirtualCircuits field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVirtualCircuits
+
+`func (o *VrfRouteVrf) SetVirtualCircuits(v []VrfVirtualCircuitsInner)`
+
+SetVirtualCircuits sets VirtualCircuits field to given value.
+
+### HasVirtualCircuits
+
+`func (o *VrfRouteVrf) HasVirtualCircuits() bool`
+
+HasVirtualCircuits returns a boolean if a field has been set.
 
 ### GetIpRanges
 

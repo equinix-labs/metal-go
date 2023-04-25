@@ -64,11 +64,13 @@ type Device struct {
 	SwitchUuid *string  `json:"switch_uuid,omitempty"`
 	Tags       []string `json:"tags,omitempty"`
 	// When the device will be terminated. This is commonly set in advance for ephemeral spot market instances but this field may also be set with on-demand and reservation instances to automatically delete the resource at a given time. The termination time can also be used to release a hardware reservation instance at a given time, keeping the reservation open for other uses.  On a spot market device, the termination time will be set automatically when outbid.
-	TerminationTime      *time.Time `json:"termination_time,omitempty"`
-	UpdatedAt            *time.Time `json:"updated_at,omitempty"`
-	User                 *string    `json:"user,omitempty"`
-	Userdata             *string    `json:"userdata,omitempty"`
-	Volumes              []Href     `json:"volumes,omitempty"`
+	TerminationTime *time.Time `json:"termination_time,omitempty"`
+	UpdatedAt       *time.Time `json:"updated_at,omitempty"`
+	User            *string    `json:"user,omitempty"`
+	Userdata        *string    `json:"userdata,omitempty"`
+	Volumes         []Href     `json:"volumes,omitempty"`
+	// Hostname used to connect to the instance via the SOS (Serial over SSH) out-of-band console.
+	Sos                  *string `json:"sos,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -1371,6 +1373,38 @@ func (o *Device) SetVolumes(v []Href) {
 	o.Volumes = v
 }
 
+// GetSos returns the Sos field value if set, zero value otherwise.
+func (o *Device) GetSos() string {
+	if o == nil || isNil(o.Sos) {
+		var ret string
+		return ret
+	}
+	return *o.Sos
+}
+
+// GetSosOk returns a tuple with the Sos field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Device) GetSosOk() (*string, bool) {
+	if o == nil || isNil(o.Sos) {
+		return nil, false
+	}
+	return o.Sos, true
+}
+
+// HasSos returns a boolean if a field has been set.
+func (o *Device) HasSos() bool {
+	if o != nil && !isNil(o.Sos) {
+		return true
+	}
+
+	return false
+}
+
+// SetSos gets a reference to the given string and assigns it to the Sos field.
+func (o *Device) SetSos(v string) {
+	o.Sos = &v
+}
+
 func (o Device) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -1501,6 +1535,9 @@ func (o Device) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Volumes) {
 		toSerialize["volumes"] = o.Volumes
 	}
+	if !isNil(o.Sos) {
+		toSerialize["sos"] = o.Sos
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -1559,6 +1596,7 @@ func (o *Device) UnmarshalJSON(bytes []byte) (err error) {
 		delete(additionalProperties, "user")
 		delete(additionalProperties, "userdata")
 		delete(additionalProperties, "volumes")
+		delete(additionalProperties, "sos")
 		o.AdditionalProperties = additionalProperties
 	}
 

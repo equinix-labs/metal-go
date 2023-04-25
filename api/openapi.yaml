@@ -12893,6 +12893,7 @@ components:
         userdata: userdata
         hostname: hostname
         updated_at: 2000-01-23T04:56:07.000+00:00
+        sos: sos
         operating_system:
           distro: distro
           preinstallable: true
@@ -13269,6 +13270,10 @@ components:
           items:
             $ref: '#/components/schemas/Href'
           type: array
+        sos:
+          description: Hostname used to connect to the instance via the SOS (Serial
+            over SSH) out-of-band console.
+          type: string
       type: object
     DeviceCreateInput:
       properties:
@@ -13730,6 +13735,7 @@ components:
           userdata: userdata
           hostname: hostname
           updated_at: 2000-01-23T04:56:07.000+00:00
+          sos: sos
           operating_system:
             distro: distro
             preinstallable: true
@@ -14214,6 +14220,7 @@ components:
           userdata: userdata
           hostname: hostname
           updated_at: 2000-01-23T04:56:07.000+00:00
+          sos: sos
           operating_system:
             distro: distro
             preinstallable: true
@@ -19815,8 +19822,7 @@ components:
     SpotMarketRequestCreateInput:
       example:
         end_at: 2000-01-23T04:56:07.000+00:00
-        metro: metro
-        instance_attributes:
+        instance_parameters:
           user_ssh_keys:
           - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -19845,6 +19851,7 @@ components:
           customdata: "{}"
           locked: true
           plan: plan
+        metro: metro
         devices_min: 6
         devices_max: 0
         max_bid_price: 5.637377
@@ -19864,8 +19871,8 @@ components:
             format: uuid
             type: string
           type: array
-        instance_attributes:
-          $ref: '#/components/schemas/SpotMarketRequestCreateInput_instance_attributes'
+        instance_parameters:
+          $ref: '#/components/schemas/SpotMarketRequestCreateInput_instance_parameters'
         max_bid_price:
           format: float
           type: number
@@ -20228,7 +20235,7 @@ components:
       example:
         avatar_thumb_url: avatar_thumb_url
         last_login_at: 2000-01-23T04:56:07.000+00:00
-        max_projects: 1
+        max_projects: 5
         timezone: timezone
         created_at: 2000-01-23T04:56:07.000+00:00
         last_name: last_name
@@ -20245,7 +20252,7 @@ components:
         href: href
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         first_name: first_name
-        max_organizations: 6
+        max_organizations: 1
         two_factor_auth: two_factor_auth
         email: email
       properties:
@@ -20414,7 +20421,7 @@ components:
         users:
         - avatar_thumb_url: avatar_thumb_url
           last_login_at: 2000-01-23T04:56:07.000+00:00
-          max_projects: 1
+          max_projects: 5
           timezone: timezone
           created_at: 2000-01-23T04:56:07.000+00:00
           last_name: last_name
@@ -20431,12 +20438,12 @@ components:
           href: href
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           first_name: first_name
-          max_organizations: 6
+          max_organizations: 1
           two_factor_auth: two_factor_auth
           email: email
         - avatar_thumb_url: avatar_thumb_url
           last_login_at: 2000-01-23T04:56:07.000+00:00
-          max_projects: 1
+          max_projects: 5
           timezone: timezone
           created_at: 2000-01-23T04:56:07.000+00:00
           last_name: last_name
@@ -20453,7 +20460,7 @@ components:
           href: href
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           first_name: first_name
-          max_organizations: 6
+          max_organizations: 1
           two_factor_auth: two_factor_auth
           email: email
       properties:
@@ -20868,8 +20875,10 @@ components:
     Vrf:
       example:
         bgp_dynamic_neighbors_export_route_map: true
+        bgp_dynamic_neighbors_bfd_enabled: true
         local_asn: 0
         description: description
+        bill: false
         bgp_dynamic_neighbors_enabled: true
         project:
           devices:
@@ -20906,7 +20915,7 @@ components:
         created_by:
           avatar_thumb_url: avatar_thumb_url
           last_login_at: 2000-01-23T04:56:07.000+00:00
-          max_projects: 1
+          max_projects: 5
           timezone: timezone
           created_at: 2000-01-23T04:56:07.000+00:00
           last_name: last_name
@@ -20923,10 +20932,31 @@ components:
           href: href
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           first_name: first_name
-          max_organizations: 6
+          max_organizations: 1
           two_factor_auth: two_factor_auth
           email: email
         updated_at: 2000-01-23T04:56:07.000+00:00
+        virtual_circuits:
+        - subnet: 12.0.0.0/30
+          port:
+            href: href
+          name: name
+          customer_ip: 12.0.0.2
+          peer_asn: 6
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          metal_ip: 12.0.0.1
+          status: status
+          md5: md5
+        - subnet: 12.0.0.0/30
+          port:
+            href: href
+          name: name
+          customer_ip: 12.0.0.2
+          peer_asn: 6
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          metal_ip: 12.0.0.1
+          status: status
+          md5: md5
         ip_ranges:
         - ip_ranges
         - ip_ranges
@@ -20947,16 +20977,30 @@ components:
         description:
           description: Optional field that can be set to describe the VRF
           type: string
+        bill:
+          default: false
+          description: "True if the VRF is being billed. Usage will start when the\
+            \ first VRF Virtual Circuit is active, and will only stop when the VRF\
+            \ has been deleted."
+          type: boolean
         bgp_dynamic_neighbors_enabled:
           description: Toggle to enable the dynamic bgp neighbors feature on the VRF
           type: boolean
         bgp_dynamic_neighbors_export_route_map:
           description: Toggle to export the VRF route-map to the dynamic bgp neighbors
           type: boolean
+        bgp_dynamic_neighbors_bfd_enabled:
+          description: Toggle BFD on dynamic bgp neighbors sessions
+          type: boolean
         local_asn:
           description: A 4-byte ASN associated with the VRF.
           format: int32
           type: integer
+        virtual_circuits:
+          description: Virtual circuits that are in the VRF
+          items:
+            $ref: '#/components/schemas/Vrf_virtual_circuits_inner'
+          type: array
         ip_ranges:
           description: "A list of CIDR network addresses. Like [\"10.0.0.0/16\", \"\
             2001:d78::/56\"]."
@@ -20980,14 +21024,26 @@ components:
       type: object
     VrfCreateInput:
       example:
+        bgp_dynamic_neighbors_export_route_map: true
+        bgp_dynamic_neighbors_bfd_enabled: true
         ip_ranges:
         - ip_ranges
         - ip_ranges
         local_asn: 0
         metro: metro
         name: name
+        bgp_dynamic_neighbors_enabled: true
         description: description
       properties:
+        bgp_dynamic_neighbors_enabled:
+          description: Toggle to enable the dynamic bgp neighbors feature on the VRF
+          type: boolean
+        bgp_dynamic_neighbors_export_route_map:
+          description: Toggle to export the VRF route-map to the dynamic bgp neighbors
+          type: boolean
+        bgp_dynamic_neighbors_bfd_enabled:
+          description: Toggle BFD on dynamic bgp neighbors sessions
+          type: boolean
         description:
           type: string
         ip_ranges:
@@ -21112,8 +21168,10 @@ components:
             href: href
         vrf:
           bgp_dynamic_neighbors_export_route_map: true
+          bgp_dynamic_neighbors_bfd_enabled: true
           local_asn: 0
           description: description
+          bill: false
           bgp_dynamic_neighbors_enabled: true
           project:
             devices:
@@ -21150,7 +21208,7 @@ components:
           created_by:
             avatar_thumb_url: avatar_thumb_url
             last_login_at: 2000-01-23T04:56:07.000+00:00
-            max_projects: 1
+            max_projects: 5
             timezone: timezone
             created_at: 2000-01-23T04:56:07.000+00:00
             last_name: last_name
@@ -21167,10 +21225,31 @@ components:
             href: href
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             first_name: first_name
-            max_organizations: 6
+            max_organizations: 1
             two_factor_auth: two_factor_auth
             email: email
           updated_at: 2000-01-23T04:56:07.000+00:00
+          virtual_circuits:
+          - subnet: 12.0.0.0/30
+            port:
+              href: href
+            name: name
+            customer_ip: 12.0.0.2
+            peer_asn: 6
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            metal_ip: 12.0.0.1
+            status: status
+            md5: md5
+          - subnet: 12.0.0.0/30
+            port:
+              href: href
+            name: name
+            customer_ip: 12.0.0.2
+            peer_asn: 6
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            metal_ip: 12.0.0.1
+            status: status
+            md5: md5
           ip_ranges:
           - ip_ranges
           - ip_ranges
@@ -21377,8 +21456,10 @@ components:
               href: href
           vrf:
             bgp_dynamic_neighbors_export_route_map: true
+            bgp_dynamic_neighbors_bfd_enabled: true
             local_asn: 0
             description: description
+            bill: false
             bgp_dynamic_neighbors_enabled: true
             project:
               devices:
@@ -21415,7 +21496,7 @@ components:
             created_by:
               avatar_thumb_url: avatar_thumb_url
               last_login_at: 2000-01-23T04:56:07.000+00:00
-              max_projects: 1
+              max_projects: 5
               timezone: timezone
               created_at: 2000-01-23T04:56:07.000+00:00
               last_name: last_name
@@ -21432,10 +21513,31 @@ components:
               href: href
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
               first_name: first_name
-              max_organizations: 6
+              max_organizations: 1
               two_factor_auth: two_factor_auth
               email: email
             updated_at: 2000-01-23T04:56:07.000+00:00
+            virtual_circuits:
+            - subnet: 12.0.0.0/30
+              port:
+                href: href
+              name: name
+              customer_ip: 12.0.0.2
+              peer_asn: 6
+              id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+              metal_ip: 12.0.0.1
+              status: status
+              md5: md5
+            - subnet: 12.0.0.0/30
+              port:
+                href: href
+              name: name
+              customer_ip: 12.0.0.2
+              peer_asn: 6
+              id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+              metal_ip: 12.0.0.1
+              status: status
+              md5: md5
             ip_ranges:
             - ip_ranges
             - ip_ranges
@@ -21546,8 +21648,10 @@ components:
               href: href
           vrf:
             bgp_dynamic_neighbors_export_route_map: true
+            bgp_dynamic_neighbors_bfd_enabled: true
             local_asn: 0
             description: description
+            bill: false
             bgp_dynamic_neighbors_enabled: true
             project:
               devices:
@@ -21584,7 +21688,7 @@ components:
             created_by:
               avatar_thumb_url: avatar_thumb_url
               last_login_at: 2000-01-23T04:56:07.000+00:00
-              max_projects: 1
+              max_projects: 5
               timezone: timezone
               created_at: 2000-01-23T04:56:07.000+00:00
               last_name: last_name
@@ -21601,10 +21705,31 @@ components:
               href: href
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
               first_name: first_name
-              max_organizations: 6
+              max_organizations: 1
               two_factor_auth: two_factor_auth
               email: email
             updated_at: 2000-01-23T04:56:07.000+00:00
+            virtual_circuits:
+            - subnet: 12.0.0.0/30
+              port:
+                href: href
+              name: name
+              customer_ip: 12.0.0.2
+              peer_asn: 6
+              id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+              metal_ip: 12.0.0.1
+              status: status
+              md5: md5
+            - subnet: 12.0.0.0/30
+              port:
+                href: href
+              name: name
+              customer_ip: 12.0.0.2
+              peer_asn: 6
+              id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+              metal_ip: 12.0.0.1
+              status: status
+              md5: md5
             ip_ranges:
             - ip_ranges
             - ip_ranges
@@ -21658,8 +21783,10 @@ components:
       example:
         vrfs:
         - bgp_dynamic_neighbors_export_route_map: true
+          bgp_dynamic_neighbors_bfd_enabled: true
           local_asn: 0
           description: description
+          bill: false
           bgp_dynamic_neighbors_enabled: true
           project:
             devices:
@@ -21696,7 +21823,7 @@ components:
           created_by:
             avatar_thumb_url: avatar_thumb_url
             last_login_at: 2000-01-23T04:56:07.000+00:00
-            max_projects: 1
+            max_projects: 5
             timezone: timezone
             created_at: 2000-01-23T04:56:07.000+00:00
             last_name: last_name
@@ -21713,10 +21840,31 @@ components:
             href: href
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             first_name: first_name
-            max_organizations: 6
+            max_organizations: 1
             two_factor_auth: two_factor_auth
             email: email
           updated_at: 2000-01-23T04:56:07.000+00:00
+          virtual_circuits:
+          - subnet: 12.0.0.0/30
+            port:
+              href: href
+            name: name
+            customer_ip: 12.0.0.2
+            peer_asn: 6
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            metal_ip: 12.0.0.1
+            status: status
+            md5: md5
+          - subnet: 12.0.0.0/30
+            port:
+              href: href
+            name: name
+            customer_ip: 12.0.0.2
+            peer_asn: 6
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            metal_ip: 12.0.0.1
+            status: status
+            md5: md5
           ip_ranges:
           - ip_ranges
           - ip_ranges
@@ -21729,8 +21877,10 @@ components:
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           href: href
         - bgp_dynamic_neighbors_export_route_map: true
+          bgp_dynamic_neighbors_bfd_enabled: true
           local_asn: 0
           description: description
+          bill: false
           bgp_dynamic_neighbors_enabled: true
           project:
             devices:
@@ -21767,7 +21917,7 @@ components:
           created_by:
             avatar_thumb_url: avatar_thumb_url
             last_login_at: 2000-01-23T04:56:07.000+00:00
-            max_projects: 1
+            max_projects: 5
             timezone: timezone
             created_at: 2000-01-23T04:56:07.000+00:00
             last_name: last_name
@@ -21784,10 +21934,31 @@ components:
             href: href
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             first_name: first_name
-            max_organizations: 6
+            max_organizations: 1
             two_factor_auth: two_factor_auth
             email: email
           updated_at: 2000-01-23T04:56:07.000+00:00
+          virtual_circuits:
+          - subnet: 12.0.0.0/30
+            port:
+              href: href
+            name: name
+            customer_ip: 12.0.0.2
+            peer_asn: 6
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            metal_ip: 12.0.0.1
+            status: status
+            md5: md5
+          - subnet: 12.0.0.0/30
+            port:
+              href: href
+            name: name
+            customer_ip: 12.0.0.2
+            peer_asn: 6
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            metal_ip: 12.0.0.1
+            status: status
+            md5: md5
           ip_ranges:
           - ip_ranges
           - ip_ranges
@@ -22000,6 +22171,7 @@ components:
     VrfUpdateInput:
       example:
         bgp_dynamic_neighbors_export_route_map: true
+        bgp_dynamic_neighbors_bfd_enabled: true
         ip_ranges:
         - ip_ranges
         - ip_ranges
@@ -22013,6 +22185,9 @@ components:
           type: boolean
         bgp_dynamic_neighbors_export_route_map:
           description: Toggle to export the VRF route-map to the dynamic bgp neighbors
+          type: boolean
+        bgp_dynamic_neighbors_bfd_enabled:
+          description: Toggle BFD on dynamic bgp neighbors sessions
           type: boolean
         description:
           type: string
@@ -22848,7 +23023,7 @@ components:
       - $ref: '#/components/schemas/Metro'
       - description: The metro the spot market request was created in
         type: object
-    SpotMarketRequestCreateInput_instance_attributes:
+    SpotMarketRequestCreateInput_instance_parameters:
       example:
         user_ssh_keys:
         - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -22930,6 +23105,59 @@ components:
           type: array
         userdata:
           type: string
+      type: object
+    Vrf_virtual_circuits_inner:
+      example:
+        subnet: 12.0.0.0/30
+        port:
+          href: href
+        name: name
+        customer_ip: 12.0.0.2
+        peer_asn: 6
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        metal_ip: 12.0.0.1
+        status: status
+        md5: md5
+      properties:
+        id:
+          format: uuid
+          type: string
+        name:
+          type: string
+        status:
+          type: string
+        md5:
+          description: The MD5 password for the BGP peering in plaintext (not a checksum).
+          type: string
+        peer_asn:
+          description: The peer ASN that will be used with the VRF on the Virtual
+            Circuit.
+          type: integer
+        subnet:
+          description: "The /30 or /31 subnet of one of the VRF IP Blocks that will\
+            \ be used with the VRF for the Virtual Circuit. This subnet does not have\
+            \ to be an existing VRF IP reservation, as we will create the VRF IP reservation\
+            \ on creation if it does not exist. The Metal IP and Customer IP must\
+            \ be IPs from this subnet. For /30 subnets, the network and broadcast\
+            \ IPs cannot be used as the Metal or Customer IP."
+          example: 12.0.0.0/30
+          type: string
+        metal_ip:
+          description: "An IP address from the subnet that will be used on the Metal\
+            \ side. This parameter is optional, but if supplied, we will use the other\
+            \ usable IP address in the subnet as the Customer IP. By default, the\
+            \ first usable IP address in the subnet will be used."
+          example: 12.0.0.1
+          type: string
+        customer_ip:
+          description: "An IP address from the subnet that will be used on the Customer\
+            \ side. This parameter is optional, but if supplied, we will use the other\
+            \ usable IP address in the subnet as the Metal IP. By default, the last\
+            \ usable IP address in the subnet will be used."
+          example: 12.0.0.2
+          type: string
+        port:
+          $ref: '#/components/schemas/Href'
       type: object
     VrfRoute_metal_gateway:
       description: A link to the Metal Gateway to which this VRF Route is associated
