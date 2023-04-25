@@ -7,16 +7,68 @@ properties:
   description:
     description: Optional field that can be set to describe the VRF
     type: string
+  bill:
+    type: boolean
+    default: false
+    description: True if the VRF is being billed. Usage will start when the first VRF Virtual Circuit is active, and will only stop when the VRF has been deleted.
   bgp_dynamic_neighbors_enabled:
     description: Toggle to enable the dynamic bgp neighbors feature on the VRF
     type: boolean
   bgp_dynamic_neighbors_export_route_map:
     description: Toggle to export the VRF route-map to the dynamic bgp neighbors
     type: boolean
+  bgp_dynamic_neighbors_bfd_enabled:
+    description: Toggle BFD on dynamic bgp neighbors sessions
+    type: boolean
   local_asn:
     description: A 4-byte ASN associated with the VRF.
     type: integer
     format: int32
+  virtual_circuits:
+    description: Virtual circuits that are in the VRF
+    type: array
+    items:
+      type: object
+      properties:
+        id: 
+          format: uuid
+          type: string
+        name:
+          type: string
+        status:
+          type: string
+        md5:
+          description: >-
+            The MD5 password for the BGP peering in plaintext (not a checksum).
+          type: string
+        peer_asn:
+          description: The peer ASN that will be used with the VRF on the Virtual Circuit.
+          type: integer
+        subnet:
+          description: >-
+            The /30 or /31 subnet of one of the VRF IP Blocks that will be used with the VRF for
+            the Virtual Circuit. This subnet does not have to be an existing VRF IP reservation, as we
+            will create the VRF IP reservation on creation if it does not exist. The Metal IP and Customer
+            IP must be IPs from this subnet. For /30 subnets, the network and broadcast IPs cannot be used
+            as the Metal or Customer IP.
+          type: string
+          example: "12.0.0.0/30"
+        metal_ip:
+          description: >-
+            An IP address from the subnet that will be used on the Metal side. This parameter is optional,
+            but if supplied, we will use the other usable IP address in the subnet as the Customer IP. By default,
+            the first usable IP address in the subnet will be used.
+          type: string
+          example: "12.0.0.1"
+        customer_ip:
+          description: >-
+            An IP address from the subnet that will be used on the Customer side. This parameter is optional,
+            but if supplied, we will use the other usable IP address in the subnet as the Metal IP. By default,
+            the last usable IP address in the subnet will be used.
+          type: string
+          example: "12.0.0.2"
+        port:
+          $ref: './Href.yaml'
   ip_ranges:
     $ref: './VrfIpRangeList.yaml'
   project:

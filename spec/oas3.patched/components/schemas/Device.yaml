@@ -150,4 +150,7 @@ properties:
     items:
       $ref: './Href.yaml'
     type: array
+  sos:
+    description: Hostname used to connect to the instance via the SOS (Serial over SSH) out-of-band console.
+    type: string
 type: object
