@@ -551,7 +551,7 @@ Class | Method | HTTP request | Description
  - [SpotMarketPricesPerMetroReport](docs/SpotMarketPricesPerMetroReport.md)
  - [SpotMarketRequest](docs/SpotMarketRequest.md)
  - [SpotMarketRequestCreateInput](docs/SpotMarketRequestCreateInput.md)
- - [SpotMarketRequestCreateInputInstanceAttributes](docs/SpotMarketRequestCreateInputInstanceAttributes.md)
+ - [SpotMarketRequestCreateInputInstanceParameters](docs/SpotMarketRequestCreateInputInstanceParameters.md)
  - [SpotMarketRequestList](docs/SpotMarketRequestList.md)
  - [SpotMarketRequestMetro](docs/SpotMarketRequestMetro.md)
  - [SpotPricesDatapoints](docs/SpotPricesDatapoints.md)
@@ -602,6 +602,7 @@ Class | Method | HTTP request | Description
  - [VrfVirtualCircuit](docs/VrfVirtualCircuit.md)
  - [VrfVirtualCircuitCreateInput](docs/VrfVirtualCircuitCreateInput.md)
  - [VrfVirtualCircuitUpdateInput](docs/VrfVirtualCircuitUpdateInput.md)
+ - [VrfVirtualCircuitsInner](docs/VrfVirtualCircuitsInner.md)
 
 
 ## Documentation For Authorization

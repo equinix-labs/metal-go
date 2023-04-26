@@ -252,7 +252,7 @@ docs/SpotMarketPricesPerMetroList.md
 docs/SpotMarketPricesPerMetroReport.md
 docs/SpotMarketRequest.md
 docs/SpotMarketRequestCreateInput.md
-docs/SpotMarketRequestCreateInputInstanceAttributes.md
+docs/SpotMarketRequestCreateInputInstanceParameters.md
 docs/SpotMarketRequestList.md
 docs/SpotMarketRequestMetro.md
 docs/SpotPricesDatapoints.md
@@ -312,6 +312,7 @@ docs/VrfUpdateInput.md
 docs/VrfVirtualCircuit.md
 docs/VrfVirtualCircuitCreateInput.md
 docs/VrfVirtualCircuitUpdateInput.md
+docs/VrfVirtualCircuitsInner.md
 git_push.sh
 go.mod
 go.sum
@@ -493,7 +494,7 @@ model_spot_market_prices_per_metro_list.go
 model_spot_market_prices_per_metro_report.go
 model_spot_market_request.go
 model_spot_market_request_create_input.go
-model_spot_market_request_create_input_instance_attributes.go
+model_spot_market_request_create_input_instance_parameters.go
 model_spot_market_request_list.go
 model_spot_market_request_metro.go
 model_spot_prices_datapoints.go
@@ -548,6 +549,7 @@ model_vrf_update_input.go
 model_vrf_virtual_circuit.go
 model_vrf_virtual_circuit_create_input.go
 model_vrf_virtual_circuit_update_input.go
+model_vrf_virtual_circuits_inner.go
 response.go
 test/api_authentication_test.go
 test/api_batches_test.go

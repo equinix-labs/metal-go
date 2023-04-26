@@ -1,4 +1,4 @@
-# SpotMarketRequestCreateInputInstanceAttributes
+# SpotMarketRequestCreateInputInstanceParameters
 
 ## Properties
 
@@ -25,470 +25,470 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewSpotMarketRequestCreateInputInstanceAttributes
+### NewSpotMarketRequestCreateInputInstanceParameters
 
-`func NewSpotMarketRequestCreateInputInstanceAttributes() *SpotMarketRequestCreateInputInstanceAttributes`
+`func NewSpotMarketRequestCreateInputInstanceParameters() *SpotMarketRequestCreateInputInstanceParameters`
 
-NewSpotMarketRequestCreateInputInstanceAttributes instantiates a new SpotMarketRequestCreateInputInstanceAttributes object
+NewSpotMarketRequestCreateInputInstanceParameters instantiates a new SpotMarketRequestCreateInputInstanceParameters object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewSpotMarketRequestCreateInputInstanceAttributesWithDefaults
+### NewSpotMarketRequestCreateInputInstanceParametersWithDefaults
 
-`func NewSpotMarketRequestCreateInputInstanceAttributesWithDefaults() *SpotMarketRequestCreateInputInstanceAttributes`
+`func NewSpotMarketRequestCreateInputInstanceParametersWithDefaults() *SpotMarketRequestCreateInputInstanceParameters`
 
-NewSpotMarketRequestCreateInputInstanceAttributesWithDefaults instantiates a new SpotMarketRequestCreateInputInstanceAttributes object
+NewSpotMarketRequestCreateInputInstanceParametersWithDefaults instantiates a new SpotMarketRequestCreateInputInstanceParameters object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetAlwaysPxe
 
-`func (o *SpotMarketRequestCreateInputInstanceAttributes) GetAlwaysPxe() bool`
+`func (o *SpotMarketRequestCreateInputInstanceParameters) GetAlwaysPxe() bool`
 
 GetAlwaysPxe returns the AlwaysPxe field if non-nil, zero value otherwise.
 
 ### GetAlwaysPxeOk
 
-`func (o *SpotMarketRequestCreateInputInstanceAttributes) GetAlwaysPxeOk() (*bool, bool)`
+`func (o *SpotMarketRequestCreateInputInstanceParameters) GetAlwaysPxeOk() (*bool, bool)`
 
 GetAlwaysPxeOk returns a tuple with the AlwaysPxe field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAlwaysPxe
 
-`func (o *SpotMarketRequestCreateInputInstanceAttributes) SetAlwaysPxe(v bool)`
+`func (o *SpotMarketRequestCreateInputInstanceParameters) SetAlwaysPxe(v bool)`
 
 SetAlwaysPxe sets AlwaysPxe field to given value.
 
 ### HasAlwaysPxe
 
-`func (o *SpotMarketRequestCreateInputInstanceAttributes) HasAlwaysPxe() bool`
+`func (o *SpotMarketRequestCreateInputInstanceParameters) HasAlwaysPxe() bool`
 
 HasAlwaysPxe returns a boolean if a field has been set.
 
 ### GetBillingCycle
 
-`func (o *SpotMarketRequestCreateInputInstanceAttributes) GetBillingCycle() string`
+`func (o *SpotMarketRequestCreateInputInstanceParameters) GetBillingCycle() string`
 
 GetBillingCycle returns the BillingCycle field if non-nil, zero value otherwise.
 
 ### GetBillingCycleOk
 
-`func (o *SpotMarketRequestCreateInputInstanceAttributes) GetBillingCycleOk() (*string, bool)`
+`func (o *SpotMarketRequestCreateInputInstanceParameters) GetBillingCycleOk() (*string, bool)`
 
 GetBillingCycleOk returns a tuple with the BillingCycle field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetBillingCycle
 
-`func (o *SpotMarketRequestCreateInputInstanceAttributes) SetBillingCycle(v string)`
+`func (o *SpotMarketRequestCreateInputInstanceParameters) SetBillingCycle(v string)`
 
 SetBillingCycle sets BillingCycle field to given value.
 
 ### HasBillingCycle
 
-`func (o *SpotMarketRequestCreateInputInstanceAttributes) HasBillingCycle() bool`
+`func (o *SpotMarketRequestCreateInputInstanceParameters) HasBillingCycle() bool`
 
 HasBillingCycle returns a boolean if a field has been set.
 
 ### GetCustomdata
 
-`func (o *SpotMarketRequestCreateInputInstanceAttributes) GetCustomdata() map[string]interface{}`
+`func (o *SpotMarketRequestCreateInputInstanceParameters) GetCustomdata() map[string]interface{}`
 
 GetCustomdata returns the Customdata field if non-nil, zero value otherwise.
 
 ### GetCustomdataOk
 
-`func (o *SpotMarketRequestCreateInputInstanceAttributes) GetCustomdataOk() (*map[string]interface{}, bool)`
+`func (o *SpotMarketRequestCreateInputInstanceParameters) GetCustomdataOk() (*map[string]interface{}, bool)`
 
 GetCustomdataOk returns a tuple with the Customdata field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCustomdata
 
-`func (o *SpotMarketRequestCreateInputInstanceAttributes) SetCustomdata(v map[string]interface{})`
+`func (o *SpotMarketRequestCreateInputInstanceParameters) SetCustomdata(v map[string]interface{})`
 
 SetCustomdata sets Customdata field to given value.
 
 ### HasCustomdata
 
-`func (o *SpotMarketRequestCreateInputInstanceAttributes) HasCustomdata() bool`
+`func (o *SpotMarketRequestCreateInputInstanceParameters) HasCustomdata() bool`
 
 HasCustomdata returns a boolean if a field has been set.
 
 ### GetDescription
 
-`func (o *SpotMarketRequestCreateInputInstanceAttributes) GetDescription() string`
+`func (o *SpotMarketRequestCreateInputInstanceParameters) GetDescription() string`
 
 GetDescription returns the Description field if non-nil, zero value otherwise.
 
 ### GetDescriptionOk
 
-`func (o *SpotMarketRequestCreateInputInstanceAttributes) GetDescriptionOk() (*string, bool)`
+`func (o *SpotMarketRequestCreateInputInstanceParameters) GetDescriptionOk() (*string, bool)`
 
 GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDescription
 
-`func (o *SpotMarketRequestCreateInputInstanceAttributes) SetDescription(v string)`
+`func (o *SpotMarketRequestCreateInputInstanceParameters) SetDescription(v string)`
 
 SetDescription sets Description field to given value.
 
 ### HasDescription
 
-`func (o *SpotMarketRequestCreateInputInstanceAttributes) HasDescription() bool`
+`func (o *SpotMarketRequestCreateInputInstanceParameters) HasDescription() bool`
 
 HasDescription returns a boolean if a field has been set.
 
 ### GetFeatures
 
-`func (o *SpotMarketRequestCreateInputInstanceAttributes) GetFeatures() []string`
+`func (o *SpotMarketRequestCreateInputInstanceParameters) GetFeatures() []string`
 
 GetFeatures returns the Features field if non-nil, zero value otherwise.
 
 ### GetFeaturesOk
 
-`func (o *SpotMarketRequestCreateInputInstanceAttributes) GetFeaturesOk() (*[]string, bool)`
+`func (o *SpotMarketRequestCreateInputInstanceParameters) GetFeaturesOk() (*[]string, bool)`
 
 GetFeaturesOk returns a tuple with the Features field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFeatures
 
-`func (o *SpotMarketRequestCreateInputInstanceAttributes) SetFeatures(v []string)`
+`func (o *SpotMarketRequestCreateInputInstanceParameters) SetFeatures(v []string)`
 
 SetFeatures sets Features field to given value.
 
 ### HasFeatures
 
-`func (o *SpotMarketRequestCreateInputInstanceAttributes) HasFeatures() bool`
+`func (o *SpotMarketRequestCreateInputInstanceParameters) HasFeatures() bool`
 
 HasFeatures returns a boolean if a field has been set.
 
 ### GetHostname
 
-`func (o *SpotMarketRequestCreateInputInstanceAttributes) GetHostname() string`
+`func (o *SpotMarketRequestCreateInputInstanceParameters) GetHostname() string`
 
 GetHostname returns the Hostname field if non-nil, zero value otherwise.
 
 ### GetHostnameOk
 
-`func (o *SpotMarketRequestCreateInputInstanceAttributes) GetHostnameOk() (*string, bool)`
+`func (o *SpotMarketRequestCreateInputInstanceParameters) GetHostnameOk() (*string, bool)`
 
 GetHostnameOk returns a tuple with the Hostname field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetHostname
 
-`func (o *SpotMarketRequestCreateInputInstanceAttributes) SetHostname(v string)`
+`func (o *SpotMarketRequestCreateInputInstanceParameters) SetHostname(v string)`
 
 SetHostname sets Hostname field to given value.
 
 ### HasHostname
 
-`func (o *SpotMarketRequestCreateInputInstanceAttributes) HasHostname() bool`
+`func (o *SpotMarketRequestCreateInputInstanceParameters) HasHostname() bool`
 
 HasHostname returns a boolean if a field has been set.
 
 ### GetHostnames
 
-`func (o *SpotMarketRequestCreateInputInstanceAttributes) GetHostnames() []string`
+`func (o *SpotMarketRequestCreateInputInstanceParameters) GetHostnames() []string`
 
 GetHostnames returns the Hostnames field if non-nil, zero value otherwise.
 
 ### GetHostnamesOk
 
-`func (o *SpotMarketRequestCreateInputInstanceAttributes) GetHostnamesOk() (*[]string, bool)`
+`func (o *SpotMarketRequestCreateInputInstanceParameters) GetHostnamesOk() (*[]string, bool)`
 
 GetHostnamesOk returns a tuple with the Hostnames field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetHostnames
 
-`func (o *SpotMarketRequestCreateInputInstanceAttributes) SetHostnames(v []string)`
+`func (o *SpotMarketRequestCreateInputInstanceParameters) SetHostnames(v []string)`
 
 SetHostnames sets Hostnames field to given value.
 
 ### HasHostnames
 
-`func (o *SpotMarketRequestCreateInputInstanceAttributes) HasHostnames() bool`
+`func (o *SpotMarketRequestCreateInputInstanceParameters) HasHostnames() bool`
 
 HasHostnames returns a boolean if a field has been set.
 
 ### GetLocked
 
-`func (o *SpotMarketRequestCreateInputInstanceAttributes) GetLocked() bool`
+`func (o *SpotMarketRequestCreateInputInstanceParameters) GetLocked() bool`
 
 GetLocked returns the Locked field if non-nil, zero value otherwise.
 
 ### GetLockedOk
 
-`func (o *SpotMarketRequestCreateInputInstanceAttributes) GetLockedOk() (*bool, bool)`
+`func (o *SpotMarketRequestCreateInputInstanceParameters) GetLockedOk() (*bool, bool)`
 
 GetLockedOk returns a tuple with the Locked field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLocked
 
-`func (o *SpotMarketRequestCreateInputInstanceAttributes) SetLocked(v bool)`
+`func (o *SpotMarketRequestCreateInputInstanceParameters) SetLocked(v bool)`
 
 SetLocked sets Locked field to given value.
 
 ### HasLocked
 
-`func (o *SpotMarketRequestCreateInputInstanceAttributes) HasLocked() bool`
+`func (o *SpotMarketRequestCreateInputInstanceParameters) HasLocked() bool`
 
 HasLocked returns a boolean if a field has been set.
 
 ### GetNoSshKeys
 
-`func (o *SpotMarketRequestCreateInputInstanceAttributes) GetNoSshKeys() bool`
+`func (o *SpotMarketRequestCreateInputInstanceParameters) GetNoSshKeys() bool`
 
 GetNoSshKeys returns the NoSshKeys field if non-nil, zero value otherwise.
 
 ### GetNoSshKeysOk
 
-`func (o *SpotMarketRequestCreateInputInstanceAttributes) GetNoSshKeysOk() (*bool, bool)`
+`func (o *SpotMarketRequestCreateInputInstanceParameters) GetNoSshKeysOk() (*bool, bool)`
 
 GetNoSshKeysOk returns a tuple with the NoSshKeys field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNoSshKeys
 
-`func (o *SpotMarketRequestCreateInputInstanceAttributes) SetNoSshKeys(v bool)`
+`func (o *SpotMarketRequestCreateInputInstanceParameters) SetNoSshKeys(v bool)`
 
 SetNoSshKeys sets NoSshKeys field to given value.
 
 ### HasNoSshKeys
 
-`func (o *SpotMarketRequestCreateInputInstanceAttributes) HasNoSshKeys() bool`
+`func (o *SpotMarketRequestCreateInputInstanceParameters) HasNoSshKeys() bool`
 
 HasNoSshKeys returns a boolean if a field has been set.
 
 ### GetOperatingSystem
 
-`func (o *SpotMarketRequestCreateInputInstanceAttributes) GetOperatingSystem() string`
+`func (o *SpotMarketRequestCreateInputInstanceParameters) GetOperatingSystem() string`
 
 GetOperatingSystem returns the OperatingSystem field if non-nil, zero value otherwise.
 
 ### GetOperatingSystemOk
 
-`func (o *SpotMarketRequestCreateInputInstanceAttributes) GetOperatingSystemOk() (*string, bool)`
+`func (o *SpotMarketRequestCreateInputInstanceParameters) GetOperatingSystemOk() (*string, bool)`
 
 GetOperatingSystemOk returns a tuple with the OperatingSystem field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOperatingSystem
 
-`func (o *SpotMarketRequestCreateInputInstanceAttributes) SetOperatingSystem(v string)`
+`func (o *SpotMarketRequestCreateInputInstanceParameters) SetOperatingSystem(v string)`
 
 SetOperatingSystem sets OperatingSystem field to given value.
 
 ### HasOperatingSystem
 
-`func (o *SpotMarketRequestCreateInputInstanceAttributes) HasOperatingSystem() bool`
+`func (o *SpotMarketRequestCreateInputInstanceParameters) HasOperatingSystem() bool`
 
 HasOperatingSystem returns a boolean if a field has been set.
 
 ### GetPlan
 
-`func (o *SpotMarketRequestCreateInputInstanceAttributes) GetPlan() string`
+`func (o *SpotMarketRequestCreateInputInstanceParameters) GetPlan() string`
 
 GetPlan returns the Plan field if non-nil, zero value otherwise.
 
 ### GetPlanOk
 
-`func (o *SpotMarketRequestCreateInputInstanceAttributes) GetPlanOk() (*string, bool)`
+`func (o *SpotMarketRequestCreateInputInstanceParameters) GetPlanOk() (*string, bool)`
 
 GetPlanOk returns a tuple with the Plan field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPlan
 
-`func (o *SpotMarketRequestCreateInputInstanceAttributes) SetPlan(v string)`
+`func (o *SpotMarketRequestCreateInputInstanceParameters) SetPlan(v string)`
 
 SetPlan sets Plan field to given value.
 
 ### HasPlan
 
-`func (o *SpotMarketRequestCreateInputInstanceAttributes) HasPlan() bool`
+`func (o *SpotMarketRequestCreateInputInstanceParameters) HasPlan() bool`
 
 HasPlan returns a boolean if a field has been set.
 
 ### GetPrivateIpv4SubnetSize
 
-`func (o *SpotMarketRequestCreateInputInstanceAttributes) GetPrivateIpv4SubnetSize() int32`
+`func (o *SpotMarketRequestCreateInputInstanceParameters) GetPrivateIpv4SubnetSize() int32`
 
 GetPrivateIpv4SubnetSize returns the PrivateIpv4SubnetSize field if non-nil, zero value otherwise.
 
 ### GetPrivateIpv4SubnetSizeOk
 
-`func (o *SpotMarketRequestCreateInputInstanceAttributes) GetPrivateIpv4SubnetSizeOk() (*int32, bool)`
+`func (o *SpotMarketRequestCreateInputInstanceParameters) GetPrivateIpv4SubnetSizeOk() (*int32, bool)`
 
 GetPrivateIpv4SubnetSizeOk returns a tuple with the PrivateIpv4SubnetSize field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPrivateIpv4SubnetSize
 
-`func (o *SpotMarketRequestCreateInputInstanceAttributes) SetPrivateIpv4SubnetSize(v int32)`
+`func (o *SpotMarketRequestCreateInputInstanceParameters) SetPrivateIpv4SubnetSize(v int32)`
 
 SetPrivateIpv4SubnetSize sets PrivateIpv4SubnetSize field to given value.
 
 ### HasPrivateIpv4SubnetSize
 
-`func (o *SpotMarketRequestCreateInputInstanceAttributes) HasPrivateIpv4SubnetSize() bool`
+`func (o *SpotMarketRequestCreateInputInstanceParameters) HasPrivateIpv4SubnetSize() bool`
 
 HasPrivateIpv4SubnetSize returns a boolean if a field has been set.
 
 ### GetProjectSshKeys
 
-`func (o *SpotMarketRequestCreateInputInstanceAttributes) GetProjectSshKeys() []string`
+`func (o *SpotMarketRequestCreateInputInstanceParameters) GetProjectSshKeys() []string`
 
 GetProjectSshKeys returns the ProjectSshKeys field if non-nil, zero value otherwise.
 
 ### GetProjectSshKeysOk
 
-`func (o *SpotMarketRequestCreateInputInstanceAttributes) GetProjectSshKeysOk() (*[]string, bool)`
+`func (o *SpotMarketRequestCreateInputInstanceParameters) GetProjectSshKeysOk() (*[]string, bool)`
 
 GetProjectSshKeysOk returns a tuple with the ProjectSshKeys field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetProjectSshKeys
 
-`func (o *SpotMarketRequestCreateInputInstanceAttributes) SetProjectSshKeys(v []string)`
+`func (o *SpotMarketRequestCreateInputInstanceParameters) SetProjectSshKeys(v []string)`
 
 SetProjectSshKeys sets ProjectSshKeys field to given value.
 
 ### HasProjectSshKeys
 
-`func (o *SpotMarketRequestCreateInputInstanceAttributes) HasProjectSshKeys() bool`
+`func (o *SpotMarketRequestCreateInputInstanceParameters) HasProjectSshKeys() bool`
 
 HasProjectSshKeys returns a boolean if a field has been set.
 
 ### GetPublicIpv4SubnetSize
 
-`func (o *SpotMarketRequestCreateInputInstanceAttributes) GetPublicIpv4SubnetSize() int32`
+`func (o *SpotMarketRequestCreateInputInstanceParameters) GetPublicIpv4SubnetSize() int32`
 
 GetPublicIpv4SubnetSize returns the PublicIpv4SubnetSize field if non-nil, zero value otherwise.
 
 ### GetPublicIpv4SubnetSizeOk
 
-`func (o *SpotMarketRequestCreateInputInstanceAttributes) GetPublicIpv4SubnetSizeOk() (*int32, bool)`
+`func (o *SpotMarketRequestCreateInputInstanceParameters) GetPublicIpv4SubnetSizeOk() (*int32, bool)`
 
 GetPublicIpv4SubnetSizeOk returns a tuple with the PublicIpv4SubnetSize field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPublicIpv4SubnetSize
 
-`func (o *SpotMarketRequestCreateInputInstanceAttributes) SetPublicIpv4SubnetSize(v int32)`
+`func (o *SpotMarketRequestCreateInputInstanceParameters) SetPublicIpv4SubnetSize(v int32)`
 
 SetPublicIpv4SubnetSize sets PublicIpv4SubnetSize field to given value.
 
 ### HasPublicIpv4SubnetSize
 
-`func (o *SpotMarketRequestCreateInputInstanceAttributes) HasPublicIpv4SubnetSize() bool`
+`func (o *SpotMarketRequestCreateInputInstanceParameters) HasPublicIpv4SubnetSize() bool`
 
 HasPublicIpv4SubnetSize returns a boolean if a field has been set.
 
 ### GetTags
 
-`func (o *SpotMarketRequestCreateInputInstanceAttributes) GetTags() []string`
+`func (o *SpotMarketRequestCreateInputInstanceParameters) GetTags() []string`
 
 GetTags returns the Tags field if non-nil, zero value otherwise.
 
 ### GetTagsOk
 
-`func (o *SpotMarketRequestCreateInputInstanceAttributes) GetTagsOk() (*[]string, bool)`
+`func (o *SpotMarketRequestCreateInputInstanceParameters) GetTagsOk() (*[]string, bool)`
 
 GetTagsOk returns a tuple with the Tags field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTags
 
-`func (o *SpotMarketRequestCreateInputInstanceAttributes) SetTags(v []string)`
+`func (o *SpotMarketRequestCreateInputInstanceParameters) SetTags(v []string)`
 
 SetTags sets Tags field to given value.
 
 ### HasTags
 
-`func (o *SpotMarketRequestCreateInputInstanceAttributes) HasTags() bool`
+`func (o *SpotMarketRequestCreateInputInstanceParameters) HasTags() bool`
 
 HasTags returns a boolean if a field has been set.
 
 ### GetTerminationTime
 
-`func (o *SpotMarketRequestCreateInputInstanceAttributes) GetTerminationTime() time.Time`
+`func (o *SpotMarketRequestCreateInputInstanceParameters) GetTerminationTime() time.Time`
 
 GetTerminationTime returns the TerminationTime field if non-nil, zero value otherwise.
 
 ### GetTerminationTimeOk
 
-`func (o *SpotMarketRequestCreateInputInstanceAttributes) GetTerminationTimeOk() (*time.Time, bool)`
+`func (o *SpotMarketRequestCreateInputInstanceParameters) GetTerminationTimeOk() (*time.Time, bool)`
 
 GetTerminationTimeOk returns a tuple with the TerminationTime field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTerminationTime
 
-`func (o *SpotMarketRequestCreateInputInstanceAttributes) SetTerminationTime(v time.Time)`
+`func (o *SpotMarketRequestCreateInputInstanceParameters) SetTerminationTime(v time.Time)`
 
 SetTerminationTime sets TerminationTime field to given value.
 
 ### HasTerminationTime
 
-`func (o *SpotMarketRequestCreateInputInstanceAttributes) HasTerminationTime() bool`
+`func (o *SpotMarketRequestCreateInputInstanceParameters) HasTerminationTime() bool`
 
 HasTerminationTime returns a boolean if a field has been set.
 
 ### GetUserSshKeys
 
-`func (o *SpotMarketRequestCreateInputInstanceAttributes) GetUserSshKeys() []string`
+`func (o *SpotMarketRequestCreateInputInstanceParameters) GetUserSshKeys() []string`
 
 GetUserSshKeys returns the UserSshKeys field if non-nil, zero value otherwise.
 
 ### GetUserSshKeysOk
 
-`func (o *SpotMarketRequestCreateInputInstanceAttributes) GetUserSshKeysOk() (*[]string, bool)`
+`func (o *SpotMarketRequestCreateInputInstanceParameters) GetUserSshKeysOk() (*[]string, bool)`
 
 GetUserSshKeysOk returns a tuple with the UserSshKeys field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUserSshKeys
 
-`func (o *SpotMarketRequestCreateInputInstanceAttributes) SetUserSshKeys(v []string)`
+`func (o *SpotMarketRequestCreateInputInstanceParameters) SetUserSshKeys(v []string)`
 
 SetUserSshKeys sets UserSshKeys field to given value.
 
 ### HasUserSshKeys
 
-`func (o *SpotMarketRequestCreateInputInstanceAttributes) HasUserSshKeys() bool`
+`func (o *SpotMarketRequestCreateInputInstanceParameters) HasUserSshKeys() bool`
 
 HasUserSshKeys returns a boolean if a field has been set.
 
 ### GetUserdata
 
-`func (o *SpotMarketRequestCreateInputInstanceAttributes) GetUserdata() string`
+`func (o *SpotMarketRequestCreateInputInstanceParameters) GetUserdata() string`
 
 GetUserdata returns the Userdata field if non-nil, zero value otherwise.
 
 ### GetUserdataOk
 
-`func (o *SpotMarketRequestCreateInputInstanceAttributes) GetUserdataOk() (*string, bool)`
+`func (o *SpotMarketRequestCreateInputInstanceParameters) GetUserdataOk() (*string, bool)`
 
 GetUserdataOk returns a tuple with the Userdata field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUserdata
 
-`func (o *SpotMarketRequestCreateInputInstanceAttributes) SetUserdata(v string)`
+`func (o *SpotMarketRequestCreateInputInstanceParameters) SetUserdata(v string)`
 
 SetUserdata sets Userdata field to given value.
 
 ### HasUserdata
 
-`func (o *SpotMarketRequestCreateInputInstanceAttributes) HasUserdata() bool`
+`func (o *SpotMarketRequestCreateInputInstanceParameters) HasUserdata() bool`
 
 HasUserdata returns a boolean if a field has been set.
 

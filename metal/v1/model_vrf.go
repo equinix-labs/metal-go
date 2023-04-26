@@ -25,12 +25,18 @@ type Vrf struct {
 	Name *string `json:"name,omitempty"`
 	// Optional field that can be set to describe the VRF
 	Description *string `json:"description,omitempty"`
+	// True if the VRF is being billed. Usage will start when the first VRF Virtual Circuit is active, and will only stop when the VRF has been deleted.
+	Bill *bool `json:"bill,omitempty"`
 	// Toggle to enable the dynamic bgp neighbors feature on the VRF
 	BgpDynamicNeighborsEnabled *bool `json:"bgp_dynamic_neighbors_enabled,omitempty"`
 	// Toggle to export the VRF route-map to the dynamic bgp neighbors
 	BgpDynamicNeighborsExportRouteMap *bool `json:"bgp_dynamic_neighbors_export_route_map,omitempty"`
+	// Toggle BFD on dynamic bgp neighbors sessions
+	BgpDynamicNeighborsBfdEnabled *bool `json:"bgp_dynamic_neighbors_bfd_enabled,omitempty"`
 	// A 4-byte ASN associated with the VRF.
 	LocalAsn *int32 `json:"local_asn,omitempty"`
+	// Virtual circuits that are in the VRF
+	VirtualCircuits []VrfVirtualCircuitsInner `json:"virtual_circuits,omitempty"`
 	// A list of CIDR network addresses. Like [\"10.0.0.0/16\", \"2001:d78::/56\"].
 	IpRanges             []string   `json:"ip_ranges,omitempty"`
 	Project              *Project   `json:"project,omitempty"`
@@ -50,6 +56,8 @@ type _Vrf Vrf
 // will change when the set of required properties is changed
 func NewVrf() *Vrf {
 	this := Vrf{}
+	var bill bool = false
+	this.Bill = &bill
 	return &this
 }
 
@@ -58,6 +66,8 @@ func NewVrf() *Vrf {
 // but it doesn't guarantee that properties required by API are set
 func NewVrfWithDefaults() *Vrf {
 	this := Vrf{}
+	var bill bool = false
+	this.Bill = &bill
 	return &this
 }
 
@@ -157,6 +167,38 @@ func (o *Vrf) SetDescription(v string) {
 	o.Description = &v
 }
 
+// GetBill returns the Bill field value if set, zero value otherwise.
+func (o *Vrf) GetBill() bool {
+	if o == nil || isNil(o.Bill) {
+		var ret bool
+		return ret
+	}
+	return *o.Bill
+}
+
+// GetBillOk returns a tuple with the Bill field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Vrf) GetBillOk() (*bool, bool) {
+	if o == nil || isNil(o.Bill) {
+		return nil, false
+	}
+	return o.Bill, true
+}
+
+// HasBill returns a boolean if a field has been set.
+func (o *Vrf) HasBill() bool {
+	if o != nil && !isNil(o.Bill) {
+		return true
+	}
+
+	return false
+}
+
+// SetBill gets a reference to the given bool and assigns it to the Bill field.
+func (o *Vrf) SetBill(v bool) {
+	o.Bill = &v
+}
+
 // GetBgpDynamicNeighborsEnabled returns the BgpDynamicNeighborsEnabled field value if set, zero value otherwise.
 func (o *Vrf) GetBgpDynamicNeighborsEnabled() bool {
 	if o == nil || isNil(o.BgpDynamicNeighborsEnabled) {
@@ -221,6 +263,38 @@ func (o *Vrf) SetBgpDynamicNeighborsExportRouteMap(v bool) {
 	o.BgpDynamicNeighborsExportRouteMap = &v
 }
 
+// GetBgpDynamicNeighborsBfdEnabled returns the BgpDynamicNeighborsBfdEnabled field value if set, zero value otherwise.
+func (o *Vrf) GetBgpDynamicNeighborsBfdEnabled() bool {
+	if o == nil || isNil(o.BgpDynamicNeighborsBfdEnabled) {
+		var ret bool
+		return ret
+	}
+	return *o.BgpDynamicNeighborsBfdEnabled
+}
+
+// GetBgpDynamicNeighborsBfdEnabledOk returns a tuple with the BgpDynamicNeighborsBfdEnabled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Vrf) GetBgpDynamicNeighborsBfdEnabledOk() (*bool, bool) {
+	if o == nil || isNil(o.BgpDynamicNeighborsBfdEnabled) {
+		return nil, false
+	}
+	return o.BgpDynamicNeighborsBfdEnabled, true
+}
+
+// HasBgpDynamicNeighborsBfdEnabled returns a boolean if a field has been set.
+func (o *Vrf) HasBgpDynamicNeighborsBfdEnabled() bool {
+	if o != nil && !isNil(o.BgpDynamicNeighborsBfdEnabled) {
+		return true
+	}
+
+	return false
+}
+
+// SetBgpDynamicNeighborsBfdEnabled gets a reference to the given bool and assigns it to the BgpDynamicNeighborsBfdEnabled field.
+func (o *Vrf) SetBgpDynamicNeighborsBfdEnabled(v bool) {
+	o.BgpDynamicNeighborsBfdEnabled = &v
+}
+
 // GetLocalAsn returns the LocalAsn field value if set, zero value otherwise.
 func (o *Vrf) GetLocalAsn() int32 {
 	if o == nil || isNil(o.LocalAsn) {
@@ -251,6 +325,38 @@ func (o *Vrf) HasLocalAsn() bool {
 // SetLocalAsn gets a reference to the given int32 and assigns it to the LocalAsn field.
 func (o *Vrf) SetLocalAsn(v int32) {
 	o.LocalAsn = &v
+}
+
+// GetVirtualCircuits returns the VirtualCircuits field value if set, zero value otherwise.
+func (o *Vrf) GetVirtualCircuits() []VrfVirtualCircuitsInner {
+	if o == nil || isNil(o.VirtualCircuits) {
+		var ret []VrfVirtualCircuitsInner
+		return ret
+	}
+	return o.VirtualCircuits
+}
+
+// GetVirtualCircuitsOk returns a tuple with the VirtualCircuits field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Vrf) GetVirtualCircuitsOk() ([]VrfVirtualCircuitsInner, bool) {
+	if o == nil || isNil(o.VirtualCircuits) {
+		return nil, false
+	}
+	return o.VirtualCircuits, true
+}
+
+// HasVirtualCircuits returns a boolean if a field has been set.
+func (o *Vrf) HasVirtualCircuits() bool {
+	if o != nil && !isNil(o.VirtualCircuits) {
+		return true
+	}
+
+	return false
+}
+
+// SetVirtualCircuits gets a reference to the given []VrfVirtualCircuitsInner and assigns it to the VirtualCircuits field.
+func (o *Vrf) SetVirtualCircuits(v []VrfVirtualCircuitsInner) {
+	o.VirtualCircuits = v
 }
 
 // GetIpRanges returns the IpRanges field value if set, zero value otherwise.
@@ -496,14 +602,23 @@ func (o Vrf) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
+	if !isNil(o.Bill) {
+		toSerialize["bill"] = o.Bill
+	}
 	if !isNil(o.BgpDynamicNeighborsEnabled) {
 		toSerialize["bgp_dynamic_neighbors_enabled"] = o.BgpDynamicNeighborsEnabled
 	}
 	if !isNil(o.BgpDynamicNeighborsExportRouteMap) {
 		toSerialize["bgp_dynamic_neighbors_export_route_map"] = o.BgpDynamicNeighborsExportRouteMap
 	}
+	if !isNil(o.BgpDynamicNeighborsBfdEnabled) {
+		toSerialize["bgp_dynamic_neighbors_bfd_enabled"] = o.BgpDynamicNeighborsBfdEnabled
+	}
 	if !isNil(o.LocalAsn) {
 		toSerialize["local_asn"] = o.LocalAsn
+	}
+	if !isNil(o.VirtualCircuits) {
+		toSerialize["virtual_circuits"] = o.VirtualCircuits
 	}
 	if !isNil(o.IpRanges) {
 		toSerialize["ip_ranges"] = o.IpRanges
@@ -547,9 +662,12 @@ func (o *Vrf) UnmarshalJSON(bytes []byte) (err error) {
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "description")
+		delete(additionalProperties, "bill")
 		delete(additionalProperties, "bgp_dynamic_neighbors_enabled")
 		delete(additionalProperties, "bgp_dynamic_neighbors_export_route_map")
+		delete(additionalProperties, "bgp_dynamic_neighbors_bfd_enabled")
 		delete(additionalProperties, "local_asn")
+		delete(additionalProperties, "virtual_circuits")
 		delete(additionalProperties, "ip_ranges")
 		delete(additionalProperties, "project")
 		delete(additionalProperties, "metro")

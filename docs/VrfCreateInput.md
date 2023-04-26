@@ -4,6 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**BgpDynamicNeighborsEnabled** | Pointer to **bool** | Toggle to enable the dynamic bgp neighbors feature on the VRF | [optional] 
+**BgpDynamicNeighborsExportRouteMap** | Pointer to **bool** | Toggle to export the VRF route-map to the dynamic bgp neighbors | [optional] 
+**BgpDynamicNeighborsBfdEnabled** | Pointer to **bool** | Toggle BFD on dynamic bgp neighbors sessions | [optional] 
 **Description** | Pointer to **string** |  | [optional] 
 **IpRanges** | Pointer to **[]string** | A list of CIDR network addresses. Like [\&quot;10.0.0.0/16\&quot;, \&quot;2001:d78::/56\&quot;]. IPv4 blocks must be between /8 and /29 in size. IPv6 blocks must be between /56 and /64. A VRF\\&#39;s IP ranges must be defined in order to create VRF IP Reservations, which can then be used for Metal Gateways or Virtual Circuits. | [optional] 
 **LocalAsn** | Pointer to **int32** |  | [optional] 
@@ -28,6 +31,81 @@ will change when the set of required properties is changed
 NewVrfCreateInputWithDefaults instantiates a new VrfCreateInput object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetBgpDynamicNeighborsEnabled
+
+`func (o *VrfCreateInput) GetBgpDynamicNeighborsEnabled() bool`
+
+GetBgpDynamicNeighborsEnabled returns the BgpDynamicNeighborsEnabled field if non-nil, zero value otherwise.
+
+### GetBgpDynamicNeighborsEnabledOk
+
+`func (o *VrfCreateInput) GetBgpDynamicNeighborsEnabledOk() (*bool, bool)`
+
+GetBgpDynamicNeighborsEnabledOk returns a tuple with the BgpDynamicNeighborsEnabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBgpDynamicNeighborsEnabled
+
+`func (o *VrfCreateInput) SetBgpDynamicNeighborsEnabled(v bool)`
+
+SetBgpDynamicNeighborsEnabled sets BgpDynamicNeighborsEnabled field to given value.
+
+### HasBgpDynamicNeighborsEnabled
+
+`func (o *VrfCreateInput) HasBgpDynamicNeighborsEnabled() bool`
+
+HasBgpDynamicNeighborsEnabled returns a boolean if a field has been set.
+
+### GetBgpDynamicNeighborsExportRouteMap
+
+`func (o *VrfCreateInput) GetBgpDynamicNeighborsExportRouteMap() bool`
+
+GetBgpDynamicNeighborsExportRouteMap returns the BgpDynamicNeighborsExportRouteMap field if non-nil, zero value otherwise.
+
+### GetBgpDynamicNeighborsExportRouteMapOk
+
+`func (o *VrfCreateInput) GetBgpDynamicNeighborsExportRouteMapOk() (*bool, bool)`
+
+GetBgpDynamicNeighborsExportRouteMapOk returns a tuple with the BgpDynamicNeighborsExportRouteMap field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBgpDynamicNeighborsExportRouteMap
+
+`func (o *VrfCreateInput) SetBgpDynamicNeighborsExportRouteMap(v bool)`
+
+SetBgpDynamicNeighborsExportRouteMap sets BgpDynamicNeighborsExportRouteMap field to given value.
+
+### HasBgpDynamicNeighborsExportRouteMap
+
+`func (o *VrfCreateInput) HasBgpDynamicNeighborsExportRouteMap() bool`
+
+HasBgpDynamicNeighborsExportRouteMap returns a boolean if a field has been set.
+
+### GetBgpDynamicNeighborsBfdEnabled
+
+`func (o *VrfCreateInput) GetBgpDynamicNeighborsBfdEnabled() bool`
+
+GetBgpDynamicNeighborsBfdEnabled returns the BgpDynamicNeighborsBfdEnabled field if non-nil, zero value otherwise.
+
+### GetBgpDynamicNeighborsBfdEnabledOk
+
+`func (o *VrfCreateInput) GetBgpDynamicNeighborsBfdEnabledOk() (*bool, bool)`
+
+GetBgpDynamicNeighborsBfdEnabledOk returns a tuple with the BgpDynamicNeighborsBfdEnabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBgpDynamicNeighborsBfdEnabled
+
+`func (o *VrfCreateInput) SetBgpDynamicNeighborsBfdEnabled(v bool)`
+
+SetBgpDynamicNeighborsBfdEnabled sets BgpDynamicNeighborsBfdEnabled field to given value.
+
+### HasBgpDynamicNeighborsBfdEnabled
+
+`func (o *VrfCreateInput) HasBgpDynamicNeighborsBfdEnabled() bool`
+
+HasBgpDynamicNeighborsBfdEnabled returns a boolean if a field has been set.
 
 ### GetDescription
 

@@ -44,6 +44,7 @@ Name | Type | Description | Notes
 **User** | Pointer to **string** |  | [optional] 
 **Userdata** | Pointer to **string** |  | [optional] 
 **Volumes** | Pointer to [**[]Href**](Href.md) |  | [optional] 
+**Sos** | Pointer to **string** | Hostname used to connect to the instance via the SOS (Serial over SSH) out-of-band console. | [optional] 
 
 ## Methods
 
@@ -1063,6 +1064,31 @@ SetVolumes sets Volumes field to given value.
 `func (o *Device) HasVolumes() bool`
 
 HasVolumes returns a boolean if a field has been set.
+
+### GetSos
+
+`func (o *Device) GetSos() string`
+
+GetSos returns the Sos field if non-nil, zero value otherwise.
+
+### GetSosOk
+
+`func (o *Device) GetSosOk() (*string, bool)`
+
+GetSosOk returns a tuple with the Sos field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSos
+
+`func (o *Device) SetSos(v string)`
+
+SetSos sets Sos field to given value.
+
+### HasSos
+
+`func (o *Device) HasSos() bool`
+
+HasSos returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

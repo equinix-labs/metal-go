@@ -1,4 +1,13 @@
 properties:
+  bgp_dynamic_neighbors_enabled:
+    description: Toggle to enable the dynamic bgp neighbors feature on the VRF
+    type: boolean
+  bgp_dynamic_neighbors_export_route_map:
+    description: Toggle to export the VRF route-map to the dynamic bgp neighbors
+    type: boolean
+  bgp_dynamic_neighbors_bfd_enabled:
+    description: Toggle BFD on dynamic bgp neighbors sessions
+    type: boolean
   description:
     type: string
   ip_ranges:

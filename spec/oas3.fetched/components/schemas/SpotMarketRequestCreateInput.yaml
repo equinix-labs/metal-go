@@ -11,7 +11,7 @@ properties:
       format: uuid
       type: string
     type: array
-  instance_attributes:
+  instance_parameters:
     properties:
       always_pxe:
         type: boolean

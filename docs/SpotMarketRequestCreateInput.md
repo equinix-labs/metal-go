@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **DevicesMin** | Pointer to **int32** |  | [optional] 
 **EndAt** | Pointer to **time.Time** |  | [optional] 
 **Facilities** | Pointer to **[]string** |  | [optional] 
-**InstanceAttributes** | Pointer to [**SpotMarketRequestCreateInputInstanceAttributes**](SpotMarketRequestCreateInputInstanceAttributes.md) |  | [optional] 
+**InstanceParameters** | Pointer to [**SpotMarketRequestCreateInputInstanceParameters**](SpotMarketRequestCreateInputInstanceParameters.md) |  | [optional] 
 **MaxBidPrice** | Pointer to **float32** |  | [optional] 
 **Metro** | Pointer to **string** | The metro ID or code the spot market request will be created in. | [optional] 
 
@@ -131,30 +131,30 @@ SetFacilities sets Facilities field to given value.
 
 HasFacilities returns a boolean if a field has been set.
 
-### GetInstanceAttributes
+### GetInstanceParameters
 
-`func (o *SpotMarketRequestCreateInput) GetInstanceAttributes() SpotMarketRequestCreateInputInstanceAttributes`
+`func (o *SpotMarketRequestCreateInput) GetInstanceParameters() SpotMarketRequestCreateInputInstanceParameters`
 
-GetInstanceAttributes returns the InstanceAttributes field if non-nil, zero value otherwise.
+GetInstanceParameters returns the InstanceParameters field if non-nil, zero value otherwise.
 
-### GetInstanceAttributesOk
+### GetInstanceParametersOk
 
-`func (o *SpotMarketRequestCreateInput) GetInstanceAttributesOk() (*SpotMarketRequestCreateInputInstanceAttributes, bool)`
+`func (o *SpotMarketRequestCreateInput) GetInstanceParametersOk() (*SpotMarketRequestCreateInputInstanceParameters, bool)`
 
-GetInstanceAttributesOk returns a tuple with the InstanceAttributes field if it's non-nil, zero value otherwise
+GetInstanceParametersOk returns a tuple with the InstanceParameters field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetInstanceAttributes
+### SetInstanceParameters
 
-`func (o *SpotMarketRequestCreateInput) SetInstanceAttributes(v SpotMarketRequestCreateInputInstanceAttributes)`
+`func (o *SpotMarketRequestCreateInput) SetInstanceParameters(v SpotMarketRequestCreateInputInstanceParameters)`
 
-SetInstanceAttributes sets InstanceAttributes field to given value.
+SetInstanceParameters sets InstanceParameters field to given value.
 
-### HasInstanceAttributes
+### HasInstanceParameters
 
-`func (o *SpotMarketRequestCreateInput) HasInstanceAttributes() bool`
+`func (o *SpotMarketRequestCreateInput) HasInstanceParameters() bool`
 
-HasInstanceAttributes returns a boolean if a field has been set.
+HasInstanceParameters returns a boolean if a field has been set.
 
 ### GetMaxBidPrice
 
