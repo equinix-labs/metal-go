@@ -18,7 +18,7 @@ GIT_ORG=equinix-labs
 GIT_REPO=metal-go
 PACKAGE_PREFIX=metal
 PACKAGE_MAJOR=v1
-PACKAGE_VERSION=0.7.0
+PACKAGE_VERSION=$(shell cat version)
 CRI=docker # nerdctl
 
 OPENAPI_GENERATOR=${CRI} run --rm -u ${CURRENT_UID}:${CURRENT_GID} -v $(CURDIR):/local ${OPENAPI_IMAGE}
