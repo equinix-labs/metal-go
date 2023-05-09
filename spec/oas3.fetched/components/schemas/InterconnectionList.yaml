@@ -3,4 +3,6 @@ properties:
     items:
       $ref: './Interconnection.yaml'
     type: array
+  meta:
+    $ref: './Meta.yaml'
 type: object

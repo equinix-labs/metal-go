@@ -253,9 +253,11 @@ Class | Method | HTTP request | Description
 *MembershipsApi* | [**FindMembershipById**](docs/MembershipsApi.md#findmembershipbyid) | **Get** /memberships/{id} | Retrieve a membership
 *MembershipsApi* | [**UpdateMembership**](docs/MembershipsApi.md#updatemembership) | **Put** /memberships/{id} | Update the membership
 *MetalGatewaysApi* | [**CreateMetalGateway**](docs/MetalGatewaysApi.md#createmetalgateway) | **Post** /projects/{project_id}/metal-gateways | Create a metal gateway
+*MetalGatewaysApi* | [**CreateMetalGatewayElasticIp**](docs/MetalGatewaysApi.md#createmetalgatewayelasticip) | **Post** /metal-gateways/{id}/ips.yaml | Create a Metal Gateway Elastic IP
 *MetalGatewaysApi* | [**DeleteMetalGateway**](docs/MetalGatewaysApi.md#deletemetalgateway) | **Delete** /metal-gateways/{id} | Deletes the metal gateway
 *MetalGatewaysApi* | [**FindMetalGatewayById**](docs/MetalGatewaysApi.md#findmetalgatewaybyid) | **Get** /metal-gateways/{id} | Returns the metal gateway
 *MetalGatewaysApi* | [**FindMetalGatewaysByProject**](docs/MetalGatewaysApi.md#findmetalgatewaysbyproject) | **Get** /projects/{project_id}/metal-gateways | Returns all metal gateways for a project
+*MetalGatewaysApi* | [**GetMetalGatewayElasticIps**](docs/MetalGatewaysApi.md#getmetalgatewayelasticips) | **Get** /metal-gateways/{id}/ips.yaml | List Metal Gateway Elastic IPs
 *MetrosApi* | [**FindMetros**](docs/MetrosApi.md#findmetros) | **Get** /locations/metros | Retrieve all metros
 *MetrosApi* | [**GetMetro**](docs/MetrosApi.md#getmetro) | **Get** /locations/metros/{id} | Retrieve a specific Metro&#39;s details
 *OTPsApi* | [**FindEnsureOtp**](docs/OTPsApi.md#findensureotp) | **Post** /user/otp/verify/{otp} | Verify user by providing an OTP
@@ -480,6 +482,7 @@ Class | Method | HTTP request | Description
  - [MetadataNetworkNetworkBonding](docs/MetadataNetworkNetworkBonding.md)
  - [MetalGateway](docs/MetalGateway.md)
  - [MetalGatewayCreateInput](docs/MetalGatewayCreateInput.md)
+ - [MetalGatewayElasticIpCreateInput](docs/MetalGatewayElasticIpCreateInput.md)
  - [MetalGatewayList](docs/MetalGatewayList.md)
  - [MetalGatewayListMetalGatewaysInner](docs/MetalGatewayListMetalGatewaysInner.md)
  - [MetalGatewayLite](docs/MetalGatewayLite.md)
@@ -602,7 +605,6 @@ Class | Method | HTTP request | Description
  - [VrfVirtualCircuit](docs/VrfVirtualCircuit.md)
  - [VrfVirtualCircuitCreateInput](docs/VrfVirtualCircuitCreateInput.md)
  - [VrfVirtualCircuitUpdateInput](docs/VrfVirtualCircuitUpdateInput.md)
- - [VrfVirtualCircuitsInner](docs/VrfVirtualCircuitsInner.md)
 
 
 ## Documentation For Authorization
