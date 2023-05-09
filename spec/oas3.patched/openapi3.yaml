@@ -279,6 +279,8 @@ components:
       $ref: './components/schemas/MetalGateway.yaml'
     MetalGatewayCreateInput:
       $ref: './components/schemas/MetalGatewayCreateInput.yaml'
+    MetalGatewayElasticIpCreateInput:
+      $ref: './components/schemas/MetalGatewayElasticIpCreateInput.yaml'
     MetalGatewayList:
       $ref: './components/schemas/MetalGatewayList.yaml'
     MetalGatewayLite:
@@ -586,6 +588,8 @@ paths:
     $ref: ./paths/memberships/id.yaml
   /metal-gateways/{id}:
     $ref: ./paths/metal-gateways/id.yaml
+  /metal-gateways/{id}/ips.yaml:
+    $ref: ./paths/metal-gateways/id/ips.yaml
   /operating-system-versions:
     $ref: ./paths/operating-system-versions.yaml
   /operating-systems:
