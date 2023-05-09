@@ -21,6 +21,8 @@ Name | Type | Description | Notes
 **Network** | Pointer to **string** |  | [optional] 
 **ParentBlock** | Pointer to [**ParentBlock**](ParentBlock.md) |  | [optional] 
 **Public** | Pointer to **bool** |  | [optional] 
+**State** | Pointer to **string** |  | [optional] 
+**NextHop** | Pointer to **string** | Only set when this is a Metal Gateway Elastic IP Assignment.  The IP address within the Metal Gateway to which requests to the Elastic IP are forwarded.  | [optional] 
 **Addon** | Pointer to **bool** |  | [optional] 
 **Assignments** | Pointer to [**[]IPAssignment**](IPAssignment.md) |  | [optional] 
 **Available** | Pointer to **string** |  | [optional] 
@@ -32,7 +34,6 @@ Name | Type | Description | Notes
 **Project** | Pointer to [**Project**](Project.md) |  | [optional] 
 **ProjectLite** | Pointer to [**Project**](Project.md) |  | [optional] 
 **RequestedBy** | Pointer to [**Href**](Href.md) |  | [optional] 
-**State** | Pointer to **string** |  | [optional] 
 **Tags** | Pointer to **[]string** |  | [optional] 
 **Type** | **string** |  | 
 **CreatedBy** | Pointer to [**Href**](Href.md) |  | [optional] 
@@ -482,6 +483,56 @@ SetPublic sets Public field to given value.
 
 HasPublic returns a boolean if a field has been set.
 
+### GetState
+
+`func (o *FindIPAddressById200Response) GetState() string`
+
+GetState returns the State field if non-nil, zero value otherwise.
+
+### GetStateOk
+
+`func (o *FindIPAddressById200Response) GetStateOk() (*string, bool)`
+
+GetStateOk returns a tuple with the State field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetState
+
+`func (o *FindIPAddressById200Response) SetState(v string)`
+
+SetState sets State field to given value.
+
+### HasState
+
+`func (o *FindIPAddressById200Response) HasState() bool`
+
+HasState returns a boolean if a field has been set.
+
+### GetNextHop
+
+`func (o *FindIPAddressById200Response) GetNextHop() string`
+
+GetNextHop returns the NextHop field if non-nil, zero value otherwise.
+
+### GetNextHopOk
+
+`func (o *FindIPAddressById200Response) GetNextHopOk() (*string, bool)`
+
+GetNextHopOk returns a tuple with the NextHop field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNextHop
+
+`func (o *FindIPAddressById200Response) SetNextHop(v string)`
+
+SetNextHop sets NextHop field to given value.
+
+### HasNextHop
+
+`func (o *FindIPAddressById200Response) HasNextHop() bool`
+
+HasNextHop returns a boolean if a field has been set.
+
 ### GetAddon
 
 `func (o *FindIPAddressById200Response) GetAddon() bool`
@@ -756,31 +807,6 @@ SetRequestedBy sets RequestedBy field to given value.
 `func (o *FindIPAddressById200Response) HasRequestedBy() bool`
 
 HasRequestedBy returns a boolean if a field has been set.
-
-### GetState
-
-`func (o *FindIPAddressById200Response) GetState() string`
-
-GetState returns the State field if non-nil, zero value otherwise.
-
-### GetStateOk
-
-`func (o *FindIPAddressById200Response) GetStateOk() (*string, bool)`
-
-GetStateOk returns a tuple with the State field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetState
-
-`func (o *FindIPAddressById200Response) SetState(v string)`
-
-SetState sets State field to given value.
-
-### HasState
-
-`func (o *FindIPAddressById200Response) HasState() bool`
-
-HasState returns a boolean if a field has been set.
 
 ### GetTags
 

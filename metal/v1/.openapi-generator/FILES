@@ -168,6 +168,7 @@ docs/MetadataNetworkNetwork.md
 docs/MetadataNetworkNetworkBonding.md
 docs/MetalGateway.md
 docs/MetalGatewayCreateInput.md
+docs/MetalGatewayElasticIpCreateInput.md
 docs/MetalGatewayList.md
 docs/MetalGatewayListMetalGatewaysInner.md
 docs/MetalGatewayLite.md
@@ -312,7 +313,6 @@ docs/VrfUpdateInput.md
 docs/VrfVirtualCircuit.md
 docs/VrfVirtualCircuitCreateInput.md
 docs/VrfVirtualCircuitUpdateInput.md
-docs/VrfVirtualCircuitsInner.md
 git_push.sh
 go.mod
 go.sum
@@ -427,6 +427,7 @@ model_metadata_network_network.go
 model_metadata_network_network_bonding.go
 model_metal_gateway.go
 model_metal_gateway_create_input.go
+model_metal_gateway_elastic_ip_create_input.go
 model_metal_gateway_list.go
 model_metal_gateway_list_metal_gateways_inner.go
 model_metal_gateway_lite.go
@@ -549,7 +550,6 @@ model_vrf_update_input.go
 model_vrf_virtual_circuit.go
 model_vrf_virtual_circuit_create_input.go
 model_vrf_virtual_circuit_update_input.go
-model_vrf_virtual_circuits_inner.go
 response.go
 test/api_authentication_test.go
 test/api_batches_test.go

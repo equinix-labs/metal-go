@@ -21,23 +21,27 @@ var _ MappedNullable = &IPAssignment{}
 
 // IPAssignment struct for IPAssignment
 type IPAssignment struct {
-	Address              *string            `json:"address,omitempty"`
-	AddressFamily        *int32             `json:"address_family,omitempty"`
-	AssignedTo           *Href              `json:"assigned_to,omitempty"`
-	Cidr                 *int32             `json:"cidr,omitempty"`
-	CreatedAt            *time.Time         `json:"created_at,omitempty"`
-	Enabled              *bool              `json:"enabled,omitempty"`
-	Gateway              *string            `json:"gateway,omitempty"`
-	GlobalIp             *bool              `json:"global_ip,omitempty"`
-	Href                 *string            `json:"href,omitempty"`
-	Id                   *string            `json:"id,omitempty"`
-	Manageable           *bool              `json:"manageable,omitempty"`
-	Management           *bool              `json:"management,omitempty"`
-	Metro                *IPAssignmentMetro `json:"metro,omitempty"`
-	Netmask              *string            `json:"netmask,omitempty"`
-	Network              *string            `json:"network,omitempty"`
-	ParentBlock          *ParentBlock       `json:"parent_block,omitempty"`
-	Public               *bool              `json:"public,omitempty"`
+	Address       *string            `json:"address,omitempty"`
+	AddressFamily *int32             `json:"address_family,omitempty"`
+	AssignedTo    *Href              `json:"assigned_to,omitempty"`
+	Cidr          *int32             `json:"cidr,omitempty"`
+	CreatedAt     *time.Time         `json:"created_at,omitempty"`
+	Enabled       *bool              `json:"enabled,omitempty"`
+	Gateway       *string            `json:"gateway,omitempty"`
+	GlobalIp      *bool              `json:"global_ip,omitempty"`
+	Href          *string            `json:"href,omitempty"`
+	Id            *string            `json:"id,omitempty"`
+	Manageable    *bool              `json:"manageable,omitempty"`
+	Management    *bool              `json:"management,omitempty"`
+	Metro         *IPAssignmentMetro `json:"metro,omitempty"`
+	Netmask       *string            `json:"netmask,omitempty"`
+	Network       *string            `json:"network,omitempty"`
+	ParentBlock   *ParentBlock       `json:"parent_block,omitempty"`
+	Public        *bool              `json:"public,omitempty"`
+	// Only set when this is a Metal Gateway Elastic IP Assignment.  Describes the current configuration state of this IP on the network.
+	State map[string]interface{} `json:"state,omitempty"`
+	// Only set when this is a Metal Gateway Elastic IP Assignment.  The IP address within the Metal Gateway to which requests to the Elastic IP are forwarded.
+	NextHop              *string `json:"next_hop,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -604,6 +608,70 @@ func (o *IPAssignment) SetPublic(v bool) {
 	o.Public = &v
 }
 
+// GetState returns the State field value if set, zero value otherwise.
+func (o *IPAssignment) GetState() map[string]interface{} {
+	if o == nil || isNil(o.State) {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.State
+}
+
+// GetStateOk returns a tuple with the State field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IPAssignment) GetStateOk() (map[string]interface{}, bool) {
+	if o == nil || isNil(o.State) {
+		return map[string]interface{}{}, false
+	}
+	return o.State, true
+}
+
+// HasState returns a boolean if a field has been set.
+func (o *IPAssignment) HasState() bool {
+	if o != nil && !isNil(o.State) {
+		return true
+	}
+
+	return false
+}
+
+// SetState gets a reference to the given map[string]interface{} and assigns it to the State field.
+func (o *IPAssignment) SetState(v map[string]interface{}) {
+	o.State = v
+}
+
+// GetNextHop returns the NextHop field value if set, zero value otherwise.
+func (o *IPAssignment) GetNextHop() string {
+	if o == nil || isNil(o.NextHop) {
+		var ret string
+		return ret
+	}
+	return *o.NextHop
+}
+
+// GetNextHopOk returns a tuple with the NextHop field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IPAssignment) GetNextHopOk() (*string, bool) {
+	if o == nil || isNil(o.NextHop) {
+		return nil, false
+	}
+	return o.NextHop, true
+}
+
+// HasNextHop returns a boolean if a field has been set.
+func (o *IPAssignment) HasNextHop() bool {
+	if o != nil && !isNil(o.NextHop) {
+		return true
+	}
+
+	return false
+}
+
+// SetNextHop gets a reference to the given string and assigns it to the NextHop field.
+func (o *IPAssignment) SetNextHop(v string) {
+	o.NextHop = &v
+}
+
 func (o IPAssignment) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -665,6 +733,12 @@ func (o IPAssignment) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Public) {
 		toSerialize["public"] = o.Public
 	}
+	if !isNil(o.State) {
+		toSerialize["state"] = o.State
+	}
+	if !isNil(o.NextHop) {
+		toSerialize["next_hop"] = o.NextHop
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -700,6 +774,8 @@ func (o *IPAssignment) UnmarshalJSON(bytes []byte) (err error) {
 		delete(additionalProperties, "network")
 		delete(additionalProperties, "parent_block")
 		delete(additionalProperties, "public")
+		delete(additionalProperties, "state")
+		delete(additionalProperties, "next_hop")
 		o.AdditionalProperties = additionalProperties
 	}
 

@@ -21,6 +21,8 @@ Name | Type | Description | Notes
 **Network** | Pointer to **string** |  | [optional] 
 **ParentBlock** | Pointer to [**ParentBlock**](ParentBlock.md) |  | [optional] 
 **Public** | Pointer to **bool** |  | [optional] 
+**State** | Pointer to **map[string]interface{}** | Only set when this is a Metal Gateway Elastic IP Assignment.  Describes the current configuration state of this IP on the network.  | [optional] 
+**NextHop** | Pointer to **string** | Only set when this is a Metal Gateway Elastic IP Assignment.  The IP address within the Metal Gateway to which requests to the Elastic IP are forwarded.  | [optional] 
 
 ## Methods
 
@@ -465,6 +467,56 @@ SetPublic sets Public field to given value.
 `func (o *IPAssignment) HasPublic() bool`
 
 HasPublic returns a boolean if a field has been set.
+
+### GetState
+
+`func (o *IPAssignment) GetState() map[string]interface{}`
+
+GetState returns the State field if non-nil, zero value otherwise.
+
+### GetStateOk
+
+`func (o *IPAssignment) GetStateOk() (*map[string]interface{}, bool)`
+
+GetStateOk returns a tuple with the State field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetState
+
+`func (o *IPAssignment) SetState(v map[string]interface{})`
+
+SetState sets State field to given value.
+
+### HasState
+
+`func (o *IPAssignment) HasState() bool`
+
+HasState returns a boolean if a field has been set.
+
+### GetNextHop
+
+`func (o *IPAssignment) GetNextHop() string`
+
+GetNextHop returns the NextHop field if non-nil, zero value otherwise.
+
+### GetNextHopOk
+
+`func (o *IPAssignment) GetNextHopOk() (*string, bool)`
+
+GetNextHopOk returns a tuple with the NextHop field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNextHop
+
+`func (o *IPAssignment) SetNextHop(v string)`
+
+SetNextHop sets NextHop field to given value.
+
+### HasNextHop
+
+`func (o *IPAssignment) HasNextHop() bool`
+
+HasNextHop returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
