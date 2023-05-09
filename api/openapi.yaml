@@ -3042,13 +3042,16 @@ paths:
       - Invitations
   /ips/{id}:
     delete:
-      description: Note! This call can be used to un-assign an IP assignment or delete
-        an IP reservation. Un-assign an IP address record. Use the assignment UUID
-        you get after attaching the IP. This will remove the relationship between
-        an IP and the device and will make the IP address available to be assigned
-        to another device. Delete and IP reservation. Use the reservation UUID you
-        get after adding the IP to the project. This will permanently delete the IP
-        block reservation from the project.
+      description: |
+        This call can be used to un-assign an IP assignment or delete
+        an IP reservation.
+
+        Un-assign an IP address record.
+        Use the assignment UUID you
+        get after attaching the IP. This will remove the relationship between an IP and the device or metal gateway and will make the IP address available to be assigned to another device, once the IP has been un-configured from the network.
+
+        Delete an IP reservation.
+        Use the reservation UUID you get after adding the IP to the project. This will permanently delete the IP block reservation from the project.
       operationId: deleteIPAddress
       parameters:
       - description: IP Address UUID
@@ -3922,7 +3925,8 @@ paths:
       - Memberships
   /metal-gateways/{id}:
     delete:
-      description: Deletes a specific metal gateway
+      description: Deletes a metal gateway and any elastic IP assignments associated
+        with this metal gateway.
       operationId: deleteMetalGateway
       parameters:
       - description: Metal Gateway UUID
@@ -4041,6 +4045,126 @@ paths:
                 $ref: '#/components/schemas/Error'
           description: not found
       summary: Returns the metal gateway
+      tags:
+      - MetalGateways
+  /metal-gateways/{id}/ips.yaml:
+    get:
+      description: Returns the list of Elastic IPs assigned to this Metal Gateway
+      operationId: getMetalGatewayElasticIps
+      parameters:
+      - description: Metal Gateway UUID
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - description: |-
+          Nested attributes to include. Included objects will return their full
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+          nested objects.
+        explode: false
+        in: query
+        name: include
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Nested attributes to exclude. Excluded objects will return only the href
+          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
+          nested objects.
+        explode: false
+        in: query
+        name: exclude
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IPAssignmentList'
+          description: OK
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Not Found
+      summary: List Metal Gateway Elastic IPs
+      tags:
+      - MetalGateways
+    post:
+      description: |
+        Create a new Elastic IP on this Metal Gateway.
+
+        Assign an IPv4 range as an elastic IP to the Metal Gateway, with a specified next-hop address contained within the Metal Gateway.
+
+        Notice: Elastic IPs on Metal Gateways are a test feature currently under active development, and only available to certain users. Please contact Customer Success for more information.
+      operationId: createMetalGatewayElasticIp
+      parameters:
+      - description: Metal Gateway UUID
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MetalGatewayElasticIpCreateInput'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IPAssignment'
+          description: Created
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Not Found
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unprocessable entity
+      summary: Create a Metal Gateway Elastic IP
       tags:
       - MetalGateways
   /operating-system-versions:
@@ -8615,6 +8739,56 @@ paths:
           format: uuid
           type: string
         style: simple
+      - description: |-
+          Nested attributes to include. Included objects will return their full
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+          nested objects.
+        explode: false
+        in: query
+        name: include
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Nested attributes to exclude. Excluded objects will return only the href
+          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
+          nested objects.
+        explode: false
+        in: query
+        name: exclude
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Page to return
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          format: int32
+          maximum: 100000
+          minimum: 1
+          type: integer
+        style: form
+      - description: Items returned per page
+        explode: true
+        in: query
+        name: per_page
+        required: false
+        schema:
+          default: 10
+          format: int32
+          maximum: 1000
+          minimum: 1
+          type: integer
+        style: form
       responses:
         "200":
           content:
@@ -12661,9 +12835,11 @@ components:
           management: true
           netmask: netmask
           metro: null
+          next_hop: next_hop
           cidr: 5
           href: href
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          state: "{}"
           global_ip: true
           gateway: gateway
           assigned_to:
@@ -12683,9 +12859,11 @@ components:
           management: true
           netmask: netmask
           metro: null
+          next_hop: next_hop
           cidr: 5
           href: href
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          state: "{}"
           global_ip: true
           gateway: gateway
           assigned_to:
@@ -13503,9 +13681,11 @@ components:
             management: true
             netmask: netmask
             metro: null
+            next_hop: next_hop
             cidr: 5
             href: href
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            state: "{}"
             global_ip: true
             gateway: gateway
             assigned_to:
@@ -13525,9 +13705,11 @@ components:
             management: true
             netmask: netmask
             metro: null
+            next_hop: next_hop
             cidr: 5
             href: href
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            state: "{}"
             global_ip: true
             gateway: gateway
             assigned_to:
@@ -13988,9 +14170,11 @@ components:
             management: true
             netmask: netmask
             metro: null
+            next_hop: next_hop
             cidr: 5
             href: href
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            state: "{}"
             global_ip: true
             gateway: gateway
             assigned_to:
@@ -14010,9 +14194,11 @@ components:
             management: true
             netmask: netmask
             metro: null
+            next_hop: next_hop
             cidr: 5
             href: href
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            state: "{}"
             global_ip: true
             gateway: gateway
             assigned_to:
@@ -15427,9 +15613,11 @@ components:
         management: true
         netmask: netmask
         metro: null
+        next_hop: next_hop
         cidr: 5
         href: href
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        state: "{}"
         global_ip: true
         gateway: gateway
         assigned_to:
@@ -15471,6 +15659,23 @@ components:
           $ref: '#/components/schemas/ParentBlock'
         public:
           type: boolean
+        state:
+          description: |
+            Only set when this is a Metal Gateway Elastic IP Assignment.
+
+            Describes the current configuration state of this IP on the network.
+          enum:
+          - pending
+          - active
+          - deleting
+          type: object
+        next_hop:
+          description: |
+            Only set when this is a Metal Gateway Elastic IP Assignment.
+
+            The IP address within the Metal Gateway to which requests to the Elastic IP are forwarded.
+          format: ipv4
+          type: string
       type: object
     IPAssignmentInput:
       example:
@@ -15502,9 +15707,11 @@ components:
           management: true
           netmask: netmask
           metro: null
+          next_hop: next_hop
           cidr: 5
           href: href
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          state: "{}"
           global_ip: true
           gateway: gateway
           assigned_to:
@@ -15524,9 +15731,11 @@ components:
           management: true
           netmask: netmask
           metro: null
+          next_hop: next_hop
           cidr: 5
           href: href
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          state: "{}"
           global_ip: true
           gateway: gateway
           assigned_to:
@@ -15952,6 +16161,20 @@ components:
       type: object
     InterconnectionList:
       example:
+        meta:
+          next:
+            href: href
+          total: 0
+          last:
+            href: href
+          previous:
+            href: href
+          last_page: 1
+          self:
+            href: href
+          first:
+            href: href
+          current_page: 6
         interconnections:
         - description: description
           created_at: 2000-01-23T04:56:07.000+00:00
@@ -16086,6 +16309,8 @@ components:
           items:
             $ref: '#/components/schemas/Interconnection'
           type: array
+        meta:
+          $ref: '#/components/schemas/Meta'
       type: object
     InterconnectionPort:
       example:
@@ -16667,6 +16892,47 @@ components:
           type: string
       required:
       - virtual_network_id
+      type: object
+    MetalGatewayElasticIpCreateInput:
+      example:
+        address: 147.75.234.8/31
+        next_hop: 192.168.12.13
+        customdata:
+          key: ""
+        tags:
+        - NY
+        - prod
+        - public
+      properties:
+        address:
+          description: An IP address (or IP Address range) contained within one of
+            the project's IP Reservations
+          example: 147.75.234.8/31
+          type: string
+        next_hop:
+          description: An IP address contained within the Metal Gateways' IP Reservation
+            range.
+          example: 192.168.12.13
+          format: ipv4
+          type: string
+        customdata:
+          additionalProperties: true
+          description: Optional User-defined JSON object value.
+          type: object
+        tags:
+          description: Optional list of User-defined tags. Can be used by users to
+            provide additional details or context regarding the purpose or usage of
+            this resource.
+          example:
+          - NY
+          - prod
+          - public
+          items:
+            type: string
+          type: array
+      required:
+      - address
+      - next_hop
       type: object
     MetalGatewayList:
       example:
@@ -20235,7 +20501,7 @@ components:
       example:
         avatar_thumb_url: avatar_thumb_url
         last_login_at: 2000-01-23T04:56:07.000+00:00
-        max_projects: 5
+        max_projects: 2
         timezone: timezone
         created_at: 2000-01-23T04:56:07.000+00:00
         last_name: last_name
@@ -20252,7 +20518,7 @@ components:
         href: href
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         first_name: first_name
-        max_organizations: 1
+        max_organizations: 5
         two_factor_auth: two_factor_auth
         email: email
       properties:
@@ -20421,7 +20687,7 @@ components:
         users:
         - avatar_thumb_url: avatar_thumb_url
           last_login_at: 2000-01-23T04:56:07.000+00:00
-          max_projects: 5
+          max_projects: 2
           timezone: timezone
           created_at: 2000-01-23T04:56:07.000+00:00
           last_name: last_name
@@ -20438,12 +20704,12 @@ components:
           href: href
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           first_name: first_name
-          max_organizations: 1
+          max_organizations: 5
           two_factor_auth: two_factor_auth
           email: email
         - avatar_thumb_url: avatar_thumb_url
           last_login_at: 2000-01-23T04:56:07.000+00:00
-          max_projects: 5
+          max_projects: 2
           timezone: timezone
           created_at: 2000-01-23T04:56:07.000+00:00
           last_name: last_name
@@ -20460,7 +20726,7 @@ components:
           href: href
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           first_name: first_name
-          max_organizations: 1
+          max_organizations: 5
           two_factor_auth: two_factor_auth
           email: email
       properties:
@@ -20915,7 +21181,7 @@ components:
         created_by:
           avatar_thumb_url: avatar_thumb_url
           last_login_at: 2000-01-23T04:56:07.000+00:00
-          max_projects: 5
+          max_projects: 2
           timezone: timezone
           created_at: 2000-01-23T04:56:07.000+00:00
           last_name: last_name
@@ -20932,31 +21198,53 @@ components:
           href: href
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           first_name: first_name
-          max_organizations: 1
+          max_organizations: 5
           two_factor_auth: two_factor_auth
           email: email
         updated_at: 2000-01-23T04:56:07.000+00:00
         virtual_circuits:
         - subnet: 12.0.0.0/30
+          customer_ip: 12.0.0.2
+          description: description
+          project:
+            href: href
+          created_at: 2000-01-23T04:56:07.000+00:00
+          vrf: null
+          metal_ip: 12.0.0.1
+          speed: 5
+          tags:
+          - tags
+          - tags
+          nni_vlan: 6
+          updated_at: 2000-01-23T04:56:07.000+00:00
           port:
             href: href
           name: name
-          customer_ip: 12.0.0.2
-          peer_asn: 6
+          peer_asn: 1
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          metal_ip: 12.0.0.1
-          status: status
           md5: md5
+          status: status
         - subnet: 12.0.0.0/30
+          customer_ip: 12.0.0.2
+          description: description
+          project:
+            href: href
+          created_at: 2000-01-23T04:56:07.000+00:00
+          vrf: null
+          metal_ip: 12.0.0.1
+          speed: 5
+          tags:
+          - tags
+          - tags
+          nni_vlan: 6
+          updated_at: 2000-01-23T04:56:07.000+00:00
           port:
             href: href
           name: name
-          customer_ip: 12.0.0.2
-          peer_asn: 6
+          peer_asn: 1
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          metal_ip: 12.0.0.1
-          status: status
           md5: md5
+          status: status
         ip_ranges:
         - ip_ranges
         - ip_ranges
@@ -20999,7 +21287,7 @@ components:
         virtual_circuits:
           description: Virtual circuits that are in the VRF
           items:
-            $ref: '#/components/schemas/Vrf_virtual_circuits_inner'
+            $ref: '#/components/schemas/VrfVirtualCircuit'
           type: array
         ip_ranges:
           description: "A list of CIDR network addresses. Like [\"10.0.0.0/16\", \"\
@@ -21208,7 +21496,7 @@ components:
           created_by:
             avatar_thumb_url: avatar_thumb_url
             last_login_at: 2000-01-23T04:56:07.000+00:00
-            max_projects: 5
+            max_projects: 2
             timezone: timezone
             created_at: 2000-01-23T04:56:07.000+00:00
             last_name: last_name
@@ -21225,31 +21513,53 @@ components:
             href: href
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             first_name: first_name
-            max_organizations: 1
+            max_organizations: 5
             two_factor_auth: two_factor_auth
             email: email
           updated_at: 2000-01-23T04:56:07.000+00:00
           virtual_circuits:
           - subnet: 12.0.0.0/30
+            customer_ip: 12.0.0.2
+            description: description
+            project:
+              href: href
+            created_at: 2000-01-23T04:56:07.000+00:00
+            vrf: null
+            metal_ip: 12.0.0.1
+            speed: 5
+            tags:
+            - tags
+            - tags
+            nni_vlan: 6
+            updated_at: 2000-01-23T04:56:07.000+00:00
             port:
               href: href
             name: name
-            customer_ip: 12.0.0.2
-            peer_asn: 6
+            peer_asn: 1
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            metal_ip: 12.0.0.1
-            status: status
             md5: md5
+            status: status
           - subnet: 12.0.0.0/30
+            customer_ip: 12.0.0.2
+            description: description
+            project:
+              href: href
+            created_at: 2000-01-23T04:56:07.000+00:00
+            vrf: null
+            metal_ip: 12.0.0.1
+            speed: 5
+            tags:
+            - tags
+            - tags
+            nni_vlan: 6
+            updated_at: 2000-01-23T04:56:07.000+00:00
             port:
               href: href
             name: name
-            customer_ip: 12.0.0.2
-            peer_asn: 6
+            peer_asn: 1
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            metal_ip: 12.0.0.1
-            status: status
             md5: md5
+            status: status
           ip_ranges:
           - ip_ranges
           - ip_ranges
@@ -21496,7 +21806,7 @@ components:
             created_by:
               avatar_thumb_url: avatar_thumb_url
               last_login_at: 2000-01-23T04:56:07.000+00:00
-              max_projects: 5
+              max_projects: 2
               timezone: timezone
               created_at: 2000-01-23T04:56:07.000+00:00
               last_name: last_name
@@ -21513,31 +21823,53 @@ components:
               href: href
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
               first_name: first_name
-              max_organizations: 1
+              max_organizations: 5
               two_factor_auth: two_factor_auth
               email: email
             updated_at: 2000-01-23T04:56:07.000+00:00
             virtual_circuits:
             - subnet: 12.0.0.0/30
+              customer_ip: 12.0.0.2
+              description: description
+              project:
+                href: href
+              created_at: 2000-01-23T04:56:07.000+00:00
+              vrf: null
+              metal_ip: 12.0.0.1
+              speed: 5
+              tags:
+              - tags
+              - tags
+              nni_vlan: 6
+              updated_at: 2000-01-23T04:56:07.000+00:00
               port:
                 href: href
               name: name
-              customer_ip: 12.0.0.2
-              peer_asn: 6
+              peer_asn: 1
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-              metal_ip: 12.0.0.1
-              status: status
               md5: md5
+              status: status
             - subnet: 12.0.0.0/30
+              customer_ip: 12.0.0.2
+              description: description
+              project:
+                href: href
+              created_at: 2000-01-23T04:56:07.000+00:00
+              vrf: null
+              metal_ip: 12.0.0.1
+              speed: 5
+              tags:
+              - tags
+              - tags
+              nni_vlan: 6
+              updated_at: 2000-01-23T04:56:07.000+00:00
               port:
                 href: href
               name: name
-              customer_ip: 12.0.0.2
-              peer_asn: 6
+              peer_asn: 1
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-              metal_ip: 12.0.0.1
-              status: status
               md5: md5
+              status: status
             ip_ranges:
             - ip_ranges
             - ip_ranges
@@ -21688,7 +22020,7 @@ components:
             created_by:
               avatar_thumb_url: avatar_thumb_url
               last_login_at: 2000-01-23T04:56:07.000+00:00
-              max_projects: 5
+              max_projects: 2
               timezone: timezone
               created_at: 2000-01-23T04:56:07.000+00:00
               last_name: last_name
@@ -21705,31 +22037,53 @@ components:
               href: href
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
               first_name: first_name
-              max_organizations: 1
+              max_organizations: 5
               two_factor_auth: two_factor_auth
               email: email
             updated_at: 2000-01-23T04:56:07.000+00:00
             virtual_circuits:
             - subnet: 12.0.0.0/30
+              customer_ip: 12.0.0.2
+              description: description
+              project:
+                href: href
+              created_at: 2000-01-23T04:56:07.000+00:00
+              vrf: null
+              metal_ip: 12.0.0.1
+              speed: 5
+              tags:
+              - tags
+              - tags
+              nni_vlan: 6
+              updated_at: 2000-01-23T04:56:07.000+00:00
               port:
                 href: href
               name: name
-              customer_ip: 12.0.0.2
-              peer_asn: 6
+              peer_asn: 1
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-              metal_ip: 12.0.0.1
-              status: status
               md5: md5
+              status: status
             - subnet: 12.0.0.0/30
+              customer_ip: 12.0.0.2
+              description: description
+              project:
+                href: href
+              created_at: 2000-01-23T04:56:07.000+00:00
+              vrf: null
+              metal_ip: 12.0.0.1
+              speed: 5
+              tags:
+              - tags
+              - tags
+              nni_vlan: 6
+              updated_at: 2000-01-23T04:56:07.000+00:00
               port:
                 href: href
               name: name
-              customer_ip: 12.0.0.2
-              peer_asn: 6
+              peer_asn: 1
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-              metal_ip: 12.0.0.1
-              status: status
               md5: md5
+              status: status
             ip_ranges:
             - ip_ranges
             - ip_ranges
@@ -21823,7 +22177,7 @@ components:
           created_by:
             avatar_thumb_url: avatar_thumb_url
             last_login_at: 2000-01-23T04:56:07.000+00:00
-            max_projects: 5
+            max_projects: 2
             timezone: timezone
             created_at: 2000-01-23T04:56:07.000+00:00
             last_name: last_name
@@ -21840,31 +22194,53 @@ components:
             href: href
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             first_name: first_name
-            max_organizations: 1
+            max_organizations: 5
             two_factor_auth: two_factor_auth
             email: email
           updated_at: 2000-01-23T04:56:07.000+00:00
           virtual_circuits:
           - subnet: 12.0.0.0/30
+            customer_ip: 12.0.0.2
+            description: description
+            project:
+              href: href
+            created_at: 2000-01-23T04:56:07.000+00:00
+            vrf: null
+            metal_ip: 12.0.0.1
+            speed: 5
+            tags:
+            - tags
+            - tags
+            nni_vlan: 6
+            updated_at: 2000-01-23T04:56:07.000+00:00
             port:
               href: href
             name: name
-            customer_ip: 12.0.0.2
-            peer_asn: 6
+            peer_asn: 1
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            metal_ip: 12.0.0.1
-            status: status
             md5: md5
+            status: status
           - subnet: 12.0.0.0/30
+            customer_ip: 12.0.0.2
+            description: description
+            project:
+              href: href
+            created_at: 2000-01-23T04:56:07.000+00:00
+            vrf: null
+            metal_ip: 12.0.0.1
+            speed: 5
+            tags:
+            - tags
+            - tags
+            nni_vlan: 6
+            updated_at: 2000-01-23T04:56:07.000+00:00
             port:
               href: href
             name: name
-            customer_ip: 12.0.0.2
-            peer_asn: 6
+            peer_asn: 1
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            metal_ip: 12.0.0.1
-            status: status
             md5: md5
+            status: status
           ip_ranges:
           - ip_ranges
           - ip_ranges
@@ -21917,7 +22293,7 @@ components:
           created_by:
             avatar_thumb_url: avatar_thumb_url
             last_login_at: 2000-01-23T04:56:07.000+00:00
-            max_projects: 5
+            max_projects: 2
             timezone: timezone
             created_at: 2000-01-23T04:56:07.000+00:00
             last_name: last_name
@@ -21934,31 +22310,53 @@ components:
             href: href
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             first_name: first_name
-            max_organizations: 1
+            max_organizations: 5
             two_factor_auth: two_factor_auth
             email: email
           updated_at: 2000-01-23T04:56:07.000+00:00
           virtual_circuits:
           - subnet: 12.0.0.0/30
+            customer_ip: 12.0.0.2
+            description: description
+            project:
+              href: href
+            created_at: 2000-01-23T04:56:07.000+00:00
+            vrf: null
+            metal_ip: 12.0.0.1
+            speed: 5
+            tags:
+            - tags
+            - tags
+            nni_vlan: 6
+            updated_at: 2000-01-23T04:56:07.000+00:00
             port:
               href: href
             name: name
-            customer_ip: 12.0.0.2
-            peer_asn: 6
+            peer_asn: 1
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            metal_ip: 12.0.0.1
-            status: status
             md5: md5
+            status: status
           - subnet: 12.0.0.0/30
+            customer_ip: 12.0.0.2
+            description: description
+            project:
+              href: href
+            created_at: 2000-01-23T04:56:07.000+00:00
+            vrf: null
+            metal_ip: 12.0.0.1
+            speed: 5
+            tags:
+            - tags
+            - tags
+            nni_vlan: 6
+            updated_at: 2000-01-23T04:56:07.000+00:00
             port:
               href: href
             name: name
-            customer_ip: 12.0.0.2
-            peer_asn: 6
+            peer_asn: 1
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            metal_ip: 12.0.0.1
-            status: status
             md5: md5
+            status: status
           ip_ranges:
           - ip_ranges
           - ip_ranges
@@ -22219,6 +22617,28 @@ components:
           type: string
       type: object
     VrfVirtualCircuit:
+      example:
+        subnet: 12.0.0.0/30
+        customer_ip: 12.0.0.2
+        description: description
+        project:
+          href: href
+        created_at: 2000-01-23T04:56:07.000+00:00
+        vrf: null
+        metal_ip: 12.0.0.1
+        speed: 5
+        tags:
+        - tags
+        - tags
+        nni_vlan: 6
+        updated_at: 2000-01-23T04:56:07.000+00:00
+        port:
+          href: href
+        name: name
+        peer_asn: 1
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        md5: md5
+        status: status
       properties:
         customer_ip:
           description: "An IP address from the subnet that will be used on the Customer\
@@ -23105,59 +23525,6 @@ components:
           type: array
         userdata:
           type: string
-      type: object
-    Vrf_virtual_circuits_inner:
-      example:
-        subnet: 12.0.0.0/30
-        port:
-          href: href
-        name: name
-        customer_ip: 12.0.0.2
-        peer_asn: 6
-        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        metal_ip: 12.0.0.1
-        status: status
-        md5: md5
-      properties:
-        id:
-          format: uuid
-          type: string
-        name:
-          type: string
-        status:
-          type: string
-        md5:
-          description: The MD5 password for the BGP peering in plaintext (not a checksum).
-          type: string
-        peer_asn:
-          description: The peer ASN that will be used with the VRF on the Virtual
-            Circuit.
-          type: integer
-        subnet:
-          description: "The /30 or /31 subnet of one of the VRF IP Blocks that will\
-            \ be used with the VRF for the Virtual Circuit. This subnet does not have\
-            \ to be an existing VRF IP reservation, as we will create the VRF IP reservation\
-            \ on creation if it does not exist. The Metal IP and Customer IP must\
-            \ be IPs from this subnet. For /30 subnets, the network and broadcast\
-            \ IPs cannot be used as the Metal or Customer IP."
-          example: 12.0.0.0/30
-          type: string
-        metal_ip:
-          description: "An IP address from the subnet that will be used on the Metal\
-            \ side. This parameter is optional, but if supplied, we will use the other\
-            \ usable IP address in the subnet as the Customer IP. By default, the\
-            \ first usable IP address in the subnet will be used."
-          example: 12.0.0.1
-          type: string
-        customer_ip:
-          description: "An IP address from the subnet that will be used on the Customer\
-            \ side. This parameter is optional, but if supplied, we will use the other\
-            \ usable IP address in the subnet as the Metal IP. By default, the last\
-            \ usable IP address in the subnet will be used."
-          example: 12.0.0.2
-          type: string
-        port:
-          $ref: '#/components/schemas/Href'
       type: object
     VrfRoute_metal_gateway:
       description: A link to the Metal Gateway to which this VRF Route is associated

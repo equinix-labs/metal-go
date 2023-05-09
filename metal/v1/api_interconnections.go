@@ -1754,6 +1754,34 @@ type ApiProjectListInterconnectionsRequest struct {
 	ctx        context.Context
 	ApiService *InterconnectionsApiService
 	projectId  string
+	include    *[]string
+	exclude    *[]string
+	page       *int32
+	perPage    *int32
+}
+
+// Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+func (r ApiProjectListInterconnectionsRequest) Include(include []string) ApiProjectListInterconnectionsRequest {
+	r.include = &include
+	return r
+}
+
+// Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
+func (r ApiProjectListInterconnectionsRequest) Exclude(exclude []string) ApiProjectListInterconnectionsRequest {
+	r.exclude = &exclude
+	return r
+}
+
+// Page to return
+func (r ApiProjectListInterconnectionsRequest) Page(page int32) ApiProjectListInterconnectionsRequest {
+	r.page = &page
+	return r
+}
+
+// Items returned per page
+func (r ApiProjectListInterconnectionsRequest) PerPage(perPage int32) ApiProjectListInterconnectionsRequest {
+	r.perPage = &perPage
+	return r
 }
 
 func (r ApiProjectListInterconnectionsRequest) Execute() (*InterconnectionList, *http.Response, error) {
@@ -1800,6 +1828,18 @@ func (a *InterconnectionsApiService) ProjectListInterconnectionsExecute(r ApiPro
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.include != nil {
+		parameterAddToQuery(localVarQueryParams, "include", r.include, "csv")
+	}
+	if r.exclude != nil {
+		parameterAddToQuery(localVarQueryParams, "exclude", r.exclude, "csv")
+	}
+	if r.page != nil {
+		parameterAddToQuery(localVarQueryParams, "page", r.page, "")
+	}
+	if r.perPage != nil {
+		parameterAddToQuery(localVarQueryParams, "per_page", r.perPage, "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 

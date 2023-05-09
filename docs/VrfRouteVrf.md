@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **BgpDynamicNeighborsExportRouteMap** | Pointer to **bool** | Toggle to export the VRF route-map to the dynamic bgp neighbors | [optional] 
 **BgpDynamicNeighborsBfdEnabled** | Pointer to **bool** | Toggle BFD on dynamic bgp neighbors sessions | [optional] 
 **LocalAsn** | Pointer to **int32** | A 4-byte ASN associated with the VRF. | [optional] 
-**VirtualCircuits** | Pointer to [**[]VrfVirtualCircuitsInner**](VrfVirtualCircuitsInner.md) | Virtual circuits that are in the VRF | [optional] 
+**VirtualCircuits** | Pointer to [**[]VrfVirtualCircuit**](VrfVirtualCircuit.md) | Virtual circuits that are in the VRF | [optional] 
 **IpRanges** | Pointer to **[]string** | A list of CIDR network addresses. Like [\&quot;10.0.0.0/16\&quot;, \&quot;2001:d78::/56\&quot;]. | [optional] 
 **Project** | Pointer to [**Project**](Project.md) |  | [optional] 
 **Metro** | Pointer to [**Metro**](Metro.md) |  | [optional] 
@@ -262,20 +262,20 @@ HasLocalAsn returns a boolean if a field has been set.
 
 ### GetVirtualCircuits
 
-`func (o *VrfRouteVrf) GetVirtualCircuits() []VrfVirtualCircuitsInner`
+`func (o *VrfRouteVrf) GetVirtualCircuits() []VrfVirtualCircuit`
 
 GetVirtualCircuits returns the VirtualCircuits field if non-nil, zero value otherwise.
 
 ### GetVirtualCircuitsOk
 
-`func (o *VrfRouteVrf) GetVirtualCircuitsOk() (*[]VrfVirtualCircuitsInner, bool)`
+`func (o *VrfRouteVrf) GetVirtualCircuitsOk() (*[]VrfVirtualCircuit, bool)`
 
 GetVirtualCircuitsOk returns a tuple with the VirtualCircuits field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVirtualCircuits
 
-`func (o *VrfRouteVrf) SetVirtualCircuits(v []VrfVirtualCircuitsInner)`
+`func (o *VrfRouteVrf) SetVirtualCircuits(v []VrfVirtualCircuit)`
 
 SetVirtualCircuits sets VirtualCircuits field to given value.
 

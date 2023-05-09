@@ -5,9 +5,11 @@ All URIs are relative to *https://api.equinix.com/metal/v1*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**CreateMetalGateway**](MetalGatewaysApi.md#CreateMetalGateway) | **Post** /projects/{project_id}/metal-gateways | Create a metal gateway
+[**CreateMetalGatewayElasticIp**](MetalGatewaysApi.md#CreateMetalGatewayElasticIp) | **Post** /metal-gateways/{id}/ips.yaml | Create a Metal Gateway Elastic IP
 [**DeleteMetalGateway**](MetalGatewaysApi.md#DeleteMetalGateway) | **Delete** /metal-gateways/{id} | Deletes the metal gateway
 [**FindMetalGatewayById**](MetalGatewaysApi.md#FindMetalGatewayById) | **Get** /metal-gateways/{id} | Returns the metal gateway
 [**FindMetalGatewaysByProject**](MetalGatewaysApi.md#FindMetalGatewaysByProject) | **Get** /projects/{project_id}/metal-gateways | Returns all metal gateways for a project
+[**GetMetalGatewayElasticIps**](MetalGatewaysApi.md#GetMetalGatewayElasticIps) | **Get** /metal-gateways/{id}/ips.yaml | List Metal Gateway Elastic IPs
 
 
 
@@ -76,6 +78,78 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**FindMetalGatewayById200Response**](FindMetalGatewayById200Response.md)
+
+### Authorization
+
+[x_auth_token](../README.md#x_auth_token)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## CreateMetalGatewayElasticIp
+
+> IPAssignment CreateMetalGatewayElasticIp(ctx, id).MetalGatewayElasticIpCreateInput(metalGatewayElasticIpCreateInput).Execute()
+
+Create a Metal Gateway Elastic IP
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Metal Gateway UUID
+    metalGatewayElasticIpCreateInput := *openapiclient.NewMetalGatewayElasticIpCreateInput("147.75.234.8/31", "192.168.12.13") // MetalGatewayElasticIpCreateInput | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.MetalGatewaysApi.CreateMetalGatewayElasticIp(context.Background(), id).MetalGatewayElasticIpCreateInput(metalGatewayElasticIpCreateInput).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `MetalGatewaysApi.CreateMetalGatewayElasticIp``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateMetalGatewayElasticIp`: IPAssignment
+    fmt.Fprintf(os.Stdout, "Response from `MetalGatewaysApi.CreateMetalGatewayElasticIp`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** | Metal Gateway UUID | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateMetalGatewayElasticIpRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **metalGatewayElasticIpCreateInput** | [**MetalGatewayElasticIpCreateInput**](MetalGatewayElasticIpCreateInput.md) |  | 
+
+### Return type
+
+[**IPAssignment**](IPAssignment.md)
 
 ### Authorization
 
@@ -302,6 +376,80 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**MetalGatewayList**](MetalGatewayList.md)
+
+### Authorization
+
+[x_auth_token](../README.md#x_auth_token)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetMetalGatewayElasticIps
+
+> IPAssignmentList GetMetalGatewayElasticIps(ctx, id).Include(include).Exclude(exclude).Execute()
+
+List Metal Gateway Elastic IPs
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Metal Gateway UUID
+    include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
+    exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.MetalGatewaysApi.GetMetalGatewayElasticIps(context.Background(), id).Include(include).Exclude(exclude).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `MetalGatewaysApi.GetMetalGatewayElasticIps``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetMetalGatewayElasticIps`: IPAssignmentList
+    fmt.Fprintf(os.Stdout, "Response from `MetalGatewaysApi.GetMetalGatewayElasticIps`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** | Metal Gateway UUID | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetMetalGatewayElasticIpsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
+ **exclude** | **[]string** | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | 
+
+### Return type
+
+[**IPAssignmentList**](IPAssignmentList.md)
 
 ### Authorization
 

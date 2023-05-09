@@ -34,6 +34,18 @@ func Test_v1_MetalGatewaysApiService(t *testing.T) {
 		assert.Equal(t, 200, httpRes.StatusCode)
 	})
 
+	t.Run("Test MetalGatewaysApiService CreateMetalGatewayElasticIp", func(t *testing.T) {
+		t.Skip("skip test") // remove to run test
+
+		var id string
+
+		resp, httpRes, err := apiClient.MetalGatewaysApi.CreateMetalGatewayElasticIp(context.Background(), id).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+	})
+
 	t.Run("Test MetalGatewaysApiService DeleteMetalGateway", func(t *testing.T) {
 		t.Skip("skip test") // remove to run test
 
@@ -64,6 +76,18 @@ func Test_v1_MetalGatewaysApiService(t *testing.T) {
 		var projectId string
 
 		resp, httpRes, err := apiClient.MetalGatewaysApi.FindMetalGatewaysByProject(context.Background(), projectId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+	})
+
+	t.Run("Test MetalGatewaysApiService GetMetalGatewayElasticIps", func(t *testing.T) {
+		t.Skip("skip test") // remove to run test
+
+		var id string
+
+		resp, httpRes, err := apiClient.MetalGatewaysApi.GetMetalGatewayElasticIps(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

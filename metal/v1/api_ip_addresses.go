@@ -37,7 +37,15 @@ func (r ApiDeleteIPAddressRequest) Execute() (*http.Response, error) {
 /*
 DeleteIPAddress Unassign an ip address
 
-Note! This call can be used to un-assign an IP assignment or delete an IP reservation. Un-assign an IP address record. Use the assignment UUID you get after attaching the IP. This will remove the relationship between an IP and the device and will make the IP address available to be assigned to another device. Delete and IP reservation. Use the reservation UUID you get after adding the IP to the project. This will permanently delete the IP block reservation from the project.
+This call can be used to un-assign an IP assignment or delete
+an IP reservation.
+
+Un-assign an IP address record.
+Use the assignment UUID you
+get after attaching the IP. This will remove the relationship between an IP and the device or metal gateway and will make the IP address available to be assigned to another device, once the IP has been un-configured from the network.
+
+Delete an IP reservation.
+Use the reservation UUID you get after adding the IP to the project. This will permanently delete the IP block reservation from the project.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param id IP Address UUID

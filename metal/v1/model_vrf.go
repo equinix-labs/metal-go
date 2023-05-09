@@ -36,7 +36,7 @@ type Vrf struct {
 	// A 4-byte ASN associated with the VRF.
 	LocalAsn *int32 `json:"local_asn,omitempty"`
 	// Virtual circuits that are in the VRF
-	VirtualCircuits []VrfVirtualCircuitsInner `json:"virtual_circuits,omitempty"`
+	VirtualCircuits []VrfVirtualCircuit `json:"virtual_circuits,omitempty"`
 	// A list of CIDR network addresses. Like [\"10.0.0.0/16\", \"2001:d78::/56\"].
 	IpRanges             []string   `json:"ip_ranges,omitempty"`
 	Project              *Project   `json:"project,omitempty"`
@@ -328,9 +328,9 @@ func (o *Vrf) SetLocalAsn(v int32) {
 }
 
 // GetVirtualCircuits returns the VirtualCircuits field value if set, zero value otherwise.
-func (o *Vrf) GetVirtualCircuits() []VrfVirtualCircuitsInner {
+func (o *Vrf) GetVirtualCircuits() []VrfVirtualCircuit {
 	if o == nil || isNil(o.VirtualCircuits) {
-		var ret []VrfVirtualCircuitsInner
+		var ret []VrfVirtualCircuit
 		return ret
 	}
 	return o.VirtualCircuits
@@ -338,7 +338,7 @@ func (o *Vrf) GetVirtualCircuits() []VrfVirtualCircuitsInner {
 
 // GetVirtualCircuitsOk returns a tuple with the VirtualCircuits field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Vrf) GetVirtualCircuitsOk() ([]VrfVirtualCircuitsInner, bool) {
+func (o *Vrf) GetVirtualCircuitsOk() ([]VrfVirtualCircuit, bool) {
 	if o == nil || isNil(o.VirtualCircuits) {
 		return nil, false
 	}
@@ -354,8 +354,8 @@ func (o *Vrf) HasVirtualCircuits() bool {
 	return false
 }
 
-// SetVirtualCircuits gets a reference to the given []VrfVirtualCircuitsInner and assigns it to the VirtualCircuits field.
-func (o *Vrf) SetVirtualCircuits(v []VrfVirtualCircuitsInner) {
+// SetVirtualCircuits gets a reference to the given []VrfVirtualCircuit and assigns it to the VirtualCircuits field.
+func (o *Vrf) SetVirtualCircuits(v []VrfVirtualCircuit) {
 	o.VirtualCircuits = v
 }
 

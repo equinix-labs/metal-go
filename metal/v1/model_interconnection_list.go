@@ -21,6 +21,7 @@ var _ MappedNullable = &InterconnectionList{}
 // InterconnectionList struct for InterconnectionList
 type InterconnectionList struct {
 	Interconnections     []Interconnection `json:"interconnections,omitempty"`
+	Meta                 *Meta             `json:"meta,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -75,6 +76,38 @@ func (o *InterconnectionList) SetInterconnections(v []Interconnection) {
 	o.Interconnections = v
 }
 
+// GetMeta returns the Meta field value if set, zero value otherwise.
+func (o *InterconnectionList) GetMeta() Meta {
+	if o == nil || isNil(o.Meta) {
+		var ret Meta
+		return ret
+	}
+	return *o.Meta
+}
+
+// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *InterconnectionList) GetMetaOk() (*Meta, bool) {
+	if o == nil || isNil(o.Meta) {
+		return nil, false
+	}
+	return o.Meta, true
+}
+
+// HasMeta returns a boolean if a field has been set.
+func (o *InterconnectionList) HasMeta() bool {
+	if o != nil && !isNil(o.Meta) {
+		return true
+	}
+
+	return false
+}
+
+// SetMeta gets a reference to the given Meta and assigns it to the Meta field.
+func (o *InterconnectionList) SetMeta(v Meta) {
+	o.Meta = &v
+}
+
 func (o InterconnectionList) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -87,6 +120,9 @@ func (o InterconnectionList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Interconnections) {
 		toSerialize["interconnections"] = o.Interconnections
+	}
+	if !isNil(o.Meta) {
+		toSerialize["meta"] = o.Meta
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -107,6 +143,7 @@ func (o *InterconnectionList) UnmarshalJSON(bytes []byte) (err error) {
 
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
 		delete(additionalProperties, "interconnections")
+		delete(additionalProperties, "meta")
 		o.AdditionalProperties = additionalProperties
 	}
 
