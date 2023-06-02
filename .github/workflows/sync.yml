@@ -1,5 +1,8 @@
-on: ["workflow_dispatch"]
 name: Sync
+
+on:
+  workflow_dispatch:
+
 jobs:
   sync:
     strategy:
@@ -22,17 +25,36 @@ jobs:
         # https://api.github.com/users/github-actions[bot]
         git config user.name 'github-actions[bot]'
         git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-    - name: Sync
+    - name: Fetch latest spec
+      id: fetch
       run: |
-        make # pull fetch patch gen mod test
-        git commit -m 'sync: fetch ${{ steps.date.outputs.date }} spec and apply patches' spec/**/*.yaml
-        git commit -m 'sync: generate client with ${{ steps.date.outputs.date }} spec' metal api docs README.md
+        make fetch
+        git add spec/oas3.fetched
+        echo `git commit -m 'sync: fetch ${{ steps.date.outputs.date }} spec and apply patches'`
+    - name: Apply spec patches
+      id: patch
+      if: ${{ always() && steps.fetch.conclusion == 'success' }}
+      run: |
+        make patch combine-spec
+        git add spec/oas3.patched spec/oas3.combined
+        echo `git commit -m 'sync: patch spec with ${{ steps.date.outputs.date }} spec'`
+    - name: Generate code
+      id: generate
+      if: ${{ always() && steps.patch.conclusion == 'success' }}
+      run: |
+        make clean gen mod docs move-other patch-post fmt test
+        git add api docs metal API.md go.mod go.sum
+        echo `git commit -m 'sync: generate client with ${{ steps.date.outputs.date }} spec'`
     - name: Create Pull Request
+      id: cpr
       uses: peter-evans/create-pull-request@v5
+      if: ${{ always() && steps.fetch.conclusion == 'success' }}
       with:
         branch: sync/gh
         branch-suffix: timestamp
-        title: API Sync by GitHub Action (${{ steps.date.outputs.date }})
+        author: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
+        commit-message: "sync: uncommitted changes detected when opening PR"
+        title: "feat: API Sync by GitHub Action (${{ steps.date.outputs.date }})"
         body: |
           This API Sync PR was automated through [GitHub Actions workflow_displatch](https://github.com/equinix-labs/metal-go/actions?query=event%3Aworkflow_dispatch)
           on ${{ steps.date.outputs.date }}.
@@ -41,7 +63,21 @@ jobs:
           * patches have been applied
           * generated client has been updated
         delete-branch: true
+        draft: ${{ steps.patch.conclusion == 'failure' || steps.generate.conclusion == 'failure' }}
+    - name: Comment for failed patch
+      uses: mshick/add-pr-comment@v2
+      if: ${{ always() && steps.patch.conclusion == 'failure' && steps.cpr.conclusion == 'success' }}
+      with:
+        issue: ${{ steps.cpr.outputs.pull-request-number }}
+        message: Failed to patch latest spec.  Someone with write access must fix this PR manually and then convert it from Draft status to Ready for Review.
+    - name: Comment for failed generate
+      uses: mshick/add-pr-comment@v2
+      if: ${{ always() && steps.generate.conclusion == 'failure' && steps.cpr.conclusion == 'success' }}
+      with:
+        issue: ${{ steps.cpr.outputs.pull-request-number }}
+        message: Failed to generate code from latest patched spec.  Someone with write access must fix this PR manually and then convert it from Draft status to Ready for Review.
     - name: Check outputs
+      if: ${{ always() && steps.cpr.conclusion == 'success' }}
       run: |
         echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
         echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
