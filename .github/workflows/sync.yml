@@ -35,8 +35,8 @@ jobs:
       id: patch
       if: ${{ always() && steps.fetch.conclusion == 'success' }}
       run: |
-        make patch combine-spec
-        git add spec/oas3.patched spec/oas3.combined
+        make patch
+        git add spec/oas3.patched
         echo `git commit -m 'sync: patch spec with ${{ steps.date.outputs.date }} spec'`
     - name: Generate code
       id: generate

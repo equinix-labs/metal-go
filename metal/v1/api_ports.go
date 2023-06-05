@@ -17,7 +17,6 @@ import (
 	"io/ioutil"
 	"net/http"
 	"net/url"
-	"reflect"
 	"strings"
 )
 
@@ -1918,26 +1917,10 @@ func (a *PortsApiService) FindPortVlanAssignmentByPortIdAndAssignmentIdExecute(r
 	localVarFormParams := url.Values{}
 
 	if r.include != nil {
-		t := *r.include
-		if reflect.TypeOf(t).Kind() == reflect.Slice {
-			s := reflect.ValueOf(t)
-			for i := 0; i < s.Len(); i++ {
-				parameterAddToQuery(localVarQueryParams, "include", s.Index(i), "multi")
-			}
-		} else {
-			parameterAddToQuery(localVarQueryParams, "include", t, "multi")
-		}
+		parameterAddToQuery(localVarQueryParams, "include", r.include, "csv")
 	}
 	if r.exclude != nil {
-		t := *r.exclude
-		if reflect.TypeOf(t).Kind() == reflect.Slice {
-			s := reflect.ValueOf(t)
-			for i := 0; i < s.Len(); i++ {
-				parameterAddToQuery(localVarQueryParams, "exclude", s.Index(i), "multi")
-			}
-		} else {
-			parameterAddToQuery(localVarQueryParams, "exclude", t, "multi")
-		}
+		parameterAddToQuery(localVarQueryParams, "exclude", r.exclude, "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -2104,26 +2087,10 @@ func (a *PortsApiService) FindPortVlanAssignmentsExecute(r ApiFindPortVlanAssign
 	localVarFormParams := url.Values{}
 
 	if r.include != nil {
-		t := *r.include
-		if reflect.TypeOf(t).Kind() == reflect.Slice {
-			s := reflect.ValueOf(t)
-			for i := 0; i < s.Len(); i++ {
-				parameterAddToQuery(localVarQueryParams, "include", s.Index(i), "multi")
-			}
-		} else {
-			parameterAddToQuery(localVarQueryParams, "include", t, "multi")
-		}
+		parameterAddToQuery(localVarQueryParams, "include", r.include, "csv")
 	}
 	if r.exclude != nil {
-		t := *r.exclude
-		if reflect.TypeOf(t).Kind() == reflect.Slice {
-			s := reflect.ValueOf(t)
-			for i := 0; i < s.Len(); i++ {
-				parameterAddToQuery(localVarQueryParams, "exclude", s.Index(i), "multi")
-			}
-		} else {
-			parameterAddToQuery(localVarQueryParams, "exclude", t, "multi")
-		}
+		parameterAddToQuery(localVarQueryParams, "exclude", r.exclude, "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

@@ -17,7 +17,6 @@ import (
 	"io/ioutil"
 	"net/http"
 	"net/url"
-	"reflect"
 	"strings"
 )
 
@@ -718,15 +717,7 @@ func (a *IPAddressesApiService) FindIPReservationsExecute(r ApiFindIPReservation
 	localVarFormParams := url.Values{}
 
 	if r.types != nil {
-		t := *r.types
-		if reflect.TypeOf(t).Kind() == reflect.Slice {
-			s := reflect.ValueOf(t)
-			for i := 0; i < s.Len(); i++ {
-				parameterAddToQuery(localVarQueryParams, "types", s.Index(i), "multi")
-			}
-		} else {
-			parameterAddToQuery(localVarQueryParams, "types", t, "multi")
-		}
+		parameterAddToQuery(localVarQueryParams, "types", r.types, "csv")
 	}
 	if r.include != nil {
 		parameterAddToQuery(localVarQueryParams, "include", r.include, "csv")

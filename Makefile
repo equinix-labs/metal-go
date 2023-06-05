@@ -8,7 +8,6 @@ SPEC_ROOT_FILE:=openapi3.yaml
 SPEC_FETCHED_DIR=spec/oas3.fetched
 SPEC_PATCH_DIR=patches/spec.fetched.json
 SPEC_PATCHED_DIR=spec/oas3.patched
-SPEC_COMBINED_DIR=spec/oas3.combined
 
 SPEC_FETCHED_FILE:=spec.fetched.json
 SPEC_PATCHED_FILE:=spec.patched.json
@@ -25,7 +24,7 @@ OPENAPI_GENERATOR=${CRI} run --rm -u ${CURRENT_UID}:${CURRENT_GID} -v $(CURDIR):
 SPEC_FETCHER=${CRI} run --rm -u ${CURRENT_UID}:${CURRENT_GID} -v $(CURDIR):/workdir --entrypoint sh mikefarah/yq:4.30.8 script/download_spec.sh
 GOLANGCI_LINT=golangci-lint
 
-all: pull fetch patch combine-spec clean gen mod docs move-other patch-post fmt test stage
+all: pull fetch patch clean gen mod docs move-other patch-post fmt test stage
 
 pull:
 	${CRI} pull ${OPENAPI_IMAGE}
@@ -40,13 +39,6 @@ patch:
 	for diff in $(shell set -x; find ${SPEC_PATCH_DIR} -name '*.patch' | sort -n); do \
 		patch --no-backup-if-mismatch -N -t -p1 -i $$diff; \
 	done
-
-combine-spec:
-	${OPENAPI_GENERATOR} generate \
-		-i /local/${SPEC_PATCHED_DIR}/${SPEC_ROOT_FILE} \
-		-g openapi-yaml \
-		-p skipOperationExample=true \
-		-o /local/${SPEC_COMBINED_DIR} -p outputFile=${SPEC_ROOT_FILE}
 
 patch-post:
 	# patch is idempotent, always starting with the generated files
@@ -69,7 +61,7 @@ gen:
 		--git-user-id ${GIT_ORG} \
 		--git-repo-id ${GIT_REPO}/${PACKAGE_PREFIX} \
 		-o /local/${PACKAGE_PREFIX}/${PACKAGE_MAJOR} \
-		-i /local/${SPEC_COMBINED_DIR}/${SPEC_ROOT_FILE}
+		-i /local/${SPEC_PATCHED_DIR}/${SPEC_ROOT_FILE}
 
 validate:
 	${OPENAPI_GENERATOR} validate \

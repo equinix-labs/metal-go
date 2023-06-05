@@ -330,14 +330,12 @@ paths:
       operationId: deleteAPIKey
       parameters:
       - description: API Key UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       responses:
         "204":
           description: no content
@@ -362,23 +360,18 @@ paths:
       operationId: deleteBatch
       parameters:
       - description: Batch UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       - description: Delete all instances created from this batch
-        explode: true
         in: query
         name: remove_associated_instances
-        required: false
         schema:
           default: false
           type: boolean
-        style: form
       responses:
         "204":
           description: no content
@@ -402,14 +395,12 @@ paths:
       operationId: findBatchById
       parameters:
       - description: Batch UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       - description: |-
           Nested attributes to include. Included objects will return their full
           attributes. Attribute names can be dotted (up to 3 levels) to included deeply
@@ -417,7 +408,6 @@ paths:
         explode: false
         in: query
         name: include
-        required: false
         schema:
           items:
             type: string
@@ -430,7 +420,6 @@ paths:
         explode: false
         in: query
         name: exclude
-        required: false
         schema:
           items:
             type: string
@@ -464,14 +453,12 @@ paths:
       operationId: deleteBgpSession
       parameters:
       - description: BGP session UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       responses:
         "204":
           description: no content
@@ -501,14 +488,12 @@ paths:
       operationId: findBgpSessionById
       parameters:
       - description: BGP session UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       - description: |-
           Nested attributes to include. Included objects will return their full
           attributes. Attribute names can be dotted (up to 3 levels) to included deeply
@@ -516,7 +501,6 @@ paths:
         explode: false
         in: query
         name: include
-        required: false
         schema:
           items:
             type: string
@@ -529,7 +513,6 @@ paths:
         explode: false
         in: query
         name: exclude
-        required: false
         schema:
           items:
             type: string
@@ -569,14 +552,12 @@ paths:
       operationId: updateBgpSession
       parameters:
       - description: BGP session UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       requestBody:
         content:
           application/json:
@@ -620,14 +601,12 @@ paths:
       operationId: deleteBgpDynamicNeighborById
       parameters:
       - description: BGP Dynamic Neighbor UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       - description: |-
           Nested attributes to include. Included objects will return their full
           attributes. Attribute names can be dotted (up to 3 levels) to included deeply
@@ -635,7 +614,6 @@ paths:
         explode: false
         in: query
         name: include
-        required: false
         schema:
           items:
             type: string
@@ -648,7 +626,6 @@ paths:
         explode: false
         in: query
         name: exclude
-        required: false
         schema:
           items:
             type: string
@@ -686,14 +663,12 @@ paths:
       description: Return a single BGP Dynamic Neighbor resource
       parameters:
       - description: BGP Dynamic Neighbor UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       - description: |-
           Nested attributes to include. Included objects will return their full
           attributes. Attribute names can be dotted (up to 3 levels) to included deeply
@@ -701,7 +676,6 @@ paths:
         explode: false
         in: query
         name: include
-        required: false
         schema:
           items:
             type: string
@@ -714,7 +688,6 @@ paths:
         explode: false
         in: query
         name: exclude
-        required: false
         schema:
           items:
             type: string
@@ -852,14 +825,12 @@ paths:
       operationId: deleteInterconnection
       parameters:
       - description: Interconnection UUID
-        explode: false
         in: path
         name: connection_id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       responses:
         "202":
           content:
@@ -887,14 +858,12 @@ paths:
       operationId: getInterconnection
       parameters:
       - description: Interconnection UUID
-        explode: false
         in: path
         name: connection_id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       responses:
         "200":
           content:
@@ -922,14 +891,12 @@ paths:
       operationId: updateInterconnection
       parameters:
       - description: Interconnection UUID
-        explode: false
         in: path
         name: connection_id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       requestBody:
         content:
           application/json:
@@ -965,14 +932,12 @@ paths:
       operationId: findInterconnectionEvents
       parameters:
       - description: Interconnection UUID
-        explode: false
         in: path
         name: connection_id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       - description: |-
           Nested attributes to include. Included objects will return their full
           attributes. Attribute names can be dotted (up to 3 levels) to included deeply
@@ -980,7 +945,6 @@ paths:
         explode: false
         in: query
         name: include
-        required: false
         schema:
           items:
             type: string
@@ -993,36 +957,29 @@ paths:
         explode: false
         in: query
         name: exclude
-        required: false
         schema:
           items:
             type: string
           type: array
         style: form
       - description: Page to return
-        explode: true
         in: query
         name: page
-        required: false
         schema:
           default: 1
           format: int32
           maximum: 100000
           minimum: 1
           type: integer
-        style: form
       - description: Items returned per page
-        explode: true
         in: query
         name: per_page
-        required: false
         schema:
           default: 10
           format: int32
           maximum: 1000
           minimum: 1
           type: integer
-        style: form
       responses:
         "200":
           content:
@@ -1057,14 +1014,12 @@ paths:
       operationId: listInterconnectionPorts
       parameters:
       - description: UUID of the interconnection
-        explode: false
         in: path
         name: connection_id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       responses:
         "200":
           content:
@@ -1094,14 +1049,12 @@ paths:
       operationId: listInterconnectionVirtualCircuits
       parameters:
       - description: UUID of the interconnection
-        explode: false
         in: path
         name: connection_id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       responses:
         "200":
           content:
@@ -1130,23 +1083,19 @@ paths:
       operationId: getInterconnectionPort
       parameters:
       - description: UUID of the interconnection
-        explode: false
         in: path
         name: connection_id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       - description: Port UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       responses:
         "200":
           content:
@@ -1175,23 +1124,19 @@ paths:
       operationId: findInterconnectionPortEvents
       parameters:
       - description: Interconnection UUID
-        explode: false
         in: path
         name: connection_id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       - description: Interconnection Port UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       - description: |-
           Nested attributes to include. Included objects will return their full
           attributes. Attribute names can be dotted (up to 3 levels) to included deeply
@@ -1199,7 +1144,6 @@ paths:
         explode: false
         in: query
         name: include
-        required: false
         schema:
           items:
             type: string
@@ -1212,36 +1156,29 @@ paths:
         explode: false
         in: query
         name: exclude
-        required: false
         schema:
           items:
             type: string
           type: array
         style: form
       - description: Page to return
-        explode: true
         in: query
         name: page
-        required: false
         schema:
           default: 1
           format: int32
           maximum: 100000
           minimum: 1
           type: integer
-        style: form
       - description: Items returned per page
-        explode: true
         in: query
         name: per_page
-        required: false
         schema:
           default: 10
           format: int32
           maximum: 1000
           minimum: 1
           type: integer
-        style: form
       responses:
         "200":
           content:
@@ -1277,23 +1214,19 @@ paths:
       operationId: listInterconnectionPortVirtualCircuits
       parameters:
       - description: UUID of the interconnection
-        explode: false
         in: path
         name: connection_id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       - description: UUID of the interconnection port
-        explode: false
         in: path
         name: port_id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       responses:
         "200":
           content:
@@ -1324,23 +1257,19 @@ paths:
       operationId: createInterconnectionPortVirtualCircuit
       parameters:
       - description: UUID of the interconnection
-        explode: false
         in: path
         name: connection_id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       - description: UUID of the interconnection port
-        explode: false
         in: path
         name: port_id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       requestBody:
         content:
           application/json:
@@ -1376,23 +1305,18 @@ paths:
       operationId: deleteDevice
       parameters:
       - description: Device UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       - description: "Force the deletion of the device, by detaching any storage volume\
           \ still active."
-        explode: true
         in: query
         name: force_delete
-        required: false
         schema:
           type: boolean
-        style: form
       responses:
         "204":
           description: no content
@@ -1430,14 +1354,12 @@ paths:
       operationId: findDeviceById
       parameters:
       - description: Device UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       - description: |-
           Nested attributes to include. Included objects will return their full
           attributes. Attribute names can be dotted (up to 3 levels) to included deeply
@@ -1445,7 +1367,6 @@ paths:
         explode: false
         in: query
         name: include
-        required: false
         schema:
           items:
             type: string
@@ -1458,7 +1379,6 @@ paths:
         explode: false
         in: query
         name: exclude
-        required: false
         schema:
           items:
             type: string
@@ -1497,14 +1417,12 @@ paths:
       operationId: updateDevice
       parameters:
       - description: Device UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       requestBody:
         content:
           application/json:
@@ -1554,14 +1472,12 @@ paths:
       operationId: performAction
       parameters:
       - description: Device UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       requestBody:
         content:
           application/json:
@@ -1599,30 +1515,24 @@ paths:
       operationId: findInstanceBandwidth
       parameters:
       - description: Device UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       - description: Timestamp from range
-        explode: true
         in: query
         name: from
         required: true
         schema:
           type: string
-        style: form
       - description: Timestamp to range
-        explode: true
         in: query
         name: until
         required: true
         schema:
           type: string
-        style: form
       responses:
         "200":
           description: ok
@@ -1648,14 +1558,12 @@ paths:
       operationId: getBgpNeighborData
       parameters:
       - description: Device UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       responses:
         "200":
           content:
@@ -1690,14 +1598,12 @@ paths:
       operationId: findBgpSessions
       parameters:
       - description: Device UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       responses:
         "200":
           content:
@@ -1725,14 +1631,12 @@ paths:
       operationId: createBgpSession
       parameters:
       - description: Device UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       requestBody:
         content:
           application/json:
@@ -1774,14 +1678,12 @@ paths:
       operationId: findDeviceCustomdata
       parameters:
       - description: Instance UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       responses:
         "200":
           description: ok
@@ -1812,14 +1714,12 @@ paths:
       operationId: findDeviceEvents
       parameters:
       - description: Device UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       - description: |-
           Nested attributes to include. Included objects will return their full
           attributes. Attribute names can be dotted (up to 3 levels) to included deeply
@@ -1827,7 +1727,6 @@ paths:
         explode: false
         in: query
         name: include
-        required: false
         schema:
           items:
             type: string
@@ -1840,36 +1739,29 @@ paths:
         explode: false
         in: query
         name: exclude
-        required: false
         schema:
           items:
             type: string
           type: array
         style: form
       - description: Page to return
-        explode: true
         in: query
         name: page
-        required: false
         schema:
           default: 1
           format: int32
           maximum: 100000
           minimum: 1
           type: integer
-        style: form
       - description: Items returned per page
-        explode: true
         in: query
         name: per_page
-        required: false
         schema:
           default: 10
           format: int32
           maximum: 1000
           minimum: 1
           type: integer
-        style: form
       responses:
         "200":
           content:
@@ -1904,14 +1796,12 @@ paths:
       operationId: findIPAssignments
       parameters:
       - description: Device UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       - description: |-
           Nested attributes to include. Included objects will return their full
           attributes. Attribute names can be dotted (up to 3 levels) to included deeply
@@ -1919,7 +1809,6 @@ paths:
         explode: false
         in: query
         name: include
-        required: false
         schema:
           items:
             type: string
@@ -1932,7 +1821,6 @@ paths:
         explode: false
         in: query
         name: exclude
-        required: false
         schema:
           items:
             type: string
@@ -1965,14 +1853,12 @@ paths:
       operationId: createIPAssignment
       parameters:
       - description: Device UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       requestBody:
         content:
           application/json:
@@ -2014,14 +1900,12 @@ paths:
       operationId: findDeviceMetadataByID
       parameters:
       - description: Device UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       responses:
         "200":
           content:
@@ -2056,22 +1940,17 @@ paths:
       operationId: findDeviceSSHKeys
       parameters:
       - description: Project UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       - description: "Search by key, label, or fingerprint"
-        explode: true
         in: query
         name: Search string
-        required: false
         schema:
           type: string
-        style: form
       - description: |-
           Nested attributes to include. Included objects will return their full
           attributes. Attribute names can be dotted (up to 3 levels) to included deeply
@@ -2079,7 +1958,6 @@ paths:
         explode: false
         in: query
         name: include
-        required: false
         schema:
           items:
             type: string
@@ -2092,7 +1970,6 @@ paths:
         explode: false
         in: query
         name: exclude
-        required: false
         schema:
           items:
             type: string
@@ -2120,16 +1997,13 @@ paths:
       operationId: findTraffic
       parameters:
       - description: Device UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       - description: Traffic direction
-        explode: true
         in: query
         name: direction
         required: true
@@ -2138,12 +2012,9 @@ paths:
           - inbound
           - outbound
           type: string
-        style: form
       - description: Traffic interval
-        explode: true
         in: query
         name: interval
-        required: false
         schema:
           enum:
           - minute
@@ -2157,22 +2028,17 @@ paths:
           - day_of_month
           - month_of_year
           type: string
-        style: form
       - description: Traffic bucket
-        explode: true
         in: query
         name: bucket
-        required: false
         schema:
           enum:
           - internal
           - external
           type: string
-        style: form
       - explode: true
         in: query
         name: timeframe
-        required: false
         schema:
           $ref: '#/components/schemas/findTraffic_timeframe_parameter'
         style: deepObject
@@ -2206,32 +2072,24 @@ paths:
       operationId: findDeviceUsages
       parameters:
       - description: Device UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       - description: Filter usages created after this date
-        explode: true
         in: query
         name: "created[after]"
-        required: false
         schema:
           format: datetime
           type: string
-        style: form
       - description: Filter usages created before this date
-        explode: true
         in: query
         name: "created[before]"
-        required: false
         schema:
           format: datetime
           type: string
-        style: form
       responses:
         "200":
           content:
@@ -2260,14 +2118,12 @@ paths:
       operationId: findDeviceUserdataByID
       parameters:
       - description: Device UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       responses:
         "200":
           content:
@@ -2303,23 +2159,19 @@ paths:
       operationId: findIPAssignmentCustomdata
       parameters:
       - description: Instance UUID
-        explode: false
         in: path
         name: instance_id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       - description: Ip Assignment UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       responses:
         "200":
           description: ok
@@ -2383,14 +2235,12 @@ paths:
       operationId: deleteEmail
       parameters:
       - description: Email UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       responses:
         "204":
           description: no content
@@ -2420,14 +2270,12 @@ paths:
       operationId: findEmailById
       parameters:
       - description: Email UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       - description: |-
           Nested attributes to include. Included objects will return their full
           attributes. Attribute names can be dotted (up to 3 levels) to included deeply
@@ -2435,7 +2283,6 @@ paths:
         explode: false
         in: query
         name: include
-        required: false
         schema:
           items:
             type: string
@@ -2448,7 +2295,6 @@ paths:
         explode: false
         in: query
         name: exclude
-        required: false
         schema:
           items:
             type: string
@@ -2487,14 +2333,12 @@ paths:
       operationId: updateEmail
       parameters:
       - description: Email UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       requestBody:
         content:
           application/json:
@@ -2548,7 +2392,6 @@ paths:
         explode: false
         in: query
         name: include
-        required: false
         schema:
           items:
             type: string
@@ -2561,36 +2404,29 @@ paths:
         explode: false
         in: query
         name: exclude
-        required: false
         schema:
           items:
             type: string
           type: array
         style: form
       - description: Page to return
-        explode: true
         in: query
         name: page
-        required: false
         schema:
           default: 1
           format: int32
           maximum: 100000
           minimum: 1
           type: integer
-        style: form
       - description: Items returned per page
-        explode: true
         in: query
         name: per_page
-        required: false
         schema:
           default: 10
           format: int32
           maximum: 1000
           minimum: 1
           type: integer
-        style: form
       responses:
         "200":
           content:
@@ -2613,14 +2449,12 @@ paths:
       operationId: findEventById
       parameters:
       - description: Event UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       - description: |-
           Nested attributes to include. Included objects will return their full
           attributes. Attribute names can be dotted (up to 3 levels) to included deeply
@@ -2628,7 +2462,6 @@ paths:
         explode: false
         in: query
         name: include
-        required: false
         schema:
           items:
             type: string
@@ -2641,7 +2474,6 @@ paths:
         explode: false
         in: query
         name: exclude
-        required: false
         schema:
           items:
             type: string
@@ -2684,10 +2516,8 @@ paths:
       - description: Nested attributes to include. Included objects will return their
           full attributes. Attribute names can be dotted (up to 3 levels) to included
           deeply nested objects.
-        explode: true
         in: query
         name: include
-        required: false
         schema:
           items:
             enum:
@@ -2699,10 +2529,8 @@ paths:
       - description: Nested attributes to exclude. Excluded objects will return only
           the href attribute. Attribute names can be dotted (up to 3 levels) to exclude
           deeply nested objects.
-        explode: true
         in: query
         name: exclude
-        required: false
         schema:
           default:
           - address
@@ -2735,14 +2563,12 @@ paths:
       operationId: findHardwareReservationById
       parameters:
       - description: HardwareReservation UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       - description: |-
           Nested attributes to include. Included objects will return their full
           attributes. Attribute names can be dotted (up to 3 levels) to included deeply
@@ -2750,7 +2576,6 @@ paths:
         explode: false
         in: query
         name: include
-        required: false
         schema:
           items:
             type: string
@@ -2763,7 +2588,6 @@ paths:
         explode: false
         in: query
         name: exclude
-        required: false
         schema:
           items:
             type: string
@@ -2803,14 +2627,12 @@ paths:
       operationId: activateHardwareReservation
       parameters:
       - description: Hardware Reservation UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       requestBody:
         content:
           application/json:
@@ -2852,14 +2674,12 @@ paths:
       operationId: moveHardwareReservation
       parameters:
       - description: Hardware Reservation UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       requestBody:
         content:
           application/json:
@@ -2907,7 +2727,6 @@ paths:
         explode: false
         in: query
         name: include
-        required: false
         schema:
           items:
             type: string
@@ -2920,7 +2739,6 @@ paths:
         explode: false
         in: query
         name: exclude
-        required: false
         schema:
           items:
             type: string
@@ -2950,7 +2768,6 @@ paths:
         explode: false
         in: query
         name: include
-        required: false
         schema:
           items:
             type: string
@@ -2963,36 +2780,29 @@ paths:
         explode: false
         in: query
         name: exclude
-        required: false
         schema:
           items:
             type: string
           type: array
         style: form
       - description: Page to return
-        explode: true
         in: query
         name: page
-        required: false
         schema:
           default: 1
           format: int32
           maximum: 100000
           minimum: 1
           type: integer
-        style: form
       - description: Items returned per page
-        explode: true
         in: query
         name: per_page
-        required: false
         schema:
           default: 10
           format: int32
           maximum: 1000
           minimum: 1
           type: integer
-        style: form
       responses:
         "200":
           content:
@@ -3027,14 +2837,12 @@ paths:
       operationId: declineInvitation
       parameters:
       - description: Invitation UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       responses:
         "204":
           description: no content
@@ -3065,14 +2873,12 @@ paths:
       operationId: findInvitationById
       parameters:
       - description: Invitation UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       - description: |-
           Nested attributes to include. Included objects will return their full
           attributes. Attribute names can be dotted (up to 3 levels) to included deeply
@@ -3080,7 +2886,6 @@ paths:
         explode: false
         in: query
         name: include
-        required: false
         schema:
           items:
             type: string
@@ -3093,7 +2898,6 @@ paths:
         explode: false
         in: query
         name: exclude
-        required: false
         schema:
           items:
             type: string
@@ -3132,14 +2936,12 @@ paths:
       operationId: acceptInvitation
       parameters:
       - description: Invitation UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       responses:
         "200":
           content:
@@ -3174,14 +2976,12 @@ paths:
       operationId: getInvoiceById
       parameters:
       - description: Invoice UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       responses:
         "200":
           content:
@@ -3219,14 +3019,12 @@ paths:
       operationId: deleteIPAddress
       parameters:
       - description: IP Address UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       responses:
         "204":
           description: no content
@@ -3256,14 +3054,12 @@ paths:
       operationId: findIPAddressById
       parameters:
       - description: IP Address UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       - description: |-
           Nested attributes to include. Included objects will return their full
           attributes. Attribute names can be dotted (up to 3 levels) to included deeply
@@ -3271,7 +3067,6 @@ paths:
         explode: false
         in: query
         name: include
-        required: false
         schema:
           items:
             type: string
@@ -3284,7 +3079,6 @@ paths:
         explode: false
         in: query
         name: exclude
-        required: false
         schema:
           items:
             type: string
@@ -3323,14 +3117,12 @@ paths:
       operationId: updateIPAddress
       parameters:
       - description: IP Address UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       requestBody:
         content:
           application/json:
@@ -3370,16 +3162,13 @@ paths:
       operationId: findIPAvailabilities
       parameters:
       - description: IP Reservation UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       - description: Size of subnets in bits
-        explode: true
         in: query
         name: cidr
         required: true
@@ -3495,7 +3284,6 @@ paths:
           - "127"
           - "128"
           type: string
-        style: form
       responses:
         "200":
           content:
@@ -3531,14 +3319,12 @@ paths:
       operationId: findIPAddressCustomdata
       parameters:
       - description: Ip Reservation UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       responses:
         "200":
           description: ok
@@ -3569,14 +3355,12 @@ paths:
       operationId: deleteLicense
       parameters:
       - description: License UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       responses:
         "204":
           description: no content
@@ -3606,14 +3390,12 @@ paths:
       operationId: findLicenseById
       parameters:
       - description: License UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       - description: |-
           Nested attributes to include. Included objects will return their full
           attributes. Attribute names can be dotted (up to 3 levels) to included deeply
@@ -3621,7 +3403,6 @@ paths:
         explode: false
         in: query
         name: include
-        required: false
         schema:
           items:
             type: string
@@ -3634,7 +3415,6 @@ paths:
         explode: false
         in: query
         name: exclude
-        required: false
         schema:
           items:
             type: string
@@ -3673,14 +3453,12 @@ paths:
       operationId: updateLicense
       parameters:
       - description: License UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       requestBody:
         content:
           application/json:
@@ -3748,14 +3526,12 @@ paths:
       operationId: getMetro
       parameters:
       - description: Metro UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       responses:
         "200":
           content:
@@ -3778,21 +3554,15 @@ paths:
       operationId: findSpotMarketPrices
       parameters:
       - description: Facility to check spot market prices
-        explode: true
         in: query
         name: facility
-        required: false
         schema:
           type: string
-        style: form
       - description: Plan to check spot market prices
-        explode: true
         in: query
         name: plan
-        required: false
         schema:
           type: string
-        style: form
       responses:
         "200":
           content:
@@ -3824,45 +3594,34 @@ paths:
       operationId: findSpotMarketPricesHistory
       parameters:
       - description: Facility to check spot market prices
-        explode: true
         in: query
         name: facility
         required: true
         schema:
           type: string
-        style: form
       - description: Plan to check spot market prices
-        explode: true
         in: query
         name: plan
         required: true
         schema:
           type: string
-        style: form
       - description: Metro to check spot market price history
-        explode: true
         in: query
         name: metro
-        required: false
         schema:
           type: string
-        style: form
       - description: Timestamp from range
-        explode: true
         in: query
         name: from
         required: true
         schema:
           type: string
-        style: form
       - description: Timestamp to range
-        explode: true
         in: query
         name: until
         required: true
         schema:
           type: string
-        style: form
       responses:
         "200":
           content:
@@ -3891,21 +3650,15 @@ paths:
       operationId: findMetroSpotMarketPrices
       parameters:
       - description: Metro to filter spot market prices
-        explode: true
         in: query
         name: metro
-        required: false
         schema:
           type: string
-        style: form
       - description: Plan to filter spot market prices
-        explode: true
         in: query
         name: plan
-        required: false
         schema:
           type: string
-        style: form
       responses:
         "200":
           content:
@@ -3934,14 +3687,12 @@ paths:
       operationId: deleteMembership
       parameters:
       - description: Membership UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       responses:
         "204":
           description: no content
@@ -3971,14 +3722,12 @@ paths:
       operationId: findMembershipById
       parameters:
       - description: Membership UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       - description: |-
           Nested attributes to include. Included objects will return their full
           attributes. Attribute names can be dotted (up to 3 levels) to included deeply
@@ -3986,7 +3735,6 @@ paths:
         explode: false
         in: query
         name: include
-        required: false
         schema:
           items:
             type: string
@@ -3999,7 +3747,6 @@ paths:
         explode: false
         in: query
         name: exclude
-        required: false
         schema:
           items:
             type: string
@@ -4038,14 +3785,12 @@ paths:
       operationId: updateMembership
       parameters:
       - description: Membership UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       requestBody:
         content:
           application/json:
@@ -4094,14 +3839,12 @@ paths:
       operationId: deleteMetalGateway
       parameters:
       - description: Metal Gateway UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       - description: |-
           Nested attributes to include. Included objects will return their full
           attributes. Attribute names can be dotted (up to 3 levels) to included deeply
@@ -4109,7 +3852,6 @@ paths:
         explode: false
         in: query
         name: include
-        required: false
         schema:
           items:
             type: string
@@ -4122,7 +3864,6 @@ paths:
         explode: false
         in: query
         name: exclude
-        required: false
         schema:
           items:
             type: string
@@ -4155,14 +3896,12 @@ paths:
       operationId: findMetalGatewayById
       parameters:
       - description: Metal Gateway UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       - description: |-
           Nested attributes to include. Included objects will return their full
           attributes. Attribute names can be dotted (up to 3 levels) to included deeply
@@ -4170,7 +3909,6 @@ paths:
         explode: false
         in: query
         name: include
-        required: false
         schema:
           items:
             type: string
@@ -4183,7 +3921,6 @@ paths:
         explode: false
         in: query
         name: exclude
-        required: false
         schema:
           items:
             type: string
@@ -4217,14 +3954,12 @@ paths:
       operationId: getBgpDynamicNeighbors
       parameters:
       - description: Metal Gateway UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       - description: |-
           Nested attributes to include. Included objects will return their full
           attributes. Attribute names can be dotted (up to 3 levels) to included deeply
@@ -4232,7 +3967,6 @@ paths:
         explode: false
         in: query
         name: include
-        required: false
         schema:
           items:
             type: string
@@ -4245,7 +3979,6 @@ paths:
         explode: false
         in: query
         name: exclude
-        required: false
         schema:
           items:
             type: string
@@ -4283,14 +4016,12 @@ paths:
       operationId: createBgpDynamicNeighbor
       parameters:
       - description: Metal Gateway UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       requestBody:
         content:
           application/json:
@@ -4337,14 +4068,12 @@ paths:
       operationId: getMetalGatewayElasticIps
       parameters:
       - description: Metal Gateway UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       - description: |-
           Nested attributes to include. Included objects will return their full
           attributes. Attribute names can be dotted (up to 3 levels) to included deeply
@@ -4352,7 +4081,6 @@ paths:
         explode: false
         in: query
         name: include
-        required: false
         schema:
           items:
             type: string
@@ -4365,7 +4093,6 @@ paths:
         explode: false
         in: query
         name: exclude
-        required: false
         schema:
           items:
             type: string
@@ -4403,14 +4130,12 @@ paths:
       operationId: createMetalGatewayElasticIp
       parameters:
       - description: Metal Gateway UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       requestBody:
         content:
           application/json:
@@ -4499,29 +4224,23 @@ paths:
       operationId: findOrganizations
       parameters:
       - description: "Include, exclude or show only personal organizations."
-        explode: true
         in: query
         name: personal
-        required: false
         schema:
           enum:
           - include
           - exclude
           - only
           type: string
-        style: form
       - description: "Include, exclude or show only organizations that have no projects."
-        explode: true
         in: query
         name: without_projects
-        required: false
         schema:
           enum:
           - include
           - exclude
           - only
           type: string
-        style: form
       - description: |-
           Nested attributes to include. Included objects will return their full
           attributes. Attribute names can be dotted (up to 3 levels) to included deeply
@@ -4529,7 +4248,6 @@ paths:
         explode: false
         in: query
         name: include
-        required: false
         schema:
           items:
             type: string
@@ -4542,36 +4260,29 @@ paths:
         explode: false
         in: query
         name: exclude
-        required: false
         schema:
           items:
             type: string
           type: array
         style: form
       - description: Page to return
-        explode: true
         in: query
         name: page
-        required: false
         schema:
           default: 1
           format: int32
           maximum: 100000
           minimum: 1
           type: integer
-        style: form
       - description: Items returned per page
-        explode: true
         in: query
         name: per_page
-        required: false
         schema:
           default: 10
           format: int32
           maximum: 1000
           minimum: 1
           type: integer
-        style: form
       responses:
         "200":
           content:
@@ -4632,14 +4343,12 @@ paths:
       operationId: deleteOrganization
       parameters:
       - description: Organization UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       responses:
         "204":
           description: no content
@@ -4664,14 +4373,12 @@ paths:
       operationId: findOrganizationById
       parameters:
       - description: Organization UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       - description: |-
           Nested attributes to include. Included objects will return their full
           attributes. Attribute names can be dotted (up to 3 levels) to included deeply
@@ -4679,7 +4386,6 @@ paths:
         explode: false
         in: query
         name: include
-        required: false
         schema:
           items:
             type: string
@@ -4692,7 +4398,6 @@ paths:
         explode: false
         in: query
         name: exclude
-        required: false
         schema:
           items:
             type: string
@@ -4731,14 +4436,12 @@ paths:
       operationId: updateOrganization
       parameters:
       - description: Organization UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       requestBody:
         content:
           application/json:
@@ -4786,14 +4489,12 @@ paths:
       operationId: findOrganizationCapacityPerFacility
       parameters:
       - description: Organization UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       responses:
         "200":
           content:
@@ -4822,14 +4523,12 @@ paths:
       operationId: findOrganizationCapacityPerMetro
       parameters:
       - description: Organization UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       responses:
         "200":
           content:
@@ -4859,14 +4558,12 @@ paths:
       operationId: findOrganizationCustomdata
       parameters:
       - description: Organization UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       responses:
         "200":
           description: ok
@@ -4897,54 +4594,37 @@ paths:
       operationId: findOrganizationDevices
       parameters:
       - description: Organization UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       - description: Filter by device facility
-        explode: true
         in: query
         name: facility
-        required: false
         schema:
           type: string
-        style: form
       - description: Filter by partial hostname
-        explode: true
         in: query
         name: hostname
-        required: false
         schema:
           type: string
-        style: form
       - description: Filter only reserved instances
-        explode: true
         in: query
         name: reserved
-        required: false
         schema:
           type: boolean
-        style: form
       - description: Filter by device tag
-        explode: true
         in: query
         name: tag
-        required: false
         schema:
           type: string
-        style: form
       - description: "Filter by instance type (ondemand,spot,reserved)"
-        explode: true
         in: query
         name: type
-        required: false
         schema:
           type: string
-        style: form
       - description: |-
           Nested attributes to include. Included objects will return their full
           attributes. Attribute names can be dotted (up to 3 levels) to included deeply
@@ -4952,7 +4632,6 @@ paths:
         explode: false
         in: query
         name: include
-        required: false
         schema:
           items:
             type: string
@@ -4965,36 +4644,29 @@ paths:
         explode: false
         in: query
         name: exclude
-        required: false
         schema:
           items:
             type: string
           type: array
         style: form
       - description: Page to return
-        explode: true
         in: query
         name: page
-        required: false
         schema:
           default: 1
           format: int32
           maximum: 100000
           minimum: 1
           type: integer
-        style: form
       - description: Items returned per page
-        explode: true
         in: query
         name: per_page
-        required: false
         schema:
           default: 10
           format: int32
           maximum: 1000
           minimum: 1
           type: integer
-        style: form
       responses:
         "200":
           content:
@@ -5029,14 +4701,12 @@ paths:
       operationId: findOrganizationEvents
       parameters:
       - description: Organization UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       - description: |-
           Nested attributes to include. Included objects will return their full
           attributes. Attribute names can be dotted (up to 3 levels) to included deeply
@@ -5044,7 +4714,6 @@ paths:
         explode: false
         in: query
         name: include
-        required: false
         schema:
           items:
             type: string
@@ -5057,36 +4726,29 @@ paths:
         explode: false
         in: query
         name: exclude
-        required: false
         schema:
           items:
             type: string
           type: array
         style: form
       - description: Page to return
-        explode: true
         in: query
         name: page
-        required: false
         schema:
           default: 1
           format: int32
           maximum: 100000
           minimum: 1
           type: integer
-        style: form
       - description: Items returned per page
-        explode: true
         in: query
         name: per_page
-        required: false
         schema:
           default: 10
           format: int32
           maximum: 1000
           minimum: 1
           type: integer
-        style: form
       responses:
         "200":
           content:
@@ -5121,14 +4783,12 @@ paths:
       operationId: findFacilitiesByOrganization
       parameters:
       - description: Organization UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       - description: |-
           Nested attributes to include. Included objects will return their full
           attributes. Attribute names can be dotted (up to 3 levels) to included deeply
@@ -5136,7 +4796,6 @@ paths:
         explode: false
         in: query
         name: include
-        required: false
         schema:
           items:
             type: string
@@ -5149,7 +4808,6 @@ paths:
         explode: false
         in: query
         name: exclude
-        required: false
         schema:
           items:
             type: string
@@ -5195,7 +4853,6 @@ paths:
         explode: false
         in: query
         name: include
-        required: false
         schema:
           items:
             type: string
@@ -5208,45 +4865,36 @@ paths:
         explode: false
         in: query
         name: exclude
-        required: false
         schema:
           items:
             type: string
           type: array
         style: form
       - description: Page to return
-        explode: true
         in: query
         name: page
-        required: false
         schema:
           default: 1
           format: int32
           maximum: 100000
           minimum: 1
           type: integer
-        style: form
       - description: Items returned per page
-        explode: true
         in: query
         name: per_page
-        required: false
         schema:
           default: 10
           format: int32
           maximum: 1000
           minimum: 1
           type: integer
-        style: form
       - description: Organization UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       responses:
         "200":
           content:
@@ -5282,14 +4930,12 @@ paths:
       operationId: createOrganizationInvitation
       parameters:
       - description: Organization UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       requestBody:
         $ref: '#/components/requestBodies/InvitationInput'
       responses:
@@ -5332,38 +4978,27 @@ paths:
       operationId: findOrganizationInvoices
       parameters:
       - description: Organization UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       - description: page number
-        explode: true
         in: query
         name: page
-        required: false
         schema:
           type: integer
-        style: form
       - description: per page
-        explode: true
         in: query
         name: per_page
-        required: false
         schema:
           type: integer
-        style: form
       - description: filter by status
-        explode: true
         in: query
         name: status
-        required: false
         schema:
           type: string
-        style: form
       responses:
         "200":
           content:
@@ -5393,14 +5028,12 @@ paths:
       operationId: findOperatingSystemsByOrganization
       parameters:
       - description: Organization UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       - description: |-
           Nested attributes to include. Included objects will return their full
           attributes. Attribute names can be dotted (up to 3 levels) to included deeply
@@ -5408,7 +5041,6 @@ paths:
         explode: false
         in: query
         name: include
-        required: false
         schema:
           items:
             type: string
@@ -5421,7 +5053,6 @@ paths:
         explode: false
         in: query
         name: exclude
-        required: false
         schema:
           items:
             type: string
@@ -5461,14 +5092,12 @@ paths:
       operationId: findOrganizationPaymentMethods
       parameters:
       - description: Organization UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       - description: |-
           Nested attributes to include. Included objects will return their full
           attributes. Attribute names can be dotted (up to 3 levels) to included deeply
@@ -5476,7 +5105,6 @@ paths:
         explode: false
         in: query
         name: include
-        required: false
         schema:
           items:
             type: string
@@ -5489,36 +5117,29 @@ paths:
         explode: false
         in: query
         name: exclude
-        required: false
         schema:
           items:
             type: string
           type: array
         style: form
       - description: Page to return
-        explode: true
         in: query
         name: page
-        required: false
         schema:
           default: 1
           format: int32
           maximum: 100000
           minimum: 1
           type: integer
-        style: form
       - description: Items returned per page
-        explode: true
         in: query
         name: per_page
-        required: false
         schema:
           default: 10
           format: int32
           maximum: 1000
           minimum: 1
           type: integer
-        style: form
       responses:
         "200":
           content:
@@ -5546,14 +5167,12 @@ paths:
       operationId: createPaymentMethod
       parameters:
       - description: Organization UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       requestBody:
         content:
           application/json:
@@ -5595,14 +5214,12 @@ paths:
       operationId: findPlansByOrganization
       parameters:
       - description: Organization UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       - description: |-
           Nested attributes to include. Included objects will return their full
           attributes. Attribute names can be dotted (up to 3 levels) to included deeply
@@ -5610,7 +5227,6 @@ paths:
         explode: false
         in: query
         name: include
-        required: false
         schema:
           items:
             type: string
@@ -5623,7 +5239,6 @@ paths:
         explode: false
         in: query
         name: exclude
-        required: false
         schema:
           items:
             type: string
@@ -5663,14 +5278,12 @@ paths:
       operationId: findOrganizationProjects
       parameters:
       - description: Organization UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       - description: |-
           Nested attributes to include. Included objects will return their full
           attributes. Attribute names can be dotted (up to 3 levels) to included deeply
@@ -5678,7 +5291,6 @@ paths:
         explode: false
         in: query
         name: include
-        required: false
         schema:
           items:
             type: string
@@ -5691,36 +5303,29 @@ paths:
         explode: false
         in: query
         name: exclude
-        required: false
         schema:
           items:
             type: string
           type: array
         style: form
       - description: Page to return
-        explode: true
         in: query
         name: page
-        required: false
         schema:
           default: 1
           format: int32
           maximum: 100000
           minimum: 1
           type: integer
-        style: form
       - description: Items returned per page
-        explode: true
         in: query
         name: per_page
-        required: false
         schema:
           default: 10
           format: int32
           maximum: 1000
           minimum: 1
           type: integer
-        style: form
       responses:
         "200":
           content:
@@ -5742,14 +5347,12 @@ paths:
       operationId: createOrganizationProject
       parameters:
       - description: Organization UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       requestBody:
         content:
           application/json:
@@ -5786,14 +5389,12 @@ paths:
       operationId: findOrganizationTransfers
       parameters:
       - description: Organization UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       - description: |-
           Nested attributes to include. Included objects will return their full
           attributes. Attribute names can be dotted (up to 3 levels) to included deeply
@@ -5801,7 +5402,6 @@ paths:
         explode: false
         in: query
         name: include
-        required: false
         schema:
           items:
             type: string
@@ -5814,7 +5414,6 @@ paths:
         explode: false
         in: query
         name: exclude
-        required: false
         schema:
           items:
             type: string
@@ -5848,14 +5447,12 @@ paths:
       operationId: organizationListInterconnections
       parameters:
       - description: UUID of the organization
-        explode: false
         in: path
         name: organization_id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       responses:
         "200":
           content:
@@ -5884,14 +5481,12 @@ paths:
       operationId: createOrganizationInterconnection
       parameters:
       - description: UUID of the organization
-        explode: false
         in: path
         name: organization_id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       requestBody:
         $ref: '#/components/requestBodies/InterconnectionCreateInput'
       responses:
@@ -5928,14 +5523,12 @@ paths:
       operationId: deletePaymentMethod
       parameters:
       - description: Payment Method UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       responses:
         "204":
           description: no content
@@ -5959,14 +5552,12 @@ paths:
       operationId: findPaymentMethodById
       parameters:
       - description: Payment Method UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       - description: |-
           Nested attributes to include. Included objects will return their full
           attributes. Attribute names can be dotted (up to 3 levels) to included deeply
@@ -5974,7 +5565,6 @@ paths:
         explode: false
         in: query
         name: include
-        required: false
         schema:
           items:
             type: string
@@ -5987,7 +5577,6 @@ paths:
         explode: false
         in: query
         name: exclude
-        required: false
         schema:
           items:
             type: string
@@ -6020,14 +5609,12 @@ paths:
       operationId: updatePaymentMethod
       parameters:
       - description: Payment Method UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       requestBody:
         content:
           application/json:
@@ -6070,10 +5657,8 @@ paths:
       operationId: findPlans
       parameters:
       - description: Filter plans by its plan type
-        explode: true
         in: query
         name: type
-        required: false
         schema:
           enum:
           - standard
@@ -6081,7 +5666,6 @@ paths:
           - custom
           example: standard
           type: string
-        style: form
       - description: |-
           Nested attributes to include. Included objects will return their full
           attributes. Attribute names can be dotted (up to 3 levels) to included deeply
@@ -6089,7 +5673,6 @@ paths:
         explode: false
         in: query
         name: include
-        required: false
         schema:
           items:
             type: string
@@ -6102,7 +5685,6 @@ paths:
         explode: false
         in: query
         name: exclude
-        required: false
         schema:
           items:
             type: string
@@ -6130,14 +5712,12 @@ paths:
       operationId: findPortById
       parameters:
       - description: Port UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       - description: |-
           Nested attributes to include. Included objects will return their full
           attributes. Attribute names can be dotted (up to 3 levels) to included deeply
@@ -6145,7 +5725,6 @@ paths:
         explode: false
         in: query
         name: include
-        required: false
         schema:
           items:
             type: string
@@ -6158,7 +5737,6 @@ paths:
         explode: false
         in: query
         name: exclude
-        required: false
         schema:
           items:
             type: string
@@ -6192,14 +5770,12 @@ paths:
       operationId: assignPort
       parameters:
       - description: Port UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       requestBody:
         $ref: '#/components/requestBodies/PortAssignInput'
       responses:
@@ -6242,22 +5818,17 @@ paths:
       operationId: bondPort
       parameters:
       - description: Port UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       - description: enable both ports
-        explode: true
         in: query
         name: bulk_enable
-        required: false
         schema:
           type: boolean
-        style: form
       responses:
         "200":
           content:
@@ -6299,14 +5870,12 @@ paths:
       operationId: convertLayer2
       parameters:
       - description: Port UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       requestBody:
         $ref: '#/components/requestBodies/PortAssignInput'
       responses:
@@ -6349,14 +5918,12 @@ paths:
       operationId: convertLayer3
       parameters:
       - description: Port UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       requestBody:
         content:
           application/json:
@@ -6403,22 +5970,17 @@ paths:
       operationId: disbondPort
       parameters:
       - description: Port UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       - description: disable both ports
-        explode: true
         in: query
         name: bulk_disable
-        required: false
         schema:
           type: boolean
-        style: form
       responses:
         "200":
           content:
@@ -6459,14 +6021,12 @@ paths:
       operationId: deleteNativeVlan
       parameters:
       - description: Port UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       responses:
         "200":
           content:
@@ -6502,23 +6062,19 @@ paths:
       operationId: assignNativeVlan
       parameters:
       - description: Port UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       - description: "Virtual Network ID. May be the UUID of the Virtual Network record,\
           \ or the VLAN value itself (ex: '1001')."
-        explode: true
         in: query
         name: vnid
         required: true
         schema:
           type: string
-        style: form
       responses:
         "200":
           content:
@@ -6553,14 +6109,12 @@ paths:
       operationId: unassignPort
       parameters:
       - description: Port UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       requestBody:
         $ref: '#/components/requestBodies/PortAssignInput'
       responses:
@@ -6605,21 +6159,17 @@ paths:
       operationId: findPortVlanAssignments
       parameters:
       - description: Port UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       - description: Nested attributes to include. Included objects will return their
           full attributes. Attribute names can be dotted (up to 3 levels) to included
           deeply nested objects.
-        explode: true
         in: query
         name: include
-        required: false
         schema:
           default:
           - port
@@ -6631,10 +6181,8 @@ paths:
       - description: Nested attributes to exclude. Excluded objects will return only
           the href attribute. Attribute names can be dotted (up to 3 levels) to exclude
           deeply nested objects.
-        explode: true
         in: query
         name: exclude
-        required: false
         schema:
           items:
             type: string
@@ -6675,30 +6223,24 @@ paths:
       operationId: findPortVlanAssignmentByPortIdAndAssignmentId
       parameters:
       - description: Port UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       - description: Assignment ID
-        explode: false
         in: path
         name: assignment_id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       - description: Nested attributes to include. Included objects will return their
           full attributes. Attribute names can be dotted (up to 3 levels) to included
           deeply nested objects.
-        explode: true
         in: query
         name: include
-        required: false
         schema:
           default:
           - port
@@ -6710,10 +6252,8 @@ paths:
       - description: Nested attributes to exclude. Excluded objects will return only
           the href attribute. Attribute names can be dotted (up to 3 levels) to exclude
           deeply nested objects.
-        explode: true
         in: query
         name: exclude
-        required: false
         schema:
           items:
             type: string
@@ -6754,14 +6294,12 @@ paths:
       operationId: findPortVlanAssignmentBatches
       parameters:
       - description: Port UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       responses:
         "200":
           content:
@@ -6796,14 +6334,12 @@ paths:
       operationId: createPortVlanAssignmentBatch
       parameters:
       - description: Port UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       requestBody:
         content:
           application/json:
@@ -6853,23 +6389,19 @@ paths:
       operationId: findPortVlanAssignmentBatchByPortIdAndBatchId
       parameters:
       - description: Port UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       - description: Batch ID
-        explode: false
         in: path
         name: batch_id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       - description: |-
           Nested attributes to include. Included objects will return their full
           attributes. Attribute names can be dotted (up to 3 levels) to included deeply
@@ -6877,7 +6409,6 @@ paths:
         explode: false
         in: query
         name: include
-        required: false
         schema:
           items:
             type: string
@@ -6890,7 +6421,6 @@ paths:
         explode: false
         in: query
         name: exclude
-        required: false
         schema:
           items:
             type: string
@@ -6937,7 +6467,6 @@ paths:
         explode: false
         in: query
         name: include
-        required: false
         schema:
           items:
             type: string
@@ -6950,36 +6479,29 @@ paths:
         explode: false
         in: query
         name: exclude
-        required: false
         schema:
           items:
             type: string
           type: array
         style: form
       - description: Page to return
-        explode: true
         in: query
         name: page
-        required: false
         schema:
           default: 1
           format: int32
           maximum: 100000
           minimum: 1
           type: integer
-        style: form
       - description: Items returned per page
-        explode: true
         in: query
         name: per_page
-        required: false
         schema:
           default: 10
           format: int32
           maximum: 1000
           minimum: 1
           type: integer
-        style: form
       responses:
         "200":
           content:
@@ -7035,14 +6557,12 @@ paths:
       operationId: deleteProject
       parameters:
       - description: Project UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       responses:
         "204":
           description: no content
@@ -7072,14 +6592,12 @@ paths:
       operationId: findProjectById
       parameters:
       - description: Project UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       - description: |-
           Nested attributes to include. Included objects will return their full
           attributes. Attribute names can be dotted (up to 3 levels) to included deeply
@@ -7087,7 +6605,6 @@ paths:
         explode: false
         in: query
         name: include
-        required: false
         schema:
           items:
             type: string
@@ -7100,7 +6617,6 @@ paths:
         explode: false
         in: query
         name: exclude
-        required: false
         schema:
           items:
             type: string
@@ -7139,14 +6655,12 @@ paths:
       operationId: updateProject
       parameters:
       - description: Project UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       requestBody:
         content:
           application/json:
@@ -7194,14 +6708,12 @@ paths:
       operationId: findProjectAPIKeys
       parameters:
       - description: Project UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       - description: |-
           Nested attributes to include. Included objects will return their full
           attributes. Attribute names can be dotted (up to 3 levels) to included deeply
@@ -7209,7 +6721,6 @@ paths:
         explode: false
         in: query
         name: include
-        required: false
         schema:
           items:
             type: string
@@ -7222,7 +6733,6 @@ paths:
         explode: false
         in: query
         name: exclude
-        required: false
         schema:
           items:
             type: string
@@ -7255,14 +6765,12 @@ paths:
       operationId: createProjectAPIKey
       parameters:
       - description: Project UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       requestBody:
         content:
           application/json:
@@ -7304,14 +6812,12 @@ paths:
       operationId: findBatchesByProject
       parameters:
       - description: Project UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       - description: |-
           Nested attributes to include. Included objects will return their full
           attributes. Attribute names can be dotted (up to 3 levels) to included deeply
@@ -7319,7 +6825,6 @@ paths:
         explode: false
         in: query
         name: include
-        required: false
         schema:
           items:
             type: string
@@ -7332,7 +6837,6 @@ paths:
         explode: false
         in: query
         name: exclude
-        required: false
         schema:
           items:
             type: string
@@ -7372,14 +6876,12 @@ paths:
       operationId: findBgpConfigByProject
       parameters:
       - description: Project UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       - description: |-
           Nested attributes to include. Included objects will return their full
           attributes. Attribute names can be dotted (up to 3 levels) to included deeply
@@ -7387,7 +6889,6 @@ paths:
         explode: false
         in: query
         name: include
-        required: false
         schema:
           items:
             type: string
@@ -7400,7 +6901,6 @@ paths:
         explode: false
         in: query
         name: exclude
-        required: false
         schema:
           items:
             type: string
@@ -7447,14 +6947,12 @@ paths:
       operationId: requestBgpConfig
       parameters:
       - description: Project UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       requestBody:
         content:
           application/json:
@@ -7498,14 +6996,12 @@ paths:
       operationId: findProjectBgpSessions
       parameters:
       - description: Project UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       responses:
         "200":
           content:
@@ -7534,14 +7030,12 @@ paths:
       operationId: findProjectCustomdata
       parameters:
       - description: Project UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       responses:
         "200":
           description: ok
@@ -7572,54 +7066,37 @@ paths:
       operationId: findProjectDevices
       parameters:
       - description: Project UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       - description: Filter by device facility
-        explode: true
         in: query
         name: facility
-        required: false
         schema:
           type: string
-        style: form
       - description: Filter by partial hostname
-        explode: true
         in: query
         name: hostname
-        required: false
         schema:
           type: string
-        style: form
       - description: Filter only reserved instances
-        explode: true
         in: query
         name: reserved
-        required: false
         schema:
           type: boolean
-        style: form
       - description: Filter by device tag
-        explode: true
         in: query
         name: tag
-        required: false
         schema:
           type: string
-        style: form
       - description: "Filter by instance type (ondemand,spot,reserved)"
-        explode: true
         in: query
         name: type
-        required: false
         schema:
           type: string
-        style: form
       - description: |-
           Nested attributes to include. Included objects will return their full
           attributes. Attribute names can be dotted (up to 3 levels) to included deeply
@@ -7627,7 +7104,6 @@ paths:
         explode: false
         in: query
         name: include
-        required: false
         schema:
           items:
             type: string
@@ -7640,36 +7116,29 @@ paths:
         explode: false
         in: query
         name: exclude
-        required: false
         schema:
           items:
             type: string
           type: array
         style: form
       - description: Page to return
-        explode: true
         in: query
         name: page
-        required: false
         schema:
           default: 1
           format: int32
           maximum: 100000
           minimum: 1
           type: integer
-        style: form
       - description: Items returned per page
-        explode: true
         in: query
         name: per_page
-        required: false
         schema:
           default: 10
           format: int32
           maximum: 1000
           minimum: 1
           type: integer
-        style: form
       responses:
         "200":
           content:
@@ -7706,14 +7175,12 @@ paths:
       operationId: createDevice
       parameters:
       - description: Project UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       requestBody:
         content:
           application/json:
@@ -7761,14 +7228,12 @@ paths:
       operationId: createDeviceBatch
       parameters:
       - description: Project UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       requestBody:
         content:
           application/json:
@@ -7816,14 +7281,12 @@ paths:
       operationId: findProjectEvents
       parameters:
       - description: Project UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       - description: |-
           Nested attributes to include. Included objects will return their full
           attributes. Attribute names can be dotted (up to 3 levels) to included deeply
@@ -7831,7 +7294,6 @@ paths:
         explode: false
         in: query
         name: include
-        required: false
         schema:
           items:
             type: string
@@ -7844,36 +7306,29 @@ paths:
         explode: false
         in: query
         name: exclude
-        required: false
         schema:
           items:
             type: string
           type: array
         style: form
       - description: Page to return
-        explode: true
         in: query
         name: page
-        required: false
         schema:
           default: 1
           format: int32
           maximum: 100000
           minimum: 1
           type: integer
-        style: form
       - description: Items returned per page
-        explode: true
         in: query
         name: per_page
-        required: false
         schema:
           default: 10
           format: int32
           maximum: 1000
           minimum: 1
           type: integer
-        style: form
       responses:
         "200":
           content:
@@ -7908,14 +7363,12 @@ paths:
       operationId: findFacilitiesByProject
       parameters:
       - description: Project UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       - description: |-
           Nested attributes to include. Included objects will return their full
           attributes. Attribute names can be dotted (up to 3 levels) to included deeply
@@ -7923,7 +7376,6 @@ paths:
         explode: false
         in: query
         name: include
-        required: false
         schema:
           items:
             type: string
@@ -7936,7 +7388,6 @@ paths:
         explode: false
         in: query
         name: exclude
-        required: false
         schema:
           items:
             type: string
@@ -7976,14 +7427,12 @@ paths:
       operationId: findGlobalBgpRanges
       parameters:
       - description: Project UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       responses:
         "200":
           content:
@@ -8018,45 +7467,34 @@ paths:
       operationId: findProjectHardwareReservations
       parameters:
       - description: Project UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       - description: "Search by facility code, plan name, project name, reservation\
           \ short ID or device hostname"
-        explode: true
         in: query
         name: query
-        required: false
         schema:
           type: string
-        style: form
       - description: Filter by hardware reservation state
-        explode: true
         in: query
         name: state
-        required: false
         schema:
           enum:
           - active
           - spare
           - need_of_service
           type: string
-        style: form
       - description: Filter hardware reservation that is provisionable
-        explode: true
         in: query
         name: provisionable
-        required: false
         schema:
           enum:
           - only
           type: string
-        style: form
       - description: |-
           Nested attributes to include. Included objects will return their full
           attributes. Attribute names can be dotted (up to 3 levels) to included deeply
@@ -8064,7 +7502,6 @@ paths:
         explode: false
         in: query
         name: include
-        required: false
         schema:
           items:
             type: string
@@ -8077,36 +7514,29 @@ paths:
         explode: false
         in: query
         name: exclude
-        required: false
         schema:
           items:
             type: string
           type: array
         style: form
       - description: Page to return
-        explode: true
         in: query
         name: page
-        required: false
         schema:
           default: 1
           format: int32
           maximum: 100000
           minimum: 1
           type: integer
-        style: form
       - description: Items returned per page
-        explode: true
         in: query
         name: per_page
-        required: false
         schema:
           default: 10
           format: int32
           maximum: 1000
           minimum: 1
           type: integer
-        style: form
       responses:
         "200":
           content:
@@ -8141,19 +7571,15 @@ paths:
       operationId: findIPReservations
       parameters:
       - description: Project UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       - description: Filter project IP reservations by reservation type
-        explode: true
         in: query
         name: types
-        required: false
         schema:
           items:
             enum:
@@ -8172,7 +7598,6 @@ paths:
         explode: false
         in: query
         name: include
-        required: false
         schema:
           items:
             type: string
@@ -8185,24 +7610,20 @@ paths:
         explode: false
         in: query
         name: exclude
-        required: false
         schema:
           items:
             type: string
           type: array
         style: form
       - description: Items returned per page
-        explode: true
         in: query
         name: per_page
-        required: false
         schema:
           default: 250
           format: int32
           maximum: 1000
           minimum: 1
           type: integer
-        style: form
       responses:
         "200":
           content:
@@ -8242,14 +7663,12 @@ paths:
       operationId: requestIPReservation
       parameters:
       - description: Project UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       requestBody:
         content:
           application/json:
@@ -8297,14 +7716,12 @@ paths:
       operationId: findProjectLicenses
       parameters:
       - description: Project UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       - description: |-
           Nested attributes to include. Included objects will return their full
           attributes. Attribute names can be dotted (up to 3 levels) to included deeply
@@ -8312,7 +7729,6 @@ paths:
         explode: false
         in: query
         name: include
-        required: false
         schema:
           items:
             type: string
@@ -8325,36 +7741,29 @@ paths:
         explode: false
         in: query
         name: exclude
-        required: false
         schema:
           items:
             type: string
           type: array
         style: form
       - description: Page to return
-        explode: true
         in: query
         name: page
-        required: false
         schema:
           default: 1
           format: int32
           maximum: 100000
           minimum: 1
           type: integer
-        style: form
       - description: Items returned per page
-        explode: true
         in: query
         name: per_page
-        required: false
         schema:
           default: 10
           format: int32
           maximum: 1000
           minimum: 1
           type: integer
-        style: form
       responses:
         "200":
           content:
@@ -8388,14 +7797,12 @@ paths:
       operationId: createLicense
       parameters:
       - description: Project UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       requestBody:
         content:
           application/json:
@@ -8443,14 +7850,12 @@ paths:
       operationId: findPlansByProject
       parameters:
       - description: Project UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       - description: |-
           Nested attributes to include. Included objects will return their full
           attributes. Attribute names can be dotted (up to 3 levels) to included deeply
@@ -8458,7 +7863,6 @@ paths:
         explode: false
         in: query
         name: include
-        required: false
         schema:
           items:
             type: string
@@ -8471,7 +7875,6 @@ paths:
         explode: false
         in: query
         name: exclude
-        required: false
         schema:
           items:
             type: string
@@ -8511,14 +7914,12 @@ paths:
       operationId: listSpotMarketRequests
       parameters:
       - description: Project UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       responses:
         "200":
           content:
@@ -8555,14 +7956,12 @@ paths:
       operationId: createSpotMarketRequest
       parameters:
       - description: Project UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       requestBody:
         content:
           application/json:
@@ -8604,22 +8003,17 @@ paths:
       operationId: findProjectSSHKeys
       parameters:
       - description: Project UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       - description: "Search by key, label, or fingerprint"
-        explode: true
         in: query
         name: query
-        required: false
         schema:
           type: string
-        style: form
       - description: |-
           Nested attributes to include. Included objects will return their full
           attributes. Attribute names can be dotted (up to 3 levels) to included deeply
@@ -8627,7 +8021,6 @@ paths:
         explode: false
         in: query
         name: include
-        required: false
         schema:
           items:
             type: string
@@ -8640,7 +8033,6 @@ paths:
         explode: false
         in: query
         name: exclude
-        required: false
         schema:
           items:
             type: string
@@ -8667,14 +8059,12 @@ paths:
       operationId: createProjectSSHKey
       parameters:
       - description: Project UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       requestBody:
         content:
           application/json:
@@ -8710,14 +8100,12 @@ paths:
       operationId: createTransferRequest
       parameters:
       - description: UUID of the project to be transferred
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       requestBody:
         content:
           application/json:
@@ -8765,32 +8153,24 @@ paths:
       operationId: findProjectUsage
       parameters:
       - description: Project UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       - description: Filter usages created after this date
-        explode: true
         in: query
         name: "created[after]"
-        required: false
         schema:
           format: datetime
           type: string
-        style: form
       - description: Filter usages created before this date
-        explode: true
         in: query
         name: "created[before]"
-        required: false
         schema:
           format: datetime
           type: string
-        style: form
       responses:
         "200":
           content:
@@ -8819,14 +8199,12 @@ paths:
       operationId: findVirtualNetworks
       parameters:
       - description: Project UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       - description: |-
           Nested attributes to include. Included objects will return their full
           attributes. Attribute names can be dotted (up to 3 levels) to included deeply
@@ -8834,7 +8212,6 @@ paths:
         explode: false
         in: query
         name: include
-        required: false
         schema:
           items:
             type: string
@@ -8847,28 +8224,21 @@ paths:
         explode: false
         in: query
         name: exclude
-        required: false
         schema:
           items:
             type: string
           type: array
         style: form
       - description: Filter by Facility ID (uuid) or Facility Code
-        explode: true
         in: query
         name: facility
-        required: false
         schema:
           type: string
-        style: form
       - description: Filter by Metro ID (uuid) or Metro Code
-        explode: true
         in: query
         name: metro
-        required: false
         schema:
           type: string
-        style: form
       responses:
         "200":
           content:
@@ -8902,14 +8272,12 @@ paths:
       operationId: createVirtualNetwork
       parameters:
       - description: Project UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       requestBody:
         content:
           application/json:
@@ -8957,14 +8325,12 @@ paths:
       operationId: findVrfs
       parameters:
       - description: Project UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       - description: |-
           Nested attributes to include. Included objects will return their full
           attributes. Attribute names can be dotted (up to 3 levels) to included deeply
@@ -8972,7 +8338,6 @@ paths:
         explode: false
         in: query
         name: include
-        required: false
         schema:
           items:
             type: string
@@ -8985,20 +8350,16 @@ paths:
         explode: false
         in: query
         name: exclude
-        required: false
         schema:
           items:
             type: string
           type: array
         style: form
       - description: Filter by Metro ID (uuid) or Metro Code
-        explode: true
         in: query
         name: metro
-        required: false
         schema:
           type: string
-        style: form
       responses:
         "200":
           content:
@@ -9026,14 +8387,12 @@ paths:
       operationId: createVrf
       parameters:
       - description: Project UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       requestBody:
         content:
           application/json:
@@ -9075,14 +8434,12 @@ paths:
       operationId: projectListInterconnections
       parameters:
       - description: UUID of the project
-        explode: false
         in: path
         name: project_id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       - description: |-
           Nested attributes to include. Included objects will return their full
           attributes. Attribute names can be dotted (up to 3 levels) to included deeply
@@ -9090,7 +8447,6 @@ paths:
         explode: false
         in: query
         name: include
-        required: false
         schema:
           items:
             type: string
@@ -9103,36 +8459,29 @@ paths:
         explode: false
         in: query
         name: exclude
-        required: false
         schema:
           items:
             type: string
           type: array
         style: form
       - description: Page to return
-        explode: true
         in: query
         name: page
-        required: false
         schema:
           default: 1
           format: int32
           maximum: 100000
           minimum: 1
           type: integer
-        style: form
       - description: Items returned per page
-        explode: true
         in: query
         name: per_page
-        required: false
         schema:
           default: 10
           format: int32
           maximum: 1000
           minimum: 1
           type: integer
-        style: form
       responses:
         "200":
           content:
@@ -9160,14 +8509,12 @@ paths:
       operationId: createProjectInterconnection
       parameters:
       - description: UUID of the project
-        explode: false
         in: path
         name: project_id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       requestBody:
         $ref: '#/components/requestBodies/InterconnectionCreateInput'
       responses:
@@ -9204,7 +8551,6 @@ paths:
         explode: false
         in: query
         name: include
-        required: false
         schema:
           items:
             type: string
@@ -9217,45 +8563,36 @@ paths:
         explode: false
         in: query
         name: exclude
-        required: false
         schema:
           items:
             type: string
           type: array
         style: form
       - description: Page to return
-        explode: true
         in: query
         name: page
-        required: false
         schema:
           default: 1
           format: int32
           maximum: 100000
           minimum: 1
           type: integer
-        style: form
       - description: Items returned per page
-        explode: true
         in: query
         name: per_page
-        required: false
         schema:
           default: 10
           format: int32
           maximum: 1000
           minimum: 1
           type: integer
-        style: form
       - description: Project UUID
-        explode: false
         in: path
         name: project_id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       responses:
         "200":
           content:
@@ -9289,14 +8626,12 @@ paths:
       operationId: createProjectInvitation
       parameters:
       - description: Project UUID
-        explode: false
         in: path
         name: project_id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       requestBody:
         $ref: '#/components/requestBodies/InvitationInput'
       responses:
@@ -9340,23 +8675,19 @@ paths:
       operationId: findIPReservationCustomdata
       parameters:
       - description: Project UUID
-        explode: false
         in: path
         name: project_id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       - description: Ip Reservation UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       responses:
         "200":
           description: ok
@@ -9393,7 +8724,6 @@ paths:
         explode: false
         in: query
         name: include
-        required: false
         schema:
           items:
             type: string
@@ -9406,45 +8736,36 @@ paths:
         explode: false
         in: query
         name: exclude
-        required: false
         schema:
           items:
             type: string
           type: array
         style: form
       - description: Page to return
-        explode: true
         in: query
         name: page
-        required: false
         schema:
           default: 1
           format: int32
           maximum: 100000
           minimum: 1
           type: integer
-        style: form
       - description: Items returned per page
-        explode: true
         in: query
         name: per_page
-        required: false
         schema:
           default: 10
           format: int32
           maximum: 1000
           minimum: 1
           type: integer
-        style: form
       - description: Project UUID
-        explode: false
         in: path
         name: project_id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       responses:
         "200":
           content:
@@ -9479,14 +8800,12 @@ paths:
       operationId: findMetalGatewaysByProject
       parameters:
       - description: Project UUID
-        explode: false
         in: path
         name: project_id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       - description: |-
           Nested attributes to include. Included objects will return their full
           attributes. Attribute names can be dotted (up to 3 levels) to included deeply
@@ -9494,7 +8813,6 @@ paths:
         explode: false
         in: query
         name: include
-        required: false
         schema:
           items:
             type: string
@@ -9507,36 +8825,29 @@ paths:
         explode: false
         in: query
         name: exclude
-        required: false
         schema:
           items:
             type: string
           type: array
         style: form
       - description: Page to return
-        explode: true
         in: query
         name: page
-        required: false
         schema:
           default: 1
           format: int32
           maximum: 100000
           minimum: 1
           type: integer
-        style: form
       - description: Items returned per page
-        explode: true
         in: query
         name: per_page
-        required: false
         schema:
           default: 10
           format: int32
           maximum: 1000
           minimum: 1
           type: integer
-        style: form
       responses:
         "200":
           content:
@@ -9564,14 +8875,12 @@ paths:
       operationId: createMetalGateway
       parameters:
       - description: Project UUID
-        explode: false
         in: path
         name: project_id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       - description: |-
           Nested attributes to include. Included objects will return their full
           attributes. Attribute names can be dotted (up to 3 levels) to included deeply
@@ -9579,7 +8888,6 @@ paths:
         explode: false
         in: query
         name: include
-        required: false
         schema:
           items:
             type: string
@@ -9592,36 +8900,29 @@ paths:
         explode: false
         in: query
         name: exclude
-        required: false
         schema:
           items:
             type: string
           type: array
         style: form
       - description: Page to return
-        explode: true
         in: query
         name: page
-        required: false
         schema:
           default: 1
           format: int32
           maximum: 100000
           minimum: 1
           type: integer
-        style: form
       - description: Items returned per page
-        explode: true
         in: query
         name: per_page
-        required: false
         schema:
           default: 10
           format: int32
           maximum: 1000
           minimum: 1
           type: integer
-        style: form
       requestBody:
         content:
           application/json:
@@ -9663,38 +8964,30 @@ paths:
       operationId: findSelfServiceReservations
       parameters:
       - description: Page to return
-        explode: true
         in: query
         name: page
-        required: false
         schema:
           default: 1
           format: int32
           maximum: 100000
           minimum: 1
           type: integer
-        style: form
       - description: Items returned per page
-        explode: true
         in: query
         name: per_page
-        required: false
         schema:
           default: 10
           format: int32
           maximum: 1000
           minimum: 1
           type: integer
-        style: form
       - description: Project UUID
-        explode: false
         in: path
         name: project_id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       responses:
         "200":
           content:
@@ -9716,14 +9009,12 @@ paths:
       operationId: createSelfServiceReservation
       parameters:
       - description: Project UUID
-        explode: false
         in: path
         name: project_id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       requestBody:
         content:
           application/json:
@@ -9759,23 +9050,19 @@ paths:
       operationId: findSelfServiceReservation
       parameters:
       - description: Reservation short_id
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       - description: Project UUID
-        explode: false
         in: path
         name: project_id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       responses:
         "200":
           content:
@@ -9829,13 +9116,11 @@ paths:
       operationId: createPasswordResetToken
       parameters:
       - description: Email of user to create password reset token
-        explode: true
         in: query
         name: email
         required: true
         schema:
           type: string
-        style: form
       responses:
         "201":
           description: created
@@ -9863,14 +9148,12 @@ paths:
       operationId: deleteVrfRouteById
       parameters:
       - description: VRF Route UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       - description: |-
           Nested attributes to include. Included objects will return their full
           attributes. Attribute names can be dotted (up to 3 levels) to included deeply
@@ -9878,7 +9161,6 @@ paths:
         explode: false
         in: query
         name: include
-        required: false
         schema:
           items:
             type: string
@@ -9891,7 +9173,6 @@ paths:
         explode: false
         in: query
         name: exclude
-        required: false
         schema:
           items:
             type: string
@@ -9930,14 +9211,12 @@ paths:
       operationId: findVrfRouteById
       parameters:
       - description: VRF Route UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       - description: |-
           Nested attributes to include. Included objects will return their full
           attributes. Attribute names can be dotted (up to 3 levels) to included deeply
@@ -9945,7 +9224,6 @@ paths:
         explode: false
         in: query
         name: include
-        required: false
         schema:
           items:
             type: string
@@ -9958,7 +9236,6 @@ paths:
         explode: false
         in: query
         name: exclude
-        required: false
         schema:
           items:
             type: string
@@ -9992,14 +9269,12 @@ paths:
       operationId: updateVrfRouteById
       parameters:
       - description: VRF Route UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       - description: |-
           Nested attributes to include. Included objects will return their full
           attributes. Attribute names can be dotted (up to 3 levels) to included deeply
@@ -10007,7 +9282,6 @@ paths:
         explode: false
         in: query
         name: include
-        required: false
         schema:
           items:
             type: string
@@ -10020,7 +9294,6 @@ paths:
         explode: false
         in: query
         name: exclude
-        required: false
         schema:
           items:
             type: string
@@ -10078,14 +9351,12 @@ paths:
       operationId: findVrfRouteEvents
       parameters:
       - description: VRF Route UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       - description: |-
           Nested attributes to include. Included objects will return their full
           attributes. Attribute names can be dotted (up to 3 levels) to included deeply
@@ -10093,7 +9364,6 @@ paths:
         explode: false
         in: query
         name: include
-        required: false
         schema:
           items:
             type: string
@@ -10106,36 +9376,29 @@ paths:
         explode: false
         in: query
         name: exclude
-        required: false
         schema:
           items:
             type: string
           type: array
         style: form
       - description: Page to return
-        explode: true
         in: query
         name: page
-        required: false
         schema:
           default: 1
           format: int32
           maximum: 100000
           minimum: 1
           type: integer
-        style: form
       - description: Items returned per page
-        explode: true
         in: query
         name: per_page
-        required: false
         schema:
           default: 10
           format: int32
           maximum: 1000
           minimum: 1
           type: integer
-        style: form
       responses:
         "200":
           content:
@@ -10170,22 +9433,17 @@ paths:
       operationId: deleteSpotMarketRequest
       parameters:
       - description: SpotMarketRequest UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       - description: Terminate associated spot instances
-        explode: true
         in: query
         name: force_termination
-        required: false
         schema:
           type: boolean
-        style: form
       responses:
         "204":
           description: no content
@@ -10215,14 +9473,12 @@ paths:
       operationId: findSpotMarketRequestById
       parameters:
       - description: SpotMarketRequest UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       - description: |-
           Nested attributes to include. Included objects will return their full
           attributes. Attribute names can be dotted (up to 3 levels) to included deeply
@@ -10230,7 +9486,6 @@ paths:
         explode: false
         in: query
         name: include
-        required: false
         schema:
           items:
             type: string
@@ -10243,7 +9498,6 @@ paths:
         explode: false
         in: query
         name: exclude
-        required: false
         schema:
           items:
             type: string
@@ -10283,13 +9537,10 @@ paths:
       operationId: findSSHKeys
       parameters:
       - description: "Search by key, label, or fingerprint"
-        explode: true
         in: query
         name: Search string
-        required: false
         schema:
           type: string
-        style: form
       - description: |-
           Nested attributes to include. Included objects will return their full
           attributes. Attribute names can be dotted (up to 3 levels) to included deeply
@@ -10297,7 +9548,6 @@ paths:
         explode: false
         in: query
         name: include
-        required: false
         schema:
           items:
             type: string
@@ -10310,7 +9560,6 @@ paths:
         explode: false
         in: query
         name: exclude
-        required: false
         schema:
           items:
             type: string
@@ -10365,14 +9614,12 @@ paths:
       operationId: deleteSSHKey
       parameters:
       - description: ssh key UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       responses:
         "204":
           description: no content
@@ -10402,14 +9649,12 @@ paths:
       operationId: findSSHKeyById
       parameters:
       - description: SSH Key UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       - description: |-
           Nested attributes to include. Included objects will return their full
           attributes. Attribute names can be dotted (up to 3 levels) to included deeply
@@ -10417,7 +9662,6 @@ paths:
         explode: false
         in: query
         name: include
-        required: false
         schema:
           items:
             type: string
@@ -10430,7 +9674,6 @@ paths:
         explode: false
         in: query
         name: exclude
-        required: false
         schema:
           items:
             type: string
@@ -10469,14 +9712,12 @@ paths:
       operationId: updateSSHKey
       parameters:
       - description: SSH Key UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       requestBody:
         content:
           application/json:
@@ -10565,14 +9806,12 @@ paths:
       operationId: declineTransferRequest
       parameters:
       - description: Transfer request UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       responses:
         "204":
           description: no content
@@ -10602,14 +9841,12 @@ paths:
       operationId: findTransferRequestById
       parameters:
       - description: Transfer request UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       - description: |-
           Nested attributes to include. Included objects will return their full
           attributes. Attribute names can be dotted (up to 3 levels) to included deeply
@@ -10617,7 +9854,6 @@ paths:
         explode: false
         in: query
         name: include
-        required: false
         schema:
           items:
             type: string
@@ -10630,7 +9866,6 @@ paths:
         explode: false
         in: query
         name: exclude
-        required: false
         schema:
           items:
             type: string
@@ -10669,14 +9904,12 @@ paths:
       operationId: acceptTransferRequest
       parameters:
       - description: Transfer request UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       responses:
         "204":
           description: no content
@@ -10713,7 +9946,6 @@ paths:
         explode: false
         in: query
         name: include
-        required: false
         schema:
           items:
             type: string
@@ -10726,7 +9958,6 @@ paths:
         explode: false
         in: query
         name: exclude
-        required: false
         schema:
           items:
             type: string
@@ -10792,7 +10023,6 @@ paths:
         explode: false
         in: query
         name: include
-        required: false
         schema:
           items:
             type: string
@@ -10805,7 +10035,6 @@ paths:
         explode: false
         in: query
         name: exclude
-        required: false
         schema:
           items:
             type: string
@@ -10877,14 +10106,12 @@ paths:
       operationId: deleteUserAPIKey
       parameters:
       - description: API Key UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       responses:
         "204":
           description: no content
@@ -11081,13 +10308,11 @@ paths:
       operationId: findEnsureOtp
       parameters:
       - description: OTP
-        explode: false
         in: path
         name: otp
         required: true
         schema:
           type: string
-        style: simple
       responses:
         "204":
           description: no content
@@ -11112,13 +10337,10 @@ paths:
       operationId: validateUserdata
       parameters:
       - description: Userdata to validate
-        explode: true
         in: query
         name: userdata
-        required: false
         schema:
           type: string
-        style: form
       responses:
         "204":
           description: no content
@@ -11150,7 +10372,6 @@ paths:
         explode: false
         in: query
         name: include
-        required: false
         schema:
           items:
             type: string
@@ -11163,36 +10384,29 @@ paths:
         explode: false
         in: query
         name: exclude
-        required: false
         schema:
           items:
             type: string
           type: array
         style: form
       - description: Page to return
-        explode: true
         in: query
         name: page
-        required: false
         schema:
           default: 1
           format: int32
           maximum: 100000
           minimum: 1
           type: integer
-        style: form
       - description: Items returned per page
-        explode: true
         in: query
         name: per_page
-        required: false
         schema:
           default: 10
           format: int32
           maximum: 1000
           minimum: 1
           type: integer
-        style: form
       responses:
         "200":
           content:
@@ -11250,14 +10464,12 @@ paths:
       operationId: findUserById
       parameters:
       - description: User UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       - description: |-
           Nested attributes to include. Included objects will return their full
           attributes. Attribute names can be dotted (up to 3 levels) to included deeply
@@ -11265,7 +10477,6 @@ paths:
         explode: false
         in: query
         name: include
-        required: false
         schema:
           items:
             type: string
@@ -11278,7 +10489,6 @@ paths:
         explode: false
         in: query
         name: exclude
-        required: false
         schema:
           items:
             type: string
@@ -11318,14 +10528,12 @@ paths:
       operationId: findUserCustomdata
       parameters:
       - description: User UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       responses:
         "200":
           description: ok
@@ -11356,13 +10564,11 @@ paths:
       operationId: createValidationRequest
       parameters:
       - description: Email for verification request
-        explode: true
         in: query
         name: login
         required: true
         schema:
           type: string
-        style: form
       responses:
         "201":
           description: created
@@ -11416,14 +10622,12 @@ paths:
       operationId: findVirtualCircuitEvents
       parameters:
       - description: Virtual Circuit UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       - description: |-
           Nested attributes to include. Included objects will return their full
           attributes. Attribute names can be dotted (up to 3 levels) to included deeply
@@ -11431,7 +10635,6 @@ paths:
         explode: false
         in: query
         name: include
-        required: false
         schema:
           items:
             type: string
@@ -11444,36 +10647,29 @@ paths:
         explode: false
         in: query
         name: exclude
-        required: false
         schema:
           items:
             type: string
           type: array
         style: form
       - description: Page to return
-        explode: true
         in: query
         name: page
-        required: false
         schema:
           default: 1
           format: int32
           maximum: 100000
           minimum: 1
           type: integer
-        style: form
       - description: Items returned per page
-        explode: true
         in: query
         name: per_page
-        required: false
         schema:
           default: 10
           format: int32
           maximum: 1000
           minimum: 1
           type: integer
-        style: form
       responses:
         "200":
           content:
@@ -11508,14 +10704,12 @@ paths:
       operationId: deleteVirtualCircuit
       parameters:
       - description: Virtual Circuit UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       responses:
         "202":
           content:
@@ -11543,14 +10737,12 @@ paths:
       operationId: getVirtualCircuit
       parameters:
       - description: Virtual Circuit UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       responses:
         "200":
           content:
@@ -11578,14 +10770,12 @@ paths:
       operationId: updateVirtualCircuit
       parameters:
       - description: Virtual Circuit UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       requestBody:
         content:
           application/json:
@@ -11627,14 +10817,12 @@ paths:
       operationId: deleteVirtualNetwork
       parameters:
       - description: Virtual Network UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       responses:
         "200":
           content:
@@ -11674,14 +10862,12 @@ paths:
       operationId: getVirtualNetwork
       parameters:
       - description: Virtual Network UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       responses:
         "200":
           content:
@@ -11722,14 +10908,12 @@ paths:
       operationId: deleteVrf
       parameters:
       - description: VRF UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       responses:
         "204":
           description: no content
@@ -11759,14 +10943,12 @@ paths:
       operationId: findVrfById
       parameters:
       - description: VRF UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       - description: |-
           Nested attributes to include. Included objects will return their full
           attributes. Attribute names can be dotted (up to 3 levels) to included deeply
@@ -11774,7 +10956,6 @@ paths:
         explode: false
         in: query
         name: include
-        required: false
         schema:
           items:
             type: string
@@ -11787,7 +10968,6 @@ paths:
         explode: false
         in: query
         name: exclude
-        required: false
         schema:
           items:
             type: string
@@ -11826,14 +11006,12 @@ paths:
       operationId: updateVrf
       parameters:
       - description: VRF UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       requestBody:
         content:
           application/json:
@@ -11881,21 +11059,17 @@ paths:
       operationId: findVrfIpReservations
       parameters:
       - description: VRF UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       - description: Nested attributes to include. Included objects will return their
           full attributes. Attribute names can be dotted (up to 3 levels) to included
           deeply nested objects.
-        explode: true
         in: query
         name: include
-        required: false
         schema:
           items:
             type: string
@@ -11904,10 +11078,8 @@ paths:
       - description: Nested attributes to exclude. Excluded objects will return only
           the href attribute. Attribute names can be dotted (up to 3 levels) to exclude
           deeply nested objects.
-        explode: true
         in: query
         name: exclude
-        required: false
         schema:
           items:
             type: string
@@ -11941,30 +11113,24 @@ paths:
       operationId: findVrfIpReservation
       parameters:
       - description: VRF UUID
-        explode: false
         in: path
         name: vrf_id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       - description: IP UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       - description: Nested attributes to include. Included objects will return their
           full attributes. Attribute names can be dotted (up to 3 levels) to included
           deeply nested objects.
-        explode: true
         in: query
         name: include
-        required: false
         schema:
           items:
             type: string
@@ -11973,10 +11139,8 @@ paths:
       - description: Nested attributes to exclude. Excluded objects will return only
           the href attribute. Attribute names can be dotted (up to 3 levels) to exclude
           deeply nested objects.
-        explode: true
         in: query
         name: exclude
-        required: false
         schema:
           items:
             type: string
@@ -12010,14 +11174,12 @@ paths:
       operationId: getVrfRoutes
       parameters:
       - description: VRF UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       - description: |-
           Nested attributes to include. Included objects will return their full
           attributes. Attribute names can be dotted (up to 3 levels) to included deeply
@@ -12025,7 +11187,6 @@ paths:
         explode: false
         in: query
         name: include
-        required: false
         schema:
           items:
             type: string
@@ -12038,7 +11199,6 @@ paths:
         explode: false
         in: query
         name: exclude
-        required: false
         schema:
           items:
             type: string
@@ -12074,14 +11234,12 @@ paths:
       operationId: createVrfRoute
       parameters:
       - description: VRF UUID
-        explode: false
         in: path
         name: id
         required: true
         schema:
           format: uuid
           type: string
-        style: simple
       requestBody:
         content:
           application/json:
@@ -12126,30 +11284,24 @@ components:
   parameters:
     Page:
       description: Page to return
-      explode: true
       in: query
       name: page
-      required: false
       schema:
         default: 1
         format: int32
         maximum: 100000
         minimum: 1
         type: integer
-      style: form
     PerPage:
       description: Items returned per page
-      explode: true
       in: query
       name: per_page
-      required: false
       schema:
         default: 10
         format: int32
         maximum: 1000
         minimum: 1
         type: integer
-      style: form
     Include:
       description: |-
         Nested attributes to include. Included objects will return their full
@@ -12158,7 +11310,6 @@ components:
       explode: false
       in: query
       name: include
-      required: false
       schema:
         items:
           type: string
@@ -12172,7 +11323,6 @@ components:
       explode: false
       in: query
       name: exclude
-      required: false
       schema:
         items:
           type: string
