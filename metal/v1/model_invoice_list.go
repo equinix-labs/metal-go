@@ -15,88 +15,67 @@ import (
 	"encoding/json"
 )
 
-// checks if the BgpDynamicNeighborCreateInput type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &BgpDynamicNeighborCreateInput{}
+// checks if the InvoiceList type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &InvoiceList{}
 
-// BgpDynamicNeighborCreateInput struct for BgpDynamicNeighborCreateInput
-type BgpDynamicNeighborCreateInput struct {
-	// Network range of the dynamic BGP neighbor in CIDR format
-	BgpNeighborRange string `json:"bgp_neighbor_range"`
-	// The ASN of the dynamic BGP neighbor
-	BgpNeighborAsn       int32 `json:"bgp_neighbor_asn"`
+// InvoiceList struct for InvoiceList
+type InvoiceList struct {
+	Invoices             []Invoice `json:"invoices,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
-type _BgpDynamicNeighborCreateInput BgpDynamicNeighborCreateInput
+type _InvoiceList InvoiceList
 
-// NewBgpDynamicNeighborCreateInput instantiates a new BgpDynamicNeighborCreateInput object
+// NewInvoiceList instantiates a new InvoiceList object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewBgpDynamicNeighborCreateInput(bgpNeighborRange string, bgpNeighborAsn int32) *BgpDynamicNeighborCreateInput {
-	this := BgpDynamicNeighborCreateInput{}
-	this.BgpNeighborRange = bgpNeighborRange
-	this.BgpNeighborAsn = bgpNeighborAsn
+func NewInvoiceList() *InvoiceList {
+	this := InvoiceList{}
 	return &this
 }
 
-// NewBgpDynamicNeighborCreateInputWithDefaults instantiates a new BgpDynamicNeighborCreateInput object
+// NewInvoiceListWithDefaults instantiates a new InvoiceList object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewBgpDynamicNeighborCreateInputWithDefaults() *BgpDynamicNeighborCreateInput {
-	this := BgpDynamicNeighborCreateInput{}
+func NewInvoiceListWithDefaults() *InvoiceList {
+	this := InvoiceList{}
 	return &this
 }
 
-// GetBgpNeighborRange returns the BgpNeighborRange field value
-func (o *BgpDynamicNeighborCreateInput) GetBgpNeighborRange() string {
-	if o == nil {
-		var ret string
+// GetInvoices returns the Invoices field value if set, zero value otherwise.
+func (o *InvoiceList) GetInvoices() []Invoice {
+	if o == nil || isNil(o.Invoices) {
+		var ret []Invoice
 		return ret
 	}
-
-	return o.BgpNeighborRange
+	return o.Invoices
 }
 
-// GetBgpNeighborRangeOk returns a tuple with the BgpNeighborRange field value
+// GetInvoicesOk returns a tuple with the Invoices field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BgpDynamicNeighborCreateInput) GetBgpNeighborRangeOk() (*string, bool) {
-	if o == nil {
+func (o *InvoiceList) GetInvoicesOk() ([]Invoice, bool) {
+	if o == nil || isNil(o.Invoices) {
 		return nil, false
 	}
-	return &o.BgpNeighborRange, true
+	return o.Invoices, true
 }
 
-// SetBgpNeighborRange sets field value
-func (o *BgpDynamicNeighborCreateInput) SetBgpNeighborRange(v string) {
-	o.BgpNeighborRange = v
-}
-
-// GetBgpNeighborAsn returns the BgpNeighborAsn field value
-func (o *BgpDynamicNeighborCreateInput) GetBgpNeighborAsn() int32 {
-	if o == nil {
-		var ret int32
-		return ret
+// HasInvoices returns a boolean if a field has been set.
+func (o *InvoiceList) HasInvoices() bool {
+	if o != nil && !isNil(o.Invoices) {
+		return true
 	}
 
-	return o.BgpNeighborAsn
+	return false
 }
 
-// GetBgpNeighborAsnOk returns a tuple with the BgpNeighborAsn field value
-// and a boolean to check if the value has been set.
-func (o *BgpDynamicNeighborCreateInput) GetBgpNeighborAsnOk() (*int32, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.BgpNeighborAsn, true
+// SetInvoices gets a reference to the given []Invoice and assigns it to the Invoices field.
+func (o *InvoiceList) SetInvoices(v []Invoice) {
+	o.Invoices = v
 }
 
-// SetBgpNeighborAsn sets field value
-func (o *BgpDynamicNeighborCreateInput) SetBgpNeighborAsn(v int32) {
-	o.BgpNeighborAsn = v
-}
-
-func (o BgpDynamicNeighborCreateInput) MarshalJSON() ([]byte, error) {
+func (o InvoiceList) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -104,10 +83,11 @@ func (o BgpDynamicNeighborCreateInput) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o BgpDynamicNeighborCreateInput) ToMap() (map[string]interface{}, error) {
+func (o InvoiceList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["bgp_neighbor_range"] = o.BgpNeighborRange
-	toSerialize["bgp_neighbor_asn"] = o.BgpNeighborAsn
+	if !isNil(o.Invoices) {
+		toSerialize["invoices"] = o.Invoices
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -116,56 +96,55 @@ func (o BgpDynamicNeighborCreateInput) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *BgpDynamicNeighborCreateInput) UnmarshalJSON(bytes []byte) (err error) {
-	varBgpDynamicNeighborCreateInput := _BgpDynamicNeighborCreateInput{}
+func (o *InvoiceList) UnmarshalJSON(bytes []byte) (err error) {
+	varInvoiceList := _InvoiceList{}
 
-	if err = json.Unmarshal(bytes, &varBgpDynamicNeighborCreateInput); err == nil {
-		*o = BgpDynamicNeighborCreateInput(varBgpDynamicNeighborCreateInput)
+	if err = json.Unmarshal(bytes, &varInvoiceList); err == nil {
+		*o = InvoiceList(varInvoiceList)
 	}
 
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "bgp_neighbor_range")
-		delete(additionalProperties, "bgp_neighbor_asn")
+		delete(additionalProperties, "invoices")
 		o.AdditionalProperties = additionalProperties
 	}
 
 	return err
 }
 
-type NullableBgpDynamicNeighborCreateInput struct {
-	value *BgpDynamicNeighborCreateInput
+type NullableInvoiceList struct {
+	value *InvoiceList
 	isSet bool
 }
 
-func (v NullableBgpDynamicNeighborCreateInput) Get() *BgpDynamicNeighborCreateInput {
+func (v NullableInvoiceList) Get() *InvoiceList {
 	return v.value
 }
 
-func (v *NullableBgpDynamicNeighborCreateInput) Set(val *BgpDynamicNeighborCreateInput) {
+func (v *NullableInvoiceList) Set(val *InvoiceList) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableBgpDynamicNeighborCreateInput) IsSet() bool {
+func (v NullableInvoiceList) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableBgpDynamicNeighborCreateInput) Unset() {
+func (v *NullableInvoiceList) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableBgpDynamicNeighborCreateInput(val *BgpDynamicNeighborCreateInput) *NullableBgpDynamicNeighborCreateInput {
-	return &NullableBgpDynamicNeighborCreateInput{value: val, isSet: true}
+func NewNullableInvoiceList(val *InvoiceList) *NullableInvoiceList {
+	return &NullableInvoiceList{value: val, isSet: true}
 }
 
-func (v NullableBgpDynamicNeighborCreateInput) MarshalJSON() ([]byte, error) {
+func (v NullableInvoiceList) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableBgpDynamicNeighborCreateInput) UnmarshalJSON(src []byte) error {
+func (v *NullableInvoiceList) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

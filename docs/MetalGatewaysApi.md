@@ -5,11 +5,11 @@ All URIs are relative to *https://api.equinix.com/metal/v1*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**CreateMetalGateway**](MetalGatewaysApi.md#CreateMetalGateway) | **Post** /projects/{project_id}/metal-gateways | Create a metal gateway
-[**CreateMetalGatewayElasticIp**](MetalGatewaysApi.md#CreateMetalGatewayElasticIp) | **Post** /metal-gateways/{id}/ips.yaml | Create a Metal Gateway Elastic IP
+[**CreateMetalGatewayElasticIp**](MetalGatewaysApi.md#CreateMetalGatewayElasticIp) | **Post** /metal-gateways/{id}/ips | Create a Metal Gateway Elastic IP
 [**DeleteMetalGateway**](MetalGatewaysApi.md#DeleteMetalGateway) | **Delete** /metal-gateways/{id} | Deletes the metal gateway
 [**FindMetalGatewayById**](MetalGatewaysApi.md#FindMetalGatewayById) | **Get** /metal-gateways/{id} | Returns the metal gateway
 [**FindMetalGatewaysByProject**](MetalGatewaysApi.md#FindMetalGatewaysByProject) | **Get** /projects/{project_id}/metal-gateways | Returns all metal gateways for a project
-[**GetMetalGatewayElasticIps**](MetalGatewaysApi.md#GetMetalGatewayElasticIps) | **Get** /metal-gateways/{id}/ips.yaml | List Metal Gateway Elastic IPs
+[**GetMetalGatewayElasticIps**](MetalGatewaysApi.md#GetMetalGatewayElasticIps) | **Get** /metal-gateways/{id}/ips | List Metal Gateway Elastic IPs
 
 
 

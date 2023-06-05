@@ -15,88 +15,100 @@ import (
 	"encoding/json"
 )
 
-// checks if the BgpDynamicNeighborCreateInput type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &BgpDynamicNeighborCreateInput{}
+// checks if the ProjectIdName type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ProjectIdName{}
 
-// BgpDynamicNeighborCreateInput struct for BgpDynamicNeighborCreateInput
-type BgpDynamicNeighborCreateInput struct {
-	// Network range of the dynamic BGP neighbor in CIDR format
-	BgpNeighborRange string `json:"bgp_neighbor_range"`
-	// The ASN of the dynamic BGP neighbor
-	BgpNeighborAsn       int32 `json:"bgp_neighbor_asn"`
+// ProjectIdName struct for ProjectIdName
+type ProjectIdName struct {
+	Id                   *string `json:"id,omitempty"`
+	Name                 *string `json:"name,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
-type _BgpDynamicNeighborCreateInput BgpDynamicNeighborCreateInput
+type _ProjectIdName ProjectIdName
 
-// NewBgpDynamicNeighborCreateInput instantiates a new BgpDynamicNeighborCreateInput object
+// NewProjectIdName instantiates a new ProjectIdName object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewBgpDynamicNeighborCreateInput(bgpNeighborRange string, bgpNeighborAsn int32) *BgpDynamicNeighborCreateInput {
-	this := BgpDynamicNeighborCreateInput{}
-	this.BgpNeighborRange = bgpNeighborRange
-	this.BgpNeighborAsn = bgpNeighborAsn
+func NewProjectIdName() *ProjectIdName {
+	this := ProjectIdName{}
 	return &this
 }
 
-// NewBgpDynamicNeighborCreateInputWithDefaults instantiates a new BgpDynamicNeighborCreateInput object
+// NewProjectIdNameWithDefaults instantiates a new ProjectIdName object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewBgpDynamicNeighborCreateInputWithDefaults() *BgpDynamicNeighborCreateInput {
-	this := BgpDynamicNeighborCreateInput{}
+func NewProjectIdNameWithDefaults() *ProjectIdName {
+	this := ProjectIdName{}
 	return &this
 }
 
-// GetBgpNeighborRange returns the BgpNeighborRange field value
-func (o *BgpDynamicNeighborCreateInput) GetBgpNeighborRange() string {
-	if o == nil {
+// GetId returns the Id field value if set, zero value otherwise.
+func (o *ProjectIdName) GetId() string {
+	if o == nil || isNil(o.Id) {
 		var ret string
 		return ret
 	}
-
-	return o.BgpNeighborRange
+	return *o.Id
 }
 
-// GetBgpNeighborRangeOk returns a tuple with the BgpNeighborRange field value
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BgpDynamicNeighborCreateInput) GetBgpNeighborRangeOk() (*string, bool) {
-	if o == nil {
+func (o *ProjectIdName) GetIdOk() (*string, bool) {
+	if o == nil || isNil(o.Id) {
 		return nil, false
 	}
-	return &o.BgpNeighborRange, true
+	return o.Id, true
 }
 
-// SetBgpNeighborRange sets field value
-func (o *BgpDynamicNeighborCreateInput) SetBgpNeighborRange(v string) {
-	o.BgpNeighborRange = v
+// HasId returns a boolean if a field has been set.
+func (o *ProjectIdName) HasId() bool {
+	if o != nil && !isNil(o.Id) {
+		return true
+	}
+
+	return false
 }
 
-// GetBgpNeighborAsn returns the BgpNeighborAsn field value
-func (o *BgpDynamicNeighborCreateInput) GetBgpNeighborAsn() int32 {
-	if o == nil {
-		var ret int32
+// SetId gets a reference to the given string and assigns it to the Id field.
+func (o *ProjectIdName) SetId(v string) {
+	o.Id = &v
+}
+
+// GetName returns the Name field value if set, zero value otherwise.
+func (o *ProjectIdName) GetName() string {
+	if o == nil || isNil(o.Name) {
+		var ret string
 		return ret
 	}
-
-	return o.BgpNeighborAsn
+	return *o.Name
 }
 
-// GetBgpNeighborAsnOk returns a tuple with the BgpNeighborAsn field value
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BgpDynamicNeighborCreateInput) GetBgpNeighborAsnOk() (*int32, bool) {
-	if o == nil {
+func (o *ProjectIdName) GetNameOk() (*string, bool) {
+	if o == nil || isNil(o.Name) {
 		return nil, false
 	}
-	return &o.BgpNeighborAsn, true
+	return o.Name, true
 }
 
-// SetBgpNeighborAsn sets field value
-func (o *BgpDynamicNeighborCreateInput) SetBgpNeighborAsn(v int32) {
-	o.BgpNeighborAsn = v
+// HasName returns a boolean if a field has been set.
+func (o *ProjectIdName) HasName() bool {
+	if o != nil && !isNil(o.Name) {
+		return true
+	}
+
+	return false
 }
 
-func (o BgpDynamicNeighborCreateInput) MarshalJSON() ([]byte, error) {
+// SetName gets a reference to the given string and assigns it to the Name field.
+func (o *ProjectIdName) SetName(v string) {
+	o.Name = &v
+}
+
+func (o ProjectIdName) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -104,10 +116,14 @@ func (o BgpDynamicNeighborCreateInput) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o BgpDynamicNeighborCreateInput) ToMap() (map[string]interface{}, error) {
+func (o ProjectIdName) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["bgp_neighbor_range"] = o.BgpNeighborRange
-	toSerialize["bgp_neighbor_asn"] = o.BgpNeighborAsn
+	if !isNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !isNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -116,56 +132,56 @@ func (o BgpDynamicNeighborCreateInput) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *BgpDynamicNeighborCreateInput) UnmarshalJSON(bytes []byte) (err error) {
-	varBgpDynamicNeighborCreateInput := _BgpDynamicNeighborCreateInput{}
+func (o *ProjectIdName) UnmarshalJSON(bytes []byte) (err error) {
+	varProjectIdName := _ProjectIdName{}
 
-	if err = json.Unmarshal(bytes, &varBgpDynamicNeighborCreateInput); err == nil {
-		*o = BgpDynamicNeighborCreateInput(varBgpDynamicNeighborCreateInput)
+	if err = json.Unmarshal(bytes, &varProjectIdName); err == nil {
+		*o = ProjectIdName(varProjectIdName)
 	}
 
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "bgp_neighbor_range")
-		delete(additionalProperties, "bgp_neighbor_asn")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "name")
 		o.AdditionalProperties = additionalProperties
 	}
 
 	return err
 }
 
-type NullableBgpDynamicNeighborCreateInput struct {
-	value *BgpDynamicNeighborCreateInput
+type NullableProjectIdName struct {
+	value *ProjectIdName
 	isSet bool
 }
 
-func (v NullableBgpDynamicNeighborCreateInput) Get() *BgpDynamicNeighborCreateInput {
+func (v NullableProjectIdName) Get() *ProjectIdName {
 	return v.value
 }
 
-func (v *NullableBgpDynamicNeighborCreateInput) Set(val *BgpDynamicNeighborCreateInput) {
+func (v *NullableProjectIdName) Set(val *ProjectIdName) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableBgpDynamicNeighborCreateInput) IsSet() bool {
+func (v NullableProjectIdName) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableBgpDynamicNeighborCreateInput) Unset() {
+func (v *NullableProjectIdName) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableBgpDynamicNeighborCreateInput(val *BgpDynamicNeighborCreateInput) *NullableBgpDynamicNeighborCreateInput {
-	return &NullableBgpDynamicNeighborCreateInput{value: val, isSet: true}
+func NewNullableProjectIdName(val *ProjectIdName) *NullableProjectIdName {
+	return &NullableProjectIdName{value: val, isSet: true}
 }
 
-func (v NullableBgpDynamicNeighborCreateInput) MarshalJSON() ([]byte, error) {
+func (v NullableProjectIdName) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableBgpDynamicNeighborCreateInput) UnmarshalJSON(src []byte) error {
+func (v *NullableProjectIdName) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

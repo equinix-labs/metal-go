@@ -39,7 +39,7 @@ type IPAssignment struct {
 	ParentBlock   *ParentBlock       `json:"parent_block,omitempty"`
 	Public        *bool              `json:"public,omitempty"`
 	// Only set when this is a Metal Gateway Elastic IP Assignment.  Describes the current configuration state of this IP on the network.
-	State map[string]interface{} `json:"state,omitempty"`
+	State *string `json:"state,omitempty"`
 	// Only set when this is a Metal Gateway Elastic IP Assignment.  The IP address within the Metal Gateway to which requests to the Elastic IP are forwarded.
 	NextHop              *string `json:"next_hop,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -609,19 +609,19 @@ func (o *IPAssignment) SetPublic(v bool) {
 }
 
 // GetState returns the State field value if set, zero value otherwise.
-func (o *IPAssignment) GetState() map[string]interface{} {
+func (o *IPAssignment) GetState() string {
 	if o == nil || isNil(o.State) {
-		var ret map[string]interface{}
+		var ret string
 		return ret
 	}
-	return o.State
+	return *o.State
 }
 
 // GetStateOk returns a tuple with the State field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IPAssignment) GetStateOk() (map[string]interface{}, bool) {
+func (o *IPAssignment) GetStateOk() (*string, bool) {
 	if o == nil || isNil(o.State) {
-		return map[string]interface{}{}, false
+		return nil, false
 	}
 	return o.State, true
 }
@@ -635,9 +635,9 @@ func (o *IPAssignment) HasState() bool {
 	return false
 }
 
-// SetState gets a reference to the given map[string]interface{} and assigns it to the State field.
-func (o *IPAssignment) SetState(v map[string]interface{}) {
-	o.State = v
+// SetState gets a reference to the given string and assigns it to the State field.
+func (o *IPAssignment) SetState(v string) {
+	o.State = &v
 }
 
 // GetNextHop returns the NextHop field value if set, zero value otherwise.

@@ -15,88 +15,102 @@ import (
 	"encoding/json"
 )
 
-// checks if the BgpDynamicNeighborCreateInput type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &BgpDynamicNeighborCreateInput{}
+// checks if the VrfRouteUpdateInput type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &VrfRouteUpdateInput{}
 
-// BgpDynamicNeighborCreateInput struct for BgpDynamicNeighborCreateInput
-type BgpDynamicNeighborCreateInput struct {
-	// Network range of the dynamic BGP neighbor in CIDR format
-	BgpNeighborRange string `json:"bgp_neighbor_range"`
-	// The ASN of the dynamic BGP neighbor
-	BgpNeighborAsn       int32 `json:"bgp_neighbor_asn"`
+// VrfRouteUpdateInput struct for VrfRouteUpdateInput
+type VrfRouteUpdateInput struct {
+	// The IPv4 prefix for the route, in CIDR-style notation. For a static default route, this will always be \"0.0.0.0/0\"
+	Prefix *string `json:"prefix,omitempty"`
+	// The IPv4 address within the VRF of the host that will handle this route
+	NextHop              *string `json:"next_hop,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
-type _BgpDynamicNeighborCreateInput BgpDynamicNeighborCreateInput
+type _VrfRouteUpdateInput VrfRouteUpdateInput
 
-// NewBgpDynamicNeighborCreateInput instantiates a new BgpDynamicNeighborCreateInput object
+// NewVrfRouteUpdateInput instantiates a new VrfRouteUpdateInput object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewBgpDynamicNeighborCreateInput(bgpNeighborRange string, bgpNeighborAsn int32) *BgpDynamicNeighborCreateInput {
-	this := BgpDynamicNeighborCreateInput{}
-	this.BgpNeighborRange = bgpNeighborRange
-	this.BgpNeighborAsn = bgpNeighborAsn
+func NewVrfRouteUpdateInput() *VrfRouteUpdateInput {
+	this := VrfRouteUpdateInput{}
 	return &this
 }
 
-// NewBgpDynamicNeighborCreateInputWithDefaults instantiates a new BgpDynamicNeighborCreateInput object
+// NewVrfRouteUpdateInputWithDefaults instantiates a new VrfRouteUpdateInput object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewBgpDynamicNeighborCreateInputWithDefaults() *BgpDynamicNeighborCreateInput {
-	this := BgpDynamicNeighborCreateInput{}
+func NewVrfRouteUpdateInputWithDefaults() *VrfRouteUpdateInput {
+	this := VrfRouteUpdateInput{}
 	return &this
 }
 
-// GetBgpNeighborRange returns the BgpNeighborRange field value
-func (o *BgpDynamicNeighborCreateInput) GetBgpNeighborRange() string {
-	if o == nil {
+// GetPrefix returns the Prefix field value if set, zero value otherwise.
+func (o *VrfRouteUpdateInput) GetPrefix() string {
+	if o == nil || isNil(o.Prefix) {
 		var ret string
 		return ret
 	}
-
-	return o.BgpNeighborRange
+	return *o.Prefix
 }
 
-// GetBgpNeighborRangeOk returns a tuple with the BgpNeighborRange field value
+// GetPrefixOk returns a tuple with the Prefix field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BgpDynamicNeighborCreateInput) GetBgpNeighborRangeOk() (*string, bool) {
-	if o == nil {
+func (o *VrfRouteUpdateInput) GetPrefixOk() (*string, bool) {
+	if o == nil || isNil(o.Prefix) {
 		return nil, false
 	}
-	return &o.BgpNeighborRange, true
+	return o.Prefix, true
 }
 
-// SetBgpNeighborRange sets field value
-func (o *BgpDynamicNeighborCreateInput) SetBgpNeighborRange(v string) {
-	o.BgpNeighborRange = v
+// HasPrefix returns a boolean if a field has been set.
+func (o *VrfRouteUpdateInput) HasPrefix() bool {
+	if o != nil && !isNil(o.Prefix) {
+		return true
+	}
+
+	return false
 }
 
-// GetBgpNeighborAsn returns the BgpNeighborAsn field value
-func (o *BgpDynamicNeighborCreateInput) GetBgpNeighborAsn() int32 {
-	if o == nil {
-		var ret int32
+// SetPrefix gets a reference to the given string and assigns it to the Prefix field.
+func (o *VrfRouteUpdateInput) SetPrefix(v string) {
+	o.Prefix = &v
+}
+
+// GetNextHop returns the NextHop field value if set, zero value otherwise.
+func (o *VrfRouteUpdateInput) GetNextHop() string {
+	if o == nil || isNil(o.NextHop) {
+		var ret string
 		return ret
 	}
-
-	return o.BgpNeighborAsn
+	return *o.NextHop
 }
 
-// GetBgpNeighborAsnOk returns a tuple with the BgpNeighborAsn field value
+// GetNextHopOk returns a tuple with the NextHop field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BgpDynamicNeighborCreateInput) GetBgpNeighborAsnOk() (*int32, bool) {
-	if o == nil {
+func (o *VrfRouteUpdateInput) GetNextHopOk() (*string, bool) {
+	if o == nil || isNil(o.NextHop) {
 		return nil, false
 	}
-	return &o.BgpNeighborAsn, true
+	return o.NextHop, true
 }
 
-// SetBgpNeighborAsn sets field value
-func (o *BgpDynamicNeighborCreateInput) SetBgpNeighborAsn(v int32) {
-	o.BgpNeighborAsn = v
+// HasNextHop returns a boolean if a field has been set.
+func (o *VrfRouteUpdateInput) HasNextHop() bool {
+	if o != nil && !isNil(o.NextHop) {
+		return true
+	}
+
+	return false
 }
 
-func (o BgpDynamicNeighborCreateInput) MarshalJSON() ([]byte, error) {
+// SetNextHop gets a reference to the given string and assigns it to the NextHop field.
+func (o *VrfRouteUpdateInput) SetNextHop(v string) {
+	o.NextHop = &v
+}
+
+func (o VrfRouteUpdateInput) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -104,10 +118,14 @@ func (o BgpDynamicNeighborCreateInput) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o BgpDynamicNeighborCreateInput) ToMap() (map[string]interface{}, error) {
+func (o VrfRouteUpdateInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["bgp_neighbor_range"] = o.BgpNeighborRange
-	toSerialize["bgp_neighbor_asn"] = o.BgpNeighborAsn
+	if !isNil(o.Prefix) {
+		toSerialize["prefix"] = o.Prefix
+	}
+	if !isNil(o.NextHop) {
+		toSerialize["next_hop"] = o.NextHop
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -116,56 +134,56 @@ func (o BgpDynamicNeighborCreateInput) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *BgpDynamicNeighborCreateInput) UnmarshalJSON(bytes []byte) (err error) {
-	varBgpDynamicNeighborCreateInput := _BgpDynamicNeighborCreateInput{}
+func (o *VrfRouteUpdateInput) UnmarshalJSON(bytes []byte) (err error) {
+	varVrfRouteUpdateInput := _VrfRouteUpdateInput{}
 
-	if err = json.Unmarshal(bytes, &varBgpDynamicNeighborCreateInput); err == nil {
-		*o = BgpDynamicNeighborCreateInput(varBgpDynamicNeighborCreateInput)
+	if err = json.Unmarshal(bytes, &varVrfRouteUpdateInput); err == nil {
+		*o = VrfRouteUpdateInput(varVrfRouteUpdateInput)
 	}
 
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "bgp_neighbor_range")
-		delete(additionalProperties, "bgp_neighbor_asn")
+		delete(additionalProperties, "prefix")
+		delete(additionalProperties, "next_hop")
 		o.AdditionalProperties = additionalProperties
 	}
 
 	return err
 }
 
-type NullableBgpDynamicNeighborCreateInput struct {
-	value *BgpDynamicNeighborCreateInput
+type NullableVrfRouteUpdateInput struct {
+	value *VrfRouteUpdateInput
 	isSet bool
 }
 
-func (v NullableBgpDynamicNeighborCreateInput) Get() *BgpDynamicNeighborCreateInput {
+func (v NullableVrfRouteUpdateInput) Get() *VrfRouteUpdateInput {
 	return v.value
 }
 
-func (v *NullableBgpDynamicNeighborCreateInput) Set(val *BgpDynamicNeighborCreateInput) {
+func (v *NullableVrfRouteUpdateInput) Set(val *VrfRouteUpdateInput) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableBgpDynamicNeighborCreateInput) IsSet() bool {
+func (v NullableVrfRouteUpdateInput) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableBgpDynamicNeighborCreateInput) Unset() {
+func (v *NullableVrfRouteUpdateInput) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableBgpDynamicNeighborCreateInput(val *BgpDynamicNeighborCreateInput) *NullableBgpDynamicNeighborCreateInput {
-	return &NullableBgpDynamicNeighborCreateInput{value: val, isSet: true}
+func NewNullableVrfRouteUpdateInput(val *VrfRouteUpdateInput) *NullableVrfRouteUpdateInput {
+	return &NullableVrfRouteUpdateInput{value: val, isSet: true}
 }
 
-func (v NullableBgpDynamicNeighborCreateInput) MarshalJSON() ([]byte, error) {
+func (v NullableVrfRouteUpdateInput) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableBgpDynamicNeighborCreateInput) UnmarshalJSON(src []byte) error {
+func (v *NullableVrfRouteUpdateInput) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

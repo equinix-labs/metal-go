@@ -22,6 +22,30 @@ func Test_v1_VRFsApiService(t *testing.T) {
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
+	t.Run("Test VRFsApiService BgpDynamicNeighborsIdGet", func(t *testing.T) {
+		t.Skip("skip test") // remove to run test
+
+		var id string
+
+		resp, httpRes, err := apiClient.VRFsApi.BgpDynamicNeighborsIdGet(context.Background(), id).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+	})
+
+	t.Run("Test VRFsApiService CreateBgpDynamicNeighbor", func(t *testing.T) {
+		t.Skip("skip test") // remove to run test
+
+		var id string
+
+		resp, httpRes, err := apiClient.VRFsApi.CreateBgpDynamicNeighbor(context.Background(), id).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+	})
+
 	t.Run("Test VRFsApiService CreateVrf", func(t *testing.T) {
 		t.Skip("skip test") // remove to run test
 
@@ -40,6 +64,18 @@ func Test_v1_VRFsApiService(t *testing.T) {
 		var id string
 
 		resp, httpRes, err := apiClient.VRFsApi.CreateVrfRoute(context.Background(), id).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+	})
+
+	t.Run("Test VRFsApiService DeleteBgpDynamicNeighborById", func(t *testing.T) {
+		t.Skip("skip test") // remove to run test
+
+		var id string
+
+		resp, httpRes, err := apiClient.VRFsApi.DeleteBgpDynamicNeighborById(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -124,6 +160,18 @@ func Test_v1_VRFsApiService(t *testing.T) {
 		var id string
 
 		resp, httpRes, err := apiClient.VRFsApi.FindVrfs(context.Background(), id).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+	})
+
+	t.Run("Test VRFsApiService GetBgpDynamicNeighbors", func(t *testing.T) {
+		t.Skip("skip test") // remove to run test
+
+		var id string
+
+		resp, httpRes, err := apiClient.VRFsApi.GetBgpDynamicNeighbors(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
