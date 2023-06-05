@@ -278,7 +278,7 @@ func (a *MetalGatewaysApiService) CreateMetalGatewayElasticIpExecute(r ApiCreate
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/metal-gateways/{id}/ips.yaml"
+	localVarPath := localBasePath + "/metal-gateways/{id}/ips"
 	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -955,7 +955,7 @@ func (a *MetalGatewaysApiService) GetMetalGatewayElasticIpsExecute(r ApiGetMetal
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/metal-gateways/{id}/ips.yaml"
+	localVarPath := localBasePath + "/metal-gateways/{id}/ips"
 	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)

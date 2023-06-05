@@ -38,6 +38,6 @@ get:
           schema:
             $ref: '../../../components/schemas/Error.yaml'
       description: not found
-  summary: Retrieve interconnection events
+  summary: Retrieve virtual circuit events
   tags:
   - Events

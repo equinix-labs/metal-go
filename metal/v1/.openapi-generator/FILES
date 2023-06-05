@@ -15,6 +15,7 @@ api_hardware_reservations.go
 api_incidents.go
 api_interconnections.go
 api_invitations.go
+api_invoices.go
 api_ip_addresses.go
 api_licenses.go
 api_memberships.go
@@ -152,11 +153,15 @@ docs/Invitation.md
 docs/InvitationInput.md
 docs/InvitationList.md
 docs/InvitationsApi.md
+docs/Invoice.md
+docs/InvoiceList.md
+docs/InvoicesApi.md
 docs/License.md
 docs/LicenseCreateInput.md
 docs/LicenseList.md
 docs/LicenseUpdateInput.md
 docs/LicensesApi.md
+docs/LineItem.md
 docs/Membership.md
 docs/MembershipInput.md
 docs/MembershipList.md
@@ -227,6 +232,7 @@ docs/PortsApi.md
 docs/Project.md
 docs/ProjectCreateFromRootInput.md
 docs/ProjectCreateInput.md
+docs/ProjectIdName.md
 docs/ProjectList.md
 docs/ProjectUpdateInput.md
 docs/ProjectUsage.md
@@ -307,6 +313,7 @@ docs/VrfRoute.md
 docs/VrfRouteCreateInput.md
 docs/VrfRouteList.md
 docs/VrfRouteMetalGateway.md
+docs/VrfRouteUpdateInput.md
 docs/VrfRouteVirtualNetwork.md
 docs/VrfRouteVrf.md
 docs/VrfUpdateInput.md
@@ -400,6 +407,8 @@ model_interconnection_update_input.go
 model_invitation.go
 model_invitation_input.go
 model_invitation_list.go
+model_invoice.go
+model_invoice_list.go
 model_ip_address.go
 model_ip_assignment.go
 model_ip_assignment_input.go
@@ -417,6 +426,7 @@ model_license.go
 model_license_create_input.go
 model_license_list.go
 model_license_update_input.go
+model_line_item.go
 model_membership.go
 model_membership_input.go
 model_membership_list.go
@@ -477,6 +487,7 @@ model_port_vlan_assignment_list.go
 model_project.go
 model_project_create_from_root_input.go
 model_project_create_input.go
+model_project_id_name.go
 model_project_list.go
 model_project_update_input.go
 model_project_usage.go
@@ -544,6 +555,7 @@ model_vrf_route.go
 model_vrf_route_create_input.go
 model_vrf_route_list.go
 model_vrf_route_metal_gateway.go
+model_vrf_route_update_input.go
 model_vrf_route_virtual_network.go
 model_vrf_route_vrf.go
 model_vrf_update_input.go
@@ -563,6 +575,7 @@ test/api_hardware_reservations_test.go
 test/api_incidents_test.go
 test/api_interconnections_test.go
 test/api_invitations_test.go
+test/api_invoices_test.go
 test/api_ip_addresses_test.go
 test/api_licenses_test.go
 test/api_memberships_test.go

@@ -14,7 +14,7 @@ properties:
     type: string
     example: 192.168.1.0/25
   metal_gateway:
-    $ref: '../../components/schemas/VrfMetalGateway.yaml'
+    $ref: './VrfMetalGateway.yaml'
   state:
     readOnly: true
     type: string
@@ -32,7 +32,7 @@ properties:
     readOnly: true
     type: string
   created_by:
-    $ref: '../../components/schemas/UserLimited.yaml'
+    $ref: './UserLimited.yaml'
   updated_at:
     format: date-time
     readOnly: true

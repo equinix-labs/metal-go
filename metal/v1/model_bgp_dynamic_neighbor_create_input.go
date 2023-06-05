@@ -21,9 +21,9 @@ var _ MappedNullable = &BgpDynamicNeighborCreateInput{}
 // BgpDynamicNeighborCreateInput struct for BgpDynamicNeighborCreateInput
 type BgpDynamicNeighborCreateInput struct {
 	// Network range of the dynamic BGP neighbor in CIDR format
-	BgpNeighborRange *string `json:"bgp_neighbor_range,omitempty"`
+	BgpNeighborRange string `json:"bgp_neighbor_range"`
 	// The ASN of the dynamic BGP neighbor
-	BgpNeighborAsn       *int32 `json:"bgp_neighbor_asn,omitempty"`
+	BgpNeighborAsn       int32 `json:"bgp_neighbor_asn"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -33,8 +33,10 @@ type _BgpDynamicNeighborCreateInput BgpDynamicNeighborCreateInput
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewBgpDynamicNeighborCreateInput() *BgpDynamicNeighborCreateInput {
+func NewBgpDynamicNeighborCreateInput(bgpNeighborRange string, bgpNeighborAsn int32) *BgpDynamicNeighborCreateInput {
 	this := BgpDynamicNeighborCreateInput{}
+	this.BgpNeighborRange = bgpNeighborRange
+	this.BgpNeighborAsn = bgpNeighborAsn
 	return &this
 }
 
@@ -46,68 +48,52 @@ func NewBgpDynamicNeighborCreateInputWithDefaults() *BgpDynamicNeighborCreateInp
 	return &this
 }
 
-// GetBgpNeighborRange returns the BgpNeighborRange field value if set, zero value otherwise.
+// GetBgpNeighborRange returns the BgpNeighborRange field value
 func (o *BgpDynamicNeighborCreateInput) GetBgpNeighborRange() string {
-	if o == nil || isNil(o.BgpNeighborRange) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.BgpNeighborRange
+
+	return o.BgpNeighborRange
 }
 
-// GetBgpNeighborRangeOk returns a tuple with the BgpNeighborRange field value if set, nil otherwise
+// GetBgpNeighborRangeOk returns a tuple with the BgpNeighborRange field value
 // and a boolean to check if the value has been set.
 func (o *BgpDynamicNeighborCreateInput) GetBgpNeighborRangeOk() (*string, bool) {
-	if o == nil || isNil(o.BgpNeighborRange) {
+	if o == nil {
 		return nil, false
 	}
-	return o.BgpNeighborRange, true
+	return &o.BgpNeighborRange, true
 }
 
-// HasBgpNeighborRange returns a boolean if a field has been set.
-func (o *BgpDynamicNeighborCreateInput) HasBgpNeighborRange() bool {
-	if o != nil && !isNil(o.BgpNeighborRange) {
-		return true
-	}
-
-	return false
-}
-
-// SetBgpNeighborRange gets a reference to the given string and assigns it to the BgpNeighborRange field.
+// SetBgpNeighborRange sets field value
 func (o *BgpDynamicNeighborCreateInput) SetBgpNeighborRange(v string) {
-	o.BgpNeighborRange = &v
+	o.BgpNeighborRange = v
 }
 
-// GetBgpNeighborAsn returns the BgpNeighborAsn field value if set, zero value otherwise.
+// GetBgpNeighborAsn returns the BgpNeighborAsn field value
 func (o *BgpDynamicNeighborCreateInput) GetBgpNeighborAsn() int32 {
-	if o == nil || isNil(o.BgpNeighborAsn) {
+	if o == nil {
 		var ret int32
 		return ret
 	}
-	return *o.BgpNeighborAsn
+
+	return o.BgpNeighborAsn
 }
 
-// GetBgpNeighborAsnOk returns a tuple with the BgpNeighborAsn field value if set, nil otherwise
+// GetBgpNeighborAsnOk returns a tuple with the BgpNeighborAsn field value
 // and a boolean to check if the value has been set.
 func (o *BgpDynamicNeighborCreateInput) GetBgpNeighborAsnOk() (*int32, bool) {
-	if o == nil || isNil(o.BgpNeighborAsn) {
+	if o == nil {
 		return nil, false
 	}
-	return o.BgpNeighborAsn, true
+	return &o.BgpNeighborAsn, true
 }
 
-// HasBgpNeighborAsn returns a boolean if a field has been set.
-func (o *BgpDynamicNeighborCreateInput) HasBgpNeighborAsn() bool {
-	if o != nil && !isNil(o.BgpNeighborAsn) {
-		return true
-	}
-
-	return false
-}
-
-// SetBgpNeighborAsn gets a reference to the given int32 and assigns it to the BgpNeighborAsn field.
+// SetBgpNeighborAsn sets field value
 func (o *BgpDynamicNeighborCreateInput) SetBgpNeighborAsn(v int32) {
-	o.BgpNeighborAsn = &v
+	o.BgpNeighborAsn = v
 }
 
 func (o BgpDynamicNeighborCreateInput) MarshalJSON() ([]byte, error) {
@@ -120,12 +106,8 @@ func (o BgpDynamicNeighborCreateInput) MarshalJSON() ([]byte, error) {
 
 func (o BgpDynamicNeighborCreateInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.BgpNeighborRange) {
-		toSerialize["bgp_neighbor_range"] = o.BgpNeighborRange
-	}
-	if !isNil(o.BgpNeighborAsn) {
-		toSerialize["bgp_neighbor_asn"] = o.BgpNeighborAsn
-	}
+	toSerialize["bgp_neighbor_range"] = o.BgpNeighborRange
+	toSerialize["bgp_neighbor_asn"] = o.BgpNeighborAsn
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value

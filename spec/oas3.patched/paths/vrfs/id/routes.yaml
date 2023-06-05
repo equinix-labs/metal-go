@@ -16,7 +16,7 @@ post:
     content:
       application/json:
         schema:
-          $ref: "../../../components/schemas/VrfRouteCreateInput.yaml"
+          $ref: '../../../components/schemas/VrfRouteCreateInput.yaml'
     required: true
   responses:
     "200":

@@ -11,7 +11,8 @@ Method | HTTP request | Description
 [**FindInterconnectionPortEvents**](EventsApi.md#FindInterconnectionPortEvents) | **Get** /connections/{connection_id}/ports/{id}/events | Retrieve interconnection port events
 [**FindOrganizationEvents**](EventsApi.md#FindOrganizationEvents) | **Get** /organizations/{id}/events | Retrieve organization&#39;s events
 [**FindProjectEvents**](EventsApi.md#FindProjectEvents) | **Get** /projects/{id}/events | Retrieve project&#39;s events
-[**FindVirtualCircuitEvents**](EventsApi.md#FindVirtualCircuitEvents) | **Get** /virtual-circuits/{id}/events | Retrieve interconnection events
+[**FindVirtualCircuitEvents**](EventsApi.md#FindVirtualCircuitEvents) | **Get** /virtual-circuits/{id}/events | Retrieve virtual circuit events
+[**FindVrfRouteEvents**](EventsApi.md#FindVrfRouteEvents) | **Get** /routes/{id}/events | Retrieve VRF route events
 
 
 
@@ -558,7 +559,7 @@ Name | Type | Description  | Notes
 
 > Event FindVirtualCircuitEvents(ctx, id).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
 
-Retrieve interconnection events
+Retrieve virtual circuit events
 
 
 
@@ -604,6 +605,84 @@ Name | Type | Description  | Notes
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiFindVirtualCircuitEventsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
+ **exclude** | **[]string** | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | 
+ **page** | **int32** | Page to return | [default to 1]
+ **perPage** | **int32** | Items returned per page | [default to 10]
+
+### Return type
+
+[**Event**](Event.md)
+
+### Authorization
+
+[x_auth_token](../README.md#x_auth_token)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## FindVrfRouteEvents
+
+> Event FindVrfRouteEvents(ctx, id).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
+
+Retrieve VRF route events
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | VRF Route UUID
+    include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
+    exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
+    page := int32(56) // int32 | Page to return (optional) (default to 1)
+    perPage := int32(56) // int32 | Items returned per page (optional) (default to 10)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.EventsApi.FindVrfRouteEvents(context.Background(), id).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `EventsApi.FindVrfRouteEvents``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `FindVrfRouteEvents`: Event
+    fmt.Fprintf(os.Stdout, "Response from `EventsApi.FindVrfRouteEvents`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** | VRF Route UUID | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiFindVrfRouteEventsRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes

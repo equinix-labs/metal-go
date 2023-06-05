@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**BgpNeighborRange** | Pointer to **string** | Network range of the dynamic BGP neighbor in CIDR format | [optional] 
-**BgpNeighborAsn** | Pointer to **int32** | The ASN of the dynamic BGP neighbor | [optional] 
+**BgpNeighborRange** | **string** | Network range of the dynamic BGP neighbor in CIDR format | 
+**BgpNeighborAsn** | **int32** | The ASN of the dynamic BGP neighbor | 
 
 ## Methods
 
 ### NewBgpDynamicNeighborCreateInput
 
-`func NewBgpDynamicNeighborCreateInput() *BgpDynamicNeighborCreateInput`
+`func NewBgpDynamicNeighborCreateInput(bgpNeighborRange string, bgpNeighborAsn int32, ) *BgpDynamicNeighborCreateInput`
 
 NewBgpDynamicNeighborCreateInput instantiates a new BgpDynamicNeighborCreateInput object
 This constructor will assign default values to properties that have it defined,
@@ -45,11 +45,6 @@ and a boolean to check if the value has been set.
 
 SetBgpNeighborRange sets BgpNeighborRange field to given value.
 
-### HasBgpNeighborRange
-
-`func (o *BgpDynamicNeighborCreateInput) HasBgpNeighborRange() bool`
-
-HasBgpNeighborRange returns a boolean if a field has been set.
 
 ### GetBgpNeighborAsn
 
@@ -70,11 +65,6 @@ and a boolean to check if the value has been set.
 
 SetBgpNeighborAsn sets BgpNeighborAsn field to given value.
 
-### HasBgpNeighborAsn
-
-`func (o *BgpDynamicNeighborCreateInput) HasBgpNeighborAsn() bool`
-
-HasBgpNeighborAsn returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

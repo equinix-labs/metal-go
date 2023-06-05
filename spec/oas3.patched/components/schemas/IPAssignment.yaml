@@ -38,6 +38,7 @@ properties:
   public:
     type: boolean
   state:
+    type: string
     enum:
       - pending
       - active

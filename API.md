@@ -210,7 +210,8 @@ Class | Method | HTTP request | Description
 *EventsApi* | [**FindInterconnectionPortEvents**](docs/EventsApi.md#findinterconnectionportevents) | **Get** /connections/{connection_id}/ports/{id}/events | Retrieve interconnection port events
 *EventsApi* | [**FindOrganizationEvents**](docs/EventsApi.md#findorganizationevents) | **Get** /organizations/{id}/events | Retrieve organization&#39;s events
 *EventsApi* | [**FindProjectEvents**](docs/EventsApi.md#findprojectevents) | **Get** /projects/{id}/events | Retrieve project&#39;s events
-*EventsApi* | [**FindVirtualCircuitEvents**](docs/EventsApi.md#findvirtualcircuitevents) | **Get** /virtual-circuits/{id}/events | Retrieve interconnection events
+*EventsApi* | [**FindVirtualCircuitEvents**](docs/EventsApi.md#findvirtualcircuitevents) | **Get** /virtual-circuits/{id}/events | Retrieve virtual circuit events
+*EventsApi* | [**FindVrfRouteEvents**](docs/EventsApi.md#findvrfrouteevents) | **Get** /routes/{id}/events | Retrieve VRF route events
 *FacilitiesApi* | [**FindFacilities**](docs/FacilitiesApi.md#findfacilities) | **Get** /facilities | Retrieve all facilities
 *FacilitiesApi* | [**FindFacilitiesByOrganization**](docs/FacilitiesApi.md#findfacilitiesbyorganization) | **Get** /organizations/{id}/facilities | Retrieve all facilities visible by the organization
 *FacilitiesApi* | [**FindFacilitiesByProject**](docs/FacilitiesApi.md#findfacilitiesbyproject) | **Get** /projects/{id}/facilities | Retrieve all facilities visible by the project
@@ -244,6 +245,8 @@ Class | Method | HTTP request | Description
 *InvitationsApi* | [**AcceptInvitation**](docs/InvitationsApi.md#acceptinvitation) | **Put** /invitations/{id} | Accept an invitation
 *InvitationsApi* | [**DeclineInvitation**](docs/InvitationsApi.md#declineinvitation) | **Delete** /invitations/{id} | Decline an invitation
 *InvitationsApi* | [**FindInvitationById**](docs/InvitationsApi.md#findinvitationbyid) | **Get** /invitations/{id} | View an invitation
+*InvoicesApi* | [**FindOrganizationInvoices**](docs/InvoicesApi.md#findorganizationinvoices) | **Get** /organizations/{id}/invoices | Retrieve all invoices for an organization
+*InvoicesApi* | [**GetInvoiceById**](docs/InvoicesApi.md#getinvoicebyid) | **Get** /invoices/{id} | Retrieve an invoice
 *LicensesApi* | [**CreateLicense**](docs/LicensesApi.md#createlicense) | **Post** /projects/{id}/licenses | Create a License
 *LicensesApi* | [**DeleteLicense**](docs/LicensesApi.md#deletelicense) | **Delete** /licenses/{id} | Delete the license
 *LicensesApi* | [**FindLicenseById**](docs/LicensesApi.md#findlicensebyid) | **Get** /licenses/{id} | Retrieve a license
@@ -253,11 +256,11 @@ Class | Method | HTTP request | Description
 *MembershipsApi* | [**FindMembershipById**](docs/MembershipsApi.md#findmembershipbyid) | **Get** /memberships/{id} | Retrieve a membership
 *MembershipsApi* | [**UpdateMembership**](docs/MembershipsApi.md#updatemembership) | **Put** /memberships/{id} | Update the membership
 *MetalGatewaysApi* | [**CreateMetalGateway**](docs/MetalGatewaysApi.md#createmetalgateway) | **Post** /projects/{project_id}/metal-gateways | Create a metal gateway
-*MetalGatewaysApi* | [**CreateMetalGatewayElasticIp**](docs/MetalGatewaysApi.md#createmetalgatewayelasticip) | **Post** /metal-gateways/{id}/ips.yaml | Create a Metal Gateway Elastic IP
+*MetalGatewaysApi* | [**CreateMetalGatewayElasticIp**](docs/MetalGatewaysApi.md#createmetalgatewayelasticip) | **Post** /metal-gateways/{id}/ips | Create a Metal Gateway Elastic IP
 *MetalGatewaysApi* | [**DeleteMetalGateway**](docs/MetalGatewaysApi.md#deletemetalgateway) | **Delete** /metal-gateways/{id} | Deletes the metal gateway
 *MetalGatewaysApi* | [**FindMetalGatewayById**](docs/MetalGatewaysApi.md#findmetalgatewaybyid) | **Get** /metal-gateways/{id} | Returns the metal gateway
 *MetalGatewaysApi* | [**FindMetalGatewaysByProject**](docs/MetalGatewaysApi.md#findmetalgatewaysbyproject) | **Get** /projects/{project_id}/metal-gateways | Returns all metal gateways for a project
-*MetalGatewaysApi* | [**GetMetalGatewayElasticIps**](docs/MetalGatewaysApi.md#getmetalgatewayelasticips) | **Get** /metal-gateways/{id}/ips.yaml | List Metal Gateway Elastic IPs
+*MetalGatewaysApi* | [**GetMetalGatewayElasticIps**](docs/MetalGatewaysApi.md#getmetalgatewayelasticips) | **Get** /metal-gateways/{id}/ips | List Metal Gateway Elastic IPs
 *MetrosApi* | [**FindMetros**](docs/MetrosApi.md#findmetros) | **Get** /locations/metros | Retrieve all metros
 *MetrosApi* | [**GetMetro**](docs/MetrosApi.md#getmetro) | **Get** /locations/metros/{id} | Retrieve a specific Metro&#39;s details
 *OTPsApi* | [**FindEnsureOtp**](docs/OTPsApi.md#findensureotp) | **Post** /user/otp/verify/{otp} | Verify user by providing an OTP
@@ -355,8 +358,11 @@ Class | Method | HTTP request | Description
 *VLANsApi* | [**DeleteVirtualNetwork**](docs/VLANsApi.md#deletevirtualnetwork) | **Delete** /virtual-networks/{id} | Delete a virtual network
 *VLANsApi* | [**FindVirtualNetworks**](docs/VLANsApi.md#findvirtualnetworks) | **Get** /projects/{id}/virtual-networks | Retrieve all virtual networks
 *VLANsApi* | [**GetVirtualNetwork**](docs/VLANsApi.md#getvirtualnetwork) | **Get** /virtual-networks/{id} | Get a virtual network
+*VRFsApi* | [**BgpDynamicNeighborsIdGet**](docs/VRFsApi.md#bgpdynamicneighborsidget) | **Get** /bgp-dynamic-neighbors/{id} | Retrieve a BGP Dynamic Neighbor
+*VRFsApi* | [**CreateBgpDynamicNeighbor**](docs/VRFsApi.md#createbgpdynamicneighbor) | **Post** /metal-gateways/{id}/bgp-dynamic-neighbors | Create a VRF BGP Dynamic Neighbor range
 *VRFsApi* | [**CreateVrf**](docs/VRFsApi.md#createvrf) | **Post** /projects/{id}/vrfs | Create a new VRF in the specified project
 *VRFsApi* | [**CreateVrfRoute**](docs/VRFsApi.md#createvrfroute) | **Post** /vrfs/{id}/routes | Create a VRF route
+*VRFsApi* | [**DeleteBgpDynamicNeighborById**](docs/VRFsApi.md#deletebgpdynamicneighborbyid) | **Delete** /bgp-dynamic-neighbors/{id} | Delete a VRF BGP Dynamic Neighbor
 *VRFsApi* | [**DeleteVrf**](docs/VRFsApi.md#deletevrf) | **Delete** /vrfs/{id} | Delete the VRF
 *VRFsApi* | [**DeleteVrfRouteById**](docs/VRFsApi.md#deletevrfroutebyid) | **Delete** /routes/{id} | Delete a VRF Route
 *VRFsApi* | [**FindVrfById**](docs/VRFsApi.md#findvrfbyid) | **Get** /vrfs/{id} | Retrieve a VRF
@@ -364,6 +370,7 @@ Class | Method | HTTP request | Description
 *VRFsApi* | [**FindVrfIpReservations**](docs/VRFsApi.md#findvrfipreservations) | **Get** /vrfs/{id}/ips | Retrieve all VRF IP Reservations in the VRF
 *VRFsApi* | [**FindVrfRouteById**](docs/VRFsApi.md#findvrfroutebyid) | **Get** /routes/{id} | Retrieve a VRF Route
 *VRFsApi* | [**FindVrfs**](docs/VRFsApi.md#findvrfs) | **Get** /projects/{id}/vrfs | Retrieve all VRFs in the project
+*VRFsApi* | [**GetBgpDynamicNeighbors**](docs/VRFsApi.md#getbgpdynamicneighbors) | **Get** /metal-gateways/{id}/bgp-dynamic-neighbors | List BGP Dynamic Neighbors
 *VRFsApi* | [**GetVrfRoutes**](docs/VRFsApi.md#getvrfroutes) | **Get** /vrfs/{id}/routes | Retrieve all routes in the VRF
 *VRFsApi* | [**UpdateVrf**](docs/VRFsApi.md#updatevrf) | **Put** /vrfs/{id} | Update the VRF
 *VRFsApi* | [**UpdateVrfRouteById**](docs/VRFsApi.md#updatevrfroutebyid) | **Put** /routes/{id} | Update a VRF Route
@@ -468,10 +475,13 @@ Class | Method | HTTP request | Description
  - [Invitation](docs/Invitation.md)
  - [InvitationInput](docs/InvitationInput.md)
  - [InvitationList](docs/InvitationList.md)
+ - [Invoice](docs/Invoice.md)
+ - [InvoiceList](docs/InvoiceList.md)
  - [License](docs/License.md)
  - [LicenseCreateInput](docs/LicenseCreateInput.md)
  - [LicenseList](docs/LicenseList.md)
  - [LicenseUpdateInput](docs/LicenseUpdateInput.md)
+ - [LineItem](docs/LineItem.md)
  - [Membership](docs/Membership.md)
  - [MembershipInput](docs/MembershipInput.md)
  - [MembershipList](docs/MembershipList.md)
@@ -532,6 +542,7 @@ Class | Method | HTTP request | Description
  - [Project](docs/Project.md)
  - [ProjectCreateFromRootInput](docs/ProjectCreateFromRootInput.md)
  - [ProjectCreateInput](docs/ProjectCreateInput.md)
+ - [ProjectIdName](docs/ProjectIdName.md)
  - [ProjectList](docs/ProjectList.md)
  - [ProjectUpdateInput](docs/ProjectUpdateInput.md)
  - [ProjectUsage](docs/ProjectUsage.md)
@@ -599,6 +610,7 @@ Class | Method | HTTP request | Description
  - [VrfRouteCreateInput](docs/VrfRouteCreateInput.md)
  - [VrfRouteList](docs/VrfRouteList.md)
  - [VrfRouteMetalGateway](docs/VrfRouteMetalGateway.md)
+ - [VrfRouteUpdateInput](docs/VrfRouteUpdateInput.md)
  - [VrfRouteVirtualNetwork](docs/VrfRouteVirtualNetwork.md)
  - [VrfRouteVrf](docs/VrfRouteVrf.md)
  - [VrfUpdateInput](docs/VrfUpdateInput.md)

@@ -595,6 +595,126 @@ paths:
       summary: Update the BGP session
       tags:
       - BGP
+  /bgp-dynamic-neighbors/{id}:
+    delete:
+      description: Trigger the removal of a BGP Neighbor range from a VRF
+      operationId: deleteBgpDynamicNeighborById
+      parameters:
+      - description: BGP Dynamic Neighbor UUID
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - description: |-
+          Nested attributes to include. Included objects will return their full
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+          nested objects.
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Nested attributes to exclude. Excluded objects will return only the href
+          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
+          nested objects.
+        explode: false
+        in: query
+        name: exclude
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BgpDynamicNeighbor'
+          description: Accepted
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Not Found
+      summary: Delete a VRF BGP Dynamic Neighbor
+      tags:
+      - VRFs
+    get:
+      description: Return a single BGP Dynamic Neighbor resource
+      parameters:
+      - description: BGP Dynamic Neighbor UUID
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - description: |-
+          Nested attributes to include. Included objects will return their full
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+          nested objects.
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Nested attributes to exclude. Excluded objects will return only the href
+          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
+          nested objects.
+        explode: false
+        in: query
+        name: exclude
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BgpDynamicNeighbor'
+          description: OK
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Not Found
+      summary: Retrieve a BGP Dynamic Neighbor
+      tags:
+      - VRFs
   /capacity:
     get:
       description: Returns a list of facilities and plans with their current capacity.
@@ -2850,6 +2970,40 @@ paths:
       summary: Accept an invitation
       tags:
       - Invitations
+  /invoices/{id}:
+    get:
+      description: Returns the invoice identified by the provided id
+      operationId: getInvoiceById
+      parameters:
+      - description: Invoice UUID
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Invoice'
+          description: ok
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: not found
+      summary: Retrieve an invoice
+      tags:
+      - Invoices
   /ips/{id}:
     delete:
       description: |
@@ -3794,7 +3948,121 @@ paths:
       summary: Returns the metal gateway
       tags:
       - MetalGateways
-  /metal-gateways/{id}/ips.yaml:
+  /metal-gateways/{id}/bgp-dynamic-neighbors:
+    get:
+      description: Returns the list of VRF BGP Dynamic Neighbors for this Metal Gateway
+      operationId: getBgpDynamicNeighbors
+      parameters:
+      - description: Metal Gateway UUID
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - description: |-
+          Nested attributes to include. Included objects will return their full
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+          nested objects.
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Nested attributes to exclude. Excluded objects will return only the href
+          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
+          nested objects.
+        explode: false
+        in: query
+        name: exclude
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BgpDynamicNeighborList'
+          description: OK
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Not Found
+      summary: List BGP Dynamic Neighbors
+      tags:
+      - VRFs
+    post:
+      description: |
+        Create a VRF BGP Dynamic Neighbor range.
+
+        BGP Dynamic Neighbor records are limited to 2 per Virtual Network.
+
+        Notice: VRFs are a test feature currently under active development, and only available to certain users. Please contact Customer Success for more information.
+      operationId: createBgpDynamicNeighbor
+      parameters:
+      - description: Metal Gateway UUID
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BgpDynamicNeighborCreateInput'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BgpDynamicNeighbor'
+          description: Created
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Not Found
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unprocessable entity
+      summary: Create a VRF BGP Dynamic Neighbor range
+      tags:
+      - VRFs
+  /metal-gateways/{id}/ips:
     get:
       description: Returns the list of Elastic IPs assigned to this Metal Gateway
       operationId: getMetalGatewayElasticIps
@@ -4704,6 +4972,55 @@ paths:
       summary: Create an invitation for an organization
       tags:
       - Organizations
+  /organizations/{id}/invoices:
+    get:
+      description: Returns all invoices for an organization
+      operationId: findOrganizationInvoices
+      parameters:
+      - description: Organization UUID
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - description: page number
+        in: query
+        name: page
+        schema:
+          type: integer
+      - description: per page
+        in: query
+        name: per_page
+        schema:
+          type: integer
+      - description: filter by status
+        in: query
+        name: status
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvoiceList'
+          description: ok
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: not found
+      summary: Retrieve all invoices for an organization
+      tags:
+      - Invoices
   /organizations/{id}/operating-systems:
     get:
       description: Returns a listing of available operating systems for the given
@@ -8982,6 +9299,12 @@ paths:
             type: string
           type: array
         style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VrfRouteUpdateInput'
+        required: true
       responses:
         "202":
           content:
@@ -9022,6 +9345,88 @@ paths:
       summary: Update a VRF Route
       tags:
       - VRFs
+  /routes/{id}/events:
+    get:
+      description: Returns a list of the VRF route events
+      operationId: findVrfRouteEvents
+      parameters:
+      - description: VRF Route UUID
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - description: |-
+          Nested attributes to include. Included objects will return their full
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+          nested objects.
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Nested attributes to exclude. Excluded objects will return only the href
+          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
+          nested objects.
+        explode: false
+        in: query
+        name: exclude
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Page to return
+        in: query
+        name: page
+        schema:
+          default: 1
+          format: int32
+          maximum: 100000
+          minimum: 1
+          type: integer
+      - description: Items returned per page
+        in: query
+        name: per_page
+        schema:
+          default: 10
+          format: int32
+          maximum: 1000
+          minimum: 1
+          type: integer
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'
+          description: ok
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: not found
+      summary: Retrieve VRF route events
+      tags:
+      - Events
   /spot-market-requests/{id}:
     delete:
       description: Deletes the spot market request.
@@ -10290,7 +10695,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
           description: not found
-      summary: Retrieve interconnection events
+      summary: Retrieve virtual circuit events
       tags:
       - Events
   /virtual-circuits/{id}:
@@ -11186,6 +11591,9 @@ components:
           description: The ASN of the dynamic BGP neighbor
           example: 12345
           type: integer
+      required:
+      - bgp_neighbor_asn
+      - bgp_neighbor_range
       type: object
     BgpDynamicNeighborList:
       properties:
@@ -12261,7 +12669,7 @@ components:
           - pending
           - active
           - deleting
-          type: object
+          type: string
         next_hop:
           description: |
             Only set when this is a Metal Gateway Elastic IP Assignment.
@@ -12502,6 +12910,11 @@ components:
     InterconnectionCreateInput:
       properties:
         contact_email:
+          description: The preferred email used for communication and notifications
+            about the Equinix Fabric interconnection. Required when using a Project
+            API key. Optional and defaults to the primary user email address when
+            using a User API key.
+          format: email
           type: string
         description:
           type: string
@@ -12757,6 +13170,55 @@ components:
             $ref: '#/components/schemas/Membership'
           type: array
       type: object
+    Invoice:
+      properties:
+        amount:
+          format: float
+          type: number
+        balance:
+          format: float
+          type: number
+        created_on:
+          format: date
+          type: string
+        credit_amount:
+          format: float
+          type: number
+        credits_applied:
+          format: float
+          type: number
+        currency:
+          example: USD
+          type: string
+        due_on:
+          format: date
+          type: string
+        id:
+          format: uuid
+          type: string
+        items:
+          items:
+            $ref: '#/components/schemas/LineItem'
+          type: array
+        number:
+          type: string
+        project:
+          $ref: '#/components/schemas/ProjectIdName'
+        reference_number:
+          type: string
+        status:
+          type: string
+        target_date:
+          format: date
+          type: string
+      type: object
+    InvoiceList:
+      properties:
+        invoices:
+          items:
+            $ref: '#/components/schemas/Invoice'
+          type: array
+      type: object
     License:
       properties:
         description:
@@ -12794,6 +13256,25 @@ components:
         description:
           type: string
         size:
+          type: number
+      type: object
+    LineItem:
+      properties:
+        amount:
+          format: float
+          type: number
+        currency:
+          type: string
+        description:
+          type: string
+        details:
+          type: string
+        plan:
+          $ref: '#/components/schemas/Plan'
+        unit:
+          type: string
+        unit_price:
+          format: float
           type: number
       type: object
     Membership:
@@ -13624,6 +14105,14 @@ components:
           type: string
       required:
       - name
+      type: object
+    ProjectIdName:
+      properties:
+        id:
+          format: uuid
+          type: string
+        name:
+          type: string
       type: object
     ProjectList:
       properties:
@@ -14825,6 +15314,20 @@ components:
       - next_hop
       - prefix
       type: object
+    VrfRouteUpdateInput:
+      properties:
+        prefix:
+          description: "The IPv4 prefix for the route, in CIDR-style notation. For\
+            \ a static default route, this will always be \"0.0.0.0/0\""
+          example: 0.0.0.0/0
+          type: string
+        next_hop:
+          description: The IPv4 address within the VRF of the host that will handle
+            this route
+          example: 192.168.1.254
+          format: ipv4
+          type: string
+      type: object
     VrfRouteList:
       properties:
         routes:
@@ -15595,6 +16098,7 @@ x-tagGroups:
   - Events
   - Facilities
   - Incidents
+  - Invoices
   - Licenses
   - Metros
   - Plans
