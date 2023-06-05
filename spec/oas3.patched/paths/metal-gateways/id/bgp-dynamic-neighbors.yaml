@@ -1,11 +1,14 @@
 post:
+  summary: Create a VRF BGP Dynamic Neighbor range
   description: |
-    Create a route in a VRF. Currently only static default routes are supported.
+    Create a VRF BGP Dynamic Neighbor range.
+
+    BGP Dynamic Neighbor records are limited to 2 per Virtual Network.
 
     Notice: VRFs are a test feature currently under active development, and only available to certain users. Please contact Customer Success for more information.
-  operationId: createVrfRoute
+  operationId: createBgpDynamicNeighbor
   parameters:
-    - description: VRF UUID
+    - description: Metal Gateway UUID
       in: path
       name: id
       required: true
@@ -16,15 +19,15 @@ post:
     content:
       application/json:
         schema:
-          $ref: '../../../components/schemas/VrfRouteCreateInput.yaml'
+          $ref: "../../../components/schemas/BgpDynamicNeighborCreateInput.yaml"
     required: true
   responses:
-    "200":
+    "201":
       content:
         application/json:
           schema:
-            $ref: '../../../components/schemas/VrfRoute.yaml'
-      description: OK
+            $ref: '../../../components/schemas/BgpDynamicNeighbor.yaml'
+      description: Created
     "401":
       content:
         application/json:
@@ -49,15 +52,15 @@ post:
           schema:
             $ref: '../../../components/schemas/Error.yaml'
       description: Unprocessable entity
-  summary: Create a VRF route
   tags:
   - VRFs
 
 get:
-  description: Returns the list of routes for the VRF
-  operationId: getVrfRoutes
+  description: Returns the list of VRF BGP Dynamic Neighbors for this Metal Gateway
+  operationId: getBgpDynamicNeighbors
+  summary: List BGP Dynamic Neighbors
   parameters:
-    - description: VRF UUID
+    - description: Metal Gateway UUID
       in: path
       name: id
       required: true
@@ -71,7 +74,7 @@ get:
       content:
         application/json:
           schema:
-            $ref: '../../../components/schemas/VrfRouteList.yaml'
+            $ref: '../../../components/schemas/BgpDynamicNeighborList.yaml'
       description: OK
     "401":
       content:
@@ -85,6 +88,5 @@ get:
           schema:
             $ref: '../../../components/schemas/Error.yaml'
       description: Not Found
-  summary: Retrieve all routes in the VRF
   tags:
   - VRFs

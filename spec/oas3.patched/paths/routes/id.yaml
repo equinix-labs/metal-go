@@ -90,6 +90,12 @@ put:
         type: string
     - $ref: '../../components/parameters/Include.yaml'
     - $ref: '../../components/parameters/Exclude.yaml'
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: '../../components/schemas/VrfRouteUpdateInput.yaml'
+    required: true
   responses:
     "202":
         content:

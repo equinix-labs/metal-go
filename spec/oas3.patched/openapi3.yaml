@@ -257,6 +257,10 @@ components:
       $ref: './components/schemas/InvitationInput.yaml'
     InvitationList:
       $ref: './components/schemas/InvitationList.yaml'
+    Invoice:
+      $ref: './components/schemas/Invoice.yaml'
+    InvoiceList:
+      $ref: './components/schemas/InvoiceList.yaml'
     License:
       $ref: './components/schemas/License.yaml'
     LicenseCreateInput:
@@ -265,6 +269,8 @@ components:
       $ref: './components/schemas/LicenseList.yaml'
     LicenseUpdateInput:
       $ref: './components/schemas/LicenseUpdateInput.yaml'
+    LineItem:
+      $ref: './components/schemas/LineItem.yaml'
     Membership:
       $ref: './components/schemas/Membership.yaml'
     MembershipInput:
@@ -347,6 +353,8 @@ components:
       $ref: './components/schemas/ProjectCreateFromRootInput.yaml'
     ProjectCreateInput:
       $ref: './components/schemas/ProjectCreateInput.yaml'
+    ProjectIdName:
+      $ref: './components/schemas/ProjectIdName.yaml'
     ProjectList:
       $ref: './components/schemas/ProjectList.yaml'
     ProjectUpdateInput:
@@ -450,9 +458,9 @@ components:
     Vrf:
       $ref: './components/schemas/Vrf.yaml'
     VrfCreateInput:
-      $ref: './components/schemas//VrfCreateInput.yaml'
+      $ref: './components/schemas/VrfCreateInput.yaml'
     VrfIpRangeCreateInput:
-      $ref: './components/schemas//VrfIpRangeCreateInput.yaml'
+      $ref: './components/schemas/VrfIpRangeCreateInput.yaml'
     VrfIpRangeList:
       $ref: './components/schemas/VrfIpRangeList.yaml'
     VrfIpRangeUpdateInput:
@@ -473,6 +481,8 @@ components:
       $ref: './components/schemas/VrfRoute.yaml'
     VrfRouteCreateInput:
       $ref: './components/schemas/VrfRouteCreateInput.yaml'
+    VrfRouteUpdateInput:
+      $ref: './components/schemas/VrfRouteUpdateInput.yaml'
     VrfRouteList:
       $ref: './components/schemas/VrfRouteList.yaml'
     VrfUpdateInput:
@@ -498,6 +508,8 @@ paths:
     $ref: ./paths/batches/id.yaml
   /bgp/sessions/{id}:
     $ref: ./paths/bgp/sessions/id.yaml
+  /bgp-dynamic-neighbors/{id}:
+    $ref: ./paths/bgp-dynamic-neighbors/id.yaml
   /capacity:
     $ref: ./paths/capacity.yaml
   /capacity/metros:
@@ -566,6 +578,8 @@ paths:
     $ref: ./paths/invitations.yaml
   /invitations/{id}:
     $ref: ./paths/invitations/id.yaml
+  /invoices/{id}:
+    $ref: ./paths/invoices/id.yaml
   /ips/{id}:
     $ref: ./paths/ips/id.yaml
   /ips/{id}/available:
@@ -588,7 +602,9 @@ paths:
     $ref: ./paths/memberships/id.yaml
   /metal-gateways/{id}:
     $ref: ./paths/metal-gateways/id.yaml
-  /metal-gateways/{id}/ips.yaml:
+  /metal-gateways/{id}/bgp-dynamic-neighbors:
+    $ref: ./paths/metal-gateways/id/bgp-dynamic-neighbors.yaml
+  /metal-gateways/{id}/ips:
     $ref: ./paths/metal-gateways/id/ips.yaml
   /operating-system-versions:
     $ref: ./paths/operating-system-versions.yaml
@@ -612,6 +628,8 @@ paths:
     $ref: ./paths/organizations/id/facilities.yaml
   /organizations/{id}/invitations:
     $ref: ./paths/organizations/id/invitations.yaml
+  /organizations/{id}/invoices:
+    $ref: ./paths/organizations/id/invoices.yaml
   /organizations/{id}/operating-systems:
     $ref: ./paths/organizations/id/operating-systems.yaml
   /organizations/{id}/payment-methods:
@@ -716,6 +734,8 @@ paths:
     $ref: ./paths/reset-password.yaml
   /routes/{id}:
     $ref: ./paths/routes/id.yaml
+  /routes/{id}/events:
+    $ref: ./paths/routes/id/events.yaml
   /spot-market-requests/{id}:
     $ref: ./paths/spot-market-requests/id.yaml
   /ssh-keys:
@@ -1053,6 +1073,7 @@ x-tagGroups:
       - Events
       - Facilities
       - Incidents
+      - Invoices
       - Licenses
       - Metros
       - Plans
