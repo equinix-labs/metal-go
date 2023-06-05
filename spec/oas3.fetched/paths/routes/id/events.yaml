@@ -1,8 +1,8 @@
 get:
-  description: Returns a list of the virtual circuit events
-  operationId: findVirtualCircuitEvents
+  description: Returns a list of the VRF route events
+  operationId: findVrfRouteEvents
   parameters:
-  - description: Virtual Circuit UUID
+  - description: VRF Route UUID
     in: path
     name: id
     required: true
@@ -38,6 +38,6 @@ get:
           schema:
             $ref: '../../../components/schemas/Error.yaml'
       description: not found
-  summary: Retrieve virtual circuit events
+  summary: Retrieve VRF route events
   tags:
   - Events

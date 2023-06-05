@@ -7,3 +7,6 @@ properties:
     description: The ASN of the dynamic BGP neighbor
     type: integer
     example: 12345
+required:
+- bgp_neighbor_range
+- bgp_neighbor_asn
