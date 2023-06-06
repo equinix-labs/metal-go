@@ -48,7 +48,7 @@ func NewBondPortDataWithDefaults() *BondPortData {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *BondPortData) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -58,7 +58,7 @@ func (o *BondPortData) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BondPortData) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -66,7 +66,7 @@ func (o *BondPortData) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *BondPortData) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -80,7 +80,7 @@ func (o *BondPortData) SetId(v string) {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *BondPortData) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -90,7 +90,7 @@ func (o *BondPortData) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BondPortData) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
 	return o.Name, true
@@ -98,7 +98,7 @@ func (o *BondPortData) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *BondPortData) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -120,10 +120,10 @@ func (o BondPortData) MarshalJSON() ([]byte, error) {
 
 func (o BondPortData) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Id) {
+	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
-	if !isNil(o.Name) {
+	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
 

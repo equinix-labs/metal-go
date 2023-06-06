@@ -70,7 +70,7 @@ func NewInterconnectionCreateInputWithDefaults() *InterconnectionCreateInput {
 
 // GetContactEmail returns the ContactEmail field value if set, zero value otherwise.
 func (o *InterconnectionCreateInput) GetContactEmail() string {
-	if o == nil || isNil(o.ContactEmail) {
+	if o == nil || IsNil(o.ContactEmail) {
 		var ret string
 		return ret
 	}
@@ -80,7 +80,7 @@ func (o *InterconnectionCreateInput) GetContactEmail() string {
 // GetContactEmailOk returns a tuple with the ContactEmail field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InterconnectionCreateInput) GetContactEmailOk() (*string, bool) {
-	if o == nil || isNil(o.ContactEmail) {
+	if o == nil || IsNil(o.ContactEmail) {
 		return nil, false
 	}
 	return o.ContactEmail, true
@@ -88,7 +88,7 @@ func (o *InterconnectionCreateInput) GetContactEmailOk() (*string, bool) {
 
 // HasContactEmail returns a boolean if a field has been set.
 func (o *InterconnectionCreateInput) HasContactEmail() bool {
-	if o != nil && !isNil(o.ContactEmail) {
+	if o != nil && !IsNil(o.ContactEmail) {
 		return true
 	}
 
@@ -102,7 +102,7 @@ func (o *InterconnectionCreateInput) SetContactEmail(v string) {
 
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *InterconnectionCreateInput) GetDescription() string {
-	if o == nil || isNil(o.Description) {
+	if o == nil || IsNil(o.Description) {
 		var ret string
 		return ret
 	}
@@ -112,7 +112,7 @@ func (o *InterconnectionCreateInput) GetDescription() string {
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InterconnectionCreateInput) GetDescriptionOk() (*string, bool) {
-	if o == nil || isNil(o.Description) {
+	if o == nil || IsNil(o.Description) {
 		return nil, false
 	}
 	return o.Description, true
@@ -120,7 +120,7 @@ func (o *InterconnectionCreateInput) GetDescriptionOk() (*string, bool) {
 
 // HasDescription returns a boolean if a field has been set.
 func (o *InterconnectionCreateInput) HasDescription() bool {
-	if o != nil && !isNil(o.Description) {
+	if o != nil && !IsNil(o.Description) {
 		return true
 	}
 
@@ -158,7 +158,7 @@ func (o *InterconnectionCreateInput) SetMetro(v string) {
 
 // GetMode returns the Mode field value if set, zero value otherwise.
 func (o *InterconnectionCreateInput) GetMode() string {
-	if o == nil || isNil(o.Mode) {
+	if o == nil || IsNil(o.Mode) {
 		var ret string
 		return ret
 	}
@@ -168,7 +168,7 @@ func (o *InterconnectionCreateInput) GetMode() string {
 // GetModeOk returns a tuple with the Mode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InterconnectionCreateInput) GetModeOk() (*string, bool) {
-	if o == nil || isNil(o.Mode) {
+	if o == nil || IsNil(o.Mode) {
 		return nil, false
 	}
 	return o.Mode, true
@@ -176,7 +176,7 @@ func (o *InterconnectionCreateInput) GetModeOk() (*string, bool) {
 
 // HasMode returns a boolean if a field has been set.
 func (o *InterconnectionCreateInput) HasMode() bool {
-	if o != nil && !isNil(o.Mode) {
+	if o != nil && !IsNil(o.Mode) {
 		return true
 	}
 
@@ -214,7 +214,7 @@ func (o *InterconnectionCreateInput) SetName(v string) {
 
 // GetProject returns the Project field value if set, zero value otherwise.
 func (o *InterconnectionCreateInput) GetProject() string {
-	if o == nil || isNil(o.Project) {
+	if o == nil || IsNil(o.Project) {
 		var ret string
 		return ret
 	}
@@ -224,7 +224,7 @@ func (o *InterconnectionCreateInput) GetProject() string {
 // GetProjectOk returns a tuple with the Project field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InterconnectionCreateInput) GetProjectOk() (*string, bool) {
-	if o == nil || isNil(o.Project) {
+	if o == nil || IsNil(o.Project) {
 		return nil, false
 	}
 	return o.Project, true
@@ -232,7 +232,7 @@ func (o *InterconnectionCreateInput) GetProjectOk() (*string, bool) {
 
 // HasProject returns a boolean if a field has been set.
 func (o *InterconnectionCreateInput) HasProject() bool {
-	if o != nil && !isNil(o.Project) {
+	if o != nil && !IsNil(o.Project) {
 		return true
 	}
 
@@ -270,7 +270,7 @@ func (o *InterconnectionCreateInput) SetRedundancy(v string) {
 
 // GetServiceTokenType returns the ServiceTokenType field value if set, zero value otherwise.
 func (o *InterconnectionCreateInput) GetServiceTokenType() string {
-	if o == nil || isNil(o.ServiceTokenType) {
+	if o == nil || IsNil(o.ServiceTokenType) {
 		var ret string
 		return ret
 	}
@@ -280,7 +280,7 @@ func (o *InterconnectionCreateInput) GetServiceTokenType() string {
 // GetServiceTokenTypeOk returns a tuple with the ServiceTokenType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InterconnectionCreateInput) GetServiceTokenTypeOk() (*string, bool) {
-	if o == nil || isNil(o.ServiceTokenType) {
+	if o == nil || IsNil(o.ServiceTokenType) {
 		return nil, false
 	}
 	return o.ServiceTokenType, true
@@ -288,7 +288,7 @@ func (o *InterconnectionCreateInput) GetServiceTokenTypeOk() (*string, bool) {
 
 // HasServiceTokenType returns a boolean if a field has been set.
 func (o *InterconnectionCreateInput) HasServiceTokenType() bool {
-	if o != nil && !isNil(o.ServiceTokenType) {
+	if o != nil && !IsNil(o.ServiceTokenType) {
 		return true
 	}
 
@@ -302,7 +302,7 @@ func (o *InterconnectionCreateInput) SetServiceTokenType(v string) {
 
 // GetSpeed returns the Speed field value if set, zero value otherwise.
 func (o *InterconnectionCreateInput) GetSpeed() int32 {
-	if o == nil || isNil(o.Speed) {
+	if o == nil || IsNil(o.Speed) {
 		var ret int32
 		return ret
 	}
@@ -312,7 +312,7 @@ func (o *InterconnectionCreateInput) GetSpeed() int32 {
 // GetSpeedOk returns a tuple with the Speed field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InterconnectionCreateInput) GetSpeedOk() (*int32, bool) {
-	if o == nil || isNil(o.Speed) {
+	if o == nil || IsNil(o.Speed) {
 		return nil, false
 	}
 	return o.Speed, true
@@ -320,7 +320,7 @@ func (o *InterconnectionCreateInput) GetSpeedOk() (*int32, bool) {
 
 // HasSpeed returns a boolean if a field has been set.
 func (o *InterconnectionCreateInput) HasSpeed() bool {
-	if o != nil && !isNil(o.Speed) {
+	if o != nil && !IsNil(o.Speed) {
 		return true
 	}
 
@@ -334,7 +334,7 @@ func (o *InterconnectionCreateInput) SetSpeed(v int32) {
 
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *InterconnectionCreateInput) GetTags() []string {
-	if o == nil || isNil(o.Tags) {
+	if o == nil || IsNil(o.Tags) {
 		var ret []string
 		return ret
 	}
@@ -344,7 +344,7 @@ func (o *InterconnectionCreateInput) GetTags() []string {
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InterconnectionCreateInput) GetTagsOk() ([]string, bool) {
-	if o == nil || isNil(o.Tags) {
+	if o == nil || IsNil(o.Tags) {
 		return nil, false
 	}
 	return o.Tags, true
@@ -352,7 +352,7 @@ func (o *InterconnectionCreateInput) GetTagsOk() ([]string, bool) {
 
 // HasTags returns a boolean if a field has been set.
 func (o *InterconnectionCreateInput) HasTags() bool {
-	if o != nil && !isNil(o.Tags) {
+	if o != nil && !IsNil(o.Tags) {
 		return true
 	}
 
@@ -390,7 +390,7 @@ func (o *InterconnectionCreateInput) SetType(v string) {
 
 // GetVlans returns the Vlans field value if set, zero value otherwise.
 func (o *InterconnectionCreateInput) GetVlans() []int32 {
-	if o == nil || isNil(o.Vlans) {
+	if o == nil || IsNil(o.Vlans) {
 		var ret []int32
 		return ret
 	}
@@ -400,7 +400,7 @@ func (o *InterconnectionCreateInput) GetVlans() []int32 {
 // GetVlansOk returns a tuple with the Vlans field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InterconnectionCreateInput) GetVlansOk() ([]int32, bool) {
-	if o == nil || isNil(o.Vlans) {
+	if o == nil || IsNil(o.Vlans) {
 		return nil, false
 	}
 	return o.Vlans, true
@@ -408,7 +408,7 @@ func (o *InterconnectionCreateInput) GetVlansOk() ([]int32, bool) {
 
 // HasVlans returns a boolean if a field has been set.
 func (o *InterconnectionCreateInput) HasVlans() bool {
-	if o != nil && !isNil(o.Vlans) {
+	if o != nil && !IsNil(o.Vlans) {
 		return true
 	}
 
@@ -422,7 +422,7 @@ func (o *InterconnectionCreateInput) SetVlans(v []int32) {
 
 // GetVrfs returns the Vrfs field value if set, zero value otherwise.
 func (o *InterconnectionCreateInput) GetVrfs() []string {
-	if o == nil || isNil(o.Vrfs) {
+	if o == nil || IsNil(o.Vrfs) {
 		var ret []string
 		return ret
 	}
@@ -432,7 +432,7 @@ func (o *InterconnectionCreateInput) GetVrfs() []string {
 // GetVrfsOk returns a tuple with the Vrfs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InterconnectionCreateInput) GetVrfsOk() ([]string, bool) {
-	if o == nil || isNil(o.Vrfs) {
+	if o == nil || IsNil(o.Vrfs) {
 		return nil, false
 	}
 	return o.Vrfs, true
@@ -440,7 +440,7 @@ func (o *InterconnectionCreateInput) GetVrfsOk() ([]string, bool) {
 
 // HasVrfs returns a boolean if a field has been set.
 func (o *InterconnectionCreateInput) HasVrfs() bool {
-	if o != nil && !isNil(o.Vrfs) {
+	if o != nil && !IsNil(o.Vrfs) {
 		return true
 	}
 
@@ -462,35 +462,35 @@ func (o InterconnectionCreateInput) MarshalJSON() ([]byte, error) {
 
 func (o InterconnectionCreateInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.ContactEmail) {
+	if !IsNil(o.ContactEmail) {
 		toSerialize["contact_email"] = o.ContactEmail
 	}
-	if !isNil(o.Description) {
+	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
 	toSerialize["metro"] = o.Metro
-	if !isNil(o.Mode) {
+	if !IsNil(o.Mode) {
 		toSerialize["mode"] = o.Mode
 	}
 	toSerialize["name"] = o.Name
-	if !isNil(o.Project) {
+	if !IsNil(o.Project) {
 		toSerialize["project"] = o.Project
 	}
 	toSerialize["redundancy"] = o.Redundancy
-	if !isNil(o.ServiceTokenType) {
+	if !IsNil(o.ServiceTokenType) {
 		toSerialize["service_token_type"] = o.ServiceTokenType
 	}
-	if !isNil(o.Speed) {
+	if !IsNil(o.Speed) {
 		toSerialize["speed"] = o.Speed
 	}
-	if !isNil(o.Tags) {
+	if !IsNil(o.Tags) {
 		toSerialize["tags"] = o.Tags
 	}
 	toSerialize["type"] = o.Type
-	if !isNil(o.Vlans) {
+	if !IsNil(o.Vlans) {
 		toSerialize["vlans"] = o.Vlans
 	}
-	if !isNil(o.Vrfs) {
+	if !IsNil(o.Vrfs) {
 		toSerialize["vrfs"] = o.Vrfs
 	}
 

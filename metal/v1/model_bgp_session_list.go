@@ -45,7 +45,7 @@ func NewBgpSessionListWithDefaults() *BgpSessionList {
 
 // GetBgpSessions returns the BgpSessions field value if set, zero value otherwise.
 func (o *BgpSessionList) GetBgpSessions() []BgpSession {
-	if o == nil || isNil(o.BgpSessions) {
+	if o == nil || IsNil(o.BgpSessions) {
 		var ret []BgpSession
 		return ret
 	}
@@ -55,7 +55,7 @@ func (o *BgpSessionList) GetBgpSessions() []BgpSession {
 // GetBgpSessionsOk returns a tuple with the BgpSessions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BgpSessionList) GetBgpSessionsOk() ([]BgpSession, bool) {
-	if o == nil || isNil(o.BgpSessions) {
+	if o == nil || IsNil(o.BgpSessions) {
 		return nil, false
 	}
 	return o.BgpSessions, true
@@ -63,7 +63,7 @@ func (o *BgpSessionList) GetBgpSessionsOk() ([]BgpSession, bool) {
 
 // HasBgpSessions returns a boolean if a field has been set.
 func (o *BgpSessionList) HasBgpSessions() bool {
-	if o != nil && !isNil(o.BgpSessions) {
+	if o != nil && !IsNil(o.BgpSessions) {
 		return true
 	}
 
@@ -85,7 +85,7 @@ func (o BgpSessionList) MarshalJSON() ([]byte, error) {
 
 func (o BgpSessionList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.BgpSessions) {
+	if !IsNil(o.BgpSessions) {
 		toSerialize["bgp_sessions"] = o.BgpSessions
 	}
 

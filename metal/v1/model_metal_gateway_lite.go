@@ -55,7 +55,7 @@ func NewMetalGatewayLiteWithDefaults() *MetalGatewayLite {
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *MetalGatewayLite) GetCreatedAt() time.Time {
-	if o == nil || isNil(o.CreatedAt) {
+	if o == nil || IsNil(o.CreatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -65,7 +65,7 @@ func (o *MetalGatewayLite) GetCreatedAt() time.Time {
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MetalGatewayLite) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.CreatedAt) {
+	if o == nil || IsNil(o.CreatedAt) {
 		return nil, false
 	}
 	return o.CreatedAt, true
@@ -73,7 +73,7 @@ func (o *MetalGatewayLite) GetCreatedAtOk() (*time.Time, bool) {
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *MetalGatewayLite) HasCreatedAt() bool {
-	if o != nil && !isNil(o.CreatedAt) {
+	if o != nil && !IsNil(o.CreatedAt) {
 		return true
 	}
 
@@ -87,7 +87,7 @@ func (o *MetalGatewayLite) SetCreatedAt(v time.Time) {
 
 // GetGatewayAddress returns the GatewayAddress field value if set, zero value otherwise.
 func (o *MetalGatewayLite) GetGatewayAddress() string {
-	if o == nil || isNil(o.GatewayAddress) {
+	if o == nil || IsNil(o.GatewayAddress) {
 		var ret string
 		return ret
 	}
@@ -97,7 +97,7 @@ func (o *MetalGatewayLite) GetGatewayAddress() string {
 // GetGatewayAddressOk returns a tuple with the GatewayAddress field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MetalGatewayLite) GetGatewayAddressOk() (*string, bool) {
-	if o == nil || isNil(o.GatewayAddress) {
+	if o == nil || IsNil(o.GatewayAddress) {
 		return nil, false
 	}
 	return o.GatewayAddress, true
@@ -105,7 +105,7 @@ func (o *MetalGatewayLite) GetGatewayAddressOk() (*string, bool) {
 
 // HasGatewayAddress returns a boolean if a field has been set.
 func (o *MetalGatewayLite) HasGatewayAddress() bool {
-	if o != nil && !isNil(o.GatewayAddress) {
+	if o != nil && !IsNil(o.GatewayAddress) {
 		return true
 	}
 
@@ -119,7 +119,7 @@ func (o *MetalGatewayLite) SetGatewayAddress(v string) {
 
 // GetHref returns the Href field value if set, zero value otherwise.
 func (o *MetalGatewayLite) GetHref() string {
-	if o == nil || isNil(o.Href) {
+	if o == nil || IsNil(o.Href) {
 		var ret string
 		return ret
 	}
@@ -129,7 +129,7 @@ func (o *MetalGatewayLite) GetHref() string {
 // GetHrefOk returns a tuple with the Href field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MetalGatewayLite) GetHrefOk() (*string, bool) {
-	if o == nil || isNil(o.Href) {
+	if o == nil || IsNil(o.Href) {
 		return nil, false
 	}
 	return o.Href, true
@@ -137,7 +137,7 @@ func (o *MetalGatewayLite) GetHrefOk() (*string, bool) {
 
 // HasHref returns a boolean if a field has been set.
 func (o *MetalGatewayLite) HasHref() bool {
-	if o != nil && !isNil(o.Href) {
+	if o != nil && !IsNil(o.Href) {
 		return true
 	}
 
@@ -151,7 +151,7 @@ func (o *MetalGatewayLite) SetHref(v string) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *MetalGatewayLite) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -161,7 +161,7 @@ func (o *MetalGatewayLite) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MetalGatewayLite) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -169,7 +169,7 @@ func (o *MetalGatewayLite) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *MetalGatewayLite) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -183,7 +183,7 @@ func (o *MetalGatewayLite) SetId(v string) {
 
 // GetState returns the State field value if set, zero value otherwise.
 func (o *MetalGatewayLite) GetState() string {
-	if o == nil || isNil(o.State) {
+	if o == nil || IsNil(o.State) {
 		var ret string
 		return ret
 	}
@@ -193,7 +193,7 @@ func (o *MetalGatewayLite) GetState() string {
 // GetStateOk returns a tuple with the State field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MetalGatewayLite) GetStateOk() (*string, bool) {
-	if o == nil || isNil(o.State) {
+	if o == nil || IsNil(o.State) {
 		return nil, false
 	}
 	return o.State, true
@@ -201,7 +201,7 @@ func (o *MetalGatewayLite) GetStateOk() (*string, bool) {
 
 // HasState returns a boolean if a field has been set.
 func (o *MetalGatewayLite) HasState() bool {
-	if o != nil && !isNil(o.State) {
+	if o != nil && !IsNil(o.State) {
 		return true
 	}
 
@@ -215,7 +215,7 @@ func (o *MetalGatewayLite) SetState(v string) {
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *MetalGatewayLite) GetUpdatedAt() time.Time {
-	if o == nil || isNil(o.UpdatedAt) {
+	if o == nil || IsNil(o.UpdatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -225,7 +225,7 @@ func (o *MetalGatewayLite) GetUpdatedAt() time.Time {
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MetalGatewayLite) GetUpdatedAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.UpdatedAt) {
+	if o == nil || IsNil(o.UpdatedAt) {
 		return nil, false
 	}
 	return o.UpdatedAt, true
@@ -233,7 +233,7 @@ func (o *MetalGatewayLite) GetUpdatedAtOk() (*time.Time, bool) {
 
 // HasUpdatedAt returns a boolean if a field has been set.
 func (o *MetalGatewayLite) HasUpdatedAt() bool {
-	if o != nil && !isNil(o.UpdatedAt) {
+	if o != nil && !IsNil(o.UpdatedAt) {
 		return true
 	}
 
@@ -247,7 +247,7 @@ func (o *MetalGatewayLite) SetUpdatedAt(v time.Time) {
 
 // GetVlan returns the Vlan field value if set, zero value otherwise.
 func (o *MetalGatewayLite) GetVlan() int32 {
-	if o == nil || isNil(o.Vlan) {
+	if o == nil || IsNil(o.Vlan) {
 		var ret int32
 		return ret
 	}
@@ -257,7 +257,7 @@ func (o *MetalGatewayLite) GetVlan() int32 {
 // GetVlanOk returns a tuple with the Vlan field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MetalGatewayLite) GetVlanOk() (*int32, bool) {
-	if o == nil || isNil(o.Vlan) {
+	if o == nil || IsNil(o.Vlan) {
 		return nil, false
 	}
 	return o.Vlan, true
@@ -265,7 +265,7 @@ func (o *MetalGatewayLite) GetVlanOk() (*int32, bool) {
 
 // HasVlan returns a boolean if a field has been set.
 func (o *MetalGatewayLite) HasVlan() bool {
-	if o != nil && !isNil(o.Vlan) {
+	if o != nil && !IsNil(o.Vlan) {
 		return true
 	}
 
@@ -287,25 +287,25 @@ func (o MetalGatewayLite) MarshalJSON() ([]byte, error) {
 
 func (o MetalGatewayLite) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.CreatedAt) {
+	if !IsNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt
 	}
-	if !isNil(o.GatewayAddress) {
+	if !IsNil(o.GatewayAddress) {
 		toSerialize["gateway_address"] = o.GatewayAddress
 	}
-	if !isNil(o.Href) {
+	if !IsNil(o.Href) {
 		toSerialize["href"] = o.Href
 	}
-	if !isNil(o.Id) {
+	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
-	if !isNil(o.State) {
+	if !IsNil(o.State) {
 		toSerialize["state"] = o.State
 	}
-	if !isNil(o.UpdatedAt) {
+	if !IsNil(o.UpdatedAt) {
 		toSerialize["updated_at"] = o.UpdatedAt
 	}
-	if !isNil(o.Vlan) {
+	if !IsNil(o.Vlan) {
 		toSerialize["vlan"] = o.Vlan
 	}
 

@@ -49,7 +49,7 @@ func NewSelfServiceReservationItemRequestWithDefaults() *SelfServiceReservationI
 
 // GetAmount returns the Amount field value if set, zero value otherwise.
 func (o *SelfServiceReservationItemRequest) GetAmount() float32 {
-	if o == nil || isNil(o.Amount) {
+	if o == nil || IsNil(o.Amount) {
 		var ret float32
 		return ret
 	}
@@ -59,7 +59,7 @@ func (o *SelfServiceReservationItemRequest) GetAmount() float32 {
 // GetAmountOk returns a tuple with the Amount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SelfServiceReservationItemRequest) GetAmountOk() (*float32, bool) {
-	if o == nil || isNil(o.Amount) {
+	if o == nil || IsNil(o.Amount) {
 		return nil, false
 	}
 	return o.Amount, true
@@ -67,7 +67,7 @@ func (o *SelfServiceReservationItemRequest) GetAmountOk() (*float32, bool) {
 
 // HasAmount returns a boolean if a field has been set.
 func (o *SelfServiceReservationItemRequest) HasAmount() bool {
-	if o != nil && !isNil(o.Amount) {
+	if o != nil && !IsNil(o.Amount) {
 		return true
 	}
 
@@ -81,7 +81,7 @@ func (o *SelfServiceReservationItemRequest) SetAmount(v float32) {
 
 // GetMetroId returns the MetroId field value if set, zero value otherwise.
 func (o *SelfServiceReservationItemRequest) GetMetroId() string {
-	if o == nil || isNil(o.MetroId) {
+	if o == nil || IsNil(o.MetroId) {
 		var ret string
 		return ret
 	}
@@ -91,7 +91,7 @@ func (o *SelfServiceReservationItemRequest) GetMetroId() string {
 // GetMetroIdOk returns a tuple with the MetroId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SelfServiceReservationItemRequest) GetMetroIdOk() (*string, bool) {
-	if o == nil || isNil(o.MetroId) {
+	if o == nil || IsNil(o.MetroId) {
 		return nil, false
 	}
 	return o.MetroId, true
@@ -99,7 +99,7 @@ func (o *SelfServiceReservationItemRequest) GetMetroIdOk() (*string, bool) {
 
 // HasMetroId returns a boolean if a field has been set.
 func (o *SelfServiceReservationItemRequest) HasMetroId() bool {
-	if o != nil && !isNil(o.MetroId) {
+	if o != nil && !IsNil(o.MetroId) {
 		return true
 	}
 
@@ -113,7 +113,7 @@ func (o *SelfServiceReservationItemRequest) SetMetroId(v string) {
 
 // GetPlanId returns the PlanId field value if set, zero value otherwise.
 func (o *SelfServiceReservationItemRequest) GetPlanId() string {
-	if o == nil || isNil(o.PlanId) {
+	if o == nil || IsNil(o.PlanId) {
 		var ret string
 		return ret
 	}
@@ -123,7 +123,7 @@ func (o *SelfServiceReservationItemRequest) GetPlanId() string {
 // GetPlanIdOk returns a tuple with the PlanId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SelfServiceReservationItemRequest) GetPlanIdOk() (*string, bool) {
-	if o == nil || isNil(o.PlanId) {
+	if o == nil || IsNil(o.PlanId) {
 		return nil, false
 	}
 	return o.PlanId, true
@@ -131,7 +131,7 @@ func (o *SelfServiceReservationItemRequest) GetPlanIdOk() (*string, bool) {
 
 // HasPlanId returns a boolean if a field has been set.
 func (o *SelfServiceReservationItemRequest) HasPlanId() bool {
-	if o != nil && !isNil(o.PlanId) {
+	if o != nil && !IsNil(o.PlanId) {
 		return true
 	}
 
@@ -145,7 +145,7 @@ func (o *SelfServiceReservationItemRequest) SetPlanId(v string) {
 
 // GetQuantity returns the Quantity field value if set, zero value otherwise.
 func (o *SelfServiceReservationItemRequest) GetQuantity() int32 {
-	if o == nil || isNil(o.Quantity) {
+	if o == nil || IsNil(o.Quantity) {
 		var ret int32
 		return ret
 	}
@@ -155,7 +155,7 @@ func (o *SelfServiceReservationItemRequest) GetQuantity() int32 {
 // GetQuantityOk returns a tuple with the Quantity field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SelfServiceReservationItemRequest) GetQuantityOk() (*int32, bool) {
-	if o == nil || isNil(o.Quantity) {
+	if o == nil || IsNil(o.Quantity) {
 		return nil, false
 	}
 	return o.Quantity, true
@@ -163,7 +163,7 @@ func (o *SelfServiceReservationItemRequest) GetQuantityOk() (*int32, bool) {
 
 // HasQuantity returns a boolean if a field has been set.
 func (o *SelfServiceReservationItemRequest) HasQuantity() bool {
-	if o != nil && !isNil(o.Quantity) {
+	if o != nil && !IsNil(o.Quantity) {
 		return true
 	}
 
@@ -177,7 +177,7 @@ func (o *SelfServiceReservationItemRequest) SetQuantity(v int32) {
 
 // GetTerm returns the Term field value if set, zero value otherwise.
 func (o *SelfServiceReservationItemRequest) GetTerm() string {
-	if o == nil || isNil(o.Term) {
+	if o == nil || IsNil(o.Term) {
 		var ret string
 		return ret
 	}
@@ -187,7 +187,7 @@ func (o *SelfServiceReservationItemRequest) GetTerm() string {
 // GetTermOk returns a tuple with the Term field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SelfServiceReservationItemRequest) GetTermOk() (*string, bool) {
-	if o == nil || isNil(o.Term) {
+	if o == nil || IsNil(o.Term) {
 		return nil, false
 	}
 	return o.Term, true
@@ -195,7 +195,7 @@ func (o *SelfServiceReservationItemRequest) GetTermOk() (*string, bool) {
 
 // HasTerm returns a boolean if a field has been set.
 func (o *SelfServiceReservationItemRequest) HasTerm() bool {
-	if o != nil && !isNil(o.Term) {
+	if o != nil && !IsNil(o.Term) {
 		return true
 	}
 
@@ -217,19 +217,19 @@ func (o SelfServiceReservationItemRequest) MarshalJSON() ([]byte, error) {
 
 func (o SelfServiceReservationItemRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Amount) {
+	if !IsNil(o.Amount) {
 		toSerialize["amount"] = o.Amount
 	}
-	if !isNil(o.MetroId) {
+	if !IsNil(o.MetroId) {
 		toSerialize["metro_id"] = o.MetroId
 	}
-	if !isNil(o.PlanId) {
+	if !IsNil(o.PlanId) {
 		toSerialize["plan_id"] = o.PlanId
 	}
-	if !isNil(o.Quantity) {
+	if !IsNil(o.Quantity) {
 		toSerialize["quantity"] = o.Quantity
 	}
-	if !isNil(o.Term) {
+	if !IsNil(o.Term) {
 		toSerialize["term"] = o.Term
 	}
 

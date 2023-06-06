@@ -45,7 +45,7 @@ func NewCapacityPerMetroInputWithDefaults() *CapacityPerMetroInput {
 
 // GetServers returns the Servers field value if set, zero value otherwise.
 func (o *CapacityPerMetroInput) GetServers() []MetroServerInfo {
-	if o == nil || isNil(o.Servers) {
+	if o == nil || IsNil(o.Servers) {
 		var ret []MetroServerInfo
 		return ret
 	}
@@ -55,7 +55,7 @@ func (o *CapacityPerMetroInput) GetServers() []MetroServerInfo {
 // GetServersOk returns a tuple with the Servers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CapacityPerMetroInput) GetServersOk() ([]MetroServerInfo, bool) {
-	if o == nil || isNil(o.Servers) {
+	if o == nil || IsNil(o.Servers) {
 		return nil, false
 	}
 	return o.Servers, true
@@ -63,7 +63,7 @@ func (o *CapacityPerMetroInput) GetServersOk() ([]MetroServerInfo, bool) {
 
 // HasServers returns a boolean if a field has been set.
 func (o *CapacityPerMetroInput) HasServers() bool {
-	if o != nil && !isNil(o.Servers) {
+	if o != nil && !IsNil(o.Servers) {
 		return true
 	}
 
@@ -85,7 +85,7 @@ func (o CapacityPerMetroInput) MarshalJSON() ([]byte, error) {
 
 func (o CapacityPerMetroInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Servers) {
+	if !IsNil(o.Servers) {
 		toSerialize["servers"] = o.Servers
 	}
 

@@ -52,7 +52,7 @@ func NewIPReservationFacilityWithDefaults() *IPReservationFacility {
 
 // GetAddress returns the Address field value if set, zero value otherwise.
 func (o *IPReservationFacility) GetAddress() Address {
-	if o == nil || isNil(o.Address) {
+	if o == nil || IsNil(o.Address) {
 		var ret Address
 		return ret
 	}
@@ -62,7 +62,7 @@ func (o *IPReservationFacility) GetAddress() Address {
 // GetAddressOk returns a tuple with the Address field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IPReservationFacility) GetAddressOk() (*Address, bool) {
-	if o == nil || isNil(o.Address) {
+	if o == nil || IsNil(o.Address) {
 		return nil, false
 	}
 	return o.Address, true
@@ -70,7 +70,7 @@ func (o *IPReservationFacility) GetAddressOk() (*Address, bool) {
 
 // HasAddress returns a boolean if a field has been set.
 func (o *IPReservationFacility) HasAddress() bool {
-	if o != nil && !isNil(o.Address) {
+	if o != nil && !IsNil(o.Address) {
 		return true
 	}
 
@@ -84,7 +84,7 @@ func (o *IPReservationFacility) SetAddress(v Address) {
 
 // GetCode returns the Code field value if set, zero value otherwise.
 func (o *IPReservationFacility) GetCode() string {
-	if o == nil || isNil(o.Code) {
+	if o == nil || IsNil(o.Code) {
 		var ret string
 		return ret
 	}
@@ -94,7 +94,7 @@ func (o *IPReservationFacility) GetCode() string {
 // GetCodeOk returns a tuple with the Code field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IPReservationFacility) GetCodeOk() (*string, bool) {
-	if o == nil || isNil(o.Code) {
+	if o == nil || IsNil(o.Code) {
 		return nil, false
 	}
 	return o.Code, true
@@ -102,7 +102,7 @@ func (o *IPReservationFacility) GetCodeOk() (*string, bool) {
 
 // HasCode returns a boolean if a field has been set.
 func (o *IPReservationFacility) HasCode() bool {
-	if o != nil && !isNil(o.Code) {
+	if o != nil && !IsNil(o.Code) {
 		return true
 	}
 
@@ -116,7 +116,7 @@ func (o *IPReservationFacility) SetCode(v string) {
 
 // GetFeatures returns the Features field value if set, zero value otherwise.
 func (o *IPReservationFacility) GetFeatures() []string {
-	if o == nil || isNil(o.Features) {
+	if o == nil || IsNil(o.Features) {
 		var ret []string
 		return ret
 	}
@@ -126,7 +126,7 @@ func (o *IPReservationFacility) GetFeatures() []string {
 // GetFeaturesOk returns a tuple with the Features field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IPReservationFacility) GetFeaturesOk() ([]string, bool) {
-	if o == nil || isNil(o.Features) {
+	if o == nil || IsNil(o.Features) {
 		return nil, false
 	}
 	return o.Features, true
@@ -134,7 +134,7 @@ func (o *IPReservationFacility) GetFeaturesOk() ([]string, bool) {
 
 // HasFeatures returns a boolean if a field has been set.
 func (o *IPReservationFacility) HasFeatures() bool {
-	if o != nil && !isNil(o.Features) {
+	if o != nil && !IsNil(o.Features) {
 		return true
 	}
 
@@ -148,7 +148,7 @@ func (o *IPReservationFacility) SetFeatures(v []string) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *IPReservationFacility) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -158,7 +158,7 @@ func (o *IPReservationFacility) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IPReservationFacility) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -166,7 +166,7 @@ func (o *IPReservationFacility) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *IPReservationFacility) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -180,7 +180,7 @@ func (o *IPReservationFacility) SetId(v string) {
 
 // GetIpRanges returns the IpRanges field value if set, zero value otherwise.
 func (o *IPReservationFacility) GetIpRanges() []string {
-	if o == nil || isNil(o.IpRanges) {
+	if o == nil || IsNil(o.IpRanges) {
 		var ret []string
 		return ret
 	}
@@ -190,7 +190,7 @@ func (o *IPReservationFacility) GetIpRanges() []string {
 // GetIpRangesOk returns a tuple with the IpRanges field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IPReservationFacility) GetIpRangesOk() ([]string, bool) {
-	if o == nil || isNil(o.IpRanges) {
+	if o == nil || IsNil(o.IpRanges) {
 		return nil, false
 	}
 	return o.IpRanges, true
@@ -198,7 +198,7 @@ func (o *IPReservationFacility) GetIpRangesOk() ([]string, bool) {
 
 // HasIpRanges returns a boolean if a field has been set.
 func (o *IPReservationFacility) HasIpRanges() bool {
-	if o != nil && !isNil(o.IpRanges) {
+	if o != nil && !IsNil(o.IpRanges) {
 		return true
 	}
 
@@ -212,7 +212,7 @@ func (o *IPReservationFacility) SetIpRanges(v []string) {
 
 // GetMetro returns the Metro field value if set, zero value otherwise.
 func (o *IPReservationFacility) GetMetro() DeviceMetro {
-	if o == nil || isNil(o.Metro) {
+	if o == nil || IsNil(o.Metro) {
 		var ret DeviceMetro
 		return ret
 	}
@@ -222,7 +222,7 @@ func (o *IPReservationFacility) GetMetro() DeviceMetro {
 // GetMetroOk returns a tuple with the Metro field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IPReservationFacility) GetMetroOk() (*DeviceMetro, bool) {
-	if o == nil || isNil(o.Metro) {
+	if o == nil || IsNil(o.Metro) {
 		return nil, false
 	}
 	return o.Metro, true
@@ -230,7 +230,7 @@ func (o *IPReservationFacility) GetMetroOk() (*DeviceMetro, bool) {
 
 // HasMetro returns a boolean if a field has been set.
 func (o *IPReservationFacility) HasMetro() bool {
-	if o != nil && !isNil(o.Metro) {
+	if o != nil && !IsNil(o.Metro) {
 		return true
 	}
 
@@ -244,7 +244,7 @@ func (o *IPReservationFacility) SetMetro(v DeviceMetro) {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *IPReservationFacility) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -254,7 +254,7 @@ func (o *IPReservationFacility) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IPReservationFacility) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
 	return o.Name, true
@@ -262,7 +262,7 @@ func (o *IPReservationFacility) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *IPReservationFacility) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -284,25 +284,25 @@ func (o IPReservationFacility) MarshalJSON() ([]byte, error) {
 
 func (o IPReservationFacility) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Address) {
+	if !IsNil(o.Address) {
 		toSerialize["address"] = o.Address
 	}
-	if !isNil(o.Code) {
+	if !IsNil(o.Code) {
 		toSerialize["code"] = o.Code
 	}
-	if !isNil(o.Features) {
+	if !IsNil(o.Features) {
 		toSerialize["features"] = o.Features
 	}
-	if !isNil(o.Id) {
+	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
-	if !isNil(o.IpRanges) {
+	if !IsNil(o.IpRanges) {
 		toSerialize["ip_ranges"] = o.IpRanges
 	}
-	if !isNil(o.Metro) {
+	if !IsNil(o.Metro) {
 		toSerialize["metro"] = o.Metro
 	}
-	if !isNil(o.Name) {
+	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
 

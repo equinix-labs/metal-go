@@ -81,7 +81,7 @@ func (o *DeviceActionInput) SetType(v string) {
 
 // GetForceDelete returns the ForceDelete field value if set, zero value otherwise.
 func (o *DeviceActionInput) GetForceDelete() bool {
-	if o == nil || isNil(o.ForceDelete) {
+	if o == nil || IsNil(o.ForceDelete) {
 		var ret bool
 		return ret
 	}
@@ -91,7 +91,7 @@ func (o *DeviceActionInput) GetForceDelete() bool {
 // GetForceDeleteOk returns a tuple with the ForceDelete field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeviceActionInput) GetForceDeleteOk() (*bool, bool) {
-	if o == nil || isNil(o.ForceDelete) {
+	if o == nil || IsNil(o.ForceDelete) {
 		return nil, false
 	}
 	return o.ForceDelete, true
@@ -99,7 +99,7 @@ func (o *DeviceActionInput) GetForceDeleteOk() (*bool, bool) {
 
 // HasForceDelete returns a boolean if a field has been set.
 func (o *DeviceActionInput) HasForceDelete() bool {
-	if o != nil && !isNil(o.ForceDelete) {
+	if o != nil && !IsNil(o.ForceDelete) {
 		return true
 	}
 
@@ -113,7 +113,7 @@ func (o *DeviceActionInput) SetForceDelete(v bool) {
 
 // GetDeprovisionFast returns the DeprovisionFast field value if set, zero value otherwise.
 func (o *DeviceActionInput) GetDeprovisionFast() bool {
-	if o == nil || isNil(o.DeprovisionFast) {
+	if o == nil || IsNil(o.DeprovisionFast) {
 		var ret bool
 		return ret
 	}
@@ -123,7 +123,7 @@ func (o *DeviceActionInput) GetDeprovisionFast() bool {
 // GetDeprovisionFastOk returns a tuple with the DeprovisionFast field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeviceActionInput) GetDeprovisionFastOk() (*bool, bool) {
-	if o == nil || isNil(o.DeprovisionFast) {
+	if o == nil || IsNil(o.DeprovisionFast) {
 		return nil, false
 	}
 	return o.DeprovisionFast, true
@@ -131,7 +131,7 @@ func (o *DeviceActionInput) GetDeprovisionFastOk() (*bool, bool) {
 
 // HasDeprovisionFast returns a boolean if a field has been set.
 func (o *DeviceActionInput) HasDeprovisionFast() bool {
-	if o != nil && !isNil(o.DeprovisionFast) {
+	if o != nil && !IsNil(o.DeprovisionFast) {
 		return true
 	}
 
@@ -145,7 +145,7 @@ func (o *DeviceActionInput) SetDeprovisionFast(v bool) {
 
 // GetPreserveData returns the PreserveData field value if set, zero value otherwise.
 func (o *DeviceActionInput) GetPreserveData() bool {
-	if o == nil || isNil(o.PreserveData) {
+	if o == nil || IsNil(o.PreserveData) {
 		var ret bool
 		return ret
 	}
@@ -155,7 +155,7 @@ func (o *DeviceActionInput) GetPreserveData() bool {
 // GetPreserveDataOk returns a tuple with the PreserveData field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeviceActionInput) GetPreserveDataOk() (*bool, bool) {
-	if o == nil || isNil(o.PreserveData) {
+	if o == nil || IsNil(o.PreserveData) {
 		return nil, false
 	}
 	return o.PreserveData, true
@@ -163,7 +163,7 @@ func (o *DeviceActionInput) GetPreserveDataOk() (*bool, bool) {
 
 // HasPreserveData returns a boolean if a field has been set.
 func (o *DeviceActionInput) HasPreserveData() bool {
-	if o != nil && !isNil(o.PreserveData) {
+	if o != nil && !IsNil(o.PreserveData) {
 		return true
 	}
 
@@ -177,7 +177,7 @@ func (o *DeviceActionInput) SetPreserveData(v bool) {
 
 // GetOperatingSystem returns the OperatingSystem field value if set, zero value otherwise.
 func (o *DeviceActionInput) GetOperatingSystem() string {
-	if o == nil || isNil(o.OperatingSystem) {
+	if o == nil || IsNil(o.OperatingSystem) {
 		var ret string
 		return ret
 	}
@@ -187,7 +187,7 @@ func (o *DeviceActionInput) GetOperatingSystem() string {
 // GetOperatingSystemOk returns a tuple with the OperatingSystem field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeviceActionInput) GetOperatingSystemOk() (*string, bool) {
-	if o == nil || isNil(o.OperatingSystem) {
+	if o == nil || IsNil(o.OperatingSystem) {
 		return nil, false
 	}
 	return o.OperatingSystem, true
@@ -195,7 +195,7 @@ func (o *DeviceActionInput) GetOperatingSystemOk() (*string, bool) {
 
 // HasOperatingSystem returns a boolean if a field has been set.
 func (o *DeviceActionInput) HasOperatingSystem() bool {
-	if o != nil && !isNil(o.OperatingSystem) {
+	if o != nil && !IsNil(o.OperatingSystem) {
 		return true
 	}
 
@@ -209,7 +209,7 @@ func (o *DeviceActionInput) SetOperatingSystem(v string) {
 
 // GetIpxeScriptUrl returns the IpxeScriptUrl field value if set, zero value otherwise.
 func (o *DeviceActionInput) GetIpxeScriptUrl() string {
-	if o == nil || isNil(o.IpxeScriptUrl) {
+	if o == nil || IsNil(o.IpxeScriptUrl) {
 		var ret string
 		return ret
 	}
@@ -219,7 +219,7 @@ func (o *DeviceActionInput) GetIpxeScriptUrl() string {
 // GetIpxeScriptUrlOk returns a tuple with the IpxeScriptUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeviceActionInput) GetIpxeScriptUrlOk() (*string, bool) {
-	if o == nil || isNil(o.IpxeScriptUrl) {
+	if o == nil || IsNil(o.IpxeScriptUrl) {
 		return nil, false
 	}
 	return o.IpxeScriptUrl, true
@@ -227,7 +227,7 @@ func (o *DeviceActionInput) GetIpxeScriptUrlOk() (*string, bool) {
 
 // HasIpxeScriptUrl returns a boolean if a field has been set.
 func (o *DeviceActionInput) HasIpxeScriptUrl() bool {
-	if o != nil && !isNil(o.IpxeScriptUrl) {
+	if o != nil && !IsNil(o.IpxeScriptUrl) {
 		return true
 	}
 
@@ -250,19 +250,19 @@ func (o DeviceActionInput) MarshalJSON() ([]byte, error) {
 func (o DeviceActionInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["type"] = o.Type
-	if !isNil(o.ForceDelete) {
+	if !IsNil(o.ForceDelete) {
 		toSerialize["force_delete"] = o.ForceDelete
 	}
-	if !isNil(o.DeprovisionFast) {
+	if !IsNil(o.DeprovisionFast) {
 		toSerialize["deprovision_fast"] = o.DeprovisionFast
 	}
-	if !isNil(o.PreserveData) {
+	if !IsNil(o.PreserveData) {
 		toSerialize["preserve_data"] = o.PreserveData
 	}
-	if !isNil(o.OperatingSystem) {
+	if !IsNil(o.OperatingSystem) {
 		toSerialize["operating_system"] = o.OperatingSystem
 	}
-	if !isNil(o.IpxeScriptUrl) {
+	if !IsNil(o.IpxeScriptUrl) {
 		toSerialize["ipxe_script_url"] = o.IpxeScriptUrl
 	}
 

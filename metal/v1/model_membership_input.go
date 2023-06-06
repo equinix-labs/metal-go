@@ -45,7 +45,7 @@ func NewMembershipInputWithDefaults() *MembershipInput {
 
 // GetRole returns the Role field value if set, zero value otherwise.
 func (o *MembershipInput) GetRole() []string {
-	if o == nil || isNil(o.Role) {
+	if o == nil || IsNil(o.Role) {
 		var ret []string
 		return ret
 	}
@@ -55,7 +55,7 @@ func (o *MembershipInput) GetRole() []string {
 // GetRoleOk returns a tuple with the Role field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MembershipInput) GetRoleOk() ([]string, bool) {
-	if o == nil || isNil(o.Role) {
+	if o == nil || IsNil(o.Role) {
 		return nil, false
 	}
 	return o.Role, true
@@ -63,7 +63,7 @@ func (o *MembershipInput) GetRoleOk() ([]string, bool) {
 
 // HasRole returns a boolean if a field has been set.
 func (o *MembershipInput) HasRole() bool {
-	if o != nil && !isNil(o.Role) {
+	if o != nil && !IsNil(o.Role) {
 		return true
 	}
 
@@ -85,7 +85,7 @@ func (o MembershipInput) MarshalJSON() ([]byte, error) {
 
 func (o MembershipInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Role) {
+	if !IsNil(o.Role) {
 		toSerialize["role"] = o.Role
 	}
 

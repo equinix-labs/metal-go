@@ -47,7 +47,7 @@ func NewInstancesBatchCreateInputBatchesInnerAllOfWithDefaults() *InstancesBatch
 
 // GetHostnames returns the Hostnames field value if set, zero value otherwise.
 func (o *InstancesBatchCreateInputBatchesInnerAllOf) GetHostnames() []string {
-	if o == nil || isNil(o.Hostnames) {
+	if o == nil || IsNil(o.Hostnames) {
 		var ret []string
 		return ret
 	}
@@ -57,7 +57,7 @@ func (o *InstancesBatchCreateInputBatchesInnerAllOf) GetHostnames() []string {
 // GetHostnamesOk returns a tuple with the Hostnames field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InstancesBatchCreateInputBatchesInnerAllOf) GetHostnamesOk() ([]string, bool) {
-	if o == nil || isNil(o.Hostnames) {
+	if o == nil || IsNil(o.Hostnames) {
 		return nil, false
 	}
 	return o.Hostnames, true
@@ -65,7 +65,7 @@ func (o *InstancesBatchCreateInputBatchesInnerAllOf) GetHostnamesOk() ([]string,
 
 // HasHostnames returns a boolean if a field has been set.
 func (o *InstancesBatchCreateInputBatchesInnerAllOf) HasHostnames() bool {
-	if o != nil && !isNil(o.Hostnames) {
+	if o != nil && !IsNil(o.Hostnames) {
 		return true
 	}
 
@@ -79,7 +79,7 @@ func (o *InstancesBatchCreateInputBatchesInnerAllOf) SetHostnames(v []string) {
 
 // GetQuantity returns the Quantity field value if set, zero value otherwise.
 func (o *InstancesBatchCreateInputBatchesInnerAllOf) GetQuantity() int32 {
-	if o == nil || isNil(o.Quantity) {
+	if o == nil || IsNil(o.Quantity) {
 		var ret int32
 		return ret
 	}
@@ -89,7 +89,7 @@ func (o *InstancesBatchCreateInputBatchesInnerAllOf) GetQuantity() int32 {
 // GetQuantityOk returns a tuple with the Quantity field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InstancesBatchCreateInputBatchesInnerAllOf) GetQuantityOk() (*int32, bool) {
-	if o == nil || isNil(o.Quantity) {
+	if o == nil || IsNil(o.Quantity) {
 		return nil, false
 	}
 	return o.Quantity, true
@@ -97,7 +97,7 @@ func (o *InstancesBatchCreateInputBatchesInnerAllOf) GetQuantityOk() (*int32, bo
 
 // HasQuantity returns a boolean if a field has been set.
 func (o *InstancesBatchCreateInputBatchesInnerAllOf) HasQuantity() bool {
-	if o != nil && !isNil(o.Quantity) {
+	if o != nil && !IsNil(o.Quantity) {
 		return true
 	}
 
@@ -119,10 +119,10 @@ func (o InstancesBatchCreateInputBatchesInnerAllOf) MarshalJSON() ([]byte, error
 
 func (o InstancesBatchCreateInputBatchesInnerAllOf) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Hostnames) {
+	if !IsNil(o.Hostnames) {
 		toSerialize["hostnames"] = o.Hostnames
 	}
-	if !isNil(o.Quantity) {
+	if !IsNil(o.Quantity) {
 		toSerialize["quantity"] = o.Quantity
 	}
 

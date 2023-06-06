@@ -48,7 +48,7 @@ func NewParentBlockWithDefaults() *ParentBlock {
 
 // GetCidr returns the Cidr field value if set, zero value otherwise.
 func (o *ParentBlock) GetCidr() int32 {
-	if o == nil || isNil(o.Cidr) {
+	if o == nil || IsNil(o.Cidr) {
 		var ret int32
 		return ret
 	}
@@ -58,7 +58,7 @@ func (o *ParentBlock) GetCidr() int32 {
 // GetCidrOk returns a tuple with the Cidr field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ParentBlock) GetCidrOk() (*int32, bool) {
-	if o == nil || isNil(o.Cidr) {
+	if o == nil || IsNil(o.Cidr) {
 		return nil, false
 	}
 	return o.Cidr, true
@@ -66,7 +66,7 @@ func (o *ParentBlock) GetCidrOk() (*int32, bool) {
 
 // HasCidr returns a boolean if a field has been set.
 func (o *ParentBlock) HasCidr() bool {
-	if o != nil && !isNil(o.Cidr) {
+	if o != nil && !IsNil(o.Cidr) {
 		return true
 	}
 
@@ -80,7 +80,7 @@ func (o *ParentBlock) SetCidr(v int32) {
 
 // GetHref returns the Href field value if set, zero value otherwise.
 func (o *ParentBlock) GetHref() string {
-	if o == nil || isNil(o.Href) {
+	if o == nil || IsNil(o.Href) {
 		var ret string
 		return ret
 	}
@@ -90,7 +90,7 @@ func (o *ParentBlock) GetHref() string {
 // GetHrefOk returns a tuple with the Href field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ParentBlock) GetHrefOk() (*string, bool) {
-	if o == nil || isNil(o.Href) {
+	if o == nil || IsNil(o.Href) {
 		return nil, false
 	}
 	return o.Href, true
@@ -98,7 +98,7 @@ func (o *ParentBlock) GetHrefOk() (*string, bool) {
 
 // HasHref returns a boolean if a field has been set.
 func (o *ParentBlock) HasHref() bool {
-	if o != nil && !isNil(o.Href) {
+	if o != nil && !IsNil(o.Href) {
 		return true
 	}
 
@@ -112,7 +112,7 @@ func (o *ParentBlock) SetHref(v string) {
 
 // GetNetmask returns the Netmask field value if set, zero value otherwise.
 func (o *ParentBlock) GetNetmask() string {
-	if o == nil || isNil(o.Netmask) {
+	if o == nil || IsNil(o.Netmask) {
 		var ret string
 		return ret
 	}
@@ -122,7 +122,7 @@ func (o *ParentBlock) GetNetmask() string {
 // GetNetmaskOk returns a tuple with the Netmask field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ParentBlock) GetNetmaskOk() (*string, bool) {
-	if o == nil || isNil(o.Netmask) {
+	if o == nil || IsNil(o.Netmask) {
 		return nil, false
 	}
 	return o.Netmask, true
@@ -130,7 +130,7 @@ func (o *ParentBlock) GetNetmaskOk() (*string, bool) {
 
 // HasNetmask returns a boolean if a field has been set.
 func (o *ParentBlock) HasNetmask() bool {
-	if o != nil && !isNil(o.Netmask) {
+	if o != nil && !IsNil(o.Netmask) {
 		return true
 	}
 
@@ -144,7 +144,7 @@ func (o *ParentBlock) SetNetmask(v string) {
 
 // GetNetwork returns the Network field value if set, zero value otherwise.
 func (o *ParentBlock) GetNetwork() string {
-	if o == nil || isNil(o.Network) {
+	if o == nil || IsNil(o.Network) {
 		var ret string
 		return ret
 	}
@@ -154,7 +154,7 @@ func (o *ParentBlock) GetNetwork() string {
 // GetNetworkOk returns a tuple with the Network field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ParentBlock) GetNetworkOk() (*string, bool) {
-	if o == nil || isNil(o.Network) {
+	if o == nil || IsNil(o.Network) {
 		return nil, false
 	}
 	return o.Network, true
@@ -162,7 +162,7 @@ func (o *ParentBlock) GetNetworkOk() (*string, bool) {
 
 // HasNetwork returns a boolean if a field has been set.
 func (o *ParentBlock) HasNetwork() bool {
-	if o != nil && !isNil(o.Network) {
+	if o != nil && !IsNil(o.Network) {
 		return true
 	}
 
@@ -184,16 +184,16 @@ func (o ParentBlock) MarshalJSON() ([]byte, error) {
 
 func (o ParentBlock) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Cidr) {
+	if !IsNil(o.Cidr) {
 		toSerialize["cidr"] = o.Cidr
 	}
-	if !isNil(o.Href) {
+	if !IsNil(o.Href) {
 		toSerialize["href"] = o.Href
 	}
-	if !isNil(o.Netmask) {
+	if !IsNil(o.Netmask) {
 		toSerialize["netmask"] = o.Netmask
 	}
-	if !isNil(o.Network) {
+	if !IsNil(o.Network) {
 		toSerialize["network"] = o.Network
 	}
 

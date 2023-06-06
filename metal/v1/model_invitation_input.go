@@ -74,7 +74,7 @@ func (o *InvitationInput) SetInvitee(v string) {
 
 // GetMessage returns the Message field value if set, zero value otherwise.
 func (o *InvitationInput) GetMessage() string {
-	if o == nil || isNil(o.Message) {
+	if o == nil || IsNil(o.Message) {
 		var ret string
 		return ret
 	}
@@ -84,7 +84,7 @@ func (o *InvitationInput) GetMessage() string {
 // GetMessageOk returns a tuple with the Message field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InvitationInput) GetMessageOk() (*string, bool) {
-	if o == nil || isNil(o.Message) {
+	if o == nil || IsNil(o.Message) {
 		return nil, false
 	}
 	return o.Message, true
@@ -92,7 +92,7 @@ func (o *InvitationInput) GetMessageOk() (*string, bool) {
 
 // HasMessage returns a boolean if a field has been set.
 func (o *InvitationInput) HasMessage() bool {
-	if o != nil && !isNil(o.Message) {
+	if o != nil && !IsNil(o.Message) {
 		return true
 	}
 
@@ -106,7 +106,7 @@ func (o *InvitationInput) SetMessage(v string) {
 
 // GetOrganizationId returns the OrganizationId field value if set, zero value otherwise.
 func (o *InvitationInput) GetOrganizationId() string {
-	if o == nil || isNil(o.OrganizationId) {
+	if o == nil || IsNil(o.OrganizationId) {
 		var ret string
 		return ret
 	}
@@ -116,7 +116,7 @@ func (o *InvitationInput) GetOrganizationId() string {
 // GetOrganizationIdOk returns a tuple with the OrganizationId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InvitationInput) GetOrganizationIdOk() (*string, bool) {
-	if o == nil || isNil(o.OrganizationId) {
+	if o == nil || IsNil(o.OrganizationId) {
 		return nil, false
 	}
 	return o.OrganizationId, true
@@ -124,7 +124,7 @@ func (o *InvitationInput) GetOrganizationIdOk() (*string, bool) {
 
 // HasOrganizationId returns a boolean if a field has been set.
 func (o *InvitationInput) HasOrganizationId() bool {
-	if o != nil && !isNil(o.OrganizationId) {
+	if o != nil && !IsNil(o.OrganizationId) {
 		return true
 	}
 
@@ -138,7 +138,7 @@ func (o *InvitationInput) SetOrganizationId(v string) {
 
 // GetProjectsIds returns the ProjectsIds field value if set, zero value otherwise.
 func (o *InvitationInput) GetProjectsIds() []string {
-	if o == nil || isNil(o.ProjectsIds) {
+	if o == nil || IsNil(o.ProjectsIds) {
 		var ret []string
 		return ret
 	}
@@ -148,7 +148,7 @@ func (o *InvitationInput) GetProjectsIds() []string {
 // GetProjectsIdsOk returns a tuple with the ProjectsIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InvitationInput) GetProjectsIdsOk() ([]string, bool) {
-	if o == nil || isNil(o.ProjectsIds) {
+	if o == nil || IsNil(o.ProjectsIds) {
 		return nil, false
 	}
 	return o.ProjectsIds, true
@@ -156,7 +156,7 @@ func (o *InvitationInput) GetProjectsIdsOk() ([]string, bool) {
 
 // HasProjectsIds returns a boolean if a field has been set.
 func (o *InvitationInput) HasProjectsIds() bool {
-	if o != nil && !isNil(o.ProjectsIds) {
+	if o != nil && !IsNil(o.ProjectsIds) {
 		return true
 	}
 
@@ -170,7 +170,7 @@ func (o *InvitationInput) SetProjectsIds(v []string) {
 
 // GetRoles returns the Roles field value if set, zero value otherwise.
 func (o *InvitationInput) GetRoles() []string {
-	if o == nil || isNil(o.Roles) {
+	if o == nil || IsNil(o.Roles) {
 		var ret []string
 		return ret
 	}
@@ -180,7 +180,7 @@ func (o *InvitationInput) GetRoles() []string {
 // GetRolesOk returns a tuple with the Roles field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InvitationInput) GetRolesOk() ([]string, bool) {
-	if o == nil || isNil(o.Roles) {
+	if o == nil || IsNil(o.Roles) {
 		return nil, false
 	}
 	return o.Roles, true
@@ -188,7 +188,7 @@ func (o *InvitationInput) GetRolesOk() ([]string, bool) {
 
 // HasRoles returns a boolean if a field has been set.
 func (o *InvitationInput) HasRoles() bool {
-	if o != nil && !isNil(o.Roles) {
+	if o != nil && !IsNil(o.Roles) {
 		return true
 	}
 
@@ -211,16 +211,16 @@ func (o InvitationInput) MarshalJSON() ([]byte, error) {
 func (o InvitationInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["invitee"] = o.Invitee
-	if !isNil(o.Message) {
+	if !IsNil(o.Message) {
 		toSerialize["message"] = o.Message
 	}
-	if !isNil(o.OrganizationId) {
+	if !IsNil(o.OrganizationId) {
 		toSerialize["organization_id"] = o.OrganizationId
 	}
-	if !isNil(o.ProjectsIds) {
+	if !IsNil(o.ProjectsIds) {
 		toSerialize["projects_ids"] = o.ProjectsIds
 	}
-	if !isNil(o.Roles) {
+	if !IsNil(o.Roles) {
 		toSerialize["roles"] = o.Roles
 	}
 

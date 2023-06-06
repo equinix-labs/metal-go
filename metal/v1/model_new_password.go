@@ -45,7 +45,7 @@ func NewNewPasswordWithDefaults() *NewPassword {
 
 // GetNewPassword returns the NewPassword field value if set, zero value otherwise.
 func (o *NewPassword) GetNewPassword() string {
-	if o == nil || isNil(o.NewPassword) {
+	if o == nil || IsNil(o.NewPassword) {
 		var ret string
 		return ret
 	}
@@ -55,7 +55,7 @@ func (o *NewPassword) GetNewPassword() string {
 // GetNewPasswordOk returns a tuple with the NewPassword field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NewPassword) GetNewPasswordOk() (*string, bool) {
-	if o == nil || isNil(o.NewPassword) {
+	if o == nil || IsNil(o.NewPassword) {
 		return nil, false
 	}
 	return o.NewPassword, true
@@ -63,7 +63,7 @@ func (o *NewPassword) GetNewPasswordOk() (*string, bool) {
 
 // HasNewPassword returns a boolean if a field has been set.
 func (o *NewPassword) HasNewPassword() bool {
-	if o != nil && !isNil(o.NewPassword) {
+	if o != nil && !IsNil(o.NewPassword) {
 		return true
 	}
 
@@ -85,7 +85,7 @@ func (o NewPassword) MarshalJSON() ([]byte, error) {
 
 func (o NewPassword) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.NewPassword) {
+	if !IsNil(o.NewPassword) {
 		toSerialize["new_password"] = o.NewPassword
 	}
 

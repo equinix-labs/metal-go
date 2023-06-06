@@ -49,7 +49,7 @@ func NewCreateSelfServiceReservationRequestWithDefaults() *CreateSelfServiceRese
 
 // GetItem returns the Item field value if set, zero value otherwise.
 func (o *CreateSelfServiceReservationRequest) GetItem() []SelfServiceReservationItemRequest {
-	if o == nil || isNil(o.Item) {
+	if o == nil || IsNil(o.Item) {
 		var ret []SelfServiceReservationItemRequest
 		return ret
 	}
@@ -59,7 +59,7 @@ func (o *CreateSelfServiceReservationRequest) GetItem() []SelfServiceReservation
 // GetItemOk returns a tuple with the Item field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateSelfServiceReservationRequest) GetItemOk() ([]SelfServiceReservationItemRequest, bool) {
-	if o == nil || isNil(o.Item) {
+	if o == nil || IsNil(o.Item) {
 		return nil, false
 	}
 	return o.Item, true
@@ -67,7 +67,7 @@ func (o *CreateSelfServiceReservationRequest) GetItemOk() ([]SelfServiceReservat
 
 // HasItem returns a boolean if a field has been set.
 func (o *CreateSelfServiceReservationRequest) HasItem() bool {
-	if o != nil && !isNil(o.Item) {
+	if o != nil && !IsNil(o.Item) {
 		return true
 	}
 
@@ -81,7 +81,7 @@ func (o *CreateSelfServiceReservationRequest) SetItem(v []SelfServiceReservation
 
 // GetNotes returns the Notes field value if set, zero value otherwise.
 func (o *CreateSelfServiceReservationRequest) GetNotes() string {
-	if o == nil || isNil(o.Notes) {
+	if o == nil || IsNil(o.Notes) {
 		var ret string
 		return ret
 	}
@@ -91,7 +91,7 @@ func (o *CreateSelfServiceReservationRequest) GetNotes() string {
 // GetNotesOk returns a tuple with the Notes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateSelfServiceReservationRequest) GetNotesOk() (*string, bool) {
-	if o == nil || isNil(o.Notes) {
+	if o == nil || IsNil(o.Notes) {
 		return nil, false
 	}
 	return o.Notes, true
@@ -99,7 +99,7 @@ func (o *CreateSelfServiceReservationRequest) GetNotesOk() (*string, bool) {
 
 // HasNotes returns a boolean if a field has been set.
 func (o *CreateSelfServiceReservationRequest) HasNotes() bool {
-	if o != nil && !isNil(o.Notes) {
+	if o != nil && !IsNil(o.Notes) {
 		return true
 	}
 
@@ -113,7 +113,7 @@ func (o *CreateSelfServiceReservationRequest) SetNotes(v string) {
 
 // GetPeriod returns the Period field value if set, zero value otherwise.
 func (o *CreateSelfServiceReservationRequest) GetPeriod() CreateSelfServiceReservationRequestPeriod {
-	if o == nil || isNil(o.Period) {
+	if o == nil || IsNil(o.Period) {
 		var ret CreateSelfServiceReservationRequestPeriod
 		return ret
 	}
@@ -123,7 +123,7 @@ func (o *CreateSelfServiceReservationRequest) GetPeriod() CreateSelfServiceReser
 // GetPeriodOk returns a tuple with the Period field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateSelfServiceReservationRequest) GetPeriodOk() (*CreateSelfServiceReservationRequestPeriod, bool) {
-	if o == nil || isNil(o.Period) {
+	if o == nil || IsNil(o.Period) {
 		return nil, false
 	}
 	return o.Period, true
@@ -131,7 +131,7 @@ func (o *CreateSelfServiceReservationRequest) GetPeriodOk() (*CreateSelfServiceR
 
 // HasPeriod returns a boolean if a field has been set.
 func (o *CreateSelfServiceReservationRequest) HasPeriod() bool {
-	if o != nil && !isNil(o.Period) {
+	if o != nil && !IsNil(o.Period) {
 		return true
 	}
 
@@ -145,7 +145,7 @@ func (o *CreateSelfServiceReservationRequest) SetPeriod(v CreateSelfServiceReser
 
 // GetStartDate returns the StartDate field value if set, zero value otherwise.
 func (o *CreateSelfServiceReservationRequest) GetStartDate() time.Time {
-	if o == nil || isNil(o.StartDate) {
+	if o == nil || IsNil(o.StartDate) {
 		var ret time.Time
 		return ret
 	}
@@ -155,7 +155,7 @@ func (o *CreateSelfServiceReservationRequest) GetStartDate() time.Time {
 // GetStartDateOk returns a tuple with the StartDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateSelfServiceReservationRequest) GetStartDateOk() (*time.Time, bool) {
-	if o == nil || isNil(o.StartDate) {
+	if o == nil || IsNil(o.StartDate) {
 		return nil, false
 	}
 	return o.StartDate, true
@@ -163,7 +163,7 @@ func (o *CreateSelfServiceReservationRequest) GetStartDateOk() (*time.Time, bool
 
 // HasStartDate returns a boolean if a field has been set.
 func (o *CreateSelfServiceReservationRequest) HasStartDate() bool {
-	if o != nil && !isNil(o.StartDate) {
+	if o != nil && !IsNil(o.StartDate) {
 		return true
 	}
 
@@ -185,16 +185,16 @@ func (o CreateSelfServiceReservationRequest) MarshalJSON() ([]byte, error) {
 
 func (o CreateSelfServiceReservationRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Item) {
+	if !IsNil(o.Item) {
 		toSerialize["item"] = o.Item
 	}
-	if !isNil(o.Notes) {
+	if !IsNil(o.Notes) {
 		toSerialize["notes"] = o.Notes
 	}
-	if !isNil(o.Period) {
+	if !IsNil(o.Period) {
 		toSerialize["period"] = o.Period
 	}
-	if !isNil(o.StartDate) {
+	if !IsNil(o.StartDate) {
 		toSerialize["start_date"] = o.StartDate
 	}
 

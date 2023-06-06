@@ -45,7 +45,7 @@ func NewSelfServiceReservationListWithDefaults() *SelfServiceReservationList {
 
 // GetReservations returns the Reservations field value if set, zero value otherwise.
 func (o *SelfServiceReservationList) GetReservations() []SelfServiceReservationResponse {
-	if o == nil || isNil(o.Reservations) {
+	if o == nil || IsNil(o.Reservations) {
 		var ret []SelfServiceReservationResponse
 		return ret
 	}
@@ -55,7 +55,7 @@ func (o *SelfServiceReservationList) GetReservations() []SelfServiceReservationR
 // GetReservationsOk returns a tuple with the Reservations field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SelfServiceReservationList) GetReservationsOk() ([]SelfServiceReservationResponse, bool) {
-	if o == nil || isNil(o.Reservations) {
+	if o == nil || IsNil(o.Reservations) {
 		return nil, false
 	}
 	return o.Reservations, true
@@ -63,7 +63,7 @@ func (o *SelfServiceReservationList) GetReservationsOk() ([]SelfServiceReservati
 
 // HasReservations returns a boolean if a field has been set.
 func (o *SelfServiceReservationList) HasReservations() bool {
-	if o != nil && !isNil(o.Reservations) {
+	if o != nil && !IsNil(o.Reservations) {
 		return true
 	}
 
@@ -85,7 +85,7 @@ func (o SelfServiceReservationList) MarshalJSON() ([]byte, error) {
 
 func (o SelfServiceReservationList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Reservations) {
+	if !IsNil(o.Reservations) {
 		toSerialize["reservations"] = o.Reservations
 	}
 

@@ -46,7 +46,7 @@ func NewVrfRouteListWithDefaults() *VrfRouteList {
 
 // GetRoutes returns the Routes field value if set, zero value otherwise.
 func (o *VrfRouteList) GetRoutes() []VrfRoute {
-	if o == nil || isNil(o.Routes) {
+	if o == nil || IsNil(o.Routes) {
 		var ret []VrfRoute
 		return ret
 	}
@@ -56,7 +56,7 @@ func (o *VrfRouteList) GetRoutes() []VrfRoute {
 // GetRoutesOk returns a tuple with the Routes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VrfRouteList) GetRoutesOk() ([]VrfRoute, bool) {
-	if o == nil || isNil(o.Routes) {
+	if o == nil || IsNil(o.Routes) {
 		return nil, false
 	}
 	return o.Routes, true
@@ -64,7 +64,7 @@ func (o *VrfRouteList) GetRoutesOk() ([]VrfRoute, bool) {
 
 // HasRoutes returns a boolean if a field has been set.
 func (o *VrfRouteList) HasRoutes() bool {
-	if o != nil && !isNil(o.Routes) {
+	if o != nil && !IsNil(o.Routes) {
 		return true
 	}
 
@@ -78,7 +78,7 @@ func (o *VrfRouteList) SetRoutes(v []VrfRoute) {
 
 // GetMeta returns the Meta field value if set, zero value otherwise.
 func (o *VrfRouteList) GetMeta() Meta {
-	if o == nil || isNil(o.Meta) {
+	if o == nil || IsNil(o.Meta) {
 		var ret Meta
 		return ret
 	}
@@ -88,7 +88,7 @@ func (o *VrfRouteList) GetMeta() Meta {
 // GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VrfRouteList) GetMetaOk() (*Meta, bool) {
-	if o == nil || isNil(o.Meta) {
+	if o == nil || IsNil(o.Meta) {
 		return nil, false
 	}
 	return o.Meta, true
@@ -96,7 +96,7 @@ func (o *VrfRouteList) GetMetaOk() (*Meta, bool) {
 
 // HasMeta returns a boolean if a field has been set.
 func (o *VrfRouteList) HasMeta() bool {
-	if o != nil && !isNil(o.Meta) {
+	if o != nil && !IsNil(o.Meta) {
 		return true
 	}
 
@@ -118,10 +118,10 @@ func (o VrfRouteList) MarshalJSON() ([]byte, error) {
 
 func (o VrfRouteList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Routes) {
+	if !IsNil(o.Routes) {
 		toSerialize["routes"] = o.Routes
 	}
-	if !isNil(o.Meta) {
+	if !IsNil(o.Meta) {
 		toSerialize["meta"] = o.Meta
 	}
 

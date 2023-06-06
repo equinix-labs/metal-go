@@ -63,7 +63,7 @@ func NewEntitlementWithDefaults() *Entitlement {
 
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *Entitlement) GetDescription() string {
-	if o == nil || isNil(o.Description) {
+	if o == nil || IsNil(o.Description) {
 		var ret string
 		return ret
 	}
@@ -73,7 +73,7 @@ func (o *Entitlement) GetDescription() string {
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Entitlement) GetDescriptionOk() (*string, bool) {
-	if o == nil || isNil(o.Description) {
+	if o == nil || IsNil(o.Description) {
 		return nil, false
 	}
 	return o.Description, true
@@ -81,7 +81,7 @@ func (o *Entitlement) GetDescriptionOk() (*string, bool) {
 
 // HasDescription returns a boolean if a field has been set.
 func (o *Entitlement) HasDescription() bool {
-	if o != nil && !isNil(o.Description) {
+	if o != nil && !IsNil(o.Description) {
 		return true
 	}
 
@@ -95,7 +95,7 @@ func (o *Entitlement) SetDescription(v string) {
 
 // GetFeatureAccess returns the FeatureAccess field value if set, zero value otherwise.
 func (o *Entitlement) GetFeatureAccess() map[string]interface{} {
-	if o == nil || isNil(o.FeatureAccess) {
+	if o == nil || IsNil(o.FeatureAccess) {
 		var ret map[string]interface{}
 		return ret
 	}
@@ -105,7 +105,7 @@ func (o *Entitlement) GetFeatureAccess() map[string]interface{} {
 // GetFeatureAccessOk returns a tuple with the FeatureAccess field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Entitlement) GetFeatureAccessOk() (map[string]interface{}, bool) {
-	if o == nil || isNil(o.FeatureAccess) {
+	if o == nil || IsNil(o.FeatureAccess) {
 		return map[string]interface{}{}, false
 	}
 	return o.FeatureAccess, true
@@ -113,7 +113,7 @@ func (o *Entitlement) GetFeatureAccessOk() (map[string]interface{}, bool) {
 
 // HasFeatureAccess returns a boolean if a field has been set.
 func (o *Entitlement) HasFeatureAccess() bool {
-	if o != nil && !isNil(o.FeatureAccess) {
+	if o != nil && !IsNil(o.FeatureAccess) {
 		return true
 	}
 
@@ -127,7 +127,7 @@ func (o *Entitlement) SetFeatureAccess(v map[string]interface{}) {
 
 // GetHref returns the Href field value if set, zero value otherwise.
 func (o *Entitlement) GetHref() string {
-	if o == nil || isNil(o.Href) {
+	if o == nil || IsNil(o.Href) {
 		var ret string
 		return ret
 	}
@@ -137,7 +137,7 @@ func (o *Entitlement) GetHref() string {
 // GetHrefOk returns a tuple with the Href field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Entitlement) GetHrefOk() (*string, bool) {
-	if o == nil || isNil(o.Href) {
+	if o == nil || IsNil(o.Href) {
 		return nil, false
 	}
 	return o.Href, true
@@ -145,7 +145,7 @@ func (o *Entitlement) GetHrefOk() (*string, bool) {
 
 // HasHref returns a boolean if a field has been set.
 func (o *Entitlement) HasHref() bool {
-	if o != nil && !isNil(o.Href) {
+	if o != nil && !IsNil(o.Href) {
 		return true
 	}
 
@@ -183,7 +183,7 @@ func (o *Entitlement) SetId(v string) {
 
 // GetInstanceQuota returns the InstanceQuota field value if set, zero value otherwise.
 func (o *Entitlement) GetInstanceQuota() map[string]interface{} {
-	if o == nil || isNil(o.InstanceQuota) {
+	if o == nil || IsNil(o.InstanceQuota) {
 		var ret map[string]interface{}
 		return ret
 	}
@@ -193,7 +193,7 @@ func (o *Entitlement) GetInstanceQuota() map[string]interface{} {
 // GetInstanceQuotaOk returns a tuple with the InstanceQuota field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Entitlement) GetInstanceQuotaOk() (map[string]interface{}, bool) {
-	if o == nil || isNil(o.InstanceQuota) {
+	if o == nil || IsNil(o.InstanceQuota) {
 		return map[string]interface{}{}, false
 	}
 	return o.InstanceQuota, true
@@ -201,7 +201,7 @@ func (o *Entitlement) GetInstanceQuotaOk() (map[string]interface{}, bool) {
 
 // HasInstanceQuota returns a boolean if a field has been set.
 func (o *Entitlement) HasInstanceQuota() bool {
-	if o != nil && !isNil(o.InstanceQuota) {
+	if o != nil && !IsNil(o.InstanceQuota) {
 		return true
 	}
 
@@ -215,7 +215,7 @@ func (o *Entitlement) SetInstanceQuota(v map[string]interface{}) {
 
 // GetIpQuota returns the IpQuota field value if set, zero value otherwise.
 func (o *Entitlement) GetIpQuota() map[string]interface{} {
-	if o == nil || isNil(o.IpQuota) {
+	if o == nil || IsNil(o.IpQuota) {
 		var ret map[string]interface{}
 		return ret
 	}
@@ -225,7 +225,7 @@ func (o *Entitlement) GetIpQuota() map[string]interface{} {
 // GetIpQuotaOk returns a tuple with the IpQuota field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Entitlement) GetIpQuotaOk() (map[string]interface{}, bool) {
-	if o == nil || isNil(o.IpQuota) {
+	if o == nil || IsNil(o.IpQuota) {
 		return map[string]interface{}{}, false
 	}
 	return o.IpQuota, true
@@ -233,7 +233,7 @@ func (o *Entitlement) GetIpQuotaOk() (map[string]interface{}, bool) {
 
 // HasIpQuota returns a boolean if a field has been set.
 func (o *Entitlement) HasIpQuota() bool {
-	if o != nil && !isNil(o.IpQuota) {
+	if o != nil && !IsNil(o.IpQuota) {
 		return true
 	}
 
@@ -247,7 +247,7 @@ func (o *Entitlement) SetIpQuota(v map[string]interface{}) {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *Entitlement) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -257,7 +257,7 @@ func (o *Entitlement) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Entitlement) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
 	return o.Name, true
@@ -265,7 +265,7 @@ func (o *Entitlement) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *Entitlement) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -279,7 +279,7 @@ func (o *Entitlement) SetName(v string) {
 
 // GetProjectQuota returns the ProjectQuota field value if set, zero value otherwise.
 func (o *Entitlement) GetProjectQuota() int32 {
-	if o == nil || isNil(o.ProjectQuota) {
+	if o == nil || IsNil(o.ProjectQuota) {
 		var ret int32
 		return ret
 	}
@@ -289,7 +289,7 @@ func (o *Entitlement) GetProjectQuota() int32 {
 // GetProjectQuotaOk returns a tuple with the ProjectQuota field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Entitlement) GetProjectQuotaOk() (*int32, bool) {
-	if o == nil || isNil(o.ProjectQuota) {
+	if o == nil || IsNil(o.ProjectQuota) {
 		return nil, false
 	}
 	return o.ProjectQuota, true
@@ -297,7 +297,7 @@ func (o *Entitlement) GetProjectQuotaOk() (*int32, bool) {
 
 // HasProjectQuota returns a boolean if a field has been set.
 func (o *Entitlement) HasProjectQuota() bool {
-	if o != nil && !isNil(o.ProjectQuota) {
+	if o != nil && !IsNil(o.ProjectQuota) {
 		return true
 	}
 
@@ -335,7 +335,7 @@ func (o *Entitlement) SetSlug(v string) {
 
 // GetVolumeLimits returns the VolumeLimits field value if set, zero value otherwise.
 func (o *Entitlement) GetVolumeLimits() map[string]interface{} {
-	if o == nil || isNil(o.VolumeLimits) {
+	if o == nil || IsNil(o.VolumeLimits) {
 		var ret map[string]interface{}
 		return ret
 	}
@@ -345,7 +345,7 @@ func (o *Entitlement) GetVolumeLimits() map[string]interface{} {
 // GetVolumeLimitsOk returns a tuple with the VolumeLimits field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Entitlement) GetVolumeLimitsOk() (map[string]interface{}, bool) {
-	if o == nil || isNil(o.VolumeLimits) {
+	if o == nil || IsNil(o.VolumeLimits) {
 		return map[string]interface{}{}, false
 	}
 	return o.VolumeLimits, true
@@ -353,7 +353,7 @@ func (o *Entitlement) GetVolumeLimitsOk() (map[string]interface{}, bool) {
 
 // HasVolumeLimits returns a boolean if a field has been set.
 func (o *Entitlement) HasVolumeLimits() bool {
-	if o != nil && !isNil(o.VolumeLimits) {
+	if o != nil && !IsNil(o.VolumeLimits) {
 		return true
 	}
 
@@ -367,7 +367,7 @@ func (o *Entitlement) SetVolumeLimits(v map[string]interface{}) {
 
 // GetVolumeQuota returns the VolumeQuota field value if set, zero value otherwise.
 func (o *Entitlement) GetVolumeQuota() map[string]interface{} {
-	if o == nil || isNil(o.VolumeQuota) {
+	if o == nil || IsNil(o.VolumeQuota) {
 		var ret map[string]interface{}
 		return ret
 	}
@@ -377,7 +377,7 @@ func (o *Entitlement) GetVolumeQuota() map[string]interface{} {
 // GetVolumeQuotaOk returns a tuple with the VolumeQuota field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Entitlement) GetVolumeQuotaOk() (map[string]interface{}, bool) {
-	if o == nil || isNil(o.VolumeQuota) {
+	if o == nil || IsNil(o.VolumeQuota) {
 		return map[string]interface{}{}, false
 	}
 	return o.VolumeQuota, true
@@ -385,7 +385,7 @@ func (o *Entitlement) GetVolumeQuotaOk() (map[string]interface{}, bool) {
 
 // HasVolumeQuota returns a boolean if a field has been set.
 func (o *Entitlement) HasVolumeQuota() bool {
-	if o != nil && !isNil(o.VolumeQuota) {
+	if o != nil && !IsNil(o.VolumeQuota) {
 		return true
 	}
 
@@ -431,33 +431,33 @@ func (o Entitlement) MarshalJSON() ([]byte, error) {
 
 func (o Entitlement) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Description) {
+	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
-	if !isNil(o.FeatureAccess) {
+	if !IsNil(o.FeatureAccess) {
 		toSerialize["feature_access"] = o.FeatureAccess
 	}
-	if !isNil(o.Href) {
+	if !IsNil(o.Href) {
 		toSerialize["href"] = o.Href
 	}
 	toSerialize["id"] = o.Id
-	if !isNil(o.InstanceQuota) {
+	if !IsNil(o.InstanceQuota) {
 		toSerialize["instance_quota"] = o.InstanceQuota
 	}
-	if !isNil(o.IpQuota) {
+	if !IsNil(o.IpQuota) {
 		toSerialize["ip_quota"] = o.IpQuota
 	}
-	if !isNil(o.Name) {
+	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
-	if !isNil(o.ProjectQuota) {
+	if !IsNil(o.ProjectQuota) {
 		toSerialize["project_quota"] = o.ProjectQuota
 	}
 	toSerialize["slug"] = o.Slug
-	if !isNil(o.VolumeLimits) {
+	if !IsNil(o.VolumeLimits) {
 		toSerialize["volume_limits"] = o.VolumeLimits
 	}
-	if !isNil(o.VolumeQuota) {
+	if !IsNil(o.VolumeQuota) {
 		toSerialize["volume_quota"] = o.VolumeQuota
 	}
 	toSerialize["weight"] = o.Weight

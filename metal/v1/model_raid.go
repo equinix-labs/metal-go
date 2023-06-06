@@ -47,7 +47,7 @@ func NewRaidWithDefaults() *Raid {
 
 // GetDevices returns the Devices field value if set, zero value otherwise.
 func (o *Raid) GetDevices() []string {
-	if o == nil || isNil(o.Devices) {
+	if o == nil || IsNil(o.Devices) {
 		var ret []string
 		return ret
 	}
@@ -57,7 +57,7 @@ func (o *Raid) GetDevices() []string {
 // GetDevicesOk returns a tuple with the Devices field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Raid) GetDevicesOk() ([]string, bool) {
-	if o == nil || isNil(o.Devices) {
+	if o == nil || IsNil(o.Devices) {
 		return nil, false
 	}
 	return o.Devices, true
@@ -65,7 +65,7 @@ func (o *Raid) GetDevicesOk() ([]string, bool) {
 
 // HasDevices returns a boolean if a field has been set.
 func (o *Raid) HasDevices() bool {
-	if o != nil && !isNil(o.Devices) {
+	if o != nil && !IsNil(o.Devices) {
 		return true
 	}
 
@@ -79,7 +79,7 @@ func (o *Raid) SetDevices(v []string) {
 
 // GetLevel returns the Level field value if set, zero value otherwise.
 func (o *Raid) GetLevel() string {
-	if o == nil || isNil(o.Level) {
+	if o == nil || IsNil(o.Level) {
 		var ret string
 		return ret
 	}
@@ -89,7 +89,7 @@ func (o *Raid) GetLevel() string {
 // GetLevelOk returns a tuple with the Level field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Raid) GetLevelOk() (*string, bool) {
-	if o == nil || isNil(o.Level) {
+	if o == nil || IsNil(o.Level) {
 		return nil, false
 	}
 	return o.Level, true
@@ -97,7 +97,7 @@ func (o *Raid) GetLevelOk() (*string, bool) {
 
 // HasLevel returns a boolean if a field has been set.
 func (o *Raid) HasLevel() bool {
-	if o != nil && !isNil(o.Level) {
+	if o != nil && !IsNil(o.Level) {
 		return true
 	}
 
@@ -111,7 +111,7 @@ func (o *Raid) SetLevel(v string) {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *Raid) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -121,7 +121,7 @@ func (o *Raid) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Raid) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
 	return o.Name, true
@@ -129,7 +129,7 @@ func (o *Raid) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *Raid) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -151,13 +151,13 @@ func (o Raid) MarshalJSON() ([]byte, error) {
 
 func (o Raid) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Devices) {
+	if !IsNil(o.Devices) {
 		toSerialize["devices"] = o.Devices
 	}
-	if !isNil(o.Level) {
+	if !IsNil(o.Level) {
 		toSerialize["level"] = o.Level
 	}
-	if !isNil(o.Name) {
+	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
 

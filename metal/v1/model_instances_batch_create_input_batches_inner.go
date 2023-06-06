@@ -124,7 +124,7 @@ func NewInstancesBatchCreateInputBatchesInnerWithDefaults() *InstancesBatchCreat
 
 // GetHostnames returns the Hostnames field value if set, zero value otherwise.
 func (o *InstancesBatchCreateInputBatchesInner) GetHostnames() []string {
-	if o == nil || isNil(o.Hostnames) {
+	if o == nil || IsNil(o.Hostnames) {
 		var ret []string
 		return ret
 	}
@@ -134,7 +134,7 @@ func (o *InstancesBatchCreateInputBatchesInner) GetHostnames() []string {
 // GetHostnamesOk returns a tuple with the Hostnames field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InstancesBatchCreateInputBatchesInner) GetHostnamesOk() ([]string, bool) {
-	if o == nil || isNil(o.Hostnames) {
+	if o == nil || IsNil(o.Hostnames) {
 		return nil, false
 	}
 	return o.Hostnames, true
@@ -142,7 +142,7 @@ func (o *InstancesBatchCreateInputBatchesInner) GetHostnamesOk() ([]string, bool
 
 // HasHostnames returns a boolean if a field has been set.
 func (o *InstancesBatchCreateInputBatchesInner) HasHostnames() bool {
-	if o != nil && !isNil(o.Hostnames) {
+	if o != nil && !IsNil(o.Hostnames) {
 		return true
 	}
 
@@ -156,7 +156,7 @@ func (o *InstancesBatchCreateInputBatchesInner) SetHostnames(v []string) {
 
 // GetQuantity returns the Quantity field value if set, zero value otherwise.
 func (o *InstancesBatchCreateInputBatchesInner) GetQuantity() int32 {
-	if o == nil || isNil(o.Quantity) {
+	if o == nil || IsNil(o.Quantity) {
 		var ret int32
 		return ret
 	}
@@ -166,7 +166,7 @@ func (o *InstancesBatchCreateInputBatchesInner) GetQuantity() int32 {
 // GetQuantityOk returns a tuple with the Quantity field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InstancesBatchCreateInputBatchesInner) GetQuantityOk() (*int32, bool) {
-	if o == nil || isNil(o.Quantity) {
+	if o == nil || IsNil(o.Quantity) {
 		return nil, false
 	}
 	return o.Quantity, true
@@ -174,7 +174,7 @@ func (o *InstancesBatchCreateInputBatchesInner) GetQuantityOk() (*int32, bool) {
 
 // HasQuantity returns a boolean if a field has been set.
 func (o *InstancesBatchCreateInputBatchesInner) HasQuantity() bool {
-	if o != nil && !isNil(o.Quantity) {
+	if o != nil && !IsNil(o.Quantity) {
 		return true
 	}
 
@@ -212,7 +212,7 @@ func (o *InstancesBatchCreateInputBatchesInner) SetMetro(v string) {
 
 // GetAlwaysPxe returns the AlwaysPxe field value if set, zero value otherwise.
 func (o *InstancesBatchCreateInputBatchesInner) GetAlwaysPxe() bool {
-	if o == nil || isNil(o.AlwaysPxe) {
+	if o == nil || IsNil(o.AlwaysPxe) {
 		var ret bool
 		return ret
 	}
@@ -222,7 +222,7 @@ func (o *InstancesBatchCreateInputBatchesInner) GetAlwaysPxe() bool {
 // GetAlwaysPxeOk returns a tuple with the AlwaysPxe field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InstancesBatchCreateInputBatchesInner) GetAlwaysPxeOk() (*bool, bool) {
-	if o == nil || isNil(o.AlwaysPxe) {
+	if o == nil || IsNil(o.AlwaysPxe) {
 		return nil, false
 	}
 	return o.AlwaysPxe, true
@@ -230,7 +230,7 @@ func (o *InstancesBatchCreateInputBatchesInner) GetAlwaysPxeOk() (*bool, bool) {
 
 // HasAlwaysPxe returns a boolean if a field has been set.
 func (o *InstancesBatchCreateInputBatchesInner) HasAlwaysPxe() bool {
-	if o != nil && !isNil(o.AlwaysPxe) {
+	if o != nil && !IsNil(o.AlwaysPxe) {
 		return true
 	}
 
@@ -244,7 +244,7 @@ func (o *InstancesBatchCreateInputBatchesInner) SetAlwaysPxe(v bool) {
 
 // GetBillingCycle returns the BillingCycle field value if set, zero value otherwise.
 func (o *InstancesBatchCreateInputBatchesInner) GetBillingCycle() string {
-	if o == nil || isNil(o.BillingCycle) {
+	if o == nil || IsNil(o.BillingCycle) {
 		var ret string
 		return ret
 	}
@@ -254,7 +254,7 @@ func (o *InstancesBatchCreateInputBatchesInner) GetBillingCycle() string {
 // GetBillingCycleOk returns a tuple with the BillingCycle field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InstancesBatchCreateInputBatchesInner) GetBillingCycleOk() (*string, bool) {
-	if o == nil || isNil(o.BillingCycle) {
+	if o == nil || IsNil(o.BillingCycle) {
 		return nil, false
 	}
 	return o.BillingCycle, true
@@ -262,7 +262,7 @@ func (o *InstancesBatchCreateInputBatchesInner) GetBillingCycleOk() (*string, bo
 
 // HasBillingCycle returns a boolean if a field has been set.
 func (o *InstancesBatchCreateInputBatchesInner) HasBillingCycle() bool {
-	if o != nil && !isNil(o.BillingCycle) {
+	if o != nil && !IsNil(o.BillingCycle) {
 		return true
 	}
 
@@ -276,7 +276,7 @@ func (o *InstancesBatchCreateInputBatchesInner) SetBillingCycle(v string) {
 
 // GetCustomdata returns the Customdata field value if set, zero value otherwise.
 func (o *InstancesBatchCreateInputBatchesInner) GetCustomdata() map[string]interface{} {
-	if o == nil || isNil(o.Customdata) {
+	if o == nil || IsNil(o.Customdata) {
 		var ret map[string]interface{}
 		return ret
 	}
@@ -286,7 +286,7 @@ func (o *InstancesBatchCreateInputBatchesInner) GetCustomdata() map[string]inter
 // GetCustomdataOk returns a tuple with the Customdata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InstancesBatchCreateInputBatchesInner) GetCustomdataOk() (map[string]interface{}, bool) {
-	if o == nil || isNil(o.Customdata) {
+	if o == nil || IsNil(o.Customdata) {
 		return map[string]interface{}{}, false
 	}
 	return o.Customdata, true
@@ -294,7 +294,7 @@ func (o *InstancesBatchCreateInputBatchesInner) GetCustomdataOk() (map[string]in
 
 // HasCustomdata returns a boolean if a field has been set.
 func (o *InstancesBatchCreateInputBatchesInner) HasCustomdata() bool {
-	if o != nil && !isNil(o.Customdata) {
+	if o != nil && !IsNil(o.Customdata) {
 		return true
 	}
 
@@ -308,7 +308,7 @@ func (o *InstancesBatchCreateInputBatchesInner) SetCustomdata(v map[string]inter
 
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *InstancesBatchCreateInputBatchesInner) GetDescription() string {
-	if o == nil || isNil(o.Description) {
+	if o == nil || IsNil(o.Description) {
 		var ret string
 		return ret
 	}
@@ -318,7 +318,7 @@ func (o *InstancesBatchCreateInputBatchesInner) GetDescription() string {
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InstancesBatchCreateInputBatchesInner) GetDescriptionOk() (*string, bool) {
-	if o == nil || isNil(o.Description) {
+	if o == nil || IsNil(o.Description) {
 		return nil, false
 	}
 	return o.Description, true
@@ -326,7 +326,7 @@ func (o *InstancesBatchCreateInputBatchesInner) GetDescriptionOk() (*string, boo
 
 // HasDescription returns a boolean if a field has been set.
 func (o *InstancesBatchCreateInputBatchesInner) HasDescription() bool {
-	if o != nil && !isNil(o.Description) {
+	if o != nil && !IsNil(o.Description) {
 		return true
 	}
 
@@ -340,7 +340,7 @@ func (o *InstancesBatchCreateInputBatchesInner) SetDescription(v string) {
 
 // GetFeatures returns the Features field value if set, zero value otherwise.
 func (o *InstancesBatchCreateInputBatchesInner) GetFeatures() []string {
-	if o == nil || isNil(o.Features) {
+	if o == nil || IsNil(o.Features) {
 		var ret []string
 		return ret
 	}
@@ -350,7 +350,7 @@ func (o *InstancesBatchCreateInputBatchesInner) GetFeatures() []string {
 // GetFeaturesOk returns a tuple with the Features field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InstancesBatchCreateInputBatchesInner) GetFeaturesOk() ([]string, bool) {
-	if o == nil || isNil(o.Features) {
+	if o == nil || IsNil(o.Features) {
 		return nil, false
 	}
 	return o.Features, true
@@ -358,7 +358,7 @@ func (o *InstancesBatchCreateInputBatchesInner) GetFeaturesOk() ([]string, bool)
 
 // HasFeatures returns a boolean if a field has been set.
 func (o *InstancesBatchCreateInputBatchesInner) HasFeatures() bool {
-	if o != nil && !isNil(o.Features) {
+	if o != nil && !IsNil(o.Features) {
 		return true
 	}
 
@@ -372,7 +372,7 @@ func (o *InstancesBatchCreateInputBatchesInner) SetFeatures(v []string) {
 
 // GetHardwareReservationId returns the HardwareReservationId field value if set, zero value otherwise.
 func (o *InstancesBatchCreateInputBatchesInner) GetHardwareReservationId() string {
-	if o == nil || isNil(o.HardwareReservationId) {
+	if o == nil || IsNil(o.HardwareReservationId) {
 		var ret string
 		return ret
 	}
@@ -382,7 +382,7 @@ func (o *InstancesBatchCreateInputBatchesInner) GetHardwareReservationId() strin
 // GetHardwareReservationIdOk returns a tuple with the HardwareReservationId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InstancesBatchCreateInputBatchesInner) GetHardwareReservationIdOk() (*string, bool) {
-	if o == nil || isNil(o.HardwareReservationId) {
+	if o == nil || IsNil(o.HardwareReservationId) {
 		return nil, false
 	}
 	return o.HardwareReservationId, true
@@ -390,7 +390,7 @@ func (o *InstancesBatchCreateInputBatchesInner) GetHardwareReservationIdOk() (*s
 
 // HasHardwareReservationId returns a boolean if a field has been set.
 func (o *InstancesBatchCreateInputBatchesInner) HasHardwareReservationId() bool {
-	if o != nil && !isNil(o.HardwareReservationId) {
+	if o != nil && !IsNil(o.HardwareReservationId) {
 		return true
 	}
 
@@ -404,7 +404,7 @@ func (o *InstancesBatchCreateInputBatchesInner) SetHardwareReservationId(v strin
 
 // GetHostname returns the Hostname field value if set, zero value otherwise.
 func (o *InstancesBatchCreateInputBatchesInner) GetHostname() string {
-	if o == nil || isNil(o.Hostname) {
+	if o == nil || IsNil(o.Hostname) {
 		var ret string
 		return ret
 	}
@@ -414,7 +414,7 @@ func (o *InstancesBatchCreateInputBatchesInner) GetHostname() string {
 // GetHostnameOk returns a tuple with the Hostname field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InstancesBatchCreateInputBatchesInner) GetHostnameOk() (*string, bool) {
-	if o == nil || isNil(o.Hostname) {
+	if o == nil || IsNil(o.Hostname) {
 		return nil, false
 	}
 	return o.Hostname, true
@@ -422,7 +422,7 @@ func (o *InstancesBatchCreateInputBatchesInner) GetHostnameOk() (*string, bool) 
 
 // HasHostname returns a boolean if a field has been set.
 func (o *InstancesBatchCreateInputBatchesInner) HasHostname() bool {
-	if o != nil && !isNil(o.Hostname) {
+	if o != nil && !IsNil(o.Hostname) {
 		return true
 	}
 
@@ -436,7 +436,7 @@ func (o *InstancesBatchCreateInputBatchesInner) SetHostname(v string) {
 
 // GetIpAddresses returns the IpAddresses field value if set, zero value otherwise.
 func (o *InstancesBatchCreateInputBatchesInner) GetIpAddresses() []IPAddress {
-	if o == nil || isNil(o.IpAddresses) {
+	if o == nil || IsNil(o.IpAddresses) {
 		var ret []IPAddress
 		return ret
 	}
@@ -446,7 +446,7 @@ func (o *InstancesBatchCreateInputBatchesInner) GetIpAddresses() []IPAddress {
 // GetIpAddressesOk returns a tuple with the IpAddresses field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InstancesBatchCreateInputBatchesInner) GetIpAddressesOk() ([]IPAddress, bool) {
-	if o == nil || isNil(o.IpAddresses) {
+	if o == nil || IsNil(o.IpAddresses) {
 		return nil, false
 	}
 	return o.IpAddresses, true
@@ -454,7 +454,7 @@ func (o *InstancesBatchCreateInputBatchesInner) GetIpAddressesOk() ([]IPAddress,
 
 // HasIpAddresses returns a boolean if a field has been set.
 func (o *InstancesBatchCreateInputBatchesInner) HasIpAddresses() bool {
-	if o != nil && !isNil(o.IpAddresses) {
+	if o != nil && !IsNil(o.IpAddresses) {
 		return true
 	}
 
@@ -468,7 +468,7 @@ func (o *InstancesBatchCreateInputBatchesInner) SetIpAddresses(v []IPAddress) {
 
 // GetIpxeScriptUrl returns the IpxeScriptUrl field value if set, zero value otherwise.
 func (o *InstancesBatchCreateInputBatchesInner) GetIpxeScriptUrl() string {
-	if o == nil || isNil(o.IpxeScriptUrl) {
+	if o == nil || IsNil(o.IpxeScriptUrl) {
 		var ret string
 		return ret
 	}
@@ -478,7 +478,7 @@ func (o *InstancesBatchCreateInputBatchesInner) GetIpxeScriptUrl() string {
 // GetIpxeScriptUrlOk returns a tuple with the IpxeScriptUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InstancesBatchCreateInputBatchesInner) GetIpxeScriptUrlOk() (*string, bool) {
-	if o == nil || isNil(o.IpxeScriptUrl) {
+	if o == nil || IsNil(o.IpxeScriptUrl) {
 		return nil, false
 	}
 	return o.IpxeScriptUrl, true
@@ -486,7 +486,7 @@ func (o *InstancesBatchCreateInputBatchesInner) GetIpxeScriptUrlOk() (*string, b
 
 // HasIpxeScriptUrl returns a boolean if a field has been set.
 func (o *InstancesBatchCreateInputBatchesInner) HasIpxeScriptUrl() bool {
-	if o != nil && !isNil(o.IpxeScriptUrl) {
+	if o != nil && !IsNil(o.IpxeScriptUrl) {
 		return true
 	}
 
@@ -500,7 +500,7 @@ func (o *InstancesBatchCreateInputBatchesInner) SetIpxeScriptUrl(v string) {
 
 // GetLocked returns the Locked field value if set, zero value otherwise.
 func (o *InstancesBatchCreateInputBatchesInner) GetLocked() bool {
-	if o == nil || isNil(o.Locked) {
+	if o == nil || IsNil(o.Locked) {
 		var ret bool
 		return ret
 	}
@@ -510,7 +510,7 @@ func (o *InstancesBatchCreateInputBatchesInner) GetLocked() bool {
 // GetLockedOk returns a tuple with the Locked field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InstancesBatchCreateInputBatchesInner) GetLockedOk() (*bool, bool) {
-	if o == nil || isNil(o.Locked) {
+	if o == nil || IsNil(o.Locked) {
 		return nil, false
 	}
 	return o.Locked, true
@@ -518,7 +518,7 @@ func (o *InstancesBatchCreateInputBatchesInner) GetLockedOk() (*bool, bool) {
 
 // HasLocked returns a boolean if a field has been set.
 func (o *InstancesBatchCreateInputBatchesInner) HasLocked() bool {
-	if o != nil && !isNil(o.Locked) {
+	if o != nil && !IsNil(o.Locked) {
 		return true
 	}
 
@@ -532,7 +532,7 @@ func (o *InstancesBatchCreateInputBatchesInner) SetLocked(v bool) {
 
 // GetNoSshKeys returns the NoSshKeys field value if set, zero value otherwise.
 func (o *InstancesBatchCreateInputBatchesInner) GetNoSshKeys() bool {
-	if o == nil || isNil(o.NoSshKeys) {
+	if o == nil || IsNil(o.NoSshKeys) {
 		var ret bool
 		return ret
 	}
@@ -542,7 +542,7 @@ func (o *InstancesBatchCreateInputBatchesInner) GetNoSshKeys() bool {
 // GetNoSshKeysOk returns a tuple with the NoSshKeys field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InstancesBatchCreateInputBatchesInner) GetNoSshKeysOk() (*bool, bool) {
-	if o == nil || isNil(o.NoSshKeys) {
+	if o == nil || IsNil(o.NoSshKeys) {
 		return nil, false
 	}
 	return o.NoSshKeys, true
@@ -550,7 +550,7 @@ func (o *InstancesBatchCreateInputBatchesInner) GetNoSshKeysOk() (*bool, bool) {
 
 // HasNoSshKeys returns a boolean if a field has been set.
 func (o *InstancesBatchCreateInputBatchesInner) HasNoSshKeys() bool {
-	if o != nil && !isNil(o.NoSshKeys) {
+	if o != nil && !IsNil(o.NoSshKeys) {
 		return true
 	}
 
@@ -612,7 +612,7 @@ func (o *InstancesBatchCreateInputBatchesInner) SetPlan(v string) {
 
 // GetPrivateIpv4SubnetSize returns the PrivateIpv4SubnetSize field value if set, zero value otherwise.
 func (o *InstancesBatchCreateInputBatchesInner) GetPrivateIpv4SubnetSize() int32 {
-	if o == nil || isNil(o.PrivateIpv4SubnetSize) {
+	if o == nil || IsNil(o.PrivateIpv4SubnetSize) {
 		var ret int32
 		return ret
 	}
@@ -622,7 +622,7 @@ func (o *InstancesBatchCreateInputBatchesInner) GetPrivateIpv4SubnetSize() int32
 // GetPrivateIpv4SubnetSizeOk returns a tuple with the PrivateIpv4SubnetSize field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InstancesBatchCreateInputBatchesInner) GetPrivateIpv4SubnetSizeOk() (*int32, bool) {
-	if o == nil || isNil(o.PrivateIpv4SubnetSize) {
+	if o == nil || IsNil(o.PrivateIpv4SubnetSize) {
 		return nil, false
 	}
 	return o.PrivateIpv4SubnetSize, true
@@ -630,7 +630,7 @@ func (o *InstancesBatchCreateInputBatchesInner) GetPrivateIpv4SubnetSizeOk() (*i
 
 // HasPrivateIpv4SubnetSize returns a boolean if a field has been set.
 func (o *InstancesBatchCreateInputBatchesInner) HasPrivateIpv4SubnetSize() bool {
-	if o != nil && !isNil(o.PrivateIpv4SubnetSize) {
+	if o != nil && !IsNil(o.PrivateIpv4SubnetSize) {
 		return true
 	}
 
@@ -644,7 +644,7 @@ func (o *InstancesBatchCreateInputBatchesInner) SetPrivateIpv4SubnetSize(v int32
 
 // GetProjectSshKeys returns the ProjectSshKeys field value if set, zero value otherwise.
 func (o *InstancesBatchCreateInputBatchesInner) GetProjectSshKeys() []string {
-	if o == nil || isNil(o.ProjectSshKeys) {
+	if o == nil || IsNil(o.ProjectSshKeys) {
 		var ret []string
 		return ret
 	}
@@ -654,7 +654,7 @@ func (o *InstancesBatchCreateInputBatchesInner) GetProjectSshKeys() []string {
 // GetProjectSshKeysOk returns a tuple with the ProjectSshKeys field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InstancesBatchCreateInputBatchesInner) GetProjectSshKeysOk() ([]string, bool) {
-	if o == nil || isNil(o.ProjectSshKeys) {
+	if o == nil || IsNil(o.ProjectSshKeys) {
 		return nil, false
 	}
 	return o.ProjectSshKeys, true
@@ -662,7 +662,7 @@ func (o *InstancesBatchCreateInputBatchesInner) GetProjectSshKeysOk() ([]string,
 
 // HasProjectSshKeys returns a boolean if a field has been set.
 func (o *InstancesBatchCreateInputBatchesInner) HasProjectSshKeys() bool {
-	if o != nil && !isNil(o.ProjectSshKeys) {
+	if o != nil && !IsNil(o.ProjectSshKeys) {
 		return true
 	}
 
@@ -676,7 +676,7 @@ func (o *InstancesBatchCreateInputBatchesInner) SetProjectSshKeys(v []string) {
 
 // GetPublicIpv4SubnetSize returns the PublicIpv4SubnetSize field value if set, zero value otherwise.
 func (o *InstancesBatchCreateInputBatchesInner) GetPublicIpv4SubnetSize() int32 {
-	if o == nil || isNil(o.PublicIpv4SubnetSize) {
+	if o == nil || IsNil(o.PublicIpv4SubnetSize) {
 		var ret int32
 		return ret
 	}
@@ -686,7 +686,7 @@ func (o *InstancesBatchCreateInputBatchesInner) GetPublicIpv4SubnetSize() int32 
 // GetPublicIpv4SubnetSizeOk returns a tuple with the PublicIpv4SubnetSize field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InstancesBatchCreateInputBatchesInner) GetPublicIpv4SubnetSizeOk() (*int32, bool) {
-	if o == nil || isNil(o.PublicIpv4SubnetSize) {
+	if o == nil || IsNil(o.PublicIpv4SubnetSize) {
 		return nil, false
 	}
 	return o.PublicIpv4SubnetSize, true
@@ -694,7 +694,7 @@ func (o *InstancesBatchCreateInputBatchesInner) GetPublicIpv4SubnetSizeOk() (*in
 
 // HasPublicIpv4SubnetSize returns a boolean if a field has been set.
 func (o *InstancesBatchCreateInputBatchesInner) HasPublicIpv4SubnetSize() bool {
-	if o != nil && !isNil(o.PublicIpv4SubnetSize) {
+	if o != nil && !IsNil(o.PublicIpv4SubnetSize) {
 		return true
 	}
 
@@ -708,7 +708,7 @@ func (o *InstancesBatchCreateInputBatchesInner) SetPublicIpv4SubnetSize(v int32)
 
 // GetSpotInstance returns the SpotInstance field value if set, zero value otherwise.
 func (o *InstancesBatchCreateInputBatchesInner) GetSpotInstance() bool {
-	if o == nil || isNil(o.SpotInstance) {
+	if o == nil || IsNil(o.SpotInstance) {
 		var ret bool
 		return ret
 	}
@@ -718,7 +718,7 @@ func (o *InstancesBatchCreateInputBatchesInner) GetSpotInstance() bool {
 // GetSpotInstanceOk returns a tuple with the SpotInstance field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InstancesBatchCreateInputBatchesInner) GetSpotInstanceOk() (*bool, bool) {
-	if o == nil || isNil(o.SpotInstance) {
+	if o == nil || IsNil(o.SpotInstance) {
 		return nil, false
 	}
 	return o.SpotInstance, true
@@ -726,7 +726,7 @@ func (o *InstancesBatchCreateInputBatchesInner) GetSpotInstanceOk() (*bool, bool
 
 // HasSpotInstance returns a boolean if a field has been set.
 func (o *InstancesBatchCreateInputBatchesInner) HasSpotInstance() bool {
-	if o != nil && !isNil(o.SpotInstance) {
+	if o != nil && !IsNil(o.SpotInstance) {
 		return true
 	}
 
@@ -740,7 +740,7 @@ func (o *InstancesBatchCreateInputBatchesInner) SetSpotInstance(v bool) {
 
 // GetSpotPriceMax returns the SpotPriceMax field value if set, zero value otherwise.
 func (o *InstancesBatchCreateInputBatchesInner) GetSpotPriceMax() float32 {
-	if o == nil || isNil(o.SpotPriceMax) {
+	if o == nil || IsNil(o.SpotPriceMax) {
 		var ret float32
 		return ret
 	}
@@ -750,7 +750,7 @@ func (o *InstancesBatchCreateInputBatchesInner) GetSpotPriceMax() float32 {
 // GetSpotPriceMaxOk returns a tuple with the SpotPriceMax field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InstancesBatchCreateInputBatchesInner) GetSpotPriceMaxOk() (*float32, bool) {
-	if o == nil || isNil(o.SpotPriceMax) {
+	if o == nil || IsNil(o.SpotPriceMax) {
 		return nil, false
 	}
 	return o.SpotPriceMax, true
@@ -758,7 +758,7 @@ func (o *InstancesBatchCreateInputBatchesInner) GetSpotPriceMaxOk() (*float32, b
 
 // HasSpotPriceMax returns a boolean if a field has been set.
 func (o *InstancesBatchCreateInputBatchesInner) HasSpotPriceMax() bool {
-	if o != nil && !isNil(o.SpotPriceMax) {
+	if o != nil && !IsNil(o.SpotPriceMax) {
 		return true
 	}
 
@@ -772,7 +772,7 @@ func (o *InstancesBatchCreateInputBatchesInner) SetSpotPriceMax(v float32) {
 
 // GetSshKeys returns the SshKeys field value if set, zero value otherwise.
 func (o *InstancesBatchCreateInputBatchesInner) GetSshKeys() []SSHKeyInput {
-	if o == nil || isNil(o.SshKeys) {
+	if o == nil || IsNil(o.SshKeys) {
 		var ret []SSHKeyInput
 		return ret
 	}
@@ -782,7 +782,7 @@ func (o *InstancesBatchCreateInputBatchesInner) GetSshKeys() []SSHKeyInput {
 // GetSshKeysOk returns a tuple with the SshKeys field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InstancesBatchCreateInputBatchesInner) GetSshKeysOk() ([]SSHKeyInput, bool) {
-	if o == nil || isNil(o.SshKeys) {
+	if o == nil || IsNil(o.SshKeys) {
 		return nil, false
 	}
 	return o.SshKeys, true
@@ -790,7 +790,7 @@ func (o *InstancesBatchCreateInputBatchesInner) GetSshKeysOk() ([]SSHKeyInput, b
 
 // HasSshKeys returns a boolean if a field has been set.
 func (o *InstancesBatchCreateInputBatchesInner) HasSshKeys() bool {
-	if o != nil && !isNil(o.SshKeys) {
+	if o != nil && !IsNil(o.SshKeys) {
 		return true
 	}
 
@@ -804,7 +804,7 @@ func (o *InstancesBatchCreateInputBatchesInner) SetSshKeys(v []SSHKeyInput) {
 
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *InstancesBatchCreateInputBatchesInner) GetTags() []string {
-	if o == nil || isNil(o.Tags) {
+	if o == nil || IsNil(o.Tags) {
 		var ret []string
 		return ret
 	}
@@ -814,7 +814,7 @@ func (o *InstancesBatchCreateInputBatchesInner) GetTags() []string {
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InstancesBatchCreateInputBatchesInner) GetTagsOk() ([]string, bool) {
-	if o == nil || isNil(o.Tags) {
+	if o == nil || IsNil(o.Tags) {
 		return nil, false
 	}
 	return o.Tags, true
@@ -822,7 +822,7 @@ func (o *InstancesBatchCreateInputBatchesInner) GetTagsOk() ([]string, bool) {
 
 // HasTags returns a boolean if a field has been set.
 func (o *InstancesBatchCreateInputBatchesInner) HasTags() bool {
-	if o != nil && !isNil(o.Tags) {
+	if o != nil && !IsNil(o.Tags) {
 		return true
 	}
 
@@ -836,7 +836,7 @@ func (o *InstancesBatchCreateInputBatchesInner) SetTags(v []string) {
 
 // GetTerminationTime returns the TerminationTime field value if set, zero value otherwise.
 func (o *InstancesBatchCreateInputBatchesInner) GetTerminationTime() time.Time {
-	if o == nil || isNil(o.TerminationTime) {
+	if o == nil || IsNil(o.TerminationTime) {
 		var ret time.Time
 		return ret
 	}
@@ -846,7 +846,7 @@ func (o *InstancesBatchCreateInputBatchesInner) GetTerminationTime() time.Time {
 // GetTerminationTimeOk returns a tuple with the TerminationTime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InstancesBatchCreateInputBatchesInner) GetTerminationTimeOk() (*time.Time, bool) {
-	if o == nil || isNil(o.TerminationTime) {
+	if o == nil || IsNil(o.TerminationTime) {
 		return nil, false
 	}
 	return o.TerminationTime, true
@@ -854,7 +854,7 @@ func (o *InstancesBatchCreateInputBatchesInner) GetTerminationTimeOk() (*time.Ti
 
 // HasTerminationTime returns a boolean if a field has been set.
 func (o *InstancesBatchCreateInputBatchesInner) HasTerminationTime() bool {
-	if o != nil && !isNil(o.TerminationTime) {
+	if o != nil && !IsNil(o.TerminationTime) {
 		return true
 	}
 
@@ -868,7 +868,7 @@ func (o *InstancesBatchCreateInputBatchesInner) SetTerminationTime(v time.Time) 
 
 // GetUserSshKeys returns the UserSshKeys field value if set, zero value otherwise.
 func (o *InstancesBatchCreateInputBatchesInner) GetUserSshKeys() []string {
-	if o == nil || isNil(o.UserSshKeys) {
+	if o == nil || IsNil(o.UserSshKeys) {
 		var ret []string
 		return ret
 	}
@@ -878,7 +878,7 @@ func (o *InstancesBatchCreateInputBatchesInner) GetUserSshKeys() []string {
 // GetUserSshKeysOk returns a tuple with the UserSshKeys field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InstancesBatchCreateInputBatchesInner) GetUserSshKeysOk() ([]string, bool) {
-	if o == nil || isNil(o.UserSshKeys) {
+	if o == nil || IsNil(o.UserSshKeys) {
 		return nil, false
 	}
 	return o.UserSshKeys, true
@@ -886,7 +886,7 @@ func (o *InstancesBatchCreateInputBatchesInner) GetUserSshKeysOk() ([]string, bo
 
 // HasUserSshKeys returns a boolean if a field has been set.
 func (o *InstancesBatchCreateInputBatchesInner) HasUserSshKeys() bool {
-	if o != nil && !isNil(o.UserSshKeys) {
+	if o != nil && !IsNil(o.UserSshKeys) {
 		return true
 	}
 
@@ -900,7 +900,7 @@ func (o *InstancesBatchCreateInputBatchesInner) SetUserSshKeys(v []string) {
 
 // GetUserdata returns the Userdata field value if set, zero value otherwise.
 func (o *InstancesBatchCreateInputBatchesInner) GetUserdata() string {
-	if o == nil || isNil(o.Userdata) {
+	if o == nil || IsNil(o.Userdata) {
 		var ret string
 		return ret
 	}
@@ -910,7 +910,7 @@ func (o *InstancesBatchCreateInputBatchesInner) GetUserdata() string {
 // GetUserdataOk returns a tuple with the Userdata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InstancesBatchCreateInputBatchesInner) GetUserdataOk() (*string, bool) {
-	if o == nil || isNil(o.Userdata) {
+	if o == nil || IsNil(o.Userdata) {
 		return nil, false
 	}
 	return o.Userdata, true
@@ -918,7 +918,7 @@ func (o *InstancesBatchCreateInputBatchesInner) GetUserdataOk() (*string, bool) 
 
 // HasUserdata returns a boolean if a field has been set.
 func (o *InstancesBatchCreateInputBatchesInner) HasUserdata() bool {
-	if o != nil && !isNil(o.Userdata) {
+	if o != nil && !IsNil(o.Userdata) {
 		return true
 	}
 
@@ -964,76 +964,76 @@ func (o InstancesBatchCreateInputBatchesInner) MarshalJSON() ([]byte, error) {
 
 func (o InstancesBatchCreateInputBatchesInner) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Hostnames) {
+	if !IsNil(o.Hostnames) {
 		toSerialize["hostnames"] = o.Hostnames
 	}
-	if !isNil(o.Quantity) {
+	if !IsNil(o.Quantity) {
 		toSerialize["quantity"] = o.Quantity
 	}
 	toSerialize["metro"] = o.Metro
-	if !isNil(o.AlwaysPxe) {
+	if !IsNil(o.AlwaysPxe) {
 		toSerialize["always_pxe"] = o.AlwaysPxe
 	}
-	if !isNil(o.BillingCycle) {
+	if !IsNil(o.BillingCycle) {
 		toSerialize["billing_cycle"] = o.BillingCycle
 	}
-	if !isNil(o.Customdata) {
+	if !IsNil(o.Customdata) {
 		toSerialize["customdata"] = o.Customdata
 	}
-	if !isNil(o.Description) {
+	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
-	if !isNil(o.Features) {
+	if !IsNil(o.Features) {
 		toSerialize["features"] = o.Features
 	}
-	if !isNil(o.HardwareReservationId) {
+	if !IsNil(o.HardwareReservationId) {
 		toSerialize["hardware_reservation_id"] = o.HardwareReservationId
 	}
-	if !isNil(o.Hostname) {
+	if !IsNil(o.Hostname) {
 		toSerialize["hostname"] = o.Hostname
 	}
-	if !isNil(o.IpAddresses) {
+	if !IsNil(o.IpAddresses) {
 		toSerialize["ip_addresses"] = o.IpAddresses
 	}
-	if !isNil(o.IpxeScriptUrl) {
+	if !IsNil(o.IpxeScriptUrl) {
 		toSerialize["ipxe_script_url"] = o.IpxeScriptUrl
 	}
-	if !isNil(o.Locked) {
+	if !IsNil(o.Locked) {
 		toSerialize["locked"] = o.Locked
 	}
-	if !isNil(o.NoSshKeys) {
+	if !IsNil(o.NoSshKeys) {
 		toSerialize["no_ssh_keys"] = o.NoSshKeys
 	}
 	toSerialize["operating_system"] = o.OperatingSystem
 	toSerialize["plan"] = o.Plan
-	if !isNil(o.PrivateIpv4SubnetSize) {
+	if !IsNil(o.PrivateIpv4SubnetSize) {
 		toSerialize["private_ipv4_subnet_size"] = o.PrivateIpv4SubnetSize
 	}
-	if !isNil(o.ProjectSshKeys) {
+	if !IsNil(o.ProjectSshKeys) {
 		toSerialize["project_ssh_keys"] = o.ProjectSshKeys
 	}
-	if !isNil(o.PublicIpv4SubnetSize) {
+	if !IsNil(o.PublicIpv4SubnetSize) {
 		toSerialize["public_ipv4_subnet_size"] = o.PublicIpv4SubnetSize
 	}
-	if !isNil(o.SpotInstance) {
+	if !IsNil(o.SpotInstance) {
 		toSerialize["spot_instance"] = o.SpotInstance
 	}
-	if !isNil(o.SpotPriceMax) {
+	if !IsNil(o.SpotPriceMax) {
 		toSerialize["spot_price_max"] = o.SpotPriceMax
 	}
-	if !isNil(o.SshKeys) {
+	if !IsNil(o.SshKeys) {
 		toSerialize["ssh_keys"] = o.SshKeys
 	}
-	if !isNil(o.Tags) {
+	if !IsNil(o.Tags) {
 		toSerialize["tags"] = o.Tags
 	}
-	if !isNil(o.TerminationTime) {
+	if !IsNil(o.TerminationTime) {
 		toSerialize["termination_time"] = o.TerminationTime
 	}
-	if !isNil(o.UserSshKeys) {
+	if !IsNil(o.UserSshKeys) {
 		toSerialize["user_ssh_keys"] = o.UserSshKeys
 	}
-	if !isNil(o.Userdata) {
+	if !IsNil(o.Userdata) {
 		toSerialize["userdata"] = o.Userdata
 	}
 	toSerialize["facility"] = o.Facility

@@ -58,7 +58,7 @@ func NewInvoiceWithDefaults() *Invoice {
 
 // GetAmount returns the Amount field value if set, zero value otherwise.
 func (o *Invoice) GetAmount() float32 {
-	if o == nil || isNil(o.Amount) {
+	if o == nil || IsNil(o.Amount) {
 		var ret float32
 		return ret
 	}
@@ -68,7 +68,7 @@ func (o *Invoice) GetAmount() float32 {
 // GetAmountOk returns a tuple with the Amount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Invoice) GetAmountOk() (*float32, bool) {
-	if o == nil || isNil(o.Amount) {
+	if o == nil || IsNil(o.Amount) {
 		return nil, false
 	}
 	return o.Amount, true
@@ -76,7 +76,7 @@ func (o *Invoice) GetAmountOk() (*float32, bool) {
 
 // HasAmount returns a boolean if a field has been set.
 func (o *Invoice) HasAmount() bool {
-	if o != nil && !isNil(o.Amount) {
+	if o != nil && !IsNil(o.Amount) {
 		return true
 	}
 
@@ -90,7 +90,7 @@ func (o *Invoice) SetAmount(v float32) {
 
 // GetBalance returns the Balance field value if set, zero value otherwise.
 func (o *Invoice) GetBalance() float32 {
-	if o == nil || isNil(o.Balance) {
+	if o == nil || IsNil(o.Balance) {
 		var ret float32
 		return ret
 	}
@@ -100,7 +100,7 @@ func (o *Invoice) GetBalance() float32 {
 // GetBalanceOk returns a tuple with the Balance field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Invoice) GetBalanceOk() (*float32, bool) {
-	if o == nil || isNil(o.Balance) {
+	if o == nil || IsNil(o.Balance) {
 		return nil, false
 	}
 	return o.Balance, true
@@ -108,7 +108,7 @@ func (o *Invoice) GetBalanceOk() (*float32, bool) {
 
 // HasBalance returns a boolean if a field has been set.
 func (o *Invoice) HasBalance() bool {
-	if o != nil && !isNil(o.Balance) {
+	if o != nil && !IsNil(o.Balance) {
 		return true
 	}
 
@@ -122,7 +122,7 @@ func (o *Invoice) SetBalance(v float32) {
 
 // GetCreatedOn returns the CreatedOn field value if set, zero value otherwise.
 func (o *Invoice) GetCreatedOn() string {
-	if o == nil || isNil(o.CreatedOn) {
+	if o == nil || IsNil(o.CreatedOn) {
 		var ret string
 		return ret
 	}
@@ -132,7 +132,7 @@ func (o *Invoice) GetCreatedOn() string {
 // GetCreatedOnOk returns a tuple with the CreatedOn field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Invoice) GetCreatedOnOk() (*string, bool) {
-	if o == nil || isNil(o.CreatedOn) {
+	if o == nil || IsNil(o.CreatedOn) {
 		return nil, false
 	}
 	return o.CreatedOn, true
@@ -140,7 +140,7 @@ func (o *Invoice) GetCreatedOnOk() (*string, bool) {
 
 // HasCreatedOn returns a boolean if a field has been set.
 func (o *Invoice) HasCreatedOn() bool {
-	if o != nil && !isNil(o.CreatedOn) {
+	if o != nil && !IsNil(o.CreatedOn) {
 		return true
 	}
 
@@ -154,7 +154,7 @@ func (o *Invoice) SetCreatedOn(v string) {
 
 // GetCreditAmount returns the CreditAmount field value if set, zero value otherwise.
 func (o *Invoice) GetCreditAmount() float32 {
-	if o == nil || isNil(o.CreditAmount) {
+	if o == nil || IsNil(o.CreditAmount) {
 		var ret float32
 		return ret
 	}
@@ -164,7 +164,7 @@ func (o *Invoice) GetCreditAmount() float32 {
 // GetCreditAmountOk returns a tuple with the CreditAmount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Invoice) GetCreditAmountOk() (*float32, bool) {
-	if o == nil || isNil(o.CreditAmount) {
+	if o == nil || IsNil(o.CreditAmount) {
 		return nil, false
 	}
 	return o.CreditAmount, true
@@ -172,7 +172,7 @@ func (o *Invoice) GetCreditAmountOk() (*float32, bool) {
 
 // HasCreditAmount returns a boolean if a field has been set.
 func (o *Invoice) HasCreditAmount() bool {
-	if o != nil && !isNil(o.CreditAmount) {
+	if o != nil && !IsNil(o.CreditAmount) {
 		return true
 	}
 
@@ -186,7 +186,7 @@ func (o *Invoice) SetCreditAmount(v float32) {
 
 // GetCreditsApplied returns the CreditsApplied field value if set, zero value otherwise.
 func (o *Invoice) GetCreditsApplied() float32 {
-	if o == nil || isNil(o.CreditsApplied) {
+	if o == nil || IsNil(o.CreditsApplied) {
 		var ret float32
 		return ret
 	}
@@ -196,7 +196,7 @@ func (o *Invoice) GetCreditsApplied() float32 {
 // GetCreditsAppliedOk returns a tuple with the CreditsApplied field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Invoice) GetCreditsAppliedOk() (*float32, bool) {
-	if o == nil || isNil(o.CreditsApplied) {
+	if o == nil || IsNil(o.CreditsApplied) {
 		return nil, false
 	}
 	return o.CreditsApplied, true
@@ -204,7 +204,7 @@ func (o *Invoice) GetCreditsAppliedOk() (*float32, bool) {
 
 // HasCreditsApplied returns a boolean if a field has been set.
 func (o *Invoice) HasCreditsApplied() bool {
-	if o != nil && !isNil(o.CreditsApplied) {
+	if o != nil && !IsNil(o.CreditsApplied) {
 		return true
 	}
 
@@ -218,7 +218,7 @@ func (o *Invoice) SetCreditsApplied(v float32) {
 
 // GetCurrency returns the Currency field value if set, zero value otherwise.
 func (o *Invoice) GetCurrency() string {
-	if o == nil || isNil(o.Currency) {
+	if o == nil || IsNil(o.Currency) {
 		var ret string
 		return ret
 	}
@@ -228,7 +228,7 @@ func (o *Invoice) GetCurrency() string {
 // GetCurrencyOk returns a tuple with the Currency field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Invoice) GetCurrencyOk() (*string, bool) {
-	if o == nil || isNil(o.Currency) {
+	if o == nil || IsNil(o.Currency) {
 		return nil, false
 	}
 	return o.Currency, true
@@ -236,7 +236,7 @@ func (o *Invoice) GetCurrencyOk() (*string, bool) {
 
 // HasCurrency returns a boolean if a field has been set.
 func (o *Invoice) HasCurrency() bool {
-	if o != nil && !isNil(o.Currency) {
+	if o != nil && !IsNil(o.Currency) {
 		return true
 	}
 
@@ -250,7 +250,7 @@ func (o *Invoice) SetCurrency(v string) {
 
 // GetDueOn returns the DueOn field value if set, zero value otherwise.
 func (o *Invoice) GetDueOn() string {
-	if o == nil || isNil(o.DueOn) {
+	if o == nil || IsNil(o.DueOn) {
 		var ret string
 		return ret
 	}
@@ -260,7 +260,7 @@ func (o *Invoice) GetDueOn() string {
 // GetDueOnOk returns a tuple with the DueOn field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Invoice) GetDueOnOk() (*string, bool) {
-	if o == nil || isNil(o.DueOn) {
+	if o == nil || IsNil(o.DueOn) {
 		return nil, false
 	}
 	return o.DueOn, true
@@ -268,7 +268,7 @@ func (o *Invoice) GetDueOnOk() (*string, bool) {
 
 // HasDueOn returns a boolean if a field has been set.
 func (o *Invoice) HasDueOn() bool {
-	if o != nil && !isNil(o.DueOn) {
+	if o != nil && !IsNil(o.DueOn) {
 		return true
 	}
 
@@ -282,7 +282,7 @@ func (o *Invoice) SetDueOn(v string) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *Invoice) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -292,7 +292,7 @@ func (o *Invoice) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Invoice) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -300,7 +300,7 @@ func (o *Invoice) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *Invoice) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -314,7 +314,7 @@ func (o *Invoice) SetId(v string) {
 
 // GetItems returns the Items field value if set, zero value otherwise.
 func (o *Invoice) GetItems() []LineItem {
-	if o == nil || isNil(o.Items) {
+	if o == nil || IsNil(o.Items) {
 		var ret []LineItem
 		return ret
 	}
@@ -324,7 +324,7 @@ func (o *Invoice) GetItems() []LineItem {
 // GetItemsOk returns a tuple with the Items field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Invoice) GetItemsOk() ([]LineItem, bool) {
-	if o == nil || isNil(o.Items) {
+	if o == nil || IsNil(o.Items) {
 		return nil, false
 	}
 	return o.Items, true
@@ -332,7 +332,7 @@ func (o *Invoice) GetItemsOk() ([]LineItem, bool) {
 
 // HasItems returns a boolean if a field has been set.
 func (o *Invoice) HasItems() bool {
-	if o != nil && !isNil(o.Items) {
+	if o != nil && !IsNil(o.Items) {
 		return true
 	}
 
@@ -346,7 +346,7 @@ func (o *Invoice) SetItems(v []LineItem) {
 
 // GetNumber returns the Number field value if set, zero value otherwise.
 func (o *Invoice) GetNumber() string {
-	if o == nil || isNil(o.Number) {
+	if o == nil || IsNil(o.Number) {
 		var ret string
 		return ret
 	}
@@ -356,7 +356,7 @@ func (o *Invoice) GetNumber() string {
 // GetNumberOk returns a tuple with the Number field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Invoice) GetNumberOk() (*string, bool) {
-	if o == nil || isNil(o.Number) {
+	if o == nil || IsNil(o.Number) {
 		return nil, false
 	}
 	return o.Number, true
@@ -364,7 +364,7 @@ func (o *Invoice) GetNumberOk() (*string, bool) {
 
 // HasNumber returns a boolean if a field has been set.
 func (o *Invoice) HasNumber() bool {
-	if o != nil && !isNil(o.Number) {
+	if o != nil && !IsNil(o.Number) {
 		return true
 	}
 
@@ -378,7 +378,7 @@ func (o *Invoice) SetNumber(v string) {
 
 // GetProject returns the Project field value if set, zero value otherwise.
 func (o *Invoice) GetProject() ProjectIdName {
-	if o == nil || isNil(o.Project) {
+	if o == nil || IsNil(o.Project) {
 		var ret ProjectIdName
 		return ret
 	}
@@ -388,7 +388,7 @@ func (o *Invoice) GetProject() ProjectIdName {
 // GetProjectOk returns a tuple with the Project field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Invoice) GetProjectOk() (*ProjectIdName, bool) {
-	if o == nil || isNil(o.Project) {
+	if o == nil || IsNil(o.Project) {
 		return nil, false
 	}
 	return o.Project, true
@@ -396,7 +396,7 @@ func (o *Invoice) GetProjectOk() (*ProjectIdName, bool) {
 
 // HasProject returns a boolean if a field has been set.
 func (o *Invoice) HasProject() bool {
-	if o != nil && !isNil(o.Project) {
+	if o != nil && !IsNil(o.Project) {
 		return true
 	}
 
@@ -410,7 +410,7 @@ func (o *Invoice) SetProject(v ProjectIdName) {
 
 // GetReferenceNumber returns the ReferenceNumber field value if set, zero value otherwise.
 func (o *Invoice) GetReferenceNumber() string {
-	if o == nil || isNil(o.ReferenceNumber) {
+	if o == nil || IsNil(o.ReferenceNumber) {
 		var ret string
 		return ret
 	}
@@ -420,7 +420,7 @@ func (o *Invoice) GetReferenceNumber() string {
 // GetReferenceNumberOk returns a tuple with the ReferenceNumber field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Invoice) GetReferenceNumberOk() (*string, bool) {
-	if o == nil || isNil(o.ReferenceNumber) {
+	if o == nil || IsNil(o.ReferenceNumber) {
 		return nil, false
 	}
 	return o.ReferenceNumber, true
@@ -428,7 +428,7 @@ func (o *Invoice) GetReferenceNumberOk() (*string, bool) {
 
 // HasReferenceNumber returns a boolean if a field has been set.
 func (o *Invoice) HasReferenceNumber() bool {
-	if o != nil && !isNil(o.ReferenceNumber) {
+	if o != nil && !IsNil(o.ReferenceNumber) {
 		return true
 	}
 
@@ -442,7 +442,7 @@ func (o *Invoice) SetReferenceNumber(v string) {
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *Invoice) GetStatus() string {
-	if o == nil || isNil(o.Status) {
+	if o == nil || IsNil(o.Status) {
 		var ret string
 		return ret
 	}
@@ -452,7 +452,7 @@ func (o *Invoice) GetStatus() string {
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Invoice) GetStatusOk() (*string, bool) {
-	if o == nil || isNil(o.Status) {
+	if o == nil || IsNil(o.Status) {
 		return nil, false
 	}
 	return o.Status, true
@@ -460,7 +460,7 @@ func (o *Invoice) GetStatusOk() (*string, bool) {
 
 // HasStatus returns a boolean if a field has been set.
 func (o *Invoice) HasStatus() bool {
-	if o != nil && !isNil(o.Status) {
+	if o != nil && !IsNil(o.Status) {
 		return true
 	}
 
@@ -474,7 +474,7 @@ func (o *Invoice) SetStatus(v string) {
 
 // GetTargetDate returns the TargetDate field value if set, zero value otherwise.
 func (o *Invoice) GetTargetDate() string {
-	if o == nil || isNil(o.TargetDate) {
+	if o == nil || IsNil(o.TargetDate) {
 		var ret string
 		return ret
 	}
@@ -484,7 +484,7 @@ func (o *Invoice) GetTargetDate() string {
 // GetTargetDateOk returns a tuple with the TargetDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Invoice) GetTargetDateOk() (*string, bool) {
-	if o == nil || isNil(o.TargetDate) {
+	if o == nil || IsNil(o.TargetDate) {
 		return nil, false
 	}
 	return o.TargetDate, true
@@ -492,7 +492,7 @@ func (o *Invoice) GetTargetDateOk() (*string, bool) {
 
 // HasTargetDate returns a boolean if a field has been set.
 func (o *Invoice) HasTargetDate() bool {
-	if o != nil && !isNil(o.TargetDate) {
+	if o != nil && !IsNil(o.TargetDate) {
 		return true
 	}
 
@@ -514,46 +514,46 @@ func (o Invoice) MarshalJSON() ([]byte, error) {
 
 func (o Invoice) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Amount) {
+	if !IsNil(o.Amount) {
 		toSerialize["amount"] = o.Amount
 	}
-	if !isNil(o.Balance) {
+	if !IsNil(o.Balance) {
 		toSerialize["balance"] = o.Balance
 	}
-	if !isNil(o.CreatedOn) {
+	if !IsNil(o.CreatedOn) {
 		toSerialize["created_on"] = o.CreatedOn
 	}
-	if !isNil(o.CreditAmount) {
+	if !IsNil(o.CreditAmount) {
 		toSerialize["credit_amount"] = o.CreditAmount
 	}
-	if !isNil(o.CreditsApplied) {
+	if !IsNil(o.CreditsApplied) {
 		toSerialize["credits_applied"] = o.CreditsApplied
 	}
-	if !isNil(o.Currency) {
+	if !IsNil(o.Currency) {
 		toSerialize["currency"] = o.Currency
 	}
-	if !isNil(o.DueOn) {
+	if !IsNil(o.DueOn) {
 		toSerialize["due_on"] = o.DueOn
 	}
-	if !isNil(o.Id) {
+	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
-	if !isNil(o.Items) {
+	if !IsNil(o.Items) {
 		toSerialize["items"] = o.Items
 	}
-	if !isNil(o.Number) {
+	if !IsNil(o.Number) {
 		toSerialize["number"] = o.Number
 	}
-	if !isNil(o.Project) {
+	if !IsNil(o.Project) {
 		toSerialize["project"] = o.Project
 	}
-	if !isNil(o.ReferenceNumber) {
+	if !IsNil(o.ReferenceNumber) {
 		toSerialize["reference_number"] = o.ReferenceNumber
 	}
-	if !isNil(o.Status) {
+	if !IsNil(o.Status) {
 		toSerialize["status"] = o.Status
 	}
-	if !isNil(o.TargetDate) {
+	if !IsNil(o.TargetDate) {
 		toSerialize["target_date"] = o.TargetDate
 	}
 

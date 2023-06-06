@@ -45,7 +45,7 @@ func NewPortVlanAssignmentListWithDefaults() *PortVlanAssignmentList {
 
 // GetVlanAssignments returns the VlanAssignments field value if set, zero value otherwise.
 func (o *PortVlanAssignmentList) GetVlanAssignments() []PortVlanAssignment {
-	if o == nil || isNil(o.VlanAssignments) {
+	if o == nil || IsNil(o.VlanAssignments) {
 		var ret []PortVlanAssignment
 		return ret
 	}
@@ -55,7 +55,7 @@ func (o *PortVlanAssignmentList) GetVlanAssignments() []PortVlanAssignment {
 // GetVlanAssignmentsOk returns a tuple with the VlanAssignments field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PortVlanAssignmentList) GetVlanAssignmentsOk() ([]PortVlanAssignment, bool) {
-	if o == nil || isNil(o.VlanAssignments) {
+	if o == nil || IsNil(o.VlanAssignments) {
 		return nil, false
 	}
 	return o.VlanAssignments, true
@@ -63,7 +63,7 @@ func (o *PortVlanAssignmentList) GetVlanAssignmentsOk() ([]PortVlanAssignment, b
 
 // HasVlanAssignments returns a boolean if a field has been set.
 func (o *PortVlanAssignmentList) HasVlanAssignments() bool {
-	if o != nil && !isNil(o.VlanAssignments) {
+	if o != nil && !IsNil(o.VlanAssignments) {
 		return true
 	}
 
@@ -85,7 +85,7 @@ func (o PortVlanAssignmentList) MarshalJSON() ([]byte, error) {
 
 func (o PortVlanAssignmentList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.VlanAssignments) {
+	if !IsNil(o.VlanAssignments) {
 		toSerialize["vlan_assignments"] = o.VlanAssignments
 	}
 

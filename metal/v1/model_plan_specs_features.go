@@ -47,7 +47,7 @@ func NewPlanSpecsFeaturesWithDefaults() *PlanSpecsFeatures {
 
 // GetRaid returns the Raid field value if set, zero value otherwise.
 func (o *PlanSpecsFeatures) GetRaid() bool {
-	if o == nil || isNil(o.Raid) {
+	if o == nil || IsNil(o.Raid) {
 		var ret bool
 		return ret
 	}
@@ -57,7 +57,7 @@ func (o *PlanSpecsFeatures) GetRaid() bool {
 // GetRaidOk returns a tuple with the Raid field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PlanSpecsFeatures) GetRaidOk() (*bool, bool) {
-	if o == nil || isNil(o.Raid) {
+	if o == nil || IsNil(o.Raid) {
 		return nil, false
 	}
 	return o.Raid, true
@@ -65,7 +65,7 @@ func (o *PlanSpecsFeatures) GetRaidOk() (*bool, bool) {
 
 // HasRaid returns a boolean if a field has been set.
 func (o *PlanSpecsFeatures) HasRaid() bool {
-	if o != nil && !isNil(o.Raid) {
+	if o != nil && !IsNil(o.Raid) {
 		return true
 	}
 
@@ -79,7 +79,7 @@ func (o *PlanSpecsFeatures) SetRaid(v bool) {
 
 // GetTxt returns the Txt field value if set, zero value otherwise.
 func (o *PlanSpecsFeatures) GetTxt() bool {
-	if o == nil || isNil(o.Txt) {
+	if o == nil || IsNil(o.Txt) {
 		var ret bool
 		return ret
 	}
@@ -89,7 +89,7 @@ func (o *PlanSpecsFeatures) GetTxt() bool {
 // GetTxtOk returns a tuple with the Txt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PlanSpecsFeatures) GetTxtOk() (*bool, bool) {
-	if o == nil || isNil(o.Txt) {
+	if o == nil || IsNil(o.Txt) {
 		return nil, false
 	}
 	return o.Txt, true
@@ -97,7 +97,7 @@ func (o *PlanSpecsFeatures) GetTxtOk() (*bool, bool) {
 
 // HasTxt returns a boolean if a field has been set.
 func (o *PlanSpecsFeatures) HasTxt() bool {
-	if o != nil && !isNil(o.Txt) {
+	if o != nil && !IsNil(o.Txt) {
 		return true
 	}
 
@@ -111,7 +111,7 @@ func (o *PlanSpecsFeatures) SetTxt(v bool) {
 
 // GetUefi returns the Uefi field value if set, zero value otherwise.
 func (o *PlanSpecsFeatures) GetUefi() bool {
-	if o == nil || isNil(o.Uefi) {
+	if o == nil || IsNil(o.Uefi) {
 		var ret bool
 		return ret
 	}
@@ -121,7 +121,7 @@ func (o *PlanSpecsFeatures) GetUefi() bool {
 // GetUefiOk returns a tuple with the Uefi field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PlanSpecsFeatures) GetUefiOk() (*bool, bool) {
-	if o == nil || isNil(o.Uefi) {
+	if o == nil || IsNil(o.Uefi) {
 		return nil, false
 	}
 	return o.Uefi, true
@@ -129,7 +129,7 @@ func (o *PlanSpecsFeatures) GetUefiOk() (*bool, bool) {
 
 // HasUefi returns a boolean if a field has been set.
 func (o *PlanSpecsFeatures) HasUefi() bool {
-	if o != nil && !isNil(o.Uefi) {
+	if o != nil && !IsNil(o.Uefi) {
 		return true
 	}
 
@@ -151,13 +151,13 @@ func (o PlanSpecsFeatures) MarshalJSON() ([]byte, error) {
 
 func (o PlanSpecsFeatures) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Raid) {
+	if !IsNil(o.Raid) {
 		toSerialize["raid"] = o.Raid
 	}
-	if !isNil(o.Txt) {
+	if !IsNil(o.Txt) {
 		toSerialize["txt"] = o.Txt
 	}
-	if !isNil(o.Uefi) {
+	if !IsNil(o.Uefi) {
 		toSerialize["uefi"] = o.Uefi
 	}
 

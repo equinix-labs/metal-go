@@ -45,7 +45,7 @@ func NewMembershipListWithDefaults() *MembershipList {
 
 // GetMemberships returns the Memberships field value if set, zero value otherwise.
 func (o *MembershipList) GetMemberships() []Membership {
-	if o == nil || isNil(o.Memberships) {
+	if o == nil || IsNil(o.Memberships) {
 		var ret []Membership
 		return ret
 	}
@@ -55,7 +55,7 @@ func (o *MembershipList) GetMemberships() []Membership {
 // GetMembershipsOk returns a tuple with the Memberships field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MembershipList) GetMembershipsOk() ([]Membership, bool) {
-	if o == nil || isNil(o.Memberships) {
+	if o == nil || IsNil(o.Memberships) {
 		return nil, false
 	}
 	return o.Memberships, true
@@ -63,7 +63,7 @@ func (o *MembershipList) GetMembershipsOk() ([]Membership, bool) {
 
 // HasMemberships returns a boolean if a field has been set.
 func (o *MembershipList) HasMemberships() bool {
-	if o != nil && !isNil(o.Memberships) {
+	if o != nil && !IsNil(o.Memberships) {
 		return true
 	}
 
@@ -85,7 +85,7 @@ func (o MembershipList) MarshalJSON() ([]byte, error) {
 
 func (o MembershipList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Memberships) {
+	if !IsNil(o.Memberships) {
 		toSerialize["memberships"] = o.Memberships
 	}
 

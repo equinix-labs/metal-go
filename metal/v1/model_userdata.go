@@ -45,7 +45,7 @@ func NewUserdataWithDefaults() *Userdata {
 
 // GetUserdata returns the Userdata field value if set, zero value otherwise.
 func (o *Userdata) GetUserdata() string {
-	if o == nil || isNil(o.Userdata) {
+	if o == nil || IsNil(o.Userdata) {
 		var ret string
 		return ret
 	}
@@ -55,7 +55,7 @@ func (o *Userdata) GetUserdata() string {
 // GetUserdataOk returns a tuple with the Userdata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Userdata) GetUserdataOk() (*string, bool) {
-	if o == nil || isNil(o.Userdata) {
+	if o == nil || IsNil(o.Userdata) {
 		return nil, false
 	}
 	return o.Userdata, true
@@ -63,7 +63,7 @@ func (o *Userdata) GetUserdataOk() (*string, bool) {
 
 // HasUserdata returns a boolean if a field has been set.
 func (o *Userdata) HasUserdata() bool {
-	if o != nil && !isNil(o.Userdata) {
+	if o != nil && !IsNil(o.Userdata) {
 		return true
 	}
 
@@ -85,7 +85,7 @@ func (o Userdata) MarshalJSON() ([]byte, error) {
 
 func (o Userdata) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Userdata) {
+	if !IsNil(o.Userdata) {
 		toSerialize["userdata"] = o.Userdata
 	}
 

@@ -47,7 +47,7 @@ func NewIPAssignmentUpdateInputWithDefaults() *IPAssignmentUpdateInput {
 
 // GetDetails returns the Details field value if set, zero value otherwise.
 func (o *IPAssignmentUpdateInput) GetDetails() string {
-	if o == nil || isNil(o.Details) {
+	if o == nil || IsNil(o.Details) {
 		var ret string
 		return ret
 	}
@@ -57,7 +57,7 @@ func (o *IPAssignmentUpdateInput) GetDetails() string {
 // GetDetailsOk returns a tuple with the Details field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IPAssignmentUpdateInput) GetDetailsOk() (*string, bool) {
-	if o == nil || isNil(o.Details) {
+	if o == nil || IsNil(o.Details) {
 		return nil, false
 	}
 	return o.Details, true
@@ -65,7 +65,7 @@ func (o *IPAssignmentUpdateInput) GetDetailsOk() (*string, bool) {
 
 // HasDetails returns a boolean if a field has been set.
 func (o *IPAssignmentUpdateInput) HasDetails() bool {
-	if o != nil && !isNil(o.Details) {
+	if o != nil && !IsNil(o.Details) {
 		return true
 	}
 
@@ -79,7 +79,7 @@ func (o *IPAssignmentUpdateInput) SetDetails(v string) {
 
 // GetCustomdata returns the Customdata field value if set, zero value otherwise.
 func (o *IPAssignmentUpdateInput) GetCustomdata() map[string]interface{} {
-	if o == nil || isNil(o.Customdata) {
+	if o == nil || IsNil(o.Customdata) {
 		var ret map[string]interface{}
 		return ret
 	}
@@ -89,7 +89,7 @@ func (o *IPAssignmentUpdateInput) GetCustomdata() map[string]interface{} {
 // GetCustomdataOk returns a tuple with the Customdata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IPAssignmentUpdateInput) GetCustomdataOk() (map[string]interface{}, bool) {
-	if o == nil || isNil(o.Customdata) {
+	if o == nil || IsNil(o.Customdata) {
 		return map[string]interface{}{}, false
 	}
 	return o.Customdata, true
@@ -97,7 +97,7 @@ func (o *IPAssignmentUpdateInput) GetCustomdataOk() (map[string]interface{}, boo
 
 // HasCustomdata returns a boolean if a field has been set.
 func (o *IPAssignmentUpdateInput) HasCustomdata() bool {
-	if o != nil && !isNil(o.Customdata) {
+	if o != nil && !IsNil(o.Customdata) {
 		return true
 	}
 
@@ -111,7 +111,7 @@ func (o *IPAssignmentUpdateInput) SetCustomdata(v map[string]interface{}) {
 
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *IPAssignmentUpdateInput) GetTags() []string {
-	if o == nil || isNil(o.Tags) {
+	if o == nil || IsNil(o.Tags) {
 		var ret []string
 		return ret
 	}
@@ -121,7 +121,7 @@ func (o *IPAssignmentUpdateInput) GetTags() []string {
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IPAssignmentUpdateInput) GetTagsOk() ([]string, bool) {
-	if o == nil || isNil(o.Tags) {
+	if o == nil || IsNil(o.Tags) {
 		return nil, false
 	}
 	return o.Tags, true
@@ -129,7 +129,7 @@ func (o *IPAssignmentUpdateInput) GetTagsOk() ([]string, bool) {
 
 // HasTags returns a boolean if a field has been set.
 func (o *IPAssignmentUpdateInput) HasTags() bool {
-	if o != nil && !isNil(o.Tags) {
+	if o != nil && !IsNil(o.Tags) {
 		return true
 	}
 
@@ -151,13 +151,13 @@ func (o IPAssignmentUpdateInput) MarshalJSON() ([]byte, error) {
 
 func (o IPAssignmentUpdateInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Details) {
+	if !IsNil(o.Details) {
 		toSerialize["details"] = o.Details
 	}
-	if !isNil(o.Customdata) {
+	if !IsNil(o.Customdata) {
 		toSerialize["customdata"] = o.Customdata
 	}
-	if !isNil(o.Tags) {
+	if !IsNil(o.Tags) {
 		toSerialize["tags"] = o.Tags
 	}
 

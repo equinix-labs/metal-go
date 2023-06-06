@@ -45,7 +45,7 @@ func NewPlanListWithDefaults() *PlanList {
 
 // GetPlans returns the Plans field value if set, zero value otherwise.
 func (o *PlanList) GetPlans() []Plan {
-	if o == nil || isNil(o.Plans) {
+	if o == nil || IsNil(o.Plans) {
 		var ret []Plan
 		return ret
 	}
@@ -55,7 +55,7 @@ func (o *PlanList) GetPlans() []Plan {
 // GetPlansOk returns a tuple with the Plans field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PlanList) GetPlansOk() ([]Plan, bool) {
-	if o == nil || isNil(o.Plans) {
+	if o == nil || IsNil(o.Plans) {
 		return nil, false
 	}
 	return o.Plans, true
@@ -63,7 +63,7 @@ func (o *PlanList) GetPlansOk() ([]Plan, bool) {
 
 // HasPlans returns a boolean if a field has been set.
 func (o *PlanList) HasPlans() bool {
-	if o != nil && !isNil(o.Plans) {
+	if o != nil && !IsNil(o.Plans) {
 		return true
 	}
 
@@ -85,7 +85,7 @@ func (o PlanList) MarshalJSON() ([]byte, error) {
 
 func (o PlanList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Plans) {
+	if !IsNil(o.Plans) {
 		toSerialize["plans"] = o.Plans
 	}
 

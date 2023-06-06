@@ -47,7 +47,7 @@ func NewServerInfoWithDefaults() *ServerInfo {
 
 // GetFacility returns the Facility field value if set, zero value otherwise.
 func (o *ServerInfo) GetFacility() string {
-	if o == nil || isNil(o.Facility) {
+	if o == nil || IsNil(o.Facility) {
 		var ret string
 		return ret
 	}
@@ -57,7 +57,7 @@ func (o *ServerInfo) GetFacility() string {
 // GetFacilityOk returns a tuple with the Facility field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServerInfo) GetFacilityOk() (*string, bool) {
-	if o == nil || isNil(o.Facility) {
+	if o == nil || IsNil(o.Facility) {
 		return nil, false
 	}
 	return o.Facility, true
@@ -65,7 +65,7 @@ func (o *ServerInfo) GetFacilityOk() (*string, bool) {
 
 // HasFacility returns a boolean if a field has been set.
 func (o *ServerInfo) HasFacility() bool {
-	if o != nil && !isNil(o.Facility) {
+	if o != nil && !IsNil(o.Facility) {
 		return true
 	}
 
@@ -79,7 +79,7 @@ func (o *ServerInfo) SetFacility(v string) {
 
 // GetPlan returns the Plan field value if set, zero value otherwise.
 func (o *ServerInfo) GetPlan() string {
-	if o == nil || isNil(o.Plan) {
+	if o == nil || IsNil(o.Plan) {
 		var ret string
 		return ret
 	}
@@ -89,7 +89,7 @@ func (o *ServerInfo) GetPlan() string {
 // GetPlanOk returns a tuple with the Plan field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServerInfo) GetPlanOk() (*string, bool) {
-	if o == nil || isNil(o.Plan) {
+	if o == nil || IsNil(o.Plan) {
 		return nil, false
 	}
 	return o.Plan, true
@@ -97,7 +97,7 @@ func (o *ServerInfo) GetPlanOk() (*string, bool) {
 
 // HasPlan returns a boolean if a field has been set.
 func (o *ServerInfo) HasPlan() bool {
-	if o != nil && !isNil(o.Plan) {
+	if o != nil && !IsNil(o.Plan) {
 		return true
 	}
 
@@ -111,7 +111,7 @@ func (o *ServerInfo) SetPlan(v string) {
 
 // GetQuantity returns the Quantity field value if set, zero value otherwise.
 func (o *ServerInfo) GetQuantity() string {
-	if o == nil || isNil(o.Quantity) {
+	if o == nil || IsNil(o.Quantity) {
 		var ret string
 		return ret
 	}
@@ -121,7 +121,7 @@ func (o *ServerInfo) GetQuantity() string {
 // GetQuantityOk returns a tuple with the Quantity field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServerInfo) GetQuantityOk() (*string, bool) {
-	if o == nil || isNil(o.Quantity) {
+	if o == nil || IsNil(o.Quantity) {
 		return nil, false
 	}
 	return o.Quantity, true
@@ -129,7 +129,7 @@ func (o *ServerInfo) GetQuantityOk() (*string, bool) {
 
 // HasQuantity returns a boolean if a field has been set.
 func (o *ServerInfo) HasQuantity() bool {
-	if o != nil && !isNil(o.Quantity) {
+	if o != nil && !IsNil(o.Quantity) {
 		return true
 	}
 
@@ -151,13 +151,13 @@ func (o ServerInfo) MarshalJSON() ([]byte, error) {
 
 func (o ServerInfo) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Facility) {
+	if !IsNil(o.Facility) {
 		toSerialize["facility"] = o.Facility
 	}
-	if !isNil(o.Plan) {
+	if !IsNil(o.Plan) {
 		toSerialize["plan"] = o.Plan
 	}
-	if !isNil(o.Quantity) {
+	if !IsNil(o.Quantity) {
 		toSerialize["quantity"] = o.Quantity
 	}
 

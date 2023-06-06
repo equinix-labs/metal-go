@@ -45,7 +45,7 @@ func NewCapacityPerNewFacilityWithDefaults() *CapacityPerNewFacility {
 
 // GetBaremetal1e returns the Baremetal1e field value if set, zero value otherwise.
 func (o *CapacityPerNewFacility) GetBaremetal1e() CapacityLevelPerBaremetal {
-	if o == nil || isNil(o.Baremetal1e) {
+	if o == nil || IsNil(o.Baremetal1e) {
 		var ret CapacityLevelPerBaremetal
 		return ret
 	}
@@ -55,7 +55,7 @@ func (o *CapacityPerNewFacility) GetBaremetal1e() CapacityLevelPerBaremetal {
 // GetBaremetal1eOk returns a tuple with the Baremetal1e field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CapacityPerNewFacility) GetBaremetal1eOk() (*CapacityLevelPerBaremetal, bool) {
-	if o == nil || isNil(o.Baremetal1e) {
+	if o == nil || IsNil(o.Baremetal1e) {
 		return nil, false
 	}
 	return o.Baremetal1e, true
@@ -63,7 +63,7 @@ func (o *CapacityPerNewFacility) GetBaremetal1eOk() (*CapacityLevelPerBaremetal,
 
 // HasBaremetal1e returns a boolean if a field has been set.
 func (o *CapacityPerNewFacility) HasBaremetal1e() bool {
-	if o != nil && !isNil(o.Baremetal1e) {
+	if o != nil && !IsNil(o.Baremetal1e) {
 		return true
 	}
 
@@ -85,7 +85,7 @@ func (o CapacityPerNewFacility) MarshalJSON() ([]byte, error) {
 
 func (o CapacityPerNewFacility) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Baremetal1e) {
+	if !IsNil(o.Baremetal1e) {
 		toSerialize["baremetal_1e"] = o.Baremetal1e
 	}
 

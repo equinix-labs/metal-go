@@ -45,7 +45,7 @@ func NewVirtualCircuitListWithDefaults() *VirtualCircuitList {
 
 // GetVirtualCircuits returns the VirtualCircuits field value if set, zero value otherwise.
 func (o *VirtualCircuitList) GetVirtualCircuits() []VirtualCircuit {
-	if o == nil || isNil(o.VirtualCircuits) {
+	if o == nil || IsNil(o.VirtualCircuits) {
 		var ret []VirtualCircuit
 		return ret
 	}
@@ -55,7 +55,7 @@ func (o *VirtualCircuitList) GetVirtualCircuits() []VirtualCircuit {
 // GetVirtualCircuitsOk returns a tuple with the VirtualCircuits field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VirtualCircuitList) GetVirtualCircuitsOk() ([]VirtualCircuit, bool) {
-	if o == nil || isNil(o.VirtualCircuits) {
+	if o == nil || IsNil(o.VirtualCircuits) {
 		return nil, false
 	}
 	return o.VirtualCircuits, true
@@ -63,7 +63,7 @@ func (o *VirtualCircuitList) GetVirtualCircuitsOk() ([]VirtualCircuit, bool) {
 
 // HasVirtualCircuits returns a boolean if a field has been set.
 func (o *VirtualCircuitList) HasVirtualCircuits() bool {
-	if o != nil && !isNil(o.VirtualCircuits) {
+	if o != nil && !IsNil(o.VirtualCircuits) {
 		return true
 	}
 
@@ -85,7 +85,7 @@ func (o VirtualCircuitList) MarshalJSON() ([]byte, error) {
 
 func (o VirtualCircuitList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.VirtualCircuits) {
+	if !IsNil(o.VirtualCircuits) {
 		toSerialize["virtual_circuits"] = o.VirtualCircuits
 	}
 

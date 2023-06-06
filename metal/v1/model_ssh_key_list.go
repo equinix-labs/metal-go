@@ -45,7 +45,7 @@ func NewSSHKeyListWithDefaults() *SSHKeyList {
 
 // GetSshKeys returns the SshKeys field value if set, zero value otherwise.
 func (o *SSHKeyList) GetSshKeys() []SSHKey {
-	if o == nil || isNil(o.SshKeys) {
+	if o == nil || IsNil(o.SshKeys) {
 		var ret []SSHKey
 		return ret
 	}
@@ -55,7 +55,7 @@ func (o *SSHKeyList) GetSshKeys() []SSHKey {
 // GetSshKeysOk returns a tuple with the SshKeys field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SSHKeyList) GetSshKeysOk() ([]SSHKey, bool) {
-	if o == nil || isNil(o.SshKeys) {
+	if o == nil || IsNil(o.SshKeys) {
 		return nil, false
 	}
 	return o.SshKeys, true
@@ -63,7 +63,7 @@ func (o *SSHKeyList) GetSshKeysOk() ([]SSHKey, bool) {
 
 // HasSshKeys returns a boolean if a field has been set.
 func (o *SSHKeyList) HasSshKeys() bool {
-	if o != nil && !isNil(o.SshKeys) {
+	if o != nil && !IsNil(o.SshKeys) {
 		return true
 	}
 
@@ -85,7 +85,7 @@ func (o SSHKeyList) MarshalJSON() ([]byte, error) {
 
 func (o SSHKeyList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.SshKeys) {
+	if !IsNil(o.SshKeys) {
 		toSerialize["ssh_keys"] = o.SshKeys
 	}
 

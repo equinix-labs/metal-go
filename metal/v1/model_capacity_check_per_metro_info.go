@@ -52,7 +52,7 @@ func NewCapacityCheckPerMetroInfoWithDefaults() *CapacityCheckPerMetroInfo {
 
 // GetAvailable returns the Available field value if set, zero value otherwise.
 func (o *CapacityCheckPerMetroInfo) GetAvailable() bool {
-	if o == nil || isNil(o.Available) {
+	if o == nil || IsNil(o.Available) {
 		var ret bool
 		return ret
 	}
@@ -62,7 +62,7 @@ func (o *CapacityCheckPerMetroInfo) GetAvailable() bool {
 // GetAvailableOk returns a tuple with the Available field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CapacityCheckPerMetroInfo) GetAvailableOk() (*bool, bool) {
-	if o == nil || isNil(o.Available) {
+	if o == nil || IsNil(o.Available) {
 		return nil, false
 	}
 	return o.Available, true
@@ -70,7 +70,7 @@ func (o *CapacityCheckPerMetroInfo) GetAvailableOk() (*bool, bool) {
 
 // HasAvailable returns a boolean if a field has been set.
 func (o *CapacityCheckPerMetroInfo) HasAvailable() bool {
-	if o != nil && !isNil(o.Available) {
+	if o != nil && !IsNil(o.Available) {
 		return true
 	}
 
@@ -84,7 +84,7 @@ func (o *CapacityCheckPerMetroInfo) SetAvailable(v bool) {
 
 // GetMetro returns the Metro field value if set, zero value otherwise.
 func (o *CapacityCheckPerMetroInfo) GetMetro() string {
-	if o == nil || isNil(o.Metro) {
+	if o == nil || IsNil(o.Metro) {
 		var ret string
 		return ret
 	}
@@ -94,7 +94,7 @@ func (o *CapacityCheckPerMetroInfo) GetMetro() string {
 // GetMetroOk returns a tuple with the Metro field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CapacityCheckPerMetroInfo) GetMetroOk() (*string, bool) {
-	if o == nil || isNil(o.Metro) {
+	if o == nil || IsNil(o.Metro) {
 		return nil, false
 	}
 	return o.Metro, true
@@ -102,7 +102,7 @@ func (o *CapacityCheckPerMetroInfo) GetMetroOk() (*string, bool) {
 
 // HasMetro returns a boolean if a field has been set.
 func (o *CapacityCheckPerMetroInfo) HasMetro() bool {
-	if o != nil && !isNil(o.Metro) {
+	if o != nil && !IsNil(o.Metro) {
 		return true
 	}
 
@@ -116,7 +116,7 @@ func (o *CapacityCheckPerMetroInfo) SetMetro(v string) {
 
 // GetPlan returns the Plan field value if set, zero value otherwise.
 func (o *CapacityCheckPerMetroInfo) GetPlan() string {
-	if o == nil || isNil(o.Plan) {
+	if o == nil || IsNil(o.Plan) {
 		var ret string
 		return ret
 	}
@@ -126,7 +126,7 @@ func (o *CapacityCheckPerMetroInfo) GetPlan() string {
 // GetPlanOk returns a tuple with the Plan field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CapacityCheckPerMetroInfo) GetPlanOk() (*string, bool) {
-	if o == nil || isNil(o.Plan) {
+	if o == nil || IsNil(o.Plan) {
 		return nil, false
 	}
 	return o.Plan, true
@@ -134,7 +134,7 @@ func (o *CapacityCheckPerMetroInfo) GetPlanOk() (*string, bool) {
 
 // HasPlan returns a boolean if a field has been set.
 func (o *CapacityCheckPerMetroInfo) HasPlan() bool {
-	if o != nil && !isNil(o.Plan) {
+	if o != nil && !IsNil(o.Plan) {
 		return true
 	}
 
@@ -148,7 +148,7 @@ func (o *CapacityCheckPerMetroInfo) SetPlan(v string) {
 
 // GetQuantity returns the Quantity field value if set, zero value otherwise.
 func (o *CapacityCheckPerMetroInfo) GetQuantity() string {
-	if o == nil || isNil(o.Quantity) {
+	if o == nil || IsNil(o.Quantity) {
 		var ret string
 		return ret
 	}
@@ -158,7 +158,7 @@ func (o *CapacityCheckPerMetroInfo) GetQuantity() string {
 // GetQuantityOk returns a tuple with the Quantity field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CapacityCheckPerMetroInfo) GetQuantityOk() (*string, bool) {
-	if o == nil || isNil(o.Quantity) {
+	if o == nil || IsNil(o.Quantity) {
 		return nil, false
 	}
 	return o.Quantity, true
@@ -166,7 +166,7 @@ func (o *CapacityCheckPerMetroInfo) GetQuantityOk() (*string, bool) {
 
 // HasQuantity returns a boolean if a field has been set.
 func (o *CapacityCheckPerMetroInfo) HasQuantity() bool {
-	if o != nil && !isNil(o.Quantity) {
+	if o != nil && !IsNil(o.Quantity) {
 		return true
 	}
 
@@ -188,16 +188,16 @@ func (o CapacityCheckPerMetroInfo) MarshalJSON() ([]byte, error) {
 
 func (o CapacityCheckPerMetroInfo) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Available) {
+	if !IsNil(o.Available) {
 		toSerialize["available"] = o.Available
 	}
-	if !isNil(o.Metro) {
+	if !IsNil(o.Metro) {
 		toSerialize["metro"] = o.Metro
 	}
-	if !isNil(o.Plan) {
+	if !IsNil(o.Plan) {
 		toSerialize["plan"] = o.Plan
 	}
-	if !isNil(o.Quantity) {
+	if !IsNil(o.Quantity) {
 		toSerialize["quantity"] = o.Quantity
 	}
 

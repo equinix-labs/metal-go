@@ -28,14 +28,14 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/equinix-labs/metal-go/metal/v1"
 )
 
 func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TwoFactorAuthApi.DisableTfaApp(context.Background()).Execute()
+    r, err := apiClient.TwoFactorAuthApi.DisableTfaApp(context.Background()).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TwoFactorAuthApi.DisableTfaApp``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -87,14 +87,14 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/equinix-labs/metal-go/metal/v1"
 )
 
 func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TwoFactorAuthApi.DisableTfaSms(context.Background()).Execute()
+    r, err := apiClient.TwoFactorAuthApi.DisableTfaSms(context.Background()).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TwoFactorAuthApi.DisableTfaSms``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -146,14 +146,14 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/equinix-labs/metal-go/metal/v1"
 )
 
 func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TwoFactorAuthApi.EnableTfaApp(context.Background()).Execute()
+    r, err := apiClient.TwoFactorAuthApi.EnableTfaApp(context.Background()).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TwoFactorAuthApi.EnableTfaApp``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -205,14 +205,14 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/equinix-labs/metal-go/metal/v1"
 )
 
 func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TwoFactorAuthApi.EnableTfaSms(context.Background()).Execute()
+    r, err := apiClient.TwoFactorAuthApi.EnableTfaSms(context.Background()).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TwoFactorAuthApi.EnableTfaSms``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

@@ -66,7 +66,7 @@ func NewMetadataWithDefaults() *Metadata {
 
 // GetClass returns the Class field value if set, zero value otherwise.
 func (o *Metadata) GetClass() string {
-	if o == nil || isNil(o.Class) {
+	if o == nil || IsNil(o.Class) {
 		var ret string
 		return ret
 	}
@@ -76,7 +76,7 @@ func (o *Metadata) GetClass() string {
 // GetClassOk returns a tuple with the Class field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Metadata) GetClassOk() (*string, bool) {
-	if o == nil || isNil(o.Class) {
+	if o == nil || IsNil(o.Class) {
 		return nil, false
 	}
 	return o.Class, true
@@ -84,7 +84,7 @@ func (o *Metadata) GetClassOk() (*string, bool) {
 
 // HasClass returns a boolean if a field has been set.
 func (o *Metadata) HasClass() bool {
-	if o != nil && !isNil(o.Class) {
+	if o != nil && !IsNil(o.Class) {
 		return true
 	}
 
@@ -98,7 +98,7 @@ func (o *Metadata) SetClass(v string) {
 
 // GetCustomdata returns the Customdata field value if set, zero value otherwise.
 func (o *Metadata) GetCustomdata() map[string]interface{} {
-	if o == nil || isNil(o.Customdata) {
+	if o == nil || IsNil(o.Customdata) {
 		var ret map[string]interface{}
 		return ret
 	}
@@ -108,7 +108,7 @@ func (o *Metadata) GetCustomdata() map[string]interface{} {
 // GetCustomdataOk returns a tuple with the Customdata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Metadata) GetCustomdataOk() (map[string]interface{}, bool) {
-	if o == nil || isNil(o.Customdata) {
+	if o == nil || IsNil(o.Customdata) {
 		return map[string]interface{}{}, false
 	}
 	return o.Customdata, true
@@ -116,7 +116,7 @@ func (o *Metadata) GetCustomdataOk() (map[string]interface{}, bool) {
 
 // HasCustomdata returns a boolean if a field has been set.
 func (o *Metadata) HasCustomdata() bool {
-	if o != nil && !isNil(o.Customdata) {
+	if o != nil && !IsNil(o.Customdata) {
 		return true
 	}
 
@@ -130,7 +130,7 @@ func (o *Metadata) SetCustomdata(v map[string]interface{}) {
 
 // GetFacility returns the Facility field value if set, zero value otherwise.
 func (o *Metadata) GetFacility() string {
-	if o == nil || isNil(o.Facility) {
+	if o == nil || IsNil(o.Facility) {
 		var ret string
 		return ret
 	}
@@ -140,7 +140,7 @@ func (o *Metadata) GetFacility() string {
 // GetFacilityOk returns a tuple with the Facility field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Metadata) GetFacilityOk() (*string, bool) {
-	if o == nil || isNil(o.Facility) {
+	if o == nil || IsNil(o.Facility) {
 		return nil, false
 	}
 	return o.Facility, true
@@ -148,7 +148,7 @@ func (o *Metadata) GetFacilityOk() (*string, bool) {
 
 // HasFacility returns a boolean if a field has been set.
 func (o *Metadata) HasFacility() bool {
-	if o != nil && !isNil(o.Facility) {
+	if o != nil && !IsNil(o.Facility) {
 		return true
 	}
 
@@ -162,7 +162,7 @@ func (o *Metadata) SetFacility(v string) {
 
 // GetHostname returns the Hostname field value if set, zero value otherwise.
 func (o *Metadata) GetHostname() string {
-	if o == nil || isNil(o.Hostname) {
+	if o == nil || IsNil(o.Hostname) {
 		var ret string
 		return ret
 	}
@@ -172,7 +172,7 @@ func (o *Metadata) GetHostname() string {
 // GetHostnameOk returns a tuple with the Hostname field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Metadata) GetHostnameOk() (*string, bool) {
-	if o == nil || isNil(o.Hostname) {
+	if o == nil || IsNil(o.Hostname) {
 		return nil, false
 	}
 	return o.Hostname, true
@@ -180,7 +180,7 @@ func (o *Metadata) GetHostnameOk() (*string, bool) {
 
 // HasHostname returns a boolean if a field has been set.
 func (o *Metadata) HasHostname() bool {
-	if o != nil && !isNil(o.Hostname) {
+	if o != nil && !IsNil(o.Hostname) {
 		return true
 	}
 
@@ -194,7 +194,7 @@ func (o *Metadata) SetHostname(v string) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *Metadata) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -204,7 +204,7 @@ func (o *Metadata) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Metadata) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -212,7 +212,7 @@ func (o *Metadata) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *Metadata) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -226,7 +226,7 @@ func (o *Metadata) SetId(v string) {
 
 // GetIqn returns the Iqn field value if set, zero value otherwise.
 func (o *Metadata) GetIqn() string {
-	if o == nil || isNil(o.Iqn) {
+	if o == nil || IsNil(o.Iqn) {
 		var ret string
 		return ret
 	}
@@ -236,7 +236,7 @@ func (o *Metadata) GetIqn() string {
 // GetIqnOk returns a tuple with the Iqn field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Metadata) GetIqnOk() (*string, bool) {
-	if o == nil || isNil(o.Iqn) {
+	if o == nil || IsNil(o.Iqn) {
 		return nil, false
 	}
 	return o.Iqn, true
@@ -244,7 +244,7 @@ func (o *Metadata) GetIqnOk() (*string, bool) {
 
 // HasIqn returns a boolean if a field has been set.
 func (o *Metadata) HasIqn() bool {
-	if o != nil && !isNil(o.Iqn) {
+	if o != nil && !IsNil(o.Iqn) {
 		return true
 	}
 
@@ -258,7 +258,7 @@ func (o *Metadata) SetIqn(v string) {
 
 // GetMetro returns the Metro field value if set, zero value otherwise.
 func (o *Metadata) GetMetro() string {
-	if o == nil || isNil(o.Metro) {
+	if o == nil || IsNil(o.Metro) {
 		var ret string
 		return ret
 	}
@@ -268,7 +268,7 @@ func (o *Metadata) GetMetro() string {
 // GetMetroOk returns a tuple with the Metro field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Metadata) GetMetroOk() (*string, bool) {
-	if o == nil || isNil(o.Metro) {
+	if o == nil || IsNil(o.Metro) {
 		return nil, false
 	}
 	return o.Metro, true
@@ -276,7 +276,7 @@ func (o *Metadata) GetMetroOk() (*string, bool) {
 
 // HasMetro returns a boolean if a field has been set.
 func (o *Metadata) HasMetro() bool {
-	if o != nil && !isNil(o.Metro) {
+	if o != nil && !IsNil(o.Metro) {
 		return true
 	}
 
@@ -290,7 +290,7 @@ func (o *Metadata) SetMetro(v string) {
 
 // GetNetwork returns the Network field value if set, zero value otherwise.
 func (o *Metadata) GetNetwork() MetadataNetwork {
-	if o == nil || isNil(o.Network) {
+	if o == nil || IsNil(o.Network) {
 		var ret MetadataNetwork
 		return ret
 	}
@@ -300,7 +300,7 @@ func (o *Metadata) GetNetwork() MetadataNetwork {
 // GetNetworkOk returns a tuple with the Network field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Metadata) GetNetworkOk() (*MetadataNetwork, bool) {
-	if o == nil || isNil(o.Network) {
+	if o == nil || IsNil(o.Network) {
 		return nil, false
 	}
 	return o.Network, true
@@ -308,7 +308,7 @@ func (o *Metadata) GetNetworkOk() (*MetadataNetwork, bool) {
 
 // HasNetwork returns a boolean if a field has been set.
 func (o *Metadata) HasNetwork() bool {
-	if o != nil && !isNil(o.Network) {
+	if o != nil && !IsNil(o.Network) {
 		return true
 	}
 
@@ -322,7 +322,7 @@ func (o *Metadata) SetNetwork(v MetadataNetwork) {
 
 // GetOperatingSystem returns the OperatingSystem field value if set, zero value otherwise.
 func (o *Metadata) GetOperatingSystem() map[string]interface{} {
-	if o == nil || isNil(o.OperatingSystem) {
+	if o == nil || IsNil(o.OperatingSystem) {
 		var ret map[string]interface{}
 		return ret
 	}
@@ -332,7 +332,7 @@ func (o *Metadata) GetOperatingSystem() map[string]interface{} {
 // GetOperatingSystemOk returns a tuple with the OperatingSystem field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Metadata) GetOperatingSystemOk() (map[string]interface{}, bool) {
-	if o == nil || isNil(o.OperatingSystem) {
+	if o == nil || IsNil(o.OperatingSystem) {
 		return map[string]interface{}{}, false
 	}
 	return o.OperatingSystem, true
@@ -340,7 +340,7 @@ func (o *Metadata) GetOperatingSystemOk() (map[string]interface{}, bool) {
 
 // HasOperatingSystem returns a boolean if a field has been set.
 func (o *Metadata) HasOperatingSystem() bool {
-	if o != nil && !isNil(o.OperatingSystem) {
+	if o != nil && !IsNil(o.OperatingSystem) {
 		return true
 	}
 
@@ -354,7 +354,7 @@ func (o *Metadata) SetOperatingSystem(v map[string]interface{}) {
 
 // GetPlan returns the Plan field value if set, zero value otherwise.
 func (o *Metadata) GetPlan() string {
-	if o == nil || isNil(o.Plan) {
+	if o == nil || IsNil(o.Plan) {
 		var ret string
 		return ret
 	}
@@ -364,7 +364,7 @@ func (o *Metadata) GetPlan() string {
 // GetPlanOk returns a tuple with the Plan field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Metadata) GetPlanOk() (*string, bool) {
-	if o == nil || isNil(o.Plan) {
+	if o == nil || IsNil(o.Plan) {
 		return nil, false
 	}
 	return o.Plan, true
@@ -372,7 +372,7 @@ func (o *Metadata) GetPlanOk() (*string, bool) {
 
 // HasPlan returns a boolean if a field has been set.
 func (o *Metadata) HasPlan() bool {
-	if o != nil && !isNil(o.Plan) {
+	if o != nil && !IsNil(o.Plan) {
 		return true
 	}
 
@@ -386,7 +386,7 @@ func (o *Metadata) SetPlan(v string) {
 
 // GetPrivateSubnets returns the PrivateSubnets field value if set, zero value otherwise.
 func (o *Metadata) GetPrivateSubnets() []string {
-	if o == nil || isNil(o.PrivateSubnets) {
+	if o == nil || IsNil(o.PrivateSubnets) {
 		var ret []string
 		return ret
 	}
@@ -396,7 +396,7 @@ func (o *Metadata) GetPrivateSubnets() []string {
 // GetPrivateSubnetsOk returns a tuple with the PrivateSubnets field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Metadata) GetPrivateSubnetsOk() ([]string, bool) {
-	if o == nil || isNil(o.PrivateSubnets) {
+	if o == nil || IsNil(o.PrivateSubnets) {
 		return nil, false
 	}
 	return o.PrivateSubnets, true
@@ -404,7 +404,7 @@ func (o *Metadata) GetPrivateSubnetsOk() ([]string, bool) {
 
 // HasPrivateSubnets returns a boolean if a field has been set.
 func (o *Metadata) HasPrivateSubnets() bool {
-	if o != nil && !isNil(o.PrivateSubnets) {
+	if o != nil && !IsNil(o.PrivateSubnets) {
 		return true
 	}
 
@@ -418,7 +418,7 @@ func (o *Metadata) SetPrivateSubnets(v []string) {
 
 // GetReserved returns the Reserved field value if set, zero value otherwise.
 func (o *Metadata) GetReserved() bool {
-	if o == nil || isNil(o.Reserved) {
+	if o == nil || IsNil(o.Reserved) {
 		var ret bool
 		return ret
 	}
@@ -428,7 +428,7 @@ func (o *Metadata) GetReserved() bool {
 // GetReservedOk returns a tuple with the Reserved field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Metadata) GetReservedOk() (*bool, bool) {
-	if o == nil || isNil(o.Reserved) {
+	if o == nil || IsNil(o.Reserved) {
 		return nil, false
 	}
 	return o.Reserved, true
@@ -436,7 +436,7 @@ func (o *Metadata) GetReservedOk() (*bool, bool) {
 
 // HasReserved returns a boolean if a field has been set.
 func (o *Metadata) HasReserved() bool {
-	if o != nil && !isNil(o.Reserved) {
+	if o != nil && !IsNil(o.Reserved) {
 		return true
 	}
 
@@ -450,7 +450,7 @@ func (o *Metadata) SetReserved(v bool) {
 
 // GetSpecs returns the Specs field value if set, zero value otherwise.
 func (o *Metadata) GetSpecs() map[string]interface{} {
-	if o == nil || isNil(o.Specs) {
+	if o == nil || IsNil(o.Specs) {
 		var ret map[string]interface{}
 		return ret
 	}
@@ -460,7 +460,7 @@ func (o *Metadata) GetSpecs() map[string]interface{} {
 // GetSpecsOk returns a tuple with the Specs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Metadata) GetSpecsOk() (map[string]interface{}, bool) {
-	if o == nil || isNil(o.Specs) {
+	if o == nil || IsNil(o.Specs) {
 		return map[string]interface{}{}, false
 	}
 	return o.Specs, true
@@ -468,7 +468,7 @@ func (o *Metadata) GetSpecsOk() (map[string]interface{}, bool) {
 
 // HasSpecs returns a boolean if a field has been set.
 func (o *Metadata) HasSpecs() bool {
-	if o != nil && !isNil(o.Specs) {
+	if o != nil && !IsNil(o.Specs) {
 		return true
 	}
 
@@ -482,7 +482,7 @@ func (o *Metadata) SetSpecs(v map[string]interface{}) {
 
 // GetSshKeys returns the SshKeys field value if set, zero value otherwise.
 func (o *Metadata) GetSshKeys() []string {
-	if o == nil || isNil(o.SshKeys) {
+	if o == nil || IsNil(o.SshKeys) {
 		var ret []string
 		return ret
 	}
@@ -492,7 +492,7 @@ func (o *Metadata) GetSshKeys() []string {
 // GetSshKeysOk returns a tuple with the SshKeys field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Metadata) GetSshKeysOk() ([]string, bool) {
-	if o == nil || isNil(o.SshKeys) {
+	if o == nil || IsNil(o.SshKeys) {
 		return nil, false
 	}
 	return o.SshKeys, true
@@ -500,7 +500,7 @@ func (o *Metadata) GetSshKeysOk() ([]string, bool) {
 
 // HasSshKeys returns a boolean if a field has been set.
 func (o *Metadata) HasSshKeys() bool {
-	if o != nil && !isNil(o.SshKeys) {
+	if o != nil && !IsNil(o.SshKeys) {
 		return true
 	}
 
@@ -514,7 +514,7 @@ func (o *Metadata) SetSshKeys(v []string) {
 
 // GetSwitchShortId returns the SwitchShortId field value if set, zero value otherwise.
 func (o *Metadata) GetSwitchShortId() string {
-	if o == nil || isNil(o.SwitchShortId) {
+	if o == nil || IsNil(o.SwitchShortId) {
 		var ret string
 		return ret
 	}
@@ -524,7 +524,7 @@ func (o *Metadata) GetSwitchShortId() string {
 // GetSwitchShortIdOk returns a tuple with the SwitchShortId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Metadata) GetSwitchShortIdOk() (*string, bool) {
-	if o == nil || isNil(o.SwitchShortId) {
+	if o == nil || IsNil(o.SwitchShortId) {
 		return nil, false
 	}
 	return o.SwitchShortId, true
@@ -532,7 +532,7 @@ func (o *Metadata) GetSwitchShortIdOk() (*string, bool) {
 
 // HasSwitchShortId returns a boolean if a field has been set.
 func (o *Metadata) HasSwitchShortId() bool {
-	if o != nil && !isNil(o.SwitchShortId) {
+	if o != nil && !IsNil(o.SwitchShortId) {
 		return true
 	}
 
@@ -546,7 +546,7 @@ func (o *Metadata) SetSwitchShortId(v string) {
 
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *Metadata) GetTags() []string {
-	if o == nil || isNil(o.Tags) {
+	if o == nil || IsNil(o.Tags) {
 		var ret []string
 		return ret
 	}
@@ -556,7 +556,7 @@ func (o *Metadata) GetTags() []string {
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Metadata) GetTagsOk() ([]string, bool) {
-	if o == nil || isNil(o.Tags) {
+	if o == nil || IsNil(o.Tags) {
 		return nil, false
 	}
 	return o.Tags, true
@@ -564,7 +564,7 @@ func (o *Metadata) GetTagsOk() ([]string, bool) {
 
 // HasTags returns a boolean if a field has been set.
 func (o *Metadata) HasTags() bool {
-	if o != nil && !isNil(o.Tags) {
+	if o != nil && !IsNil(o.Tags) {
 		return true
 	}
 
@@ -578,7 +578,7 @@ func (o *Metadata) SetTags(v []string) {
 
 // GetVolumes returns the Volumes field value if set, zero value otherwise.
 func (o *Metadata) GetVolumes() []string {
-	if o == nil || isNil(o.Volumes) {
+	if o == nil || IsNil(o.Volumes) {
 		var ret []string
 		return ret
 	}
@@ -588,7 +588,7 @@ func (o *Metadata) GetVolumes() []string {
 // GetVolumesOk returns a tuple with the Volumes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Metadata) GetVolumesOk() ([]string, bool) {
-	if o == nil || isNil(o.Volumes) {
+	if o == nil || IsNil(o.Volumes) {
 		return nil, false
 	}
 	return o.Volumes, true
@@ -596,7 +596,7 @@ func (o *Metadata) GetVolumesOk() ([]string, bool) {
 
 // HasVolumes returns a boolean if a field has been set.
 func (o *Metadata) HasVolumes() bool {
-	if o != nil && !isNil(o.Volumes) {
+	if o != nil && !IsNil(o.Volumes) {
 		return true
 	}
 
@@ -618,55 +618,55 @@ func (o Metadata) MarshalJSON() ([]byte, error) {
 
 func (o Metadata) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Class) {
+	if !IsNil(o.Class) {
 		toSerialize["class"] = o.Class
 	}
-	if !isNil(o.Customdata) {
+	if !IsNil(o.Customdata) {
 		toSerialize["customdata"] = o.Customdata
 	}
-	if !isNil(o.Facility) {
+	if !IsNil(o.Facility) {
 		toSerialize["facility"] = o.Facility
 	}
-	if !isNil(o.Hostname) {
+	if !IsNil(o.Hostname) {
 		toSerialize["hostname"] = o.Hostname
 	}
-	if !isNil(o.Id) {
+	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
-	if !isNil(o.Iqn) {
+	if !IsNil(o.Iqn) {
 		toSerialize["iqn"] = o.Iqn
 	}
-	if !isNil(o.Metro) {
+	if !IsNil(o.Metro) {
 		toSerialize["metro"] = o.Metro
 	}
-	if !isNil(o.Network) {
+	if !IsNil(o.Network) {
 		toSerialize["network"] = o.Network
 	}
-	if !isNil(o.OperatingSystem) {
+	if !IsNil(o.OperatingSystem) {
 		toSerialize["operating_system"] = o.OperatingSystem
 	}
-	if !isNil(o.Plan) {
+	if !IsNil(o.Plan) {
 		toSerialize["plan"] = o.Plan
 	}
-	if !isNil(o.PrivateSubnets) {
+	if !IsNil(o.PrivateSubnets) {
 		toSerialize["private_subnets"] = o.PrivateSubnets
 	}
-	if !isNil(o.Reserved) {
+	if !IsNil(o.Reserved) {
 		toSerialize["reserved"] = o.Reserved
 	}
-	if !isNil(o.Specs) {
+	if !IsNil(o.Specs) {
 		toSerialize["specs"] = o.Specs
 	}
-	if !isNil(o.SshKeys) {
+	if !IsNil(o.SshKeys) {
 		toSerialize["ssh_keys"] = o.SshKeys
 	}
-	if !isNil(o.SwitchShortId) {
+	if !IsNil(o.SwitchShortId) {
 		toSerialize["switch_short_id"] = o.SwitchShortId
 	}
-	if !isNil(o.Tags) {
+	if !IsNil(o.Tags) {
 		toSerialize["tags"] = o.Tags
 	}
-	if !isNil(o.Volumes) {
+	if !IsNil(o.Volumes) {
 		toSerialize["volumes"] = o.Volumes
 	}
 

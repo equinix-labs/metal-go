@@ -45,7 +45,7 @@ func NewCapacityCheckPerFacilityListWithDefaults() *CapacityCheckPerFacilityList
 
 // GetServers returns the Servers field value if set, zero value otherwise.
 func (o *CapacityCheckPerFacilityList) GetServers() []CapacityCheckPerFacilityInfo {
-	if o == nil || isNil(o.Servers) {
+	if o == nil || IsNil(o.Servers) {
 		var ret []CapacityCheckPerFacilityInfo
 		return ret
 	}
@@ -55,7 +55,7 @@ func (o *CapacityCheckPerFacilityList) GetServers() []CapacityCheckPerFacilityIn
 // GetServersOk returns a tuple with the Servers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CapacityCheckPerFacilityList) GetServersOk() ([]CapacityCheckPerFacilityInfo, bool) {
-	if o == nil || isNil(o.Servers) {
+	if o == nil || IsNil(o.Servers) {
 		return nil, false
 	}
 	return o.Servers, true
@@ -63,7 +63,7 @@ func (o *CapacityCheckPerFacilityList) GetServersOk() ([]CapacityCheckPerFacilit
 
 // HasServers returns a boolean if a field has been set.
 func (o *CapacityCheckPerFacilityList) HasServers() bool {
-	if o != nil && !isNil(o.Servers) {
+	if o != nil && !IsNil(o.Servers) {
 		return true
 	}
 
@@ -85,7 +85,7 @@ func (o CapacityCheckPerFacilityList) MarshalJSON() ([]byte, error) {
 
 func (o CapacityCheckPerFacilityList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Servers) {
+	if !IsNil(o.Servers) {
 		toSerialize["servers"] = o.Servers
 	}
 

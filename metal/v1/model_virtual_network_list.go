@@ -45,7 +45,7 @@ func NewVirtualNetworkListWithDefaults() *VirtualNetworkList {
 
 // GetVirtualNetworks returns the VirtualNetworks field value if set, zero value otherwise.
 func (o *VirtualNetworkList) GetVirtualNetworks() []VirtualNetwork {
-	if o == nil || isNil(o.VirtualNetworks) {
+	if o == nil || IsNil(o.VirtualNetworks) {
 		var ret []VirtualNetwork
 		return ret
 	}
@@ -55,7 +55,7 @@ func (o *VirtualNetworkList) GetVirtualNetworks() []VirtualNetwork {
 // GetVirtualNetworksOk returns a tuple with the VirtualNetworks field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VirtualNetworkList) GetVirtualNetworksOk() ([]VirtualNetwork, bool) {
-	if o == nil || isNil(o.VirtualNetworks) {
+	if o == nil || IsNil(o.VirtualNetworks) {
 		return nil, false
 	}
 	return o.VirtualNetworks, true
@@ -63,7 +63,7 @@ func (o *VirtualNetworkList) GetVirtualNetworksOk() ([]VirtualNetwork, bool) {
 
 // HasVirtualNetworks returns a boolean if a field has been set.
 func (o *VirtualNetworkList) HasVirtualNetworks() bool {
-	if o != nil && !isNil(o.VirtualNetworks) {
+	if o != nil && !IsNil(o.VirtualNetworks) {
 		return true
 	}
 
@@ -85,7 +85,7 @@ func (o VirtualNetworkList) MarshalJSON() ([]byte, error) {
 
 func (o VirtualNetworkList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.VirtualNetworks) {
+	if !IsNil(o.VirtualNetworks) {
 		toSerialize["virtual_networks"] = o.VirtualNetworks
 	}
 

@@ -55,7 +55,7 @@ func NewEventWithDefaults() *Event {
 
 // GetBody returns the Body field value if set, zero value otherwise.
 func (o *Event) GetBody() string {
-	if o == nil || isNil(o.Body) {
+	if o == nil || IsNil(o.Body) {
 		var ret string
 		return ret
 	}
@@ -65,7 +65,7 @@ func (o *Event) GetBody() string {
 // GetBodyOk returns a tuple with the Body field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Event) GetBodyOk() (*string, bool) {
-	if o == nil || isNil(o.Body) {
+	if o == nil || IsNil(o.Body) {
 		return nil, false
 	}
 	return o.Body, true
@@ -73,7 +73,7 @@ func (o *Event) GetBodyOk() (*string, bool) {
 
 // HasBody returns a boolean if a field has been set.
 func (o *Event) HasBody() bool {
-	if o != nil && !isNil(o.Body) {
+	if o != nil && !IsNil(o.Body) {
 		return true
 	}
 
@@ -87,7 +87,7 @@ func (o *Event) SetBody(v string) {
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *Event) GetCreatedAt() time.Time {
-	if o == nil || isNil(o.CreatedAt) {
+	if o == nil || IsNil(o.CreatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -97,7 +97,7 @@ func (o *Event) GetCreatedAt() time.Time {
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Event) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.CreatedAt) {
+	if o == nil || IsNil(o.CreatedAt) {
 		return nil, false
 	}
 	return o.CreatedAt, true
@@ -105,7 +105,7 @@ func (o *Event) GetCreatedAtOk() (*time.Time, bool) {
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *Event) HasCreatedAt() bool {
-	if o != nil && !isNil(o.CreatedAt) {
+	if o != nil && !IsNil(o.CreatedAt) {
 		return true
 	}
 
@@ -119,7 +119,7 @@ func (o *Event) SetCreatedAt(v time.Time) {
 
 // GetHref returns the Href field value if set, zero value otherwise.
 func (o *Event) GetHref() string {
-	if o == nil || isNil(o.Href) {
+	if o == nil || IsNil(o.Href) {
 		var ret string
 		return ret
 	}
@@ -129,7 +129,7 @@ func (o *Event) GetHref() string {
 // GetHrefOk returns a tuple with the Href field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Event) GetHrefOk() (*string, bool) {
-	if o == nil || isNil(o.Href) {
+	if o == nil || IsNil(o.Href) {
 		return nil, false
 	}
 	return o.Href, true
@@ -137,7 +137,7 @@ func (o *Event) GetHrefOk() (*string, bool) {
 
 // HasHref returns a boolean if a field has been set.
 func (o *Event) HasHref() bool {
-	if o != nil && !isNil(o.Href) {
+	if o != nil && !IsNil(o.Href) {
 		return true
 	}
 
@@ -151,7 +151,7 @@ func (o *Event) SetHref(v string) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *Event) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -161,7 +161,7 @@ func (o *Event) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Event) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -169,7 +169,7 @@ func (o *Event) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *Event) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -183,7 +183,7 @@ func (o *Event) SetId(v string) {
 
 // GetInterpolated returns the Interpolated field value if set, zero value otherwise.
 func (o *Event) GetInterpolated() string {
-	if o == nil || isNil(o.Interpolated) {
+	if o == nil || IsNil(o.Interpolated) {
 		var ret string
 		return ret
 	}
@@ -193,7 +193,7 @@ func (o *Event) GetInterpolated() string {
 // GetInterpolatedOk returns a tuple with the Interpolated field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Event) GetInterpolatedOk() (*string, bool) {
-	if o == nil || isNil(o.Interpolated) {
+	if o == nil || IsNil(o.Interpolated) {
 		return nil, false
 	}
 	return o.Interpolated, true
@@ -201,7 +201,7 @@ func (o *Event) GetInterpolatedOk() (*string, bool) {
 
 // HasInterpolated returns a boolean if a field has been set.
 func (o *Event) HasInterpolated() bool {
-	if o != nil && !isNil(o.Interpolated) {
+	if o != nil && !IsNil(o.Interpolated) {
 		return true
 	}
 
@@ -215,7 +215,7 @@ func (o *Event) SetInterpolated(v string) {
 
 // GetRelationships returns the Relationships field value if set, zero value otherwise.
 func (o *Event) GetRelationships() []Href {
-	if o == nil || isNil(o.Relationships) {
+	if o == nil || IsNil(o.Relationships) {
 		var ret []Href
 		return ret
 	}
@@ -225,7 +225,7 @@ func (o *Event) GetRelationships() []Href {
 // GetRelationshipsOk returns a tuple with the Relationships field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Event) GetRelationshipsOk() ([]Href, bool) {
-	if o == nil || isNil(o.Relationships) {
+	if o == nil || IsNil(o.Relationships) {
 		return nil, false
 	}
 	return o.Relationships, true
@@ -233,7 +233,7 @@ func (o *Event) GetRelationshipsOk() ([]Href, bool) {
 
 // HasRelationships returns a boolean if a field has been set.
 func (o *Event) HasRelationships() bool {
-	if o != nil && !isNil(o.Relationships) {
+	if o != nil && !IsNil(o.Relationships) {
 		return true
 	}
 
@@ -247,7 +247,7 @@ func (o *Event) SetRelationships(v []Href) {
 
 // GetState returns the State field value if set, zero value otherwise.
 func (o *Event) GetState() string {
-	if o == nil || isNil(o.State) {
+	if o == nil || IsNil(o.State) {
 		var ret string
 		return ret
 	}
@@ -257,7 +257,7 @@ func (o *Event) GetState() string {
 // GetStateOk returns a tuple with the State field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Event) GetStateOk() (*string, bool) {
-	if o == nil || isNil(o.State) {
+	if o == nil || IsNil(o.State) {
 		return nil, false
 	}
 	return o.State, true
@@ -265,7 +265,7 @@ func (o *Event) GetStateOk() (*string, bool) {
 
 // HasState returns a boolean if a field has been set.
 func (o *Event) HasState() bool {
-	if o != nil && !isNil(o.State) {
+	if o != nil && !IsNil(o.State) {
 		return true
 	}
 
@@ -279,7 +279,7 @@ func (o *Event) SetState(v string) {
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *Event) GetType() string {
-	if o == nil || isNil(o.Type) {
+	if o == nil || IsNil(o.Type) {
 		var ret string
 		return ret
 	}
@@ -289,7 +289,7 @@ func (o *Event) GetType() string {
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Event) GetTypeOk() (*string, bool) {
-	if o == nil || isNil(o.Type) {
+	if o == nil || IsNil(o.Type) {
 		return nil, false
 	}
 	return o.Type, true
@@ -297,7 +297,7 @@ func (o *Event) GetTypeOk() (*string, bool) {
 
 // HasType returns a boolean if a field has been set.
 func (o *Event) HasType() bool {
-	if o != nil && !isNil(o.Type) {
+	if o != nil && !IsNil(o.Type) {
 		return true
 	}
 
@@ -311,7 +311,7 @@ func (o *Event) SetType(v string) {
 
 // GetModifiedBy returns the ModifiedBy field value if set, zero value otherwise.
 func (o *Event) GetModifiedBy() map[string]interface{} {
-	if o == nil || isNil(o.ModifiedBy) {
+	if o == nil || IsNil(o.ModifiedBy) {
 		var ret map[string]interface{}
 		return ret
 	}
@@ -321,7 +321,7 @@ func (o *Event) GetModifiedBy() map[string]interface{} {
 // GetModifiedByOk returns a tuple with the ModifiedBy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Event) GetModifiedByOk() (map[string]interface{}, bool) {
-	if o == nil || isNil(o.ModifiedBy) {
+	if o == nil || IsNil(o.ModifiedBy) {
 		return map[string]interface{}{}, false
 	}
 	return o.ModifiedBy, true
@@ -329,7 +329,7 @@ func (o *Event) GetModifiedByOk() (map[string]interface{}, bool) {
 
 // HasModifiedBy returns a boolean if a field has been set.
 func (o *Event) HasModifiedBy() bool {
-	if o != nil && !isNil(o.ModifiedBy) {
+	if o != nil && !IsNil(o.ModifiedBy) {
 		return true
 	}
 
@@ -343,7 +343,7 @@ func (o *Event) SetModifiedBy(v map[string]interface{}) {
 
 // GetIp returns the Ip field value if set, zero value otherwise.
 func (o *Event) GetIp() string {
-	if o == nil || isNil(o.Ip) {
+	if o == nil || IsNil(o.Ip) {
 		var ret string
 		return ret
 	}
@@ -353,7 +353,7 @@ func (o *Event) GetIp() string {
 // GetIpOk returns a tuple with the Ip field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Event) GetIpOk() (*string, bool) {
-	if o == nil || isNil(o.Ip) {
+	if o == nil || IsNil(o.Ip) {
 		return nil, false
 	}
 	return o.Ip, true
@@ -361,7 +361,7 @@ func (o *Event) GetIpOk() (*string, bool) {
 
 // HasIp returns a boolean if a field has been set.
 func (o *Event) HasIp() bool {
-	if o != nil && !isNil(o.Ip) {
+	if o != nil && !IsNil(o.Ip) {
 		return true
 	}
 
@@ -383,34 +383,34 @@ func (o Event) MarshalJSON() ([]byte, error) {
 
 func (o Event) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Body) {
+	if !IsNil(o.Body) {
 		toSerialize["body"] = o.Body
 	}
-	if !isNil(o.CreatedAt) {
+	if !IsNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt
 	}
-	if !isNil(o.Href) {
+	if !IsNil(o.Href) {
 		toSerialize["href"] = o.Href
 	}
-	if !isNil(o.Id) {
+	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
-	if !isNil(o.Interpolated) {
+	if !IsNil(o.Interpolated) {
 		toSerialize["interpolated"] = o.Interpolated
 	}
-	if !isNil(o.Relationships) {
+	if !IsNil(o.Relationships) {
 		toSerialize["relationships"] = o.Relationships
 	}
-	if !isNil(o.State) {
+	if !IsNil(o.State) {
 		toSerialize["state"] = o.State
 	}
-	if !isNil(o.Type) {
+	if !IsNil(o.Type) {
 		toSerialize["type"] = o.Type
 	}
-	if !isNil(o.ModifiedBy) {
+	if !IsNil(o.ModifiedBy) {
 		toSerialize["modified_by"] = o.ModifiedBy
 	}
-	if !isNil(o.Ip) {
+	if !IsNil(o.Ip) {
 		toSerialize["ip"] = o.Ip
 	}
 

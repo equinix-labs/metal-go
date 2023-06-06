@@ -45,7 +45,7 @@ func NewSpotPricesDatapointsWithDefaults() *SpotPricesDatapoints {
 
 // GetDatapoints returns the Datapoints field value if set, zero value otherwise.
 func (o *SpotPricesDatapoints) GetDatapoints() [][]float32 {
-	if o == nil || isNil(o.Datapoints) {
+	if o == nil || IsNil(o.Datapoints) {
 		var ret [][]float32
 		return ret
 	}
@@ -55,7 +55,7 @@ func (o *SpotPricesDatapoints) GetDatapoints() [][]float32 {
 // GetDatapointsOk returns a tuple with the Datapoints field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SpotPricesDatapoints) GetDatapointsOk() ([][]float32, bool) {
-	if o == nil || isNil(o.Datapoints) {
+	if o == nil || IsNil(o.Datapoints) {
 		return nil, false
 	}
 	return o.Datapoints, true
@@ -63,7 +63,7 @@ func (o *SpotPricesDatapoints) GetDatapointsOk() ([][]float32, bool) {
 
 // HasDatapoints returns a boolean if a field has been set.
 func (o *SpotPricesDatapoints) HasDatapoints() bool {
-	if o != nil && !isNil(o.Datapoints) {
+	if o != nil && !IsNil(o.Datapoints) {
 		return true
 	}
 
@@ -85,7 +85,7 @@ func (o SpotPricesDatapoints) MarshalJSON() ([]byte, error) {
 
 func (o SpotPricesDatapoints) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Datapoints) {
+	if !IsNil(o.Datapoints) {
 		toSerialize["datapoints"] = o.Datapoints
 	}
 

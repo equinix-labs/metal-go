@@ -45,7 +45,7 @@ func NewFilesystemWithDefaults() *Filesystem {
 
 // GetMount returns the Mount field value if set, zero value otherwise.
 func (o *Filesystem) GetMount() Mount {
-	if o == nil || isNil(o.Mount) {
+	if o == nil || IsNil(o.Mount) {
 		var ret Mount
 		return ret
 	}
@@ -55,7 +55,7 @@ func (o *Filesystem) GetMount() Mount {
 // GetMountOk returns a tuple with the Mount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Filesystem) GetMountOk() (*Mount, bool) {
-	if o == nil || isNil(o.Mount) {
+	if o == nil || IsNil(o.Mount) {
 		return nil, false
 	}
 	return o.Mount, true
@@ -63,7 +63,7 @@ func (o *Filesystem) GetMountOk() (*Mount, bool) {
 
 // HasMount returns a boolean if a field has been set.
 func (o *Filesystem) HasMount() bool {
-	if o != nil && !isNil(o.Mount) {
+	if o != nil && !IsNil(o.Mount) {
 		return true
 	}
 
@@ -85,7 +85,7 @@ func (o Filesystem) MarshalJSON() ([]byte, error) {
 
 func (o Filesystem) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Mount) {
+	if !IsNil(o.Mount) {
 		toSerialize["mount"] = o.Mount
 	}
 

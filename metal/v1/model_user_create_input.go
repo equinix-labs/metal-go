@@ -67,7 +67,7 @@ func NewUserCreateInputWithDefaults() *UserCreateInput {
 
 // GetAvatar returns the Avatar field value if set, zero value otherwise.
 func (o *UserCreateInput) GetAvatar() *os.File {
-	if o == nil || isNil(o.Avatar) {
+	if o == nil || IsNil(o.Avatar) {
 		var ret *os.File
 		return ret
 	}
@@ -77,7 +77,7 @@ func (o *UserCreateInput) GetAvatar() *os.File {
 // GetAvatarOk returns a tuple with the Avatar field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserCreateInput) GetAvatarOk() (**os.File, bool) {
-	if o == nil || isNil(o.Avatar) {
+	if o == nil || IsNil(o.Avatar) {
 		return nil, false
 	}
 	return o.Avatar, true
@@ -85,7 +85,7 @@ func (o *UserCreateInput) GetAvatarOk() (**os.File, bool) {
 
 // HasAvatar returns a boolean if a field has been set.
 func (o *UserCreateInput) HasAvatar() bool {
-	if o != nil && !isNil(o.Avatar) {
+	if o != nil && !IsNil(o.Avatar) {
 		return true
 	}
 
@@ -99,7 +99,7 @@ func (o *UserCreateInput) SetAvatar(v *os.File) {
 
 // GetCompanyName returns the CompanyName field value if set, zero value otherwise.
 func (o *UserCreateInput) GetCompanyName() string {
-	if o == nil || isNil(o.CompanyName) {
+	if o == nil || IsNil(o.CompanyName) {
 		var ret string
 		return ret
 	}
@@ -109,7 +109,7 @@ func (o *UserCreateInput) GetCompanyName() string {
 // GetCompanyNameOk returns a tuple with the CompanyName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserCreateInput) GetCompanyNameOk() (*string, bool) {
-	if o == nil || isNil(o.CompanyName) {
+	if o == nil || IsNil(o.CompanyName) {
 		return nil, false
 	}
 	return o.CompanyName, true
@@ -117,7 +117,7 @@ func (o *UserCreateInput) GetCompanyNameOk() (*string, bool) {
 
 // HasCompanyName returns a boolean if a field has been set.
 func (o *UserCreateInput) HasCompanyName() bool {
-	if o != nil && !isNil(o.CompanyName) {
+	if o != nil && !IsNil(o.CompanyName) {
 		return true
 	}
 
@@ -131,7 +131,7 @@ func (o *UserCreateInput) SetCompanyName(v string) {
 
 // GetCompanyUrl returns the CompanyUrl field value if set, zero value otherwise.
 func (o *UserCreateInput) GetCompanyUrl() string {
-	if o == nil || isNil(o.CompanyUrl) {
+	if o == nil || IsNil(o.CompanyUrl) {
 		var ret string
 		return ret
 	}
@@ -141,7 +141,7 @@ func (o *UserCreateInput) GetCompanyUrl() string {
 // GetCompanyUrlOk returns a tuple with the CompanyUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserCreateInput) GetCompanyUrlOk() (*string, bool) {
-	if o == nil || isNil(o.CompanyUrl) {
+	if o == nil || IsNil(o.CompanyUrl) {
 		return nil, false
 	}
 	return o.CompanyUrl, true
@@ -149,7 +149,7 @@ func (o *UserCreateInput) GetCompanyUrlOk() (*string, bool) {
 
 // HasCompanyUrl returns a boolean if a field has been set.
 func (o *UserCreateInput) HasCompanyUrl() bool {
-	if o != nil && !isNil(o.CompanyUrl) {
+	if o != nil && !IsNil(o.CompanyUrl) {
 		return true
 	}
 
@@ -163,7 +163,7 @@ func (o *UserCreateInput) SetCompanyUrl(v string) {
 
 // GetCustomdata returns the Customdata field value if set, zero value otherwise.
 func (o *UserCreateInput) GetCustomdata() map[string]interface{} {
-	if o == nil || isNil(o.Customdata) {
+	if o == nil || IsNil(o.Customdata) {
 		var ret map[string]interface{}
 		return ret
 	}
@@ -173,7 +173,7 @@ func (o *UserCreateInput) GetCustomdata() map[string]interface{} {
 // GetCustomdataOk returns a tuple with the Customdata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserCreateInput) GetCustomdataOk() (map[string]interface{}, bool) {
-	if o == nil || isNil(o.Customdata) {
+	if o == nil || IsNil(o.Customdata) {
 		return map[string]interface{}{}, false
 	}
 	return o.Customdata, true
@@ -181,7 +181,7 @@ func (o *UserCreateInput) GetCustomdataOk() (map[string]interface{}, bool) {
 
 // HasCustomdata returns a boolean if a field has been set.
 func (o *UserCreateInput) HasCustomdata() bool {
-	if o != nil && !isNil(o.Customdata) {
+	if o != nil && !IsNil(o.Customdata) {
 		return true
 	}
 
@@ -267,7 +267,7 @@ func (o *UserCreateInput) SetLastName(v string) {
 
 // GetLevel returns the Level field value if set, zero value otherwise.
 func (o *UserCreateInput) GetLevel() string {
-	if o == nil || isNil(o.Level) {
+	if o == nil || IsNil(o.Level) {
 		var ret string
 		return ret
 	}
@@ -277,7 +277,7 @@ func (o *UserCreateInput) GetLevel() string {
 // GetLevelOk returns a tuple with the Level field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserCreateInput) GetLevelOk() (*string, bool) {
-	if o == nil || isNil(o.Level) {
+	if o == nil || IsNil(o.Level) {
 		return nil, false
 	}
 	return o.Level, true
@@ -285,7 +285,7 @@ func (o *UserCreateInput) GetLevelOk() (*string, bool) {
 
 // HasLevel returns a boolean if a field has been set.
 func (o *UserCreateInput) HasLevel() bool {
-	if o != nil && !isNil(o.Level) {
+	if o != nil && !IsNil(o.Level) {
 		return true
 	}
 
@@ -299,7 +299,7 @@ func (o *UserCreateInput) SetLevel(v string) {
 
 // GetLocked returns the Locked field value if set, zero value otherwise.
 func (o *UserCreateInput) GetLocked() bool {
-	if o == nil || isNil(o.Locked) {
+	if o == nil || IsNil(o.Locked) {
 		var ret bool
 		return ret
 	}
@@ -309,7 +309,7 @@ func (o *UserCreateInput) GetLocked() bool {
 // GetLockedOk returns a tuple with the Locked field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserCreateInput) GetLockedOk() (*bool, bool) {
-	if o == nil || isNil(o.Locked) {
+	if o == nil || IsNil(o.Locked) {
 		return nil, false
 	}
 	return o.Locked, true
@@ -317,7 +317,7 @@ func (o *UserCreateInput) GetLockedOk() (*bool, bool) {
 
 // HasLocked returns a boolean if a field has been set.
 func (o *UserCreateInput) HasLocked() bool {
-	if o != nil && !isNil(o.Locked) {
+	if o != nil && !IsNil(o.Locked) {
 		return true
 	}
 
@@ -331,7 +331,7 @@ func (o *UserCreateInput) SetLocked(v bool) {
 
 // GetPassword returns the Password field value if set, zero value otherwise.
 func (o *UserCreateInput) GetPassword() string {
-	if o == nil || isNil(o.Password) {
+	if o == nil || IsNil(o.Password) {
 		var ret string
 		return ret
 	}
@@ -341,7 +341,7 @@ func (o *UserCreateInput) GetPassword() string {
 // GetPasswordOk returns a tuple with the Password field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserCreateInput) GetPasswordOk() (*string, bool) {
-	if o == nil || isNil(o.Password) {
+	if o == nil || IsNil(o.Password) {
 		return nil, false
 	}
 	return o.Password, true
@@ -349,7 +349,7 @@ func (o *UserCreateInput) GetPasswordOk() (*string, bool) {
 
 // HasPassword returns a boolean if a field has been set.
 func (o *UserCreateInput) HasPassword() bool {
-	if o != nil && !isNil(o.Password) {
+	if o != nil && !IsNil(o.Password) {
 		return true
 	}
 
@@ -363,7 +363,7 @@ func (o *UserCreateInput) SetPassword(v string) {
 
 // GetPhoneNumber returns the PhoneNumber field value if set, zero value otherwise.
 func (o *UserCreateInput) GetPhoneNumber() string {
-	if o == nil || isNil(o.PhoneNumber) {
+	if o == nil || IsNil(o.PhoneNumber) {
 		var ret string
 		return ret
 	}
@@ -373,7 +373,7 @@ func (o *UserCreateInput) GetPhoneNumber() string {
 // GetPhoneNumberOk returns a tuple with the PhoneNumber field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserCreateInput) GetPhoneNumberOk() (*string, bool) {
-	if o == nil || isNil(o.PhoneNumber) {
+	if o == nil || IsNil(o.PhoneNumber) {
 		return nil, false
 	}
 	return o.PhoneNumber, true
@@ -381,7 +381,7 @@ func (o *UserCreateInput) GetPhoneNumberOk() (*string, bool) {
 
 // HasPhoneNumber returns a boolean if a field has been set.
 func (o *UserCreateInput) HasPhoneNumber() bool {
-	if o != nil && !isNil(o.PhoneNumber) {
+	if o != nil && !IsNil(o.PhoneNumber) {
 		return true
 	}
 
@@ -395,7 +395,7 @@ func (o *UserCreateInput) SetPhoneNumber(v string) {
 
 // GetSocialAccounts returns the SocialAccounts field value if set, zero value otherwise.
 func (o *UserCreateInput) GetSocialAccounts() map[string]interface{} {
-	if o == nil || isNil(o.SocialAccounts) {
+	if o == nil || IsNil(o.SocialAccounts) {
 		var ret map[string]interface{}
 		return ret
 	}
@@ -405,7 +405,7 @@ func (o *UserCreateInput) GetSocialAccounts() map[string]interface{} {
 // GetSocialAccountsOk returns a tuple with the SocialAccounts field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserCreateInput) GetSocialAccountsOk() (map[string]interface{}, bool) {
-	if o == nil || isNil(o.SocialAccounts) {
+	if o == nil || IsNil(o.SocialAccounts) {
 		return map[string]interface{}{}, false
 	}
 	return o.SocialAccounts, true
@@ -413,7 +413,7 @@ func (o *UserCreateInput) GetSocialAccountsOk() (map[string]interface{}, bool) {
 
 // HasSocialAccounts returns a boolean if a field has been set.
 func (o *UserCreateInput) HasSocialAccounts() bool {
-	if o != nil && !isNil(o.SocialAccounts) {
+	if o != nil && !IsNil(o.SocialAccounts) {
 		return true
 	}
 
@@ -427,7 +427,7 @@ func (o *UserCreateInput) SetSocialAccounts(v map[string]interface{}) {
 
 // GetTimezone returns the Timezone field value if set, zero value otherwise.
 func (o *UserCreateInput) GetTimezone() string {
-	if o == nil || isNil(o.Timezone) {
+	if o == nil || IsNil(o.Timezone) {
 		var ret string
 		return ret
 	}
@@ -437,7 +437,7 @@ func (o *UserCreateInput) GetTimezone() string {
 // GetTimezoneOk returns a tuple with the Timezone field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserCreateInput) GetTimezoneOk() (*string, bool) {
-	if o == nil || isNil(o.Timezone) {
+	if o == nil || IsNil(o.Timezone) {
 		return nil, false
 	}
 	return o.Timezone, true
@@ -445,7 +445,7 @@ func (o *UserCreateInput) GetTimezoneOk() (*string, bool) {
 
 // HasTimezone returns a boolean if a field has been set.
 func (o *UserCreateInput) HasTimezone() bool {
-	if o != nil && !isNil(o.Timezone) {
+	if o != nil && !IsNil(o.Timezone) {
 		return true
 	}
 
@@ -459,7 +459,7 @@ func (o *UserCreateInput) SetTimezone(v string) {
 
 // GetTitle returns the Title field value if set, zero value otherwise.
 func (o *UserCreateInput) GetTitle() string {
-	if o == nil || isNil(o.Title) {
+	if o == nil || IsNil(o.Title) {
 		var ret string
 		return ret
 	}
@@ -469,7 +469,7 @@ func (o *UserCreateInput) GetTitle() string {
 // GetTitleOk returns a tuple with the Title field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserCreateInput) GetTitleOk() (*string, bool) {
-	if o == nil || isNil(o.Title) {
+	if o == nil || IsNil(o.Title) {
 		return nil, false
 	}
 	return o.Title, true
@@ -477,7 +477,7 @@ func (o *UserCreateInput) GetTitleOk() (*string, bool) {
 
 // HasTitle returns a boolean if a field has been set.
 func (o *UserCreateInput) HasTitle() bool {
-	if o != nil && !isNil(o.Title) {
+	if o != nil && !IsNil(o.Title) {
 		return true
 	}
 
@@ -491,7 +491,7 @@ func (o *UserCreateInput) SetTitle(v string) {
 
 // GetTwoFactorAuth returns the TwoFactorAuth field value if set, zero value otherwise.
 func (o *UserCreateInput) GetTwoFactorAuth() string {
-	if o == nil || isNil(o.TwoFactorAuth) {
+	if o == nil || IsNil(o.TwoFactorAuth) {
 		var ret string
 		return ret
 	}
@@ -501,7 +501,7 @@ func (o *UserCreateInput) GetTwoFactorAuth() string {
 // GetTwoFactorAuthOk returns a tuple with the TwoFactorAuth field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserCreateInput) GetTwoFactorAuthOk() (*string, bool) {
-	if o == nil || isNil(o.TwoFactorAuth) {
+	if o == nil || IsNil(o.TwoFactorAuth) {
 		return nil, false
 	}
 	return o.TwoFactorAuth, true
@@ -509,7 +509,7 @@ func (o *UserCreateInput) GetTwoFactorAuthOk() (*string, bool) {
 
 // HasTwoFactorAuth returns a boolean if a field has been set.
 func (o *UserCreateInput) HasTwoFactorAuth() bool {
-	if o != nil && !isNil(o.TwoFactorAuth) {
+	if o != nil && !IsNil(o.TwoFactorAuth) {
 		return true
 	}
 
@@ -523,7 +523,7 @@ func (o *UserCreateInput) SetTwoFactorAuth(v string) {
 
 // GetVerifiedAt returns the VerifiedAt field value if set, zero value otherwise.
 func (o *UserCreateInput) GetVerifiedAt() time.Time {
-	if o == nil || isNil(o.VerifiedAt) {
+	if o == nil || IsNil(o.VerifiedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -533,7 +533,7 @@ func (o *UserCreateInput) GetVerifiedAt() time.Time {
 // GetVerifiedAtOk returns a tuple with the VerifiedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserCreateInput) GetVerifiedAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.VerifiedAt) {
+	if o == nil || IsNil(o.VerifiedAt) {
 		return nil, false
 	}
 	return o.VerifiedAt, true
@@ -541,7 +541,7 @@ func (o *UserCreateInput) GetVerifiedAtOk() (*time.Time, bool) {
 
 // HasVerifiedAt returns a boolean if a field has been set.
 func (o *UserCreateInput) HasVerifiedAt() bool {
-	if o != nil && !isNil(o.VerifiedAt) {
+	if o != nil && !IsNil(o.VerifiedAt) {
 		return true
 	}
 
@@ -555,7 +555,7 @@ func (o *UserCreateInput) SetVerifiedAt(v time.Time) {
 
 // GetInvitationId returns the InvitationId field value if set, zero value otherwise.
 func (o *UserCreateInput) GetInvitationId() string {
-	if o == nil || isNil(o.InvitationId) {
+	if o == nil || IsNil(o.InvitationId) {
 		var ret string
 		return ret
 	}
@@ -565,7 +565,7 @@ func (o *UserCreateInput) GetInvitationId() string {
 // GetInvitationIdOk returns a tuple with the InvitationId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserCreateInput) GetInvitationIdOk() (*string, bool) {
-	if o == nil || isNil(o.InvitationId) {
+	if o == nil || IsNil(o.InvitationId) {
 		return nil, false
 	}
 	return o.InvitationId, true
@@ -573,7 +573,7 @@ func (o *UserCreateInput) GetInvitationIdOk() (*string, bool) {
 
 // HasInvitationId returns a boolean if a field has been set.
 func (o *UserCreateInput) HasInvitationId() bool {
-	if o != nil && !isNil(o.InvitationId) {
+	if o != nil && !IsNil(o.InvitationId) {
 		return true
 	}
 
@@ -587,7 +587,7 @@ func (o *UserCreateInput) SetInvitationId(v string) {
 
 // GetNonce returns the Nonce field value if set, zero value otherwise.
 func (o *UserCreateInput) GetNonce() string {
-	if o == nil || isNil(o.Nonce) {
+	if o == nil || IsNil(o.Nonce) {
 		var ret string
 		return ret
 	}
@@ -597,7 +597,7 @@ func (o *UserCreateInput) GetNonce() string {
 // GetNonceOk returns a tuple with the Nonce field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserCreateInput) GetNonceOk() (*string, bool) {
-	if o == nil || isNil(o.Nonce) {
+	if o == nil || IsNil(o.Nonce) {
 		return nil, false
 	}
 	return o.Nonce, true
@@ -605,7 +605,7 @@ func (o *UserCreateInput) GetNonceOk() (*string, bool) {
 
 // HasNonce returns a boolean if a field has been set.
 func (o *UserCreateInput) HasNonce() bool {
-	if o != nil && !isNil(o.Nonce) {
+	if o != nil && !IsNil(o.Nonce) {
 		return true
 	}
 
@@ -627,52 +627,52 @@ func (o UserCreateInput) MarshalJSON() ([]byte, error) {
 
 func (o UserCreateInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Avatar) {
+	if !IsNil(o.Avatar) {
 		toSerialize["avatar"] = o.Avatar
 	}
-	if !isNil(o.CompanyName) {
+	if !IsNil(o.CompanyName) {
 		toSerialize["company_name"] = o.CompanyName
 	}
-	if !isNil(o.CompanyUrl) {
+	if !IsNil(o.CompanyUrl) {
 		toSerialize["company_url"] = o.CompanyUrl
 	}
-	if !isNil(o.Customdata) {
+	if !IsNil(o.Customdata) {
 		toSerialize["customdata"] = o.Customdata
 	}
 	toSerialize["emails"] = o.Emails
 	toSerialize["first_name"] = o.FirstName
 	toSerialize["last_name"] = o.LastName
-	if !isNil(o.Level) {
+	if !IsNil(o.Level) {
 		toSerialize["level"] = o.Level
 	}
-	if !isNil(o.Locked) {
+	if !IsNil(o.Locked) {
 		toSerialize["locked"] = o.Locked
 	}
-	if !isNil(o.Password) {
+	if !IsNil(o.Password) {
 		toSerialize["password"] = o.Password
 	}
-	if !isNil(o.PhoneNumber) {
+	if !IsNil(o.PhoneNumber) {
 		toSerialize["phone_number"] = o.PhoneNumber
 	}
-	if !isNil(o.SocialAccounts) {
+	if !IsNil(o.SocialAccounts) {
 		toSerialize["social_accounts"] = o.SocialAccounts
 	}
-	if !isNil(o.Timezone) {
+	if !IsNil(o.Timezone) {
 		toSerialize["timezone"] = o.Timezone
 	}
-	if !isNil(o.Title) {
+	if !IsNil(o.Title) {
 		toSerialize["title"] = o.Title
 	}
-	if !isNil(o.TwoFactorAuth) {
+	if !IsNil(o.TwoFactorAuth) {
 		toSerialize["two_factor_auth"] = o.TwoFactorAuth
 	}
-	if !isNil(o.VerifiedAt) {
+	if !IsNil(o.VerifiedAt) {
 		toSerialize["verified_at"] = o.VerifiedAt
 	}
-	if !isNil(o.InvitationId) {
+	if !IsNil(o.InvitationId) {
 		toSerialize["invitation_id"] = o.InvitationId
 	}
-	if !isNil(o.Nonce) {
+	if !IsNil(o.Nonce) {
 		toSerialize["nonce"] = o.Nonce
 	}
 

@@ -50,7 +50,7 @@ func NewLicenseWithDefaults() *License {
 
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *License) GetDescription() string {
-	if o == nil || isNil(o.Description) {
+	if o == nil || IsNil(o.Description) {
 		var ret string
 		return ret
 	}
@@ -60,7 +60,7 @@ func (o *License) GetDescription() string {
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *License) GetDescriptionOk() (*string, bool) {
-	if o == nil || isNil(o.Description) {
+	if o == nil || IsNil(o.Description) {
 		return nil, false
 	}
 	return o.Description, true
@@ -68,7 +68,7 @@ func (o *License) GetDescriptionOk() (*string, bool) {
 
 // HasDescription returns a boolean if a field has been set.
 func (o *License) HasDescription() bool {
-	if o != nil && !isNil(o.Description) {
+	if o != nil && !IsNil(o.Description) {
 		return true
 	}
 
@@ -82,7 +82,7 @@ func (o *License) SetDescription(v string) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *License) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -92,7 +92,7 @@ func (o *License) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *License) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -100,7 +100,7 @@ func (o *License) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *License) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -114,7 +114,7 @@ func (o *License) SetId(v string) {
 
 // GetLicenseKey returns the LicenseKey field value if set, zero value otherwise.
 func (o *License) GetLicenseKey() string {
-	if o == nil || isNil(o.LicenseKey) {
+	if o == nil || IsNil(o.LicenseKey) {
 		var ret string
 		return ret
 	}
@@ -124,7 +124,7 @@ func (o *License) GetLicenseKey() string {
 // GetLicenseKeyOk returns a tuple with the LicenseKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *License) GetLicenseKeyOk() (*string, bool) {
-	if o == nil || isNil(o.LicenseKey) {
+	if o == nil || IsNil(o.LicenseKey) {
 		return nil, false
 	}
 	return o.LicenseKey, true
@@ -132,7 +132,7 @@ func (o *License) GetLicenseKeyOk() (*string, bool) {
 
 // HasLicenseKey returns a boolean if a field has been set.
 func (o *License) HasLicenseKey() bool {
-	if o != nil && !isNil(o.LicenseKey) {
+	if o != nil && !IsNil(o.LicenseKey) {
 		return true
 	}
 
@@ -146,7 +146,7 @@ func (o *License) SetLicenseKey(v string) {
 
 // GetLicenseeProduct returns the LicenseeProduct field value if set, zero value otherwise.
 func (o *License) GetLicenseeProduct() Href {
-	if o == nil || isNil(o.LicenseeProduct) {
+	if o == nil || IsNil(o.LicenseeProduct) {
 		var ret Href
 		return ret
 	}
@@ -156,7 +156,7 @@ func (o *License) GetLicenseeProduct() Href {
 // GetLicenseeProductOk returns a tuple with the LicenseeProduct field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *License) GetLicenseeProductOk() (*Href, bool) {
-	if o == nil || isNil(o.LicenseeProduct) {
+	if o == nil || IsNil(o.LicenseeProduct) {
 		return nil, false
 	}
 	return o.LicenseeProduct, true
@@ -164,7 +164,7 @@ func (o *License) GetLicenseeProductOk() (*Href, bool) {
 
 // HasLicenseeProduct returns a boolean if a field has been set.
 func (o *License) HasLicenseeProduct() bool {
-	if o != nil && !isNil(o.LicenseeProduct) {
+	if o != nil && !IsNil(o.LicenseeProduct) {
 		return true
 	}
 
@@ -178,7 +178,7 @@ func (o *License) SetLicenseeProduct(v Href) {
 
 // GetProject returns the Project field value if set, zero value otherwise.
 func (o *License) GetProject() Href {
-	if o == nil || isNil(o.Project) {
+	if o == nil || IsNil(o.Project) {
 		var ret Href
 		return ret
 	}
@@ -188,7 +188,7 @@ func (o *License) GetProject() Href {
 // GetProjectOk returns a tuple with the Project field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *License) GetProjectOk() (*Href, bool) {
-	if o == nil || isNil(o.Project) {
+	if o == nil || IsNil(o.Project) {
 		return nil, false
 	}
 	return o.Project, true
@@ -196,7 +196,7 @@ func (o *License) GetProjectOk() (*Href, bool) {
 
 // HasProject returns a boolean if a field has been set.
 func (o *License) HasProject() bool {
-	if o != nil && !isNil(o.Project) {
+	if o != nil && !IsNil(o.Project) {
 		return true
 	}
 
@@ -210,7 +210,7 @@ func (o *License) SetProject(v Href) {
 
 // GetSize returns the Size field value if set, zero value otherwise.
 func (o *License) GetSize() float32 {
-	if o == nil || isNil(o.Size) {
+	if o == nil || IsNil(o.Size) {
 		var ret float32
 		return ret
 	}
@@ -220,7 +220,7 @@ func (o *License) GetSize() float32 {
 // GetSizeOk returns a tuple with the Size field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *License) GetSizeOk() (*float32, bool) {
-	if o == nil || isNil(o.Size) {
+	if o == nil || IsNil(o.Size) {
 		return nil, false
 	}
 	return o.Size, true
@@ -228,7 +228,7 @@ func (o *License) GetSizeOk() (*float32, bool) {
 
 // HasSize returns a boolean if a field has been set.
 func (o *License) HasSize() bool {
-	if o != nil && !isNil(o.Size) {
+	if o != nil && !IsNil(o.Size) {
 		return true
 	}
 
@@ -250,22 +250,22 @@ func (o License) MarshalJSON() ([]byte, error) {
 
 func (o License) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Description) {
+	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
-	if !isNil(o.Id) {
+	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
-	if !isNil(o.LicenseKey) {
+	if !IsNil(o.LicenseKey) {
 		toSerialize["license_key"] = o.LicenseKey
 	}
-	if !isNil(o.LicenseeProduct) {
+	if !IsNil(o.LicenseeProduct) {
 		toSerialize["licensee_product"] = o.LicenseeProduct
 	}
-	if !isNil(o.Project) {
+	if !IsNil(o.Project) {
 		toSerialize["project"] = o.Project
 	}
-	if !isNil(o.Size) {
+	if !IsNil(o.Size) {
 		toSerialize["size"] = o.Size
 	}
 

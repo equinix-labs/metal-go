@@ -61,7 +61,7 @@ func NewPlanWithDefaults() *Plan {
 
 // GetAvailableIn returns the AvailableIn field value if set, zero value otherwise.
 func (o *Plan) GetAvailableIn() []PlanAvailableInInner {
-	if o == nil || isNil(o.AvailableIn) {
+	if o == nil || IsNil(o.AvailableIn) {
 		var ret []PlanAvailableInInner
 		return ret
 	}
@@ -71,7 +71,7 @@ func (o *Plan) GetAvailableIn() []PlanAvailableInInner {
 // GetAvailableInOk returns a tuple with the AvailableIn field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Plan) GetAvailableInOk() ([]PlanAvailableInInner, bool) {
-	if o == nil || isNil(o.AvailableIn) {
+	if o == nil || IsNil(o.AvailableIn) {
 		return nil, false
 	}
 	return o.AvailableIn, true
@@ -79,7 +79,7 @@ func (o *Plan) GetAvailableInOk() ([]PlanAvailableInInner, bool) {
 
 // HasAvailableIn returns a boolean if a field has been set.
 func (o *Plan) HasAvailableIn() bool {
-	if o != nil && !isNil(o.AvailableIn) {
+	if o != nil && !IsNil(o.AvailableIn) {
 		return true
 	}
 
@@ -93,7 +93,7 @@ func (o *Plan) SetAvailableIn(v []PlanAvailableInInner) {
 
 // GetAvailableInMetros returns the AvailableInMetros field value if set, zero value otherwise.
 func (o *Plan) GetAvailableInMetros() []PlanAvailableInMetrosInner {
-	if o == nil || isNil(o.AvailableInMetros) {
+	if o == nil || IsNil(o.AvailableInMetros) {
 		var ret []PlanAvailableInMetrosInner
 		return ret
 	}
@@ -103,7 +103,7 @@ func (o *Plan) GetAvailableInMetros() []PlanAvailableInMetrosInner {
 // GetAvailableInMetrosOk returns a tuple with the AvailableInMetros field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Plan) GetAvailableInMetrosOk() ([]PlanAvailableInMetrosInner, bool) {
-	if o == nil || isNil(o.AvailableInMetros) {
+	if o == nil || IsNil(o.AvailableInMetros) {
 		return nil, false
 	}
 	return o.AvailableInMetros, true
@@ -111,7 +111,7 @@ func (o *Plan) GetAvailableInMetrosOk() ([]PlanAvailableInMetrosInner, bool) {
 
 // HasAvailableInMetros returns a boolean if a field has been set.
 func (o *Plan) HasAvailableInMetros() bool {
-	if o != nil && !isNil(o.AvailableInMetros) {
+	if o != nil && !IsNil(o.AvailableInMetros) {
 		return true
 	}
 
@@ -125,7 +125,7 @@ func (o *Plan) SetAvailableInMetros(v []PlanAvailableInMetrosInner) {
 
 // GetClass returns the Class field value if set, zero value otherwise.
 func (o *Plan) GetClass() string {
-	if o == nil || isNil(o.Class) {
+	if o == nil || IsNil(o.Class) {
 		var ret string
 		return ret
 	}
@@ -135,7 +135,7 @@ func (o *Plan) GetClass() string {
 // GetClassOk returns a tuple with the Class field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Plan) GetClassOk() (*string, bool) {
-	if o == nil || isNil(o.Class) {
+	if o == nil || IsNil(o.Class) {
 		return nil, false
 	}
 	return o.Class, true
@@ -143,7 +143,7 @@ func (o *Plan) GetClassOk() (*string, bool) {
 
 // HasClass returns a boolean if a field has been set.
 func (o *Plan) HasClass() bool {
-	if o != nil && !isNil(o.Class) {
+	if o != nil && !IsNil(o.Class) {
 		return true
 	}
 
@@ -157,7 +157,7 @@ func (o *Plan) SetClass(v string) {
 
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *Plan) GetDescription() string {
-	if o == nil || isNil(o.Description) {
+	if o == nil || IsNil(o.Description) {
 		var ret string
 		return ret
 	}
@@ -167,7 +167,7 @@ func (o *Plan) GetDescription() string {
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Plan) GetDescriptionOk() (*string, bool) {
-	if o == nil || isNil(o.Description) {
+	if o == nil || IsNil(o.Description) {
 		return nil, false
 	}
 	return o.Description, true
@@ -175,7 +175,7 @@ func (o *Plan) GetDescriptionOk() (*string, bool) {
 
 // HasDescription returns a boolean if a field has been set.
 func (o *Plan) HasDescription() bool {
-	if o != nil && !isNil(o.Description) {
+	if o != nil && !IsNil(o.Description) {
 		return true
 	}
 
@@ -189,7 +189,7 @@ func (o *Plan) SetDescription(v string) {
 
 // GetDeploymentTypes returns the DeploymentTypes field value if set, zero value otherwise.
 func (o *Plan) GetDeploymentTypes() []string {
-	if o == nil || isNil(o.DeploymentTypes) {
+	if o == nil || IsNil(o.DeploymentTypes) {
 		var ret []string
 		return ret
 	}
@@ -199,7 +199,7 @@ func (o *Plan) GetDeploymentTypes() []string {
 // GetDeploymentTypesOk returns a tuple with the DeploymentTypes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Plan) GetDeploymentTypesOk() ([]string, bool) {
-	if o == nil || isNil(o.DeploymentTypes) {
+	if o == nil || IsNil(o.DeploymentTypes) {
 		return nil, false
 	}
 	return o.DeploymentTypes, true
@@ -207,7 +207,7 @@ func (o *Plan) GetDeploymentTypesOk() ([]string, bool) {
 
 // HasDeploymentTypes returns a boolean if a field has been set.
 func (o *Plan) HasDeploymentTypes() bool {
-	if o != nil && !isNil(o.DeploymentTypes) {
+	if o != nil && !IsNil(o.DeploymentTypes) {
 		return true
 	}
 
@@ -221,7 +221,7 @@ func (o *Plan) SetDeploymentTypes(v []string) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *Plan) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -231,7 +231,7 @@ func (o *Plan) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Plan) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -239,7 +239,7 @@ func (o *Plan) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *Plan) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -253,7 +253,7 @@ func (o *Plan) SetId(v string) {
 
 // GetLegacy returns the Legacy field value if set, zero value otherwise.
 func (o *Plan) GetLegacy() bool {
-	if o == nil || isNil(o.Legacy) {
+	if o == nil || IsNil(o.Legacy) {
 		var ret bool
 		return ret
 	}
@@ -263,7 +263,7 @@ func (o *Plan) GetLegacy() bool {
 // GetLegacyOk returns a tuple with the Legacy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Plan) GetLegacyOk() (*bool, bool) {
-	if o == nil || isNil(o.Legacy) {
+	if o == nil || IsNil(o.Legacy) {
 		return nil, false
 	}
 	return o.Legacy, true
@@ -271,7 +271,7 @@ func (o *Plan) GetLegacyOk() (*bool, bool) {
 
 // HasLegacy returns a boolean if a field has been set.
 func (o *Plan) HasLegacy() bool {
-	if o != nil && !isNil(o.Legacy) {
+	if o != nil && !IsNil(o.Legacy) {
 		return true
 	}
 
@@ -285,7 +285,7 @@ func (o *Plan) SetLegacy(v bool) {
 
 // GetLine returns the Line field value if set, zero value otherwise.
 func (o *Plan) GetLine() string {
-	if o == nil || isNil(o.Line) {
+	if o == nil || IsNil(o.Line) {
 		var ret string
 		return ret
 	}
@@ -295,7 +295,7 @@ func (o *Plan) GetLine() string {
 // GetLineOk returns a tuple with the Line field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Plan) GetLineOk() (*string, bool) {
-	if o == nil || isNil(o.Line) {
+	if o == nil || IsNil(o.Line) {
 		return nil, false
 	}
 	return o.Line, true
@@ -303,7 +303,7 @@ func (o *Plan) GetLineOk() (*string, bool) {
 
 // HasLine returns a boolean if a field has been set.
 func (o *Plan) HasLine() bool {
-	if o != nil && !isNil(o.Line) {
+	if o != nil && !IsNil(o.Line) {
 		return true
 	}
 
@@ -317,7 +317,7 @@ func (o *Plan) SetLine(v string) {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *Plan) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -327,7 +327,7 @@ func (o *Plan) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Plan) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
 	return o.Name, true
@@ -335,7 +335,7 @@ func (o *Plan) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *Plan) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -349,7 +349,7 @@ func (o *Plan) SetName(v string) {
 
 // GetPricing returns the Pricing field value if set, zero value otherwise.
 func (o *Plan) GetPricing() map[string]interface{} {
-	if o == nil || isNil(o.Pricing) {
+	if o == nil || IsNil(o.Pricing) {
 		var ret map[string]interface{}
 		return ret
 	}
@@ -359,7 +359,7 @@ func (o *Plan) GetPricing() map[string]interface{} {
 // GetPricingOk returns a tuple with the Pricing field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Plan) GetPricingOk() (map[string]interface{}, bool) {
-	if o == nil || isNil(o.Pricing) {
+	if o == nil || IsNil(o.Pricing) {
 		return map[string]interface{}{}, false
 	}
 	return o.Pricing, true
@@ -367,7 +367,7 @@ func (o *Plan) GetPricingOk() (map[string]interface{}, bool) {
 
 // HasPricing returns a boolean if a field has been set.
 func (o *Plan) HasPricing() bool {
-	if o != nil && !isNil(o.Pricing) {
+	if o != nil && !IsNil(o.Pricing) {
 		return true
 	}
 
@@ -381,7 +381,7 @@ func (o *Plan) SetPricing(v map[string]interface{}) {
 
 // GetSlug returns the Slug field value if set, zero value otherwise.
 func (o *Plan) GetSlug() string {
-	if o == nil || isNil(o.Slug) {
+	if o == nil || IsNil(o.Slug) {
 		var ret string
 		return ret
 	}
@@ -391,7 +391,7 @@ func (o *Plan) GetSlug() string {
 // GetSlugOk returns a tuple with the Slug field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Plan) GetSlugOk() (*string, bool) {
-	if o == nil || isNil(o.Slug) {
+	if o == nil || IsNil(o.Slug) {
 		return nil, false
 	}
 	return o.Slug, true
@@ -399,7 +399,7 @@ func (o *Plan) GetSlugOk() (*string, bool) {
 
 // HasSlug returns a boolean if a field has been set.
 func (o *Plan) HasSlug() bool {
-	if o != nil && !isNil(o.Slug) {
+	if o != nil && !IsNil(o.Slug) {
 		return true
 	}
 
@@ -413,7 +413,7 @@ func (o *Plan) SetSlug(v string) {
 
 // GetSpecs returns the Specs field value if set, zero value otherwise.
 func (o *Plan) GetSpecs() PlanSpecs {
-	if o == nil || isNil(o.Specs) {
+	if o == nil || IsNil(o.Specs) {
 		var ret PlanSpecs
 		return ret
 	}
@@ -423,7 +423,7 @@ func (o *Plan) GetSpecs() PlanSpecs {
 // GetSpecsOk returns a tuple with the Specs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Plan) GetSpecsOk() (*PlanSpecs, bool) {
-	if o == nil || isNil(o.Specs) {
+	if o == nil || IsNil(o.Specs) {
 		return nil, false
 	}
 	return o.Specs, true
@@ -431,7 +431,7 @@ func (o *Plan) GetSpecsOk() (*PlanSpecs, bool) {
 
 // HasSpecs returns a boolean if a field has been set.
 func (o *Plan) HasSpecs() bool {
-	if o != nil && !isNil(o.Specs) {
+	if o != nil && !IsNil(o.Specs) {
 		return true
 	}
 
@@ -445,7 +445,7 @@ func (o *Plan) SetSpecs(v PlanSpecs) {
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *Plan) GetType() string {
-	if o == nil || isNil(o.Type) {
+	if o == nil || IsNil(o.Type) {
 		var ret string
 		return ret
 	}
@@ -455,7 +455,7 @@ func (o *Plan) GetType() string {
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Plan) GetTypeOk() (*string, bool) {
-	if o == nil || isNil(o.Type) {
+	if o == nil || IsNil(o.Type) {
 		return nil, false
 	}
 	return o.Type, true
@@ -463,7 +463,7 @@ func (o *Plan) GetTypeOk() (*string, bool) {
 
 // HasType returns a boolean if a field has been set.
 func (o *Plan) HasType() bool {
-	if o != nil && !isNil(o.Type) {
+	if o != nil && !IsNil(o.Type) {
 		return true
 	}
 
@@ -485,43 +485,43 @@ func (o Plan) MarshalJSON() ([]byte, error) {
 
 func (o Plan) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.AvailableIn) {
+	if !IsNil(o.AvailableIn) {
 		toSerialize["available_in"] = o.AvailableIn
 	}
-	if !isNil(o.AvailableInMetros) {
+	if !IsNil(o.AvailableInMetros) {
 		toSerialize["available_in_metros"] = o.AvailableInMetros
 	}
-	if !isNil(o.Class) {
+	if !IsNil(o.Class) {
 		toSerialize["class"] = o.Class
 	}
-	if !isNil(o.Description) {
+	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
-	if !isNil(o.DeploymentTypes) {
+	if !IsNil(o.DeploymentTypes) {
 		toSerialize["deployment_types"] = o.DeploymentTypes
 	}
-	if !isNil(o.Id) {
+	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
-	if !isNil(o.Legacy) {
+	if !IsNil(o.Legacy) {
 		toSerialize["legacy"] = o.Legacy
 	}
-	if !isNil(o.Line) {
+	if !IsNil(o.Line) {
 		toSerialize["line"] = o.Line
 	}
-	if !isNil(o.Name) {
+	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
-	if !isNil(o.Pricing) {
+	if !IsNil(o.Pricing) {
 		toSerialize["pricing"] = o.Pricing
 	}
-	if !isNil(o.Slug) {
+	if !IsNil(o.Slug) {
 		toSerialize["slug"] = o.Slug
 	}
-	if !isNil(o.Specs) {
+	if !IsNil(o.Specs) {
 		toSerialize["specs"] = o.Specs
 	}
-	if !isNil(o.Type) {
+	if !IsNil(o.Type) {
 		toSerialize["type"] = o.Type
 	}
 

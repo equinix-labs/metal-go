@@ -57,7 +57,7 @@ func NewPortWithDefaults() *Port {
 
 // GetBond returns the Bond field value if set, zero value otherwise.
 func (o *Port) GetBond() BondPortData {
-	if o == nil || isNil(o.Bond) {
+	if o == nil || IsNil(o.Bond) {
 		var ret BondPortData
 		return ret
 	}
@@ -67,7 +67,7 @@ func (o *Port) GetBond() BondPortData {
 // GetBondOk returns a tuple with the Bond field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Port) GetBondOk() (*BondPortData, bool) {
-	if o == nil || isNil(o.Bond) {
+	if o == nil || IsNil(o.Bond) {
 		return nil, false
 	}
 	return o.Bond, true
@@ -75,7 +75,7 @@ func (o *Port) GetBondOk() (*BondPortData, bool) {
 
 // HasBond returns a boolean if a field has been set.
 func (o *Port) HasBond() bool {
-	if o != nil && !isNil(o.Bond) {
+	if o != nil && !IsNil(o.Bond) {
 		return true
 	}
 
@@ -89,7 +89,7 @@ func (o *Port) SetBond(v BondPortData) {
 
 // GetData returns the Data field value if set, zero value otherwise.
 func (o *Port) GetData() PortData {
-	if o == nil || isNil(o.Data) {
+	if o == nil || IsNil(o.Data) {
 		var ret PortData
 		return ret
 	}
@@ -99,7 +99,7 @@ func (o *Port) GetData() PortData {
 // GetDataOk returns a tuple with the Data field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Port) GetDataOk() (*PortData, bool) {
-	if o == nil || isNil(o.Data) {
+	if o == nil || IsNil(o.Data) {
 		return nil, false
 	}
 	return o.Data, true
@@ -107,7 +107,7 @@ func (o *Port) GetDataOk() (*PortData, bool) {
 
 // HasData returns a boolean if a field has been set.
 func (o *Port) HasData() bool {
-	if o != nil && !isNil(o.Data) {
+	if o != nil && !IsNil(o.Data) {
 		return true
 	}
 
@@ -121,7 +121,7 @@ func (o *Port) SetData(v PortData) {
 
 // GetDisbondOperationSupported returns the DisbondOperationSupported field value if set, zero value otherwise.
 func (o *Port) GetDisbondOperationSupported() bool {
-	if o == nil || isNil(o.DisbondOperationSupported) {
+	if o == nil || IsNil(o.DisbondOperationSupported) {
 		var ret bool
 		return ret
 	}
@@ -131,7 +131,7 @@ func (o *Port) GetDisbondOperationSupported() bool {
 // GetDisbondOperationSupportedOk returns a tuple with the DisbondOperationSupported field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Port) GetDisbondOperationSupportedOk() (*bool, bool) {
-	if o == nil || isNil(o.DisbondOperationSupported) {
+	if o == nil || IsNil(o.DisbondOperationSupported) {
 		return nil, false
 	}
 	return o.DisbondOperationSupported, true
@@ -139,7 +139,7 @@ func (o *Port) GetDisbondOperationSupportedOk() (*bool, bool) {
 
 // HasDisbondOperationSupported returns a boolean if a field has been set.
 func (o *Port) HasDisbondOperationSupported() bool {
-	if o != nil && !isNil(o.DisbondOperationSupported) {
+	if o != nil && !IsNil(o.DisbondOperationSupported) {
 		return true
 	}
 
@@ -153,7 +153,7 @@ func (o *Port) SetDisbondOperationSupported(v bool) {
 
 // GetHref returns the Href field value if set, zero value otherwise.
 func (o *Port) GetHref() string {
-	if o == nil || isNil(o.Href) {
+	if o == nil || IsNil(o.Href) {
 		var ret string
 		return ret
 	}
@@ -163,7 +163,7 @@ func (o *Port) GetHref() string {
 // GetHrefOk returns a tuple with the Href field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Port) GetHrefOk() (*string, bool) {
-	if o == nil || isNil(o.Href) {
+	if o == nil || IsNil(o.Href) {
 		return nil, false
 	}
 	return o.Href, true
@@ -171,7 +171,7 @@ func (o *Port) GetHrefOk() (*string, bool) {
 
 // HasHref returns a boolean if a field has been set.
 func (o *Port) HasHref() bool {
-	if o != nil && !isNil(o.Href) {
+	if o != nil && !IsNil(o.Href) {
 		return true
 	}
 
@@ -185,7 +185,7 @@ func (o *Port) SetHref(v string) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *Port) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -195,7 +195,7 @@ func (o *Port) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Port) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -203,7 +203,7 @@ func (o *Port) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *Port) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -217,7 +217,7 @@ func (o *Port) SetId(v string) {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *Port) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -227,7 +227,7 @@ func (o *Port) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Port) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
 	return o.Name, true
@@ -235,7 +235,7 @@ func (o *Port) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *Port) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -249,7 +249,7 @@ func (o *Port) SetName(v string) {
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *Port) GetType() string {
-	if o == nil || isNil(o.Type) {
+	if o == nil || IsNil(o.Type) {
 		var ret string
 		return ret
 	}
@@ -259,7 +259,7 @@ func (o *Port) GetType() string {
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Port) GetTypeOk() (*string, bool) {
-	if o == nil || isNil(o.Type) {
+	if o == nil || IsNil(o.Type) {
 		return nil, false
 	}
 	return o.Type, true
@@ -267,7 +267,7 @@ func (o *Port) GetTypeOk() (*string, bool) {
 
 // HasType returns a boolean if a field has been set.
 func (o *Port) HasType() bool {
-	if o != nil && !isNil(o.Type) {
+	if o != nil && !IsNil(o.Type) {
 		return true
 	}
 
@@ -281,7 +281,7 @@ func (o *Port) SetType(v string) {
 
 // GetNetworkType returns the NetworkType field value if set, zero value otherwise.
 func (o *Port) GetNetworkType() string {
-	if o == nil || isNil(o.NetworkType) {
+	if o == nil || IsNil(o.NetworkType) {
 		var ret string
 		return ret
 	}
@@ -291,7 +291,7 @@ func (o *Port) GetNetworkType() string {
 // GetNetworkTypeOk returns a tuple with the NetworkType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Port) GetNetworkTypeOk() (*string, bool) {
-	if o == nil || isNil(o.NetworkType) {
+	if o == nil || IsNil(o.NetworkType) {
 		return nil, false
 	}
 	return o.NetworkType, true
@@ -299,7 +299,7 @@ func (o *Port) GetNetworkTypeOk() (*string, bool) {
 
 // HasNetworkType returns a boolean if a field has been set.
 func (o *Port) HasNetworkType() bool {
-	if o != nil && !isNil(o.NetworkType) {
+	if o != nil && !IsNil(o.NetworkType) {
 		return true
 	}
 
@@ -313,7 +313,7 @@ func (o *Port) SetNetworkType(v string) {
 
 // GetNativeVirtualNetwork returns the NativeVirtualNetwork field value if set, zero value otherwise.
 func (o *Port) GetNativeVirtualNetwork() VirtualNetwork {
-	if o == nil || isNil(o.NativeVirtualNetwork) {
+	if o == nil || IsNil(o.NativeVirtualNetwork) {
 		var ret VirtualNetwork
 		return ret
 	}
@@ -323,7 +323,7 @@ func (o *Port) GetNativeVirtualNetwork() VirtualNetwork {
 // GetNativeVirtualNetworkOk returns a tuple with the NativeVirtualNetwork field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Port) GetNativeVirtualNetworkOk() (*VirtualNetwork, bool) {
-	if o == nil || isNil(o.NativeVirtualNetwork) {
+	if o == nil || IsNil(o.NativeVirtualNetwork) {
 		return nil, false
 	}
 	return o.NativeVirtualNetwork, true
@@ -331,7 +331,7 @@ func (o *Port) GetNativeVirtualNetworkOk() (*VirtualNetwork, bool) {
 
 // HasNativeVirtualNetwork returns a boolean if a field has been set.
 func (o *Port) HasNativeVirtualNetwork() bool {
-	if o != nil && !isNil(o.NativeVirtualNetwork) {
+	if o != nil && !IsNil(o.NativeVirtualNetwork) {
 		return true
 	}
 
@@ -345,7 +345,7 @@ func (o *Port) SetNativeVirtualNetwork(v VirtualNetwork) {
 
 // GetVirtualNetworks returns the VirtualNetworks field value if set, zero value otherwise.
 func (o *Port) GetVirtualNetworks() []Href {
-	if o == nil || isNil(o.VirtualNetworks) {
+	if o == nil || IsNil(o.VirtualNetworks) {
 		var ret []Href
 		return ret
 	}
@@ -355,7 +355,7 @@ func (o *Port) GetVirtualNetworks() []Href {
 // GetVirtualNetworksOk returns a tuple with the VirtualNetworks field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Port) GetVirtualNetworksOk() ([]Href, bool) {
-	if o == nil || isNil(o.VirtualNetworks) {
+	if o == nil || IsNil(o.VirtualNetworks) {
 		return nil, false
 	}
 	return o.VirtualNetworks, true
@@ -363,7 +363,7 @@ func (o *Port) GetVirtualNetworksOk() ([]Href, bool) {
 
 // HasVirtualNetworks returns a boolean if a field has been set.
 func (o *Port) HasVirtualNetworks() bool {
-	if o != nil && !isNil(o.VirtualNetworks) {
+	if o != nil && !IsNil(o.VirtualNetworks) {
 		return true
 	}
 
@@ -385,34 +385,34 @@ func (o Port) MarshalJSON() ([]byte, error) {
 
 func (o Port) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Bond) {
+	if !IsNil(o.Bond) {
 		toSerialize["bond"] = o.Bond
 	}
-	if !isNil(o.Data) {
+	if !IsNil(o.Data) {
 		toSerialize["data"] = o.Data
 	}
-	if !isNil(o.DisbondOperationSupported) {
+	if !IsNil(o.DisbondOperationSupported) {
 		toSerialize["disbond_operation_supported"] = o.DisbondOperationSupported
 	}
-	if !isNil(o.Href) {
+	if !IsNil(o.Href) {
 		toSerialize["href"] = o.Href
 	}
-	if !isNil(o.Id) {
+	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
-	if !isNil(o.Name) {
+	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
-	if !isNil(o.Type) {
+	if !IsNil(o.Type) {
 		toSerialize["type"] = o.Type
 	}
-	if !isNil(o.NetworkType) {
+	if !IsNil(o.NetworkType) {
 		toSerialize["network_type"] = o.NetworkType
 	}
-	if !isNil(o.NativeVirtualNetwork) {
+	if !IsNil(o.NativeVirtualNetwork) {
 		toSerialize["native_virtual_network"] = o.NativeVirtualNetwork
 	}
-	if !isNil(o.VirtualNetworks) {
+	if !IsNil(o.VirtualNetworks) {
 		toSerialize["virtual_networks"] = o.VirtualNetworks
 	}
 

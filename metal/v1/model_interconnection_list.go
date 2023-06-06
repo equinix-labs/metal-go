@@ -46,7 +46,7 @@ func NewInterconnectionListWithDefaults() *InterconnectionList {
 
 // GetInterconnections returns the Interconnections field value if set, zero value otherwise.
 func (o *InterconnectionList) GetInterconnections() []Interconnection {
-	if o == nil || isNil(o.Interconnections) {
+	if o == nil || IsNil(o.Interconnections) {
 		var ret []Interconnection
 		return ret
 	}
@@ -56,7 +56,7 @@ func (o *InterconnectionList) GetInterconnections() []Interconnection {
 // GetInterconnectionsOk returns a tuple with the Interconnections field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InterconnectionList) GetInterconnectionsOk() ([]Interconnection, bool) {
-	if o == nil || isNil(o.Interconnections) {
+	if o == nil || IsNil(o.Interconnections) {
 		return nil, false
 	}
 	return o.Interconnections, true
@@ -64,7 +64,7 @@ func (o *InterconnectionList) GetInterconnectionsOk() ([]Interconnection, bool) 
 
 // HasInterconnections returns a boolean if a field has been set.
 func (o *InterconnectionList) HasInterconnections() bool {
-	if o != nil && !isNil(o.Interconnections) {
+	if o != nil && !IsNil(o.Interconnections) {
 		return true
 	}
 
@@ -78,7 +78,7 @@ func (o *InterconnectionList) SetInterconnections(v []Interconnection) {
 
 // GetMeta returns the Meta field value if set, zero value otherwise.
 func (o *InterconnectionList) GetMeta() Meta {
-	if o == nil || isNil(o.Meta) {
+	if o == nil || IsNil(o.Meta) {
 		var ret Meta
 		return ret
 	}
@@ -88,7 +88,7 @@ func (o *InterconnectionList) GetMeta() Meta {
 // GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InterconnectionList) GetMetaOk() (*Meta, bool) {
-	if o == nil || isNil(o.Meta) {
+	if o == nil || IsNil(o.Meta) {
 		return nil, false
 	}
 	return o.Meta, true
@@ -96,7 +96,7 @@ func (o *InterconnectionList) GetMetaOk() (*Meta, bool) {
 
 // HasMeta returns a boolean if a field has been set.
 func (o *InterconnectionList) HasMeta() bool {
-	if o != nil && !isNil(o.Meta) {
+	if o != nil && !IsNil(o.Meta) {
 		return true
 	}
 
@@ -118,10 +118,10 @@ func (o InterconnectionList) MarshalJSON() ([]byte, error) {
 
 func (o InterconnectionList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Interconnections) {
+	if !IsNil(o.Interconnections) {
 		toSerialize["interconnections"] = o.Interconnections
 	}
-	if !isNil(o.Meta) {
+	if !IsNil(o.Meta) {
 		toSerialize["meta"] = o.Meta
 	}
 

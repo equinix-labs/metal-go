@@ -26,7 +26,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/equinix-labs/metal-go/metal/v1"
 )
 
 func main() {
@@ -34,7 +34,7 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.UserVerificationTokensApi.ConsumeVerificationRequest(context.Background()).VerifyEmail(verifyEmail).Execute()
+    r, err := apiClient.UserVerificationTokensApi.ConsumeVerificationRequest(context.Background()).VerifyEmail(verifyEmail).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UserVerificationTokensApi.ConsumeVerificationRequest``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -90,7 +90,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/equinix-labs/metal-go/metal/v1"
 )
 
 func main() {
@@ -98,7 +98,7 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.UserVerificationTokensApi.CreateValidationRequest(context.Background()).Login(login).Execute()
+    r, err := apiClient.UserVerificationTokensApi.CreateValidationRequest(context.Background()).Login(login).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UserVerificationTokensApi.CreateValidationRequest``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

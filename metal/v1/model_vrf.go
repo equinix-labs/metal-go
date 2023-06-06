@@ -73,7 +73,7 @@ func NewVrfWithDefaults() *Vrf {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *Vrf) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -83,7 +83,7 @@ func (o *Vrf) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Vrf) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -91,7 +91,7 @@ func (o *Vrf) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *Vrf) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -105,7 +105,7 @@ func (o *Vrf) SetId(v string) {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *Vrf) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -115,7 +115,7 @@ func (o *Vrf) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Vrf) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
 	return o.Name, true
@@ -123,7 +123,7 @@ func (o *Vrf) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *Vrf) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -137,7 +137,7 @@ func (o *Vrf) SetName(v string) {
 
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *Vrf) GetDescription() string {
-	if o == nil || isNil(o.Description) {
+	if o == nil || IsNil(o.Description) {
 		var ret string
 		return ret
 	}
@@ -147,7 +147,7 @@ func (o *Vrf) GetDescription() string {
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Vrf) GetDescriptionOk() (*string, bool) {
-	if o == nil || isNil(o.Description) {
+	if o == nil || IsNil(o.Description) {
 		return nil, false
 	}
 	return o.Description, true
@@ -155,7 +155,7 @@ func (o *Vrf) GetDescriptionOk() (*string, bool) {
 
 // HasDescription returns a boolean if a field has been set.
 func (o *Vrf) HasDescription() bool {
-	if o != nil && !isNil(o.Description) {
+	if o != nil && !IsNil(o.Description) {
 		return true
 	}
 
@@ -169,7 +169,7 @@ func (o *Vrf) SetDescription(v string) {
 
 // GetBill returns the Bill field value if set, zero value otherwise.
 func (o *Vrf) GetBill() bool {
-	if o == nil || isNil(o.Bill) {
+	if o == nil || IsNil(o.Bill) {
 		var ret bool
 		return ret
 	}
@@ -179,7 +179,7 @@ func (o *Vrf) GetBill() bool {
 // GetBillOk returns a tuple with the Bill field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Vrf) GetBillOk() (*bool, bool) {
-	if o == nil || isNil(o.Bill) {
+	if o == nil || IsNil(o.Bill) {
 		return nil, false
 	}
 	return o.Bill, true
@@ -187,7 +187,7 @@ func (o *Vrf) GetBillOk() (*bool, bool) {
 
 // HasBill returns a boolean if a field has been set.
 func (o *Vrf) HasBill() bool {
-	if o != nil && !isNil(o.Bill) {
+	if o != nil && !IsNil(o.Bill) {
 		return true
 	}
 
@@ -201,7 +201,7 @@ func (o *Vrf) SetBill(v bool) {
 
 // GetBgpDynamicNeighborsEnabled returns the BgpDynamicNeighborsEnabled field value if set, zero value otherwise.
 func (o *Vrf) GetBgpDynamicNeighborsEnabled() bool {
-	if o == nil || isNil(o.BgpDynamicNeighborsEnabled) {
+	if o == nil || IsNil(o.BgpDynamicNeighborsEnabled) {
 		var ret bool
 		return ret
 	}
@@ -211,7 +211,7 @@ func (o *Vrf) GetBgpDynamicNeighborsEnabled() bool {
 // GetBgpDynamicNeighborsEnabledOk returns a tuple with the BgpDynamicNeighborsEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Vrf) GetBgpDynamicNeighborsEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.BgpDynamicNeighborsEnabled) {
+	if o == nil || IsNil(o.BgpDynamicNeighborsEnabled) {
 		return nil, false
 	}
 	return o.BgpDynamicNeighborsEnabled, true
@@ -219,7 +219,7 @@ func (o *Vrf) GetBgpDynamicNeighborsEnabledOk() (*bool, bool) {
 
 // HasBgpDynamicNeighborsEnabled returns a boolean if a field has been set.
 func (o *Vrf) HasBgpDynamicNeighborsEnabled() bool {
-	if o != nil && !isNil(o.BgpDynamicNeighborsEnabled) {
+	if o != nil && !IsNil(o.BgpDynamicNeighborsEnabled) {
 		return true
 	}
 
@@ -233,7 +233,7 @@ func (o *Vrf) SetBgpDynamicNeighborsEnabled(v bool) {
 
 // GetBgpDynamicNeighborsExportRouteMap returns the BgpDynamicNeighborsExportRouteMap field value if set, zero value otherwise.
 func (o *Vrf) GetBgpDynamicNeighborsExportRouteMap() bool {
-	if o == nil || isNil(o.BgpDynamicNeighborsExportRouteMap) {
+	if o == nil || IsNil(o.BgpDynamicNeighborsExportRouteMap) {
 		var ret bool
 		return ret
 	}
@@ -243,7 +243,7 @@ func (o *Vrf) GetBgpDynamicNeighborsExportRouteMap() bool {
 // GetBgpDynamicNeighborsExportRouteMapOk returns a tuple with the BgpDynamicNeighborsExportRouteMap field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Vrf) GetBgpDynamicNeighborsExportRouteMapOk() (*bool, bool) {
-	if o == nil || isNil(o.BgpDynamicNeighborsExportRouteMap) {
+	if o == nil || IsNil(o.BgpDynamicNeighborsExportRouteMap) {
 		return nil, false
 	}
 	return o.BgpDynamicNeighborsExportRouteMap, true
@@ -251,7 +251,7 @@ func (o *Vrf) GetBgpDynamicNeighborsExportRouteMapOk() (*bool, bool) {
 
 // HasBgpDynamicNeighborsExportRouteMap returns a boolean if a field has been set.
 func (o *Vrf) HasBgpDynamicNeighborsExportRouteMap() bool {
-	if o != nil && !isNil(o.BgpDynamicNeighborsExportRouteMap) {
+	if o != nil && !IsNil(o.BgpDynamicNeighborsExportRouteMap) {
 		return true
 	}
 
@@ -265,7 +265,7 @@ func (o *Vrf) SetBgpDynamicNeighborsExportRouteMap(v bool) {
 
 // GetBgpDynamicNeighborsBfdEnabled returns the BgpDynamicNeighborsBfdEnabled field value if set, zero value otherwise.
 func (o *Vrf) GetBgpDynamicNeighborsBfdEnabled() bool {
-	if o == nil || isNil(o.BgpDynamicNeighborsBfdEnabled) {
+	if o == nil || IsNil(o.BgpDynamicNeighborsBfdEnabled) {
 		var ret bool
 		return ret
 	}
@@ -275,7 +275,7 @@ func (o *Vrf) GetBgpDynamicNeighborsBfdEnabled() bool {
 // GetBgpDynamicNeighborsBfdEnabledOk returns a tuple with the BgpDynamicNeighborsBfdEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Vrf) GetBgpDynamicNeighborsBfdEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.BgpDynamicNeighborsBfdEnabled) {
+	if o == nil || IsNil(o.BgpDynamicNeighborsBfdEnabled) {
 		return nil, false
 	}
 	return o.BgpDynamicNeighborsBfdEnabled, true
@@ -283,7 +283,7 @@ func (o *Vrf) GetBgpDynamicNeighborsBfdEnabledOk() (*bool, bool) {
 
 // HasBgpDynamicNeighborsBfdEnabled returns a boolean if a field has been set.
 func (o *Vrf) HasBgpDynamicNeighborsBfdEnabled() bool {
-	if o != nil && !isNil(o.BgpDynamicNeighborsBfdEnabled) {
+	if o != nil && !IsNil(o.BgpDynamicNeighborsBfdEnabled) {
 		return true
 	}
 
@@ -297,7 +297,7 @@ func (o *Vrf) SetBgpDynamicNeighborsBfdEnabled(v bool) {
 
 // GetLocalAsn returns the LocalAsn field value if set, zero value otherwise.
 func (o *Vrf) GetLocalAsn() int32 {
-	if o == nil || isNil(o.LocalAsn) {
+	if o == nil || IsNil(o.LocalAsn) {
 		var ret int32
 		return ret
 	}
@@ -307,7 +307,7 @@ func (o *Vrf) GetLocalAsn() int32 {
 // GetLocalAsnOk returns a tuple with the LocalAsn field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Vrf) GetLocalAsnOk() (*int32, bool) {
-	if o == nil || isNil(o.LocalAsn) {
+	if o == nil || IsNil(o.LocalAsn) {
 		return nil, false
 	}
 	return o.LocalAsn, true
@@ -315,7 +315,7 @@ func (o *Vrf) GetLocalAsnOk() (*int32, bool) {
 
 // HasLocalAsn returns a boolean if a field has been set.
 func (o *Vrf) HasLocalAsn() bool {
-	if o != nil && !isNil(o.LocalAsn) {
+	if o != nil && !IsNil(o.LocalAsn) {
 		return true
 	}
 
@@ -329,7 +329,7 @@ func (o *Vrf) SetLocalAsn(v int32) {
 
 // GetVirtualCircuits returns the VirtualCircuits field value if set, zero value otherwise.
 func (o *Vrf) GetVirtualCircuits() []VrfVirtualCircuit {
-	if o == nil || isNil(o.VirtualCircuits) {
+	if o == nil || IsNil(o.VirtualCircuits) {
 		var ret []VrfVirtualCircuit
 		return ret
 	}
@@ -339,7 +339,7 @@ func (o *Vrf) GetVirtualCircuits() []VrfVirtualCircuit {
 // GetVirtualCircuitsOk returns a tuple with the VirtualCircuits field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Vrf) GetVirtualCircuitsOk() ([]VrfVirtualCircuit, bool) {
-	if o == nil || isNil(o.VirtualCircuits) {
+	if o == nil || IsNil(o.VirtualCircuits) {
 		return nil, false
 	}
 	return o.VirtualCircuits, true
@@ -347,7 +347,7 @@ func (o *Vrf) GetVirtualCircuitsOk() ([]VrfVirtualCircuit, bool) {
 
 // HasVirtualCircuits returns a boolean if a field has been set.
 func (o *Vrf) HasVirtualCircuits() bool {
-	if o != nil && !isNil(o.VirtualCircuits) {
+	if o != nil && !IsNil(o.VirtualCircuits) {
 		return true
 	}
 
@@ -361,7 +361,7 @@ func (o *Vrf) SetVirtualCircuits(v []VrfVirtualCircuit) {
 
 // GetIpRanges returns the IpRanges field value if set, zero value otherwise.
 func (o *Vrf) GetIpRanges() []string {
-	if o == nil || isNil(o.IpRanges) {
+	if o == nil || IsNil(o.IpRanges) {
 		var ret []string
 		return ret
 	}
@@ -371,7 +371,7 @@ func (o *Vrf) GetIpRanges() []string {
 // GetIpRangesOk returns a tuple with the IpRanges field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Vrf) GetIpRangesOk() ([]string, bool) {
-	if o == nil || isNil(o.IpRanges) {
+	if o == nil || IsNil(o.IpRanges) {
 		return nil, false
 	}
 	return o.IpRanges, true
@@ -379,7 +379,7 @@ func (o *Vrf) GetIpRangesOk() ([]string, bool) {
 
 // HasIpRanges returns a boolean if a field has been set.
 func (o *Vrf) HasIpRanges() bool {
-	if o != nil && !isNil(o.IpRanges) {
+	if o != nil && !IsNil(o.IpRanges) {
 		return true
 	}
 
@@ -393,7 +393,7 @@ func (o *Vrf) SetIpRanges(v []string) {
 
 // GetProject returns the Project field value if set, zero value otherwise.
 func (o *Vrf) GetProject() Project {
-	if o == nil || isNil(o.Project) {
+	if o == nil || IsNil(o.Project) {
 		var ret Project
 		return ret
 	}
@@ -403,7 +403,7 @@ func (o *Vrf) GetProject() Project {
 // GetProjectOk returns a tuple with the Project field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Vrf) GetProjectOk() (*Project, bool) {
-	if o == nil || isNil(o.Project) {
+	if o == nil || IsNil(o.Project) {
 		return nil, false
 	}
 	return o.Project, true
@@ -411,7 +411,7 @@ func (o *Vrf) GetProjectOk() (*Project, bool) {
 
 // HasProject returns a boolean if a field has been set.
 func (o *Vrf) HasProject() bool {
-	if o != nil && !isNil(o.Project) {
+	if o != nil && !IsNil(o.Project) {
 		return true
 	}
 
@@ -425,7 +425,7 @@ func (o *Vrf) SetProject(v Project) {
 
 // GetMetro returns the Metro field value if set, zero value otherwise.
 func (o *Vrf) GetMetro() Metro {
-	if o == nil || isNil(o.Metro) {
+	if o == nil || IsNil(o.Metro) {
 		var ret Metro
 		return ret
 	}
@@ -435,7 +435,7 @@ func (o *Vrf) GetMetro() Metro {
 // GetMetroOk returns a tuple with the Metro field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Vrf) GetMetroOk() (*Metro, bool) {
-	if o == nil || isNil(o.Metro) {
+	if o == nil || IsNil(o.Metro) {
 		return nil, false
 	}
 	return o.Metro, true
@@ -443,7 +443,7 @@ func (o *Vrf) GetMetroOk() (*Metro, bool) {
 
 // HasMetro returns a boolean if a field has been set.
 func (o *Vrf) HasMetro() bool {
-	if o != nil && !isNil(o.Metro) {
+	if o != nil && !IsNil(o.Metro) {
 		return true
 	}
 
@@ -457,7 +457,7 @@ func (o *Vrf) SetMetro(v Metro) {
 
 // GetCreatedBy returns the CreatedBy field value if set, zero value otherwise.
 func (o *Vrf) GetCreatedBy() User {
-	if o == nil || isNil(o.CreatedBy) {
+	if o == nil || IsNil(o.CreatedBy) {
 		var ret User
 		return ret
 	}
@@ -467,7 +467,7 @@ func (o *Vrf) GetCreatedBy() User {
 // GetCreatedByOk returns a tuple with the CreatedBy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Vrf) GetCreatedByOk() (*User, bool) {
-	if o == nil || isNil(o.CreatedBy) {
+	if o == nil || IsNil(o.CreatedBy) {
 		return nil, false
 	}
 	return o.CreatedBy, true
@@ -475,7 +475,7 @@ func (o *Vrf) GetCreatedByOk() (*User, bool) {
 
 // HasCreatedBy returns a boolean if a field has been set.
 func (o *Vrf) HasCreatedBy() bool {
-	if o != nil && !isNil(o.CreatedBy) {
+	if o != nil && !IsNil(o.CreatedBy) {
 		return true
 	}
 
@@ -489,7 +489,7 @@ func (o *Vrf) SetCreatedBy(v User) {
 
 // GetHref returns the Href field value if set, zero value otherwise.
 func (o *Vrf) GetHref() string {
-	if o == nil || isNil(o.Href) {
+	if o == nil || IsNil(o.Href) {
 		var ret string
 		return ret
 	}
@@ -499,7 +499,7 @@ func (o *Vrf) GetHref() string {
 // GetHrefOk returns a tuple with the Href field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Vrf) GetHrefOk() (*string, bool) {
-	if o == nil || isNil(o.Href) {
+	if o == nil || IsNil(o.Href) {
 		return nil, false
 	}
 	return o.Href, true
@@ -507,7 +507,7 @@ func (o *Vrf) GetHrefOk() (*string, bool) {
 
 // HasHref returns a boolean if a field has been set.
 func (o *Vrf) HasHref() bool {
-	if o != nil && !isNil(o.Href) {
+	if o != nil && !IsNil(o.Href) {
 		return true
 	}
 
@@ -521,7 +521,7 @@ func (o *Vrf) SetHref(v string) {
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *Vrf) GetCreatedAt() time.Time {
-	if o == nil || isNil(o.CreatedAt) {
+	if o == nil || IsNil(o.CreatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -531,7 +531,7 @@ func (o *Vrf) GetCreatedAt() time.Time {
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Vrf) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.CreatedAt) {
+	if o == nil || IsNil(o.CreatedAt) {
 		return nil, false
 	}
 	return o.CreatedAt, true
@@ -539,7 +539,7 @@ func (o *Vrf) GetCreatedAtOk() (*time.Time, bool) {
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *Vrf) HasCreatedAt() bool {
-	if o != nil && !isNil(o.CreatedAt) {
+	if o != nil && !IsNil(o.CreatedAt) {
 		return true
 	}
 
@@ -553,7 +553,7 @@ func (o *Vrf) SetCreatedAt(v time.Time) {
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *Vrf) GetUpdatedAt() time.Time {
-	if o == nil || isNil(o.UpdatedAt) {
+	if o == nil || IsNil(o.UpdatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -563,7 +563,7 @@ func (o *Vrf) GetUpdatedAt() time.Time {
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Vrf) GetUpdatedAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.UpdatedAt) {
+	if o == nil || IsNil(o.UpdatedAt) {
 		return nil, false
 	}
 	return o.UpdatedAt, true
@@ -571,7 +571,7 @@ func (o *Vrf) GetUpdatedAtOk() (*time.Time, bool) {
 
 // HasUpdatedAt returns a boolean if a field has been set.
 func (o *Vrf) HasUpdatedAt() bool {
-	if o != nil && !isNil(o.UpdatedAt) {
+	if o != nil && !IsNil(o.UpdatedAt) {
 		return true
 	}
 
@@ -593,52 +593,52 @@ func (o Vrf) MarshalJSON() ([]byte, error) {
 
 func (o Vrf) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Id) {
+	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
-	if !isNil(o.Name) {
+	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
-	if !isNil(o.Description) {
+	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
-	if !isNil(o.Bill) {
+	if !IsNil(o.Bill) {
 		toSerialize["bill"] = o.Bill
 	}
-	if !isNil(o.BgpDynamicNeighborsEnabled) {
+	if !IsNil(o.BgpDynamicNeighborsEnabled) {
 		toSerialize["bgp_dynamic_neighbors_enabled"] = o.BgpDynamicNeighborsEnabled
 	}
-	if !isNil(o.BgpDynamicNeighborsExportRouteMap) {
+	if !IsNil(o.BgpDynamicNeighborsExportRouteMap) {
 		toSerialize["bgp_dynamic_neighbors_export_route_map"] = o.BgpDynamicNeighborsExportRouteMap
 	}
-	if !isNil(o.BgpDynamicNeighborsBfdEnabled) {
+	if !IsNil(o.BgpDynamicNeighborsBfdEnabled) {
 		toSerialize["bgp_dynamic_neighbors_bfd_enabled"] = o.BgpDynamicNeighborsBfdEnabled
 	}
-	if !isNil(o.LocalAsn) {
+	if !IsNil(o.LocalAsn) {
 		toSerialize["local_asn"] = o.LocalAsn
 	}
-	if !isNil(o.VirtualCircuits) {
+	if !IsNil(o.VirtualCircuits) {
 		toSerialize["virtual_circuits"] = o.VirtualCircuits
 	}
-	if !isNil(o.IpRanges) {
+	if !IsNil(o.IpRanges) {
 		toSerialize["ip_ranges"] = o.IpRanges
 	}
-	if !isNil(o.Project) {
+	if !IsNil(o.Project) {
 		toSerialize["project"] = o.Project
 	}
-	if !isNil(o.Metro) {
+	if !IsNil(o.Metro) {
 		toSerialize["metro"] = o.Metro
 	}
-	if !isNil(o.CreatedBy) {
+	if !IsNil(o.CreatedBy) {
 		toSerialize["created_by"] = o.CreatedBy
 	}
-	if !isNil(o.Href) {
+	if !IsNil(o.Href) {
 		toSerialize["href"] = o.Href
 	}
-	if !isNil(o.CreatedAt) {
+	if !IsNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt
 	}
-	if !isNil(o.UpdatedAt) {
+	if !IsNil(o.UpdatedAt) {
 		toSerialize["updated_at"] = o.UpdatedAt
 	}
 

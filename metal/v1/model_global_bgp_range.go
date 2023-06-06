@@ -49,7 +49,7 @@ func NewGlobalBgpRangeWithDefaults() *GlobalBgpRange {
 
 // GetAddressFamily returns the AddressFamily field value if set, zero value otherwise.
 func (o *GlobalBgpRange) GetAddressFamily() int32 {
-	if o == nil || isNil(o.AddressFamily) {
+	if o == nil || IsNil(o.AddressFamily) {
 		var ret int32
 		return ret
 	}
@@ -59,7 +59,7 @@ func (o *GlobalBgpRange) GetAddressFamily() int32 {
 // GetAddressFamilyOk returns a tuple with the AddressFamily field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GlobalBgpRange) GetAddressFamilyOk() (*int32, bool) {
-	if o == nil || isNil(o.AddressFamily) {
+	if o == nil || IsNil(o.AddressFamily) {
 		return nil, false
 	}
 	return o.AddressFamily, true
@@ -67,7 +67,7 @@ func (o *GlobalBgpRange) GetAddressFamilyOk() (*int32, bool) {
 
 // HasAddressFamily returns a boolean if a field has been set.
 func (o *GlobalBgpRange) HasAddressFamily() bool {
-	if o != nil && !isNil(o.AddressFamily) {
+	if o != nil && !IsNil(o.AddressFamily) {
 		return true
 	}
 
@@ -81,7 +81,7 @@ func (o *GlobalBgpRange) SetAddressFamily(v int32) {
 
 // GetHref returns the Href field value if set, zero value otherwise.
 func (o *GlobalBgpRange) GetHref() string {
-	if o == nil || isNil(o.Href) {
+	if o == nil || IsNil(o.Href) {
 		var ret string
 		return ret
 	}
@@ -91,7 +91,7 @@ func (o *GlobalBgpRange) GetHref() string {
 // GetHrefOk returns a tuple with the Href field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GlobalBgpRange) GetHrefOk() (*string, bool) {
-	if o == nil || isNil(o.Href) {
+	if o == nil || IsNil(o.Href) {
 		return nil, false
 	}
 	return o.Href, true
@@ -99,7 +99,7 @@ func (o *GlobalBgpRange) GetHrefOk() (*string, bool) {
 
 // HasHref returns a boolean if a field has been set.
 func (o *GlobalBgpRange) HasHref() bool {
-	if o != nil && !isNil(o.Href) {
+	if o != nil && !IsNil(o.Href) {
 		return true
 	}
 
@@ -113,7 +113,7 @@ func (o *GlobalBgpRange) SetHref(v string) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *GlobalBgpRange) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -123,7 +123,7 @@ func (o *GlobalBgpRange) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GlobalBgpRange) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -131,7 +131,7 @@ func (o *GlobalBgpRange) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *GlobalBgpRange) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -145,7 +145,7 @@ func (o *GlobalBgpRange) SetId(v string) {
 
 // GetProject returns the Project field value if set, zero value otherwise.
 func (o *GlobalBgpRange) GetProject() Href {
-	if o == nil || isNil(o.Project) {
+	if o == nil || IsNil(o.Project) {
 		var ret Href
 		return ret
 	}
@@ -155,7 +155,7 @@ func (o *GlobalBgpRange) GetProject() Href {
 // GetProjectOk returns a tuple with the Project field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GlobalBgpRange) GetProjectOk() (*Href, bool) {
-	if o == nil || isNil(o.Project) {
+	if o == nil || IsNil(o.Project) {
 		return nil, false
 	}
 	return o.Project, true
@@ -163,7 +163,7 @@ func (o *GlobalBgpRange) GetProjectOk() (*Href, bool) {
 
 // HasProject returns a boolean if a field has been set.
 func (o *GlobalBgpRange) HasProject() bool {
-	if o != nil && !isNil(o.Project) {
+	if o != nil && !IsNil(o.Project) {
 		return true
 	}
 
@@ -177,7 +177,7 @@ func (o *GlobalBgpRange) SetProject(v Href) {
 
 // GetRange returns the Range field value if set, zero value otherwise.
 func (o *GlobalBgpRange) GetRange() string {
-	if o == nil || isNil(o.Range) {
+	if o == nil || IsNil(o.Range) {
 		var ret string
 		return ret
 	}
@@ -187,7 +187,7 @@ func (o *GlobalBgpRange) GetRange() string {
 // GetRangeOk returns a tuple with the Range field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GlobalBgpRange) GetRangeOk() (*string, bool) {
-	if o == nil || isNil(o.Range) {
+	if o == nil || IsNil(o.Range) {
 		return nil, false
 	}
 	return o.Range, true
@@ -195,7 +195,7 @@ func (o *GlobalBgpRange) GetRangeOk() (*string, bool) {
 
 // HasRange returns a boolean if a field has been set.
 func (o *GlobalBgpRange) HasRange() bool {
-	if o != nil && !isNil(o.Range) {
+	if o != nil && !IsNil(o.Range) {
 		return true
 	}
 
@@ -217,19 +217,19 @@ func (o GlobalBgpRange) MarshalJSON() ([]byte, error) {
 
 func (o GlobalBgpRange) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.AddressFamily) {
+	if !IsNil(o.AddressFamily) {
 		toSerialize["address_family"] = o.AddressFamily
 	}
-	if !isNil(o.Href) {
+	if !IsNil(o.Href) {
 		toSerialize["href"] = o.Href
 	}
-	if !isNil(o.Id) {
+	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
-	if !isNil(o.Project) {
+	if !IsNil(o.Project) {
 		toSerialize["project"] = o.Project
 	}
-	if !isNil(o.Range) {
+	if !IsNil(o.Range) {
 		toSerialize["range"] = o.Range
 	}
 

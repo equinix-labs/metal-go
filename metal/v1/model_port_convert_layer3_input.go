@@ -45,7 +45,7 @@ func NewPortConvertLayer3InputWithDefaults() *PortConvertLayer3Input {
 
 // GetRequestIps returns the RequestIps field value if set, zero value otherwise.
 func (o *PortConvertLayer3Input) GetRequestIps() []PortConvertLayer3InputRequestIpsInner {
-	if o == nil || isNil(o.RequestIps) {
+	if o == nil || IsNil(o.RequestIps) {
 		var ret []PortConvertLayer3InputRequestIpsInner
 		return ret
 	}
@@ -55,7 +55,7 @@ func (o *PortConvertLayer3Input) GetRequestIps() []PortConvertLayer3InputRequest
 // GetRequestIpsOk returns a tuple with the RequestIps field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PortConvertLayer3Input) GetRequestIpsOk() ([]PortConvertLayer3InputRequestIpsInner, bool) {
-	if o == nil || isNil(o.RequestIps) {
+	if o == nil || IsNil(o.RequestIps) {
 		return nil, false
 	}
 	return o.RequestIps, true
@@ -63,7 +63,7 @@ func (o *PortConvertLayer3Input) GetRequestIpsOk() ([]PortConvertLayer3InputRequ
 
 // HasRequestIps returns a boolean if a field has been set.
 func (o *PortConvertLayer3Input) HasRequestIps() bool {
-	if o != nil && !isNil(o.RequestIps) {
+	if o != nil && !IsNil(o.RequestIps) {
 		return true
 	}
 
@@ -85,7 +85,7 @@ func (o PortConvertLayer3Input) MarshalJSON() ([]byte, error) {
 
 func (o PortConvertLayer3Input) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.RequestIps) {
+	if !IsNil(o.RequestIps) {
 		toSerialize["request_ips"] = o.RequestIps
 	}
 

@@ -48,7 +48,7 @@ func NewPortVlanAssignmentBatchVlanAssignmentsInnerWithDefaults() *PortVlanAssig
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *PortVlanAssignmentBatchVlanAssignmentsInner) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -58,7 +58,7 @@ func (o *PortVlanAssignmentBatchVlanAssignmentsInner) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PortVlanAssignmentBatchVlanAssignmentsInner) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -66,7 +66,7 @@ func (o *PortVlanAssignmentBatchVlanAssignmentsInner) GetIdOk() (*string, bool) 
 
 // HasId returns a boolean if a field has been set.
 func (o *PortVlanAssignmentBatchVlanAssignmentsInner) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -80,7 +80,7 @@ func (o *PortVlanAssignmentBatchVlanAssignmentsInner) SetId(v string) {
 
 // GetNative returns the Native field value if set, zero value otherwise.
 func (o *PortVlanAssignmentBatchVlanAssignmentsInner) GetNative() bool {
-	if o == nil || isNil(o.Native) {
+	if o == nil || IsNil(o.Native) {
 		var ret bool
 		return ret
 	}
@@ -90,7 +90,7 @@ func (o *PortVlanAssignmentBatchVlanAssignmentsInner) GetNative() bool {
 // GetNativeOk returns a tuple with the Native field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PortVlanAssignmentBatchVlanAssignmentsInner) GetNativeOk() (*bool, bool) {
-	if o == nil || isNil(o.Native) {
+	if o == nil || IsNil(o.Native) {
 		return nil, false
 	}
 	return o.Native, true
@@ -98,7 +98,7 @@ func (o *PortVlanAssignmentBatchVlanAssignmentsInner) GetNativeOk() (*bool, bool
 
 // HasNative returns a boolean if a field has been set.
 func (o *PortVlanAssignmentBatchVlanAssignmentsInner) HasNative() bool {
-	if o != nil && !isNil(o.Native) {
+	if o != nil && !IsNil(o.Native) {
 		return true
 	}
 
@@ -112,7 +112,7 @@ func (o *PortVlanAssignmentBatchVlanAssignmentsInner) SetNative(v bool) {
 
 // GetState returns the State field value if set, zero value otherwise.
 func (o *PortVlanAssignmentBatchVlanAssignmentsInner) GetState() string {
-	if o == nil || isNil(o.State) {
+	if o == nil || IsNil(o.State) {
 		var ret string
 		return ret
 	}
@@ -122,7 +122,7 @@ func (o *PortVlanAssignmentBatchVlanAssignmentsInner) GetState() string {
 // GetStateOk returns a tuple with the State field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PortVlanAssignmentBatchVlanAssignmentsInner) GetStateOk() (*string, bool) {
-	if o == nil || isNil(o.State) {
+	if o == nil || IsNil(o.State) {
 		return nil, false
 	}
 	return o.State, true
@@ -130,7 +130,7 @@ func (o *PortVlanAssignmentBatchVlanAssignmentsInner) GetStateOk() (*string, boo
 
 // HasState returns a boolean if a field has been set.
 func (o *PortVlanAssignmentBatchVlanAssignmentsInner) HasState() bool {
-	if o != nil && !isNil(o.State) {
+	if o != nil && !IsNil(o.State) {
 		return true
 	}
 
@@ -144,7 +144,7 @@ func (o *PortVlanAssignmentBatchVlanAssignmentsInner) SetState(v string) {
 
 // GetVlan returns the Vlan field value if set, zero value otherwise.
 func (o *PortVlanAssignmentBatchVlanAssignmentsInner) GetVlan() int32 {
-	if o == nil || isNil(o.Vlan) {
+	if o == nil || IsNil(o.Vlan) {
 		var ret int32
 		return ret
 	}
@@ -154,7 +154,7 @@ func (o *PortVlanAssignmentBatchVlanAssignmentsInner) GetVlan() int32 {
 // GetVlanOk returns a tuple with the Vlan field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PortVlanAssignmentBatchVlanAssignmentsInner) GetVlanOk() (*int32, bool) {
-	if o == nil || isNil(o.Vlan) {
+	if o == nil || IsNil(o.Vlan) {
 		return nil, false
 	}
 	return o.Vlan, true
@@ -162,7 +162,7 @@ func (o *PortVlanAssignmentBatchVlanAssignmentsInner) GetVlanOk() (*int32, bool)
 
 // HasVlan returns a boolean if a field has been set.
 func (o *PortVlanAssignmentBatchVlanAssignmentsInner) HasVlan() bool {
-	if o != nil && !isNil(o.Vlan) {
+	if o != nil && !IsNil(o.Vlan) {
 		return true
 	}
 
@@ -184,16 +184,16 @@ func (o PortVlanAssignmentBatchVlanAssignmentsInner) MarshalJSON() ([]byte, erro
 
 func (o PortVlanAssignmentBatchVlanAssignmentsInner) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Id) {
+	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
-	if !isNil(o.Native) {
+	if !IsNil(o.Native) {
 		toSerialize["native"] = o.Native
 	}
-	if !isNil(o.State) {
+	if !IsNil(o.State) {
 		toSerialize["state"] = o.State
 	}
-	if !isNil(o.Vlan) {
+	if !IsNil(o.Vlan) {
 		toSerialize["vlan"] = o.Vlan
 	}
 

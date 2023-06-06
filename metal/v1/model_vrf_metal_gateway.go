@@ -56,7 +56,7 @@ func NewVrfMetalGatewayWithDefaults() *VrfMetalGateway {
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *VrfMetalGateway) GetCreatedAt() time.Time {
-	if o == nil || isNil(o.CreatedAt) {
+	if o == nil || IsNil(o.CreatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -66,7 +66,7 @@ func (o *VrfMetalGateway) GetCreatedAt() time.Time {
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VrfMetalGateway) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.CreatedAt) {
+	if o == nil || IsNil(o.CreatedAt) {
 		return nil, false
 	}
 	return o.CreatedAt, true
@@ -74,7 +74,7 @@ func (o *VrfMetalGateway) GetCreatedAtOk() (*time.Time, bool) {
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *VrfMetalGateway) HasCreatedAt() bool {
-	if o != nil && !isNil(o.CreatedAt) {
+	if o != nil && !IsNil(o.CreatedAt) {
 		return true
 	}
 
@@ -88,7 +88,7 @@ func (o *VrfMetalGateway) SetCreatedAt(v time.Time) {
 
 // GetCreatedBy returns the CreatedBy field value if set, zero value otherwise.
 func (o *VrfMetalGateway) GetCreatedBy() Href {
-	if o == nil || isNil(o.CreatedBy) {
+	if o == nil || IsNil(o.CreatedBy) {
 		var ret Href
 		return ret
 	}
@@ -98,7 +98,7 @@ func (o *VrfMetalGateway) GetCreatedBy() Href {
 // GetCreatedByOk returns a tuple with the CreatedBy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VrfMetalGateway) GetCreatedByOk() (*Href, bool) {
-	if o == nil || isNil(o.CreatedBy) {
+	if o == nil || IsNil(o.CreatedBy) {
 		return nil, false
 	}
 	return o.CreatedBy, true
@@ -106,7 +106,7 @@ func (o *VrfMetalGateway) GetCreatedByOk() (*Href, bool) {
 
 // HasCreatedBy returns a boolean if a field has been set.
 func (o *VrfMetalGateway) HasCreatedBy() bool {
-	if o != nil && !isNil(o.CreatedBy) {
+	if o != nil && !IsNil(o.CreatedBy) {
 		return true
 	}
 
@@ -120,7 +120,7 @@ func (o *VrfMetalGateway) SetCreatedBy(v Href) {
 
 // GetHref returns the Href field value if set, zero value otherwise.
 func (o *VrfMetalGateway) GetHref() string {
-	if o == nil || isNil(o.Href) {
+	if o == nil || IsNil(o.Href) {
 		var ret string
 		return ret
 	}
@@ -130,7 +130,7 @@ func (o *VrfMetalGateway) GetHref() string {
 // GetHrefOk returns a tuple with the Href field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VrfMetalGateway) GetHrefOk() (*string, bool) {
-	if o == nil || isNil(o.Href) {
+	if o == nil || IsNil(o.Href) {
 		return nil, false
 	}
 	return o.Href, true
@@ -138,7 +138,7 @@ func (o *VrfMetalGateway) GetHrefOk() (*string, bool) {
 
 // HasHref returns a boolean if a field has been set.
 func (o *VrfMetalGateway) HasHref() bool {
-	if o != nil && !isNil(o.Href) {
+	if o != nil && !IsNil(o.Href) {
 		return true
 	}
 
@@ -152,7 +152,7 @@ func (o *VrfMetalGateway) SetHref(v string) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *VrfMetalGateway) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -162,7 +162,7 @@ func (o *VrfMetalGateway) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VrfMetalGateway) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -170,7 +170,7 @@ func (o *VrfMetalGateway) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *VrfMetalGateway) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -184,7 +184,7 @@ func (o *VrfMetalGateway) SetId(v string) {
 
 // GetIpReservation returns the IpReservation field value if set, zero value otherwise.
 func (o *VrfMetalGateway) GetIpReservation() VrfIpReservation {
-	if o == nil || isNil(o.IpReservation) {
+	if o == nil || IsNil(o.IpReservation) {
 		var ret VrfIpReservation
 		return ret
 	}
@@ -194,7 +194,7 @@ func (o *VrfMetalGateway) GetIpReservation() VrfIpReservation {
 // GetIpReservationOk returns a tuple with the IpReservation field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VrfMetalGateway) GetIpReservationOk() (*VrfIpReservation, bool) {
-	if o == nil || isNil(o.IpReservation) {
+	if o == nil || IsNil(o.IpReservation) {
 		return nil, false
 	}
 	return o.IpReservation, true
@@ -202,7 +202,7 @@ func (o *VrfMetalGateway) GetIpReservationOk() (*VrfIpReservation, bool) {
 
 // HasIpReservation returns a boolean if a field has been set.
 func (o *VrfMetalGateway) HasIpReservation() bool {
-	if o != nil && !isNil(o.IpReservation) {
+	if o != nil && !IsNil(o.IpReservation) {
 		return true
 	}
 
@@ -216,7 +216,7 @@ func (o *VrfMetalGateway) SetIpReservation(v VrfIpReservation) {
 
 // GetProject returns the Project field value if set, zero value otherwise.
 func (o *VrfMetalGateway) GetProject() Project {
-	if o == nil || isNil(o.Project) {
+	if o == nil || IsNil(o.Project) {
 		var ret Project
 		return ret
 	}
@@ -226,7 +226,7 @@ func (o *VrfMetalGateway) GetProject() Project {
 // GetProjectOk returns a tuple with the Project field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VrfMetalGateway) GetProjectOk() (*Project, bool) {
-	if o == nil || isNil(o.Project) {
+	if o == nil || IsNil(o.Project) {
 		return nil, false
 	}
 	return o.Project, true
@@ -234,7 +234,7 @@ func (o *VrfMetalGateway) GetProjectOk() (*Project, bool) {
 
 // HasProject returns a boolean if a field has been set.
 func (o *VrfMetalGateway) HasProject() bool {
-	if o != nil && !isNil(o.Project) {
+	if o != nil && !IsNil(o.Project) {
 		return true
 	}
 
@@ -248,7 +248,7 @@ func (o *VrfMetalGateway) SetProject(v Project) {
 
 // GetState returns the State field value if set, zero value otherwise.
 func (o *VrfMetalGateway) GetState() string {
-	if o == nil || isNil(o.State) {
+	if o == nil || IsNil(o.State) {
 		var ret string
 		return ret
 	}
@@ -258,7 +258,7 @@ func (o *VrfMetalGateway) GetState() string {
 // GetStateOk returns a tuple with the State field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VrfMetalGateway) GetStateOk() (*string, bool) {
-	if o == nil || isNil(o.State) {
+	if o == nil || IsNil(o.State) {
 		return nil, false
 	}
 	return o.State, true
@@ -266,7 +266,7 @@ func (o *VrfMetalGateway) GetStateOk() (*string, bool) {
 
 // HasState returns a boolean if a field has been set.
 func (o *VrfMetalGateway) HasState() bool {
-	if o != nil && !isNil(o.State) {
+	if o != nil && !IsNil(o.State) {
 		return true
 	}
 
@@ -280,7 +280,7 @@ func (o *VrfMetalGateway) SetState(v string) {
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *VrfMetalGateway) GetUpdatedAt() time.Time {
-	if o == nil || isNil(o.UpdatedAt) {
+	if o == nil || IsNil(o.UpdatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -290,7 +290,7 @@ func (o *VrfMetalGateway) GetUpdatedAt() time.Time {
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VrfMetalGateway) GetUpdatedAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.UpdatedAt) {
+	if o == nil || IsNil(o.UpdatedAt) {
 		return nil, false
 	}
 	return o.UpdatedAt, true
@@ -298,7 +298,7 @@ func (o *VrfMetalGateway) GetUpdatedAtOk() (*time.Time, bool) {
 
 // HasUpdatedAt returns a boolean if a field has been set.
 func (o *VrfMetalGateway) HasUpdatedAt() bool {
-	if o != nil && !isNil(o.UpdatedAt) {
+	if o != nil && !IsNil(o.UpdatedAt) {
 		return true
 	}
 
@@ -312,7 +312,7 @@ func (o *VrfMetalGateway) SetUpdatedAt(v time.Time) {
 
 // GetVirtualNetwork returns the VirtualNetwork field value if set, zero value otherwise.
 func (o *VrfMetalGateway) GetVirtualNetwork() VirtualNetwork {
-	if o == nil || isNil(o.VirtualNetwork) {
+	if o == nil || IsNil(o.VirtualNetwork) {
 		var ret VirtualNetwork
 		return ret
 	}
@@ -322,7 +322,7 @@ func (o *VrfMetalGateway) GetVirtualNetwork() VirtualNetwork {
 // GetVirtualNetworkOk returns a tuple with the VirtualNetwork field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VrfMetalGateway) GetVirtualNetworkOk() (*VirtualNetwork, bool) {
-	if o == nil || isNil(o.VirtualNetwork) {
+	if o == nil || IsNil(o.VirtualNetwork) {
 		return nil, false
 	}
 	return o.VirtualNetwork, true
@@ -330,7 +330,7 @@ func (o *VrfMetalGateway) GetVirtualNetworkOk() (*VirtualNetwork, bool) {
 
 // HasVirtualNetwork returns a boolean if a field has been set.
 func (o *VrfMetalGateway) HasVirtualNetwork() bool {
-	if o != nil && !isNil(o.VirtualNetwork) {
+	if o != nil && !IsNil(o.VirtualNetwork) {
 		return true
 	}
 
@@ -344,7 +344,7 @@ func (o *VrfMetalGateway) SetVirtualNetwork(v VirtualNetwork) {
 
 // GetVrf returns the Vrf field value if set, zero value otherwise.
 func (o *VrfMetalGateway) GetVrf() Vrf {
-	if o == nil || isNil(o.Vrf) {
+	if o == nil || IsNil(o.Vrf) {
 		var ret Vrf
 		return ret
 	}
@@ -354,7 +354,7 @@ func (o *VrfMetalGateway) GetVrf() Vrf {
 // GetVrfOk returns a tuple with the Vrf field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VrfMetalGateway) GetVrfOk() (*Vrf, bool) {
-	if o == nil || isNil(o.Vrf) {
+	if o == nil || IsNil(o.Vrf) {
 		return nil, false
 	}
 	return o.Vrf, true
@@ -362,7 +362,7 @@ func (o *VrfMetalGateway) GetVrfOk() (*Vrf, bool) {
 
 // HasVrf returns a boolean if a field has been set.
 func (o *VrfMetalGateway) HasVrf() bool {
-	if o != nil && !isNil(o.Vrf) {
+	if o != nil && !IsNil(o.Vrf) {
 		return true
 	}
 
@@ -384,34 +384,34 @@ func (o VrfMetalGateway) MarshalJSON() ([]byte, error) {
 
 func (o VrfMetalGateway) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.CreatedAt) {
+	if !IsNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt
 	}
-	if !isNil(o.CreatedBy) {
+	if !IsNil(o.CreatedBy) {
 		toSerialize["created_by"] = o.CreatedBy
 	}
-	if !isNil(o.Href) {
+	if !IsNil(o.Href) {
 		toSerialize["href"] = o.Href
 	}
-	if !isNil(o.Id) {
+	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
-	if !isNil(o.IpReservation) {
+	if !IsNil(o.IpReservation) {
 		toSerialize["ip_reservation"] = o.IpReservation
 	}
-	if !isNil(o.Project) {
+	if !IsNil(o.Project) {
 		toSerialize["project"] = o.Project
 	}
-	if !isNil(o.State) {
+	if !IsNil(o.State) {
 		toSerialize["state"] = o.State
 	}
-	if !isNil(o.UpdatedAt) {
+	if !IsNil(o.UpdatedAt) {
 		toSerialize["updated_at"] = o.UpdatedAt
 	}
-	if !isNil(o.VirtualNetwork) {
+	if !IsNil(o.VirtualNetwork) {
 		toSerialize["virtual_network"] = o.VirtualNetwork
 	}
-	if !isNil(o.Vrf) {
+	if !IsNil(o.Vrf) {
 		toSerialize["vrf"] = o.Vrf
 	}
 

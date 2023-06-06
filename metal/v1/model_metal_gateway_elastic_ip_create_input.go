@@ -102,7 +102,7 @@ func (o *MetalGatewayElasticIpCreateInput) SetNextHop(v string) {
 
 // GetCustomdata returns the Customdata field value if set, zero value otherwise.
 func (o *MetalGatewayElasticIpCreateInput) GetCustomdata() map[string]interface{} {
-	if o == nil || isNil(o.Customdata) {
+	if o == nil || IsNil(o.Customdata) {
 		var ret map[string]interface{}
 		return ret
 	}
@@ -112,7 +112,7 @@ func (o *MetalGatewayElasticIpCreateInput) GetCustomdata() map[string]interface{
 // GetCustomdataOk returns a tuple with the Customdata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MetalGatewayElasticIpCreateInput) GetCustomdataOk() (map[string]interface{}, bool) {
-	if o == nil || isNil(o.Customdata) {
+	if o == nil || IsNil(o.Customdata) {
 		return map[string]interface{}{}, false
 	}
 	return o.Customdata, true
@@ -120,7 +120,7 @@ func (o *MetalGatewayElasticIpCreateInput) GetCustomdataOk() (map[string]interfa
 
 // HasCustomdata returns a boolean if a field has been set.
 func (o *MetalGatewayElasticIpCreateInput) HasCustomdata() bool {
-	if o != nil && !isNil(o.Customdata) {
+	if o != nil && !IsNil(o.Customdata) {
 		return true
 	}
 
@@ -134,7 +134,7 @@ func (o *MetalGatewayElasticIpCreateInput) SetCustomdata(v map[string]interface{
 
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *MetalGatewayElasticIpCreateInput) GetTags() []string {
-	if o == nil || isNil(o.Tags) {
+	if o == nil || IsNil(o.Tags) {
 		var ret []string
 		return ret
 	}
@@ -144,7 +144,7 @@ func (o *MetalGatewayElasticIpCreateInput) GetTags() []string {
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MetalGatewayElasticIpCreateInput) GetTagsOk() ([]string, bool) {
-	if o == nil || isNil(o.Tags) {
+	if o == nil || IsNil(o.Tags) {
 		return nil, false
 	}
 	return o.Tags, true
@@ -152,7 +152,7 @@ func (o *MetalGatewayElasticIpCreateInput) GetTagsOk() ([]string, bool) {
 
 // HasTags returns a boolean if a field has been set.
 func (o *MetalGatewayElasticIpCreateInput) HasTags() bool {
-	if o != nil && !isNil(o.Tags) {
+	if o != nil && !IsNil(o.Tags) {
 		return true
 	}
 
@@ -176,10 +176,10 @@ func (o MetalGatewayElasticIpCreateInput) ToMap() (map[string]interface{}, error
 	toSerialize := map[string]interface{}{}
 	toSerialize["address"] = o.Address
 	toSerialize["next_hop"] = o.NextHop
-	if !isNil(o.Customdata) {
+	if !IsNil(o.Customdata) {
 		toSerialize["customdata"] = o.Customdata
 	}
-	if !isNil(o.Tags) {
+	if !IsNil(o.Tags) {
 		toSerialize["tags"] = o.Tags
 	}
 

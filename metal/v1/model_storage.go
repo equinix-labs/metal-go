@@ -47,7 +47,7 @@ func NewStorageWithDefaults() *Storage {
 
 // GetDisks returns the Disks field value if set, zero value otherwise.
 func (o *Storage) GetDisks() []Disk {
-	if o == nil || isNil(o.Disks) {
+	if o == nil || IsNil(o.Disks) {
 		var ret []Disk
 		return ret
 	}
@@ -57,7 +57,7 @@ func (o *Storage) GetDisks() []Disk {
 // GetDisksOk returns a tuple with the Disks field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Storage) GetDisksOk() ([]Disk, bool) {
-	if o == nil || isNil(o.Disks) {
+	if o == nil || IsNil(o.Disks) {
 		return nil, false
 	}
 	return o.Disks, true
@@ -65,7 +65,7 @@ func (o *Storage) GetDisksOk() ([]Disk, bool) {
 
 // HasDisks returns a boolean if a field has been set.
 func (o *Storage) HasDisks() bool {
-	if o != nil && !isNil(o.Disks) {
+	if o != nil && !IsNil(o.Disks) {
 		return true
 	}
 
@@ -79,7 +79,7 @@ func (o *Storage) SetDisks(v []Disk) {
 
 // GetRaid returns the Raid field value if set, zero value otherwise.
 func (o *Storage) GetRaid() []Raid {
-	if o == nil || isNil(o.Raid) {
+	if o == nil || IsNil(o.Raid) {
 		var ret []Raid
 		return ret
 	}
@@ -89,7 +89,7 @@ func (o *Storage) GetRaid() []Raid {
 // GetRaidOk returns a tuple with the Raid field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Storage) GetRaidOk() ([]Raid, bool) {
-	if o == nil || isNil(o.Raid) {
+	if o == nil || IsNil(o.Raid) {
 		return nil, false
 	}
 	return o.Raid, true
@@ -97,7 +97,7 @@ func (o *Storage) GetRaidOk() ([]Raid, bool) {
 
 // HasRaid returns a boolean if a field has been set.
 func (o *Storage) HasRaid() bool {
-	if o != nil && !isNil(o.Raid) {
+	if o != nil && !IsNil(o.Raid) {
 		return true
 	}
 
@@ -111,7 +111,7 @@ func (o *Storage) SetRaid(v []Raid) {
 
 // GetFilesystems returns the Filesystems field value if set, zero value otherwise.
 func (o *Storage) GetFilesystems() []Filesystem {
-	if o == nil || isNil(o.Filesystems) {
+	if o == nil || IsNil(o.Filesystems) {
 		var ret []Filesystem
 		return ret
 	}
@@ -121,7 +121,7 @@ func (o *Storage) GetFilesystems() []Filesystem {
 // GetFilesystemsOk returns a tuple with the Filesystems field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Storage) GetFilesystemsOk() ([]Filesystem, bool) {
-	if o == nil || isNil(o.Filesystems) {
+	if o == nil || IsNil(o.Filesystems) {
 		return nil, false
 	}
 	return o.Filesystems, true
@@ -129,7 +129,7 @@ func (o *Storage) GetFilesystemsOk() ([]Filesystem, bool) {
 
 // HasFilesystems returns a boolean if a field has been set.
 func (o *Storage) HasFilesystems() bool {
-	if o != nil && !isNil(o.Filesystems) {
+	if o != nil && !IsNil(o.Filesystems) {
 		return true
 	}
 
@@ -151,13 +151,13 @@ func (o Storage) MarshalJSON() ([]byte, error) {
 
 func (o Storage) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Disks) {
+	if !IsNil(o.Disks) {
 		toSerialize["disks"] = o.Disks
 	}
-	if !isNil(o.Raid) {
+	if !IsNil(o.Raid) {
 		toSerialize["raid"] = o.Raid
 	}
-	if !isNil(o.Filesystems) {
+	if !IsNil(o.Filesystems) {
 		toSerialize["filesystems"] = o.Filesystems
 	}
 

@@ -47,7 +47,7 @@ func NewPlanAvailableInInnerWithDefaults() *PlanAvailableInInner {
 
 // GetHref returns the Href field value if set, zero value otherwise.
 func (o *PlanAvailableInInner) GetHref() string {
-	if o == nil || isNil(o.Href) {
+	if o == nil || IsNil(o.Href) {
 		var ret string
 		return ret
 	}
@@ -57,7 +57,7 @@ func (o *PlanAvailableInInner) GetHref() string {
 // GetHrefOk returns a tuple with the Href field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PlanAvailableInInner) GetHrefOk() (*string, bool) {
-	if o == nil || isNil(o.Href) {
+	if o == nil || IsNil(o.Href) {
 		return nil, false
 	}
 	return o.Href, true
@@ -65,7 +65,7 @@ func (o *PlanAvailableInInner) GetHrefOk() (*string, bool) {
 
 // HasHref returns a boolean if a field has been set.
 func (o *PlanAvailableInInner) HasHref() bool {
-	if o != nil && !isNil(o.Href) {
+	if o != nil && !IsNil(o.Href) {
 		return true
 	}
 
@@ -79,7 +79,7 @@ func (o *PlanAvailableInInner) SetHref(v string) {
 
 // GetPrice returns the Price field value if set, zero value otherwise.
 func (o *PlanAvailableInInner) GetPrice() PlanAvailableInInnerPrice {
-	if o == nil || isNil(o.Price) {
+	if o == nil || IsNil(o.Price) {
 		var ret PlanAvailableInInnerPrice
 		return ret
 	}
@@ -89,7 +89,7 @@ func (o *PlanAvailableInInner) GetPrice() PlanAvailableInInnerPrice {
 // GetPriceOk returns a tuple with the Price field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PlanAvailableInInner) GetPriceOk() (*PlanAvailableInInnerPrice, bool) {
-	if o == nil || isNil(o.Price) {
+	if o == nil || IsNil(o.Price) {
 		return nil, false
 	}
 	return o.Price, true
@@ -97,7 +97,7 @@ func (o *PlanAvailableInInner) GetPriceOk() (*PlanAvailableInInnerPrice, bool) {
 
 // HasPrice returns a boolean if a field has been set.
 func (o *PlanAvailableInInner) HasPrice() bool {
-	if o != nil && !isNil(o.Price) {
+	if o != nil && !IsNil(o.Price) {
 		return true
 	}
 
@@ -119,10 +119,10 @@ func (o PlanAvailableInInner) MarshalJSON() ([]byte, error) {
 
 func (o PlanAvailableInInner) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Href) {
+	if !IsNil(o.Href) {
 		toSerialize["href"] = o.Href
 	}
-	if !isNil(o.Price) {
+	if !IsNil(o.Price) {
 		toSerialize["price"] = o.Price
 	}
 

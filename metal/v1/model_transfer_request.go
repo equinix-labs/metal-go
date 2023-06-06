@@ -51,7 +51,7 @@ func NewTransferRequestWithDefaults() *TransferRequest {
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *TransferRequest) GetCreatedAt() time.Time {
-	if o == nil || isNil(o.CreatedAt) {
+	if o == nil || IsNil(o.CreatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -61,7 +61,7 @@ func (o *TransferRequest) GetCreatedAt() time.Time {
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TransferRequest) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.CreatedAt) {
+	if o == nil || IsNil(o.CreatedAt) {
 		return nil, false
 	}
 	return o.CreatedAt, true
@@ -69,7 +69,7 @@ func (o *TransferRequest) GetCreatedAtOk() (*time.Time, bool) {
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *TransferRequest) HasCreatedAt() bool {
-	if o != nil && !isNil(o.CreatedAt) {
+	if o != nil && !IsNil(o.CreatedAt) {
 		return true
 	}
 
@@ -83,7 +83,7 @@ func (o *TransferRequest) SetCreatedAt(v time.Time) {
 
 // GetHref returns the Href field value if set, zero value otherwise.
 func (o *TransferRequest) GetHref() string {
-	if o == nil || isNil(o.Href) {
+	if o == nil || IsNil(o.Href) {
 		var ret string
 		return ret
 	}
@@ -93,7 +93,7 @@ func (o *TransferRequest) GetHref() string {
 // GetHrefOk returns a tuple with the Href field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TransferRequest) GetHrefOk() (*string, bool) {
-	if o == nil || isNil(o.Href) {
+	if o == nil || IsNil(o.Href) {
 		return nil, false
 	}
 	return o.Href, true
@@ -101,7 +101,7 @@ func (o *TransferRequest) GetHrefOk() (*string, bool) {
 
 // HasHref returns a boolean if a field has been set.
 func (o *TransferRequest) HasHref() bool {
-	if o != nil && !isNil(o.Href) {
+	if o != nil && !IsNil(o.Href) {
 		return true
 	}
 
@@ -115,7 +115,7 @@ func (o *TransferRequest) SetHref(v string) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *TransferRequest) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -125,7 +125,7 @@ func (o *TransferRequest) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TransferRequest) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -133,7 +133,7 @@ func (o *TransferRequest) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *TransferRequest) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -147,7 +147,7 @@ func (o *TransferRequest) SetId(v string) {
 
 // GetProject returns the Project field value if set, zero value otherwise.
 func (o *TransferRequest) GetProject() Href {
-	if o == nil || isNil(o.Project) {
+	if o == nil || IsNil(o.Project) {
 		var ret Href
 		return ret
 	}
@@ -157,7 +157,7 @@ func (o *TransferRequest) GetProject() Href {
 // GetProjectOk returns a tuple with the Project field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TransferRequest) GetProjectOk() (*Href, bool) {
-	if o == nil || isNil(o.Project) {
+	if o == nil || IsNil(o.Project) {
 		return nil, false
 	}
 	return o.Project, true
@@ -165,7 +165,7 @@ func (o *TransferRequest) GetProjectOk() (*Href, bool) {
 
 // HasProject returns a boolean if a field has been set.
 func (o *TransferRequest) HasProject() bool {
-	if o != nil && !isNil(o.Project) {
+	if o != nil && !IsNil(o.Project) {
 		return true
 	}
 
@@ -179,7 +179,7 @@ func (o *TransferRequest) SetProject(v Href) {
 
 // GetTargetOrganization returns the TargetOrganization field value if set, zero value otherwise.
 func (o *TransferRequest) GetTargetOrganization() Href {
-	if o == nil || isNil(o.TargetOrganization) {
+	if o == nil || IsNil(o.TargetOrganization) {
 		var ret Href
 		return ret
 	}
@@ -189,7 +189,7 @@ func (o *TransferRequest) GetTargetOrganization() Href {
 // GetTargetOrganizationOk returns a tuple with the TargetOrganization field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TransferRequest) GetTargetOrganizationOk() (*Href, bool) {
-	if o == nil || isNil(o.TargetOrganization) {
+	if o == nil || IsNil(o.TargetOrganization) {
 		return nil, false
 	}
 	return o.TargetOrganization, true
@@ -197,7 +197,7 @@ func (o *TransferRequest) GetTargetOrganizationOk() (*Href, bool) {
 
 // HasTargetOrganization returns a boolean if a field has been set.
 func (o *TransferRequest) HasTargetOrganization() bool {
-	if o != nil && !isNil(o.TargetOrganization) {
+	if o != nil && !IsNil(o.TargetOrganization) {
 		return true
 	}
 
@@ -211,7 +211,7 @@ func (o *TransferRequest) SetTargetOrganization(v Href) {
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *TransferRequest) GetUpdatedAt() time.Time {
-	if o == nil || isNil(o.UpdatedAt) {
+	if o == nil || IsNil(o.UpdatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -221,7 +221,7 @@ func (o *TransferRequest) GetUpdatedAt() time.Time {
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TransferRequest) GetUpdatedAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.UpdatedAt) {
+	if o == nil || IsNil(o.UpdatedAt) {
 		return nil, false
 	}
 	return o.UpdatedAt, true
@@ -229,7 +229,7 @@ func (o *TransferRequest) GetUpdatedAtOk() (*time.Time, bool) {
 
 // HasUpdatedAt returns a boolean if a field has been set.
 func (o *TransferRequest) HasUpdatedAt() bool {
-	if o != nil && !isNil(o.UpdatedAt) {
+	if o != nil && !IsNil(o.UpdatedAt) {
 		return true
 	}
 
@@ -251,22 +251,22 @@ func (o TransferRequest) MarshalJSON() ([]byte, error) {
 
 func (o TransferRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.CreatedAt) {
+	if !IsNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt
 	}
-	if !isNil(o.Href) {
+	if !IsNil(o.Href) {
 		toSerialize["href"] = o.Href
 	}
-	if !isNil(o.Id) {
+	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
-	if !isNil(o.Project) {
+	if !IsNil(o.Project) {
 		toSerialize["project"] = o.Project
 	}
-	if !isNil(o.TargetOrganization) {
+	if !IsNil(o.TargetOrganization) {
 		toSerialize["target_organization"] = o.TargetOrganization
 	}
-	if !isNil(o.UpdatedAt) {
+	if !IsNil(o.UpdatedAt) {
 		toSerialize["updated_at"] = o.UpdatedAt
 	}
 

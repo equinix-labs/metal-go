@@ -45,7 +45,7 @@ func NewInvitationListWithDefaults() *InvitationList {
 
 // GetInvitations returns the Invitations field value if set, zero value otherwise.
 func (o *InvitationList) GetInvitations() []Membership {
-	if o == nil || isNil(o.Invitations) {
+	if o == nil || IsNil(o.Invitations) {
 		var ret []Membership
 		return ret
 	}
@@ -55,7 +55,7 @@ func (o *InvitationList) GetInvitations() []Membership {
 // GetInvitationsOk returns a tuple with the Invitations field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InvitationList) GetInvitationsOk() ([]Membership, bool) {
-	if o == nil || isNil(o.Invitations) {
+	if o == nil || IsNil(o.Invitations) {
 		return nil, false
 	}
 	return o.Invitations, true
@@ -63,7 +63,7 @@ func (o *InvitationList) GetInvitationsOk() ([]Membership, bool) {
 
 // HasInvitations returns a boolean if a field has been set.
 func (o *InvitationList) HasInvitations() bool {
-	if o != nil && !isNil(o.Invitations) {
+	if o != nil && !IsNil(o.Invitations) {
 		return true
 	}
 
@@ -85,7 +85,7 @@ func (o InvitationList) MarshalJSON() ([]byte, error) {
 
 func (o InvitationList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Invitations) {
+	if !IsNil(o.Invitations) {
 		toSerialize["invitations"] = o.Invitations
 	}
 

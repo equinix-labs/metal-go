@@ -48,7 +48,7 @@ func NewCapacityCheckPerFacilityInfoWithDefaults() *CapacityCheckPerFacilityInfo
 
 // GetAvailable returns the Available field value if set, zero value otherwise.
 func (o *CapacityCheckPerFacilityInfo) GetAvailable() bool {
-	if o == nil || isNil(o.Available) {
+	if o == nil || IsNil(o.Available) {
 		var ret bool
 		return ret
 	}
@@ -58,7 +58,7 @@ func (o *CapacityCheckPerFacilityInfo) GetAvailable() bool {
 // GetAvailableOk returns a tuple with the Available field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CapacityCheckPerFacilityInfo) GetAvailableOk() (*bool, bool) {
-	if o == nil || isNil(o.Available) {
+	if o == nil || IsNil(o.Available) {
 		return nil, false
 	}
 	return o.Available, true
@@ -66,7 +66,7 @@ func (o *CapacityCheckPerFacilityInfo) GetAvailableOk() (*bool, bool) {
 
 // HasAvailable returns a boolean if a field has been set.
 func (o *CapacityCheckPerFacilityInfo) HasAvailable() bool {
-	if o != nil && !isNil(o.Available) {
+	if o != nil && !IsNil(o.Available) {
 		return true
 	}
 
@@ -80,7 +80,7 @@ func (o *CapacityCheckPerFacilityInfo) SetAvailable(v bool) {
 
 // GetFacility returns the Facility field value if set, zero value otherwise.
 func (o *CapacityCheckPerFacilityInfo) GetFacility() string {
-	if o == nil || isNil(o.Facility) {
+	if o == nil || IsNil(o.Facility) {
 		var ret string
 		return ret
 	}
@@ -90,7 +90,7 @@ func (o *CapacityCheckPerFacilityInfo) GetFacility() string {
 // GetFacilityOk returns a tuple with the Facility field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CapacityCheckPerFacilityInfo) GetFacilityOk() (*string, bool) {
-	if o == nil || isNil(o.Facility) {
+	if o == nil || IsNil(o.Facility) {
 		return nil, false
 	}
 	return o.Facility, true
@@ -98,7 +98,7 @@ func (o *CapacityCheckPerFacilityInfo) GetFacilityOk() (*string, bool) {
 
 // HasFacility returns a boolean if a field has been set.
 func (o *CapacityCheckPerFacilityInfo) HasFacility() bool {
-	if o != nil && !isNil(o.Facility) {
+	if o != nil && !IsNil(o.Facility) {
 		return true
 	}
 
@@ -112,7 +112,7 @@ func (o *CapacityCheckPerFacilityInfo) SetFacility(v string) {
 
 // GetPlan returns the Plan field value if set, zero value otherwise.
 func (o *CapacityCheckPerFacilityInfo) GetPlan() string {
-	if o == nil || isNil(o.Plan) {
+	if o == nil || IsNil(o.Plan) {
 		var ret string
 		return ret
 	}
@@ -122,7 +122,7 @@ func (o *CapacityCheckPerFacilityInfo) GetPlan() string {
 // GetPlanOk returns a tuple with the Plan field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CapacityCheckPerFacilityInfo) GetPlanOk() (*string, bool) {
-	if o == nil || isNil(o.Plan) {
+	if o == nil || IsNil(o.Plan) {
 		return nil, false
 	}
 	return o.Plan, true
@@ -130,7 +130,7 @@ func (o *CapacityCheckPerFacilityInfo) GetPlanOk() (*string, bool) {
 
 // HasPlan returns a boolean if a field has been set.
 func (o *CapacityCheckPerFacilityInfo) HasPlan() bool {
-	if o != nil && !isNil(o.Plan) {
+	if o != nil && !IsNil(o.Plan) {
 		return true
 	}
 
@@ -144,7 +144,7 @@ func (o *CapacityCheckPerFacilityInfo) SetPlan(v string) {
 
 // GetQuantity returns the Quantity field value if set, zero value otherwise.
 func (o *CapacityCheckPerFacilityInfo) GetQuantity() string {
-	if o == nil || isNil(o.Quantity) {
+	if o == nil || IsNil(o.Quantity) {
 		var ret string
 		return ret
 	}
@@ -154,7 +154,7 @@ func (o *CapacityCheckPerFacilityInfo) GetQuantity() string {
 // GetQuantityOk returns a tuple with the Quantity field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CapacityCheckPerFacilityInfo) GetQuantityOk() (*string, bool) {
-	if o == nil || isNil(o.Quantity) {
+	if o == nil || IsNil(o.Quantity) {
 		return nil, false
 	}
 	return o.Quantity, true
@@ -162,7 +162,7 @@ func (o *CapacityCheckPerFacilityInfo) GetQuantityOk() (*string, bool) {
 
 // HasQuantity returns a boolean if a field has been set.
 func (o *CapacityCheckPerFacilityInfo) HasQuantity() bool {
-	if o != nil && !isNil(o.Quantity) {
+	if o != nil && !IsNil(o.Quantity) {
 		return true
 	}
 
@@ -184,16 +184,16 @@ func (o CapacityCheckPerFacilityInfo) MarshalJSON() ([]byte, error) {
 
 func (o CapacityCheckPerFacilityInfo) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Available) {
+	if !IsNil(o.Available) {
 		toSerialize["available"] = o.Available
 	}
-	if !isNil(o.Facility) {
+	if !IsNil(o.Facility) {
 		toSerialize["facility"] = o.Facility
 	}
-	if !isNil(o.Plan) {
+	if !IsNil(o.Plan) {
 		toSerialize["plan"] = o.Plan
 	}
-	if !isNil(o.Quantity) {
+	if !IsNil(o.Quantity) {
 		toSerialize["quantity"] = o.Quantity
 	}
 

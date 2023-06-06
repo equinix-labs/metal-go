@@ -46,7 +46,7 @@ func NewLicenseUpdateInputWithDefaults() *LicenseUpdateInput {
 
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *LicenseUpdateInput) GetDescription() string {
-	if o == nil || isNil(o.Description) {
+	if o == nil || IsNil(o.Description) {
 		var ret string
 		return ret
 	}
@@ -56,7 +56,7 @@ func (o *LicenseUpdateInput) GetDescription() string {
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *LicenseUpdateInput) GetDescriptionOk() (*string, bool) {
-	if o == nil || isNil(o.Description) {
+	if o == nil || IsNil(o.Description) {
 		return nil, false
 	}
 	return o.Description, true
@@ -64,7 +64,7 @@ func (o *LicenseUpdateInput) GetDescriptionOk() (*string, bool) {
 
 // HasDescription returns a boolean if a field has been set.
 func (o *LicenseUpdateInput) HasDescription() bool {
-	if o != nil && !isNil(o.Description) {
+	if o != nil && !IsNil(o.Description) {
 		return true
 	}
 
@@ -78,7 +78,7 @@ func (o *LicenseUpdateInput) SetDescription(v string) {
 
 // GetSize returns the Size field value if set, zero value otherwise.
 func (o *LicenseUpdateInput) GetSize() float32 {
-	if o == nil || isNil(o.Size) {
+	if o == nil || IsNil(o.Size) {
 		var ret float32
 		return ret
 	}
@@ -88,7 +88,7 @@ func (o *LicenseUpdateInput) GetSize() float32 {
 // GetSizeOk returns a tuple with the Size field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *LicenseUpdateInput) GetSizeOk() (*float32, bool) {
-	if o == nil || isNil(o.Size) {
+	if o == nil || IsNil(o.Size) {
 		return nil, false
 	}
 	return o.Size, true
@@ -96,7 +96,7 @@ func (o *LicenseUpdateInput) GetSizeOk() (*float32, bool) {
 
 // HasSize returns a boolean if a field has been set.
 func (o *LicenseUpdateInput) HasSize() bool {
-	if o != nil && !isNil(o.Size) {
+	if o != nil && !IsNil(o.Size) {
 		return true
 	}
 
@@ -118,10 +118,10 @@ func (o LicenseUpdateInput) MarshalJSON() ([]byte, error) {
 
 func (o LicenseUpdateInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Description) {
+	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
-	if !isNil(o.Size) {
+	if !IsNil(o.Size) {
 		toSerialize["size"] = o.Size
 	}
 

@@ -45,7 +45,7 @@ func NewIPAssignmentListWithDefaults() *IPAssignmentList {
 
 // GetIpAddresses returns the IpAddresses field value if set, zero value otherwise.
 func (o *IPAssignmentList) GetIpAddresses() []IPAssignment {
-	if o == nil || isNil(o.IpAddresses) {
+	if o == nil || IsNil(o.IpAddresses) {
 		var ret []IPAssignment
 		return ret
 	}
@@ -55,7 +55,7 @@ func (o *IPAssignmentList) GetIpAddresses() []IPAssignment {
 // GetIpAddressesOk returns a tuple with the IpAddresses field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IPAssignmentList) GetIpAddressesOk() ([]IPAssignment, bool) {
-	if o == nil || isNil(o.IpAddresses) {
+	if o == nil || IsNil(o.IpAddresses) {
 		return nil, false
 	}
 	return o.IpAddresses, true
@@ -63,7 +63,7 @@ func (o *IPAssignmentList) GetIpAddressesOk() ([]IPAssignment, bool) {
 
 // HasIpAddresses returns a boolean if a field has been set.
 func (o *IPAssignmentList) HasIpAddresses() bool {
-	if o != nil && !isNil(o.IpAddresses) {
+	if o != nil && !IsNil(o.IpAddresses) {
 		return true
 	}
 
@@ -85,7 +85,7 @@ func (o IPAssignmentList) MarshalJSON() ([]byte, error) {
 
 func (o IPAssignmentList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.IpAddresses) {
+	if !IsNil(o.IpAddresses) {
 		toSerialize["ip_addresses"] = o.IpAddresses
 	}
 

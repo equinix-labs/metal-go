@@ -45,7 +45,7 @@ func NewInvoiceListWithDefaults() *InvoiceList {
 
 // GetInvoices returns the Invoices field value if set, zero value otherwise.
 func (o *InvoiceList) GetInvoices() []Invoice {
-	if o == nil || isNil(o.Invoices) {
+	if o == nil || IsNil(o.Invoices) {
 		var ret []Invoice
 		return ret
 	}
@@ -55,7 +55,7 @@ func (o *InvoiceList) GetInvoices() []Invoice {
 // GetInvoicesOk returns a tuple with the Invoices field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InvoiceList) GetInvoicesOk() ([]Invoice, bool) {
-	if o == nil || isNil(o.Invoices) {
+	if o == nil || IsNil(o.Invoices) {
 		return nil, false
 	}
 	return o.Invoices, true
@@ -63,7 +63,7 @@ func (o *InvoiceList) GetInvoicesOk() ([]Invoice, bool) {
 
 // HasInvoices returns a boolean if a field has been set.
 func (o *InvoiceList) HasInvoices() bool {
-	if o != nil && !isNil(o.Invoices) {
+	if o != nil && !IsNil(o.Invoices) {
 		return true
 	}
 
@@ -85,7 +85,7 @@ func (o InvoiceList) MarshalJSON() ([]byte, error) {
 
 func (o InvoiceList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Invoices) {
+	if !IsNil(o.Invoices) {
 		toSerialize["invoices"] = o.Invoices
 	}
 

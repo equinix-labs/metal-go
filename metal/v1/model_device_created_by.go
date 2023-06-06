@@ -67,7 +67,7 @@ func NewDeviceCreatedByWithDefaults() *DeviceCreatedBy {
 
 // GetAvatarThumbUrl returns the AvatarThumbUrl field value if set, zero value otherwise.
 func (o *DeviceCreatedBy) GetAvatarThumbUrl() string {
-	if o == nil || isNil(o.AvatarThumbUrl) {
+	if o == nil || IsNil(o.AvatarThumbUrl) {
 		var ret string
 		return ret
 	}
@@ -77,7 +77,7 @@ func (o *DeviceCreatedBy) GetAvatarThumbUrl() string {
 // GetAvatarThumbUrlOk returns a tuple with the AvatarThumbUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeviceCreatedBy) GetAvatarThumbUrlOk() (*string, bool) {
-	if o == nil || isNil(o.AvatarThumbUrl) {
+	if o == nil || IsNil(o.AvatarThumbUrl) {
 		return nil, false
 	}
 	return o.AvatarThumbUrl, true
@@ -85,7 +85,7 @@ func (o *DeviceCreatedBy) GetAvatarThumbUrlOk() (*string, bool) {
 
 // HasAvatarThumbUrl returns a boolean if a field has been set.
 func (o *DeviceCreatedBy) HasAvatarThumbUrl() bool {
-	if o != nil && !isNil(o.AvatarThumbUrl) {
+	if o != nil && !IsNil(o.AvatarThumbUrl) {
 		return true
 	}
 
@@ -99,7 +99,7 @@ func (o *DeviceCreatedBy) SetAvatarThumbUrl(v string) {
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *DeviceCreatedBy) GetCreatedAt() time.Time {
-	if o == nil || isNil(o.CreatedAt) {
+	if o == nil || IsNil(o.CreatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -109,7 +109,7 @@ func (o *DeviceCreatedBy) GetCreatedAt() time.Time {
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeviceCreatedBy) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.CreatedAt) {
+	if o == nil || IsNil(o.CreatedAt) {
 		return nil, false
 	}
 	return o.CreatedAt, true
@@ -117,7 +117,7 @@ func (o *DeviceCreatedBy) GetCreatedAtOk() (*time.Time, bool) {
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *DeviceCreatedBy) HasCreatedAt() bool {
-	if o != nil && !isNil(o.CreatedAt) {
+	if o != nil && !IsNil(o.CreatedAt) {
 		return true
 	}
 
@@ -131,7 +131,7 @@ func (o *DeviceCreatedBy) SetCreatedAt(v time.Time) {
 
 // GetEmail returns the Email field value if set, zero value otherwise.
 func (o *DeviceCreatedBy) GetEmail() string {
-	if o == nil || isNil(o.Email) {
+	if o == nil || IsNil(o.Email) {
 		var ret string
 		return ret
 	}
@@ -141,7 +141,7 @@ func (o *DeviceCreatedBy) GetEmail() string {
 // GetEmailOk returns a tuple with the Email field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeviceCreatedBy) GetEmailOk() (*string, bool) {
-	if o == nil || isNil(o.Email) {
+	if o == nil || IsNil(o.Email) {
 		return nil, false
 	}
 	return o.Email, true
@@ -149,7 +149,7 @@ func (o *DeviceCreatedBy) GetEmailOk() (*string, bool) {
 
 // HasEmail returns a boolean if a field has been set.
 func (o *DeviceCreatedBy) HasEmail() bool {
-	if o != nil && !isNil(o.Email) {
+	if o != nil && !IsNil(o.Email) {
 		return true
 	}
 
@@ -163,7 +163,7 @@ func (o *DeviceCreatedBy) SetEmail(v string) {
 
 // GetFirstName returns the FirstName field value if set, zero value otherwise.
 func (o *DeviceCreatedBy) GetFirstName() string {
-	if o == nil || isNil(o.FirstName) {
+	if o == nil || IsNil(o.FirstName) {
 		var ret string
 		return ret
 	}
@@ -173,7 +173,7 @@ func (o *DeviceCreatedBy) GetFirstName() string {
 // GetFirstNameOk returns a tuple with the FirstName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeviceCreatedBy) GetFirstNameOk() (*string, bool) {
-	if o == nil || isNil(o.FirstName) {
+	if o == nil || IsNil(o.FirstName) {
 		return nil, false
 	}
 	return o.FirstName, true
@@ -181,7 +181,7 @@ func (o *DeviceCreatedBy) GetFirstNameOk() (*string, bool) {
 
 // HasFirstName returns a boolean if a field has been set.
 func (o *DeviceCreatedBy) HasFirstName() bool {
-	if o != nil && !isNil(o.FirstName) {
+	if o != nil && !IsNil(o.FirstName) {
 		return true
 	}
 
@@ -195,7 +195,7 @@ func (o *DeviceCreatedBy) SetFirstName(v string) {
 
 // GetFullName returns the FullName field value if set, zero value otherwise.
 func (o *DeviceCreatedBy) GetFullName() string {
-	if o == nil || isNil(o.FullName) {
+	if o == nil || IsNil(o.FullName) {
 		var ret string
 		return ret
 	}
@@ -205,7 +205,7 @@ func (o *DeviceCreatedBy) GetFullName() string {
 // GetFullNameOk returns a tuple with the FullName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeviceCreatedBy) GetFullNameOk() (*string, bool) {
-	if o == nil || isNil(o.FullName) {
+	if o == nil || IsNil(o.FullName) {
 		return nil, false
 	}
 	return o.FullName, true
@@ -213,7 +213,7 @@ func (o *DeviceCreatedBy) GetFullNameOk() (*string, bool) {
 
 // HasFullName returns a boolean if a field has been set.
 func (o *DeviceCreatedBy) HasFullName() bool {
-	if o != nil && !isNil(o.FullName) {
+	if o != nil && !IsNil(o.FullName) {
 		return true
 	}
 
@@ -227,7 +227,7 @@ func (o *DeviceCreatedBy) SetFullName(v string) {
 
 // GetHref returns the Href field value if set, zero value otherwise.
 func (o *DeviceCreatedBy) GetHref() string {
-	if o == nil || isNil(o.Href) {
+	if o == nil || IsNil(o.Href) {
 		var ret string
 		return ret
 	}
@@ -237,7 +237,7 @@ func (o *DeviceCreatedBy) GetHref() string {
 // GetHrefOk returns a tuple with the Href field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeviceCreatedBy) GetHrefOk() (*string, bool) {
-	if o == nil || isNil(o.Href) {
+	if o == nil || IsNil(o.Href) {
 		return nil, false
 	}
 	return o.Href, true
@@ -245,7 +245,7 @@ func (o *DeviceCreatedBy) GetHrefOk() (*string, bool) {
 
 // HasHref returns a boolean if a field has been set.
 func (o *DeviceCreatedBy) HasHref() bool {
-	if o != nil && !isNil(o.Href) {
+	if o != nil && !IsNil(o.Href) {
 		return true
 	}
 
@@ -283,7 +283,7 @@ func (o *DeviceCreatedBy) SetId(v string) {
 
 // GetLastName returns the LastName field value if set, zero value otherwise.
 func (o *DeviceCreatedBy) GetLastName() string {
-	if o == nil || isNil(o.LastName) {
+	if o == nil || IsNil(o.LastName) {
 		var ret string
 		return ret
 	}
@@ -293,7 +293,7 @@ func (o *DeviceCreatedBy) GetLastName() string {
 // GetLastNameOk returns a tuple with the LastName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeviceCreatedBy) GetLastNameOk() (*string, bool) {
-	if o == nil || isNil(o.LastName) {
+	if o == nil || IsNil(o.LastName) {
 		return nil, false
 	}
 	return o.LastName, true
@@ -301,7 +301,7 @@ func (o *DeviceCreatedBy) GetLastNameOk() (*string, bool) {
 
 // HasLastName returns a boolean if a field has been set.
 func (o *DeviceCreatedBy) HasLastName() bool {
-	if o != nil && !isNil(o.LastName) {
+	if o != nil && !IsNil(o.LastName) {
 		return true
 	}
 
@@ -339,7 +339,7 @@ func (o *DeviceCreatedBy) SetShortId(v string) {
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *DeviceCreatedBy) GetUpdatedAt() time.Time {
-	if o == nil || isNil(o.UpdatedAt) {
+	if o == nil || IsNil(o.UpdatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -349,7 +349,7 @@ func (o *DeviceCreatedBy) GetUpdatedAt() time.Time {
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeviceCreatedBy) GetUpdatedAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.UpdatedAt) {
+	if o == nil || IsNil(o.UpdatedAt) {
 		return nil, false
 	}
 	return o.UpdatedAt, true
@@ -357,7 +357,7 @@ func (o *DeviceCreatedBy) GetUpdatedAtOk() (*time.Time, bool) {
 
 // HasUpdatedAt returns a boolean if a field has been set.
 func (o *DeviceCreatedBy) HasUpdatedAt() bool {
-	if o != nil && !isNil(o.UpdatedAt) {
+	if o != nil && !IsNil(o.UpdatedAt) {
 		return true
 	}
 
@@ -379,30 +379,30 @@ func (o DeviceCreatedBy) MarshalJSON() ([]byte, error) {
 
 func (o DeviceCreatedBy) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.AvatarThumbUrl) {
+	if !IsNil(o.AvatarThumbUrl) {
 		toSerialize["avatar_thumb_url"] = o.AvatarThumbUrl
 	}
-	if !isNil(o.CreatedAt) {
+	if !IsNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt
 	}
-	if !isNil(o.Email) {
+	if !IsNil(o.Email) {
 		toSerialize["email"] = o.Email
 	}
-	if !isNil(o.FirstName) {
+	if !IsNil(o.FirstName) {
 		toSerialize["first_name"] = o.FirstName
 	}
-	if !isNil(o.FullName) {
+	if !IsNil(o.FullName) {
 		toSerialize["full_name"] = o.FullName
 	}
-	if !isNil(o.Href) {
+	if !IsNil(o.Href) {
 		toSerialize["href"] = o.Href
 	}
 	toSerialize["id"] = o.Id
-	if !isNil(o.LastName) {
+	if !IsNil(o.LastName) {
 		toSerialize["last_name"] = o.LastName
 	}
 	toSerialize["short_id"] = o.ShortId
-	if !isNil(o.UpdatedAt) {
+	if !IsNil(o.UpdatedAt) {
 		toSerialize["updated_at"] = o.UpdatedAt
 	}
 

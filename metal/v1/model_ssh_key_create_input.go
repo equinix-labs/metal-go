@@ -48,7 +48,7 @@ func NewSSHKeyCreateInputWithDefaults() *SSHKeyCreateInput {
 
 // GetInstancesIds returns the InstancesIds field value if set, zero value otherwise.
 func (o *SSHKeyCreateInput) GetInstancesIds() []string {
-	if o == nil || isNil(o.InstancesIds) {
+	if o == nil || IsNil(o.InstancesIds) {
 		var ret []string
 		return ret
 	}
@@ -58,7 +58,7 @@ func (o *SSHKeyCreateInput) GetInstancesIds() []string {
 // GetInstancesIdsOk returns a tuple with the InstancesIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SSHKeyCreateInput) GetInstancesIdsOk() ([]string, bool) {
-	if o == nil || isNil(o.InstancesIds) {
+	if o == nil || IsNil(o.InstancesIds) {
 		return nil, false
 	}
 	return o.InstancesIds, true
@@ -66,7 +66,7 @@ func (o *SSHKeyCreateInput) GetInstancesIdsOk() ([]string, bool) {
 
 // HasInstancesIds returns a boolean if a field has been set.
 func (o *SSHKeyCreateInput) HasInstancesIds() bool {
-	if o != nil && !isNil(o.InstancesIds) {
+	if o != nil && !IsNil(o.InstancesIds) {
 		return true
 	}
 
@@ -80,7 +80,7 @@ func (o *SSHKeyCreateInput) SetInstancesIds(v []string) {
 
 // GetKey returns the Key field value if set, zero value otherwise.
 func (o *SSHKeyCreateInput) GetKey() string {
-	if o == nil || isNil(o.Key) {
+	if o == nil || IsNil(o.Key) {
 		var ret string
 		return ret
 	}
@@ -90,7 +90,7 @@ func (o *SSHKeyCreateInput) GetKey() string {
 // GetKeyOk returns a tuple with the Key field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SSHKeyCreateInput) GetKeyOk() (*string, bool) {
-	if o == nil || isNil(o.Key) {
+	if o == nil || IsNil(o.Key) {
 		return nil, false
 	}
 	return o.Key, true
@@ -98,7 +98,7 @@ func (o *SSHKeyCreateInput) GetKeyOk() (*string, bool) {
 
 // HasKey returns a boolean if a field has been set.
 func (o *SSHKeyCreateInput) HasKey() bool {
-	if o != nil && !isNil(o.Key) {
+	if o != nil && !IsNil(o.Key) {
 		return true
 	}
 
@@ -112,7 +112,7 @@ func (o *SSHKeyCreateInput) SetKey(v string) {
 
 // GetLabel returns the Label field value if set, zero value otherwise.
 func (o *SSHKeyCreateInput) GetLabel() string {
-	if o == nil || isNil(o.Label) {
+	if o == nil || IsNil(o.Label) {
 		var ret string
 		return ret
 	}
@@ -122,7 +122,7 @@ func (o *SSHKeyCreateInput) GetLabel() string {
 // GetLabelOk returns a tuple with the Label field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SSHKeyCreateInput) GetLabelOk() (*string, bool) {
-	if o == nil || isNil(o.Label) {
+	if o == nil || IsNil(o.Label) {
 		return nil, false
 	}
 	return o.Label, true
@@ -130,7 +130,7 @@ func (o *SSHKeyCreateInput) GetLabelOk() (*string, bool) {
 
 // HasLabel returns a boolean if a field has been set.
 func (o *SSHKeyCreateInput) HasLabel() bool {
-	if o != nil && !isNil(o.Label) {
+	if o != nil && !IsNil(o.Label) {
 		return true
 	}
 
@@ -152,13 +152,13 @@ func (o SSHKeyCreateInput) MarshalJSON() ([]byte, error) {
 
 func (o SSHKeyCreateInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.InstancesIds) {
+	if !IsNil(o.InstancesIds) {
 		toSerialize["instances_ids"] = o.InstancesIds
 	}
-	if !isNil(o.Key) {
+	if !IsNil(o.Key) {
 		toSerialize["key"] = o.Key
 	}
-	if !isNil(o.Label) {
+	if !IsNil(o.Label) {
 		toSerialize["label"] = o.Label
 	}
 

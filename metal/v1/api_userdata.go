@@ -14,7 +14,7 @@ package v1
 import (
 	"bytes"
 	"context"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 )
@@ -73,7 +73,7 @@ func (a *UserdataApiService) ValidateUserdataExecute(r ApiValidateUserdataReques
 	localVarFormParams := url.Values{}
 
 	if r.userdata != nil {
-		parameterAddToQuery(localVarQueryParams, "userdata", r.userdata, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "userdata", r.userdata, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -116,9 +116,9 @@ func (a *UserdataApiService) ValidateUserdataExecute(r ApiValidateUserdataReques
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}

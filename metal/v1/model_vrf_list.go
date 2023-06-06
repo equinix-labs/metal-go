@@ -45,7 +45,7 @@ func NewVrfListWithDefaults() *VrfList {
 
 // GetVrfs returns the Vrfs field value if set, zero value otherwise.
 func (o *VrfList) GetVrfs() []Vrf {
-	if o == nil || isNil(o.Vrfs) {
+	if o == nil || IsNil(o.Vrfs) {
 		var ret []Vrf
 		return ret
 	}
@@ -55,7 +55,7 @@ func (o *VrfList) GetVrfs() []Vrf {
 // GetVrfsOk returns a tuple with the Vrfs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VrfList) GetVrfsOk() ([]Vrf, bool) {
-	if o == nil || isNil(o.Vrfs) {
+	if o == nil || IsNil(o.Vrfs) {
 		return nil, false
 	}
 	return o.Vrfs, true
@@ -63,7 +63,7 @@ func (o *VrfList) GetVrfsOk() ([]Vrf, bool) {
 
 // HasVrfs returns a boolean if a field has been set.
 func (o *VrfList) HasVrfs() bool {
-	if o != nil && !isNil(o.Vrfs) {
+	if o != nil && !IsNil(o.Vrfs) {
 		return true
 	}
 
@@ -85,7 +85,7 @@ func (o VrfList) MarshalJSON() ([]byte, error) {
 
 func (o VrfList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Vrfs) {
+	if !IsNil(o.Vrfs) {
 		toSerialize["vrfs"] = o.Vrfs
 	}
 

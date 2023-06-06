@@ -51,7 +51,7 @@ func NewVlanVirtualCircuitUpdateInputWithDefaults() *VlanVirtualCircuitUpdateInp
 
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *VlanVirtualCircuitUpdateInput) GetDescription() string {
-	if o == nil || isNil(o.Description) {
+	if o == nil || IsNil(o.Description) {
 		var ret string
 		return ret
 	}
@@ -61,7 +61,7 @@ func (o *VlanVirtualCircuitUpdateInput) GetDescription() string {
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VlanVirtualCircuitUpdateInput) GetDescriptionOk() (*string, bool) {
-	if o == nil || isNil(o.Description) {
+	if o == nil || IsNil(o.Description) {
 		return nil, false
 	}
 	return o.Description, true
@@ -69,7 +69,7 @@ func (o *VlanVirtualCircuitUpdateInput) GetDescriptionOk() (*string, bool) {
 
 // HasDescription returns a boolean if a field has been set.
 func (o *VlanVirtualCircuitUpdateInput) HasDescription() bool {
-	if o != nil && !isNil(o.Description) {
+	if o != nil && !IsNil(o.Description) {
 		return true
 	}
 
@@ -83,7 +83,7 @@ func (o *VlanVirtualCircuitUpdateInput) SetDescription(v string) {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *VlanVirtualCircuitUpdateInput) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -93,7 +93,7 @@ func (o *VlanVirtualCircuitUpdateInput) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VlanVirtualCircuitUpdateInput) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
 	return o.Name, true
@@ -101,7 +101,7 @@ func (o *VlanVirtualCircuitUpdateInput) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *VlanVirtualCircuitUpdateInput) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -115,7 +115,7 @@ func (o *VlanVirtualCircuitUpdateInput) SetName(v string) {
 
 // GetSpeed returns the Speed field value if set, zero value otherwise.
 func (o *VlanVirtualCircuitUpdateInput) GetSpeed() string {
-	if o == nil || isNil(o.Speed) {
+	if o == nil || IsNil(o.Speed) {
 		var ret string
 		return ret
 	}
@@ -125,7 +125,7 @@ func (o *VlanVirtualCircuitUpdateInput) GetSpeed() string {
 // GetSpeedOk returns a tuple with the Speed field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VlanVirtualCircuitUpdateInput) GetSpeedOk() (*string, bool) {
-	if o == nil || isNil(o.Speed) {
+	if o == nil || IsNil(o.Speed) {
 		return nil, false
 	}
 	return o.Speed, true
@@ -133,7 +133,7 @@ func (o *VlanVirtualCircuitUpdateInput) GetSpeedOk() (*string, bool) {
 
 // HasSpeed returns a boolean if a field has been set.
 func (o *VlanVirtualCircuitUpdateInput) HasSpeed() bool {
-	if o != nil && !isNil(o.Speed) {
+	if o != nil && !IsNil(o.Speed) {
 		return true
 	}
 
@@ -147,7 +147,7 @@ func (o *VlanVirtualCircuitUpdateInput) SetSpeed(v string) {
 
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *VlanVirtualCircuitUpdateInput) GetTags() []string {
-	if o == nil || isNil(o.Tags) {
+	if o == nil || IsNil(o.Tags) {
 		var ret []string
 		return ret
 	}
@@ -157,7 +157,7 @@ func (o *VlanVirtualCircuitUpdateInput) GetTags() []string {
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VlanVirtualCircuitUpdateInput) GetTagsOk() ([]string, bool) {
-	if o == nil || isNil(o.Tags) {
+	if o == nil || IsNil(o.Tags) {
 		return nil, false
 	}
 	return o.Tags, true
@@ -165,7 +165,7 @@ func (o *VlanVirtualCircuitUpdateInput) GetTagsOk() ([]string, bool) {
 
 // HasTags returns a boolean if a field has been set.
 func (o *VlanVirtualCircuitUpdateInput) HasTags() bool {
-	if o != nil && !isNil(o.Tags) {
+	if o != nil && !IsNil(o.Tags) {
 		return true
 	}
 
@@ -179,7 +179,7 @@ func (o *VlanVirtualCircuitUpdateInput) SetTags(v []string) {
 
 // GetVnid returns the Vnid field value if set, zero value otherwise.
 func (o *VlanVirtualCircuitUpdateInput) GetVnid() string {
-	if o == nil || isNil(o.Vnid) {
+	if o == nil || IsNil(o.Vnid) {
 		var ret string
 		return ret
 	}
@@ -189,7 +189,7 @@ func (o *VlanVirtualCircuitUpdateInput) GetVnid() string {
 // GetVnidOk returns a tuple with the Vnid field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VlanVirtualCircuitUpdateInput) GetVnidOk() (*string, bool) {
-	if o == nil || isNil(o.Vnid) {
+	if o == nil || IsNil(o.Vnid) {
 		return nil, false
 	}
 	return o.Vnid, true
@@ -197,7 +197,7 @@ func (o *VlanVirtualCircuitUpdateInput) GetVnidOk() (*string, bool) {
 
 // HasVnid returns a boolean if a field has been set.
 func (o *VlanVirtualCircuitUpdateInput) HasVnid() bool {
-	if o != nil && !isNil(o.Vnid) {
+	if o != nil && !IsNil(o.Vnid) {
 		return true
 	}
 
@@ -219,19 +219,19 @@ func (o VlanVirtualCircuitUpdateInput) MarshalJSON() ([]byte, error) {
 
 func (o VlanVirtualCircuitUpdateInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Description) {
+	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
-	if !isNil(o.Name) {
+	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
-	if !isNil(o.Speed) {
+	if !IsNil(o.Speed) {
 		toSerialize["speed"] = o.Speed
 	}
-	if !isNil(o.Tags) {
+	if !IsNil(o.Tags) {
 		toSerialize["tags"] = o.Tags
 	}
-	if !isNil(o.Vnid) {
+	if !IsNil(o.Vnid) {
 		toSerialize["vnid"] = o.Vnid
 	}
 

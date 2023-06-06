@@ -66,7 +66,7 @@ func NewIPAssignmentWithDefaults() *IPAssignment {
 
 // GetAddress returns the Address field value if set, zero value otherwise.
 func (o *IPAssignment) GetAddress() string {
-	if o == nil || isNil(o.Address) {
+	if o == nil || IsNil(o.Address) {
 		var ret string
 		return ret
 	}
@@ -76,7 +76,7 @@ func (o *IPAssignment) GetAddress() string {
 // GetAddressOk returns a tuple with the Address field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IPAssignment) GetAddressOk() (*string, bool) {
-	if o == nil || isNil(o.Address) {
+	if o == nil || IsNil(o.Address) {
 		return nil, false
 	}
 	return o.Address, true
@@ -84,7 +84,7 @@ func (o *IPAssignment) GetAddressOk() (*string, bool) {
 
 // HasAddress returns a boolean if a field has been set.
 func (o *IPAssignment) HasAddress() bool {
-	if o != nil && !isNil(o.Address) {
+	if o != nil && !IsNil(o.Address) {
 		return true
 	}
 
@@ -98,7 +98,7 @@ func (o *IPAssignment) SetAddress(v string) {
 
 // GetAddressFamily returns the AddressFamily field value if set, zero value otherwise.
 func (o *IPAssignment) GetAddressFamily() int32 {
-	if o == nil || isNil(o.AddressFamily) {
+	if o == nil || IsNil(o.AddressFamily) {
 		var ret int32
 		return ret
 	}
@@ -108,7 +108,7 @@ func (o *IPAssignment) GetAddressFamily() int32 {
 // GetAddressFamilyOk returns a tuple with the AddressFamily field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IPAssignment) GetAddressFamilyOk() (*int32, bool) {
-	if o == nil || isNil(o.AddressFamily) {
+	if o == nil || IsNil(o.AddressFamily) {
 		return nil, false
 	}
 	return o.AddressFamily, true
@@ -116,7 +116,7 @@ func (o *IPAssignment) GetAddressFamilyOk() (*int32, bool) {
 
 // HasAddressFamily returns a boolean if a field has been set.
 func (o *IPAssignment) HasAddressFamily() bool {
-	if o != nil && !isNil(o.AddressFamily) {
+	if o != nil && !IsNil(o.AddressFamily) {
 		return true
 	}
 
@@ -130,7 +130,7 @@ func (o *IPAssignment) SetAddressFamily(v int32) {
 
 // GetAssignedTo returns the AssignedTo field value if set, zero value otherwise.
 func (o *IPAssignment) GetAssignedTo() Href {
-	if o == nil || isNil(o.AssignedTo) {
+	if o == nil || IsNil(o.AssignedTo) {
 		var ret Href
 		return ret
 	}
@@ -140,7 +140,7 @@ func (o *IPAssignment) GetAssignedTo() Href {
 // GetAssignedToOk returns a tuple with the AssignedTo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IPAssignment) GetAssignedToOk() (*Href, bool) {
-	if o == nil || isNil(o.AssignedTo) {
+	if o == nil || IsNil(o.AssignedTo) {
 		return nil, false
 	}
 	return o.AssignedTo, true
@@ -148,7 +148,7 @@ func (o *IPAssignment) GetAssignedToOk() (*Href, bool) {
 
 // HasAssignedTo returns a boolean if a field has been set.
 func (o *IPAssignment) HasAssignedTo() bool {
-	if o != nil && !isNil(o.AssignedTo) {
+	if o != nil && !IsNil(o.AssignedTo) {
 		return true
 	}
 
@@ -162,7 +162,7 @@ func (o *IPAssignment) SetAssignedTo(v Href) {
 
 // GetCidr returns the Cidr field value if set, zero value otherwise.
 func (o *IPAssignment) GetCidr() int32 {
-	if o == nil || isNil(o.Cidr) {
+	if o == nil || IsNil(o.Cidr) {
 		var ret int32
 		return ret
 	}
@@ -172,7 +172,7 @@ func (o *IPAssignment) GetCidr() int32 {
 // GetCidrOk returns a tuple with the Cidr field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IPAssignment) GetCidrOk() (*int32, bool) {
-	if o == nil || isNil(o.Cidr) {
+	if o == nil || IsNil(o.Cidr) {
 		return nil, false
 	}
 	return o.Cidr, true
@@ -180,7 +180,7 @@ func (o *IPAssignment) GetCidrOk() (*int32, bool) {
 
 // HasCidr returns a boolean if a field has been set.
 func (o *IPAssignment) HasCidr() bool {
-	if o != nil && !isNil(o.Cidr) {
+	if o != nil && !IsNil(o.Cidr) {
 		return true
 	}
 
@@ -194,7 +194,7 @@ func (o *IPAssignment) SetCidr(v int32) {
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *IPAssignment) GetCreatedAt() time.Time {
-	if o == nil || isNil(o.CreatedAt) {
+	if o == nil || IsNil(o.CreatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -204,7 +204,7 @@ func (o *IPAssignment) GetCreatedAt() time.Time {
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IPAssignment) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.CreatedAt) {
+	if o == nil || IsNil(o.CreatedAt) {
 		return nil, false
 	}
 	return o.CreatedAt, true
@@ -212,7 +212,7 @@ func (o *IPAssignment) GetCreatedAtOk() (*time.Time, bool) {
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *IPAssignment) HasCreatedAt() bool {
-	if o != nil && !isNil(o.CreatedAt) {
+	if o != nil && !IsNil(o.CreatedAt) {
 		return true
 	}
 
@@ -226,7 +226,7 @@ func (o *IPAssignment) SetCreatedAt(v time.Time) {
 
 // GetEnabled returns the Enabled field value if set, zero value otherwise.
 func (o *IPAssignment) GetEnabled() bool {
-	if o == nil || isNil(o.Enabled) {
+	if o == nil || IsNil(o.Enabled) {
 		var ret bool
 		return ret
 	}
@@ -236,7 +236,7 @@ func (o *IPAssignment) GetEnabled() bool {
 // GetEnabledOk returns a tuple with the Enabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IPAssignment) GetEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.Enabled) {
+	if o == nil || IsNil(o.Enabled) {
 		return nil, false
 	}
 	return o.Enabled, true
@@ -244,7 +244,7 @@ func (o *IPAssignment) GetEnabledOk() (*bool, bool) {
 
 // HasEnabled returns a boolean if a field has been set.
 func (o *IPAssignment) HasEnabled() bool {
-	if o != nil && !isNil(o.Enabled) {
+	if o != nil && !IsNil(o.Enabled) {
 		return true
 	}
 
@@ -258,7 +258,7 @@ func (o *IPAssignment) SetEnabled(v bool) {
 
 // GetGateway returns the Gateway field value if set, zero value otherwise.
 func (o *IPAssignment) GetGateway() string {
-	if o == nil || isNil(o.Gateway) {
+	if o == nil || IsNil(o.Gateway) {
 		var ret string
 		return ret
 	}
@@ -268,7 +268,7 @@ func (o *IPAssignment) GetGateway() string {
 // GetGatewayOk returns a tuple with the Gateway field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IPAssignment) GetGatewayOk() (*string, bool) {
-	if o == nil || isNil(o.Gateway) {
+	if o == nil || IsNil(o.Gateway) {
 		return nil, false
 	}
 	return o.Gateway, true
@@ -276,7 +276,7 @@ func (o *IPAssignment) GetGatewayOk() (*string, bool) {
 
 // HasGateway returns a boolean if a field has been set.
 func (o *IPAssignment) HasGateway() bool {
-	if o != nil && !isNil(o.Gateway) {
+	if o != nil && !IsNil(o.Gateway) {
 		return true
 	}
 
@@ -290,7 +290,7 @@ func (o *IPAssignment) SetGateway(v string) {
 
 // GetGlobalIp returns the GlobalIp field value if set, zero value otherwise.
 func (o *IPAssignment) GetGlobalIp() bool {
-	if o == nil || isNil(o.GlobalIp) {
+	if o == nil || IsNil(o.GlobalIp) {
 		var ret bool
 		return ret
 	}
@@ -300,7 +300,7 @@ func (o *IPAssignment) GetGlobalIp() bool {
 // GetGlobalIpOk returns a tuple with the GlobalIp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IPAssignment) GetGlobalIpOk() (*bool, bool) {
-	if o == nil || isNil(o.GlobalIp) {
+	if o == nil || IsNil(o.GlobalIp) {
 		return nil, false
 	}
 	return o.GlobalIp, true
@@ -308,7 +308,7 @@ func (o *IPAssignment) GetGlobalIpOk() (*bool, bool) {
 
 // HasGlobalIp returns a boolean if a field has been set.
 func (o *IPAssignment) HasGlobalIp() bool {
-	if o != nil && !isNil(o.GlobalIp) {
+	if o != nil && !IsNil(o.GlobalIp) {
 		return true
 	}
 
@@ -322,7 +322,7 @@ func (o *IPAssignment) SetGlobalIp(v bool) {
 
 // GetHref returns the Href field value if set, zero value otherwise.
 func (o *IPAssignment) GetHref() string {
-	if o == nil || isNil(o.Href) {
+	if o == nil || IsNil(o.Href) {
 		var ret string
 		return ret
 	}
@@ -332,7 +332,7 @@ func (o *IPAssignment) GetHref() string {
 // GetHrefOk returns a tuple with the Href field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IPAssignment) GetHrefOk() (*string, bool) {
-	if o == nil || isNil(o.Href) {
+	if o == nil || IsNil(o.Href) {
 		return nil, false
 	}
 	return o.Href, true
@@ -340,7 +340,7 @@ func (o *IPAssignment) GetHrefOk() (*string, bool) {
 
 // HasHref returns a boolean if a field has been set.
 func (o *IPAssignment) HasHref() bool {
-	if o != nil && !isNil(o.Href) {
+	if o != nil && !IsNil(o.Href) {
 		return true
 	}
 
@@ -354,7 +354,7 @@ func (o *IPAssignment) SetHref(v string) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *IPAssignment) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -364,7 +364,7 @@ func (o *IPAssignment) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IPAssignment) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -372,7 +372,7 @@ func (o *IPAssignment) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *IPAssignment) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -386,7 +386,7 @@ func (o *IPAssignment) SetId(v string) {
 
 // GetManageable returns the Manageable field value if set, zero value otherwise.
 func (o *IPAssignment) GetManageable() bool {
-	if o == nil || isNil(o.Manageable) {
+	if o == nil || IsNil(o.Manageable) {
 		var ret bool
 		return ret
 	}
@@ -396,7 +396,7 @@ func (o *IPAssignment) GetManageable() bool {
 // GetManageableOk returns a tuple with the Manageable field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IPAssignment) GetManageableOk() (*bool, bool) {
-	if o == nil || isNil(o.Manageable) {
+	if o == nil || IsNil(o.Manageable) {
 		return nil, false
 	}
 	return o.Manageable, true
@@ -404,7 +404,7 @@ func (o *IPAssignment) GetManageableOk() (*bool, bool) {
 
 // HasManageable returns a boolean if a field has been set.
 func (o *IPAssignment) HasManageable() bool {
-	if o != nil && !isNil(o.Manageable) {
+	if o != nil && !IsNil(o.Manageable) {
 		return true
 	}
 
@@ -418,7 +418,7 @@ func (o *IPAssignment) SetManageable(v bool) {
 
 // GetManagement returns the Management field value if set, zero value otherwise.
 func (o *IPAssignment) GetManagement() bool {
-	if o == nil || isNil(o.Management) {
+	if o == nil || IsNil(o.Management) {
 		var ret bool
 		return ret
 	}
@@ -428,7 +428,7 @@ func (o *IPAssignment) GetManagement() bool {
 // GetManagementOk returns a tuple with the Management field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IPAssignment) GetManagementOk() (*bool, bool) {
-	if o == nil || isNil(o.Management) {
+	if o == nil || IsNil(o.Management) {
 		return nil, false
 	}
 	return o.Management, true
@@ -436,7 +436,7 @@ func (o *IPAssignment) GetManagementOk() (*bool, bool) {
 
 // HasManagement returns a boolean if a field has been set.
 func (o *IPAssignment) HasManagement() bool {
-	if o != nil && !isNil(o.Management) {
+	if o != nil && !IsNil(o.Management) {
 		return true
 	}
 
@@ -450,7 +450,7 @@ func (o *IPAssignment) SetManagement(v bool) {
 
 // GetMetro returns the Metro field value if set, zero value otherwise.
 func (o *IPAssignment) GetMetro() IPAssignmentMetro {
-	if o == nil || isNil(o.Metro) {
+	if o == nil || IsNil(o.Metro) {
 		var ret IPAssignmentMetro
 		return ret
 	}
@@ -460,7 +460,7 @@ func (o *IPAssignment) GetMetro() IPAssignmentMetro {
 // GetMetroOk returns a tuple with the Metro field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IPAssignment) GetMetroOk() (*IPAssignmentMetro, bool) {
-	if o == nil || isNil(o.Metro) {
+	if o == nil || IsNil(o.Metro) {
 		return nil, false
 	}
 	return o.Metro, true
@@ -468,7 +468,7 @@ func (o *IPAssignment) GetMetroOk() (*IPAssignmentMetro, bool) {
 
 // HasMetro returns a boolean if a field has been set.
 func (o *IPAssignment) HasMetro() bool {
-	if o != nil && !isNil(o.Metro) {
+	if o != nil && !IsNil(o.Metro) {
 		return true
 	}
 
@@ -482,7 +482,7 @@ func (o *IPAssignment) SetMetro(v IPAssignmentMetro) {
 
 // GetNetmask returns the Netmask field value if set, zero value otherwise.
 func (o *IPAssignment) GetNetmask() string {
-	if o == nil || isNil(o.Netmask) {
+	if o == nil || IsNil(o.Netmask) {
 		var ret string
 		return ret
 	}
@@ -492,7 +492,7 @@ func (o *IPAssignment) GetNetmask() string {
 // GetNetmaskOk returns a tuple with the Netmask field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IPAssignment) GetNetmaskOk() (*string, bool) {
-	if o == nil || isNil(o.Netmask) {
+	if o == nil || IsNil(o.Netmask) {
 		return nil, false
 	}
 	return o.Netmask, true
@@ -500,7 +500,7 @@ func (o *IPAssignment) GetNetmaskOk() (*string, bool) {
 
 // HasNetmask returns a boolean if a field has been set.
 func (o *IPAssignment) HasNetmask() bool {
-	if o != nil && !isNil(o.Netmask) {
+	if o != nil && !IsNil(o.Netmask) {
 		return true
 	}
 
@@ -514,7 +514,7 @@ func (o *IPAssignment) SetNetmask(v string) {
 
 // GetNetwork returns the Network field value if set, zero value otherwise.
 func (o *IPAssignment) GetNetwork() string {
-	if o == nil || isNil(o.Network) {
+	if o == nil || IsNil(o.Network) {
 		var ret string
 		return ret
 	}
@@ -524,7 +524,7 @@ func (o *IPAssignment) GetNetwork() string {
 // GetNetworkOk returns a tuple with the Network field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IPAssignment) GetNetworkOk() (*string, bool) {
-	if o == nil || isNil(o.Network) {
+	if o == nil || IsNil(o.Network) {
 		return nil, false
 	}
 	return o.Network, true
@@ -532,7 +532,7 @@ func (o *IPAssignment) GetNetworkOk() (*string, bool) {
 
 // HasNetwork returns a boolean if a field has been set.
 func (o *IPAssignment) HasNetwork() bool {
-	if o != nil && !isNil(o.Network) {
+	if o != nil && !IsNil(o.Network) {
 		return true
 	}
 
@@ -546,7 +546,7 @@ func (o *IPAssignment) SetNetwork(v string) {
 
 // GetParentBlock returns the ParentBlock field value if set, zero value otherwise.
 func (o *IPAssignment) GetParentBlock() ParentBlock {
-	if o == nil || isNil(o.ParentBlock) {
+	if o == nil || IsNil(o.ParentBlock) {
 		var ret ParentBlock
 		return ret
 	}
@@ -556,7 +556,7 @@ func (o *IPAssignment) GetParentBlock() ParentBlock {
 // GetParentBlockOk returns a tuple with the ParentBlock field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IPAssignment) GetParentBlockOk() (*ParentBlock, bool) {
-	if o == nil || isNil(o.ParentBlock) {
+	if o == nil || IsNil(o.ParentBlock) {
 		return nil, false
 	}
 	return o.ParentBlock, true
@@ -564,7 +564,7 @@ func (o *IPAssignment) GetParentBlockOk() (*ParentBlock, bool) {
 
 // HasParentBlock returns a boolean if a field has been set.
 func (o *IPAssignment) HasParentBlock() bool {
-	if o != nil && !isNil(o.ParentBlock) {
+	if o != nil && !IsNil(o.ParentBlock) {
 		return true
 	}
 
@@ -578,7 +578,7 @@ func (o *IPAssignment) SetParentBlock(v ParentBlock) {
 
 // GetPublic returns the Public field value if set, zero value otherwise.
 func (o *IPAssignment) GetPublic() bool {
-	if o == nil || isNil(o.Public) {
+	if o == nil || IsNil(o.Public) {
 		var ret bool
 		return ret
 	}
@@ -588,7 +588,7 @@ func (o *IPAssignment) GetPublic() bool {
 // GetPublicOk returns a tuple with the Public field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IPAssignment) GetPublicOk() (*bool, bool) {
-	if o == nil || isNil(o.Public) {
+	if o == nil || IsNil(o.Public) {
 		return nil, false
 	}
 	return o.Public, true
@@ -596,7 +596,7 @@ func (o *IPAssignment) GetPublicOk() (*bool, bool) {
 
 // HasPublic returns a boolean if a field has been set.
 func (o *IPAssignment) HasPublic() bool {
-	if o != nil && !isNil(o.Public) {
+	if o != nil && !IsNil(o.Public) {
 		return true
 	}
 
@@ -610,7 +610,7 @@ func (o *IPAssignment) SetPublic(v bool) {
 
 // GetState returns the State field value if set, zero value otherwise.
 func (o *IPAssignment) GetState() string {
-	if o == nil || isNil(o.State) {
+	if o == nil || IsNil(o.State) {
 		var ret string
 		return ret
 	}
@@ -620,7 +620,7 @@ func (o *IPAssignment) GetState() string {
 // GetStateOk returns a tuple with the State field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IPAssignment) GetStateOk() (*string, bool) {
-	if o == nil || isNil(o.State) {
+	if o == nil || IsNil(o.State) {
 		return nil, false
 	}
 	return o.State, true
@@ -628,7 +628,7 @@ func (o *IPAssignment) GetStateOk() (*string, bool) {
 
 // HasState returns a boolean if a field has been set.
 func (o *IPAssignment) HasState() bool {
-	if o != nil && !isNil(o.State) {
+	if o != nil && !IsNil(o.State) {
 		return true
 	}
 
@@ -642,7 +642,7 @@ func (o *IPAssignment) SetState(v string) {
 
 // GetNextHop returns the NextHop field value if set, zero value otherwise.
 func (o *IPAssignment) GetNextHop() string {
-	if o == nil || isNil(o.NextHop) {
+	if o == nil || IsNil(o.NextHop) {
 		var ret string
 		return ret
 	}
@@ -652,7 +652,7 @@ func (o *IPAssignment) GetNextHop() string {
 // GetNextHopOk returns a tuple with the NextHop field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IPAssignment) GetNextHopOk() (*string, bool) {
-	if o == nil || isNil(o.NextHop) {
+	if o == nil || IsNil(o.NextHop) {
 		return nil, false
 	}
 	return o.NextHop, true
@@ -660,7 +660,7 @@ func (o *IPAssignment) GetNextHopOk() (*string, bool) {
 
 // HasNextHop returns a boolean if a field has been set.
 func (o *IPAssignment) HasNextHop() bool {
-	if o != nil && !isNil(o.NextHop) {
+	if o != nil && !IsNil(o.NextHop) {
 		return true
 	}
 
@@ -682,61 +682,61 @@ func (o IPAssignment) MarshalJSON() ([]byte, error) {
 
 func (o IPAssignment) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Address) {
+	if !IsNil(o.Address) {
 		toSerialize["address"] = o.Address
 	}
-	if !isNil(o.AddressFamily) {
+	if !IsNil(o.AddressFamily) {
 		toSerialize["address_family"] = o.AddressFamily
 	}
-	if !isNil(o.AssignedTo) {
+	if !IsNil(o.AssignedTo) {
 		toSerialize["assigned_to"] = o.AssignedTo
 	}
-	if !isNil(o.Cidr) {
+	if !IsNil(o.Cidr) {
 		toSerialize["cidr"] = o.Cidr
 	}
-	if !isNil(o.CreatedAt) {
+	if !IsNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt
 	}
-	if !isNil(o.Enabled) {
+	if !IsNil(o.Enabled) {
 		toSerialize["enabled"] = o.Enabled
 	}
-	if !isNil(o.Gateway) {
+	if !IsNil(o.Gateway) {
 		toSerialize["gateway"] = o.Gateway
 	}
-	if !isNil(o.GlobalIp) {
+	if !IsNil(o.GlobalIp) {
 		toSerialize["global_ip"] = o.GlobalIp
 	}
-	if !isNil(o.Href) {
+	if !IsNil(o.Href) {
 		toSerialize["href"] = o.Href
 	}
-	if !isNil(o.Id) {
+	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
-	if !isNil(o.Manageable) {
+	if !IsNil(o.Manageable) {
 		toSerialize["manageable"] = o.Manageable
 	}
-	if !isNil(o.Management) {
+	if !IsNil(o.Management) {
 		toSerialize["management"] = o.Management
 	}
-	if !isNil(o.Metro) {
+	if !IsNil(o.Metro) {
 		toSerialize["metro"] = o.Metro
 	}
-	if !isNil(o.Netmask) {
+	if !IsNil(o.Netmask) {
 		toSerialize["netmask"] = o.Netmask
 	}
-	if !isNil(o.Network) {
+	if !IsNil(o.Network) {
 		toSerialize["network"] = o.Network
 	}
-	if !isNil(o.ParentBlock) {
+	if !IsNil(o.ParentBlock) {
 		toSerialize["parent_block"] = o.ParentBlock
 	}
-	if !isNil(o.Public) {
+	if !IsNil(o.Public) {
 		toSerialize["public"] = o.Public
 	}
-	if !isNil(o.State) {
+	if !IsNil(o.State) {
 		toSerialize["state"] = o.State
 	}
-	if !isNil(o.NextHop) {
+	if !IsNil(o.NextHop) {
 		toSerialize["next_hop"] = o.NextHop
 	}
 

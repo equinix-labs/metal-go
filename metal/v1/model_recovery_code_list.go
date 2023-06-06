@@ -45,7 +45,7 @@ func NewRecoveryCodeListWithDefaults() *RecoveryCodeList {
 
 // GetRecoveryCodes returns the RecoveryCodes field value if set, zero value otherwise.
 func (o *RecoveryCodeList) GetRecoveryCodes() []string {
-	if o == nil || isNil(o.RecoveryCodes) {
+	if o == nil || IsNil(o.RecoveryCodes) {
 		var ret []string
 		return ret
 	}
@@ -55,7 +55,7 @@ func (o *RecoveryCodeList) GetRecoveryCodes() []string {
 // GetRecoveryCodesOk returns a tuple with the RecoveryCodes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RecoveryCodeList) GetRecoveryCodesOk() ([]string, bool) {
-	if o == nil || isNil(o.RecoveryCodes) {
+	if o == nil || IsNil(o.RecoveryCodes) {
 		return nil, false
 	}
 	return o.RecoveryCodes, true
@@ -63,7 +63,7 @@ func (o *RecoveryCodeList) GetRecoveryCodesOk() ([]string, bool) {
 
 // HasRecoveryCodes returns a boolean if a field has been set.
 func (o *RecoveryCodeList) HasRecoveryCodes() bool {
-	if o != nil && !isNil(o.RecoveryCodes) {
+	if o != nil && !IsNil(o.RecoveryCodes) {
 		return true
 	}
 
@@ -85,7 +85,7 @@ func (o RecoveryCodeList) MarshalJSON() ([]byte, error) {
 
 func (o RecoveryCodeList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.RecoveryCodes) {
+	if !IsNil(o.RecoveryCodes) {
 		toSerialize["recovery_codes"] = o.RecoveryCodes
 	}
 

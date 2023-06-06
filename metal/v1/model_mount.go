@@ -48,7 +48,7 @@ func NewMountWithDefaults() *Mount {
 
 // GetDevice returns the Device field value if set, zero value otherwise.
 func (o *Mount) GetDevice() string {
-	if o == nil || isNil(o.Device) {
+	if o == nil || IsNil(o.Device) {
 		var ret string
 		return ret
 	}
@@ -58,7 +58,7 @@ func (o *Mount) GetDevice() string {
 // GetDeviceOk returns a tuple with the Device field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Mount) GetDeviceOk() (*string, bool) {
-	if o == nil || isNil(o.Device) {
+	if o == nil || IsNil(o.Device) {
 		return nil, false
 	}
 	return o.Device, true
@@ -66,7 +66,7 @@ func (o *Mount) GetDeviceOk() (*string, bool) {
 
 // HasDevice returns a boolean if a field has been set.
 func (o *Mount) HasDevice() bool {
-	if o != nil && !isNil(o.Device) {
+	if o != nil && !IsNil(o.Device) {
 		return true
 	}
 
@@ -80,7 +80,7 @@ func (o *Mount) SetDevice(v string) {
 
 // GetFormat returns the Format field value if set, zero value otherwise.
 func (o *Mount) GetFormat() string {
-	if o == nil || isNil(o.Format) {
+	if o == nil || IsNil(o.Format) {
 		var ret string
 		return ret
 	}
@@ -90,7 +90,7 @@ func (o *Mount) GetFormat() string {
 // GetFormatOk returns a tuple with the Format field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Mount) GetFormatOk() (*string, bool) {
-	if o == nil || isNil(o.Format) {
+	if o == nil || IsNil(o.Format) {
 		return nil, false
 	}
 	return o.Format, true
@@ -98,7 +98,7 @@ func (o *Mount) GetFormatOk() (*string, bool) {
 
 // HasFormat returns a boolean if a field has been set.
 func (o *Mount) HasFormat() bool {
-	if o != nil && !isNil(o.Format) {
+	if o != nil && !IsNil(o.Format) {
 		return true
 	}
 
@@ -112,7 +112,7 @@ func (o *Mount) SetFormat(v string) {
 
 // GetPoint returns the Point field value if set, zero value otherwise.
 func (o *Mount) GetPoint() string {
-	if o == nil || isNil(o.Point) {
+	if o == nil || IsNil(o.Point) {
 		var ret string
 		return ret
 	}
@@ -122,7 +122,7 @@ func (o *Mount) GetPoint() string {
 // GetPointOk returns a tuple with the Point field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Mount) GetPointOk() (*string, bool) {
-	if o == nil || isNil(o.Point) {
+	if o == nil || IsNil(o.Point) {
 		return nil, false
 	}
 	return o.Point, true
@@ -130,7 +130,7 @@ func (o *Mount) GetPointOk() (*string, bool) {
 
 // HasPoint returns a boolean if a field has been set.
 func (o *Mount) HasPoint() bool {
-	if o != nil && !isNil(o.Point) {
+	if o != nil && !IsNil(o.Point) {
 		return true
 	}
 
@@ -144,7 +144,7 @@ func (o *Mount) SetPoint(v string) {
 
 // GetOptions returns the Options field value if set, zero value otherwise.
 func (o *Mount) GetOptions() []string {
-	if o == nil || isNil(o.Options) {
+	if o == nil || IsNil(o.Options) {
 		var ret []string
 		return ret
 	}
@@ -154,7 +154,7 @@ func (o *Mount) GetOptions() []string {
 // GetOptionsOk returns a tuple with the Options field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Mount) GetOptionsOk() ([]string, bool) {
-	if o == nil || isNil(o.Options) {
+	if o == nil || IsNil(o.Options) {
 		return nil, false
 	}
 	return o.Options, true
@@ -162,7 +162,7 @@ func (o *Mount) GetOptionsOk() ([]string, bool) {
 
 // HasOptions returns a boolean if a field has been set.
 func (o *Mount) HasOptions() bool {
-	if o != nil && !isNil(o.Options) {
+	if o != nil && !IsNil(o.Options) {
 		return true
 	}
 
@@ -184,16 +184,16 @@ func (o Mount) MarshalJSON() ([]byte, error) {
 
 func (o Mount) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Device) {
+	if !IsNil(o.Device) {
 		toSerialize["device"] = o.Device
 	}
-	if !isNil(o.Format) {
+	if !IsNil(o.Format) {
 		toSerialize["format"] = o.Format
 	}
-	if !isNil(o.Point) {
+	if !IsNil(o.Point) {
 		toSerialize["point"] = o.Point
 	}
-	if !isNil(o.Options) {
+	if !IsNil(o.Options) {
 		toSerialize["options"] = o.Options
 	}
 

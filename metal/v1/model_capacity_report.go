@@ -58,7 +58,7 @@ func NewCapacityReportWithDefaults() *CapacityReport {
 
 // GetAms1 returns the Ams1 field value if set, zero value otherwise.
 func (o *CapacityReport) GetAms1() CapacityPerFacility {
-	if o == nil || isNil(o.Ams1) {
+	if o == nil || IsNil(o.Ams1) {
 		var ret CapacityPerFacility
 		return ret
 	}
@@ -68,7 +68,7 @@ func (o *CapacityReport) GetAms1() CapacityPerFacility {
 // GetAms1Ok returns a tuple with the Ams1 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CapacityReport) GetAms1Ok() (*CapacityPerFacility, bool) {
-	if o == nil || isNil(o.Ams1) {
+	if o == nil || IsNil(o.Ams1) {
 		return nil, false
 	}
 	return o.Ams1, true
@@ -76,7 +76,7 @@ func (o *CapacityReport) GetAms1Ok() (*CapacityPerFacility, bool) {
 
 // HasAms1 returns a boolean if a field has been set.
 func (o *CapacityReport) HasAms1() bool {
-	if o != nil && !isNil(o.Ams1) {
+	if o != nil && !IsNil(o.Ams1) {
 		return true
 	}
 
@@ -90,7 +90,7 @@ func (o *CapacityReport) SetAms1(v CapacityPerFacility) {
 
 // GetAtl1 returns the Atl1 field value if set, zero value otherwise.
 func (o *CapacityReport) GetAtl1() CapacityPerNewFacility {
-	if o == nil || isNil(o.Atl1) {
+	if o == nil || IsNil(o.Atl1) {
 		var ret CapacityPerNewFacility
 		return ret
 	}
@@ -100,7 +100,7 @@ func (o *CapacityReport) GetAtl1() CapacityPerNewFacility {
 // GetAtl1Ok returns a tuple with the Atl1 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CapacityReport) GetAtl1Ok() (*CapacityPerNewFacility, bool) {
-	if o == nil || isNil(o.Atl1) {
+	if o == nil || IsNil(o.Atl1) {
 		return nil, false
 	}
 	return o.Atl1, true
@@ -108,7 +108,7 @@ func (o *CapacityReport) GetAtl1Ok() (*CapacityPerNewFacility, bool) {
 
 // HasAtl1 returns a boolean if a field has been set.
 func (o *CapacityReport) HasAtl1() bool {
-	if o != nil && !isNil(o.Atl1) {
+	if o != nil && !IsNil(o.Atl1) {
 		return true
 	}
 
@@ -122,7 +122,7 @@ func (o *CapacityReport) SetAtl1(v CapacityPerNewFacility) {
 
 // GetDfw1 returns the Dfw1 field value if set, zero value otherwise.
 func (o *CapacityReport) GetDfw1() CapacityPerNewFacility {
-	if o == nil || isNil(o.Dfw1) {
+	if o == nil || IsNil(o.Dfw1) {
 		var ret CapacityPerNewFacility
 		return ret
 	}
@@ -132,7 +132,7 @@ func (o *CapacityReport) GetDfw1() CapacityPerNewFacility {
 // GetDfw1Ok returns a tuple with the Dfw1 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CapacityReport) GetDfw1Ok() (*CapacityPerNewFacility, bool) {
-	if o == nil || isNil(o.Dfw1) {
+	if o == nil || IsNil(o.Dfw1) {
 		return nil, false
 	}
 	return o.Dfw1, true
@@ -140,7 +140,7 @@ func (o *CapacityReport) GetDfw1Ok() (*CapacityPerNewFacility, bool) {
 
 // HasDfw1 returns a boolean if a field has been set.
 func (o *CapacityReport) HasDfw1() bool {
-	if o != nil && !isNil(o.Dfw1) {
+	if o != nil && !IsNil(o.Dfw1) {
 		return true
 	}
 
@@ -154,7 +154,7 @@ func (o *CapacityReport) SetDfw1(v CapacityPerNewFacility) {
 
 // GetEwr1 returns the Ewr1 field value if set, zero value otherwise.
 func (o *CapacityReport) GetEwr1() CapacityPerFacility {
-	if o == nil || isNil(o.Ewr1) {
+	if o == nil || IsNil(o.Ewr1) {
 		var ret CapacityPerFacility
 		return ret
 	}
@@ -164,7 +164,7 @@ func (o *CapacityReport) GetEwr1() CapacityPerFacility {
 // GetEwr1Ok returns a tuple with the Ewr1 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CapacityReport) GetEwr1Ok() (*CapacityPerFacility, bool) {
-	if o == nil || isNil(o.Ewr1) {
+	if o == nil || IsNil(o.Ewr1) {
 		return nil, false
 	}
 	return o.Ewr1, true
@@ -172,7 +172,7 @@ func (o *CapacityReport) GetEwr1Ok() (*CapacityPerFacility, bool) {
 
 // HasEwr1 returns a boolean if a field has been set.
 func (o *CapacityReport) HasEwr1() bool {
-	if o != nil && !isNil(o.Ewr1) {
+	if o != nil && !IsNil(o.Ewr1) {
 		return true
 	}
 
@@ -186,7 +186,7 @@ func (o *CapacityReport) SetEwr1(v CapacityPerFacility) {
 
 // GetFra1 returns the Fra1 field value if set, zero value otherwise.
 func (o *CapacityReport) GetFra1() CapacityPerNewFacility {
-	if o == nil || isNil(o.Fra1) {
+	if o == nil || IsNil(o.Fra1) {
 		var ret CapacityPerNewFacility
 		return ret
 	}
@@ -196,7 +196,7 @@ func (o *CapacityReport) GetFra1() CapacityPerNewFacility {
 // GetFra1Ok returns a tuple with the Fra1 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CapacityReport) GetFra1Ok() (*CapacityPerNewFacility, bool) {
-	if o == nil || isNil(o.Fra1) {
+	if o == nil || IsNil(o.Fra1) {
 		return nil, false
 	}
 	return o.Fra1, true
@@ -204,7 +204,7 @@ func (o *CapacityReport) GetFra1Ok() (*CapacityPerNewFacility, bool) {
 
 // HasFra1 returns a boolean if a field has been set.
 func (o *CapacityReport) HasFra1() bool {
-	if o != nil && !isNil(o.Fra1) {
+	if o != nil && !IsNil(o.Fra1) {
 		return true
 	}
 
@@ -218,7 +218,7 @@ func (o *CapacityReport) SetFra1(v CapacityPerNewFacility) {
 
 // GetIad1 returns the Iad1 field value if set, zero value otherwise.
 func (o *CapacityReport) GetIad1() CapacityPerNewFacility {
-	if o == nil || isNil(o.Iad1) {
+	if o == nil || IsNil(o.Iad1) {
 		var ret CapacityPerNewFacility
 		return ret
 	}
@@ -228,7 +228,7 @@ func (o *CapacityReport) GetIad1() CapacityPerNewFacility {
 // GetIad1Ok returns a tuple with the Iad1 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CapacityReport) GetIad1Ok() (*CapacityPerNewFacility, bool) {
-	if o == nil || isNil(o.Iad1) {
+	if o == nil || IsNil(o.Iad1) {
 		return nil, false
 	}
 	return o.Iad1, true
@@ -236,7 +236,7 @@ func (o *CapacityReport) GetIad1Ok() (*CapacityPerNewFacility, bool) {
 
 // HasIad1 returns a boolean if a field has been set.
 func (o *CapacityReport) HasIad1() bool {
-	if o != nil && !isNil(o.Iad1) {
+	if o != nil && !IsNil(o.Iad1) {
 		return true
 	}
 
@@ -250,7 +250,7 @@ func (o *CapacityReport) SetIad1(v CapacityPerNewFacility) {
 
 // GetLax1 returns the Lax1 field value if set, zero value otherwise.
 func (o *CapacityReport) GetLax1() CapacityPerNewFacility {
-	if o == nil || isNil(o.Lax1) {
+	if o == nil || IsNil(o.Lax1) {
 		var ret CapacityPerNewFacility
 		return ret
 	}
@@ -260,7 +260,7 @@ func (o *CapacityReport) GetLax1() CapacityPerNewFacility {
 // GetLax1Ok returns a tuple with the Lax1 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CapacityReport) GetLax1Ok() (*CapacityPerNewFacility, bool) {
-	if o == nil || isNil(o.Lax1) {
+	if o == nil || IsNil(o.Lax1) {
 		return nil, false
 	}
 	return o.Lax1, true
@@ -268,7 +268,7 @@ func (o *CapacityReport) GetLax1Ok() (*CapacityPerNewFacility, bool) {
 
 // HasLax1 returns a boolean if a field has been set.
 func (o *CapacityReport) HasLax1() bool {
-	if o != nil && !isNil(o.Lax1) {
+	if o != nil && !IsNil(o.Lax1) {
 		return true
 	}
 
@@ -282,7 +282,7 @@ func (o *CapacityReport) SetLax1(v CapacityPerNewFacility) {
 
 // GetNrt1 returns the Nrt1 field value if set, zero value otherwise.
 func (o *CapacityReport) GetNrt1() CapacityPerFacility {
-	if o == nil || isNil(o.Nrt1) {
+	if o == nil || IsNil(o.Nrt1) {
 		var ret CapacityPerFacility
 		return ret
 	}
@@ -292,7 +292,7 @@ func (o *CapacityReport) GetNrt1() CapacityPerFacility {
 // GetNrt1Ok returns a tuple with the Nrt1 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CapacityReport) GetNrt1Ok() (*CapacityPerFacility, bool) {
-	if o == nil || isNil(o.Nrt1) {
+	if o == nil || IsNil(o.Nrt1) {
 		return nil, false
 	}
 	return o.Nrt1, true
@@ -300,7 +300,7 @@ func (o *CapacityReport) GetNrt1Ok() (*CapacityPerFacility, bool) {
 
 // HasNrt1 returns a boolean if a field has been set.
 func (o *CapacityReport) HasNrt1() bool {
-	if o != nil && !isNil(o.Nrt1) {
+	if o != nil && !IsNil(o.Nrt1) {
 		return true
 	}
 
@@ -314,7 +314,7 @@ func (o *CapacityReport) SetNrt1(v CapacityPerFacility) {
 
 // GetOrd1 returns the Ord1 field value if set, zero value otherwise.
 func (o *CapacityReport) GetOrd1() CapacityPerNewFacility {
-	if o == nil || isNil(o.Ord1) {
+	if o == nil || IsNil(o.Ord1) {
 		var ret CapacityPerNewFacility
 		return ret
 	}
@@ -324,7 +324,7 @@ func (o *CapacityReport) GetOrd1() CapacityPerNewFacility {
 // GetOrd1Ok returns a tuple with the Ord1 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CapacityReport) GetOrd1Ok() (*CapacityPerNewFacility, bool) {
-	if o == nil || isNil(o.Ord1) {
+	if o == nil || IsNil(o.Ord1) {
 		return nil, false
 	}
 	return o.Ord1, true
@@ -332,7 +332,7 @@ func (o *CapacityReport) GetOrd1Ok() (*CapacityPerNewFacility, bool) {
 
 // HasOrd1 returns a boolean if a field has been set.
 func (o *CapacityReport) HasOrd1() bool {
-	if o != nil && !isNil(o.Ord1) {
+	if o != nil && !IsNil(o.Ord1) {
 		return true
 	}
 
@@ -346,7 +346,7 @@ func (o *CapacityReport) SetOrd1(v CapacityPerNewFacility) {
 
 // GetSea1 returns the Sea1 field value if set, zero value otherwise.
 func (o *CapacityReport) GetSea1() CapacityPerNewFacility {
-	if o == nil || isNil(o.Sea1) {
+	if o == nil || IsNil(o.Sea1) {
 		var ret CapacityPerNewFacility
 		return ret
 	}
@@ -356,7 +356,7 @@ func (o *CapacityReport) GetSea1() CapacityPerNewFacility {
 // GetSea1Ok returns a tuple with the Sea1 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CapacityReport) GetSea1Ok() (*CapacityPerNewFacility, bool) {
-	if o == nil || isNil(o.Sea1) {
+	if o == nil || IsNil(o.Sea1) {
 		return nil, false
 	}
 	return o.Sea1, true
@@ -364,7 +364,7 @@ func (o *CapacityReport) GetSea1Ok() (*CapacityPerNewFacility, bool) {
 
 // HasSea1 returns a boolean if a field has been set.
 func (o *CapacityReport) HasSea1() bool {
-	if o != nil && !isNil(o.Sea1) {
+	if o != nil && !IsNil(o.Sea1) {
 		return true
 	}
 
@@ -378,7 +378,7 @@ func (o *CapacityReport) SetSea1(v CapacityPerNewFacility) {
 
 // GetSin1 returns the Sin1 field value if set, zero value otherwise.
 func (o *CapacityReport) GetSin1() CapacityPerNewFacility {
-	if o == nil || isNil(o.Sin1) {
+	if o == nil || IsNil(o.Sin1) {
 		var ret CapacityPerNewFacility
 		return ret
 	}
@@ -388,7 +388,7 @@ func (o *CapacityReport) GetSin1() CapacityPerNewFacility {
 // GetSin1Ok returns a tuple with the Sin1 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CapacityReport) GetSin1Ok() (*CapacityPerNewFacility, bool) {
-	if o == nil || isNil(o.Sin1) {
+	if o == nil || IsNil(o.Sin1) {
 		return nil, false
 	}
 	return o.Sin1, true
@@ -396,7 +396,7 @@ func (o *CapacityReport) GetSin1Ok() (*CapacityPerNewFacility, bool) {
 
 // HasSin1 returns a boolean if a field has been set.
 func (o *CapacityReport) HasSin1() bool {
-	if o != nil && !isNil(o.Sin1) {
+	if o != nil && !IsNil(o.Sin1) {
 		return true
 	}
 
@@ -410,7 +410,7 @@ func (o *CapacityReport) SetSin1(v CapacityPerNewFacility) {
 
 // GetSjc1 returns the Sjc1 field value if set, zero value otherwise.
 func (o *CapacityReport) GetSjc1() CapacityPerFacility {
-	if o == nil || isNil(o.Sjc1) {
+	if o == nil || IsNil(o.Sjc1) {
 		var ret CapacityPerFacility
 		return ret
 	}
@@ -420,7 +420,7 @@ func (o *CapacityReport) GetSjc1() CapacityPerFacility {
 // GetSjc1Ok returns a tuple with the Sjc1 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CapacityReport) GetSjc1Ok() (*CapacityPerFacility, bool) {
-	if o == nil || isNil(o.Sjc1) {
+	if o == nil || IsNil(o.Sjc1) {
 		return nil, false
 	}
 	return o.Sjc1, true
@@ -428,7 +428,7 @@ func (o *CapacityReport) GetSjc1Ok() (*CapacityPerFacility, bool) {
 
 // HasSjc1 returns a boolean if a field has been set.
 func (o *CapacityReport) HasSjc1() bool {
-	if o != nil && !isNil(o.Sjc1) {
+	if o != nil && !IsNil(o.Sjc1) {
 		return true
 	}
 
@@ -442,7 +442,7 @@ func (o *CapacityReport) SetSjc1(v CapacityPerFacility) {
 
 // GetSyd1 returns the Syd1 field value if set, zero value otherwise.
 func (o *CapacityReport) GetSyd1() CapacityPerNewFacility {
-	if o == nil || isNil(o.Syd1) {
+	if o == nil || IsNil(o.Syd1) {
 		var ret CapacityPerNewFacility
 		return ret
 	}
@@ -452,7 +452,7 @@ func (o *CapacityReport) GetSyd1() CapacityPerNewFacility {
 // GetSyd1Ok returns a tuple with the Syd1 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CapacityReport) GetSyd1Ok() (*CapacityPerNewFacility, bool) {
-	if o == nil || isNil(o.Syd1) {
+	if o == nil || IsNil(o.Syd1) {
 		return nil, false
 	}
 	return o.Syd1, true
@@ -460,7 +460,7 @@ func (o *CapacityReport) GetSyd1Ok() (*CapacityPerNewFacility, bool) {
 
 // HasSyd1 returns a boolean if a field has been set.
 func (o *CapacityReport) HasSyd1() bool {
-	if o != nil && !isNil(o.Syd1) {
+	if o != nil && !IsNil(o.Syd1) {
 		return true
 	}
 
@@ -474,7 +474,7 @@ func (o *CapacityReport) SetSyd1(v CapacityPerNewFacility) {
 
 // GetYyz1 returns the Yyz1 field value if set, zero value otherwise.
 func (o *CapacityReport) GetYyz1() CapacityPerNewFacility {
-	if o == nil || isNil(o.Yyz1) {
+	if o == nil || IsNil(o.Yyz1) {
 		var ret CapacityPerNewFacility
 		return ret
 	}
@@ -484,7 +484,7 @@ func (o *CapacityReport) GetYyz1() CapacityPerNewFacility {
 // GetYyz1Ok returns a tuple with the Yyz1 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CapacityReport) GetYyz1Ok() (*CapacityPerNewFacility, bool) {
-	if o == nil || isNil(o.Yyz1) {
+	if o == nil || IsNil(o.Yyz1) {
 		return nil, false
 	}
 	return o.Yyz1, true
@@ -492,7 +492,7 @@ func (o *CapacityReport) GetYyz1Ok() (*CapacityPerNewFacility, bool) {
 
 // HasYyz1 returns a boolean if a field has been set.
 func (o *CapacityReport) HasYyz1() bool {
-	if o != nil && !isNil(o.Yyz1) {
+	if o != nil && !IsNil(o.Yyz1) {
 		return true
 	}
 
@@ -514,46 +514,46 @@ func (o CapacityReport) MarshalJSON() ([]byte, error) {
 
 func (o CapacityReport) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Ams1) {
+	if !IsNil(o.Ams1) {
 		toSerialize["ams1"] = o.Ams1
 	}
-	if !isNil(o.Atl1) {
+	if !IsNil(o.Atl1) {
 		toSerialize["atl1"] = o.Atl1
 	}
-	if !isNil(o.Dfw1) {
+	if !IsNil(o.Dfw1) {
 		toSerialize["dfw1"] = o.Dfw1
 	}
-	if !isNil(o.Ewr1) {
+	if !IsNil(o.Ewr1) {
 		toSerialize["ewr1"] = o.Ewr1
 	}
-	if !isNil(o.Fra1) {
+	if !IsNil(o.Fra1) {
 		toSerialize["fra1"] = o.Fra1
 	}
-	if !isNil(o.Iad1) {
+	if !IsNil(o.Iad1) {
 		toSerialize["iad1"] = o.Iad1
 	}
-	if !isNil(o.Lax1) {
+	if !IsNil(o.Lax1) {
 		toSerialize["lax1"] = o.Lax1
 	}
-	if !isNil(o.Nrt1) {
+	if !IsNil(o.Nrt1) {
 		toSerialize["nrt1"] = o.Nrt1
 	}
-	if !isNil(o.Ord1) {
+	if !IsNil(o.Ord1) {
 		toSerialize["ord1"] = o.Ord1
 	}
-	if !isNil(o.Sea1) {
+	if !IsNil(o.Sea1) {
 		toSerialize["sea1"] = o.Sea1
 	}
-	if !isNil(o.Sin1) {
+	if !IsNil(o.Sin1) {
 		toSerialize["sin1"] = o.Sin1
 	}
-	if !isNil(o.Sjc1) {
+	if !IsNil(o.Sjc1) {
 		toSerialize["sjc1"] = o.Sjc1
 	}
-	if !isNil(o.Syd1) {
+	if !IsNil(o.Syd1) {
 		toSerialize["syd1"] = o.Syd1
 	}
-	if !isNil(o.Yyz1) {
+	if !IsNil(o.Yyz1) {
 		toSerialize["yyz1"] = o.Yyz1
 	}
 

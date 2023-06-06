@@ -45,7 +45,7 @@ func NewIPReservationListWithDefaults() *IPReservationList {
 
 // GetIpAddresses returns the IpAddresses field value if set, zero value otherwise.
 func (o *IPReservationList) GetIpAddresses() []IPReservationListIpAddressesInner {
-	if o == nil || isNil(o.IpAddresses) {
+	if o == nil || IsNil(o.IpAddresses) {
 		var ret []IPReservationListIpAddressesInner
 		return ret
 	}
@@ -55,7 +55,7 @@ func (o *IPReservationList) GetIpAddresses() []IPReservationListIpAddressesInner
 // GetIpAddressesOk returns a tuple with the IpAddresses field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IPReservationList) GetIpAddressesOk() ([]IPReservationListIpAddressesInner, bool) {
-	if o == nil || isNil(o.IpAddresses) {
+	if o == nil || IsNil(o.IpAddresses) {
 		return nil, false
 	}
 	return o.IpAddresses, true
@@ -63,7 +63,7 @@ func (o *IPReservationList) GetIpAddressesOk() ([]IPReservationListIpAddressesIn
 
 // HasIpAddresses returns a boolean if a field has been set.
 func (o *IPReservationList) HasIpAddresses() bool {
-	if o != nil && !isNil(o.IpAddresses) {
+	if o != nil && !IsNil(o.IpAddresses) {
 		return true
 	}
 
@@ -85,7 +85,7 @@ func (o IPReservationList) MarshalJSON() ([]byte, error) {
 
 func (o IPReservationList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.IpAddresses) {
+	if !IsNil(o.IpAddresses) {
 		toSerialize["ip_addresses"] = o.IpAddresses
 	}
 

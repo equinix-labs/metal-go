@@ -46,7 +46,7 @@ func NewBgpDynamicNeighborListWithDefaults() *BgpDynamicNeighborList {
 
 // GetBgpDynamicNeighbors returns the BgpDynamicNeighbors field value if set, zero value otherwise.
 func (o *BgpDynamicNeighborList) GetBgpDynamicNeighbors() []BgpDynamicNeighbor {
-	if o == nil || isNil(o.BgpDynamicNeighbors) {
+	if o == nil || IsNil(o.BgpDynamicNeighbors) {
 		var ret []BgpDynamicNeighbor
 		return ret
 	}
@@ -56,7 +56,7 @@ func (o *BgpDynamicNeighborList) GetBgpDynamicNeighbors() []BgpDynamicNeighbor {
 // GetBgpDynamicNeighborsOk returns a tuple with the BgpDynamicNeighbors field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BgpDynamicNeighborList) GetBgpDynamicNeighborsOk() ([]BgpDynamicNeighbor, bool) {
-	if o == nil || isNil(o.BgpDynamicNeighbors) {
+	if o == nil || IsNil(o.BgpDynamicNeighbors) {
 		return nil, false
 	}
 	return o.BgpDynamicNeighbors, true
@@ -64,7 +64,7 @@ func (o *BgpDynamicNeighborList) GetBgpDynamicNeighborsOk() ([]BgpDynamicNeighbo
 
 // HasBgpDynamicNeighbors returns a boolean if a field has been set.
 func (o *BgpDynamicNeighborList) HasBgpDynamicNeighbors() bool {
-	if o != nil && !isNil(o.BgpDynamicNeighbors) {
+	if o != nil && !IsNil(o.BgpDynamicNeighbors) {
 		return true
 	}
 
@@ -78,7 +78,7 @@ func (o *BgpDynamicNeighborList) SetBgpDynamicNeighbors(v []BgpDynamicNeighbor) 
 
 // GetMeta returns the Meta field value if set, zero value otherwise.
 func (o *BgpDynamicNeighborList) GetMeta() Meta {
-	if o == nil || isNil(o.Meta) {
+	if o == nil || IsNil(o.Meta) {
 		var ret Meta
 		return ret
 	}
@@ -88,7 +88,7 @@ func (o *BgpDynamicNeighborList) GetMeta() Meta {
 // GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BgpDynamicNeighborList) GetMetaOk() (*Meta, bool) {
-	if o == nil || isNil(o.Meta) {
+	if o == nil || IsNil(o.Meta) {
 		return nil, false
 	}
 	return o.Meta, true
@@ -96,7 +96,7 @@ func (o *BgpDynamicNeighborList) GetMetaOk() (*Meta, bool) {
 
 // HasMeta returns a boolean if a field has been set.
 func (o *BgpDynamicNeighborList) HasMeta() bool {
-	if o != nil && !isNil(o.Meta) {
+	if o != nil && !IsNil(o.Meta) {
 		return true
 	}
 
@@ -118,10 +118,10 @@ func (o BgpDynamicNeighborList) MarshalJSON() ([]byte, error) {
 
 func (o BgpDynamicNeighborList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.BgpDynamicNeighbors) {
+	if !IsNil(o.BgpDynamicNeighbors) {
 		toSerialize["bgp_dynamic_neighbors"] = o.BgpDynamicNeighbors
 	}
-	if !isNil(o.Meta) {
+	if !IsNil(o.Meta) {
 		toSerialize["meta"] = o.Meta
 	}
 

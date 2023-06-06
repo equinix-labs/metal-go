@@ -45,7 +45,7 @@ func NewMetadataNetworkNetworkWithDefaults() *MetadataNetworkNetwork {
 
 // GetBonding returns the Bonding field value if set, zero value otherwise.
 func (o *MetadataNetworkNetwork) GetBonding() MetadataNetworkNetworkBonding {
-	if o == nil || isNil(o.Bonding) {
+	if o == nil || IsNil(o.Bonding) {
 		var ret MetadataNetworkNetworkBonding
 		return ret
 	}
@@ -55,7 +55,7 @@ func (o *MetadataNetworkNetwork) GetBonding() MetadataNetworkNetworkBonding {
 // GetBondingOk returns a tuple with the Bonding field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MetadataNetworkNetwork) GetBondingOk() (*MetadataNetworkNetworkBonding, bool) {
-	if o == nil || isNil(o.Bonding) {
+	if o == nil || IsNil(o.Bonding) {
 		return nil, false
 	}
 	return o.Bonding, true
@@ -63,7 +63,7 @@ func (o *MetadataNetworkNetwork) GetBondingOk() (*MetadataNetworkNetworkBonding,
 
 // HasBonding returns a boolean if a field has been set.
 func (o *MetadataNetworkNetwork) HasBonding() bool {
-	if o != nil && !isNil(o.Bonding) {
+	if o != nil && !IsNil(o.Bonding) {
 		return true
 	}
 
@@ -85,7 +85,7 @@ func (o MetadataNetworkNetwork) MarshalJSON() ([]byte, error) {
 
 func (o MetadataNetworkNetwork) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Bonding) {
+	if !IsNil(o.Bonding) {
 		toSerialize["bonding"] = o.Bonding
 	}
 
