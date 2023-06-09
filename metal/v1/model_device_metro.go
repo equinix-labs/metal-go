@@ -48,7 +48,7 @@ func NewDeviceMetroWithDefaults() *DeviceMetro {
 
 // GetCode returns the Code field value if set, zero value otherwise.
 func (o *DeviceMetro) GetCode() string {
-	if o == nil || isNil(o.Code) {
+	if o == nil || IsNil(o.Code) {
 		var ret string
 		return ret
 	}
@@ -58,7 +58,7 @@ func (o *DeviceMetro) GetCode() string {
 // GetCodeOk returns a tuple with the Code field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeviceMetro) GetCodeOk() (*string, bool) {
-	if o == nil || isNil(o.Code) {
+	if o == nil || IsNil(o.Code) {
 		return nil, false
 	}
 	return o.Code, true
@@ -66,7 +66,7 @@ func (o *DeviceMetro) GetCodeOk() (*string, bool) {
 
 // HasCode returns a boolean if a field has been set.
 func (o *DeviceMetro) HasCode() bool {
-	if o != nil && !isNil(o.Code) {
+	if o != nil && !IsNil(o.Code) {
 		return true
 	}
 
@@ -80,7 +80,7 @@ func (o *DeviceMetro) SetCode(v string) {
 
 // GetCountry returns the Country field value if set, zero value otherwise.
 func (o *DeviceMetro) GetCountry() string {
-	if o == nil || isNil(o.Country) {
+	if o == nil || IsNil(o.Country) {
 		var ret string
 		return ret
 	}
@@ -90,7 +90,7 @@ func (o *DeviceMetro) GetCountry() string {
 // GetCountryOk returns a tuple with the Country field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeviceMetro) GetCountryOk() (*string, bool) {
-	if o == nil || isNil(o.Country) {
+	if o == nil || IsNil(o.Country) {
 		return nil, false
 	}
 	return o.Country, true
@@ -98,7 +98,7 @@ func (o *DeviceMetro) GetCountryOk() (*string, bool) {
 
 // HasCountry returns a boolean if a field has been set.
 func (o *DeviceMetro) HasCountry() bool {
-	if o != nil && !isNil(o.Country) {
+	if o != nil && !IsNil(o.Country) {
 		return true
 	}
 
@@ -112,7 +112,7 @@ func (o *DeviceMetro) SetCountry(v string) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *DeviceMetro) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -122,7 +122,7 @@ func (o *DeviceMetro) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeviceMetro) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -130,7 +130,7 @@ func (o *DeviceMetro) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *DeviceMetro) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -144,7 +144,7 @@ func (o *DeviceMetro) SetId(v string) {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *DeviceMetro) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -154,7 +154,7 @@ func (o *DeviceMetro) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeviceMetro) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
 	return o.Name, true
@@ -162,7 +162,7 @@ func (o *DeviceMetro) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *DeviceMetro) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -184,16 +184,16 @@ func (o DeviceMetro) MarshalJSON() ([]byte, error) {
 
 func (o DeviceMetro) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Code) {
+	if !IsNil(o.Code) {
 		toSerialize["code"] = o.Code
 	}
-	if !isNil(o.Country) {
+	if !IsNil(o.Country) {
 		toSerialize["country"] = o.Country
 	}
-	if !isNil(o.Id) {
+	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
-	if !isNil(o.Name) {
+	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
 

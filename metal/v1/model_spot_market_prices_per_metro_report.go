@@ -51,7 +51,7 @@ func NewSpotMarketPricesPerMetroReportWithDefaults() *SpotMarketPricesPerMetroRe
 
 // GetAm returns the Am field value if set, zero value otherwise.
 func (o *SpotMarketPricesPerMetroReport) GetAm() SpotPricesPerFacility {
-	if o == nil || isNil(o.Am) {
+	if o == nil || IsNil(o.Am) {
 		var ret SpotPricesPerFacility
 		return ret
 	}
@@ -61,7 +61,7 @@ func (o *SpotMarketPricesPerMetroReport) GetAm() SpotPricesPerFacility {
 // GetAmOk returns a tuple with the Am field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SpotMarketPricesPerMetroReport) GetAmOk() (*SpotPricesPerFacility, bool) {
-	if o == nil || isNil(o.Am) {
+	if o == nil || IsNil(o.Am) {
 		return nil, false
 	}
 	return o.Am, true
@@ -69,7 +69,7 @@ func (o *SpotMarketPricesPerMetroReport) GetAmOk() (*SpotPricesPerFacility, bool
 
 // HasAm returns a boolean if a field has been set.
 func (o *SpotMarketPricesPerMetroReport) HasAm() bool {
-	if o != nil && !isNil(o.Am) {
+	if o != nil && !IsNil(o.Am) {
 		return true
 	}
 
@@ -83,7 +83,7 @@ func (o *SpotMarketPricesPerMetroReport) SetAm(v SpotPricesPerFacility) {
 
 // GetCh returns the Ch field value if set, zero value otherwise.
 func (o *SpotMarketPricesPerMetroReport) GetCh() SpotPricesPerFacility {
-	if o == nil || isNil(o.Ch) {
+	if o == nil || IsNil(o.Ch) {
 		var ret SpotPricesPerFacility
 		return ret
 	}
@@ -93,7 +93,7 @@ func (o *SpotMarketPricesPerMetroReport) GetCh() SpotPricesPerFacility {
 // GetChOk returns a tuple with the Ch field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SpotMarketPricesPerMetroReport) GetChOk() (*SpotPricesPerFacility, bool) {
-	if o == nil || isNil(o.Ch) {
+	if o == nil || IsNil(o.Ch) {
 		return nil, false
 	}
 	return o.Ch, true
@@ -101,7 +101,7 @@ func (o *SpotMarketPricesPerMetroReport) GetChOk() (*SpotPricesPerFacility, bool
 
 // HasCh returns a boolean if a field has been set.
 func (o *SpotMarketPricesPerMetroReport) HasCh() bool {
-	if o != nil && !isNil(o.Ch) {
+	if o != nil && !IsNil(o.Ch) {
 		return true
 	}
 
@@ -115,7 +115,7 @@ func (o *SpotMarketPricesPerMetroReport) SetCh(v SpotPricesPerFacility) {
 
 // GetDa returns the Da field value if set, zero value otherwise.
 func (o *SpotMarketPricesPerMetroReport) GetDa() SpotPricesPerFacility {
-	if o == nil || isNil(o.Da) {
+	if o == nil || IsNil(o.Da) {
 		var ret SpotPricesPerFacility
 		return ret
 	}
@@ -125,7 +125,7 @@ func (o *SpotMarketPricesPerMetroReport) GetDa() SpotPricesPerFacility {
 // GetDaOk returns a tuple with the Da field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SpotMarketPricesPerMetroReport) GetDaOk() (*SpotPricesPerFacility, bool) {
-	if o == nil || isNil(o.Da) {
+	if o == nil || IsNil(o.Da) {
 		return nil, false
 	}
 	return o.Da, true
@@ -133,7 +133,7 @@ func (o *SpotMarketPricesPerMetroReport) GetDaOk() (*SpotPricesPerFacility, bool
 
 // HasDa returns a boolean if a field has been set.
 func (o *SpotMarketPricesPerMetroReport) HasDa() bool {
-	if o != nil && !isNil(o.Da) {
+	if o != nil && !IsNil(o.Da) {
 		return true
 	}
 
@@ -147,7 +147,7 @@ func (o *SpotMarketPricesPerMetroReport) SetDa(v SpotPricesPerFacility) {
 
 // GetLa returns the La field value if set, zero value otherwise.
 func (o *SpotMarketPricesPerMetroReport) GetLa() SpotPricesPerFacility {
-	if o == nil || isNil(o.La) {
+	if o == nil || IsNil(o.La) {
 		var ret SpotPricesPerFacility
 		return ret
 	}
@@ -157,7 +157,7 @@ func (o *SpotMarketPricesPerMetroReport) GetLa() SpotPricesPerFacility {
 // GetLaOk returns a tuple with the La field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SpotMarketPricesPerMetroReport) GetLaOk() (*SpotPricesPerFacility, bool) {
-	if o == nil || isNil(o.La) {
+	if o == nil || IsNil(o.La) {
 		return nil, false
 	}
 	return o.La, true
@@ -165,7 +165,7 @@ func (o *SpotMarketPricesPerMetroReport) GetLaOk() (*SpotPricesPerFacility, bool
 
 // HasLa returns a boolean if a field has been set.
 func (o *SpotMarketPricesPerMetroReport) HasLa() bool {
-	if o != nil && !isNil(o.La) {
+	if o != nil && !IsNil(o.La) {
 		return true
 	}
 
@@ -179,7 +179,7 @@ func (o *SpotMarketPricesPerMetroReport) SetLa(v SpotPricesPerFacility) {
 
 // GetNy returns the Ny field value if set, zero value otherwise.
 func (o *SpotMarketPricesPerMetroReport) GetNy() SpotPricesPerFacility {
-	if o == nil || isNil(o.Ny) {
+	if o == nil || IsNil(o.Ny) {
 		var ret SpotPricesPerFacility
 		return ret
 	}
@@ -189,7 +189,7 @@ func (o *SpotMarketPricesPerMetroReport) GetNy() SpotPricesPerFacility {
 // GetNyOk returns a tuple with the Ny field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SpotMarketPricesPerMetroReport) GetNyOk() (*SpotPricesPerFacility, bool) {
-	if o == nil || isNil(o.Ny) {
+	if o == nil || IsNil(o.Ny) {
 		return nil, false
 	}
 	return o.Ny, true
@@ -197,7 +197,7 @@ func (o *SpotMarketPricesPerMetroReport) GetNyOk() (*SpotPricesPerFacility, bool
 
 // HasNy returns a boolean if a field has been set.
 func (o *SpotMarketPricesPerMetroReport) HasNy() bool {
-	if o != nil && !isNil(o.Ny) {
+	if o != nil && !IsNil(o.Ny) {
 		return true
 	}
 
@@ -211,7 +211,7 @@ func (o *SpotMarketPricesPerMetroReport) SetNy(v SpotPricesPerFacility) {
 
 // GetSg returns the Sg field value if set, zero value otherwise.
 func (o *SpotMarketPricesPerMetroReport) GetSg() SpotPricesPerFacility {
-	if o == nil || isNil(o.Sg) {
+	if o == nil || IsNil(o.Sg) {
 		var ret SpotPricesPerFacility
 		return ret
 	}
@@ -221,7 +221,7 @@ func (o *SpotMarketPricesPerMetroReport) GetSg() SpotPricesPerFacility {
 // GetSgOk returns a tuple with the Sg field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SpotMarketPricesPerMetroReport) GetSgOk() (*SpotPricesPerFacility, bool) {
-	if o == nil || isNil(o.Sg) {
+	if o == nil || IsNil(o.Sg) {
 		return nil, false
 	}
 	return o.Sg, true
@@ -229,7 +229,7 @@ func (o *SpotMarketPricesPerMetroReport) GetSgOk() (*SpotPricesPerFacility, bool
 
 // HasSg returns a boolean if a field has been set.
 func (o *SpotMarketPricesPerMetroReport) HasSg() bool {
-	if o != nil && !isNil(o.Sg) {
+	if o != nil && !IsNil(o.Sg) {
 		return true
 	}
 
@@ -243,7 +243,7 @@ func (o *SpotMarketPricesPerMetroReport) SetSg(v SpotPricesPerFacility) {
 
 // GetSv returns the Sv field value if set, zero value otherwise.
 func (o *SpotMarketPricesPerMetroReport) GetSv() SpotPricesPerFacility {
-	if o == nil || isNil(o.Sv) {
+	if o == nil || IsNil(o.Sv) {
 		var ret SpotPricesPerFacility
 		return ret
 	}
@@ -253,7 +253,7 @@ func (o *SpotMarketPricesPerMetroReport) GetSv() SpotPricesPerFacility {
 // GetSvOk returns a tuple with the Sv field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SpotMarketPricesPerMetroReport) GetSvOk() (*SpotPricesPerFacility, bool) {
-	if o == nil || isNil(o.Sv) {
+	if o == nil || IsNil(o.Sv) {
 		return nil, false
 	}
 	return o.Sv, true
@@ -261,7 +261,7 @@ func (o *SpotMarketPricesPerMetroReport) GetSvOk() (*SpotPricesPerFacility, bool
 
 // HasSv returns a boolean if a field has been set.
 func (o *SpotMarketPricesPerMetroReport) HasSv() bool {
-	if o != nil && !isNil(o.Sv) {
+	if o != nil && !IsNil(o.Sv) {
 		return true
 	}
 
@@ -283,25 +283,25 @@ func (o SpotMarketPricesPerMetroReport) MarshalJSON() ([]byte, error) {
 
 func (o SpotMarketPricesPerMetroReport) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Am) {
+	if !IsNil(o.Am) {
 		toSerialize["am"] = o.Am
 	}
-	if !isNil(o.Ch) {
+	if !IsNil(o.Ch) {
 		toSerialize["ch"] = o.Ch
 	}
-	if !isNil(o.Da) {
+	if !IsNil(o.Da) {
 		toSerialize["da"] = o.Da
 	}
-	if !isNil(o.La) {
+	if !IsNil(o.La) {
 		toSerialize["la"] = o.La
 	}
-	if !isNil(o.Ny) {
+	if !IsNil(o.Ny) {
 		toSerialize["ny"] = o.Ny
 	}
-	if !isNil(o.Sg) {
+	if !IsNil(o.Sg) {
 		toSerialize["sg"] = o.Sg
 	}
-	if !isNil(o.Sv) {
+	if !IsNil(o.Sv) {
 		toSerialize["sv"] = o.Sv
 	}
 

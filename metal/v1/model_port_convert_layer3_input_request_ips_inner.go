@@ -46,7 +46,7 @@ func NewPortConvertLayer3InputRequestIpsInnerWithDefaults() *PortConvertLayer3In
 
 // GetAddressFamily returns the AddressFamily field value if set, zero value otherwise.
 func (o *PortConvertLayer3InputRequestIpsInner) GetAddressFamily() int32 {
-	if o == nil || isNil(o.AddressFamily) {
+	if o == nil || IsNil(o.AddressFamily) {
 		var ret int32
 		return ret
 	}
@@ -56,7 +56,7 @@ func (o *PortConvertLayer3InputRequestIpsInner) GetAddressFamily() int32 {
 // GetAddressFamilyOk returns a tuple with the AddressFamily field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PortConvertLayer3InputRequestIpsInner) GetAddressFamilyOk() (*int32, bool) {
-	if o == nil || isNil(o.AddressFamily) {
+	if o == nil || IsNil(o.AddressFamily) {
 		return nil, false
 	}
 	return o.AddressFamily, true
@@ -64,7 +64,7 @@ func (o *PortConvertLayer3InputRequestIpsInner) GetAddressFamilyOk() (*int32, bo
 
 // HasAddressFamily returns a boolean if a field has been set.
 func (o *PortConvertLayer3InputRequestIpsInner) HasAddressFamily() bool {
-	if o != nil && !isNil(o.AddressFamily) {
+	if o != nil && !IsNil(o.AddressFamily) {
 		return true
 	}
 
@@ -78,7 +78,7 @@ func (o *PortConvertLayer3InputRequestIpsInner) SetAddressFamily(v int32) {
 
 // GetPublic returns the Public field value if set, zero value otherwise.
 func (o *PortConvertLayer3InputRequestIpsInner) GetPublic() bool {
-	if o == nil || isNil(o.Public) {
+	if o == nil || IsNil(o.Public) {
 		var ret bool
 		return ret
 	}
@@ -88,7 +88,7 @@ func (o *PortConvertLayer3InputRequestIpsInner) GetPublic() bool {
 // GetPublicOk returns a tuple with the Public field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PortConvertLayer3InputRequestIpsInner) GetPublicOk() (*bool, bool) {
-	if o == nil || isNil(o.Public) {
+	if o == nil || IsNil(o.Public) {
 		return nil, false
 	}
 	return o.Public, true
@@ -96,7 +96,7 @@ func (o *PortConvertLayer3InputRequestIpsInner) GetPublicOk() (*bool, bool) {
 
 // HasPublic returns a boolean if a field has been set.
 func (o *PortConvertLayer3InputRequestIpsInner) HasPublic() bool {
-	if o != nil && !isNil(o.Public) {
+	if o != nil && !IsNil(o.Public) {
 		return true
 	}
 
@@ -118,10 +118,10 @@ func (o PortConvertLayer3InputRequestIpsInner) MarshalJSON() ([]byte, error) {
 
 func (o PortConvertLayer3InputRequestIpsInner) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.AddressFamily) {
+	if !IsNil(o.AddressFamily) {
 		toSerialize["address_family"] = o.AddressFamily
 	}
-	if !isNil(o.Public) {
+	if !IsNil(o.Public) {
 		toSerialize["public"] = o.Public
 	}
 

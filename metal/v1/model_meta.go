@@ -52,7 +52,7 @@ func NewMetaWithDefaults() *Meta {
 
 // GetFirst returns the First field value if set, zero value otherwise.
 func (o *Meta) GetFirst() Href {
-	if o == nil || isNil(o.First) {
+	if o == nil || IsNil(o.First) {
 		var ret Href
 		return ret
 	}
@@ -62,7 +62,7 @@ func (o *Meta) GetFirst() Href {
 // GetFirstOk returns a tuple with the First field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Meta) GetFirstOk() (*Href, bool) {
-	if o == nil || isNil(o.First) {
+	if o == nil || IsNil(o.First) {
 		return nil, false
 	}
 	return o.First, true
@@ -70,7 +70,7 @@ func (o *Meta) GetFirstOk() (*Href, bool) {
 
 // HasFirst returns a boolean if a field has been set.
 func (o *Meta) HasFirst() bool {
-	if o != nil && !isNil(o.First) {
+	if o != nil && !IsNil(o.First) {
 		return true
 	}
 
@@ -84,7 +84,7 @@ func (o *Meta) SetFirst(v Href) {
 
 // GetLast returns the Last field value if set, zero value otherwise.
 func (o *Meta) GetLast() Href {
-	if o == nil || isNil(o.Last) {
+	if o == nil || IsNil(o.Last) {
 		var ret Href
 		return ret
 	}
@@ -94,7 +94,7 @@ func (o *Meta) GetLast() Href {
 // GetLastOk returns a tuple with the Last field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Meta) GetLastOk() (*Href, bool) {
-	if o == nil || isNil(o.Last) {
+	if o == nil || IsNil(o.Last) {
 		return nil, false
 	}
 	return o.Last, true
@@ -102,7 +102,7 @@ func (o *Meta) GetLastOk() (*Href, bool) {
 
 // HasLast returns a boolean if a field has been set.
 func (o *Meta) HasLast() bool {
-	if o != nil && !isNil(o.Last) {
+	if o != nil && !IsNil(o.Last) {
 		return true
 	}
 
@@ -116,7 +116,7 @@ func (o *Meta) SetLast(v Href) {
 
 // GetNext returns the Next field value if set, zero value otherwise.
 func (o *Meta) GetNext() Href {
-	if o == nil || isNil(o.Next) {
+	if o == nil || IsNil(o.Next) {
 		var ret Href
 		return ret
 	}
@@ -126,7 +126,7 @@ func (o *Meta) GetNext() Href {
 // GetNextOk returns a tuple with the Next field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Meta) GetNextOk() (*Href, bool) {
-	if o == nil || isNil(o.Next) {
+	if o == nil || IsNil(o.Next) {
 		return nil, false
 	}
 	return o.Next, true
@@ -134,7 +134,7 @@ func (o *Meta) GetNextOk() (*Href, bool) {
 
 // HasNext returns a boolean if a field has been set.
 func (o *Meta) HasNext() bool {
-	if o != nil && !isNil(o.Next) {
+	if o != nil && !IsNil(o.Next) {
 		return true
 	}
 
@@ -148,7 +148,7 @@ func (o *Meta) SetNext(v Href) {
 
 // GetPrevious returns the Previous field value if set, zero value otherwise.
 func (o *Meta) GetPrevious() Href {
-	if o == nil || isNil(o.Previous) {
+	if o == nil || IsNil(o.Previous) {
 		var ret Href
 		return ret
 	}
@@ -158,7 +158,7 @@ func (o *Meta) GetPrevious() Href {
 // GetPreviousOk returns a tuple with the Previous field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Meta) GetPreviousOk() (*Href, bool) {
-	if o == nil || isNil(o.Previous) {
+	if o == nil || IsNil(o.Previous) {
 		return nil, false
 	}
 	return o.Previous, true
@@ -166,7 +166,7 @@ func (o *Meta) GetPreviousOk() (*Href, bool) {
 
 // HasPrevious returns a boolean if a field has been set.
 func (o *Meta) HasPrevious() bool {
-	if o != nil && !isNil(o.Previous) {
+	if o != nil && !IsNil(o.Previous) {
 		return true
 	}
 
@@ -180,7 +180,7 @@ func (o *Meta) SetPrevious(v Href) {
 
 // GetSelf returns the Self field value if set, zero value otherwise.
 func (o *Meta) GetSelf() Href {
-	if o == nil || isNil(o.Self) {
+	if o == nil || IsNil(o.Self) {
 		var ret Href
 		return ret
 	}
@@ -190,7 +190,7 @@ func (o *Meta) GetSelf() Href {
 // GetSelfOk returns a tuple with the Self field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Meta) GetSelfOk() (*Href, bool) {
-	if o == nil || isNil(o.Self) {
+	if o == nil || IsNil(o.Self) {
 		return nil, false
 	}
 	return o.Self, true
@@ -198,7 +198,7 @@ func (o *Meta) GetSelfOk() (*Href, bool) {
 
 // HasSelf returns a boolean if a field has been set.
 func (o *Meta) HasSelf() bool {
-	if o != nil && !isNil(o.Self) {
+	if o != nil && !IsNil(o.Self) {
 		return true
 	}
 
@@ -212,7 +212,7 @@ func (o *Meta) SetSelf(v Href) {
 
 // GetTotal returns the Total field value if set, zero value otherwise.
 func (o *Meta) GetTotal() int32 {
-	if o == nil || isNil(o.Total) {
+	if o == nil || IsNil(o.Total) {
 		var ret int32
 		return ret
 	}
@@ -222,7 +222,7 @@ func (o *Meta) GetTotal() int32 {
 // GetTotalOk returns a tuple with the Total field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Meta) GetTotalOk() (*int32, bool) {
-	if o == nil || isNil(o.Total) {
+	if o == nil || IsNil(o.Total) {
 		return nil, false
 	}
 	return o.Total, true
@@ -230,7 +230,7 @@ func (o *Meta) GetTotalOk() (*int32, bool) {
 
 // HasTotal returns a boolean if a field has been set.
 func (o *Meta) HasTotal() bool {
-	if o != nil && !isNil(o.Total) {
+	if o != nil && !IsNil(o.Total) {
 		return true
 	}
 
@@ -244,7 +244,7 @@ func (o *Meta) SetTotal(v int32) {
 
 // GetCurrentPage returns the CurrentPage field value if set, zero value otherwise.
 func (o *Meta) GetCurrentPage() int32 {
-	if o == nil || isNil(o.CurrentPage) {
+	if o == nil || IsNil(o.CurrentPage) {
 		var ret int32
 		return ret
 	}
@@ -254,7 +254,7 @@ func (o *Meta) GetCurrentPage() int32 {
 // GetCurrentPageOk returns a tuple with the CurrentPage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Meta) GetCurrentPageOk() (*int32, bool) {
-	if o == nil || isNil(o.CurrentPage) {
+	if o == nil || IsNil(o.CurrentPage) {
 		return nil, false
 	}
 	return o.CurrentPage, true
@@ -262,7 +262,7 @@ func (o *Meta) GetCurrentPageOk() (*int32, bool) {
 
 // HasCurrentPage returns a boolean if a field has been set.
 func (o *Meta) HasCurrentPage() bool {
-	if o != nil && !isNil(o.CurrentPage) {
+	if o != nil && !IsNil(o.CurrentPage) {
 		return true
 	}
 
@@ -276,7 +276,7 @@ func (o *Meta) SetCurrentPage(v int32) {
 
 // GetLastPage returns the LastPage field value if set, zero value otherwise.
 func (o *Meta) GetLastPage() int32 {
-	if o == nil || isNil(o.LastPage) {
+	if o == nil || IsNil(o.LastPage) {
 		var ret int32
 		return ret
 	}
@@ -286,7 +286,7 @@ func (o *Meta) GetLastPage() int32 {
 // GetLastPageOk returns a tuple with the LastPage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Meta) GetLastPageOk() (*int32, bool) {
-	if o == nil || isNil(o.LastPage) {
+	if o == nil || IsNil(o.LastPage) {
 		return nil, false
 	}
 	return o.LastPage, true
@@ -294,7 +294,7 @@ func (o *Meta) GetLastPageOk() (*int32, bool) {
 
 // HasLastPage returns a boolean if a field has been set.
 func (o *Meta) HasLastPage() bool {
-	if o != nil && !isNil(o.LastPage) {
+	if o != nil && !IsNil(o.LastPage) {
 		return true
 	}
 
@@ -316,28 +316,28 @@ func (o Meta) MarshalJSON() ([]byte, error) {
 
 func (o Meta) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.First) {
+	if !IsNil(o.First) {
 		toSerialize["first"] = o.First
 	}
-	if !isNil(o.Last) {
+	if !IsNil(o.Last) {
 		toSerialize["last"] = o.Last
 	}
-	if !isNil(o.Next) {
+	if !IsNil(o.Next) {
 		toSerialize["next"] = o.Next
 	}
-	if !isNil(o.Previous) {
+	if !IsNil(o.Previous) {
 		toSerialize["previous"] = o.Previous
 	}
-	if !isNil(o.Self) {
+	if !IsNil(o.Self) {
 		toSerialize["self"] = o.Self
 	}
-	if !isNil(o.Total) {
+	if !IsNil(o.Total) {
 		toSerialize["total"] = o.Total
 	}
-	if !isNil(o.CurrentPage) {
+	if !IsNil(o.CurrentPage) {
 		toSerialize["current_page"] = o.CurrentPage
 	}
-	if !isNil(o.LastPage) {
+	if !IsNil(o.LastPage) {
 		toSerialize["last_page"] = o.LastPage
 	}
 

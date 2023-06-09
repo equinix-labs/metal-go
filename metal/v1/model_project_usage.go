@@ -53,7 +53,7 @@ func NewProjectUsageWithDefaults() *ProjectUsage {
 
 // GetFacility returns the Facility field value if set, zero value otherwise.
 func (o *ProjectUsage) GetFacility() string {
-	if o == nil || isNil(o.Facility) {
+	if o == nil || IsNil(o.Facility) {
 		var ret string
 		return ret
 	}
@@ -63,7 +63,7 @@ func (o *ProjectUsage) GetFacility() string {
 // GetFacilityOk returns a tuple with the Facility field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ProjectUsage) GetFacilityOk() (*string, bool) {
-	if o == nil || isNil(o.Facility) {
+	if o == nil || IsNil(o.Facility) {
 		return nil, false
 	}
 	return o.Facility, true
@@ -71,7 +71,7 @@ func (o *ProjectUsage) GetFacilityOk() (*string, bool) {
 
 // HasFacility returns a boolean if a field has been set.
 func (o *ProjectUsage) HasFacility() bool {
-	if o != nil && !isNil(o.Facility) {
+	if o != nil && !IsNil(o.Facility) {
 		return true
 	}
 
@@ -85,7 +85,7 @@ func (o *ProjectUsage) SetFacility(v string) {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *ProjectUsage) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -95,7 +95,7 @@ func (o *ProjectUsage) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ProjectUsage) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
 	return o.Name, true
@@ -103,7 +103,7 @@ func (o *ProjectUsage) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *ProjectUsage) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -117,7 +117,7 @@ func (o *ProjectUsage) SetName(v string) {
 
 // GetPlan returns the Plan field value if set, zero value otherwise.
 func (o *ProjectUsage) GetPlan() string {
-	if o == nil || isNil(o.Plan) {
+	if o == nil || IsNil(o.Plan) {
 		var ret string
 		return ret
 	}
@@ -127,7 +127,7 @@ func (o *ProjectUsage) GetPlan() string {
 // GetPlanOk returns a tuple with the Plan field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ProjectUsage) GetPlanOk() (*string, bool) {
-	if o == nil || isNil(o.Plan) {
+	if o == nil || IsNil(o.Plan) {
 		return nil, false
 	}
 	return o.Plan, true
@@ -135,7 +135,7 @@ func (o *ProjectUsage) GetPlanOk() (*string, bool) {
 
 // HasPlan returns a boolean if a field has been set.
 func (o *ProjectUsage) HasPlan() bool {
-	if o != nil && !isNil(o.Plan) {
+	if o != nil && !IsNil(o.Plan) {
 		return true
 	}
 
@@ -149,7 +149,7 @@ func (o *ProjectUsage) SetPlan(v string) {
 
 // GetPlanVersion returns the PlanVersion field value if set, zero value otherwise.
 func (o *ProjectUsage) GetPlanVersion() string {
-	if o == nil || isNil(o.PlanVersion) {
+	if o == nil || IsNil(o.PlanVersion) {
 		var ret string
 		return ret
 	}
@@ -159,7 +159,7 @@ func (o *ProjectUsage) GetPlanVersion() string {
 // GetPlanVersionOk returns a tuple with the PlanVersion field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ProjectUsage) GetPlanVersionOk() (*string, bool) {
-	if o == nil || isNil(o.PlanVersion) {
+	if o == nil || IsNil(o.PlanVersion) {
 		return nil, false
 	}
 	return o.PlanVersion, true
@@ -167,7 +167,7 @@ func (o *ProjectUsage) GetPlanVersionOk() (*string, bool) {
 
 // HasPlanVersion returns a boolean if a field has been set.
 func (o *ProjectUsage) HasPlanVersion() bool {
-	if o != nil && !isNil(o.PlanVersion) {
+	if o != nil && !IsNil(o.PlanVersion) {
 		return true
 	}
 
@@ -181,7 +181,7 @@ func (o *ProjectUsage) SetPlanVersion(v string) {
 
 // GetPrice returns the Price field value if set, zero value otherwise.
 func (o *ProjectUsage) GetPrice() string {
-	if o == nil || isNil(o.Price) {
+	if o == nil || IsNil(o.Price) {
 		var ret string
 		return ret
 	}
@@ -191,7 +191,7 @@ func (o *ProjectUsage) GetPrice() string {
 // GetPriceOk returns a tuple with the Price field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ProjectUsage) GetPriceOk() (*string, bool) {
-	if o == nil || isNil(o.Price) {
+	if o == nil || IsNil(o.Price) {
 		return nil, false
 	}
 	return o.Price, true
@@ -199,7 +199,7 @@ func (o *ProjectUsage) GetPriceOk() (*string, bool) {
 
 // HasPrice returns a boolean if a field has been set.
 func (o *ProjectUsage) HasPrice() bool {
-	if o != nil && !isNil(o.Price) {
+	if o != nil && !IsNil(o.Price) {
 		return true
 	}
 
@@ -213,7 +213,7 @@ func (o *ProjectUsage) SetPrice(v string) {
 
 // GetQuantity returns the Quantity field value if set, zero value otherwise.
 func (o *ProjectUsage) GetQuantity() string {
-	if o == nil || isNil(o.Quantity) {
+	if o == nil || IsNil(o.Quantity) {
 		var ret string
 		return ret
 	}
@@ -223,7 +223,7 @@ func (o *ProjectUsage) GetQuantity() string {
 // GetQuantityOk returns a tuple with the Quantity field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ProjectUsage) GetQuantityOk() (*string, bool) {
-	if o == nil || isNil(o.Quantity) {
+	if o == nil || IsNil(o.Quantity) {
 		return nil, false
 	}
 	return o.Quantity, true
@@ -231,7 +231,7 @@ func (o *ProjectUsage) GetQuantityOk() (*string, bool) {
 
 // HasQuantity returns a boolean if a field has been set.
 func (o *ProjectUsage) HasQuantity() bool {
-	if o != nil && !isNil(o.Quantity) {
+	if o != nil && !IsNil(o.Quantity) {
 		return true
 	}
 
@@ -245,7 +245,7 @@ func (o *ProjectUsage) SetQuantity(v string) {
 
 // GetTotal returns the Total field value if set, zero value otherwise.
 func (o *ProjectUsage) GetTotal() string {
-	if o == nil || isNil(o.Total) {
+	if o == nil || IsNil(o.Total) {
 		var ret string
 		return ret
 	}
@@ -255,7 +255,7 @@ func (o *ProjectUsage) GetTotal() string {
 // GetTotalOk returns a tuple with the Total field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ProjectUsage) GetTotalOk() (*string, bool) {
-	if o == nil || isNil(o.Total) {
+	if o == nil || IsNil(o.Total) {
 		return nil, false
 	}
 	return o.Total, true
@@ -263,7 +263,7 @@ func (o *ProjectUsage) GetTotalOk() (*string, bool) {
 
 // HasTotal returns a boolean if a field has been set.
 func (o *ProjectUsage) HasTotal() bool {
-	if o != nil && !isNil(o.Total) {
+	if o != nil && !IsNil(o.Total) {
 		return true
 	}
 
@@ -277,7 +277,7 @@ func (o *ProjectUsage) SetTotal(v string) {
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *ProjectUsage) GetType() string {
-	if o == nil || isNil(o.Type) {
+	if o == nil || IsNil(o.Type) {
 		var ret string
 		return ret
 	}
@@ -287,7 +287,7 @@ func (o *ProjectUsage) GetType() string {
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ProjectUsage) GetTypeOk() (*string, bool) {
-	if o == nil || isNil(o.Type) {
+	if o == nil || IsNil(o.Type) {
 		return nil, false
 	}
 	return o.Type, true
@@ -295,7 +295,7 @@ func (o *ProjectUsage) GetTypeOk() (*string, bool) {
 
 // HasType returns a boolean if a field has been set.
 func (o *ProjectUsage) HasType() bool {
-	if o != nil && !isNil(o.Type) {
+	if o != nil && !IsNil(o.Type) {
 		return true
 	}
 
@@ -309,7 +309,7 @@ func (o *ProjectUsage) SetType(v string) {
 
 // GetUnit returns the Unit field value if set, zero value otherwise.
 func (o *ProjectUsage) GetUnit() string {
-	if o == nil || isNil(o.Unit) {
+	if o == nil || IsNil(o.Unit) {
 		var ret string
 		return ret
 	}
@@ -319,7 +319,7 @@ func (o *ProjectUsage) GetUnit() string {
 // GetUnitOk returns a tuple with the Unit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ProjectUsage) GetUnitOk() (*string, bool) {
-	if o == nil || isNil(o.Unit) {
+	if o == nil || IsNil(o.Unit) {
 		return nil, false
 	}
 	return o.Unit, true
@@ -327,7 +327,7 @@ func (o *ProjectUsage) GetUnitOk() (*string, bool) {
 
 // HasUnit returns a boolean if a field has been set.
 func (o *ProjectUsage) HasUnit() bool {
-	if o != nil && !isNil(o.Unit) {
+	if o != nil && !IsNil(o.Unit) {
 		return true
 	}
 
@@ -349,31 +349,31 @@ func (o ProjectUsage) MarshalJSON() ([]byte, error) {
 
 func (o ProjectUsage) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Facility) {
+	if !IsNil(o.Facility) {
 		toSerialize["facility"] = o.Facility
 	}
-	if !isNil(o.Name) {
+	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
-	if !isNil(o.Plan) {
+	if !IsNil(o.Plan) {
 		toSerialize["plan"] = o.Plan
 	}
-	if !isNil(o.PlanVersion) {
+	if !IsNil(o.PlanVersion) {
 		toSerialize["plan_version"] = o.PlanVersion
 	}
-	if !isNil(o.Price) {
+	if !IsNil(o.Price) {
 		toSerialize["price"] = o.Price
 	}
-	if !isNil(o.Quantity) {
+	if !IsNil(o.Quantity) {
 		toSerialize["quantity"] = o.Quantity
 	}
-	if !isNil(o.Total) {
+	if !IsNil(o.Total) {
 		toSerialize["total"] = o.Total
 	}
-	if !isNil(o.Type) {
+	if !IsNil(o.Type) {
 		toSerialize["type"] = o.Type
 	}
-	if !isNil(o.Unit) {
+	if !IsNil(o.Unit) {
 		toSerialize["unit"] = o.Unit
 	}
 

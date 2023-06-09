@@ -45,7 +45,7 @@ func NewSpotPricesPerBaremetalWithDefaults() *SpotPricesPerBaremetal {
 
 // GetPrice returns the Price field value if set, zero value otherwise.
 func (o *SpotPricesPerBaremetal) GetPrice() float32 {
-	if o == nil || isNil(o.Price) {
+	if o == nil || IsNil(o.Price) {
 		var ret float32
 		return ret
 	}
@@ -55,7 +55,7 @@ func (o *SpotPricesPerBaremetal) GetPrice() float32 {
 // GetPriceOk returns a tuple with the Price field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SpotPricesPerBaremetal) GetPriceOk() (*float32, bool) {
-	if o == nil || isNil(o.Price) {
+	if o == nil || IsNil(o.Price) {
 		return nil, false
 	}
 	return o.Price, true
@@ -63,7 +63,7 @@ func (o *SpotPricesPerBaremetal) GetPriceOk() (*float32, bool) {
 
 // HasPrice returns a boolean if a field has been set.
 func (o *SpotPricesPerBaremetal) HasPrice() bool {
-	if o != nil && !isNil(o.Price) {
+	if o != nil && !IsNil(o.Price) {
 		return true
 	}
 
@@ -85,7 +85,7 @@ func (o SpotPricesPerBaremetal) MarshalJSON() ([]byte, error) {
 
 func (o SpotPricesPerBaremetal) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Price) {
+	if !IsNil(o.Price) {
 		toSerialize["price"] = o.Price
 	}
 

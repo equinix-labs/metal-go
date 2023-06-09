@@ -47,7 +47,7 @@ func NewMetadataNetworkWithDefaults() *MetadataNetwork {
 
 // GetAddresses returns the Addresses field value if set, zero value otherwise.
 func (o *MetadataNetwork) GetAddresses() []string {
-	if o == nil || isNil(o.Addresses) {
+	if o == nil || IsNil(o.Addresses) {
 		var ret []string
 		return ret
 	}
@@ -57,7 +57,7 @@ func (o *MetadataNetwork) GetAddresses() []string {
 // GetAddressesOk returns a tuple with the Addresses field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MetadataNetwork) GetAddressesOk() ([]string, bool) {
-	if o == nil || isNil(o.Addresses) {
+	if o == nil || IsNil(o.Addresses) {
 		return nil, false
 	}
 	return o.Addresses, true
@@ -65,7 +65,7 @@ func (o *MetadataNetwork) GetAddressesOk() ([]string, bool) {
 
 // HasAddresses returns a boolean if a field has been set.
 func (o *MetadataNetwork) HasAddresses() bool {
-	if o != nil && !isNil(o.Addresses) {
+	if o != nil && !IsNil(o.Addresses) {
 		return true
 	}
 
@@ -79,7 +79,7 @@ func (o *MetadataNetwork) SetAddresses(v []string) {
 
 // GetInterfaces returns the Interfaces field value if set, zero value otherwise.
 func (o *MetadataNetwork) GetInterfaces() []map[string]interface{} {
-	if o == nil || isNil(o.Interfaces) {
+	if o == nil || IsNil(o.Interfaces) {
 		var ret []map[string]interface{}
 		return ret
 	}
@@ -89,7 +89,7 @@ func (o *MetadataNetwork) GetInterfaces() []map[string]interface{} {
 // GetInterfacesOk returns a tuple with the Interfaces field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MetadataNetwork) GetInterfacesOk() ([]map[string]interface{}, bool) {
-	if o == nil || isNil(o.Interfaces) {
+	if o == nil || IsNil(o.Interfaces) {
 		return nil, false
 	}
 	return o.Interfaces, true
@@ -97,7 +97,7 @@ func (o *MetadataNetwork) GetInterfacesOk() ([]map[string]interface{}, bool) {
 
 // HasInterfaces returns a boolean if a field has been set.
 func (o *MetadataNetwork) HasInterfaces() bool {
-	if o != nil && !isNil(o.Interfaces) {
+	if o != nil && !IsNil(o.Interfaces) {
 		return true
 	}
 
@@ -111,7 +111,7 @@ func (o *MetadataNetwork) SetInterfaces(v []map[string]interface{}) {
 
 // GetNetwork returns the Network field value if set, zero value otherwise.
 func (o *MetadataNetwork) GetNetwork() MetadataNetworkNetwork {
-	if o == nil || isNil(o.Network) {
+	if o == nil || IsNil(o.Network) {
 		var ret MetadataNetworkNetwork
 		return ret
 	}
@@ -121,7 +121,7 @@ func (o *MetadataNetwork) GetNetwork() MetadataNetworkNetwork {
 // GetNetworkOk returns a tuple with the Network field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MetadataNetwork) GetNetworkOk() (*MetadataNetworkNetwork, bool) {
-	if o == nil || isNil(o.Network) {
+	if o == nil || IsNil(o.Network) {
 		return nil, false
 	}
 	return o.Network, true
@@ -129,7 +129,7 @@ func (o *MetadataNetwork) GetNetworkOk() (*MetadataNetworkNetwork, bool) {
 
 // HasNetwork returns a boolean if a field has been set.
 func (o *MetadataNetwork) HasNetwork() bool {
-	if o != nil && !isNil(o.Network) {
+	if o != nil && !IsNil(o.Network) {
 		return true
 	}
 
@@ -151,13 +151,13 @@ func (o MetadataNetwork) MarshalJSON() ([]byte, error) {
 
 func (o MetadataNetwork) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Addresses) {
+	if !IsNil(o.Addresses) {
 		toSerialize["addresses"] = o.Addresses
 	}
-	if !isNil(o.Interfaces) {
+	if !IsNil(o.Interfaces) {
 		toSerialize["interfaces"] = o.Interfaces
 	}
-	if !isNil(o.Network) {
+	if !IsNil(o.Network) {
 		toSerialize["network"] = o.Network
 	}
 

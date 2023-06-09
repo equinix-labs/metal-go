@@ -50,7 +50,7 @@ func NewPaymentMethodUpdateInputWithDefaults() *PaymentMethodUpdateInput {
 
 // GetBillingAddress returns the BillingAddress field value if set, zero value otherwise.
 func (o *PaymentMethodUpdateInput) GetBillingAddress() map[string]interface{} {
-	if o == nil || isNil(o.BillingAddress) {
+	if o == nil || IsNil(o.BillingAddress) {
 		var ret map[string]interface{}
 		return ret
 	}
@@ -60,7 +60,7 @@ func (o *PaymentMethodUpdateInput) GetBillingAddress() map[string]interface{} {
 // GetBillingAddressOk returns a tuple with the BillingAddress field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PaymentMethodUpdateInput) GetBillingAddressOk() (map[string]interface{}, bool) {
-	if o == nil || isNil(o.BillingAddress) {
+	if o == nil || IsNil(o.BillingAddress) {
 		return map[string]interface{}{}, false
 	}
 	return o.BillingAddress, true
@@ -68,7 +68,7 @@ func (o *PaymentMethodUpdateInput) GetBillingAddressOk() (map[string]interface{}
 
 // HasBillingAddress returns a boolean if a field has been set.
 func (o *PaymentMethodUpdateInput) HasBillingAddress() bool {
-	if o != nil && !isNil(o.BillingAddress) {
+	if o != nil && !IsNil(o.BillingAddress) {
 		return true
 	}
 
@@ -82,7 +82,7 @@ func (o *PaymentMethodUpdateInput) SetBillingAddress(v map[string]interface{}) {
 
 // GetCardholderName returns the CardholderName field value if set, zero value otherwise.
 func (o *PaymentMethodUpdateInput) GetCardholderName() string {
-	if o == nil || isNil(o.CardholderName) {
+	if o == nil || IsNil(o.CardholderName) {
 		var ret string
 		return ret
 	}
@@ -92,7 +92,7 @@ func (o *PaymentMethodUpdateInput) GetCardholderName() string {
 // GetCardholderNameOk returns a tuple with the CardholderName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PaymentMethodUpdateInput) GetCardholderNameOk() (*string, bool) {
-	if o == nil || isNil(o.CardholderName) {
+	if o == nil || IsNil(o.CardholderName) {
 		return nil, false
 	}
 	return o.CardholderName, true
@@ -100,7 +100,7 @@ func (o *PaymentMethodUpdateInput) GetCardholderNameOk() (*string, bool) {
 
 // HasCardholderName returns a boolean if a field has been set.
 func (o *PaymentMethodUpdateInput) HasCardholderName() bool {
-	if o != nil && !isNil(o.CardholderName) {
+	if o != nil && !IsNil(o.CardholderName) {
 		return true
 	}
 
@@ -114,7 +114,7 @@ func (o *PaymentMethodUpdateInput) SetCardholderName(v string) {
 
 // GetDefault returns the Default field value if set, zero value otherwise.
 func (o *PaymentMethodUpdateInput) GetDefault() bool {
-	if o == nil || isNil(o.Default) {
+	if o == nil || IsNil(o.Default) {
 		var ret bool
 		return ret
 	}
@@ -124,7 +124,7 @@ func (o *PaymentMethodUpdateInput) GetDefault() bool {
 // GetDefaultOk returns a tuple with the Default field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PaymentMethodUpdateInput) GetDefaultOk() (*bool, bool) {
-	if o == nil || isNil(o.Default) {
+	if o == nil || IsNil(o.Default) {
 		return nil, false
 	}
 	return o.Default, true
@@ -132,7 +132,7 @@ func (o *PaymentMethodUpdateInput) GetDefaultOk() (*bool, bool) {
 
 // HasDefault returns a boolean if a field has been set.
 func (o *PaymentMethodUpdateInput) HasDefault() bool {
-	if o != nil && !isNil(o.Default) {
+	if o != nil && !IsNil(o.Default) {
 		return true
 	}
 
@@ -146,7 +146,7 @@ func (o *PaymentMethodUpdateInput) SetDefault(v bool) {
 
 // GetExpirationMonth returns the ExpirationMonth field value if set, zero value otherwise.
 func (o *PaymentMethodUpdateInput) GetExpirationMonth() string {
-	if o == nil || isNil(o.ExpirationMonth) {
+	if o == nil || IsNil(o.ExpirationMonth) {
 		var ret string
 		return ret
 	}
@@ -156,7 +156,7 @@ func (o *PaymentMethodUpdateInput) GetExpirationMonth() string {
 // GetExpirationMonthOk returns a tuple with the ExpirationMonth field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PaymentMethodUpdateInput) GetExpirationMonthOk() (*string, bool) {
-	if o == nil || isNil(o.ExpirationMonth) {
+	if o == nil || IsNil(o.ExpirationMonth) {
 		return nil, false
 	}
 	return o.ExpirationMonth, true
@@ -164,7 +164,7 @@ func (o *PaymentMethodUpdateInput) GetExpirationMonthOk() (*string, bool) {
 
 // HasExpirationMonth returns a boolean if a field has been set.
 func (o *PaymentMethodUpdateInput) HasExpirationMonth() bool {
-	if o != nil && !isNil(o.ExpirationMonth) {
+	if o != nil && !IsNil(o.ExpirationMonth) {
 		return true
 	}
 
@@ -178,7 +178,7 @@ func (o *PaymentMethodUpdateInput) SetExpirationMonth(v string) {
 
 // GetExpirationYear returns the ExpirationYear field value if set, zero value otherwise.
 func (o *PaymentMethodUpdateInput) GetExpirationYear() int32 {
-	if o == nil || isNil(o.ExpirationYear) {
+	if o == nil || IsNil(o.ExpirationYear) {
 		var ret int32
 		return ret
 	}
@@ -188,7 +188,7 @@ func (o *PaymentMethodUpdateInput) GetExpirationYear() int32 {
 // GetExpirationYearOk returns a tuple with the ExpirationYear field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PaymentMethodUpdateInput) GetExpirationYearOk() (*int32, bool) {
-	if o == nil || isNil(o.ExpirationYear) {
+	if o == nil || IsNil(o.ExpirationYear) {
 		return nil, false
 	}
 	return o.ExpirationYear, true
@@ -196,7 +196,7 @@ func (o *PaymentMethodUpdateInput) GetExpirationYearOk() (*int32, bool) {
 
 // HasExpirationYear returns a boolean if a field has been set.
 func (o *PaymentMethodUpdateInput) HasExpirationYear() bool {
-	if o != nil && !isNil(o.ExpirationYear) {
+	if o != nil && !IsNil(o.ExpirationYear) {
 		return true
 	}
 
@@ -210,7 +210,7 @@ func (o *PaymentMethodUpdateInput) SetExpirationYear(v int32) {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *PaymentMethodUpdateInput) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -220,7 +220,7 @@ func (o *PaymentMethodUpdateInput) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PaymentMethodUpdateInput) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
 	return o.Name, true
@@ -228,7 +228,7 @@ func (o *PaymentMethodUpdateInput) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *PaymentMethodUpdateInput) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -250,22 +250,22 @@ func (o PaymentMethodUpdateInput) MarshalJSON() ([]byte, error) {
 
 func (o PaymentMethodUpdateInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.BillingAddress) {
+	if !IsNil(o.BillingAddress) {
 		toSerialize["billing_address"] = o.BillingAddress
 	}
-	if !isNil(o.CardholderName) {
+	if !IsNil(o.CardholderName) {
 		toSerialize["cardholder_name"] = o.CardholderName
 	}
-	if !isNil(o.Default) {
+	if !IsNil(o.Default) {
 		toSerialize["default"] = o.Default
 	}
-	if !isNil(o.ExpirationMonth) {
+	if !IsNil(o.ExpirationMonth) {
 		toSerialize["expiration_month"] = o.ExpirationMonth
 	}
-	if !isNil(o.ExpirationYear) {
+	if !IsNil(o.ExpirationYear) {
 		toSerialize["expiration_year"] = o.ExpirationYear
 	}
-	if !isNil(o.Name) {
+	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
 

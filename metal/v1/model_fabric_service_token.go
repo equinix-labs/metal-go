@@ -57,7 +57,7 @@ func NewFabricServiceTokenWithDefaults() *FabricServiceToken {
 
 // GetExpiresAt returns the ExpiresAt field value if set, zero value otherwise.
 func (o *FabricServiceToken) GetExpiresAt() time.Time {
-	if o == nil || isNil(o.ExpiresAt) {
+	if o == nil || IsNil(o.ExpiresAt) {
 		var ret time.Time
 		return ret
 	}
@@ -67,7 +67,7 @@ func (o *FabricServiceToken) GetExpiresAt() time.Time {
 // GetExpiresAtOk returns a tuple with the ExpiresAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FabricServiceToken) GetExpiresAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.ExpiresAt) {
+	if o == nil || IsNil(o.ExpiresAt) {
 		return nil, false
 	}
 	return o.ExpiresAt, true
@@ -75,7 +75,7 @@ func (o *FabricServiceToken) GetExpiresAtOk() (*time.Time, bool) {
 
 // HasExpiresAt returns a boolean if a field has been set.
 func (o *FabricServiceToken) HasExpiresAt() bool {
-	if o != nil && !isNil(o.ExpiresAt) {
+	if o != nil && !IsNil(o.ExpiresAt) {
 		return true
 	}
 
@@ -89,7 +89,7 @@ func (o *FabricServiceToken) SetExpiresAt(v time.Time) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *FabricServiceToken) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -99,7 +99,7 @@ func (o *FabricServiceToken) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FabricServiceToken) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -107,7 +107,7 @@ func (o *FabricServiceToken) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *FabricServiceToken) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -121,7 +121,7 @@ func (o *FabricServiceToken) SetId(v string) {
 
 // GetMaxAllowedSpeed returns the MaxAllowedSpeed field value if set, zero value otherwise.
 func (o *FabricServiceToken) GetMaxAllowedSpeed() int32 {
-	if o == nil || isNil(o.MaxAllowedSpeed) {
+	if o == nil || IsNil(o.MaxAllowedSpeed) {
 		var ret int32
 		return ret
 	}
@@ -131,7 +131,7 @@ func (o *FabricServiceToken) GetMaxAllowedSpeed() int32 {
 // GetMaxAllowedSpeedOk returns a tuple with the MaxAllowedSpeed field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FabricServiceToken) GetMaxAllowedSpeedOk() (*int32, bool) {
-	if o == nil || isNil(o.MaxAllowedSpeed) {
+	if o == nil || IsNil(o.MaxAllowedSpeed) {
 		return nil, false
 	}
 	return o.MaxAllowedSpeed, true
@@ -139,7 +139,7 @@ func (o *FabricServiceToken) GetMaxAllowedSpeedOk() (*int32, bool) {
 
 // HasMaxAllowedSpeed returns a boolean if a field has been set.
 func (o *FabricServiceToken) HasMaxAllowedSpeed() bool {
-	if o != nil && !isNil(o.MaxAllowedSpeed) {
+	if o != nil && !IsNil(o.MaxAllowedSpeed) {
 		return true
 	}
 
@@ -153,7 +153,7 @@ func (o *FabricServiceToken) SetMaxAllowedSpeed(v int32) {
 
 // GetRole returns the Role field value if set, zero value otherwise.
 func (o *FabricServiceToken) GetRole() string {
-	if o == nil || isNil(o.Role) {
+	if o == nil || IsNil(o.Role) {
 		var ret string
 		return ret
 	}
@@ -163,7 +163,7 @@ func (o *FabricServiceToken) GetRole() string {
 // GetRoleOk returns a tuple with the Role field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FabricServiceToken) GetRoleOk() (*string, bool) {
-	if o == nil || isNil(o.Role) {
+	if o == nil || IsNil(o.Role) {
 		return nil, false
 	}
 	return o.Role, true
@@ -171,7 +171,7 @@ func (o *FabricServiceToken) GetRoleOk() (*string, bool) {
 
 // HasRole returns a boolean if a field has been set.
 func (o *FabricServiceToken) HasRole() bool {
-	if o != nil && !isNil(o.Role) {
+	if o != nil && !IsNil(o.Role) {
 		return true
 	}
 
@@ -185,7 +185,7 @@ func (o *FabricServiceToken) SetRole(v string) {
 
 // GetServiceTokenType returns the ServiceTokenType field value if set, zero value otherwise.
 func (o *FabricServiceToken) GetServiceTokenType() string {
-	if o == nil || isNil(o.ServiceTokenType) {
+	if o == nil || IsNil(o.ServiceTokenType) {
 		var ret string
 		return ret
 	}
@@ -195,7 +195,7 @@ func (o *FabricServiceToken) GetServiceTokenType() string {
 // GetServiceTokenTypeOk returns a tuple with the ServiceTokenType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FabricServiceToken) GetServiceTokenTypeOk() (*string, bool) {
-	if o == nil || isNil(o.ServiceTokenType) {
+	if o == nil || IsNil(o.ServiceTokenType) {
 		return nil, false
 	}
 	return o.ServiceTokenType, true
@@ -203,7 +203,7 @@ func (o *FabricServiceToken) GetServiceTokenTypeOk() (*string, bool) {
 
 // HasServiceTokenType returns a boolean if a field has been set.
 func (o *FabricServiceToken) HasServiceTokenType() bool {
-	if o != nil && !isNil(o.ServiceTokenType) {
+	if o != nil && !IsNil(o.ServiceTokenType) {
 		return true
 	}
 
@@ -217,7 +217,7 @@ func (o *FabricServiceToken) SetServiceTokenType(v string) {
 
 // GetState returns the State field value if set, zero value otherwise.
 func (o *FabricServiceToken) GetState() string {
-	if o == nil || isNil(o.State) {
+	if o == nil || IsNil(o.State) {
 		var ret string
 		return ret
 	}
@@ -227,7 +227,7 @@ func (o *FabricServiceToken) GetState() string {
 // GetStateOk returns a tuple with the State field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FabricServiceToken) GetStateOk() (*string, bool) {
-	if o == nil || isNil(o.State) {
+	if o == nil || IsNil(o.State) {
 		return nil, false
 	}
 	return o.State, true
@@ -235,7 +235,7 @@ func (o *FabricServiceToken) GetStateOk() (*string, bool) {
 
 // HasState returns a boolean if a field has been set.
 func (o *FabricServiceToken) HasState() bool {
-	if o != nil && !isNil(o.State) {
+	if o != nil && !IsNil(o.State) {
 		return true
 	}
 
@@ -257,22 +257,22 @@ func (o FabricServiceToken) MarshalJSON() ([]byte, error) {
 
 func (o FabricServiceToken) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.ExpiresAt) {
+	if !IsNil(o.ExpiresAt) {
 		toSerialize["expires_at"] = o.ExpiresAt
 	}
-	if !isNil(o.Id) {
+	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
-	if !isNil(o.MaxAllowedSpeed) {
+	if !IsNil(o.MaxAllowedSpeed) {
 		toSerialize["max_allowed_speed"] = o.MaxAllowedSpeed
 	}
-	if !isNil(o.Role) {
+	if !IsNil(o.Role) {
 		toSerialize["role"] = o.Role
 	}
-	if !isNil(o.ServiceTokenType) {
+	if !IsNil(o.ServiceTokenType) {
 		toSerialize["service_token_type"] = o.ServiceTokenType
 	}
-	if !isNil(o.State) {
+	if !IsNil(o.State) {
 		toSerialize["state"] = o.State
 	}
 

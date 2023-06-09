@@ -46,7 +46,7 @@ func NewHardwareReservationListWithDefaults() *HardwareReservationList {
 
 // GetHardwareReservations returns the HardwareReservations field value if set, zero value otherwise.
 func (o *HardwareReservationList) GetHardwareReservations() []HardwareReservation {
-	if o == nil || isNil(o.HardwareReservations) {
+	if o == nil || IsNil(o.HardwareReservations) {
 		var ret []HardwareReservation
 		return ret
 	}
@@ -56,7 +56,7 @@ func (o *HardwareReservationList) GetHardwareReservations() []HardwareReservatio
 // GetHardwareReservationsOk returns a tuple with the HardwareReservations field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HardwareReservationList) GetHardwareReservationsOk() ([]HardwareReservation, bool) {
-	if o == nil || isNil(o.HardwareReservations) {
+	if o == nil || IsNil(o.HardwareReservations) {
 		return nil, false
 	}
 	return o.HardwareReservations, true
@@ -64,7 +64,7 @@ func (o *HardwareReservationList) GetHardwareReservationsOk() ([]HardwareReserva
 
 // HasHardwareReservations returns a boolean if a field has been set.
 func (o *HardwareReservationList) HasHardwareReservations() bool {
-	if o != nil && !isNil(o.HardwareReservations) {
+	if o != nil && !IsNil(o.HardwareReservations) {
 		return true
 	}
 
@@ -78,7 +78,7 @@ func (o *HardwareReservationList) SetHardwareReservations(v []HardwareReservatio
 
 // GetMeta returns the Meta field value if set, zero value otherwise.
 func (o *HardwareReservationList) GetMeta() Meta {
-	if o == nil || isNil(o.Meta) {
+	if o == nil || IsNil(o.Meta) {
 		var ret Meta
 		return ret
 	}
@@ -88,7 +88,7 @@ func (o *HardwareReservationList) GetMeta() Meta {
 // GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HardwareReservationList) GetMetaOk() (*Meta, bool) {
-	if o == nil || isNil(o.Meta) {
+	if o == nil || IsNil(o.Meta) {
 		return nil, false
 	}
 	return o.Meta, true
@@ -96,7 +96,7 @@ func (o *HardwareReservationList) GetMetaOk() (*Meta, bool) {
 
 // HasMeta returns a boolean if a field has been set.
 func (o *HardwareReservationList) HasMeta() bool {
-	if o != nil && !isNil(o.Meta) {
+	if o != nil && !IsNil(o.Meta) {
 		return true
 	}
 
@@ -118,10 +118,10 @@ func (o HardwareReservationList) MarshalJSON() ([]byte, error) {
 
 func (o HardwareReservationList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.HardwareReservations) {
+	if !IsNil(o.HardwareReservations) {
 		toSerialize["hardware_reservations"] = o.HardwareReservations
 	}
-	if !isNil(o.Meta) {
+	if !IsNil(o.Meta) {
 		toSerialize["meta"] = o.Meta
 	}
 

@@ -45,7 +45,7 @@ func NewMoveHardwareReservationRequestWithDefaults() *MoveHardwareReservationReq
 
 // GetProjectId returns the ProjectId field value if set, zero value otherwise.
 func (o *MoveHardwareReservationRequest) GetProjectId() string {
-	if o == nil || isNil(o.ProjectId) {
+	if o == nil || IsNil(o.ProjectId) {
 		var ret string
 		return ret
 	}
@@ -55,7 +55,7 @@ func (o *MoveHardwareReservationRequest) GetProjectId() string {
 // GetProjectIdOk returns a tuple with the ProjectId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MoveHardwareReservationRequest) GetProjectIdOk() (*string, bool) {
-	if o == nil || isNil(o.ProjectId) {
+	if o == nil || IsNil(o.ProjectId) {
 		return nil, false
 	}
 	return o.ProjectId, true
@@ -63,7 +63,7 @@ func (o *MoveHardwareReservationRequest) GetProjectIdOk() (*string, bool) {
 
 // HasProjectId returns a boolean if a field has been set.
 func (o *MoveHardwareReservationRequest) HasProjectId() bool {
-	if o != nil && !isNil(o.ProjectId) {
+	if o != nil && !IsNil(o.ProjectId) {
 		return true
 	}
 
@@ -85,7 +85,7 @@ func (o MoveHardwareReservationRequest) MarshalJSON() ([]byte, error) {
 
 func (o MoveHardwareReservationRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.ProjectId) {
+	if !IsNil(o.ProjectId) {
 		toSerialize["project_id"] = o.ProjectId
 	}
 

@@ -49,7 +49,7 @@ func NewProjectCreateFromRootInputWithDefaults() *ProjectCreateFromRootInput {
 
 // GetCustomdata returns the Customdata field value if set, zero value otherwise.
 func (o *ProjectCreateFromRootInput) GetCustomdata() map[string]interface{} {
-	if o == nil || isNil(o.Customdata) {
+	if o == nil || IsNil(o.Customdata) {
 		var ret map[string]interface{}
 		return ret
 	}
@@ -59,7 +59,7 @@ func (o *ProjectCreateFromRootInput) GetCustomdata() map[string]interface{} {
 // GetCustomdataOk returns a tuple with the Customdata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ProjectCreateFromRootInput) GetCustomdataOk() (map[string]interface{}, bool) {
-	if o == nil || isNil(o.Customdata) {
+	if o == nil || IsNil(o.Customdata) {
 		return map[string]interface{}{}, false
 	}
 	return o.Customdata, true
@@ -67,7 +67,7 @@ func (o *ProjectCreateFromRootInput) GetCustomdataOk() (map[string]interface{}, 
 
 // HasCustomdata returns a boolean if a field has been set.
 func (o *ProjectCreateFromRootInput) HasCustomdata() bool {
-	if o != nil && !isNil(o.Customdata) {
+	if o != nil && !IsNil(o.Customdata) {
 		return true
 	}
 
@@ -105,7 +105,7 @@ func (o *ProjectCreateFromRootInput) SetName(v string) {
 
 // GetOrganizationId returns the OrganizationId field value if set, zero value otherwise.
 func (o *ProjectCreateFromRootInput) GetOrganizationId() string {
-	if o == nil || isNil(o.OrganizationId) {
+	if o == nil || IsNil(o.OrganizationId) {
 		var ret string
 		return ret
 	}
@@ -115,7 +115,7 @@ func (o *ProjectCreateFromRootInput) GetOrganizationId() string {
 // GetOrganizationIdOk returns a tuple with the OrganizationId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ProjectCreateFromRootInput) GetOrganizationIdOk() (*string, bool) {
-	if o == nil || isNil(o.OrganizationId) {
+	if o == nil || IsNil(o.OrganizationId) {
 		return nil, false
 	}
 	return o.OrganizationId, true
@@ -123,7 +123,7 @@ func (o *ProjectCreateFromRootInput) GetOrganizationIdOk() (*string, bool) {
 
 // HasOrganizationId returns a boolean if a field has been set.
 func (o *ProjectCreateFromRootInput) HasOrganizationId() bool {
-	if o != nil && !isNil(o.OrganizationId) {
+	if o != nil && !IsNil(o.OrganizationId) {
 		return true
 	}
 
@@ -137,7 +137,7 @@ func (o *ProjectCreateFromRootInput) SetOrganizationId(v string) {
 
 // GetPaymentMethodId returns the PaymentMethodId field value if set, zero value otherwise.
 func (o *ProjectCreateFromRootInput) GetPaymentMethodId() string {
-	if o == nil || isNil(o.PaymentMethodId) {
+	if o == nil || IsNil(o.PaymentMethodId) {
 		var ret string
 		return ret
 	}
@@ -147,7 +147,7 @@ func (o *ProjectCreateFromRootInput) GetPaymentMethodId() string {
 // GetPaymentMethodIdOk returns a tuple with the PaymentMethodId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ProjectCreateFromRootInput) GetPaymentMethodIdOk() (*string, bool) {
-	if o == nil || isNil(o.PaymentMethodId) {
+	if o == nil || IsNil(o.PaymentMethodId) {
 		return nil, false
 	}
 	return o.PaymentMethodId, true
@@ -155,7 +155,7 @@ func (o *ProjectCreateFromRootInput) GetPaymentMethodIdOk() (*string, bool) {
 
 // HasPaymentMethodId returns a boolean if a field has been set.
 func (o *ProjectCreateFromRootInput) HasPaymentMethodId() bool {
-	if o != nil && !isNil(o.PaymentMethodId) {
+	if o != nil && !IsNil(o.PaymentMethodId) {
 		return true
 	}
 
@@ -177,14 +177,14 @@ func (o ProjectCreateFromRootInput) MarshalJSON() ([]byte, error) {
 
 func (o ProjectCreateFromRootInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Customdata) {
+	if !IsNil(o.Customdata) {
 		toSerialize["customdata"] = o.Customdata
 	}
 	toSerialize["name"] = o.Name
-	if !isNil(o.OrganizationId) {
+	if !IsNil(o.OrganizationId) {
 		toSerialize["organization_id"] = o.OrganizationId
 	}
-	if !isNil(o.PaymentMethodId) {
+	if !IsNil(o.PaymentMethodId) {
 		toSerialize["payment_method_id"] = o.PaymentMethodId
 	}
 

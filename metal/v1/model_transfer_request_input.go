@@ -45,7 +45,7 @@ func NewTransferRequestInputWithDefaults() *TransferRequestInput {
 
 // GetTargetOrganizationId returns the TargetOrganizationId field value if set, zero value otherwise.
 func (o *TransferRequestInput) GetTargetOrganizationId() string {
-	if o == nil || isNil(o.TargetOrganizationId) {
+	if o == nil || IsNil(o.TargetOrganizationId) {
 		var ret string
 		return ret
 	}
@@ -55,7 +55,7 @@ func (o *TransferRequestInput) GetTargetOrganizationId() string {
 // GetTargetOrganizationIdOk returns a tuple with the TargetOrganizationId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TransferRequestInput) GetTargetOrganizationIdOk() (*string, bool) {
-	if o == nil || isNil(o.TargetOrganizationId) {
+	if o == nil || IsNil(o.TargetOrganizationId) {
 		return nil, false
 	}
 	return o.TargetOrganizationId, true
@@ -63,7 +63,7 @@ func (o *TransferRequestInput) GetTargetOrganizationIdOk() (*string, bool) {
 
 // HasTargetOrganizationId returns a boolean if a field has been set.
 func (o *TransferRequestInput) HasTargetOrganizationId() bool {
-	if o != nil && !isNil(o.TargetOrganizationId) {
+	if o != nil && !IsNil(o.TargetOrganizationId) {
 		return true
 	}
 
@@ -85,7 +85,7 @@ func (o TransferRequestInput) MarshalJSON() ([]byte, error) {
 
 func (o TransferRequestInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.TargetOrganizationId) {
+	if !IsNil(o.TargetOrganizationId) {
 		toSerialize["target_organization_id"] = o.TargetOrganizationId
 	}
 

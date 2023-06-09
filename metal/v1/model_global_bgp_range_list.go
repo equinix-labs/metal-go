@@ -45,7 +45,7 @@ func NewGlobalBgpRangeListWithDefaults() *GlobalBgpRangeList {
 
 // GetGlobalBgpRanges returns the GlobalBgpRanges field value if set, zero value otherwise.
 func (o *GlobalBgpRangeList) GetGlobalBgpRanges() []GlobalBgpRange {
-	if o == nil || isNil(o.GlobalBgpRanges) {
+	if o == nil || IsNil(o.GlobalBgpRanges) {
 		var ret []GlobalBgpRange
 		return ret
 	}
@@ -55,7 +55,7 @@ func (o *GlobalBgpRangeList) GetGlobalBgpRanges() []GlobalBgpRange {
 // GetGlobalBgpRangesOk returns a tuple with the GlobalBgpRanges field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GlobalBgpRangeList) GetGlobalBgpRangesOk() ([]GlobalBgpRange, bool) {
-	if o == nil || isNil(o.GlobalBgpRanges) {
+	if o == nil || IsNil(o.GlobalBgpRanges) {
 		return nil, false
 	}
 	return o.GlobalBgpRanges, true
@@ -63,7 +63,7 @@ func (o *GlobalBgpRangeList) GetGlobalBgpRangesOk() ([]GlobalBgpRange, bool) {
 
 // HasGlobalBgpRanges returns a boolean if a field has been set.
 func (o *GlobalBgpRangeList) HasGlobalBgpRanges() bool {
-	if o != nil && !isNil(o.GlobalBgpRanges) {
+	if o != nil && !IsNil(o.GlobalBgpRanges) {
 		return true
 	}
 
@@ -85,7 +85,7 @@ func (o GlobalBgpRangeList) MarshalJSON() ([]byte, error) {
 
 func (o GlobalBgpRangeList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.GlobalBgpRanges) {
+	if !IsNil(o.GlobalBgpRanges) {
 		toSerialize["global_bgp_ranges"] = o.GlobalBgpRanges
 	}
 

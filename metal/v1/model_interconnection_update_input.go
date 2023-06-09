@@ -52,7 +52,7 @@ func NewInterconnectionUpdateInputWithDefaults() *InterconnectionUpdateInput {
 
 // GetContactEmail returns the ContactEmail field value if set, zero value otherwise.
 func (o *InterconnectionUpdateInput) GetContactEmail() string {
-	if o == nil || isNil(o.ContactEmail) {
+	if o == nil || IsNil(o.ContactEmail) {
 		var ret string
 		return ret
 	}
@@ -62,7 +62,7 @@ func (o *InterconnectionUpdateInput) GetContactEmail() string {
 // GetContactEmailOk returns a tuple with the ContactEmail field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InterconnectionUpdateInput) GetContactEmailOk() (*string, bool) {
-	if o == nil || isNil(o.ContactEmail) {
+	if o == nil || IsNil(o.ContactEmail) {
 		return nil, false
 	}
 	return o.ContactEmail, true
@@ -70,7 +70,7 @@ func (o *InterconnectionUpdateInput) GetContactEmailOk() (*string, bool) {
 
 // HasContactEmail returns a boolean if a field has been set.
 func (o *InterconnectionUpdateInput) HasContactEmail() bool {
-	if o != nil && !isNil(o.ContactEmail) {
+	if o != nil && !IsNil(o.ContactEmail) {
 		return true
 	}
 
@@ -84,7 +84,7 @@ func (o *InterconnectionUpdateInput) SetContactEmail(v string) {
 
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *InterconnectionUpdateInput) GetDescription() string {
-	if o == nil || isNil(o.Description) {
+	if o == nil || IsNil(o.Description) {
 		var ret string
 		return ret
 	}
@@ -94,7 +94,7 @@ func (o *InterconnectionUpdateInput) GetDescription() string {
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InterconnectionUpdateInput) GetDescriptionOk() (*string, bool) {
-	if o == nil || isNil(o.Description) {
+	if o == nil || IsNil(o.Description) {
 		return nil, false
 	}
 	return o.Description, true
@@ -102,7 +102,7 @@ func (o *InterconnectionUpdateInput) GetDescriptionOk() (*string, bool) {
 
 // HasDescription returns a boolean if a field has been set.
 func (o *InterconnectionUpdateInput) HasDescription() bool {
-	if o != nil && !isNil(o.Description) {
+	if o != nil && !IsNil(o.Description) {
 		return true
 	}
 
@@ -116,7 +116,7 @@ func (o *InterconnectionUpdateInput) SetDescription(v string) {
 
 // GetMode returns the Mode field value if set, zero value otherwise.
 func (o *InterconnectionUpdateInput) GetMode() string {
-	if o == nil || isNil(o.Mode) {
+	if o == nil || IsNil(o.Mode) {
 		var ret string
 		return ret
 	}
@@ -126,7 +126,7 @@ func (o *InterconnectionUpdateInput) GetMode() string {
 // GetModeOk returns a tuple with the Mode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InterconnectionUpdateInput) GetModeOk() (*string, bool) {
-	if o == nil || isNil(o.Mode) {
+	if o == nil || IsNil(o.Mode) {
 		return nil, false
 	}
 	return o.Mode, true
@@ -134,7 +134,7 @@ func (o *InterconnectionUpdateInput) GetModeOk() (*string, bool) {
 
 // HasMode returns a boolean if a field has been set.
 func (o *InterconnectionUpdateInput) HasMode() bool {
-	if o != nil && !isNil(o.Mode) {
+	if o != nil && !IsNil(o.Mode) {
 		return true
 	}
 
@@ -148,7 +148,7 @@ func (o *InterconnectionUpdateInput) SetMode(v string) {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *InterconnectionUpdateInput) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -158,7 +158,7 @@ func (o *InterconnectionUpdateInput) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InterconnectionUpdateInput) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
 	return o.Name, true
@@ -166,7 +166,7 @@ func (o *InterconnectionUpdateInput) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *InterconnectionUpdateInput) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -180,7 +180,7 @@ func (o *InterconnectionUpdateInput) SetName(v string) {
 
 // GetRedundancy returns the Redundancy field value if set, zero value otherwise.
 func (o *InterconnectionUpdateInput) GetRedundancy() string {
-	if o == nil || isNil(o.Redundancy) {
+	if o == nil || IsNil(o.Redundancy) {
 		var ret string
 		return ret
 	}
@@ -190,7 +190,7 @@ func (o *InterconnectionUpdateInput) GetRedundancy() string {
 // GetRedundancyOk returns a tuple with the Redundancy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InterconnectionUpdateInput) GetRedundancyOk() (*string, bool) {
-	if o == nil || isNil(o.Redundancy) {
+	if o == nil || IsNil(o.Redundancy) {
 		return nil, false
 	}
 	return o.Redundancy, true
@@ -198,7 +198,7 @@ func (o *InterconnectionUpdateInput) GetRedundancyOk() (*string, bool) {
 
 // HasRedundancy returns a boolean if a field has been set.
 func (o *InterconnectionUpdateInput) HasRedundancy() bool {
-	if o != nil && !isNil(o.Redundancy) {
+	if o != nil && !IsNil(o.Redundancy) {
 		return true
 	}
 
@@ -212,7 +212,7 @@ func (o *InterconnectionUpdateInput) SetRedundancy(v string) {
 
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *InterconnectionUpdateInput) GetTags() []string {
-	if o == nil || isNil(o.Tags) {
+	if o == nil || IsNil(o.Tags) {
 		var ret []string
 		return ret
 	}
@@ -222,7 +222,7 @@ func (o *InterconnectionUpdateInput) GetTags() []string {
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InterconnectionUpdateInput) GetTagsOk() ([]string, bool) {
-	if o == nil || isNil(o.Tags) {
+	if o == nil || IsNil(o.Tags) {
 		return nil, false
 	}
 	return o.Tags, true
@@ -230,7 +230,7 @@ func (o *InterconnectionUpdateInput) GetTagsOk() ([]string, bool) {
 
 // HasTags returns a boolean if a field has been set.
 func (o *InterconnectionUpdateInput) HasTags() bool {
-	if o != nil && !isNil(o.Tags) {
+	if o != nil && !IsNil(o.Tags) {
 		return true
 	}
 
@@ -252,22 +252,22 @@ func (o InterconnectionUpdateInput) MarshalJSON() ([]byte, error) {
 
 func (o InterconnectionUpdateInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.ContactEmail) {
+	if !IsNil(o.ContactEmail) {
 		toSerialize["contact_email"] = o.ContactEmail
 	}
-	if !isNil(o.Description) {
+	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
-	if !isNil(o.Mode) {
+	if !IsNil(o.Mode) {
 		toSerialize["mode"] = o.Mode
 	}
-	if !isNil(o.Name) {
+	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
-	if !isNil(o.Redundancy) {
+	if !IsNil(o.Redundancy) {
 		toSerialize["redundancy"] = o.Redundancy
 	}
-	if !isNil(o.Tags) {
+	if !IsNil(o.Tags) {
 		toSerialize["tags"] = o.Tags
 	}
 

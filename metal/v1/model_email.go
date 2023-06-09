@@ -49,7 +49,7 @@ func NewEmailWithDefaults() *Email {
 
 // GetAddress returns the Address field value if set, zero value otherwise.
 func (o *Email) GetAddress() string {
-	if o == nil || isNil(o.Address) {
+	if o == nil || IsNil(o.Address) {
 		var ret string
 		return ret
 	}
@@ -59,7 +59,7 @@ func (o *Email) GetAddress() string {
 // GetAddressOk returns a tuple with the Address field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Email) GetAddressOk() (*string, bool) {
-	if o == nil || isNil(o.Address) {
+	if o == nil || IsNil(o.Address) {
 		return nil, false
 	}
 	return o.Address, true
@@ -67,7 +67,7 @@ func (o *Email) GetAddressOk() (*string, bool) {
 
 // HasAddress returns a boolean if a field has been set.
 func (o *Email) HasAddress() bool {
-	if o != nil && !isNil(o.Address) {
+	if o != nil && !IsNil(o.Address) {
 		return true
 	}
 
@@ -81,7 +81,7 @@ func (o *Email) SetAddress(v string) {
 
 // GetDefault returns the Default field value if set, zero value otherwise.
 func (o *Email) GetDefault() bool {
-	if o == nil || isNil(o.Default) {
+	if o == nil || IsNil(o.Default) {
 		var ret bool
 		return ret
 	}
@@ -91,7 +91,7 @@ func (o *Email) GetDefault() bool {
 // GetDefaultOk returns a tuple with the Default field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Email) GetDefaultOk() (*bool, bool) {
-	if o == nil || isNil(o.Default) {
+	if o == nil || IsNil(o.Default) {
 		return nil, false
 	}
 	return o.Default, true
@@ -99,7 +99,7 @@ func (o *Email) GetDefaultOk() (*bool, bool) {
 
 // HasDefault returns a boolean if a field has been set.
 func (o *Email) HasDefault() bool {
-	if o != nil && !isNil(o.Default) {
+	if o != nil && !IsNil(o.Default) {
 		return true
 	}
 
@@ -113,7 +113,7 @@ func (o *Email) SetDefault(v bool) {
 
 // GetHref returns the Href field value if set, zero value otherwise.
 func (o *Email) GetHref() string {
-	if o == nil || isNil(o.Href) {
+	if o == nil || IsNil(o.Href) {
 		var ret string
 		return ret
 	}
@@ -123,7 +123,7 @@ func (o *Email) GetHref() string {
 // GetHrefOk returns a tuple with the Href field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Email) GetHrefOk() (*string, bool) {
-	if o == nil || isNil(o.Href) {
+	if o == nil || IsNil(o.Href) {
 		return nil, false
 	}
 	return o.Href, true
@@ -131,7 +131,7 @@ func (o *Email) GetHrefOk() (*string, bool) {
 
 // HasHref returns a boolean if a field has been set.
 func (o *Email) HasHref() bool {
-	if o != nil && !isNil(o.Href) {
+	if o != nil && !IsNil(o.Href) {
 		return true
 	}
 
@@ -145,7 +145,7 @@ func (o *Email) SetHref(v string) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *Email) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -155,7 +155,7 @@ func (o *Email) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Email) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -163,7 +163,7 @@ func (o *Email) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *Email) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -177,7 +177,7 @@ func (o *Email) SetId(v string) {
 
 // GetVerified returns the Verified field value if set, zero value otherwise.
 func (o *Email) GetVerified() bool {
-	if o == nil || isNil(o.Verified) {
+	if o == nil || IsNil(o.Verified) {
 		var ret bool
 		return ret
 	}
@@ -187,7 +187,7 @@ func (o *Email) GetVerified() bool {
 // GetVerifiedOk returns a tuple with the Verified field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Email) GetVerifiedOk() (*bool, bool) {
-	if o == nil || isNil(o.Verified) {
+	if o == nil || IsNil(o.Verified) {
 		return nil, false
 	}
 	return o.Verified, true
@@ -195,7 +195,7 @@ func (o *Email) GetVerifiedOk() (*bool, bool) {
 
 // HasVerified returns a boolean if a field has been set.
 func (o *Email) HasVerified() bool {
-	if o != nil && !isNil(o.Verified) {
+	if o != nil && !IsNil(o.Verified) {
 		return true
 	}
 
@@ -217,19 +217,19 @@ func (o Email) MarshalJSON() ([]byte, error) {
 
 func (o Email) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Address) {
+	if !IsNil(o.Address) {
 		toSerialize["address"] = o.Address
 	}
-	if !isNil(o.Default) {
+	if !IsNil(o.Default) {
 		toSerialize["default"] = o.Default
 	}
-	if !isNil(o.Href) {
+	if !IsNil(o.Href) {
 		toSerialize["href"] = o.Href
 	}
-	if !isNil(o.Id) {
+	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
-	if !isNil(o.Verified) {
+	if !IsNil(o.Verified) {
 		toSerialize["verified"] = o.Verified
 	}
 

@@ -45,7 +45,7 @@ func NewIPAvailabilitiesListWithDefaults() *IPAvailabilitiesList {
 
 // GetAvailable returns the Available field value if set, zero value otherwise.
 func (o *IPAvailabilitiesList) GetAvailable() []string {
-	if o == nil || isNil(o.Available) {
+	if o == nil || IsNil(o.Available) {
 		var ret []string
 		return ret
 	}
@@ -55,7 +55,7 @@ func (o *IPAvailabilitiesList) GetAvailable() []string {
 // GetAvailableOk returns a tuple with the Available field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IPAvailabilitiesList) GetAvailableOk() ([]string, bool) {
-	if o == nil || isNil(o.Available) {
+	if o == nil || IsNil(o.Available) {
 		return nil, false
 	}
 	return o.Available, true
@@ -63,7 +63,7 @@ func (o *IPAvailabilitiesList) GetAvailableOk() ([]string, bool) {
 
 // HasAvailable returns a boolean if a field has been set.
 func (o *IPAvailabilitiesList) HasAvailable() bool {
-	if o != nil && !isNil(o.Available) {
+	if o != nil && !IsNil(o.Available) {
 		return true
 	}
 
@@ -85,7 +85,7 @@ func (o IPAvailabilitiesList) MarshalJSON() ([]byte, error) {
 
 func (o IPAvailabilitiesList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Available) {
+	if !IsNil(o.Available) {
 		toSerialize["available"] = o.Available
 	}
 

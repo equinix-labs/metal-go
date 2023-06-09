@@ -46,7 +46,7 @@ func NewMetalGatewayListWithDefaults() *MetalGatewayList {
 
 // GetMetalGateways returns the MetalGateways field value if set, zero value otherwise.
 func (o *MetalGatewayList) GetMetalGateways() []MetalGatewayListMetalGatewaysInner {
-	if o == nil || isNil(o.MetalGateways) {
+	if o == nil || IsNil(o.MetalGateways) {
 		var ret []MetalGatewayListMetalGatewaysInner
 		return ret
 	}
@@ -56,7 +56,7 @@ func (o *MetalGatewayList) GetMetalGateways() []MetalGatewayListMetalGatewaysInn
 // GetMetalGatewaysOk returns a tuple with the MetalGateways field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MetalGatewayList) GetMetalGatewaysOk() ([]MetalGatewayListMetalGatewaysInner, bool) {
-	if o == nil || isNil(o.MetalGateways) {
+	if o == nil || IsNil(o.MetalGateways) {
 		return nil, false
 	}
 	return o.MetalGateways, true
@@ -64,7 +64,7 @@ func (o *MetalGatewayList) GetMetalGatewaysOk() ([]MetalGatewayListMetalGateways
 
 // HasMetalGateways returns a boolean if a field has been set.
 func (o *MetalGatewayList) HasMetalGateways() bool {
-	if o != nil && !isNil(o.MetalGateways) {
+	if o != nil && !IsNil(o.MetalGateways) {
 		return true
 	}
 
@@ -78,7 +78,7 @@ func (o *MetalGatewayList) SetMetalGateways(v []MetalGatewayListMetalGatewaysInn
 
 // GetMeta returns the Meta field value if set, zero value otherwise.
 func (o *MetalGatewayList) GetMeta() Meta {
-	if o == nil || isNil(o.Meta) {
+	if o == nil || IsNil(o.Meta) {
 		var ret Meta
 		return ret
 	}
@@ -88,7 +88,7 @@ func (o *MetalGatewayList) GetMeta() Meta {
 // GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MetalGatewayList) GetMetaOk() (*Meta, bool) {
-	if o == nil || isNil(o.Meta) {
+	if o == nil || IsNil(o.Meta) {
 		return nil, false
 	}
 	return o.Meta, true
@@ -96,7 +96,7 @@ func (o *MetalGatewayList) GetMetaOk() (*Meta, bool) {
 
 // HasMeta returns a boolean if a field has been set.
 func (o *MetalGatewayList) HasMeta() bool {
-	if o != nil && !isNil(o.Meta) {
+	if o != nil && !IsNil(o.Meta) {
 		return true
 	}
 
@@ -118,10 +118,10 @@ func (o MetalGatewayList) MarshalJSON() ([]byte, error) {
 
 func (o MetalGatewayList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.MetalGateways) {
+	if !IsNil(o.MetalGateways) {
 		toSerialize["metal_gateways"] = o.MetalGateways
 	}
-	if !isNil(o.Meta) {
+	if !IsNil(o.Meta) {
 		toSerialize["meta"] = o.Meta
 	}
 

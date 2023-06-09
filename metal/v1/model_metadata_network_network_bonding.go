@@ -47,7 +47,7 @@ func NewMetadataNetworkNetworkBondingWithDefaults() *MetadataNetworkNetworkBondi
 
 // GetLinkAggregation returns the LinkAggregation field value if set, zero value otherwise.
 func (o *MetadataNetworkNetworkBonding) GetLinkAggregation() string {
-	if o == nil || isNil(o.LinkAggregation) {
+	if o == nil || IsNil(o.LinkAggregation) {
 		var ret string
 		return ret
 	}
@@ -57,7 +57,7 @@ func (o *MetadataNetworkNetworkBonding) GetLinkAggregation() string {
 // GetLinkAggregationOk returns a tuple with the LinkAggregation field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MetadataNetworkNetworkBonding) GetLinkAggregationOk() (*string, bool) {
-	if o == nil || isNil(o.LinkAggregation) {
+	if o == nil || IsNil(o.LinkAggregation) {
 		return nil, false
 	}
 	return o.LinkAggregation, true
@@ -65,7 +65,7 @@ func (o *MetadataNetworkNetworkBonding) GetLinkAggregationOk() (*string, bool) {
 
 // HasLinkAggregation returns a boolean if a field has been set.
 func (o *MetadataNetworkNetworkBonding) HasLinkAggregation() bool {
-	if o != nil && !isNil(o.LinkAggregation) {
+	if o != nil && !IsNil(o.LinkAggregation) {
 		return true
 	}
 
@@ -79,7 +79,7 @@ func (o *MetadataNetworkNetworkBonding) SetLinkAggregation(v string) {
 
 // GetMac returns the Mac field value if set, zero value otherwise.
 func (o *MetadataNetworkNetworkBonding) GetMac() string {
-	if o == nil || isNil(o.Mac) {
+	if o == nil || IsNil(o.Mac) {
 		var ret string
 		return ret
 	}
@@ -89,7 +89,7 @@ func (o *MetadataNetworkNetworkBonding) GetMac() string {
 // GetMacOk returns a tuple with the Mac field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MetadataNetworkNetworkBonding) GetMacOk() (*string, bool) {
-	if o == nil || isNil(o.Mac) {
+	if o == nil || IsNil(o.Mac) {
 		return nil, false
 	}
 	return o.Mac, true
@@ -97,7 +97,7 @@ func (o *MetadataNetworkNetworkBonding) GetMacOk() (*string, bool) {
 
 // HasMac returns a boolean if a field has been set.
 func (o *MetadataNetworkNetworkBonding) HasMac() bool {
-	if o != nil && !isNil(o.Mac) {
+	if o != nil && !IsNil(o.Mac) {
 		return true
 	}
 
@@ -111,7 +111,7 @@ func (o *MetadataNetworkNetworkBonding) SetMac(v string) {
 
 // GetMode returns the Mode field value if set, zero value otherwise.
 func (o *MetadataNetworkNetworkBonding) GetMode() int32 {
-	if o == nil || isNil(o.Mode) {
+	if o == nil || IsNil(o.Mode) {
 		var ret int32
 		return ret
 	}
@@ -121,7 +121,7 @@ func (o *MetadataNetworkNetworkBonding) GetMode() int32 {
 // GetModeOk returns a tuple with the Mode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MetadataNetworkNetworkBonding) GetModeOk() (*int32, bool) {
-	if o == nil || isNil(o.Mode) {
+	if o == nil || IsNil(o.Mode) {
 		return nil, false
 	}
 	return o.Mode, true
@@ -129,7 +129,7 @@ func (o *MetadataNetworkNetworkBonding) GetModeOk() (*int32, bool) {
 
 // HasMode returns a boolean if a field has been set.
 func (o *MetadataNetworkNetworkBonding) HasMode() bool {
-	if o != nil && !isNil(o.Mode) {
+	if o != nil && !IsNil(o.Mode) {
 		return true
 	}
 
@@ -151,13 +151,13 @@ func (o MetadataNetworkNetworkBonding) MarshalJSON() ([]byte, error) {
 
 func (o MetadataNetworkNetworkBonding) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.LinkAggregation) {
+	if !IsNil(o.LinkAggregation) {
 		toSerialize["link_aggregation"] = o.LinkAggregation
 	}
-	if !isNil(o.Mac) {
+	if !IsNil(o.Mac) {
 		toSerialize["mac"] = o.Mac
 	}
-	if !isNil(o.Mode) {
+	if !IsNil(o.Mode) {
 		toSerialize["mode"] = o.Mode
 	}
 

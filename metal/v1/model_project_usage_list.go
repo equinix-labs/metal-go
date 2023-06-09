@@ -45,7 +45,7 @@ func NewProjectUsageListWithDefaults() *ProjectUsageList {
 
 // GetUsages returns the Usages field value if set, zero value otherwise.
 func (o *ProjectUsageList) GetUsages() []ProjectUsage {
-	if o == nil || isNil(o.Usages) {
+	if o == nil || IsNil(o.Usages) {
 		var ret []ProjectUsage
 		return ret
 	}
@@ -55,7 +55,7 @@ func (o *ProjectUsageList) GetUsages() []ProjectUsage {
 // GetUsagesOk returns a tuple with the Usages field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ProjectUsageList) GetUsagesOk() ([]ProjectUsage, bool) {
-	if o == nil || isNil(o.Usages) {
+	if o == nil || IsNil(o.Usages) {
 		return nil, false
 	}
 	return o.Usages, true
@@ -63,7 +63,7 @@ func (o *ProjectUsageList) GetUsagesOk() ([]ProjectUsage, bool) {
 
 // HasUsages returns a boolean if a field has been set.
 func (o *ProjectUsageList) HasUsages() bool {
-	if o != nil && !isNil(o.Usages) {
+	if o != nil && !IsNil(o.Usages) {
 		return true
 	}
 
@@ -85,7 +85,7 @@ func (o ProjectUsageList) MarshalJSON() ([]byte, error) {
 
 func (o ProjectUsageList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Usages) {
+	if !IsNil(o.Usages) {
 		toSerialize["usages"] = o.Usages
 	}
 

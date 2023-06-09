@@ -45,7 +45,7 @@ func NewLicenseListWithDefaults() *LicenseList {
 
 // GetLicenses returns the Licenses field value if set, zero value otherwise.
 func (o *LicenseList) GetLicenses() []License {
-	if o == nil || isNil(o.Licenses) {
+	if o == nil || IsNil(o.Licenses) {
 		var ret []License
 		return ret
 	}
@@ -55,7 +55,7 @@ func (o *LicenseList) GetLicenses() []License {
 // GetLicensesOk returns a tuple with the Licenses field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *LicenseList) GetLicensesOk() ([]License, bool) {
-	if o == nil || isNil(o.Licenses) {
+	if o == nil || IsNil(o.Licenses) {
 		return nil, false
 	}
 	return o.Licenses, true
@@ -63,7 +63,7 @@ func (o *LicenseList) GetLicensesOk() ([]License, bool) {
 
 // HasLicenses returns a boolean if a field has been set.
 func (o *LicenseList) HasLicenses() bool {
-	if o != nil && !isNil(o.Licenses) {
+	if o != nil && !IsNil(o.Licenses) {
 		return true
 	}
 
@@ -85,7 +85,7 @@ func (o LicenseList) MarshalJSON() ([]byte, error) {
 
 func (o LicenseList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Licenses) {
+	if !IsNil(o.Licenses) {
 		toSerialize["licenses"] = o.Licenses
 	}
 

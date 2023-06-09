@@ -45,7 +45,7 @@ func NewVrfIpReservationListWithDefaults() *VrfIpReservationList {
 
 // GetIpAddresses returns the IpAddresses field value if set, zero value otherwise.
 func (o *VrfIpReservationList) GetIpAddresses() []VrfIpReservation {
-	if o == nil || isNil(o.IpAddresses) {
+	if o == nil || IsNil(o.IpAddresses) {
 		var ret []VrfIpReservation
 		return ret
 	}
@@ -55,7 +55,7 @@ func (o *VrfIpReservationList) GetIpAddresses() []VrfIpReservation {
 // GetIpAddressesOk returns a tuple with the IpAddresses field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VrfIpReservationList) GetIpAddressesOk() ([]VrfIpReservation, bool) {
-	if o == nil || isNil(o.IpAddresses) {
+	if o == nil || IsNil(o.IpAddresses) {
 		return nil, false
 	}
 	return o.IpAddresses, true
@@ -63,7 +63,7 @@ func (o *VrfIpReservationList) GetIpAddressesOk() ([]VrfIpReservation, bool) {
 
 // HasIpAddresses returns a boolean if a field has been set.
 func (o *VrfIpReservationList) HasIpAddresses() bool {
-	if o != nil && !isNil(o.IpAddresses) {
+	if o != nil && !IsNil(o.IpAddresses) {
 		return true
 	}
 
@@ -85,7 +85,7 @@ func (o VrfIpReservationList) MarshalJSON() ([]byte, error) {
 
 func (o VrfIpReservationList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.IpAddresses) {
+	if !IsNil(o.IpAddresses) {
 		toSerialize["ip_addresses"] = o.IpAddresses
 	}
 

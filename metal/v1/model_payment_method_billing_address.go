@@ -47,7 +47,7 @@ func NewPaymentMethodBillingAddressWithDefaults() *PaymentMethodBillingAddress {
 
 // GetCountryCodeAlpha2 returns the CountryCodeAlpha2 field value if set, zero value otherwise.
 func (o *PaymentMethodBillingAddress) GetCountryCodeAlpha2() string {
-	if o == nil || isNil(o.CountryCodeAlpha2) {
+	if o == nil || IsNil(o.CountryCodeAlpha2) {
 		var ret string
 		return ret
 	}
@@ -57,7 +57,7 @@ func (o *PaymentMethodBillingAddress) GetCountryCodeAlpha2() string {
 // GetCountryCodeAlpha2Ok returns a tuple with the CountryCodeAlpha2 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PaymentMethodBillingAddress) GetCountryCodeAlpha2Ok() (*string, bool) {
-	if o == nil || isNil(o.CountryCodeAlpha2) {
+	if o == nil || IsNil(o.CountryCodeAlpha2) {
 		return nil, false
 	}
 	return o.CountryCodeAlpha2, true
@@ -65,7 +65,7 @@ func (o *PaymentMethodBillingAddress) GetCountryCodeAlpha2Ok() (*string, bool) {
 
 // HasCountryCodeAlpha2 returns a boolean if a field has been set.
 func (o *PaymentMethodBillingAddress) HasCountryCodeAlpha2() bool {
-	if o != nil && !isNil(o.CountryCodeAlpha2) {
+	if o != nil && !IsNil(o.CountryCodeAlpha2) {
 		return true
 	}
 
@@ -79,7 +79,7 @@ func (o *PaymentMethodBillingAddress) SetCountryCodeAlpha2(v string) {
 
 // GetPostalCode returns the PostalCode field value if set, zero value otherwise.
 func (o *PaymentMethodBillingAddress) GetPostalCode() string {
-	if o == nil || isNil(o.PostalCode) {
+	if o == nil || IsNil(o.PostalCode) {
 		var ret string
 		return ret
 	}
@@ -89,7 +89,7 @@ func (o *PaymentMethodBillingAddress) GetPostalCode() string {
 // GetPostalCodeOk returns a tuple with the PostalCode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PaymentMethodBillingAddress) GetPostalCodeOk() (*string, bool) {
-	if o == nil || isNil(o.PostalCode) {
+	if o == nil || IsNil(o.PostalCode) {
 		return nil, false
 	}
 	return o.PostalCode, true
@@ -97,7 +97,7 @@ func (o *PaymentMethodBillingAddress) GetPostalCodeOk() (*string, bool) {
 
 // HasPostalCode returns a boolean if a field has been set.
 func (o *PaymentMethodBillingAddress) HasPostalCode() bool {
-	if o != nil && !isNil(o.PostalCode) {
+	if o != nil && !IsNil(o.PostalCode) {
 		return true
 	}
 
@@ -111,7 +111,7 @@ func (o *PaymentMethodBillingAddress) SetPostalCode(v string) {
 
 // GetStreetAddress returns the StreetAddress field value if set, zero value otherwise.
 func (o *PaymentMethodBillingAddress) GetStreetAddress() string {
-	if o == nil || isNil(o.StreetAddress) {
+	if o == nil || IsNil(o.StreetAddress) {
 		var ret string
 		return ret
 	}
@@ -121,7 +121,7 @@ func (o *PaymentMethodBillingAddress) GetStreetAddress() string {
 // GetStreetAddressOk returns a tuple with the StreetAddress field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PaymentMethodBillingAddress) GetStreetAddressOk() (*string, bool) {
-	if o == nil || isNil(o.StreetAddress) {
+	if o == nil || IsNil(o.StreetAddress) {
 		return nil, false
 	}
 	return o.StreetAddress, true
@@ -129,7 +129,7 @@ func (o *PaymentMethodBillingAddress) GetStreetAddressOk() (*string, bool) {
 
 // HasStreetAddress returns a boolean if a field has been set.
 func (o *PaymentMethodBillingAddress) HasStreetAddress() bool {
-	if o != nil && !isNil(o.StreetAddress) {
+	if o != nil && !IsNil(o.StreetAddress) {
 		return true
 	}
 
@@ -151,13 +151,13 @@ func (o PaymentMethodBillingAddress) MarshalJSON() ([]byte, error) {
 
 func (o PaymentMethodBillingAddress) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.CountryCodeAlpha2) {
+	if !IsNil(o.CountryCodeAlpha2) {
 		toSerialize["country_code_alpha2"] = o.CountryCodeAlpha2
 	}
-	if !isNil(o.PostalCode) {
+	if !IsNil(o.PostalCode) {
 		toSerialize["postal_code"] = o.PostalCode
 	}
-	if !isNil(o.StreetAddress) {
+	if !IsNil(o.StreetAddress) {
 		toSerialize["street_address"] = o.StreetAddress
 	}
 

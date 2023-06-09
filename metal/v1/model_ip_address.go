@@ -56,7 +56,7 @@ func NewIPAddressWithDefaults() *IPAddress {
 
 // GetAddressFamily returns the AddressFamily field value if set, zero value otherwise.
 func (o *IPAddress) GetAddressFamily() int32 {
-	if o == nil || isNil(o.AddressFamily) {
+	if o == nil || IsNil(o.AddressFamily) {
 		var ret int32
 		return ret
 	}
@@ -66,7 +66,7 @@ func (o *IPAddress) GetAddressFamily() int32 {
 // GetAddressFamilyOk returns a tuple with the AddressFamily field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IPAddress) GetAddressFamilyOk() (*int32, bool) {
-	if o == nil || isNil(o.AddressFamily) {
+	if o == nil || IsNil(o.AddressFamily) {
 		return nil, false
 	}
 	return o.AddressFamily, true
@@ -74,7 +74,7 @@ func (o *IPAddress) GetAddressFamilyOk() (*int32, bool) {
 
 // HasAddressFamily returns a boolean if a field has been set.
 func (o *IPAddress) HasAddressFamily() bool {
-	if o != nil && !isNil(o.AddressFamily) {
+	if o != nil && !IsNil(o.AddressFamily) {
 		return true
 	}
 
@@ -88,7 +88,7 @@ func (o *IPAddress) SetAddressFamily(v int32) {
 
 // GetCidr returns the Cidr field value if set, zero value otherwise.
 func (o *IPAddress) GetCidr() int32 {
-	if o == nil || isNil(o.Cidr) {
+	if o == nil || IsNil(o.Cidr) {
 		var ret int32
 		return ret
 	}
@@ -98,7 +98,7 @@ func (o *IPAddress) GetCidr() int32 {
 // GetCidrOk returns a tuple with the Cidr field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IPAddress) GetCidrOk() (*int32, bool) {
-	if o == nil || isNil(o.Cidr) {
+	if o == nil || IsNil(o.Cidr) {
 		return nil, false
 	}
 	return o.Cidr, true
@@ -106,7 +106,7 @@ func (o *IPAddress) GetCidrOk() (*int32, bool) {
 
 // HasCidr returns a boolean if a field has been set.
 func (o *IPAddress) HasCidr() bool {
-	if o != nil && !isNil(o.Cidr) {
+	if o != nil && !IsNil(o.Cidr) {
 		return true
 	}
 
@@ -120,7 +120,7 @@ func (o *IPAddress) SetCidr(v int32) {
 
 // GetIpReservations returns the IpReservations field value if set, zero value otherwise.
 func (o *IPAddress) GetIpReservations() []string {
-	if o == nil || isNil(o.IpReservations) {
+	if o == nil || IsNil(o.IpReservations) {
 		var ret []string
 		return ret
 	}
@@ -130,7 +130,7 @@ func (o *IPAddress) GetIpReservations() []string {
 // GetIpReservationsOk returns a tuple with the IpReservations field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IPAddress) GetIpReservationsOk() ([]string, bool) {
-	if o == nil || isNil(o.IpReservations) {
+	if o == nil || IsNil(o.IpReservations) {
 		return nil, false
 	}
 	return o.IpReservations, true
@@ -138,7 +138,7 @@ func (o *IPAddress) GetIpReservationsOk() ([]string, bool) {
 
 // HasIpReservations returns a boolean if a field has been set.
 func (o *IPAddress) HasIpReservations() bool {
-	if o != nil && !isNil(o.IpReservations) {
+	if o != nil && !IsNil(o.IpReservations) {
 		return true
 	}
 
@@ -152,7 +152,7 @@ func (o *IPAddress) SetIpReservations(v []string) {
 
 // GetPublic returns the Public field value if set, zero value otherwise.
 func (o *IPAddress) GetPublic() bool {
-	if o == nil || isNil(o.Public) {
+	if o == nil || IsNil(o.Public) {
 		var ret bool
 		return ret
 	}
@@ -162,7 +162,7 @@ func (o *IPAddress) GetPublic() bool {
 // GetPublicOk returns a tuple with the Public field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IPAddress) GetPublicOk() (*bool, bool) {
-	if o == nil || isNil(o.Public) {
+	if o == nil || IsNil(o.Public) {
 		return nil, false
 	}
 	return o.Public, true
@@ -170,7 +170,7 @@ func (o *IPAddress) GetPublicOk() (*bool, bool) {
 
 // HasPublic returns a boolean if a field has been set.
 func (o *IPAddress) HasPublic() bool {
-	if o != nil && !isNil(o.Public) {
+	if o != nil && !IsNil(o.Public) {
 		return true
 	}
 
@@ -192,16 +192,16 @@ func (o IPAddress) MarshalJSON() ([]byte, error) {
 
 func (o IPAddress) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.AddressFamily) {
+	if !IsNil(o.AddressFamily) {
 		toSerialize["address_family"] = o.AddressFamily
 	}
-	if !isNil(o.Cidr) {
+	if !IsNil(o.Cidr) {
 		toSerialize["cidr"] = o.Cidr
 	}
-	if !isNil(o.IpReservations) {
+	if !IsNil(o.IpReservations) {
 		toSerialize["ip_reservations"] = o.IpReservations
 	}
-	if !isNil(o.Public) {
+	if !IsNil(o.Public) {
 		toSerialize["public"] = o.Public
 	}
 

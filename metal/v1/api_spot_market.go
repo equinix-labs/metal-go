@@ -14,7 +14,7 @@ package v1
 import (
 	"bytes"
 	"context"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 	"strings"
@@ -134,9 +134,9 @@ func (a *SpotMarketApiService) CreateSpotMarketRequestExecute(r ApiCreateSpotMar
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -248,7 +248,7 @@ func (a *SpotMarketApiService) DeleteSpotMarketRequestExecute(r ApiDeleteSpotMar
 	localVarFormParams := url.Values{}
 
 	if r.forceTermination != nil {
-		parameterAddToQuery(localVarQueryParams, "force_termination", r.forceTermination, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "force_termination", r.forceTermination, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -291,9 +291,9 @@ func (a *SpotMarketApiService) DeleteSpotMarketRequestExecute(r ApiDeleteSpotMar
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -402,10 +402,10 @@ func (a *SpotMarketApiService) FindMetroSpotMarketPricesExecute(r ApiFindMetroSp
 	localVarFormParams := url.Values{}
 
 	if r.metro != nil {
-		parameterAddToQuery(localVarQueryParams, "metro", r.metro, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "metro", r.metro, "")
 	}
 	if r.plan != nil {
-		parameterAddToQuery(localVarQueryParams, "plan", r.plan, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "plan", r.plan, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -448,9 +448,9 @@ func (a *SpotMarketApiService) FindMetroSpotMarketPricesExecute(r ApiFindMetroSp
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -557,10 +557,10 @@ func (a *SpotMarketApiService) FindSpotMarketPricesExecute(r ApiFindSpotMarketPr
 	localVarFormParams := url.Values{}
 
 	if r.facility != nil {
-		parameterAddToQuery(localVarQueryParams, "facility", r.facility, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "facility", r.facility, "")
 	}
 	if r.plan != nil {
-		parameterAddToQuery(localVarQueryParams, "plan", r.plan, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "plan", r.plan, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -603,9 +603,9 @@ func (a *SpotMarketApiService) FindSpotMarketPricesExecute(r ApiFindSpotMarketPr
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -746,13 +746,13 @@ func (a *SpotMarketApiService) FindSpotMarketPricesHistoryExecute(r ApiFindSpotM
 		return localVarReturnValue, nil, reportError("until is required and must be specified")
 	}
 
-	parameterAddToQuery(localVarQueryParams, "facility", r.facility, "")
-	parameterAddToQuery(localVarQueryParams, "plan", r.plan, "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "facility", r.facility, "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "plan", r.plan, "")
 	if r.metro != nil {
-		parameterAddToQuery(localVarQueryParams, "metro", r.metro, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "metro", r.metro, "")
 	}
-	parameterAddToQuery(localVarQueryParams, "from", r.from, "")
-	parameterAddToQuery(localVarQueryParams, "until", r.until, "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "from", r.from, "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "until", r.until, "")
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -794,9 +794,9 @@ func (a *SpotMarketApiService) FindSpotMarketPricesHistoryExecute(r ApiFindSpotM
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -907,10 +907,10 @@ func (a *SpotMarketApiService) FindSpotMarketRequestByIdExecute(r ApiFindSpotMar
 	localVarFormParams := url.Values{}
 
 	if r.include != nil {
-		parameterAddToQuery(localVarQueryParams, "include", r.include, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "csv")
 	}
 	if r.exclude != nil {
-		parameterAddToQuery(localVarQueryParams, "exclude", r.exclude, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "exclude", r.exclude, "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -953,9 +953,9 @@ func (a *SpotMarketApiService) FindSpotMarketRequestByIdExecute(r ApiFindSpotMar
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -1103,9 +1103,9 @@ func (a *SpotMarketApiService) ListSpotMarketRequestsExecute(r ApiListSpotMarket
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}

@@ -14,7 +14,7 @@ package v1
 import (
 	"bytes"
 	"context"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 )
@@ -75,7 +75,7 @@ func (a *PasswordResetTokensApiService) CreatePasswordResetTokenExecute(r ApiCre
 		return nil, reportError("email is required and must be specified")
 	}
 
-	parameterAddToQuery(localVarQueryParams, "email", r.email, "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "email", r.email, "")
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -117,9 +117,9 @@ func (a *PasswordResetTokensApiService) CreatePasswordResetTokenExecute(r ApiCre
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -243,9 +243,9 @@ func (a *PasswordResetTokensApiService) ResetPasswordExecute(r ApiResetPasswordR
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}

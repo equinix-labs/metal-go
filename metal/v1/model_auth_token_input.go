@@ -46,7 +46,7 @@ func NewAuthTokenInputWithDefaults() *AuthTokenInput {
 
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *AuthTokenInput) GetDescription() string {
-	if o == nil || isNil(o.Description) {
+	if o == nil || IsNil(o.Description) {
 		var ret string
 		return ret
 	}
@@ -56,7 +56,7 @@ func (o *AuthTokenInput) GetDescription() string {
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AuthTokenInput) GetDescriptionOk() (*string, bool) {
-	if o == nil || isNil(o.Description) {
+	if o == nil || IsNil(o.Description) {
 		return nil, false
 	}
 	return o.Description, true
@@ -64,7 +64,7 @@ func (o *AuthTokenInput) GetDescriptionOk() (*string, bool) {
 
 // HasDescription returns a boolean if a field has been set.
 func (o *AuthTokenInput) HasDescription() bool {
-	if o != nil && !isNil(o.Description) {
+	if o != nil && !IsNil(o.Description) {
 		return true
 	}
 
@@ -78,7 +78,7 @@ func (o *AuthTokenInput) SetDescription(v string) {
 
 // GetReadOnly returns the ReadOnly field value if set, zero value otherwise.
 func (o *AuthTokenInput) GetReadOnly() bool {
-	if o == nil || isNil(o.ReadOnly) {
+	if o == nil || IsNil(o.ReadOnly) {
 		var ret bool
 		return ret
 	}
@@ -88,7 +88,7 @@ func (o *AuthTokenInput) GetReadOnly() bool {
 // GetReadOnlyOk returns a tuple with the ReadOnly field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AuthTokenInput) GetReadOnlyOk() (*bool, bool) {
-	if o == nil || isNil(o.ReadOnly) {
+	if o == nil || IsNil(o.ReadOnly) {
 		return nil, false
 	}
 	return o.ReadOnly, true
@@ -96,7 +96,7 @@ func (o *AuthTokenInput) GetReadOnlyOk() (*bool, bool) {
 
 // HasReadOnly returns a boolean if a field has been set.
 func (o *AuthTokenInput) HasReadOnly() bool {
-	if o != nil && !isNil(o.ReadOnly) {
+	if o != nil && !IsNil(o.ReadOnly) {
 		return true
 	}
 
@@ -118,10 +118,10 @@ func (o AuthTokenInput) MarshalJSON() ([]byte, error) {
 
 func (o AuthTokenInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Description) {
+	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
-	if !isNil(o.ReadOnly) {
+	if !IsNil(o.ReadOnly) {
 		toSerialize["read_only"] = o.ReadOnly
 	}
 

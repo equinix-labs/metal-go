@@ -46,7 +46,7 @@ func NewCoordinatesWithDefaults() *Coordinates {
 
 // GetLatitude returns the Latitude field value if set, zero value otherwise.
 func (o *Coordinates) GetLatitude() string {
-	if o == nil || isNil(o.Latitude) {
+	if o == nil || IsNil(o.Latitude) {
 		var ret string
 		return ret
 	}
@@ -56,7 +56,7 @@ func (o *Coordinates) GetLatitude() string {
 // GetLatitudeOk returns a tuple with the Latitude field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Coordinates) GetLatitudeOk() (*string, bool) {
-	if o == nil || isNil(o.Latitude) {
+	if o == nil || IsNil(o.Latitude) {
 		return nil, false
 	}
 	return o.Latitude, true
@@ -64,7 +64,7 @@ func (o *Coordinates) GetLatitudeOk() (*string, bool) {
 
 // HasLatitude returns a boolean if a field has been set.
 func (o *Coordinates) HasLatitude() bool {
-	if o != nil && !isNil(o.Latitude) {
+	if o != nil && !IsNil(o.Latitude) {
 		return true
 	}
 
@@ -78,7 +78,7 @@ func (o *Coordinates) SetLatitude(v string) {
 
 // GetLongitude returns the Longitude field value if set, zero value otherwise.
 func (o *Coordinates) GetLongitude() string {
-	if o == nil || isNil(o.Longitude) {
+	if o == nil || IsNil(o.Longitude) {
 		var ret string
 		return ret
 	}
@@ -88,7 +88,7 @@ func (o *Coordinates) GetLongitude() string {
 // GetLongitudeOk returns a tuple with the Longitude field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Coordinates) GetLongitudeOk() (*string, bool) {
-	if o == nil || isNil(o.Longitude) {
+	if o == nil || IsNil(o.Longitude) {
 		return nil, false
 	}
 	return o.Longitude, true
@@ -96,7 +96,7 @@ func (o *Coordinates) GetLongitudeOk() (*string, bool) {
 
 // HasLongitude returns a boolean if a field has been set.
 func (o *Coordinates) HasLongitude() bool {
-	if o != nil && !isNil(o.Longitude) {
+	if o != nil && !IsNil(o.Longitude) {
 		return true
 	}
 
@@ -118,10 +118,10 @@ func (o Coordinates) MarshalJSON() ([]byte, error) {
 
 func (o Coordinates) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Latitude) {
+	if !IsNil(o.Latitude) {
 		toSerialize["latitude"] = o.Latitude
 	}
-	if !isNil(o.Longitude) {
+	if !IsNil(o.Longitude) {
 		toSerialize["longitude"] = o.Longitude
 	}
 

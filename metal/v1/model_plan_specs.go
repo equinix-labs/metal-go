@@ -48,7 +48,7 @@ func NewPlanSpecsWithDefaults() *PlanSpecs {
 
 // GetCpus returns the Cpus field value if set, zero value otherwise.
 func (o *PlanSpecs) GetCpus() []PlanSpecsCpusInner {
-	if o == nil || isNil(o.Cpus) {
+	if o == nil || IsNil(o.Cpus) {
 		var ret []PlanSpecsCpusInner
 		return ret
 	}
@@ -58,7 +58,7 @@ func (o *PlanSpecs) GetCpus() []PlanSpecsCpusInner {
 // GetCpusOk returns a tuple with the Cpus field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PlanSpecs) GetCpusOk() ([]PlanSpecsCpusInner, bool) {
-	if o == nil || isNil(o.Cpus) {
+	if o == nil || IsNil(o.Cpus) {
 		return nil, false
 	}
 	return o.Cpus, true
@@ -66,7 +66,7 @@ func (o *PlanSpecs) GetCpusOk() ([]PlanSpecsCpusInner, bool) {
 
 // HasCpus returns a boolean if a field has been set.
 func (o *PlanSpecs) HasCpus() bool {
-	if o != nil && !isNil(o.Cpus) {
+	if o != nil && !IsNil(o.Cpus) {
 		return true
 	}
 
@@ -80,7 +80,7 @@ func (o *PlanSpecs) SetCpus(v []PlanSpecsCpusInner) {
 
 // GetDrives returns the Drives field value if set, zero value otherwise.
 func (o *PlanSpecs) GetDrives() []PlanSpecsDrivesInner {
-	if o == nil || isNil(o.Drives) {
+	if o == nil || IsNil(o.Drives) {
 		var ret []PlanSpecsDrivesInner
 		return ret
 	}
@@ -90,7 +90,7 @@ func (o *PlanSpecs) GetDrives() []PlanSpecsDrivesInner {
 // GetDrivesOk returns a tuple with the Drives field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PlanSpecs) GetDrivesOk() ([]PlanSpecsDrivesInner, bool) {
-	if o == nil || isNil(o.Drives) {
+	if o == nil || IsNil(o.Drives) {
 		return nil, false
 	}
 	return o.Drives, true
@@ -98,7 +98,7 @@ func (o *PlanSpecs) GetDrivesOk() ([]PlanSpecsDrivesInner, bool) {
 
 // HasDrives returns a boolean if a field has been set.
 func (o *PlanSpecs) HasDrives() bool {
-	if o != nil && !isNil(o.Drives) {
+	if o != nil && !IsNil(o.Drives) {
 		return true
 	}
 
@@ -112,7 +112,7 @@ func (o *PlanSpecs) SetDrives(v []PlanSpecsDrivesInner) {
 
 // GetNics returns the Nics field value if set, zero value otherwise.
 func (o *PlanSpecs) GetNics() []PlanSpecsNicsInner {
-	if o == nil || isNil(o.Nics) {
+	if o == nil || IsNil(o.Nics) {
 		var ret []PlanSpecsNicsInner
 		return ret
 	}
@@ -122,7 +122,7 @@ func (o *PlanSpecs) GetNics() []PlanSpecsNicsInner {
 // GetNicsOk returns a tuple with the Nics field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PlanSpecs) GetNicsOk() ([]PlanSpecsNicsInner, bool) {
-	if o == nil || isNil(o.Nics) {
+	if o == nil || IsNil(o.Nics) {
 		return nil, false
 	}
 	return o.Nics, true
@@ -130,7 +130,7 @@ func (o *PlanSpecs) GetNicsOk() ([]PlanSpecsNicsInner, bool) {
 
 // HasNics returns a boolean if a field has been set.
 func (o *PlanSpecs) HasNics() bool {
-	if o != nil && !isNil(o.Nics) {
+	if o != nil && !IsNil(o.Nics) {
 		return true
 	}
 
@@ -144,7 +144,7 @@ func (o *PlanSpecs) SetNics(v []PlanSpecsNicsInner) {
 
 // GetFeatures returns the Features field value if set, zero value otherwise.
 func (o *PlanSpecs) GetFeatures() PlanSpecsFeatures {
-	if o == nil || isNil(o.Features) {
+	if o == nil || IsNil(o.Features) {
 		var ret PlanSpecsFeatures
 		return ret
 	}
@@ -154,7 +154,7 @@ func (o *PlanSpecs) GetFeatures() PlanSpecsFeatures {
 // GetFeaturesOk returns a tuple with the Features field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PlanSpecs) GetFeaturesOk() (*PlanSpecsFeatures, bool) {
-	if o == nil || isNil(o.Features) {
+	if o == nil || IsNil(o.Features) {
 		return nil, false
 	}
 	return o.Features, true
@@ -162,7 +162,7 @@ func (o *PlanSpecs) GetFeaturesOk() (*PlanSpecsFeatures, bool) {
 
 // HasFeatures returns a boolean if a field has been set.
 func (o *PlanSpecs) HasFeatures() bool {
-	if o != nil && !isNil(o.Features) {
+	if o != nil && !IsNil(o.Features) {
 		return true
 	}
 
@@ -184,16 +184,16 @@ func (o PlanSpecs) MarshalJSON() ([]byte, error) {
 
 func (o PlanSpecs) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Cpus) {
+	if !IsNil(o.Cpus) {
 		toSerialize["cpus"] = o.Cpus
 	}
-	if !isNil(o.Drives) {
+	if !IsNil(o.Drives) {
 		toSerialize["drives"] = o.Drives
 	}
-	if !isNil(o.Nics) {
+	if !IsNil(o.Nics) {
 		toSerialize["nics"] = o.Nics
 	}
-	if !isNil(o.Features) {
+	if !IsNil(o.Features) {
 		toSerialize["features"] = o.Features
 	}
 

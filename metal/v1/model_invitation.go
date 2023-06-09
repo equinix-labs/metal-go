@@ -56,7 +56,7 @@ func NewInvitationWithDefaults() *Invitation {
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *Invitation) GetCreatedAt() time.Time {
-	if o == nil || isNil(o.CreatedAt) {
+	if o == nil || IsNil(o.CreatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -66,7 +66,7 @@ func (o *Invitation) GetCreatedAt() time.Time {
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Invitation) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.CreatedAt) {
+	if o == nil || IsNil(o.CreatedAt) {
 		return nil, false
 	}
 	return o.CreatedAt, true
@@ -74,7 +74,7 @@ func (o *Invitation) GetCreatedAtOk() (*time.Time, bool) {
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *Invitation) HasCreatedAt() bool {
-	if o != nil && !isNil(o.CreatedAt) {
+	if o != nil && !IsNil(o.CreatedAt) {
 		return true
 	}
 
@@ -88,7 +88,7 @@ func (o *Invitation) SetCreatedAt(v time.Time) {
 
 // GetHref returns the Href field value if set, zero value otherwise.
 func (o *Invitation) GetHref() string {
-	if o == nil || isNil(o.Href) {
+	if o == nil || IsNil(o.Href) {
 		var ret string
 		return ret
 	}
@@ -98,7 +98,7 @@ func (o *Invitation) GetHref() string {
 // GetHrefOk returns a tuple with the Href field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Invitation) GetHrefOk() (*string, bool) {
-	if o == nil || isNil(o.Href) {
+	if o == nil || IsNil(o.Href) {
 		return nil, false
 	}
 	return o.Href, true
@@ -106,7 +106,7 @@ func (o *Invitation) GetHrefOk() (*string, bool) {
 
 // HasHref returns a boolean if a field has been set.
 func (o *Invitation) HasHref() bool {
-	if o != nil && !isNil(o.Href) {
+	if o != nil && !IsNil(o.Href) {
 		return true
 	}
 
@@ -120,7 +120,7 @@ func (o *Invitation) SetHref(v string) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *Invitation) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -130,7 +130,7 @@ func (o *Invitation) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Invitation) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -138,7 +138,7 @@ func (o *Invitation) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *Invitation) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -152,7 +152,7 @@ func (o *Invitation) SetId(v string) {
 
 // GetInvitation returns the Invitation field value if set, zero value otherwise.
 func (o *Invitation) GetInvitation() Href {
-	if o == nil || isNil(o.Invitation) {
+	if o == nil || IsNil(o.Invitation) {
 		var ret Href
 		return ret
 	}
@@ -162,7 +162,7 @@ func (o *Invitation) GetInvitation() Href {
 // GetInvitationOk returns a tuple with the Invitation field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Invitation) GetInvitationOk() (*Href, bool) {
-	if o == nil || isNil(o.Invitation) {
+	if o == nil || IsNil(o.Invitation) {
 		return nil, false
 	}
 	return o.Invitation, true
@@ -170,7 +170,7 @@ func (o *Invitation) GetInvitationOk() (*Href, bool) {
 
 // HasInvitation returns a boolean if a field has been set.
 func (o *Invitation) HasInvitation() bool {
-	if o != nil && !isNil(o.Invitation) {
+	if o != nil && !IsNil(o.Invitation) {
 		return true
 	}
 
@@ -184,7 +184,7 @@ func (o *Invitation) SetInvitation(v Href) {
 
 // GetInvitedBy returns the InvitedBy field value if set, zero value otherwise.
 func (o *Invitation) GetInvitedBy() Href {
-	if o == nil || isNil(o.InvitedBy) {
+	if o == nil || IsNil(o.InvitedBy) {
 		var ret Href
 		return ret
 	}
@@ -194,7 +194,7 @@ func (o *Invitation) GetInvitedBy() Href {
 // GetInvitedByOk returns a tuple with the InvitedBy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Invitation) GetInvitedByOk() (*Href, bool) {
-	if o == nil || isNil(o.InvitedBy) {
+	if o == nil || IsNil(o.InvitedBy) {
 		return nil, false
 	}
 	return o.InvitedBy, true
@@ -202,7 +202,7 @@ func (o *Invitation) GetInvitedByOk() (*Href, bool) {
 
 // HasInvitedBy returns a boolean if a field has been set.
 func (o *Invitation) HasInvitedBy() bool {
-	if o != nil && !isNil(o.InvitedBy) {
+	if o != nil && !IsNil(o.InvitedBy) {
 		return true
 	}
 
@@ -216,7 +216,7 @@ func (o *Invitation) SetInvitedBy(v Href) {
 
 // GetInvitee returns the Invitee field value if set, zero value otherwise.
 func (o *Invitation) GetInvitee() string {
-	if o == nil || isNil(o.Invitee) {
+	if o == nil || IsNil(o.Invitee) {
 		var ret string
 		return ret
 	}
@@ -226,7 +226,7 @@ func (o *Invitation) GetInvitee() string {
 // GetInviteeOk returns a tuple with the Invitee field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Invitation) GetInviteeOk() (*string, bool) {
-	if o == nil || isNil(o.Invitee) {
+	if o == nil || IsNil(o.Invitee) {
 		return nil, false
 	}
 	return o.Invitee, true
@@ -234,7 +234,7 @@ func (o *Invitation) GetInviteeOk() (*string, bool) {
 
 // HasInvitee returns a boolean if a field has been set.
 func (o *Invitation) HasInvitee() bool {
-	if o != nil && !isNil(o.Invitee) {
+	if o != nil && !IsNil(o.Invitee) {
 		return true
 	}
 
@@ -248,7 +248,7 @@ func (o *Invitation) SetInvitee(v string) {
 
 // GetNonce returns the Nonce field value if set, zero value otherwise.
 func (o *Invitation) GetNonce() string {
-	if o == nil || isNil(o.Nonce) {
+	if o == nil || IsNil(o.Nonce) {
 		var ret string
 		return ret
 	}
@@ -258,7 +258,7 @@ func (o *Invitation) GetNonce() string {
 // GetNonceOk returns a tuple with the Nonce field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Invitation) GetNonceOk() (*string, bool) {
-	if o == nil || isNil(o.Nonce) {
+	if o == nil || IsNil(o.Nonce) {
 		return nil, false
 	}
 	return o.Nonce, true
@@ -266,7 +266,7 @@ func (o *Invitation) GetNonceOk() (*string, bool) {
 
 // HasNonce returns a boolean if a field has been set.
 func (o *Invitation) HasNonce() bool {
-	if o != nil && !isNil(o.Nonce) {
+	if o != nil && !IsNil(o.Nonce) {
 		return true
 	}
 
@@ -280,7 +280,7 @@ func (o *Invitation) SetNonce(v string) {
 
 // GetOrganization returns the Organization field value if set, zero value otherwise.
 func (o *Invitation) GetOrganization() Href {
-	if o == nil || isNil(o.Organization) {
+	if o == nil || IsNil(o.Organization) {
 		var ret Href
 		return ret
 	}
@@ -290,7 +290,7 @@ func (o *Invitation) GetOrganization() Href {
 // GetOrganizationOk returns a tuple with the Organization field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Invitation) GetOrganizationOk() (*Href, bool) {
-	if o == nil || isNil(o.Organization) {
+	if o == nil || IsNil(o.Organization) {
 		return nil, false
 	}
 	return o.Organization, true
@@ -298,7 +298,7 @@ func (o *Invitation) GetOrganizationOk() (*Href, bool) {
 
 // HasOrganization returns a boolean if a field has been set.
 func (o *Invitation) HasOrganization() bool {
-	if o != nil && !isNil(o.Organization) {
+	if o != nil && !IsNil(o.Organization) {
 		return true
 	}
 
@@ -312,7 +312,7 @@ func (o *Invitation) SetOrganization(v Href) {
 
 // GetProjects returns the Projects field value if set, zero value otherwise.
 func (o *Invitation) GetProjects() []Href {
-	if o == nil || isNil(o.Projects) {
+	if o == nil || IsNil(o.Projects) {
 		var ret []Href
 		return ret
 	}
@@ -322,7 +322,7 @@ func (o *Invitation) GetProjects() []Href {
 // GetProjectsOk returns a tuple with the Projects field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Invitation) GetProjectsOk() ([]Href, bool) {
-	if o == nil || isNil(o.Projects) {
+	if o == nil || IsNil(o.Projects) {
 		return nil, false
 	}
 	return o.Projects, true
@@ -330,7 +330,7 @@ func (o *Invitation) GetProjectsOk() ([]Href, bool) {
 
 // HasProjects returns a boolean if a field has been set.
 func (o *Invitation) HasProjects() bool {
-	if o != nil && !isNil(o.Projects) {
+	if o != nil && !IsNil(o.Projects) {
 		return true
 	}
 
@@ -344,7 +344,7 @@ func (o *Invitation) SetProjects(v []Href) {
 
 // GetRoles returns the Roles field value if set, zero value otherwise.
 func (o *Invitation) GetRoles() []string {
-	if o == nil || isNil(o.Roles) {
+	if o == nil || IsNil(o.Roles) {
 		var ret []string
 		return ret
 	}
@@ -354,7 +354,7 @@ func (o *Invitation) GetRoles() []string {
 // GetRolesOk returns a tuple with the Roles field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Invitation) GetRolesOk() ([]string, bool) {
-	if o == nil || isNil(o.Roles) {
+	if o == nil || IsNil(o.Roles) {
 		return nil, false
 	}
 	return o.Roles, true
@@ -362,7 +362,7 @@ func (o *Invitation) GetRolesOk() ([]string, bool) {
 
 // HasRoles returns a boolean if a field has been set.
 func (o *Invitation) HasRoles() bool {
-	if o != nil && !isNil(o.Roles) {
+	if o != nil && !IsNil(o.Roles) {
 		return true
 	}
 
@@ -376,7 +376,7 @@ func (o *Invitation) SetRoles(v []string) {
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *Invitation) GetUpdatedAt() time.Time {
-	if o == nil || isNil(o.UpdatedAt) {
+	if o == nil || IsNil(o.UpdatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -386,7 +386,7 @@ func (o *Invitation) GetUpdatedAt() time.Time {
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Invitation) GetUpdatedAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.UpdatedAt) {
+	if o == nil || IsNil(o.UpdatedAt) {
 		return nil, false
 	}
 	return o.UpdatedAt, true
@@ -394,7 +394,7 @@ func (o *Invitation) GetUpdatedAtOk() (*time.Time, bool) {
 
 // HasUpdatedAt returns a boolean if a field has been set.
 func (o *Invitation) HasUpdatedAt() bool {
-	if o != nil && !isNil(o.UpdatedAt) {
+	if o != nil && !IsNil(o.UpdatedAt) {
 		return true
 	}
 
@@ -416,37 +416,37 @@ func (o Invitation) MarshalJSON() ([]byte, error) {
 
 func (o Invitation) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.CreatedAt) {
+	if !IsNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt
 	}
-	if !isNil(o.Href) {
+	if !IsNil(o.Href) {
 		toSerialize["href"] = o.Href
 	}
-	if !isNil(o.Id) {
+	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
-	if !isNil(o.Invitation) {
+	if !IsNil(o.Invitation) {
 		toSerialize["invitation"] = o.Invitation
 	}
-	if !isNil(o.InvitedBy) {
+	if !IsNil(o.InvitedBy) {
 		toSerialize["invited_by"] = o.InvitedBy
 	}
-	if !isNil(o.Invitee) {
+	if !IsNil(o.Invitee) {
 		toSerialize["invitee"] = o.Invitee
 	}
-	if !isNil(o.Nonce) {
+	if !IsNil(o.Nonce) {
 		toSerialize["nonce"] = o.Nonce
 	}
-	if !isNil(o.Organization) {
+	if !IsNil(o.Organization) {
 		toSerialize["organization"] = o.Organization
 	}
-	if !isNil(o.Projects) {
+	if !IsNil(o.Projects) {
 		toSerialize["projects"] = o.Projects
 	}
-	if !isNil(o.Roles) {
+	if !IsNil(o.Roles) {
 		toSerialize["roles"] = o.Roles
 	}
-	if !isNil(o.UpdatedAt) {
+	if !IsNil(o.UpdatedAt) {
 		toSerialize["updated_at"] = o.UpdatedAt
 	}
 

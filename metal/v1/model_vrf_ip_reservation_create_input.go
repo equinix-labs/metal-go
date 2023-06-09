@@ -83,7 +83,7 @@ func (o *VrfIpReservationCreateInput) SetCidr(v int32) {
 
 // GetCustomdata returns the Customdata field value if set, zero value otherwise.
 func (o *VrfIpReservationCreateInput) GetCustomdata() map[string]interface{} {
-	if o == nil || isNil(o.Customdata) {
+	if o == nil || IsNil(o.Customdata) {
 		var ret map[string]interface{}
 		return ret
 	}
@@ -93,7 +93,7 @@ func (o *VrfIpReservationCreateInput) GetCustomdata() map[string]interface{} {
 // GetCustomdataOk returns a tuple with the Customdata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VrfIpReservationCreateInput) GetCustomdataOk() (map[string]interface{}, bool) {
-	if o == nil || isNil(o.Customdata) {
+	if o == nil || IsNil(o.Customdata) {
 		return map[string]interface{}{}, false
 	}
 	return o.Customdata, true
@@ -101,7 +101,7 @@ func (o *VrfIpReservationCreateInput) GetCustomdataOk() (map[string]interface{},
 
 // HasCustomdata returns a boolean if a field has been set.
 func (o *VrfIpReservationCreateInput) HasCustomdata() bool {
-	if o != nil && !isNil(o.Customdata) {
+	if o != nil && !IsNil(o.Customdata) {
 		return true
 	}
 
@@ -115,7 +115,7 @@ func (o *VrfIpReservationCreateInput) SetCustomdata(v map[string]interface{}) {
 
 // GetDetails returns the Details field value if set, zero value otherwise.
 func (o *VrfIpReservationCreateInput) GetDetails() string {
-	if o == nil || isNil(o.Details) {
+	if o == nil || IsNil(o.Details) {
 		var ret string
 		return ret
 	}
@@ -125,7 +125,7 @@ func (o *VrfIpReservationCreateInput) GetDetails() string {
 // GetDetailsOk returns a tuple with the Details field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VrfIpReservationCreateInput) GetDetailsOk() (*string, bool) {
-	if o == nil || isNil(o.Details) {
+	if o == nil || IsNil(o.Details) {
 		return nil, false
 	}
 	return o.Details, true
@@ -133,7 +133,7 @@ func (o *VrfIpReservationCreateInput) GetDetailsOk() (*string, bool) {
 
 // HasDetails returns a boolean if a field has been set.
 func (o *VrfIpReservationCreateInput) HasDetails() bool {
-	if o != nil && !isNil(o.Details) {
+	if o != nil && !IsNil(o.Details) {
 		return true
 	}
 
@@ -171,7 +171,7 @@ func (o *VrfIpReservationCreateInput) SetNetwork(v string) {
 
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *VrfIpReservationCreateInput) GetTags() []string {
-	if o == nil || isNil(o.Tags) {
+	if o == nil || IsNil(o.Tags) {
 		var ret []string
 		return ret
 	}
@@ -181,7 +181,7 @@ func (o *VrfIpReservationCreateInput) GetTags() []string {
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VrfIpReservationCreateInput) GetTagsOk() ([]string, bool) {
-	if o == nil || isNil(o.Tags) {
+	if o == nil || IsNil(o.Tags) {
 		return nil, false
 	}
 	return o.Tags, true
@@ -189,7 +189,7 @@ func (o *VrfIpReservationCreateInput) GetTagsOk() ([]string, bool) {
 
 // HasTags returns a boolean if a field has been set.
 func (o *VrfIpReservationCreateInput) HasTags() bool {
-	if o != nil && !isNil(o.Tags) {
+	if o != nil && !IsNil(o.Tags) {
 		return true
 	}
 
@@ -260,14 +260,14 @@ func (o VrfIpReservationCreateInput) MarshalJSON() ([]byte, error) {
 func (o VrfIpReservationCreateInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["cidr"] = o.Cidr
-	if !isNil(o.Customdata) {
+	if !IsNil(o.Customdata) {
 		toSerialize["customdata"] = o.Customdata
 	}
-	if !isNil(o.Details) {
+	if !IsNil(o.Details) {
 		toSerialize["details"] = o.Details
 	}
 	toSerialize["network"] = o.Network
-	if !isNil(o.Tags) {
+	if !IsNil(o.Tags) {
 		toSerialize["tags"] = o.Tags
 	}
 	toSerialize["type"] = o.Type

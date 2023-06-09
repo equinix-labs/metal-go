@@ -53,7 +53,7 @@ func NewBatchWithDefaults() *Batch {
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *Batch) GetCreatedAt() time.Time {
-	if o == nil || isNil(o.CreatedAt) {
+	if o == nil || IsNil(o.CreatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -63,7 +63,7 @@ func (o *Batch) GetCreatedAt() time.Time {
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Batch) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.CreatedAt) {
+	if o == nil || IsNil(o.CreatedAt) {
 		return nil, false
 	}
 	return o.CreatedAt, true
@@ -71,7 +71,7 @@ func (o *Batch) GetCreatedAtOk() (*time.Time, bool) {
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *Batch) HasCreatedAt() bool {
-	if o != nil && !isNil(o.CreatedAt) {
+	if o != nil && !IsNil(o.CreatedAt) {
 		return true
 	}
 
@@ -85,7 +85,7 @@ func (o *Batch) SetCreatedAt(v time.Time) {
 
 // GetDevices returns the Devices field value if set, zero value otherwise.
 func (o *Batch) GetDevices() []Href {
-	if o == nil || isNil(o.Devices) {
+	if o == nil || IsNil(o.Devices) {
 		var ret []Href
 		return ret
 	}
@@ -95,7 +95,7 @@ func (o *Batch) GetDevices() []Href {
 // GetDevicesOk returns a tuple with the Devices field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Batch) GetDevicesOk() ([]Href, bool) {
-	if o == nil || isNil(o.Devices) {
+	if o == nil || IsNil(o.Devices) {
 		return nil, false
 	}
 	return o.Devices, true
@@ -103,7 +103,7 @@ func (o *Batch) GetDevicesOk() ([]Href, bool) {
 
 // HasDevices returns a boolean if a field has been set.
 func (o *Batch) HasDevices() bool {
-	if o != nil && !isNil(o.Devices) {
+	if o != nil && !IsNil(o.Devices) {
 		return true
 	}
 
@@ -117,7 +117,7 @@ func (o *Batch) SetDevices(v []Href) {
 
 // GetErrorMessages returns the ErrorMessages field value if set, zero value otherwise.
 func (o *Batch) GetErrorMessages() []string {
-	if o == nil || isNil(o.ErrorMessages) {
+	if o == nil || IsNil(o.ErrorMessages) {
 		var ret []string
 		return ret
 	}
@@ -127,7 +127,7 @@ func (o *Batch) GetErrorMessages() []string {
 // GetErrorMessagesOk returns a tuple with the ErrorMessages field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Batch) GetErrorMessagesOk() ([]string, bool) {
-	if o == nil || isNil(o.ErrorMessages) {
+	if o == nil || IsNil(o.ErrorMessages) {
 		return nil, false
 	}
 	return o.ErrorMessages, true
@@ -135,7 +135,7 @@ func (o *Batch) GetErrorMessagesOk() ([]string, bool) {
 
 // HasErrorMessages returns a boolean if a field has been set.
 func (o *Batch) HasErrorMessages() bool {
-	if o != nil && !isNil(o.ErrorMessages) {
+	if o != nil && !IsNil(o.ErrorMessages) {
 		return true
 	}
 
@@ -149,7 +149,7 @@ func (o *Batch) SetErrorMessages(v []string) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *Batch) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -159,7 +159,7 @@ func (o *Batch) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Batch) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -167,7 +167,7 @@ func (o *Batch) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *Batch) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -181,7 +181,7 @@ func (o *Batch) SetId(v string) {
 
 // GetProject returns the Project field value if set, zero value otherwise.
 func (o *Batch) GetProject() Href {
-	if o == nil || isNil(o.Project) {
+	if o == nil || IsNil(o.Project) {
 		var ret Href
 		return ret
 	}
@@ -191,7 +191,7 @@ func (o *Batch) GetProject() Href {
 // GetProjectOk returns a tuple with the Project field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Batch) GetProjectOk() (*Href, bool) {
-	if o == nil || isNil(o.Project) {
+	if o == nil || IsNil(o.Project) {
 		return nil, false
 	}
 	return o.Project, true
@@ -199,7 +199,7 @@ func (o *Batch) GetProjectOk() (*Href, bool) {
 
 // HasProject returns a boolean if a field has been set.
 func (o *Batch) HasProject() bool {
-	if o != nil && !isNil(o.Project) {
+	if o != nil && !IsNil(o.Project) {
 		return true
 	}
 
@@ -213,7 +213,7 @@ func (o *Batch) SetProject(v Href) {
 
 // GetQuantity returns the Quantity field value if set, zero value otherwise.
 func (o *Batch) GetQuantity() int32 {
-	if o == nil || isNil(o.Quantity) {
+	if o == nil || IsNil(o.Quantity) {
 		var ret int32
 		return ret
 	}
@@ -223,7 +223,7 @@ func (o *Batch) GetQuantity() int32 {
 // GetQuantityOk returns a tuple with the Quantity field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Batch) GetQuantityOk() (*int32, bool) {
-	if o == nil || isNil(o.Quantity) {
+	if o == nil || IsNil(o.Quantity) {
 		return nil, false
 	}
 	return o.Quantity, true
@@ -231,7 +231,7 @@ func (o *Batch) GetQuantityOk() (*int32, bool) {
 
 // HasQuantity returns a boolean if a field has been set.
 func (o *Batch) HasQuantity() bool {
-	if o != nil && !isNil(o.Quantity) {
+	if o != nil && !IsNil(o.Quantity) {
 		return true
 	}
 
@@ -245,7 +245,7 @@ func (o *Batch) SetQuantity(v int32) {
 
 // GetState returns the State field value if set, zero value otherwise.
 func (o *Batch) GetState() string {
-	if o == nil || isNil(o.State) {
+	if o == nil || IsNil(o.State) {
 		var ret string
 		return ret
 	}
@@ -255,7 +255,7 @@ func (o *Batch) GetState() string {
 // GetStateOk returns a tuple with the State field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Batch) GetStateOk() (*string, bool) {
-	if o == nil || isNil(o.State) {
+	if o == nil || IsNil(o.State) {
 		return nil, false
 	}
 	return o.State, true
@@ -263,7 +263,7 @@ func (o *Batch) GetStateOk() (*string, bool) {
 
 // HasState returns a boolean if a field has been set.
 func (o *Batch) HasState() bool {
-	if o != nil && !isNil(o.State) {
+	if o != nil && !IsNil(o.State) {
 		return true
 	}
 
@@ -277,7 +277,7 @@ func (o *Batch) SetState(v string) {
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *Batch) GetUpdatedAt() time.Time {
-	if o == nil || isNil(o.UpdatedAt) {
+	if o == nil || IsNil(o.UpdatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -287,7 +287,7 @@ func (o *Batch) GetUpdatedAt() time.Time {
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Batch) GetUpdatedAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.UpdatedAt) {
+	if o == nil || IsNil(o.UpdatedAt) {
 		return nil, false
 	}
 	return o.UpdatedAt, true
@@ -295,7 +295,7 @@ func (o *Batch) GetUpdatedAtOk() (*time.Time, bool) {
 
 // HasUpdatedAt returns a boolean if a field has been set.
 func (o *Batch) HasUpdatedAt() bool {
-	if o != nil && !isNil(o.UpdatedAt) {
+	if o != nil && !IsNil(o.UpdatedAt) {
 		return true
 	}
 
@@ -317,28 +317,28 @@ func (o Batch) MarshalJSON() ([]byte, error) {
 
 func (o Batch) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.CreatedAt) {
+	if !IsNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt
 	}
-	if !isNil(o.Devices) {
+	if !IsNil(o.Devices) {
 		toSerialize["devices"] = o.Devices
 	}
-	if !isNil(o.ErrorMessages) {
+	if !IsNil(o.ErrorMessages) {
 		toSerialize["error_messages"] = o.ErrorMessages
 	}
-	if !isNil(o.Id) {
+	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
-	if !isNil(o.Project) {
+	if !IsNil(o.Project) {
 		toSerialize["project"] = o.Project
 	}
-	if !isNil(o.Quantity) {
+	if !IsNil(o.Quantity) {
 		toSerialize["quantity"] = o.Quantity
 	}
-	if !isNil(o.State) {
+	if !IsNil(o.State) {
 		toSerialize["state"] = o.State
 	}
-	if !isNil(o.UpdatedAt) {
+	if !IsNil(o.UpdatedAt) {
 		toSerialize["updated_at"] = o.UpdatedAt
 	}
 

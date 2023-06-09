@@ -64,7 +64,7 @@ func NewOrganizationWithDefaults() *Organization {
 
 // GetAddress returns the Address field value if set, zero value otherwise.
 func (o *Organization) GetAddress() Address {
-	if o == nil || isNil(o.Address) {
+	if o == nil || IsNil(o.Address) {
 		var ret Address
 		return ret
 	}
@@ -74,7 +74,7 @@ func (o *Organization) GetAddress() Address {
 // GetAddressOk returns a tuple with the Address field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Organization) GetAddressOk() (*Address, bool) {
-	if o == nil || isNil(o.Address) {
+	if o == nil || IsNil(o.Address) {
 		return nil, false
 	}
 	return o.Address, true
@@ -82,7 +82,7 @@ func (o *Organization) GetAddressOk() (*Address, bool) {
 
 // HasAddress returns a boolean if a field has been set.
 func (o *Organization) HasAddress() bool {
-	if o != nil && !isNil(o.Address) {
+	if o != nil && !IsNil(o.Address) {
 		return true
 	}
 
@@ -96,7 +96,7 @@ func (o *Organization) SetAddress(v Address) {
 
 // GetBillingAddress returns the BillingAddress field value if set, zero value otherwise.
 func (o *Organization) GetBillingAddress() Address {
-	if o == nil || isNil(o.BillingAddress) {
+	if o == nil || IsNil(o.BillingAddress) {
 		var ret Address
 		return ret
 	}
@@ -106,7 +106,7 @@ func (o *Organization) GetBillingAddress() Address {
 // GetBillingAddressOk returns a tuple with the BillingAddress field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Organization) GetBillingAddressOk() (*Address, bool) {
-	if o == nil || isNil(o.BillingAddress) {
+	if o == nil || IsNil(o.BillingAddress) {
 		return nil, false
 	}
 	return o.BillingAddress, true
@@ -114,7 +114,7 @@ func (o *Organization) GetBillingAddressOk() (*Address, bool) {
 
 // HasBillingAddress returns a boolean if a field has been set.
 func (o *Organization) HasBillingAddress() bool {
-	if o != nil && !isNil(o.BillingAddress) {
+	if o != nil && !IsNil(o.BillingAddress) {
 		return true
 	}
 
@@ -128,7 +128,7 @@ func (o *Organization) SetBillingAddress(v Address) {
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *Organization) GetCreatedAt() time.Time {
-	if o == nil || isNil(o.CreatedAt) {
+	if o == nil || IsNil(o.CreatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -138,7 +138,7 @@ func (o *Organization) GetCreatedAt() time.Time {
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Organization) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.CreatedAt) {
+	if o == nil || IsNil(o.CreatedAt) {
 		return nil, false
 	}
 	return o.CreatedAt, true
@@ -146,7 +146,7 @@ func (o *Organization) GetCreatedAtOk() (*time.Time, bool) {
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *Organization) HasCreatedAt() bool {
-	if o != nil && !isNil(o.CreatedAt) {
+	if o != nil && !IsNil(o.CreatedAt) {
 		return true
 	}
 
@@ -160,7 +160,7 @@ func (o *Organization) SetCreatedAt(v time.Time) {
 
 // GetCreditAmount returns the CreditAmount field value if set, zero value otherwise.
 func (o *Organization) GetCreditAmount() float32 {
-	if o == nil || isNil(o.CreditAmount) {
+	if o == nil || IsNil(o.CreditAmount) {
 		var ret float32
 		return ret
 	}
@@ -170,7 +170,7 @@ func (o *Organization) GetCreditAmount() float32 {
 // GetCreditAmountOk returns a tuple with the CreditAmount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Organization) GetCreditAmountOk() (*float32, bool) {
-	if o == nil || isNil(o.CreditAmount) {
+	if o == nil || IsNil(o.CreditAmount) {
 		return nil, false
 	}
 	return o.CreditAmount, true
@@ -178,7 +178,7 @@ func (o *Organization) GetCreditAmountOk() (*float32, bool) {
 
 // HasCreditAmount returns a boolean if a field has been set.
 func (o *Organization) HasCreditAmount() bool {
-	if o != nil && !isNil(o.CreditAmount) {
+	if o != nil && !IsNil(o.CreditAmount) {
 		return true
 	}
 
@@ -192,7 +192,7 @@ func (o *Organization) SetCreditAmount(v float32) {
 
 // GetCustomdata returns the Customdata field value if set, zero value otherwise.
 func (o *Organization) GetCustomdata() map[string]interface{} {
-	if o == nil || isNil(o.Customdata) {
+	if o == nil || IsNil(o.Customdata) {
 		var ret map[string]interface{}
 		return ret
 	}
@@ -202,7 +202,7 @@ func (o *Organization) GetCustomdata() map[string]interface{} {
 // GetCustomdataOk returns a tuple with the Customdata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Organization) GetCustomdataOk() (map[string]interface{}, bool) {
-	if o == nil || isNil(o.Customdata) {
+	if o == nil || IsNil(o.Customdata) {
 		return map[string]interface{}{}, false
 	}
 	return o.Customdata, true
@@ -210,7 +210,7 @@ func (o *Organization) GetCustomdataOk() (map[string]interface{}, bool) {
 
 // HasCustomdata returns a boolean if a field has been set.
 func (o *Organization) HasCustomdata() bool {
-	if o != nil && !isNil(o.Customdata) {
+	if o != nil && !IsNil(o.Customdata) {
 		return true
 	}
 
@@ -224,7 +224,7 @@ func (o *Organization) SetCustomdata(v map[string]interface{}) {
 
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *Organization) GetDescription() string {
-	if o == nil || isNil(o.Description) {
+	if o == nil || IsNil(o.Description) {
 		var ret string
 		return ret
 	}
@@ -234,7 +234,7 @@ func (o *Organization) GetDescription() string {
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Organization) GetDescriptionOk() (*string, bool) {
-	if o == nil || isNil(o.Description) {
+	if o == nil || IsNil(o.Description) {
 		return nil, false
 	}
 	return o.Description, true
@@ -242,7 +242,7 @@ func (o *Organization) GetDescriptionOk() (*string, bool) {
 
 // HasDescription returns a boolean if a field has been set.
 func (o *Organization) HasDescription() bool {
-	if o != nil && !isNil(o.Description) {
+	if o != nil && !IsNil(o.Description) {
 		return true
 	}
 
@@ -256,7 +256,7 @@ func (o *Organization) SetDescription(v string) {
 
 // GetEnforce2faAt returns the Enforce2faAt field value if set, zero value otherwise.
 func (o *Organization) GetEnforce2faAt() time.Time {
-	if o == nil || isNil(o.Enforce2faAt) {
+	if o == nil || IsNil(o.Enforce2faAt) {
 		var ret time.Time
 		return ret
 	}
@@ -266,7 +266,7 @@ func (o *Organization) GetEnforce2faAt() time.Time {
 // GetEnforce2faAtOk returns a tuple with the Enforce2faAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Organization) GetEnforce2faAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.Enforce2faAt) {
+	if o == nil || IsNil(o.Enforce2faAt) {
 		return nil, false
 	}
 	return o.Enforce2faAt, true
@@ -274,7 +274,7 @@ func (o *Organization) GetEnforce2faAtOk() (*time.Time, bool) {
 
 // HasEnforce2faAt returns a boolean if a field has been set.
 func (o *Organization) HasEnforce2faAt() bool {
-	if o != nil && !isNil(o.Enforce2faAt) {
+	if o != nil && !IsNil(o.Enforce2faAt) {
 		return true
 	}
 
@@ -288,7 +288,7 @@ func (o *Organization) SetEnforce2faAt(v time.Time) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *Organization) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -298,7 +298,7 @@ func (o *Organization) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Organization) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -306,7 +306,7 @@ func (o *Organization) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *Organization) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -320,7 +320,7 @@ func (o *Organization) SetId(v string) {
 
 // GetLogo returns the Logo field value if set, zero value otherwise.
 func (o *Organization) GetLogo() *os.File {
-	if o == nil || isNil(o.Logo) {
+	if o == nil || IsNil(o.Logo) {
 		var ret *os.File
 		return ret
 	}
@@ -330,7 +330,7 @@ func (o *Organization) GetLogo() *os.File {
 // GetLogoOk returns a tuple with the Logo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Organization) GetLogoOk() (**os.File, bool) {
-	if o == nil || isNil(o.Logo) {
+	if o == nil || IsNil(o.Logo) {
 		return nil, false
 	}
 	return o.Logo, true
@@ -338,7 +338,7 @@ func (o *Organization) GetLogoOk() (**os.File, bool) {
 
 // HasLogo returns a boolean if a field has been set.
 func (o *Organization) HasLogo() bool {
-	if o != nil && !isNil(o.Logo) {
+	if o != nil && !IsNil(o.Logo) {
 		return true
 	}
 
@@ -352,7 +352,7 @@ func (o *Organization) SetLogo(v *os.File) {
 
 // GetMembers returns the Members field value if set, zero value otherwise.
 func (o *Organization) GetMembers() []Href {
-	if o == nil || isNil(o.Members) {
+	if o == nil || IsNil(o.Members) {
 		var ret []Href
 		return ret
 	}
@@ -362,7 +362,7 @@ func (o *Organization) GetMembers() []Href {
 // GetMembersOk returns a tuple with the Members field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Organization) GetMembersOk() ([]Href, bool) {
-	if o == nil || isNil(o.Members) {
+	if o == nil || IsNil(o.Members) {
 		return nil, false
 	}
 	return o.Members, true
@@ -370,7 +370,7 @@ func (o *Organization) GetMembersOk() ([]Href, bool) {
 
 // HasMembers returns a boolean if a field has been set.
 func (o *Organization) HasMembers() bool {
-	if o != nil && !isNil(o.Members) {
+	if o != nil && !IsNil(o.Members) {
 		return true
 	}
 
@@ -384,7 +384,7 @@ func (o *Organization) SetMembers(v []Href) {
 
 // GetMemberships returns the Memberships field value if set, zero value otherwise.
 func (o *Organization) GetMemberships() []Href {
-	if o == nil || isNil(o.Memberships) {
+	if o == nil || IsNil(o.Memberships) {
 		var ret []Href
 		return ret
 	}
@@ -394,7 +394,7 @@ func (o *Organization) GetMemberships() []Href {
 // GetMembershipsOk returns a tuple with the Memberships field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Organization) GetMembershipsOk() ([]Href, bool) {
-	if o == nil || isNil(o.Memberships) {
+	if o == nil || IsNil(o.Memberships) {
 		return nil, false
 	}
 	return o.Memberships, true
@@ -402,7 +402,7 @@ func (o *Organization) GetMembershipsOk() ([]Href, bool) {
 
 // HasMemberships returns a boolean if a field has been set.
 func (o *Organization) HasMemberships() bool {
-	if o != nil && !isNil(o.Memberships) {
+	if o != nil && !IsNil(o.Memberships) {
 		return true
 	}
 
@@ -416,7 +416,7 @@ func (o *Organization) SetMemberships(v []Href) {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *Organization) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -426,7 +426,7 @@ func (o *Organization) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Organization) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
 	return o.Name, true
@@ -434,7 +434,7 @@ func (o *Organization) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *Organization) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -448,7 +448,7 @@ func (o *Organization) SetName(v string) {
 
 // GetProjects returns the Projects field value if set, zero value otherwise.
 func (o *Organization) GetProjects() []Href {
-	if o == nil || isNil(o.Projects) {
+	if o == nil || IsNil(o.Projects) {
 		var ret []Href
 		return ret
 	}
@@ -458,7 +458,7 @@ func (o *Organization) GetProjects() []Href {
 // GetProjectsOk returns a tuple with the Projects field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Organization) GetProjectsOk() ([]Href, bool) {
-	if o == nil || isNil(o.Projects) {
+	if o == nil || IsNil(o.Projects) {
 		return nil, false
 	}
 	return o.Projects, true
@@ -466,7 +466,7 @@ func (o *Organization) GetProjectsOk() ([]Href, bool) {
 
 // HasProjects returns a boolean if a field has been set.
 func (o *Organization) HasProjects() bool {
-	if o != nil && !isNil(o.Projects) {
+	if o != nil && !IsNil(o.Projects) {
 		return true
 	}
 
@@ -480,7 +480,7 @@ func (o *Organization) SetProjects(v []Href) {
 
 // GetTerms returns the Terms field value if set, zero value otherwise.
 func (o *Organization) GetTerms() int32 {
-	if o == nil || isNil(o.Terms) {
+	if o == nil || IsNil(o.Terms) {
 		var ret int32
 		return ret
 	}
@@ -490,7 +490,7 @@ func (o *Organization) GetTerms() int32 {
 // GetTermsOk returns a tuple with the Terms field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Organization) GetTermsOk() (*int32, bool) {
-	if o == nil || isNil(o.Terms) {
+	if o == nil || IsNil(o.Terms) {
 		return nil, false
 	}
 	return o.Terms, true
@@ -498,7 +498,7 @@ func (o *Organization) GetTermsOk() (*int32, bool) {
 
 // HasTerms returns a boolean if a field has been set.
 func (o *Organization) HasTerms() bool {
-	if o != nil && !isNil(o.Terms) {
+	if o != nil && !IsNil(o.Terms) {
 		return true
 	}
 
@@ -512,7 +512,7 @@ func (o *Organization) SetTerms(v int32) {
 
 // GetTwitter returns the Twitter field value if set, zero value otherwise.
 func (o *Organization) GetTwitter() string {
-	if o == nil || isNil(o.Twitter) {
+	if o == nil || IsNil(o.Twitter) {
 		var ret string
 		return ret
 	}
@@ -522,7 +522,7 @@ func (o *Organization) GetTwitter() string {
 // GetTwitterOk returns a tuple with the Twitter field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Organization) GetTwitterOk() (*string, bool) {
-	if o == nil || isNil(o.Twitter) {
+	if o == nil || IsNil(o.Twitter) {
 		return nil, false
 	}
 	return o.Twitter, true
@@ -530,7 +530,7 @@ func (o *Organization) GetTwitterOk() (*string, bool) {
 
 // HasTwitter returns a boolean if a field has been set.
 func (o *Organization) HasTwitter() bool {
-	if o != nil && !isNil(o.Twitter) {
+	if o != nil && !IsNil(o.Twitter) {
 		return true
 	}
 
@@ -544,7 +544,7 @@ func (o *Organization) SetTwitter(v string) {
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *Organization) GetUpdatedAt() time.Time {
-	if o == nil || isNil(o.UpdatedAt) {
+	if o == nil || IsNil(o.UpdatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -554,7 +554,7 @@ func (o *Organization) GetUpdatedAt() time.Time {
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Organization) GetUpdatedAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.UpdatedAt) {
+	if o == nil || IsNil(o.UpdatedAt) {
 		return nil, false
 	}
 	return o.UpdatedAt, true
@@ -562,7 +562,7 @@ func (o *Organization) GetUpdatedAtOk() (*time.Time, bool) {
 
 // HasUpdatedAt returns a boolean if a field has been set.
 func (o *Organization) HasUpdatedAt() bool {
-	if o != nil && !isNil(o.UpdatedAt) {
+	if o != nil && !IsNil(o.UpdatedAt) {
 		return true
 	}
 
@@ -576,7 +576,7 @@ func (o *Organization) SetUpdatedAt(v time.Time) {
 
 // GetWebsite returns the Website field value if set, zero value otherwise.
 func (o *Organization) GetWebsite() string {
-	if o == nil || isNil(o.Website) {
+	if o == nil || IsNil(o.Website) {
 		var ret string
 		return ret
 	}
@@ -586,7 +586,7 @@ func (o *Organization) GetWebsite() string {
 // GetWebsiteOk returns a tuple with the Website field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Organization) GetWebsiteOk() (*string, bool) {
-	if o == nil || isNil(o.Website) {
+	if o == nil || IsNil(o.Website) {
 		return nil, false
 	}
 	return o.Website, true
@@ -594,7 +594,7 @@ func (o *Organization) GetWebsiteOk() (*string, bool) {
 
 // HasWebsite returns a boolean if a field has been set.
 func (o *Organization) HasWebsite() bool {
-	if o != nil && !isNil(o.Website) {
+	if o != nil && !IsNil(o.Website) {
 		return true
 	}
 
@@ -616,55 +616,55 @@ func (o Organization) MarshalJSON() ([]byte, error) {
 
 func (o Organization) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Address) {
+	if !IsNil(o.Address) {
 		toSerialize["address"] = o.Address
 	}
-	if !isNil(o.BillingAddress) {
+	if !IsNil(o.BillingAddress) {
 		toSerialize["billing_address"] = o.BillingAddress
 	}
-	if !isNil(o.CreatedAt) {
+	if !IsNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt
 	}
-	if !isNil(o.CreditAmount) {
+	if !IsNil(o.CreditAmount) {
 		toSerialize["credit_amount"] = o.CreditAmount
 	}
-	if !isNil(o.Customdata) {
+	if !IsNil(o.Customdata) {
 		toSerialize["customdata"] = o.Customdata
 	}
-	if !isNil(o.Description) {
+	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
-	if !isNil(o.Enforce2faAt) {
+	if !IsNil(o.Enforce2faAt) {
 		toSerialize["enforce_2fa_at"] = o.Enforce2faAt
 	}
-	if !isNil(o.Id) {
+	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
-	if !isNil(o.Logo) {
+	if !IsNil(o.Logo) {
 		toSerialize["logo"] = o.Logo
 	}
-	if !isNil(o.Members) {
+	if !IsNil(o.Members) {
 		toSerialize["members"] = o.Members
 	}
-	if !isNil(o.Memberships) {
+	if !IsNil(o.Memberships) {
 		toSerialize["memberships"] = o.Memberships
 	}
-	if !isNil(o.Name) {
+	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
-	if !isNil(o.Projects) {
+	if !IsNil(o.Projects) {
 		toSerialize["projects"] = o.Projects
 	}
-	if !isNil(o.Terms) {
+	if !IsNil(o.Terms) {
 		toSerialize["terms"] = o.Terms
 	}
-	if !isNil(o.Twitter) {
+	if !IsNil(o.Twitter) {
 		toSerialize["twitter"] = o.Twitter
 	}
-	if !isNil(o.UpdatedAt) {
+	if !IsNil(o.UpdatedAt) {
 		toSerialize["updated_at"] = o.UpdatedAt
 	}
-	if !isNil(o.Website) {
+	if !IsNil(o.Website) {
 		toSerialize["website"] = o.Website
 	}
 

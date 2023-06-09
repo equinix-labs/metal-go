@@ -14,7 +14,7 @@ package v1
 import (
 	"bytes"
 	"context"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 	"strings"
@@ -88,10 +88,10 @@ func (a *UsagesApiService) FindDeviceUsagesExecute(r ApiFindDeviceUsagesRequest)
 	localVarFormParams := url.Values{}
 
 	if r.createdAfter != nil {
-		parameterAddToQuery(localVarQueryParams, "created[after]", r.createdAfter, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "created[after]", r.createdAfter, "")
 	}
 	if r.createdBefore != nil {
-		parameterAddToQuery(localVarQueryParams, "created[before]", r.createdBefore, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "created[before]", r.createdBefore, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -134,9 +134,9 @@ func (a *UsagesApiService) FindDeviceUsagesExecute(r ApiFindDeviceUsagesRequest)
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -247,10 +247,10 @@ func (a *UsagesApiService) FindProjectUsageExecute(r ApiFindProjectUsageRequest)
 	localVarFormParams := url.Values{}
 
 	if r.createdAfter != nil {
-		parameterAddToQuery(localVarQueryParams, "created[after]", r.createdAfter, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "created[after]", r.createdAfter, "")
 	}
 	if r.createdBefore != nil {
-		parameterAddToQuery(localVarQueryParams, "created[before]", r.createdBefore, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "created[before]", r.createdBefore, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -293,9 +293,9 @@ func (a *UsagesApiService) FindProjectUsageExecute(r ApiFindProjectUsageRequest)
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}

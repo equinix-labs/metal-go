@@ -243,7 +243,7 @@ func (o *VlanVirtualCircuit) SetProject(v Href) {
 
 // GetSpeed returns the Speed field value if set, zero value otherwise.
 func (o *VlanVirtualCircuit) GetSpeed() int32 {
-	if o == nil || isNil(o.Speed) {
+	if o == nil || IsNil(o.Speed) {
 		var ret int32
 		return ret
 	}
@@ -253,7 +253,7 @@ func (o *VlanVirtualCircuit) GetSpeed() int32 {
 // GetSpeedOk returns a tuple with the Speed field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VlanVirtualCircuit) GetSpeedOk() (*int32, bool) {
-	if o == nil || isNil(o.Speed) {
+	if o == nil || IsNil(o.Speed) {
 		return nil, false
 	}
 	return o.Speed, true
@@ -261,7 +261,7 @@ func (o *VlanVirtualCircuit) GetSpeedOk() (*int32, bool) {
 
 // HasSpeed returns a boolean if a field has been set.
 func (o *VlanVirtualCircuit) HasSpeed() bool {
-	if o != nil && !isNil(o.Speed) {
+	if o != nil && !IsNil(o.Speed) {
 		return true
 	}
 
@@ -371,7 +371,7 @@ func (o *VlanVirtualCircuit) SetVnid(v int32) {
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *VlanVirtualCircuit) GetCreatedAt() time.Time {
-	if o == nil || isNil(o.CreatedAt) {
+	if o == nil || IsNil(o.CreatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -381,7 +381,7 @@ func (o *VlanVirtualCircuit) GetCreatedAt() time.Time {
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VlanVirtualCircuit) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.CreatedAt) {
+	if o == nil || IsNil(o.CreatedAt) {
 		return nil, false
 	}
 	return o.CreatedAt, true
@@ -389,7 +389,7 @@ func (o *VlanVirtualCircuit) GetCreatedAtOk() (*time.Time, bool) {
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *VlanVirtualCircuit) HasCreatedAt() bool {
-	if o != nil && !isNil(o.CreatedAt) {
+	if o != nil && !IsNil(o.CreatedAt) {
 		return true
 	}
 
@@ -403,7 +403,7 @@ func (o *VlanVirtualCircuit) SetCreatedAt(v time.Time) {
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *VlanVirtualCircuit) GetUpdatedAt() time.Time {
-	if o == nil || isNil(o.UpdatedAt) {
+	if o == nil || IsNil(o.UpdatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -413,7 +413,7 @@ func (o *VlanVirtualCircuit) GetUpdatedAt() time.Time {
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VlanVirtualCircuit) GetUpdatedAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.UpdatedAt) {
+	if o == nil || IsNil(o.UpdatedAt) {
 		return nil, false
 	}
 	return o.UpdatedAt, true
@@ -421,7 +421,7 @@ func (o *VlanVirtualCircuit) GetUpdatedAtOk() (*time.Time, bool) {
 
 // HasUpdatedAt returns a boolean if a field has been set.
 func (o *VlanVirtualCircuit) HasUpdatedAt() bool {
-	if o != nil && !isNil(o.UpdatedAt) {
+	if o != nil && !IsNil(o.UpdatedAt) {
 		return true
 	}
 
@@ -450,17 +450,17 @@ func (o VlanVirtualCircuit) ToMap() (map[string]interface{}, error) {
 	toSerialize["nni_vlan"] = o.NniVlan
 	toSerialize["port"] = o.Port
 	toSerialize["project"] = o.Project
-	if !isNil(o.Speed) {
+	if !IsNil(o.Speed) {
 		toSerialize["speed"] = o.Speed
 	}
 	toSerialize["status"] = o.Status
 	toSerialize["tags"] = o.Tags
 	toSerialize["virtual_network"] = o.VirtualNetwork
 	toSerialize["vnid"] = o.Vnid
-	if !isNil(o.CreatedAt) {
+	if !IsNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt
 	}
-	if !isNil(o.UpdatedAt) {
+	if !IsNil(o.UpdatedAt) {
 		toSerialize["updated_at"] = o.UpdatedAt
 	}
 

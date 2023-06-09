@@ -57,7 +57,7 @@ func NewDeviceUpdateInputWithDefaults() *DeviceUpdateInput {
 
 // GetAlwaysPxe returns the AlwaysPxe field value if set, zero value otherwise.
 func (o *DeviceUpdateInput) GetAlwaysPxe() bool {
-	if o == nil || isNil(o.AlwaysPxe) {
+	if o == nil || IsNil(o.AlwaysPxe) {
 		var ret bool
 		return ret
 	}
@@ -67,7 +67,7 @@ func (o *DeviceUpdateInput) GetAlwaysPxe() bool {
 // GetAlwaysPxeOk returns a tuple with the AlwaysPxe field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeviceUpdateInput) GetAlwaysPxeOk() (*bool, bool) {
-	if o == nil || isNil(o.AlwaysPxe) {
+	if o == nil || IsNil(o.AlwaysPxe) {
 		return nil, false
 	}
 	return o.AlwaysPxe, true
@@ -75,7 +75,7 @@ func (o *DeviceUpdateInput) GetAlwaysPxeOk() (*bool, bool) {
 
 // HasAlwaysPxe returns a boolean if a field has been set.
 func (o *DeviceUpdateInput) HasAlwaysPxe() bool {
-	if o != nil && !isNil(o.AlwaysPxe) {
+	if o != nil && !IsNil(o.AlwaysPxe) {
 		return true
 	}
 
@@ -89,7 +89,7 @@ func (o *DeviceUpdateInput) SetAlwaysPxe(v bool) {
 
 // GetBillingCycle returns the BillingCycle field value if set, zero value otherwise.
 func (o *DeviceUpdateInput) GetBillingCycle() string {
-	if o == nil || isNil(o.BillingCycle) {
+	if o == nil || IsNil(o.BillingCycle) {
 		var ret string
 		return ret
 	}
@@ -99,7 +99,7 @@ func (o *DeviceUpdateInput) GetBillingCycle() string {
 // GetBillingCycleOk returns a tuple with the BillingCycle field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeviceUpdateInput) GetBillingCycleOk() (*string, bool) {
-	if o == nil || isNil(o.BillingCycle) {
+	if o == nil || IsNil(o.BillingCycle) {
 		return nil, false
 	}
 	return o.BillingCycle, true
@@ -107,7 +107,7 @@ func (o *DeviceUpdateInput) GetBillingCycleOk() (*string, bool) {
 
 // HasBillingCycle returns a boolean if a field has been set.
 func (o *DeviceUpdateInput) HasBillingCycle() bool {
-	if o != nil && !isNil(o.BillingCycle) {
+	if o != nil && !IsNil(o.BillingCycle) {
 		return true
 	}
 
@@ -121,7 +121,7 @@ func (o *DeviceUpdateInput) SetBillingCycle(v string) {
 
 // GetCustomdata returns the Customdata field value if set, zero value otherwise.
 func (o *DeviceUpdateInput) GetCustomdata() map[string]interface{} {
-	if o == nil || isNil(o.Customdata) {
+	if o == nil || IsNil(o.Customdata) {
 		var ret map[string]interface{}
 		return ret
 	}
@@ -131,7 +131,7 @@ func (o *DeviceUpdateInput) GetCustomdata() map[string]interface{} {
 // GetCustomdataOk returns a tuple with the Customdata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeviceUpdateInput) GetCustomdataOk() (map[string]interface{}, bool) {
-	if o == nil || isNil(o.Customdata) {
+	if o == nil || IsNil(o.Customdata) {
 		return map[string]interface{}{}, false
 	}
 	return o.Customdata, true
@@ -139,7 +139,7 @@ func (o *DeviceUpdateInput) GetCustomdataOk() (map[string]interface{}, bool) {
 
 // HasCustomdata returns a boolean if a field has been set.
 func (o *DeviceUpdateInput) HasCustomdata() bool {
-	if o != nil && !isNil(o.Customdata) {
+	if o != nil && !IsNil(o.Customdata) {
 		return true
 	}
 
@@ -153,7 +153,7 @@ func (o *DeviceUpdateInput) SetCustomdata(v map[string]interface{}) {
 
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *DeviceUpdateInput) GetDescription() string {
-	if o == nil || isNil(o.Description) {
+	if o == nil || IsNil(o.Description) {
 		var ret string
 		return ret
 	}
@@ -163,7 +163,7 @@ func (o *DeviceUpdateInput) GetDescription() string {
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeviceUpdateInput) GetDescriptionOk() (*string, bool) {
-	if o == nil || isNil(o.Description) {
+	if o == nil || IsNil(o.Description) {
 		return nil, false
 	}
 	return o.Description, true
@@ -171,7 +171,7 @@ func (o *DeviceUpdateInput) GetDescriptionOk() (*string, bool) {
 
 // HasDescription returns a boolean if a field has been set.
 func (o *DeviceUpdateInput) HasDescription() bool {
-	if o != nil && !isNil(o.Description) {
+	if o != nil && !IsNil(o.Description) {
 		return true
 	}
 
@@ -185,7 +185,7 @@ func (o *DeviceUpdateInput) SetDescription(v string) {
 
 // GetHostname returns the Hostname field value if set, zero value otherwise.
 func (o *DeviceUpdateInput) GetHostname() string {
-	if o == nil || isNil(o.Hostname) {
+	if o == nil || IsNil(o.Hostname) {
 		var ret string
 		return ret
 	}
@@ -195,7 +195,7 @@ func (o *DeviceUpdateInput) GetHostname() string {
 // GetHostnameOk returns a tuple with the Hostname field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeviceUpdateInput) GetHostnameOk() (*string, bool) {
-	if o == nil || isNil(o.Hostname) {
+	if o == nil || IsNil(o.Hostname) {
 		return nil, false
 	}
 	return o.Hostname, true
@@ -203,7 +203,7 @@ func (o *DeviceUpdateInput) GetHostnameOk() (*string, bool) {
 
 // HasHostname returns a boolean if a field has been set.
 func (o *DeviceUpdateInput) HasHostname() bool {
-	if o != nil && !isNil(o.Hostname) {
+	if o != nil && !IsNil(o.Hostname) {
 		return true
 	}
 
@@ -217,7 +217,7 @@ func (o *DeviceUpdateInput) SetHostname(v string) {
 
 // GetIpxeScriptUrl returns the IpxeScriptUrl field value if set, zero value otherwise.
 func (o *DeviceUpdateInput) GetIpxeScriptUrl() string {
-	if o == nil || isNil(o.IpxeScriptUrl) {
+	if o == nil || IsNil(o.IpxeScriptUrl) {
 		var ret string
 		return ret
 	}
@@ -227,7 +227,7 @@ func (o *DeviceUpdateInput) GetIpxeScriptUrl() string {
 // GetIpxeScriptUrlOk returns a tuple with the IpxeScriptUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeviceUpdateInput) GetIpxeScriptUrlOk() (*string, bool) {
-	if o == nil || isNil(o.IpxeScriptUrl) {
+	if o == nil || IsNil(o.IpxeScriptUrl) {
 		return nil, false
 	}
 	return o.IpxeScriptUrl, true
@@ -235,7 +235,7 @@ func (o *DeviceUpdateInput) GetIpxeScriptUrlOk() (*string, bool) {
 
 // HasIpxeScriptUrl returns a boolean if a field has been set.
 func (o *DeviceUpdateInput) HasIpxeScriptUrl() bool {
-	if o != nil && !isNil(o.IpxeScriptUrl) {
+	if o != nil && !IsNil(o.IpxeScriptUrl) {
 		return true
 	}
 
@@ -249,7 +249,7 @@ func (o *DeviceUpdateInput) SetIpxeScriptUrl(v string) {
 
 // GetLocked returns the Locked field value if set, zero value otherwise.
 func (o *DeviceUpdateInput) GetLocked() bool {
-	if o == nil || isNil(o.Locked) {
+	if o == nil || IsNil(o.Locked) {
 		var ret bool
 		return ret
 	}
@@ -259,7 +259,7 @@ func (o *DeviceUpdateInput) GetLocked() bool {
 // GetLockedOk returns a tuple with the Locked field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeviceUpdateInput) GetLockedOk() (*bool, bool) {
-	if o == nil || isNil(o.Locked) {
+	if o == nil || IsNil(o.Locked) {
 		return nil, false
 	}
 	return o.Locked, true
@@ -267,7 +267,7 @@ func (o *DeviceUpdateInput) GetLockedOk() (*bool, bool) {
 
 // HasLocked returns a boolean if a field has been set.
 func (o *DeviceUpdateInput) HasLocked() bool {
-	if o != nil && !isNil(o.Locked) {
+	if o != nil && !IsNil(o.Locked) {
 		return true
 	}
 
@@ -281,7 +281,7 @@ func (o *DeviceUpdateInput) SetLocked(v bool) {
 
 // GetNetworkFrozen returns the NetworkFrozen field value if set, zero value otherwise.
 func (o *DeviceUpdateInput) GetNetworkFrozen() bool {
-	if o == nil || isNil(o.NetworkFrozen) {
+	if o == nil || IsNil(o.NetworkFrozen) {
 		var ret bool
 		return ret
 	}
@@ -291,7 +291,7 @@ func (o *DeviceUpdateInput) GetNetworkFrozen() bool {
 // GetNetworkFrozenOk returns a tuple with the NetworkFrozen field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeviceUpdateInput) GetNetworkFrozenOk() (*bool, bool) {
-	if o == nil || isNil(o.NetworkFrozen) {
+	if o == nil || IsNil(o.NetworkFrozen) {
 		return nil, false
 	}
 	return o.NetworkFrozen, true
@@ -299,7 +299,7 @@ func (o *DeviceUpdateInput) GetNetworkFrozenOk() (*bool, bool) {
 
 // HasNetworkFrozen returns a boolean if a field has been set.
 func (o *DeviceUpdateInput) HasNetworkFrozen() bool {
-	if o != nil && !isNil(o.NetworkFrozen) {
+	if o != nil && !IsNil(o.NetworkFrozen) {
 		return true
 	}
 
@@ -313,7 +313,7 @@ func (o *DeviceUpdateInput) SetNetworkFrozen(v bool) {
 
 // GetSpotInstance returns the SpotInstance field value if set, zero value otherwise.
 func (o *DeviceUpdateInput) GetSpotInstance() bool {
-	if o == nil || isNil(o.SpotInstance) {
+	if o == nil || IsNil(o.SpotInstance) {
 		var ret bool
 		return ret
 	}
@@ -323,7 +323,7 @@ func (o *DeviceUpdateInput) GetSpotInstance() bool {
 // GetSpotInstanceOk returns a tuple with the SpotInstance field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeviceUpdateInput) GetSpotInstanceOk() (*bool, bool) {
-	if o == nil || isNil(o.SpotInstance) {
+	if o == nil || IsNil(o.SpotInstance) {
 		return nil, false
 	}
 	return o.SpotInstance, true
@@ -331,7 +331,7 @@ func (o *DeviceUpdateInput) GetSpotInstanceOk() (*bool, bool) {
 
 // HasSpotInstance returns a boolean if a field has been set.
 func (o *DeviceUpdateInput) HasSpotInstance() bool {
-	if o != nil && !isNil(o.SpotInstance) {
+	if o != nil && !IsNil(o.SpotInstance) {
 		return true
 	}
 
@@ -345,7 +345,7 @@ func (o *DeviceUpdateInput) SetSpotInstance(v bool) {
 
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *DeviceUpdateInput) GetTags() []string {
-	if o == nil || isNil(o.Tags) {
+	if o == nil || IsNil(o.Tags) {
 		var ret []string
 		return ret
 	}
@@ -355,7 +355,7 @@ func (o *DeviceUpdateInput) GetTags() []string {
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeviceUpdateInput) GetTagsOk() ([]string, bool) {
-	if o == nil || isNil(o.Tags) {
+	if o == nil || IsNil(o.Tags) {
 		return nil, false
 	}
 	return o.Tags, true
@@ -363,7 +363,7 @@ func (o *DeviceUpdateInput) GetTagsOk() ([]string, bool) {
 
 // HasTags returns a boolean if a field has been set.
 func (o *DeviceUpdateInput) HasTags() bool {
-	if o != nil && !isNil(o.Tags) {
+	if o != nil && !IsNil(o.Tags) {
 		return true
 	}
 
@@ -377,7 +377,7 @@ func (o *DeviceUpdateInput) SetTags(v []string) {
 
 // GetUserdata returns the Userdata field value if set, zero value otherwise.
 func (o *DeviceUpdateInput) GetUserdata() string {
-	if o == nil || isNil(o.Userdata) {
+	if o == nil || IsNil(o.Userdata) {
 		var ret string
 		return ret
 	}
@@ -387,7 +387,7 @@ func (o *DeviceUpdateInput) GetUserdata() string {
 // GetUserdataOk returns a tuple with the Userdata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeviceUpdateInput) GetUserdataOk() (*string, bool) {
-	if o == nil || isNil(o.Userdata) {
+	if o == nil || IsNil(o.Userdata) {
 		return nil, false
 	}
 	return o.Userdata, true
@@ -395,7 +395,7 @@ func (o *DeviceUpdateInput) GetUserdataOk() (*string, bool) {
 
 // HasUserdata returns a boolean if a field has been set.
 func (o *DeviceUpdateInput) HasUserdata() bool {
-	if o != nil && !isNil(o.Userdata) {
+	if o != nil && !IsNil(o.Userdata) {
 		return true
 	}
 
@@ -417,37 +417,37 @@ func (o DeviceUpdateInput) MarshalJSON() ([]byte, error) {
 
 func (o DeviceUpdateInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.AlwaysPxe) {
+	if !IsNil(o.AlwaysPxe) {
 		toSerialize["always_pxe"] = o.AlwaysPxe
 	}
-	if !isNil(o.BillingCycle) {
+	if !IsNil(o.BillingCycle) {
 		toSerialize["billing_cycle"] = o.BillingCycle
 	}
-	if !isNil(o.Customdata) {
+	if !IsNil(o.Customdata) {
 		toSerialize["customdata"] = o.Customdata
 	}
-	if !isNil(o.Description) {
+	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
-	if !isNil(o.Hostname) {
+	if !IsNil(o.Hostname) {
 		toSerialize["hostname"] = o.Hostname
 	}
-	if !isNil(o.IpxeScriptUrl) {
+	if !IsNil(o.IpxeScriptUrl) {
 		toSerialize["ipxe_script_url"] = o.IpxeScriptUrl
 	}
-	if !isNil(o.Locked) {
+	if !IsNil(o.Locked) {
 		toSerialize["locked"] = o.Locked
 	}
-	if !isNil(o.NetworkFrozen) {
+	if !IsNil(o.NetworkFrozen) {
 		toSerialize["network_frozen"] = o.NetworkFrozen
 	}
-	if !isNil(o.SpotInstance) {
+	if !IsNil(o.SpotInstance) {
 		toSerialize["spot_instance"] = o.SpotInstance
 	}
-	if !isNil(o.Tags) {
+	if !IsNil(o.Tags) {
 		toSerialize["tags"] = o.Tags
 	}
-	if !isNil(o.Userdata) {
+	if !IsNil(o.Userdata) {
 		toSerialize["userdata"] = o.Userdata
 	}
 

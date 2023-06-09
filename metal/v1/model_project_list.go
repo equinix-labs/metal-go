@@ -46,7 +46,7 @@ func NewProjectListWithDefaults() *ProjectList {
 
 // GetMeta returns the Meta field value if set, zero value otherwise.
 func (o *ProjectList) GetMeta() Meta {
-	if o == nil || isNil(o.Meta) {
+	if o == nil || IsNil(o.Meta) {
 		var ret Meta
 		return ret
 	}
@@ -56,7 +56,7 @@ func (o *ProjectList) GetMeta() Meta {
 // GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ProjectList) GetMetaOk() (*Meta, bool) {
-	if o == nil || isNil(o.Meta) {
+	if o == nil || IsNil(o.Meta) {
 		return nil, false
 	}
 	return o.Meta, true
@@ -64,7 +64,7 @@ func (o *ProjectList) GetMetaOk() (*Meta, bool) {
 
 // HasMeta returns a boolean if a field has been set.
 func (o *ProjectList) HasMeta() bool {
-	if o != nil && !isNil(o.Meta) {
+	if o != nil && !IsNil(o.Meta) {
 		return true
 	}
 
@@ -78,7 +78,7 @@ func (o *ProjectList) SetMeta(v Meta) {
 
 // GetProjects returns the Projects field value if set, zero value otherwise.
 func (o *ProjectList) GetProjects() []Project {
-	if o == nil || isNil(o.Projects) {
+	if o == nil || IsNil(o.Projects) {
 		var ret []Project
 		return ret
 	}
@@ -88,7 +88,7 @@ func (o *ProjectList) GetProjects() []Project {
 // GetProjectsOk returns a tuple with the Projects field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ProjectList) GetProjectsOk() ([]Project, bool) {
-	if o == nil || isNil(o.Projects) {
+	if o == nil || IsNil(o.Projects) {
 		return nil, false
 	}
 	return o.Projects, true
@@ -96,7 +96,7 @@ func (o *ProjectList) GetProjectsOk() ([]Project, bool) {
 
 // HasProjects returns a boolean if a field has been set.
 func (o *ProjectList) HasProjects() bool {
-	if o != nil && !isNil(o.Projects) {
+	if o != nil && !IsNil(o.Projects) {
 		return true
 	}
 
@@ -118,10 +118,10 @@ func (o ProjectList) MarshalJSON() ([]byte, error) {
 
 func (o ProjectList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Meta) {
+	if !IsNil(o.Meta) {
 		toSerialize["meta"] = o.Meta
 	}
-	if !isNil(o.Projects) {
+	if !IsNil(o.Projects) {
 		toSerialize["projects"] = o.Projects
 	}
 

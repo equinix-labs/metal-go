@@ -45,7 +45,7 @@ func NewTransferRequestListWithDefaults() *TransferRequestList {
 
 // GetTransfers returns the Transfers field value if set, zero value otherwise.
 func (o *TransferRequestList) GetTransfers() []TransferRequest {
-	if o == nil || isNil(o.Transfers) {
+	if o == nil || IsNil(o.Transfers) {
 		var ret []TransferRequest
 		return ret
 	}
@@ -55,7 +55,7 @@ func (o *TransferRequestList) GetTransfers() []TransferRequest {
 // GetTransfersOk returns a tuple with the Transfers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TransferRequestList) GetTransfersOk() ([]TransferRequest, bool) {
-	if o == nil || isNil(o.Transfers) {
+	if o == nil || IsNil(o.Transfers) {
 		return nil, false
 	}
 	return o.Transfers, true
@@ -63,7 +63,7 @@ func (o *TransferRequestList) GetTransfersOk() ([]TransferRequest, bool) {
 
 // HasTransfers returns a boolean if a field has been set.
 func (o *TransferRequestList) HasTransfers() bool {
-	if o != nil && !isNil(o.Transfers) {
+	if o != nil && !IsNil(o.Transfers) {
 		return true
 	}
 
@@ -85,7 +85,7 @@ func (o TransferRequestList) MarshalJSON() ([]byte, error) {
 
 func (o TransferRequestList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Transfers) {
+	if !IsNil(o.Transfers) {
 		toSerialize["transfers"] = o.Transfers
 	}
 

@@ -64,7 +64,7 @@ func NewBgpNeighborDataWithDefaults() *BgpNeighborData {
 
 // GetAddressFamily returns the AddressFamily field value if set, zero value otherwise.
 func (o *BgpNeighborData) GetAddressFamily() int32 {
-	if o == nil || isNil(o.AddressFamily) {
+	if o == nil || IsNil(o.AddressFamily) {
 		var ret int32
 		return ret
 	}
@@ -74,7 +74,7 @@ func (o *BgpNeighborData) GetAddressFamily() int32 {
 // GetAddressFamilyOk returns a tuple with the AddressFamily field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BgpNeighborData) GetAddressFamilyOk() (*int32, bool) {
-	if o == nil || isNil(o.AddressFamily) {
+	if o == nil || IsNil(o.AddressFamily) {
 		return nil, false
 	}
 	return o.AddressFamily, true
@@ -82,7 +82,7 @@ func (o *BgpNeighborData) GetAddressFamilyOk() (*int32, bool) {
 
 // HasAddressFamily returns a boolean if a field has been set.
 func (o *BgpNeighborData) HasAddressFamily() bool {
-	if o != nil && !isNil(o.AddressFamily) {
+	if o != nil && !IsNil(o.AddressFamily) {
 		return true
 	}
 
@@ -96,7 +96,7 @@ func (o *BgpNeighborData) SetAddressFamily(v int32) {
 
 // GetCustomerAs returns the CustomerAs field value if set, zero value otherwise.
 func (o *BgpNeighborData) GetCustomerAs() int32 {
-	if o == nil || isNil(o.CustomerAs) {
+	if o == nil || IsNil(o.CustomerAs) {
 		var ret int32
 		return ret
 	}
@@ -106,7 +106,7 @@ func (o *BgpNeighborData) GetCustomerAs() int32 {
 // GetCustomerAsOk returns a tuple with the CustomerAs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BgpNeighborData) GetCustomerAsOk() (*int32, bool) {
-	if o == nil || isNil(o.CustomerAs) {
+	if o == nil || IsNil(o.CustomerAs) {
 		return nil, false
 	}
 	return o.CustomerAs, true
@@ -114,7 +114,7 @@ func (o *BgpNeighborData) GetCustomerAsOk() (*int32, bool) {
 
 // HasCustomerAs returns a boolean if a field has been set.
 func (o *BgpNeighborData) HasCustomerAs() bool {
-	if o != nil && !isNil(o.CustomerAs) {
+	if o != nil && !IsNil(o.CustomerAs) {
 		return true
 	}
 
@@ -128,7 +128,7 @@ func (o *BgpNeighborData) SetCustomerAs(v int32) {
 
 // GetCustomerIp returns the CustomerIp field value if set, zero value otherwise.
 func (o *BgpNeighborData) GetCustomerIp() string {
-	if o == nil || isNil(o.CustomerIp) {
+	if o == nil || IsNil(o.CustomerIp) {
 		var ret string
 		return ret
 	}
@@ -138,7 +138,7 @@ func (o *BgpNeighborData) GetCustomerIp() string {
 // GetCustomerIpOk returns a tuple with the CustomerIp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BgpNeighborData) GetCustomerIpOk() (*string, bool) {
-	if o == nil || isNil(o.CustomerIp) {
+	if o == nil || IsNil(o.CustomerIp) {
 		return nil, false
 	}
 	return o.CustomerIp, true
@@ -146,7 +146,7 @@ func (o *BgpNeighborData) GetCustomerIpOk() (*string, bool) {
 
 // HasCustomerIp returns a boolean if a field has been set.
 func (o *BgpNeighborData) HasCustomerIp() bool {
-	if o != nil && !isNil(o.CustomerIp) {
+	if o != nil && !IsNil(o.CustomerIp) {
 		return true
 	}
 
@@ -160,7 +160,7 @@ func (o *BgpNeighborData) SetCustomerIp(v string) {
 
 // GetMd5Enabled returns the Md5Enabled field value if set, zero value otherwise.
 func (o *BgpNeighborData) GetMd5Enabled() bool {
-	if o == nil || isNil(o.Md5Enabled) {
+	if o == nil || IsNil(o.Md5Enabled) {
 		var ret bool
 		return ret
 	}
@@ -170,7 +170,7 @@ func (o *BgpNeighborData) GetMd5Enabled() bool {
 // GetMd5EnabledOk returns a tuple with the Md5Enabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BgpNeighborData) GetMd5EnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.Md5Enabled) {
+	if o == nil || IsNil(o.Md5Enabled) {
 		return nil, false
 	}
 	return o.Md5Enabled, true
@@ -178,7 +178,7 @@ func (o *BgpNeighborData) GetMd5EnabledOk() (*bool, bool) {
 
 // HasMd5Enabled returns a boolean if a field has been set.
 func (o *BgpNeighborData) HasMd5Enabled() bool {
-	if o != nil && !isNil(o.Md5Enabled) {
+	if o != nil && !IsNil(o.Md5Enabled) {
 		return true
 	}
 
@@ -192,7 +192,7 @@ func (o *BgpNeighborData) SetMd5Enabled(v bool) {
 
 // GetMd5Password returns the Md5Password field value if set, zero value otherwise.
 func (o *BgpNeighborData) GetMd5Password() string {
-	if o == nil || isNil(o.Md5Password) {
+	if o == nil || IsNil(o.Md5Password) {
 		var ret string
 		return ret
 	}
@@ -202,7 +202,7 @@ func (o *BgpNeighborData) GetMd5Password() string {
 // GetMd5PasswordOk returns a tuple with the Md5Password field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BgpNeighborData) GetMd5PasswordOk() (*string, bool) {
-	if o == nil || isNil(o.Md5Password) {
+	if o == nil || IsNil(o.Md5Password) {
 		return nil, false
 	}
 	return o.Md5Password, true
@@ -210,7 +210,7 @@ func (o *BgpNeighborData) GetMd5PasswordOk() (*string, bool) {
 
 // HasMd5Password returns a boolean if a field has been set.
 func (o *BgpNeighborData) HasMd5Password() bool {
-	if o != nil && !isNil(o.Md5Password) {
+	if o != nil && !IsNil(o.Md5Password) {
 		return true
 	}
 
@@ -224,7 +224,7 @@ func (o *BgpNeighborData) SetMd5Password(v string) {
 
 // GetMultihop returns the Multihop field value if set, zero value otherwise.
 func (o *BgpNeighborData) GetMultihop() bool {
-	if o == nil || isNil(o.Multihop) {
+	if o == nil || IsNil(o.Multihop) {
 		var ret bool
 		return ret
 	}
@@ -234,7 +234,7 @@ func (o *BgpNeighborData) GetMultihop() bool {
 // GetMultihopOk returns a tuple with the Multihop field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BgpNeighborData) GetMultihopOk() (*bool, bool) {
-	if o == nil || isNil(o.Multihop) {
+	if o == nil || IsNil(o.Multihop) {
 		return nil, false
 	}
 	return o.Multihop, true
@@ -242,7 +242,7 @@ func (o *BgpNeighborData) GetMultihopOk() (*bool, bool) {
 
 // HasMultihop returns a boolean if a field has been set.
 func (o *BgpNeighborData) HasMultihop() bool {
-	if o != nil && !isNil(o.Multihop) {
+	if o != nil && !IsNil(o.Multihop) {
 		return true
 	}
 
@@ -256,7 +256,7 @@ func (o *BgpNeighborData) SetMultihop(v bool) {
 
 // GetPeerAs returns the PeerAs field value if set, zero value otherwise.
 func (o *BgpNeighborData) GetPeerAs() int32 {
-	if o == nil || isNil(o.PeerAs) {
+	if o == nil || IsNil(o.PeerAs) {
 		var ret int32
 		return ret
 	}
@@ -266,7 +266,7 @@ func (o *BgpNeighborData) GetPeerAs() int32 {
 // GetPeerAsOk returns a tuple with the PeerAs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BgpNeighborData) GetPeerAsOk() (*int32, bool) {
-	if o == nil || isNil(o.PeerAs) {
+	if o == nil || IsNil(o.PeerAs) {
 		return nil, false
 	}
 	return o.PeerAs, true
@@ -274,7 +274,7 @@ func (o *BgpNeighborData) GetPeerAsOk() (*int32, bool) {
 
 // HasPeerAs returns a boolean if a field has been set.
 func (o *BgpNeighborData) HasPeerAs() bool {
-	if o != nil && !isNil(o.PeerAs) {
+	if o != nil && !IsNil(o.PeerAs) {
 		return true
 	}
 
@@ -288,7 +288,7 @@ func (o *BgpNeighborData) SetPeerAs(v int32) {
 
 // GetPeerIps returns the PeerIps field value if set, zero value otherwise.
 func (o *BgpNeighborData) GetPeerIps() []string {
-	if o == nil || isNil(o.PeerIps) {
+	if o == nil || IsNil(o.PeerIps) {
 		var ret []string
 		return ret
 	}
@@ -298,7 +298,7 @@ func (o *BgpNeighborData) GetPeerIps() []string {
 // GetPeerIpsOk returns a tuple with the PeerIps field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BgpNeighborData) GetPeerIpsOk() ([]string, bool) {
-	if o == nil || isNil(o.PeerIps) {
+	if o == nil || IsNil(o.PeerIps) {
 		return nil, false
 	}
 	return o.PeerIps, true
@@ -306,7 +306,7 @@ func (o *BgpNeighborData) GetPeerIpsOk() ([]string, bool) {
 
 // HasPeerIps returns a boolean if a field has been set.
 func (o *BgpNeighborData) HasPeerIps() bool {
-	if o != nil && !isNil(o.PeerIps) {
+	if o != nil && !IsNil(o.PeerIps) {
 		return true
 	}
 
@@ -320,7 +320,7 @@ func (o *BgpNeighborData) SetPeerIps(v []string) {
 
 // GetRoutesIn returns the RoutesIn field value if set, zero value otherwise.
 func (o *BgpNeighborData) GetRoutesIn() []BgpRoute {
-	if o == nil || isNil(o.RoutesIn) {
+	if o == nil || IsNil(o.RoutesIn) {
 		var ret []BgpRoute
 		return ret
 	}
@@ -330,7 +330,7 @@ func (o *BgpNeighborData) GetRoutesIn() []BgpRoute {
 // GetRoutesInOk returns a tuple with the RoutesIn field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BgpNeighborData) GetRoutesInOk() ([]BgpRoute, bool) {
-	if o == nil || isNil(o.RoutesIn) {
+	if o == nil || IsNil(o.RoutesIn) {
 		return nil, false
 	}
 	return o.RoutesIn, true
@@ -338,7 +338,7 @@ func (o *BgpNeighborData) GetRoutesInOk() ([]BgpRoute, bool) {
 
 // HasRoutesIn returns a boolean if a field has been set.
 func (o *BgpNeighborData) HasRoutesIn() bool {
-	if o != nil && !isNil(o.RoutesIn) {
+	if o != nil && !IsNil(o.RoutesIn) {
 		return true
 	}
 
@@ -352,7 +352,7 @@ func (o *BgpNeighborData) SetRoutesIn(v []BgpRoute) {
 
 // GetRoutesOut returns the RoutesOut field value if set, zero value otherwise.
 func (o *BgpNeighborData) GetRoutesOut() []BgpRoute {
-	if o == nil || isNil(o.RoutesOut) {
+	if o == nil || IsNil(o.RoutesOut) {
 		var ret []BgpRoute
 		return ret
 	}
@@ -362,7 +362,7 @@ func (o *BgpNeighborData) GetRoutesOut() []BgpRoute {
 // GetRoutesOutOk returns a tuple with the RoutesOut field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BgpNeighborData) GetRoutesOutOk() ([]BgpRoute, bool) {
-	if o == nil || isNil(o.RoutesOut) {
+	if o == nil || IsNil(o.RoutesOut) {
 		return nil, false
 	}
 	return o.RoutesOut, true
@@ -370,7 +370,7 @@ func (o *BgpNeighborData) GetRoutesOutOk() ([]BgpRoute, bool) {
 
 // HasRoutesOut returns a boolean if a field has been set.
 func (o *BgpNeighborData) HasRoutesOut() bool {
-	if o != nil && !isNil(o.RoutesOut) {
+	if o != nil && !IsNil(o.RoutesOut) {
 		return true
 	}
 
@@ -392,34 +392,34 @@ func (o BgpNeighborData) MarshalJSON() ([]byte, error) {
 
 func (o BgpNeighborData) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.AddressFamily) {
+	if !IsNil(o.AddressFamily) {
 		toSerialize["address_family"] = o.AddressFamily
 	}
-	if !isNil(o.CustomerAs) {
+	if !IsNil(o.CustomerAs) {
 		toSerialize["customer_as"] = o.CustomerAs
 	}
-	if !isNil(o.CustomerIp) {
+	if !IsNil(o.CustomerIp) {
 		toSerialize["customer_ip"] = o.CustomerIp
 	}
-	if !isNil(o.Md5Enabled) {
+	if !IsNil(o.Md5Enabled) {
 		toSerialize["md5_enabled"] = o.Md5Enabled
 	}
-	if !isNil(o.Md5Password) {
+	if !IsNil(o.Md5Password) {
 		toSerialize["md5_password"] = o.Md5Password
 	}
-	if !isNil(o.Multihop) {
+	if !IsNil(o.Multihop) {
 		toSerialize["multihop"] = o.Multihop
 	}
-	if !isNil(o.PeerAs) {
+	if !IsNil(o.PeerAs) {
 		toSerialize["peer_as"] = o.PeerAs
 	}
-	if !isNil(o.PeerIps) {
+	if !IsNil(o.PeerIps) {
 		toSerialize["peer_ips"] = o.PeerIps
 	}
-	if !isNil(o.RoutesIn) {
+	if !IsNil(o.RoutesIn) {
 		toSerialize["routes_in"] = o.RoutesIn
 	}
-	if !isNil(o.RoutesOut) {
+	if !IsNil(o.RoutesOut) {
 		toSerialize["routes_out"] = o.RoutesOut
 	}
 

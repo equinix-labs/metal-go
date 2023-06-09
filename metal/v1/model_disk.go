@@ -47,7 +47,7 @@ func NewDiskWithDefaults() *Disk {
 
 // GetDevice returns the Device field value if set, zero value otherwise.
 func (o *Disk) GetDevice() string {
-	if o == nil || isNil(o.Device) {
+	if o == nil || IsNil(o.Device) {
 		var ret string
 		return ret
 	}
@@ -57,7 +57,7 @@ func (o *Disk) GetDevice() string {
 // GetDeviceOk returns a tuple with the Device field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Disk) GetDeviceOk() (*string, bool) {
-	if o == nil || isNil(o.Device) {
+	if o == nil || IsNil(o.Device) {
 		return nil, false
 	}
 	return o.Device, true
@@ -65,7 +65,7 @@ func (o *Disk) GetDeviceOk() (*string, bool) {
 
 // HasDevice returns a boolean if a field has been set.
 func (o *Disk) HasDevice() bool {
-	if o != nil && !isNil(o.Device) {
+	if o != nil && !IsNil(o.Device) {
 		return true
 	}
 
@@ -79,7 +79,7 @@ func (o *Disk) SetDevice(v string) {
 
 // GetWipeTable returns the WipeTable field value if set, zero value otherwise.
 func (o *Disk) GetWipeTable() bool {
-	if o == nil || isNil(o.WipeTable) {
+	if o == nil || IsNil(o.WipeTable) {
 		var ret bool
 		return ret
 	}
@@ -89,7 +89,7 @@ func (o *Disk) GetWipeTable() bool {
 // GetWipeTableOk returns a tuple with the WipeTable field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Disk) GetWipeTableOk() (*bool, bool) {
-	if o == nil || isNil(o.WipeTable) {
+	if o == nil || IsNil(o.WipeTable) {
 		return nil, false
 	}
 	return o.WipeTable, true
@@ -97,7 +97,7 @@ func (o *Disk) GetWipeTableOk() (*bool, bool) {
 
 // HasWipeTable returns a boolean if a field has been set.
 func (o *Disk) HasWipeTable() bool {
-	if o != nil && !isNil(o.WipeTable) {
+	if o != nil && !IsNil(o.WipeTable) {
 		return true
 	}
 
@@ -111,7 +111,7 @@ func (o *Disk) SetWipeTable(v bool) {
 
 // GetPartitions returns the Partitions field value if set, zero value otherwise.
 func (o *Disk) GetPartitions() []Partition {
-	if o == nil || isNil(o.Partitions) {
+	if o == nil || IsNil(o.Partitions) {
 		var ret []Partition
 		return ret
 	}
@@ -121,7 +121,7 @@ func (o *Disk) GetPartitions() []Partition {
 // GetPartitionsOk returns a tuple with the Partitions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Disk) GetPartitionsOk() ([]Partition, bool) {
-	if o == nil || isNil(o.Partitions) {
+	if o == nil || IsNil(o.Partitions) {
 		return nil, false
 	}
 	return o.Partitions, true
@@ -129,7 +129,7 @@ func (o *Disk) GetPartitionsOk() ([]Partition, bool) {
 
 // HasPartitions returns a boolean if a field has been set.
 func (o *Disk) HasPartitions() bool {
-	if o != nil && !isNil(o.Partitions) {
+	if o != nil && !IsNil(o.Partitions) {
 		return true
 	}
 
@@ -151,13 +151,13 @@ func (o Disk) MarshalJSON() ([]byte, error) {
 
 func (o Disk) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Device) {
+	if !IsNil(o.Device) {
 		toSerialize["device"] = o.Device
 	}
-	if !isNil(o.WipeTable) {
+	if !IsNil(o.WipeTable) {
 		toSerialize["wipeTable"] = o.WipeTable
 	}
-	if !isNil(o.Partitions) {
+	if !IsNil(o.Partitions) {
 		toSerialize["partitions"] = o.Partitions
 	}
 

@@ -52,7 +52,7 @@ func NewFacilityWithDefaults() *Facility {
 
 // GetAddress returns the Address field value if set, zero value otherwise.
 func (o *Facility) GetAddress() Address {
-	if o == nil || isNil(o.Address) {
+	if o == nil || IsNil(o.Address) {
 		var ret Address
 		return ret
 	}
@@ -62,7 +62,7 @@ func (o *Facility) GetAddress() Address {
 // GetAddressOk returns a tuple with the Address field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Facility) GetAddressOk() (*Address, bool) {
-	if o == nil || isNil(o.Address) {
+	if o == nil || IsNil(o.Address) {
 		return nil, false
 	}
 	return o.Address, true
@@ -70,7 +70,7 @@ func (o *Facility) GetAddressOk() (*Address, bool) {
 
 // HasAddress returns a boolean if a field has been set.
 func (o *Facility) HasAddress() bool {
-	if o != nil && !isNil(o.Address) {
+	if o != nil && !IsNil(o.Address) {
 		return true
 	}
 
@@ -84,7 +84,7 @@ func (o *Facility) SetAddress(v Address) {
 
 // GetCode returns the Code field value if set, zero value otherwise.
 func (o *Facility) GetCode() string {
-	if o == nil || isNil(o.Code) {
+	if o == nil || IsNil(o.Code) {
 		var ret string
 		return ret
 	}
@@ -94,7 +94,7 @@ func (o *Facility) GetCode() string {
 // GetCodeOk returns a tuple with the Code field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Facility) GetCodeOk() (*string, bool) {
-	if o == nil || isNil(o.Code) {
+	if o == nil || IsNil(o.Code) {
 		return nil, false
 	}
 	return o.Code, true
@@ -102,7 +102,7 @@ func (o *Facility) GetCodeOk() (*string, bool) {
 
 // HasCode returns a boolean if a field has been set.
 func (o *Facility) HasCode() bool {
-	if o != nil && !isNil(o.Code) {
+	if o != nil && !IsNil(o.Code) {
 		return true
 	}
 
@@ -116,7 +116,7 @@ func (o *Facility) SetCode(v string) {
 
 // GetFeatures returns the Features field value if set, zero value otherwise.
 func (o *Facility) GetFeatures() []string {
-	if o == nil || isNil(o.Features) {
+	if o == nil || IsNil(o.Features) {
 		var ret []string
 		return ret
 	}
@@ -126,7 +126,7 @@ func (o *Facility) GetFeatures() []string {
 // GetFeaturesOk returns a tuple with the Features field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Facility) GetFeaturesOk() ([]string, bool) {
-	if o == nil || isNil(o.Features) {
+	if o == nil || IsNil(o.Features) {
 		return nil, false
 	}
 	return o.Features, true
@@ -134,7 +134,7 @@ func (o *Facility) GetFeaturesOk() ([]string, bool) {
 
 // HasFeatures returns a boolean if a field has been set.
 func (o *Facility) HasFeatures() bool {
-	if o != nil && !isNil(o.Features) {
+	if o != nil && !IsNil(o.Features) {
 		return true
 	}
 
@@ -148,7 +148,7 @@ func (o *Facility) SetFeatures(v []string) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *Facility) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -158,7 +158,7 @@ func (o *Facility) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Facility) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -166,7 +166,7 @@ func (o *Facility) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *Facility) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -180,7 +180,7 @@ func (o *Facility) SetId(v string) {
 
 // GetIpRanges returns the IpRanges field value if set, zero value otherwise.
 func (o *Facility) GetIpRanges() []string {
-	if o == nil || isNil(o.IpRanges) {
+	if o == nil || IsNil(o.IpRanges) {
 		var ret []string
 		return ret
 	}
@@ -190,7 +190,7 @@ func (o *Facility) GetIpRanges() []string {
 // GetIpRangesOk returns a tuple with the IpRanges field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Facility) GetIpRangesOk() ([]string, bool) {
-	if o == nil || isNil(o.IpRanges) {
+	if o == nil || IsNil(o.IpRanges) {
 		return nil, false
 	}
 	return o.IpRanges, true
@@ -198,7 +198,7 @@ func (o *Facility) GetIpRangesOk() ([]string, bool) {
 
 // HasIpRanges returns a boolean if a field has been set.
 func (o *Facility) HasIpRanges() bool {
-	if o != nil && !isNil(o.IpRanges) {
+	if o != nil && !IsNil(o.IpRanges) {
 		return true
 	}
 
@@ -212,7 +212,7 @@ func (o *Facility) SetIpRanges(v []string) {
 
 // GetMetro returns the Metro field value if set, zero value otherwise.
 func (o *Facility) GetMetro() DeviceMetro {
-	if o == nil || isNil(o.Metro) {
+	if o == nil || IsNil(o.Metro) {
 		var ret DeviceMetro
 		return ret
 	}
@@ -222,7 +222,7 @@ func (o *Facility) GetMetro() DeviceMetro {
 // GetMetroOk returns a tuple with the Metro field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Facility) GetMetroOk() (*DeviceMetro, bool) {
-	if o == nil || isNil(o.Metro) {
+	if o == nil || IsNil(o.Metro) {
 		return nil, false
 	}
 	return o.Metro, true
@@ -230,7 +230,7 @@ func (o *Facility) GetMetroOk() (*DeviceMetro, bool) {
 
 // HasMetro returns a boolean if a field has been set.
 func (o *Facility) HasMetro() bool {
-	if o != nil && !isNil(o.Metro) {
+	if o != nil && !IsNil(o.Metro) {
 		return true
 	}
 
@@ -244,7 +244,7 @@ func (o *Facility) SetMetro(v DeviceMetro) {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *Facility) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -254,7 +254,7 @@ func (o *Facility) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Facility) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
 	return o.Name, true
@@ -262,7 +262,7 @@ func (o *Facility) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *Facility) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -284,25 +284,25 @@ func (o Facility) MarshalJSON() ([]byte, error) {
 
 func (o Facility) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Address) {
+	if !IsNil(o.Address) {
 		toSerialize["address"] = o.Address
 	}
-	if !isNil(o.Code) {
+	if !IsNil(o.Code) {
 		toSerialize["code"] = o.Code
 	}
-	if !isNil(o.Features) {
+	if !IsNil(o.Features) {
 		toSerialize["features"] = o.Features
 	}
-	if !isNil(o.Id) {
+	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
-	if !isNil(o.IpRanges) {
+	if !IsNil(o.IpRanges) {
 		toSerialize["ip_ranges"] = o.IpRanges
 	}
-	if !isNil(o.Metro) {
+	if !IsNil(o.Metro) {
 		toSerialize["metro"] = o.Metro
 	}
-	if !isNil(o.Name) {
+	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
 

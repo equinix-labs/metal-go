@@ -45,7 +45,7 @@ func NewSpotPricesHistoryReportWithDefaults() *SpotPricesHistoryReport {
 
 // GetPricesHistory returns the PricesHistory field value if set, zero value otherwise.
 func (o *SpotPricesHistoryReport) GetPricesHistory() SpotPricesDatapoints {
-	if o == nil || isNil(o.PricesHistory) {
+	if o == nil || IsNil(o.PricesHistory) {
 		var ret SpotPricesDatapoints
 		return ret
 	}
@@ -55,7 +55,7 @@ func (o *SpotPricesHistoryReport) GetPricesHistory() SpotPricesDatapoints {
 // GetPricesHistoryOk returns a tuple with the PricesHistory field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SpotPricesHistoryReport) GetPricesHistoryOk() (*SpotPricesDatapoints, bool) {
-	if o == nil || isNil(o.PricesHistory) {
+	if o == nil || IsNil(o.PricesHistory) {
 		return nil, false
 	}
 	return o.PricesHistory, true
@@ -63,7 +63,7 @@ func (o *SpotPricesHistoryReport) GetPricesHistoryOk() (*SpotPricesDatapoints, b
 
 // HasPricesHistory returns a boolean if a field has been set.
 func (o *SpotPricesHistoryReport) HasPricesHistory() bool {
-	if o != nil && !isNil(o.PricesHistory) {
+	if o != nil && !IsNil(o.PricesHistory) {
 		return true
 	}
 
@@ -85,7 +85,7 @@ func (o SpotPricesHistoryReport) MarshalJSON() ([]byte, error) {
 
 func (o SpotPricesHistoryReport) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.PricesHistory) {
+	if !IsNil(o.PricesHistory) {
 		toSerialize["prices_history"] = o.PricesHistory
 	}
 

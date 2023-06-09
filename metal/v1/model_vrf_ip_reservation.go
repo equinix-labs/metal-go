@@ -71,7 +71,7 @@ func NewVrfIpReservationWithDefaults() *VrfIpReservation {
 
 // GetAddressFamily returns the AddressFamily field value if set, zero value otherwise.
 func (o *VrfIpReservation) GetAddressFamily() int32 {
-	if o == nil || isNil(o.AddressFamily) {
+	if o == nil || IsNil(o.AddressFamily) {
 		var ret int32
 		return ret
 	}
@@ -81,7 +81,7 @@ func (o *VrfIpReservation) GetAddressFamily() int32 {
 // GetAddressFamilyOk returns a tuple with the AddressFamily field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VrfIpReservation) GetAddressFamilyOk() (*int32, bool) {
-	if o == nil || isNil(o.AddressFamily) {
+	if o == nil || IsNil(o.AddressFamily) {
 		return nil, false
 	}
 	return o.AddressFamily, true
@@ -89,7 +89,7 @@ func (o *VrfIpReservation) GetAddressFamilyOk() (*int32, bool) {
 
 // HasAddressFamily returns a boolean if a field has been set.
 func (o *VrfIpReservation) HasAddressFamily() bool {
-	if o != nil && !isNil(o.AddressFamily) {
+	if o != nil && !IsNil(o.AddressFamily) {
 		return true
 	}
 
@@ -103,7 +103,7 @@ func (o *VrfIpReservation) SetAddressFamily(v int32) {
 
 // GetCidr returns the Cidr field value if set, zero value otherwise.
 func (o *VrfIpReservation) GetCidr() int32 {
-	if o == nil || isNil(o.Cidr) {
+	if o == nil || IsNil(o.Cidr) {
 		var ret int32
 		return ret
 	}
@@ -113,7 +113,7 @@ func (o *VrfIpReservation) GetCidr() int32 {
 // GetCidrOk returns a tuple with the Cidr field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VrfIpReservation) GetCidrOk() (*int32, bool) {
-	if o == nil || isNil(o.Cidr) {
+	if o == nil || IsNil(o.Cidr) {
 		return nil, false
 	}
 	return o.Cidr, true
@@ -121,7 +121,7 @@ func (o *VrfIpReservation) GetCidrOk() (*int32, bool) {
 
 // HasCidr returns a boolean if a field has been set.
 func (o *VrfIpReservation) HasCidr() bool {
-	if o != nil && !isNil(o.Cidr) {
+	if o != nil && !IsNil(o.Cidr) {
 		return true
 	}
 
@@ -135,7 +135,7 @@ func (o *VrfIpReservation) SetCidr(v int32) {
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *VrfIpReservation) GetCreatedAt() time.Time {
-	if o == nil || isNil(o.CreatedAt) {
+	if o == nil || IsNil(o.CreatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -145,7 +145,7 @@ func (o *VrfIpReservation) GetCreatedAt() time.Time {
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VrfIpReservation) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.CreatedAt) {
+	if o == nil || IsNil(o.CreatedAt) {
 		return nil, false
 	}
 	return o.CreatedAt, true
@@ -153,7 +153,7 @@ func (o *VrfIpReservation) GetCreatedAtOk() (*time.Time, bool) {
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *VrfIpReservation) HasCreatedAt() bool {
-	if o != nil && !isNil(o.CreatedAt) {
+	if o != nil && !IsNil(o.CreatedAt) {
 		return true
 	}
 
@@ -167,7 +167,7 @@ func (o *VrfIpReservation) SetCreatedAt(v time.Time) {
 
 // GetCreatedBy returns the CreatedBy field value if set, zero value otherwise.
 func (o *VrfIpReservation) GetCreatedBy() Href {
-	if o == nil || isNil(o.CreatedBy) {
+	if o == nil || IsNil(o.CreatedBy) {
 		var ret Href
 		return ret
 	}
@@ -177,7 +177,7 @@ func (o *VrfIpReservation) GetCreatedBy() Href {
 // GetCreatedByOk returns a tuple with the CreatedBy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VrfIpReservation) GetCreatedByOk() (*Href, bool) {
-	if o == nil || isNil(o.CreatedBy) {
+	if o == nil || IsNil(o.CreatedBy) {
 		return nil, false
 	}
 	return o.CreatedBy, true
@@ -185,7 +185,7 @@ func (o *VrfIpReservation) GetCreatedByOk() (*Href, bool) {
 
 // HasCreatedBy returns a boolean if a field has been set.
 func (o *VrfIpReservation) HasCreatedBy() bool {
-	if o != nil && !isNil(o.CreatedBy) {
+	if o != nil && !IsNil(o.CreatedBy) {
 		return true
 	}
 
@@ -199,7 +199,7 @@ func (o *VrfIpReservation) SetCreatedBy(v Href) {
 
 // GetDetails returns the Details field value if set, zero value otherwise.
 func (o *VrfIpReservation) GetDetails() string {
-	if o == nil || isNil(o.Details) {
+	if o == nil || IsNil(o.Details) {
 		var ret string
 		return ret
 	}
@@ -209,7 +209,7 @@ func (o *VrfIpReservation) GetDetails() string {
 // GetDetailsOk returns a tuple with the Details field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VrfIpReservation) GetDetailsOk() (*string, bool) {
-	if o == nil || isNil(o.Details) {
+	if o == nil || IsNil(o.Details) {
 		return nil, false
 	}
 	return o.Details, true
@@ -217,7 +217,7 @@ func (o *VrfIpReservation) GetDetailsOk() (*string, bool) {
 
 // HasDetails returns a boolean if a field has been set.
 func (o *VrfIpReservation) HasDetails() bool {
-	if o != nil && !isNil(o.Details) {
+	if o != nil && !IsNil(o.Details) {
 		return true
 	}
 
@@ -231,7 +231,7 @@ func (o *VrfIpReservation) SetDetails(v string) {
 
 // GetHref returns the Href field value if set, zero value otherwise.
 func (o *VrfIpReservation) GetHref() string {
-	if o == nil || isNil(o.Href) {
+	if o == nil || IsNil(o.Href) {
 		var ret string
 		return ret
 	}
@@ -241,7 +241,7 @@ func (o *VrfIpReservation) GetHref() string {
 // GetHrefOk returns a tuple with the Href field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VrfIpReservation) GetHrefOk() (*string, bool) {
-	if o == nil || isNil(o.Href) {
+	if o == nil || IsNil(o.Href) {
 		return nil, false
 	}
 	return o.Href, true
@@ -249,7 +249,7 @@ func (o *VrfIpReservation) GetHrefOk() (*string, bool) {
 
 // HasHref returns a boolean if a field has been set.
 func (o *VrfIpReservation) HasHref() bool {
-	if o != nil && !isNil(o.Href) {
+	if o != nil && !IsNil(o.Href) {
 		return true
 	}
 
@@ -263,7 +263,7 @@ func (o *VrfIpReservation) SetHref(v string) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *VrfIpReservation) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -273,7 +273,7 @@ func (o *VrfIpReservation) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VrfIpReservation) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -281,7 +281,7 @@ func (o *VrfIpReservation) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *VrfIpReservation) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -295,7 +295,7 @@ func (o *VrfIpReservation) SetId(v string) {
 
 // GetMetalGateway returns the MetalGateway field value if set, zero value otherwise.
 func (o *VrfIpReservation) GetMetalGateway() MetalGatewayLite {
-	if o == nil || isNil(o.MetalGateway) {
+	if o == nil || IsNil(o.MetalGateway) {
 		var ret MetalGatewayLite
 		return ret
 	}
@@ -305,7 +305,7 @@ func (o *VrfIpReservation) GetMetalGateway() MetalGatewayLite {
 // GetMetalGatewayOk returns a tuple with the MetalGateway field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VrfIpReservation) GetMetalGatewayOk() (*MetalGatewayLite, bool) {
-	if o == nil || isNil(o.MetalGateway) {
+	if o == nil || IsNil(o.MetalGateway) {
 		return nil, false
 	}
 	return o.MetalGateway, true
@@ -313,7 +313,7 @@ func (o *VrfIpReservation) GetMetalGatewayOk() (*MetalGatewayLite, bool) {
 
 // HasMetalGateway returns a boolean if a field has been set.
 func (o *VrfIpReservation) HasMetalGateway() bool {
-	if o != nil && !isNil(o.MetalGateway) {
+	if o != nil && !IsNil(o.MetalGateway) {
 		return true
 	}
 
@@ -327,7 +327,7 @@ func (o *VrfIpReservation) SetMetalGateway(v MetalGatewayLite) {
 
 // GetNetmask returns the Netmask field value if set, zero value otherwise.
 func (o *VrfIpReservation) GetNetmask() string {
-	if o == nil || isNil(o.Netmask) {
+	if o == nil || IsNil(o.Netmask) {
 		var ret string
 		return ret
 	}
@@ -337,7 +337,7 @@ func (o *VrfIpReservation) GetNetmask() string {
 // GetNetmaskOk returns a tuple with the Netmask field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VrfIpReservation) GetNetmaskOk() (*string, bool) {
-	if o == nil || isNil(o.Netmask) {
+	if o == nil || IsNil(o.Netmask) {
 		return nil, false
 	}
 	return o.Netmask, true
@@ -345,7 +345,7 @@ func (o *VrfIpReservation) GetNetmaskOk() (*string, bool) {
 
 // HasNetmask returns a boolean if a field has been set.
 func (o *VrfIpReservation) HasNetmask() bool {
-	if o != nil && !isNil(o.Netmask) {
+	if o != nil && !IsNil(o.Netmask) {
 		return true
 	}
 
@@ -359,7 +359,7 @@ func (o *VrfIpReservation) SetNetmask(v string) {
 
 // GetNetwork returns the Network field value if set, zero value otherwise.
 func (o *VrfIpReservation) GetNetwork() string {
-	if o == nil || isNil(o.Network) {
+	if o == nil || IsNil(o.Network) {
 		var ret string
 		return ret
 	}
@@ -369,7 +369,7 @@ func (o *VrfIpReservation) GetNetwork() string {
 // GetNetworkOk returns a tuple with the Network field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VrfIpReservation) GetNetworkOk() (*string, bool) {
-	if o == nil || isNil(o.Network) {
+	if o == nil || IsNil(o.Network) {
 		return nil, false
 	}
 	return o.Network, true
@@ -377,7 +377,7 @@ func (o *VrfIpReservation) GetNetworkOk() (*string, bool) {
 
 // HasNetwork returns a boolean if a field has been set.
 func (o *VrfIpReservation) HasNetwork() bool {
-	if o != nil && !isNil(o.Network) {
+	if o != nil && !IsNil(o.Network) {
 		return true
 	}
 
@@ -391,7 +391,7 @@ func (o *VrfIpReservation) SetNetwork(v string) {
 
 // GetProject returns the Project field value if set, zero value otherwise.
 func (o *VrfIpReservation) GetProject() Project {
-	if o == nil || isNil(o.Project) {
+	if o == nil || IsNil(o.Project) {
 		var ret Project
 		return ret
 	}
@@ -401,7 +401,7 @@ func (o *VrfIpReservation) GetProject() Project {
 // GetProjectOk returns a tuple with the Project field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VrfIpReservation) GetProjectOk() (*Project, bool) {
-	if o == nil || isNil(o.Project) {
+	if o == nil || IsNil(o.Project) {
 		return nil, false
 	}
 	return o.Project, true
@@ -409,7 +409,7 @@ func (o *VrfIpReservation) GetProjectOk() (*Project, bool) {
 
 // HasProject returns a boolean if a field has been set.
 func (o *VrfIpReservation) HasProject() bool {
-	if o != nil && !isNil(o.Project) {
+	if o != nil && !IsNil(o.Project) {
 		return true
 	}
 
@@ -423,7 +423,7 @@ func (o *VrfIpReservation) SetProject(v Project) {
 
 // GetState returns the State field value if set, zero value otherwise.
 func (o *VrfIpReservation) GetState() string {
-	if o == nil || isNil(o.State) {
+	if o == nil || IsNil(o.State) {
 		var ret string
 		return ret
 	}
@@ -433,7 +433,7 @@ func (o *VrfIpReservation) GetState() string {
 // GetStateOk returns a tuple with the State field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VrfIpReservation) GetStateOk() (*string, bool) {
-	if o == nil || isNil(o.State) {
+	if o == nil || IsNil(o.State) {
 		return nil, false
 	}
 	return o.State, true
@@ -441,7 +441,7 @@ func (o *VrfIpReservation) GetStateOk() (*string, bool) {
 
 // HasState returns a boolean if a field has been set.
 func (o *VrfIpReservation) HasState() bool {
-	if o != nil && !isNil(o.State) {
+	if o != nil && !IsNil(o.State) {
 		return true
 	}
 
@@ -455,7 +455,7 @@ func (o *VrfIpReservation) SetState(v string) {
 
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *VrfIpReservation) GetTags() []string {
-	if o == nil || isNil(o.Tags) {
+	if o == nil || IsNil(o.Tags) {
 		var ret []string
 		return ret
 	}
@@ -465,7 +465,7 @@ func (o *VrfIpReservation) GetTags() []string {
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VrfIpReservation) GetTagsOk() ([]string, bool) {
-	if o == nil || isNil(o.Tags) {
+	if o == nil || IsNil(o.Tags) {
 		return nil, false
 	}
 	return o.Tags, true
@@ -473,7 +473,7 @@ func (o *VrfIpReservation) GetTagsOk() ([]string, bool) {
 
 // HasTags returns a boolean if a field has been set.
 func (o *VrfIpReservation) HasTags() bool {
-	if o != nil && !isNil(o.Tags) {
+	if o != nil && !IsNil(o.Tags) {
 		return true
 	}
 
@@ -535,7 +535,7 @@ func (o *VrfIpReservation) SetVrf(v Vrf) {
 
 // GetPublic returns the Public field value if set, zero value otherwise.
 func (o *VrfIpReservation) GetPublic() bool {
-	if o == nil || isNil(o.Public) {
+	if o == nil || IsNil(o.Public) {
 		var ret bool
 		return ret
 	}
@@ -545,7 +545,7 @@ func (o *VrfIpReservation) GetPublic() bool {
 // GetPublicOk returns a tuple with the Public field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VrfIpReservation) GetPublicOk() (*bool, bool) {
-	if o == nil || isNil(o.Public) {
+	if o == nil || IsNil(o.Public) {
 		return nil, false
 	}
 	return o.Public, true
@@ -553,7 +553,7 @@ func (o *VrfIpReservation) GetPublicOk() (*bool, bool) {
 
 // HasPublic returns a boolean if a field has been set.
 func (o *VrfIpReservation) HasPublic() bool {
-	if o != nil && !isNil(o.Public) {
+	if o != nil && !IsNil(o.Public) {
 		return true
 	}
 
@@ -567,7 +567,7 @@ func (o *VrfIpReservation) SetPublic(v bool) {
 
 // GetManagement returns the Management field value if set, zero value otherwise.
 func (o *VrfIpReservation) GetManagement() bool {
-	if o == nil || isNil(o.Management) {
+	if o == nil || IsNil(o.Management) {
 		var ret bool
 		return ret
 	}
@@ -577,7 +577,7 @@ func (o *VrfIpReservation) GetManagement() bool {
 // GetManagementOk returns a tuple with the Management field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VrfIpReservation) GetManagementOk() (*bool, bool) {
-	if o == nil || isNil(o.Management) {
+	if o == nil || IsNil(o.Management) {
 		return nil, false
 	}
 	return o.Management, true
@@ -585,7 +585,7 @@ func (o *VrfIpReservation) GetManagementOk() (*bool, bool) {
 
 // HasManagement returns a boolean if a field has been set.
 func (o *VrfIpReservation) HasManagement() bool {
-	if o != nil && !isNil(o.Management) {
+	if o != nil && !IsNil(o.Management) {
 		return true
 	}
 
@@ -599,7 +599,7 @@ func (o *VrfIpReservation) SetManagement(v bool) {
 
 // GetManageable returns the Manageable field value if set, zero value otherwise.
 func (o *VrfIpReservation) GetManageable() bool {
-	if o == nil || isNil(o.Manageable) {
+	if o == nil || IsNil(o.Manageable) {
 		var ret bool
 		return ret
 	}
@@ -609,7 +609,7 @@ func (o *VrfIpReservation) GetManageable() bool {
 // GetManageableOk returns a tuple with the Manageable field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VrfIpReservation) GetManageableOk() (*bool, bool) {
-	if o == nil || isNil(o.Manageable) {
+	if o == nil || IsNil(o.Manageable) {
 		return nil, false
 	}
 	return o.Manageable, true
@@ -617,7 +617,7 @@ func (o *VrfIpReservation) GetManageableOk() (*bool, bool) {
 
 // HasManageable returns a boolean if a field has been set.
 func (o *VrfIpReservation) HasManageable() bool {
-	if o != nil && !isNil(o.Manageable) {
+	if o != nil && !IsNil(o.Manageable) {
 		return true
 	}
 
@@ -631,7 +631,7 @@ func (o *VrfIpReservation) SetManageable(v bool) {
 
 // GetCustomdata returns the Customdata field value if set, zero value otherwise.
 func (o *VrfIpReservation) GetCustomdata() map[string]interface{} {
-	if o == nil || isNil(o.Customdata) {
+	if o == nil || IsNil(o.Customdata) {
 		var ret map[string]interface{}
 		return ret
 	}
@@ -641,7 +641,7 @@ func (o *VrfIpReservation) GetCustomdata() map[string]interface{} {
 // GetCustomdataOk returns a tuple with the Customdata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VrfIpReservation) GetCustomdataOk() (map[string]interface{}, bool) {
-	if o == nil || isNil(o.Customdata) {
+	if o == nil || IsNil(o.Customdata) {
 		return map[string]interface{}{}, false
 	}
 	return o.Customdata, true
@@ -649,7 +649,7 @@ func (o *VrfIpReservation) GetCustomdataOk() (map[string]interface{}, bool) {
 
 // HasCustomdata returns a boolean if a field has been set.
 func (o *VrfIpReservation) HasCustomdata() bool {
-	if o != nil && !isNil(o.Customdata) {
+	if o != nil && !IsNil(o.Customdata) {
 		return true
 	}
 
@@ -663,7 +663,7 @@ func (o *VrfIpReservation) SetCustomdata(v map[string]interface{}) {
 
 // GetBill returns the Bill field value if set, zero value otherwise.
 func (o *VrfIpReservation) GetBill() bool {
-	if o == nil || isNil(o.Bill) {
+	if o == nil || IsNil(o.Bill) {
 		var ret bool
 		return ret
 	}
@@ -673,7 +673,7 @@ func (o *VrfIpReservation) GetBill() bool {
 // GetBillOk returns a tuple with the Bill field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VrfIpReservation) GetBillOk() (*bool, bool) {
-	if o == nil || isNil(o.Bill) {
+	if o == nil || IsNil(o.Bill) {
 		return nil, false
 	}
 	return o.Bill, true
@@ -681,7 +681,7 @@ func (o *VrfIpReservation) GetBillOk() (*bool, bool) {
 
 // HasBill returns a boolean if a field has been set.
 func (o *VrfIpReservation) HasBill() bool {
-	if o != nil && !isNil(o.Bill) {
+	if o != nil && !IsNil(o.Bill) {
 		return true
 	}
 
@@ -695,7 +695,7 @@ func (o *VrfIpReservation) SetBill(v bool) {
 
 // GetProjectLite returns the ProjectLite field value if set, zero value otherwise.
 func (o *VrfIpReservation) GetProjectLite() Project {
-	if o == nil || isNil(o.ProjectLite) {
+	if o == nil || IsNil(o.ProjectLite) {
 		var ret Project
 		return ret
 	}
@@ -705,7 +705,7 @@ func (o *VrfIpReservation) GetProjectLite() Project {
 // GetProjectLiteOk returns a tuple with the ProjectLite field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VrfIpReservation) GetProjectLiteOk() (*Project, bool) {
-	if o == nil || isNil(o.ProjectLite) {
+	if o == nil || IsNil(o.ProjectLite) {
 		return nil, false
 	}
 	return o.ProjectLite, true
@@ -713,7 +713,7 @@ func (o *VrfIpReservation) GetProjectLiteOk() (*Project, bool) {
 
 // HasProjectLite returns a boolean if a field has been set.
 func (o *VrfIpReservation) HasProjectLite() bool {
-	if o != nil && !isNil(o.ProjectLite) {
+	if o != nil && !IsNil(o.ProjectLite) {
 		return true
 	}
 
@@ -727,7 +727,7 @@ func (o *VrfIpReservation) SetProjectLite(v Project) {
 
 // GetAddress returns the Address field value if set, zero value otherwise.
 func (o *VrfIpReservation) GetAddress() string {
-	if o == nil || isNil(o.Address) {
+	if o == nil || IsNil(o.Address) {
 		var ret string
 		return ret
 	}
@@ -737,7 +737,7 @@ func (o *VrfIpReservation) GetAddress() string {
 // GetAddressOk returns a tuple with the Address field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VrfIpReservation) GetAddressOk() (*string, bool) {
-	if o == nil || isNil(o.Address) {
+	if o == nil || IsNil(o.Address) {
 		return nil, false
 	}
 	return o.Address, true
@@ -745,7 +745,7 @@ func (o *VrfIpReservation) GetAddressOk() (*string, bool) {
 
 // HasAddress returns a boolean if a field has been set.
 func (o *VrfIpReservation) HasAddress() bool {
-	if o != nil && !isNil(o.Address) {
+	if o != nil && !IsNil(o.Address) {
 		return true
 	}
 
@@ -759,7 +759,7 @@ func (o *VrfIpReservation) SetAddress(v string) {
 
 // GetGateway returns the Gateway field value if set, zero value otherwise.
 func (o *VrfIpReservation) GetGateway() string {
-	if o == nil || isNil(o.Gateway) {
+	if o == nil || IsNil(o.Gateway) {
 		var ret string
 		return ret
 	}
@@ -769,7 +769,7 @@ func (o *VrfIpReservation) GetGateway() string {
 // GetGatewayOk returns a tuple with the Gateway field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VrfIpReservation) GetGatewayOk() (*string, bool) {
-	if o == nil || isNil(o.Gateway) {
+	if o == nil || IsNil(o.Gateway) {
 		return nil, false
 	}
 	return o.Gateway, true
@@ -777,7 +777,7 @@ func (o *VrfIpReservation) GetGatewayOk() (*string, bool) {
 
 // HasGateway returns a boolean if a field has been set.
 func (o *VrfIpReservation) HasGateway() bool {
-	if o != nil && !isNil(o.Gateway) {
+	if o != nil && !IsNil(o.Gateway) {
 		return true
 	}
 
@@ -791,7 +791,7 @@ func (o *VrfIpReservation) SetGateway(v string) {
 
 // GetMetro returns the Metro field value if set, zero value otherwise.
 func (o *VrfIpReservation) GetMetro() Metro {
-	if o == nil || isNil(o.Metro) {
+	if o == nil || IsNil(o.Metro) {
 		var ret Metro
 		return ret
 	}
@@ -801,7 +801,7 @@ func (o *VrfIpReservation) GetMetro() Metro {
 // GetMetroOk returns a tuple with the Metro field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VrfIpReservation) GetMetroOk() (*Metro, bool) {
-	if o == nil || isNil(o.Metro) {
+	if o == nil || IsNil(o.Metro) {
 		return nil, false
 	}
 	return o.Metro, true
@@ -809,7 +809,7 @@ func (o *VrfIpReservation) GetMetroOk() (*Metro, bool) {
 
 // HasMetro returns a boolean if a field has been set.
 func (o *VrfIpReservation) HasMetro() bool {
-	if o != nil && !isNil(o.Metro) {
+	if o != nil && !IsNil(o.Metro) {
 		return true
 	}
 
@@ -831,72 +831,72 @@ func (o VrfIpReservation) MarshalJSON() ([]byte, error) {
 
 func (o VrfIpReservation) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.AddressFamily) {
+	if !IsNil(o.AddressFamily) {
 		toSerialize["address_family"] = o.AddressFamily
 	}
-	if !isNil(o.Cidr) {
+	if !IsNil(o.Cidr) {
 		toSerialize["cidr"] = o.Cidr
 	}
-	if !isNil(o.CreatedAt) {
+	if !IsNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt
 	}
-	if !isNil(o.CreatedBy) {
+	if !IsNil(o.CreatedBy) {
 		toSerialize["created_by"] = o.CreatedBy
 	}
-	if !isNil(o.Details) {
+	if !IsNil(o.Details) {
 		toSerialize["details"] = o.Details
 	}
-	if !isNil(o.Href) {
+	if !IsNil(o.Href) {
 		toSerialize["href"] = o.Href
 	}
-	if !isNil(o.Id) {
+	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
-	if !isNil(o.MetalGateway) {
+	if !IsNil(o.MetalGateway) {
 		toSerialize["metal_gateway"] = o.MetalGateway
 	}
-	if !isNil(o.Netmask) {
+	if !IsNil(o.Netmask) {
 		toSerialize["netmask"] = o.Netmask
 	}
-	if !isNil(o.Network) {
+	if !IsNil(o.Network) {
 		toSerialize["network"] = o.Network
 	}
-	if !isNil(o.Project) {
+	if !IsNil(o.Project) {
 		toSerialize["project"] = o.Project
 	}
-	if !isNil(o.State) {
+	if !IsNil(o.State) {
 		toSerialize["state"] = o.State
 	}
-	if !isNil(o.Tags) {
+	if !IsNil(o.Tags) {
 		toSerialize["tags"] = o.Tags
 	}
 	toSerialize["type"] = o.Type
 	toSerialize["vrf"] = o.Vrf
-	if !isNil(o.Public) {
+	if !IsNil(o.Public) {
 		toSerialize["public"] = o.Public
 	}
-	if !isNil(o.Management) {
+	if !IsNil(o.Management) {
 		toSerialize["management"] = o.Management
 	}
-	if !isNil(o.Manageable) {
+	if !IsNil(o.Manageable) {
 		toSerialize["manageable"] = o.Manageable
 	}
-	if !isNil(o.Customdata) {
+	if !IsNil(o.Customdata) {
 		toSerialize["customdata"] = o.Customdata
 	}
-	if !isNil(o.Bill) {
+	if !IsNil(o.Bill) {
 		toSerialize["bill"] = o.Bill
 	}
-	if !isNil(o.ProjectLite) {
+	if !IsNil(o.ProjectLite) {
 		toSerialize["project_lite"] = o.ProjectLite
 	}
-	if !isNil(o.Address) {
+	if !IsNil(o.Address) {
 		toSerialize["address"] = o.Address
 	}
-	if !isNil(o.Gateway) {
+	if !IsNil(o.Gateway) {
 		toSerialize["gateway"] = o.Gateway
 	}
-	if !isNil(o.Metro) {
+	if !IsNil(o.Metro) {
 		toSerialize["metro"] = o.Metro
 	}
 

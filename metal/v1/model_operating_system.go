@@ -57,7 +57,7 @@ func NewOperatingSystemWithDefaults() *OperatingSystem {
 
 // GetDistro returns the Distro field value if set, zero value otherwise.
 func (o *OperatingSystem) GetDistro() string {
-	if o == nil || isNil(o.Distro) {
+	if o == nil || IsNil(o.Distro) {
 		var ret string
 		return ret
 	}
@@ -67,7 +67,7 @@ func (o *OperatingSystem) GetDistro() string {
 // GetDistroOk returns a tuple with the Distro field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OperatingSystem) GetDistroOk() (*string, bool) {
-	if o == nil || isNil(o.Distro) {
+	if o == nil || IsNil(o.Distro) {
 		return nil, false
 	}
 	return o.Distro, true
@@ -75,7 +75,7 @@ func (o *OperatingSystem) GetDistroOk() (*string, bool) {
 
 // HasDistro returns a boolean if a field has been set.
 func (o *OperatingSystem) HasDistro() bool {
-	if o != nil && !isNil(o.Distro) {
+	if o != nil && !IsNil(o.Distro) {
 		return true
 	}
 
@@ -89,7 +89,7 @@ func (o *OperatingSystem) SetDistro(v string) {
 
 // GetDistroLabel returns the DistroLabel field value if set, zero value otherwise.
 func (o *OperatingSystem) GetDistroLabel() string {
-	if o == nil || isNil(o.DistroLabel) {
+	if o == nil || IsNil(o.DistroLabel) {
 		var ret string
 		return ret
 	}
@@ -99,7 +99,7 @@ func (o *OperatingSystem) GetDistroLabel() string {
 // GetDistroLabelOk returns a tuple with the DistroLabel field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OperatingSystem) GetDistroLabelOk() (*string, bool) {
-	if o == nil || isNil(o.DistroLabel) {
+	if o == nil || IsNil(o.DistroLabel) {
 		return nil, false
 	}
 	return o.DistroLabel, true
@@ -107,7 +107,7 @@ func (o *OperatingSystem) GetDistroLabelOk() (*string, bool) {
 
 // HasDistroLabel returns a boolean if a field has been set.
 func (o *OperatingSystem) HasDistroLabel() bool {
-	if o != nil && !isNil(o.DistroLabel) {
+	if o != nil && !IsNil(o.DistroLabel) {
 		return true
 	}
 
@@ -121,7 +121,7 @@ func (o *OperatingSystem) SetDistroLabel(v string) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *OperatingSystem) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -131,7 +131,7 @@ func (o *OperatingSystem) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OperatingSystem) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -139,7 +139,7 @@ func (o *OperatingSystem) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *OperatingSystem) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -153,7 +153,7 @@ func (o *OperatingSystem) SetId(v string) {
 
 // GetLicensed returns the Licensed field value if set, zero value otherwise.
 func (o *OperatingSystem) GetLicensed() bool {
-	if o == nil || isNil(o.Licensed) {
+	if o == nil || IsNil(o.Licensed) {
 		var ret bool
 		return ret
 	}
@@ -163,7 +163,7 @@ func (o *OperatingSystem) GetLicensed() bool {
 // GetLicensedOk returns a tuple with the Licensed field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OperatingSystem) GetLicensedOk() (*bool, bool) {
-	if o == nil || isNil(o.Licensed) {
+	if o == nil || IsNil(o.Licensed) {
 		return nil, false
 	}
 	return o.Licensed, true
@@ -171,7 +171,7 @@ func (o *OperatingSystem) GetLicensedOk() (*bool, bool) {
 
 // HasLicensed returns a boolean if a field has been set.
 func (o *OperatingSystem) HasLicensed() bool {
-	if o != nil && !isNil(o.Licensed) {
+	if o != nil && !IsNil(o.Licensed) {
 		return true
 	}
 
@@ -185,7 +185,7 @@ func (o *OperatingSystem) SetLicensed(v bool) {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *OperatingSystem) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -195,7 +195,7 @@ func (o *OperatingSystem) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OperatingSystem) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
 	return o.Name, true
@@ -203,7 +203,7 @@ func (o *OperatingSystem) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *OperatingSystem) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -217,7 +217,7 @@ func (o *OperatingSystem) SetName(v string) {
 
 // GetPreinstallable returns the Preinstallable field value if set, zero value otherwise.
 func (o *OperatingSystem) GetPreinstallable() bool {
-	if o == nil || isNil(o.Preinstallable) {
+	if o == nil || IsNil(o.Preinstallable) {
 		var ret bool
 		return ret
 	}
@@ -227,7 +227,7 @@ func (o *OperatingSystem) GetPreinstallable() bool {
 // GetPreinstallableOk returns a tuple with the Preinstallable field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OperatingSystem) GetPreinstallableOk() (*bool, bool) {
-	if o == nil || isNil(o.Preinstallable) {
+	if o == nil || IsNil(o.Preinstallable) {
 		return nil, false
 	}
 	return o.Preinstallable, true
@@ -235,7 +235,7 @@ func (o *OperatingSystem) GetPreinstallableOk() (*bool, bool) {
 
 // HasPreinstallable returns a boolean if a field has been set.
 func (o *OperatingSystem) HasPreinstallable() bool {
-	if o != nil && !isNil(o.Preinstallable) {
+	if o != nil && !IsNil(o.Preinstallable) {
 		return true
 	}
 
@@ -249,7 +249,7 @@ func (o *OperatingSystem) SetPreinstallable(v bool) {
 
 // GetPricing returns the Pricing field value if set, zero value otherwise.
 func (o *OperatingSystem) GetPricing() map[string]interface{} {
-	if o == nil || isNil(o.Pricing) {
+	if o == nil || IsNil(o.Pricing) {
 		var ret map[string]interface{}
 		return ret
 	}
@@ -259,7 +259,7 @@ func (o *OperatingSystem) GetPricing() map[string]interface{} {
 // GetPricingOk returns a tuple with the Pricing field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OperatingSystem) GetPricingOk() (map[string]interface{}, bool) {
-	if o == nil || isNil(o.Pricing) {
+	if o == nil || IsNil(o.Pricing) {
 		return map[string]interface{}{}, false
 	}
 	return o.Pricing, true
@@ -267,7 +267,7 @@ func (o *OperatingSystem) GetPricingOk() (map[string]interface{}, bool) {
 
 // HasPricing returns a boolean if a field has been set.
 func (o *OperatingSystem) HasPricing() bool {
-	if o != nil && !isNil(o.Pricing) {
+	if o != nil && !IsNil(o.Pricing) {
 		return true
 	}
 
@@ -281,7 +281,7 @@ func (o *OperatingSystem) SetPricing(v map[string]interface{}) {
 
 // GetProvisionableOn returns the ProvisionableOn field value if set, zero value otherwise.
 func (o *OperatingSystem) GetProvisionableOn() []string {
-	if o == nil || isNil(o.ProvisionableOn) {
+	if o == nil || IsNil(o.ProvisionableOn) {
 		var ret []string
 		return ret
 	}
@@ -291,7 +291,7 @@ func (o *OperatingSystem) GetProvisionableOn() []string {
 // GetProvisionableOnOk returns a tuple with the ProvisionableOn field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OperatingSystem) GetProvisionableOnOk() ([]string, bool) {
-	if o == nil || isNil(o.ProvisionableOn) {
+	if o == nil || IsNil(o.ProvisionableOn) {
 		return nil, false
 	}
 	return o.ProvisionableOn, true
@@ -299,7 +299,7 @@ func (o *OperatingSystem) GetProvisionableOnOk() ([]string, bool) {
 
 // HasProvisionableOn returns a boolean if a field has been set.
 func (o *OperatingSystem) HasProvisionableOn() bool {
-	if o != nil && !isNil(o.ProvisionableOn) {
+	if o != nil && !IsNil(o.ProvisionableOn) {
 		return true
 	}
 
@@ -313,7 +313,7 @@ func (o *OperatingSystem) SetProvisionableOn(v []string) {
 
 // GetSlug returns the Slug field value if set, zero value otherwise.
 func (o *OperatingSystem) GetSlug() string {
-	if o == nil || isNil(o.Slug) {
+	if o == nil || IsNil(o.Slug) {
 		var ret string
 		return ret
 	}
@@ -323,7 +323,7 @@ func (o *OperatingSystem) GetSlug() string {
 // GetSlugOk returns a tuple with the Slug field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OperatingSystem) GetSlugOk() (*string, bool) {
-	if o == nil || isNil(o.Slug) {
+	if o == nil || IsNil(o.Slug) {
 		return nil, false
 	}
 	return o.Slug, true
@@ -331,7 +331,7 @@ func (o *OperatingSystem) GetSlugOk() (*string, bool) {
 
 // HasSlug returns a boolean if a field has been set.
 func (o *OperatingSystem) HasSlug() bool {
-	if o != nil && !isNil(o.Slug) {
+	if o != nil && !IsNil(o.Slug) {
 		return true
 	}
 
@@ -345,7 +345,7 @@ func (o *OperatingSystem) SetSlug(v string) {
 
 // GetVersion returns the Version field value if set, zero value otherwise.
 func (o *OperatingSystem) GetVersion() string {
-	if o == nil || isNil(o.Version) {
+	if o == nil || IsNil(o.Version) {
 		var ret string
 		return ret
 	}
@@ -355,7 +355,7 @@ func (o *OperatingSystem) GetVersion() string {
 // GetVersionOk returns a tuple with the Version field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OperatingSystem) GetVersionOk() (*string, bool) {
-	if o == nil || isNil(o.Version) {
+	if o == nil || IsNil(o.Version) {
 		return nil, false
 	}
 	return o.Version, true
@@ -363,7 +363,7 @@ func (o *OperatingSystem) GetVersionOk() (*string, bool) {
 
 // HasVersion returns a boolean if a field has been set.
 func (o *OperatingSystem) HasVersion() bool {
-	if o != nil && !isNil(o.Version) {
+	if o != nil && !IsNil(o.Version) {
 		return true
 	}
 
@@ -385,34 +385,34 @@ func (o OperatingSystem) MarshalJSON() ([]byte, error) {
 
 func (o OperatingSystem) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Distro) {
+	if !IsNil(o.Distro) {
 		toSerialize["distro"] = o.Distro
 	}
-	if !isNil(o.DistroLabel) {
+	if !IsNil(o.DistroLabel) {
 		toSerialize["distro_label"] = o.DistroLabel
 	}
-	if !isNil(o.Id) {
+	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
-	if !isNil(o.Licensed) {
+	if !IsNil(o.Licensed) {
 		toSerialize["licensed"] = o.Licensed
 	}
-	if !isNil(o.Name) {
+	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
-	if !isNil(o.Preinstallable) {
+	if !IsNil(o.Preinstallable) {
 		toSerialize["preinstallable"] = o.Preinstallable
 	}
-	if !isNil(o.Pricing) {
+	if !IsNil(o.Pricing) {
 		toSerialize["pricing"] = o.Pricing
 	}
-	if !isNil(o.ProvisionableOn) {
+	if !IsNil(o.ProvisionableOn) {
 		toSerialize["provisionable_on"] = o.ProvisionableOn
 	}
-	if !isNil(o.Slug) {
+	if !IsNil(o.Slug) {
 		toSerialize["slug"] = o.Slug
 	}
-	if !isNil(o.Version) {
+	if !IsNil(o.Version) {
 		toSerialize["version"] = o.Version
 	}
 

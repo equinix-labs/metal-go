@@ -98,7 +98,7 @@ func (o *BgpConfigRequestInput) SetDeploymentType(v string) {
 
 // GetMd5 returns the Md5 field value if set, zero value otherwise.
 func (o *BgpConfigRequestInput) GetMd5() string {
-	if o == nil || isNil(o.Md5) {
+	if o == nil || IsNil(o.Md5) {
 		var ret string
 		return ret
 	}
@@ -108,7 +108,7 @@ func (o *BgpConfigRequestInput) GetMd5() string {
 // GetMd5Ok returns a tuple with the Md5 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BgpConfigRequestInput) GetMd5Ok() (*string, bool) {
-	if o == nil || isNil(o.Md5) {
+	if o == nil || IsNil(o.Md5) {
 		return nil, false
 	}
 	return o.Md5, true
@@ -116,7 +116,7 @@ func (o *BgpConfigRequestInput) GetMd5Ok() (*string, bool) {
 
 // HasMd5 returns a boolean if a field has been set.
 func (o *BgpConfigRequestInput) HasMd5() bool {
-	if o != nil && !isNil(o.Md5) {
+	if o != nil && !IsNil(o.Md5) {
 		return true
 	}
 
@@ -130,7 +130,7 @@ func (o *BgpConfigRequestInput) SetMd5(v string) {
 
 // GetUseCase returns the UseCase field value if set, zero value otherwise.
 func (o *BgpConfigRequestInput) GetUseCase() string {
-	if o == nil || isNil(o.UseCase) {
+	if o == nil || IsNil(o.UseCase) {
 		var ret string
 		return ret
 	}
@@ -140,7 +140,7 @@ func (o *BgpConfigRequestInput) GetUseCase() string {
 // GetUseCaseOk returns a tuple with the UseCase field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BgpConfigRequestInput) GetUseCaseOk() (*string, bool) {
-	if o == nil || isNil(o.UseCase) {
+	if o == nil || IsNil(o.UseCase) {
 		return nil, false
 	}
 	return o.UseCase, true
@@ -148,7 +148,7 @@ func (o *BgpConfigRequestInput) GetUseCaseOk() (*string, bool) {
 
 // HasUseCase returns a boolean if a field has been set.
 func (o *BgpConfigRequestInput) HasUseCase() bool {
-	if o != nil && !isNil(o.UseCase) {
+	if o != nil && !IsNil(o.UseCase) {
 		return true
 	}
 
@@ -172,10 +172,10 @@ func (o BgpConfigRequestInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["asn"] = o.Asn
 	toSerialize["deployment_type"] = o.DeploymentType
-	if !isNil(o.Md5) {
+	if !IsNil(o.Md5) {
 		toSerialize["md5"] = o.Md5
 	}
-	if !isNil(o.UseCase) {
+	if !IsNil(o.UseCase) {
 		toSerialize["use_case"] = o.UseCase
 	}
 

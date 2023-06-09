@@ -47,7 +47,7 @@ func NewDeviceUsageWithDefaults() *DeviceUsage {
 
 // GetQuantity returns the Quantity field value if set, zero value otherwise.
 func (o *DeviceUsage) GetQuantity() string {
-	if o == nil || isNil(o.Quantity) {
+	if o == nil || IsNil(o.Quantity) {
 		var ret string
 		return ret
 	}
@@ -57,7 +57,7 @@ func (o *DeviceUsage) GetQuantity() string {
 // GetQuantityOk returns a tuple with the Quantity field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeviceUsage) GetQuantityOk() (*string, bool) {
-	if o == nil || isNil(o.Quantity) {
+	if o == nil || IsNil(o.Quantity) {
 		return nil, false
 	}
 	return o.Quantity, true
@@ -65,7 +65,7 @@ func (o *DeviceUsage) GetQuantityOk() (*string, bool) {
 
 // HasQuantity returns a boolean if a field has been set.
 func (o *DeviceUsage) HasQuantity() bool {
-	if o != nil && !isNil(o.Quantity) {
+	if o != nil && !IsNil(o.Quantity) {
 		return true
 	}
 
@@ -79,7 +79,7 @@ func (o *DeviceUsage) SetQuantity(v string) {
 
 // GetTotal returns the Total field value if set, zero value otherwise.
 func (o *DeviceUsage) GetTotal() string {
-	if o == nil || isNil(o.Total) {
+	if o == nil || IsNil(o.Total) {
 		var ret string
 		return ret
 	}
@@ -89,7 +89,7 @@ func (o *DeviceUsage) GetTotal() string {
 // GetTotalOk returns a tuple with the Total field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeviceUsage) GetTotalOk() (*string, bool) {
-	if o == nil || isNil(o.Total) {
+	if o == nil || IsNil(o.Total) {
 		return nil, false
 	}
 	return o.Total, true
@@ -97,7 +97,7 @@ func (o *DeviceUsage) GetTotalOk() (*string, bool) {
 
 // HasTotal returns a boolean if a field has been set.
 func (o *DeviceUsage) HasTotal() bool {
-	if o != nil && !isNil(o.Total) {
+	if o != nil && !IsNil(o.Total) {
 		return true
 	}
 
@@ -111,7 +111,7 @@ func (o *DeviceUsage) SetTotal(v string) {
 
 // GetUnit returns the Unit field value if set, zero value otherwise.
 func (o *DeviceUsage) GetUnit() string {
-	if o == nil || isNil(o.Unit) {
+	if o == nil || IsNil(o.Unit) {
 		var ret string
 		return ret
 	}
@@ -121,7 +121,7 @@ func (o *DeviceUsage) GetUnit() string {
 // GetUnitOk returns a tuple with the Unit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeviceUsage) GetUnitOk() (*string, bool) {
-	if o == nil || isNil(o.Unit) {
+	if o == nil || IsNil(o.Unit) {
 		return nil, false
 	}
 	return o.Unit, true
@@ -129,7 +129,7 @@ func (o *DeviceUsage) GetUnitOk() (*string, bool) {
 
 // HasUnit returns a boolean if a field has been set.
 func (o *DeviceUsage) HasUnit() bool {
-	if o != nil && !isNil(o.Unit) {
+	if o != nil && !IsNil(o.Unit) {
 		return true
 	}
 
@@ -151,13 +151,13 @@ func (o DeviceUsage) MarshalJSON() ([]byte, error) {
 
 func (o DeviceUsage) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Quantity) {
+	if !IsNil(o.Quantity) {
 		toSerialize["quantity"] = o.Quantity
 	}
-	if !isNil(o.Total) {
+	if !IsNil(o.Total) {
 		toSerialize["total"] = o.Total
 	}
-	if !isNil(o.Unit) {
+	if !IsNil(o.Unit) {
 		toSerialize["unit"] = o.Unit
 	}
 

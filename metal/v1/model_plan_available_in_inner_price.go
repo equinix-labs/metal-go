@@ -45,7 +45,7 @@ func NewPlanAvailableInInnerPriceWithDefaults() *PlanAvailableInInnerPrice {
 
 // GetHour returns the Hour field value if set, zero value otherwise.
 func (o *PlanAvailableInInnerPrice) GetHour() float64 {
-	if o == nil || isNil(o.Hour) {
+	if o == nil || IsNil(o.Hour) {
 		var ret float64
 		return ret
 	}
@@ -55,7 +55,7 @@ func (o *PlanAvailableInInnerPrice) GetHour() float64 {
 // GetHourOk returns a tuple with the Hour field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PlanAvailableInInnerPrice) GetHourOk() (*float64, bool) {
-	if o == nil || isNil(o.Hour) {
+	if o == nil || IsNil(o.Hour) {
 		return nil, false
 	}
 	return o.Hour, true
@@ -63,7 +63,7 @@ func (o *PlanAvailableInInnerPrice) GetHourOk() (*float64, bool) {
 
 // HasHour returns a boolean if a field has been set.
 func (o *PlanAvailableInInnerPrice) HasHour() bool {
-	if o != nil && !isNil(o.Hour) {
+	if o != nil && !IsNil(o.Hour) {
 		return true
 	}
 
@@ -85,7 +85,7 @@ func (o PlanAvailableInInnerPrice) MarshalJSON() ([]byte, error) {
 
 func (o PlanAvailableInInnerPrice) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Hour) {
+	if !IsNil(o.Hour) {
 		toSerialize["hour"] = o.Hour
 	}
 

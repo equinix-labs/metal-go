@@ -54,7 +54,7 @@ func NewPortVlanAssignmentBatchWithDefaults() *PortVlanAssignmentBatch {
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *PortVlanAssignmentBatch) GetCreatedAt() time.Time {
-	if o == nil || isNil(o.CreatedAt) {
+	if o == nil || IsNil(o.CreatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -64,7 +64,7 @@ func (o *PortVlanAssignmentBatch) GetCreatedAt() time.Time {
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PortVlanAssignmentBatch) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.CreatedAt) {
+	if o == nil || IsNil(o.CreatedAt) {
 		return nil, false
 	}
 	return o.CreatedAt, true
@@ -72,7 +72,7 @@ func (o *PortVlanAssignmentBatch) GetCreatedAtOk() (*time.Time, bool) {
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *PortVlanAssignmentBatch) HasCreatedAt() bool {
-	if o != nil && !isNil(o.CreatedAt) {
+	if o != nil && !IsNil(o.CreatedAt) {
 		return true
 	}
 
@@ -86,7 +86,7 @@ func (o *PortVlanAssignmentBatch) SetCreatedAt(v time.Time) {
 
 // GetErrorMessages returns the ErrorMessages field value if set, zero value otherwise.
 func (o *PortVlanAssignmentBatch) GetErrorMessages() []string {
-	if o == nil || isNil(o.ErrorMessages) {
+	if o == nil || IsNil(o.ErrorMessages) {
 		var ret []string
 		return ret
 	}
@@ -96,7 +96,7 @@ func (o *PortVlanAssignmentBatch) GetErrorMessages() []string {
 // GetErrorMessagesOk returns a tuple with the ErrorMessages field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PortVlanAssignmentBatch) GetErrorMessagesOk() ([]string, bool) {
-	if o == nil || isNil(o.ErrorMessages) {
+	if o == nil || IsNil(o.ErrorMessages) {
 		return nil, false
 	}
 	return o.ErrorMessages, true
@@ -104,7 +104,7 @@ func (o *PortVlanAssignmentBatch) GetErrorMessagesOk() ([]string, bool) {
 
 // HasErrorMessages returns a boolean if a field has been set.
 func (o *PortVlanAssignmentBatch) HasErrorMessages() bool {
-	if o != nil && !isNil(o.ErrorMessages) {
+	if o != nil && !IsNil(o.ErrorMessages) {
 		return true
 	}
 
@@ -118,7 +118,7 @@ func (o *PortVlanAssignmentBatch) SetErrorMessages(v []string) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *PortVlanAssignmentBatch) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -128,7 +128,7 @@ func (o *PortVlanAssignmentBatch) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PortVlanAssignmentBatch) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -136,7 +136,7 @@ func (o *PortVlanAssignmentBatch) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *PortVlanAssignmentBatch) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -150,7 +150,7 @@ func (o *PortVlanAssignmentBatch) SetId(v string) {
 
 // GetPort returns the Port field value if set, zero value otherwise.
 func (o *PortVlanAssignmentBatch) GetPort() Port {
-	if o == nil || isNil(o.Port) {
+	if o == nil || IsNil(o.Port) {
 		var ret Port
 		return ret
 	}
@@ -160,7 +160,7 @@ func (o *PortVlanAssignmentBatch) GetPort() Port {
 // GetPortOk returns a tuple with the Port field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PortVlanAssignmentBatch) GetPortOk() (*Port, bool) {
-	if o == nil || isNil(o.Port) {
+	if o == nil || IsNil(o.Port) {
 		return nil, false
 	}
 	return o.Port, true
@@ -168,7 +168,7 @@ func (o *PortVlanAssignmentBatch) GetPortOk() (*Port, bool) {
 
 // HasPort returns a boolean if a field has been set.
 func (o *PortVlanAssignmentBatch) HasPort() bool {
-	if o != nil && !isNil(o.Port) {
+	if o != nil && !IsNil(o.Port) {
 		return true
 	}
 
@@ -182,7 +182,7 @@ func (o *PortVlanAssignmentBatch) SetPort(v Port) {
 
 // GetQuantity returns the Quantity field value if set, zero value otherwise.
 func (o *PortVlanAssignmentBatch) GetQuantity() int32 {
-	if o == nil || isNil(o.Quantity) {
+	if o == nil || IsNil(o.Quantity) {
 		var ret int32
 		return ret
 	}
@@ -192,7 +192,7 @@ func (o *PortVlanAssignmentBatch) GetQuantity() int32 {
 // GetQuantityOk returns a tuple with the Quantity field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PortVlanAssignmentBatch) GetQuantityOk() (*int32, bool) {
-	if o == nil || isNil(o.Quantity) {
+	if o == nil || IsNil(o.Quantity) {
 		return nil, false
 	}
 	return o.Quantity, true
@@ -200,7 +200,7 @@ func (o *PortVlanAssignmentBatch) GetQuantityOk() (*int32, bool) {
 
 // HasQuantity returns a boolean if a field has been set.
 func (o *PortVlanAssignmentBatch) HasQuantity() bool {
-	if o != nil && !isNil(o.Quantity) {
+	if o != nil && !IsNil(o.Quantity) {
 		return true
 	}
 
@@ -214,7 +214,7 @@ func (o *PortVlanAssignmentBatch) SetQuantity(v int32) {
 
 // GetState returns the State field value if set, zero value otherwise.
 func (o *PortVlanAssignmentBatch) GetState() string {
-	if o == nil || isNil(o.State) {
+	if o == nil || IsNil(o.State) {
 		var ret string
 		return ret
 	}
@@ -224,7 +224,7 @@ func (o *PortVlanAssignmentBatch) GetState() string {
 // GetStateOk returns a tuple with the State field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PortVlanAssignmentBatch) GetStateOk() (*string, bool) {
-	if o == nil || isNil(o.State) {
+	if o == nil || IsNil(o.State) {
 		return nil, false
 	}
 	return o.State, true
@@ -232,7 +232,7 @@ func (o *PortVlanAssignmentBatch) GetStateOk() (*string, bool) {
 
 // HasState returns a boolean if a field has been set.
 func (o *PortVlanAssignmentBatch) HasState() bool {
-	if o != nil && !isNil(o.State) {
+	if o != nil && !IsNil(o.State) {
 		return true
 	}
 
@@ -246,7 +246,7 @@ func (o *PortVlanAssignmentBatch) SetState(v string) {
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *PortVlanAssignmentBatch) GetUpdatedAt() time.Time {
-	if o == nil || isNil(o.UpdatedAt) {
+	if o == nil || IsNil(o.UpdatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -256,7 +256,7 @@ func (o *PortVlanAssignmentBatch) GetUpdatedAt() time.Time {
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PortVlanAssignmentBatch) GetUpdatedAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.UpdatedAt) {
+	if o == nil || IsNil(o.UpdatedAt) {
 		return nil, false
 	}
 	return o.UpdatedAt, true
@@ -264,7 +264,7 @@ func (o *PortVlanAssignmentBatch) GetUpdatedAtOk() (*time.Time, bool) {
 
 // HasUpdatedAt returns a boolean if a field has been set.
 func (o *PortVlanAssignmentBatch) HasUpdatedAt() bool {
-	if o != nil && !isNil(o.UpdatedAt) {
+	if o != nil && !IsNil(o.UpdatedAt) {
 		return true
 	}
 
@@ -278,7 +278,7 @@ func (o *PortVlanAssignmentBatch) SetUpdatedAt(v time.Time) {
 
 // GetVlanAssignments returns the VlanAssignments field value if set, zero value otherwise.
 func (o *PortVlanAssignmentBatch) GetVlanAssignments() []PortVlanAssignmentBatchVlanAssignmentsInner {
-	if o == nil || isNil(o.VlanAssignments) {
+	if o == nil || IsNil(o.VlanAssignments) {
 		var ret []PortVlanAssignmentBatchVlanAssignmentsInner
 		return ret
 	}
@@ -288,7 +288,7 @@ func (o *PortVlanAssignmentBatch) GetVlanAssignments() []PortVlanAssignmentBatch
 // GetVlanAssignmentsOk returns a tuple with the VlanAssignments field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PortVlanAssignmentBatch) GetVlanAssignmentsOk() ([]PortVlanAssignmentBatchVlanAssignmentsInner, bool) {
-	if o == nil || isNil(o.VlanAssignments) {
+	if o == nil || IsNil(o.VlanAssignments) {
 		return nil, false
 	}
 	return o.VlanAssignments, true
@@ -296,7 +296,7 @@ func (o *PortVlanAssignmentBatch) GetVlanAssignmentsOk() ([]PortVlanAssignmentBa
 
 // HasVlanAssignments returns a boolean if a field has been set.
 func (o *PortVlanAssignmentBatch) HasVlanAssignments() bool {
-	if o != nil && !isNil(o.VlanAssignments) {
+	if o != nil && !IsNil(o.VlanAssignments) {
 		return true
 	}
 
@@ -310,7 +310,7 @@ func (o *PortVlanAssignmentBatch) SetVlanAssignments(v []PortVlanAssignmentBatch
 
 // GetProject returns the Project field value if set, zero value otherwise.
 func (o *PortVlanAssignmentBatch) GetProject() Href {
-	if o == nil || isNil(o.Project) {
+	if o == nil || IsNil(o.Project) {
 		var ret Href
 		return ret
 	}
@@ -320,7 +320,7 @@ func (o *PortVlanAssignmentBatch) GetProject() Href {
 // GetProjectOk returns a tuple with the Project field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PortVlanAssignmentBatch) GetProjectOk() (*Href, bool) {
-	if o == nil || isNil(o.Project) {
+	if o == nil || IsNil(o.Project) {
 		return nil, false
 	}
 	return o.Project, true
@@ -328,7 +328,7 @@ func (o *PortVlanAssignmentBatch) GetProjectOk() (*Href, bool) {
 
 // HasProject returns a boolean if a field has been set.
 func (o *PortVlanAssignmentBatch) HasProject() bool {
-	if o != nil && !isNil(o.Project) {
+	if o != nil && !IsNil(o.Project) {
 		return true
 	}
 
@@ -350,31 +350,31 @@ func (o PortVlanAssignmentBatch) MarshalJSON() ([]byte, error) {
 
 func (o PortVlanAssignmentBatch) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.CreatedAt) {
+	if !IsNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt
 	}
-	if !isNil(o.ErrorMessages) {
+	if !IsNil(o.ErrorMessages) {
 		toSerialize["error_messages"] = o.ErrorMessages
 	}
-	if !isNil(o.Id) {
+	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
-	if !isNil(o.Port) {
+	if !IsNil(o.Port) {
 		toSerialize["port"] = o.Port
 	}
-	if !isNil(o.Quantity) {
+	if !IsNil(o.Quantity) {
 		toSerialize["quantity"] = o.Quantity
 	}
-	if !isNil(o.State) {
+	if !IsNil(o.State) {
 		toSerialize["state"] = o.State
 	}
-	if !isNil(o.UpdatedAt) {
+	if !IsNil(o.UpdatedAt) {
 		toSerialize["updated_at"] = o.UpdatedAt
 	}
-	if !isNil(o.VlanAssignments) {
+	if !IsNil(o.VlanAssignments) {
 		toSerialize["vlan_assignments"] = o.VlanAssignments
 	}
-	if !isNil(o.Project) {
+	if !IsNil(o.Project) {
 		toSerialize["project"] = o.Project
 	}
 

@@ -50,7 +50,7 @@ func NewMetroServerInfoWithDefaults() *MetroServerInfo {
 
 // GetMetro returns the Metro field value if set, zero value otherwise.
 func (o *MetroServerInfo) GetMetro() string {
-	if o == nil || isNil(o.Metro) {
+	if o == nil || IsNil(o.Metro) {
 		var ret string
 		return ret
 	}
@@ -60,7 +60,7 @@ func (o *MetroServerInfo) GetMetro() string {
 // GetMetroOk returns a tuple with the Metro field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MetroServerInfo) GetMetroOk() (*string, bool) {
-	if o == nil || isNil(o.Metro) {
+	if o == nil || IsNil(o.Metro) {
 		return nil, false
 	}
 	return o.Metro, true
@@ -68,7 +68,7 @@ func (o *MetroServerInfo) GetMetroOk() (*string, bool) {
 
 // HasMetro returns a boolean if a field has been set.
 func (o *MetroServerInfo) HasMetro() bool {
-	if o != nil && !isNil(o.Metro) {
+	if o != nil && !IsNil(o.Metro) {
 		return true
 	}
 
@@ -82,7 +82,7 @@ func (o *MetroServerInfo) SetMetro(v string) {
 
 // GetPlan returns the Plan field value if set, zero value otherwise.
 func (o *MetroServerInfo) GetPlan() string {
-	if o == nil || isNil(o.Plan) {
+	if o == nil || IsNil(o.Plan) {
 		var ret string
 		return ret
 	}
@@ -92,7 +92,7 @@ func (o *MetroServerInfo) GetPlan() string {
 // GetPlanOk returns a tuple with the Plan field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MetroServerInfo) GetPlanOk() (*string, bool) {
-	if o == nil || isNil(o.Plan) {
+	if o == nil || IsNil(o.Plan) {
 		return nil, false
 	}
 	return o.Plan, true
@@ -100,7 +100,7 @@ func (o *MetroServerInfo) GetPlanOk() (*string, bool) {
 
 // HasPlan returns a boolean if a field has been set.
 func (o *MetroServerInfo) HasPlan() bool {
-	if o != nil && !isNil(o.Plan) {
+	if o != nil && !IsNil(o.Plan) {
 		return true
 	}
 
@@ -114,7 +114,7 @@ func (o *MetroServerInfo) SetPlan(v string) {
 
 // GetQuantity returns the Quantity field value if set, zero value otherwise.
 func (o *MetroServerInfo) GetQuantity() string {
-	if o == nil || isNil(o.Quantity) {
+	if o == nil || IsNil(o.Quantity) {
 		var ret string
 		return ret
 	}
@@ -124,7 +124,7 @@ func (o *MetroServerInfo) GetQuantity() string {
 // GetQuantityOk returns a tuple with the Quantity field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MetroServerInfo) GetQuantityOk() (*string, bool) {
-	if o == nil || isNil(o.Quantity) {
+	if o == nil || IsNil(o.Quantity) {
 		return nil, false
 	}
 	return o.Quantity, true
@@ -132,7 +132,7 @@ func (o *MetroServerInfo) GetQuantityOk() (*string, bool) {
 
 // HasQuantity returns a boolean if a field has been set.
 func (o *MetroServerInfo) HasQuantity() bool {
-	if o != nil && !isNil(o.Quantity) {
+	if o != nil && !IsNil(o.Quantity) {
 		return true
 	}
 
@@ -154,13 +154,13 @@ func (o MetroServerInfo) MarshalJSON() ([]byte, error) {
 
 func (o MetroServerInfo) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Metro) {
+	if !IsNil(o.Metro) {
 		toSerialize["metro"] = o.Metro
 	}
-	if !isNil(o.Plan) {
+	if !IsNil(o.Plan) {
 		toSerialize["plan"] = o.Plan
 	}
-	if !isNil(o.Quantity) {
+	if !IsNil(o.Quantity) {
 		toSerialize["quantity"] = o.Quantity
 	}
 

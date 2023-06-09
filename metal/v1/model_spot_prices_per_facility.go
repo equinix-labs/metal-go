@@ -53,7 +53,7 @@ func NewSpotPricesPerFacilityWithDefaults() *SpotPricesPerFacility {
 
 // GetBaremetal0 returns the Baremetal0 field value if set, zero value otherwise.
 func (o *SpotPricesPerFacility) GetBaremetal0() SpotPricesPerBaremetal {
-	if o == nil || isNil(o.Baremetal0) {
+	if o == nil || IsNil(o.Baremetal0) {
 		var ret SpotPricesPerBaremetal
 		return ret
 	}
@@ -63,7 +63,7 @@ func (o *SpotPricesPerFacility) GetBaremetal0() SpotPricesPerBaremetal {
 // GetBaremetal0Ok returns a tuple with the Baremetal0 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SpotPricesPerFacility) GetBaremetal0Ok() (*SpotPricesPerBaremetal, bool) {
-	if o == nil || isNil(o.Baremetal0) {
+	if o == nil || IsNil(o.Baremetal0) {
 		return nil, false
 	}
 	return o.Baremetal0, true
@@ -71,7 +71,7 @@ func (o *SpotPricesPerFacility) GetBaremetal0Ok() (*SpotPricesPerBaremetal, bool
 
 // HasBaremetal0 returns a boolean if a field has been set.
 func (o *SpotPricesPerFacility) HasBaremetal0() bool {
-	if o != nil && !isNil(o.Baremetal0) {
+	if o != nil && !IsNil(o.Baremetal0) {
 		return true
 	}
 
@@ -85,7 +85,7 @@ func (o *SpotPricesPerFacility) SetBaremetal0(v SpotPricesPerBaremetal) {
 
 // GetBaremetal1 returns the Baremetal1 field value if set, zero value otherwise.
 func (o *SpotPricesPerFacility) GetBaremetal1() SpotPricesPerBaremetal {
-	if o == nil || isNil(o.Baremetal1) {
+	if o == nil || IsNil(o.Baremetal1) {
 		var ret SpotPricesPerBaremetal
 		return ret
 	}
@@ -95,7 +95,7 @@ func (o *SpotPricesPerFacility) GetBaremetal1() SpotPricesPerBaremetal {
 // GetBaremetal1Ok returns a tuple with the Baremetal1 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SpotPricesPerFacility) GetBaremetal1Ok() (*SpotPricesPerBaremetal, bool) {
-	if o == nil || isNil(o.Baremetal1) {
+	if o == nil || IsNil(o.Baremetal1) {
 		return nil, false
 	}
 	return o.Baremetal1, true
@@ -103,7 +103,7 @@ func (o *SpotPricesPerFacility) GetBaremetal1Ok() (*SpotPricesPerBaremetal, bool
 
 // HasBaremetal1 returns a boolean if a field has been set.
 func (o *SpotPricesPerFacility) HasBaremetal1() bool {
-	if o != nil && !isNil(o.Baremetal1) {
+	if o != nil && !IsNil(o.Baremetal1) {
 		return true
 	}
 
@@ -117,7 +117,7 @@ func (o *SpotPricesPerFacility) SetBaremetal1(v SpotPricesPerBaremetal) {
 
 // GetBaremetal2 returns the Baremetal2 field value if set, zero value otherwise.
 func (o *SpotPricesPerFacility) GetBaremetal2() SpotPricesPerBaremetal {
-	if o == nil || isNil(o.Baremetal2) {
+	if o == nil || IsNil(o.Baremetal2) {
 		var ret SpotPricesPerBaremetal
 		return ret
 	}
@@ -127,7 +127,7 @@ func (o *SpotPricesPerFacility) GetBaremetal2() SpotPricesPerBaremetal {
 // GetBaremetal2Ok returns a tuple with the Baremetal2 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SpotPricesPerFacility) GetBaremetal2Ok() (*SpotPricesPerBaremetal, bool) {
-	if o == nil || isNil(o.Baremetal2) {
+	if o == nil || IsNil(o.Baremetal2) {
 		return nil, false
 	}
 	return o.Baremetal2, true
@@ -135,7 +135,7 @@ func (o *SpotPricesPerFacility) GetBaremetal2Ok() (*SpotPricesPerBaremetal, bool
 
 // HasBaremetal2 returns a boolean if a field has been set.
 func (o *SpotPricesPerFacility) HasBaremetal2() bool {
-	if o != nil && !isNil(o.Baremetal2) {
+	if o != nil && !IsNil(o.Baremetal2) {
 		return true
 	}
 
@@ -149,7 +149,7 @@ func (o *SpotPricesPerFacility) SetBaremetal2(v SpotPricesPerBaremetal) {
 
 // GetBaremetal2a returns the Baremetal2a field value if set, zero value otherwise.
 func (o *SpotPricesPerFacility) GetBaremetal2a() SpotPricesPerBaremetal {
-	if o == nil || isNil(o.Baremetal2a) {
+	if o == nil || IsNil(o.Baremetal2a) {
 		var ret SpotPricesPerBaremetal
 		return ret
 	}
@@ -159,7 +159,7 @@ func (o *SpotPricesPerFacility) GetBaremetal2a() SpotPricesPerBaremetal {
 // GetBaremetal2aOk returns a tuple with the Baremetal2a field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SpotPricesPerFacility) GetBaremetal2aOk() (*SpotPricesPerBaremetal, bool) {
-	if o == nil || isNil(o.Baremetal2a) {
+	if o == nil || IsNil(o.Baremetal2a) {
 		return nil, false
 	}
 	return o.Baremetal2a, true
@@ -167,7 +167,7 @@ func (o *SpotPricesPerFacility) GetBaremetal2aOk() (*SpotPricesPerBaremetal, boo
 
 // HasBaremetal2a returns a boolean if a field has been set.
 func (o *SpotPricesPerFacility) HasBaremetal2a() bool {
-	if o != nil && !isNil(o.Baremetal2a) {
+	if o != nil && !IsNil(o.Baremetal2a) {
 		return true
 	}
 
@@ -181,7 +181,7 @@ func (o *SpotPricesPerFacility) SetBaremetal2a(v SpotPricesPerBaremetal) {
 
 // GetBaremetal2a2 returns the Baremetal2a2 field value if set, zero value otherwise.
 func (o *SpotPricesPerFacility) GetBaremetal2a2() SpotPricesPerBaremetal {
-	if o == nil || isNil(o.Baremetal2a2) {
+	if o == nil || IsNil(o.Baremetal2a2) {
 		var ret SpotPricesPerBaremetal
 		return ret
 	}
@@ -191,7 +191,7 @@ func (o *SpotPricesPerFacility) GetBaremetal2a2() SpotPricesPerBaremetal {
 // GetBaremetal2a2Ok returns a tuple with the Baremetal2a2 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SpotPricesPerFacility) GetBaremetal2a2Ok() (*SpotPricesPerBaremetal, bool) {
-	if o == nil || isNil(o.Baremetal2a2) {
+	if o == nil || IsNil(o.Baremetal2a2) {
 		return nil, false
 	}
 	return o.Baremetal2a2, true
@@ -199,7 +199,7 @@ func (o *SpotPricesPerFacility) GetBaremetal2a2Ok() (*SpotPricesPerBaremetal, bo
 
 // HasBaremetal2a2 returns a boolean if a field has been set.
 func (o *SpotPricesPerFacility) HasBaremetal2a2() bool {
-	if o != nil && !isNil(o.Baremetal2a2) {
+	if o != nil && !IsNil(o.Baremetal2a2) {
 		return true
 	}
 
@@ -213,7 +213,7 @@ func (o *SpotPricesPerFacility) SetBaremetal2a2(v SpotPricesPerBaremetal) {
 
 // GetBaremetal3 returns the Baremetal3 field value if set, zero value otherwise.
 func (o *SpotPricesPerFacility) GetBaremetal3() SpotPricesPerBaremetal {
-	if o == nil || isNil(o.Baremetal3) {
+	if o == nil || IsNil(o.Baremetal3) {
 		var ret SpotPricesPerBaremetal
 		return ret
 	}
@@ -223,7 +223,7 @@ func (o *SpotPricesPerFacility) GetBaremetal3() SpotPricesPerBaremetal {
 // GetBaremetal3Ok returns a tuple with the Baremetal3 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SpotPricesPerFacility) GetBaremetal3Ok() (*SpotPricesPerBaremetal, bool) {
-	if o == nil || isNil(o.Baremetal3) {
+	if o == nil || IsNil(o.Baremetal3) {
 		return nil, false
 	}
 	return o.Baremetal3, true
@@ -231,7 +231,7 @@ func (o *SpotPricesPerFacility) GetBaremetal3Ok() (*SpotPricesPerBaremetal, bool
 
 // HasBaremetal3 returns a boolean if a field has been set.
 func (o *SpotPricesPerFacility) HasBaremetal3() bool {
-	if o != nil && !isNil(o.Baremetal3) {
+	if o != nil && !IsNil(o.Baremetal3) {
 		return true
 	}
 
@@ -245,7 +245,7 @@ func (o *SpotPricesPerFacility) SetBaremetal3(v SpotPricesPerBaremetal) {
 
 // GetBaremetalS returns the BaremetalS field value if set, zero value otherwise.
 func (o *SpotPricesPerFacility) GetBaremetalS() SpotPricesPerBaremetal {
-	if o == nil || isNil(o.BaremetalS) {
+	if o == nil || IsNil(o.BaremetalS) {
 		var ret SpotPricesPerBaremetal
 		return ret
 	}
@@ -255,7 +255,7 @@ func (o *SpotPricesPerFacility) GetBaremetalS() SpotPricesPerBaremetal {
 // GetBaremetalSOk returns a tuple with the BaremetalS field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SpotPricesPerFacility) GetBaremetalSOk() (*SpotPricesPerBaremetal, bool) {
-	if o == nil || isNil(o.BaremetalS) {
+	if o == nil || IsNil(o.BaremetalS) {
 		return nil, false
 	}
 	return o.BaremetalS, true
@@ -263,7 +263,7 @@ func (o *SpotPricesPerFacility) GetBaremetalSOk() (*SpotPricesPerBaremetal, bool
 
 // HasBaremetalS returns a boolean if a field has been set.
 func (o *SpotPricesPerFacility) HasBaremetalS() bool {
-	if o != nil && !isNil(o.BaremetalS) {
+	if o != nil && !IsNil(o.BaremetalS) {
 		return true
 	}
 
@@ -277,7 +277,7 @@ func (o *SpotPricesPerFacility) SetBaremetalS(v SpotPricesPerBaremetal) {
 
 // GetC2MediumX86 returns the C2MediumX86 field value if set, zero value otherwise.
 func (o *SpotPricesPerFacility) GetC2MediumX86() SpotPricesPerBaremetal {
-	if o == nil || isNil(o.C2MediumX86) {
+	if o == nil || IsNil(o.C2MediumX86) {
 		var ret SpotPricesPerBaremetal
 		return ret
 	}
@@ -287,7 +287,7 @@ func (o *SpotPricesPerFacility) GetC2MediumX86() SpotPricesPerBaremetal {
 // GetC2MediumX86Ok returns a tuple with the C2MediumX86 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SpotPricesPerFacility) GetC2MediumX86Ok() (*SpotPricesPerBaremetal, bool) {
-	if o == nil || isNil(o.C2MediumX86) {
+	if o == nil || IsNil(o.C2MediumX86) {
 		return nil, false
 	}
 	return o.C2MediumX86, true
@@ -295,7 +295,7 @@ func (o *SpotPricesPerFacility) GetC2MediumX86Ok() (*SpotPricesPerBaremetal, boo
 
 // HasC2MediumX86 returns a boolean if a field has been set.
 func (o *SpotPricesPerFacility) HasC2MediumX86() bool {
-	if o != nil && !isNil(o.C2MediumX86) {
+	if o != nil && !IsNil(o.C2MediumX86) {
 		return true
 	}
 
@@ -309,7 +309,7 @@ func (o *SpotPricesPerFacility) SetC2MediumX86(v SpotPricesPerBaremetal) {
 
 // GetM2XlargeX86 returns the M2XlargeX86 field value if set, zero value otherwise.
 func (o *SpotPricesPerFacility) GetM2XlargeX86() SpotPricesPerBaremetal {
-	if o == nil || isNil(o.M2XlargeX86) {
+	if o == nil || IsNil(o.M2XlargeX86) {
 		var ret SpotPricesPerBaremetal
 		return ret
 	}
@@ -319,7 +319,7 @@ func (o *SpotPricesPerFacility) GetM2XlargeX86() SpotPricesPerBaremetal {
 // GetM2XlargeX86Ok returns a tuple with the M2XlargeX86 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SpotPricesPerFacility) GetM2XlargeX86Ok() (*SpotPricesPerBaremetal, bool) {
-	if o == nil || isNil(o.M2XlargeX86) {
+	if o == nil || IsNil(o.M2XlargeX86) {
 		return nil, false
 	}
 	return o.M2XlargeX86, true
@@ -327,7 +327,7 @@ func (o *SpotPricesPerFacility) GetM2XlargeX86Ok() (*SpotPricesPerBaremetal, boo
 
 // HasM2XlargeX86 returns a boolean if a field has been set.
 func (o *SpotPricesPerFacility) HasM2XlargeX86() bool {
-	if o != nil && !isNil(o.M2XlargeX86) {
+	if o != nil && !IsNil(o.M2XlargeX86) {
 		return true
 	}
 
@@ -349,31 +349,31 @@ func (o SpotPricesPerFacility) MarshalJSON() ([]byte, error) {
 
 func (o SpotPricesPerFacility) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Baremetal0) {
+	if !IsNil(o.Baremetal0) {
 		toSerialize["baremetal_0"] = o.Baremetal0
 	}
-	if !isNil(o.Baremetal1) {
+	if !IsNil(o.Baremetal1) {
 		toSerialize["baremetal_1"] = o.Baremetal1
 	}
-	if !isNil(o.Baremetal2) {
+	if !IsNil(o.Baremetal2) {
 		toSerialize["baremetal_2"] = o.Baremetal2
 	}
-	if !isNil(o.Baremetal2a) {
+	if !IsNil(o.Baremetal2a) {
 		toSerialize["baremetal_2a"] = o.Baremetal2a
 	}
-	if !isNil(o.Baremetal2a2) {
+	if !IsNil(o.Baremetal2a2) {
 		toSerialize["baremetal_2a2"] = o.Baremetal2a2
 	}
-	if !isNil(o.Baremetal3) {
+	if !IsNil(o.Baremetal3) {
 		toSerialize["baremetal_3"] = o.Baremetal3
 	}
-	if !isNil(o.BaremetalS) {
+	if !IsNil(o.BaremetalS) {
 		toSerialize["baremetal_s"] = o.BaremetalS
 	}
-	if !isNil(o.C2MediumX86) {
+	if !IsNil(o.C2MediumX86) {
 		toSerialize["c2.medium.x86"] = o.C2MediumX86
 	}
-	if !isNil(o.M2XlargeX86) {
+	if !IsNil(o.M2XlargeX86) {
 		toSerialize["m2.xlarge.x86"] = o.M2XlargeX86
 	}
 

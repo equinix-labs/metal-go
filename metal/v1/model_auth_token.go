@@ -54,7 +54,7 @@ func NewAuthTokenWithDefaults() *AuthToken {
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *AuthToken) GetCreatedAt() time.Time {
-	if o == nil || isNil(o.CreatedAt) {
+	if o == nil || IsNil(o.CreatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -64,7 +64,7 @@ func (o *AuthToken) GetCreatedAt() time.Time {
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AuthToken) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.CreatedAt) {
+	if o == nil || IsNil(o.CreatedAt) {
 		return nil, false
 	}
 	return o.CreatedAt, true
@@ -72,7 +72,7 @@ func (o *AuthToken) GetCreatedAtOk() (*time.Time, bool) {
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *AuthToken) HasCreatedAt() bool {
-	if o != nil && !isNil(o.CreatedAt) {
+	if o != nil && !IsNil(o.CreatedAt) {
 		return true
 	}
 
@@ -86,7 +86,7 @@ func (o *AuthToken) SetCreatedAt(v time.Time) {
 
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *AuthToken) GetDescription() string {
-	if o == nil || isNil(o.Description) {
+	if o == nil || IsNil(o.Description) {
 		var ret string
 		return ret
 	}
@@ -96,7 +96,7 @@ func (o *AuthToken) GetDescription() string {
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AuthToken) GetDescriptionOk() (*string, bool) {
-	if o == nil || isNil(o.Description) {
+	if o == nil || IsNil(o.Description) {
 		return nil, false
 	}
 	return o.Description, true
@@ -104,7 +104,7 @@ func (o *AuthToken) GetDescriptionOk() (*string, bool) {
 
 // HasDescription returns a boolean if a field has been set.
 func (o *AuthToken) HasDescription() bool {
-	if o != nil && !isNil(o.Description) {
+	if o != nil && !IsNil(o.Description) {
 		return true
 	}
 
@@ -118,7 +118,7 @@ func (o *AuthToken) SetDescription(v string) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *AuthToken) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -128,7 +128,7 @@ func (o *AuthToken) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AuthToken) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -136,7 +136,7 @@ func (o *AuthToken) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *AuthToken) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -150,7 +150,7 @@ func (o *AuthToken) SetId(v string) {
 
 // GetProject returns the Project field value if set, zero value otherwise.
 func (o *AuthToken) GetProject() AuthTokenProject {
-	if o == nil || isNil(o.Project) {
+	if o == nil || IsNil(o.Project) {
 		var ret AuthTokenProject
 		return ret
 	}
@@ -160,7 +160,7 @@ func (o *AuthToken) GetProject() AuthTokenProject {
 // GetProjectOk returns a tuple with the Project field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AuthToken) GetProjectOk() (*AuthTokenProject, bool) {
-	if o == nil || isNil(o.Project) {
+	if o == nil || IsNil(o.Project) {
 		return nil, false
 	}
 	return o.Project, true
@@ -168,7 +168,7 @@ func (o *AuthToken) GetProjectOk() (*AuthTokenProject, bool) {
 
 // HasProject returns a boolean if a field has been set.
 func (o *AuthToken) HasProject() bool {
-	if o != nil && !isNil(o.Project) {
+	if o != nil && !IsNil(o.Project) {
 		return true
 	}
 
@@ -182,7 +182,7 @@ func (o *AuthToken) SetProject(v AuthTokenProject) {
 
 // GetReadOnly returns the ReadOnly field value if set, zero value otherwise.
 func (o *AuthToken) GetReadOnly() bool {
-	if o == nil || isNil(o.ReadOnly) {
+	if o == nil || IsNil(o.ReadOnly) {
 		var ret bool
 		return ret
 	}
@@ -192,7 +192,7 @@ func (o *AuthToken) GetReadOnly() bool {
 // GetReadOnlyOk returns a tuple with the ReadOnly field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AuthToken) GetReadOnlyOk() (*bool, bool) {
-	if o == nil || isNil(o.ReadOnly) {
+	if o == nil || IsNil(o.ReadOnly) {
 		return nil, false
 	}
 	return o.ReadOnly, true
@@ -200,7 +200,7 @@ func (o *AuthToken) GetReadOnlyOk() (*bool, bool) {
 
 // HasReadOnly returns a boolean if a field has been set.
 func (o *AuthToken) HasReadOnly() bool {
-	if o != nil && !isNil(o.ReadOnly) {
+	if o != nil && !IsNil(o.ReadOnly) {
 		return true
 	}
 
@@ -214,7 +214,7 @@ func (o *AuthToken) SetReadOnly(v bool) {
 
 // GetToken returns the Token field value if set, zero value otherwise.
 func (o *AuthToken) GetToken() string {
-	if o == nil || isNil(o.Token) {
+	if o == nil || IsNil(o.Token) {
 		var ret string
 		return ret
 	}
@@ -224,7 +224,7 @@ func (o *AuthToken) GetToken() string {
 // GetTokenOk returns a tuple with the Token field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AuthToken) GetTokenOk() (*string, bool) {
-	if o == nil || isNil(o.Token) {
+	if o == nil || IsNil(o.Token) {
 		return nil, false
 	}
 	return o.Token, true
@@ -232,7 +232,7 @@ func (o *AuthToken) GetTokenOk() (*string, bool) {
 
 // HasToken returns a boolean if a field has been set.
 func (o *AuthToken) HasToken() bool {
-	if o != nil && !isNil(o.Token) {
+	if o != nil && !IsNil(o.Token) {
 		return true
 	}
 
@@ -246,7 +246,7 @@ func (o *AuthToken) SetToken(v string) {
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *AuthToken) GetUpdatedAt() time.Time {
-	if o == nil || isNil(o.UpdatedAt) {
+	if o == nil || IsNil(o.UpdatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -256,7 +256,7 @@ func (o *AuthToken) GetUpdatedAt() time.Time {
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AuthToken) GetUpdatedAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.UpdatedAt) {
+	if o == nil || IsNil(o.UpdatedAt) {
 		return nil, false
 	}
 	return o.UpdatedAt, true
@@ -264,7 +264,7 @@ func (o *AuthToken) GetUpdatedAtOk() (*time.Time, bool) {
 
 // HasUpdatedAt returns a boolean if a field has been set.
 func (o *AuthToken) HasUpdatedAt() bool {
-	if o != nil && !isNil(o.UpdatedAt) {
+	if o != nil && !IsNil(o.UpdatedAt) {
 		return true
 	}
 
@@ -278,7 +278,7 @@ func (o *AuthToken) SetUpdatedAt(v time.Time) {
 
 // GetUser returns the User field value if set, zero value otherwise.
 func (o *AuthToken) GetUser() AuthTokenUser {
-	if o == nil || isNil(o.User) {
+	if o == nil || IsNil(o.User) {
 		var ret AuthTokenUser
 		return ret
 	}
@@ -288,7 +288,7 @@ func (o *AuthToken) GetUser() AuthTokenUser {
 // GetUserOk returns a tuple with the User field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AuthToken) GetUserOk() (*AuthTokenUser, bool) {
-	if o == nil || isNil(o.User) {
+	if o == nil || IsNil(o.User) {
 		return nil, false
 	}
 	return o.User, true
@@ -296,7 +296,7 @@ func (o *AuthToken) GetUserOk() (*AuthTokenUser, bool) {
 
 // HasUser returns a boolean if a field has been set.
 func (o *AuthToken) HasUser() bool {
-	if o != nil && !isNil(o.User) {
+	if o != nil && !IsNil(o.User) {
 		return true
 	}
 
@@ -318,28 +318,28 @@ func (o AuthToken) MarshalJSON() ([]byte, error) {
 
 func (o AuthToken) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.CreatedAt) {
+	if !IsNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt
 	}
-	if !isNil(o.Description) {
+	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
-	if !isNil(o.Id) {
+	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
-	if !isNil(o.Project) {
+	if !IsNil(o.Project) {
 		toSerialize["project"] = o.Project
 	}
-	if !isNil(o.ReadOnly) {
+	if !IsNil(o.ReadOnly) {
 		toSerialize["read_only"] = o.ReadOnly
 	}
-	if !isNil(o.Token) {
+	if !IsNil(o.Token) {
 		toSerialize["token"] = o.Token
 	}
-	if !isNil(o.UpdatedAt) {
+	if !IsNil(o.UpdatedAt) {
 		toSerialize["updated_at"] = o.UpdatedAt
 	}
-	if !isNil(o.User) {
+	if !IsNil(o.User) {
 		toSerialize["user"] = o.User
 	}
 

@@ -45,7 +45,7 @@ func NewMetroListWithDefaults() *MetroList {
 
 // GetMetros returns the Metros field value if set, zero value otherwise.
 func (o *MetroList) GetMetros() []Metro {
-	if o == nil || isNil(o.Metros) {
+	if o == nil || IsNil(o.Metros) {
 		var ret []Metro
 		return ret
 	}
@@ -55,7 +55,7 @@ func (o *MetroList) GetMetros() []Metro {
 // GetMetrosOk returns a tuple with the Metros field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MetroList) GetMetrosOk() ([]Metro, bool) {
-	if o == nil || isNil(o.Metros) {
+	if o == nil || IsNil(o.Metros) {
 		return nil, false
 	}
 	return o.Metros, true
@@ -63,7 +63,7 @@ func (o *MetroList) GetMetrosOk() ([]Metro, bool) {
 
 // HasMetros returns a boolean if a field has been set.
 func (o *MetroList) HasMetros() bool {
-	if o != nil && !isNil(o.Metros) {
+	if o != nil && !IsNil(o.Metros) {
 		return true
 	}
 
@@ -85,7 +85,7 @@ func (o MetroList) MarshalJSON() ([]byte, error) {
 
 func (o MetroList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Metros) {
+	if !IsNil(o.Metros) {
 		toSerialize["metros"] = o.Metros
 	}
 

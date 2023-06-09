@@ -53,7 +53,7 @@ func NewSSHKeyWithDefaults() *SSHKey {
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *SSHKey) GetCreatedAt() time.Time {
-	if o == nil || isNil(o.CreatedAt) {
+	if o == nil || IsNil(o.CreatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -63,7 +63,7 @@ func (o *SSHKey) GetCreatedAt() time.Time {
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SSHKey) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.CreatedAt) {
+	if o == nil || IsNil(o.CreatedAt) {
 		return nil, false
 	}
 	return o.CreatedAt, true
@@ -71,7 +71,7 @@ func (o *SSHKey) GetCreatedAtOk() (*time.Time, bool) {
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *SSHKey) HasCreatedAt() bool {
-	if o != nil && !isNil(o.CreatedAt) {
+	if o != nil && !IsNil(o.CreatedAt) {
 		return true
 	}
 
@@ -85,7 +85,7 @@ func (o *SSHKey) SetCreatedAt(v time.Time) {
 
 // GetEntity returns the Entity field value if set, zero value otherwise.
 func (o *SSHKey) GetEntity() Href {
-	if o == nil || isNil(o.Entity) {
+	if o == nil || IsNil(o.Entity) {
 		var ret Href
 		return ret
 	}
@@ -95,7 +95,7 @@ func (o *SSHKey) GetEntity() Href {
 // GetEntityOk returns a tuple with the Entity field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SSHKey) GetEntityOk() (*Href, bool) {
-	if o == nil || isNil(o.Entity) {
+	if o == nil || IsNil(o.Entity) {
 		return nil, false
 	}
 	return o.Entity, true
@@ -103,7 +103,7 @@ func (o *SSHKey) GetEntityOk() (*Href, bool) {
 
 // HasEntity returns a boolean if a field has been set.
 func (o *SSHKey) HasEntity() bool {
-	if o != nil && !isNil(o.Entity) {
+	if o != nil && !IsNil(o.Entity) {
 		return true
 	}
 
@@ -117,7 +117,7 @@ func (o *SSHKey) SetEntity(v Href) {
 
 // GetFingerprint returns the Fingerprint field value if set, zero value otherwise.
 func (o *SSHKey) GetFingerprint() string {
-	if o == nil || isNil(o.Fingerprint) {
+	if o == nil || IsNil(o.Fingerprint) {
 		var ret string
 		return ret
 	}
@@ -127,7 +127,7 @@ func (o *SSHKey) GetFingerprint() string {
 // GetFingerprintOk returns a tuple with the Fingerprint field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SSHKey) GetFingerprintOk() (*string, bool) {
-	if o == nil || isNil(o.Fingerprint) {
+	if o == nil || IsNil(o.Fingerprint) {
 		return nil, false
 	}
 	return o.Fingerprint, true
@@ -135,7 +135,7 @@ func (o *SSHKey) GetFingerprintOk() (*string, bool) {
 
 // HasFingerprint returns a boolean if a field has been set.
 func (o *SSHKey) HasFingerprint() bool {
-	if o != nil && !isNil(o.Fingerprint) {
+	if o != nil && !IsNil(o.Fingerprint) {
 		return true
 	}
 
@@ -149,7 +149,7 @@ func (o *SSHKey) SetFingerprint(v string) {
 
 // GetHref returns the Href field value if set, zero value otherwise.
 func (o *SSHKey) GetHref() string {
-	if o == nil || isNil(o.Href) {
+	if o == nil || IsNil(o.Href) {
 		var ret string
 		return ret
 	}
@@ -159,7 +159,7 @@ func (o *SSHKey) GetHref() string {
 // GetHrefOk returns a tuple with the Href field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SSHKey) GetHrefOk() (*string, bool) {
-	if o == nil || isNil(o.Href) {
+	if o == nil || IsNil(o.Href) {
 		return nil, false
 	}
 	return o.Href, true
@@ -167,7 +167,7 @@ func (o *SSHKey) GetHrefOk() (*string, bool) {
 
 // HasHref returns a boolean if a field has been set.
 func (o *SSHKey) HasHref() bool {
-	if o != nil && !isNil(o.Href) {
+	if o != nil && !IsNil(o.Href) {
 		return true
 	}
 
@@ -181,7 +181,7 @@ func (o *SSHKey) SetHref(v string) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *SSHKey) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -191,7 +191,7 @@ func (o *SSHKey) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SSHKey) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -199,7 +199,7 @@ func (o *SSHKey) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *SSHKey) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -213,7 +213,7 @@ func (o *SSHKey) SetId(v string) {
 
 // GetKey returns the Key field value if set, zero value otherwise.
 func (o *SSHKey) GetKey() string {
-	if o == nil || isNil(o.Key) {
+	if o == nil || IsNil(o.Key) {
 		var ret string
 		return ret
 	}
@@ -223,7 +223,7 @@ func (o *SSHKey) GetKey() string {
 // GetKeyOk returns a tuple with the Key field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SSHKey) GetKeyOk() (*string, bool) {
-	if o == nil || isNil(o.Key) {
+	if o == nil || IsNil(o.Key) {
 		return nil, false
 	}
 	return o.Key, true
@@ -231,7 +231,7 @@ func (o *SSHKey) GetKeyOk() (*string, bool) {
 
 // HasKey returns a boolean if a field has been set.
 func (o *SSHKey) HasKey() bool {
-	if o != nil && !isNil(o.Key) {
+	if o != nil && !IsNil(o.Key) {
 		return true
 	}
 
@@ -245,7 +245,7 @@ func (o *SSHKey) SetKey(v string) {
 
 // GetLabel returns the Label field value if set, zero value otherwise.
 func (o *SSHKey) GetLabel() string {
-	if o == nil || isNil(o.Label) {
+	if o == nil || IsNil(o.Label) {
 		var ret string
 		return ret
 	}
@@ -255,7 +255,7 @@ func (o *SSHKey) GetLabel() string {
 // GetLabelOk returns a tuple with the Label field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SSHKey) GetLabelOk() (*string, bool) {
-	if o == nil || isNil(o.Label) {
+	if o == nil || IsNil(o.Label) {
 		return nil, false
 	}
 	return o.Label, true
@@ -263,7 +263,7 @@ func (o *SSHKey) GetLabelOk() (*string, bool) {
 
 // HasLabel returns a boolean if a field has been set.
 func (o *SSHKey) HasLabel() bool {
-	if o != nil && !isNil(o.Label) {
+	if o != nil && !IsNil(o.Label) {
 		return true
 	}
 
@@ -277,7 +277,7 @@ func (o *SSHKey) SetLabel(v string) {
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *SSHKey) GetUpdatedAt() time.Time {
-	if o == nil || isNil(o.UpdatedAt) {
+	if o == nil || IsNil(o.UpdatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -287,7 +287,7 @@ func (o *SSHKey) GetUpdatedAt() time.Time {
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SSHKey) GetUpdatedAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.UpdatedAt) {
+	if o == nil || IsNil(o.UpdatedAt) {
 		return nil, false
 	}
 	return o.UpdatedAt, true
@@ -295,7 +295,7 @@ func (o *SSHKey) GetUpdatedAtOk() (*time.Time, bool) {
 
 // HasUpdatedAt returns a boolean if a field has been set.
 func (o *SSHKey) HasUpdatedAt() bool {
-	if o != nil && !isNil(o.UpdatedAt) {
+	if o != nil && !IsNil(o.UpdatedAt) {
 		return true
 	}
 
@@ -317,28 +317,28 @@ func (o SSHKey) MarshalJSON() ([]byte, error) {
 
 func (o SSHKey) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.CreatedAt) {
+	if !IsNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt
 	}
-	if !isNil(o.Entity) {
+	if !IsNil(o.Entity) {
 		toSerialize["entity"] = o.Entity
 	}
-	if !isNil(o.Fingerprint) {
+	if !IsNil(o.Fingerprint) {
 		toSerialize["fingerprint"] = o.Fingerprint
 	}
-	if !isNil(o.Href) {
+	if !IsNil(o.Href) {
 		toSerialize["href"] = o.Href
 	}
-	if !isNil(o.Id) {
+	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
-	if !isNil(o.Key) {
+	if !IsNil(o.Key) {
 		toSerialize["key"] = o.Key
 	}
-	if !isNil(o.Label) {
+	if !IsNil(o.Label) {
 		toSerialize["label"] = o.Label
 	}
-	if !isNil(o.UpdatedAt) {
+	if !IsNil(o.UpdatedAt) {
 		toSerialize["updated_at"] = o.UpdatedAt
 	}
 

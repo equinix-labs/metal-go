@@ -45,7 +45,7 @@ func NewPaymentMethodListWithDefaults() *PaymentMethodList {
 
 // GetPaymentMethods returns the PaymentMethods field value if set, zero value otherwise.
 func (o *PaymentMethodList) GetPaymentMethods() []PaymentMethod {
-	if o == nil || isNil(o.PaymentMethods) {
+	if o == nil || IsNil(o.PaymentMethods) {
 		var ret []PaymentMethod
 		return ret
 	}
@@ -55,7 +55,7 @@ func (o *PaymentMethodList) GetPaymentMethods() []PaymentMethod {
 // GetPaymentMethodsOk returns a tuple with the PaymentMethods field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PaymentMethodList) GetPaymentMethodsOk() ([]PaymentMethod, bool) {
-	if o == nil || isNil(o.PaymentMethods) {
+	if o == nil || IsNil(o.PaymentMethods) {
 		return nil, false
 	}
 	return o.PaymentMethods, true
@@ -63,7 +63,7 @@ func (o *PaymentMethodList) GetPaymentMethodsOk() ([]PaymentMethod, bool) {
 
 // HasPaymentMethods returns a boolean if a field has been set.
 func (o *PaymentMethodList) HasPaymentMethods() bool {
-	if o != nil && !isNil(o.PaymentMethods) {
+	if o != nil && !IsNil(o.PaymentMethods) {
 		return true
 	}
 
@@ -85,7 +85,7 @@ func (o PaymentMethodList) MarshalJSON() ([]byte, error) {
 
 func (o PaymentMethodList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.PaymentMethods) {
+	if !IsNil(o.PaymentMethods) {
 		toSerialize["payment_methods"] = o.PaymentMethods
 	}
 

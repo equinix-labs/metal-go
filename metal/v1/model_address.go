@@ -78,7 +78,7 @@ func (o *Address) SetAddress(v string) {
 
 // GetAddress2 returns the Address2 field value if set, zero value otherwise.
 func (o *Address) GetAddress2() string {
-	if o == nil || isNil(o.Address2) {
+	if o == nil || IsNil(o.Address2) {
 		var ret string
 		return ret
 	}
@@ -88,7 +88,7 @@ func (o *Address) GetAddress2() string {
 // GetAddress2Ok returns a tuple with the Address2 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Address) GetAddress2Ok() (*string, bool) {
-	if o == nil || isNil(o.Address2) {
+	if o == nil || IsNil(o.Address2) {
 		return nil, false
 	}
 	return o.Address2, true
@@ -96,7 +96,7 @@ func (o *Address) GetAddress2Ok() (*string, bool) {
 
 // HasAddress2 returns a boolean if a field has been set.
 func (o *Address) HasAddress2() bool {
-	if o != nil && !isNil(o.Address2) {
+	if o != nil && !IsNil(o.Address2) {
 		return true
 	}
 
@@ -110,7 +110,7 @@ func (o *Address) SetAddress2(v string) {
 
 // GetCity returns the City field value if set, zero value otherwise.
 func (o *Address) GetCity() string {
-	if o == nil || isNil(o.City) {
+	if o == nil || IsNil(o.City) {
 		var ret string
 		return ret
 	}
@@ -120,7 +120,7 @@ func (o *Address) GetCity() string {
 // GetCityOk returns a tuple with the City field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Address) GetCityOk() (*string, bool) {
-	if o == nil || isNil(o.City) {
+	if o == nil || IsNil(o.City) {
 		return nil, false
 	}
 	return o.City, true
@@ -128,7 +128,7 @@ func (o *Address) GetCityOk() (*string, bool) {
 
 // HasCity returns a boolean if a field has been set.
 func (o *Address) HasCity() bool {
-	if o != nil && !isNil(o.City) {
+	if o != nil && !IsNil(o.City) {
 		return true
 	}
 
@@ -142,7 +142,7 @@ func (o *Address) SetCity(v string) {
 
 // GetCoordinates returns the Coordinates field value if set, zero value otherwise.
 func (o *Address) GetCoordinates() Coordinates {
-	if o == nil || isNil(o.Coordinates) {
+	if o == nil || IsNil(o.Coordinates) {
 		var ret Coordinates
 		return ret
 	}
@@ -152,7 +152,7 @@ func (o *Address) GetCoordinates() Coordinates {
 // GetCoordinatesOk returns a tuple with the Coordinates field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Address) GetCoordinatesOk() (*Coordinates, bool) {
-	if o == nil || isNil(o.Coordinates) {
+	if o == nil || IsNil(o.Coordinates) {
 		return nil, false
 	}
 	return o.Coordinates, true
@@ -160,7 +160,7 @@ func (o *Address) GetCoordinatesOk() (*Coordinates, bool) {
 
 // HasCoordinates returns a boolean if a field has been set.
 func (o *Address) HasCoordinates() bool {
-	if o != nil && !isNil(o.Coordinates) {
+	if o != nil && !IsNil(o.Coordinates) {
 		return true
 	}
 
@@ -198,7 +198,7 @@ func (o *Address) SetCountry(v string) {
 
 // GetState returns the State field value if set, zero value otherwise.
 func (o *Address) GetState() string {
-	if o == nil || isNil(o.State) {
+	if o == nil || IsNil(o.State) {
 		var ret string
 		return ret
 	}
@@ -208,7 +208,7 @@ func (o *Address) GetState() string {
 // GetStateOk returns a tuple with the State field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Address) GetStateOk() (*string, bool) {
-	if o == nil || isNil(o.State) {
+	if o == nil || IsNil(o.State) {
 		return nil, false
 	}
 	return o.State, true
@@ -216,7 +216,7 @@ func (o *Address) GetStateOk() (*string, bool) {
 
 // HasState returns a boolean if a field has been set.
 func (o *Address) HasState() bool {
-	if o != nil && !isNil(o.State) {
+	if o != nil && !IsNil(o.State) {
 		return true
 	}
 
@@ -263,17 +263,17 @@ func (o Address) MarshalJSON() ([]byte, error) {
 func (o Address) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["address"] = o.Address
-	if !isNil(o.Address2) {
+	if !IsNil(o.Address2) {
 		toSerialize["address2"] = o.Address2
 	}
-	if !isNil(o.City) {
+	if !IsNil(o.City) {
 		toSerialize["city"] = o.City
 	}
-	if !isNil(o.Coordinates) {
+	if !IsNil(o.Coordinates) {
 		toSerialize["coordinates"] = o.Coordinates
 	}
 	toSerialize["country"] = o.Country
-	if !isNil(o.State) {
+	if !IsNil(o.State) {
 		toSerialize["state"] = o.State
 	}
 	toSerialize["zip_code"] = o.ZipCode

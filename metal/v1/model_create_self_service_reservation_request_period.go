@@ -46,7 +46,7 @@ func NewCreateSelfServiceReservationRequestPeriodWithDefaults() *CreateSelfServi
 
 // GetCount returns the Count field value if set, zero value otherwise.
 func (o *CreateSelfServiceReservationRequestPeriod) GetCount() int32 {
-	if o == nil || isNil(o.Count) {
+	if o == nil || IsNil(o.Count) {
 		var ret int32
 		return ret
 	}
@@ -56,7 +56,7 @@ func (o *CreateSelfServiceReservationRequestPeriod) GetCount() int32 {
 // GetCountOk returns a tuple with the Count field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateSelfServiceReservationRequestPeriod) GetCountOk() (*int32, bool) {
-	if o == nil || isNil(o.Count) {
+	if o == nil || IsNil(o.Count) {
 		return nil, false
 	}
 	return o.Count, true
@@ -64,7 +64,7 @@ func (o *CreateSelfServiceReservationRequestPeriod) GetCountOk() (*int32, bool) 
 
 // HasCount returns a boolean if a field has been set.
 func (o *CreateSelfServiceReservationRequestPeriod) HasCount() bool {
-	if o != nil && !isNil(o.Count) {
+	if o != nil && !IsNil(o.Count) {
 		return true
 	}
 
@@ -78,7 +78,7 @@ func (o *CreateSelfServiceReservationRequestPeriod) SetCount(v int32) {
 
 // GetUnit returns the Unit field value if set, zero value otherwise.
 func (o *CreateSelfServiceReservationRequestPeriod) GetUnit() string {
-	if o == nil || isNil(o.Unit) {
+	if o == nil || IsNil(o.Unit) {
 		var ret string
 		return ret
 	}
@@ -88,7 +88,7 @@ func (o *CreateSelfServiceReservationRequestPeriod) GetUnit() string {
 // GetUnitOk returns a tuple with the Unit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateSelfServiceReservationRequestPeriod) GetUnitOk() (*string, bool) {
-	if o == nil || isNil(o.Unit) {
+	if o == nil || IsNil(o.Unit) {
 		return nil, false
 	}
 	return o.Unit, true
@@ -96,7 +96,7 @@ func (o *CreateSelfServiceReservationRequestPeriod) GetUnitOk() (*string, bool) 
 
 // HasUnit returns a boolean if a field has been set.
 func (o *CreateSelfServiceReservationRequestPeriod) HasUnit() bool {
-	if o != nil && !isNil(o.Unit) {
+	if o != nil && !IsNil(o.Unit) {
 		return true
 	}
 
@@ -118,10 +118,10 @@ func (o CreateSelfServiceReservationRequestPeriod) MarshalJSON() ([]byte, error)
 
 func (o CreateSelfServiceReservationRequestPeriod) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Count) {
+	if !IsNil(o.Count) {
 		toSerialize["count"] = o.Count
 	}
-	if !isNil(o.Unit) {
+	if !IsNil(o.Unit) {
 		toSerialize["unit"] = o.Unit
 	}
 

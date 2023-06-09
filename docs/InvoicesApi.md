@@ -26,7 +26,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/equinix-labs/metal-go/metal/v1"
 )
 
 func main() {
@@ -102,7 +102,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/equinix-labs/metal-go/metal/v1"
 )
 
 func main() {

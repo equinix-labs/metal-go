@@ -14,7 +14,7 @@ package v1
 import (
 	"bytes"
 	"context"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 	"strings"
@@ -126,9 +126,9 @@ func (a *BatchesApiService) CreateDeviceBatchExecute(r ApiCreateDeviceBatchReque
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -251,7 +251,7 @@ func (a *BatchesApiService) DeleteBatchExecute(r ApiDeleteBatchRequest) (*http.R
 	localVarFormParams := url.Values{}
 
 	if r.removeAssociatedInstances != nil {
-		parameterAddToQuery(localVarQueryParams, "remove_associated_instances", r.removeAssociatedInstances, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "remove_associated_instances", r.removeAssociatedInstances, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -294,9 +294,9 @@ func (a *BatchesApiService) DeleteBatchExecute(r ApiDeleteBatchRequest) (*http.R
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -398,10 +398,10 @@ func (a *BatchesApiService) FindBatchByIdExecute(r ApiFindBatchByIdRequest) (*Ba
 	localVarFormParams := url.Values{}
 
 	if r.include != nil {
-		parameterAddToQuery(localVarQueryParams, "include", r.include, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "csv")
 	}
 	if r.exclude != nil {
-		parameterAddToQuery(localVarQueryParams, "exclude", r.exclude, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "exclude", r.exclude, "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -444,9 +444,9 @@ func (a *BatchesApiService) FindBatchByIdExecute(r ApiFindBatchByIdRequest) (*Ba
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -557,10 +557,10 @@ func (a *BatchesApiService) FindBatchesByProjectExecute(r ApiFindBatchesByProjec
 	localVarFormParams := url.Values{}
 
 	if r.include != nil {
-		parameterAddToQuery(localVarQueryParams, "include", r.include, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "csv")
 	}
 	if r.exclude != nil {
-		parameterAddToQuery(localVarQueryParams, "exclude", r.exclude, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "exclude", r.exclude, "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -603,9 +603,9 @@ func (a *BatchesApiService) FindBatchesByProjectExecute(r ApiFindBatchesByProjec
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}

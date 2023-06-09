@@ -51,7 +51,7 @@ func NewLineItemWithDefaults() *LineItem {
 
 // GetAmount returns the Amount field value if set, zero value otherwise.
 func (o *LineItem) GetAmount() float32 {
-	if o == nil || isNil(o.Amount) {
+	if o == nil || IsNil(o.Amount) {
 		var ret float32
 		return ret
 	}
@@ -61,7 +61,7 @@ func (o *LineItem) GetAmount() float32 {
 // GetAmountOk returns a tuple with the Amount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *LineItem) GetAmountOk() (*float32, bool) {
-	if o == nil || isNil(o.Amount) {
+	if o == nil || IsNil(o.Amount) {
 		return nil, false
 	}
 	return o.Amount, true
@@ -69,7 +69,7 @@ func (o *LineItem) GetAmountOk() (*float32, bool) {
 
 // HasAmount returns a boolean if a field has been set.
 func (o *LineItem) HasAmount() bool {
-	if o != nil && !isNil(o.Amount) {
+	if o != nil && !IsNil(o.Amount) {
 		return true
 	}
 
@@ -83,7 +83,7 @@ func (o *LineItem) SetAmount(v float32) {
 
 // GetCurrency returns the Currency field value if set, zero value otherwise.
 func (o *LineItem) GetCurrency() string {
-	if o == nil || isNil(o.Currency) {
+	if o == nil || IsNil(o.Currency) {
 		var ret string
 		return ret
 	}
@@ -93,7 +93,7 @@ func (o *LineItem) GetCurrency() string {
 // GetCurrencyOk returns a tuple with the Currency field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *LineItem) GetCurrencyOk() (*string, bool) {
-	if o == nil || isNil(o.Currency) {
+	if o == nil || IsNil(o.Currency) {
 		return nil, false
 	}
 	return o.Currency, true
@@ -101,7 +101,7 @@ func (o *LineItem) GetCurrencyOk() (*string, bool) {
 
 // HasCurrency returns a boolean if a field has been set.
 func (o *LineItem) HasCurrency() bool {
-	if o != nil && !isNil(o.Currency) {
+	if o != nil && !IsNil(o.Currency) {
 		return true
 	}
 
@@ -115,7 +115,7 @@ func (o *LineItem) SetCurrency(v string) {
 
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *LineItem) GetDescription() string {
-	if o == nil || isNil(o.Description) {
+	if o == nil || IsNil(o.Description) {
 		var ret string
 		return ret
 	}
@@ -125,7 +125,7 @@ func (o *LineItem) GetDescription() string {
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *LineItem) GetDescriptionOk() (*string, bool) {
-	if o == nil || isNil(o.Description) {
+	if o == nil || IsNil(o.Description) {
 		return nil, false
 	}
 	return o.Description, true
@@ -133,7 +133,7 @@ func (o *LineItem) GetDescriptionOk() (*string, bool) {
 
 // HasDescription returns a boolean if a field has been set.
 func (o *LineItem) HasDescription() bool {
-	if o != nil && !isNil(o.Description) {
+	if o != nil && !IsNil(o.Description) {
 		return true
 	}
 
@@ -147,7 +147,7 @@ func (o *LineItem) SetDescription(v string) {
 
 // GetDetails returns the Details field value if set, zero value otherwise.
 func (o *LineItem) GetDetails() string {
-	if o == nil || isNil(o.Details) {
+	if o == nil || IsNil(o.Details) {
 		var ret string
 		return ret
 	}
@@ -157,7 +157,7 @@ func (o *LineItem) GetDetails() string {
 // GetDetailsOk returns a tuple with the Details field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *LineItem) GetDetailsOk() (*string, bool) {
-	if o == nil || isNil(o.Details) {
+	if o == nil || IsNil(o.Details) {
 		return nil, false
 	}
 	return o.Details, true
@@ -165,7 +165,7 @@ func (o *LineItem) GetDetailsOk() (*string, bool) {
 
 // HasDetails returns a boolean if a field has been set.
 func (o *LineItem) HasDetails() bool {
-	if o != nil && !isNil(o.Details) {
+	if o != nil && !IsNil(o.Details) {
 		return true
 	}
 
@@ -179,7 +179,7 @@ func (o *LineItem) SetDetails(v string) {
 
 // GetPlan returns the Plan field value if set, zero value otherwise.
 func (o *LineItem) GetPlan() Plan {
-	if o == nil || isNil(o.Plan) {
+	if o == nil || IsNil(o.Plan) {
 		var ret Plan
 		return ret
 	}
@@ -189,7 +189,7 @@ func (o *LineItem) GetPlan() Plan {
 // GetPlanOk returns a tuple with the Plan field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *LineItem) GetPlanOk() (*Plan, bool) {
-	if o == nil || isNil(o.Plan) {
+	if o == nil || IsNil(o.Plan) {
 		return nil, false
 	}
 	return o.Plan, true
@@ -197,7 +197,7 @@ func (o *LineItem) GetPlanOk() (*Plan, bool) {
 
 // HasPlan returns a boolean if a field has been set.
 func (o *LineItem) HasPlan() bool {
-	if o != nil && !isNil(o.Plan) {
+	if o != nil && !IsNil(o.Plan) {
 		return true
 	}
 
@@ -211,7 +211,7 @@ func (o *LineItem) SetPlan(v Plan) {
 
 // GetUnit returns the Unit field value if set, zero value otherwise.
 func (o *LineItem) GetUnit() string {
-	if o == nil || isNil(o.Unit) {
+	if o == nil || IsNil(o.Unit) {
 		var ret string
 		return ret
 	}
@@ -221,7 +221,7 @@ func (o *LineItem) GetUnit() string {
 // GetUnitOk returns a tuple with the Unit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *LineItem) GetUnitOk() (*string, bool) {
-	if o == nil || isNil(o.Unit) {
+	if o == nil || IsNil(o.Unit) {
 		return nil, false
 	}
 	return o.Unit, true
@@ -229,7 +229,7 @@ func (o *LineItem) GetUnitOk() (*string, bool) {
 
 // HasUnit returns a boolean if a field has been set.
 func (o *LineItem) HasUnit() bool {
-	if o != nil && !isNil(o.Unit) {
+	if o != nil && !IsNil(o.Unit) {
 		return true
 	}
 
@@ -243,7 +243,7 @@ func (o *LineItem) SetUnit(v string) {
 
 // GetUnitPrice returns the UnitPrice field value if set, zero value otherwise.
 func (o *LineItem) GetUnitPrice() float32 {
-	if o == nil || isNil(o.UnitPrice) {
+	if o == nil || IsNil(o.UnitPrice) {
 		var ret float32
 		return ret
 	}
@@ -253,7 +253,7 @@ func (o *LineItem) GetUnitPrice() float32 {
 // GetUnitPriceOk returns a tuple with the UnitPrice field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *LineItem) GetUnitPriceOk() (*float32, bool) {
-	if o == nil || isNil(o.UnitPrice) {
+	if o == nil || IsNil(o.UnitPrice) {
 		return nil, false
 	}
 	return o.UnitPrice, true
@@ -261,7 +261,7 @@ func (o *LineItem) GetUnitPriceOk() (*float32, bool) {
 
 // HasUnitPrice returns a boolean if a field has been set.
 func (o *LineItem) HasUnitPrice() bool {
-	if o != nil && !isNil(o.UnitPrice) {
+	if o != nil && !IsNil(o.UnitPrice) {
 		return true
 	}
 
@@ -283,25 +283,25 @@ func (o LineItem) MarshalJSON() ([]byte, error) {
 
 func (o LineItem) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Amount) {
+	if !IsNil(o.Amount) {
 		toSerialize["amount"] = o.Amount
 	}
-	if !isNil(o.Currency) {
+	if !IsNil(o.Currency) {
 		toSerialize["currency"] = o.Currency
 	}
-	if !isNil(o.Description) {
+	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
-	if !isNil(o.Details) {
+	if !IsNil(o.Details) {
 		toSerialize["details"] = o.Details
 	}
-	if !isNil(o.Plan) {
+	if !IsNil(o.Plan) {
 		toSerialize["plan"] = o.Plan
 	}
-	if !isNil(o.Unit) {
+	if !IsNil(o.Unit) {
 		toSerialize["unit"] = o.Unit
 	}
-	if !isNil(o.UnitPrice) {
+	if !IsNil(o.UnitPrice) {
 		toSerialize["unit_price"] = o.UnitPrice
 	}
 

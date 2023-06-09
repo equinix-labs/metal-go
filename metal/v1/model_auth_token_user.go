@@ -65,7 +65,7 @@ func NewAuthTokenUserWithDefaults() *AuthTokenUser {
 
 // GetAvatarThumbUrl returns the AvatarThumbUrl field value if set, zero value otherwise.
 func (o *AuthTokenUser) GetAvatarThumbUrl() string {
-	if o == nil || isNil(o.AvatarThumbUrl) {
+	if o == nil || IsNil(o.AvatarThumbUrl) {
 		var ret string
 		return ret
 	}
@@ -75,7 +75,7 @@ func (o *AuthTokenUser) GetAvatarThumbUrl() string {
 // GetAvatarThumbUrlOk returns a tuple with the AvatarThumbUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AuthTokenUser) GetAvatarThumbUrlOk() (*string, bool) {
-	if o == nil || isNil(o.AvatarThumbUrl) {
+	if o == nil || IsNil(o.AvatarThumbUrl) {
 		return nil, false
 	}
 	return o.AvatarThumbUrl, true
@@ -83,7 +83,7 @@ func (o *AuthTokenUser) GetAvatarThumbUrlOk() (*string, bool) {
 
 // HasAvatarThumbUrl returns a boolean if a field has been set.
 func (o *AuthTokenUser) HasAvatarThumbUrl() bool {
-	if o != nil && !isNil(o.AvatarThumbUrl) {
+	if o != nil && !IsNil(o.AvatarThumbUrl) {
 		return true
 	}
 
@@ -97,7 +97,7 @@ func (o *AuthTokenUser) SetAvatarThumbUrl(v string) {
 
 // GetAvatarUrl returns the AvatarUrl field value if set, zero value otherwise.
 func (o *AuthTokenUser) GetAvatarUrl() string {
-	if o == nil || isNil(o.AvatarUrl) {
+	if o == nil || IsNil(o.AvatarUrl) {
 		var ret string
 		return ret
 	}
@@ -107,7 +107,7 @@ func (o *AuthTokenUser) GetAvatarUrl() string {
 // GetAvatarUrlOk returns a tuple with the AvatarUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AuthTokenUser) GetAvatarUrlOk() (*string, bool) {
-	if o == nil || isNil(o.AvatarUrl) {
+	if o == nil || IsNil(o.AvatarUrl) {
 		return nil, false
 	}
 	return o.AvatarUrl, true
@@ -115,7 +115,7 @@ func (o *AuthTokenUser) GetAvatarUrlOk() (*string, bool) {
 
 // HasAvatarUrl returns a boolean if a field has been set.
 func (o *AuthTokenUser) HasAvatarUrl() bool {
-	if o != nil && !isNil(o.AvatarUrl) {
+	if o != nil && !IsNil(o.AvatarUrl) {
 		return true
 	}
 
@@ -129,7 +129,7 @@ func (o *AuthTokenUser) SetAvatarUrl(v string) {
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *AuthTokenUser) GetCreatedAt() time.Time {
-	if o == nil || isNil(o.CreatedAt) {
+	if o == nil || IsNil(o.CreatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -139,7 +139,7 @@ func (o *AuthTokenUser) GetCreatedAt() time.Time {
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AuthTokenUser) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.CreatedAt) {
+	if o == nil || IsNil(o.CreatedAt) {
 		return nil, false
 	}
 	return o.CreatedAt, true
@@ -147,7 +147,7 @@ func (o *AuthTokenUser) GetCreatedAtOk() (*time.Time, bool) {
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *AuthTokenUser) HasCreatedAt() bool {
-	if o != nil && !isNil(o.CreatedAt) {
+	if o != nil && !IsNil(o.CreatedAt) {
 		return true
 	}
 
@@ -161,7 +161,7 @@ func (o *AuthTokenUser) SetCreatedAt(v time.Time) {
 
 // GetCustomdata returns the Customdata field value if set, zero value otherwise.
 func (o *AuthTokenUser) GetCustomdata() map[string]interface{} {
-	if o == nil || isNil(o.Customdata) {
+	if o == nil || IsNil(o.Customdata) {
 		var ret map[string]interface{}
 		return ret
 	}
@@ -171,7 +171,7 @@ func (o *AuthTokenUser) GetCustomdata() map[string]interface{} {
 // GetCustomdataOk returns a tuple with the Customdata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AuthTokenUser) GetCustomdataOk() (map[string]interface{}, bool) {
-	if o == nil || isNil(o.Customdata) {
+	if o == nil || IsNil(o.Customdata) {
 		return map[string]interface{}{}, false
 	}
 	return o.Customdata, true
@@ -179,7 +179,7 @@ func (o *AuthTokenUser) GetCustomdataOk() (map[string]interface{}, bool) {
 
 // HasCustomdata returns a boolean if a field has been set.
 func (o *AuthTokenUser) HasCustomdata() bool {
-	if o != nil && !isNil(o.Customdata) {
+	if o != nil && !IsNil(o.Customdata) {
 		return true
 	}
 
@@ -193,7 +193,7 @@ func (o *AuthTokenUser) SetCustomdata(v map[string]interface{}) {
 
 // GetEmail returns the Email field value if set, zero value otherwise.
 func (o *AuthTokenUser) GetEmail() string {
-	if o == nil || isNil(o.Email) {
+	if o == nil || IsNil(o.Email) {
 		var ret string
 		return ret
 	}
@@ -203,7 +203,7 @@ func (o *AuthTokenUser) GetEmail() string {
 // GetEmailOk returns a tuple with the Email field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AuthTokenUser) GetEmailOk() (*string, bool) {
-	if o == nil || isNil(o.Email) {
+	if o == nil || IsNil(o.Email) {
 		return nil, false
 	}
 	return o.Email, true
@@ -211,7 +211,7 @@ func (o *AuthTokenUser) GetEmailOk() (*string, bool) {
 
 // HasEmail returns a boolean if a field has been set.
 func (o *AuthTokenUser) HasEmail() bool {
-	if o != nil && !isNil(o.Email) {
+	if o != nil && !IsNil(o.Email) {
 		return true
 	}
 
@@ -225,7 +225,7 @@ func (o *AuthTokenUser) SetEmail(v string) {
 
 // GetEmails returns the Emails field value if set, zero value otherwise.
 func (o *AuthTokenUser) GetEmails() []Href {
-	if o == nil || isNil(o.Emails) {
+	if o == nil || IsNil(o.Emails) {
 		var ret []Href
 		return ret
 	}
@@ -235,7 +235,7 @@ func (o *AuthTokenUser) GetEmails() []Href {
 // GetEmailsOk returns a tuple with the Emails field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AuthTokenUser) GetEmailsOk() ([]Href, bool) {
-	if o == nil || isNil(o.Emails) {
+	if o == nil || IsNil(o.Emails) {
 		return nil, false
 	}
 	return o.Emails, true
@@ -243,7 +243,7 @@ func (o *AuthTokenUser) GetEmailsOk() ([]Href, bool) {
 
 // HasEmails returns a boolean if a field has been set.
 func (o *AuthTokenUser) HasEmails() bool {
-	if o != nil && !isNil(o.Emails) {
+	if o != nil && !IsNil(o.Emails) {
 		return true
 	}
 
@@ -257,7 +257,7 @@ func (o *AuthTokenUser) SetEmails(v []Href) {
 
 // GetFirstName returns the FirstName field value if set, zero value otherwise.
 func (o *AuthTokenUser) GetFirstName() string {
-	if o == nil || isNil(o.FirstName) {
+	if o == nil || IsNil(o.FirstName) {
 		var ret string
 		return ret
 	}
@@ -267,7 +267,7 @@ func (o *AuthTokenUser) GetFirstName() string {
 // GetFirstNameOk returns a tuple with the FirstName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AuthTokenUser) GetFirstNameOk() (*string, bool) {
-	if o == nil || isNil(o.FirstName) {
+	if o == nil || IsNil(o.FirstName) {
 		return nil, false
 	}
 	return o.FirstName, true
@@ -275,7 +275,7 @@ func (o *AuthTokenUser) GetFirstNameOk() (*string, bool) {
 
 // HasFirstName returns a boolean if a field has been set.
 func (o *AuthTokenUser) HasFirstName() bool {
-	if o != nil && !isNil(o.FirstName) {
+	if o != nil && !IsNil(o.FirstName) {
 		return true
 	}
 
@@ -289,7 +289,7 @@ func (o *AuthTokenUser) SetFirstName(v string) {
 
 // GetFraudScore returns the FraudScore field value if set, zero value otherwise.
 func (o *AuthTokenUser) GetFraudScore() string {
-	if o == nil || isNil(o.FraudScore) {
+	if o == nil || IsNil(o.FraudScore) {
 		var ret string
 		return ret
 	}
@@ -299,7 +299,7 @@ func (o *AuthTokenUser) GetFraudScore() string {
 // GetFraudScoreOk returns a tuple with the FraudScore field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AuthTokenUser) GetFraudScoreOk() (*string, bool) {
-	if o == nil || isNil(o.FraudScore) {
+	if o == nil || IsNil(o.FraudScore) {
 		return nil, false
 	}
 	return o.FraudScore, true
@@ -307,7 +307,7 @@ func (o *AuthTokenUser) GetFraudScoreOk() (*string, bool) {
 
 // HasFraudScore returns a boolean if a field has been set.
 func (o *AuthTokenUser) HasFraudScore() bool {
-	if o != nil && !isNil(o.FraudScore) {
+	if o != nil && !IsNil(o.FraudScore) {
 		return true
 	}
 
@@ -321,7 +321,7 @@ func (o *AuthTokenUser) SetFraudScore(v string) {
 
 // GetFullName returns the FullName field value if set, zero value otherwise.
 func (o *AuthTokenUser) GetFullName() string {
-	if o == nil || isNil(o.FullName) {
+	if o == nil || IsNil(o.FullName) {
 		var ret string
 		return ret
 	}
@@ -331,7 +331,7 @@ func (o *AuthTokenUser) GetFullName() string {
 // GetFullNameOk returns a tuple with the FullName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AuthTokenUser) GetFullNameOk() (*string, bool) {
-	if o == nil || isNil(o.FullName) {
+	if o == nil || IsNil(o.FullName) {
 		return nil, false
 	}
 	return o.FullName, true
@@ -339,7 +339,7 @@ func (o *AuthTokenUser) GetFullNameOk() (*string, bool) {
 
 // HasFullName returns a boolean if a field has been set.
 func (o *AuthTokenUser) HasFullName() bool {
-	if o != nil && !isNil(o.FullName) {
+	if o != nil && !IsNil(o.FullName) {
 		return true
 	}
 
@@ -353,7 +353,7 @@ func (o *AuthTokenUser) SetFullName(v string) {
 
 // GetHref returns the Href field value if set, zero value otherwise.
 func (o *AuthTokenUser) GetHref() string {
-	if o == nil || isNil(o.Href) {
+	if o == nil || IsNil(o.Href) {
 		var ret string
 		return ret
 	}
@@ -363,7 +363,7 @@ func (o *AuthTokenUser) GetHref() string {
 // GetHrefOk returns a tuple with the Href field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AuthTokenUser) GetHrefOk() (*string, bool) {
-	if o == nil || isNil(o.Href) {
+	if o == nil || IsNil(o.Href) {
 		return nil, false
 	}
 	return o.Href, true
@@ -371,7 +371,7 @@ func (o *AuthTokenUser) GetHrefOk() (*string, bool) {
 
 // HasHref returns a boolean if a field has been set.
 func (o *AuthTokenUser) HasHref() bool {
-	if o != nil && !isNil(o.Href) {
+	if o != nil && !IsNil(o.Href) {
 		return true
 	}
 
@@ -385,7 +385,7 @@ func (o *AuthTokenUser) SetHref(v string) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *AuthTokenUser) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -395,7 +395,7 @@ func (o *AuthTokenUser) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AuthTokenUser) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -403,7 +403,7 @@ func (o *AuthTokenUser) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *AuthTokenUser) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -417,7 +417,7 @@ func (o *AuthTokenUser) SetId(v string) {
 
 // GetLastLoginAt returns the LastLoginAt field value if set, zero value otherwise.
 func (o *AuthTokenUser) GetLastLoginAt() time.Time {
-	if o == nil || isNil(o.LastLoginAt) {
+	if o == nil || IsNil(o.LastLoginAt) {
 		var ret time.Time
 		return ret
 	}
@@ -427,7 +427,7 @@ func (o *AuthTokenUser) GetLastLoginAt() time.Time {
 // GetLastLoginAtOk returns a tuple with the LastLoginAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AuthTokenUser) GetLastLoginAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.LastLoginAt) {
+	if o == nil || IsNil(o.LastLoginAt) {
 		return nil, false
 	}
 	return o.LastLoginAt, true
@@ -435,7 +435,7 @@ func (o *AuthTokenUser) GetLastLoginAtOk() (*time.Time, bool) {
 
 // HasLastLoginAt returns a boolean if a field has been set.
 func (o *AuthTokenUser) HasLastLoginAt() bool {
-	if o != nil && !isNil(o.LastLoginAt) {
+	if o != nil && !IsNil(o.LastLoginAt) {
 		return true
 	}
 
@@ -449,7 +449,7 @@ func (o *AuthTokenUser) SetLastLoginAt(v time.Time) {
 
 // GetLastName returns the LastName field value if set, zero value otherwise.
 func (o *AuthTokenUser) GetLastName() string {
-	if o == nil || isNil(o.LastName) {
+	if o == nil || IsNil(o.LastName) {
 		var ret string
 		return ret
 	}
@@ -459,7 +459,7 @@ func (o *AuthTokenUser) GetLastName() string {
 // GetLastNameOk returns a tuple with the LastName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AuthTokenUser) GetLastNameOk() (*string, bool) {
-	if o == nil || isNil(o.LastName) {
+	if o == nil || IsNil(o.LastName) {
 		return nil, false
 	}
 	return o.LastName, true
@@ -467,7 +467,7 @@ func (o *AuthTokenUser) GetLastNameOk() (*string, bool) {
 
 // HasLastName returns a boolean if a field has been set.
 func (o *AuthTokenUser) HasLastName() bool {
-	if o != nil && !isNil(o.LastName) {
+	if o != nil && !IsNil(o.LastName) {
 		return true
 	}
 
@@ -481,7 +481,7 @@ func (o *AuthTokenUser) SetLastName(v string) {
 
 // GetMaxOrganizations returns the MaxOrganizations field value if set, zero value otherwise.
 func (o *AuthTokenUser) GetMaxOrganizations() int32 {
-	if o == nil || isNil(o.MaxOrganizations) {
+	if o == nil || IsNil(o.MaxOrganizations) {
 		var ret int32
 		return ret
 	}
@@ -491,7 +491,7 @@ func (o *AuthTokenUser) GetMaxOrganizations() int32 {
 // GetMaxOrganizationsOk returns a tuple with the MaxOrganizations field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AuthTokenUser) GetMaxOrganizationsOk() (*int32, bool) {
-	if o == nil || isNil(o.MaxOrganizations) {
+	if o == nil || IsNil(o.MaxOrganizations) {
 		return nil, false
 	}
 	return o.MaxOrganizations, true
@@ -499,7 +499,7 @@ func (o *AuthTokenUser) GetMaxOrganizationsOk() (*int32, bool) {
 
 // HasMaxOrganizations returns a boolean if a field has been set.
 func (o *AuthTokenUser) HasMaxOrganizations() bool {
-	if o != nil && !isNil(o.MaxOrganizations) {
+	if o != nil && !IsNil(o.MaxOrganizations) {
 		return true
 	}
 
@@ -513,7 +513,7 @@ func (o *AuthTokenUser) SetMaxOrganizations(v int32) {
 
 // GetMaxProjects returns the MaxProjects field value if set, zero value otherwise.
 func (o *AuthTokenUser) GetMaxProjects() int32 {
-	if o == nil || isNil(o.MaxProjects) {
+	if o == nil || IsNil(o.MaxProjects) {
 		var ret int32
 		return ret
 	}
@@ -523,7 +523,7 @@ func (o *AuthTokenUser) GetMaxProjects() int32 {
 // GetMaxProjectsOk returns a tuple with the MaxProjects field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AuthTokenUser) GetMaxProjectsOk() (*int32, bool) {
-	if o == nil || isNil(o.MaxProjects) {
+	if o == nil || IsNil(o.MaxProjects) {
 		return nil, false
 	}
 	return o.MaxProjects, true
@@ -531,7 +531,7 @@ func (o *AuthTokenUser) GetMaxProjectsOk() (*int32, bool) {
 
 // HasMaxProjects returns a boolean if a field has been set.
 func (o *AuthTokenUser) HasMaxProjects() bool {
-	if o != nil && !isNil(o.MaxProjects) {
+	if o != nil && !IsNil(o.MaxProjects) {
 		return true
 	}
 
@@ -545,7 +545,7 @@ func (o *AuthTokenUser) SetMaxProjects(v int32) {
 
 // GetPhoneNumber returns the PhoneNumber field value if set, zero value otherwise.
 func (o *AuthTokenUser) GetPhoneNumber() string {
-	if o == nil || isNil(o.PhoneNumber) {
+	if o == nil || IsNil(o.PhoneNumber) {
 		var ret string
 		return ret
 	}
@@ -555,7 +555,7 @@ func (o *AuthTokenUser) GetPhoneNumber() string {
 // GetPhoneNumberOk returns a tuple with the PhoneNumber field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AuthTokenUser) GetPhoneNumberOk() (*string, bool) {
-	if o == nil || isNil(o.PhoneNumber) {
+	if o == nil || IsNil(o.PhoneNumber) {
 		return nil, false
 	}
 	return o.PhoneNumber, true
@@ -563,7 +563,7 @@ func (o *AuthTokenUser) GetPhoneNumberOk() (*string, bool) {
 
 // HasPhoneNumber returns a boolean if a field has been set.
 func (o *AuthTokenUser) HasPhoneNumber() bool {
-	if o != nil && !isNil(o.PhoneNumber) {
+	if o != nil && !IsNil(o.PhoneNumber) {
 		return true
 	}
 
@@ -577,7 +577,7 @@ func (o *AuthTokenUser) SetPhoneNumber(v string) {
 
 // GetShortId returns the ShortId field value if set, zero value otherwise.
 func (o *AuthTokenUser) GetShortId() string {
-	if o == nil || isNil(o.ShortId) {
+	if o == nil || IsNil(o.ShortId) {
 		var ret string
 		return ret
 	}
@@ -587,7 +587,7 @@ func (o *AuthTokenUser) GetShortId() string {
 // GetShortIdOk returns a tuple with the ShortId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AuthTokenUser) GetShortIdOk() (*string, bool) {
-	if o == nil || isNil(o.ShortId) {
+	if o == nil || IsNil(o.ShortId) {
 		return nil, false
 	}
 	return o.ShortId, true
@@ -595,7 +595,7 @@ func (o *AuthTokenUser) GetShortIdOk() (*string, bool) {
 
 // HasShortId returns a boolean if a field has been set.
 func (o *AuthTokenUser) HasShortId() bool {
-	if o != nil && !isNil(o.ShortId) {
+	if o != nil && !IsNil(o.ShortId) {
 		return true
 	}
 
@@ -609,7 +609,7 @@ func (o *AuthTokenUser) SetShortId(v string) {
 
 // GetTimezone returns the Timezone field value if set, zero value otherwise.
 func (o *AuthTokenUser) GetTimezone() string {
-	if o == nil || isNil(o.Timezone) {
+	if o == nil || IsNil(o.Timezone) {
 		var ret string
 		return ret
 	}
@@ -619,7 +619,7 @@ func (o *AuthTokenUser) GetTimezone() string {
 // GetTimezoneOk returns a tuple with the Timezone field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AuthTokenUser) GetTimezoneOk() (*string, bool) {
-	if o == nil || isNil(o.Timezone) {
+	if o == nil || IsNil(o.Timezone) {
 		return nil, false
 	}
 	return o.Timezone, true
@@ -627,7 +627,7 @@ func (o *AuthTokenUser) GetTimezoneOk() (*string, bool) {
 
 // HasTimezone returns a boolean if a field has been set.
 func (o *AuthTokenUser) HasTimezone() bool {
-	if o != nil && !isNil(o.Timezone) {
+	if o != nil && !IsNil(o.Timezone) {
 		return true
 	}
 
@@ -641,7 +641,7 @@ func (o *AuthTokenUser) SetTimezone(v string) {
 
 // GetTwoFactorAuth returns the TwoFactorAuth field value if set, zero value otherwise.
 func (o *AuthTokenUser) GetTwoFactorAuth() string {
-	if o == nil || isNil(o.TwoFactorAuth) {
+	if o == nil || IsNil(o.TwoFactorAuth) {
 		var ret string
 		return ret
 	}
@@ -651,7 +651,7 @@ func (o *AuthTokenUser) GetTwoFactorAuth() string {
 // GetTwoFactorAuthOk returns a tuple with the TwoFactorAuth field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AuthTokenUser) GetTwoFactorAuthOk() (*string, bool) {
-	if o == nil || isNil(o.TwoFactorAuth) {
+	if o == nil || IsNil(o.TwoFactorAuth) {
 		return nil, false
 	}
 	return o.TwoFactorAuth, true
@@ -659,7 +659,7 @@ func (o *AuthTokenUser) GetTwoFactorAuthOk() (*string, bool) {
 
 // HasTwoFactorAuth returns a boolean if a field has been set.
 func (o *AuthTokenUser) HasTwoFactorAuth() bool {
-	if o != nil && !isNil(o.TwoFactorAuth) {
+	if o != nil && !IsNil(o.TwoFactorAuth) {
 		return true
 	}
 
@@ -673,7 +673,7 @@ func (o *AuthTokenUser) SetTwoFactorAuth(v string) {
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *AuthTokenUser) GetUpdatedAt() time.Time {
-	if o == nil || isNil(o.UpdatedAt) {
+	if o == nil || IsNil(o.UpdatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -683,7 +683,7 @@ func (o *AuthTokenUser) GetUpdatedAt() time.Time {
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AuthTokenUser) GetUpdatedAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.UpdatedAt) {
+	if o == nil || IsNil(o.UpdatedAt) {
 		return nil, false
 	}
 	return o.UpdatedAt, true
@@ -691,7 +691,7 @@ func (o *AuthTokenUser) GetUpdatedAtOk() (*time.Time, bool) {
 
 // HasUpdatedAt returns a boolean if a field has been set.
 func (o *AuthTokenUser) HasUpdatedAt() bool {
-	if o != nil && !isNil(o.UpdatedAt) {
+	if o != nil && !IsNil(o.UpdatedAt) {
 		return true
 	}
 
@@ -713,64 +713,64 @@ func (o AuthTokenUser) MarshalJSON() ([]byte, error) {
 
 func (o AuthTokenUser) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.AvatarThumbUrl) {
+	if !IsNil(o.AvatarThumbUrl) {
 		toSerialize["avatar_thumb_url"] = o.AvatarThumbUrl
 	}
-	if !isNil(o.AvatarUrl) {
+	if !IsNil(o.AvatarUrl) {
 		toSerialize["avatar_url"] = o.AvatarUrl
 	}
-	if !isNil(o.CreatedAt) {
+	if !IsNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt
 	}
-	if !isNil(o.Customdata) {
+	if !IsNil(o.Customdata) {
 		toSerialize["customdata"] = o.Customdata
 	}
-	if !isNil(o.Email) {
+	if !IsNil(o.Email) {
 		toSerialize["email"] = o.Email
 	}
-	if !isNil(o.Emails) {
+	if !IsNil(o.Emails) {
 		toSerialize["emails"] = o.Emails
 	}
-	if !isNil(o.FirstName) {
+	if !IsNil(o.FirstName) {
 		toSerialize["first_name"] = o.FirstName
 	}
-	if !isNil(o.FraudScore) {
+	if !IsNil(o.FraudScore) {
 		toSerialize["fraud_score"] = o.FraudScore
 	}
-	if !isNil(o.FullName) {
+	if !IsNil(o.FullName) {
 		toSerialize["full_name"] = o.FullName
 	}
-	if !isNil(o.Href) {
+	if !IsNil(o.Href) {
 		toSerialize["href"] = o.Href
 	}
-	if !isNil(o.Id) {
+	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
-	if !isNil(o.LastLoginAt) {
+	if !IsNil(o.LastLoginAt) {
 		toSerialize["last_login_at"] = o.LastLoginAt
 	}
-	if !isNil(o.LastName) {
+	if !IsNil(o.LastName) {
 		toSerialize["last_name"] = o.LastName
 	}
-	if !isNil(o.MaxOrganizations) {
+	if !IsNil(o.MaxOrganizations) {
 		toSerialize["max_organizations"] = o.MaxOrganizations
 	}
-	if !isNil(o.MaxProjects) {
+	if !IsNil(o.MaxProjects) {
 		toSerialize["max_projects"] = o.MaxProjects
 	}
-	if !isNil(o.PhoneNumber) {
+	if !IsNil(o.PhoneNumber) {
 		toSerialize["phone_number"] = o.PhoneNumber
 	}
-	if !isNil(o.ShortId) {
+	if !IsNil(o.ShortId) {
 		toSerialize["short_id"] = o.ShortId
 	}
-	if !isNil(o.Timezone) {
+	if !IsNil(o.Timezone) {
 		toSerialize["timezone"] = o.Timezone
 	}
-	if !isNil(o.TwoFactorAuth) {
+	if !IsNil(o.TwoFactorAuth) {
 		toSerialize["two_factor_auth"] = o.TwoFactorAuth
 	}
-	if !isNil(o.UpdatedAt) {
+	if !IsNil(o.UpdatedAt) {
 		toSerialize["updated_at"] = o.UpdatedAt
 	}
 

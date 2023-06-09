@@ -56,7 +56,7 @@ func NewIPReservationRequestInputWithDefaults() *IPReservationRequestInput {
 
 // GetComments returns the Comments field value if set, zero value otherwise.
 func (o *IPReservationRequestInput) GetComments() string {
-	if o == nil || isNil(o.Comments) {
+	if o == nil || IsNil(o.Comments) {
 		var ret string
 		return ret
 	}
@@ -66,7 +66,7 @@ func (o *IPReservationRequestInput) GetComments() string {
 // GetCommentsOk returns a tuple with the Comments field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IPReservationRequestInput) GetCommentsOk() (*string, bool) {
-	if o == nil || isNil(o.Comments) {
+	if o == nil || IsNil(o.Comments) {
 		return nil, false
 	}
 	return o.Comments, true
@@ -74,7 +74,7 @@ func (o *IPReservationRequestInput) GetCommentsOk() (*string, bool) {
 
 // HasComments returns a boolean if a field has been set.
 func (o *IPReservationRequestInput) HasComments() bool {
-	if o != nil && !isNil(o.Comments) {
+	if o != nil && !IsNil(o.Comments) {
 		return true
 	}
 
@@ -88,7 +88,7 @@ func (o *IPReservationRequestInput) SetComments(v string) {
 
 // GetCustomdata returns the Customdata field value if set, zero value otherwise.
 func (o *IPReservationRequestInput) GetCustomdata() map[string]interface{} {
-	if o == nil || isNil(o.Customdata) {
+	if o == nil || IsNil(o.Customdata) {
 		var ret map[string]interface{}
 		return ret
 	}
@@ -98,7 +98,7 @@ func (o *IPReservationRequestInput) GetCustomdata() map[string]interface{} {
 // GetCustomdataOk returns a tuple with the Customdata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IPReservationRequestInput) GetCustomdataOk() (map[string]interface{}, bool) {
-	if o == nil || isNil(o.Customdata) {
+	if o == nil || IsNil(o.Customdata) {
 		return map[string]interface{}{}, false
 	}
 	return o.Customdata, true
@@ -106,7 +106,7 @@ func (o *IPReservationRequestInput) GetCustomdataOk() (map[string]interface{}, b
 
 // HasCustomdata returns a boolean if a field has been set.
 func (o *IPReservationRequestInput) HasCustomdata() bool {
-	if o != nil && !isNil(o.Customdata) {
+	if o != nil && !IsNil(o.Customdata) {
 		return true
 	}
 
@@ -120,7 +120,7 @@ func (o *IPReservationRequestInput) SetCustomdata(v map[string]interface{}) {
 
 // GetDetails returns the Details field value if set, zero value otherwise.
 func (o *IPReservationRequestInput) GetDetails() string {
-	if o == nil || isNil(o.Details) {
+	if o == nil || IsNil(o.Details) {
 		var ret string
 		return ret
 	}
@@ -130,7 +130,7 @@ func (o *IPReservationRequestInput) GetDetails() string {
 // GetDetailsOk returns a tuple with the Details field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IPReservationRequestInput) GetDetailsOk() (*string, bool) {
-	if o == nil || isNil(o.Details) {
+	if o == nil || IsNil(o.Details) {
 		return nil, false
 	}
 	return o.Details, true
@@ -138,7 +138,7 @@ func (o *IPReservationRequestInput) GetDetailsOk() (*string, bool) {
 
 // HasDetails returns a boolean if a field has been set.
 func (o *IPReservationRequestInput) HasDetails() bool {
-	if o != nil && !isNil(o.Details) {
+	if o != nil && !IsNil(o.Details) {
 		return true
 	}
 
@@ -152,7 +152,7 @@ func (o *IPReservationRequestInput) SetDetails(v string) {
 
 // GetFacility returns the Facility field value if set, zero value otherwise.
 func (o *IPReservationRequestInput) GetFacility() string {
-	if o == nil || isNil(o.Facility) {
+	if o == nil || IsNil(o.Facility) {
 		var ret string
 		return ret
 	}
@@ -162,7 +162,7 @@ func (o *IPReservationRequestInput) GetFacility() string {
 // GetFacilityOk returns a tuple with the Facility field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IPReservationRequestInput) GetFacilityOk() (*string, bool) {
-	if o == nil || isNil(o.Facility) {
+	if o == nil || IsNil(o.Facility) {
 		return nil, false
 	}
 	return o.Facility, true
@@ -170,7 +170,7 @@ func (o *IPReservationRequestInput) GetFacilityOk() (*string, bool) {
 
 // HasFacility returns a boolean if a field has been set.
 func (o *IPReservationRequestInput) HasFacility() bool {
-	if o != nil && !isNil(o.Facility) {
+	if o != nil && !IsNil(o.Facility) {
 		return true
 	}
 
@@ -184,7 +184,7 @@ func (o *IPReservationRequestInput) SetFacility(v string) {
 
 // GetFailOnApprovalRequired returns the FailOnApprovalRequired field value if set, zero value otherwise.
 func (o *IPReservationRequestInput) GetFailOnApprovalRequired() bool {
-	if o == nil || isNil(o.FailOnApprovalRequired) {
+	if o == nil || IsNil(o.FailOnApprovalRequired) {
 		var ret bool
 		return ret
 	}
@@ -194,7 +194,7 @@ func (o *IPReservationRequestInput) GetFailOnApprovalRequired() bool {
 // GetFailOnApprovalRequiredOk returns a tuple with the FailOnApprovalRequired field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IPReservationRequestInput) GetFailOnApprovalRequiredOk() (*bool, bool) {
-	if o == nil || isNil(o.FailOnApprovalRequired) {
+	if o == nil || IsNil(o.FailOnApprovalRequired) {
 		return nil, false
 	}
 	return o.FailOnApprovalRequired, true
@@ -202,7 +202,7 @@ func (o *IPReservationRequestInput) GetFailOnApprovalRequiredOk() (*bool, bool) 
 
 // HasFailOnApprovalRequired returns a boolean if a field has been set.
 func (o *IPReservationRequestInput) HasFailOnApprovalRequired() bool {
-	if o != nil && !isNil(o.FailOnApprovalRequired) {
+	if o != nil && !IsNil(o.FailOnApprovalRequired) {
 		return true
 	}
 
@@ -216,7 +216,7 @@ func (o *IPReservationRequestInput) SetFailOnApprovalRequired(v bool) {
 
 // GetMetro returns the Metro field value if set, zero value otherwise.
 func (o *IPReservationRequestInput) GetMetro() string {
-	if o == nil || isNil(o.Metro) {
+	if o == nil || IsNil(o.Metro) {
 		var ret string
 		return ret
 	}
@@ -226,7 +226,7 @@ func (o *IPReservationRequestInput) GetMetro() string {
 // GetMetroOk returns a tuple with the Metro field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IPReservationRequestInput) GetMetroOk() (*string, bool) {
-	if o == nil || isNil(o.Metro) {
+	if o == nil || IsNil(o.Metro) {
 		return nil, false
 	}
 	return o.Metro, true
@@ -234,7 +234,7 @@ func (o *IPReservationRequestInput) GetMetroOk() (*string, bool) {
 
 // HasMetro returns a boolean if a field has been set.
 func (o *IPReservationRequestInput) HasMetro() bool {
-	if o != nil && !isNil(o.Metro) {
+	if o != nil && !IsNil(o.Metro) {
 		return true
 	}
 
@@ -272,7 +272,7 @@ func (o *IPReservationRequestInput) SetQuantity(v int32) {
 
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *IPReservationRequestInput) GetTags() []string {
-	if o == nil || isNil(o.Tags) {
+	if o == nil || IsNil(o.Tags) {
 		var ret []string
 		return ret
 	}
@@ -282,7 +282,7 @@ func (o *IPReservationRequestInput) GetTags() []string {
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IPReservationRequestInput) GetTagsOk() ([]string, bool) {
-	if o == nil || isNil(o.Tags) {
+	if o == nil || IsNil(o.Tags) {
 		return nil, false
 	}
 	return o.Tags, true
@@ -290,7 +290,7 @@ func (o *IPReservationRequestInput) GetTagsOk() ([]string, bool) {
 
 // HasTags returns a boolean if a field has been set.
 func (o *IPReservationRequestInput) HasTags() bool {
-	if o != nil && !isNil(o.Tags) {
+	if o != nil && !IsNil(o.Tags) {
 		return true
 	}
 
@@ -336,26 +336,26 @@ func (o IPReservationRequestInput) MarshalJSON() ([]byte, error) {
 
 func (o IPReservationRequestInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Comments) {
+	if !IsNil(o.Comments) {
 		toSerialize["comments"] = o.Comments
 	}
-	if !isNil(o.Customdata) {
+	if !IsNil(o.Customdata) {
 		toSerialize["customdata"] = o.Customdata
 	}
-	if !isNil(o.Details) {
+	if !IsNil(o.Details) {
 		toSerialize["details"] = o.Details
 	}
-	if !isNil(o.Facility) {
+	if !IsNil(o.Facility) {
 		toSerialize["facility"] = o.Facility
 	}
-	if !isNil(o.FailOnApprovalRequired) {
+	if !IsNil(o.FailOnApprovalRequired) {
 		toSerialize["fail_on_approval_required"] = o.FailOnApprovalRequired
 	}
-	if !isNil(o.Metro) {
+	if !IsNil(o.Metro) {
 		toSerialize["metro"] = o.Metro
 	}
 	toSerialize["quantity"] = o.Quantity
-	if !isNil(o.Tags) {
+	if !IsNil(o.Tags) {
 		toSerialize["tags"] = o.Tags
 	}
 	toSerialize["type"] = o.Type

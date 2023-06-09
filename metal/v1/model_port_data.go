@@ -48,7 +48,7 @@ func NewPortDataWithDefaults() *PortData {
 
 // GetMac returns the Mac field value if set, zero value otherwise.
 func (o *PortData) GetMac() string {
-	if o == nil || isNil(o.Mac) {
+	if o == nil || IsNil(o.Mac) {
 		var ret string
 		return ret
 	}
@@ -58,7 +58,7 @@ func (o *PortData) GetMac() string {
 // GetMacOk returns a tuple with the Mac field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PortData) GetMacOk() (*string, bool) {
-	if o == nil || isNil(o.Mac) {
+	if o == nil || IsNil(o.Mac) {
 		return nil, false
 	}
 	return o.Mac, true
@@ -66,7 +66,7 @@ func (o *PortData) GetMacOk() (*string, bool) {
 
 // HasMac returns a boolean if a field has been set.
 func (o *PortData) HasMac() bool {
-	if o != nil && !isNil(o.Mac) {
+	if o != nil && !IsNil(o.Mac) {
 		return true
 	}
 
@@ -80,7 +80,7 @@ func (o *PortData) SetMac(v string) {
 
 // GetBonded returns the Bonded field value if set, zero value otherwise.
 func (o *PortData) GetBonded() bool {
-	if o == nil || isNil(o.Bonded) {
+	if o == nil || IsNil(o.Bonded) {
 		var ret bool
 		return ret
 	}
@@ -90,7 +90,7 @@ func (o *PortData) GetBonded() bool {
 // GetBondedOk returns a tuple with the Bonded field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PortData) GetBondedOk() (*bool, bool) {
-	if o == nil || isNil(o.Bonded) {
+	if o == nil || IsNil(o.Bonded) {
 		return nil, false
 	}
 	return o.Bonded, true
@@ -98,7 +98,7 @@ func (o *PortData) GetBondedOk() (*bool, bool) {
 
 // HasBonded returns a boolean if a field has been set.
 func (o *PortData) HasBonded() bool {
-	if o != nil && !isNil(o.Bonded) {
+	if o != nil && !IsNil(o.Bonded) {
 		return true
 	}
 
@@ -120,10 +120,10 @@ func (o PortData) MarshalJSON() ([]byte, error) {
 
 func (o PortData) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Mac) {
+	if !IsNil(o.Mac) {
 		toSerialize["mac"] = o.Mac
 	}
-	if !isNil(o.Bonded) {
+	if !IsNil(o.Bonded) {
 		toSerialize["bonded"] = o.Bonded
 	}
 

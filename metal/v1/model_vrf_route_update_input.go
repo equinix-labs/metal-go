@@ -48,7 +48,7 @@ func NewVrfRouteUpdateInputWithDefaults() *VrfRouteUpdateInput {
 
 // GetPrefix returns the Prefix field value if set, zero value otherwise.
 func (o *VrfRouteUpdateInput) GetPrefix() string {
-	if o == nil || isNil(o.Prefix) {
+	if o == nil || IsNil(o.Prefix) {
 		var ret string
 		return ret
 	}
@@ -58,7 +58,7 @@ func (o *VrfRouteUpdateInput) GetPrefix() string {
 // GetPrefixOk returns a tuple with the Prefix field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VrfRouteUpdateInput) GetPrefixOk() (*string, bool) {
-	if o == nil || isNil(o.Prefix) {
+	if o == nil || IsNil(o.Prefix) {
 		return nil, false
 	}
 	return o.Prefix, true
@@ -66,7 +66,7 @@ func (o *VrfRouteUpdateInput) GetPrefixOk() (*string, bool) {
 
 // HasPrefix returns a boolean if a field has been set.
 func (o *VrfRouteUpdateInput) HasPrefix() bool {
-	if o != nil && !isNil(o.Prefix) {
+	if o != nil && !IsNil(o.Prefix) {
 		return true
 	}
 
@@ -80,7 +80,7 @@ func (o *VrfRouteUpdateInput) SetPrefix(v string) {
 
 // GetNextHop returns the NextHop field value if set, zero value otherwise.
 func (o *VrfRouteUpdateInput) GetNextHop() string {
-	if o == nil || isNil(o.NextHop) {
+	if o == nil || IsNil(o.NextHop) {
 		var ret string
 		return ret
 	}
@@ -90,7 +90,7 @@ func (o *VrfRouteUpdateInput) GetNextHop() string {
 // GetNextHopOk returns a tuple with the NextHop field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VrfRouteUpdateInput) GetNextHopOk() (*string, bool) {
-	if o == nil || isNil(o.NextHop) {
+	if o == nil || IsNil(o.NextHop) {
 		return nil, false
 	}
 	return o.NextHop, true
@@ -98,7 +98,7 @@ func (o *VrfRouteUpdateInput) GetNextHopOk() (*string, bool) {
 
 // HasNextHop returns a boolean if a field has been set.
 func (o *VrfRouteUpdateInput) HasNextHop() bool {
-	if o != nil && !isNil(o.NextHop) {
+	if o != nil && !IsNil(o.NextHop) {
 		return true
 	}
 
@@ -120,10 +120,10 @@ func (o VrfRouteUpdateInput) MarshalJSON() ([]byte, error) {
 
 func (o VrfRouteUpdateInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Prefix) {
+	if !IsNil(o.Prefix) {
 		toSerialize["prefix"] = o.Prefix
 	}
-	if !isNil(o.NextHop) {
+	if !IsNil(o.NextHop) {
 		toSerialize["next_hop"] = o.NextHop
 	}
 

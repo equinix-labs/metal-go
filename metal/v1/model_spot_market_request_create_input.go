@@ -53,7 +53,7 @@ func NewSpotMarketRequestCreateInputWithDefaults() *SpotMarketRequestCreateInput
 
 // GetDevicesMax returns the DevicesMax field value if set, zero value otherwise.
 func (o *SpotMarketRequestCreateInput) GetDevicesMax() int32 {
-	if o == nil || isNil(o.DevicesMax) {
+	if o == nil || IsNil(o.DevicesMax) {
 		var ret int32
 		return ret
 	}
@@ -63,7 +63,7 @@ func (o *SpotMarketRequestCreateInput) GetDevicesMax() int32 {
 // GetDevicesMaxOk returns a tuple with the DevicesMax field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SpotMarketRequestCreateInput) GetDevicesMaxOk() (*int32, bool) {
-	if o == nil || isNil(o.DevicesMax) {
+	if o == nil || IsNil(o.DevicesMax) {
 		return nil, false
 	}
 	return o.DevicesMax, true
@@ -71,7 +71,7 @@ func (o *SpotMarketRequestCreateInput) GetDevicesMaxOk() (*int32, bool) {
 
 // HasDevicesMax returns a boolean if a field has been set.
 func (o *SpotMarketRequestCreateInput) HasDevicesMax() bool {
-	if o != nil && !isNil(o.DevicesMax) {
+	if o != nil && !IsNil(o.DevicesMax) {
 		return true
 	}
 
@@ -85,7 +85,7 @@ func (o *SpotMarketRequestCreateInput) SetDevicesMax(v int32) {
 
 // GetDevicesMin returns the DevicesMin field value if set, zero value otherwise.
 func (o *SpotMarketRequestCreateInput) GetDevicesMin() int32 {
-	if o == nil || isNil(o.DevicesMin) {
+	if o == nil || IsNil(o.DevicesMin) {
 		var ret int32
 		return ret
 	}
@@ -95,7 +95,7 @@ func (o *SpotMarketRequestCreateInput) GetDevicesMin() int32 {
 // GetDevicesMinOk returns a tuple with the DevicesMin field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SpotMarketRequestCreateInput) GetDevicesMinOk() (*int32, bool) {
-	if o == nil || isNil(o.DevicesMin) {
+	if o == nil || IsNil(o.DevicesMin) {
 		return nil, false
 	}
 	return o.DevicesMin, true
@@ -103,7 +103,7 @@ func (o *SpotMarketRequestCreateInput) GetDevicesMinOk() (*int32, bool) {
 
 // HasDevicesMin returns a boolean if a field has been set.
 func (o *SpotMarketRequestCreateInput) HasDevicesMin() bool {
-	if o != nil && !isNil(o.DevicesMin) {
+	if o != nil && !IsNil(o.DevicesMin) {
 		return true
 	}
 
@@ -117,7 +117,7 @@ func (o *SpotMarketRequestCreateInput) SetDevicesMin(v int32) {
 
 // GetEndAt returns the EndAt field value if set, zero value otherwise.
 func (o *SpotMarketRequestCreateInput) GetEndAt() time.Time {
-	if o == nil || isNil(o.EndAt) {
+	if o == nil || IsNil(o.EndAt) {
 		var ret time.Time
 		return ret
 	}
@@ -127,7 +127,7 @@ func (o *SpotMarketRequestCreateInput) GetEndAt() time.Time {
 // GetEndAtOk returns a tuple with the EndAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SpotMarketRequestCreateInput) GetEndAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.EndAt) {
+	if o == nil || IsNil(o.EndAt) {
 		return nil, false
 	}
 	return o.EndAt, true
@@ -135,7 +135,7 @@ func (o *SpotMarketRequestCreateInput) GetEndAtOk() (*time.Time, bool) {
 
 // HasEndAt returns a boolean if a field has been set.
 func (o *SpotMarketRequestCreateInput) HasEndAt() bool {
-	if o != nil && !isNil(o.EndAt) {
+	if o != nil && !IsNil(o.EndAt) {
 		return true
 	}
 
@@ -149,7 +149,7 @@ func (o *SpotMarketRequestCreateInput) SetEndAt(v time.Time) {
 
 // GetFacilities returns the Facilities field value if set, zero value otherwise.
 func (o *SpotMarketRequestCreateInput) GetFacilities() []string {
-	if o == nil || isNil(o.Facilities) {
+	if o == nil || IsNil(o.Facilities) {
 		var ret []string
 		return ret
 	}
@@ -159,7 +159,7 @@ func (o *SpotMarketRequestCreateInput) GetFacilities() []string {
 // GetFacilitiesOk returns a tuple with the Facilities field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SpotMarketRequestCreateInput) GetFacilitiesOk() ([]string, bool) {
-	if o == nil || isNil(o.Facilities) {
+	if o == nil || IsNil(o.Facilities) {
 		return nil, false
 	}
 	return o.Facilities, true
@@ -167,7 +167,7 @@ func (o *SpotMarketRequestCreateInput) GetFacilitiesOk() ([]string, bool) {
 
 // HasFacilities returns a boolean if a field has been set.
 func (o *SpotMarketRequestCreateInput) HasFacilities() bool {
-	if o != nil && !isNil(o.Facilities) {
+	if o != nil && !IsNil(o.Facilities) {
 		return true
 	}
 
@@ -181,7 +181,7 @@ func (o *SpotMarketRequestCreateInput) SetFacilities(v []string) {
 
 // GetInstanceParameters returns the InstanceParameters field value if set, zero value otherwise.
 func (o *SpotMarketRequestCreateInput) GetInstanceParameters() SpotMarketRequestCreateInputInstanceParameters {
-	if o == nil || isNil(o.InstanceParameters) {
+	if o == nil || IsNil(o.InstanceParameters) {
 		var ret SpotMarketRequestCreateInputInstanceParameters
 		return ret
 	}
@@ -191,7 +191,7 @@ func (o *SpotMarketRequestCreateInput) GetInstanceParameters() SpotMarketRequest
 // GetInstanceParametersOk returns a tuple with the InstanceParameters field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SpotMarketRequestCreateInput) GetInstanceParametersOk() (*SpotMarketRequestCreateInputInstanceParameters, bool) {
-	if o == nil || isNil(o.InstanceParameters) {
+	if o == nil || IsNil(o.InstanceParameters) {
 		return nil, false
 	}
 	return o.InstanceParameters, true
@@ -199,7 +199,7 @@ func (o *SpotMarketRequestCreateInput) GetInstanceParametersOk() (*SpotMarketReq
 
 // HasInstanceParameters returns a boolean if a field has been set.
 func (o *SpotMarketRequestCreateInput) HasInstanceParameters() bool {
-	if o != nil && !isNil(o.InstanceParameters) {
+	if o != nil && !IsNil(o.InstanceParameters) {
 		return true
 	}
 
@@ -213,7 +213,7 @@ func (o *SpotMarketRequestCreateInput) SetInstanceParameters(v SpotMarketRequest
 
 // GetMaxBidPrice returns the MaxBidPrice field value if set, zero value otherwise.
 func (o *SpotMarketRequestCreateInput) GetMaxBidPrice() float32 {
-	if o == nil || isNil(o.MaxBidPrice) {
+	if o == nil || IsNil(o.MaxBidPrice) {
 		var ret float32
 		return ret
 	}
@@ -223,7 +223,7 @@ func (o *SpotMarketRequestCreateInput) GetMaxBidPrice() float32 {
 // GetMaxBidPriceOk returns a tuple with the MaxBidPrice field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SpotMarketRequestCreateInput) GetMaxBidPriceOk() (*float32, bool) {
-	if o == nil || isNil(o.MaxBidPrice) {
+	if o == nil || IsNil(o.MaxBidPrice) {
 		return nil, false
 	}
 	return o.MaxBidPrice, true
@@ -231,7 +231,7 @@ func (o *SpotMarketRequestCreateInput) GetMaxBidPriceOk() (*float32, bool) {
 
 // HasMaxBidPrice returns a boolean if a field has been set.
 func (o *SpotMarketRequestCreateInput) HasMaxBidPrice() bool {
-	if o != nil && !isNil(o.MaxBidPrice) {
+	if o != nil && !IsNil(o.MaxBidPrice) {
 		return true
 	}
 
@@ -245,7 +245,7 @@ func (o *SpotMarketRequestCreateInput) SetMaxBidPrice(v float32) {
 
 // GetMetro returns the Metro field value if set, zero value otherwise.
 func (o *SpotMarketRequestCreateInput) GetMetro() string {
-	if o == nil || isNil(o.Metro) {
+	if o == nil || IsNil(o.Metro) {
 		var ret string
 		return ret
 	}
@@ -255,7 +255,7 @@ func (o *SpotMarketRequestCreateInput) GetMetro() string {
 // GetMetroOk returns a tuple with the Metro field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SpotMarketRequestCreateInput) GetMetroOk() (*string, bool) {
-	if o == nil || isNil(o.Metro) {
+	if o == nil || IsNil(o.Metro) {
 		return nil, false
 	}
 	return o.Metro, true
@@ -263,7 +263,7 @@ func (o *SpotMarketRequestCreateInput) GetMetroOk() (*string, bool) {
 
 // HasMetro returns a boolean if a field has been set.
 func (o *SpotMarketRequestCreateInput) HasMetro() bool {
-	if o != nil && !isNil(o.Metro) {
+	if o != nil && !IsNil(o.Metro) {
 		return true
 	}
 
@@ -285,25 +285,25 @@ func (o SpotMarketRequestCreateInput) MarshalJSON() ([]byte, error) {
 
 func (o SpotMarketRequestCreateInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.DevicesMax) {
+	if !IsNil(o.DevicesMax) {
 		toSerialize["devices_max"] = o.DevicesMax
 	}
-	if !isNil(o.DevicesMin) {
+	if !IsNil(o.DevicesMin) {
 		toSerialize["devices_min"] = o.DevicesMin
 	}
-	if !isNil(o.EndAt) {
+	if !IsNil(o.EndAt) {
 		toSerialize["end_at"] = o.EndAt
 	}
-	if !isNil(o.Facilities) {
+	if !IsNil(o.Facilities) {
 		toSerialize["facilities"] = o.Facilities
 	}
-	if !isNil(o.InstanceParameters) {
+	if !IsNil(o.InstanceParameters) {
 		toSerialize["instance_parameters"] = o.InstanceParameters
 	}
-	if !isNil(o.MaxBidPrice) {
+	if !IsNil(o.MaxBidPrice) {
 		toSerialize["max_bid_price"] = o.MaxBidPrice
 	}
-	if !isNil(o.Metro) {
+	if !IsNil(o.Metro) {
 		toSerialize["metro"] = o.Metro
 	}
 

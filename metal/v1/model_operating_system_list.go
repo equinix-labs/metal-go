@@ -45,7 +45,7 @@ func NewOperatingSystemListWithDefaults() *OperatingSystemList {
 
 // GetOperatingSystems returns the OperatingSystems field value if set, zero value otherwise.
 func (o *OperatingSystemList) GetOperatingSystems() []OperatingSystem {
-	if o == nil || isNil(o.OperatingSystems) {
+	if o == nil || IsNil(o.OperatingSystems) {
 		var ret []OperatingSystem
 		return ret
 	}
@@ -55,7 +55,7 @@ func (o *OperatingSystemList) GetOperatingSystems() []OperatingSystem {
 // GetOperatingSystemsOk returns a tuple with the OperatingSystems field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OperatingSystemList) GetOperatingSystemsOk() ([]OperatingSystem, bool) {
-	if o == nil || isNil(o.OperatingSystems) {
+	if o == nil || IsNil(o.OperatingSystems) {
 		return nil, false
 	}
 	return o.OperatingSystems, true
@@ -63,7 +63,7 @@ func (o *OperatingSystemList) GetOperatingSystemsOk() ([]OperatingSystem, bool) 
 
 // HasOperatingSystems returns a boolean if a field has been set.
 func (o *OperatingSystemList) HasOperatingSystems() bool {
-	if o != nil && !isNil(o.OperatingSystems) {
+	if o != nil && !IsNil(o.OperatingSystems) {
 		return true
 	}
 
@@ -85,7 +85,7 @@ func (o OperatingSystemList) MarshalJSON() ([]byte, error) {
 
 func (o OperatingSystemList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.OperatingSystems) {
+	if !IsNil(o.OperatingSystems) {
 		toSerialize["operating_systems"] = o.OperatingSystems
 	}
 

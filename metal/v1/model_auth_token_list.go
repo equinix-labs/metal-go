@@ -45,7 +45,7 @@ func NewAuthTokenListWithDefaults() *AuthTokenList {
 
 // GetApiKeys returns the ApiKeys field value if set, zero value otherwise.
 func (o *AuthTokenList) GetApiKeys() []AuthToken {
-	if o == nil || isNil(o.ApiKeys) {
+	if o == nil || IsNil(o.ApiKeys) {
 		var ret []AuthToken
 		return ret
 	}
@@ -55,7 +55,7 @@ func (o *AuthTokenList) GetApiKeys() []AuthToken {
 // GetApiKeysOk returns a tuple with the ApiKeys field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AuthTokenList) GetApiKeysOk() ([]AuthToken, bool) {
-	if o == nil || isNil(o.ApiKeys) {
+	if o == nil || IsNil(o.ApiKeys) {
 		return nil, false
 	}
 	return o.ApiKeys, true
@@ -63,7 +63,7 @@ func (o *AuthTokenList) GetApiKeysOk() ([]AuthToken, bool) {
 
 // HasApiKeys returns a boolean if a field has been set.
 func (o *AuthTokenList) HasApiKeys() bool {
-	if o != nil && !isNil(o.ApiKeys) {
+	if o != nil && !IsNil(o.ApiKeys) {
 		return true
 	}
 
@@ -85,7 +85,7 @@ func (o AuthTokenList) MarshalJSON() ([]byte, error) {
 
 func (o AuthTokenList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.ApiKeys) {
+	if !IsNil(o.ApiKeys) {
 		toSerialize["api_keys"] = o.ApiKeys
 	}
 

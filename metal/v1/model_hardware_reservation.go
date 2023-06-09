@@ -66,7 +66,7 @@ func NewHardwareReservationWithDefaults() *HardwareReservation {
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *HardwareReservation) GetCreatedAt() time.Time {
-	if o == nil || isNil(o.CreatedAt) {
+	if o == nil || IsNil(o.CreatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -76,7 +76,7 @@ func (o *HardwareReservation) GetCreatedAt() time.Time {
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HardwareReservation) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.CreatedAt) {
+	if o == nil || IsNil(o.CreatedAt) {
 		return nil, false
 	}
 	return o.CreatedAt, true
@@ -84,7 +84,7 @@ func (o *HardwareReservation) GetCreatedAtOk() (*time.Time, bool) {
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *HardwareReservation) HasCreatedAt() bool {
-	if o != nil && !isNil(o.CreatedAt) {
+	if o != nil && !IsNil(o.CreatedAt) {
 		return true
 	}
 
@@ -98,7 +98,7 @@ func (o *HardwareReservation) SetCreatedAt(v time.Time) {
 
 // GetCustomRate returns the CustomRate field value if set, zero value otherwise.
 func (o *HardwareReservation) GetCustomRate() float32 {
-	if o == nil || isNil(o.CustomRate) {
+	if o == nil || IsNil(o.CustomRate) {
 		var ret float32
 		return ret
 	}
@@ -108,7 +108,7 @@ func (o *HardwareReservation) GetCustomRate() float32 {
 // GetCustomRateOk returns a tuple with the CustomRate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HardwareReservation) GetCustomRateOk() (*float32, bool) {
-	if o == nil || isNil(o.CustomRate) {
+	if o == nil || IsNil(o.CustomRate) {
 		return nil, false
 	}
 	return o.CustomRate, true
@@ -116,7 +116,7 @@ func (o *HardwareReservation) GetCustomRateOk() (*float32, bool) {
 
 // HasCustomRate returns a boolean if a field has been set.
 func (o *HardwareReservation) HasCustomRate() bool {
-	if o != nil && !isNil(o.CustomRate) {
+	if o != nil && !IsNil(o.CustomRate) {
 		return true
 	}
 
@@ -130,7 +130,7 @@ func (o *HardwareReservation) SetCustomRate(v float32) {
 
 // GetDevice returns the Device field value if set, zero value otherwise.
 func (o *HardwareReservation) GetDevice() Device {
-	if o == nil || isNil(o.Device) {
+	if o == nil || IsNil(o.Device) {
 		var ret Device
 		return ret
 	}
@@ -140,7 +140,7 @@ func (o *HardwareReservation) GetDevice() Device {
 // GetDeviceOk returns a tuple with the Device field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HardwareReservation) GetDeviceOk() (*Device, bool) {
-	if o == nil || isNil(o.Device) {
+	if o == nil || IsNil(o.Device) {
 		return nil, false
 	}
 	return o.Device, true
@@ -148,7 +148,7 @@ func (o *HardwareReservation) GetDeviceOk() (*Device, bool) {
 
 // HasDevice returns a boolean if a field has been set.
 func (o *HardwareReservation) HasDevice() bool {
-	if o != nil && !isNil(o.Device) {
+	if o != nil && !IsNil(o.Device) {
 		return true
 	}
 
@@ -162,7 +162,7 @@ func (o *HardwareReservation) SetDevice(v Device) {
 
 // GetFacility returns the Facility field value if set, zero value otherwise.
 func (o *HardwareReservation) GetFacility() Facility {
-	if o == nil || isNil(o.Facility) {
+	if o == nil || IsNil(o.Facility) {
 		var ret Facility
 		return ret
 	}
@@ -172,7 +172,7 @@ func (o *HardwareReservation) GetFacility() Facility {
 // GetFacilityOk returns a tuple with the Facility field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HardwareReservation) GetFacilityOk() (*Facility, bool) {
-	if o == nil || isNil(o.Facility) {
+	if o == nil || IsNil(o.Facility) {
 		return nil, false
 	}
 	return o.Facility, true
@@ -180,7 +180,7 @@ func (o *HardwareReservation) GetFacilityOk() (*Facility, bool) {
 
 // HasFacility returns a boolean if a field has been set.
 func (o *HardwareReservation) HasFacility() bool {
-	if o != nil && !isNil(o.Facility) {
+	if o != nil && !IsNil(o.Facility) {
 		return true
 	}
 
@@ -194,7 +194,7 @@ func (o *HardwareReservation) SetFacility(v Facility) {
 
 // GetHref returns the Href field value if set, zero value otherwise.
 func (o *HardwareReservation) GetHref() string {
-	if o == nil || isNil(o.Href) {
+	if o == nil || IsNil(o.Href) {
 		var ret string
 		return ret
 	}
@@ -204,7 +204,7 @@ func (o *HardwareReservation) GetHref() string {
 // GetHrefOk returns a tuple with the Href field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HardwareReservation) GetHrefOk() (*string, bool) {
-	if o == nil || isNil(o.Href) {
+	if o == nil || IsNil(o.Href) {
 		return nil, false
 	}
 	return o.Href, true
@@ -212,7 +212,7 @@ func (o *HardwareReservation) GetHrefOk() (*string, bool) {
 
 // HasHref returns a boolean if a field has been set.
 func (o *HardwareReservation) HasHref() bool {
-	if o != nil && !isNil(o.Href) {
+	if o != nil && !IsNil(o.Href) {
 		return true
 	}
 
@@ -226,7 +226,7 @@ func (o *HardwareReservation) SetHref(v string) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *HardwareReservation) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -236,7 +236,7 @@ func (o *HardwareReservation) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HardwareReservation) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -244,7 +244,7 @@ func (o *HardwareReservation) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *HardwareReservation) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -258,7 +258,7 @@ func (o *HardwareReservation) SetId(v string) {
 
 // GetNeedOfService returns the NeedOfService field value if set, zero value otherwise.
 func (o *HardwareReservation) GetNeedOfService() bool {
-	if o == nil || isNil(o.NeedOfService) {
+	if o == nil || IsNil(o.NeedOfService) {
 		var ret bool
 		return ret
 	}
@@ -268,7 +268,7 @@ func (o *HardwareReservation) GetNeedOfService() bool {
 // GetNeedOfServiceOk returns a tuple with the NeedOfService field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HardwareReservation) GetNeedOfServiceOk() (*bool, bool) {
-	if o == nil || isNil(o.NeedOfService) {
+	if o == nil || IsNil(o.NeedOfService) {
 		return nil, false
 	}
 	return o.NeedOfService, true
@@ -276,7 +276,7 @@ func (o *HardwareReservation) GetNeedOfServiceOk() (*bool, bool) {
 
 // HasNeedOfService returns a boolean if a field has been set.
 func (o *HardwareReservation) HasNeedOfService() bool {
-	if o != nil && !isNil(o.NeedOfService) {
+	if o != nil && !IsNil(o.NeedOfService) {
 		return true
 	}
 
@@ -290,7 +290,7 @@ func (o *HardwareReservation) SetNeedOfService(v bool) {
 
 // GetPlan returns the Plan field value if set, zero value otherwise.
 func (o *HardwareReservation) GetPlan() Plan {
-	if o == nil || isNil(o.Plan) {
+	if o == nil || IsNil(o.Plan) {
 		var ret Plan
 		return ret
 	}
@@ -300,7 +300,7 @@ func (o *HardwareReservation) GetPlan() Plan {
 // GetPlanOk returns a tuple with the Plan field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HardwareReservation) GetPlanOk() (*Plan, bool) {
-	if o == nil || isNil(o.Plan) {
+	if o == nil || IsNil(o.Plan) {
 		return nil, false
 	}
 	return o.Plan, true
@@ -308,7 +308,7 @@ func (o *HardwareReservation) GetPlanOk() (*Plan, bool) {
 
 // HasPlan returns a boolean if a field has been set.
 func (o *HardwareReservation) HasPlan() bool {
-	if o != nil && !isNil(o.Plan) {
+	if o != nil && !IsNil(o.Plan) {
 		return true
 	}
 
@@ -322,7 +322,7 @@ func (o *HardwareReservation) SetPlan(v Plan) {
 
 // GetProject returns the Project field value if set, zero value otherwise.
 func (o *HardwareReservation) GetProject() Project {
-	if o == nil || isNil(o.Project) {
+	if o == nil || IsNil(o.Project) {
 		var ret Project
 		return ret
 	}
@@ -332,7 +332,7 @@ func (o *HardwareReservation) GetProject() Project {
 // GetProjectOk returns a tuple with the Project field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HardwareReservation) GetProjectOk() (*Project, bool) {
-	if o == nil || isNil(o.Project) {
+	if o == nil || IsNil(o.Project) {
 		return nil, false
 	}
 	return o.Project, true
@@ -340,7 +340,7 @@ func (o *HardwareReservation) GetProjectOk() (*Project, bool) {
 
 // HasProject returns a boolean if a field has been set.
 func (o *HardwareReservation) HasProject() bool {
-	if o != nil && !isNil(o.Project) {
+	if o != nil && !IsNil(o.Project) {
 		return true
 	}
 
@@ -354,7 +354,7 @@ func (o *HardwareReservation) SetProject(v Project) {
 
 // GetProvisionable returns the Provisionable field value if set, zero value otherwise.
 func (o *HardwareReservation) GetProvisionable() bool {
-	if o == nil || isNil(o.Provisionable) {
+	if o == nil || IsNil(o.Provisionable) {
 		var ret bool
 		return ret
 	}
@@ -364,7 +364,7 @@ func (o *HardwareReservation) GetProvisionable() bool {
 // GetProvisionableOk returns a tuple with the Provisionable field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HardwareReservation) GetProvisionableOk() (*bool, bool) {
-	if o == nil || isNil(o.Provisionable) {
+	if o == nil || IsNil(o.Provisionable) {
 		return nil, false
 	}
 	return o.Provisionable, true
@@ -372,7 +372,7 @@ func (o *HardwareReservation) GetProvisionableOk() (*bool, bool) {
 
 // HasProvisionable returns a boolean if a field has been set.
 func (o *HardwareReservation) HasProvisionable() bool {
-	if o != nil && !isNil(o.Provisionable) {
+	if o != nil && !IsNil(o.Provisionable) {
 		return true
 	}
 
@@ -386,7 +386,7 @@ func (o *HardwareReservation) SetProvisionable(v bool) {
 
 // GetShortId returns the ShortId field value if set, zero value otherwise.
 func (o *HardwareReservation) GetShortId() string {
-	if o == nil || isNil(o.ShortId) {
+	if o == nil || IsNil(o.ShortId) {
 		var ret string
 		return ret
 	}
@@ -396,7 +396,7 @@ func (o *HardwareReservation) GetShortId() string {
 // GetShortIdOk returns a tuple with the ShortId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HardwareReservation) GetShortIdOk() (*string, bool) {
-	if o == nil || isNil(o.ShortId) {
+	if o == nil || IsNil(o.ShortId) {
 		return nil, false
 	}
 	return o.ShortId, true
@@ -404,7 +404,7 @@ func (o *HardwareReservation) GetShortIdOk() (*string, bool) {
 
 // HasShortId returns a boolean if a field has been set.
 func (o *HardwareReservation) HasShortId() bool {
-	if o != nil && !isNil(o.ShortId) {
+	if o != nil && !IsNil(o.ShortId) {
 		return true
 	}
 
@@ -418,7 +418,7 @@ func (o *HardwareReservation) SetShortId(v string) {
 
 // GetSpare returns the Spare field value if set, zero value otherwise.
 func (o *HardwareReservation) GetSpare() bool {
-	if o == nil || isNil(o.Spare) {
+	if o == nil || IsNil(o.Spare) {
 		var ret bool
 		return ret
 	}
@@ -428,7 +428,7 @@ func (o *HardwareReservation) GetSpare() bool {
 // GetSpareOk returns a tuple with the Spare field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HardwareReservation) GetSpareOk() (*bool, bool) {
-	if o == nil || isNil(o.Spare) {
+	if o == nil || IsNil(o.Spare) {
 		return nil, false
 	}
 	return o.Spare, true
@@ -436,7 +436,7 @@ func (o *HardwareReservation) GetSpareOk() (*bool, bool) {
 
 // HasSpare returns a boolean if a field has been set.
 func (o *HardwareReservation) HasSpare() bool {
-	if o != nil && !isNil(o.Spare) {
+	if o != nil && !IsNil(o.Spare) {
 		return true
 	}
 
@@ -450,7 +450,7 @@ func (o *HardwareReservation) SetSpare(v bool) {
 
 // GetSwitchUuid returns the SwitchUuid field value if set, zero value otherwise.
 func (o *HardwareReservation) GetSwitchUuid() string {
-	if o == nil || isNil(o.SwitchUuid) {
+	if o == nil || IsNil(o.SwitchUuid) {
 		var ret string
 		return ret
 	}
@@ -460,7 +460,7 @@ func (o *HardwareReservation) GetSwitchUuid() string {
 // GetSwitchUuidOk returns a tuple with the SwitchUuid field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HardwareReservation) GetSwitchUuidOk() (*string, bool) {
-	if o == nil || isNil(o.SwitchUuid) {
+	if o == nil || IsNil(o.SwitchUuid) {
 		return nil, false
 	}
 	return o.SwitchUuid, true
@@ -468,7 +468,7 @@ func (o *HardwareReservation) GetSwitchUuidOk() (*string, bool) {
 
 // HasSwitchUuid returns a boolean if a field has been set.
 func (o *HardwareReservation) HasSwitchUuid() bool {
-	if o != nil && !isNil(o.SwitchUuid) {
+	if o != nil && !IsNil(o.SwitchUuid) {
 		return true
 	}
 
@@ -482,7 +482,7 @@ func (o *HardwareReservation) SetSwitchUuid(v string) {
 
 // GetTerminationTime returns the TerminationTime field value if set, zero value otherwise.
 func (o *HardwareReservation) GetTerminationTime() time.Time {
-	if o == nil || isNil(o.TerminationTime) {
+	if o == nil || IsNil(o.TerminationTime) {
 		var ret time.Time
 		return ret
 	}
@@ -492,7 +492,7 @@ func (o *HardwareReservation) GetTerminationTime() time.Time {
 // GetTerminationTimeOk returns a tuple with the TerminationTime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HardwareReservation) GetTerminationTimeOk() (*time.Time, bool) {
-	if o == nil || isNil(o.TerminationTime) {
+	if o == nil || IsNil(o.TerminationTime) {
 		return nil, false
 	}
 	return o.TerminationTime, true
@@ -500,7 +500,7 @@ func (o *HardwareReservation) GetTerminationTimeOk() (*time.Time, bool) {
 
 // HasTerminationTime returns a boolean if a field has been set.
 func (o *HardwareReservation) HasTerminationTime() bool {
-	if o != nil && !isNil(o.TerminationTime) {
+	if o != nil && !IsNil(o.TerminationTime) {
 		return true
 	}
 
@@ -522,46 +522,46 @@ func (o HardwareReservation) MarshalJSON() ([]byte, error) {
 
 func (o HardwareReservation) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.CreatedAt) {
+	if !IsNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt
 	}
-	if !isNil(o.CustomRate) {
+	if !IsNil(o.CustomRate) {
 		toSerialize["custom_rate"] = o.CustomRate
 	}
-	if !isNil(o.Device) {
+	if !IsNil(o.Device) {
 		toSerialize["device"] = o.Device
 	}
-	if !isNil(o.Facility) {
+	if !IsNil(o.Facility) {
 		toSerialize["facility"] = o.Facility
 	}
-	if !isNil(o.Href) {
+	if !IsNil(o.Href) {
 		toSerialize["href"] = o.Href
 	}
-	if !isNil(o.Id) {
+	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
-	if !isNil(o.NeedOfService) {
+	if !IsNil(o.NeedOfService) {
 		toSerialize["need_of_service"] = o.NeedOfService
 	}
-	if !isNil(o.Plan) {
+	if !IsNil(o.Plan) {
 		toSerialize["plan"] = o.Plan
 	}
-	if !isNil(o.Project) {
+	if !IsNil(o.Project) {
 		toSerialize["project"] = o.Project
 	}
-	if !isNil(o.Provisionable) {
+	if !IsNil(o.Provisionable) {
 		toSerialize["provisionable"] = o.Provisionable
 	}
-	if !isNil(o.ShortId) {
+	if !IsNil(o.ShortId) {
 		toSerialize["short_id"] = o.ShortId
 	}
-	if !isNil(o.Spare) {
+	if !IsNil(o.Spare) {
 		toSerialize["spare"] = o.Spare
 	}
-	if !isNil(o.SwitchUuid) {
+	if !IsNil(o.SwitchUuid) {
 		toSerialize["switch_uuid"] = o.SwitchUuid
 	}
-	if !isNil(o.TerminationTime) {
+	if !IsNil(o.TerminationTime) {
 		toSerialize["termination_time"] = o.TerminationTime
 	}
 

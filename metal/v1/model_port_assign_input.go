@@ -46,7 +46,7 @@ func NewPortAssignInputWithDefaults() *PortAssignInput {
 
 // GetVnid returns the Vnid field value if set, zero value otherwise.
 func (o *PortAssignInput) GetVnid() string {
-	if o == nil || isNil(o.Vnid) {
+	if o == nil || IsNil(o.Vnid) {
 		var ret string
 		return ret
 	}
@@ -56,7 +56,7 @@ func (o *PortAssignInput) GetVnid() string {
 // GetVnidOk returns a tuple with the Vnid field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PortAssignInput) GetVnidOk() (*string, bool) {
-	if o == nil || isNil(o.Vnid) {
+	if o == nil || IsNil(o.Vnid) {
 		return nil, false
 	}
 	return o.Vnid, true
@@ -64,7 +64,7 @@ func (o *PortAssignInput) GetVnidOk() (*string, bool) {
 
 // HasVnid returns a boolean if a field has been set.
 func (o *PortAssignInput) HasVnid() bool {
-	if o != nil && !isNil(o.Vnid) {
+	if o != nil && !IsNil(o.Vnid) {
 		return true
 	}
 
@@ -86,7 +86,7 @@ func (o PortAssignInput) MarshalJSON() ([]byte, error) {
 
 func (o PortAssignInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Vnid) {
+	if !IsNil(o.Vnid) {
 		toSerialize["vnid"] = o.Vnid
 	}
 

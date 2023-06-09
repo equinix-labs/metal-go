@@ -56,7 +56,7 @@ func NewOrganizationInputWithDefaults() *OrganizationInput {
 
 // GetAddress returns the Address field value if set, zero value otherwise.
 func (o *OrganizationInput) GetAddress() Address {
-	if o == nil || isNil(o.Address) {
+	if o == nil || IsNil(o.Address) {
 		var ret Address
 		return ret
 	}
@@ -66,7 +66,7 @@ func (o *OrganizationInput) GetAddress() Address {
 // GetAddressOk returns a tuple with the Address field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OrganizationInput) GetAddressOk() (*Address, bool) {
-	if o == nil || isNil(o.Address) {
+	if o == nil || IsNil(o.Address) {
 		return nil, false
 	}
 	return o.Address, true
@@ -74,7 +74,7 @@ func (o *OrganizationInput) GetAddressOk() (*Address, bool) {
 
 // HasAddress returns a boolean if a field has been set.
 func (o *OrganizationInput) HasAddress() bool {
-	if o != nil && !isNil(o.Address) {
+	if o != nil && !IsNil(o.Address) {
 		return true
 	}
 
@@ -88,7 +88,7 @@ func (o *OrganizationInput) SetAddress(v Address) {
 
 // GetBillingAddress returns the BillingAddress field value if set, zero value otherwise.
 func (o *OrganizationInput) GetBillingAddress() Address {
-	if o == nil || isNil(o.BillingAddress) {
+	if o == nil || IsNil(o.BillingAddress) {
 		var ret Address
 		return ret
 	}
@@ -98,7 +98,7 @@ func (o *OrganizationInput) GetBillingAddress() Address {
 // GetBillingAddressOk returns a tuple with the BillingAddress field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OrganizationInput) GetBillingAddressOk() (*Address, bool) {
-	if o == nil || isNil(o.BillingAddress) {
+	if o == nil || IsNil(o.BillingAddress) {
 		return nil, false
 	}
 	return o.BillingAddress, true
@@ -106,7 +106,7 @@ func (o *OrganizationInput) GetBillingAddressOk() (*Address, bool) {
 
 // HasBillingAddress returns a boolean if a field has been set.
 func (o *OrganizationInput) HasBillingAddress() bool {
-	if o != nil && !isNil(o.BillingAddress) {
+	if o != nil && !IsNil(o.BillingAddress) {
 		return true
 	}
 
@@ -120,7 +120,7 @@ func (o *OrganizationInput) SetBillingAddress(v Address) {
 
 // GetCustomdata returns the Customdata field value if set, zero value otherwise.
 func (o *OrganizationInput) GetCustomdata() map[string]interface{} {
-	if o == nil || isNil(o.Customdata) {
+	if o == nil || IsNil(o.Customdata) {
 		var ret map[string]interface{}
 		return ret
 	}
@@ -130,7 +130,7 @@ func (o *OrganizationInput) GetCustomdata() map[string]interface{} {
 // GetCustomdataOk returns a tuple with the Customdata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OrganizationInput) GetCustomdataOk() (map[string]interface{}, bool) {
-	if o == nil || isNil(o.Customdata) {
+	if o == nil || IsNil(o.Customdata) {
 		return map[string]interface{}{}, false
 	}
 	return o.Customdata, true
@@ -138,7 +138,7 @@ func (o *OrganizationInput) GetCustomdataOk() (map[string]interface{}, bool) {
 
 // HasCustomdata returns a boolean if a field has been set.
 func (o *OrganizationInput) HasCustomdata() bool {
-	if o != nil && !isNil(o.Customdata) {
+	if o != nil && !IsNil(o.Customdata) {
 		return true
 	}
 
@@ -152,7 +152,7 @@ func (o *OrganizationInput) SetCustomdata(v map[string]interface{}) {
 
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *OrganizationInput) GetDescription() string {
-	if o == nil || isNil(o.Description) {
+	if o == nil || IsNil(o.Description) {
 		var ret string
 		return ret
 	}
@@ -162,7 +162,7 @@ func (o *OrganizationInput) GetDescription() string {
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OrganizationInput) GetDescriptionOk() (*string, bool) {
-	if o == nil || isNil(o.Description) {
+	if o == nil || IsNil(o.Description) {
 		return nil, false
 	}
 	return o.Description, true
@@ -170,7 +170,7 @@ func (o *OrganizationInput) GetDescriptionOk() (*string, bool) {
 
 // HasDescription returns a boolean if a field has been set.
 func (o *OrganizationInput) HasDescription() bool {
-	if o != nil && !isNil(o.Description) {
+	if o != nil && !IsNil(o.Description) {
 		return true
 	}
 
@@ -184,7 +184,7 @@ func (o *OrganizationInput) SetDescription(v string) {
 
 // GetEnforce2faAt returns the Enforce2faAt field value if set, zero value otherwise.
 func (o *OrganizationInput) GetEnforce2faAt() time.Time {
-	if o == nil || isNil(o.Enforce2faAt) {
+	if o == nil || IsNil(o.Enforce2faAt) {
 		var ret time.Time
 		return ret
 	}
@@ -194,7 +194,7 @@ func (o *OrganizationInput) GetEnforce2faAt() time.Time {
 // GetEnforce2faAtOk returns a tuple with the Enforce2faAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OrganizationInput) GetEnforce2faAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.Enforce2faAt) {
+	if o == nil || IsNil(o.Enforce2faAt) {
 		return nil, false
 	}
 	return o.Enforce2faAt, true
@@ -202,7 +202,7 @@ func (o *OrganizationInput) GetEnforce2faAtOk() (*time.Time, bool) {
 
 // HasEnforce2faAt returns a boolean if a field has been set.
 func (o *OrganizationInput) HasEnforce2faAt() bool {
-	if o != nil && !isNil(o.Enforce2faAt) {
+	if o != nil && !IsNil(o.Enforce2faAt) {
 		return true
 	}
 
@@ -216,7 +216,7 @@ func (o *OrganizationInput) SetEnforce2faAt(v time.Time) {
 
 // GetLogo returns the Logo field value if set, zero value otherwise.
 func (o *OrganizationInput) GetLogo() *os.File {
-	if o == nil || isNil(o.Logo) {
+	if o == nil || IsNil(o.Logo) {
 		var ret *os.File
 		return ret
 	}
@@ -226,7 +226,7 @@ func (o *OrganizationInput) GetLogo() *os.File {
 // GetLogoOk returns a tuple with the Logo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OrganizationInput) GetLogoOk() (**os.File, bool) {
-	if o == nil || isNil(o.Logo) {
+	if o == nil || IsNil(o.Logo) {
 		return nil, false
 	}
 	return o.Logo, true
@@ -234,7 +234,7 @@ func (o *OrganizationInput) GetLogoOk() (**os.File, bool) {
 
 // HasLogo returns a boolean if a field has been set.
 func (o *OrganizationInput) HasLogo() bool {
-	if o != nil && !isNil(o.Logo) {
+	if o != nil && !IsNil(o.Logo) {
 		return true
 	}
 
@@ -248,7 +248,7 @@ func (o *OrganizationInput) SetLogo(v *os.File) {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *OrganizationInput) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -258,7 +258,7 @@ func (o *OrganizationInput) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OrganizationInput) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
 	return o.Name, true
@@ -266,7 +266,7 @@ func (o *OrganizationInput) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *OrganizationInput) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -280,7 +280,7 @@ func (o *OrganizationInput) SetName(v string) {
 
 // GetTwitter returns the Twitter field value if set, zero value otherwise.
 func (o *OrganizationInput) GetTwitter() string {
-	if o == nil || isNil(o.Twitter) {
+	if o == nil || IsNil(o.Twitter) {
 		var ret string
 		return ret
 	}
@@ -290,7 +290,7 @@ func (o *OrganizationInput) GetTwitter() string {
 // GetTwitterOk returns a tuple with the Twitter field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OrganizationInput) GetTwitterOk() (*string, bool) {
-	if o == nil || isNil(o.Twitter) {
+	if o == nil || IsNil(o.Twitter) {
 		return nil, false
 	}
 	return o.Twitter, true
@@ -298,7 +298,7 @@ func (o *OrganizationInput) GetTwitterOk() (*string, bool) {
 
 // HasTwitter returns a boolean if a field has been set.
 func (o *OrganizationInput) HasTwitter() bool {
-	if o != nil && !isNil(o.Twitter) {
+	if o != nil && !IsNil(o.Twitter) {
 		return true
 	}
 
@@ -312,7 +312,7 @@ func (o *OrganizationInput) SetTwitter(v string) {
 
 // GetWebsite returns the Website field value if set, zero value otherwise.
 func (o *OrganizationInput) GetWebsite() string {
-	if o == nil || isNil(o.Website) {
+	if o == nil || IsNil(o.Website) {
 		var ret string
 		return ret
 	}
@@ -322,7 +322,7 @@ func (o *OrganizationInput) GetWebsite() string {
 // GetWebsiteOk returns a tuple with the Website field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OrganizationInput) GetWebsiteOk() (*string, bool) {
-	if o == nil || isNil(o.Website) {
+	if o == nil || IsNil(o.Website) {
 		return nil, false
 	}
 	return o.Website, true
@@ -330,7 +330,7 @@ func (o *OrganizationInput) GetWebsiteOk() (*string, bool) {
 
 // HasWebsite returns a boolean if a field has been set.
 func (o *OrganizationInput) HasWebsite() bool {
-	if o != nil && !isNil(o.Website) {
+	if o != nil && !IsNil(o.Website) {
 		return true
 	}
 
@@ -352,31 +352,31 @@ func (o OrganizationInput) MarshalJSON() ([]byte, error) {
 
 func (o OrganizationInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Address) {
+	if !IsNil(o.Address) {
 		toSerialize["address"] = o.Address
 	}
-	if !isNil(o.BillingAddress) {
+	if !IsNil(o.BillingAddress) {
 		toSerialize["billing_address"] = o.BillingAddress
 	}
-	if !isNil(o.Customdata) {
+	if !IsNil(o.Customdata) {
 		toSerialize["customdata"] = o.Customdata
 	}
-	if !isNil(o.Description) {
+	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
-	if !isNil(o.Enforce2faAt) {
+	if !IsNil(o.Enforce2faAt) {
 		toSerialize["enforce_2fa_at"] = o.Enforce2faAt
 	}
-	if !isNil(o.Logo) {
+	if !IsNil(o.Logo) {
 		toSerialize["logo"] = o.Logo
 	}
-	if !isNil(o.Name) {
+	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
-	if !isNil(o.Twitter) {
+	if !IsNil(o.Twitter) {
 		toSerialize["twitter"] = o.Twitter
 	}
-	if !isNil(o.Website) {
+	if !IsNil(o.Website) {
 		toSerialize["website"] = o.Website
 	}
 

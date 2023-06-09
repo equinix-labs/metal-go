@@ -57,7 +57,7 @@ func NewBgpDynamicNeighborWithDefaults() *BgpDynamicNeighbor {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *BgpDynamicNeighbor) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -67,7 +67,7 @@ func (o *BgpDynamicNeighbor) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BgpDynamicNeighbor) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -75,7 +75,7 @@ func (o *BgpDynamicNeighbor) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *BgpDynamicNeighbor) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -89,7 +89,7 @@ func (o *BgpDynamicNeighbor) SetId(v string) {
 
 // GetBgpNeighborAsn returns the BgpNeighborAsn field value if set, zero value otherwise.
 func (o *BgpDynamicNeighbor) GetBgpNeighborAsn() int32 {
-	if o == nil || isNil(o.BgpNeighborAsn) {
+	if o == nil || IsNil(o.BgpNeighborAsn) {
 		var ret int32
 		return ret
 	}
@@ -99,7 +99,7 @@ func (o *BgpDynamicNeighbor) GetBgpNeighborAsn() int32 {
 // GetBgpNeighborAsnOk returns a tuple with the BgpNeighborAsn field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BgpDynamicNeighbor) GetBgpNeighborAsnOk() (*int32, bool) {
-	if o == nil || isNil(o.BgpNeighborAsn) {
+	if o == nil || IsNil(o.BgpNeighborAsn) {
 		return nil, false
 	}
 	return o.BgpNeighborAsn, true
@@ -107,7 +107,7 @@ func (o *BgpDynamicNeighbor) GetBgpNeighborAsnOk() (*int32, bool) {
 
 // HasBgpNeighborAsn returns a boolean if a field has been set.
 func (o *BgpDynamicNeighbor) HasBgpNeighborAsn() bool {
-	if o != nil && !isNil(o.BgpNeighborAsn) {
+	if o != nil && !IsNil(o.BgpNeighborAsn) {
 		return true
 	}
 
@@ -121,7 +121,7 @@ func (o *BgpDynamicNeighbor) SetBgpNeighborAsn(v int32) {
 
 // GetBgpNeighborRange returns the BgpNeighborRange field value if set, zero value otherwise.
 func (o *BgpDynamicNeighbor) GetBgpNeighborRange() string {
-	if o == nil || isNil(o.BgpNeighborRange) {
+	if o == nil || IsNil(o.BgpNeighborRange) {
 		var ret string
 		return ret
 	}
@@ -131,7 +131,7 @@ func (o *BgpDynamicNeighbor) GetBgpNeighborRange() string {
 // GetBgpNeighborRangeOk returns a tuple with the BgpNeighborRange field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BgpDynamicNeighbor) GetBgpNeighborRangeOk() (*string, bool) {
-	if o == nil || isNil(o.BgpNeighborRange) {
+	if o == nil || IsNil(o.BgpNeighborRange) {
 		return nil, false
 	}
 	return o.BgpNeighborRange, true
@@ -139,7 +139,7 @@ func (o *BgpDynamicNeighbor) GetBgpNeighborRangeOk() (*string, bool) {
 
 // HasBgpNeighborRange returns a boolean if a field has been set.
 func (o *BgpDynamicNeighbor) HasBgpNeighborRange() bool {
-	if o != nil && !isNil(o.BgpNeighborRange) {
+	if o != nil && !IsNil(o.BgpNeighborRange) {
 		return true
 	}
 
@@ -153,7 +153,7 @@ func (o *BgpDynamicNeighbor) SetBgpNeighborRange(v string) {
 
 // GetMetalGateway returns the MetalGateway field value if set, zero value otherwise.
 func (o *BgpDynamicNeighbor) GetMetalGateway() VrfMetalGateway {
-	if o == nil || isNil(o.MetalGateway) {
+	if o == nil || IsNil(o.MetalGateway) {
 		var ret VrfMetalGateway
 		return ret
 	}
@@ -163,7 +163,7 @@ func (o *BgpDynamicNeighbor) GetMetalGateway() VrfMetalGateway {
 // GetMetalGatewayOk returns a tuple with the MetalGateway field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BgpDynamicNeighbor) GetMetalGatewayOk() (*VrfMetalGateway, bool) {
-	if o == nil || isNil(o.MetalGateway) {
+	if o == nil || IsNil(o.MetalGateway) {
 		return nil, false
 	}
 	return o.MetalGateway, true
@@ -171,7 +171,7 @@ func (o *BgpDynamicNeighbor) GetMetalGatewayOk() (*VrfMetalGateway, bool) {
 
 // HasMetalGateway returns a boolean if a field has been set.
 func (o *BgpDynamicNeighbor) HasMetalGateway() bool {
-	if o != nil && !isNil(o.MetalGateway) {
+	if o != nil && !IsNil(o.MetalGateway) {
 		return true
 	}
 
@@ -185,7 +185,7 @@ func (o *BgpDynamicNeighbor) SetMetalGateway(v VrfMetalGateway) {
 
 // GetState returns the State field value if set, zero value otherwise.
 func (o *BgpDynamicNeighbor) GetState() string {
-	if o == nil || isNil(o.State) {
+	if o == nil || IsNil(o.State) {
 		var ret string
 		return ret
 	}
@@ -195,7 +195,7 @@ func (o *BgpDynamicNeighbor) GetState() string {
 // GetStateOk returns a tuple with the State field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BgpDynamicNeighbor) GetStateOk() (*string, bool) {
-	if o == nil || isNil(o.State) {
+	if o == nil || IsNil(o.State) {
 		return nil, false
 	}
 	return o.State, true
@@ -203,7 +203,7 @@ func (o *BgpDynamicNeighbor) GetStateOk() (*string, bool) {
 
 // HasState returns a boolean if a field has been set.
 func (o *BgpDynamicNeighbor) HasState() bool {
-	if o != nil && !isNil(o.State) {
+	if o != nil && !IsNil(o.State) {
 		return true
 	}
 
@@ -217,7 +217,7 @@ func (o *BgpDynamicNeighbor) SetState(v string) {
 
 // GetHref returns the Href field value if set, zero value otherwise.
 func (o *BgpDynamicNeighbor) GetHref() string {
-	if o == nil || isNil(o.Href) {
+	if o == nil || IsNil(o.Href) {
 		var ret string
 		return ret
 	}
@@ -227,7 +227,7 @@ func (o *BgpDynamicNeighbor) GetHref() string {
 // GetHrefOk returns a tuple with the Href field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BgpDynamicNeighbor) GetHrefOk() (*string, bool) {
-	if o == nil || isNil(o.Href) {
+	if o == nil || IsNil(o.Href) {
 		return nil, false
 	}
 	return o.Href, true
@@ -235,7 +235,7 @@ func (o *BgpDynamicNeighbor) GetHrefOk() (*string, bool) {
 
 // HasHref returns a boolean if a field has been set.
 func (o *BgpDynamicNeighbor) HasHref() bool {
-	if o != nil && !isNil(o.Href) {
+	if o != nil && !IsNil(o.Href) {
 		return true
 	}
 
@@ -249,7 +249,7 @@ func (o *BgpDynamicNeighbor) SetHref(v string) {
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *BgpDynamicNeighbor) GetCreatedAt() time.Time {
-	if o == nil || isNil(o.CreatedAt) {
+	if o == nil || IsNil(o.CreatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -259,7 +259,7 @@ func (o *BgpDynamicNeighbor) GetCreatedAt() time.Time {
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BgpDynamicNeighbor) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.CreatedAt) {
+	if o == nil || IsNil(o.CreatedAt) {
 		return nil, false
 	}
 	return o.CreatedAt, true
@@ -267,7 +267,7 @@ func (o *BgpDynamicNeighbor) GetCreatedAtOk() (*time.Time, bool) {
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *BgpDynamicNeighbor) HasCreatedAt() bool {
-	if o != nil && !isNil(o.CreatedAt) {
+	if o != nil && !IsNil(o.CreatedAt) {
 		return true
 	}
 
@@ -281,7 +281,7 @@ func (o *BgpDynamicNeighbor) SetCreatedAt(v time.Time) {
 
 // GetCreatedBy returns the CreatedBy field value if set, zero value otherwise.
 func (o *BgpDynamicNeighbor) GetCreatedBy() UserLimited {
-	if o == nil || isNil(o.CreatedBy) {
+	if o == nil || IsNil(o.CreatedBy) {
 		var ret UserLimited
 		return ret
 	}
@@ -291,7 +291,7 @@ func (o *BgpDynamicNeighbor) GetCreatedBy() UserLimited {
 // GetCreatedByOk returns a tuple with the CreatedBy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BgpDynamicNeighbor) GetCreatedByOk() (*UserLimited, bool) {
-	if o == nil || isNil(o.CreatedBy) {
+	if o == nil || IsNil(o.CreatedBy) {
 		return nil, false
 	}
 	return o.CreatedBy, true
@@ -299,7 +299,7 @@ func (o *BgpDynamicNeighbor) GetCreatedByOk() (*UserLimited, bool) {
 
 // HasCreatedBy returns a boolean if a field has been set.
 func (o *BgpDynamicNeighbor) HasCreatedBy() bool {
-	if o != nil && !isNil(o.CreatedBy) {
+	if o != nil && !IsNil(o.CreatedBy) {
 		return true
 	}
 
@@ -313,7 +313,7 @@ func (o *BgpDynamicNeighbor) SetCreatedBy(v UserLimited) {
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *BgpDynamicNeighbor) GetUpdatedAt() time.Time {
-	if o == nil || isNil(o.UpdatedAt) {
+	if o == nil || IsNil(o.UpdatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -323,7 +323,7 @@ func (o *BgpDynamicNeighbor) GetUpdatedAt() time.Time {
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BgpDynamicNeighbor) GetUpdatedAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.UpdatedAt) {
+	if o == nil || IsNil(o.UpdatedAt) {
 		return nil, false
 	}
 	return o.UpdatedAt, true
@@ -331,7 +331,7 @@ func (o *BgpDynamicNeighbor) GetUpdatedAtOk() (*time.Time, bool) {
 
 // HasUpdatedAt returns a boolean if a field has been set.
 func (o *BgpDynamicNeighbor) HasUpdatedAt() bool {
-	if o != nil && !isNil(o.UpdatedAt) {
+	if o != nil && !IsNil(o.UpdatedAt) {
 		return true
 	}
 
@@ -354,19 +354,19 @@ func (o BgpDynamicNeighbor) MarshalJSON() ([]byte, error) {
 func (o BgpDynamicNeighbor) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	// skip: id is readOnly
-	if !isNil(o.BgpNeighborAsn) {
+	if !IsNil(o.BgpNeighborAsn) {
 		toSerialize["bgp_neighbor_asn"] = o.BgpNeighborAsn
 	}
-	if !isNil(o.BgpNeighborRange) {
+	if !IsNil(o.BgpNeighborRange) {
 		toSerialize["bgp_neighbor_range"] = o.BgpNeighborRange
 	}
-	if !isNil(o.MetalGateway) {
+	if !IsNil(o.MetalGateway) {
 		toSerialize["metal_gateway"] = o.MetalGateway
 	}
 	// skip: state is readOnly
 	// skip: href is readOnly
 	// skip: created_at is readOnly
-	if !isNil(o.CreatedBy) {
+	if !IsNil(o.CreatedBy) {
 		toSerialize["created_by"] = o.CreatedBy
 	}
 	// skip: updated_at is readOnly

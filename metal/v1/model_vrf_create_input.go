@@ -59,7 +59,7 @@ func NewVrfCreateInputWithDefaults() *VrfCreateInput {
 
 // GetBgpDynamicNeighborsEnabled returns the BgpDynamicNeighborsEnabled field value if set, zero value otherwise.
 func (o *VrfCreateInput) GetBgpDynamicNeighborsEnabled() bool {
-	if o == nil || isNil(o.BgpDynamicNeighborsEnabled) {
+	if o == nil || IsNil(o.BgpDynamicNeighborsEnabled) {
 		var ret bool
 		return ret
 	}
@@ -69,7 +69,7 @@ func (o *VrfCreateInput) GetBgpDynamicNeighborsEnabled() bool {
 // GetBgpDynamicNeighborsEnabledOk returns a tuple with the BgpDynamicNeighborsEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VrfCreateInput) GetBgpDynamicNeighborsEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.BgpDynamicNeighborsEnabled) {
+	if o == nil || IsNil(o.BgpDynamicNeighborsEnabled) {
 		return nil, false
 	}
 	return o.BgpDynamicNeighborsEnabled, true
@@ -77,7 +77,7 @@ func (o *VrfCreateInput) GetBgpDynamicNeighborsEnabledOk() (*bool, bool) {
 
 // HasBgpDynamicNeighborsEnabled returns a boolean if a field has been set.
 func (o *VrfCreateInput) HasBgpDynamicNeighborsEnabled() bool {
-	if o != nil && !isNil(o.BgpDynamicNeighborsEnabled) {
+	if o != nil && !IsNil(o.BgpDynamicNeighborsEnabled) {
 		return true
 	}
 
@@ -91,7 +91,7 @@ func (o *VrfCreateInput) SetBgpDynamicNeighborsEnabled(v bool) {
 
 // GetBgpDynamicNeighborsExportRouteMap returns the BgpDynamicNeighborsExportRouteMap field value if set, zero value otherwise.
 func (o *VrfCreateInput) GetBgpDynamicNeighborsExportRouteMap() bool {
-	if o == nil || isNil(o.BgpDynamicNeighborsExportRouteMap) {
+	if o == nil || IsNil(o.BgpDynamicNeighborsExportRouteMap) {
 		var ret bool
 		return ret
 	}
@@ -101,7 +101,7 @@ func (o *VrfCreateInput) GetBgpDynamicNeighborsExportRouteMap() bool {
 // GetBgpDynamicNeighborsExportRouteMapOk returns a tuple with the BgpDynamicNeighborsExportRouteMap field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VrfCreateInput) GetBgpDynamicNeighborsExportRouteMapOk() (*bool, bool) {
-	if o == nil || isNil(o.BgpDynamicNeighborsExportRouteMap) {
+	if o == nil || IsNil(o.BgpDynamicNeighborsExportRouteMap) {
 		return nil, false
 	}
 	return o.BgpDynamicNeighborsExportRouteMap, true
@@ -109,7 +109,7 @@ func (o *VrfCreateInput) GetBgpDynamicNeighborsExportRouteMapOk() (*bool, bool) 
 
 // HasBgpDynamicNeighborsExportRouteMap returns a boolean if a field has been set.
 func (o *VrfCreateInput) HasBgpDynamicNeighborsExportRouteMap() bool {
-	if o != nil && !isNil(o.BgpDynamicNeighborsExportRouteMap) {
+	if o != nil && !IsNil(o.BgpDynamicNeighborsExportRouteMap) {
 		return true
 	}
 
@@ -123,7 +123,7 @@ func (o *VrfCreateInput) SetBgpDynamicNeighborsExportRouteMap(v bool) {
 
 // GetBgpDynamicNeighborsBfdEnabled returns the BgpDynamicNeighborsBfdEnabled field value if set, zero value otherwise.
 func (o *VrfCreateInput) GetBgpDynamicNeighborsBfdEnabled() bool {
-	if o == nil || isNil(o.BgpDynamicNeighborsBfdEnabled) {
+	if o == nil || IsNil(o.BgpDynamicNeighborsBfdEnabled) {
 		var ret bool
 		return ret
 	}
@@ -133,7 +133,7 @@ func (o *VrfCreateInput) GetBgpDynamicNeighborsBfdEnabled() bool {
 // GetBgpDynamicNeighborsBfdEnabledOk returns a tuple with the BgpDynamicNeighborsBfdEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VrfCreateInput) GetBgpDynamicNeighborsBfdEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.BgpDynamicNeighborsBfdEnabled) {
+	if o == nil || IsNil(o.BgpDynamicNeighborsBfdEnabled) {
 		return nil, false
 	}
 	return o.BgpDynamicNeighborsBfdEnabled, true
@@ -141,7 +141,7 @@ func (o *VrfCreateInput) GetBgpDynamicNeighborsBfdEnabledOk() (*bool, bool) {
 
 // HasBgpDynamicNeighborsBfdEnabled returns a boolean if a field has been set.
 func (o *VrfCreateInput) HasBgpDynamicNeighborsBfdEnabled() bool {
-	if o != nil && !isNil(o.BgpDynamicNeighborsBfdEnabled) {
+	if o != nil && !IsNil(o.BgpDynamicNeighborsBfdEnabled) {
 		return true
 	}
 
@@ -155,7 +155,7 @@ func (o *VrfCreateInput) SetBgpDynamicNeighborsBfdEnabled(v bool) {
 
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *VrfCreateInput) GetDescription() string {
-	if o == nil || isNil(o.Description) {
+	if o == nil || IsNil(o.Description) {
 		var ret string
 		return ret
 	}
@@ -165,7 +165,7 @@ func (o *VrfCreateInput) GetDescription() string {
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VrfCreateInput) GetDescriptionOk() (*string, bool) {
-	if o == nil || isNil(o.Description) {
+	if o == nil || IsNil(o.Description) {
 		return nil, false
 	}
 	return o.Description, true
@@ -173,7 +173,7 @@ func (o *VrfCreateInput) GetDescriptionOk() (*string, bool) {
 
 // HasDescription returns a boolean if a field has been set.
 func (o *VrfCreateInput) HasDescription() bool {
-	if o != nil && !isNil(o.Description) {
+	if o != nil && !IsNil(o.Description) {
 		return true
 	}
 
@@ -187,7 +187,7 @@ func (o *VrfCreateInput) SetDescription(v string) {
 
 // GetIpRanges returns the IpRanges field value if set, zero value otherwise.
 func (o *VrfCreateInput) GetIpRanges() []string {
-	if o == nil || isNil(o.IpRanges) {
+	if o == nil || IsNil(o.IpRanges) {
 		var ret []string
 		return ret
 	}
@@ -197,7 +197,7 @@ func (o *VrfCreateInput) GetIpRanges() []string {
 // GetIpRangesOk returns a tuple with the IpRanges field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VrfCreateInput) GetIpRangesOk() ([]string, bool) {
-	if o == nil || isNil(o.IpRanges) {
+	if o == nil || IsNil(o.IpRanges) {
 		return nil, false
 	}
 	return o.IpRanges, true
@@ -205,7 +205,7 @@ func (o *VrfCreateInput) GetIpRangesOk() ([]string, bool) {
 
 // HasIpRanges returns a boolean if a field has been set.
 func (o *VrfCreateInput) HasIpRanges() bool {
-	if o != nil && !isNil(o.IpRanges) {
+	if o != nil && !IsNil(o.IpRanges) {
 		return true
 	}
 
@@ -219,7 +219,7 @@ func (o *VrfCreateInput) SetIpRanges(v []string) {
 
 // GetLocalAsn returns the LocalAsn field value if set, zero value otherwise.
 func (o *VrfCreateInput) GetLocalAsn() int32 {
-	if o == nil || isNil(o.LocalAsn) {
+	if o == nil || IsNil(o.LocalAsn) {
 		var ret int32
 		return ret
 	}
@@ -229,7 +229,7 @@ func (o *VrfCreateInput) GetLocalAsn() int32 {
 // GetLocalAsnOk returns a tuple with the LocalAsn field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VrfCreateInput) GetLocalAsnOk() (*int32, bool) {
-	if o == nil || isNil(o.LocalAsn) {
+	if o == nil || IsNil(o.LocalAsn) {
 		return nil, false
 	}
 	return o.LocalAsn, true
@@ -237,7 +237,7 @@ func (o *VrfCreateInput) GetLocalAsnOk() (*int32, bool) {
 
 // HasLocalAsn returns a boolean if a field has been set.
 func (o *VrfCreateInput) HasLocalAsn() bool {
-	if o != nil && !isNil(o.LocalAsn) {
+	if o != nil && !IsNil(o.LocalAsn) {
 		return true
 	}
 
@@ -307,22 +307,22 @@ func (o VrfCreateInput) MarshalJSON() ([]byte, error) {
 
 func (o VrfCreateInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.BgpDynamicNeighborsEnabled) {
+	if !IsNil(o.BgpDynamicNeighborsEnabled) {
 		toSerialize["bgp_dynamic_neighbors_enabled"] = o.BgpDynamicNeighborsEnabled
 	}
-	if !isNil(o.BgpDynamicNeighborsExportRouteMap) {
+	if !IsNil(o.BgpDynamicNeighborsExportRouteMap) {
 		toSerialize["bgp_dynamic_neighbors_export_route_map"] = o.BgpDynamicNeighborsExportRouteMap
 	}
-	if !isNil(o.BgpDynamicNeighborsBfdEnabled) {
+	if !IsNil(o.BgpDynamicNeighborsBfdEnabled) {
 		toSerialize["bgp_dynamic_neighbors_bfd_enabled"] = o.BgpDynamicNeighborsBfdEnabled
 	}
-	if !isNil(o.Description) {
+	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
-	if !isNil(o.IpRanges) {
+	if !IsNil(o.IpRanges) {
 		toSerialize["ip_ranges"] = o.IpRanges
 	}
-	if !isNil(o.LocalAsn) {
+	if !IsNil(o.LocalAsn) {
 		toSerialize["local_asn"] = o.LocalAsn
 	}
 	toSerialize["metro"] = o.Metro

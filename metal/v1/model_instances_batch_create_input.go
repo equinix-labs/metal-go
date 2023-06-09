@@ -45,7 +45,7 @@ func NewInstancesBatchCreateInputWithDefaults() *InstancesBatchCreateInput {
 
 // GetBatches returns the Batches field value if set, zero value otherwise.
 func (o *InstancesBatchCreateInput) GetBatches() []InstancesBatchCreateInputBatchesInner {
-	if o == nil || isNil(o.Batches) {
+	if o == nil || IsNil(o.Batches) {
 		var ret []InstancesBatchCreateInputBatchesInner
 		return ret
 	}
@@ -55,7 +55,7 @@ func (o *InstancesBatchCreateInput) GetBatches() []InstancesBatchCreateInputBatc
 // GetBatchesOk returns a tuple with the Batches field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InstancesBatchCreateInput) GetBatchesOk() ([]InstancesBatchCreateInputBatchesInner, bool) {
-	if o == nil || isNil(o.Batches) {
+	if o == nil || IsNil(o.Batches) {
 		return nil, false
 	}
 	return o.Batches, true
@@ -63,7 +63,7 @@ func (o *InstancesBatchCreateInput) GetBatchesOk() ([]InstancesBatchCreateInputB
 
 // HasBatches returns a boolean if a field has been set.
 func (o *InstancesBatchCreateInput) HasBatches() bool {
-	if o != nil && !isNil(o.Batches) {
+	if o != nil && !IsNil(o.Batches) {
 		return true
 	}
 
@@ -85,7 +85,7 @@ func (o InstancesBatchCreateInput) MarshalJSON() ([]byte, error) {
 
 func (o InstancesBatchCreateInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Batches) {
+	if !IsNil(o.Batches) {
 		toSerialize["batches"] = o.Batches
 	}
 

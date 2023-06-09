@@ -51,7 +51,7 @@ func NewVirtualNetworkCreateInputWithDefaults() *VirtualNetworkCreateInput {
 
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *VirtualNetworkCreateInput) GetDescription() string {
-	if o == nil || isNil(o.Description) {
+	if o == nil || IsNil(o.Description) {
 		var ret string
 		return ret
 	}
@@ -61,7 +61,7 @@ func (o *VirtualNetworkCreateInput) GetDescription() string {
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VirtualNetworkCreateInput) GetDescriptionOk() (*string, bool) {
-	if o == nil || isNil(o.Description) {
+	if o == nil || IsNil(o.Description) {
 		return nil, false
 	}
 	return o.Description, true
@@ -69,7 +69,7 @@ func (o *VirtualNetworkCreateInput) GetDescriptionOk() (*string, bool) {
 
 // HasDescription returns a boolean if a field has been set.
 func (o *VirtualNetworkCreateInput) HasDescription() bool {
-	if o != nil && !isNil(o.Description) {
+	if o != nil && !IsNil(o.Description) {
 		return true
 	}
 
@@ -83,7 +83,7 @@ func (o *VirtualNetworkCreateInput) SetDescription(v string) {
 
 // GetFacility returns the Facility field value if set, zero value otherwise.
 func (o *VirtualNetworkCreateInput) GetFacility() string {
-	if o == nil || isNil(o.Facility) {
+	if o == nil || IsNil(o.Facility) {
 		var ret string
 		return ret
 	}
@@ -93,7 +93,7 @@ func (o *VirtualNetworkCreateInput) GetFacility() string {
 // GetFacilityOk returns a tuple with the Facility field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VirtualNetworkCreateInput) GetFacilityOk() (*string, bool) {
-	if o == nil || isNil(o.Facility) {
+	if o == nil || IsNil(o.Facility) {
 		return nil, false
 	}
 	return o.Facility, true
@@ -101,7 +101,7 @@ func (o *VirtualNetworkCreateInput) GetFacilityOk() (*string, bool) {
 
 // HasFacility returns a boolean if a field has been set.
 func (o *VirtualNetworkCreateInput) HasFacility() bool {
-	if o != nil && !isNil(o.Facility) {
+	if o != nil && !IsNil(o.Facility) {
 		return true
 	}
 
@@ -115,7 +115,7 @@ func (o *VirtualNetworkCreateInput) SetFacility(v string) {
 
 // GetMetro returns the Metro field value if set, zero value otherwise.
 func (o *VirtualNetworkCreateInput) GetMetro() string {
-	if o == nil || isNil(o.Metro) {
+	if o == nil || IsNil(o.Metro) {
 		var ret string
 		return ret
 	}
@@ -125,7 +125,7 @@ func (o *VirtualNetworkCreateInput) GetMetro() string {
 // GetMetroOk returns a tuple with the Metro field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VirtualNetworkCreateInput) GetMetroOk() (*string, bool) {
-	if o == nil || isNil(o.Metro) {
+	if o == nil || IsNil(o.Metro) {
 		return nil, false
 	}
 	return o.Metro, true
@@ -133,7 +133,7 @@ func (o *VirtualNetworkCreateInput) GetMetroOk() (*string, bool) {
 
 // HasMetro returns a boolean if a field has been set.
 func (o *VirtualNetworkCreateInput) HasMetro() bool {
-	if o != nil && !isNil(o.Metro) {
+	if o != nil && !IsNil(o.Metro) {
 		return true
 	}
 
@@ -147,7 +147,7 @@ func (o *VirtualNetworkCreateInput) SetMetro(v string) {
 
 // GetVxlan returns the Vxlan field value if set, zero value otherwise.
 func (o *VirtualNetworkCreateInput) GetVxlan() int32 {
-	if o == nil || isNil(o.Vxlan) {
+	if o == nil || IsNil(o.Vxlan) {
 		var ret int32
 		return ret
 	}
@@ -157,7 +157,7 @@ func (o *VirtualNetworkCreateInput) GetVxlan() int32 {
 // GetVxlanOk returns a tuple with the Vxlan field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VirtualNetworkCreateInput) GetVxlanOk() (*int32, bool) {
-	if o == nil || isNil(o.Vxlan) {
+	if o == nil || IsNil(o.Vxlan) {
 		return nil, false
 	}
 	return o.Vxlan, true
@@ -165,7 +165,7 @@ func (o *VirtualNetworkCreateInput) GetVxlanOk() (*int32, bool) {
 
 // HasVxlan returns a boolean if a field has been set.
 func (o *VirtualNetworkCreateInput) HasVxlan() bool {
-	if o != nil && !isNil(o.Vxlan) {
+	if o != nil && !IsNil(o.Vxlan) {
 		return true
 	}
 
@@ -187,16 +187,16 @@ func (o VirtualNetworkCreateInput) MarshalJSON() ([]byte, error) {
 
 func (o VirtualNetworkCreateInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Description) {
+	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
-	if !isNil(o.Facility) {
+	if !IsNil(o.Facility) {
 		toSerialize["facility"] = o.Facility
 	}
-	if !isNil(o.Metro) {
+	if !IsNil(o.Metro) {
 		toSerialize["metro"] = o.Metro
 	}
-	if !isNil(o.Vxlan) {
+	if !IsNil(o.Vxlan) {
 		toSerialize["vxlan"] = o.Vxlan
 	}
 

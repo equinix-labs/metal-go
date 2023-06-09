@@ -28,7 +28,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/equinix-labs/metal-go/metal/v1"
 )
 
 func main() {
@@ -94,7 +94,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/equinix-labs/metal-go/metal/v1"
 )
 
 func main() {
@@ -102,7 +102,7 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.EmailsApi.DeleteEmail(context.Background(), id).Execute()
+    r, err := apiClient.EmailsApi.DeleteEmail(context.Background(), id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `EmailsApi.DeleteEmail``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -162,7 +162,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/equinix-labs/metal-go/metal/v1"
 )
 
 func main() {
@@ -236,7 +236,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/equinix-labs/metal-go/metal/v1"
 )
 
 func main() {

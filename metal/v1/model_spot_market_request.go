@@ -56,7 +56,7 @@ func NewSpotMarketRequestWithDefaults() *SpotMarketRequest {
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *SpotMarketRequest) GetCreatedAt() time.Time {
-	if o == nil || isNil(o.CreatedAt) {
+	if o == nil || IsNil(o.CreatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -66,7 +66,7 @@ func (o *SpotMarketRequest) GetCreatedAt() time.Time {
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SpotMarketRequest) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.CreatedAt) {
+	if o == nil || IsNil(o.CreatedAt) {
 		return nil, false
 	}
 	return o.CreatedAt, true
@@ -74,7 +74,7 @@ func (o *SpotMarketRequest) GetCreatedAtOk() (*time.Time, bool) {
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *SpotMarketRequest) HasCreatedAt() bool {
-	if o != nil && !isNil(o.CreatedAt) {
+	if o != nil && !IsNil(o.CreatedAt) {
 		return true
 	}
 
@@ -88,7 +88,7 @@ func (o *SpotMarketRequest) SetCreatedAt(v time.Time) {
 
 // GetDevicesMax returns the DevicesMax field value if set, zero value otherwise.
 func (o *SpotMarketRequest) GetDevicesMax() int32 {
-	if o == nil || isNil(o.DevicesMax) {
+	if o == nil || IsNil(o.DevicesMax) {
 		var ret int32
 		return ret
 	}
@@ -98,7 +98,7 @@ func (o *SpotMarketRequest) GetDevicesMax() int32 {
 // GetDevicesMaxOk returns a tuple with the DevicesMax field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SpotMarketRequest) GetDevicesMaxOk() (*int32, bool) {
-	if o == nil || isNil(o.DevicesMax) {
+	if o == nil || IsNil(o.DevicesMax) {
 		return nil, false
 	}
 	return o.DevicesMax, true
@@ -106,7 +106,7 @@ func (o *SpotMarketRequest) GetDevicesMaxOk() (*int32, bool) {
 
 // HasDevicesMax returns a boolean if a field has been set.
 func (o *SpotMarketRequest) HasDevicesMax() bool {
-	if o != nil && !isNil(o.DevicesMax) {
+	if o != nil && !IsNil(o.DevicesMax) {
 		return true
 	}
 
@@ -120,7 +120,7 @@ func (o *SpotMarketRequest) SetDevicesMax(v int32) {
 
 // GetDevicesMin returns the DevicesMin field value if set, zero value otherwise.
 func (o *SpotMarketRequest) GetDevicesMin() int32 {
-	if o == nil || isNil(o.DevicesMin) {
+	if o == nil || IsNil(o.DevicesMin) {
 		var ret int32
 		return ret
 	}
@@ -130,7 +130,7 @@ func (o *SpotMarketRequest) GetDevicesMin() int32 {
 // GetDevicesMinOk returns a tuple with the DevicesMin field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SpotMarketRequest) GetDevicesMinOk() (*int32, bool) {
-	if o == nil || isNil(o.DevicesMin) {
+	if o == nil || IsNil(o.DevicesMin) {
 		return nil, false
 	}
 	return o.DevicesMin, true
@@ -138,7 +138,7 @@ func (o *SpotMarketRequest) GetDevicesMinOk() (*int32, bool) {
 
 // HasDevicesMin returns a boolean if a field has been set.
 func (o *SpotMarketRequest) HasDevicesMin() bool {
-	if o != nil && !isNil(o.DevicesMin) {
+	if o != nil && !IsNil(o.DevicesMin) {
 		return true
 	}
 
@@ -152,7 +152,7 @@ func (o *SpotMarketRequest) SetDevicesMin(v int32) {
 
 // GetEndAt returns the EndAt field value if set, zero value otherwise.
 func (o *SpotMarketRequest) GetEndAt() time.Time {
-	if o == nil || isNil(o.EndAt) {
+	if o == nil || IsNil(o.EndAt) {
 		var ret time.Time
 		return ret
 	}
@@ -162,7 +162,7 @@ func (o *SpotMarketRequest) GetEndAt() time.Time {
 // GetEndAtOk returns a tuple with the EndAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SpotMarketRequest) GetEndAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.EndAt) {
+	if o == nil || IsNil(o.EndAt) {
 		return nil, false
 	}
 	return o.EndAt, true
@@ -170,7 +170,7 @@ func (o *SpotMarketRequest) GetEndAtOk() (*time.Time, bool) {
 
 // HasEndAt returns a boolean if a field has been set.
 func (o *SpotMarketRequest) HasEndAt() bool {
-	if o != nil && !isNil(o.EndAt) {
+	if o != nil && !IsNil(o.EndAt) {
 		return true
 	}
 
@@ -184,7 +184,7 @@ func (o *SpotMarketRequest) SetEndAt(v time.Time) {
 
 // GetFacilities returns the Facilities field value if set, zero value otherwise.
 func (o *SpotMarketRequest) GetFacilities() Href {
-	if o == nil || isNil(o.Facilities) {
+	if o == nil || IsNil(o.Facilities) {
 		var ret Href
 		return ret
 	}
@@ -194,7 +194,7 @@ func (o *SpotMarketRequest) GetFacilities() Href {
 // GetFacilitiesOk returns a tuple with the Facilities field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SpotMarketRequest) GetFacilitiesOk() (*Href, bool) {
-	if o == nil || isNil(o.Facilities) {
+	if o == nil || IsNil(o.Facilities) {
 		return nil, false
 	}
 	return o.Facilities, true
@@ -202,7 +202,7 @@ func (o *SpotMarketRequest) GetFacilitiesOk() (*Href, bool) {
 
 // HasFacilities returns a boolean if a field has been set.
 func (o *SpotMarketRequest) HasFacilities() bool {
-	if o != nil && !isNil(o.Facilities) {
+	if o != nil && !IsNil(o.Facilities) {
 		return true
 	}
 
@@ -216,7 +216,7 @@ func (o *SpotMarketRequest) SetFacilities(v Href) {
 
 // GetHref returns the Href field value if set, zero value otherwise.
 func (o *SpotMarketRequest) GetHref() string {
-	if o == nil || isNil(o.Href) {
+	if o == nil || IsNil(o.Href) {
 		var ret string
 		return ret
 	}
@@ -226,7 +226,7 @@ func (o *SpotMarketRequest) GetHref() string {
 // GetHrefOk returns a tuple with the Href field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SpotMarketRequest) GetHrefOk() (*string, bool) {
-	if o == nil || isNil(o.Href) {
+	if o == nil || IsNil(o.Href) {
 		return nil, false
 	}
 	return o.Href, true
@@ -234,7 +234,7 @@ func (o *SpotMarketRequest) GetHrefOk() (*string, bool) {
 
 // HasHref returns a boolean if a field has been set.
 func (o *SpotMarketRequest) HasHref() bool {
-	if o != nil && !isNil(o.Href) {
+	if o != nil && !IsNil(o.Href) {
 		return true
 	}
 
@@ -248,7 +248,7 @@ func (o *SpotMarketRequest) SetHref(v string) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *SpotMarketRequest) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -258,7 +258,7 @@ func (o *SpotMarketRequest) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SpotMarketRequest) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -266,7 +266,7 @@ func (o *SpotMarketRequest) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *SpotMarketRequest) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -280,7 +280,7 @@ func (o *SpotMarketRequest) SetId(v string) {
 
 // GetInstances returns the Instances field value if set, zero value otherwise.
 func (o *SpotMarketRequest) GetInstances() Href {
-	if o == nil || isNil(o.Instances) {
+	if o == nil || IsNil(o.Instances) {
 		var ret Href
 		return ret
 	}
@@ -290,7 +290,7 @@ func (o *SpotMarketRequest) GetInstances() Href {
 // GetInstancesOk returns a tuple with the Instances field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SpotMarketRequest) GetInstancesOk() (*Href, bool) {
-	if o == nil || isNil(o.Instances) {
+	if o == nil || IsNil(o.Instances) {
 		return nil, false
 	}
 	return o.Instances, true
@@ -298,7 +298,7 @@ func (o *SpotMarketRequest) GetInstancesOk() (*Href, bool) {
 
 // HasInstances returns a boolean if a field has been set.
 func (o *SpotMarketRequest) HasInstances() bool {
-	if o != nil && !isNil(o.Instances) {
+	if o != nil && !IsNil(o.Instances) {
 		return true
 	}
 
@@ -312,7 +312,7 @@ func (o *SpotMarketRequest) SetInstances(v Href) {
 
 // GetMaxBidPrice returns the MaxBidPrice field value if set, zero value otherwise.
 func (o *SpotMarketRequest) GetMaxBidPrice() float32 {
-	if o == nil || isNil(o.MaxBidPrice) {
+	if o == nil || IsNil(o.MaxBidPrice) {
 		var ret float32
 		return ret
 	}
@@ -322,7 +322,7 @@ func (o *SpotMarketRequest) GetMaxBidPrice() float32 {
 // GetMaxBidPriceOk returns a tuple with the MaxBidPrice field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SpotMarketRequest) GetMaxBidPriceOk() (*float32, bool) {
-	if o == nil || isNil(o.MaxBidPrice) {
+	if o == nil || IsNil(o.MaxBidPrice) {
 		return nil, false
 	}
 	return o.MaxBidPrice, true
@@ -330,7 +330,7 @@ func (o *SpotMarketRequest) GetMaxBidPriceOk() (*float32, bool) {
 
 // HasMaxBidPrice returns a boolean if a field has been set.
 func (o *SpotMarketRequest) HasMaxBidPrice() bool {
-	if o != nil && !isNil(o.MaxBidPrice) {
+	if o != nil && !IsNil(o.MaxBidPrice) {
 		return true
 	}
 
@@ -344,7 +344,7 @@ func (o *SpotMarketRequest) SetMaxBidPrice(v float32) {
 
 // GetMetro returns the Metro field value if set, zero value otherwise.
 func (o *SpotMarketRequest) GetMetro() SpotMarketRequestMetro {
-	if o == nil || isNil(o.Metro) {
+	if o == nil || IsNil(o.Metro) {
 		var ret SpotMarketRequestMetro
 		return ret
 	}
@@ -354,7 +354,7 @@ func (o *SpotMarketRequest) GetMetro() SpotMarketRequestMetro {
 // GetMetroOk returns a tuple with the Metro field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SpotMarketRequest) GetMetroOk() (*SpotMarketRequestMetro, bool) {
-	if o == nil || isNil(o.Metro) {
+	if o == nil || IsNil(o.Metro) {
 		return nil, false
 	}
 	return o.Metro, true
@@ -362,7 +362,7 @@ func (o *SpotMarketRequest) GetMetroOk() (*SpotMarketRequestMetro, bool) {
 
 // HasMetro returns a boolean if a field has been set.
 func (o *SpotMarketRequest) HasMetro() bool {
-	if o != nil && !isNil(o.Metro) {
+	if o != nil && !IsNil(o.Metro) {
 		return true
 	}
 
@@ -376,7 +376,7 @@ func (o *SpotMarketRequest) SetMetro(v SpotMarketRequestMetro) {
 
 // GetProject returns the Project field value if set, zero value otherwise.
 func (o *SpotMarketRequest) GetProject() Href {
-	if o == nil || isNil(o.Project) {
+	if o == nil || IsNil(o.Project) {
 		var ret Href
 		return ret
 	}
@@ -386,7 +386,7 @@ func (o *SpotMarketRequest) GetProject() Href {
 // GetProjectOk returns a tuple with the Project field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SpotMarketRequest) GetProjectOk() (*Href, bool) {
-	if o == nil || isNil(o.Project) {
+	if o == nil || IsNil(o.Project) {
 		return nil, false
 	}
 	return o.Project, true
@@ -394,7 +394,7 @@ func (o *SpotMarketRequest) GetProjectOk() (*Href, bool) {
 
 // HasProject returns a boolean if a field has been set.
 func (o *SpotMarketRequest) HasProject() bool {
-	if o != nil && !isNil(o.Project) {
+	if o != nil && !IsNil(o.Project) {
 		return true
 	}
 
@@ -416,37 +416,37 @@ func (o SpotMarketRequest) MarshalJSON() ([]byte, error) {
 
 func (o SpotMarketRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.CreatedAt) {
+	if !IsNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt
 	}
-	if !isNil(o.DevicesMax) {
+	if !IsNil(o.DevicesMax) {
 		toSerialize["devices_max"] = o.DevicesMax
 	}
-	if !isNil(o.DevicesMin) {
+	if !IsNil(o.DevicesMin) {
 		toSerialize["devices_min"] = o.DevicesMin
 	}
-	if !isNil(o.EndAt) {
+	if !IsNil(o.EndAt) {
 		toSerialize["end_at"] = o.EndAt
 	}
-	if !isNil(o.Facilities) {
+	if !IsNil(o.Facilities) {
 		toSerialize["facilities"] = o.Facilities
 	}
-	if !isNil(o.Href) {
+	if !IsNil(o.Href) {
 		toSerialize["href"] = o.Href
 	}
-	if !isNil(o.Id) {
+	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
-	if !isNil(o.Instances) {
+	if !IsNil(o.Instances) {
 		toSerialize["instances"] = o.Instances
 	}
-	if !isNil(o.MaxBidPrice) {
+	if !IsNil(o.MaxBidPrice) {
 		toSerialize["max_bid_price"] = o.MaxBidPrice
 	}
-	if !isNil(o.Metro) {
+	if !IsNil(o.Metro) {
 		toSerialize["metro"] = o.Metro
 	}
-	if !isNil(o.Project) {
+	if !IsNil(o.Project) {
 		toSerialize["project"] = o.Project
 	}
 

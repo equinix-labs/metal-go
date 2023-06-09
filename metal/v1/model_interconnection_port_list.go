@@ -45,7 +45,7 @@ func NewInterconnectionPortListWithDefaults() *InterconnectionPortList {
 
 // GetPorts returns the Ports field value if set, zero value otherwise.
 func (o *InterconnectionPortList) GetPorts() []InterconnectionPort {
-	if o == nil || isNil(o.Ports) {
+	if o == nil || IsNil(o.Ports) {
 		var ret []InterconnectionPort
 		return ret
 	}
@@ -55,7 +55,7 @@ func (o *InterconnectionPortList) GetPorts() []InterconnectionPort {
 // GetPortsOk returns a tuple with the Ports field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InterconnectionPortList) GetPortsOk() ([]InterconnectionPort, bool) {
-	if o == nil || isNil(o.Ports) {
+	if o == nil || IsNil(o.Ports) {
 		return nil, false
 	}
 	return o.Ports, true
@@ -63,7 +63,7 @@ func (o *InterconnectionPortList) GetPortsOk() ([]InterconnectionPort, bool) {
 
 // HasPorts returns a boolean if a field has been set.
 func (o *InterconnectionPortList) HasPorts() bool {
-	if o != nil && !isNil(o.Ports) {
+	if o != nil && !IsNil(o.Ports) {
 		return true
 	}
 
@@ -85,7 +85,7 @@ func (o InterconnectionPortList) MarshalJSON() ([]byte, error) {
 
 func (o InterconnectionPortList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Ports) {
+	if !IsNil(o.Ports) {
 		toSerialize["ports"] = o.Ports
 	}
 

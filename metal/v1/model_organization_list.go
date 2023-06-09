@@ -46,7 +46,7 @@ func NewOrganizationListWithDefaults() *OrganizationList {
 
 // GetMeta returns the Meta field value if set, zero value otherwise.
 func (o *OrganizationList) GetMeta() Meta {
-	if o == nil || isNil(o.Meta) {
+	if o == nil || IsNil(o.Meta) {
 		var ret Meta
 		return ret
 	}
@@ -56,7 +56,7 @@ func (o *OrganizationList) GetMeta() Meta {
 // GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OrganizationList) GetMetaOk() (*Meta, bool) {
-	if o == nil || isNil(o.Meta) {
+	if o == nil || IsNil(o.Meta) {
 		return nil, false
 	}
 	return o.Meta, true
@@ -64,7 +64,7 @@ func (o *OrganizationList) GetMetaOk() (*Meta, bool) {
 
 // HasMeta returns a boolean if a field has been set.
 func (o *OrganizationList) HasMeta() bool {
-	if o != nil && !isNil(o.Meta) {
+	if o != nil && !IsNil(o.Meta) {
 		return true
 	}
 
@@ -78,7 +78,7 @@ func (o *OrganizationList) SetMeta(v Meta) {
 
 // GetOrganizations returns the Organizations field value if set, zero value otherwise.
 func (o *OrganizationList) GetOrganizations() []Organization {
-	if o == nil || isNil(o.Organizations) {
+	if o == nil || IsNil(o.Organizations) {
 		var ret []Organization
 		return ret
 	}
@@ -88,7 +88,7 @@ func (o *OrganizationList) GetOrganizations() []Organization {
 // GetOrganizationsOk returns a tuple with the Organizations field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OrganizationList) GetOrganizationsOk() ([]Organization, bool) {
-	if o == nil || isNil(o.Organizations) {
+	if o == nil || IsNil(o.Organizations) {
 		return nil, false
 	}
 	return o.Organizations, true
@@ -96,7 +96,7 @@ func (o *OrganizationList) GetOrganizationsOk() ([]Organization, bool) {
 
 // HasOrganizations returns a boolean if a field has been set.
 func (o *OrganizationList) HasOrganizations() bool {
-	if o != nil && !isNil(o.Organizations) {
+	if o != nil && !IsNil(o.Organizations) {
 		return true
 	}
 
@@ -118,10 +118,10 @@ func (o OrganizationList) MarshalJSON() ([]byte, error) {
 
 func (o OrganizationList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Meta) {
+	if !IsNil(o.Meta) {
 		toSerialize["meta"] = o.Meta
 	}
-	if !isNil(o.Organizations) {
+	if !IsNil(o.Organizations) {
 		toSerialize["organizations"] = o.Organizations
 	}
 

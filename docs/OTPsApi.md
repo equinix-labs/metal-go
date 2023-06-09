@@ -28,7 +28,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/equinix-labs/metal-go/metal/v1"
 )
 
 func main() {
@@ -36,7 +36,7 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.OTPsApi.FindEnsureOtp(context.Background(), otp).Execute()
+    r, err := apiClient.OTPsApi.FindEnsureOtp(context.Background(), otp).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `OTPsApi.FindEnsureOtp``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -96,7 +96,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/equinix-labs/metal-go/metal/v1"
 )
 
 func main() {
@@ -157,14 +157,14 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/equinix-labs/metal-go/metal/v1"
 )
 
 func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.OTPsApi.ReceiveCodes(context.Background()).Execute()
+    r, err := apiClient.OTPsApi.ReceiveCodes(context.Background()).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `OTPsApi.ReceiveCodes``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -216,7 +216,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/equinix-labs/metal-go/metal/v1"
 )
 
 func main() {

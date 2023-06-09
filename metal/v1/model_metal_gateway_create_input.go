@@ -51,7 +51,7 @@ func NewMetalGatewayCreateInputWithDefaults() *MetalGatewayCreateInput {
 
 // GetIpReservationId returns the IpReservationId field value if set, zero value otherwise.
 func (o *MetalGatewayCreateInput) GetIpReservationId() string {
-	if o == nil || isNil(o.IpReservationId) {
+	if o == nil || IsNil(o.IpReservationId) {
 		var ret string
 		return ret
 	}
@@ -61,7 +61,7 @@ func (o *MetalGatewayCreateInput) GetIpReservationId() string {
 // GetIpReservationIdOk returns a tuple with the IpReservationId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MetalGatewayCreateInput) GetIpReservationIdOk() (*string, bool) {
-	if o == nil || isNil(o.IpReservationId) {
+	if o == nil || IsNil(o.IpReservationId) {
 		return nil, false
 	}
 	return o.IpReservationId, true
@@ -69,7 +69,7 @@ func (o *MetalGatewayCreateInput) GetIpReservationIdOk() (*string, bool) {
 
 // HasIpReservationId returns a boolean if a field has been set.
 func (o *MetalGatewayCreateInput) HasIpReservationId() bool {
-	if o != nil && !isNil(o.IpReservationId) {
+	if o != nil && !IsNil(o.IpReservationId) {
 		return true
 	}
 
@@ -83,7 +83,7 @@ func (o *MetalGatewayCreateInput) SetIpReservationId(v string) {
 
 // GetPrivateIpv4SubnetSize returns the PrivateIpv4SubnetSize field value if set, zero value otherwise.
 func (o *MetalGatewayCreateInput) GetPrivateIpv4SubnetSize() int32 {
-	if o == nil || isNil(o.PrivateIpv4SubnetSize) {
+	if o == nil || IsNil(o.PrivateIpv4SubnetSize) {
 		var ret int32
 		return ret
 	}
@@ -93,7 +93,7 @@ func (o *MetalGatewayCreateInput) GetPrivateIpv4SubnetSize() int32 {
 // GetPrivateIpv4SubnetSizeOk returns a tuple with the PrivateIpv4SubnetSize field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MetalGatewayCreateInput) GetPrivateIpv4SubnetSizeOk() (*int32, bool) {
-	if o == nil || isNil(o.PrivateIpv4SubnetSize) {
+	if o == nil || IsNil(o.PrivateIpv4SubnetSize) {
 		return nil, false
 	}
 	return o.PrivateIpv4SubnetSize, true
@@ -101,7 +101,7 @@ func (o *MetalGatewayCreateInput) GetPrivateIpv4SubnetSizeOk() (*int32, bool) {
 
 // HasPrivateIpv4SubnetSize returns a boolean if a field has been set.
 func (o *MetalGatewayCreateInput) HasPrivateIpv4SubnetSize() bool {
-	if o != nil && !isNil(o.PrivateIpv4SubnetSize) {
+	if o != nil && !IsNil(o.PrivateIpv4SubnetSize) {
 		return true
 	}
 
@@ -147,10 +147,10 @@ func (o MetalGatewayCreateInput) MarshalJSON() ([]byte, error) {
 
 func (o MetalGatewayCreateInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.IpReservationId) {
+	if !IsNil(o.IpReservationId) {
 		toSerialize["ip_reservation_id"] = o.IpReservationId
 	}
-	if !isNil(o.PrivateIpv4SubnetSize) {
+	if !IsNil(o.PrivateIpv4SubnetSize) {
 		toSerialize["private_ipv4_subnet_size"] = o.PrivateIpv4SubnetSize
 	}
 	toSerialize["virtual_network_id"] = o.VirtualNetworkId

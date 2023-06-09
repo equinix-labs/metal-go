@@ -45,7 +45,7 @@ func NewBatchesListWithDefaults() *BatchesList {
 
 // GetBatches returns the Batches field value if set, zero value otherwise.
 func (o *BatchesList) GetBatches() []Batch {
-	if o == nil || isNil(o.Batches) {
+	if o == nil || IsNil(o.Batches) {
 		var ret []Batch
 		return ret
 	}
@@ -55,7 +55,7 @@ func (o *BatchesList) GetBatches() []Batch {
 // GetBatchesOk returns a tuple with the Batches field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BatchesList) GetBatchesOk() ([]Batch, bool) {
-	if o == nil || isNil(o.Batches) {
+	if o == nil || IsNil(o.Batches) {
 		return nil, false
 	}
 	return o.Batches, true
@@ -63,7 +63,7 @@ func (o *BatchesList) GetBatchesOk() ([]Batch, bool) {
 
 // HasBatches returns a boolean if a field has been set.
 func (o *BatchesList) HasBatches() bool {
-	if o != nil && !isNil(o.Batches) {
+	if o != nil && !IsNil(o.Batches) {
 		return true
 	}
 
@@ -85,7 +85,7 @@ func (o BatchesList) MarshalJSON() ([]byte, error) {
 
 func (o BatchesList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Batches) {
+	if !IsNil(o.Batches) {
 		toSerialize["batches"] = o.Batches
 	}
 

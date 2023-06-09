@@ -52,7 +52,7 @@ func NewBGPSessionInputWithDefaults() *BGPSessionInput {
 
 // GetAddressFamily returns the AddressFamily field value if set, zero value otherwise.
 func (o *BGPSessionInput) GetAddressFamily() string {
-	if o == nil || isNil(o.AddressFamily) {
+	if o == nil || IsNil(o.AddressFamily) {
 		var ret string
 		return ret
 	}
@@ -62,7 +62,7 @@ func (o *BGPSessionInput) GetAddressFamily() string {
 // GetAddressFamilyOk returns a tuple with the AddressFamily field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BGPSessionInput) GetAddressFamilyOk() (*string, bool) {
-	if o == nil || isNil(o.AddressFamily) {
+	if o == nil || IsNil(o.AddressFamily) {
 		return nil, false
 	}
 	return o.AddressFamily, true
@@ -70,7 +70,7 @@ func (o *BGPSessionInput) GetAddressFamilyOk() (*string, bool) {
 
 // HasAddressFamily returns a boolean if a field has been set.
 func (o *BGPSessionInput) HasAddressFamily() bool {
-	if o != nil && !isNil(o.AddressFamily) {
+	if o != nil && !IsNil(o.AddressFamily) {
 		return true
 	}
 
@@ -84,7 +84,7 @@ func (o *BGPSessionInput) SetAddressFamily(v string) {
 
 // GetDefaultRoute returns the DefaultRoute field value if set, zero value otherwise.
 func (o *BGPSessionInput) GetDefaultRoute() bool {
-	if o == nil || isNil(o.DefaultRoute) {
+	if o == nil || IsNil(o.DefaultRoute) {
 		var ret bool
 		return ret
 	}
@@ -94,7 +94,7 @@ func (o *BGPSessionInput) GetDefaultRoute() bool {
 // GetDefaultRouteOk returns a tuple with the DefaultRoute field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BGPSessionInput) GetDefaultRouteOk() (*bool, bool) {
-	if o == nil || isNil(o.DefaultRoute) {
+	if o == nil || IsNil(o.DefaultRoute) {
 		return nil, false
 	}
 	return o.DefaultRoute, true
@@ -102,7 +102,7 @@ func (o *BGPSessionInput) GetDefaultRouteOk() (*bool, bool) {
 
 // HasDefaultRoute returns a boolean if a field has been set.
 func (o *BGPSessionInput) HasDefaultRoute() bool {
-	if o != nil && !isNil(o.DefaultRoute) {
+	if o != nil && !IsNil(o.DefaultRoute) {
 		return true
 	}
 
@@ -124,10 +124,10 @@ func (o BGPSessionInput) MarshalJSON() ([]byte, error) {
 
 func (o BGPSessionInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.AddressFamily) {
+	if !IsNil(o.AddressFamily) {
 		toSerialize["address_family"] = o.AddressFamily
 	}
-	if !isNil(o.DefaultRoute) {
+	if !IsNil(o.DefaultRoute) {
 		toSerialize["default_route"] = o.DefaultRoute
 	}
 

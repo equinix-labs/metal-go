@@ -46,7 +46,7 @@ func NewUserListWithDefaults() *UserList {
 
 // GetMeta returns the Meta field value if set, zero value otherwise.
 func (o *UserList) GetMeta() Meta {
-	if o == nil || isNil(o.Meta) {
+	if o == nil || IsNil(o.Meta) {
 		var ret Meta
 		return ret
 	}
@@ -56,7 +56,7 @@ func (o *UserList) GetMeta() Meta {
 // GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserList) GetMetaOk() (*Meta, bool) {
-	if o == nil || isNil(o.Meta) {
+	if o == nil || IsNil(o.Meta) {
 		return nil, false
 	}
 	return o.Meta, true
@@ -64,7 +64,7 @@ func (o *UserList) GetMetaOk() (*Meta, bool) {
 
 // HasMeta returns a boolean if a field has been set.
 func (o *UserList) HasMeta() bool {
-	if o != nil && !isNil(o.Meta) {
+	if o != nil && !IsNil(o.Meta) {
 		return true
 	}
 
@@ -78,7 +78,7 @@ func (o *UserList) SetMeta(v Meta) {
 
 // GetUsers returns the Users field value if set, zero value otherwise.
 func (o *UserList) GetUsers() []User {
-	if o == nil || isNil(o.Users) {
+	if o == nil || IsNil(o.Users) {
 		var ret []User
 		return ret
 	}
@@ -88,7 +88,7 @@ func (o *UserList) GetUsers() []User {
 // GetUsersOk returns a tuple with the Users field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserList) GetUsersOk() ([]User, bool) {
-	if o == nil || isNil(o.Users) {
+	if o == nil || IsNil(o.Users) {
 		return nil, false
 	}
 	return o.Users, true
@@ -96,7 +96,7 @@ func (o *UserList) GetUsersOk() ([]User, bool) {
 
 // HasUsers returns a boolean if a field has been set.
 func (o *UserList) HasUsers() bool {
-	if o != nil && !isNil(o.Users) {
+	if o != nil && !IsNil(o.Users) {
 		return true
 	}
 
@@ -118,10 +118,10 @@ func (o UserList) MarshalJSON() ([]byte, error) {
 
 func (o UserList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Meta) {
+	if !IsNil(o.Meta) {
 		toSerialize["meta"] = o.Meta
 	}
-	if !isNil(o.Users) {
+	if !IsNil(o.Users) {
 		toSerialize["users"] = o.Users
 	}
 

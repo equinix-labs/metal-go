@@ -45,7 +45,7 @@ func NewCapacityInputWithDefaults() *CapacityInput {
 
 // GetServers returns the Servers field value if set, zero value otherwise.
 func (o *CapacityInput) GetServers() []ServerInfo {
-	if o == nil || isNil(o.Servers) {
+	if o == nil || IsNil(o.Servers) {
 		var ret []ServerInfo
 		return ret
 	}
@@ -55,7 +55,7 @@ func (o *CapacityInput) GetServers() []ServerInfo {
 // GetServersOk returns a tuple with the Servers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CapacityInput) GetServersOk() ([]ServerInfo, bool) {
-	if o == nil || isNil(o.Servers) {
+	if o == nil || IsNil(o.Servers) {
 		return nil, false
 	}
 	return o.Servers, true
@@ -63,7 +63,7 @@ func (o *CapacityInput) GetServersOk() ([]ServerInfo, bool) {
 
 // HasServers returns a boolean if a field has been set.
 func (o *CapacityInput) HasServers() bool {
-	if o != nil && !isNil(o.Servers) {
+	if o != nil && !IsNil(o.Servers) {
 		return true
 	}
 
@@ -85,7 +85,7 @@ func (o CapacityInput) MarshalJSON() ([]byte, error) {
 
 func (o CapacityInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Servers) {
+	if !IsNil(o.Servers) {
 		toSerialize["servers"] = o.Servers
 	}
 

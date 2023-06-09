@@ -64,7 +64,7 @@ func NewSpotMarketRequestCreateInputInstanceParametersWithDefaults() *SpotMarket
 
 // GetAlwaysPxe returns the AlwaysPxe field value if set, zero value otherwise.
 func (o *SpotMarketRequestCreateInputInstanceParameters) GetAlwaysPxe() bool {
-	if o == nil || isNil(o.AlwaysPxe) {
+	if o == nil || IsNil(o.AlwaysPxe) {
 		var ret bool
 		return ret
 	}
@@ -74,7 +74,7 @@ func (o *SpotMarketRequestCreateInputInstanceParameters) GetAlwaysPxe() bool {
 // GetAlwaysPxeOk returns a tuple with the AlwaysPxe field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SpotMarketRequestCreateInputInstanceParameters) GetAlwaysPxeOk() (*bool, bool) {
-	if o == nil || isNil(o.AlwaysPxe) {
+	if o == nil || IsNil(o.AlwaysPxe) {
 		return nil, false
 	}
 	return o.AlwaysPxe, true
@@ -82,7 +82,7 @@ func (o *SpotMarketRequestCreateInputInstanceParameters) GetAlwaysPxeOk() (*bool
 
 // HasAlwaysPxe returns a boolean if a field has been set.
 func (o *SpotMarketRequestCreateInputInstanceParameters) HasAlwaysPxe() bool {
-	if o != nil && !isNil(o.AlwaysPxe) {
+	if o != nil && !IsNil(o.AlwaysPxe) {
 		return true
 	}
 
@@ -96,7 +96,7 @@ func (o *SpotMarketRequestCreateInputInstanceParameters) SetAlwaysPxe(v bool) {
 
 // GetBillingCycle returns the BillingCycle field value if set, zero value otherwise.
 func (o *SpotMarketRequestCreateInputInstanceParameters) GetBillingCycle() string {
-	if o == nil || isNil(o.BillingCycle) {
+	if o == nil || IsNil(o.BillingCycle) {
 		var ret string
 		return ret
 	}
@@ -106,7 +106,7 @@ func (o *SpotMarketRequestCreateInputInstanceParameters) GetBillingCycle() strin
 // GetBillingCycleOk returns a tuple with the BillingCycle field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SpotMarketRequestCreateInputInstanceParameters) GetBillingCycleOk() (*string, bool) {
-	if o == nil || isNil(o.BillingCycle) {
+	if o == nil || IsNil(o.BillingCycle) {
 		return nil, false
 	}
 	return o.BillingCycle, true
@@ -114,7 +114,7 @@ func (o *SpotMarketRequestCreateInputInstanceParameters) GetBillingCycleOk() (*s
 
 // HasBillingCycle returns a boolean if a field has been set.
 func (o *SpotMarketRequestCreateInputInstanceParameters) HasBillingCycle() bool {
-	if o != nil && !isNil(o.BillingCycle) {
+	if o != nil && !IsNil(o.BillingCycle) {
 		return true
 	}
 
@@ -128,7 +128,7 @@ func (o *SpotMarketRequestCreateInputInstanceParameters) SetBillingCycle(v strin
 
 // GetCustomdata returns the Customdata field value if set, zero value otherwise.
 func (o *SpotMarketRequestCreateInputInstanceParameters) GetCustomdata() map[string]interface{} {
-	if o == nil || isNil(o.Customdata) {
+	if o == nil || IsNil(o.Customdata) {
 		var ret map[string]interface{}
 		return ret
 	}
@@ -138,7 +138,7 @@ func (o *SpotMarketRequestCreateInputInstanceParameters) GetCustomdata() map[str
 // GetCustomdataOk returns a tuple with the Customdata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SpotMarketRequestCreateInputInstanceParameters) GetCustomdataOk() (map[string]interface{}, bool) {
-	if o == nil || isNil(o.Customdata) {
+	if o == nil || IsNil(o.Customdata) {
 		return map[string]interface{}{}, false
 	}
 	return o.Customdata, true
@@ -146,7 +146,7 @@ func (o *SpotMarketRequestCreateInputInstanceParameters) GetCustomdataOk() (map[
 
 // HasCustomdata returns a boolean if a field has been set.
 func (o *SpotMarketRequestCreateInputInstanceParameters) HasCustomdata() bool {
-	if o != nil && !isNil(o.Customdata) {
+	if o != nil && !IsNil(o.Customdata) {
 		return true
 	}
 
@@ -160,7 +160,7 @@ func (o *SpotMarketRequestCreateInputInstanceParameters) SetCustomdata(v map[str
 
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *SpotMarketRequestCreateInputInstanceParameters) GetDescription() string {
-	if o == nil || isNil(o.Description) {
+	if o == nil || IsNil(o.Description) {
 		var ret string
 		return ret
 	}
@@ -170,7 +170,7 @@ func (o *SpotMarketRequestCreateInputInstanceParameters) GetDescription() string
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SpotMarketRequestCreateInputInstanceParameters) GetDescriptionOk() (*string, bool) {
-	if o == nil || isNil(o.Description) {
+	if o == nil || IsNil(o.Description) {
 		return nil, false
 	}
 	return o.Description, true
@@ -178,7 +178,7 @@ func (o *SpotMarketRequestCreateInputInstanceParameters) GetDescriptionOk() (*st
 
 // HasDescription returns a boolean if a field has been set.
 func (o *SpotMarketRequestCreateInputInstanceParameters) HasDescription() bool {
-	if o != nil && !isNil(o.Description) {
+	if o != nil && !IsNil(o.Description) {
 		return true
 	}
 
@@ -192,7 +192,7 @@ func (o *SpotMarketRequestCreateInputInstanceParameters) SetDescription(v string
 
 // GetFeatures returns the Features field value if set, zero value otherwise.
 func (o *SpotMarketRequestCreateInputInstanceParameters) GetFeatures() []string {
-	if o == nil || isNil(o.Features) {
+	if o == nil || IsNil(o.Features) {
 		var ret []string
 		return ret
 	}
@@ -202,7 +202,7 @@ func (o *SpotMarketRequestCreateInputInstanceParameters) GetFeatures() []string 
 // GetFeaturesOk returns a tuple with the Features field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SpotMarketRequestCreateInputInstanceParameters) GetFeaturesOk() ([]string, bool) {
-	if o == nil || isNil(o.Features) {
+	if o == nil || IsNil(o.Features) {
 		return nil, false
 	}
 	return o.Features, true
@@ -210,7 +210,7 @@ func (o *SpotMarketRequestCreateInputInstanceParameters) GetFeaturesOk() ([]stri
 
 // HasFeatures returns a boolean if a field has been set.
 func (o *SpotMarketRequestCreateInputInstanceParameters) HasFeatures() bool {
-	if o != nil && !isNil(o.Features) {
+	if o != nil && !IsNil(o.Features) {
 		return true
 	}
 
@@ -224,7 +224,7 @@ func (o *SpotMarketRequestCreateInputInstanceParameters) SetFeatures(v []string)
 
 // GetHostname returns the Hostname field value if set, zero value otherwise.
 func (o *SpotMarketRequestCreateInputInstanceParameters) GetHostname() string {
-	if o == nil || isNil(o.Hostname) {
+	if o == nil || IsNil(o.Hostname) {
 		var ret string
 		return ret
 	}
@@ -234,7 +234,7 @@ func (o *SpotMarketRequestCreateInputInstanceParameters) GetHostname() string {
 // GetHostnameOk returns a tuple with the Hostname field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SpotMarketRequestCreateInputInstanceParameters) GetHostnameOk() (*string, bool) {
-	if o == nil || isNil(o.Hostname) {
+	if o == nil || IsNil(o.Hostname) {
 		return nil, false
 	}
 	return o.Hostname, true
@@ -242,7 +242,7 @@ func (o *SpotMarketRequestCreateInputInstanceParameters) GetHostnameOk() (*strin
 
 // HasHostname returns a boolean if a field has been set.
 func (o *SpotMarketRequestCreateInputInstanceParameters) HasHostname() bool {
-	if o != nil && !isNil(o.Hostname) {
+	if o != nil && !IsNil(o.Hostname) {
 		return true
 	}
 
@@ -256,7 +256,7 @@ func (o *SpotMarketRequestCreateInputInstanceParameters) SetHostname(v string) {
 
 // GetHostnames returns the Hostnames field value if set, zero value otherwise.
 func (o *SpotMarketRequestCreateInputInstanceParameters) GetHostnames() []string {
-	if o == nil || isNil(o.Hostnames) {
+	if o == nil || IsNil(o.Hostnames) {
 		var ret []string
 		return ret
 	}
@@ -266,7 +266,7 @@ func (o *SpotMarketRequestCreateInputInstanceParameters) GetHostnames() []string
 // GetHostnamesOk returns a tuple with the Hostnames field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SpotMarketRequestCreateInputInstanceParameters) GetHostnamesOk() ([]string, bool) {
-	if o == nil || isNil(o.Hostnames) {
+	if o == nil || IsNil(o.Hostnames) {
 		return nil, false
 	}
 	return o.Hostnames, true
@@ -274,7 +274,7 @@ func (o *SpotMarketRequestCreateInputInstanceParameters) GetHostnamesOk() ([]str
 
 // HasHostnames returns a boolean if a field has been set.
 func (o *SpotMarketRequestCreateInputInstanceParameters) HasHostnames() bool {
-	if o != nil && !isNil(o.Hostnames) {
+	if o != nil && !IsNil(o.Hostnames) {
 		return true
 	}
 
@@ -288,7 +288,7 @@ func (o *SpotMarketRequestCreateInputInstanceParameters) SetHostnames(v []string
 
 // GetLocked returns the Locked field value if set, zero value otherwise.
 func (o *SpotMarketRequestCreateInputInstanceParameters) GetLocked() bool {
-	if o == nil || isNil(o.Locked) {
+	if o == nil || IsNil(o.Locked) {
 		var ret bool
 		return ret
 	}
@@ -298,7 +298,7 @@ func (o *SpotMarketRequestCreateInputInstanceParameters) GetLocked() bool {
 // GetLockedOk returns a tuple with the Locked field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SpotMarketRequestCreateInputInstanceParameters) GetLockedOk() (*bool, bool) {
-	if o == nil || isNil(o.Locked) {
+	if o == nil || IsNil(o.Locked) {
 		return nil, false
 	}
 	return o.Locked, true
@@ -306,7 +306,7 @@ func (o *SpotMarketRequestCreateInputInstanceParameters) GetLockedOk() (*bool, b
 
 // HasLocked returns a boolean if a field has been set.
 func (o *SpotMarketRequestCreateInputInstanceParameters) HasLocked() bool {
-	if o != nil && !isNil(o.Locked) {
+	if o != nil && !IsNil(o.Locked) {
 		return true
 	}
 
@@ -320,7 +320,7 @@ func (o *SpotMarketRequestCreateInputInstanceParameters) SetLocked(v bool) {
 
 // GetNoSshKeys returns the NoSshKeys field value if set, zero value otherwise.
 func (o *SpotMarketRequestCreateInputInstanceParameters) GetNoSshKeys() bool {
-	if o == nil || isNil(o.NoSshKeys) {
+	if o == nil || IsNil(o.NoSshKeys) {
 		var ret bool
 		return ret
 	}
@@ -330,7 +330,7 @@ func (o *SpotMarketRequestCreateInputInstanceParameters) GetNoSshKeys() bool {
 // GetNoSshKeysOk returns a tuple with the NoSshKeys field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SpotMarketRequestCreateInputInstanceParameters) GetNoSshKeysOk() (*bool, bool) {
-	if o == nil || isNil(o.NoSshKeys) {
+	if o == nil || IsNil(o.NoSshKeys) {
 		return nil, false
 	}
 	return o.NoSshKeys, true
@@ -338,7 +338,7 @@ func (o *SpotMarketRequestCreateInputInstanceParameters) GetNoSshKeysOk() (*bool
 
 // HasNoSshKeys returns a boolean if a field has been set.
 func (o *SpotMarketRequestCreateInputInstanceParameters) HasNoSshKeys() bool {
-	if o != nil && !isNil(o.NoSshKeys) {
+	if o != nil && !IsNil(o.NoSshKeys) {
 		return true
 	}
 
@@ -352,7 +352,7 @@ func (o *SpotMarketRequestCreateInputInstanceParameters) SetNoSshKeys(v bool) {
 
 // GetOperatingSystem returns the OperatingSystem field value if set, zero value otherwise.
 func (o *SpotMarketRequestCreateInputInstanceParameters) GetOperatingSystem() string {
-	if o == nil || isNil(o.OperatingSystem) {
+	if o == nil || IsNil(o.OperatingSystem) {
 		var ret string
 		return ret
 	}
@@ -362,7 +362,7 @@ func (o *SpotMarketRequestCreateInputInstanceParameters) GetOperatingSystem() st
 // GetOperatingSystemOk returns a tuple with the OperatingSystem field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SpotMarketRequestCreateInputInstanceParameters) GetOperatingSystemOk() (*string, bool) {
-	if o == nil || isNil(o.OperatingSystem) {
+	if o == nil || IsNil(o.OperatingSystem) {
 		return nil, false
 	}
 	return o.OperatingSystem, true
@@ -370,7 +370,7 @@ func (o *SpotMarketRequestCreateInputInstanceParameters) GetOperatingSystemOk() 
 
 // HasOperatingSystem returns a boolean if a field has been set.
 func (o *SpotMarketRequestCreateInputInstanceParameters) HasOperatingSystem() bool {
-	if o != nil && !isNil(o.OperatingSystem) {
+	if o != nil && !IsNil(o.OperatingSystem) {
 		return true
 	}
 
@@ -384,7 +384,7 @@ func (o *SpotMarketRequestCreateInputInstanceParameters) SetOperatingSystem(v st
 
 // GetPlan returns the Plan field value if set, zero value otherwise.
 func (o *SpotMarketRequestCreateInputInstanceParameters) GetPlan() string {
-	if o == nil || isNil(o.Plan) {
+	if o == nil || IsNil(o.Plan) {
 		var ret string
 		return ret
 	}
@@ -394,7 +394,7 @@ func (o *SpotMarketRequestCreateInputInstanceParameters) GetPlan() string {
 // GetPlanOk returns a tuple with the Plan field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SpotMarketRequestCreateInputInstanceParameters) GetPlanOk() (*string, bool) {
-	if o == nil || isNil(o.Plan) {
+	if o == nil || IsNil(o.Plan) {
 		return nil, false
 	}
 	return o.Plan, true
@@ -402,7 +402,7 @@ func (o *SpotMarketRequestCreateInputInstanceParameters) GetPlanOk() (*string, b
 
 // HasPlan returns a boolean if a field has been set.
 func (o *SpotMarketRequestCreateInputInstanceParameters) HasPlan() bool {
-	if o != nil && !isNil(o.Plan) {
+	if o != nil && !IsNil(o.Plan) {
 		return true
 	}
 
@@ -416,7 +416,7 @@ func (o *SpotMarketRequestCreateInputInstanceParameters) SetPlan(v string) {
 
 // GetPrivateIpv4SubnetSize returns the PrivateIpv4SubnetSize field value if set, zero value otherwise.
 func (o *SpotMarketRequestCreateInputInstanceParameters) GetPrivateIpv4SubnetSize() int32 {
-	if o == nil || isNil(o.PrivateIpv4SubnetSize) {
+	if o == nil || IsNil(o.PrivateIpv4SubnetSize) {
 		var ret int32
 		return ret
 	}
@@ -426,7 +426,7 @@ func (o *SpotMarketRequestCreateInputInstanceParameters) GetPrivateIpv4SubnetSiz
 // GetPrivateIpv4SubnetSizeOk returns a tuple with the PrivateIpv4SubnetSize field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SpotMarketRequestCreateInputInstanceParameters) GetPrivateIpv4SubnetSizeOk() (*int32, bool) {
-	if o == nil || isNil(o.PrivateIpv4SubnetSize) {
+	if o == nil || IsNil(o.PrivateIpv4SubnetSize) {
 		return nil, false
 	}
 	return o.PrivateIpv4SubnetSize, true
@@ -434,7 +434,7 @@ func (o *SpotMarketRequestCreateInputInstanceParameters) GetPrivateIpv4SubnetSiz
 
 // HasPrivateIpv4SubnetSize returns a boolean if a field has been set.
 func (o *SpotMarketRequestCreateInputInstanceParameters) HasPrivateIpv4SubnetSize() bool {
-	if o != nil && !isNil(o.PrivateIpv4SubnetSize) {
+	if o != nil && !IsNil(o.PrivateIpv4SubnetSize) {
 		return true
 	}
 
@@ -448,7 +448,7 @@ func (o *SpotMarketRequestCreateInputInstanceParameters) SetPrivateIpv4SubnetSiz
 
 // GetProjectSshKeys returns the ProjectSshKeys field value if set, zero value otherwise.
 func (o *SpotMarketRequestCreateInputInstanceParameters) GetProjectSshKeys() []string {
-	if o == nil || isNil(o.ProjectSshKeys) {
+	if o == nil || IsNil(o.ProjectSshKeys) {
 		var ret []string
 		return ret
 	}
@@ -458,7 +458,7 @@ func (o *SpotMarketRequestCreateInputInstanceParameters) GetProjectSshKeys() []s
 // GetProjectSshKeysOk returns a tuple with the ProjectSshKeys field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SpotMarketRequestCreateInputInstanceParameters) GetProjectSshKeysOk() ([]string, bool) {
-	if o == nil || isNil(o.ProjectSshKeys) {
+	if o == nil || IsNil(o.ProjectSshKeys) {
 		return nil, false
 	}
 	return o.ProjectSshKeys, true
@@ -466,7 +466,7 @@ func (o *SpotMarketRequestCreateInputInstanceParameters) GetProjectSshKeysOk() (
 
 // HasProjectSshKeys returns a boolean if a field has been set.
 func (o *SpotMarketRequestCreateInputInstanceParameters) HasProjectSshKeys() bool {
-	if o != nil && !isNil(o.ProjectSshKeys) {
+	if o != nil && !IsNil(o.ProjectSshKeys) {
 		return true
 	}
 
@@ -480,7 +480,7 @@ func (o *SpotMarketRequestCreateInputInstanceParameters) SetProjectSshKeys(v []s
 
 // GetPublicIpv4SubnetSize returns the PublicIpv4SubnetSize field value if set, zero value otherwise.
 func (o *SpotMarketRequestCreateInputInstanceParameters) GetPublicIpv4SubnetSize() int32 {
-	if o == nil || isNil(o.PublicIpv4SubnetSize) {
+	if o == nil || IsNil(o.PublicIpv4SubnetSize) {
 		var ret int32
 		return ret
 	}
@@ -490,7 +490,7 @@ func (o *SpotMarketRequestCreateInputInstanceParameters) GetPublicIpv4SubnetSize
 // GetPublicIpv4SubnetSizeOk returns a tuple with the PublicIpv4SubnetSize field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SpotMarketRequestCreateInputInstanceParameters) GetPublicIpv4SubnetSizeOk() (*int32, bool) {
-	if o == nil || isNil(o.PublicIpv4SubnetSize) {
+	if o == nil || IsNil(o.PublicIpv4SubnetSize) {
 		return nil, false
 	}
 	return o.PublicIpv4SubnetSize, true
@@ -498,7 +498,7 @@ func (o *SpotMarketRequestCreateInputInstanceParameters) GetPublicIpv4SubnetSize
 
 // HasPublicIpv4SubnetSize returns a boolean if a field has been set.
 func (o *SpotMarketRequestCreateInputInstanceParameters) HasPublicIpv4SubnetSize() bool {
-	if o != nil && !isNil(o.PublicIpv4SubnetSize) {
+	if o != nil && !IsNil(o.PublicIpv4SubnetSize) {
 		return true
 	}
 
@@ -512,7 +512,7 @@ func (o *SpotMarketRequestCreateInputInstanceParameters) SetPublicIpv4SubnetSize
 
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *SpotMarketRequestCreateInputInstanceParameters) GetTags() []string {
-	if o == nil || isNil(o.Tags) {
+	if o == nil || IsNil(o.Tags) {
 		var ret []string
 		return ret
 	}
@@ -522,7 +522,7 @@ func (o *SpotMarketRequestCreateInputInstanceParameters) GetTags() []string {
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SpotMarketRequestCreateInputInstanceParameters) GetTagsOk() ([]string, bool) {
-	if o == nil || isNil(o.Tags) {
+	if o == nil || IsNil(o.Tags) {
 		return nil, false
 	}
 	return o.Tags, true
@@ -530,7 +530,7 @@ func (o *SpotMarketRequestCreateInputInstanceParameters) GetTagsOk() ([]string, 
 
 // HasTags returns a boolean if a field has been set.
 func (o *SpotMarketRequestCreateInputInstanceParameters) HasTags() bool {
-	if o != nil && !isNil(o.Tags) {
+	if o != nil && !IsNil(o.Tags) {
 		return true
 	}
 
@@ -544,7 +544,7 @@ func (o *SpotMarketRequestCreateInputInstanceParameters) SetTags(v []string) {
 
 // GetTerminationTime returns the TerminationTime field value if set, zero value otherwise.
 func (o *SpotMarketRequestCreateInputInstanceParameters) GetTerminationTime() time.Time {
-	if o == nil || isNil(o.TerminationTime) {
+	if o == nil || IsNil(o.TerminationTime) {
 		var ret time.Time
 		return ret
 	}
@@ -554,7 +554,7 @@ func (o *SpotMarketRequestCreateInputInstanceParameters) GetTerminationTime() ti
 // GetTerminationTimeOk returns a tuple with the TerminationTime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SpotMarketRequestCreateInputInstanceParameters) GetTerminationTimeOk() (*time.Time, bool) {
-	if o == nil || isNil(o.TerminationTime) {
+	if o == nil || IsNil(o.TerminationTime) {
 		return nil, false
 	}
 	return o.TerminationTime, true
@@ -562,7 +562,7 @@ func (o *SpotMarketRequestCreateInputInstanceParameters) GetTerminationTimeOk() 
 
 // HasTerminationTime returns a boolean if a field has been set.
 func (o *SpotMarketRequestCreateInputInstanceParameters) HasTerminationTime() bool {
-	if o != nil && !isNil(o.TerminationTime) {
+	if o != nil && !IsNil(o.TerminationTime) {
 		return true
 	}
 
@@ -576,7 +576,7 @@ func (o *SpotMarketRequestCreateInputInstanceParameters) SetTerminationTime(v ti
 
 // GetUserSshKeys returns the UserSshKeys field value if set, zero value otherwise.
 func (o *SpotMarketRequestCreateInputInstanceParameters) GetUserSshKeys() []string {
-	if o == nil || isNil(o.UserSshKeys) {
+	if o == nil || IsNil(o.UserSshKeys) {
 		var ret []string
 		return ret
 	}
@@ -586,7 +586,7 @@ func (o *SpotMarketRequestCreateInputInstanceParameters) GetUserSshKeys() []stri
 // GetUserSshKeysOk returns a tuple with the UserSshKeys field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SpotMarketRequestCreateInputInstanceParameters) GetUserSshKeysOk() ([]string, bool) {
-	if o == nil || isNil(o.UserSshKeys) {
+	if o == nil || IsNil(o.UserSshKeys) {
 		return nil, false
 	}
 	return o.UserSshKeys, true
@@ -594,7 +594,7 @@ func (o *SpotMarketRequestCreateInputInstanceParameters) GetUserSshKeysOk() ([]s
 
 // HasUserSshKeys returns a boolean if a field has been set.
 func (o *SpotMarketRequestCreateInputInstanceParameters) HasUserSshKeys() bool {
-	if o != nil && !isNil(o.UserSshKeys) {
+	if o != nil && !IsNil(o.UserSshKeys) {
 		return true
 	}
 
@@ -608,7 +608,7 @@ func (o *SpotMarketRequestCreateInputInstanceParameters) SetUserSshKeys(v []stri
 
 // GetUserdata returns the Userdata field value if set, zero value otherwise.
 func (o *SpotMarketRequestCreateInputInstanceParameters) GetUserdata() string {
-	if o == nil || isNil(o.Userdata) {
+	if o == nil || IsNil(o.Userdata) {
 		var ret string
 		return ret
 	}
@@ -618,7 +618,7 @@ func (o *SpotMarketRequestCreateInputInstanceParameters) GetUserdata() string {
 // GetUserdataOk returns a tuple with the Userdata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SpotMarketRequestCreateInputInstanceParameters) GetUserdataOk() (*string, bool) {
-	if o == nil || isNil(o.Userdata) {
+	if o == nil || IsNil(o.Userdata) {
 		return nil, false
 	}
 	return o.Userdata, true
@@ -626,7 +626,7 @@ func (o *SpotMarketRequestCreateInputInstanceParameters) GetUserdataOk() (*strin
 
 // HasUserdata returns a boolean if a field has been set.
 func (o *SpotMarketRequestCreateInputInstanceParameters) HasUserdata() bool {
-	if o != nil && !isNil(o.Userdata) {
+	if o != nil && !IsNil(o.Userdata) {
 		return true
 	}
 
@@ -648,58 +648,58 @@ func (o SpotMarketRequestCreateInputInstanceParameters) MarshalJSON() ([]byte, e
 
 func (o SpotMarketRequestCreateInputInstanceParameters) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.AlwaysPxe) {
+	if !IsNil(o.AlwaysPxe) {
 		toSerialize["always_pxe"] = o.AlwaysPxe
 	}
-	if !isNil(o.BillingCycle) {
+	if !IsNil(o.BillingCycle) {
 		toSerialize["billing_cycle"] = o.BillingCycle
 	}
-	if !isNil(o.Customdata) {
+	if !IsNil(o.Customdata) {
 		toSerialize["customdata"] = o.Customdata
 	}
-	if !isNil(o.Description) {
+	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
-	if !isNil(o.Features) {
+	if !IsNil(o.Features) {
 		toSerialize["features"] = o.Features
 	}
-	if !isNil(o.Hostname) {
+	if !IsNil(o.Hostname) {
 		toSerialize["hostname"] = o.Hostname
 	}
-	if !isNil(o.Hostnames) {
+	if !IsNil(o.Hostnames) {
 		toSerialize["hostnames"] = o.Hostnames
 	}
-	if !isNil(o.Locked) {
+	if !IsNil(o.Locked) {
 		toSerialize["locked"] = o.Locked
 	}
-	if !isNil(o.NoSshKeys) {
+	if !IsNil(o.NoSshKeys) {
 		toSerialize["no_ssh_keys"] = o.NoSshKeys
 	}
-	if !isNil(o.OperatingSystem) {
+	if !IsNil(o.OperatingSystem) {
 		toSerialize["operating_system"] = o.OperatingSystem
 	}
-	if !isNil(o.Plan) {
+	if !IsNil(o.Plan) {
 		toSerialize["plan"] = o.Plan
 	}
-	if !isNil(o.PrivateIpv4SubnetSize) {
+	if !IsNil(o.PrivateIpv4SubnetSize) {
 		toSerialize["private_ipv4_subnet_size"] = o.PrivateIpv4SubnetSize
 	}
-	if !isNil(o.ProjectSshKeys) {
+	if !IsNil(o.ProjectSshKeys) {
 		toSerialize["project_ssh_keys"] = o.ProjectSshKeys
 	}
-	if !isNil(o.PublicIpv4SubnetSize) {
+	if !IsNil(o.PublicIpv4SubnetSize) {
 		toSerialize["public_ipv4_subnet_size"] = o.PublicIpv4SubnetSize
 	}
-	if !isNil(o.Tags) {
+	if !IsNil(o.Tags) {
 		toSerialize["tags"] = o.Tags
 	}
-	if !isNil(o.TerminationTime) {
+	if !IsNil(o.TerminationTime) {
 		toSerialize["termination_time"] = o.TerminationTime
 	}
-	if !isNil(o.UserSshKeys) {
+	if !IsNil(o.UserSshKeys) {
 		toSerialize["user_ssh_keys"] = o.UserSshKeys
 	}
-	if !isNil(o.Userdata) {
+	if !IsNil(o.Userdata) {
 		toSerialize["userdata"] = o.Userdata
 	}
 

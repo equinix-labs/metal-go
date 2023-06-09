@@ -51,7 +51,7 @@ func NewSupportRequestInputWithDefaults() *SupportRequestInput {
 
 // GetDeviceId returns the DeviceId field value if set, zero value otherwise.
 func (o *SupportRequestInput) GetDeviceId() string {
-	if o == nil || isNil(o.DeviceId) {
+	if o == nil || IsNil(o.DeviceId) {
 		var ret string
 		return ret
 	}
@@ -61,7 +61,7 @@ func (o *SupportRequestInput) GetDeviceId() string {
 // GetDeviceIdOk returns a tuple with the DeviceId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SupportRequestInput) GetDeviceIdOk() (*string, bool) {
-	if o == nil || isNil(o.DeviceId) {
+	if o == nil || IsNil(o.DeviceId) {
 		return nil, false
 	}
 	return o.DeviceId, true
@@ -69,7 +69,7 @@ func (o *SupportRequestInput) GetDeviceIdOk() (*string, bool) {
 
 // HasDeviceId returns a boolean if a field has been set.
 func (o *SupportRequestInput) HasDeviceId() bool {
-	if o != nil && !isNil(o.DeviceId) {
+	if o != nil && !IsNil(o.DeviceId) {
 		return true
 	}
 
@@ -107,7 +107,7 @@ func (o *SupportRequestInput) SetMessage(v string) {
 
 // GetPriority returns the Priority field value if set, zero value otherwise.
 func (o *SupportRequestInput) GetPriority() string {
-	if o == nil || isNil(o.Priority) {
+	if o == nil || IsNil(o.Priority) {
 		var ret string
 		return ret
 	}
@@ -117,7 +117,7 @@ func (o *SupportRequestInput) GetPriority() string {
 // GetPriorityOk returns a tuple with the Priority field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SupportRequestInput) GetPriorityOk() (*string, bool) {
-	if o == nil || isNil(o.Priority) {
+	if o == nil || IsNil(o.Priority) {
 		return nil, false
 	}
 	return o.Priority, true
@@ -125,7 +125,7 @@ func (o *SupportRequestInput) GetPriorityOk() (*string, bool) {
 
 // HasPriority returns a boolean if a field has been set.
 func (o *SupportRequestInput) HasPriority() bool {
-	if o != nil && !isNil(o.Priority) {
+	if o != nil && !IsNil(o.Priority) {
 		return true
 	}
 
@@ -139,7 +139,7 @@ func (o *SupportRequestInput) SetPriority(v string) {
 
 // GetProjectId returns the ProjectId field value if set, zero value otherwise.
 func (o *SupportRequestInput) GetProjectId() string {
-	if o == nil || isNil(o.ProjectId) {
+	if o == nil || IsNil(o.ProjectId) {
 		var ret string
 		return ret
 	}
@@ -149,7 +149,7 @@ func (o *SupportRequestInput) GetProjectId() string {
 // GetProjectIdOk returns a tuple with the ProjectId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SupportRequestInput) GetProjectIdOk() (*string, bool) {
-	if o == nil || isNil(o.ProjectId) {
+	if o == nil || IsNil(o.ProjectId) {
 		return nil, false
 	}
 	return o.ProjectId, true
@@ -157,7 +157,7 @@ func (o *SupportRequestInput) GetProjectIdOk() (*string, bool) {
 
 // HasProjectId returns a boolean if a field has been set.
 func (o *SupportRequestInput) HasProjectId() bool {
-	if o != nil && !isNil(o.ProjectId) {
+	if o != nil && !IsNil(o.ProjectId) {
 		return true
 	}
 
@@ -203,14 +203,14 @@ func (o SupportRequestInput) MarshalJSON() ([]byte, error) {
 
 func (o SupportRequestInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.DeviceId) {
+	if !IsNil(o.DeviceId) {
 		toSerialize["device_id"] = o.DeviceId
 	}
 	toSerialize["message"] = o.Message
-	if !isNil(o.Priority) {
+	if !IsNil(o.Priority) {
 		toSerialize["priority"] = o.Priority
 	}
-	if !isNil(o.ProjectId) {
+	if !IsNil(o.ProjectId) {
 		toSerialize["project_id"] = o.ProjectId
 	}
 	toSerialize["subject"] = o.Subject

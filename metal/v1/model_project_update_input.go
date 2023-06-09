@@ -48,7 +48,7 @@ func NewProjectUpdateInputWithDefaults() *ProjectUpdateInput {
 
 // GetBackendTransferEnabled returns the BackendTransferEnabled field value if set, zero value otherwise.
 func (o *ProjectUpdateInput) GetBackendTransferEnabled() bool {
-	if o == nil || isNil(o.BackendTransferEnabled) {
+	if o == nil || IsNil(o.BackendTransferEnabled) {
 		var ret bool
 		return ret
 	}
@@ -58,7 +58,7 @@ func (o *ProjectUpdateInput) GetBackendTransferEnabled() bool {
 // GetBackendTransferEnabledOk returns a tuple with the BackendTransferEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ProjectUpdateInput) GetBackendTransferEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.BackendTransferEnabled) {
+	if o == nil || IsNil(o.BackendTransferEnabled) {
 		return nil, false
 	}
 	return o.BackendTransferEnabled, true
@@ -66,7 +66,7 @@ func (o *ProjectUpdateInput) GetBackendTransferEnabledOk() (*bool, bool) {
 
 // HasBackendTransferEnabled returns a boolean if a field has been set.
 func (o *ProjectUpdateInput) HasBackendTransferEnabled() bool {
-	if o != nil && !isNil(o.BackendTransferEnabled) {
+	if o != nil && !IsNil(o.BackendTransferEnabled) {
 		return true
 	}
 
@@ -80,7 +80,7 @@ func (o *ProjectUpdateInput) SetBackendTransferEnabled(v bool) {
 
 // GetCustomdata returns the Customdata field value if set, zero value otherwise.
 func (o *ProjectUpdateInput) GetCustomdata() map[string]interface{} {
-	if o == nil || isNil(o.Customdata) {
+	if o == nil || IsNil(o.Customdata) {
 		var ret map[string]interface{}
 		return ret
 	}
@@ -90,7 +90,7 @@ func (o *ProjectUpdateInput) GetCustomdata() map[string]interface{} {
 // GetCustomdataOk returns a tuple with the Customdata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ProjectUpdateInput) GetCustomdataOk() (map[string]interface{}, bool) {
-	if o == nil || isNil(o.Customdata) {
+	if o == nil || IsNil(o.Customdata) {
 		return map[string]interface{}{}, false
 	}
 	return o.Customdata, true
@@ -98,7 +98,7 @@ func (o *ProjectUpdateInput) GetCustomdataOk() (map[string]interface{}, bool) {
 
 // HasCustomdata returns a boolean if a field has been set.
 func (o *ProjectUpdateInput) HasCustomdata() bool {
-	if o != nil && !isNil(o.Customdata) {
+	if o != nil && !IsNil(o.Customdata) {
 		return true
 	}
 
@@ -112,7 +112,7 @@ func (o *ProjectUpdateInput) SetCustomdata(v map[string]interface{}) {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *ProjectUpdateInput) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -122,7 +122,7 @@ func (o *ProjectUpdateInput) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ProjectUpdateInput) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
 	return o.Name, true
@@ -130,7 +130,7 @@ func (o *ProjectUpdateInput) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *ProjectUpdateInput) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -144,7 +144,7 @@ func (o *ProjectUpdateInput) SetName(v string) {
 
 // GetPaymentMethodId returns the PaymentMethodId field value if set, zero value otherwise.
 func (o *ProjectUpdateInput) GetPaymentMethodId() string {
-	if o == nil || isNil(o.PaymentMethodId) {
+	if o == nil || IsNil(o.PaymentMethodId) {
 		var ret string
 		return ret
 	}
@@ -154,7 +154,7 @@ func (o *ProjectUpdateInput) GetPaymentMethodId() string {
 // GetPaymentMethodIdOk returns a tuple with the PaymentMethodId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ProjectUpdateInput) GetPaymentMethodIdOk() (*string, bool) {
-	if o == nil || isNil(o.PaymentMethodId) {
+	if o == nil || IsNil(o.PaymentMethodId) {
 		return nil, false
 	}
 	return o.PaymentMethodId, true
@@ -162,7 +162,7 @@ func (o *ProjectUpdateInput) GetPaymentMethodIdOk() (*string, bool) {
 
 // HasPaymentMethodId returns a boolean if a field has been set.
 func (o *ProjectUpdateInput) HasPaymentMethodId() bool {
-	if o != nil && !isNil(o.PaymentMethodId) {
+	if o != nil && !IsNil(o.PaymentMethodId) {
 		return true
 	}
 
@@ -184,16 +184,16 @@ func (o ProjectUpdateInput) MarshalJSON() ([]byte, error) {
 
 func (o ProjectUpdateInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.BackendTransferEnabled) {
+	if !IsNil(o.BackendTransferEnabled) {
 		toSerialize["backend_transfer_enabled"] = o.BackendTransferEnabled
 	}
-	if !isNil(o.Customdata) {
+	if !IsNil(o.Customdata) {
 		toSerialize["customdata"] = o.Customdata
 	}
-	if !isNil(o.Name) {
+	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
-	if !isNil(o.PaymentMethodId) {
+	if !IsNil(o.PaymentMethodId) {
 		toSerialize["payment_method_id"] = o.PaymentMethodId
 	}
 

@@ -55,7 +55,7 @@ func NewUserLimitedWithDefaults() *UserLimited {
 
 // GetAvatarThumbUrl returns the AvatarThumbUrl field value if set, zero value otherwise.
 func (o *UserLimited) GetAvatarThumbUrl() string {
-	if o == nil || isNil(o.AvatarThumbUrl) {
+	if o == nil || IsNil(o.AvatarThumbUrl) {
 		var ret string
 		return ret
 	}
@@ -65,7 +65,7 @@ func (o *UserLimited) GetAvatarThumbUrl() string {
 // GetAvatarThumbUrlOk returns a tuple with the AvatarThumbUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserLimited) GetAvatarThumbUrlOk() (*string, bool) {
-	if o == nil || isNil(o.AvatarThumbUrl) {
+	if o == nil || IsNil(o.AvatarThumbUrl) {
 		return nil, false
 	}
 	return o.AvatarThumbUrl, true
@@ -73,7 +73,7 @@ func (o *UserLimited) GetAvatarThumbUrlOk() (*string, bool) {
 
 // HasAvatarThumbUrl returns a boolean if a field has been set.
 func (o *UserLimited) HasAvatarThumbUrl() bool {
-	if o != nil && !isNil(o.AvatarThumbUrl) {
+	if o != nil && !IsNil(o.AvatarThumbUrl) {
 		return true
 	}
 
@@ -87,7 +87,7 @@ func (o *UserLimited) SetAvatarThumbUrl(v string) {
 
 // GetAvatarUrl returns the AvatarUrl field value if set, zero value otherwise.
 func (o *UserLimited) GetAvatarUrl() string {
-	if o == nil || isNil(o.AvatarUrl) {
+	if o == nil || IsNil(o.AvatarUrl) {
 		var ret string
 		return ret
 	}
@@ -97,7 +97,7 @@ func (o *UserLimited) GetAvatarUrl() string {
 // GetAvatarUrlOk returns a tuple with the AvatarUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserLimited) GetAvatarUrlOk() (*string, bool) {
-	if o == nil || isNil(o.AvatarUrl) {
+	if o == nil || IsNil(o.AvatarUrl) {
 		return nil, false
 	}
 	return o.AvatarUrl, true
@@ -105,7 +105,7 @@ func (o *UserLimited) GetAvatarUrlOk() (*string, bool) {
 
 // HasAvatarUrl returns a boolean if a field has been set.
 func (o *UserLimited) HasAvatarUrl() bool {
-	if o != nil && !isNil(o.AvatarUrl) {
+	if o != nil && !IsNil(o.AvatarUrl) {
 		return true
 	}
 
@@ -119,7 +119,7 @@ func (o *UserLimited) SetAvatarUrl(v string) {
 
 // GetFullName returns the FullName field value if set, zero value otherwise.
 func (o *UserLimited) GetFullName() string {
-	if o == nil || isNil(o.FullName) {
+	if o == nil || IsNil(o.FullName) {
 		var ret string
 		return ret
 	}
@@ -129,7 +129,7 @@ func (o *UserLimited) GetFullName() string {
 // GetFullNameOk returns a tuple with the FullName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserLimited) GetFullNameOk() (*string, bool) {
-	if o == nil || isNil(o.FullName) {
+	if o == nil || IsNil(o.FullName) {
 		return nil, false
 	}
 	return o.FullName, true
@@ -137,7 +137,7 @@ func (o *UserLimited) GetFullNameOk() (*string, bool) {
 
 // HasFullName returns a boolean if a field has been set.
 func (o *UserLimited) HasFullName() bool {
-	if o != nil && !isNil(o.FullName) {
+	if o != nil && !IsNil(o.FullName) {
 		return true
 	}
 
@@ -151,7 +151,7 @@ func (o *UserLimited) SetFullName(v string) {
 
 // GetHref returns the Href field value if set, zero value otherwise.
 func (o *UserLimited) GetHref() string {
-	if o == nil || isNil(o.Href) {
+	if o == nil || IsNil(o.Href) {
 		var ret string
 		return ret
 	}
@@ -161,7 +161,7 @@ func (o *UserLimited) GetHref() string {
 // GetHrefOk returns a tuple with the Href field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserLimited) GetHrefOk() (*string, bool) {
-	if o == nil || isNil(o.Href) {
+	if o == nil || IsNil(o.Href) {
 		return nil, false
 	}
 	return o.Href, true
@@ -169,7 +169,7 @@ func (o *UserLimited) GetHrefOk() (*string, bool) {
 
 // HasHref returns a boolean if a field has been set.
 func (o *UserLimited) HasHref() bool {
-	if o != nil && !isNil(o.Href) {
+	if o != nil && !IsNil(o.Href) {
 		return true
 	}
 
@@ -215,16 +215,16 @@ func (o UserLimited) MarshalJSON() ([]byte, error) {
 
 func (o UserLimited) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.AvatarThumbUrl) {
+	if !IsNil(o.AvatarThumbUrl) {
 		toSerialize["avatar_thumb_url"] = o.AvatarThumbUrl
 	}
-	if !isNil(o.AvatarUrl) {
+	if !IsNil(o.AvatarUrl) {
 		toSerialize["avatar_url"] = o.AvatarUrl
 	}
-	if !isNil(o.FullName) {
+	if !IsNil(o.FullName) {
 		toSerialize["full_name"] = o.FullName
 	}
-	if !isNil(o.Href) {
+	if !IsNil(o.Href) {
 		toSerialize["href"] = o.Href
 	}
 	toSerialize["id"] = o.Id

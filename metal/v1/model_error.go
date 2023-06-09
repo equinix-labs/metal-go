@@ -48,7 +48,7 @@ func NewErrorWithDefaults() *Error {
 
 // GetError returns the Error field value if set, zero value otherwise.
 func (o *Error) GetError() string {
-	if o == nil || isNil(o.Error) {
+	if o == nil || IsNil(o.Error) {
 		var ret string
 		return ret
 	}
@@ -58,7 +58,7 @@ func (o *Error) GetError() string {
 // GetErrorOk returns a tuple with the Error field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Error) GetErrorOk() (*string, bool) {
-	if o == nil || isNil(o.Error) {
+	if o == nil || IsNil(o.Error) {
 		return nil, false
 	}
 	return o.Error, true
@@ -66,7 +66,7 @@ func (o *Error) GetErrorOk() (*string, bool) {
 
 // HasError returns a boolean if a field has been set.
 func (o *Error) HasError() bool {
-	if o != nil && !isNil(o.Error) {
+	if o != nil && !IsNil(o.Error) {
 		return true
 	}
 
@@ -80,7 +80,7 @@ func (o *Error) SetError(v string) {
 
 // GetErrors returns the Errors field value if set, zero value otherwise.
 func (o *Error) GetErrors() []string {
-	if o == nil || isNil(o.Errors) {
+	if o == nil || IsNil(o.Errors) {
 		var ret []string
 		return ret
 	}
@@ -90,7 +90,7 @@ func (o *Error) GetErrors() []string {
 // GetErrorsOk returns a tuple with the Errors field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Error) GetErrorsOk() ([]string, bool) {
-	if o == nil || isNil(o.Errors) {
+	if o == nil || IsNil(o.Errors) {
 		return nil, false
 	}
 	return o.Errors, true
@@ -98,7 +98,7 @@ func (o *Error) GetErrorsOk() ([]string, bool) {
 
 // HasErrors returns a boolean if a field has been set.
 func (o *Error) HasErrors() bool {
-	if o != nil && !isNil(o.Errors) {
+	if o != nil && !IsNil(o.Errors) {
 		return true
 	}
 
@@ -120,10 +120,10 @@ func (o Error) MarshalJSON() ([]byte, error) {
 
 func (o Error) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Error) {
+	if !IsNil(o.Error) {
 		toSerialize["error"] = o.Error
 	}
-	if !isNil(o.Errors) {
+	if !IsNil(o.Errors) {
 		toSerialize["errors"] = o.Errors
 	}
 

@@ -61,7 +61,7 @@ func NewVrfRouteWithDefaults() *VrfRoute {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *VrfRoute) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -71,7 +71,7 @@ func (o *VrfRoute) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VrfRoute) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -79,7 +79,7 @@ func (o *VrfRoute) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *VrfRoute) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -93,7 +93,7 @@ func (o *VrfRoute) SetId(v string) {
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *VrfRoute) GetStatus() string {
-	if o == nil || isNil(o.Status) {
+	if o == nil || IsNil(o.Status) {
 		var ret string
 		return ret
 	}
@@ -103,7 +103,7 @@ func (o *VrfRoute) GetStatus() string {
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VrfRoute) GetStatusOk() (*string, bool) {
-	if o == nil || isNil(o.Status) {
+	if o == nil || IsNil(o.Status) {
 		return nil, false
 	}
 	return o.Status, true
@@ -111,7 +111,7 @@ func (o *VrfRoute) GetStatusOk() (*string, bool) {
 
 // HasStatus returns a boolean if a field has been set.
 func (o *VrfRoute) HasStatus() bool {
-	if o != nil && !isNil(o.Status) {
+	if o != nil && !IsNil(o.Status) {
 		return true
 	}
 
@@ -125,7 +125,7 @@ func (o *VrfRoute) SetStatus(v string) {
 
 // GetPrefix returns the Prefix field value if set, zero value otherwise.
 func (o *VrfRoute) GetPrefix() string {
-	if o == nil || isNil(o.Prefix) {
+	if o == nil || IsNil(o.Prefix) {
 		var ret string
 		return ret
 	}
@@ -135,7 +135,7 @@ func (o *VrfRoute) GetPrefix() string {
 // GetPrefixOk returns a tuple with the Prefix field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VrfRoute) GetPrefixOk() (*string, bool) {
-	if o == nil || isNil(o.Prefix) {
+	if o == nil || IsNil(o.Prefix) {
 		return nil, false
 	}
 	return o.Prefix, true
@@ -143,7 +143,7 @@ func (o *VrfRoute) GetPrefixOk() (*string, bool) {
 
 // HasPrefix returns a boolean if a field has been set.
 func (o *VrfRoute) HasPrefix() bool {
-	if o != nil && !isNil(o.Prefix) {
+	if o != nil && !IsNil(o.Prefix) {
 		return true
 	}
 
@@ -157,7 +157,7 @@ func (o *VrfRoute) SetPrefix(v string) {
 
 // GetNextHop returns the NextHop field value if set, zero value otherwise.
 func (o *VrfRoute) GetNextHop() string {
-	if o == nil || isNil(o.NextHop) {
+	if o == nil || IsNil(o.NextHop) {
 		var ret string
 		return ret
 	}
@@ -167,7 +167,7 @@ func (o *VrfRoute) GetNextHop() string {
 // GetNextHopOk returns a tuple with the NextHop field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VrfRoute) GetNextHopOk() (*string, bool) {
-	if o == nil || isNil(o.NextHop) {
+	if o == nil || IsNil(o.NextHop) {
 		return nil, false
 	}
 	return o.NextHop, true
@@ -175,7 +175,7 @@ func (o *VrfRoute) GetNextHopOk() (*string, bool) {
 
 // HasNextHop returns a boolean if a field has been set.
 func (o *VrfRoute) HasNextHop() bool {
-	if o != nil && !isNil(o.NextHop) {
+	if o != nil && !IsNil(o.NextHop) {
 		return true
 	}
 
@@ -189,7 +189,7 @@ func (o *VrfRoute) SetNextHop(v string) {
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *VrfRoute) GetType() string {
-	if o == nil || isNil(o.Type) {
+	if o == nil || IsNil(o.Type) {
 		var ret string
 		return ret
 	}
@@ -199,7 +199,7 @@ func (o *VrfRoute) GetType() string {
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VrfRoute) GetTypeOk() (*string, bool) {
-	if o == nil || isNil(o.Type) {
+	if o == nil || IsNil(o.Type) {
 		return nil, false
 	}
 	return o.Type, true
@@ -207,7 +207,7 @@ func (o *VrfRoute) GetTypeOk() (*string, bool) {
 
 // HasType returns a boolean if a field has been set.
 func (o *VrfRoute) HasType() bool {
-	if o != nil && !isNil(o.Type) {
+	if o != nil && !IsNil(o.Type) {
 		return true
 	}
 
@@ -221,7 +221,7 @@ func (o *VrfRoute) SetType(v string) {
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *VrfRoute) GetCreatedAt() time.Time {
-	if o == nil || isNil(o.CreatedAt) {
+	if o == nil || IsNil(o.CreatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -231,7 +231,7 @@ func (o *VrfRoute) GetCreatedAt() time.Time {
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VrfRoute) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.CreatedAt) {
+	if o == nil || IsNil(o.CreatedAt) {
 		return nil, false
 	}
 	return o.CreatedAt, true
@@ -239,7 +239,7 @@ func (o *VrfRoute) GetCreatedAtOk() (*time.Time, bool) {
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *VrfRoute) HasCreatedAt() bool {
-	if o != nil && !isNil(o.CreatedAt) {
+	if o != nil && !IsNil(o.CreatedAt) {
 		return true
 	}
 
@@ -253,7 +253,7 @@ func (o *VrfRoute) SetCreatedAt(v time.Time) {
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *VrfRoute) GetUpdatedAt() time.Time {
-	if o == nil || isNil(o.UpdatedAt) {
+	if o == nil || IsNil(o.UpdatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -263,7 +263,7 @@ func (o *VrfRoute) GetUpdatedAt() time.Time {
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VrfRoute) GetUpdatedAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.UpdatedAt) {
+	if o == nil || IsNil(o.UpdatedAt) {
 		return nil, false
 	}
 	return o.UpdatedAt, true
@@ -271,7 +271,7 @@ func (o *VrfRoute) GetUpdatedAtOk() (*time.Time, bool) {
 
 // HasUpdatedAt returns a boolean if a field has been set.
 func (o *VrfRoute) HasUpdatedAt() bool {
-	if o != nil && !isNil(o.UpdatedAt) {
+	if o != nil && !IsNil(o.UpdatedAt) {
 		return true
 	}
 
@@ -285,7 +285,7 @@ func (o *VrfRoute) SetUpdatedAt(v time.Time) {
 
 // GetMetalGateway returns the MetalGateway field value if set, zero value otherwise.
 func (o *VrfRoute) GetMetalGateway() VrfRouteMetalGateway {
-	if o == nil || isNil(o.MetalGateway) {
+	if o == nil || IsNil(o.MetalGateway) {
 		var ret VrfRouteMetalGateway
 		return ret
 	}
@@ -295,7 +295,7 @@ func (o *VrfRoute) GetMetalGateway() VrfRouteMetalGateway {
 // GetMetalGatewayOk returns a tuple with the MetalGateway field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VrfRoute) GetMetalGatewayOk() (*VrfRouteMetalGateway, bool) {
-	if o == nil || isNil(o.MetalGateway) {
+	if o == nil || IsNil(o.MetalGateway) {
 		return nil, false
 	}
 	return o.MetalGateway, true
@@ -303,7 +303,7 @@ func (o *VrfRoute) GetMetalGatewayOk() (*VrfRouteMetalGateway, bool) {
 
 // HasMetalGateway returns a boolean if a field has been set.
 func (o *VrfRoute) HasMetalGateway() bool {
-	if o != nil && !isNil(o.MetalGateway) {
+	if o != nil && !IsNil(o.MetalGateway) {
 		return true
 	}
 
@@ -317,7 +317,7 @@ func (o *VrfRoute) SetMetalGateway(v VrfRouteMetalGateway) {
 
 // GetVirtualNetwork returns the VirtualNetwork field value if set, zero value otherwise.
 func (o *VrfRoute) GetVirtualNetwork() VrfRouteVirtualNetwork {
-	if o == nil || isNil(o.VirtualNetwork) {
+	if o == nil || IsNil(o.VirtualNetwork) {
 		var ret VrfRouteVirtualNetwork
 		return ret
 	}
@@ -327,7 +327,7 @@ func (o *VrfRoute) GetVirtualNetwork() VrfRouteVirtualNetwork {
 // GetVirtualNetworkOk returns a tuple with the VirtualNetwork field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VrfRoute) GetVirtualNetworkOk() (*VrfRouteVirtualNetwork, bool) {
-	if o == nil || isNil(o.VirtualNetwork) {
+	if o == nil || IsNil(o.VirtualNetwork) {
 		return nil, false
 	}
 	return o.VirtualNetwork, true
@@ -335,7 +335,7 @@ func (o *VrfRoute) GetVirtualNetworkOk() (*VrfRouteVirtualNetwork, bool) {
 
 // HasVirtualNetwork returns a boolean if a field has been set.
 func (o *VrfRoute) HasVirtualNetwork() bool {
-	if o != nil && !isNil(o.VirtualNetwork) {
+	if o != nil && !IsNil(o.VirtualNetwork) {
 		return true
 	}
 
@@ -349,7 +349,7 @@ func (o *VrfRoute) SetVirtualNetwork(v VrfRouteVirtualNetwork) {
 
 // GetVrf returns the Vrf field value if set, zero value otherwise.
 func (o *VrfRoute) GetVrf() VrfRouteVrf {
-	if o == nil || isNil(o.Vrf) {
+	if o == nil || IsNil(o.Vrf) {
 		var ret VrfRouteVrf
 		return ret
 	}
@@ -359,7 +359,7 @@ func (o *VrfRoute) GetVrf() VrfRouteVrf {
 // GetVrfOk returns a tuple with the Vrf field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VrfRoute) GetVrfOk() (*VrfRouteVrf, bool) {
-	if o == nil || isNil(o.Vrf) {
+	if o == nil || IsNil(o.Vrf) {
 		return nil, false
 	}
 	return o.Vrf, true
@@ -367,7 +367,7 @@ func (o *VrfRoute) GetVrfOk() (*VrfRouteVrf, bool) {
 
 // HasVrf returns a boolean if a field has been set.
 func (o *VrfRoute) HasVrf() bool {
-	if o != nil && !isNil(o.Vrf) {
+	if o != nil && !IsNil(o.Vrf) {
 		return true
 	}
 
@@ -381,7 +381,7 @@ func (o *VrfRoute) SetVrf(v VrfRouteVrf) {
 
 // GetHref returns the Href field value if set, zero value otherwise.
 func (o *VrfRoute) GetHref() string {
-	if o == nil || isNil(o.Href) {
+	if o == nil || IsNil(o.Href) {
 		var ret string
 		return ret
 	}
@@ -391,7 +391,7 @@ func (o *VrfRoute) GetHref() string {
 // GetHrefOk returns a tuple with the Href field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VrfRoute) GetHrefOk() (*string, bool) {
-	if o == nil || isNil(o.Href) {
+	if o == nil || IsNil(o.Href) {
 		return nil, false
 	}
 	return o.Href, true
@@ -399,7 +399,7 @@ func (o *VrfRoute) GetHrefOk() (*string, bool) {
 
 // HasHref returns a boolean if a field has been set.
 func (o *VrfRoute) HasHref() bool {
-	if o != nil && !isNil(o.Href) {
+	if o != nil && !IsNil(o.Href) {
 		return true
 	}
 
@@ -423,22 +423,22 @@ func (o VrfRoute) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	// skip: id is readOnly
 	// skip: status is readOnly
-	if !isNil(o.Prefix) {
+	if !IsNil(o.Prefix) {
 		toSerialize["prefix"] = o.Prefix
 	}
-	if !isNil(o.NextHop) {
+	if !IsNil(o.NextHop) {
 		toSerialize["next_hop"] = o.NextHop
 	}
 	// skip: type is readOnly
 	// skip: created_at is readOnly
 	// skip: updated_at is readOnly
-	if !isNil(o.MetalGateway) {
+	if !IsNil(o.MetalGateway) {
 		toSerialize["metal_gateway"] = o.MetalGateway
 	}
-	if !isNil(o.VirtualNetwork) {
+	if !IsNil(o.VirtualNetwork) {
 		toSerialize["virtual_network"] = o.VirtualNetwork
 	}
-	if !isNil(o.Vrf) {
+	if !IsNil(o.Vrf) {
 		toSerialize["vrf"] = o.Vrf
 	}
 	// skip: href is readOnly

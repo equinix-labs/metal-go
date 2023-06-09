@@ -59,7 +59,7 @@ func NewVrfVirtualCircuitUpdateInputWithDefaults() *VrfVirtualCircuitUpdateInput
 
 // GetCustomerIp returns the CustomerIp field value if set, zero value otherwise.
 func (o *VrfVirtualCircuitUpdateInput) GetCustomerIp() string {
-	if o == nil || isNil(o.CustomerIp) {
+	if o == nil || IsNil(o.CustomerIp) {
 		var ret string
 		return ret
 	}
@@ -69,7 +69,7 @@ func (o *VrfVirtualCircuitUpdateInput) GetCustomerIp() string {
 // GetCustomerIpOk returns a tuple with the CustomerIp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VrfVirtualCircuitUpdateInput) GetCustomerIpOk() (*string, bool) {
-	if o == nil || isNil(o.CustomerIp) {
+	if o == nil || IsNil(o.CustomerIp) {
 		return nil, false
 	}
 	return o.CustomerIp, true
@@ -77,7 +77,7 @@ func (o *VrfVirtualCircuitUpdateInput) GetCustomerIpOk() (*string, bool) {
 
 // HasCustomerIp returns a boolean if a field has been set.
 func (o *VrfVirtualCircuitUpdateInput) HasCustomerIp() bool {
-	if o != nil && !isNil(o.CustomerIp) {
+	if o != nil && !IsNil(o.CustomerIp) {
 		return true
 	}
 
@@ -91,7 +91,7 @@ func (o *VrfVirtualCircuitUpdateInput) SetCustomerIp(v string) {
 
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *VrfVirtualCircuitUpdateInput) GetDescription() string {
-	if o == nil || isNil(o.Description) {
+	if o == nil || IsNil(o.Description) {
 		var ret string
 		return ret
 	}
@@ -101,7 +101,7 @@ func (o *VrfVirtualCircuitUpdateInput) GetDescription() string {
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VrfVirtualCircuitUpdateInput) GetDescriptionOk() (*string, bool) {
-	if o == nil || isNil(o.Description) {
+	if o == nil || IsNil(o.Description) {
 		return nil, false
 	}
 	return o.Description, true
@@ -109,7 +109,7 @@ func (o *VrfVirtualCircuitUpdateInput) GetDescriptionOk() (*string, bool) {
 
 // HasDescription returns a boolean if a field has been set.
 func (o *VrfVirtualCircuitUpdateInput) HasDescription() bool {
-	if o != nil && !isNil(o.Description) {
+	if o != nil && !IsNil(o.Description) {
 		return true
 	}
 
@@ -123,7 +123,7 @@ func (o *VrfVirtualCircuitUpdateInput) SetDescription(v string) {
 
 // GetMd5 returns the Md5 field value if set, zero value otherwise.
 func (o *VrfVirtualCircuitUpdateInput) GetMd5() string {
-	if o == nil || isNil(o.Md5) {
+	if o == nil || IsNil(o.Md5) {
 		var ret string
 		return ret
 	}
@@ -133,7 +133,7 @@ func (o *VrfVirtualCircuitUpdateInput) GetMd5() string {
 // GetMd5Ok returns a tuple with the Md5 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VrfVirtualCircuitUpdateInput) GetMd5Ok() (*string, bool) {
-	if o == nil || isNil(o.Md5) {
+	if o == nil || IsNil(o.Md5) {
 		return nil, false
 	}
 	return o.Md5, true
@@ -141,7 +141,7 @@ func (o *VrfVirtualCircuitUpdateInput) GetMd5Ok() (*string, bool) {
 
 // HasMd5 returns a boolean if a field has been set.
 func (o *VrfVirtualCircuitUpdateInput) HasMd5() bool {
-	if o != nil && !isNil(o.Md5) {
+	if o != nil && !IsNil(o.Md5) {
 		return true
 	}
 
@@ -155,7 +155,7 @@ func (o *VrfVirtualCircuitUpdateInput) SetMd5(v string) {
 
 // GetMetalIp returns the MetalIp field value if set, zero value otherwise.
 func (o *VrfVirtualCircuitUpdateInput) GetMetalIp() string {
-	if o == nil || isNil(o.MetalIp) {
+	if o == nil || IsNil(o.MetalIp) {
 		var ret string
 		return ret
 	}
@@ -165,7 +165,7 @@ func (o *VrfVirtualCircuitUpdateInput) GetMetalIp() string {
 // GetMetalIpOk returns a tuple with the MetalIp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VrfVirtualCircuitUpdateInput) GetMetalIpOk() (*string, bool) {
-	if o == nil || isNil(o.MetalIp) {
+	if o == nil || IsNil(o.MetalIp) {
 		return nil, false
 	}
 	return o.MetalIp, true
@@ -173,7 +173,7 @@ func (o *VrfVirtualCircuitUpdateInput) GetMetalIpOk() (*string, bool) {
 
 // HasMetalIp returns a boolean if a field has been set.
 func (o *VrfVirtualCircuitUpdateInput) HasMetalIp() bool {
-	if o != nil && !isNil(o.MetalIp) {
+	if o != nil && !IsNil(o.MetalIp) {
 		return true
 	}
 
@@ -187,7 +187,7 @@ func (o *VrfVirtualCircuitUpdateInput) SetMetalIp(v string) {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *VrfVirtualCircuitUpdateInput) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -197,7 +197,7 @@ func (o *VrfVirtualCircuitUpdateInput) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VrfVirtualCircuitUpdateInput) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
 	return o.Name, true
@@ -205,7 +205,7 @@ func (o *VrfVirtualCircuitUpdateInput) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *VrfVirtualCircuitUpdateInput) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -219,7 +219,7 @@ func (o *VrfVirtualCircuitUpdateInput) SetName(v string) {
 
 // GetPeerAsn returns the PeerAsn field value if set, zero value otherwise.
 func (o *VrfVirtualCircuitUpdateInput) GetPeerAsn() int32 {
-	if o == nil || isNil(o.PeerAsn) {
+	if o == nil || IsNil(o.PeerAsn) {
 		var ret int32
 		return ret
 	}
@@ -229,7 +229,7 @@ func (o *VrfVirtualCircuitUpdateInput) GetPeerAsn() int32 {
 // GetPeerAsnOk returns a tuple with the PeerAsn field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VrfVirtualCircuitUpdateInput) GetPeerAsnOk() (*int32, bool) {
-	if o == nil || isNil(o.PeerAsn) {
+	if o == nil || IsNil(o.PeerAsn) {
 		return nil, false
 	}
 	return o.PeerAsn, true
@@ -237,7 +237,7 @@ func (o *VrfVirtualCircuitUpdateInput) GetPeerAsnOk() (*int32, bool) {
 
 // HasPeerAsn returns a boolean if a field has been set.
 func (o *VrfVirtualCircuitUpdateInput) HasPeerAsn() bool {
-	if o != nil && !isNil(o.PeerAsn) {
+	if o != nil && !IsNil(o.PeerAsn) {
 		return true
 	}
 
@@ -251,7 +251,7 @@ func (o *VrfVirtualCircuitUpdateInput) SetPeerAsn(v int32) {
 
 // GetSpeed returns the Speed field value if set, zero value otherwise.
 func (o *VrfVirtualCircuitUpdateInput) GetSpeed() string {
-	if o == nil || isNil(o.Speed) {
+	if o == nil || IsNil(o.Speed) {
 		var ret string
 		return ret
 	}
@@ -261,7 +261,7 @@ func (o *VrfVirtualCircuitUpdateInput) GetSpeed() string {
 // GetSpeedOk returns a tuple with the Speed field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VrfVirtualCircuitUpdateInput) GetSpeedOk() (*string, bool) {
-	if o == nil || isNil(o.Speed) {
+	if o == nil || IsNil(o.Speed) {
 		return nil, false
 	}
 	return o.Speed, true
@@ -269,7 +269,7 @@ func (o *VrfVirtualCircuitUpdateInput) GetSpeedOk() (*string, bool) {
 
 // HasSpeed returns a boolean if a field has been set.
 func (o *VrfVirtualCircuitUpdateInput) HasSpeed() bool {
-	if o != nil && !isNil(o.Speed) {
+	if o != nil && !IsNil(o.Speed) {
 		return true
 	}
 
@@ -283,7 +283,7 @@ func (o *VrfVirtualCircuitUpdateInput) SetSpeed(v string) {
 
 // GetSubnet returns the Subnet field value if set, zero value otherwise.
 func (o *VrfVirtualCircuitUpdateInput) GetSubnet() string {
-	if o == nil || isNil(o.Subnet) {
+	if o == nil || IsNil(o.Subnet) {
 		var ret string
 		return ret
 	}
@@ -293,7 +293,7 @@ func (o *VrfVirtualCircuitUpdateInput) GetSubnet() string {
 // GetSubnetOk returns a tuple with the Subnet field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VrfVirtualCircuitUpdateInput) GetSubnetOk() (*string, bool) {
-	if o == nil || isNil(o.Subnet) {
+	if o == nil || IsNil(o.Subnet) {
 		return nil, false
 	}
 	return o.Subnet, true
@@ -301,7 +301,7 @@ func (o *VrfVirtualCircuitUpdateInput) GetSubnetOk() (*string, bool) {
 
 // HasSubnet returns a boolean if a field has been set.
 func (o *VrfVirtualCircuitUpdateInput) HasSubnet() bool {
-	if o != nil && !isNil(o.Subnet) {
+	if o != nil && !IsNil(o.Subnet) {
 		return true
 	}
 
@@ -315,7 +315,7 @@ func (o *VrfVirtualCircuitUpdateInput) SetSubnet(v string) {
 
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *VrfVirtualCircuitUpdateInput) GetTags() []string {
-	if o == nil || isNil(o.Tags) {
+	if o == nil || IsNil(o.Tags) {
 		var ret []string
 		return ret
 	}
@@ -325,7 +325,7 @@ func (o *VrfVirtualCircuitUpdateInput) GetTags() []string {
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VrfVirtualCircuitUpdateInput) GetTagsOk() ([]string, bool) {
-	if o == nil || isNil(o.Tags) {
+	if o == nil || IsNil(o.Tags) {
 		return nil, false
 	}
 	return o.Tags, true
@@ -333,7 +333,7 @@ func (o *VrfVirtualCircuitUpdateInput) GetTagsOk() ([]string, bool) {
 
 // HasTags returns a boolean if a field has been set.
 func (o *VrfVirtualCircuitUpdateInput) HasTags() bool {
-	if o != nil && !isNil(o.Tags) {
+	if o != nil && !IsNil(o.Tags) {
 		return true
 	}
 
@@ -355,31 +355,31 @@ func (o VrfVirtualCircuitUpdateInput) MarshalJSON() ([]byte, error) {
 
 func (o VrfVirtualCircuitUpdateInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.CustomerIp) {
+	if !IsNil(o.CustomerIp) {
 		toSerialize["customer_ip"] = o.CustomerIp
 	}
-	if !isNil(o.Description) {
+	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
-	if !isNil(o.Md5) {
+	if !IsNil(o.Md5) {
 		toSerialize["md5"] = o.Md5
 	}
-	if !isNil(o.MetalIp) {
+	if !IsNil(o.MetalIp) {
 		toSerialize["metal_ip"] = o.MetalIp
 	}
-	if !isNil(o.Name) {
+	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
-	if !isNil(o.PeerAsn) {
+	if !IsNil(o.PeerAsn) {
 		toSerialize["peer_asn"] = o.PeerAsn
 	}
-	if !isNil(o.Speed) {
+	if !IsNil(o.Speed) {
 		toSerialize["speed"] = o.Speed
 	}
-	if !isNil(o.Subnet) {
+	if !IsNil(o.Subnet) {
 		toSerialize["subnet"] = o.Subnet
 	}
-	if !isNil(o.Tags) {
+	if !IsNil(o.Tags) {
 		toSerialize["tags"] = o.Tags
 	}
 

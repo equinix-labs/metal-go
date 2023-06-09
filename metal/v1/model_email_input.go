@@ -71,7 +71,7 @@ func (o *EmailInput) SetAddress(v string) {
 
 // GetDefault returns the Default field value if set, zero value otherwise.
 func (o *EmailInput) GetDefault() bool {
-	if o == nil || isNil(o.Default) {
+	if o == nil || IsNil(o.Default) {
 		var ret bool
 		return ret
 	}
@@ -81,7 +81,7 @@ func (o *EmailInput) GetDefault() bool {
 // GetDefaultOk returns a tuple with the Default field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EmailInput) GetDefaultOk() (*bool, bool) {
-	if o == nil || isNil(o.Default) {
+	if o == nil || IsNil(o.Default) {
 		return nil, false
 	}
 	return o.Default, true
@@ -89,7 +89,7 @@ func (o *EmailInput) GetDefaultOk() (*bool, bool) {
 
 // HasDefault returns a boolean if a field has been set.
 func (o *EmailInput) HasDefault() bool {
-	if o != nil && !isNil(o.Default) {
+	if o != nil && !IsNil(o.Default) {
 		return true
 	}
 
@@ -112,7 +112,7 @@ func (o EmailInput) MarshalJSON() ([]byte, error) {
 func (o EmailInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["address"] = o.Address
-	if !isNil(o.Default) {
+	if !IsNil(o.Default) {
 		toSerialize["default"] = o.Default
 	}
 

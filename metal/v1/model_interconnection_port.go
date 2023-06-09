@@ -57,7 +57,7 @@ func NewInterconnectionPortWithDefaults() *InterconnectionPort {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *InterconnectionPort) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -67,7 +67,7 @@ func (o *InterconnectionPort) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InterconnectionPort) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -75,7 +75,7 @@ func (o *InterconnectionPort) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *InterconnectionPort) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -89,7 +89,7 @@ func (o *InterconnectionPort) SetId(v string) {
 
 // GetOrganization returns the Organization field value if set, zero value otherwise.
 func (o *InterconnectionPort) GetOrganization() Href {
-	if o == nil || isNil(o.Organization) {
+	if o == nil || IsNil(o.Organization) {
 		var ret Href
 		return ret
 	}
@@ -99,7 +99,7 @@ func (o *InterconnectionPort) GetOrganization() Href {
 // GetOrganizationOk returns a tuple with the Organization field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InterconnectionPort) GetOrganizationOk() (*Href, bool) {
-	if o == nil || isNil(o.Organization) {
+	if o == nil || IsNil(o.Organization) {
 		return nil, false
 	}
 	return o.Organization, true
@@ -107,7 +107,7 @@ func (o *InterconnectionPort) GetOrganizationOk() (*Href, bool) {
 
 // HasOrganization returns a boolean if a field has been set.
 func (o *InterconnectionPort) HasOrganization() bool {
-	if o != nil && !isNil(o.Organization) {
+	if o != nil && !IsNil(o.Organization) {
 		return true
 	}
 
@@ -121,7 +121,7 @@ func (o *InterconnectionPort) SetOrganization(v Href) {
 
 // GetRole returns the Role field value if set, zero value otherwise.
 func (o *InterconnectionPort) GetRole() string {
-	if o == nil || isNil(o.Role) {
+	if o == nil || IsNil(o.Role) {
 		var ret string
 		return ret
 	}
@@ -131,7 +131,7 @@ func (o *InterconnectionPort) GetRole() string {
 // GetRoleOk returns a tuple with the Role field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InterconnectionPort) GetRoleOk() (*string, bool) {
-	if o == nil || isNil(o.Role) {
+	if o == nil || IsNil(o.Role) {
 		return nil, false
 	}
 	return o.Role, true
@@ -139,7 +139,7 @@ func (o *InterconnectionPort) GetRoleOk() (*string, bool) {
 
 // HasRole returns a boolean if a field has been set.
 func (o *InterconnectionPort) HasRole() bool {
-	if o != nil && !isNil(o.Role) {
+	if o != nil && !IsNil(o.Role) {
 		return true
 	}
 
@@ -153,7 +153,7 @@ func (o *InterconnectionPort) SetRole(v string) {
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *InterconnectionPort) GetStatus() string {
-	if o == nil || isNil(o.Status) {
+	if o == nil || IsNil(o.Status) {
 		var ret string
 		return ret
 	}
@@ -163,7 +163,7 @@ func (o *InterconnectionPort) GetStatus() string {
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InterconnectionPort) GetStatusOk() (*string, bool) {
-	if o == nil || isNil(o.Status) {
+	if o == nil || IsNil(o.Status) {
 		return nil, false
 	}
 	return o.Status, true
@@ -171,7 +171,7 @@ func (o *InterconnectionPort) GetStatusOk() (*string, bool) {
 
 // HasStatus returns a boolean if a field has been set.
 func (o *InterconnectionPort) HasStatus() bool {
-	if o != nil && !isNil(o.Status) {
+	if o != nil && !IsNil(o.Status) {
 		return true
 	}
 
@@ -185,7 +185,7 @@ func (o *InterconnectionPort) SetStatus(v string) {
 
 // GetSwitchId returns the SwitchId field value if set, zero value otherwise.
 func (o *InterconnectionPort) GetSwitchId() string {
-	if o == nil || isNil(o.SwitchId) {
+	if o == nil || IsNil(o.SwitchId) {
 		var ret string
 		return ret
 	}
@@ -195,7 +195,7 @@ func (o *InterconnectionPort) GetSwitchId() string {
 // GetSwitchIdOk returns a tuple with the SwitchId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InterconnectionPort) GetSwitchIdOk() (*string, bool) {
-	if o == nil || isNil(o.SwitchId) {
+	if o == nil || IsNil(o.SwitchId) {
 		return nil, false
 	}
 	return o.SwitchId, true
@@ -203,7 +203,7 @@ func (o *InterconnectionPort) GetSwitchIdOk() (*string, bool) {
 
 // HasSwitchId returns a boolean if a field has been set.
 func (o *InterconnectionPort) HasSwitchId() bool {
-	if o != nil && !isNil(o.SwitchId) {
+	if o != nil && !IsNil(o.SwitchId) {
 		return true
 	}
 
@@ -217,7 +217,7 @@ func (o *InterconnectionPort) SetSwitchId(v string) {
 
 // GetVirtualCircuits returns the VirtualCircuits field value if set, zero value otherwise.
 func (o *InterconnectionPort) GetVirtualCircuits() VirtualCircuitList {
-	if o == nil || isNil(o.VirtualCircuits) {
+	if o == nil || IsNil(o.VirtualCircuits) {
 		var ret VirtualCircuitList
 		return ret
 	}
@@ -227,7 +227,7 @@ func (o *InterconnectionPort) GetVirtualCircuits() VirtualCircuitList {
 // GetVirtualCircuitsOk returns a tuple with the VirtualCircuits field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InterconnectionPort) GetVirtualCircuitsOk() (*VirtualCircuitList, bool) {
-	if o == nil || isNil(o.VirtualCircuits) {
+	if o == nil || IsNil(o.VirtualCircuits) {
 		return nil, false
 	}
 	return o.VirtualCircuits, true
@@ -235,7 +235,7 @@ func (o *InterconnectionPort) GetVirtualCircuitsOk() (*VirtualCircuitList, bool)
 
 // HasVirtualCircuits returns a boolean if a field has been set.
 func (o *InterconnectionPort) HasVirtualCircuits() bool {
-	if o != nil && !isNil(o.VirtualCircuits) {
+	if o != nil && !IsNil(o.VirtualCircuits) {
 		return true
 	}
 
@@ -249,7 +249,7 @@ func (o *InterconnectionPort) SetVirtualCircuits(v VirtualCircuitList) {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *InterconnectionPort) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -259,7 +259,7 @@ func (o *InterconnectionPort) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InterconnectionPort) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
 	return o.Name, true
@@ -267,7 +267,7 @@ func (o *InterconnectionPort) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *InterconnectionPort) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -281,7 +281,7 @@ func (o *InterconnectionPort) SetName(v string) {
 
 // GetSpeed returns the Speed field value if set, zero value otherwise.
 func (o *InterconnectionPort) GetSpeed() int32 {
-	if o == nil || isNil(o.Speed) {
+	if o == nil || IsNil(o.Speed) {
 		var ret int32
 		return ret
 	}
@@ -291,7 +291,7 @@ func (o *InterconnectionPort) GetSpeed() int32 {
 // GetSpeedOk returns a tuple with the Speed field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InterconnectionPort) GetSpeedOk() (*int32, bool) {
-	if o == nil || isNil(o.Speed) {
+	if o == nil || IsNil(o.Speed) {
 		return nil, false
 	}
 	return o.Speed, true
@@ -299,7 +299,7 @@ func (o *InterconnectionPort) GetSpeedOk() (*int32, bool) {
 
 // HasSpeed returns a boolean if a field has been set.
 func (o *InterconnectionPort) HasSpeed() bool {
-	if o != nil && !isNil(o.Speed) {
+	if o != nil && !IsNil(o.Speed) {
 		return true
 	}
 
@@ -313,7 +313,7 @@ func (o *InterconnectionPort) SetSpeed(v int32) {
 
 // GetLinkStatus returns the LinkStatus field value if set, zero value otherwise.
 func (o *InterconnectionPort) GetLinkStatus() string {
-	if o == nil || isNil(o.LinkStatus) {
+	if o == nil || IsNil(o.LinkStatus) {
 		var ret string
 		return ret
 	}
@@ -323,7 +323,7 @@ func (o *InterconnectionPort) GetLinkStatus() string {
 // GetLinkStatusOk returns a tuple with the LinkStatus field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InterconnectionPort) GetLinkStatusOk() (*string, bool) {
-	if o == nil || isNil(o.LinkStatus) {
+	if o == nil || IsNil(o.LinkStatus) {
 		return nil, false
 	}
 	return o.LinkStatus, true
@@ -331,7 +331,7 @@ func (o *InterconnectionPort) GetLinkStatusOk() (*string, bool) {
 
 // HasLinkStatus returns a boolean if a field has been set.
 func (o *InterconnectionPort) HasLinkStatus() bool {
-	if o != nil && !isNil(o.LinkStatus) {
+	if o != nil && !IsNil(o.LinkStatus) {
 		return true
 	}
 
@@ -345,7 +345,7 @@ func (o *InterconnectionPort) SetLinkStatus(v string) {
 
 // GetHref returns the Href field value if set, zero value otherwise.
 func (o *InterconnectionPort) GetHref() string {
-	if o == nil || isNil(o.Href) {
+	if o == nil || IsNil(o.Href) {
 		var ret string
 		return ret
 	}
@@ -355,7 +355,7 @@ func (o *InterconnectionPort) GetHref() string {
 // GetHrefOk returns a tuple with the Href field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InterconnectionPort) GetHrefOk() (*string, bool) {
-	if o == nil || isNil(o.Href) {
+	if o == nil || IsNil(o.Href) {
 		return nil, false
 	}
 	return o.Href, true
@@ -363,7 +363,7 @@ func (o *InterconnectionPort) GetHrefOk() (*string, bool) {
 
 // HasHref returns a boolean if a field has been set.
 func (o *InterconnectionPort) HasHref() bool {
-	if o != nil && !isNil(o.Href) {
+	if o != nil && !IsNil(o.Href) {
 		return true
 	}
 
@@ -385,34 +385,34 @@ func (o InterconnectionPort) MarshalJSON() ([]byte, error) {
 
 func (o InterconnectionPort) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Id) {
+	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
-	if !isNil(o.Organization) {
+	if !IsNil(o.Organization) {
 		toSerialize["organization"] = o.Organization
 	}
-	if !isNil(o.Role) {
+	if !IsNil(o.Role) {
 		toSerialize["role"] = o.Role
 	}
-	if !isNil(o.Status) {
+	if !IsNil(o.Status) {
 		toSerialize["status"] = o.Status
 	}
-	if !isNil(o.SwitchId) {
+	if !IsNil(o.SwitchId) {
 		toSerialize["switch_id"] = o.SwitchId
 	}
-	if !isNil(o.VirtualCircuits) {
+	if !IsNil(o.VirtualCircuits) {
 		toSerialize["virtual_circuits"] = o.VirtualCircuits
 	}
-	if !isNil(o.Name) {
+	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
-	if !isNil(o.Speed) {
+	if !IsNil(o.Speed) {
 		toSerialize["speed"] = o.Speed
 	}
-	if !isNil(o.LinkStatus) {
+	if !IsNil(o.LinkStatus) {
 		toSerialize["link_status"] = o.LinkStatus
 	}
-	if !isNil(o.Href) {
+	if !IsNil(o.Href) {
 		toSerialize["href"] = o.Href
 	}
 

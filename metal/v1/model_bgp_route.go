@@ -46,7 +46,7 @@ func NewBgpRouteWithDefaults() *BgpRoute {
 
 // GetExact returns the Exact field value if set, zero value otherwise.
 func (o *BgpRoute) GetExact() bool {
-	if o == nil || isNil(o.Exact) {
+	if o == nil || IsNil(o.Exact) {
 		var ret bool
 		return ret
 	}
@@ -56,7 +56,7 @@ func (o *BgpRoute) GetExact() bool {
 // GetExactOk returns a tuple with the Exact field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BgpRoute) GetExactOk() (*bool, bool) {
-	if o == nil || isNil(o.Exact) {
+	if o == nil || IsNil(o.Exact) {
 		return nil, false
 	}
 	return o.Exact, true
@@ -64,7 +64,7 @@ func (o *BgpRoute) GetExactOk() (*bool, bool) {
 
 // HasExact returns a boolean if a field has been set.
 func (o *BgpRoute) HasExact() bool {
-	if o != nil && !isNil(o.Exact) {
+	if o != nil && !IsNil(o.Exact) {
 		return true
 	}
 
@@ -78,7 +78,7 @@ func (o *BgpRoute) SetExact(v bool) {
 
 // GetRoute returns the Route field value if set, zero value otherwise.
 func (o *BgpRoute) GetRoute() string {
-	if o == nil || isNil(o.Route) {
+	if o == nil || IsNil(o.Route) {
 		var ret string
 		return ret
 	}
@@ -88,7 +88,7 @@ func (o *BgpRoute) GetRoute() string {
 // GetRouteOk returns a tuple with the Route field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BgpRoute) GetRouteOk() (*string, bool) {
-	if o == nil || isNil(o.Route) {
+	if o == nil || IsNil(o.Route) {
 		return nil, false
 	}
 	return o.Route, true
@@ -96,7 +96,7 @@ func (o *BgpRoute) GetRouteOk() (*string, bool) {
 
 // HasRoute returns a boolean if a field has been set.
 func (o *BgpRoute) HasRoute() bool {
-	if o != nil && !isNil(o.Route) {
+	if o != nil && !IsNil(o.Route) {
 		return true
 	}
 
@@ -118,10 +118,10 @@ func (o BgpRoute) MarshalJSON() ([]byte, error) {
 
 func (o BgpRoute) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Exact) {
+	if !IsNil(o.Exact) {
 		toSerialize["exact"] = o.Exact
 	}
-	if !isNil(o.Route) {
+	if !IsNil(o.Route) {
 		toSerialize["route"] = o.Route
 	}
 

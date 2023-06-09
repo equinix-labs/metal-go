@@ -52,7 +52,7 @@ func NewMembershipWithDefaults() *Membership {
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *Membership) GetCreatedAt() time.Time {
-	if o == nil || isNil(o.CreatedAt) {
+	if o == nil || IsNil(o.CreatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -62,7 +62,7 @@ func (o *Membership) GetCreatedAt() time.Time {
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Membership) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.CreatedAt) {
+	if o == nil || IsNil(o.CreatedAt) {
 		return nil, false
 	}
 	return o.CreatedAt, true
@@ -70,7 +70,7 @@ func (o *Membership) GetCreatedAtOk() (*time.Time, bool) {
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *Membership) HasCreatedAt() bool {
-	if o != nil && !isNil(o.CreatedAt) {
+	if o != nil && !IsNil(o.CreatedAt) {
 		return true
 	}
 
@@ -84,7 +84,7 @@ func (o *Membership) SetCreatedAt(v time.Time) {
 
 // GetHref returns the Href field value if set, zero value otherwise.
 func (o *Membership) GetHref() string {
-	if o == nil || isNil(o.Href) {
+	if o == nil || IsNil(o.Href) {
 		var ret string
 		return ret
 	}
@@ -94,7 +94,7 @@ func (o *Membership) GetHref() string {
 // GetHrefOk returns a tuple with the Href field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Membership) GetHrefOk() (*string, bool) {
-	if o == nil || isNil(o.Href) {
+	if o == nil || IsNil(o.Href) {
 		return nil, false
 	}
 	return o.Href, true
@@ -102,7 +102,7 @@ func (o *Membership) GetHrefOk() (*string, bool) {
 
 // HasHref returns a boolean if a field has been set.
 func (o *Membership) HasHref() bool {
-	if o != nil && !isNil(o.Href) {
+	if o != nil && !IsNil(o.Href) {
 		return true
 	}
 
@@ -116,7 +116,7 @@ func (o *Membership) SetHref(v string) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *Membership) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -126,7 +126,7 @@ func (o *Membership) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Membership) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -134,7 +134,7 @@ func (o *Membership) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *Membership) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -148,7 +148,7 @@ func (o *Membership) SetId(v string) {
 
 // GetProject returns the Project field value if set, zero value otherwise.
 func (o *Membership) GetProject() Href {
-	if o == nil || isNil(o.Project) {
+	if o == nil || IsNil(o.Project) {
 		var ret Href
 		return ret
 	}
@@ -158,7 +158,7 @@ func (o *Membership) GetProject() Href {
 // GetProjectOk returns a tuple with the Project field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Membership) GetProjectOk() (*Href, bool) {
-	if o == nil || isNil(o.Project) {
+	if o == nil || IsNil(o.Project) {
 		return nil, false
 	}
 	return o.Project, true
@@ -166,7 +166,7 @@ func (o *Membership) GetProjectOk() (*Href, bool) {
 
 // HasProject returns a boolean if a field has been set.
 func (o *Membership) HasProject() bool {
-	if o != nil && !isNil(o.Project) {
+	if o != nil && !IsNil(o.Project) {
 		return true
 	}
 
@@ -180,7 +180,7 @@ func (o *Membership) SetProject(v Href) {
 
 // GetRoles returns the Roles field value if set, zero value otherwise.
 func (o *Membership) GetRoles() []string {
-	if o == nil || isNil(o.Roles) {
+	if o == nil || IsNil(o.Roles) {
 		var ret []string
 		return ret
 	}
@@ -190,7 +190,7 @@ func (o *Membership) GetRoles() []string {
 // GetRolesOk returns a tuple with the Roles field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Membership) GetRolesOk() ([]string, bool) {
-	if o == nil || isNil(o.Roles) {
+	if o == nil || IsNil(o.Roles) {
 		return nil, false
 	}
 	return o.Roles, true
@@ -198,7 +198,7 @@ func (o *Membership) GetRolesOk() ([]string, bool) {
 
 // HasRoles returns a boolean if a field has been set.
 func (o *Membership) HasRoles() bool {
-	if o != nil && !isNil(o.Roles) {
+	if o != nil && !IsNil(o.Roles) {
 		return true
 	}
 
@@ -212,7 +212,7 @@ func (o *Membership) SetRoles(v []string) {
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *Membership) GetUpdatedAt() time.Time {
-	if o == nil || isNil(o.UpdatedAt) {
+	if o == nil || IsNil(o.UpdatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -222,7 +222,7 @@ func (o *Membership) GetUpdatedAt() time.Time {
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Membership) GetUpdatedAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.UpdatedAt) {
+	if o == nil || IsNil(o.UpdatedAt) {
 		return nil, false
 	}
 	return o.UpdatedAt, true
@@ -230,7 +230,7 @@ func (o *Membership) GetUpdatedAtOk() (*time.Time, bool) {
 
 // HasUpdatedAt returns a boolean if a field has been set.
 func (o *Membership) HasUpdatedAt() bool {
-	if o != nil && !isNil(o.UpdatedAt) {
+	if o != nil && !IsNil(o.UpdatedAt) {
 		return true
 	}
 
@@ -244,7 +244,7 @@ func (o *Membership) SetUpdatedAt(v time.Time) {
 
 // GetUser returns the User field value if set, zero value otherwise.
 func (o *Membership) GetUser() Href {
-	if o == nil || isNil(o.User) {
+	if o == nil || IsNil(o.User) {
 		var ret Href
 		return ret
 	}
@@ -254,7 +254,7 @@ func (o *Membership) GetUser() Href {
 // GetUserOk returns a tuple with the User field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Membership) GetUserOk() (*Href, bool) {
-	if o == nil || isNil(o.User) {
+	if o == nil || IsNil(o.User) {
 		return nil, false
 	}
 	return o.User, true
@@ -262,7 +262,7 @@ func (o *Membership) GetUserOk() (*Href, bool) {
 
 // HasUser returns a boolean if a field has been set.
 func (o *Membership) HasUser() bool {
-	if o != nil && !isNil(o.User) {
+	if o != nil && !IsNil(o.User) {
 		return true
 	}
 
@@ -284,25 +284,25 @@ func (o Membership) MarshalJSON() ([]byte, error) {
 
 func (o Membership) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.CreatedAt) {
+	if !IsNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt
 	}
-	if !isNil(o.Href) {
+	if !IsNil(o.Href) {
 		toSerialize["href"] = o.Href
 	}
-	if !isNil(o.Id) {
+	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
-	if !isNil(o.Project) {
+	if !IsNil(o.Project) {
 		toSerialize["project"] = o.Project
 	}
-	if !isNil(o.Roles) {
+	if !IsNil(o.Roles) {
 		toSerialize["roles"] = o.Roles
 	}
-	if !isNil(o.UpdatedAt) {
+	if !IsNil(o.UpdatedAt) {
 		toSerialize["updated_at"] = o.UpdatedAt
 	}
-	if !isNil(o.User) {
+	if !IsNil(o.User) {
 		toSerialize["user"] = o.User
 	}
 

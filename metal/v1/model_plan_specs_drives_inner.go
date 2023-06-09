@@ -48,7 +48,7 @@ func NewPlanSpecsDrivesInnerWithDefaults() *PlanSpecsDrivesInner {
 
 // GetCount returns the Count field value if set, zero value otherwise.
 func (o *PlanSpecsDrivesInner) GetCount() int32 {
-	if o == nil || isNil(o.Count) {
+	if o == nil || IsNil(o.Count) {
 		var ret int32
 		return ret
 	}
@@ -58,7 +58,7 @@ func (o *PlanSpecsDrivesInner) GetCount() int32 {
 // GetCountOk returns a tuple with the Count field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PlanSpecsDrivesInner) GetCountOk() (*int32, bool) {
-	if o == nil || isNil(o.Count) {
+	if o == nil || IsNil(o.Count) {
 		return nil, false
 	}
 	return o.Count, true
@@ -66,7 +66,7 @@ func (o *PlanSpecsDrivesInner) GetCountOk() (*int32, bool) {
 
 // HasCount returns a boolean if a field has been set.
 func (o *PlanSpecsDrivesInner) HasCount() bool {
-	if o != nil && !isNil(o.Count) {
+	if o != nil && !IsNil(o.Count) {
 		return true
 	}
 
@@ -80,7 +80,7 @@ func (o *PlanSpecsDrivesInner) SetCount(v int32) {
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *PlanSpecsDrivesInner) GetType() string {
-	if o == nil || isNil(o.Type) {
+	if o == nil || IsNil(o.Type) {
 		var ret string
 		return ret
 	}
@@ -90,7 +90,7 @@ func (o *PlanSpecsDrivesInner) GetType() string {
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PlanSpecsDrivesInner) GetTypeOk() (*string, bool) {
-	if o == nil || isNil(o.Type) {
+	if o == nil || IsNil(o.Type) {
 		return nil, false
 	}
 	return o.Type, true
@@ -98,7 +98,7 @@ func (o *PlanSpecsDrivesInner) GetTypeOk() (*string, bool) {
 
 // HasType returns a boolean if a field has been set.
 func (o *PlanSpecsDrivesInner) HasType() bool {
-	if o != nil && !isNil(o.Type) {
+	if o != nil && !IsNil(o.Type) {
 		return true
 	}
 
@@ -112,7 +112,7 @@ func (o *PlanSpecsDrivesInner) SetType(v string) {
 
 // GetSize returns the Size field value if set, zero value otherwise.
 func (o *PlanSpecsDrivesInner) GetSize() string {
-	if o == nil || isNil(o.Size) {
+	if o == nil || IsNil(o.Size) {
 		var ret string
 		return ret
 	}
@@ -122,7 +122,7 @@ func (o *PlanSpecsDrivesInner) GetSize() string {
 // GetSizeOk returns a tuple with the Size field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PlanSpecsDrivesInner) GetSizeOk() (*string, bool) {
-	if o == nil || isNil(o.Size) {
+	if o == nil || IsNil(o.Size) {
 		return nil, false
 	}
 	return o.Size, true
@@ -130,7 +130,7 @@ func (o *PlanSpecsDrivesInner) GetSizeOk() (*string, bool) {
 
 // HasSize returns a boolean if a field has been set.
 func (o *PlanSpecsDrivesInner) HasSize() bool {
-	if o != nil && !isNil(o.Size) {
+	if o != nil && !IsNil(o.Size) {
 		return true
 	}
 
@@ -144,7 +144,7 @@ func (o *PlanSpecsDrivesInner) SetSize(v string) {
 
 // GetCategory returns the Category field value if set, zero value otherwise.
 func (o *PlanSpecsDrivesInner) GetCategory() string {
-	if o == nil || isNil(o.Category) {
+	if o == nil || IsNil(o.Category) {
 		var ret string
 		return ret
 	}
@@ -154,7 +154,7 @@ func (o *PlanSpecsDrivesInner) GetCategory() string {
 // GetCategoryOk returns a tuple with the Category field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PlanSpecsDrivesInner) GetCategoryOk() (*string, bool) {
-	if o == nil || isNil(o.Category) {
+	if o == nil || IsNil(o.Category) {
 		return nil, false
 	}
 	return o.Category, true
@@ -162,7 +162,7 @@ func (o *PlanSpecsDrivesInner) GetCategoryOk() (*string, bool) {
 
 // HasCategory returns a boolean if a field has been set.
 func (o *PlanSpecsDrivesInner) HasCategory() bool {
-	if o != nil && !isNil(o.Category) {
+	if o != nil && !IsNil(o.Category) {
 		return true
 	}
 
@@ -184,16 +184,16 @@ func (o PlanSpecsDrivesInner) MarshalJSON() ([]byte, error) {
 
 func (o PlanSpecsDrivesInner) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Count) {
+	if !IsNil(o.Count) {
 		toSerialize["count"] = o.Count
 	}
-	if !isNil(o.Type) {
+	if !IsNil(o.Type) {
 		toSerialize["type"] = o.Type
 	}
-	if !isNil(o.Size) {
+	if !IsNil(o.Size) {
 		toSerialize["size"] = o.Size
 	}
-	if !isNil(o.Category) {
+	if !IsNil(o.Category) {
 		toSerialize["category"] = o.Category
 	}
 

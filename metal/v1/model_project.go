@@ -61,7 +61,7 @@ func NewProjectWithDefaults() *Project {
 
 // GetBgpConfig returns the BgpConfig field value if set, zero value otherwise.
 func (o *Project) GetBgpConfig() Href {
-	if o == nil || isNil(o.BgpConfig) {
+	if o == nil || IsNil(o.BgpConfig) {
 		var ret Href
 		return ret
 	}
@@ -71,7 +71,7 @@ func (o *Project) GetBgpConfig() Href {
 // GetBgpConfigOk returns a tuple with the BgpConfig field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Project) GetBgpConfigOk() (*Href, bool) {
-	if o == nil || isNil(o.BgpConfig) {
+	if o == nil || IsNil(o.BgpConfig) {
 		return nil, false
 	}
 	return o.BgpConfig, true
@@ -79,7 +79,7 @@ func (o *Project) GetBgpConfigOk() (*Href, bool) {
 
 // HasBgpConfig returns a boolean if a field has been set.
 func (o *Project) HasBgpConfig() bool {
-	if o != nil && !isNil(o.BgpConfig) {
+	if o != nil && !IsNil(o.BgpConfig) {
 		return true
 	}
 
@@ -93,7 +93,7 @@ func (o *Project) SetBgpConfig(v Href) {
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *Project) GetCreatedAt() time.Time {
-	if o == nil || isNil(o.CreatedAt) {
+	if o == nil || IsNil(o.CreatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -103,7 +103,7 @@ func (o *Project) GetCreatedAt() time.Time {
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Project) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.CreatedAt) {
+	if o == nil || IsNil(o.CreatedAt) {
 		return nil, false
 	}
 	return o.CreatedAt, true
@@ -111,7 +111,7 @@ func (o *Project) GetCreatedAtOk() (*time.Time, bool) {
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *Project) HasCreatedAt() bool {
-	if o != nil && !isNil(o.CreatedAt) {
+	if o != nil && !IsNil(o.CreatedAt) {
 		return true
 	}
 
@@ -125,7 +125,7 @@ func (o *Project) SetCreatedAt(v time.Time) {
 
 // GetCustomdata returns the Customdata field value if set, zero value otherwise.
 func (o *Project) GetCustomdata() map[string]interface{} {
-	if o == nil || isNil(o.Customdata) {
+	if o == nil || IsNil(o.Customdata) {
 		var ret map[string]interface{}
 		return ret
 	}
@@ -135,7 +135,7 @@ func (o *Project) GetCustomdata() map[string]interface{} {
 // GetCustomdataOk returns a tuple with the Customdata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Project) GetCustomdataOk() (map[string]interface{}, bool) {
-	if o == nil || isNil(o.Customdata) {
+	if o == nil || IsNil(o.Customdata) {
 		return map[string]interface{}{}, false
 	}
 	return o.Customdata, true
@@ -143,7 +143,7 @@ func (o *Project) GetCustomdataOk() (map[string]interface{}, bool) {
 
 // HasCustomdata returns a boolean if a field has been set.
 func (o *Project) HasCustomdata() bool {
-	if o != nil && !isNil(o.Customdata) {
+	if o != nil && !IsNil(o.Customdata) {
 		return true
 	}
 
@@ -157,7 +157,7 @@ func (o *Project) SetCustomdata(v map[string]interface{}) {
 
 // GetDevices returns the Devices field value if set, zero value otherwise.
 func (o *Project) GetDevices() []Href {
-	if o == nil || isNil(o.Devices) {
+	if o == nil || IsNil(o.Devices) {
 		var ret []Href
 		return ret
 	}
@@ -167,7 +167,7 @@ func (o *Project) GetDevices() []Href {
 // GetDevicesOk returns a tuple with the Devices field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Project) GetDevicesOk() ([]Href, bool) {
-	if o == nil || isNil(o.Devices) {
+	if o == nil || IsNil(o.Devices) {
 		return nil, false
 	}
 	return o.Devices, true
@@ -175,7 +175,7 @@ func (o *Project) GetDevicesOk() ([]Href, bool) {
 
 // HasDevices returns a boolean if a field has been set.
 func (o *Project) HasDevices() bool {
-	if o != nil && !isNil(o.Devices) {
+	if o != nil && !IsNil(o.Devices) {
 		return true
 	}
 
@@ -189,7 +189,7 @@ func (o *Project) SetDevices(v []Href) {
 
 // GetHref returns the Href field value if set, zero value otherwise.
 func (o *Project) GetHref() string {
-	if o == nil || isNil(o.Href) {
+	if o == nil || IsNil(o.Href) {
 		var ret string
 		return ret
 	}
@@ -199,7 +199,7 @@ func (o *Project) GetHref() string {
 // GetHrefOk returns a tuple with the Href field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Project) GetHrefOk() (*string, bool) {
-	if o == nil || isNil(o.Href) {
+	if o == nil || IsNil(o.Href) {
 		return nil, false
 	}
 	return o.Href, true
@@ -207,7 +207,7 @@ func (o *Project) GetHrefOk() (*string, bool) {
 
 // HasHref returns a boolean if a field has been set.
 func (o *Project) HasHref() bool {
-	if o != nil && !isNil(o.Href) {
+	if o != nil && !IsNil(o.Href) {
 		return true
 	}
 
@@ -221,7 +221,7 @@ func (o *Project) SetHref(v string) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *Project) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -231,7 +231,7 @@ func (o *Project) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Project) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -239,7 +239,7 @@ func (o *Project) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *Project) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -253,7 +253,7 @@ func (o *Project) SetId(v string) {
 
 // GetInvitations returns the Invitations field value if set, zero value otherwise.
 func (o *Project) GetInvitations() []Href {
-	if o == nil || isNil(o.Invitations) {
+	if o == nil || IsNil(o.Invitations) {
 		var ret []Href
 		return ret
 	}
@@ -263,7 +263,7 @@ func (o *Project) GetInvitations() []Href {
 // GetInvitationsOk returns a tuple with the Invitations field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Project) GetInvitationsOk() ([]Href, bool) {
-	if o == nil || isNil(o.Invitations) {
+	if o == nil || IsNil(o.Invitations) {
 		return nil, false
 	}
 	return o.Invitations, true
@@ -271,7 +271,7 @@ func (o *Project) GetInvitationsOk() ([]Href, bool) {
 
 // HasInvitations returns a boolean if a field has been set.
 func (o *Project) HasInvitations() bool {
-	if o != nil && !isNil(o.Invitations) {
+	if o != nil && !IsNil(o.Invitations) {
 		return true
 	}
 
@@ -285,7 +285,7 @@ func (o *Project) SetInvitations(v []Href) {
 
 // GetMaxDevices returns the MaxDevices field value if set, zero value otherwise.
 func (o *Project) GetMaxDevices() map[string]interface{} {
-	if o == nil || isNil(o.MaxDevices) {
+	if o == nil || IsNil(o.MaxDevices) {
 		var ret map[string]interface{}
 		return ret
 	}
@@ -295,7 +295,7 @@ func (o *Project) GetMaxDevices() map[string]interface{} {
 // GetMaxDevicesOk returns a tuple with the MaxDevices field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Project) GetMaxDevicesOk() (map[string]interface{}, bool) {
-	if o == nil || isNil(o.MaxDevices) {
+	if o == nil || IsNil(o.MaxDevices) {
 		return map[string]interface{}{}, false
 	}
 	return o.MaxDevices, true
@@ -303,7 +303,7 @@ func (o *Project) GetMaxDevicesOk() (map[string]interface{}, bool) {
 
 // HasMaxDevices returns a boolean if a field has been set.
 func (o *Project) HasMaxDevices() bool {
-	if o != nil && !isNil(o.MaxDevices) {
+	if o != nil && !IsNil(o.MaxDevices) {
 		return true
 	}
 
@@ -317,7 +317,7 @@ func (o *Project) SetMaxDevices(v map[string]interface{}) {
 
 // GetMembers returns the Members field value if set, zero value otherwise.
 func (o *Project) GetMembers() []Href {
-	if o == nil || isNil(o.Members) {
+	if o == nil || IsNil(o.Members) {
 		var ret []Href
 		return ret
 	}
@@ -327,7 +327,7 @@ func (o *Project) GetMembers() []Href {
 // GetMembersOk returns a tuple with the Members field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Project) GetMembersOk() ([]Href, bool) {
-	if o == nil || isNil(o.Members) {
+	if o == nil || IsNil(o.Members) {
 		return nil, false
 	}
 	return o.Members, true
@@ -335,7 +335,7 @@ func (o *Project) GetMembersOk() ([]Href, bool) {
 
 // HasMembers returns a boolean if a field has been set.
 func (o *Project) HasMembers() bool {
-	if o != nil && !isNil(o.Members) {
+	if o != nil && !IsNil(o.Members) {
 		return true
 	}
 
@@ -349,7 +349,7 @@ func (o *Project) SetMembers(v []Href) {
 
 // GetMemberships returns the Memberships field value if set, zero value otherwise.
 func (o *Project) GetMemberships() []Href {
-	if o == nil || isNil(o.Memberships) {
+	if o == nil || IsNil(o.Memberships) {
 		var ret []Href
 		return ret
 	}
@@ -359,7 +359,7 @@ func (o *Project) GetMemberships() []Href {
 // GetMembershipsOk returns a tuple with the Memberships field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Project) GetMembershipsOk() ([]Href, bool) {
-	if o == nil || isNil(o.Memberships) {
+	if o == nil || IsNil(o.Memberships) {
 		return nil, false
 	}
 	return o.Memberships, true
@@ -367,7 +367,7 @@ func (o *Project) GetMembershipsOk() ([]Href, bool) {
 
 // HasMemberships returns a boolean if a field has been set.
 func (o *Project) HasMemberships() bool {
-	if o != nil && !isNil(o.Memberships) {
+	if o != nil && !IsNil(o.Memberships) {
 		return true
 	}
 
@@ -381,7 +381,7 @@ func (o *Project) SetMemberships(v []Href) {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *Project) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -391,7 +391,7 @@ func (o *Project) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Project) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
 	return o.Name, true
@@ -399,7 +399,7 @@ func (o *Project) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *Project) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -413,7 +413,7 @@ func (o *Project) SetName(v string) {
 
 // GetNetworkStatus returns the NetworkStatus field value if set, zero value otherwise.
 func (o *Project) GetNetworkStatus() map[string]interface{} {
-	if o == nil || isNil(o.NetworkStatus) {
+	if o == nil || IsNil(o.NetworkStatus) {
 		var ret map[string]interface{}
 		return ret
 	}
@@ -423,7 +423,7 @@ func (o *Project) GetNetworkStatus() map[string]interface{} {
 // GetNetworkStatusOk returns a tuple with the NetworkStatus field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Project) GetNetworkStatusOk() (map[string]interface{}, bool) {
-	if o == nil || isNil(o.NetworkStatus) {
+	if o == nil || IsNil(o.NetworkStatus) {
 		return map[string]interface{}{}, false
 	}
 	return o.NetworkStatus, true
@@ -431,7 +431,7 @@ func (o *Project) GetNetworkStatusOk() (map[string]interface{}, bool) {
 
 // HasNetworkStatus returns a boolean if a field has been set.
 func (o *Project) HasNetworkStatus() bool {
-	if o != nil && !isNil(o.NetworkStatus) {
+	if o != nil && !IsNil(o.NetworkStatus) {
 		return true
 	}
 
@@ -445,7 +445,7 @@ func (o *Project) SetNetworkStatus(v map[string]interface{}) {
 
 // GetPaymentMethod returns the PaymentMethod field value if set, zero value otherwise.
 func (o *Project) GetPaymentMethod() Href {
-	if o == nil || isNil(o.PaymentMethod) {
+	if o == nil || IsNil(o.PaymentMethod) {
 		var ret Href
 		return ret
 	}
@@ -455,7 +455,7 @@ func (o *Project) GetPaymentMethod() Href {
 // GetPaymentMethodOk returns a tuple with the PaymentMethod field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Project) GetPaymentMethodOk() (*Href, bool) {
-	if o == nil || isNil(o.PaymentMethod) {
+	if o == nil || IsNil(o.PaymentMethod) {
 		return nil, false
 	}
 	return o.PaymentMethod, true
@@ -463,7 +463,7 @@ func (o *Project) GetPaymentMethodOk() (*Href, bool) {
 
 // HasPaymentMethod returns a boolean if a field has been set.
 func (o *Project) HasPaymentMethod() bool {
-	if o != nil && !isNil(o.PaymentMethod) {
+	if o != nil && !IsNil(o.PaymentMethod) {
 		return true
 	}
 
@@ -477,7 +477,7 @@ func (o *Project) SetPaymentMethod(v Href) {
 
 // GetSshKeys returns the SshKeys field value if set, zero value otherwise.
 func (o *Project) GetSshKeys() []Href {
-	if o == nil || isNil(o.SshKeys) {
+	if o == nil || IsNil(o.SshKeys) {
 		var ret []Href
 		return ret
 	}
@@ -487,7 +487,7 @@ func (o *Project) GetSshKeys() []Href {
 // GetSshKeysOk returns a tuple with the SshKeys field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Project) GetSshKeysOk() ([]Href, bool) {
-	if o == nil || isNil(o.SshKeys) {
+	if o == nil || IsNil(o.SshKeys) {
 		return nil, false
 	}
 	return o.SshKeys, true
@@ -495,7 +495,7 @@ func (o *Project) GetSshKeysOk() ([]Href, bool) {
 
 // HasSshKeys returns a boolean if a field has been set.
 func (o *Project) HasSshKeys() bool {
-	if o != nil && !isNil(o.SshKeys) {
+	if o != nil && !IsNil(o.SshKeys) {
 		return true
 	}
 
@@ -509,7 +509,7 @@ func (o *Project) SetSshKeys(v []Href) {
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *Project) GetUpdatedAt() time.Time {
-	if o == nil || isNil(o.UpdatedAt) {
+	if o == nil || IsNil(o.UpdatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -519,7 +519,7 @@ func (o *Project) GetUpdatedAt() time.Time {
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Project) GetUpdatedAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.UpdatedAt) {
+	if o == nil || IsNil(o.UpdatedAt) {
 		return nil, false
 	}
 	return o.UpdatedAt, true
@@ -527,7 +527,7 @@ func (o *Project) GetUpdatedAtOk() (*time.Time, bool) {
 
 // HasUpdatedAt returns a boolean if a field has been set.
 func (o *Project) HasUpdatedAt() bool {
-	if o != nil && !isNil(o.UpdatedAt) {
+	if o != nil && !IsNil(o.UpdatedAt) {
 		return true
 	}
 
@@ -541,7 +541,7 @@ func (o *Project) SetUpdatedAt(v time.Time) {
 
 // GetVolumes returns the Volumes field value if set, zero value otherwise.
 func (o *Project) GetVolumes() []Href {
-	if o == nil || isNil(o.Volumes) {
+	if o == nil || IsNil(o.Volumes) {
 		var ret []Href
 		return ret
 	}
@@ -551,7 +551,7 @@ func (o *Project) GetVolumes() []Href {
 // GetVolumesOk returns a tuple with the Volumes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Project) GetVolumesOk() ([]Href, bool) {
-	if o == nil || isNil(o.Volumes) {
+	if o == nil || IsNil(o.Volumes) {
 		return nil, false
 	}
 	return o.Volumes, true
@@ -559,7 +559,7 @@ func (o *Project) GetVolumesOk() ([]Href, bool) {
 
 // HasVolumes returns a boolean if a field has been set.
 func (o *Project) HasVolumes() bool {
-	if o != nil && !isNil(o.Volumes) {
+	if o != nil && !IsNil(o.Volumes) {
 		return true
 	}
 
@@ -581,52 +581,52 @@ func (o Project) MarshalJSON() ([]byte, error) {
 
 func (o Project) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.BgpConfig) {
+	if !IsNil(o.BgpConfig) {
 		toSerialize["bgp_config"] = o.BgpConfig
 	}
-	if !isNil(o.CreatedAt) {
+	if !IsNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt
 	}
-	if !isNil(o.Customdata) {
+	if !IsNil(o.Customdata) {
 		toSerialize["customdata"] = o.Customdata
 	}
-	if !isNil(o.Devices) {
+	if !IsNil(o.Devices) {
 		toSerialize["devices"] = o.Devices
 	}
-	if !isNil(o.Href) {
+	if !IsNil(o.Href) {
 		toSerialize["href"] = o.Href
 	}
-	if !isNil(o.Id) {
+	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
-	if !isNil(o.Invitations) {
+	if !IsNil(o.Invitations) {
 		toSerialize["invitations"] = o.Invitations
 	}
-	if !isNil(o.MaxDevices) {
+	if !IsNil(o.MaxDevices) {
 		toSerialize["max_devices"] = o.MaxDevices
 	}
-	if !isNil(o.Members) {
+	if !IsNil(o.Members) {
 		toSerialize["members"] = o.Members
 	}
-	if !isNil(o.Memberships) {
+	if !IsNil(o.Memberships) {
 		toSerialize["memberships"] = o.Memberships
 	}
-	if !isNil(o.Name) {
+	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
-	if !isNil(o.NetworkStatus) {
+	if !IsNil(o.NetworkStatus) {
 		toSerialize["network_status"] = o.NetworkStatus
 	}
-	if !isNil(o.PaymentMethod) {
+	if !IsNil(o.PaymentMethod) {
 		toSerialize["payment_method"] = o.PaymentMethod
 	}
-	if !isNil(o.SshKeys) {
+	if !IsNil(o.SshKeys) {
 		toSerialize["ssh_keys"] = o.SshKeys
 	}
-	if !isNil(o.UpdatedAt) {
+	if !IsNil(o.UpdatedAt) {
 		toSerialize["updated_at"] = o.UpdatedAt
 	}
-	if !isNil(o.Volumes) {
+	if !IsNil(o.Volumes) {
 		toSerialize["volumes"] = o.Volumes
 	}
 

@@ -71,7 +71,7 @@ func NewInterconnectionWithDefaults() *Interconnection {
 
 // GetContactEmail returns the ContactEmail field value if set, zero value otherwise.
 func (o *Interconnection) GetContactEmail() string {
-	if o == nil || isNil(o.ContactEmail) {
+	if o == nil || IsNil(o.ContactEmail) {
 		var ret string
 		return ret
 	}
@@ -81,7 +81,7 @@ func (o *Interconnection) GetContactEmail() string {
 // GetContactEmailOk returns a tuple with the ContactEmail field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Interconnection) GetContactEmailOk() (*string, bool) {
-	if o == nil || isNil(o.ContactEmail) {
+	if o == nil || IsNil(o.ContactEmail) {
 		return nil, false
 	}
 	return o.ContactEmail, true
@@ -89,7 +89,7 @@ func (o *Interconnection) GetContactEmailOk() (*string, bool) {
 
 // HasContactEmail returns a boolean if a field has been set.
 func (o *Interconnection) HasContactEmail() bool {
-	if o != nil && !isNil(o.ContactEmail) {
+	if o != nil && !IsNil(o.ContactEmail) {
 		return true
 	}
 
@@ -103,7 +103,7 @@ func (o *Interconnection) SetContactEmail(v string) {
 
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *Interconnection) GetDescription() string {
-	if o == nil || isNil(o.Description) {
+	if o == nil || IsNil(o.Description) {
 		var ret string
 		return ret
 	}
@@ -113,7 +113,7 @@ func (o *Interconnection) GetDescription() string {
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Interconnection) GetDescriptionOk() (*string, bool) {
-	if o == nil || isNil(o.Description) {
+	if o == nil || IsNil(o.Description) {
 		return nil, false
 	}
 	return o.Description, true
@@ -121,7 +121,7 @@ func (o *Interconnection) GetDescriptionOk() (*string, bool) {
 
 // HasDescription returns a boolean if a field has been set.
 func (o *Interconnection) HasDescription() bool {
-	if o != nil && !isNil(o.Description) {
+	if o != nil && !IsNil(o.Description) {
 		return true
 	}
 
@@ -135,7 +135,7 @@ func (o *Interconnection) SetDescription(v string) {
 
 // GetFacility returns the Facility field value if set, zero value otherwise.
 func (o *Interconnection) GetFacility() Href {
-	if o == nil || isNil(o.Facility) {
+	if o == nil || IsNil(o.Facility) {
 		var ret Href
 		return ret
 	}
@@ -145,7 +145,7 @@ func (o *Interconnection) GetFacility() Href {
 // GetFacilityOk returns a tuple with the Facility field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Interconnection) GetFacilityOk() (*Href, bool) {
-	if o == nil || isNil(o.Facility) {
+	if o == nil || IsNil(o.Facility) {
 		return nil, false
 	}
 	return o.Facility, true
@@ -153,7 +153,7 @@ func (o *Interconnection) GetFacilityOk() (*Href, bool) {
 
 // HasFacility returns a boolean if a field has been set.
 func (o *Interconnection) HasFacility() bool {
-	if o != nil && !isNil(o.Facility) {
+	if o != nil && !IsNil(o.Facility) {
 		return true
 	}
 
@@ -167,7 +167,7 @@ func (o *Interconnection) SetFacility(v Href) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *Interconnection) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -177,7 +177,7 @@ func (o *Interconnection) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Interconnection) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -185,7 +185,7 @@ func (o *Interconnection) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *Interconnection) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -199,7 +199,7 @@ func (o *Interconnection) SetId(v string) {
 
 // GetMetro returns the Metro field value if set, zero value otherwise.
 func (o *Interconnection) GetMetro() InterconnectionMetro {
-	if o == nil || isNil(o.Metro) {
+	if o == nil || IsNil(o.Metro) {
 		var ret InterconnectionMetro
 		return ret
 	}
@@ -209,7 +209,7 @@ func (o *Interconnection) GetMetro() InterconnectionMetro {
 // GetMetroOk returns a tuple with the Metro field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Interconnection) GetMetroOk() (*InterconnectionMetro, bool) {
-	if o == nil || isNil(o.Metro) {
+	if o == nil || IsNil(o.Metro) {
 		return nil, false
 	}
 	return o.Metro, true
@@ -217,7 +217,7 @@ func (o *Interconnection) GetMetroOk() (*InterconnectionMetro, bool) {
 
 // HasMetro returns a boolean if a field has been set.
 func (o *Interconnection) HasMetro() bool {
-	if o != nil && !isNil(o.Metro) {
+	if o != nil && !IsNil(o.Metro) {
 		return true
 	}
 
@@ -231,7 +231,7 @@ func (o *Interconnection) SetMetro(v InterconnectionMetro) {
 
 // GetMode returns the Mode field value if set, zero value otherwise.
 func (o *Interconnection) GetMode() string {
-	if o == nil || isNil(o.Mode) {
+	if o == nil || IsNil(o.Mode) {
 		var ret string
 		return ret
 	}
@@ -241,7 +241,7 @@ func (o *Interconnection) GetMode() string {
 // GetModeOk returns a tuple with the Mode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Interconnection) GetModeOk() (*string, bool) {
-	if o == nil || isNil(o.Mode) {
+	if o == nil || IsNil(o.Mode) {
 		return nil, false
 	}
 	return o.Mode, true
@@ -249,7 +249,7 @@ func (o *Interconnection) GetModeOk() (*string, bool) {
 
 // HasMode returns a boolean if a field has been set.
 func (o *Interconnection) HasMode() bool {
-	if o != nil && !isNil(o.Mode) {
+	if o != nil && !IsNil(o.Mode) {
 		return true
 	}
 
@@ -263,7 +263,7 @@ func (o *Interconnection) SetMode(v string) {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *Interconnection) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -273,7 +273,7 @@ func (o *Interconnection) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Interconnection) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
 	return o.Name, true
@@ -281,7 +281,7 @@ func (o *Interconnection) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *Interconnection) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -295,7 +295,7 @@ func (o *Interconnection) SetName(v string) {
 
 // GetOrganization returns the Organization field value if set, zero value otherwise.
 func (o *Interconnection) GetOrganization() Href {
-	if o == nil || isNil(o.Organization) {
+	if o == nil || IsNil(o.Organization) {
 		var ret Href
 		return ret
 	}
@@ -305,7 +305,7 @@ func (o *Interconnection) GetOrganization() Href {
 // GetOrganizationOk returns a tuple with the Organization field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Interconnection) GetOrganizationOk() (*Href, bool) {
-	if o == nil || isNil(o.Organization) {
+	if o == nil || IsNil(o.Organization) {
 		return nil, false
 	}
 	return o.Organization, true
@@ -313,7 +313,7 @@ func (o *Interconnection) GetOrganizationOk() (*Href, bool) {
 
 // HasOrganization returns a boolean if a field has been set.
 func (o *Interconnection) HasOrganization() bool {
-	if o != nil && !isNil(o.Organization) {
+	if o != nil && !IsNil(o.Organization) {
 		return true
 	}
 
@@ -327,7 +327,7 @@ func (o *Interconnection) SetOrganization(v Href) {
 
 // GetPorts returns the Ports field value if set, zero value otherwise.
 func (o *Interconnection) GetPorts() []InterconnectionPort {
-	if o == nil || isNil(o.Ports) {
+	if o == nil || IsNil(o.Ports) {
 		var ret []InterconnectionPort
 		return ret
 	}
@@ -337,7 +337,7 @@ func (o *Interconnection) GetPorts() []InterconnectionPort {
 // GetPortsOk returns a tuple with the Ports field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Interconnection) GetPortsOk() ([]InterconnectionPort, bool) {
-	if o == nil || isNil(o.Ports) {
+	if o == nil || IsNil(o.Ports) {
 		return nil, false
 	}
 	return o.Ports, true
@@ -345,7 +345,7 @@ func (o *Interconnection) GetPortsOk() ([]InterconnectionPort, bool) {
 
 // HasPorts returns a boolean if a field has been set.
 func (o *Interconnection) HasPorts() bool {
-	if o != nil && !isNil(o.Ports) {
+	if o != nil && !IsNil(o.Ports) {
 		return true
 	}
 
@@ -359,7 +359,7 @@ func (o *Interconnection) SetPorts(v []InterconnectionPort) {
 
 // GetRedundancy returns the Redundancy field value if set, zero value otherwise.
 func (o *Interconnection) GetRedundancy() string {
-	if o == nil || isNil(o.Redundancy) {
+	if o == nil || IsNil(o.Redundancy) {
 		var ret string
 		return ret
 	}
@@ -369,7 +369,7 @@ func (o *Interconnection) GetRedundancy() string {
 // GetRedundancyOk returns a tuple with the Redundancy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Interconnection) GetRedundancyOk() (*string, bool) {
-	if o == nil || isNil(o.Redundancy) {
+	if o == nil || IsNil(o.Redundancy) {
 		return nil, false
 	}
 	return o.Redundancy, true
@@ -377,7 +377,7 @@ func (o *Interconnection) GetRedundancyOk() (*string, bool) {
 
 // HasRedundancy returns a boolean if a field has been set.
 func (o *Interconnection) HasRedundancy() bool {
-	if o != nil && !isNil(o.Redundancy) {
+	if o != nil && !IsNil(o.Redundancy) {
 		return true
 	}
 
@@ -391,7 +391,7 @@ func (o *Interconnection) SetRedundancy(v string) {
 
 // GetServiceTokens returns the ServiceTokens field value if set, zero value otherwise.
 func (o *Interconnection) GetServiceTokens() []FabricServiceToken {
-	if o == nil || isNil(o.ServiceTokens) {
+	if o == nil || IsNil(o.ServiceTokens) {
 		var ret []FabricServiceToken
 		return ret
 	}
@@ -401,7 +401,7 @@ func (o *Interconnection) GetServiceTokens() []FabricServiceToken {
 // GetServiceTokensOk returns a tuple with the ServiceTokens field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Interconnection) GetServiceTokensOk() ([]FabricServiceToken, bool) {
-	if o == nil || isNil(o.ServiceTokens) {
+	if o == nil || IsNil(o.ServiceTokens) {
 		return nil, false
 	}
 	return o.ServiceTokens, true
@@ -409,7 +409,7 @@ func (o *Interconnection) GetServiceTokensOk() ([]FabricServiceToken, bool) {
 
 // HasServiceTokens returns a boolean if a field has been set.
 func (o *Interconnection) HasServiceTokens() bool {
-	if o != nil && !isNil(o.ServiceTokens) {
+	if o != nil && !IsNil(o.ServiceTokens) {
 		return true
 	}
 
@@ -423,7 +423,7 @@ func (o *Interconnection) SetServiceTokens(v []FabricServiceToken) {
 
 // GetSpeed returns the Speed field value if set, zero value otherwise.
 func (o *Interconnection) GetSpeed() int32 {
-	if o == nil || isNil(o.Speed) {
+	if o == nil || IsNil(o.Speed) {
 		var ret int32
 		return ret
 	}
@@ -433,7 +433,7 @@ func (o *Interconnection) GetSpeed() int32 {
 // GetSpeedOk returns a tuple with the Speed field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Interconnection) GetSpeedOk() (*int32, bool) {
-	if o == nil || isNil(o.Speed) {
+	if o == nil || IsNil(o.Speed) {
 		return nil, false
 	}
 	return o.Speed, true
@@ -441,7 +441,7 @@ func (o *Interconnection) GetSpeedOk() (*int32, bool) {
 
 // HasSpeed returns a boolean if a field has been set.
 func (o *Interconnection) HasSpeed() bool {
-	if o != nil && !isNil(o.Speed) {
+	if o != nil && !IsNil(o.Speed) {
 		return true
 	}
 
@@ -455,7 +455,7 @@ func (o *Interconnection) SetSpeed(v int32) {
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *Interconnection) GetStatus() string {
-	if o == nil || isNil(o.Status) {
+	if o == nil || IsNil(o.Status) {
 		var ret string
 		return ret
 	}
@@ -465,7 +465,7 @@ func (o *Interconnection) GetStatus() string {
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Interconnection) GetStatusOk() (*string, bool) {
-	if o == nil || isNil(o.Status) {
+	if o == nil || IsNil(o.Status) {
 		return nil, false
 	}
 	return o.Status, true
@@ -473,7 +473,7 @@ func (o *Interconnection) GetStatusOk() (*string, bool) {
 
 // HasStatus returns a boolean if a field has been set.
 func (o *Interconnection) HasStatus() bool {
-	if o != nil && !isNil(o.Status) {
+	if o != nil && !IsNil(o.Status) {
 		return true
 	}
 
@@ -487,7 +487,7 @@ func (o *Interconnection) SetStatus(v string) {
 
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *Interconnection) GetTags() []string {
-	if o == nil || isNil(o.Tags) {
+	if o == nil || IsNil(o.Tags) {
 		var ret []string
 		return ret
 	}
@@ -497,7 +497,7 @@ func (o *Interconnection) GetTags() []string {
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Interconnection) GetTagsOk() ([]string, bool) {
-	if o == nil || isNil(o.Tags) {
+	if o == nil || IsNil(o.Tags) {
 		return nil, false
 	}
 	return o.Tags, true
@@ -505,7 +505,7 @@ func (o *Interconnection) GetTagsOk() ([]string, bool) {
 
 // HasTags returns a boolean if a field has been set.
 func (o *Interconnection) HasTags() bool {
-	if o != nil && !isNil(o.Tags) {
+	if o != nil && !IsNil(o.Tags) {
 		return true
 	}
 
@@ -519,7 +519,7 @@ func (o *Interconnection) SetTags(v []string) {
 
 // GetToken returns the Token field value if set, zero value otherwise.
 func (o *Interconnection) GetToken() string {
-	if o == nil || isNil(o.Token) {
+	if o == nil || IsNil(o.Token) {
 		var ret string
 		return ret
 	}
@@ -529,7 +529,7 @@ func (o *Interconnection) GetToken() string {
 // GetTokenOk returns a tuple with the Token field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Interconnection) GetTokenOk() (*string, bool) {
-	if o == nil || isNil(o.Token) {
+	if o == nil || IsNil(o.Token) {
 		return nil, false
 	}
 	return o.Token, true
@@ -537,7 +537,7 @@ func (o *Interconnection) GetTokenOk() (*string, bool) {
 
 // HasToken returns a boolean if a field has been set.
 func (o *Interconnection) HasToken() bool {
-	if o != nil && !isNil(o.Token) {
+	if o != nil && !IsNil(o.Token) {
 		return true
 	}
 
@@ -551,7 +551,7 @@ func (o *Interconnection) SetToken(v string) {
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *Interconnection) GetType() string {
-	if o == nil || isNil(o.Type) {
+	if o == nil || IsNil(o.Type) {
 		var ret string
 		return ret
 	}
@@ -561,7 +561,7 @@ func (o *Interconnection) GetType() string {
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Interconnection) GetTypeOk() (*string, bool) {
-	if o == nil || isNil(o.Type) {
+	if o == nil || IsNil(o.Type) {
 		return nil, false
 	}
 	return o.Type, true
@@ -569,7 +569,7 @@ func (o *Interconnection) GetTypeOk() (*string, bool) {
 
 // HasType returns a boolean if a field has been set.
 func (o *Interconnection) HasType() bool {
-	if o != nil && !isNil(o.Type) {
+	if o != nil && !IsNil(o.Type) {
 		return true
 	}
 
@@ -583,7 +583,7 @@ func (o *Interconnection) SetType(v string) {
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *Interconnection) GetCreatedAt() time.Time {
-	if o == nil || isNil(o.CreatedAt) {
+	if o == nil || IsNil(o.CreatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -593,7 +593,7 @@ func (o *Interconnection) GetCreatedAt() time.Time {
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Interconnection) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.CreatedAt) {
+	if o == nil || IsNil(o.CreatedAt) {
 		return nil, false
 	}
 	return o.CreatedAt, true
@@ -601,7 +601,7 @@ func (o *Interconnection) GetCreatedAtOk() (*time.Time, bool) {
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *Interconnection) HasCreatedAt() bool {
-	if o != nil && !isNil(o.CreatedAt) {
+	if o != nil && !IsNil(o.CreatedAt) {
 		return true
 	}
 
@@ -615,7 +615,7 @@ func (o *Interconnection) SetCreatedAt(v time.Time) {
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *Interconnection) GetUpdatedAt() time.Time {
-	if o == nil || isNil(o.UpdatedAt) {
+	if o == nil || IsNil(o.UpdatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -625,7 +625,7 @@ func (o *Interconnection) GetUpdatedAt() time.Time {
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Interconnection) GetUpdatedAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.UpdatedAt) {
+	if o == nil || IsNil(o.UpdatedAt) {
 		return nil, false
 	}
 	return o.UpdatedAt, true
@@ -633,7 +633,7 @@ func (o *Interconnection) GetUpdatedAtOk() (*time.Time, bool) {
 
 // HasUpdatedAt returns a boolean if a field has been set.
 func (o *Interconnection) HasUpdatedAt() bool {
-	if o != nil && !isNil(o.UpdatedAt) {
+	if o != nil && !IsNil(o.UpdatedAt) {
 		return true
 	}
 
@@ -647,7 +647,7 @@ func (o *Interconnection) SetUpdatedAt(v time.Time) {
 
 // GetRequestedBy returns the RequestedBy field value if set, zero value otherwise.
 func (o *Interconnection) GetRequestedBy() Href {
-	if o == nil || isNil(o.RequestedBy) {
+	if o == nil || IsNil(o.RequestedBy) {
 		var ret Href
 		return ret
 	}
@@ -657,7 +657,7 @@ func (o *Interconnection) GetRequestedBy() Href {
 // GetRequestedByOk returns a tuple with the RequestedBy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Interconnection) GetRequestedByOk() (*Href, bool) {
-	if o == nil || isNil(o.RequestedBy) {
+	if o == nil || IsNil(o.RequestedBy) {
 		return nil, false
 	}
 	return o.RequestedBy, true
@@ -665,7 +665,7 @@ func (o *Interconnection) GetRequestedByOk() (*Href, bool) {
 
 // HasRequestedBy returns a boolean if a field has been set.
 func (o *Interconnection) HasRequestedBy() bool {
-	if o != nil && !isNil(o.RequestedBy) {
+	if o != nil && !IsNil(o.RequestedBy) {
 		return true
 	}
 
@@ -687,61 +687,61 @@ func (o Interconnection) MarshalJSON() ([]byte, error) {
 
 func (o Interconnection) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.ContactEmail) {
+	if !IsNil(o.ContactEmail) {
 		toSerialize["contact_email"] = o.ContactEmail
 	}
-	if !isNil(o.Description) {
+	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
-	if !isNil(o.Facility) {
+	if !IsNil(o.Facility) {
 		toSerialize["facility"] = o.Facility
 	}
-	if !isNil(o.Id) {
+	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
-	if !isNil(o.Metro) {
+	if !IsNil(o.Metro) {
 		toSerialize["metro"] = o.Metro
 	}
-	if !isNil(o.Mode) {
+	if !IsNil(o.Mode) {
 		toSerialize["mode"] = o.Mode
 	}
-	if !isNil(o.Name) {
+	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
-	if !isNil(o.Organization) {
+	if !IsNil(o.Organization) {
 		toSerialize["organization"] = o.Organization
 	}
-	if !isNil(o.Ports) {
+	if !IsNil(o.Ports) {
 		toSerialize["ports"] = o.Ports
 	}
-	if !isNil(o.Redundancy) {
+	if !IsNil(o.Redundancy) {
 		toSerialize["redundancy"] = o.Redundancy
 	}
-	if !isNil(o.ServiceTokens) {
+	if !IsNil(o.ServiceTokens) {
 		toSerialize["service_tokens"] = o.ServiceTokens
 	}
-	if !isNil(o.Speed) {
+	if !IsNil(o.Speed) {
 		toSerialize["speed"] = o.Speed
 	}
-	if !isNil(o.Status) {
+	if !IsNil(o.Status) {
 		toSerialize["status"] = o.Status
 	}
-	if !isNil(o.Tags) {
+	if !IsNil(o.Tags) {
 		toSerialize["tags"] = o.Tags
 	}
-	if !isNil(o.Token) {
+	if !IsNil(o.Token) {
 		toSerialize["token"] = o.Token
 	}
-	if !isNil(o.Type) {
+	if !IsNil(o.Type) {
 		toSerialize["type"] = o.Type
 	}
-	if !isNil(o.CreatedAt) {
+	if !IsNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt
 	}
-	if !isNil(o.UpdatedAt) {
+	if !IsNil(o.UpdatedAt) {
 		toSerialize["updated_at"] = o.UpdatedAt
 	}
-	if !isNil(o.RequestedBy) {
+	if !IsNil(o.RequestedBy) {
 		toSerialize["requested_by"] = o.RequestedBy
 	}
 

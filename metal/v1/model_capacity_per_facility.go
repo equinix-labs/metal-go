@@ -53,7 +53,7 @@ func NewCapacityPerFacilityWithDefaults() *CapacityPerFacility {
 
 // GetBaremetal0 returns the Baremetal0 field value if set, zero value otherwise.
 func (o *CapacityPerFacility) GetBaremetal0() CapacityLevelPerBaremetal {
-	if o == nil || isNil(o.Baremetal0) {
+	if o == nil || IsNil(o.Baremetal0) {
 		var ret CapacityLevelPerBaremetal
 		return ret
 	}
@@ -63,7 +63,7 @@ func (o *CapacityPerFacility) GetBaremetal0() CapacityLevelPerBaremetal {
 // GetBaremetal0Ok returns a tuple with the Baremetal0 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CapacityPerFacility) GetBaremetal0Ok() (*CapacityLevelPerBaremetal, bool) {
-	if o == nil || isNil(o.Baremetal0) {
+	if o == nil || IsNil(o.Baremetal0) {
 		return nil, false
 	}
 	return o.Baremetal0, true
@@ -71,7 +71,7 @@ func (o *CapacityPerFacility) GetBaremetal0Ok() (*CapacityLevelPerBaremetal, boo
 
 // HasBaremetal0 returns a boolean if a field has been set.
 func (o *CapacityPerFacility) HasBaremetal0() bool {
-	if o != nil && !isNil(o.Baremetal0) {
+	if o != nil && !IsNil(o.Baremetal0) {
 		return true
 	}
 
@@ -85,7 +85,7 @@ func (o *CapacityPerFacility) SetBaremetal0(v CapacityLevelPerBaremetal) {
 
 // GetBaremetal1 returns the Baremetal1 field value if set, zero value otherwise.
 func (o *CapacityPerFacility) GetBaremetal1() CapacityLevelPerBaremetal {
-	if o == nil || isNil(o.Baremetal1) {
+	if o == nil || IsNil(o.Baremetal1) {
 		var ret CapacityLevelPerBaremetal
 		return ret
 	}
@@ -95,7 +95,7 @@ func (o *CapacityPerFacility) GetBaremetal1() CapacityLevelPerBaremetal {
 // GetBaremetal1Ok returns a tuple with the Baremetal1 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CapacityPerFacility) GetBaremetal1Ok() (*CapacityLevelPerBaremetal, bool) {
-	if o == nil || isNil(o.Baremetal1) {
+	if o == nil || IsNil(o.Baremetal1) {
 		return nil, false
 	}
 	return o.Baremetal1, true
@@ -103,7 +103,7 @@ func (o *CapacityPerFacility) GetBaremetal1Ok() (*CapacityLevelPerBaremetal, boo
 
 // HasBaremetal1 returns a boolean if a field has been set.
 func (o *CapacityPerFacility) HasBaremetal1() bool {
-	if o != nil && !isNil(o.Baremetal1) {
+	if o != nil && !IsNil(o.Baremetal1) {
 		return true
 	}
 
@@ -117,7 +117,7 @@ func (o *CapacityPerFacility) SetBaremetal1(v CapacityLevelPerBaremetal) {
 
 // GetBaremetal2 returns the Baremetal2 field value if set, zero value otherwise.
 func (o *CapacityPerFacility) GetBaremetal2() CapacityLevelPerBaremetal {
-	if o == nil || isNil(o.Baremetal2) {
+	if o == nil || IsNil(o.Baremetal2) {
 		var ret CapacityLevelPerBaremetal
 		return ret
 	}
@@ -127,7 +127,7 @@ func (o *CapacityPerFacility) GetBaremetal2() CapacityLevelPerBaremetal {
 // GetBaremetal2Ok returns a tuple with the Baremetal2 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CapacityPerFacility) GetBaremetal2Ok() (*CapacityLevelPerBaremetal, bool) {
-	if o == nil || isNil(o.Baremetal2) {
+	if o == nil || IsNil(o.Baremetal2) {
 		return nil, false
 	}
 	return o.Baremetal2, true
@@ -135,7 +135,7 @@ func (o *CapacityPerFacility) GetBaremetal2Ok() (*CapacityLevelPerBaremetal, boo
 
 // HasBaremetal2 returns a boolean if a field has been set.
 func (o *CapacityPerFacility) HasBaremetal2() bool {
-	if o != nil && !isNil(o.Baremetal2) {
+	if o != nil && !IsNil(o.Baremetal2) {
 		return true
 	}
 
@@ -149,7 +149,7 @@ func (o *CapacityPerFacility) SetBaremetal2(v CapacityLevelPerBaremetal) {
 
 // GetBaremetal2a returns the Baremetal2a field value if set, zero value otherwise.
 func (o *CapacityPerFacility) GetBaremetal2a() CapacityLevelPerBaremetal {
-	if o == nil || isNil(o.Baremetal2a) {
+	if o == nil || IsNil(o.Baremetal2a) {
 		var ret CapacityLevelPerBaremetal
 		return ret
 	}
@@ -159,7 +159,7 @@ func (o *CapacityPerFacility) GetBaremetal2a() CapacityLevelPerBaremetal {
 // GetBaremetal2aOk returns a tuple with the Baremetal2a field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CapacityPerFacility) GetBaremetal2aOk() (*CapacityLevelPerBaremetal, bool) {
-	if o == nil || isNil(o.Baremetal2a) {
+	if o == nil || IsNil(o.Baremetal2a) {
 		return nil, false
 	}
 	return o.Baremetal2a, true
@@ -167,7 +167,7 @@ func (o *CapacityPerFacility) GetBaremetal2aOk() (*CapacityLevelPerBaremetal, bo
 
 // HasBaremetal2a returns a boolean if a field has been set.
 func (o *CapacityPerFacility) HasBaremetal2a() bool {
-	if o != nil && !isNil(o.Baremetal2a) {
+	if o != nil && !IsNil(o.Baremetal2a) {
 		return true
 	}
 
@@ -181,7 +181,7 @@ func (o *CapacityPerFacility) SetBaremetal2a(v CapacityLevelPerBaremetal) {
 
 // GetBaremetal2a2 returns the Baremetal2a2 field value if set, zero value otherwise.
 func (o *CapacityPerFacility) GetBaremetal2a2() CapacityLevelPerBaremetal {
-	if o == nil || isNil(o.Baremetal2a2) {
+	if o == nil || IsNil(o.Baremetal2a2) {
 		var ret CapacityLevelPerBaremetal
 		return ret
 	}
@@ -191,7 +191,7 @@ func (o *CapacityPerFacility) GetBaremetal2a2() CapacityLevelPerBaremetal {
 // GetBaremetal2a2Ok returns a tuple with the Baremetal2a2 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CapacityPerFacility) GetBaremetal2a2Ok() (*CapacityLevelPerBaremetal, bool) {
-	if o == nil || isNil(o.Baremetal2a2) {
+	if o == nil || IsNil(o.Baremetal2a2) {
 		return nil, false
 	}
 	return o.Baremetal2a2, true
@@ -199,7 +199,7 @@ func (o *CapacityPerFacility) GetBaremetal2a2Ok() (*CapacityLevelPerBaremetal, b
 
 // HasBaremetal2a2 returns a boolean if a field has been set.
 func (o *CapacityPerFacility) HasBaremetal2a2() bool {
-	if o != nil && !isNil(o.Baremetal2a2) {
+	if o != nil && !IsNil(o.Baremetal2a2) {
 		return true
 	}
 
@@ -213,7 +213,7 @@ func (o *CapacityPerFacility) SetBaremetal2a2(v CapacityLevelPerBaremetal) {
 
 // GetBaremetal3 returns the Baremetal3 field value if set, zero value otherwise.
 func (o *CapacityPerFacility) GetBaremetal3() CapacityLevelPerBaremetal {
-	if o == nil || isNil(o.Baremetal3) {
+	if o == nil || IsNil(o.Baremetal3) {
 		var ret CapacityLevelPerBaremetal
 		return ret
 	}
@@ -223,7 +223,7 @@ func (o *CapacityPerFacility) GetBaremetal3() CapacityLevelPerBaremetal {
 // GetBaremetal3Ok returns a tuple with the Baremetal3 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CapacityPerFacility) GetBaremetal3Ok() (*CapacityLevelPerBaremetal, bool) {
-	if o == nil || isNil(o.Baremetal3) {
+	if o == nil || IsNil(o.Baremetal3) {
 		return nil, false
 	}
 	return o.Baremetal3, true
@@ -231,7 +231,7 @@ func (o *CapacityPerFacility) GetBaremetal3Ok() (*CapacityLevelPerBaremetal, boo
 
 // HasBaremetal3 returns a boolean if a field has been set.
 func (o *CapacityPerFacility) HasBaremetal3() bool {
-	if o != nil && !isNil(o.Baremetal3) {
+	if o != nil && !IsNil(o.Baremetal3) {
 		return true
 	}
 
@@ -245,7 +245,7 @@ func (o *CapacityPerFacility) SetBaremetal3(v CapacityLevelPerBaremetal) {
 
 // GetBaremetalS returns the BaremetalS field value if set, zero value otherwise.
 func (o *CapacityPerFacility) GetBaremetalS() CapacityLevelPerBaremetal {
-	if o == nil || isNil(o.BaremetalS) {
+	if o == nil || IsNil(o.BaremetalS) {
 		var ret CapacityLevelPerBaremetal
 		return ret
 	}
@@ -255,7 +255,7 @@ func (o *CapacityPerFacility) GetBaremetalS() CapacityLevelPerBaremetal {
 // GetBaremetalSOk returns a tuple with the BaremetalS field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CapacityPerFacility) GetBaremetalSOk() (*CapacityLevelPerBaremetal, bool) {
-	if o == nil || isNil(o.BaremetalS) {
+	if o == nil || IsNil(o.BaremetalS) {
 		return nil, false
 	}
 	return o.BaremetalS, true
@@ -263,7 +263,7 @@ func (o *CapacityPerFacility) GetBaremetalSOk() (*CapacityLevelPerBaremetal, boo
 
 // HasBaremetalS returns a boolean if a field has been set.
 func (o *CapacityPerFacility) HasBaremetalS() bool {
-	if o != nil && !isNil(o.BaremetalS) {
+	if o != nil && !IsNil(o.BaremetalS) {
 		return true
 	}
 
@@ -277,7 +277,7 @@ func (o *CapacityPerFacility) SetBaremetalS(v CapacityLevelPerBaremetal) {
 
 // GetC2MediumX86 returns the C2MediumX86 field value if set, zero value otherwise.
 func (o *CapacityPerFacility) GetC2MediumX86() CapacityLevelPerBaremetal {
-	if o == nil || isNil(o.C2MediumX86) {
+	if o == nil || IsNil(o.C2MediumX86) {
 		var ret CapacityLevelPerBaremetal
 		return ret
 	}
@@ -287,7 +287,7 @@ func (o *CapacityPerFacility) GetC2MediumX86() CapacityLevelPerBaremetal {
 // GetC2MediumX86Ok returns a tuple with the C2MediumX86 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CapacityPerFacility) GetC2MediumX86Ok() (*CapacityLevelPerBaremetal, bool) {
-	if o == nil || isNil(o.C2MediumX86) {
+	if o == nil || IsNil(o.C2MediumX86) {
 		return nil, false
 	}
 	return o.C2MediumX86, true
@@ -295,7 +295,7 @@ func (o *CapacityPerFacility) GetC2MediumX86Ok() (*CapacityLevelPerBaremetal, bo
 
 // HasC2MediumX86 returns a boolean if a field has been set.
 func (o *CapacityPerFacility) HasC2MediumX86() bool {
-	if o != nil && !isNil(o.C2MediumX86) {
+	if o != nil && !IsNil(o.C2MediumX86) {
 		return true
 	}
 
@@ -309,7 +309,7 @@ func (o *CapacityPerFacility) SetC2MediumX86(v CapacityLevelPerBaremetal) {
 
 // GetM2XlargeX86 returns the M2XlargeX86 field value if set, zero value otherwise.
 func (o *CapacityPerFacility) GetM2XlargeX86() CapacityLevelPerBaremetal {
-	if o == nil || isNil(o.M2XlargeX86) {
+	if o == nil || IsNil(o.M2XlargeX86) {
 		var ret CapacityLevelPerBaremetal
 		return ret
 	}
@@ -319,7 +319,7 @@ func (o *CapacityPerFacility) GetM2XlargeX86() CapacityLevelPerBaremetal {
 // GetM2XlargeX86Ok returns a tuple with the M2XlargeX86 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CapacityPerFacility) GetM2XlargeX86Ok() (*CapacityLevelPerBaremetal, bool) {
-	if o == nil || isNil(o.M2XlargeX86) {
+	if o == nil || IsNil(o.M2XlargeX86) {
 		return nil, false
 	}
 	return o.M2XlargeX86, true
@@ -327,7 +327,7 @@ func (o *CapacityPerFacility) GetM2XlargeX86Ok() (*CapacityLevelPerBaremetal, bo
 
 // HasM2XlargeX86 returns a boolean if a field has been set.
 func (o *CapacityPerFacility) HasM2XlargeX86() bool {
-	if o != nil && !isNil(o.M2XlargeX86) {
+	if o != nil && !IsNil(o.M2XlargeX86) {
 		return true
 	}
 
@@ -349,31 +349,31 @@ func (o CapacityPerFacility) MarshalJSON() ([]byte, error) {
 
 func (o CapacityPerFacility) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Baremetal0) {
+	if !IsNil(o.Baremetal0) {
 		toSerialize["baremetal_0"] = o.Baremetal0
 	}
-	if !isNil(o.Baremetal1) {
+	if !IsNil(o.Baremetal1) {
 		toSerialize["baremetal_1"] = o.Baremetal1
 	}
-	if !isNil(o.Baremetal2) {
+	if !IsNil(o.Baremetal2) {
 		toSerialize["baremetal_2"] = o.Baremetal2
 	}
-	if !isNil(o.Baremetal2a) {
+	if !IsNil(o.Baremetal2a) {
 		toSerialize["baremetal_2a"] = o.Baremetal2a
 	}
-	if !isNil(o.Baremetal2a2) {
+	if !IsNil(o.Baremetal2a2) {
 		toSerialize["baremetal_2a2"] = o.Baremetal2a2
 	}
-	if !isNil(o.Baremetal3) {
+	if !IsNil(o.Baremetal3) {
 		toSerialize["baremetal_3"] = o.Baremetal3
 	}
-	if !isNil(o.BaremetalS) {
+	if !IsNil(o.BaremetalS) {
 		toSerialize["baremetal_s"] = o.BaremetalS
 	}
-	if !isNil(o.C2MediumX86) {
+	if !IsNil(o.C2MediumX86) {
 		toSerialize["c2.medium.x86"] = o.C2MediumX86
 	}
-	if !isNil(o.M2XlargeX86) {
+	if !IsNil(o.M2XlargeX86) {
 		toSerialize["m2.xlarge.x86"] = o.M2XlargeX86
 	}
 

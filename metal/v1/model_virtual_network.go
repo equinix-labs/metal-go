@@ -59,7 +59,7 @@ func NewVirtualNetworkWithDefaults() *VirtualNetwork {
 
 // GetAssignedTo returns the AssignedTo field value if set, zero value otherwise.
 func (o *VirtualNetwork) GetAssignedTo() Href {
-	if o == nil || isNil(o.AssignedTo) {
+	if o == nil || IsNil(o.AssignedTo) {
 		var ret Href
 		return ret
 	}
@@ -69,7 +69,7 @@ func (o *VirtualNetwork) GetAssignedTo() Href {
 // GetAssignedToOk returns a tuple with the AssignedTo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VirtualNetwork) GetAssignedToOk() (*Href, bool) {
-	if o == nil || isNil(o.AssignedTo) {
+	if o == nil || IsNil(o.AssignedTo) {
 		return nil, false
 	}
 	return o.AssignedTo, true
@@ -77,7 +77,7 @@ func (o *VirtualNetwork) GetAssignedToOk() (*Href, bool) {
 
 // HasAssignedTo returns a boolean if a field has been set.
 func (o *VirtualNetwork) HasAssignedTo() bool {
-	if o != nil && !isNil(o.AssignedTo) {
+	if o != nil && !IsNil(o.AssignedTo) {
 		return true
 	}
 
@@ -91,7 +91,7 @@ func (o *VirtualNetwork) SetAssignedTo(v Href) {
 
 // GetAssignedToVirtualCircuit returns the AssignedToVirtualCircuit field value if set, zero value otherwise.
 func (o *VirtualNetwork) GetAssignedToVirtualCircuit() bool {
-	if o == nil || isNil(o.AssignedToVirtualCircuit) {
+	if o == nil || IsNil(o.AssignedToVirtualCircuit) {
 		var ret bool
 		return ret
 	}
@@ -101,7 +101,7 @@ func (o *VirtualNetwork) GetAssignedToVirtualCircuit() bool {
 // GetAssignedToVirtualCircuitOk returns a tuple with the AssignedToVirtualCircuit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VirtualNetwork) GetAssignedToVirtualCircuitOk() (*bool, bool) {
-	if o == nil || isNil(o.AssignedToVirtualCircuit) {
+	if o == nil || IsNil(o.AssignedToVirtualCircuit) {
 		return nil, false
 	}
 	return o.AssignedToVirtualCircuit, true
@@ -109,7 +109,7 @@ func (o *VirtualNetwork) GetAssignedToVirtualCircuitOk() (*bool, bool) {
 
 // HasAssignedToVirtualCircuit returns a boolean if a field has been set.
 func (o *VirtualNetwork) HasAssignedToVirtualCircuit() bool {
-	if o != nil && !isNil(o.AssignedToVirtualCircuit) {
+	if o != nil && !IsNil(o.AssignedToVirtualCircuit) {
 		return true
 	}
 
@@ -123,7 +123,7 @@ func (o *VirtualNetwork) SetAssignedToVirtualCircuit(v bool) {
 
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *VirtualNetwork) GetDescription() string {
-	if o == nil || isNil(o.Description) {
+	if o == nil || IsNil(o.Description) {
 		var ret string
 		return ret
 	}
@@ -133,7 +133,7 @@ func (o *VirtualNetwork) GetDescription() string {
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VirtualNetwork) GetDescriptionOk() (*string, bool) {
-	if o == nil || isNil(o.Description) {
+	if o == nil || IsNil(o.Description) {
 		return nil, false
 	}
 	return o.Description, true
@@ -141,7 +141,7 @@ func (o *VirtualNetwork) GetDescriptionOk() (*string, bool) {
 
 // HasDescription returns a boolean if a field has been set.
 func (o *VirtualNetwork) HasDescription() bool {
-	if o != nil && !isNil(o.Description) {
+	if o != nil && !IsNil(o.Description) {
 		return true
 	}
 
@@ -155,7 +155,7 @@ func (o *VirtualNetwork) SetDescription(v string) {
 
 // GetFacility returns the Facility field value if set, zero value otherwise.
 func (o *VirtualNetwork) GetFacility() Href {
-	if o == nil || isNil(o.Facility) {
+	if o == nil || IsNil(o.Facility) {
 		var ret Href
 		return ret
 	}
@@ -165,7 +165,7 @@ func (o *VirtualNetwork) GetFacility() Href {
 // GetFacilityOk returns a tuple with the Facility field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VirtualNetwork) GetFacilityOk() (*Href, bool) {
-	if o == nil || isNil(o.Facility) {
+	if o == nil || IsNil(o.Facility) {
 		return nil, false
 	}
 	return o.Facility, true
@@ -173,7 +173,7 @@ func (o *VirtualNetwork) GetFacilityOk() (*Href, bool) {
 
 // HasFacility returns a boolean if a field has been set.
 func (o *VirtualNetwork) HasFacility() bool {
-	if o != nil && !isNil(o.Facility) {
+	if o != nil && !IsNil(o.Facility) {
 		return true
 	}
 
@@ -187,7 +187,7 @@ func (o *VirtualNetwork) SetFacility(v Href) {
 
 // GetHref returns the Href field value if set, zero value otherwise.
 func (o *VirtualNetwork) GetHref() string {
-	if o == nil || isNil(o.Href) {
+	if o == nil || IsNil(o.Href) {
 		var ret string
 		return ret
 	}
@@ -197,7 +197,7 @@ func (o *VirtualNetwork) GetHref() string {
 // GetHrefOk returns a tuple with the Href field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VirtualNetwork) GetHrefOk() (*string, bool) {
-	if o == nil || isNil(o.Href) {
+	if o == nil || IsNil(o.Href) {
 		return nil, false
 	}
 	return o.Href, true
@@ -205,7 +205,7 @@ func (o *VirtualNetwork) GetHrefOk() (*string, bool) {
 
 // HasHref returns a boolean if a field has been set.
 func (o *VirtualNetwork) HasHref() bool {
-	if o != nil && !isNil(o.Href) {
+	if o != nil && !IsNil(o.Href) {
 		return true
 	}
 
@@ -219,7 +219,7 @@ func (o *VirtualNetwork) SetHref(v string) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *VirtualNetwork) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -229,7 +229,7 @@ func (o *VirtualNetwork) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VirtualNetwork) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -237,7 +237,7 @@ func (o *VirtualNetwork) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *VirtualNetwork) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -251,7 +251,7 @@ func (o *VirtualNetwork) SetId(v string) {
 
 // GetInstances returns the Instances field value if set, zero value otherwise.
 func (o *VirtualNetwork) GetInstances() []Href {
-	if o == nil || isNil(o.Instances) {
+	if o == nil || IsNil(o.Instances) {
 		var ret []Href
 		return ret
 	}
@@ -261,7 +261,7 @@ func (o *VirtualNetwork) GetInstances() []Href {
 // GetInstancesOk returns a tuple with the Instances field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VirtualNetwork) GetInstancesOk() ([]Href, bool) {
-	if o == nil || isNil(o.Instances) {
+	if o == nil || IsNil(o.Instances) {
 		return nil, false
 	}
 	return o.Instances, true
@@ -269,7 +269,7 @@ func (o *VirtualNetwork) GetInstancesOk() ([]Href, bool) {
 
 // HasInstances returns a boolean if a field has been set.
 func (o *VirtualNetwork) HasInstances() bool {
-	if o != nil && !isNil(o.Instances) {
+	if o != nil && !IsNil(o.Instances) {
 		return true
 	}
 
@@ -283,7 +283,7 @@ func (o *VirtualNetwork) SetInstances(v []Href) {
 
 // GetMetalGateways returns the MetalGateways field value if set, zero value otherwise.
 func (o *VirtualNetwork) GetMetalGateways() []MetalGatewayLite {
-	if o == nil || isNil(o.MetalGateways) {
+	if o == nil || IsNil(o.MetalGateways) {
 		var ret []MetalGatewayLite
 		return ret
 	}
@@ -293,7 +293,7 @@ func (o *VirtualNetwork) GetMetalGateways() []MetalGatewayLite {
 // GetMetalGatewaysOk returns a tuple with the MetalGateways field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VirtualNetwork) GetMetalGatewaysOk() ([]MetalGatewayLite, bool) {
-	if o == nil || isNil(o.MetalGateways) {
+	if o == nil || IsNil(o.MetalGateways) {
 		return nil, false
 	}
 	return o.MetalGateways, true
@@ -301,7 +301,7 @@ func (o *VirtualNetwork) GetMetalGatewaysOk() ([]MetalGatewayLite, bool) {
 
 // HasMetalGateways returns a boolean if a field has been set.
 func (o *VirtualNetwork) HasMetalGateways() bool {
-	if o != nil && !isNil(o.MetalGateways) {
+	if o != nil && !IsNil(o.MetalGateways) {
 		return true
 	}
 
@@ -315,7 +315,7 @@ func (o *VirtualNetwork) SetMetalGateways(v []MetalGatewayLite) {
 
 // GetMetro returns the Metro field value if set, zero value otherwise.
 func (o *VirtualNetwork) GetMetro() Href {
-	if o == nil || isNil(o.Metro) {
+	if o == nil || IsNil(o.Metro) {
 		var ret Href
 		return ret
 	}
@@ -325,7 +325,7 @@ func (o *VirtualNetwork) GetMetro() Href {
 // GetMetroOk returns a tuple with the Metro field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VirtualNetwork) GetMetroOk() (*Href, bool) {
-	if o == nil || isNil(o.Metro) {
+	if o == nil || IsNil(o.Metro) {
 		return nil, false
 	}
 	return o.Metro, true
@@ -333,7 +333,7 @@ func (o *VirtualNetwork) GetMetroOk() (*Href, bool) {
 
 // HasMetro returns a boolean if a field has been set.
 func (o *VirtualNetwork) HasMetro() bool {
-	if o != nil && !isNil(o.Metro) {
+	if o != nil && !IsNil(o.Metro) {
 		return true
 	}
 
@@ -347,7 +347,7 @@ func (o *VirtualNetwork) SetMetro(v Href) {
 
 // GetMetroCode returns the MetroCode field value if set, zero value otherwise.
 func (o *VirtualNetwork) GetMetroCode() string {
-	if o == nil || isNil(o.MetroCode) {
+	if o == nil || IsNil(o.MetroCode) {
 		var ret string
 		return ret
 	}
@@ -357,7 +357,7 @@ func (o *VirtualNetwork) GetMetroCode() string {
 // GetMetroCodeOk returns a tuple with the MetroCode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VirtualNetwork) GetMetroCodeOk() (*string, bool) {
-	if o == nil || isNil(o.MetroCode) {
+	if o == nil || IsNil(o.MetroCode) {
 		return nil, false
 	}
 	return o.MetroCode, true
@@ -365,7 +365,7 @@ func (o *VirtualNetwork) GetMetroCodeOk() (*string, bool) {
 
 // HasMetroCode returns a boolean if a field has been set.
 func (o *VirtualNetwork) HasMetroCode() bool {
-	if o != nil && !isNil(o.MetroCode) {
+	if o != nil && !IsNil(o.MetroCode) {
 		return true
 	}
 
@@ -379,7 +379,7 @@ func (o *VirtualNetwork) SetMetroCode(v string) {
 
 // GetVxlan returns the Vxlan field value if set, zero value otherwise.
 func (o *VirtualNetwork) GetVxlan() int32 {
-	if o == nil || isNil(o.Vxlan) {
+	if o == nil || IsNil(o.Vxlan) {
 		var ret int32
 		return ret
 	}
@@ -389,7 +389,7 @@ func (o *VirtualNetwork) GetVxlan() int32 {
 // GetVxlanOk returns a tuple with the Vxlan field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VirtualNetwork) GetVxlanOk() (*int32, bool) {
-	if o == nil || isNil(o.Vxlan) {
+	if o == nil || IsNil(o.Vxlan) {
 		return nil, false
 	}
 	return o.Vxlan, true
@@ -397,7 +397,7 @@ func (o *VirtualNetwork) GetVxlanOk() (*int32, bool) {
 
 // HasVxlan returns a boolean if a field has been set.
 func (o *VirtualNetwork) HasVxlan() bool {
-	if o != nil && !isNil(o.Vxlan) {
+	if o != nil && !IsNil(o.Vxlan) {
 		return true
 	}
 
@@ -419,37 +419,37 @@ func (o VirtualNetwork) MarshalJSON() ([]byte, error) {
 
 func (o VirtualNetwork) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.AssignedTo) {
+	if !IsNil(o.AssignedTo) {
 		toSerialize["assigned_to"] = o.AssignedTo
 	}
-	if !isNil(o.AssignedToVirtualCircuit) {
+	if !IsNil(o.AssignedToVirtualCircuit) {
 		toSerialize["assigned_to_virtual_circuit"] = o.AssignedToVirtualCircuit
 	}
-	if !isNil(o.Description) {
+	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
-	if !isNil(o.Facility) {
+	if !IsNil(o.Facility) {
 		toSerialize["facility"] = o.Facility
 	}
-	if !isNil(o.Href) {
+	if !IsNil(o.Href) {
 		toSerialize["href"] = o.Href
 	}
-	if !isNil(o.Id) {
+	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
-	if !isNil(o.Instances) {
+	if !IsNil(o.Instances) {
 		toSerialize["instances"] = o.Instances
 	}
-	if !isNil(o.MetalGateways) {
+	if !IsNil(o.MetalGateways) {
 		toSerialize["metal_gateways"] = o.MetalGateways
 	}
-	if !isNil(o.Metro) {
+	if !IsNil(o.Metro) {
 		toSerialize["metro"] = o.Metro
 	}
-	if !isNil(o.MetroCode) {
+	if !IsNil(o.MetroCode) {
 		toSerialize["metro_code"] = o.MetroCode
 	}
-	if !isNil(o.Vxlan) {
+	if !IsNil(o.Vxlan) {
 		toSerialize["vxlan"] = o.Vxlan
 	}
 

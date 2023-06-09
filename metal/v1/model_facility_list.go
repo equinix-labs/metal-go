@@ -45,7 +45,7 @@ func NewFacilityListWithDefaults() *FacilityList {
 
 // GetFacilities returns the Facilities field value if set, zero value otherwise.
 func (o *FacilityList) GetFacilities() []Facility {
-	if o == nil || isNil(o.Facilities) {
+	if o == nil || IsNil(o.Facilities) {
 		var ret []Facility
 		return ret
 	}
@@ -55,7 +55,7 @@ func (o *FacilityList) GetFacilities() []Facility {
 // GetFacilitiesOk returns a tuple with the Facilities field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FacilityList) GetFacilitiesOk() ([]Facility, bool) {
-	if o == nil || isNil(o.Facilities) {
+	if o == nil || IsNil(o.Facilities) {
 		return nil, false
 	}
 	return o.Facilities, true
@@ -63,7 +63,7 @@ func (o *FacilityList) GetFacilitiesOk() ([]Facility, bool) {
 
 // HasFacilities returns a boolean if a field has been set.
 func (o *FacilityList) HasFacilities() bool {
-	if o != nil && !isNil(o.Facilities) {
+	if o != nil && !IsNil(o.Facilities) {
 		return true
 	}
 
@@ -85,7 +85,7 @@ func (o FacilityList) MarshalJSON() ([]byte, error) {
 
 func (o FacilityList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Facilities) {
+	if !IsNil(o.Facilities) {
 		toSerialize["facilities"] = o.Facilities
 	}
 

@@ -45,7 +45,7 @@ func NewActivateHardwareReservationRequestWithDefaults() *ActivateHardwareReserv
 
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *ActivateHardwareReservationRequest) GetDescription() string {
-	if o == nil || isNil(o.Description) {
+	if o == nil || IsNil(o.Description) {
 		var ret string
 		return ret
 	}
@@ -55,7 +55,7 @@ func (o *ActivateHardwareReservationRequest) GetDescription() string {
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ActivateHardwareReservationRequest) GetDescriptionOk() (*string, bool) {
-	if o == nil || isNil(o.Description) {
+	if o == nil || IsNil(o.Description) {
 		return nil, false
 	}
 	return o.Description, true
@@ -63,7 +63,7 @@ func (o *ActivateHardwareReservationRequest) GetDescriptionOk() (*string, bool) 
 
 // HasDescription returns a boolean if a field has been set.
 func (o *ActivateHardwareReservationRequest) HasDescription() bool {
-	if o != nil && !isNil(o.Description) {
+	if o != nil && !IsNil(o.Description) {
 		return true
 	}
 
@@ -85,7 +85,7 @@ func (o ActivateHardwareReservationRequest) MarshalJSON() ([]byte, error) {
 
 func (o ActivateHardwareReservationRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Description) {
+	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
 

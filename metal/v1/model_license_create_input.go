@@ -47,7 +47,7 @@ func NewLicenseCreateInputWithDefaults() *LicenseCreateInput {
 
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *LicenseCreateInput) GetDescription() string {
-	if o == nil || isNil(o.Description) {
+	if o == nil || IsNil(o.Description) {
 		var ret string
 		return ret
 	}
@@ -57,7 +57,7 @@ func (o *LicenseCreateInput) GetDescription() string {
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *LicenseCreateInput) GetDescriptionOk() (*string, bool) {
-	if o == nil || isNil(o.Description) {
+	if o == nil || IsNil(o.Description) {
 		return nil, false
 	}
 	return o.Description, true
@@ -65,7 +65,7 @@ func (o *LicenseCreateInput) GetDescriptionOk() (*string, bool) {
 
 // HasDescription returns a boolean if a field has been set.
 func (o *LicenseCreateInput) HasDescription() bool {
-	if o != nil && !isNil(o.Description) {
+	if o != nil && !IsNil(o.Description) {
 		return true
 	}
 
@@ -79,7 +79,7 @@ func (o *LicenseCreateInput) SetDescription(v string) {
 
 // GetLicenseeProductId returns the LicenseeProductId field value if set, zero value otherwise.
 func (o *LicenseCreateInput) GetLicenseeProductId() string {
-	if o == nil || isNil(o.LicenseeProductId) {
+	if o == nil || IsNil(o.LicenseeProductId) {
 		var ret string
 		return ret
 	}
@@ -89,7 +89,7 @@ func (o *LicenseCreateInput) GetLicenseeProductId() string {
 // GetLicenseeProductIdOk returns a tuple with the LicenseeProductId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *LicenseCreateInput) GetLicenseeProductIdOk() (*string, bool) {
-	if o == nil || isNil(o.LicenseeProductId) {
+	if o == nil || IsNil(o.LicenseeProductId) {
 		return nil, false
 	}
 	return o.LicenseeProductId, true
@@ -97,7 +97,7 @@ func (o *LicenseCreateInput) GetLicenseeProductIdOk() (*string, bool) {
 
 // HasLicenseeProductId returns a boolean if a field has been set.
 func (o *LicenseCreateInput) HasLicenseeProductId() bool {
-	if o != nil && !isNil(o.LicenseeProductId) {
+	if o != nil && !IsNil(o.LicenseeProductId) {
 		return true
 	}
 
@@ -111,7 +111,7 @@ func (o *LicenseCreateInput) SetLicenseeProductId(v string) {
 
 // GetSize returns the Size field value if set, zero value otherwise.
 func (o *LicenseCreateInput) GetSize() float32 {
-	if o == nil || isNil(o.Size) {
+	if o == nil || IsNil(o.Size) {
 		var ret float32
 		return ret
 	}
@@ -121,7 +121,7 @@ func (o *LicenseCreateInput) GetSize() float32 {
 // GetSizeOk returns a tuple with the Size field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *LicenseCreateInput) GetSizeOk() (*float32, bool) {
-	if o == nil || isNil(o.Size) {
+	if o == nil || IsNil(o.Size) {
 		return nil, false
 	}
 	return o.Size, true
@@ -129,7 +129,7 @@ func (o *LicenseCreateInput) GetSizeOk() (*float32, bool) {
 
 // HasSize returns a boolean if a field has been set.
 func (o *LicenseCreateInput) HasSize() bool {
-	if o != nil && !isNil(o.Size) {
+	if o != nil && !IsNil(o.Size) {
 		return true
 	}
 
@@ -151,13 +151,13 @@ func (o LicenseCreateInput) MarshalJSON() ([]byte, error) {
 
 func (o LicenseCreateInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Description) {
+	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
-	if !isNil(o.LicenseeProductId) {
+	if !IsNil(o.LicenseeProductId) {
 		toSerialize["licensee_product_id"] = o.LicenseeProductId
 	}
-	if !isNil(o.Size) {
+	if !IsNil(o.Size) {
 		toSerialize["size"] = o.Size
 	}
 

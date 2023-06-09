@@ -46,7 +46,7 @@ func NewDeviceListWithDefaults() *DeviceList {
 
 // GetDevices returns the Devices field value if set, zero value otherwise.
 func (o *DeviceList) GetDevices() []Device {
-	if o == nil || isNil(o.Devices) {
+	if o == nil || IsNil(o.Devices) {
 		var ret []Device
 		return ret
 	}
@@ -56,7 +56,7 @@ func (o *DeviceList) GetDevices() []Device {
 // GetDevicesOk returns a tuple with the Devices field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeviceList) GetDevicesOk() ([]Device, bool) {
-	if o == nil || isNil(o.Devices) {
+	if o == nil || IsNil(o.Devices) {
 		return nil, false
 	}
 	return o.Devices, true
@@ -64,7 +64,7 @@ func (o *DeviceList) GetDevicesOk() ([]Device, bool) {
 
 // HasDevices returns a boolean if a field has been set.
 func (o *DeviceList) HasDevices() bool {
-	if o != nil && !isNil(o.Devices) {
+	if o != nil && !IsNil(o.Devices) {
 		return true
 	}
 
@@ -78,7 +78,7 @@ func (o *DeviceList) SetDevices(v []Device) {
 
 // GetMeta returns the Meta field value if set, zero value otherwise.
 func (o *DeviceList) GetMeta() Meta {
-	if o == nil || isNil(o.Meta) {
+	if o == nil || IsNil(o.Meta) {
 		var ret Meta
 		return ret
 	}
@@ -88,7 +88,7 @@ func (o *DeviceList) GetMeta() Meta {
 // GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeviceList) GetMetaOk() (*Meta, bool) {
-	if o == nil || isNil(o.Meta) {
+	if o == nil || IsNil(o.Meta) {
 		return nil, false
 	}
 	return o.Meta, true
@@ -96,7 +96,7 @@ func (o *DeviceList) GetMetaOk() (*Meta, bool) {
 
 // HasMeta returns a boolean if a field has been set.
 func (o *DeviceList) HasMeta() bool {
-	if o != nil && !isNil(o.Meta) {
+	if o != nil && !IsNil(o.Meta) {
 		return true
 	}
 
@@ -118,10 +118,10 @@ func (o DeviceList) MarshalJSON() ([]byte, error) {
 
 func (o DeviceList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Devices) {
+	if !IsNil(o.Devices) {
 		toSerialize["devices"] = o.Devices
 	}
-	if !isNil(o.Meta) {
+	if !IsNil(o.Meta) {
 		toSerialize["meta"] = o.Meta
 	}
 

@@ -45,7 +45,7 @@ func NewDeviceUsageListWithDefaults() *DeviceUsageList {
 
 // GetUsages returns the Usages field value if set, zero value otherwise.
 func (o *DeviceUsageList) GetUsages() []DeviceUsage {
-	if o == nil || isNil(o.Usages) {
+	if o == nil || IsNil(o.Usages) {
 		var ret []DeviceUsage
 		return ret
 	}
@@ -55,7 +55,7 @@ func (o *DeviceUsageList) GetUsages() []DeviceUsage {
 // GetUsagesOk returns a tuple with the Usages field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeviceUsageList) GetUsagesOk() ([]DeviceUsage, bool) {
-	if o == nil || isNil(o.Usages) {
+	if o == nil || IsNil(o.Usages) {
 		return nil, false
 	}
 	return o.Usages, true
@@ -63,7 +63,7 @@ func (o *DeviceUsageList) GetUsagesOk() ([]DeviceUsage, bool) {
 
 // HasUsages returns a boolean if a field has been set.
 func (o *DeviceUsageList) HasUsages() bool {
-	if o != nil && !isNil(o.Usages) {
+	if o != nil && !IsNil(o.Usages) {
 		return true
 	}
 
@@ -85,7 +85,7 @@ func (o DeviceUsageList) MarshalJSON() ([]byte, error) {
 
 func (o DeviceUsageList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Usages) {
+	if !IsNil(o.Usages) {
 		toSerialize["usages"] = o.Usages
 	}
 

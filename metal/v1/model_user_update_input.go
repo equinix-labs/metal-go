@@ -50,7 +50,7 @@ func NewUserUpdateInputWithDefaults() *UserUpdateInput {
 
 // GetCustomdata returns the Customdata field value if set, zero value otherwise.
 func (o *UserUpdateInput) GetCustomdata() map[string]interface{} {
-	if o == nil || isNil(o.Customdata) {
+	if o == nil || IsNil(o.Customdata) {
 		var ret map[string]interface{}
 		return ret
 	}
@@ -60,7 +60,7 @@ func (o *UserUpdateInput) GetCustomdata() map[string]interface{} {
 // GetCustomdataOk returns a tuple with the Customdata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserUpdateInput) GetCustomdataOk() (map[string]interface{}, bool) {
-	if o == nil || isNil(o.Customdata) {
+	if o == nil || IsNil(o.Customdata) {
 		return map[string]interface{}{}, false
 	}
 	return o.Customdata, true
@@ -68,7 +68,7 @@ func (o *UserUpdateInput) GetCustomdataOk() (map[string]interface{}, bool) {
 
 // HasCustomdata returns a boolean if a field has been set.
 func (o *UserUpdateInput) HasCustomdata() bool {
-	if o != nil && !isNil(o.Customdata) {
+	if o != nil && !IsNil(o.Customdata) {
 		return true
 	}
 
@@ -82,7 +82,7 @@ func (o *UserUpdateInput) SetCustomdata(v map[string]interface{}) {
 
 // GetFirstName returns the FirstName field value if set, zero value otherwise.
 func (o *UserUpdateInput) GetFirstName() string {
-	if o == nil || isNil(o.FirstName) {
+	if o == nil || IsNil(o.FirstName) {
 		var ret string
 		return ret
 	}
@@ -92,7 +92,7 @@ func (o *UserUpdateInput) GetFirstName() string {
 // GetFirstNameOk returns a tuple with the FirstName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserUpdateInput) GetFirstNameOk() (*string, bool) {
-	if o == nil || isNil(o.FirstName) {
+	if o == nil || IsNil(o.FirstName) {
 		return nil, false
 	}
 	return o.FirstName, true
@@ -100,7 +100,7 @@ func (o *UserUpdateInput) GetFirstNameOk() (*string, bool) {
 
 // HasFirstName returns a boolean if a field has been set.
 func (o *UserUpdateInput) HasFirstName() bool {
-	if o != nil && !isNil(o.FirstName) {
+	if o != nil && !IsNil(o.FirstName) {
 		return true
 	}
 
@@ -114,7 +114,7 @@ func (o *UserUpdateInput) SetFirstName(v string) {
 
 // GetLastName returns the LastName field value if set, zero value otherwise.
 func (o *UserUpdateInput) GetLastName() string {
-	if o == nil || isNil(o.LastName) {
+	if o == nil || IsNil(o.LastName) {
 		var ret string
 		return ret
 	}
@@ -124,7 +124,7 @@ func (o *UserUpdateInput) GetLastName() string {
 // GetLastNameOk returns a tuple with the LastName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserUpdateInput) GetLastNameOk() (*string, bool) {
-	if o == nil || isNil(o.LastName) {
+	if o == nil || IsNil(o.LastName) {
 		return nil, false
 	}
 	return o.LastName, true
@@ -132,7 +132,7 @@ func (o *UserUpdateInput) GetLastNameOk() (*string, bool) {
 
 // HasLastName returns a boolean if a field has been set.
 func (o *UserUpdateInput) HasLastName() bool {
-	if o != nil && !isNil(o.LastName) {
+	if o != nil && !IsNil(o.LastName) {
 		return true
 	}
 
@@ -146,7 +146,7 @@ func (o *UserUpdateInput) SetLastName(v string) {
 
 // GetPassword returns the Password field value if set, zero value otherwise.
 func (o *UserUpdateInput) GetPassword() string {
-	if o == nil || isNil(o.Password) {
+	if o == nil || IsNil(o.Password) {
 		var ret string
 		return ret
 	}
@@ -156,7 +156,7 @@ func (o *UserUpdateInput) GetPassword() string {
 // GetPasswordOk returns a tuple with the Password field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserUpdateInput) GetPasswordOk() (*string, bool) {
-	if o == nil || isNil(o.Password) {
+	if o == nil || IsNil(o.Password) {
 		return nil, false
 	}
 	return o.Password, true
@@ -164,7 +164,7 @@ func (o *UserUpdateInput) GetPasswordOk() (*string, bool) {
 
 // HasPassword returns a boolean if a field has been set.
 func (o *UserUpdateInput) HasPassword() bool {
-	if o != nil && !isNil(o.Password) {
+	if o != nil && !IsNil(o.Password) {
 		return true
 	}
 
@@ -178,7 +178,7 @@ func (o *UserUpdateInput) SetPassword(v string) {
 
 // GetPhoneNumber returns the PhoneNumber field value if set, zero value otherwise.
 func (o *UserUpdateInput) GetPhoneNumber() string {
-	if o == nil || isNil(o.PhoneNumber) {
+	if o == nil || IsNil(o.PhoneNumber) {
 		var ret string
 		return ret
 	}
@@ -188,7 +188,7 @@ func (o *UserUpdateInput) GetPhoneNumber() string {
 // GetPhoneNumberOk returns a tuple with the PhoneNumber field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserUpdateInput) GetPhoneNumberOk() (*string, bool) {
-	if o == nil || isNil(o.PhoneNumber) {
+	if o == nil || IsNil(o.PhoneNumber) {
 		return nil, false
 	}
 	return o.PhoneNumber, true
@@ -196,7 +196,7 @@ func (o *UserUpdateInput) GetPhoneNumberOk() (*string, bool) {
 
 // HasPhoneNumber returns a boolean if a field has been set.
 func (o *UserUpdateInput) HasPhoneNumber() bool {
-	if o != nil && !isNil(o.PhoneNumber) {
+	if o != nil && !IsNil(o.PhoneNumber) {
 		return true
 	}
 
@@ -210,7 +210,7 @@ func (o *UserUpdateInput) SetPhoneNumber(v string) {
 
 // GetTimezone returns the Timezone field value if set, zero value otherwise.
 func (o *UserUpdateInput) GetTimezone() string {
-	if o == nil || isNil(o.Timezone) {
+	if o == nil || IsNil(o.Timezone) {
 		var ret string
 		return ret
 	}
@@ -220,7 +220,7 @@ func (o *UserUpdateInput) GetTimezone() string {
 // GetTimezoneOk returns a tuple with the Timezone field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserUpdateInput) GetTimezoneOk() (*string, bool) {
-	if o == nil || isNil(o.Timezone) {
+	if o == nil || IsNil(o.Timezone) {
 		return nil, false
 	}
 	return o.Timezone, true
@@ -228,7 +228,7 @@ func (o *UserUpdateInput) GetTimezoneOk() (*string, bool) {
 
 // HasTimezone returns a boolean if a field has been set.
 func (o *UserUpdateInput) HasTimezone() bool {
-	if o != nil && !isNil(o.Timezone) {
+	if o != nil && !IsNil(o.Timezone) {
 		return true
 	}
 
@@ -250,22 +250,22 @@ func (o UserUpdateInput) MarshalJSON() ([]byte, error) {
 
 func (o UserUpdateInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Customdata) {
+	if !IsNil(o.Customdata) {
 		toSerialize["customdata"] = o.Customdata
 	}
-	if !isNil(o.FirstName) {
+	if !IsNil(o.FirstName) {
 		toSerialize["first_name"] = o.FirstName
 	}
-	if !isNil(o.LastName) {
+	if !IsNil(o.LastName) {
 		toSerialize["last_name"] = o.LastName
 	}
-	if !isNil(o.Password) {
+	if !IsNil(o.Password) {
 		toSerialize["password"] = o.Password
 	}
-	if !isNil(o.PhoneNumber) {
+	if !IsNil(o.PhoneNumber) {
 		toSerialize["phone_number"] = o.PhoneNumber
 	}
-	if !isNil(o.Timezone) {
+	if !IsNil(o.Timezone) {
 		toSerialize["timezone"] = o.Timezone
 	}
 

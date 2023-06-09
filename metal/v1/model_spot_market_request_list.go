@@ -45,7 +45,7 @@ func NewSpotMarketRequestListWithDefaults() *SpotMarketRequestList {
 
 // GetSpotMarketRequests returns the SpotMarketRequests field value if set, zero value otherwise.
 func (o *SpotMarketRequestList) GetSpotMarketRequests() []SpotMarketRequest {
-	if o == nil || isNil(o.SpotMarketRequests) {
+	if o == nil || IsNil(o.SpotMarketRequests) {
 		var ret []SpotMarketRequest
 		return ret
 	}
@@ -55,7 +55,7 @@ func (o *SpotMarketRequestList) GetSpotMarketRequests() []SpotMarketRequest {
 // GetSpotMarketRequestsOk returns a tuple with the SpotMarketRequests field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SpotMarketRequestList) GetSpotMarketRequestsOk() ([]SpotMarketRequest, bool) {
-	if o == nil || isNil(o.SpotMarketRequests) {
+	if o == nil || IsNil(o.SpotMarketRequests) {
 		return nil, false
 	}
 	return o.SpotMarketRequests, true
@@ -63,7 +63,7 @@ func (o *SpotMarketRequestList) GetSpotMarketRequestsOk() ([]SpotMarketRequest, 
 
 // HasSpotMarketRequests returns a boolean if a field has been set.
 func (o *SpotMarketRequestList) HasSpotMarketRequests() bool {
-	if o != nil && !isNil(o.SpotMarketRequests) {
+	if o != nil && !IsNil(o.SpotMarketRequests) {
 		return true
 	}
 
@@ -85,7 +85,7 @@ func (o SpotMarketRequestList) MarshalJSON() ([]byte, error) {
 
 func (o SpotMarketRequestList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.SpotMarketRequests) {
+	if !IsNil(o.SpotMarketRequests) {
 		toSerialize["spot_market_requests"] = o.SpotMarketRequests
 	}
 
