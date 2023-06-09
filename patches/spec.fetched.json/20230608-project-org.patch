@@ -1,0 +1,13 @@
+diff --git a/spec/oas3.patched/components/schemas/Project.yaml b/spec/oas3.patched/components/schemas/Project.yaml
+index b962756..7d84a49 100644
+--- a/spec/oas3.patched/components/schemas/Project.yaml
++++ b/spec/oas3.patched/components/schemas/Project.yaml
+@@ -33,6 +31,8 @@ properties:
+     type: string
+   network_status:
+     type: object
++  organization:
++    $ref: './Organization.yaml'
+   payment_method:
+     $ref: './Href.yaml'
+   ssh_keys:
