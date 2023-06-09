@@ -3,14 +3,13 @@
 [![Experimental](https://img.shields.io/badge/Stability-Experimental-red.svg)](https://github.com/equinix-labs/equinix-labs/blob/main/uniform-standards.md)
 
 > **[Experimental](https://github.com/equinix-labs/equinix-labs/blob/main/experimental-statement.md)**
-> This is experimental. Don't use it in production. Examples demonstrate that this client is usable. Please submit patches and open issues with your experience. This repo contains Go code generated from a customized [spec/oas3.combined/openapi.yaml](spec/oas3.combined/openapi.yaml) based on the [Equinix Metal API spec](https://api.equinix.com/metal/v1/api-docs).  The client is generated using the Go client support built into the [OpenAPITools openapi-generator](https://github.com/OpenAPITools/openapi-generator).
+> This is experimental. Don't use it in production. Examples demonstrate that this client is usable. Please submit patches and open issues with your experience. This repo contains Go code generated from a [customized OpenAPI specification](spec/oas3.patched) based on the [Equinix Metal API spec](https://api.equinix.com/metal/v1/api-docs).  The client is generated using the Go client support built into the [OpenAPITools openapi-generator](https://github.com/OpenAPITools/openapi-generator).
 
 ## Contents
 
 - `Makefile` includes tasks to fetch the API spec, apply patches, and generate a client
 - `spec/oas3.fetched` a directory of the latest fetched OpenAPI spec
 - `spec/oas3.patched` a directory of the latest patched OpenAPI spec
-- `spec/oas3.combined/openapi.yaml` the patched OpenAPI spec combined into a single file
 - `patches/spec.fetched.json/*.patch` patch files to apply against the fetched OpenAPI spec
 - `patches/post/*.patch` patch files to apply against the generated Go code
 - `examples/` hand crafted examples to demonstrate usage
