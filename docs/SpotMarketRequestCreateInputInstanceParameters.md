@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **Features** | Pointer to **[]string** |  | [optional] 
 **Hostname** | Pointer to **string** |  | [optional] 
 **Hostnames** | Pointer to **[]string** |  | [optional] 
-**Locked** | Pointer to **bool** |  | [optional] 
+**Locked** | Pointer to **bool** | Whether the device should be locked, preventing accidental deletion. | [optional] 
 **NoSshKeys** | Pointer to **bool** |  | [optional] 
 **OperatingSystem** | Pointer to **string** |  | [optional] 
 **Plan** | Pointer to **string** |  | [optional] 

@@ -1881,18 +1881,26 @@ func (a *DevicesApiService) FindInstanceBandwidthExecute(r ApiFindInstanceBandwi
 }
 
 type ApiFindOrganizationDevicesRequest struct {
-	ctx        context.Context
-	ApiService *DevicesApiService
-	id         string
-	facility   *string
-	hostname   *string
-	reserved   *bool
-	tag        *string
-	type_      *string
-	include    *[]string
-	exclude    *[]string
-	page       *int32
-	perPage    *int32
+	ctx                context.Context
+	ApiService         *DevicesApiService
+	id                 string
+	categories         *[]string
+	facility           *string
+	hostname           *string
+	reserved           *bool
+	tag                *string
+	type_              *string
+	hasTerminationTime *bool
+	include            *[]string
+	exclude            *[]string
+	page               *int32
+	perPage            *int32
+}
+
+// Filter by plan category
+func (r ApiFindOrganizationDevicesRequest) Categories(categories []string) ApiFindOrganizationDevicesRequest {
+	r.categories = &categories
+	return r
 }
 
 // Filter by device facility
@@ -1907,7 +1915,7 @@ func (r ApiFindOrganizationDevicesRequest) Hostname(hostname string) ApiFindOrga
 	return r
 }
 
-// Filter only reserved instances
+// Filter only reserved instances. When set to true, only include reserved instances. When set to false, only include on-demand instances.
 func (r ApiFindOrganizationDevicesRequest) Reserved(reserved bool) ApiFindOrganizationDevicesRequest {
 	r.reserved = &reserved
 	return r
@@ -1922,6 +1930,12 @@ func (r ApiFindOrganizationDevicesRequest) Tag(tag string) ApiFindOrganizationDe
 // Filter by instance type (ondemand,spot,reserved)
 func (r ApiFindOrganizationDevicesRequest) Type_(type_ string) ApiFindOrganizationDevicesRequest {
 	r.type_ = &type_
+	return r
+}
+
+// Filter only instances marked for termination. When set to true, only include instances that have a termination time. When set to false, only include instances that do not have a termination time.
+func (r ApiFindOrganizationDevicesRequest) HasTerminationTime(hasTerminationTime bool) ApiFindOrganizationDevicesRequest {
+	r.hasTerminationTime = &hasTerminationTime
 	return r
 }
 
@@ -1993,6 +2007,9 @@ func (a *DevicesApiService) FindOrganizationDevicesExecute(r ApiFindOrganization
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.categories != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "categories", r.categories, "csv")
+	}
 	if r.facility != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "facility", r.facility, "")
 	}
@@ -2007,6 +2024,9 @@ func (a *DevicesApiService) FindOrganizationDevicesExecute(r ApiFindOrganization
 	}
 	if r.type_ != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "type", r.type_, "")
+	}
+	if r.hasTerminationTime != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "has_termination_time", r.hasTerminationTime, "")
 	}
 	if r.include != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "csv")
@@ -2121,18 +2141,26 @@ func (a *DevicesApiService) FindOrganizationDevicesExecute(r ApiFindOrganization
 }
 
 type ApiFindProjectDevicesRequest struct {
-	ctx        context.Context
-	ApiService *DevicesApiService
-	id         string
-	facility   *string
-	hostname   *string
-	reserved   *bool
-	tag        *string
-	type_      *string
-	include    *[]string
-	exclude    *[]string
-	page       *int32
-	perPage    *int32
+	ctx                context.Context
+	ApiService         *DevicesApiService
+	id                 string
+	categories         *[]string
+	facility           *string
+	hostname           *string
+	reserved           *bool
+	tag                *string
+	type_              *string
+	hasTerminationTime *bool
+	include            *[]string
+	exclude            *[]string
+	page               *int32
+	perPage            *int32
+}
+
+// Filter by plan category
+func (r ApiFindProjectDevicesRequest) Categories(categories []string) ApiFindProjectDevicesRequest {
+	r.categories = &categories
+	return r
 }
 
 // Filter by device facility
@@ -2147,7 +2175,7 @@ func (r ApiFindProjectDevicesRequest) Hostname(hostname string) ApiFindProjectDe
 	return r
 }
 
-// Filter only reserved instances
+// Filter only reserved instances. When set to true, only include reserved instances. When set to false, only include on-demand instances.
 func (r ApiFindProjectDevicesRequest) Reserved(reserved bool) ApiFindProjectDevicesRequest {
 	r.reserved = &reserved
 	return r
@@ -2162,6 +2190,12 @@ func (r ApiFindProjectDevicesRequest) Tag(tag string) ApiFindProjectDevicesReque
 // Filter by instance type (ondemand,spot,reserved)
 func (r ApiFindProjectDevicesRequest) Type_(type_ string) ApiFindProjectDevicesRequest {
 	r.type_ = &type_
+	return r
+}
+
+// Filter only instances marked for termination. When set to true, only include instances that have a termination time. When set to false, only include instances that do not have a termination time.
+func (r ApiFindProjectDevicesRequest) HasTerminationTime(hasTerminationTime bool) ApiFindProjectDevicesRequest {
+	r.hasTerminationTime = &hasTerminationTime
 	return r
 }
 
@@ -2233,6 +2267,9 @@ func (a *DevicesApiService) FindProjectDevicesExecute(r ApiFindProjectDevicesReq
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.categories != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "categories", r.categories, "csv")
+	}
 	if r.facility != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "facility", r.facility, "")
 	}
@@ -2247,6 +2284,9 @@ func (a *DevicesApiService) FindProjectDevicesExecute(r ApiFindProjectDevicesReq
 	}
 	if r.type_ != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "type", r.type_, "")
+	}
+	if r.hasTerminationTime != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "has_termination_time", r.hasTerminationTime, "")
 	}
 	if r.include != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "csv")

@@ -24,10 +24,12 @@ type Plan struct {
 	AvailableIn []PlanAvailableInInner `json:"available_in,omitempty"`
 	// Shows which metros the plan is available in, and the metro-based price if it is different from the default price.
 	AvailableInMetros []PlanAvailableInMetrosInner `json:"available_in_metros,omitempty"`
-	Class             *string                      `json:"class,omitempty"`
-	Description       *string                      `json:"description,omitempty"`
-	DeploymentTypes   []string                     `json:"deployment_types,omitempty"`
-	Id                *string                      `json:"id,omitempty"`
+	// Categories of the plan, like compute or storage. A Plan can belong to multiple categories.
+	Categories      []string `json:"categories,omitempty"`
+	Class           *string  `json:"class,omitempty"`
+	Description     *string  `json:"description,omitempty"`
+	DeploymentTypes []string `json:"deployment_types,omitempty"`
+	Id              *string  `json:"id,omitempty"`
 	// Deprecated. Always return false
 	Legacy  *bool                  `json:"legacy,omitempty"`
 	Line    *string                `json:"line,omitempty"`
@@ -121,6 +123,38 @@ func (o *Plan) HasAvailableInMetros() bool {
 // SetAvailableInMetros gets a reference to the given []PlanAvailableInMetrosInner and assigns it to the AvailableInMetros field.
 func (o *Plan) SetAvailableInMetros(v []PlanAvailableInMetrosInner) {
 	o.AvailableInMetros = v
+}
+
+// GetCategories returns the Categories field value if set, zero value otherwise.
+func (o *Plan) GetCategories() []string {
+	if o == nil || IsNil(o.Categories) {
+		var ret []string
+		return ret
+	}
+	return o.Categories
+}
+
+// GetCategoriesOk returns a tuple with the Categories field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Plan) GetCategoriesOk() ([]string, bool) {
+	if o == nil || IsNil(o.Categories) {
+		return nil, false
+	}
+	return o.Categories, true
+}
+
+// HasCategories returns a boolean if a field has been set.
+func (o *Plan) HasCategories() bool {
+	if o != nil && !IsNil(o.Categories) {
+		return true
+	}
+
+	return false
+}
+
+// SetCategories gets a reference to the given []string and assigns it to the Categories field.
+func (o *Plan) SetCategories(v []string) {
+	o.Categories = v
 }
 
 // GetClass returns the Class field value if set, zero value otherwise.
@@ -491,6 +525,9 @@ func (o Plan) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.AvailableInMetros) {
 		toSerialize["available_in_metros"] = o.AvailableInMetros
 	}
+	if !IsNil(o.Categories) {
+		toSerialize["categories"] = o.Categories
+	}
 	if !IsNil(o.Class) {
 		toSerialize["class"] = o.Class
 	}
@@ -544,6 +581,7 @@ func (o *Plan) UnmarshalJSON(bytes []byte) (err error) {
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
 		delete(additionalProperties, "available_in")
 		delete(additionalProperties, "available_in_metros")
+		delete(additionalProperties, "categories")
 		delete(additionalProperties, "class")
 		delete(additionalProperties, "description")
 		delete(additionalProperties, "deployment_types")

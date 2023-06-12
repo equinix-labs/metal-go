@@ -20,6 +20,7 @@ var _ MappedNullable = &ServerInfo{}
 
 // ServerInfo struct for ServerInfo
 type ServerInfo struct {
+	// Deprecated
 	Facility             *string `json:"facility,omitempty"`
 	Plan                 *string `json:"plan,omitempty"`
 	Quantity             *string `json:"quantity,omitempty"`
@@ -46,6 +47,7 @@ func NewServerInfoWithDefaults() *ServerInfo {
 }
 
 // GetFacility returns the Facility field value if set, zero value otherwise.
+// Deprecated
 func (o *ServerInfo) GetFacility() string {
 	if o == nil || IsNil(o.Facility) {
 		var ret string
@@ -56,6 +58,7 @@ func (o *ServerInfo) GetFacility() string {
 
 // GetFacilityOk returns a tuple with the Facility field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *ServerInfo) GetFacilityOk() (*string, bool) {
 	if o == nil || IsNil(o.Facility) {
 		return nil, false
@@ -73,6 +76,7 @@ func (o *ServerInfo) HasFacility() bool {
 }
 
 // SetFacility gets a reference to the given string and assigns it to the Facility field.
+// Deprecated
 func (o *ServerInfo) SetFacility(v string) {
 	o.Facility = &v
 }

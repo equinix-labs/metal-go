@@ -323,6 +323,7 @@ type ApiFindSelfServiceReservationsRequest struct {
 	projectId  string
 	page       *int32
 	perPage    *int32
+	categories *[]string
 }
 
 // Page to return
@@ -334,6 +335,12 @@ func (r ApiFindSelfServiceReservationsRequest) Page(page int32) ApiFindSelfServi
 // Items returned per page
 func (r ApiFindSelfServiceReservationsRequest) PerPage(perPage int32) ApiFindSelfServiceReservationsRequest {
 	r.perPage = &perPage
+	return r
+}
+
+// Filter reservations by items category
+func (r ApiFindSelfServiceReservationsRequest) Categories(categories []string) ApiFindSelfServiceReservationsRequest {
+	r.categories = &categories
 	return r
 }
 
@@ -386,6 +393,9 @@ func (a *SelfServiceReservationsApiService) FindSelfServiceReservationsExecute(r
 	}
 	if r.perPage != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "per_page", r.perPage, "")
+	}
+	if r.categories != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "categories", r.categories, "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

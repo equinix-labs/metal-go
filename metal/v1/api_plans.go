@@ -26,9 +26,16 @@ type PlansApiService service
 type ApiFindPlansRequest struct {
 	ctx        context.Context
 	ApiService *PlansApiService
+	categories *[]string
 	type_      *string
 	include    *[]string
 	exclude    *[]string
+}
+
+// Filter plans by its category
+func (r ApiFindPlansRequest) Categories(categories []string) ApiFindPlansRequest {
+	r.categories = &categories
+	return r
 }
 
 // Filter plans by its plan type
@@ -90,6 +97,9 @@ func (a *PlansApiService) FindPlansExecute(r ApiFindPlansRequest) (*PlanList, *h
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.categories != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "categories", r.categories, "csv")
+	}
 	if r.type_ != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "type", r.type_, "")
 	}

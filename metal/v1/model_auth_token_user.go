@@ -21,27 +21,29 @@ var _ MappedNullable = &AuthTokenUser{}
 
 // AuthTokenUser struct for AuthTokenUser
 type AuthTokenUser struct {
-	AvatarThumbUrl       *string                `json:"avatar_thumb_url,omitempty"`
-	AvatarUrl            *string                `json:"avatar_url,omitempty"`
-	CreatedAt            *time.Time             `json:"created_at,omitempty"`
-	Customdata           map[string]interface{} `json:"customdata,omitempty"`
-	Email                *string                `json:"email,omitempty"`
-	Emails               []Href                 `json:"emails,omitempty"`
-	FirstName            *string                `json:"first_name,omitempty"`
-	FraudScore           *string                `json:"fraud_score,omitempty"`
-	FullName             *string                `json:"full_name,omitempty"`
-	Href                 *string                `json:"href,omitempty"`
-	Id                   *string                `json:"id,omitempty"`
-	LastLoginAt          *time.Time             `json:"last_login_at,omitempty"`
-	LastName             *string                `json:"last_name,omitempty"`
-	MaxOrganizations     *int32                 `json:"max_organizations,omitempty"`
-	MaxProjects          *int32                 `json:"max_projects,omitempty"`
-	PhoneNumber          *string                `json:"phone_number,omitempty"`
-	ShortId              *string                `json:"short_id,omitempty"`
-	Timezone             *string                `json:"timezone,omitempty"`
-	TwoFactorAuth        *string                `json:"two_factor_auth,omitempty"`
-	UpdatedAt            *time.Time             `json:"updated_at,omitempty"`
-	AdditionalProperties map[string]interface{}
+	AvatarThumbUrl        *string                `json:"avatar_thumb_url,omitempty"`
+	AvatarUrl             *string                `json:"avatar_url,omitempty"`
+	CreatedAt             *time.Time             `json:"created_at,omitempty"`
+	Customdata            map[string]interface{} `json:"customdata,omitempty"`
+	DefaultOrganizationId *string                `json:"default_organization_id,omitempty"`
+	DefaultProjectId      *string                `json:"default_project_id,omitempty"`
+	Email                 *string                `json:"email,omitempty"`
+	Emails                []Href                 `json:"emails,omitempty"`
+	FirstName             *string                `json:"first_name,omitempty"`
+	FraudScore            *string                `json:"fraud_score,omitempty"`
+	FullName              *string                `json:"full_name,omitempty"`
+	Href                  *string                `json:"href,omitempty"`
+	Id                    *string                `json:"id,omitempty"`
+	LastLoginAt           *time.Time             `json:"last_login_at,omitempty"`
+	LastName              *string                `json:"last_name,omitempty"`
+	MaxOrganizations      *int32                 `json:"max_organizations,omitempty"`
+	MaxProjects           *int32                 `json:"max_projects,omitempty"`
+	PhoneNumber           *string                `json:"phone_number,omitempty"`
+	ShortId               *string                `json:"short_id,omitempty"`
+	Timezone              *string                `json:"timezone,omitempty"`
+	TwoFactorAuth         *string                `json:"two_factor_auth,omitempty"`
+	UpdatedAt             *time.Time             `json:"updated_at,omitempty"`
+	AdditionalProperties  map[string]interface{}
 }
 
 type _AuthTokenUser AuthTokenUser
@@ -189,6 +191,70 @@ func (o *AuthTokenUser) HasCustomdata() bool {
 // SetCustomdata gets a reference to the given map[string]interface{} and assigns it to the Customdata field.
 func (o *AuthTokenUser) SetCustomdata(v map[string]interface{}) {
 	o.Customdata = v
+}
+
+// GetDefaultOrganizationId returns the DefaultOrganizationId field value if set, zero value otherwise.
+func (o *AuthTokenUser) GetDefaultOrganizationId() string {
+	if o == nil || IsNil(o.DefaultOrganizationId) {
+		var ret string
+		return ret
+	}
+	return *o.DefaultOrganizationId
+}
+
+// GetDefaultOrganizationIdOk returns a tuple with the DefaultOrganizationId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AuthTokenUser) GetDefaultOrganizationIdOk() (*string, bool) {
+	if o == nil || IsNil(o.DefaultOrganizationId) {
+		return nil, false
+	}
+	return o.DefaultOrganizationId, true
+}
+
+// HasDefaultOrganizationId returns a boolean if a field has been set.
+func (o *AuthTokenUser) HasDefaultOrganizationId() bool {
+	if o != nil && !IsNil(o.DefaultOrganizationId) {
+		return true
+	}
+
+	return false
+}
+
+// SetDefaultOrganizationId gets a reference to the given string and assigns it to the DefaultOrganizationId field.
+func (o *AuthTokenUser) SetDefaultOrganizationId(v string) {
+	o.DefaultOrganizationId = &v
+}
+
+// GetDefaultProjectId returns the DefaultProjectId field value if set, zero value otherwise.
+func (o *AuthTokenUser) GetDefaultProjectId() string {
+	if o == nil || IsNil(o.DefaultProjectId) {
+		var ret string
+		return ret
+	}
+	return *o.DefaultProjectId
+}
+
+// GetDefaultProjectIdOk returns a tuple with the DefaultProjectId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AuthTokenUser) GetDefaultProjectIdOk() (*string, bool) {
+	if o == nil || IsNil(o.DefaultProjectId) {
+		return nil, false
+	}
+	return o.DefaultProjectId, true
+}
+
+// HasDefaultProjectId returns a boolean if a field has been set.
+func (o *AuthTokenUser) HasDefaultProjectId() bool {
+	if o != nil && !IsNil(o.DefaultProjectId) {
+		return true
+	}
+
+	return false
+}
+
+// SetDefaultProjectId gets a reference to the given string and assigns it to the DefaultProjectId field.
+func (o *AuthTokenUser) SetDefaultProjectId(v string) {
+	o.DefaultProjectId = &v
 }
 
 // GetEmail returns the Email field value if set, zero value otherwise.
@@ -725,6 +791,12 @@ func (o AuthTokenUser) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Customdata) {
 		toSerialize["customdata"] = o.Customdata
 	}
+	if !IsNil(o.DefaultOrganizationId) {
+		toSerialize["default_organization_id"] = o.DefaultOrganizationId
+	}
+	if !IsNil(o.DefaultProjectId) {
+		toSerialize["default_project_id"] = o.DefaultProjectId
+	}
 	if !IsNil(o.Email) {
 		toSerialize["email"] = o.Email
 	}
@@ -795,6 +867,8 @@ func (o *AuthTokenUser) UnmarshalJSON(bytes []byte) (err error) {
 		delete(additionalProperties, "avatar_url")
 		delete(additionalProperties, "created_at")
 		delete(additionalProperties, "customdata")
+		delete(additionalProperties, "default_organization_id")
+		delete(additionalProperties, "default_project_id")
 		delete(additionalProperties, "email")
 		delete(additionalProperties, "emails")
 		delete(additionalProperties, "first_name")

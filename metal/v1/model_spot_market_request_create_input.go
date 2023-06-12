@@ -21,9 +21,10 @@ var _ MappedNullable = &SpotMarketRequestCreateInput{}
 
 // SpotMarketRequestCreateInput struct for SpotMarketRequestCreateInput
 type SpotMarketRequestCreateInput struct {
-	DevicesMax         *int32                                          `json:"devices_max,omitempty"`
-	DevicesMin         *int32                                          `json:"devices_min,omitempty"`
-	EndAt              *time.Time                                      `json:"end_at,omitempty"`
+	DevicesMax *int32     `json:"devices_max,omitempty"`
+	DevicesMin *int32     `json:"devices_min,omitempty"`
+	EndAt      *time.Time `json:"end_at,omitempty"`
+	// Deprecated
 	Facilities         []string                                        `json:"facilities,omitempty"`
 	InstanceParameters *SpotMarketRequestCreateInputInstanceParameters `json:"instance_parameters,omitempty"`
 	MaxBidPrice        *float32                                        `json:"max_bid_price,omitempty"`
@@ -148,6 +149,7 @@ func (o *SpotMarketRequestCreateInput) SetEndAt(v time.Time) {
 }
 
 // GetFacilities returns the Facilities field value if set, zero value otherwise.
+// Deprecated
 func (o *SpotMarketRequestCreateInput) GetFacilities() []string {
 	if o == nil || IsNil(o.Facilities) {
 		var ret []string
@@ -158,6 +160,7 @@ func (o *SpotMarketRequestCreateInput) GetFacilities() []string {
 
 // GetFacilitiesOk returns a tuple with the Facilities field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *SpotMarketRequestCreateInput) GetFacilitiesOk() ([]string, bool) {
 	if o == nil || IsNil(o.Facilities) {
 		return nil, false
@@ -175,6 +178,7 @@ func (o *SpotMarketRequestCreateInput) HasFacilities() bool {
 }
 
 // SetFacilities gets a reference to the given []string and assigns it to the Facilities field.
+// Deprecated
 func (o *SpotMarketRequestCreateInput) SetFacilities(v []string) {
 	o.Facilities = v
 }

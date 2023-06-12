@@ -53,6 +53,8 @@ Provides a listing of available datacenters where you can provision Packet devic
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiFindFacilitiesRequest
+
+Deprecated
 */
 func (a *FacilitiesApiService) FindFacilities(ctx context.Context) ApiFindFacilitiesRequest {
 	return ApiFindFacilitiesRequest{
@@ -64,6 +66,8 @@ func (a *FacilitiesApiService) FindFacilities(ctx context.Context) ApiFindFacili
 // Execute executes the request
 //
 //	@return FacilityList
+//
+// Deprecated
 func (a *FacilitiesApiService) FindFacilitiesExecute(r ApiFindFacilitiesRequest) (*FacilityList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -199,6 +203,8 @@ Returns a listing of available datacenters for the given organization
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param id Organization UUID
 	@return ApiFindFacilitiesByOrganizationRequest
+
+Deprecated
 */
 func (a *FacilitiesApiService) FindFacilitiesByOrganization(ctx context.Context, id string) ApiFindFacilitiesByOrganizationRequest {
 	return ApiFindFacilitiesByOrganizationRequest{
@@ -211,6 +217,8 @@ func (a *FacilitiesApiService) FindFacilitiesByOrganization(ctx context.Context,
 // Execute executes the request
 //
 //	@return FacilityList
+//
+// Deprecated
 func (a *FacilitiesApiService) FindFacilitiesByOrganizationExecute(r ApiFindFacilitiesByOrganizationRequest) (*FacilityList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -369,6 +377,8 @@ Returns a listing of available datacenters for the given project
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param id Project UUID
 	@return ApiFindFacilitiesByProjectRequest
+
+Deprecated
 */
 func (a *FacilitiesApiService) FindFacilitiesByProject(ctx context.Context, id string) ApiFindFacilitiesByProjectRequest {
 	return ApiFindFacilitiesByProjectRequest{
@@ -381,6 +391,8 @@ func (a *FacilitiesApiService) FindFacilitiesByProject(ctx context.Context, id s
 // Execute executes the request
 //
 //	@return FacilityList
+//
+// Deprecated
 func (a *FacilitiesApiService) FindFacilitiesByProjectExecute(r ApiFindFacilitiesByProjectRequest) (*FacilityList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet

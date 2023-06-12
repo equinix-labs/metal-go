@@ -21,6 +21,7 @@ var _ MappedNullable = &FacilityInput{}
 // FacilityInput struct for FacilityInput
 type FacilityInput struct {
 	// The datacenter where the device should be created.  Either metro or facility must be provided.  The API will accept either a single facility `{ \"facility\": \"f1\" }`, or it can be instructed to create the device in the best available datacenter `{ \"facility\": \"any\" }`.  Additionally it is possible to set a prioritized location selection. For example `{ \"facility\": [\"f3\", \"f2\", \"any\"] }` can be used to prioritize `f3` and then `f2` before accepting `any` facility. If none of the facilities provided have availability for the requested device the request will fail.
+	// Deprecated
 	Facility             []string `json:"facility"`
 	AdditionalProperties map[string]interface{}
 }
@@ -46,6 +47,7 @@ func NewFacilityInputWithDefaults() *FacilityInput {
 }
 
 // GetFacility returns the Facility field value
+// Deprecated
 func (o *FacilityInput) GetFacility() []string {
 	if o == nil {
 		var ret []string
@@ -57,6 +59,7 @@ func (o *FacilityInput) GetFacility() []string {
 
 // GetFacilityOk returns a tuple with the Facility field value
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *FacilityInput) GetFacilityOk() ([]string, bool) {
 	if o == nil {
 		return nil, false
@@ -65,6 +68,7 @@ func (o *FacilityInput) GetFacilityOk() ([]string, bool) {
 }
 
 // SetFacility sets field value
+// Deprecated
 func (o *FacilityInput) SetFacility(v []string) {
 	o.Facility = v
 }

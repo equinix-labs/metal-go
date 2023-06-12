@@ -12,7 +12,6 @@ Name | Type | Description | Notes
 **FirstName** | **string** |  | 
 **LastName** | **string** |  | 
 **Level** | Pointer to **string** |  | [optional] 
-**Locked** | Pointer to **bool** |  | [optional] 
 **Password** | Pointer to **string** |  | [optional] 
 **PhoneNumber** | Pointer to **string** |  | [optional] 
 **SocialAccounts** | Pointer to **map[string]interface{}** |  | [optional] 
@@ -226,31 +225,6 @@ SetLevel sets Level field to given value.
 `func (o *UserCreateInput) HasLevel() bool`
 
 HasLevel returns a boolean if a field has been set.
-
-### GetLocked
-
-`func (o *UserCreateInput) GetLocked() bool`
-
-GetLocked returns the Locked field if non-nil, zero value otherwise.
-
-### GetLockedOk
-
-`func (o *UserCreateInput) GetLockedOk() (*bool, bool)`
-
-GetLockedOk returns a tuple with the Locked field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetLocked
-
-`func (o *UserCreateInput) SetLocked(v bool)`
-
-SetLocked sets Locked field to given value.
-
-### HasLocked
-
-`func (o *UserCreateInput) HasLocked() bool`
-
-HasLocked returns a boolean if a field has been set.
 
 ### GetPassword
 

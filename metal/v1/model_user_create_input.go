@@ -30,7 +30,6 @@ type UserCreateInput struct {
 	FirstName            string                 `json:"first_name"`
 	LastName             string                 `json:"last_name"`
 	Level                *string                `json:"level,omitempty"`
-	Locked               *bool                  `json:"locked,omitempty"`
 	Password             *string                `json:"password,omitempty"`
 	PhoneNumber          *string                `json:"phone_number,omitempty"`
 	SocialAccounts       map[string]interface{} `json:"social_accounts,omitempty"`
@@ -295,38 +294,6 @@ func (o *UserCreateInput) HasLevel() bool {
 // SetLevel gets a reference to the given string and assigns it to the Level field.
 func (o *UserCreateInput) SetLevel(v string) {
 	o.Level = &v
-}
-
-// GetLocked returns the Locked field value if set, zero value otherwise.
-func (o *UserCreateInput) GetLocked() bool {
-	if o == nil || IsNil(o.Locked) {
-		var ret bool
-		return ret
-	}
-	return *o.Locked
-}
-
-// GetLockedOk returns a tuple with the Locked field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UserCreateInput) GetLockedOk() (*bool, bool) {
-	if o == nil || IsNil(o.Locked) {
-		return nil, false
-	}
-	return o.Locked, true
-}
-
-// HasLocked returns a boolean if a field has been set.
-func (o *UserCreateInput) HasLocked() bool {
-	if o != nil && !IsNil(o.Locked) {
-		return true
-	}
-
-	return false
-}
-
-// SetLocked gets a reference to the given bool and assigns it to the Locked field.
-func (o *UserCreateInput) SetLocked(v bool) {
-	o.Locked = &v
 }
 
 // GetPassword returns the Password field value if set, zero value otherwise.
@@ -645,9 +612,6 @@ func (o UserCreateInput) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Level) {
 		toSerialize["level"] = o.Level
 	}
-	if !IsNil(o.Locked) {
-		toSerialize["locked"] = o.Locked
-	}
 	if !IsNil(o.Password) {
 		toSerialize["password"] = o.Password
 	}
@@ -701,7 +665,6 @@ func (o *UserCreateInput) UnmarshalJSON(bytes []byte) (err error) {
 		delete(additionalProperties, "first_name")
 		delete(additionalProperties, "last_name")
 		delete(additionalProperties, "level")
-		delete(additionalProperties, "locked")
 		delete(additionalProperties, "password")
 		delete(additionalProperties, "phone_number")
 		delete(additionalProperties, "social_accounts")

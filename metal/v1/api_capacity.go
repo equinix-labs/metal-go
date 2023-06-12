@@ -46,6 +46,8 @@ Validates if a deploy can be fulfilled.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiCheckCapacityForFacilityRequest
+
+Deprecated
 */
 func (a *CapacityApiService) CheckCapacityForFacility(ctx context.Context) ApiCheckCapacityForFacilityRequest {
 	return ApiCheckCapacityForFacilityRequest{
@@ -57,6 +59,8 @@ func (a *CapacityApiService) CheckCapacityForFacility(ctx context.Context) ApiCh
 // Execute executes the request
 //
 //	@return CapacityCheckPerFacilityList
+//
+// Deprecated
 func (a *CapacityApiService) CheckCapacityForFacilityExecute(r ApiCheckCapacityForFacilityRequest) (*CapacityCheckPerFacilityList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
