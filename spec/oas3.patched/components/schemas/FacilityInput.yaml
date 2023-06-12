@@ -2,6 +2,7 @@ required:
   - facility
 properties:
   facility:
+    deprecated: true
     description: |-
       The datacenter where the device should be created.
 

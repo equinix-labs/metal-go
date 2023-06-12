@@ -22,6 +22,7 @@ var _ MappedNullable = &VirtualNetworkCreateInput{}
 type VirtualNetworkCreateInput struct {
 	Description *string `json:"description,omitempty"`
 	// The UUID (or facility code) for the Facility in which to create this Virtual network.
+	// Deprecated
 	Facility *string `json:"facility,omitempty"`
 	// The UUID (or metro code) for the Metro in which to create this Virtual Network.
 	Metro *string `json:"metro,omitempty"`
@@ -82,6 +83,7 @@ func (o *VirtualNetworkCreateInput) SetDescription(v string) {
 }
 
 // GetFacility returns the Facility field value if set, zero value otherwise.
+// Deprecated
 func (o *VirtualNetworkCreateInput) GetFacility() string {
 	if o == nil || IsNil(o.Facility) {
 		var ret string
@@ -92,6 +94,7 @@ func (o *VirtualNetworkCreateInput) GetFacility() string {
 
 // GetFacilityOk returns a tuple with the Facility field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *VirtualNetworkCreateInput) GetFacilityOk() (*string, bool) {
 	if o == nil || IsNil(o.Facility) {
 		return nil, false
@@ -109,6 +112,7 @@ func (o *VirtualNetworkCreateInput) HasFacility() bool {
 }
 
 // SetFacility gets a reference to the given string and assigns it to the Facility field.
+// Deprecated
 func (o *VirtualNetworkCreateInput) SetFacility(v string) {
 	o.Facility = &v
 }

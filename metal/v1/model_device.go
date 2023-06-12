@@ -37,8 +37,9 @@ type Device struct {
 	IpAddresses         []IPAssignment         `json:"ip_addresses,omitempty"`
 	IpxeScriptUrl       *string                `json:"ipxe_script_url,omitempty"`
 	Iqn                 *string                `json:"iqn,omitempty"`
-	Locked              *bool                  `json:"locked,omitempty"`
-	Metro               *DeviceMetro           `json:"metro,omitempty"`
+	// Prevents accidental deletion of this resource when set to true.
+	Locked *bool        `json:"locked,omitempty"`
+	Metro  *DeviceMetro `json:"metro,omitempty"`
 	// By default, servers at Equinix Metal are configured in a “bonded” mode using LACP (Link Aggregation Control Protocol). Each 2-NIC server is configured with a single bond (namely bond0) with both interfaces eth0 and eth1 as members of the bond in a default Layer 3 mode. Some device plans may have a different number of ports and bonds available.
 	NetworkPorts    []Port           `json:"network_ports,omitempty"`
 	OperatingSystem *OperatingSystem `json:"operating_system,omitempty"`
@@ -63,7 +64,7 @@ type Device struct {
 	// Switch short id. This can be used to determine if two devices are connected to the same switch, for example.
 	SwitchUuid *string  `json:"switch_uuid,omitempty"`
 	Tags       []string `json:"tags,omitempty"`
-	// When the device will be terminated. This is commonly set in advance for ephemeral spot market instances but this field may also be set with on-demand and reservation instances to automatically delete the resource at a given time. The termination time can also be used to release a hardware reservation instance at a given time, keeping the reservation open for other uses.  On a spot market device, the termination time will be set automatically when outbid.
+	// When the device will be terminated. If you don't supply timezone info, the timestamp is assumed to be in UTC.  This is commonly set in advance for ephemeral spot market instances but this field may also be set with on-demand and reservation instances to automatically delete the resource at a given time. The termination time can also be used to release a hardware reservation instance at a given time, keeping the reservation open for other uses.  On a spot market device, the termination time will be set automatically when outbid.
 	TerminationTime *time.Time `json:"termination_time,omitempty"`
 	UpdatedAt       *time.Time `json:"updated_at,omitempty"`
 	User            *string    `json:"user,omitempty"`

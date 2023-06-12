@@ -8,6 +8,8 @@ Name | Type | Description | Notes
 **AvatarUrl** | Pointer to **string** |  | [optional] 
 **CreatedAt** | Pointer to **time.Time** |  | [optional] 
 **Customdata** | Pointer to **map[string]interface{}** |  | [optional] 
+**DefaultOrganizationId** | Pointer to **string** |  | [optional] 
+**DefaultProjectId** | Pointer to **string** |  | [optional] 
 **Email** | Pointer to **string** |  | [optional] 
 **Emails** | Pointer to [**[]Href**](Href.md) |  | [optional] 
 **FirstName** | Pointer to **string** |  | [optional] 
@@ -143,6 +145,56 @@ SetCustomdata sets Customdata field to given value.
 `func (o *AuthTokenUser) HasCustomdata() bool`
 
 HasCustomdata returns a boolean if a field has been set.
+
+### GetDefaultOrganizationId
+
+`func (o *AuthTokenUser) GetDefaultOrganizationId() string`
+
+GetDefaultOrganizationId returns the DefaultOrganizationId field if non-nil, zero value otherwise.
+
+### GetDefaultOrganizationIdOk
+
+`func (o *AuthTokenUser) GetDefaultOrganizationIdOk() (*string, bool)`
+
+GetDefaultOrganizationIdOk returns a tuple with the DefaultOrganizationId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDefaultOrganizationId
+
+`func (o *AuthTokenUser) SetDefaultOrganizationId(v string)`
+
+SetDefaultOrganizationId sets DefaultOrganizationId field to given value.
+
+### HasDefaultOrganizationId
+
+`func (o *AuthTokenUser) HasDefaultOrganizationId() bool`
+
+HasDefaultOrganizationId returns a boolean if a field has been set.
+
+### GetDefaultProjectId
+
+`func (o *AuthTokenUser) GetDefaultProjectId() string`
+
+GetDefaultProjectId returns the DefaultProjectId field if non-nil, zero value otherwise.
+
+### GetDefaultProjectIdOk
+
+`func (o *AuthTokenUser) GetDefaultProjectIdOk() (*string, bool)`
+
+GetDefaultProjectIdOk returns a tuple with the DefaultProjectId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDefaultProjectId
+
+`func (o *AuthTokenUser) SetDefaultProjectId(v string)`
+
+SetDefaultProjectId sets DefaultProjectId field to given value.
+
+### HasDefaultProjectId
+
+`func (o *AuthTokenUser) HasDefaultProjectId() bool`
+
+HasDefaultProjectId returns a boolean if a field has been set.
 
 ### GetEmail
 

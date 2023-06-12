@@ -22,6 +22,7 @@ var _ MappedNullable = &DeviceCreateInFacilityInput{}
 // DeviceCreateInFacilityInput struct for DeviceCreateInFacilityInput
 type DeviceCreateInFacilityInput struct {
 	// The datacenter where the device should be created.  Either metro or facility must be provided.  The API will accept either a single facility `{ \"facility\": \"f1\" }`, or it can be instructed to create the device in the best available datacenter `{ \"facility\": \"any\" }`.  Additionally it is possible to set a prioritized location selection. For example `{ \"facility\": [\"f3\", \"f2\", \"any\"] }` can be used to prioritize `f3` and then `f2` before accepting `any` facility. If none of the facilities provided have availability for the requested device the request will fail.
+	// Deprecated
 	Facility []string `json:"facility"`
 	// When true, devices with a `custom_ipxe` OS will always boot to iPXE. The default setting of false ensures that iPXE will be used on only the first boot.
 	AlwaysPxe *bool `json:"always_pxe,omitempty"`
@@ -60,9 +61,10 @@ type DeviceCreateInFacilityInput struct {
 	// The maximum amount to bid for a spot instance.
 	SpotPriceMax *float32 `json:"spot_price_max,omitempty"`
 	// A list of new or existing project ssh_keys that should be authorized to access this device (typically via /root/.ssh/authorized_keys). These keys will also appear in the device metadata.  These keys are added in addition to any keys defined by   `project_ssh_keys` and `user_ssh_keys`.
-	SshKeys         []SSHKeyInput `json:"ssh_keys,omitempty"`
-	Tags            []string      `json:"tags,omitempty"`
-	TerminationTime *time.Time    `json:"termination_time,omitempty"`
+	SshKeys []SSHKeyInput `json:"ssh_keys,omitempty"`
+	Tags    []string      `json:"tags,omitempty"`
+	// When the device will be terminated. If you don't supply timezone info, the timestamp is assumed to be in UTC.  This is commonly set in advance for ephemeral spot market instances but this field may also be set with on-demand and reservation instances to automatically delete the resource at a given time. The termination time can also be used to release a hardware reservation instance at a given time, keeping the reservation open for other uses.  On a spot market device, the termination time will be set automatically when outbid.
+	TerminationTime *time.Time `json:"termination_time,omitempty"`
 	// A list of UUIDs identifying the users that should be authorized to access this device (typically via /root/.ssh/authorized_keys).  These keys will also appear in the device metadata.  The users must be members of the project or organization.  If no SSH keys are specified (`user_ssh_keys`, `project_ssh_keys`, and `ssh_keys` are all empty lists or omitted), all parent project keys, parent project members keys and organization members keys will be included. This behaviour can be changed with 'no_ssh_keys' option to omit any SSH key being added.
 	UserSshKeys []string `json:"user_ssh_keys,omitempty"`
 	// The userdata presented in the metadata service for this device.  Userdata is fetched and interpreted by the operating system installed on the device. Acceptable formats are determined by the operating system, with the exception of a special iPXE enabling syntax which is handled before the operating system starts.  See [Server User Data](https://metal.equinix.com/developers/docs/servers/user-data/) and [Provisioning with Custom iPXE](https://metal.equinix.com/developers/docs/operating-systems/custom-ipxe/#provisioning-with-custom-ipxe) for more details.
@@ -117,6 +119,7 @@ func NewDeviceCreateInFacilityInputWithDefaults() *DeviceCreateInFacilityInput {
 }
 
 // GetFacility returns the Facility field value
+// Deprecated
 func (o *DeviceCreateInFacilityInput) GetFacility() []string {
 	if o == nil {
 		var ret []string
@@ -128,6 +131,7 @@ func (o *DeviceCreateInFacilityInput) GetFacility() []string {
 
 // GetFacilityOk returns a tuple with the Facility field value
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *DeviceCreateInFacilityInput) GetFacilityOk() ([]string, bool) {
 	if o == nil {
 		return nil, false
@@ -136,6 +140,7 @@ func (o *DeviceCreateInFacilityInput) GetFacilityOk() ([]string, bool) {
 }
 
 // SetFacility sets field value
+// Deprecated
 func (o *DeviceCreateInFacilityInput) SetFacility(v []string) {
 	o.Facility = v
 }

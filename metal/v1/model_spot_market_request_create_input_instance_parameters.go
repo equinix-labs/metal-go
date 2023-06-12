@@ -21,22 +21,23 @@ var _ MappedNullable = &SpotMarketRequestCreateInputInstanceParameters{}
 
 // SpotMarketRequestCreateInputInstanceParameters struct for SpotMarketRequestCreateInputInstanceParameters
 type SpotMarketRequestCreateInputInstanceParameters struct {
-	AlwaysPxe             *bool                  `json:"always_pxe,omitempty"`
-	BillingCycle          *string                `json:"billing_cycle,omitempty"`
-	Customdata            map[string]interface{} `json:"customdata,omitempty"`
-	Description           *string                `json:"description,omitempty"`
-	Features              []string               `json:"features,omitempty"`
-	Hostname              *string                `json:"hostname,omitempty"`
-	Hostnames             []string               `json:"hostnames,omitempty"`
-	Locked                *bool                  `json:"locked,omitempty"`
-	NoSshKeys             *bool                  `json:"no_ssh_keys,omitempty"`
-	OperatingSystem       *string                `json:"operating_system,omitempty"`
-	Plan                  *string                `json:"plan,omitempty"`
-	PrivateIpv4SubnetSize *int32                 `json:"private_ipv4_subnet_size,omitempty"`
-	ProjectSshKeys        []string               `json:"project_ssh_keys,omitempty"`
-	PublicIpv4SubnetSize  *int32                 `json:"public_ipv4_subnet_size,omitempty"`
-	Tags                  []string               `json:"tags,omitempty"`
-	TerminationTime       *time.Time             `json:"termination_time,omitempty"`
+	AlwaysPxe    *bool                  `json:"always_pxe,omitempty"`
+	BillingCycle *string                `json:"billing_cycle,omitempty"`
+	Customdata   map[string]interface{} `json:"customdata,omitempty"`
+	Description  *string                `json:"description,omitempty"`
+	Features     []string               `json:"features,omitempty"`
+	Hostname     *string                `json:"hostname,omitempty"`
+	Hostnames    []string               `json:"hostnames,omitempty"`
+	// Whether the device should be locked, preventing accidental deletion.
+	Locked                *bool      `json:"locked,omitempty"`
+	NoSshKeys             *bool      `json:"no_ssh_keys,omitempty"`
+	OperatingSystem       *string    `json:"operating_system,omitempty"`
+	Plan                  *string    `json:"plan,omitempty"`
+	PrivateIpv4SubnetSize *int32     `json:"private_ipv4_subnet_size,omitempty"`
+	ProjectSshKeys        []string   `json:"project_ssh_keys,omitempty"`
+	PublicIpv4SubnetSize  *int32     `json:"public_ipv4_subnet_size,omitempty"`
+	Tags                  []string   `json:"tags,omitempty"`
+	TerminationTime       *time.Time `json:"termination_time,omitempty"`
 	// The UUIDs of users whose SSH keys should be included on the provisioned device.
 	UserSshKeys          []string `json:"user_ssh_keys,omitempty"`
 	Userdata             *string  `json:"userdata,omitempty"`

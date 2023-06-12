@@ -2,6 +2,7 @@ properties:
   description:
     type: string
   facility:
+    deprecated: true
     description: The UUID (or facility code) for the Facility in which to create this
       Virtual network.
     type: string

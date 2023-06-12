@@ -187,10 +187,24 @@ type ApiCreateBgpDynamicNeighborRequest struct {
 	ApiService                    *VRFsApiService
 	id                            string
 	bgpDynamicNeighborCreateInput *BgpDynamicNeighborCreateInput
+	include                       *[]string
+	exclude                       *[]string
 }
 
 func (r ApiCreateBgpDynamicNeighborRequest) BgpDynamicNeighborCreateInput(bgpDynamicNeighborCreateInput BgpDynamicNeighborCreateInput) ApiCreateBgpDynamicNeighborRequest {
 	r.bgpDynamicNeighborCreateInput = &bgpDynamicNeighborCreateInput
+	return r
+}
+
+// Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+func (r ApiCreateBgpDynamicNeighborRequest) Include(include []string) ApiCreateBgpDynamicNeighborRequest {
+	r.include = &include
+	return r
+}
+
+// Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
+func (r ApiCreateBgpDynamicNeighborRequest) Exclude(exclude []string) ApiCreateBgpDynamicNeighborRequest {
+	r.exclude = &exclude
 	return r
 }
 
@@ -245,6 +259,12 @@ func (a *VRFsApiService) CreateBgpDynamicNeighborExecute(r ApiCreateBgpDynamicNe
 		return localVarReturnValue, nil, reportError("bgpDynamicNeighborCreateInput is required and must be specified")
 	}
 
+	if r.include != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "csv")
+	}
+	if r.exclude != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "exclude", r.exclude, "csv")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 

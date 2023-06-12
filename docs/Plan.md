@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AvailableIn** | Pointer to [**[]PlanAvailableInInner**](PlanAvailableInInner.md) | Shows which facilities the plan is available in, and the facility-based price if it is different from the default price. | [optional] 
 **AvailableInMetros** | Pointer to [**[]PlanAvailableInMetrosInner**](PlanAvailableInMetrosInner.md) | Shows which metros the plan is available in, and the metro-based price if it is different from the default price. | [optional] 
+**Categories** | Pointer to **[]string** | Categories of the plan, like compute or storage. A Plan can belong to multiple categories. | [optional] 
 **Class** | Pointer to **string** |  | [optional] 
 **Description** | Pointer to **string** |  | [optional] 
 **DeploymentTypes** | Pointer to **[]string** |  | [optional] 
@@ -86,6 +87,31 @@ SetAvailableInMetros sets AvailableInMetros field to given value.
 `func (o *Plan) HasAvailableInMetros() bool`
 
 HasAvailableInMetros returns a boolean if a field has been set.
+
+### GetCategories
+
+`func (o *Plan) GetCategories() []string`
+
+GetCategories returns the Categories field if non-nil, zero value otherwise.
+
+### GetCategoriesOk
+
+`func (o *Plan) GetCategoriesOk() (*[]string, bool)`
+
+GetCategoriesOk returns a tuple with the Categories field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCategories
+
+`func (o *Plan) SetCategories(v []string)`
+
+SetCategories sets Categories field to given value.
+
+### HasCategories
+
+`func (o *Plan) HasCategories() bool`
+
+HasCategories returns a boolean if a field has been set.
 
 ### GetClass
 

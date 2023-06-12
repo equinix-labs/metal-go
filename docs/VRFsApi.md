@@ -99,7 +99,7 @@ Name | Type | Description  | Notes
 
 ## CreateBgpDynamicNeighbor
 
-> BgpDynamicNeighbor CreateBgpDynamicNeighbor(ctx, id).BgpDynamicNeighborCreateInput(bgpDynamicNeighborCreateInput).Execute()
+> BgpDynamicNeighbor CreateBgpDynamicNeighbor(ctx, id).BgpDynamicNeighborCreateInput(bgpDynamicNeighborCreateInput).Include(include).Exclude(exclude).Execute()
 
 Create a VRF BGP Dynamic Neighbor range
 
@@ -120,10 +120,12 @@ import (
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Metal Gateway UUID
     bgpDynamicNeighborCreateInput := *openapiclient.NewBgpDynamicNeighborCreateInput("192.168.1.0/25", int32(12345)) // BgpDynamicNeighborCreateInput | 
+    include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
+    exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.VRFsApi.CreateBgpDynamicNeighbor(context.Background(), id).BgpDynamicNeighborCreateInput(bgpDynamicNeighborCreateInput).Execute()
+    resp, r, err := apiClient.VRFsApi.CreateBgpDynamicNeighbor(context.Background(), id).BgpDynamicNeighborCreateInput(bgpDynamicNeighborCreateInput).Include(include).Exclude(exclude).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `VRFsApi.CreateBgpDynamicNeighbor``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -150,6 +152,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **bgpDynamicNeighborCreateInput** | [**BgpDynamicNeighborCreateInput**](BgpDynamicNeighborCreateInput.md) |  | 
+ **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
+ **exclude** | **[]string** | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | 
 
 ### Return type
 

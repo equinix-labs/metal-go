@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **Description** | Pointer to **string** |  | [optional] 
 **Hostname** | Pointer to **string** |  | [optional] 
 **IpxeScriptUrl** | Pointer to **string** |  | [optional] 
-**Locked** | Pointer to **bool** |  | [optional] 
+**Locked** | Pointer to **bool** | Whether the device should be locked, preventing accidental deletion. | [optional] 
 **NetworkFrozen** | Pointer to **bool** | If true, this instance can not be converted to a different network type. | [optional] 
 **SpotInstance** | Pointer to **bool** | Can be set to false to convert a spot-market instance to on-demand. | [optional] 
 **Tags** | Pointer to **[]string** |  | [optional] 

@@ -7,6 +7,7 @@ properties:
     format: date-time
     type: string
   facilities:
+    deprecated: true
     items:
       format: uuid
       type: string
@@ -33,6 +34,7 @@ properties:
         type: array
       locked:
         type: boolean
+        description: Whether the device should be locked, preventing accidental deletion.
       no_ssh_keys:
         type: boolean
       operating_system:

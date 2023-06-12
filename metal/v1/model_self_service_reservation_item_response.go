@@ -28,6 +28,7 @@ type SelfServiceReservationItemResponse struct {
 	PlanId               *string  `json:"plan_id,omitempty"`
 	PlanName             *string  `json:"plan_name,omitempty"`
 	PlanSlug             *string  `json:"plan_slug,omitempty"`
+	PlanCategories       []string `json:"plan_categories,omitempty"`
 	Quantity             *int32   `json:"quantity,omitempty"`
 	Term                 *string  `json:"term,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -308,6 +309,38 @@ func (o *SelfServiceReservationItemResponse) SetPlanSlug(v string) {
 	o.PlanSlug = &v
 }
 
+// GetPlanCategories returns the PlanCategories field value if set, zero value otherwise.
+func (o *SelfServiceReservationItemResponse) GetPlanCategories() []string {
+	if o == nil || IsNil(o.PlanCategories) {
+		var ret []string
+		return ret
+	}
+	return o.PlanCategories
+}
+
+// GetPlanCategoriesOk returns a tuple with the PlanCategories field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SelfServiceReservationItemResponse) GetPlanCategoriesOk() ([]string, bool) {
+	if o == nil || IsNil(o.PlanCategories) {
+		return nil, false
+	}
+	return o.PlanCategories, true
+}
+
+// HasPlanCategories returns a boolean if a field has been set.
+func (o *SelfServiceReservationItemResponse) HasPlanCategories() bool {
+	if o != nil && !IsNil(o.PlanCategories) {
+		return true
+	}
+
+	return false
+}
+
+// SetPlanCategories gets a reference to the given []string and assigns it to the PlanCategories field.
+func (o *SelfServiceReservationItemResponse) SetPlanCategories(v []string) {
+	o.PlanCategories = v
+}
+
 // GetQuantity returns the Quantity field value if set, zero value otherwise.
 func (o *SelfServiceReservationItemResponse) GetQuantity() int32 {
 	if o == nil || IsNil(o.Quantity) {
@@ -406,6 +439,9 @@ func (o SelfServiceReservationItemResponse) ToMap() (map[string]interface{}, err
 	if !IsNil(o.PlanSlug) {
 		toSerialize["plan_slug"] = o.PlanSlug
 	}
+	if !IsNil(o.PlanCategories) {
+		toSerialize["plan_categories"] = o.PlanCategories
+	}
 	if !IsNil(o.Quantity) {
 		toSerialize["quantity"] = o.Quantity
 	}
@@ -438,6 +474,7 @@ func (o *SelfServiceReservationItemResponse) UnmarshalJSON(bytes []byte) (err er
 		delete(additionalProperties, "plan_id")
 		delete(additionalProperties, "plan_name")
 		delete(additionalProperties, "plan_slug")
+		delete(additionalProperties, "plan_categories")
 		delete(additionalProperties, "quantity")
 		delete(additionalProperties, "term")
 		o.AdditionalProperties = additionalProperties

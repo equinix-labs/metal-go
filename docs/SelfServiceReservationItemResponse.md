@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **PlanId** | Pointer to **string** |  | [optional] 
 **PlanName** | Pointer to **string** |  | [optional] 
 **PlanSlug** | Pointer to **string** |  | [optional] 
+**PlanCategories** | Pointer to **[]string** |  | [optional] 
 **Quantity** | Pointer to **int32** |  | [optional] 
 **Term** | Pointer to **string** |  | [optional] 
 
@@ -233,6 +234,31 @@ SetPlanSlug sets PlanSlug field to given value.
 `func (o *SelfServiceReservationItemResponse) HasPlanSlug() bool`
 
 HasPlanSlug returns a boolean if a field has been set.
+
+### GetPlanCategories
+
+`func (o *SelfServiceReservationItemResponse) GetPlanCategories() []string`
+
+GetPlanCategories returns the PlanCategories field if non-nil, zero value otherwise.
+
+### GetPlanCategoriesOk
+
+`func (o *SelfServiceReservationItemResponse) GetPlanCategoriesOk() (*[]string, bool)`
+
+GetPlanCategoriesOk returns a tuple with the PlanCategories field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPlanCategories
+
+`func (o *SelfServiceReservationItemResponse) SetPlanCategories(v []string)`
+
+SetPlanCategories sets PlanCategories field to given value.
+
+### HasPlanCategories
+
+`func (o *SelfServiceReservationItemResponse) HasPlanCategories() bool`
+
+HasPlanCategories returns a boolean if a field has been set.
 
 ### GetQuantity
 

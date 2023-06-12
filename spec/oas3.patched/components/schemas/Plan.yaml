@@ -33,6 +33,11 @@ properties:
               format: double
               example: 1.23
     type: array
+  categories:
+    description: Categories of the plan, like compute or storage. A Plan can belong to multiple categories.
+    items:
+      type: string
+    type: array
   class:
     type: string
     example: m3.large.x86

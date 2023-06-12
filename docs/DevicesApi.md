@@ -882,7 +882,7 @@ Name | Type | Description  | Notes
 
 ## FindOrganizationDevices
 
-> DeviceList FindOrganizationDevices(ctx, id).Facility(facility).Hostname(hostname).Reserved(reserved).Tag(tag).Type_(type_).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
+> DeviceList FindOrganizationDevices(ctx, id).Categories(categories).Facility(facility).Hostname(hostname).Reserved(reserved).Tag(tag).Type_(type_).HasTerminationTime(hasTerminationTime).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
 
 Retrieve all devices of an organization
 
@@ -902,11 +902,13 @@ import (
 
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Organization UUID
+    categories := []string{"compute"} // []string | Filter by plan category (optional)
     facility := "facility_example" // string | Filter by device facility (optional)
     hostname := "hostname_example" // string | Filter by partial hostname (optional)
-    reserved := true // bool | Filter only reserved instances (optional)
+    reserved := true // bool | Filter only reserved instances. When set to true, only include reserved instances. When set to false, only include on-demand instances. (optional)
     tag := "tag_example" // string | Filter by device tag (optional)
     type_ := "type__example" // string | Filter by instance type (ondemand,spot,reserved) (optional)
+    hasTerminationTime := true // bool | Filter only instances marked for termination. When set to true, only include instances that have a termination time. When set to false, only include instances that do not have a termination time. (optional)
     include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
     exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
     page := int32(56) // int32 | Page to return (optional) (default to 1)
@@ -914,7 +916,7 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DevicesApi.FindOrganizationDevices(context.Background(), id).Facility(facility).Hostname(hostname).Reserved(reserved).Tag(tag).Type_(type_).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
+    resp, r, err := apiClient.DevicesApi.FindOrganizationDevices(context.Background(), id).Categories(categories).Facility(facility).Hostname(hostname).Reserved(reserved).Tag(tag).Type_(type_).HasTerminationTime(hasTerminationTime).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DevicesApi.FindOrganizationDevices``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -940,11 +942,13 @@ Other parameters are passed through a pointer to a apiFindOrganizationDevicesReq
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **categories** | **[]string** | Filter by plan category | 
  **facility** | **string** | Filter by device facility | 
  **hostname** | **string** | Filter by partial hostname | 
- **reserved** | **bool** | Filter only reserved instances | 
+ **reserved** | **bool** | Filter only reserved instances. When set to true, only include reserved instances. When set to false, only include on-demand instances. | 
  **tag** | **string** | Filter by device tag | 
  **type_** | **string** | Filter by instance type (ondemand,spot,reserved) | 
+ **hasTerminationTime** | **bool** | Filter only instances marked for termination. When set to true, only include instances that have a termination time. When set to false, only include instances that do not have a termination time. | 
  **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
  **exclude** | **[]string** | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | 
  **page** | **int32** | Page to return | [default to 1]
@@ -970,7 +974,7 @@ Name | Type | Description  | Notes
 
 ## FindProjectDevices
 
-> DeviceList FindProjectDevices(ctx, id).Facility(facility).Hostname(hostname).Reserved(reserved).Tag(tag).Type_(type_).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
+> DeviceList FindProjectDevices(ctx, id).Categories(categories).Facility(facility).Hostname(hostname).Reserved(reserved).Tag(tag).Type_(type_).HasTerminationTime(hasTerminationTime).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
 
 Retrieve all devices of a project
 
@@ -990,11 +994,13 @@ import (
 
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Project UUID
+    categories := []string{"compute"} // []string | Filter by plan category (optional)
     facility := "facility_example" // string | Filter by device facility (optional)
     hostname := "hostname_example" // string | Filter by partial hostname (optional)
-    reserved := true // bool | Filter only reserved instances (optional)
+    reserved := true // bool | Filter only reserved instances. When set to true, only include reserved instances. When set to false, only include on-demand instances. (optional)
     tag := "tag_example" // string | Filter by device tag (optional)
     type_ := "type__example" // string | Filter by instance type (ondemand,spot,reserved) (optional)
+    hasTerminationTime := true // bool | Filter only instances marked for termination. When set to true, only include instances that have a termination time. When set to false, only include instances that do not have a termination time. (optional)
     include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
     exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
     page := int32(56) // int32 | Page to return (optional) (default to 1)
@@ -1002,7 +1008,7 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DevicesApi.FindProjectDevices(context.Background(), id).Facility(facility).Hostname(hostname).Reserved(reserved).Tag(tag).Type_(type_).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
+    resp, r, err := apiClient.DevicesApi.FindProjectDevices(context.Background(), id).Categories(categories).Facility(facility).Hostname(hostname).Reserved(reserved).Tag(tag).Type_(type_).HasTerminationTime(hasTerminationTime).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DevicesApi.FindProjectDevices``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1028,11 +1034,13 @@ Other parameters are passed through a pointer to a apiFindProjectDevicesRequest 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **categories** | **[]string** | Filter by plan category | 
  **facility** | **string** | Filter by device facility | 
  **hostname** | **string** | Filter by partial hostname | 
- **reserved** | **bool** | Filter only reserved instances | 
+ **reserved** | **bool** | Filter only reserved instances. When set to true, only include reserved instances. When set to false, only include on-demand instances. | 
  **tag** | **string** | Filter by device tag | 
  **type_** | **string** | Filter by instance type (ondemand,spot,reserved) | 
+ **hasTerminationTime** | **bool** | Filter only instances marked for termination. When set to true, only include instances that have a termination time. When set to false, only include instances that do not have a termination time. | 
  **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
  **exclude** | **[]string** | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | 
  **page** | **int32** | Page to return | [default to 1]

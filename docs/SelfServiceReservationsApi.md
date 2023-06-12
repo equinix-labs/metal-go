@@ -157,7 +157,7 @@ Name | Type | Description  | Notes
 
 ## FindSelfServiceReservations
 
-> SelfServiceReservationList FindSelfServiceReservations(ctx, projectId).Page(page).PerPage(perPage).Execute()
+> SelfServiceReservationList FindSelfServiceReservations(ctx, projectId).Page(page).PerPage(perPage).Categories(categories).Execute()
 
 Retrieve all reservations
 
@@ -179,10 +179,11 @@ func main() {
     projectId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Project UUID
     page := int32(56) // int32 | Page to return (optional) (default to 1)
     perPage := int32(56) // int32 | Items returned per page (optional) (default to 10)
+    categories := []string{"compute"} // []string | Filter reservations by items category (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.SelfServiceReservationsApi.FindSelfServiceReservations(context.Background(), projectId).Page(page).PerPage(perPage).Execute()
+    resp, r, err := apiClient.SelfServiceReservationsApi.FindSelfServiceReservations(context.Background(), projectId).Page(page).PerPage(perPage).Categories(categories).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SelfServiceReservationsApi.FindSelfServiceReservations``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -210,6 +211,7 @@ Name | Type | Description  | Notes
 
  **page** | **int32** | Page to return | [default to 1]
  **perPage** | **int32** | Items returned per page | [default to 10]
+ **categories** | **[]string** | Filter reservations by items category | 
 
 ### Return type
 

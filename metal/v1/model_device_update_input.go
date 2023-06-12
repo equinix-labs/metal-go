@@ -26,7 +26,8 @@ type DeviceUpdateInput struct {
 	Description   *string                `json:"description,omitempty"`
 	Hostname      *string                `json:"hostname,omitempty"`
 	IpxeScriptUrl *string                `json:"ipxe_script_url,omitempty"`
-	Locked        *bool                  `json:"locked,omitempty"`
+	// Whether the device should be locked, preventing accidental deletion.
+	Locked *bool `json:"locked,omitempty"`
 	// If true, this instance can not be converted to a different network type.
 	NetworkFrozen *bool `json:"network_frozen,omitempty"`
 	// Can be set to false to convert a spot-market instance to on-demand.
