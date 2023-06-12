@@ -15,6 +15,7 @@ properties:
     type: string
   locked:
     type: boolean
+    description: Whether the device should be locked, preventing accidental deletion.
   network_frozen:
     description: If true, this instance can not be converted to a different network
       type.

@@ -18,6 +18,7 @@ get:
   tags:
   - Capacity
 post:
+  deprecated: true
   description: Validates if a deploy can be fulfilled.
   operationId: checkCapacityForFacility
   requestBody:

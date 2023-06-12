@@ -18,6 +18,10 @@ properties:
     type: string
   plan_slug:
     type: string
+  plan_categories:
+    type: array
+    items:
+      type: string
   quantity:
     type: integer
   term:

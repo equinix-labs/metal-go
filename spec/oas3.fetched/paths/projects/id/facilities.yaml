@@ -1,4 +1,5 @@
 get:
+  deprecated: true
   description: Returns a listing of available datacenters for the given project
   operationId: findFacilitiesByProject
   parameters:

@@ -11,6 +11,17 @@ get:
     schema:
       format: uuid
       type: string
+  - description: Filter reservations by items category
+    in: query
+    name: categories
+    schema:
+      type: array
+      items:
+        type: string
+        enum:
+          - compute
+          - storage
+        example: compute
   responses:
     "200":
       content:
