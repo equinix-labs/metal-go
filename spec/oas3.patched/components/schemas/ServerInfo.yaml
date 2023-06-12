@@ -1,5 +1,6 @@
 properties:
   facility:
+    deprecated: true
     type: string
   plan:
     type: string

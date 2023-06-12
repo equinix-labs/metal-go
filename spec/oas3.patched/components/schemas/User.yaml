@@ -8,6 +8,12 @@ properties:
     type: string
   customdata:
     type: object
+  default_organization_id:
+    type: string
+    format: uuid
+  default_project_id:
+    type: string
+    format: uuid
   email:
     type: string
   emails:

@@ -1,4 +1,5 @@
 get:
+  deprecated: true
   description: Provides a listing of available datacenters where you can provision
     Packet devices.
   operationId: findFacilities
