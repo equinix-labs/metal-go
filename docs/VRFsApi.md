@@ -175,7 +175,7 @@ Name | Type | Description  | Notes
 
 ## CreateVrf
 
-> Vrf CreateVrf(ctx, id).VrfCreateInput(vrfCreateInput).Execute()
+> Vrf CreateVrf(ctx, id).VrfCreateInput(vrfCreateInput).Include(include).Exclude(exclude).Execute()
 
 Create a new VRF in the specified project
 
@@ -196,10 +196,12 @@ import (
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Project UUID
     vrfCreateInput := *openapiclient.NewVrfCreateInput("Metro_example", "Name_example") // VrfCreateInput | VRF to create
+    include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
+    exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.VRFsApi.CreateVrf(context.Background(), id).VrfCreateInput(vrfCreateInput).Execute()
+    resp, r, err := apiClient.VRFsApi.CreateVrf(context.Background(), id).VrfCreateInput(vrfCreateInput).Include(include).Exclude(exclude).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `VRFsApi.CreateVrf``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -226,6 +228,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **vrfCreateInput** | [**VrfCreateInput**](VrfCreateInput.md) | VRF to create | 
+ **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
+ **exclude** | **[]string** | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | 
 
 ### Return type
 
@@ -247,7 +251,7 @@ Name | Type | Description  | Notes
 
 ## CreateVrfRoute
 
-> VrfRoute CreateVrfRoute(ctx, id).VrfRouteCreateInput(vrfRouteCreateInput).Execute()
+> VrfRoute CreateVrfRoute(ctx, id).VrfRouteCreateInput(vrfRouteCreateInput).Include(include).Exclude(exclude).Execute()
 
 Create a VRF route
 
@@ -268,10 +272,12 @@ import (
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | VRF UUID
     vrfRouteCreateInput := *openapiclient.NewVrfRouteCreateInput("0.0.0.0/0", "192.168.1.254") // VrfRouteCreateInput | 
+    include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
+    exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.VRFsApi.CreateVrfRoute(context.Background(), id).VrfRouteCreateInput(vrfRouteCreateInput).Execute()
+    resp, r, err := apiClient.VRFsApi.CreateVrfRoute(context.Background(), id).VrfRouteCreateInput(vrfRouteCreateInput).Include(include).Exclude(exclude).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `VRFsApi.CreateVrfRoute``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -298,6 +304,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **vrfRouteCreateInput** | [**VrfRouteCreateInput**](VrfRouteCreateInput.md) |  | 
+ **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
+ **exclude** | **[]string** | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | 
 
 ### Return type
 

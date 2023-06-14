@@ -190,11 +190,25 @@ type ApiCreateDeviceRequest struct {
 	ApiService          *DevicesApiService
 	id                  string
 	createDeviceRequest *CreateDeviceRequest
+	include             *[]string
+	exclude             *[]string
 }
 
 // Device to create
 func (r ApiCreateDeviceRequest) CreateDeviceRequest(createDeviceRequest CreateDeviceRequest) ApiCreateDeviceRequest {
 	r.createDeviceRequest = &createDeviceRequest
+	return r
+}
+
+// Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+func (r ApiCreateDeviceRequest) Include(include []string) ApiCreateDeviceRequest {
+	r.include = &include
+	return r
+}
+
+// Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
+func (r ApiCreateDeviceRequest) Exclude(exclude []string) ApiCreateDeviceRequest {
+	r.exclude = &exclude
 	return r
 }
 
@@ -247,6 +261,12 @@ func (a *DevicesApiService) CreateDeviceExecute(r ApiCreateDeviceRequest) (*Devi
 		return localVarReturnValue, nil, reportError("createDeviceRequest is required and must be specified")
 	}
 
+	if r.include != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "csv")
+	}
+	if r.exclude != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "exclude", r.exclude, "csv")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 
@@ -365,11 +385,25 @@ type ApiCreateIPAssignmentRequest struct {
 	ApiService        *DevicesApiService
 	id                string
 	iPAssignmentInput *IPAssignmentInput
+	include           *[]string
+	exclude           *[]string
 }
 
 // IPAssignment to create
 func (r ApiCreateIPAssignmentRequest) IPAssignmentInput(iPAssignmentInput IPAssignmentInput) ApiCreateIPAssignmentRequest {
 	r.iPAssignmentInput = &iPAssignmentInput
+	return r
+}
+
+// Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+func (r ApiCreateIPAssignmentRequest) Include(include []string) ApiCreateIPAssignmentRequest {
+	r.include = &include
+	return r
+}
+
+// Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
+func (r ApiCreateIPAssignmentRequest) Exclude(exclude []string) ApiCreateIPAssignmentRequest {
+	r.exclude = &exclude
 	return r
 }
 
@@ -420,6 +454,12 @@ func (a *DevicesApiService) CreateIPAssignmentExecute(r ApiCreateIPAssignmentReq
 		return localVarReturnValue, nil, reportError("iPAssignmentInput is required and must be specified")
 	}
 
+	if r.include != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "csv")
+	}
+	if r.exclude != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "exclude", r.exclude, "csv")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 

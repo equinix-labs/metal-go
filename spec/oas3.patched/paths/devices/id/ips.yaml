@@ -37,6 +37,8 @@ post:
   description: Creates an ip assignment for a device.
   operationId: createIPAssignment
   parameters:
+  - $ref: '../../../components/parameters/Include.yaml'
+  - $ref: '../../../components/parameters/Exclude.yaml'
   - description: Device UUID
     in: path
     name: id

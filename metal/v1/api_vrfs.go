@@ -383,11 +383,25 @@ type ApiCreateVrfRequest struct {
 	ApiService     *VRFsApiService
 	id             string
 	vrfCreateInput *VrfCreateInput
+	include        *[]string
+	exclude        *[]string
 }
 
 // VRF to create
 func (r ApiCreateVrfRequest) VrfCreateInput(vrfCreateInput VrfCreateInput) ApiCreateVrfRequest {
 	r.vrfCreateInput = &vrfCreateInput
+	return r
+}
+
+// Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+func (r ApiCreateVrfRequest) Include(include []string) ApiCreateVrfRequest {
+	r.include = &include
+	return r
+}
+
+// Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
+func (r ApiCreateVrfRequest) Exclude(exclude []string) ApiCreateVrfRequest {
+	r.exclude = &exclude
 	return r
 }
 
@@ -438,6 +452,12 @@ func (a *VRFsApiService) CreateVrfExecute(r ApiCreateVrfRequest) (*Vrf, *http.Re
 		return localVarReturnValue, nil, reportError("vrfCreateInput is required and must be specified")
 	}
 
+	if r.include != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "csv")
+	}
+	if r.exclude != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "exclude", r.exclude, "csv")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 
@@ -545,10 +565,24 @@ type ApiCreateVrfRouteRequest struct {
 	ApiService          *VRFsApiService
 	id                  string
 	vrfRouteCreateInput *VrfRouteCreateInput
+	include             *[]string
+	exclude             *[]string
 }
 
 func (r ApiCreateVrfRouteRequest) VrfRouteCreateInput(vrfRouteCreateInput VrfRouteCreateInput) ApiCreateVrfRouteRequest {
 	r.vrfRouteCreateInput = &vrfRouteCreateInput
+	return r
+}
+
+// Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+func (r ApiCreateVrfRouteRequest) Include(include []string) ApiCreateVrfRouteRequest {
+	r.include = &include
+	return r
+}
+
+// Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
+func (r ApiCreateVrfRouteRequest) Exclude(exclude []string) ApiCreateVrfRouteRequest {
+	r.exclude = &exclude
 	return r
 }
 
@@ -601,6 +635,12 @@ func (a *VRFsApiService) CreateVrfRouteExecute(r ApiCreateVrfRouteRequest) (*Vrf
 		return localVarReturnValue, nil, reportError("vrfRouteCreateInput is required and must be specified")
 	}
 
+	if r.include != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "csv")
+	}
+	if r.exclude != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "exclude", r.exclude, "csv")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 

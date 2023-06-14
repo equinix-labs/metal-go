@@ -99,7 +99,7 @@ Name | Type | Description  | Notes
 
 ## CreateDevice
 
-> Device CreateDevice(ctx, id).CreateDeviceRequest(createDeviceRequest).Execute()
+> Device CreateDevice(ctx, id).CreateDeviceRequest(createDeviceRequest).Include(include).Exclude(exclude).Execute()
 
 Create a device
 
@@ -120,10 +120,12 @@ import (
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Project UUID
     createDeviceRequest := openapiclient.createDevice_request{DeviceCreateInFacilityInput: openapiclient.NewDeviceCreateInFacilityInput([]string{"Facility_example"}, "OperatingSystem_example", "c3.large.x86")} // CreateDeviceRequest | Device to create
+    include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
+    exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DevicesApi.CreateDevice(context.Background(), id).CreateDeviceRequest(createDeviceRequest).Execute()
+    resp, r, err := apiClient.DevicesApi.CreateDevice(context.Background(), id).CreateDeviceRequest(createDeviceRequest).Include(include).Exclude(exclude).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DevicesApi.CreateDevice``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -150,6 +152,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **createDeviceRequest** | [**CreateDeviceRequest**](CreateDeviceRequest.md) | Device to create | 
+ **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
+ **exclude** | **[]string** | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | 
 
 ### Return type
 
@@ -171,7 +175,7 @@ Name | Type | Description  | Notes
 
 ## CreateIPAssignment
 
-> IPAssignment CreateIPAssignment(ctx, id).IPAssignmentInput(iPAssignmentInput).Execute()
+> IPAssignment CreateIPAssignment(ctx, id).IPAssignmentInput(iPAssignmentInput).Include(include).Exclude(exclude).Execute()
 
 Create an ip assignment
 
@@ -192,10 +196,12 @@ import (
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Device UUID
     iPAssignmentInput := *openapiclient.NewIPAssignmentInput("Address_example") // IPAssignmentInput | IPAssignment to create
+    include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
+    exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DevicesApi.CreateIPAssignment(context.Background(), id).IPAssignmentInput(iPAssignmentInput).Execute()
+    resp, r, err := apiClient.DevicesApi.CreateIPAssignment(context.Background(), id).IPAssignmentInput(iPAssignmentInput).Include(include).Exclude(exclude).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DevicesApi.CreateIPAssignment``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -222,6 +228,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **iPAssignmentInput** | [**IPAssignmentInput**](IPAssignmentInput.md) | IPAssignment to create | 
+ **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
+ **exclude** | **[]string** | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | 
 
 ### Return type
 

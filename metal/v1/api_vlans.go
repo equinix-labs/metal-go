@@ -28,11 +28,25 @@ type ApiCreateVirtualNetworkRequest struct {
 	ApiService                *VLANsApiService
 	id                        string
 	virtualNetworkCreateInput *VirtualNetworkCreateInput
+	include                   *[]string
+	exclude                   *[]string
 }
 
 // Virtual Network to create
 func (r ApiCreateVirtualNetworkRequest) VirtualNetworkCreateInput(virtualNetworkCreateInput VirtualNetworkCreateInput) ApiCreateVirtualNetworkRequest {
 	r.virtualNetworkCreateInput = &virtualNetworkCreateInput
+	return r
+}
+
+// Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+func (r ApiCreateVirtualNetworkRequest) Include(include []string) ApiCreateVirtualNetworkRequest {
+	r.include = &include
+	return r
+}
+
+// Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
+func (r ApiCreateVirtualNetworkRequest) Exclude(exclude []string) ApiCreateVirtualNetworkRequest {
+	r.exclude = &exclude
 	return r
 }
 
@@ -83,6 +97,12 @@ func (a *VLANsApiService) CreateVirtualNetworkExecute(r ApiCreateVirtualNetworkR
 		return localVarReturnValue, nil, reportError("virtualNetworkCreateInput is required and must be specified")
 	}
 
+	if r.include != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "csv")
+	}
+	if r.exclude != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "exclude", r.exclude, "csv")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 
@@ -380,6 +400,7 @@ func (r ApiFindVirtualNetworksRequest) Exclude(exclude []string) ApiFindVirtualN
 }
 
 // Filter by Facility ID (uuid) or Facility Code
+// Deprecated
 func (r ApiFindVirtualNetworksRequest) Facility(facility string) ApiFindVirtualNetworksRequest {
 	r.facility = &facility
 	return r
