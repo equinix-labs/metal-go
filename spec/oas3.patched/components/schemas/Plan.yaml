@@ -61,8 +61,6 @@ properties:
     x-deprecated: true
   line:
     type: string
-    enum:
-      - baremetal
   name:
     type: string
   pricing:
