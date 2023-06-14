@@ -27,6 +27,9 @@ post:
   description: Creates a new project for the user default organization. If the user
     don't have an organization, a new one will be created.
   operationId: createProject
+  parameters:
+  - $ref: '../components/parameters/Include.yaml'
+  - $ref: '../components/parameters/Exclude.yaml'
   requestBody:
     content:
       application/json:

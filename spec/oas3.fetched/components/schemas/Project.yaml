@@ -31,6 +31,8 @@ properties:
     type: string
   network_status:
     type: object
+  organization:
+    $ref: './Organization.yaml'
   payment_method:
     $ref: './Href.yaml'
   ssh_keys:
