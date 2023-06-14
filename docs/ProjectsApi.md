@@ -20,7 +20,7 @@ Method | HTTP request | Description
 
 ## CreateProject
 
-> Project CreateProject(ctx).ProjectCreateFromRootInput(projectCreateFromRootInput).Execute()
+> Project CreateProject(ctx).ProjectCreateFromRootInput(projectCreateFromRootInput).Include(include).Exclude(exclude).Execute()
 
 Create a project
 
@@ -40,10 +40,12 @@ import (
 
 func main() {
     projectCreateFromRootInput := *openapiclient.NewProjectCreateFromRootInput("Name_example") // ProjectCreateFromRootInput | Project to create
+    include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
+    exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ProjectsApi.CreateProject(context.Background()).ProjectCreateFromRootInput(projectCreateFromRootInput).Execute()
+    resp, r, err := apiClient.ProjectsApi.CreateProject(context.Background()).ProjectCreateFromRootInput(projectCreateFromRootInput).Include(include).Exclude(exclude).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ProjectsApi.CreateProject``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -65,6 +67,8 @@ Other parameters are passed through a pointer to a apiCreateProjectRequest struc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **projectCreateFromRootInput** | [**ProjectCreateFromRootInput**](ProjectCreateFromRootInput.md) | Project to create | 
+ **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
+ **exclude** | **[]string** | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | 
 
 ### Return type
 

@@ -24,7 +24,7 @@ Method | HTTP request | Description
 
 ## CreateOrganization
 
-> Organization CreateOrganization(ctx).OrganizationInput(organizationInput).Execute()
+> Organization CreateOrganization(ctx).OrganizationInput(organizationInput).Include(include).Exclude(exclude).Execute()
 
 Create an organization
 
@@ -44,10 +44,12 @@ import (
 
 func main() {
     organizationInput := *openapiclient.NewOrganizationInput() // OrganizationInput | Organization to create
+    include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
+    exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.OrganizationsApi.CreateOrganization(context.Background()).OrganizationInput(organizationInput).Execute()
+    resp, r, err := apiClient.OrganizationsApi.CreateOrganization(context.Background()).OrganizationInput(organizationInput).Include(include).Exclude(exclude).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.CreateOrganization``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -69,6 +71,8 @@ Other parameters are passed through a pointer to a apiCreateOrganizationRequest 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **organizationInput** | [**OrganizationInput**](OrganizationInput.md) | Organization to create | 
+ **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
+ **exclude** | **[]string** | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | 
 
 ### Return type
 

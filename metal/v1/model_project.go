@@ -33,6 +33,7 @@ type Project struct {
 	Memberships          []Href                 `json:"memberships,omitempty"`
 	Name                 *string                `json:"name,omitempty"`
 	NetworkStatus        map[string]interface{} `json:"network_status,omitempty"`
+	Organization         *Organization          `json:"organization,omitempty"`
 	PaymentMethod        *Href                  `json:"payment_method,omitempty"`
 	SshKeys              []Href                 `json:"ssh_keys,omitempty"`
 	UpdatedAt            *time.Time             `json:"updated_at,omitempty"`
@@ -443,6 +444,38 @@ func (o *Project) SetNetworkStatus(v map[string]interface{}) {
 	o.NetworkStatus = v
 }
 
+// GetOrganization returns the Organization field value if set, zero value otherwise.
+func (o *Project) GetOrganization() Organization {
+	if o == nil || IsNil(o.Organization) {
+		var ret Organization
+		return ret
+	}
+	return *o.Organization
+}
+
+// GetOrganizationOk returns a tuple with the Organization field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Project) GetOrganizationOk() (*Organization, bool) {
+	if o == nil || IsNil(o.Organization) {
+		return nil, false
+	}
+	return o.Organization, true
+}
+
+// HasOrganization returns a boolean if a field has been set.
+func (o *Project) HasOrganization() bool {
+	if o != nil && !IsNil(o.Organization) {
+		return true
+	}
+
+	return false
+}
+
+// SetOrganization gets a reference to the given Organization and assigns it to the Organization field.
+func (o *Project) SetOrganization(v Organization) {
+	o.Organization = &v
+}
+
 // GetPaymentMethod returns the PaymentMethod field value if set, zero value otherwise.
 func (o *Project) GetPaymentMethod() Href {
 	if o == nil || IsNil(o.PaymentMethod) {
@@ -617,6 +650,9 @@ func (o Project) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.NetworkStatus) {
 		toSerialize["network_status"] = o.NetworkStatus
 	}
+	if !IsNil(o.Organization) {
+		toSerialize["organization"] = o.Organization
+	}
 	if !IsNil(o.PaymentMethod) {
 		toSerialize["payment_method"] = o.PaymentMethod
 	}
@@ -659,6 +695,7 @@ func (o *Project) UnmarshalJSON(bytes []byte) (err error) {
 		delete(additionalProperties, "memberships")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "network_status")
+		delete(additionalProperties, "organization")
 		delete(additionalProperties, "payment_method")
 		delete(additionalProperties, "ssh_keys")
 		delete(additionalProperties, "updated_at")

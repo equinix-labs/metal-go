@@ -27,11 +27,25 @@ type ApiCreateOrganizationRequest struct {
 	ctx               context.Context
 	ApiService        *OrganizationsApiService
 	organizationInput *OrganizationInput
+	include           *[]string
+	exclude           *[]string
 }
 
 // Organization to create
 func (r ApiCreateOrganizationRequest) OrganizationInput(organizationInput OrganizationInput) ApiCreateOrganizationRequest {
 	r.organizationInput = &organizationInput
+	return r
+}
+
+// Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+func (r ApiCreateOrganizationRequest) Include(include []string) ApiCreateOrganizationRequest {
+	r.include = &include
+	return r
+}
+
+// Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
+func (r ApiCreateOrganizationRequest) Exclude(exclude []string) ApiCreateOrganizationRequest {
+	r.exclude = &exclude
 	return r
 }
 
@@ -79,6 +93,12 @@ func (a *OrganizationsApiService) CreateOrganizationExecute(r ApiCreateOrganizat
 		return localVarReturnValue, nil, reportError("organizationInput is required and must be specified")
 	}
 
+	if r.include != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "csv")
+	}
+	if r.exclude != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "exclude", r.exclude, "csv")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 

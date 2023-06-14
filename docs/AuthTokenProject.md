@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **Memberships** | Pointer to [**[]Href**](Href.md) |  | [optional] 
 **Name** | Pointer to **string** |  | [optional] 
 **NetworkStatus** | Pointer to **map[string]interface{}** |  | [optional] 
+**Organization** | Pointer to [**Organization**](Organization.md) |  | [optional] 
 **PaymentMethod** | Pointer to [**Href**](Href.md) |  | [optional] 
 **SshKeys** | Pointer to [**[]Href**](Href.md) |  | [optional] 
 **UpdatedAt** | Pointer to **time.Time** |  | [optional] 
@@ -339,6 +340,31 @@ SetNetworkStatus sets NetworkStatus field to given value.
 `func (o *AuthTokenProject) HasNetworkStatus() bool`
 
 HasNetworkStatus returns a boolean if a field has been set.
+
+### GetOrganization
+
+`func (o *AuthTokenProject) GetOrganization() Organization`
+
+GetOrganization returns the Organization field if non-nil, zero value otherwise.
+
+### GetOrganizationOk
+
+`func (o *AuthTokenProject) GetOrganizationOk() (*Organization, bool)`
+
+GetOrganizationOk returns a tuple with the Organization field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOrganization
+
+`func (o *AuthTokenProject) SetOrganization(v Organization)`
+
+SetOrganization sets Organization field to given value.
+
+### HasOrganization
+
+`func (o *AuthTokenProject) HasOrganization() bool`
+
+HasOrganization returns a boolean if a field has been set.
 
 ### GetPaymentMethod
 
