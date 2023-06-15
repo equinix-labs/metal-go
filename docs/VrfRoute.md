@@ -11,9 +11,9 @@ Name | Type | Description | Notes
 **Type** | Pointer to **string** | VRF route type, like &#39;bgp&#39;, &#39;connected&#39;, and &#39;static&#39;. Currently, only static routes are supported | [optional] [readonly] 
 **CreatedAt** | Pointer to **time.Time** |  | [optional] [readonly] 
 **UpdatedAt** | Pointer to **time.Time** |  | [optional] [readonly] 
-**MetalGateway** | Pointer to [**VrfRouteMetalGateway**](VrfRouteMetalGateway.md) |  | [optional] 
-**VirtualNetwork** | Pointer to [**VrfRouteVirtualNetwork**](VrfRouteVirtualNetwork.md) |  | [optional] 
-**Vrf** | Pointer to [**VrfRouteVrf**](VrfRouteVrf.md) |  | [optional] 
+**MetalGateway** | Pointer to [**VrfMetalGateway**](VrfMetalGateway.md) |  | [optional] 
+**VirtualNetwork** | Pointer to [**VirtualNetwork**](VirtualNetwork.md) |  | [optional] 
+**Vrf** | Pointer to [**Vrf**](Vrf.md) |  | [optional] 
 **Href** | Pointer to **string** |  | [optional] [readonly] 
 
 ## Methods
@@ -212,20 +212,20 @@ HasUpdatedAt returns a boolean if a field has been set.
 
 ### GetMetalGateway
 
-`func (o *VrfRoute) GetMetalGateway() VrfRouteMetalGateway`
+`func (o *VrfRoute) GetMetalGateway() VrfMetalGateway`
 
 GetMetalGateway returns the MetalGateway field if non-nil, zero value otherwise.
 
 ### GetMetalGatewayOk
 
-`func (o *VrfRoute) GetMetalGatewayOk() (*VrfRouteMetalGateway, bool)`
+`func (o *VrfRoute) GetMetalGatewayOk() (*VrfMetalGateway, bool)`
 
 GetMetalGatewayOk returns a tuple with the MetalGateway field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMetalGateway
 
-`func (o *VrfRoute) SetMetalGateway(v VrfRouteMetalGateway)`
+`func (o *VrfRoute) SetMetalGateway(v VrfMetalGateway)`
 
 SetMetalGateway sets MetalGateway field to given value.
 
@@ -237,20 +237,20 @@ HasMetalGateway returns a boolean if a field has been set.
 
 ### GetVirtualNetwork
 
-`func (o *VrfRoute) GetVirtualNetwork() VrfRouteVirtualNetwork`
+`func (o *VrfRoute) GetVirtualNetwork() VirtualNetwork`
 
 GetVirtualNetwork returns the VirtualNetwork field if non-nil, zero value otherwise.
 
 ### GetVirtualNetworkOk
 
-`func (o *VrfRoute) GetVirtualNetworkOk() (*VrfRouteVirtualNetwork, bool)`
+`func (o *VrfRoute) GetVirtualNetworkOk() (*VirtualNetwork, bool)`
 
 GetVirtualNetworkOk returns a tuple with the VirtualNetwork field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVirtualNetwork
 
-`func (o *VrfRoute) SetVirtualNetwork(v VrfRouteVirtualNetwork)`
+`func (o *VrfRoute) SetVirtualNetwork(v VirtualNetwork)`
 
 SetVirtualNetwork sets VirtualNetwork field to given value.
 
@@ -262,20 +262,20 @@ HasVirtualNetwork returns a boolean if a field has been set.
 
 ### GetVrf
 
-`func (o *VrfRoute) GetVrf() VrfRouteVrf`
+`func (o *VrfRoute) GetVrf() Vrf`
 
 GetVrf returns the Vrf field if non-nil, zero value otherwise.
 
 ### GetVrfOk
 
-`func (o *VrfRoute) GetVrfOk() (*VrfRouteVrf, bool)`
+`func (o *VrfRoute) GetVrfOk() (*Vrf, bool)`
 
 GetVrfOk returns a tuple with the Vrf field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVrf
 
-`func (o *VrfRoute) SetVrf(v VrfRouteVrf)`
+`func (o *VrfRoute) SetVrf(v Vrf)`
 
 SetVrf sets Vrf field to given value.
 

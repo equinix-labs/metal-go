@@ -30,13 +30,13 @@ type VrfRoute struct {
 	// The next-hop IPv4 address for the route
 	NextHop *string `json:"next_hop,omitempty"`
 	// VRF route type, like 'bgp', 'connected', and 'static'. Currently, only static routes are supported
-	Type                 *string                 `json:"type,omitempty"`
-	CreatedAt            *time.Time              `json:"created_at,omitempty"`
-	UpdatedAt            *time.Time              `json:"updated_at,omitempty"`
-	MetalGateway         *VrfRouteMetalGateway   `json:"metal_gateway,omitempty"`
-	VirtualNetwork       *VrfRouteVirtualNetwork `json:"virtual_network,omitempty"`
-	Vrf                  *VrfRouteVrf            `json:"vrf,omitempty"`
-	Href                 *string                 `json:"href,omitempty"`
+	Type                 *string          `json:"type,omitempty"`
+	CreatedAt            *time.Time       `json:"created_at,omitempty"`
+	UpdatedAt            *time.Time       `json:"updated_at,omitempty"`
+	MetalGateway         *VrfMetalGateway `json:"metal_gateway,omitempty"`
+	VirtualNetwork       *VirtualNetwork  `json:"virtual_network,omitempty"`
+	Vrf                  *Vrf             `json:"vrf,omitempty"`
+	Href                 *string          `json:"href,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -284,9 +284,9 @@ func (o *VrfRoute) SetUpdatedAt(v time.Time) {
 }
 
 // GetMetalGateway returns the MetalGateway field value if set, zero value otherwise.
-func (o *VrfRoute) GetMetalGateway() VrfRouteMetalGateway {
+func (o *VrfRoute) GetMetalGateway() VrfMetalGateway {
 	if o == nil || IsNil(o.MetalGateway) {
-		var ret VrfRouteMetalGateway
+		var ret VrfMetalGateway
 		return ret
 	}
 	return *o.MetalGateway
@@ -294,7 +294,7 @@ func (o *VrfRoute) GetMetalGateway() VrfRouteMetalGateway {
 
 // GetMetalGatewayOk returns a tuple with the MetalGateway field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VrfRoute) GetMetalGatewayOk() (*VrfRouteMetalGateway, bool) {
+func (o *VrfRoute) GetMetalGatewayOk() (*VrfMetalGateway, bool) {
 	if o == nil || IsNil(o.MetalGateway) {
 		return nil, false
 	}
@@ -310,15 +310,15 @@ func (o *VrfRoute) HasMetalGateway() bool {
 	return false
 }
 
-// SetMetalGateway gets a reference to the given VrfRouteMetalGateway and assigns it to the MetalGateway field.
-func (o *VrfRoute) SetMetalGateway(v VrfRouteMetalGateway) {
+// SetMetalGateway gets a reference to the given VrfMetalGateway and assigns it to the MetalGateway field.
+func (o *VrfRoute) SetMetalGateway(v VrfMetalGateway) {
 	o.MetalGateway = &v
 }
 
 // GetVirtualNetwork returns the VirtualNetwork field value if set, zero value otherwise.
-func (o *VrfRoute) GetVirtualNetwork() VrfRouteVirtualNetwork {
+func (o *VrfRoute) GetVirtualNetwork() VirtualNetwork {
 	if o == nil || IsNil(o.VirtualNetwork) {
-		var ret VrfRouteVirtualNetwork
+		var ret VirtualNetwork
 		return ret
 	}
 	return *o.VirtualNetwork
@@ -326,7 +326,7 @@ func (o *VrfRoute) GetVirtualNetwork() VrfRouteVirtualNetwork {
 
 // GetVirtualNetworkOk returns a tuple with the VirtualNetwork field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VrfRoute) GetVirtualNetworkOk() (*VrfRouteVirtualNetwork, bool) {
+func (o *VrfRoute) GetVirtualNetworkOk() (*VirtualNetwork, bool) {
 	if o == nil || IsNil(o.VirtualNetwork) {
 		return nil, false
 	}
@@ -342,15 +342,15 @@ func (o *VrfRoute) HasVirtualNetwork() bool {
 	return false
 }
 
-// SetVirtualNetwork gets a reference to the given VrfRouteVirtualNetwork and assigns it to the VirtualNetwork field.
-func (o *VrfRoute) SetVirtualNetwork(v VrfRouteVirtualNetwork) {
+// SetVirtualNetwork gets a reference to the given VirtualNetwork and assigns it to the VirtualNetwork field.
+func (o *VrfRoute) SetVirtualNetwork(v VirtualNetwork) {
 	o.VirtualNetwork = &v
 }
 
 // GetVrf returns the Vrf field value if set, zero value otherwise.
-func (o *VrfRoute) GetVrf() VrfRouteVrf {
+func (o *VrfRoute) GetVrf() Vrf {
 	if o == nil || IsNil(o.Vrf) {
-		var ret VrfRouteVrf
+		var ret Vrf
 		return ret
 	}
 	return *o.Vrf
@@ -358,7 +358,7 @@ func (o *VrfRoute) GetVrf() VrfRouteVrf {
 
 // GetVrfOk returns a tuple with the Vrf field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VrfRoute) GetVrfOk() (*VrfRouteVrf, bool) {
+func (o *VrfRoute) GetVrfOk() (*Vrf, bool) {
 	if o == nil || IsNil(o.Vrf) {
 		return nil, false
 	}
@@ -374,8 +374,8 @@ func (o *VrfRoute) HasVrf() bool {
 	return false
 }
 
-// SetVrf gets a reference to the given VrfRouteVrf and assigns it to the Vrf field.
-func (o *VrfRoute) SetVrf(v VrfRouteVrf) {
+// SetVrf gets a reference to the given Vrf and assigns it to the Vrf field.
+func (o *VrfRoute) SetVrf(v Vrf) {
 	o.Vrf = &v
 }
 

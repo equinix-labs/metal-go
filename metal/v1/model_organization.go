@@ -13,7 +13,6 @@ package v1
 
 import (
 	"encoding/json"
-	"os"
 	"time"
 )
 
@@ -31,7 +30,7 @@ type Organization struct {
 	// Force to all members to have enabled the two factor authentication after that date, unless the value is null
 	Enforce2faAt         *time.Time `json:"enforce_2fa_at,omitempty"`
 	Id                   *string    `json:"id,omitempty"`
-	Logo                 **os.File  `json:"logo,omitempty"`
+	Logo                 *string    `json:"logo,omitempty"`
 	Members              []Href     `json:"members,omitempty"`
 	Memberships          []Href     `json:"memberships,omitempty"`
 	Name                 *string    `json:"name,omitempty"`
@@ -319,9 +318,9 @@ func (o *Organization) SetId(v string) {
 }
 
 // GetLogo returns the Logo field value if set, zero value otherwise.
-func (o *Organization) GetLogo() *os.File {
+func (o *Organization) GetLogo() string {
 	if o == nil || IsNil(o.Logo) {
-		var ret *os.File
+		var ret string
 		return ret
 	}
 	return *o.Logo
@@ -329,7 +328,7 @@ func (o *Organization) GetLogo() *os.File {
 
 // GetLogoOk returns a tuple with the Logo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Organization) GetLogoOk() (**os.File, bool) {
+func (o *Organization) GetLogoOk() (*string, bool) {
 	if o == nil || IsNil(o.Logo) {
 		return nil, false
 	}
@@ -345,8 +344,8 @@ func (o *Organization) HasLogo() bool {
 	return false
 }
 
-// SetLogo gets a reference to the given *os.File and assigns it to the Logo field.
-func (o *Organization) SetLogo(v *os.File) {
+// SetLogo gets a reference to the given string and assigns it to the Logo field.
+func (o *Organization) SetLogo(v string) {
 	o.Logo = &v
 }
 
