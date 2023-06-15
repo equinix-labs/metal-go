@@ -42,21 +42,15 @@ properties:
   metal_gateway:
     description:  A link to the Metal Gateway to which this VRF Route is associated
     readOnly: true
-    oneOf:
-      - $ref: './Href.yaml'
-      - $ref: './MetalGateway.yaml'
+    $ref: './VrfMetalGateway.yaml'
   virtual_network:
     description: A link to the Virtual Network to which this VRF Route is associated, through the Metal Gateway
     readOnly: true
-    oneOf:
-      - $ref: './Href.yaml'
-      - $ref: './VirtualNetwork.yaml'
+    $ref: './VirtualNetwork.yaml'
   vrf:
     description: A link to the VRF within which this route exists
     readOnly: true
-    oneOf:
-      - $ref: './Href.yaml'
-      - $ref: './Vrf.yaml'
+    $ref: './Vrf.yaml'
   href:
     type: string
     readOnly: true

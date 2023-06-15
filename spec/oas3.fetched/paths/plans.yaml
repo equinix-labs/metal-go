@@ -23,6 +23,12 @@ get:
         - workload_optimized
         - custom
       example: standard
+  - description: Filter plans by slug
+    in: query
+    name: slug
+    schema:
+      type: string
+      example: c3.small.x86
   - $ref: '../components/parameters/Include.yaml'
   - $ref: '../components/parameters/Exclude.yaml'
   responses:
