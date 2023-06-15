@@ -28,6 +28,7 @@ type ApiFindPlansRequest struct {
 	ApiService *PlansApiService
 	categories *[]string
 	type_      *string
+	slug       *string
 	include    *[]string
 	exclude    *[]string
 }
@@ -41,6 +42,12 @@ func (r ApiFindPlansRequest) Categories(categories []string) ApiFindPlansRequest
 // Filter plans by its plan type
 func (r ApiFindPlansRequest) Type_(type_ string) ApiFindPlansRequest {
 	r.type_ = &type_
+	return r
+}
+
+// Filter plans by slug
+func (r ApiFindPlansRequest) Slug(slug string) ApiFindPlansRequest {
+	r.slug = &slug
 	return r
 }
 
@@ -102,6 +109,9 @@ func (a *PlansApiService) FindPlansExecute(r ApiFindPlansRequest) (*PlanList, *h
 	}
 	if r.type_ != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "type", r.type_, "")
+	}
+	if r.slug != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "slug", r.slug, "")
 	}
 	if r.include != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "csv")

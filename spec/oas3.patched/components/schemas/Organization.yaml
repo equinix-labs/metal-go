@@ -22,7 +22,6 @@ properties:
     format: uuid
     type: string
   logo:
-    format: binary
     type: string
   members:
     items:
