@@ -46,6 +46,9 @@ properties:
     allOf:
     - $ref: './Metro.yaml'
     - description: The metro the facility is in
+  network_frozen:
+    type: boolean
+    description: Whether network mode changes such as converting to/from Layer2 or Layer3 networking, bonding or disbonding network interfaces are permitted for the device.
   network_ports:
     description:
       By default, servers at Equinix Metal are configured in a “bonded” mode
