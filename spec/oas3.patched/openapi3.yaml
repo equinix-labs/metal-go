@@ -161,12 +161,6 @@ components:
       $ref: './components/schemas/CapacityLevelPerBaremetal.yaml'
     CapacityList:
       $ref: './components/schemas/CapacityList.yaml'
-    CapacityPerFacility:
-      $ref: './components/schemas/CapacityPerFacility.yaml'
-    CapacityPerMetroInput:
-      $ref: './components/schemas/CapacityPerMetroInput.yaml'
-    CapacityPerNewFacility:
-      $ref: './components/schemas/CapacityPerNewFacility.yaml'
     CapacityReport:
       $ref: './components/schemas/CapacityReport.yaml'
     Coordinates:
@@ -295,14 +289,8 @@ components:
       $ref: './components/schemas/Metro.yaml'
     MetroInput:
       $ref: './components/schemas/MetroInput.yaml'
-    MetroCapacityList:
-      $ref: './components/schemas/MetroCapacityList.yaml'
-    MetroCapacityReport:
-      $ref: './components/schemas/MetroCapacityReport.yaml'
     MetroList:
       $ref: './components/schemas/MetroList.yaml'
-    MetroServerInfo:
-      $ref: './components/schemas/MetroServerInfo.yaml'
     NewPassword:
       $ref: './components/schemas/NewPassword.yaml'
     OperatingSystem:
